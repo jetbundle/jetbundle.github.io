@@ -5,9 +5,9 @@ permalink: /
 nav: false
 ---
 
-## JetBundle  
+## JetBundle
 
-**Physics • Mathematics • Computation • Finance**  
+**Physics • Mathematics • Computation • Finance**
 
 *Origins, Applications, Engineering Principles*
 
@@ -19,7 +19,7 @@ nav: false
 
 {% for topic in site.data.topics %}
 
-- **[{{ topic.name }}](/topics/{{ topic.slug }}/)**  
+- **[{{ topic.name }}](/topics/{{ topic.slug }}/)**
 
   {{ topic.summary }}
 
@@ -27,9 +27,9 @@ nav: false
 
 ---
 
-### Featured Report  
+### Featured Report
 
-**The Military-Academic Complex**  
+**The Military-Academic Complex**
 
 *Archival verification of U.S. defense patronage*
 
@@ -39,9 +39,8 @@ nav: false
 
 ---
 
-### About  
+### About
 
 This is a **subject-focused resource**. Personal details are in [About](/about/) and [CV](/cv/).
 
 [All Publications →](/publications/)
-

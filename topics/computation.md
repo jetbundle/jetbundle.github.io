@@ -43,4 +43,3 @@ Interactive computing, networking, and time-sharing were not inevitable — they
 [Explore Finance →](/topics/finance/){:.btn}
 
 [Back to Topics](/){:.btn .btn--info}
-

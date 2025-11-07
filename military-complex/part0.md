@@ -27,4 +27,3 @@ Archival research from:
 [Next: Part 1 - ONR →](/military-complex/part1-onr/){:.btn}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-

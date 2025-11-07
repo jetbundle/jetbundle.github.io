@@ -43,4 +43,3 @@ Modern applied mathematics emerged from the need to solve large-scale logistical
 [Explore Computation →](/topics/computation/){:.btn}
 
 [Back to Topics](/){:.btn .btn--info}
-

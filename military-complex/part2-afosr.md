@@ -33,4 +33,3 @@ AFOSR's support was crucial for the development of modern control theory and opt
 [Next: Part 3 - ARPA →](/military-complex/part3-arpa/){:.btn}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-

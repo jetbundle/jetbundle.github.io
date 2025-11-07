@@ -51,4 +51,3 @@ permalink: /military-complex/appendix/
 [Previous: Conclusion](/military-complex/part4-conclusion/){:.btn .btn--info}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-

@@ -41,4 +41,3 @@ $$dS = \mu S dt + \sigma S dW$$
 ---
 
 [Back to Topics](/){:.btn .btn--info}
-

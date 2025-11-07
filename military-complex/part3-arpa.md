@@ -35,4 +35,3 @@ ARPA's Information Processing Techniques Office (IPTO) fundamentally shaped mode
 [Next: Part 4 - Conclusion →](/military-complex/part4-conclusion/){:.btn}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-

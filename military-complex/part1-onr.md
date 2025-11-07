@@ -33,4 +33,3 @@ ONR's funding model established the pattern for defense-academic collaboration t
 [Next: Part 2 - AFOSR →](/military-complex/part2-afosr/){:.btn}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-

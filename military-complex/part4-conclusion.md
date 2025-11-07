@@ -41,4 +41,3 @@ Understanding the historical origins of technical disciplines enables:
 [Appendix →](/military-complex/appendix/){:.btn}
 
 [Back to Report Overview](/military-complex/){:.btn .btn--info}
-
