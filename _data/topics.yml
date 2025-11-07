@@ -1,0 +1,16 @@
+- name: Physics
+  slug: physics
+  summary: "From radar to guidance systems — how military physics became engineering simulation."
+
+- name: Mathematics
+  slug: mathematics
+  summary: "Linear programming, control theory — invented to solve national-scale problems."
+
+- name: Computation
+  slug: computation
+  summary: "ENIAC, ARPANET — deliberate construction of interactive computing."
+
+- name: Finance
+  slug: finance
+  summary: "Option pricing, risk models — stochastic control in markets."
+

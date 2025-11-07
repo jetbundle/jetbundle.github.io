@@ -1,0 +1,16 @@
+<div class="pdf-embed" style="margin: 2rem 0; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <iframe 
+    src="{{ include.pdf }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+    width="100%" 
+    height="{{ site.pdf_height }}"
+    style="border: none;"
+    title="{{ include.title | default: 'Document' }}"
+    loading="lazy">
+  </iframe>
+  <div style="padding: 0.75rem 1rem; background: #f8f9fa; font-size: 0.9rem; text-align: right; border-top: 1px solid #e0e0e0;">
+    <a href="{{ include.pdf }}" target="_blank" style="color: #1a73e8; text-decoration: none; font-weight: 500;">
+      Open in New Tab
+    </a>
+  </div>
+</div>
+
