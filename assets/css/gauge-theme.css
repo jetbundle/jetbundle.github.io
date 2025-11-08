@@ -31,19 +31,22 @@ html body #background-svg,
 .bgColor1,
 stop.bgColor1,
 #background-svg stop.bgColor1,
-body #background-svg stop.bgColor1 {
+body #background-svg stop.bgColor1,
+svg stop.bgColor1 {
   stop-color: #0b0e17 !important;
 }
 
 .bgColor2,
 stop.bgColor2,
 #background-svg stop.bgColor2,
-body #background-svg stop.bgColor2 {
+body #background-svg stop.bgColor2,
+svg stop.bgColor2 {
   stop-color: #0a0d14 !important;
 }
 
 /* Override headers - Maximum specificity */
 body .container h1,
+body .content-div h1,
 body h1,
 html body h1,
 h1,
@@ -54,6 +57,7 @@ h1,
 }
 
 body .container h1,
+body .content-div h1,
 body h1,
 html body h1,
 h1 {
@@ -66,6 +70,8 @@ h1 {
 
 body h1 a,
 body h1 a:hover,
+body .content-div h1 a,
+body .content-div h1 a:hover,
 h1 a,
 h1 a:hover {
   color: #ff6b35 !important;
@@ -74,6 +80,7 @@ h1 a:hover {
 }
 
 body .container h2,
+body .content-div h2,
 body h2,
 html body h2,
 h2 {
@@ -84,6 +91,7 @@ h2 {
 }
 
 body .container h3,
+body .content-div h3,
 body h3,
 html body h3,
 h3 {
@@ -91,8 +99,27 @@ h3 {
   text-decoration-color: #ff6b35 !important;
 }
 
+body .container h4,
+body .content-div h4,
+body h4,
+html body h4,
+h4,
+body .container h5,
+body .content-div h5,
+body h5,
+html body h5,
+h5,
+body .container h6,
+body .content-div h6,
+body h6,
+html body h6,
+h6 {
+  color: #ff6b35 !important;
+}
+
 /* Override links - Maximum specificity */
 body .container a,
+body .content-div a,
 body a,
 html body a,
 a {
@@ -100,6 +127,7 @@ a {
 }
 
 body .container a:hover,
+body .content-div a:hover,
 body a:hover,
 html body a:hover,
 a:hover {
@@ -140,7 +168,7 @@ nav a:hover,
   text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
 }
 
-/* Override containers - but preserve theme functionality */
+/* Override containers - preserve theme functionality but ensure visibility */
 body .container,
 body .wrapper,
 body main,
@@ -152,30 +180,63 @@ html body main,
 main {
   background: transparent !important;
   background-color: transparent !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* Override text - ensure content is visible */
+/* CRITICAL: Ensure content-div and all text is visible */
 body .content-div,
+body .container .content-div,
+html body .content-div,
+.content-div {
+  color: #f1f5f9 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Ensure all text elements in content are visible */
 body .content-div p,
 body .content-div li,
 body .content-div span,
 body .content-div div,
-.content-div,
+body .content-div strong,
+body .content-div em,
+body .content-div blockquote,
 .content-div p,
 .content-div li,
 .content-div span,
-.content-div div {
+.content-div div,
+.content-div strong,
+.content-div em,
+.content-div blockquote {
   color: #f1f5f9 !important;
 }
 
-/* Ensure paragraphs and list items are visible */
+/* Ensure paragraphs and list items are visible everywhere */
 body p,
 body li,
-body .content-div p,
-body .content-div li,
+body .container p,
+body .container li,
 p,
 li {
   color: #f1f5f9 !important;
+}
+
+/* Ensure strong/em are visible but slightly different */
+body .content-div strong,
+body strong,
+strong {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+
+body .content-div em,
+body em,
+em {
+  color: #cbd5e1 !important;
+  font-style: italic !important;
 }
 
 /* Override code blocks */
@@ -193,15 +254,19 @@ code,
 
 /* Override blockquotes */
 body blockquote,
+body .content-div blockquote,
 blockquote {
   border-left: 4px solid #ff6b35 !important;
   background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
   background-color: #111827 !important;
   color: #94a3b8 !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
 }
 
 /* Override tables */
 body table th,
+body .content-div table th,
 table th {
   background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
   background-color: #0b0e17 !important;
@@ -209,6 +274,7 @@ table th {
 }
 
 body table td,
+body .content-div table td,
 table td {
   background-color: #0b0e17 !important;
   color: #f1f5f9 !important;
@@ -223,4 +289,49 @@ button,
   background-color: #ff6b35 !important;
   color: #f1f5f9 !important;
   border: 1px solid #ff6b35 !important;
+}
+
+/* Ensure lists are visible */
+body .content-div ul,
+body .content-div ol,
+body ul,
+body ol,
+.content-div ul,
+.content-div ol,
+ul,
+ol {
+  color: #f1f5f9 !important;
+}
+
+body .content-div ul li,
+body .content-div ol li,
+body ul li,
+body ol li,
+.content-div ul li,
+.content-div ol li,
+ul li,
+ol li {
+  color: #f1f5f9 !important;
+}
+
+/* Ensure horizontal rules are visible */
+body .content-div hr,
+body hr,
+.content-div hr,
+hr {
+  border-color: #1e293b !important;
+  background-color: #1e293b !important;
+}
+
+/* Fix z-index to ensure content is above background */
+body .content-div {
+  z-index: 10 !important;
+}
+
+body #background-div {
+  z-index: 0 !important;
+}
+
+body #background-svg {
+  z-index: 0 !important;
 }
