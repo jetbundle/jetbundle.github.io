@@ -233,7 +233,7 @@
   class ManifoldBackground {
     constructor(canvas) {
       this.canvas = canvas;
-      this.ctx = canvas.getContext('2d', { alpha: false }); // Disable alpha for performance
+      this.ctx = canvas.getContext('2d'); // Keep alpha for fade effects
       this.width = 0;
       this.height = 0;
       this.time = 0;
@@ -359,47 +359,41 @@
       this.frameCount++;
       this.time += CONFIG.animationSpeed;
 
-      // Update less frequently for performance
+      // Clear with fade (trail effect)
+      this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+
+      // Update and draw only visible fibers (cache visibility check)
       if (this.frameCount % CONFIG.updateInterval === 0) {
-        // Update all visible fibers (smaller count now, so it's fine)
-        const visibleFibers = this.fibers.filter(f =>
-          f.isVisible(this.width, this.height)
-        );
-        for (const fiber of visibleFibers) {
-          fiber.update(this.time);
+        // Update visible fibers
+        for (const fiber of this.fibers) {
+          if (fiber.isVisible(this.width, this.height)) {
+            fiber.update(this.time);
+          }
         }
 
-        // Update jet bundles even less frequently
+        // Update jet bundles less frequently
         if (this.frameCount % (CONFIG.updateInterval * 3) === 0) {
-          const visibleJets = this.jetBundles.filter(j =>
-            j.isVisible(this.width, this.height)
-          );
-          for (const jetBundle of visibleJets) {
-            jetBundle.update(this.time);
+          for (const jetBundle of this.jetBundles) {
+            if (jetBundle.isVisible(this.width, this.height)) {
+              jetBundle.update(this.time);
+            }
           }
         }
       }
 
-      // Clear with fade
-      this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
-      this.ctx.fillRect(0, 0, this.width, this.height);
-
-      // Draw only visible fibers
-      const visibleFibers = this.fibers.filter(f =>
-        f.isVisible(this.width, this.height)
-      );
-
-      for (const fiber of visibleFibers) {
-        this.drawFiber(fiber);
+      // Draw visible fibers
+      for (const fiber of this.fibers) {
+        if (fiber.isVisible(this.width, this.height)) {
+          this.drawFiber(fiber);
+        }
       }
 
-      // Draw jet bundles
-      const visibleJets = this.jetBundles.filter(j =>
-        j.isVisible(this.width, this.height)
-      );
-
-      for (const jetBundle of visibleJets) {
-        this.drawJetBundle(jetBundle);
+      // Draw visible jet bundles
+      for (const jetBundle of this.jetBundles) {
+        if (jetBundle.isVisible(this.width, this.height)) {
+          this.drawJetBundle(jetBundle);
+        }
       }
 
       this.animationId = requestAnimationFrame(() => this.animate());
