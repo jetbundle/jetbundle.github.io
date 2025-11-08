@@ -47,7 +47,7 @@ The site is automatically deployed to GitHub Pages via GitHub Actions on every p
 
 **Copyright © 2025 Joel Saucedo. All rights reserved.**
 
-This project is licensed under the MIT License with a non-commercial use restriction. 
+This project is licensed under the MIT License with a non-commercial use restriction.
 
 - **Open source** for non-commercial use
 - **Commercial use prohibited** without explicit written permission

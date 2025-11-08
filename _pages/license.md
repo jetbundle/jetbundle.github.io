@@ -21,7 +21,7 @@ copies or substantial portions of the Software.
 
 ## Non-Commercial Use Only
 
-This license permits **non-commercial use only**. 
+This license permits **non-commercial use only**.
 
 **Prohibited:**
 - Commercial use
@@ -60,4 +60,3 @@ SOFTWARE.
 [Disclaimer →](../disclaimer/)
 
 [Back to Home →](../)
-
