@@ -1,0 +1,58 @@
+{% if site.theme_base == "dark" %}
+  <link rel="stylesheet" id="css-theme" href="/assets/css/main-dark.css">
+{% else %}
+  <link rel="stylesheet" id="css-theme" href="/assets/css/main-light.css">
+{% endif %}
+<link rel="stylesheet" href="/assets/css/highlight/{{ site.highlighter_theme }}.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+
+<!-- Custom JetBundle Gauge Theme CSS -->
+<link rel="stylesheet" href="/assets/css/custom.css">
+
+<!-- Mouse Trail Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trail = document.createElement("div");
+    trail.id = "mouse-trail";
+    document.body.appendChild(trail);
+    
+    const style = document.createElement("style");
+    style.textContent = `
+      #mouse-trail {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        box-shadow: 0 0 12px #ff6b35, 0 0 20px #0ea5e9;
+        mix-blend-mode: screen;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    document.addEventListener("mousemove", (e) => {
+      trail.style.opacity = "1";
+      trail.style.left = e.clientX + "px";
+      trail.style.top = e.clientY + "px";
+    });
+    
+    let timeout;
+    document.addEventListener("mousemove", () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        trail.style.opacity = "0";
+      }, 800);
+    });
+  });
+</script>
+
+<!-- Theme Color Meta -->
+<meta name="theme-color" content="#ff6b35">
+
