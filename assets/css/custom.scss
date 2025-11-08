@@ -15,11 +15,16 @@ $border-subtle: #1e293b;   // Subtle borders
 
 /* ============================================
    GLOBAL OVERRIDES - Gauge Theme
+   HIGH SPECIFICITY TO OVERRIDE THEME
    ============================================ */
 
-/* Body and Background */
-body {
+/* Body and Background - Maximum Specificity */
+html body,
+body.animated,
+body.fadeIn,
+body.container {
   background-color: $dark-bg !important;
+  background: $dark-bg !important;
   color: $text-primary !important;
 }
 
