@@ -1,9 +1,7 @@
 ---
 layout: page
 title: Physics
-permalink: /topics/physics/
-nav: true
-nav_order: 2
+description: Physics - Defense to Engineering
 ---
 
 # Physics: Defense to Engineering
@@ -14,8 +12,6 @@ nav_order: 2
 - **Impact**: First ENIAC science run
 - **Principle**: Discretize → simulate → control
 
-{% include pdf_embed.html pdf="/assets/pdf/nwp-ias-1950.pdf" title="First NWP Runs" %}
-
 ---
 
 ## 2. Kalman Filter in Guidance (1954–1969)
@@ -24,8 +20,7 @@ nav_order: 2
 - **Impact**: Essential for Apollo lunar module
 - **Application**: GPS, robotics, finance
 
-{% include pdf_embed.html pdf="/assets/pdf/kalman-1960.pdf" title="Kalman Filter (1960)" %}
-
 ---
 
-[Back to Topics](/){:.btn .btn--info}
+[Back to Topics](/topics/)
+

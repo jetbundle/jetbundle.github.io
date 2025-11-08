@@ -1,9 +1,7 @@
 ---
 layout: page
 title: Mathematics
-permalink: /topics/mathematics/
-nav: true
-nav_order: 3
+description: Mathematics - Solving Defense Problems
 ---
 
 # Mathematics: Solving Defense Problems
@@ -18,8 +16,6 @@ Modern applied mathematics emerged from the need to solve large-scale logistical
 - **Impact**: Fundamental optimization tool for logistics, resource allocation
 - **Application**: Operations research, finance, machine learning
 
-{% include pdf_embed.html pdf="/assets/pdf/dantzig-scoop.pdf" title="Project SCOOP" %}
-
 > **Engineering Principle**: Formulate constraints → optimize objective → deploy solution.
 
 ---
@@ -32,14 +28,5 @@ Modern applied mathematics emerged from the need to solve large-scale logistical
 
 ---
 
-### 3. Numerical Analysis and Matrix Methods
+[Back to Topics](/topics/)
 
-- **Origin**: ENIAC, von Neumann, Householder
-- **Impact**: Computational linear algebra, eigenvalue problems
-- **Application**: Scientific computing, data analysis, machine learning
-
----
-
-[Explore Computation →](/topics/computation/){:.btn}
-
-[Back to Topics](/){:.btn .btn--info}

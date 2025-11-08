@@ -1,9 +1,7 @@
 ---
 layout: page
 title: Computation
-permalink: /topics/computation/
-nav: true
-nav_order: 4
+description: Computation - Deliberate Construction
 ---
 
 # Computation: Deliberate Construction
@@ -26,20 +24,9 @@ Interactive computing, networking, and time-sharing were not inevitable — they
 - **Impact**: Modern interactive computing paradigm
 - **Application**: Operating systems, cloud computing, development environments
 
-{% include pdf_embed.html pdf="/assets/pdf/licklider-1963.pdf" title="Intergalactic Computer Network" %}
-
 > **Engineering Principle**: Shared resources → interactive access → networked systems.
 
 ---
 
-### 3. Packet-Switching and ARPANET (1960s–1970s)
+[Back to Topics](/topics/)
 
-- **Origin**: ARPA, RAND Corporation (Paul Baran), NPL (Donald Davies)
-- **Impact**: Foundation of the internet
-- **Application**: Distributed systems, cloud infrastructure
-
----
-
-[Explore Finance →](/topics/finance/){:.btn}
-
-[Back to Topics](/){:.btn .btn--info}

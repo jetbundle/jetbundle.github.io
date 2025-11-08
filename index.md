@@ -1,8 +1,7 @@
 ---
 layout: page
 title: JetBundle
-permalink: /
-nav: false
+description: Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering
 ---
 
 ## JetBundle
@@ -17,25 +16,16 @@ nav: false
 
 ### Core Disciplines
 
-{% for topic in site.data.topics %}
-
-- **[{{ topic.name }}](/topics/{{ topic.slug }}/)**
-
-  {{ topic.summary }}
-
-{% endfor %}
+- **[Physics](/topics/physics/)** — From radar to guidance systems: how military physics became engineering simulation
+- **[Mathematics](/topics/mathematics/)** — Linear programming, control theory: invented to solve national-scale problems
+- **[Computation](/topics/computation/)** — ENIAC, ARPANET: deliberate construction of interactive computing
+- **[Finance](/topics/finance/)** — Option pricing, risk models: stochastic control in markets
 
 ---
 
 ### Featured Report
 
-**The Military-Academic Complex**
-
-*Archival verification of U.S. defense patronage*
-
-{% include pdf_embed.html pdf="/assets/pdf/military-academic-complex.pdf" title="Military-Academic Complex Report" %}
-
-[Read Report →](/military-complex/){:.btn .btn--primary}
+**The Military-Academic Complex** — Archival verification of U.S. defense patronage in applied mathematics and computer science.
 
 ---
 
@@ -44,3 +34,4 @@ nav: false
 This is a **subject-focused resource**. Personal details are in [About](/about/) and [CV](/cv/).
 
 [All Publications →](/publications/)
+

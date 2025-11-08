@@ -1,9 +1,7 @@
 ---
 layout: page
 title: Finance
-permalink: /topics/finance/
-nav: true
-nav_order: 5
+description: Finance - Mathematics in Action
 ---
 
 # Finance: Mathematics in Action
@@ -30,14 +28,5 @@ $$dS = \mu S dt + \sigma S dW$$
 
 ---
 
-### Risk Models and Portfolio Optimization
+[Back to Topics](/topics/)
 
-- **Root**: Linear programming, quadratic optimization
-- **Origin**: Project SCOOP, Markowitz portfolio theory
-- **Application**: Asset allocation, risk management
-
-{% include pdf_embed.html pdf="/assets/pdf/jetbundle-kalman-finance.pdf" title="Kalman Filtering in Finance" %}
-
----
-
-[Back to Topics](/){:.btn .btn--info}
