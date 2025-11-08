@@ -240,7 +240,6 @@
       this.frameCount = 0;
       this.animationId = null;
       this.isRunning = false;
-      this.lastUpdateTime = 0;
 
       // Generate unique seed
       this.seed = Date.now() + Math.random() * 10000;
@@ -369,23 +368,18 @@
 
       this.time += CONFIG.animationSpeed;
 
-      // Update less frequently
+      // Update less frequently for performance
       if (this.frameCount % CONFIG.updateInterval === 0) {
+        // Update all visible fibers (smaller count now, so it's fine)
         const visibleFibers = this.fibers.filter(f => 
           f.isVisible(this.width, this.height)
         );
-
-        // Update only a subset each frame
-        const updateCount = Math.ceil(visibleFibers.length / 2);
-        for (let i = 0; i < updateCount; i++) {
-          const idx = (this.frameCount + i) % visibleFibers.length;
-          if (visibleFibers[idx]) {
-            visibleFibers[idx].update(this.time);
-          }
+        for (const fiber of visibleFibers) {
+          fiber.update(this.time);
         }
 
-        // Update jet bundles less frequently
-        if (this.frameCount % (CONFIG.updateInterval * 2) === 0) {
+        // Update jet bundles even less frequently
+        if (this.frameCount % (CONFIG.updateInterval * 3) === 0) {
           const visibleJets = this.jetBundles.filter(j => 
             j.isVisible(this.width, this.height)
           );
@@ -423,7 +417,6 @@
     start() {
       if (this.isRunning) return;
       this.isRunning = true;
-      this.lastUpdateTime = performance.now();
       this.animate();
     }
 
