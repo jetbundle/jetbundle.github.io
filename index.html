@@ -74,16 +74,15 @@
   <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
 
-  <!-- MathJax -->
+  <!-- MathJax - Async (non-blocking) -->
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
-  <script type="text/javascript" src="/assets/js/main.js"></script>
+  <!-- All JavaScript deferred to prevent blocking render -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 </head>
-
 
   <body class="animated fadeIn">
     <header>
@@ -409,254 +408,137 @@
 </footer>
 
     
-    <!-- JetBundle Gauge Theme JavaScript - Deferred and Optimized -->
-    <script defer>
+    <!-- JetBundle Gauge Theme JavaScript - Minimal and Optimized -->
+    <script>
+      // Minimal style enforcement - CSS handles most styling
       (function() {
         'use strict';
         
-        // Wait for DOM and all resources to load
-        function initGaugeTheme() {
-          let stylesApplied = false;
-          let throttleTimer = null;
-          const THROTTLE_DELAY = 200;
-          
-          function applyGaugeTheme(force) {
-            if (!force && stylesApplied) return;
-            
-            try {
-              const body = document.body;
-              const html = document.documentElement;
-              const bgDiv = document.getElementById('background-div');
-              const svg = document.getElementById('background-svg');
-              
-              if (!body) return;
-              
-              // Apply body styles once
-              if (!body.hasAttribute('data-gauge-theme')) {
-                body.setAttribute('data-gauge-theme', 'applied');
-                body.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-                body.style.backgroundColor = '#0b0e17';
-                body.style.color = '#f1f5f9';
-              }
-              
-              // Apply html styles once
-              if (html && !html.hasAttribute('data-gauge-theme')) {
-                html.setAttribute('data-gauge-theme', 'applied');
-                html.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-                html.style.backgroundColor = '#0b0e17';
-              }
-              
-              // Apply background div styles once
-              if (bgDiv && !bgDiv.hasAttribute('data-gauge-theme')) {
-                bgDiv.setAttribute('data-gauge-theme', 'applied');
-                bgDiv.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-                bgDiv.style.backgroundColor = '#0b0e17';
-              }
-              
-              // Apply SVG gradient styles once
-              if (svg) {
-                const stops = svg.querySelectorAll('stop:not([data-gauge-theme])');
-                stops.forEach(stop => {
-                  stop.setAttribute('data-gauge-theme', 'applied');
-                  if (stop.classList.contains('bgColor1')) {
-                    stop.setAttribute('stop-color', '#0b0e17');
-                  } else if (stop.classList.contains('bgColor2')) {
-                    stop.setAttribute('stop-color', '#0a0d14');
-                  }
-                });
-              }
-              
-              // Apply styles to new elements only (batch processing)
-              if (!stylesApplied) {
-                // Use requestAnimationFrame to batch DOM updates
-                requestAnimationFrame(function() {
-                  const headings = document.querySelectorAll('h1:not([data-gauge-theme]), h2:not([data-gauge-theme]), h3:not([data-gauge-theme]), .post-title:not([data-gauge-theme])');
-                  headings.forEach(h => {
-                    h.setAttribute('data-gauge-theme', 'applied');
-                    h.style.color = '#ff6b35';
-                    if (h.tagName === 'H1' || h.classList.contains('post-title')) {
-                      h.style.background = 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)';
-                      h.style.webkitBackgroundClip = 'text';
-                      h.style.webkitTextFillColor = 'transparent';
-                      h.style.backgroundClip = 'text';
-                    }
-                  });
-                  
-                  const links = document.querySelectorAll('a:not([data-gauge-theme]):not(h1 a)');
-                  links.forEach(a => {
-                    a.setAttribute('data-gauge-theme', 'applied');
-                    a.style.color = '#0ea5e9';
-                  });
-                  
-                  const navLinks = document.querySelectorAll('.navbar-icon:not([data-gauge-theme]), nav a:not([data-gauge-theme]), .navbar a:not([data-gauge-theme])');
-                  navLinks.forEach(a => {
-                    a.setAttribute('data-gauge-theme', 'applied');
-                    a.style.color = '#94a3b8';
-                  });
-                  
-                  stylesApplied = true;
-                });
-              }
-            } catch (e) {
-              console.error('Gauge theme error:', e);
-            }
-          }
-          
-          function throttledApply(force) {
-            if (throttleTimer && !force) return;
-            clearTimeout(throttleTimer);
-            throttleTimer = setTimeout(() => {
-              applyGaugeTheme(force);
-              throttleTimer = null;
-            }, THROTTLE_DELAY);
-          }
-          
-          // Apply once immediately
-          applyGaugeTheme(true);
-          
-          // Apply once more after delay for any dynamic content
-          setTimeout(() => applyGaugeTheme(false), 500);
-          
-          // Lightweight MutationObserver - only for genuinely new content
-          const observer = new MutationObserver(function(mutations) {
-            let needsUpdate = false;
-            for (const mutation of mutations) {
-              if (mutation.addedNodes.length > 0) {
-                for (const node of mutation.addedNodes) {
-                  if (node.nodeType === 1) {
-                    const tagName = node.tagName ? node.tagName.toLowerCase() : '';
-                    if (tagName && ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a'].includes(tagName)) {
-                      needsUpdate = true;
-                      break;
-                    }
-                    if (node.querySelector && node.querySelector('h1, h2, h3, h4, h5, h6, a')) {
-                      needsUpdate = true;
-                      break;
-                    }
-                  }
+        // Wait for page to be interactive
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyStyles);
+        } else {
+          // Use setTimeout to ensure this runs after deferred scripts
+          setTimeout(applyStyles, 100);
+        }
+        
+        function applyStyles() {
+          try {
+            // Only apply styles that CSS can't handle (SVG gradients)
+            const svg = document.getElementById('background-svg');
+            if (svg) {
+              const stops = svg.querySelectorAll('stop:not([data-gauge-theme])');
+              stops.forEach(stop => {
+                stop.setAttribute('data-gauge-theme', 'applied');
+                if (stop.classList.contains('bgColor1')) {
+                  stop.setAttribute('stop-color', '#0b0e17');
+                } else if (stop.classList.contains('bgColor2')) {
+                  stop.setAttribute('stop-color', '#0a0d14');
                 }
-                if (needsUpdate) break;
-              }
+              });
             }
-            if (needsUpdate) {
-              stylesApplied = false;
-              throttledApply(false);
-            }
-          });
-          
-          if (document.body) {
-            observer.observe(document.body, {
-              childList: true,
-              subtree: true
-            });
+          } catch (e) {
+            // Silently fail - CSS handles styling
           }
+        }
+        
+        // Lightweight cursor trail - only if user moves mouse
+        let trailInit = false;
+        let trailActive = false;
+        const trailLength = 8; // Reduced for performance
+        let container = null;
+        let animFrame = null;
+        let mx = 0, my = 0;
+        let lastMove = 0;
+        const trail = [];
+        
+        function initTrail() {
+          if (trailInit) return;
+          trailInit = true;
           
-          // Optimized cursor trail - lazy initialization
-          let trailInit = false;
-          let trailActive = false;
-          const trail = [];
-          const trailLength = 10; // Further reduced for performance
-          let container = null;
-          let animFrame = null;
-          let mx = 0, my = 0;
-          let lastMouseMove = 0;
+          container = document.createElement('div');
+          container.id = 'mouse-trail-container';
+          container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
+          document.body.appendChild(container);
           
-          function initTrail() {
-            if (trailInit) return;
-            trailInit = true;
-            
-            container = document.createElement('div');
-            container.id = 'mouse-trail-container';
-            container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
-            document.body.appendChild(container);
-            
-            for (let i = 0; i < trailLength; i++) {
-              const p = document.createElement('div');
-              const size = Math.max(2, 5 - i * 0.2);
-              const opacity1 = Math.max(0, 0.9 - i * 0.08);
-              const opacity2 = Math.max(0, 0.7 - i * 0.07);
-              p.style.cssText = `position:absolute;width:${size}px;height:${size}px;background:radial-gradient(circle,rgba(255,107,53,${opacity1})0%,rgba(14,165,233,${opacity2})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;`;
-              container.appendChild(p);
-              trail.push({el:p,x:0,y:0,op:0});
-            }
+          for (let i = 0; i < trailLength; i++) {
+            const p = document.createElement('div');
+            const size = Math.max(2, 4 - i * 0.15);
+            const opacity = Math.max(0, 0.8 - i * 0.1);
+            p.style.cssText = `position:absolute;width:${size}px;height:${size}px;background:radial-gradient(circle,rgba(255,107,53,${opacity})0%,rgba(14,165,233,${opacity*0.8})50%,transparent 100%);border-radius:50%;pointer-events:none;opacity:0;will-change:transform,opacity;transition:opacity 0.1s;`;
+            container.appendChild(p);
+            trail.push({el:p,x:0,y:0,op:0});
           }
+        }
+        
+        function startTrail() {
+          if (trailActive || !trailInit) return;
+          trailActive = true;
+          lastMove = Date.now();
           
-          function startTrail() {
-            if (trailActive) return;
-            trailActive = true;
-            if (!trailInit) initTrail();
-            lastMouseMove = Date.now();
+          function animate() {
+            if (!trailActive) {
+              animFrame = null;
+              return;
+            }
             
-            function animate() {
-              if (!trailActive) {
+            const now = Date.now();
+            if (now - lastMove > 1000) {
+              // Fade out after 1s inactivity
+              let allInvisible = true;
+              trail.forEach(p => {
+                p.op = Math.max(0, p.op - 0.3);
+                p.el.style.opacity = p.op;
+                p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
+                if (p.op > 0.01) allInvisible = false;
+              });
+              if (allInvisible) {
+                trailActive = false;
                 animFrame = null;
                 return;
               }
-              
-              const now = Date.now();
-              // Stop after 1.5s of inactivity
-              if (now - lastMouseMove > 1500) {
-                let allInvisible = true;
-                trail.forEach(p => {
-                  p.op = Math.max(0, p.op - 0.2);
-                  p.el.style.opacity = p.op;
-                  if (p.op > 0.01) allInvisible = false;
-                });
-                if (allInvisible) {
-                  trailActive = false;
-                  animFrame = null;
-                  return;
-                }
-              } else {
-                trail.forEach((p,i)=>{
-                  if(i===0){
-                    p.x=mx;
-                    p.y=my;
-                    p.op=1;
-                  } else{
-                    const prev=trail[i-1];
-                    const dx=prev.x-p.x;
-                    const dy=prev.y-p.y;
-                    const dist=Math.sqrt(dx*dx+dy*dy);
-                    if(dist>1.5){
-                      p.x+=dx*0.2;
-                      p.y+=dy*0.2;
-                    } else {
-                      p.x=prev.x;
-                      p.y=prev.y;
-                    }
-                    p.op=Math.max(0,p.op-0.06);
+            } else {
+              trail.forEach((p,i)=>{
+                if(i===0){
+                  p.x=mx;
+                  p.y=my;
+                  p.op=1;
+                } else{
+                  const prev=trail[i-1];
+                  const dx=prev.x-p.x;
+                  const dy=prev.y-p.y;
+                  const dist=Math.sqrt(dx*dx+dy*dy);
+                  if(dist>2){
+                    p.x+=dx*0.25;
+                    p.y+=dy*0.25;
+                  } else {
+                    p.x=prev.x;
+                    p.y=prev.y;
                   }
-                  p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
-                  p.el.style.opacity = p.op;
-                });
-              }
-              animFrame = requestAnimationFrame(animate);
+                  p.op=Math.max(0,p.op-0.08);
+                }
+                p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
+                p.el.style.opacity = p.op;
+              });
             }
             animFrame = requestAnimationFrame(animate);
           }
-          
-          // Lazy load trail on first mouse move
-          document.addEventListener('mousemove', function(e) {
-            mx = e.clientX;
-            my = e.clientY;
-            lastMouseMove = Date.now();
-            if (!trailInit) {
-              // Delay trail initialization slightly
-              setTimeout(initTrail, 100);
-            }
-            if (!trailActive && trailInit) {
-              startTrail();
-            }
-          }, { passive: true });
+          animFrame = requestAnimationFrame(animate);
         }
         
-        // Initialize after page load
-        if (document.readyState === 'complete') {
-          initGaugeTheme();
-        } else {
-          window.addEventListener('load', initGaugeTheme);
-        }
+        // Lazy load trail only on mouse move
+        document.addEventListener('mousemove', function(e) {
+          mx = e.clientX;
+          my = e.clientY;
+          lastMove = Date.now();
+          if (!trailInit) {
+            // Delay initialization to avoid blocking
+            requestIdleCallback ? requestIdleCallback(initTrail) : setTimeout(initTrail, 200);
+          }
+          if (trailInit && !trailActive) {
+            startTrail();
+          }
+        }, { passive: true });
       })();
     </script>
   </body>
