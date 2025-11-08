@@ -75,45 +75,7 @@ table {
   }
 }
 
-// Hero Fiber Lines
-.fiber-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.fiber {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 1px;
-  opacity: 0;
-  animation: fiberPulse 4s infinite ease-in-out;
-}
-
-@keyframes fiberPulse {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(-50%) scaleX(0);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translateY(-50%) scaleX(1);
-  }
-}
-
-// Hero Section
-.hero-fiber {
-  position: relative;
-  overflow: hidden;
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%);
-  margin-bottom: 2rem;
-}
+// Hero Section (styles moved to inline in hero.html for better compatibility)
 
 // Mouse Trail
 #mouse-trail {

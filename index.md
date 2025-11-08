@@ -3,7 +3,10 @@ layout: single
 title: "The JetBundle Primer"
 permalink: /
 author_profile: false
+classes: wide
 ---
+
+{% include hero.html %}
 
 ## The Jetbundle Primer: Foundations of the Military-Financial Stack
 

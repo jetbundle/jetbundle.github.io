@@ -89,20 +89,9 @@ defaults:
       sidebar:
         nav: "finance_stack"
 
-# Navigation
-navigation:
-  - title: "The Primer"
-    url: /
-  - title: "The C3I Stack"
-    url: /c3i_stack/
-  - title: "The Physics Stack"
-    url: /physics_stack/
-  - title: "The Finance Stack"
-    url: /finance_stack/
-  - title: "The Archive"
-    url: /archive/
-  - title: "Principal"
-    url: /principal/
+# Site navigation
+sidebar:
+  nav: "main"
 
 # Theme settings
 minimal_mistakes_skin: "dark"
