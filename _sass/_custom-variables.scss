@@ -1,27 +1,61 @@
-// JetBundle Custom Variables - Orange + Blue Palette
-// No terminal green - Gauge-themed dark palette
+/* _sass/_custom-variables.scss */
 
-$orange-primary:   #ff6b35;   // Warm Coral Orange (Gauge Needle)
-$orange-accent:    #ff4500;   // Orange Red (Hover, Alerts)
-$blue-primary:     #0ea5e9;   // Sky Blue (Links, Connections)
-$blue-deep:        #1e40af;   // Deep Blue (Headers, Fibers)
-$dark-bg:          #0b0e17;   // Near-black void
-$card-bg:          #111827;   // Slightly lighter panels
-$text-primary:     #f1f5f9;   // Soft white
-$text-muted:       #94a3b8;   // Slate gray
-$border-subtle:    #1e293b;   // Subtle borders
+// --- JetBundle Gauge Theme ---
 
-// Override Minimal Mistakes defaults
+// Colors
+$orange-primary:  #ff6b35;  // Warm Coral Orange (Gauge Needle)
+$orange-accent:   #ff4500;  // Orange Red (Hover, Alerts)
+$blue-primary:    #0ea5e9;  // Sky Blue (Links, Connections)
+$blue-deep:       #1e40af;  // Deep Blue (Headers, Fibers)
+$dark-bg:         #0b0e17;  // Near-black void
+$card-bg:         #111827;  // Slightly lighter panels
+$text-primary:    #f1f5f9;  // Soft white
+$text-muted:      #94a3b8;  // Slate gray
+$border-subtle:   #1e293b;
+
+// Theme Overrides for minimal-mistakes
 $background-color: $dark-bg;
 $text-color: $text-primary;
 $primary-color: $orange-primary;
 $link-color: $blue-primary;
-$muted-text-color: $text-muted;
+$link-color-hover: $orange-primary;
+$masthead-link-color: $text-primary;
+$masthead-link-color-hover: $orange-primary;
+$navicon-link-color-hover: $orange-primary;
 
-// Code blocks
-$code-background-color: #222;
-$code-text-color: #4ae;
+// Code
+$code-background-color: $card-bg;
+$code-text-color: $text-primary;
+$code-border-color: $border-subtle;
 
 // Borders
 $border-color: $border-subtle;
+
+// Navigation
+$nav-background: $card-bg;
+$nav-link-color: $text-muted;
+$nav-link-color-hover: $orange-primary;
+
+// Tables
+$table-background: $card-bg;
+$table-header-background: $dark-bg;
+$table-header-color: $orange-primary;
+$table-border-color: $border-subtle;
+$table-row-background: $card-bg;
+$table-row-hover-background: darken($card-bg, 5%);
+
+// Blockquotes
+$blockquote-background: $card-bg;
+$blockquote-border-color: $orange-primary;
+$blockquote-color: $text-muted;
+
+// Buttons
+$button-background: $orange-primary;
+$button-background-hover: $orange-accent;
+$button-text-color: $text-primary;
+
+// Notice boxes
+$notice-background: $card-bg;
+$notice-text: $text-primary;
+$notice-border: $orange-primary;
 

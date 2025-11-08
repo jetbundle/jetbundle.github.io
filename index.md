@@ -1,16 +1,48 @@
 ---
 layout: single
-title: "The JetBundle Primer"
+title: "The Jetbundle Primer: Foundations of the Military-Financial Stack"
 permalink: /
 author_profile: false
-classes: wide
 ---
 
-{% include hero.html %}
+<section class="hero-fiber">
+  <div class="wrapper" style="position: relative; z-index: 2;">
+    <h1 style="font-size: 3.2rem; margin: 0; background: linear-gradient(90deg, #ff6b35, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      JetBundle
+    </h1>
+    <p style="font-size: 1.3rem; color: #94a3b8; margin: 1rem 0 2rem;">
+      Mapping the hidden geometry of modern science.
+    </p>
+  </div>
+  <div class="fiber-lines">
+    <div class="fiber" style="background: linear-gradient(90deg, transparent, #0ea5e9, transparent); left: 10%; animation-delay: 0s;"></div>
+    <div class="fiber" style="background: linear-gradient(90deg, transparent, #ff6b35, transparent); left: 30%; animation-delay: 1.2s;"></div>
+    <div class="fiber" style="background: linear-gradient(90deg, transparent, #0ea5e9, transparent); left: 55%; animation-delay: 0.6s;"></div>
+    <div class="fiber" style="background: linear-gradient(90deg, transparent, #ff6b35, transparent); left: 75%; animation-delay: 2s;"></div>
+  </div>
+</section>
 
-## The Jetbundle Primer: Foundations of the Military-Financial Stack
+<div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
+  <a href="/c3i_stack/01_intro/" class="stack-card">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; pointer-events: none; background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.2), transparent);"></div>
+    <h3 style="color: #ff6b35; margin: 0 0 0.5rem; font-size: 1.4rem;">C3I & Surveillance Stack</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">AI, OS, Graph Theory — from SAC command nets to Palantir Gotham.</p>
+  </a>
+  
+  <a href="/physics_stack/01_intro/" class="stack-card">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; pointer-events: none; background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.2), transparent);"></div>
+    <h3 style="color: #0ea5e9; margin: 0 0 0.5rem; font-size: 1.4rem;">Ballistics & Hydrodynamics</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">PDEs, Complex Analysis — from Nautilus hulls to missile trajectories.</p>
+  </a>
+  
+  <a href="/finance_stack/01_intro/" class="stack-card">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; pointer-events: none; background: radial-gradient(circle at top right, rgba(255, 69, 0, 0.2), transparent);"></div>
+    <h3 style="color: #ff4500; margin: 0 0 0.5rem; font-size: 1.4rem;">The Military-Financial Stack</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">Kalman, Pontryagin — from Minuteman guidance to HFT signal paths.</p>
+  </a>
+</div>
 
-### Preamble: The Bundle as the True Architecture
+## Preamble: The Bundle as the True Architecture
 
 This project is an audit. It maps the hidden geometry of modern science.
 
@@ -20,7 +52,7 @@ In this model:
 
 1. **The Base Space** is "pure" academia: the university curriculum, the syllabus, the textbook, the journal paper. It is the world of abstract, "unmotivated" definitions—the "ugly scholastic pseudo-mathematics" that Vladimir Arnold identified.
 
-2. **The Fiber** is the world of classified, high-stakes, material applications. It is the *actual problem* a given abstraction was funded to solve. At the point on the Base Space labeled "Complex Analysis," the attached Fiber contains the classified blueprints for a *Nautilus* submarine hull. At "Graph Theory," the Fiber contains the NSA's SKYNET drone-targeting algorithm.
+2. **The Fiber** is the world of classified, high-stakes, material applications. It is the *actual problem* a given abstraction was funded to solve. At the point on the Base Space labeled "Complex Analysis," the attached Fiber contains the classified blueprints for a *Nautilus* submarine hull, designed to minimize hydrodynamic noise.
 
 3. **The Connection** is the flow of funding. This connection—the grants from the Office of Naval Research (ONR), DARPA, and the Air Force Office of Scientific Research (AFOSR)—defines the "curvature" of the entire system. It dictates how and why the "pure" research of the Base Space is forced to bend to serve the applied needs of the Fiber.
 
@@ -28,7 +60,7 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 
 ---
 
-### Part I: The Base Space (The Cartography)
+## Part I: The Base Space (The Cartography)
 
 The most effective map of the Base Space remains Vladimir Arnold's 1995 tripartition. It is not a philosophy, but a verifiable econometric model of 20th-century R&D.
 
@@ -40,57 +72,17 @@ The most effective map of the Base Space remains Vladimir Arnold's 1995 triparti
 
 The "pure," axiomatic formalism of collectives like Nicolas Bourbaki (est. 1934) was the crucial "laundering" mechanism. It provided the intellectual camouflage necessary to resolve the central contradiction of the post-WWII era: how to accept secret military funding while maintaining a public identity of "pure," apolitical inquiry. Abstraction became the mechanism of redaction.
 
-#### **The Master Cartography: Mathematics**
+This was not a secret. DARPA's 2007 "Mathematical Challenges" BAA explicitly solicited foundational "lemmas" as deliverables, such as "Settle the Hodge Conjecture" (Challenge 21) and "replace linear algebra by algebraic geometry" (Challenge 8).
 
-| Field (MSC 2020) | First Cheque | Killer App (1940–90) | Modern Patron (2020–) |
-| :--- | :--- | :--- | :--- |
-| Number Theory | ONR N00014-48-0001 | NSA rotor permutations | NSA GHARDY; JPMorgan |
-| Algebraic Geometry | DARPA IPTO (1963) | Error-correcting codes | DARPA FUNLoC; Palantir |
-| Combinatorics | ONR N00014-67-A-0298 | NSA clique detection | Citadel; Two Sigma |
-| Complex Analysis | ONR N00014-45-001 | *Nautilus* hull quieting | Boeing (wing stress) |
-| PDEs | ONR N00014-50-001 | H-bomb shock-waves | Lockheed (hypersonics) |
-| Sci. Computing | ONR N00014-46-001 | Los Alamos implosion grids | NVIDIA (stockpile sims) |
-| Variational Calculus | AFOSR 49-200 | Titan-II trajectory | Blue Origin (landing) |
-| Linear Algebra | ARO DAAG-29-75 | Kalman filter (Minuteman-III) | Google (PageRank) |
-| Probability | ONR N00014-47-001 | *Nautilus* SONAR tracking | Meta (recommenders) |
-| Graph Theory | ONR N00014-67-A-0298 | SKYNET drone kill-chain | Palantir Gotham (ICE) |
-| Optimization | AFOSR 49-100 | SAC bomber refueling | Amazon (routing) |
+**[View the complete Master Cartography Table →](/cartography/)**
 
 ---
 
-### Part II: The Fibers (The Applied Stacks)
+## Part II: The Fibers (The Applied Stacks)
 
-The Base Space of mathematics maps directly onto the applied "Fibers" of technology. The CS and QF curricula are not new subjects; they are bundles of these mathematical tools, optimized for a specific set of problems.
+The "Base Space" of mathematics maps directly onto the applied "Fibers" of technology. The CS and QF curricula are not new subjects; they are bundles of these mathematical tools, optimized for a specific set of problems.
 
-<div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
-  <a href="/c3i_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
-    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #ff6b3533, transparent); pointer-events: none;"></div>
-    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #ff6b35;">C3I & Surveillance Stack</h3>
-    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">AI, OS, Graph Theory — from SAC command nets to Palantir Gotham</p>
-  </a>
-
-  <a href="/physics_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
-    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #0ea5e933, transparent); pointer-events: none;"></div>
-    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #0ea5e9;">Ballistics & Hydrodynamics</h3>
-    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">PDEs, Complex Analysis — from Nautilus to HFT signal paths</p>
-  </a>
-
-  <a href="/finance_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
-    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #ff450033, transparent); pointer-events: none;"></div>
-    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #ff4500;">Military-Financial Stack</h3>
-    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">Kalman, Pontryagin — from Minuteman to Jane Street</p>
-  </a>
-</div>
-
-<style>
-.stack-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-  border-color: #ff6b35;
-}
-</style>
-
-#### **Fiber 1: The C3I & Surveillance Stack (AI, OS, Crypto, Graphs)**
+### Fiber 1: The C3I & Surveillance Stack (AI, OS, Crypto, Graphs)
 
 This stack comprises the technologies of **Command, Control, Communications & Intelligence**.
 
@@ -100,7 +92,19 @@ This stack comprises the technologies of **Command, Control, Communications & In
 
 - **Graph Theory:** This is the "skeleton key" Fiber for C3I. Its origin is Pál Turán's 1941 "brick factory problem," conceived in a forced-labor camp. The math (extremal graph theory) was operationalized by the NSA in its **SKYNET** program, which uses graph centrality algorithms on metadata to find "cliques" of "suspect activity" for drone targeting. This *exact* social network analysis is the core product of **Palantir Gotham**, sold to clients like ICE and the NYPD.
 
-#### **Fiber 2: The Military-Financial Stack (Quantitative Finance)**
+**[Explore the C3I Stack →](/c3i_stack/01_intro/)**
+
+### Fiber 2: The Ballistics & Hydrodynamics Stack
+
+- **Complex Analysis:** Funded by ONR for conformal mapping of *Nautilus* submarine hulls to minimize hydrodynamic noise vortices.
+
+- **Partial Differential Equations:** Funded for H-bomb shock-wave calculations and hypersonic vehicle design.
+
+- **Scientific Computing:** Funded for Los Alamos implosion simulations and modern stockpile stewardship.
+
+**[Explore the Physics Stack →](/physics_stack/01_intro/)**
+
+### Fiber 3: The Military-Financial Stack (Quantitative Finance)
 
 The "Great Handover" occurred when Wall Street outbid the Pentagon. Quantitative finance did not invent new mathematics; it "re-skinned" the DoD's toolkit for a new problem set: the market.
 
@@ -108,11 +112,13 @@ The "Great Handover" occurred when Wall Street outbid the Pentagon. Quantitative
 
 - **Ballistics → Derivatives Pricing:** **Pontryagin's Maximum Principle** (1956) was funded by AFOSR to solve the "optimal Titan-II ascent trajectory"—a problem in solving ordinary differential equations (ODEs). This is the *exact* math taught in `AMS 527: Numerical Analysis`, now "re-skinned" to solve the Black-Scholes **PDE** for option pricing.
 
-- **Naval Warfare → High-Frequency Trading (HFT):** HFT firms like Jane Street and Citadel compete in "latency arbitrage"—a "race on speed". The math (`AMS 523: Mathematics of High Frequency Finance` teaches "Fourier transforms" and "conformal mapping") is the math of the Naval "Hydrodynamics" stack. Fourier/Laplace transforms were for **radar signal processing**. Conformal mapping was the "Killer App" funded by ONR (est. 1946) to design the hydrodynamic hull of the *USS Nautilus* to minimize noise vortices. The HFT firms *physically build a graph* of "terrestrial microwave networks" to find the "shortest-path (geodesic)", running the *same* signal-processing algorithms to win a microsecond race.
+- **Naval Warfare → High-Frequency Trading (HFT):** HFT firms like Jane Street and Citadel compete in "latency arbitrage"—a "race on speed". The math they use is from `AMS 523: Mathematics of High Frequency Finance`—the "Fourier transforms" and "conformal mapping" originally funded by ONR for **radar signal processing** and **Nautilus hull hydrodynamics**. The HFT firms *physically build a graph* of "terrestrial microwave networks" to find the "shortest-path (geodesic)", running the *same* signal-processing algorithms to win a microsecond race.
+
+**[Explore the Finance Stack →](/finance_stack/01_intro/)**
 
 ---
 
-### Part III: The Connection (The Dynamics of the Stack)
+## Part III: The Connection (The Dynamics of the Stack)
 
 The "Connection" (funding) is not static; it is a dynamic force that pulls ideas across the Base Space and through time.
 
@@ -128,7 +134,7 @@ The "Connection" (funding) is not static; it is a dynamic force that pulls ideas
 
 ---
 
-### Part IV: The `jetbundle` Project
+## Part IV: The `jetbundle` Project
 
 This project is the open-source initiative to map this bundle. The `jetbundle.github.io` site serves as the primer, the audit trail, and the central hub.
 
@@ -137,3 +143,5 @@ This project is the open-source initiative to map this bundle. The `jetbundle.gi
 - **The Simulations** provide open-source code to explore the "lemmas" (Kalman filters, Turán graphs, Byzantine consensus).
 
 The goal is to remove the redactions. The audit trail is the curriculum.
+
+**[Explore The Archive →](/archive/)**

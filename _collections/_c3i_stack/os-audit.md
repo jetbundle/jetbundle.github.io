@@ -1,21 +1,55 @@
 ---
-title: "OS Audit: From SAC Command Nets to Azure IL5"
+layout: single
+title: "Operating Systems Audit: From Project MAC to Azure IL5"
 permalink: /c3i_stack/os-audit/
+author_profile: false
+toc: true
+toc_sticky: true
 ---
 
-# OS Audit: From SAC Command Nets to Azure IL5
+# Operating Systems Audit: From Project MAC to Azure IL5
 
 ## The Military Requirement
 
-The modern operating system emerged from a specific military requirement: a "Survivable SAC command net" capable of withstanding nuclear attack.
+The modern operating system is a direct descendant of the 1960s military requirement for a "Survivable SAC command net"—a distributed computing system that could survive a nuclear first strike and maintain command and control of Strategic Air Command bombers.
 
-## Project MAC and Multics
+## The First Cheque: DARPA IPTO
 
-J.C.R. Licklider, as director of DARPA's IPTO, funded MIT's **Project MAC** to build **Multics**—the ancestor of all modern operating systems.
+J.C.R. Licklider, as director of DARPA's Information Processing Techniques Office (IPTO), executed this mandate by funding MIT's **Project MAC** (Mathematics and Computation, later "Multiple Access Computer").
 
-## The Lineage
+### Project MAC (1963-1970)
 
-This 60-year institutional lineage is unbroken: the "Modern Patron" is the same DoD, which now leases this "computer utility" from Microsoft, whose **Azure Kubernetes Service** is formally authorized for **DoD Impact Level 5 (IL5)** workloads.
+- **Funding**: DARPA IPTO
+- **Objective**: Build a time-sharing, multi-user computing system
+- **Deliverable**: Multics (Multiplexed Information and Computing Service)
+- **Architecture**: Ring-based security, hierarchical file system, dynamic linking
 
-[Back to C3I Stack](/c3i_stack/01_intro/)
+### The Multics Lineage
+
+**Multics (1969)** → **UNIX (1971)** → **POSIX (1988)** → **Linux (1991)** → **Cloud OS (2000s)**
+
+## The 60-Year Institutional Lineage
+
+The "Modern Patron" is the same DoD that funded Project MAC. The institutional continuity is unbroken:
+
+1. **1960s**: DoD funds Project MAC via DARPA
+2. **1970s**: DoD adopts UNIX for military computing
+3. **1980s**: DoD mandates POSIX compliance
+4. **1990s**: DoD uses Linux for classified systems
+5. **2000s**: DoD migrates to cloud computing
+6. **2010s**: Microsoft Azure authorized for **DoD Impact Level 5 (IL5)** workloads
+
+## The Connection
+
+Microsoft's **Azure Kubernetes Service** is formally authorized for **DoD Impact Level 5 (IL5)** workloads—the same "computer utility" concept that DARPA funded in 1963, now leased back to the DoD.
+
+## Key Documents
+
+- **"Intergalactic Computer Network" Memo** (April 23, 1963) - J.C.R. Licklider's vision
+- **Project MAC Documentation** - MIT's time-sharing research
+- **DoD Cloud Computing Strategy** - Modern authorization documents
+
+---
+
+**[Back to C3I Stack →](/c3i_stack/01_intro/)**
 

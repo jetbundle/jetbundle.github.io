@@ -1,32 +1,55 @@
 ---
+layout: single
 title: "The Ballistics & Hydrodynamics Stack"
 permalink: /physics_stack/01_intro/
+author_profile: false
+toc: true
+toc_sticky: true
 ---
 
 # The Ballistics & Hydrodynamics Stack
 
+This stack traces the lineage from naval warfare and missile guidance to modern computational physics and engineering.
+
 ## Overview
 
-This stack traces the mathematical foundations of physics from submarine design to high-frequency trading signal paths.
+The Physics Stack maps the Base Space of mathematics (complex analysis, PDEs, scientific computing) to its material origins in submarine design, ballistic trajectories, and nuclear weapons development.
 
-## Key Components
+## Core Components
 
-### Hydrodynamics
+### Complex Analysis
 
-Complex analysis and conformal mapping were the "Killer App" funded by ONR (est. 1946) to design the hydrodynamic hull of the *USS Nautilus* to minimize noise vortices.
+Funded by ONR for conformal mapping of *Nautilus* submarine hulls to minimize hydrodynamic noise vortices.
 
-### Celestial Mechanics
+**The Problem**: Submarine hull design to minimize acoustic signature
+**The Math**: Conformal mapping, complex analysis
+**The Application**: Stealth submarine design
+**Modern Application**: Aircraft wing design, hydroelectric turbines
 
-Dynamical systems, linear algebra, topology, and variational calculus originated from "institutions dealing with missiles, such as NASA."
+### Partial Differential Equations
 
-## The Connection to Finance
+Funded for H-bomb shock-wave calculations and hypersonic vehicle design.
 
-The same mathematical tools used for naval warfare (Fourier transforms, conformal mapping) are now used in high-frequency trading to optimize signal paths.
+**The Problem**: Modeling nuclear explosions and hypersonic flight
+**The Math**: PDEs, numerical methods
+**The Application**: Nuclear weapons design, missile trajectories
+**Modern Application**: Hypersonic vehicle design, climate modeling
 
-## Navigation
+### Scientific Computing
 
-- [Hydrodynamics](/physics_stack/hydrodynamics/)
-- [Celestial Mechanics](/physics_stack/celestial-mechanics/)
+Funded for Los Alamos implosion simulations and modern stockpile stewardship.
 
-[Back to Primer](/)
+**The Problem**: Nuclear weapons simulations
+**The Math**: Finite element methods, numerical linear algebra
+**The Application**: Weapons design and testing
+**Modern Application**: Stockpile stewardship, materials science
+
+## Audits in This Stack
+
+- **[Hydrodynamics Audit →](/physics_stack/hydrodynamics/)** - From *Nautilus* to modern fluid dynamics
+- **[Celestial Mechanics Audit →](/physics_stack/celestial-mechanics/)** - From missile trajectories to space exploration
+
+---
+
+**[Back to The Primer →](/)**
 

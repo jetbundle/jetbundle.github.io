@@ -1,14 +1,10 @@
-<!-- JetBundle Custom Head Elements -->
-<link rel="icon" href="/assets/img/favicon.svg">
-<meta name="theme-color" content="#ff6b35">
-
-<!-- Mouse Trail Script -->
+<!-- Mouse-trail effect -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const trail = document.createElement("div");
     trail.id = "mouse-trail";
     document.body.appendChild(trail);
-
+    
     const style = document.createElement("style");
     style.textContent = `
       #mouse-trail {
@@ -27,20 +23,13 @@
       }
     `;
     document.head.appendChild(style);
-
-    let points = [];
-    const maxPoints = 12;
-
+    
     document.addEventListener("mousemove", (e) => {
-      points.push({ x: e.clientX, y: e.clientY });
-      if (points.length > maxPoints) points.shift();
-
       trail.style.opacity = "1";
       trail.style.left = e.clientX + "px";
       trail.style.top = e.clientY + "px";
     });
 
-    // Fade out when idle
     let timeout;
     document.addEventListener("mousemove", () => {
       clearTimeout(timeout);
@@ -50,4 +39,8 @@
     });
   });
 </script>
+
+<!-- Favicon -->
+<link rel="icon" href="/assets/images/favicon.svg">
+<meta name="theme-color" content="#ff6b35">
 
