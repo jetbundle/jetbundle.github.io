@@ -1,78 +1,186 @@
-/* JetBundle Gauge Theme - Simple and Direct CSS Override */
+/* JetBundle Gauge Theme - Maximum Specificity CSS Override */
 
-/* Override theme's body background (theme: green gradient -> gauge: dark gradient) */
-html, body, body.animated, body.animated.fadeIn {
+/* Override theme's body background - Maximum specificity */
+html body.animated.fadeIn,
+html body.animated,
+html body,
+body.animated.fadeIn,
+body.animated,
+body {
   background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
   background-color: #0b0e17 !important;
   background-attachment: fixed !important;
   color: #f1f5f9 !important;
 }
 
-/* Override background div and SVG */
-#background-div, #background-svg {
+/* Override background div and SVG - Maximum specificity */
+body #background-div,
+html body #background-div,
+#background-div {
   background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
   background-color: #0b0e17 !important;
 }
 
-/* Override SVG gradient stops (theme: green/red -> gauge: dark) */
-.bgColor1 {
+body #background-svg,
+html body #background-svg,
+#background-svg {
+  background: transparent !important;
+}
+
+/* Override SVG gradient stops - Direct attribute targeting */
+.bgColor1,
+stop.bgColor1,
+#background-svg stop.bgColor1,
+body #background-svg stop.bgColor1 {
   stop-color: #0b0e17 !important;
 }
-.bgColor2 {
+
+.bgColor2,
+stop.bgColor2,
+#background-svg stop.bgColor2,
+body #background-svg stop.bgColor2 {
   stop-color: #0a0d14 !important;
 }
 
-/* Override headers (theme: red #7F3F3F -> gauge: orange #ff6b35) */
-h1, h2, h3, h4, h5, h6, .post-title {
+/* Override headers - Maximum specificity */
+body .container h1,
+body h1,
+html body h1,
+h1,
+.post-title {
   color: #ff6b35 !important;
   text-decoration-color: #ff6b35 !important;
   border-bottom-color: #1e293b !important;
 }
 
+body .container h1,
+body h1,
+html body h1,
 h1 {
   background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-}
-
-h1 a, h1 a:hover {
   color: #ff6b35 !important;
 }
 
-/* Override links (theme: green #1F7F1F -> gauge: blue #0ea5e9) */
+body h1 a,
+body h1 a:hover,
+h1 a,
+h1 a:hover {
+  color: #ff6b35 !important;
+  background: none !important;
+  -webkit-text-fill-color: #ff6b35 !important;
+}
+
+body .container h2,
+body h2,
+html body h2,
+h2 {
+  color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
+  border-bottom: 2px solid #1e293b !important;
+  border-bottom-color: #1e293b !important;
+}
+
+body .container h3,
+body h3,
+html body h3,
+h3 {
+  color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
+}
+
+/* Override links - Maximum specificity */
+body .container a,
+body a,
+html body a,
 a {
   color: #0ea5e9 !important;
 }
+
+body .container a:hover,
+body a:hover,
+html body a:hover,
 a:hover {
   color: #38bdf8 !important;
 }
 
-/* Override navigation (theme: green -> gauge: muted/orange) */
-.navbar, nav {
+/* Override navigation - Maximum specificity */
+body .navbar,
+body nav,
+html body .navbar,
+html body nav,
+.navbar,
+nav {
   background-color: rgba(17, 24, 39, 0.9) !important;
+  background: rgba(17, 24, 39, 0.9) !important;
 }
-.navbar-icon, nav a, .navbar a {
+
+body .navbar-icon,
+body nav a,
+body .navbar a,
+html body .navbar-icon,
+html body nav a,
+.navbar-icon,
+nav a,
+.navbar a {
   color: #94a3b8 !important;
 }
-.navbar-icon:hover, nav a:hover, .navbar a:hover {
+
+body .navbar-icon:hover,
+body nav a:hover,
+body .navbar a:hover,
+html body .navbar-icon:hover,
+html body nav a:hover,
+.navbar-icon:hover,
+nav a:hover,
+.navbar a:hover {
   color: #ff6b35 !important;
   text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
 }
 
 /* Override containers */
-.container, .wrapper, main {
+body .container,
+body .wrapper,
+body main,
+html body .container,
+html body .wrapper,
+html body main,
+.container,
+.wrapper,
+main {
   background: transparent !important;
+  background-color: transparent !important;
   color: #f1f5f9 !important;
 }
 
 /* Override text */
-body, p, li, span, div, .content {
+body .container,
+body .container p,
+body .container li,
+body .container span,
+body .container div,
+body p,
+body li,
+body span,
+body div,
+html body p,
+html body li,
+p,
+li,
+span,
+div {
   color: #f1f5f9 !important;
 }
 
 /* Override code blocks */
-pre, code, .highlight {
+body pre,
+body code,
+body .highlight,
+pre,
+code,
+.highlight {
   background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
   background-color: #111827 !important;
   color: #f1f5f9 !important;
@@ -80,6 +188,7 @@ pre, code, .highlight {
 }
 
 /* Override blockquotes */
+body blockquote,
 blockquote {
   border-left: 4px solid #ff6b35 !important;
   background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
@@ -88,21 +197,26 @@ blockquote {
 }
 
 /* Override tables */
+body table th,
 table th {
   background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
   background-color: #0b0e17 !important;
   color: #ff6b35 !important;
 }
+
+body table td,
 table td {
   background-color: #0b0e17 !important;
   color: #f1f5f9 !important;
 }
 
 /* Override buttons */
-button, .btn {
+body button,
+body .btn,
+button,
+.btn {
   background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   background-color: #ff6b35 !important;
   color: #f1f5f9 !important;
   border: 1px solid #ff6b35 !important;
 }
-
