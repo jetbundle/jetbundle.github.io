@@ -1,0 +1,40 @@
+main:
+  - title: "The Primer"
+    url: /
+  - title: "The C3I Stack"
+    url: /c3i_stack/
+  - title: "The Physics Stack"
+    url: /physics_stack/
+  - title: "The Finance Stack"
+    url: /finance_stack/
+  - title: "The Archive"
+    url: /archive/
+  - title: "Principal"
+    url: /principal/
+
+c3i_stack:
+  - title: "Introduction"
+    url: /c3i_stack/01_intro/
+  - title: "OS Audit"
+    url: /c3i_stack/os-audit/
+  - title: "AI Audit"
+    url: /c3i_stack/ai-audit/
+  - title: "Graph Theory"
+    url: /c3i_stack/graph-theory/
+
+physics_stack:
+  - title: "Introduction"
+    url: /physics_stack/01_intro/
+  - title: "Hydrodynamics"
+    url: /physics_stack/hydrodynamics/
+  - title: "Celestial Mechanics"
+    url: /physics_stack/celestial-mechanics/
+
+finance_stack:
+  - title: "Introduction"
+    url: /finance_stack/01_intro/
+  - title: "QF Audit"
+    url: /finance_stack/qf-audit/
+  - title: "HFT Audit"
+    url: /finance_stack/hft-audit/
+

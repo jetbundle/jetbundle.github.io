@@ -18,4 +18,3 @@ bundle exec jekyll serve
 ## Deployment
 
 The site is automatically deployed to GitHub Pages via GitHub Actions.
-

@@ -2,10 +2,10 @@
 
 ## Theme Overview
 
-**Theme**: jekyll-theme-potato-hacker  
-**Repository**: https://github.com/luxedo/jekyll-theme-potato-hacker  
-**Author**: luxedo  
-**License**: GPL v3  
+**Theme**: jekyll-theme-potato-hacker
+**Repository**: https://github.com/luxedo/jekyll-theme-potato-hacker
+**Author**: luxedo
+**License**: GPL v3
 **Demo**: https://luxedo.github.io/
 
 ## Theme Structure
@@ -565,4 +565,3 @@ _includes/
 6. **Create custom CSS** - Professional styling for PDFs
 7. **Add avatar image** - Personalize the site
 8. **Test and refine** - Ensure everything works together
-

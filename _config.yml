@@ -1,52 +1,115 @@
 # Site settings
 title: "JetBundle"
-description: "Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering"
+name: "JetBundle"
+description: "Mapping the hidden geometry of modern science"
 url: "https://jetbundle.github.io"
 baseurl: ""
+repository: "jetbundle/jetbundle.github.io"
+author:
+  name: "JetBundle"
+  avatar: "/assets/img/avatar.jpg"
+  bio: "Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering"
+  links:
+    github: "jetbundle"
 
-# Useful links
-github_username: "jetbundle"
-facebook_username: ""
-twitter_username: ""
-linkedin_id: ""
-
-# Theme
-remote_theme: luxedo/jekyll-theme-potato-hacker
-theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
-theme_base: "dark"
-theme_switch: "on"
-
-# Extra settings
-blog: "on"
-avatar: "on"
-avatar_image: "assets/img/avatar.jpg"
-avatar_description: "Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering"
-
-highlighter_theme: monokai
-
-toolbar_priority:
-  - Topics
-  - About
-  - Publications
-
-# Collections
-collections:
-  dropdown:
-    output: true
-  items:
-    output: true
-
-# Plugins
+# Build settings
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-include-cache
 
-# Markdown
+# Markdown and syntax highlight
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
   math_engine: mathjax
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Collections
+collections:
+  c3i_stack:
+    output: true
+    permalink: /:collection/:name/
+  physics_stack:
+    output: true
+    permalink: /:collection/:name/
+  finance_stack:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: false
+      read_time: true
+      comments: false
+      share: false
+      related: false
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: false
+  - scope:
+      path: "_collections/c3i_stack"
+      type: c3i_stack
+    values:
+      layout: single
+      author_profile: false
+      sidebar:
+        nav: "c3i_stack"
+  - scope:
+      path: "_collections/physics_stack"
+      type: physics_stack
+    values:
+      layout: single
+      author_profile: false
+      sidebar:
+        nav: "physics_stack"
+  - scope:
+      path: "_collections/finance_stack"
+      type: finance_stack
+    values:
+      layout: single
+      author_profile: false
+      sidebar:
+        nav: "finance_stack"
+
+# Navigation
+navigation:
+  - title: "The Primer"
+    url: /
+  - title: "The C3I Stack"
+    url: /c3i_stack/
+  - title: "The Physics Stack"
+    url: /physics_stack/
+  - title: "The Finance Stack"
+    url: /finance_stack/
+  - title: "The Archive"
+    url: /archive/
+  - title: "Principal"
+    url: /principal/
+
+# Theme settings
+minimal_mistakes_skin: "dark"
+skin: "dark"
+
+# PDF Settings
+pdf_height: 900px
 
 # Exclude
 exclude:
@@ -56,7 +119,11 @@ exclude:
   - vendor
   - .git
   - .gitignore
+  - README.md
+  - THEME_ANALYSIS.md
+  - CUSTOMIZATION_GUIDE.md
 
-# PDF Settings
-pdf_height: 900px
-
+# Include
+include:
+  - _pages
+  - _collections

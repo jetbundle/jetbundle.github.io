@@ -1,12 +1,10 @@
 ---
-layout: page
-title: About
-description: About JetBundle
-dropdown: About
-priority: 1
+title: "Principal"
+permalink: /principal/
+author_profile: false
 ---
 
-# About JetBundle
+# Principal
 
 This site is a **subject-centered technical resource**, not a personal blog.
 
@@ -16,5 +14,7 @@ This site is a **subject-centered technical resource**, not a personal blog.
 - Post-academic engineering applications
 - Defense-academic pipeline
 
-Personal CV: [View PDF](/cv/)
+Personal CV: [View PDF](/assets/pdf/cv.pdf)
+
+[Back to Primer](/)
 

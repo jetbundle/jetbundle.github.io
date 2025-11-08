@@ -62,7 +62,7 @@ The theme uses a **dropdown-based navigation** system:
 
 ### Option 1: Reorganize Navigation with Dropdowns
 
-**Current**: Topics is a single dropdown item  
+**Current**: Topics is a single dropdown item
 **Better**: Make each topic a dropdown item under "Topics"
 
 **Implementation**:
@@ -166,8 +166,8 @@ pdf: /assets/pdf/report.pdf
 ```html
 # _includes/pdf_embed.html
 <div class="pdf-embed">
-  <iframe src="{{ include.pdf }}" 
-          width="100%" 
+  <iframe src="{{ include.pdf }}"
+          width="100%"
           height="900px"
           title="{{ include.title | default: 'Document' }}">
   </iframe>
@@ -213,9 +213,9 @@ pdf: /assets/pdf/report.pdf
 **File**: `_includes/pdf_embed.html`
 ```html
 <div class="pdf-embed" style="margin: 2rem 0; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <iframe 
-    src="{{ include.pdf }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
-    width="100%" 
+  <iframe
+    src="{{ include.pdf }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+    width="100%"
     height="{{ site.pdf_height | default: '900px' }}"
     style="border: none;"
     title="{{ include.title | default: 'Document' }}"
@@ -350,11 +350,11 @@ layout: default
       <p class="description">{{ page.description }}</p>
     {% endif %}
   </header>
-  
+
   <div class="content">
     {{ content }}
   </div>
-  
+
   {% if page.pdf %}
     <div class="pdf-section">
       {% include pdf_embed.html pdf=page.pdf title=page.title %}
@@ -377,11 +377,11 @@ layout: default
       {{ page.date | date: '%B %d, %Y' }}
     </time>
   </header>
-  
+
   <div class="content">
     {{ content }}
   </div>
-  
+
   {% if page.pdf %}
     {% include pdf_embed.html pdf=page.pdf title=page.title %}
   {% endif %}
@@ -401,8 +401,8 @@ layout: default
 
 **Usage**:
 ```liquid
-{% include topic_card.html 
-   title="Physics" 
+{% include topic_card.html
+   title="Physics"
    description="From radar to guidance systems"
    url="/topics/physics/" %}
 ```
@@ -529,4 +529,3 @@ bundle exec jekyll serve
 - **Theme Demo**: https://luxedo.github.io/jekyll-theme-potato-hacker/
 - **Jekyll Docs**: https://jekyllrb.com/docs/
 - **Liquid Template**: https://shopify.github.io/liquid/
-

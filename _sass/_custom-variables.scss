@@ -1,0 +1,27 @@
+// JetBundle Custom Variables - Orange + Blue Palette
+// No terminal green - Gauge-themed dark palette
+
+$orange-primary:   #ff6b35;   // Warm Coral Orange (Gauge Needle)
+$orange-accent:    #ff4500;   // Orange Red (Hover, Alerts)
+$blue-primary:     #0ea5e9;   // Sky Blue (Links, Connections)
+$blue-deep:        #1e40af;   // Deep Blue (Headers, Fibers)
+$dark-bg:          #0b0e17;   // Near-black void
+$card-bg:          #111827;   // Slightly lighter panels
+$text-primary:     #f1f5f9;   // Soft white
+$text-muted:       #94a3b8;   // Slate gray
+$border-subtle:    #1e293b;   // Subtle borders
+
+// Override Minimal Mistakes defaults
+$background-color: $dark-bg;
+$text-color: $text-primary;
+$primary-color: $orange-primary;
+$link-color: $blue-primary;
+$muted-text-color: $text-muted;
+
+// Code blocks
+$code-background-color: #222;
+$code-text-color: #4ae;
+
+// Borders
+$border-color: $border-subtle;
+

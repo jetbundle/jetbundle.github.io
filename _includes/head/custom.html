@@ -1,0 +1,53 @@
+<!-- JetBundle Custom Head Elements -->
+<link rel="icon" href="/assets/img/favicon.svg">
+<meta name="theme-color" content="#ff6b35">
+
+<!-- Mouse Trail Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trail = document.createElement("div");
+    trail.id = "mouse-trail";
+    document.body.appendChild(trail);
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #mouse-trail {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        box-shadow: 0 0 12px #ff6b35, 0 0 20px #0ea5e9;
+        mix-blend-mode: screen;
+      }
+    `;
+    document.head.appendChild(style);
+
+    let points = [];
+    const maxPoints = 12;
+
+    document.addEventListener("mousemove", (e) => {
+      points.push({ x: e.clientX, y: e.clientY });
+      if (points.length > maxPoints) points.shift();
+
+      trail.style.opacity = "1";
+      trail.style.left = e.clientX + "px";
+      trail.style.top = e.clientY + "px";
+    });
+
+    // Fade out when idle
+    let timeout;
+    document.addEventListener("mousemove", () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        trail.style.opacity = "0";
+      }, 800);
+    });
+  });
+</script>
+

@@ -1,0 +1,16 @@
+<div class="pdf-embed">
+  <iframe 
+    src="{{ include.pdf }}#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+    width="100%" 
+    height="{{ site.pdf_height | default: '900' }}"
+    style="border: none; background: #0b0e17;"
+    loading="lazy"
+    title="{{ include.title | default: 'Document' }}">
+  </iframe>
+  <div class="pdf-footer">
+    <a href="{{ include.pdf }}" target="_blank">
+      Open in New Tab →
+    </a>
+  </div>
+</div>
+
