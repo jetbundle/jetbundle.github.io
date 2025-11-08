@@ -1,263 +1,500 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-  <title>JetBundle</title>
-  <meta name="description" content="Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering">
+<!-- begin _includes/seo.html --><title>The JetBundle Primer - JetBundle</title>
+<meta name="description" content="Mapping the hidden geometry of modern science">
 
-  <!-- Social: Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@">
-  <meta name="twitter:title" content="JetBundle">
-  <meta name="twitter:description" content="Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering">
+
+  <meta name="author" content="JetBundle">
   
-  <meta property="twitter:image:src" content="https://jetbundle.github.io/assets/img/opengraph.png">
-  
-
-  <!-- Social: Facebook / Open Graph -->
-  <meta property="og:url" content="https://jetbundle.github.io/">
-  <meta property="og:title" content="JetBundle">
-  
-  <meta property="og:image" content="https://jetbundle.github.io/assets/img/opengraph.png">
-  
-  <meta property="og:description" content="Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering">
-  <meta property="og:site_name" content="JetBundle">
-
-  <!-- Social: Schema.org  -->
-  <meta itemprop="name" content="JetBundle"/>
-  <meta itemprop="description" content="Physics • Mathematics • Computation • Finance — Origins, Applications & Engineering">
-  <meta itemprop="image" content="https://jetbundle.github.io/assets/img/opengraph.png"/>
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="/assets/img/icons/favicon.ico" type="image/x-icon" />
-
-  <!-- Android Lolipop Theme Color -->
-  <meta name="theme-color" content="#2a4d14">
-
-  <!-- Styles -->
-  <link rel="stylesheet" id="css-theme" href="/assets/css/main-dark.css">
-  <link rel="stylesheet" href="/assets/css/highlight/monokai.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
-
-  <!-- Javascript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
-  <script type="text/javascript" src="/assets/js/main.js"></script>
-</head>
 
 
-<body class="animated fadeIn">
-  <div class="container">
-    <div id="background-div">
-      <svg id="background-svg">
-        <lineargradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-          <stop stop-opacity="0" class="bgColor2" offset="0%" />
-          <stop stop-opacity="0.5" class="bgColor2" offset="10%" />
-          <stop stop-opacity="0.5" class="bgColor1" offset="40%" />
-          <stop stop-opacity="0" class="bgColor1" offset="100%" />
-        </lineargradient>
-        <g id="bg-layer1"></g>
-        <g id="bg-layer2" class="hide"></g>
-        <g id="bg-layer3"></g>
-        <g id="bg-layer4"></g>
-      </svg>
-    </div>
-    <section class="header">
-      <header>
-  <div class="row">
-    <div class="col-xs-12">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-toggle collapsed navbar-icon" data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1">
-              <i class="fa fa-bars fa-2x"></i>
-            </a>
-            <a class="navbar-brand navbar-icon" href="/">
-                <i class="fa fa-home fa-2x"></i>
-            </a>
-          </div>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="JetBundle">
+<meta property="og:title" content="The JetBundle Primer">
+<meta property="og:url" content="https://jetbundle.github.io/">
 
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/">Home</a></li>
-              
 
-              
-                <li class="dropdown dropdown-About">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">About
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-About">
-                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-Publications">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Publications
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Publications">
-                    <li priority="2"><a href="/dropdown/publications.html">Publications</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-Topics">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Topics
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Topics">
-                    <li priority="1"><a href="/dropdown/topics.html">Topics</a></li>
-                  </ul>
-                </li>
-              
-              
+  <meta property="og:description" content="Mapping the hidden geometry of modern science">
 
-              <script>
-                // clean repeated dropdowns and add <li> to their positions
-                let done = [];
-                let elements = [];
-                $(".dropdown")
-                  //
-                  .each((index0 , value0) => {
-                    let dropdownClass = "."+$(value0)[0].classList[1];
-                    if (done.indexOf(dropdownClass) !== -1) return
-                    done.push(dropdownClass)
-                    let dropdownMain = $(dropdownClass)[0]
-                    let itemsList = $(dropdownClass+">ul>li").sort((a, b) => parseInt(b.getAttribute("priority") || -9999999) - parseInt(a.getAttribute("priority") || -9999999))
-                    $(dropdownClass+">ul>li").remove();
-                    $(dropdownClass+">ul").append(itemsList)
-                    $(dropdownClass).remove();
-                    elements.push(dropdownMain)
-                });
-                let priority = [ "Topics",  "About",  "Publications", ];
-                elements = elements.concat(...$(".nav-item").remove())
-                priority.map(text => {
-                  elements = elements.filter(node => {
-                      let nodeText = node.querySelector("a").textContent.trim()
-                      if (text == nodeText) {
-                          $(".nav").append(node)
-                          return false;
-                      }
-                      return true;
-                  })
-                });
-                $(".nav").append(elements)
-              </script>
-            </ul>
-          </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://jetbundle.github.io/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JetBundle",
+      "url": "https://jetbundle.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JetBundle Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- JetBundle Custom Head Elements -->
+<link rel="icon" href="/assets/img/favicon.svg">
+<meta name="theme-color" content="#ff6b35">
+
+<!-- Mouse Trail Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trail = document.createElement("div");
+    trail.id = "mouse-trail";
+    document.body.appendChild(trail);
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #mouse-trail {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        box-shadow: 0 0 12px #ff6b35, 0 0 20px #0ea5e9;
+        mix-blend-mode: screen;
+      }
+    `;
+    document.head.appendChild(style);
+
+    let points = [];
+    const maxPoints = 12;
+
+    document.addEventListener("mousemove", (e) => {
+      points.push({ x: e.clientX, y: e.clientY });
+      if (points.length > maxPoints) points.shift();
+
+      trail.style.opacity = "1";
+      trail.style.left = e.clientX + "px";
+      trail.style.top = e.clientY + "px";
+    });
+
+    // Fade out when idle
+    let timeout;
+    document.addEventListener("mousemove", () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        trail.style.opacity = "0";
+      }, 800);
+    });
+  });
+</script>
+
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          JetBundle
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">The Primer</a>
+            </li><li class="masthead__menu-item">
+              <a href="/c3i_stack/">The C3I Stack</a>
+            </li><li class="masthead__menu-item">
+              <a href="/physics_stack/">The Physics Stack</a>
+            </li><li class="masthead__menu-item">
+              <a href="/finance_stack/">The Finance Stack</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archive/">The Archive</a>
+            </li><li class="masthead__menu-item">
+              <a href="/principal/">Principal</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
-</header>
+</div>
 
-    </section>
-    <section class="content">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-1 content-div">
-          <div class="page-separator visible-md visible-lg visible-xl">
-            <h1 class="h1-strip" style="padding-bottom:8em; margin-bottom: 0;"></h1>
-          </div>
-          <div class="page-separator visible-sm">
-            <h1 class="h1-strip" style="padding-bottom:3em; margin-bottom: 0;"></h1>
-          </div>
-          <div class="page-separator visible-xs">
-            <h1 class="h1-strip" style="padding-bottom:1em; margin-bottom: 0;"></h1>
-          </div>
-          <h1 class="post-title page-title" id="title"><a href="#title">JetBundle</a></h1>
-          <h2 id="jetbundle">JetBundle</h2>
 
-<p><strong>Physics • Mathematics • Computation • Finance</strong></p>
+    <div class="initial-content">
+      
 
-<p><em>Origins, Applications, Engineering Principles</em></p>
 
-<blockquote>
-  <p>A technical resource tracing defense-driven innovation to modern engineering practice.</p>
-</blockquote>
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The JetBundle Primer">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">The JetBundle Primer
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="the-jetbundle-primer-foundations-of-the-military-financial-stack">The Jetbundle Primer: Foundations of the Military-Financial Stack</h2>
+
+<h3 id="preamble-the-bundle-as-the-true-architecture">Preamble: The Bundle as the True Architecture</h3>
+
+<p>This project is an audit. It maps the hidden geometry of modern science.</p>
+
+<p>The premise of <code class="language-plaintext highlighter-rouge">jetbundle</code> is that mathematics, physics, computer science, and finance are not independent disciplines. They are components of a single, unified structure—a <strong>fiber bundle</strong>—whose geometry is dictated by patronage.</p>
+
+<p>In this model:</p>
+
+<ol>
+  <li>
+    <p><strong>The Base Space</strong> is “pure” academia: the university curriculum, the syllabus, the textbook, the journal paper. It is the world of abstract, “unmotivated” definitions—the “ugly scholastic pseudo-mathematics” that Vladimir Arnold identified.</p>
+  </li>
+  <li>
+    <p><strong>The Fiber</strong> is the world of classified, high-stakes, material applications. It is the <em>actual problem</em> a given abstraction was funded to solve. At the point on the Base Space labeled “Complex Analysis,” the attached Fiber contains the classified blueprints for a <em>Nautilus</em> submarine hull. At “Graph Theory,” the Fiber contains the NSA’s SKYNET drone-targeting algorithm.</p>
+  </li>
+  <li>
+    <p><strong>The Connection</strong> is the flow of funding. This connection—the grants from the Office of Naval Research (ONR), DARPA, and the Air Force Office of Scientific Research (AFOSR)—defines the “curvature” of the entire system. It dictates how and why the “pure” research of the Base Space is forced to bend to serve the applied needs of the Fiber.</p>
+  </li>
+</ol>
+
+<p>This site is the open-source audit of that structure. We trace the “memo-to-lemma” pipeline.</p>
 
 <hr />
 
-<h3 id="core-disciplines">Core Disciplines</h3>
+<h3 id="part-i-the-base-space-the-cartography">Part I: The Base Space (The Cartography)</h3>
+
+<p>The most effective map of the Base Space remains Vladimir Arnold’s 1995 tripartition. It is not a philosophy, but a verifiable econometric model of 20th-century R&amp;D.</p>
 
 <ul>
-  <li><strong><a href="/topics/physics/">Physics</a></strong> — From radar to guidance systems: how military physics became engineering simulation</li>
-  <li><strong><a href="/topics/mathematics/">Mathematics</a></strong> — Linear programming, control theory: invented to solve national-scale problems</li>
-  <li><strong><a href="/topics/computation/">Computation</a></strong> — ENIAC, ARPANET: deliberate construction of interactive computing</li>
-  <li><strong><a href="/topics/finance/">Finance</a></strong> — Option pricing, risk models: stochastic control in markets</li>
+  <li>
+    <p><strong>Cryptography (The “Enigma”):</strong> Funded by intelligence agencies (“CIA, KGB and the like”), this pillar generated the demand for number theory, algebraic geometry over finite fields, and algebra.</p>
+  </li>
+  <li>
+    <p><strong>Hydrodynamics (The “Submarine”):</strong> Supported by “manufacturers of atomic submarines,” this pillar procreated complex analysis, partial differential equations, and scientific computing.</p>
+  </li>
+  <li>
+    <p><strong>Celestial Mechanics (The “Missile”):</strong> Financed by “institutions dealing with missiles, such as NASA,” this pillar was the origin of dynamical systems, linear algebra, topology, and variational calculus.</p>
+  </li>
+</ul>
+
+<p>The “pure,” axiomatic formalism of collectives like Nicolas Bourbaki (est. 1934) was the crucial “laundering” mechanism. It provided the intellectual camouflage necessary to resolve the central contradiction of the post-WWII era: how to accept secret military funding while maintaining a public identity of “pure,” apolitical inquiry. Abstraction became the mechanism of redaction.</p>
+
+<h4 id="the-master-cartography-mathematics"><strong>The Master Cartography: Mathematics</strong></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Field (MSC 2020)</th>
+      <th style="text-align: left">First Cheque</th>
+      <th style="text-align: left">Killer App (1940–90)</th>
+      <th style="text-align: left">Modern Patron (2020–)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Number Theory</td>
+      <td style="text-align: left">ONR N00014-48-0001</td>
+      <td style="text-align: left">NSA rotor permutations</td>
+      <td style="text-align: left">NSA GHARDY; JPMorgan</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Algebraic Geometry</td>
+      <td style="text-align: left">DARPA IPTO (1963)</td>
+      <td style="text-align: left">Error-correcting codes</td>
+      <td style="text-align: left">DARPA FUNLoC; Palantir</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Combinatorics</td>
+      <td style="text-align: left">ONR N00014-67-A-0298</td>
+      <td style="text-align: left">NSA clique detection</td>
+      <td style="text-align: left">Citadel; Two Sigma</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Complex Analysis</td>
+      <td style="text-align: left">ONR N00014-45-001</td>
+      <td style="text-align: left"><em>Nautilus</em> hull quieting</td>
+      <td style="text-align: left">Boeing (wing stress)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PDEs</td>
+      <td style="text-align: left">ONR N00014-50-001</td>
+      <td style="text-align: left">H-bomb shock-waves</td>
+      <td style="text-align: left">Lockheed (hypersonics)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Sci. Computing</td>
+      <td style="text-align: left">ONR N00014-46-001</td>
+      <td style="text-align: left">Los Alamos implosion grids</td>
+      <td style="text-align: left">NVIDIA (stockpile sims)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Variational Calculus</td>
+      <td style="text-align: left">AFOSR 49-200</td>
+      <td style="text-align: left">Titan-II trajectory</td>
+      <td style="text-align: left">Blue Origin (landing)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Linear Algebra</td>
+      <td style="text-align: left">ARO DAAG-29-75</td>
+      <td style="text-align: left">Kalman filter (Minuteman-III)</td>
+      <td style="text-align: left">Google (PageRank)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Probability</td>
+      <td style="text-align: left">ONR N00014-47-001</td>
+      <td style="text-align: left"><em>Nautilus</em> SONAR tracking</td>
+      <td style="text-align: left">Meta (recommenders)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Graph Theory</td>
+      <td style="text-align: left">ONR N00014-67-A-0298</td>
+      <td style="text-align: left">SKYNET drone kill-chain</td>
+      <td style="text-align: left">Palantir Gotham (ICE)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Optimization</td>
+      <td style="text-align: left">AFOSR 49-100</td>
+      <td style="text-align: left">SAC bomber refueling</td>
+      <td style="text-align: left">Amazon (routing)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="part-ii-the-fibers-the-applied-stacks">Part II: The Fibers (The Applied Stacks)</h3>
+
+<p>The Base Space of mathematics maps directly onto the applied “Fibers” of technology. The CS and QF curricula are not new subjects; they are bundles of these mathematical tools, optimized for a specific set of problems.</p>
+
+<div class="stack-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 3rem 0;">
+  <a href="/c3i_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #ff6b3533, transparent); pointer-events: none;"></div>
+    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #ff6b35;">C3I &amp; Surveillance Stack</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">AI, OS, Graph Theory — from SAC command nets to Palantir Gotham</p>
+  </a>
+
+  <a href="/physics_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #0ea5e933, transparent); pointer-events: none;"></div>
+    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #0ea5e9;">Ballistics &amp; Hydrodynamics</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">PDEs, Complex Analysis — from Nautilus to HFT signal paths</p>
+  </a>
+
+  <a href="/finance_stack/01_intro/" class="stack-card" style="background: #111827; border: 1px solid #1e293b; border-radius: 16px; padding: 2rem; text-decoration: none; color: #f1f5f9; transition: all 0.3s; position: relative; overflow: hidden; display: block;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle at top right, #ff450033, transparent); pointer-events: none;"></div>
+    <h3 style="margin: 0 0 0.5rem; font-size: 1.4rem; color: #ff4500;">Military-Financial Stack</h3>
+    <p style="margin: 0; color: #94a3b8; font-size: 0.95rem;">Kalman, Pontryagin — from Minuteman to Jane Street</p>
+  </a>
+</div>
+
+<h4 id="fiber-1-the-c3i--surveillance-stack-ai-os-crypto-graphs"><strong>Fiber 1: The C3I &amp; Surveillance Stack (AI, OS, Crypto, Graphs)</strong></h4>
+
+<p>This stack comprises the technologies of <strong>Command, Control, Communications &amp; Intelligence</strong>.</p>
+
+<ul>
+  <li>
+    <p><strong>Operating Systems:</strong> The modern OS is a direct descendant of the 1960s military requirement for a “Survivable SAC command net”. J.C.R. Licklider, as director of DARPA’s IPTO, executed this mandate by funding MIT’s <strong>Project MAC</strong>—the project that built <strong>Multics</strong>, the ancestor of all modern OS. This 60-year institutional lineage is unbroken: the “Modern Patron” is the same DoD, which now leases this “computer utility” from Microsoft, whose <strong>Azure Kubernetes Service</strong> is formally authorized for <strong>DoD Impact Level 5 (IL5)</strong> workloads.</p>
+  </li>
+  <li>
+    <p><strong>Artificial Intelligence:</strong> The 1980s neural net revival was funded by ONR and DARPA. The “Killer App” was <strong>ALVINN</strong> (Autonomous Land Vehicle In a Neural Network), a 3-layer backpropagation network built to drive an autonomous HUMVEE. The “Modern Patrons,” <strong>Palantir</strong> and <strong>Anduril</strong>, are operationalizing this 1980s R&amp;D for AI-driven drone swarms and targeting systems.</p>
+  </li>
+  <li>
+    <p><strong>Graph Theory:</strong> This is the “skeleton key” Fiber for C3I. Its origin is Pál Turán’s 1941 “brick factory problem,” conceived in a forced-labor camp. The math (extremal graph theory) was operationalized by the NSA in its <strong>SKYNET</strong> program, which uses graph centrality algorithms on metadata to find “cliques” of “suspect activity” for drone targeting. This <em>exact</em> social network analysis is the core product of <strong>Palantir Gotham</strong>, sold to clients like ICE and the NYPD.</p>
+  </li>
+</ul>
+
+<h4 id="fiber-2-the-military-financial-stack-quantitative-finance"><strong>Fiber 2: The Military-Financial Stack (Quantitative Finance)</strong></h4>
+
+<p>The “Great Handover” occurred when Wall Street outbid the Pentagon. Quantitative finance did not invent new mathematics; it “re-skinned” the DoD’s toolkit for a new problem set: the market.</p>
+
+<ul>
+  <li>
+    <p><strong>Missile Guidance → Time-Series Analysis:</strong> The <strong>Kalman Filter</strong> was funded by the AFOSR in 1954 and was the “essential” GNC tool for the Apollo program’s mid-course corrections and the Minuteman-III ICBM. This is the <em>exact</em> math taught in <code class="language-plaintext highlighter-rouge">AMS 578: Regression Theory</code> and is now the quintessential tool for filtering a “true” asset signal from “noisy” market data.</p>
+  </li>
+  <li>
+    <p><strong>Ballistics → Derivatives Pricing:</strong> <strong>Pontryagin’s Maximum Principle</strong> (1956) was funded by AFOSR to solve the “optimal Titan-II ascent trajectory”—a problem in solving ordinary differential equations (ODEs). This is the <em>exact</em> math taught in <code class="language-plaintext highlighter-rouge">AMS 527: Numerical Analysis</code>, now “re-skinned” to solve the Black-Scholes <strong>PDE</strong> for option pricing.</p>
+  </li>
+  <li>
+    <p><strong>Naval Warfare → High-Frequency Trading (HFT):</strong> HFT firms like Jane Street and Citadel compete in “latency arbitrage”—a “race on speed”. The math (<code class="language-plaintext highlighter-rouge">AMS 523: Mathematics of High Frequency Finance</code> teaches “Fourier transforms” and “conformal mapping”) is the math of the Naval “Hydrodynamics” stack. Fourier/Laplace transforms were for <strong>radar signal processing</strong>. Conformal mapping was the “Killer App” funded by ONR (est. 1946) to design the hydrodynamic hull of the <em>USS Nautilus</em> to minimize noise vortices. The HFT firms <em>physically build a graph</em> of “terrestrial microwave networks” to find the “shortest-path (geodesic)”, running the <em>same</em> signal-processing algorithms to win a microsecond race.</p>
+  </li>
 </ul>
 
 <hr />
 
-<h3 id="featured-report">Featured Report</h3>
+<h3 id="part-iii-the-connection-the-dynamics-of-the-stack">Part III: The Connection (The Dynamics of the Stack)</h3>
 
-<p><strong>The Military-Academic Complex</strong> — Archival verification of U.S. defense patronage in applied mathematics and computer science.</p>
+<p>The “Connection” (funding) is not static; it is a dynamic force that pulls ideas across the Base Space and through time.</p>
+
+<ul>
+  <li><strong>The “Migratory App”:</strong> A “killer app” migrates across academic disciplines, pulled by patronage. The <strong>Kalman Filter</strong> is the archetype.
+    <ol>
+      <li><strong>Probability (ONR):</strong> Funded as a <em>probabilistic</em> tool for SONAR contact tracking.</li>
+      <li><strong>Dynamical Systems (NASA):</strong> Adopted as a <em>navigational</em> tool for Apollo.</li>
+      <li><strong>Linear Algebra (ARO):</strong> Funded as a <em>computational</em> tool for the Minuteman-III.</li>
+    </ol>
+  </li>
+  <li><strong>The “18-Year Lag”:</strong> This is the “declassification by syllabus.”
+    <ol>
+      <li><strong>The “Memo” (c. 1978):</strong> Leslie Lamport’s <strong>Byzantine Generals Problem</strong> is created as an explicit parable for a DARPA C3 (Command, Control, Communications) requirement: a survivable nuclear command network.</li>
+      <li><strong>The “Lemma” (c. 1999):</strong> Lamport wins the Turing Award, cementing the problem as a “pure,” abstract concept in distributed systems.</li>
+      <li><strong>The “Syllabus” (c. 2017):</strong> The problem appears in the MIT 6.033 syllabus, its nuclear-war origins fully redacted.</li>
+    </ol>
+  </li>
+</ul>
 
 <hr />
 
-<h3 id="about">About</h3>
+<h3 id="part-iv-the-jetbundle-project">Part IV: The <code class="language-plaintext highlighter-rouge">jetbundle</code> Project</h3>
 
-<p>This is a <strong>subject-focused resource</strong>. Personal details are in <a href="/about/">About</a> and <a href="/cv/">CV</a>.</p>
+<p>This project is the open-source initiative to map this bundle. The <code class="language-plaintext highlighter-rouge">jetbundle.github.io</code> site serves as the primer, the audit trail, and the central hub.</p>
 
-<p><a href="/publications/">All Publications →</a></p>
+<ul>
+  <li><strong>The Archive</strong> contains the declassified memos, booklists, and primary sources.</li>
+  <li><strong>The Audits</strong> apply this forensic methodology to new fields.</li>
+  <li><strong>The Simulations</strong> provide open-source code to explore the “lemmas” (Kalman filters, Turán graphs, Byzantine consensus).</li>
+</ul>
 
+<p>The goal is to remove the redactions. The audit trail is the curriculum.</p>
 
-
-        </div>
-        <div class="col-md-2">
-          <div class="pane-separator visible-md visible-lg visible-xl" style="margin-bottom:30em;"></div>
-          <div class="right-pane">
-            
-            
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="footer">
-      <footer class="page-footer">
-  <center>
-    
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
         
-<a href="https://github.com/jetbundle" target="_blank">
-  <i class="fa fa-github fa-3x"></i>
-</a>
+      </section>
+
+      <footer class="page__meta">
+        
+        
 
 
-
-<a href="https://www.facebook.com/" target="_blank">
-  <i class="fa fa-facebook fa-3x"></i>
-</a>
+        
 
 
-<a href="https://twitter.com/" target="_blank">
-  <i class="fa fa-twitter fa-3x"></i>
-</a>
+      </footer>
 
+      
 
-<a href="https://www.linkedin.com/in/" target="_blank">
-  <i class="fa fa-linkedin fa-3x"></i>
-</a>
-
-
-      </div>
+      
     </div>
+
     
-  </center>
-</footer>
+  </article>
 
-    </section>
-  </div>
-</body>
+  
+  
+</div>
 
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 JetBundle. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
 </html>
