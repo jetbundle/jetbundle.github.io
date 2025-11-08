@@ -1,6 +1,6 @@
 /**
  * JetBundle Manifold Background Animation - Optimized
- * 
+ *
  * Visualizes fiber bundles and jet bundles with high performance:
  * - Reduced fiber count for better performance
  * - Optimized rendering pipeline
@@ -19,17 +19,17 @@
     maxFiberLength: 120,      // Reduced from 150
     fiberStepSize: 1.2,       // Increased (fewer points)
     fiberThickness: 0.7,      // Slightly thinner
-    
+
     // Slower animation for performance
     animationSpeed: 0.002,    // Reduced from 0.003
     noiseScale: 0.015,        // Reduced from 0.02
     noiseSpeed: 0.0003,       // Reduced from 0.0005
-    
+
     // Visual parameters
     opacityDecay: 0.97,       // Faster decay (shorter trails)
     baseOpacity: 0.12,        // Lower base opacity
     gradientStops: 3,         // Reduced from 5
-    
+
     // Color scheme (gauge theme)
     colors: {
       orange: { r: 255, g: 107, b: 53 },
@@ -37,7 +37,7 @@
       dark: { r: 11, g: 14, b: 23 },
       dark2: { r: 10, g: 13, b: 20 }
     },
-    
+
     // Performance tuning - more aggressive
     maxFibers: 30,            // Reduced from 50
     updateInterval: 3,        // Update every 3 frames (was 2)
@@ -132,9 +132,9 @@
           x * CONFIG.noiseScale + this.time,
           y * CONFIG.noiseScale + this.time
         );
-        
+
         angle += (noiseValue - 0.5) * Math.PI * 0.25; // Reduced variation
-        
+
         const stepSize = CONFIG.fiberStepSize;
         x += Math.cos(angle) * stepSize;
         y += Math.sin(angle) * stepSize;
@@ -195,19 +195,19 @@
 
         while (length < jet.length && jet.points.length < maxPoints) {
           jet.points.push({ x, y, opacity: jet.opacity });
-          
+
           const noiseValue = this.noiseGen.noise(
             x * CONFIG.noiseScale * 1.5 + this.time,
             y * CONFIG.noiseScale * 1.5 + this.time
           );
           currentAngle += (noiseValue - 0.5) * Math.PI * 0.4;
-          
+
           const stepSize = CONFIG.fiberStepSize * 0.7;
           x += Math.cos(currentAngle) * stepSize;
           y += Math.sin(currentAngle) * stepSize;
           length += stepSize;
           jet.opacity *= 0.94;
-          
+
           if (jet.opacity < 0.01) break;
         }
 
@@ -221,7 +221,7 @@
     }
 
     isVisible(width, height, margin = 100) {
-      return this.jets.some(jet => 
+      return this.jets.some(jet =>
         jet.points.some((p, i) => i % 3 === 0 && // Check every 3rd point
           p.x >= -margin && p.x <= width + margin &&
           p.y >= -margin && p.y <= height + margin)
@@ -277,7 +277,7 @@
         const row = Math.floor(i / cols);
         const baseX = spacingX * (col + 1) + (Math.random() - 0.5) * spacingX * 0.2;
         const baseY = spacingY * (row + 1) + (Math.random() - 0.5) * spacingY * 0.2;
-        
+
         this.basePoints.push({ x: baseX, y: baseY, id: i });
       }
     }
@@ -310,11 +310,11 @@
       const ctx = this.ctx;
       const color = fiber.color;
       const points = fiber.points;
-      
+
       // Simplified drawing - use lineTo instead of quadratic curves
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
-      
+
       for (let i = 1; i < points.length; i++) {
         ctx.lineTo(points[i].x, points[i].y);
       }
@@ -322,7 +322,7 @@
       // Single color with opacity gradient
       const startOpacity = fiber.opacity;
       const endOpacity = fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length);
-      
+
       ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${startOpacity * 0.5 + endOpacity * 0.5})`;
       ctx.lineWidth = CONFIG.fiberThickness;
       ctx.lineCap = 'round';
@@ -337,10 +337,10 @@
         const ctx = this.ctx;
         const color = jet.color;
         const points = jet.points;
-        
+
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
-        
+
         for (let i = 1; i < points.length; i++) {
           ctx.lineTo(points[i].x, points[i].y);
         }
@@ -357,21 +357,12 @@
       if (!this.isRunning) return;
 
       this.frameCount++;
-      const now = performance.now();
-      
-      // Throttle updates for performance
-      if (now - this.lastUpdateTime < 16) { // ~60fps max
-        this.animationId = requestAnimationFrame(() => this.animate());
-        return;
-      }
-      this.lastUpdateTime = now;
-
       this.time += CONFIG.animationSpeed;
 
       // Update less frequently for performance
       if (this.frameCount % CONFIG.updateInterval === 0) {
         // Update all visible fibers (smaller count now, so it's fine)
-        const visibleFibers = this.fibers.filter(f => 
+        const visibleFibers = this.fibers.filter(f =>
           f.isVisible(this.width, this.height)
         );
         for (const fiber of visibleFibers) {
@@ -380,7 +371,7 @@
 
         // Update jet bundles even less frequently
         if (this.frameCount % (CONFIG.updateInterval * 3) === 0) {
-          const visibleJets = this.jetBundles.filter(j => 
+          const visibleJets = this.jetBundles.filter(j =>
             j.isVisible(this.width, this.height)
           );
           for (const jetBundle of visibleJets) {
@@ -394,19 +385,19 @@
       this.ctx.fillRect(0, 0, this.width, this.height);
 
       // Draw only visible fibers
-      const visibleFibers = this.fibers.filter(f => 
+      const visibleFibers = this.fibers.filter(f =>
         f.isVisible(this.width, this.height)
       );
-      
+
       for (const fiber of visibleFibers) {
         this.drawFiber(fiber);
       }
 
       // Draw jet bundles
-      const visibleJets = this.jetBundles.filter(j => 
+      const visibleJets = this.jetBundles.filter(j =>
         j.isVisible(this.width, this.height)
       );
-      
+
       for (const jetBundle of visibleJets) {
         this.drawJetBundle(jetBundle);
       }
@@ -487,7 +478,7 @@
 
         // Initialize manifold background
         const manifold = new ManifoldBackground(canvas);
-        
+
         // Start animation after brief delay
         setTimeout(() => {
           try {
@@ -528,7 +519,7 @@
 
         // Expose for debugging
         window.manifoldBackground = manifold;
-        
+
       } catch (error) {
         console.error('Manifold background init error:', error);
       }
@@ -541,10 +532,10 @@
       // Wait for DOM
       document.addEventListener('DOMContentLoaded', tryInit);
     }
-    
+
     // Also try on load event
     window.addEventListener('load', tryInit);
-    
+
     // Fallback after delay
     setTimeout(tryInit, 800);
   }
