@@ -326,6 +326,7 @@ hr {
 /* Fix z-index to ensure content is above background */
 body .content-div {
   z-index: 10 !important;
+  position: relative !important;
 }
 
 body #background-div {
@@ -334,4 +335,16 @@ body #background-div {
 
 body #background-svg {
   z-index: 0 !important;
+}
+
+/* Manifold background canvas */
+#manifold-background {
+  z-index: -1 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
 }
