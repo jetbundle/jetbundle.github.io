@@ -82,6 +82,14 @@ The Base Space of mathematics maps directly onto the applied "Fibers" of technol
   </a>
 </div>
 
+<style>
+.stack-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+  border-color: #ff6b35;
+}
+</style>
+
 #### **Fiber 1: The C3I & Surveillance Stack (AI, OS, Crypto, Graphs)**
 
 This stack comprises the technologies of **Command, Control, Communications & Intelligence**.
