@@ -4,7 +4,7 @@
     const trail = document.createElement("div");
     trail.id = "mouse-trail";
     document.body.appendChild(trail);
-    
+
     const style = document.createElement("style");
     style.textContent = `
       #mouse-trail {
@@ -23,13 +23,13 @@
       }
     `;
     document.head.appendChild(style);
-    
+
     document.addEventListener("mousemove", (e) => {
       trail.style.opacity = "1";
       trail.style.left = e.clientX + "px";
       trail.style.top = e.clientY + "px";
     });
-    
+
     let timeout;
     document.addEventListener("mousemove", () => {
       clearTimeout(timeout);
@@ -41,4 +41,3 @@
 </script>
 <link rel="icon" href="/assets/images/favicon.svg">
 <meta name="theme-color" content="#ff6b35">
-

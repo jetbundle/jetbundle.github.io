@@ -30,6 +30,8 @@ toolbar_priority:
   - "The Finance Stack"
   - "The Cartography"
   - "The Archive"
+  - "Disclaimer"
+  - "License"
 
 # Collections (The "Fibers")
 collections:

@@ -7,4 +7,3 @@ priority: 3
 # The Military-Financial Stack
 
 The Great Handover: Wall Street Outbids the Pentagon
-

@@ -117,3 +117,17 @@ This project is the open-source initiative to map this bundle. The `jetbundle.gi
 - **The Simulations** provide open-source code to explore the "lemmas" (Kalman filters, Turán graphs, Byzantine consensus).
 
 The goal is to remove the redactions. The audit trail is the curriculum.
+
+---
+
+## Legal and Research Disclaimers
+
+**Copyright © 2025 Joel Saucedo. All rights reserved.**
+
+This website and its content are provided for **research and educational purposes only**. All content, analysis, and conclusions represent the **personal opinions and research of the author** and do not necessarily reflect the views of any institution or organization.
+
+**No Conflicts of Interest:** The author declares no conflicts of interest. This research is conducted independently and is not funded by, sponsored by, or affiliated with any organization that could influence the content or conclusions.
+
+**License:** This project is licensed under the MIT License with a non-commercial use restriction. Commercial use, monetization, or use for financial gain is prohibited without explicit written permission. See the [License](/license/) page for full terms.
+
+**Disclaimer:** See the [Disclaimer](/disclaimer/) page for complete legal disclaimers and research methodology.

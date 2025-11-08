@@ -13,46 +13,80 @@ $text-primary: #f1f5f9;    // Soft white
 $text-muted: #94a3b8;      // Slate gray
 $border-subtle: #1e293b;   // Subtle borders
 
-/* Global Styles */
-html {
-  scroll-behavior: smooth;
+/* ============================================
+   GLOBAL OVERRIDES - Gauge Theme
+   ============================================ */
+
+/* Body and Background */
+body {
+  background-color: $dark-bg !important;
+  color: $text-primary !important;
 }
 
-/* Selection */
-::selection {
-  background: $orange-primary;
-  color: $text-primary;
+/* Main Content Areas */
+main, .main-content, .page-content {
+  background-color: $dark-bg !important;
+  color: $text-primary !important;
 }
 
-::-moz-selection {
-  background: $orange-primary;
-  color: $text-primary;
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  color: $text-primary !important;
+}
+
+h1 {
+  color: $orange-primary !important;
+}
+
+h2 {
+  color: $orange-primary !important;
+  border-bottom-color: $border-subtle !important;
 }
 
 /* Links */
 a {
-  color: $blue-primary;
+  color: $blue-primary !important;
   text-decoration: none;
-  background: linear-gradient(90deg, $blue-primary, $blue-primary) no-repeat;
-  background-size: 0% 1.5px;
-  background-position: 0 100%;
-  transition: background-size 0.3s ease;
 }
 
 a:hover {
-  background-size: 100% 1.5px;
-  color: #38bdf8;
+  color: #38bdf8 !important;
+}
+
+a:visited {
+  color: $blue-primary !important;
+}
+
+/* Code and Pre */
+pre, code {
+  background-color: $card-bg !important;
+  color: $text-primary !important;
+  border: 1px solid $border-subtle !important;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  background-color: $card-bg !important;
+}
+
+pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  background-color: $card-bg !important;
+  border: 1px solid $border-subtle !important;
 }
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid $orange-primary;
-  background: $card-bg;
-  padding: 1rem 1.5rem;
-  border-radius: 0 8px 8px 0;
-  font-style: normal;
-  color: $text-muted;
-  margin: 1.5rem 0;
+  border-left: 4px solid $orange-primary !important;
+  background-color: $card-bg !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-style: normal !important;
+  color: $text-muted !important;
+  margin: 1.5rem 0 !important;
 }
 
 /* Tables */
@@ -61,50 +95,80 @@ table {
   width: 100%;
   margin: 1.5rem 0;
   font-size: 0.95rem;
+  background-color: $dark-bg !important;
 }
 
 th, td {
-  border: 1px solid $border-subtle;
+  border: 1px solid $border-subtle !important;
   padding: 0.8rem;
   text-align: left;
 }
 
 th {
-  background: $dark-bg;
-  color: $orange-primary;
-  font-weight: 600;
+  background-color: $dark-bg !important;
+  color: $orange-primary !important;
+  font-weight: 600 !important;
 }
 
-tr:nth-child(even) {
-  background: $card-bg;
+td {
+  background-color: $dark-bg !important;
+  color: $text-primary !important;
 }
 
-/* Code blocks */
-pre, code {
-  background: $card-bg;
-  color: $text-primary;
-  border: 1px solid $border-subtle;
+tr:nth-child(even) td {
+  background-color: $card-bg !important;
 }
 
-code {
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+/* Selection */
+::selection {
+  background: $orange-primary !important;
+  color: $text-primary !important;
 }
 
-pre {
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
+::-moz-selection {
+  background: $orange-primary !important;
+  color: $text-primary !important;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation and Sidebar */
+nav, .sidebar, .navigation {
+  background-color: $card-bg !important;
+  border-color: $border-subtle !important;
+}
+
+nav a, .sidebar a, .navigation a {
+  color: $text-muted !important;
+}
+
+nav a:hover, .sidebar a:hover, .navigation a:hover {
+  color: $orange-primary !important;
+}
+
+/* Buttons */
+button, .btn {
+  background-color: $orange-primary !important;
+  color: $text-primary !important;
+  border: 1px solid $orange-primary !important;
+}
+
+button:hover, .btn:hover {
+  background-color: $orange-accent !important;
+  border-color: $orange-accent !important;
 }
 
 /* Stack Cards */
 .stack-card {
-  background: $card-bg;
-  border: 1px solid $border-subtle;
+  background: $card-bg !important;
+  border: 1px solid $border-subtle !important;
   border-radius: 16px;
   padding: 2rem;
   text-decoration: none;
-  color: $text-primary;
+  color: $text-primary !important;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
@@ -114,18 +178,54 @@ pre {
 
 .stack-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.4);
-  border-color: $orange-primary;
+  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.3) !important;
+  border-color: $orange-primary !important;
 }
 
 .stack-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.4rem;
+  color: $orange-primary !important;
 }
 
 .stack-card p {
   margin: 0;
-  color: $text-muted;
+  color: $text-muted !important;
   font-size: 0.95rem;
 }
 
+/* Page Content Containers */
+.page, .post, .article {
+  background-color: $dark-bg !important;
+  color: $text-primary !important;
+}
+
+/* Footer */
+footer {
+  background-color: $card-bg !important;
+  border-top-color: $border-subtle !important;
+  color: $text-muted !important;
+}
+
+/* Horizontal Rules */
+hr {
+  border-color: $border-subtle !important;
+}
+
+/* Lists */
+ul, ol {
+  color: $text-primary !important;
+}
+
+li {
+  color: $text-primary !important;
+}
+
+/* Strong and Emphasis */
+strong, b {
+  color: $text-primary !important;
+}
+
+em, i {
+  color: $text-muted !important;
+}

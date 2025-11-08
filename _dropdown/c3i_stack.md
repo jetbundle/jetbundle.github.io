@@ -7,4 +7,3 @@ priority: 1
 # The C3I & Surveillance Stack
 
 Command, Control, Communications & Intelligence
-

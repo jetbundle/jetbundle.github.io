@@ -49,4 +49,3 @@ This is the "skeleton key" Fiber for C3I. Its origin is Pál Turán's 1941 "bric
 ---
 
 **[Back to The Primer →](/)**
-

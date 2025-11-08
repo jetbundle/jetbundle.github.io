@@ -65,4 +65,3 @@ The same mathematical techniques (Fourier transforms, conformal mapping, graph t
 ---
 
 **[Back to Finance Stack →](/finance_stack/01_intro/)**
-

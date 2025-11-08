@@ -49,4 +49,3 @@ Funded for Los Alamos implosion simulations and modern stockpile stewardship.
 ---
 
 **[Back to The Primer →](/)**
-

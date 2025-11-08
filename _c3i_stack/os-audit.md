@@ -49,4 +49,3 @@ Microsoft's **Azure Kubernetes Service** is formally authorized for **DoD Impact
 ---
 
 **[Back to C3I Stack →](/c3i_stack/01_intro/)**
-

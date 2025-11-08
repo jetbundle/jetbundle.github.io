@@ -53,4 +53,3 @@ The same mathematical techniques (backpropagation, neural networks) funded by ON
 ---
 
 **[Back to C3I Stack →](/c3i_stack/01_intro/)**
-

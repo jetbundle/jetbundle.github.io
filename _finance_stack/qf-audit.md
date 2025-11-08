@@ -68,4 +68,3 @@ The Stony Brook Quantitative Finance curriculum is a perfect audit trail of this
 ---
 
 **[Back to Finance Stack →](/finance_stack/01_intro/)**
-

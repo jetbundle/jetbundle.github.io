@@ -38,9 +38,9 @@ The same mathematical techniques (conformal mapping, complex analysis) are now u
 
 ## The Migration
 
-**1940s-1950s**: ONR funds submarine hull design  
-**1960s-1970s**: Techniques applied to aircraft design  
-**1980s-1990s**: Computational fluid dynamics (CFD) emerges  
+**1940s-1950s**: ONR funds submarine hull design
+**1960s-1970s**: Techniques applied to aircraft design
+**1980s-1990s**: Computational fluid dynamics (CFD) emerges
 **2000s-2020s**: Applied to renewable energy and aerospace
 
 ## Key Documents
@@ -52,4 +52,3 @@ The same mathematical techniques (conformal mapping, complex analysis) are now u
 ---
 
 **[Back to Physics Stack →](/physics_stack/01_intro/)**
-

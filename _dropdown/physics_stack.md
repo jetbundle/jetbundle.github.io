@@ -7,4 +7,3 @@ priority: 2
 # The Ballistics & Hydrodynamics Stack
 
 Naval Warfare & Missile Guidance
-

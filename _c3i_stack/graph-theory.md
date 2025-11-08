@@ -58,4 +58,3 @@ The same mathematical techniques (graph theory, centrality algorithms, clique de
 ---
 
 **[Back to C3I Stack →](/c3i_stack/01_intro/)**
-

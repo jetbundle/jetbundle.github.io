@@ -61,4 +61,3 @@ HFT firms like Jane Street and Citadel compete in "latency arbitrage"—a "race 
 ---
 
 **[Back to The Primer →](/)**
-

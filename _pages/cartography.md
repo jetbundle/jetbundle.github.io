@@ -80,4 +80,3 @@ Abstraction became the mechanism of redaction.
 ---
 
 [Back to The Primer →](/)
-
