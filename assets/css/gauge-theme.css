@@ -1,0 +1,108 @@
+/* JetBundle Gauge Theme - Simple and Direct CSS Override */
+
+/* Override theme's body background (theme: green gradient -> gauge: dark gradient) */
+html, body, body.animated, body.animated.fadeIn {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+  background-attachment: fixed !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override background div and SVG */
+#background-div, #background-svg {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+}
+
+/* Override SVG gradient stops (theme: green/red -> gauge: dark) */
+.bgColor1 {
+  stop-color: #0b0e17 !important;
+}
+.bgColor2 {
+  stop-color: #0a0d14 !important;
+}
+
+/* Override headers (theme: red #7F3F3F -> gauge: orange #ff6b35) */
+h1, h2, h3, h4, h5, h6, .post-title {
+  color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
+  border-bottom-color: #1e293b !important;
+}
+
+h1 {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+h1 a, h1 a:hover {
+  color: #ff6b35 !important;
+}
+
+/* Override links (theme: green #1F7F1F -> gauge: blue #0ea5e9) */
+a {
+  color: #0ea5e9 !important;
+}
+a:hover {
+  color: #38bdf8 !important;
+}
+
+/* Override navigation (theme: green -> gauge: muted/orange) */
+.navbar, nav {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+}
+.navbar-icon, nav a, .navbar a {
+  color: #94a3b8 !important;
+}
+.navbar-icon:hover, nav a:hover, .navbar a:hover {
+  color: #ff6b35 !important;
+  text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
+}
+
+/* Override containers */
+.container, .wrapper, main {
+  background: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override text */
+body, p, li, span, div, .content {
+  color: #f1f5f9 !important;
+}
+
+/* Override code blocks */
+pre, code, .highlight {
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
+  background-color: #111827 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #1e293b !important;
+}
+
+/* Override blockquotes */
+blockquote {
+  border-left: 4px solid #ff6b35 !important;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
+  background-color: #111827 !important;
+  color: #94a3b8 !important;
+}
+
+/* Override tables */
+table th {
+  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
+  background-color: #0b0e17 !important;
+  color: #ff6b35 !important;
+}
+table td {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override buttons */
+button, .btn {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  background-color: #ff6b35 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #ff6b35 !important;
+}
+
