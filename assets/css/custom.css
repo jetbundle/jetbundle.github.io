@@ -1,0 +1,117 @@
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: #ff6b35;
+  color: #f1f5f9;
+}
+
+::-moz-selection {
+  background: #ff6b35;
+  color: #f1f5f9;
+}
+
+/* Links */
+a {
+  color: #0ea5e9;
+  text-decoration: none;
+  background: linear-gradient(90deg, #0ea5e9, #0ea5e9) no-repeat;
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease;
+}
+
+a:hover {
+  background-size: 100% 1.5px;
+  color: #38bdf8;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #ff6b35;
+  background: #111827;
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  color: #94a3b8;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid #1e293b;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+th {
+  background: #0b0e17;
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #111827;
+}
+
+/* Code blocks */
+pre, code {
+  background: #111827;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Stack Cards */
+.stack-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 2rem;
+  text-decoration: none;
+  color: #f1f5f9;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 1rem 0;
+}
+
+.stack-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+  border-color: #ff6b35;
+}
+
+.stack-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+.stack-card p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/*# sourceMappingURL=custom.css.map */
