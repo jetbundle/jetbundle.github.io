@@ -442,17 +442,20 @@
     }
   }
 
-  // Initialize when DOM is ready
+  // Initialize when DOM is ready - robust initialization with multiple strategies
   function init() {
-    // Wait for page to be interactive
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+    // Prevent multiple initializations
+    if (window.manifoldBackgroundInitialized) {
       return;
     }
 
-    // Small delay to ensure page is fully loaded
-    setTimeout(() => {
+    const tryInit = () => {
       try {
+        // Check if canvas already exists
+        if (document.getElementById('manifold-background')) {
+          return;
+        }
+
         // Create canvas element
         const canvas = document.createElement('canvas');
         canvas.id = 'manifold-background';
@@ -465,47 +468,68 @@
           z-index: -1;
           pointer-events: none;
           opacity: 0.35;
+          background: transparent;
         `;
 
-        // Insert canvas - try multiple insertion points
+        // Try multiple insertion strategies
+        let inserted = false;
         const backgroundDiv = document.getElementById('background-div');
         if (backgroundDiv && backgroundDiv.parentNode) {
           backgroundDiv.parentNode.insertBefore(canvas, backgroundDiv.nextSibling);
-        } else {
-          const container = document.querySelector('.container');
-          if (container && container.parentNode) {
-            container.parentNode.insertBefore(canvas, container);
+          inserted = true;
+        }
+        if (!inserted && document.body) {
+          if (document.body.firstChild) {
+            document.body.insertBefore(canvas, document.body.firstChild);
           } else {
             document.body.appendChild(canvas);
           }
+          inserted = true;
+        }
+
+        if (!inserted) {
+          console.warn('Could not insert manifold background canvas');
+          return;
         }
 
         // Initialize manifold background
         const manifold = new ManifoldBackground(canvas);
         
-        // Start after a brief delay
+        // Start animation after brief delay
         setTimeout(() => {
-          manifold.start();
-        }, 100);
+          try {
+            manifold.start();
+            window.manifoldBackgroundInitialized = true;
+          } catch (e) {
+            console.error('Error starting manifold:', e);
+          }
+        }, 150);
 
-        // Handle resize with debounce
+        // Handle resize
         let resizeTimer;
-        const handleResize = () => {
+        window.addEventListener('resize', () => {
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
-            manifold.resize();
-            manifold.initializeBaseSpace();
-            manifold.generateFibers();
+            try {
+              manifold.resize();
+              manifold.initializeBaseSpace();
+              manifold.generateFibers();
+            } catch (e) {
+              console.error('Resize error:', e);
+            }
           }, 300);
-        };
-        window.addEventListener('resize', handleResize, { passive: true });
+        }, { passive: true });
 
-        // Pause when tab is hidden
+        // Pause when tab hidden
         document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            manifold.stop();
-          } else {
-            manifold.start();
+          try {
+            if (document.hidden) {
+              manifold.stop();
+            } else {
+              manifold.start();
+            }
+          } catch (e) {
+            console.error('Visibility change error:', e);
           }
         }, { passive: true });
 
@@ -513,19 +537,25 @@
         window.manifoldBackground = manifold;
         
       } catch (error) {
-        console.error('Manifold background initialization error:', error);
+        console.error('Manifold background init error:', error);
       }
-    }, 500); // Wait 500ms for page to stabilize
+    };
+
+    // Try immediate if ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      tryInit();
+    } else {
+      // Wait for DOM
+      document.addEventListener('DOMContentLoaded', tryInit);
+    }
+    
+    // Also try on load event
+    window.addEventListener('load', tryInit);
+    
+    // Fallback after delay
+    setTimeout(tryInit, 800);
   }
 
-  // Initialize
-  if (document.readyState === 'complete') {
-    init();
-  } else {
-    window.addEventListener('load', init);
-    // Also try on DOMContentLoaded as backup
-    if (document.readyState !== 'loading') {
-      init();
-    }
-  }
+  // Initialize immediately
+  init();
 })();
