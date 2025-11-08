@@ -115,8 +115,28 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
+                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-The Finance Stack">
                     <li priority="3"><a href="/dropdown/finance_stack.html">The Finance Stack</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-License">
+                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
                   </ul>
                 </li>
               
@@ -169,7 +189,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive", ];
+                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive",  "Disclaimer",  "License", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -278,7 +298,6 @@
 <hr />
 
 <p><strong><a href="/finance_stack/01_intro/">Back to Finance Stack →</a></strong></p>
-
 
 
         </div>

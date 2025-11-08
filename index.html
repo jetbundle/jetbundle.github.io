@@ -115,8 +115,28 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
+                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-The Finance Stack">
                     <li priority="3"><a href="/dropdown/finance_stack.html">The Finance Stack</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-License">
+                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
                   </ul>
                 </li>
               
@@ -169,7 +189,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive", ];
+                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive",  "Disclaimer",  "License", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -346,6 +366,20 @@
 </ul>
 
 <p>The goal is to remove the redactions. The audit trail is the curriculum.</p>
+
+<hr />
+
+<h2 id="legal-and-research-disclaimers">Legal and Research Disclaimers</h2>
+
+<p><strong>Copyright © 2025 Joel Saucedo. All rights reserved.</strong></p>
+
+<p>This website and its content are provided for <strong>research and educational purposes only</strong>. All content, analysis, and conclusions represent the <strong>personal opinions and research of the author</strong> and do not necessarily reflect the views of any institution or organization.</p>
+
+<p><strong>No Conflicts of Interest:</strong> The author declares no conflicts of interest. This research is conducted independently and is not funded by, sponsored by, or affiliated with any organization that could influence the content or conclusions.</p>
+
+<p><strong>License:</strong> This project is licensed under the MIT License with a non-commercial use restriction. Commercial use, monetization, or use for financial gain is prohibited without explicit written permission. See the <a href="/license/">License</a> page for full terms.</p>
+
+<p><strong>Disclaimer:</strong> See the <a href="/disclaimer/">Disclaimer</a> page for complete legal disclaimers and research methodology.</p>
 
 
         </div>

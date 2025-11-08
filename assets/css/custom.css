@@ -1,43 +1,76 @@
-/* Global Styles */
-html {
-  scroll-behavior: smooth;
+/* ============================================
+   GLOBAL OVERRIDES - Gauge Theme
+   ============================================ */
+/* Body and Background */
+body {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
 }
 
-/* Selection */
-::selection {
-  background: #ff6b35;
-  color: #f1f5f9;
+/* Main Content Areas */
+main, .main-content, .page-content {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
 }
 
-::-moz-selection {
-  background: #ff6b35;
-  color: #f1f5f9;
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  color: #f1f5f9 !important;
+}
+
+h1 {
+  color: #ff6b35 !important;
+}
+
+h2 {
+  color: #ff6b35 !important;
+  border-bottom-color: #1e293b !important;
 }
 
 /* Links */
 a {
-  color: #0ea5e9;
+  color: #0ea5e9 !important;
   text-decoration: none;
-  background: linear-gradient(90deg, #0ea5e9, #0ea5e9) no-repeat;
-  background-size: 0% 1.5px;
-  background-position: 0 100%;
-  transition: background-size 0.3s ease;
 }
 
 a:hover {
-  background-size: 100% 1.5px;
-  color: #38bdf8;
+  color: #38bdf8 !important;
+}
+
+a:visited {
+  color: #0ea5e9 !important;
+}
+
+/* Code and Pre */
+pre, code {
+  background-color: #111827 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #1e293b !important;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  background-color: #111827 !important;
+}
+
+pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  background-color: #111827 !important;
+  border: 1px solid #1e293b !important;
 }
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid #ff6b35;
-  background: #111827;
-  padding: 1rem 1.5rem;
-  border-radius: 0 8px 8px 0;
-  font-style: normal;
-  color: #94a3b8;
-  margin: 1.5rem 0;
+  border-left: 4px solid #ff6b35 !important;
+  background-color: #111827 !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-style: normal !important;
+  color: #94a3b8 !important;
+  margin: 1.5rem 0 !important;
 }
 
 /* Tables */
@@ -46,50 +79,80 @@ table {
   width: 100%;
   margin: 1.5rem 0;
   font-size: 0.95rem;
+  background-color: #0b0e17 !important;
 }
 
 th, td {
-  border: 1px solid #1e293b;
+  border: 1px solid #1e293b !important;
   padding: 0.8rem;
   text-align: left;
 }
 
 th {
-  background: #0b0e17;
-  color: #ff6b35;
-  font-weight: 600;
+  background-color: #0b0e17 !important;
+  color: #ff6b35 !important;
+  font-weight: 600 !important;
 }
 
-tr:nth-child(even) {
-  background: #111827;
+td {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
 }
 
-/* Code blocks */
-pre, code {
-  background: #111827;
-  color: #f1f5f9;
-  border: 1px solid #1e293b;
+tr:nth-child(even) td {
+  background-color: #111827 !important;
 }
 
-code {
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+/* Selection */
+::selection {
+  background: #ff6b35 !important;
+  color: #f1f5f9 !important;
 }
 
-pre {
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
+::-moz-selection {
+  background: #ff6b35 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation and Sidebar */
+nav, .sidebar, .navigation {
+  background-color: #111827 !important;
+  border-color: #1e293b !important;
+}
+
+nav a, .sidebar a, .navigation a {
+  color: #94a3b8 !important;
+}
+
+nav a:hover, .sidebar a:hover, .navigation a:hover {
+  color: #ff6b35 !important;
+}
+
+/* Buttons */
+button, .btn {
+  background-color: #ff6b35 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #ff6b35 !important;
+}
+
+button:hover, .btn:hover {
+  background-color: #ff4500 !important;
+  border-color: #ff4500 !important;
 }
 
 /* Stack Cards */
 .stack-card {
-  background: #111827;
-  border: 1px solid #1e293b;
+  background: #111827 !important;
+  border: 1px solid #1e293b !important;
   border-radius: 16px;
   padding: 2rem;
   text-decoration: none;
-  color: #f1f5f9;
+  color: #f1f5f9 !important;
   transition: all 0.3s;
   position: relative;
   overflow: hidden;
@@ -99,19 +162,56 @@ pre {
 
 .stack-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-  border-color: #ff6b35;
+  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.3) !important;
+  border-color: #ff6b35 !important;
 }
 
 .stack-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.4rem;
+  color: #ff6b35 !important;
 }
 
 .stack-card p {
   margin: 0;
-  color: #94a3b8;
+  color: #94a3b8 !important;
   font-size: 0.95rem;
+}
+
+/* Page Content Containers */
+.page, .post, .article {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Footer */
+footer {
+  background-color: #111827 !important;
+  border-top-color: #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+/* Horizontal Rules */
+hr {
+  border-color: #1e293b !important;
+}
+
+/* Lists */
+ul, ol {
+  color: #f1f5f9 !important;
+}
+
+li {
+  color: #f1f5f9 !important;
+}
+
+/* Strong and Emphasis */
+strong, b {
+  color: #f1f5f9 !important;
+}
+
+em, i {
+  color: #94a3b8 !important;
 }
 
 /*# sourceMappingURL=custom.css.map */

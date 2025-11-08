@@ -115,8 +115,28 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
+                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-The Finance Stack">
                     <li priority="3"><a href="/dropdown/finance_stack.html">The Finance Stack</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-License">
+                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
                   </ul>
                 </li>
               
@@ -169,7 +189,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive", ];
+                let priority = [ "The C3I Stack",  "The Physics Stack",  "The Finance Stack",  "The Cartography",  "The Archive",  "Disclaimer",  "License", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -245,9 +265,9 @@
 
 <h2 id="the-migration">The Migration</h2>
 
-<p><strong>1940s-1950s</strong>: ONR funds submarine hull design<br />
-<strong>1960s-1970s</strong>: Techniques applied to aircraft design<br />
-<strong>1980s-1990s</strong>: Computational fluid dynamics (CFD) emerges<br />
+<p><strong>1940s-1950s</strong>: ONR funds submarine hull design
+<strong>1960s-1970s</strong>: Techniques applied to aircraft design
+<strong>1980s-1990s</strong>: Computational fluid dynamics (CFD) emerges
 <strong>2000s-2020s</strong>: Applied to renewable energy and aerospace</p>
 
 <h2 id="key-documents">Key Documents</h2>
@@ -261,7 +281,6 @@
 <hr />
 
 <p><strong><a href="/physics_stack/01_intro/">Back to Physics Stack →</a></strong></p>
-
 
 
         </div>

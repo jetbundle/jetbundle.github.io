@@ -9,7 +9,7 @@ A subject-centered technical resource tracing defense-driven innovation to moder
 The site is structured around **Collections** (the "Fibers"):
 
 - **`_c3i_stack/`** - Command, Control, Communications & Intelligence
-- **`_physics_stack/`** - Ballistics & Hydrodynamics  
+- **`_physics_stack/`** - Ballistics & Hydrodynamics
 - **`_finance_stack/`** - The Military-Financial Stack
 
 ## Theme
@@ -45,9 +45,17 @@ The site is automatically deployed to GitHub Pages via GitHub Actions on every p
 
 ## License
 
-This project is open source. See LICENSE file for details.
+**Copyright © 2025 Joel Saucedo. All rights reserved.**
+
+This project is licensed under the MIT License with a non-commercial use restriction. 
+
+- **Open source** for non-commercial use
+- **Commercial use prohibited** without explicit written permission
+- **Intellectual property** rights reserved by the author
+
+See the [LICENSE](LICENSE) file for full terms and the [Disclaimer](_pages/disclaimer.md) page for research purposes and legal disclaimers.
 
 ---
 
-**Site**: https://jetbundle.github.io  
+**Site**: https://jetbundle.github.io
 **Repository**: https://github.com/jetbundle/jetbundle.github.io
