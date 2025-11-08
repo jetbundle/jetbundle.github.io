@@ -328,11 +328,12 @@
                 ctx.lineTo(points[i].x, points[i].y);
             }
 
-            // Single color with opacity gradient
+            // Single color with opacity - make it more visible
             const startOpacity = fiber.opacity;
             const endOpacity = fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length);
+            const avgOpacity = Math.max(0.15, (startOpacity + endOpacity) / 2); // Ensure minimum visibility
 
-            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${startOpacity * 0.5 + endOpacity * 0.5})`;
+            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${avgOpacity})`;
             ctx.lineWidth = CONFIG.fiberThickness;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
@@ -401,17 +402,32 @@
             }
 
             // Draw all fibers (small count, so it's fine)
+            let drawnCount = 0;
             for (const fiber of this.fibers) {
                 if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
                     this.drawFiber(fiber);
+                    drawnCount++;
                 }
             }
 
             // Draw jet bundles
+            let jetCount = 0;
             for (const jetBundle of this.jetBundles) {
                 if (jetBundle.isVisible(this.width, this.height)) {
                     this.drawJetBundle(jetBundle);
+                    jetCount++;
                 }
+            }
+            
+            // Debug log every 60 frames
+            if (this.frameCount % 60 === 0) {
+                console.log('Manifold: Drawing', {
+                    frame: this.frameCount,
+                    fibersDrawn: drawnCount,
+                    jetsDrawn: jetCount,
+                    canvasSize: this.width + 'x' + this.height,
+                    time: this.time.toFixed(2)
+                });
             }
 
             this.animationId = requestAnimationFrame(() => this.animate());
@@ -471,9 +487,10 @@
           height: 100% !important;
           z-index: 0 !important;
           pointer-events: none !important;
-          opacity: 0.5 !important;
+          opacity: 0.6 !important;
           background: transparent !important;
           display: block !important;
+          visibility: visible !important;
         `);
 
                 // Insert canvas - prefer body prepend
