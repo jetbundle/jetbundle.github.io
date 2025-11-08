@@ -11,25 +11,25 @@
 (function() {
   'use strict';
 
-  // Optimized configuration for regular laptops
+  // Highly optimized configuration for regular laptops
   const CONFIG = {
-    // Reduced fiber system parameters
-    numBasePoints: 8,         // Reduced from 12
-    fibersPerPoint: 2,        // Reduced from 3
-    maxFiberLength: 120,      // Reduced from 150
-    fiberStepSize: 1.2,       // Increased (fewer points)
-    fiberThickness: 0.7,      // Slightly thinner
-
+    // Minimal fiber system for best performance
+    numBasePoints: 6,         // Further reduced for performance
+    fibersPerPoint: 2,        // Keep at 2
+    maxFiberLength: 100,      // Further reduced
+    fiberStepSize: 1.5,       // Larger steps (fewer points)
+    fiberThickness: 0.6,      // Thinner for performance
+    
     // Slower animation for performance
-    animationSpeed: 0.002,    // Reduced from 0.003
-    noiseScale: 0.015,        // Reduced from 0.02
-    noiseSpeed: 0.0003,       // Reduced from 0.0005
-
+    animationSpeed: 0.0015,   // Slower
+    noiseScale: 0.012,        // Smaller scale
+    noiseSpeed: 0.0002,       // Slower
+    
     // Visual parameters
-    opacityDecay: 0.97,       // Faster decay (shorter trails)
-    baseOpacity: 0.12,        // Lower base opacity
-    gradientStops: 3,         // Reduced from 5
-
+    opacityDecay: 0.98,       // Slower decay
+    baseOpacity: 0.10,        // Lower opacity
+    gradientStops: 2,         // Minimal stops
+    
     // Color scheme (gauge theme)
     colors: {
       orange: { r: 255, g: 107, b: 53 },
@@ -37,12 +37,12 @@
       dark: { r: 11, g: 14, b: 23 },
       dark2: { r: 10, g: 13, b: 20 }
     },
-
-    // Performance tuning - more aggressive
-    maxFibers: 30,            // Reduced from 50
-    updateInterval: 3,        // Update every 3 frames (was 2)
-    fadeOutSpeed: 0.985,      // Faster fade
-    maxPointsPerFiber: 80     // Reduced from 200
+    
+    // Performance tuning - very aggressive
+    maxFibers: 20,            // Further reduced
+    updateInterval: 4,        // Update every 4 frames
+    fadeOutSpeed: 0.99,       // Slower fade (less redraw)
+    maxPointsPerFiber: 60     // Further reduced
   };
 
   // Simplified noise generator (more efficient)
@@ -153,16 +153,14 @@
       this.generatePoints();
     }
 
-    isVisible(width, height, margin = 100) {
-      // Quick bounding box check
-      for (let i = 0; i < this.points.length; i += 5) { // Check every 5th point
-        const p = this.points[i];
-        if (p.x >= -margin && p.x <= width + margin &&
-            p.y >= -margin && p.y <= height + margin) {
-          return true;
-        }
-      }
-      return false;
+    isVisible(width, height, margin = 150) {
+      // Very quick check - just first and last point
+      if (this.points.length === 0) return false;
+      const first = this.points[0];
+      const last = this.points[this.points.length - 1];
+      return (first.x >= -margin && first.x <= width + margin && first.y >= -margin && first.y <= height + margin) ||
+             (last.x >= -margin && last.x <= width + margin && last.y >= -margin && last.y <= height + margin) ||
+             (this.basePoint.x >= -margin && this.basePoint.x <= width + margin && this.basePoint.y >= -margin && this.basePoint.y <= height + margin);
     }
   }
 
@@ -220,11 +218,16 @@
       this.generateJets();
     }
 
-    isVisible(width, height, margin = 100) {
-      return this.jets.some(jet =>
-        jet.points.some((p, i) => i % 3 === 0 && // Check every 3rd point
-          p.x >= -margin && p.x <= width + margin &&
-          p.y >= -margin && p.y <= height + margin)
+    isVisible(width, height, margin = 150) {
+      // Quick check - just base point and first jet point
+      if (this.jets.length === 0) return false;
+      const baseVisible = this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
+                          this.basePoint.y >= -margin && this.basePoint.y <= height + margin;
+      if (baseVisible) return true;
+      return this.jets.some(jet => 
+        jet.points.length > 0 && 
+        jet.points[0].x >= -margin && jet.points[0].x <= width + margin &&
+        jet.points[0].y >= -margin && jet.points[0].y <= height + margin
       );
     }
   }
@@ -359,37 +362,38 @@
       this.frameCount++;
       this.time += CONFIG.animationSpeed;
 
-      // Clear with fade (trail effect)
-      this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
-      this.ctx.fillRect(0, 0, this.width, this.height);
+      // Clear with fade (trail effect) - only if needed
+      if (this.frameCount % 2 === 0) { // Clear every other frame
+        this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
+        this.ctx.fillRect(0, 0, this.width, this.height);
+      }
 
-      // Update and draw only visible fibers (cache visibility check)
+      // Update fibers less frequently
       if (this.frameCount % CONFIG.updateInterval === 0) {
-        // Update visible fibers
         for (const fiber of this.fibers) {
           if (fiber.isVisible(this.width, this.height)) {
             fiber.update(this.time);
           }
         }
+      }
 
-        // Update jet bundles less frequently
-        if (this.frameCount % (CONFIG.updateInterval * 3) === 0) {
-          for (const jetBundle of this.jetBundles) {
-            if (jetBundle.isVisible(this.width, this.height)) {
-              jetBundle.update(this.time);
-            }
+      // Update jet bundles much less frequently
+      if (this.frameCount % (CONFIG.updateInterval * 4) === 0) {
+        for (const jetBundle of this.jetBundles) {
+          if (jetBundle.isVisible(this.width, this.height)) {
+            jetBundle.update(this.time);
           }
         }
       }
 
-      // Draw visible fibers
+      // Draw all fibers (small count, so it's fine)
       for (const fiber of this.fibers) {
-        if (fiber.isVisible(this.width, this.height)) {
+        if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
           this.drawFiber(fiber);
         }
       }
 
-      // Draw visible jet bundles
+      // Draw jet bundles
       for (const jetBundle of this.jetBundles) {
         if (jetBundle.isVisible(this.width, this.height)) {
           this.drawJetBundle(jetBundle);
@@ -471,17 +475,31 @@
         }
 
         // Initialize manifold background
-        const manifold = new ManifoldBackground(canvas);
+        let manifold;
+        try {
+          manifold = new ManifoldBackground(canvas);
+          console.log('Manifold background initialized:', {
+            fibers: manifold.fibers.length,
+            jets: manifold.jetBundles.length,
+            width: manifold.width,
+            height: manifold.height
+          });
+        } catch (e) {
+          console.error('Error creating manifold:', e);
+          return;
+        }
 
-        // Start animation after brief delay
-        setTimeout(() => {
-          try {
+        // Start animation
+        try {
+          // Small delay to ensure canvas is ready
+          setTimeout(() => {
             manifold.start();
             window.manifoldBackgroundInitialized = true;
-          } catch (e) {
-            console.error('Error starting manifold:', e);
-          }
-        }, 150);
+            console.log('Manifold background started');
+          }, 100);
+        } catch (e) {
+          console.error('Error starting manifold:', e);
+        }
 
         // Handle resize
         let resizeTimer;
