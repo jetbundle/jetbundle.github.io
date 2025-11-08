@@ -424,7 +424,7 @@
     }
   }
 
-  // Initialize when DOM is ready - robust initialization with multiple strategies
+  // Initialize when DOM is ready - very robust initialization
   function init() {
     // Prevent multiple initializations
     if (window.manifoldBackgroundInitialized) {
@@ -432,9 +432,16 @@
     }
 
     const tryInit = () => {
+      // Must have body
+      if (!document.body) {
+        console.log('Manifold: Waiting for body...');
+        return;
+      }
+
       try {
         // Check if canvas already exists
         if (document.getElementById('manifold-background')) {
+          console.log('Manifold: Canvas already exists');
           return;
         }
 
@@ -453,105 +460,122 @@
           background: transparent;
         `;
 
-        // Try multiple insertion strategies
+        // Insert canvas - prefer body prepend
         let inserted = false;
-        const backgroundDiv = document.getElementById('background-div');
-        if (backgroundDiv && backgroundDiv.parentNode) {
-          backgroundDiv.parentNode.insertBefore(canvas, backgroundDiv.nextSibling);
+        try {
+          document.body.insertBefore(canvas, document.body.firstChild);
           inserted = true;
-        }
-        if (!inserted && document.body) {
-          if (document.body.firstChild) {
-            document.body.insertBefore(canvas, document.body.firstChild);
-          } else {
+        } catch (e) {
+          try {
             document.body.appendChild(canvas);
+            inserted = true;
+          } catch (e2) {
+            console.error('Manifold: Failed to insert canvas', e2);
           }
-          inserted = true;
         }
 
         if (!inserted) {
-          console.warn('Could not insert manifold background canvas');
+          console.warn('Manifold: Could not insert canvas');
           return;
         }
+
+        console.log('Manifold: Canvas created and inserted');
 
         // Initialize manifold background
         let manifold;
         try {
           manifold = new ManifoldBackground(canvas);
-          console.log('Manifold background initialized:', {
+          console.log('Manifold: Initialized', {
             fibers: manifold.fibers.length,
             jets: manifold.jetBundles.length,
             width: manifold.width,
-            height: manifold.height
+            height: manifold.height,
+            canvas: canvas.width + 'x' + canvas.height
           });
         } catch (e) {
-          console.error('Error creating manifold:', e);
+          console.error('Manifold: Error creating', e);
           return;
         }
 
-        // Start animation
-        try {
-          // Small delay to ensure canvas is ready
-          setTimeout(() => {
-            manifold.start();
-            window.manifoldBackgroundInitialized = true;
-            console.log('Manifold background started');
-          }, 100);
-        } catch (e) {
-          console.error('Error starting manifold:', e);
-        }
+        // Start animation after brief delay
+        setTimeout(() => {
+          try {
+            if (manifold && !manifold.isRunning) {
+              manifold.start();
+              window.manifoldBackgroundInitialized = true;
+              console.log('Manifold: Started successfully');
+            }
+          } catch (e) {
+            console.error('Manifold: Error starting', e);
+          }
+        }, 200);
 
         // Handle resize
         let resizeTimer;
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
             try {
-              manifold.resize();
-              manifold.initializeBaseSpace();
-              manifold.generateFibers();
+              if (manifold) {
+                manifold.resize();
+                manifold.initializeBaseSpace();
+                manifold.generateFibers();
+              }
             } catch (e) {
-              console.error('Resize error:', e);
+              console.error('Manifold: Resize error', e);
             }
           }, 300);
-        }, { passive: true });
+        };
+        window.addEventListener('resize', handleResize, { passive: true });
 
         // Pause when tab hidden
         document.addEventListener('visibilitychange', () => {
           try {
-            if (document.hidden) {
-              manifold.stop();
-            } else {
-              manifold.start();
+            if (manifold) {
+              if (document.hidden) {
+                manifold.stop();
+              } else {
+                manifold.start();
+              }
             }
           } catch (e) {
-            console.error('Visibility change error:', e);
+            console.error('Manifold: Visibility error', e);
           }
         }, { passive: true });
 
         // Expose for debugging
         window.manifoldBackground = manifold;
-
+        
       } catch (error) {
-        console.error('Manifold background init error:', error);
+        console.error('Manifold: Init error', error);
       }
     };
 
-    // Try immediate if ready
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      tryInit();
+    // Wait for body to exist
+    const waitForBody = () => {
+      if (document.body) {
+        tryInit();
+      } else {
+        setTimeout(waitForBody, 50);
+      }
+    };
+
+    // Initialize based on ready state
+    if (document.readyState === 'complete') {
+      waitForBody();
+    } else if (document.readyState === 'interactive') {
+      waitForBody();
     } else {
-      // Wait for DOM
-      document.addEventListener('DOMContentLoaded', tryInit);
+      document.addEventListener('DOMContentLoaded', waitForBody);
     }
-
-    // Also try on load event
-    window.addEventListener('load', tryInit);
-
-    // Fallback after delay
-    setTimeout(tryInit, 800);
+    
+    // Also try on load
+    window.addEventListener('load', waitForBody);
+    
+    // Final fallback
+    setTimeout(waitForBody, 1000);
   }
 
-  // Initialize immediately
+  // Start initialization
   init();
 })();
