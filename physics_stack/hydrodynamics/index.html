@@ -84,6 +84,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
   <script src="/assets/js/main.js"></script>
+  
+  <!-- Manifold background loads deferred to not block rendering -->
+  <script src="/assets/js/manifold-background.js" defer></script>
 </head>
 
   <body class="animated fadeIn">
@@ -321,12 +324,15 @@
 </footer>
 
     
+    <!-- Manifold Background Animation -->
+    <script src="/assets/js/manifold-background.js" defer></script>
+    
     <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
       // Minimal enhancements - theme's main.js handles initialization
       (function() {
         'use strict';
-        
+
         // Wait for theme's main.js to initialize
         function enhanceTheme() {
           // Only apply SVG gradient overrides after theme initializes
@@ -348,14 +354,14 @@
             }
           }, 600); // Wait for theme's setTimeout(updateBackground, 500)
         }
-        
+
         // Initialize after DOM and scripts are ready
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', enhanceTheme);
         } else {
           enhanceTheme();
         }
-        
+
         // Lightweight cursor trail - only if user moves mouse
         let trailInit = false;
         let trailActive = false;
@@ -365,16 +371,16 @@
         let mx = 0, my = 0;
         let lastMove = 0;
         const trail = [];
-        
+
         function initTrail() {
           if (trailInit) return;
           trailInit = true;
-          
+
           container = document.createElement('div');
           container.id = 'mouse-trail-container';
           container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
           document.body.appendChild(container);
-          
+
           for (let i = 0; i < trailLength; i++) {
             const p = document.createElement('div');
             const size = Math.max(2, 4 - i * 0.15);
@@ -384,18 +390,18 @@
             trail.push({el:p,x:0,y:0,op:0});
           }
         }
-        
+
         function startTrail() {
           if (trailActive || !trailInit) return;
           trailActive = true;
           lastMove = Date.now();
-          
+
           function animate() {
             if (!trailActive) {
               animFrame = null;
               return;
             }
-            
+
             const now = Date.now();
             if (now - lastMove > 1000) {
               let allInvisible = true;
@@ -438,7 +444,7 @@
           }
           animFrame = requestAnimationFrame(animate);
         }
-        
+
         // Lazy load trail only on mouse move
         document.addEventListener('mousemove', function(e) {
           mx = e.clientX;
