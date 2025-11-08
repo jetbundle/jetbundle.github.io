@@ -15,4 +15,3 @@ children:
 # The Stacks
 
 The three fiber bundles: C3I, Physics, and Finance.
-

@@ -17,4 +17,3 @@ children:
 # Resources
 
 Cartography, Archive, and legal information.
-
