@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "The C3I & Surveillance Stack"
 permalink: /c3i_stack/01_intro/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # The C3I & Surveillance Stack

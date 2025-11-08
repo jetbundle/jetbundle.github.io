@@ -1,0 +1,131 @@
+---
+# Custom CSS for JetBundle Gauge Theme
+---
+
+// JetBundle Gauge Theme Colors
+$orange-primary: #ff6b35;  // Warm Coral Orange (Gauge Needle)
+$orange-accent: #ff4500;   // Orange Red (Hover, Alerts)
+$blue-primary: #0ea5e9;    // Sky Blue (Links, Connections)
+$blue-deep: #1e40af;       // Deep Blue (Headers, Fibers)
+$dark-bg: #0b0e17;         // Near-black void
+$card-bg: #111827;         // Slightly lighter panels
+$text-primary: #f1f5f9;    // Soft white
+$text-muted: #94a3b8;      // Slate gray
+$border-subtle: #1e293b;   // Subtle borders
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: $orange-primary;
+  color: $text-primary;
+}
+
+::-moz-selection {
+  background: $orange-primary;
+  color: $text-primary;
+}
+
+/* Links */
+a {
+  color: $blue-primary;
+  text-decoration: none;
+  background: linear-gradient(90deg, $blue-primary, $blue-primary) no-repeat;
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease;
+}
+
+a:hover {
+  background-size: 100% 1.5px;
+  color: #38bdf8;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid $orange-primary;
+  background: $card-bg;
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  color: $text-muted;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid $border-subtle;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+th {
+  background: $dark-bg;
+  color: $orange-primary;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: $card-bg;
+}
+
+/* Code blocks */
+pre, code {
+  background: $card-bg;
+  color: $text-primary;
+  border: 1px solid $border-subtle;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+pre {
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Stack Cards */
+.stack-card {
+  background: $card-bg;
+  border: 1px solid $border-subtle;
+  border-radius: 16px;
+  padding: 2rem;
+  text-decoration: none;
+  color: $text-primary;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 1rem 0;
+}
+
+.stack-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+  border-color: $orange-primary;
+}
+
+.stack-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+.stack-card p {
+  margin: 0;
+  color: $text-muted;
+  font-size: 0.95rem;
+}
+

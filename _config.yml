@@ -1,127 +1,60 @@
 # Site settings
 title: "JetBundle"
-name: "JetBundle"
 description: "Mapping the hidden geometry of modern science."
 url: "https://jetbundle.github.io"
 baseurl: ""
 
-# Author
-author:
-  name: "JetBundle"
-  avatar: "/assets/images/avatar.jpg"
-  bio: "Mapping the hidden geometry of modern science."
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/jetbundle"
+# Useful links
+github_username: "jetbundle"
+facebook_username: ""
+twitter_username: ""
+linkedin_id: ""
 
-# Use minimal-mistakes theme
-remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "dark"
+# Theme
+remote_theme: luxedo/jekyll-theme-potato-hacker
+theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
+theme_base: "dark"
+theme_switch: "on"
+
+# Extra settings
+blog: "on"
+avatar: "on"
+avatar_image: "assets/img/avatar.jpg"
+avatar_description: "Mapping the hidden geometry of modern science."
+
+highlighter_theme: monokai
+
+toolbar_priority:
+  - "The C3I Stack"
+  - "The Physics Stack"
+  - "The Finance Stack"
+  - "The Cartography"
+  - "The Archive"
+
+# Collections (The "Fibers")
+collections:
+  c3i_stack:
+    output: true
+  physics_stack:
+    output: true
+  finance_stack:
+    output: true
+  dropdown:
+    output: true
+  items:
+    output: true
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-remote-theme
-  - jekyll-include-cache
-  - jekyll-sitemap
 
 # Markdown
 markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
-
-# Collections Setup (The "Fibers")
-collections:
-  c3i_stack:
-    output: true
-    permalink: /:collection/:name/
-  physics_stack:
-    output: true
-    permalink: /:collection/:name/
-  finance_stack:
-    output: true
-    permalink: /:collection/:name/
-
-# Defaults for Collections
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "single"
-      author: "JetBundle"
-      share: true
-      related: true
-      comments: false
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "single"
-      author: "JetBundle"
-      share: true
-      related: true
-      comments: false
-  - scope:
-      path: ""
-      type: "c3i_stack"
-    values:
-      layout: "single"
-      author: "JetBundle"
-      share: true
-      related: true
-      sidebar:
-        nav: "c3i_stack"
-  - scope:
-      path: ""
-      type: "physics_stack"
-    values:
-      layout: "single"
-      author: "JetBundle"
-      share: true
-      related: true
-      sidebar:
-        nav: "physics_stack"
-  - scope:
-      path: ""
-      type: "finance_stack"
-    values:
-      layout: "single"
-      author: "JetBundle"
-      share: true
-      related: true
-      sidebar:
-        nav: "finance_stack"
-
-# Navigation
-breadcrumbs: true
-toc: true
-toc_sticky: true
-
-# SEO
-seo:
-  type: "WebSite"
-  name: "JetBundle"
-  description: "Mapping the hidden geometry of modern science."
-
-# MathJax
-mathjax: true
-
-# Include custom SASS
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Load custom CSS
-includes_dir: _includes
-
 
 # Exclude
 exclude:
@@ -131,14 +64,6 @@ exclude:
   - vendor
   - .git
   - .gitignore
-  - README.md
-  - THEME_ANALYSIS.md
-  - CUSTOMIZATION_GUIDE.md
 
 # PDF Settings
 pdf_height: 900px
-
-# Theme customizations
-minimal_mistakes_skin: "dark"
-search: true
-search_full_content: true

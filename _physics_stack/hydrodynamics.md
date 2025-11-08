@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "Hydrodynamics Audit: From Nautilus to Modern Fluid Dynamics"
 permalink: /physics_stack/hydrodynamics/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # Hydrodynamics Audit: From Nautilus to Modern Fluid Dynamics

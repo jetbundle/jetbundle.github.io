@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "High-Frequency Trading Audit: From Radar to Microwave Networks"
 permalink: /finance_stack/hft-audit/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # High-Frequency Trading Audit: From Radar to Microwave Networks

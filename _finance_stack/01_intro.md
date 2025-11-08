@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "The Military-Financial Stack"
 permalink: /finance_stack/01_intro/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # The Military-Financial Stack

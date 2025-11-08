@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "The Ballistics & Hydrodynamics Stack"
 permalink: /physics_stack/01_intro/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # The Ballistics & Hydrodynamics Stack

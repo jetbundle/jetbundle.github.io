@@ -1,79 +1,92 @@
 ---
-layout: single
-title: "The Archive"
-permalink: /archive/
-author_profile: false
-toc: true
-toc_sticky: true
+layout: page
+title: The Archive
+description: Declassified memos, booklists, and primary sources
+dropdown: The Archive
+priority: 5
 ---
 
-## The Archive
+# The Archive
 
-The Archive contains declassified memos, booklists, and primary sources that document the materialist origins of modern science.
+Declassified memos, booklists, and primary sources tracing the funding pipeline from "memo to lemma."
+
+## Purpose
+
+The Archive serves as the repository for:
+
+- Declassified government documents
+- Primary source materials
+- Booklists and references
+- Historical research documents
+- Verifiable grant records and funding sources
+
+## Collections
 
 ### Declassified Documents
 
-#### Office of Naval Research (ONR)
+Primary source materials tracing the defense-academic pipeline:
 
-- **Project 47D4-2, "The Navy Computing Machine"** (1948) - ONR's early computing research
-- **Periscope Vibrations Report** (1948) - Hydrodynamic research on submarine hull design
-- **Underwater Acoustic Research** - SONAR and acoustic tracking systems
-
-#### DARPA/IPTO
-
-- **"Intergalactic Computer Network" Memo** (April 23, 1963) - J.C.R. Licklider's foundational vision
-- **Project MAC Documentation** - MIT's time-sharing and operating systems research
-- **Mathematical Challenges BAA 07-68** (2007) - DARPA's explicit solicitation of foundational lemmas
-
-#### Air Force Office of Scientific Research (AFOSR)
-
-- **Project SCOOP Documentation** (1947) - Linear programming and optimization
-- **Kalman Filter Research** (1954) - Early funding records
-- **Pontryagin's Maximum Principle** - Optimal control theory for missile trajectories
-
-#### NSA
-
-- **SKYNET Program Documentation** - Graph theory applications for drone targeting
-- **SIGABA Rotor Permutations** - Number theory in cryptographic systems
+- **ONR Reports**: Office of Naval Research funding records
+- **AFOSR Documents**: Air Force Office of Scientific Research grants
+- **DARPA Memos**: Advanced Research Projects Agency documents
+- **NSA Declassified**: National Security Agency released documents
 
 ### Booklists
 
-#### Essential Reading
+Curated reading lists organized by topic:
 
-1. **Vladimir Arnold, "On Teaching Mathematics"** (1995) - The tripartition model
-2. **Nicolas Bourbaki, "Éléments de mathématique"** - The abstraction mechanism
-3. **J.C.R. Licklider, "Man-Computer Symbiosis"** (1960) - The vision for interactive computing
-4. **Leslie Lamport, "The Byzantine Generals Problem"** (1978) - C3I requirements as distributed systems
+- **Mathematical Foundations**: Core texts in applied mathematics
+- **Computational History**: Origins of computer science
+- **Physics Applications**: Naval and aerospace applications
+- **Financial Engineering**: Quantitative finance origins
 
-#### Historical Analysis
+### Research Materials
 
-- **David Kaiser, "How the Hippies Saved Physics"** - The military-academic complex
-- **Paul Edwards, "The Closed World"** - Command and control systems
-- **Donald MacKenzie, "Mechanizing Proof"** - Computing and mathematics
-
-### Primary Sources
-
-#### Academic Publications
-
-- **AMS (American Mathematical Society) Publications** - Grant acknowledgments and funding sources
-- **IEEE Annals of the History of Computing** - Historical documentation
-- **SIAM (Society for Industrial and Applied Mathematics) Archives** - Applied mathematics origins
-
-#### Government Documents
-
-- **DTIC (Defense Technical Information Center)** - Declassified research reports
-- **NARA (National Archives)** - Historical military research records
-- **FOIA Requests** - Declassified intelligence and defense documents
-
-### Contributing to The Archive
-
-This is an open-source project. To contribute:
-
-1. **Submit a Pull Request** to the [jetbundle/the-archive](https://github.com/jetbundle/the-archive) repository
-2. **Include source verification** - Links to declassified documents, grant records, or archival sources
-3. **Follow the audit methodology** - Trace the "memo-to-lemma" pipeline
+- Grant records and funding sources
+- Historical research papers
+- Archival verification documents
+- Academic program documentation
 
 ---
 
-**[Back to The Primer →](/)**
+## Contributing
+
+Contributions to the Archive are welcome. Please submit:
+
+- Declassified documents with proper citations
+- Verifiable grant records
+- Primary source materials
+- Historical research documents
+
+---
+
+## Key Documents
+
+### ONR (Office of Naval Research)
+
+- Project 47D4-2: "The Navy Computing Machine" (1948)
+- Hydrodynamic research reports (1945-1950)
+- SONAR and acoustic research documents
+
+### AFOSR (Air Force Office of Scientific Research)
+
+- Project SCOOP: Scientific Computation of Optimum Programs (1947)
+- Kalman Filter research (1954)
+- Optimal control theory grants
+
+### DARPA (Advanced Research Projects Agency)
+
+- "Intergalactic Computer Network" Memo (April 23, 1963)
+- Mathematical Challenges BAA (2007)
+- IPTO program documentation
+
+### NASA
+
+- Apollo program documentation
+- Guidance and navigation research
+- Dynamical systems grants
+
+---
+
+[Back to The Primer →](/)
 

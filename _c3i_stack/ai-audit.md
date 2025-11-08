@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "AI Audit: From ALVINN to Palantir"
 permalink: /c3i_stack/ai-audit/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # AI Audit: From ALVINN to Palantir

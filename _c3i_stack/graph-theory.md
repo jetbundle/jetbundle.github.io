@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "Graph Theory Audit: From Turán to SKYNET to Palantir Gotham"
 permalink: /c3i_stack/graph-theory/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # Graph Theory Audit: From Turán to SKYNET to Palantir Gotham

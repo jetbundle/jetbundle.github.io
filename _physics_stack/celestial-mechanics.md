@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "Celestial Mechanics Audit: From Missile Trajectories to Space Exploration"
 permalink: /physics_stack/celestial-mechanics/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # Celestial Mechanics Audit: From Missile Trajectories to Space Exploration

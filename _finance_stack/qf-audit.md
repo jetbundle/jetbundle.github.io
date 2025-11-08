@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "Quantitative Finance Audit: From Missile Guidance to Options Pricing"
 permalink: /finance_stack/qf-audit/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # Quantitative Finance Audit: From Missile Guidance to Options Pricing

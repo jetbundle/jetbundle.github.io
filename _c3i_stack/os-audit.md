@@ -1,10 +1,7 @@
 ---
-layout: single
+layout: page
 title: "Operating Systems Audit: From Project MAC to Azure IL5"
 permalink: /c3i_stack/os-audit/
-author_profile: false
-toc: true
-toc_sticky: true
 ---
 
 # Operating Systems Audit: From Project MAC to Azure IL5

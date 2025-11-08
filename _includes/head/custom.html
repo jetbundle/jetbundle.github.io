@@ -1,4 +1,4 @@
-<!-- Mouse-trail effect -->
+<link rel="stylesheet" href="/assets/css/custom.css">
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const trail = document.createElement("div");
@@ -29,7 +29,7 @@
       trail.style.left = e.clientX + "px";
       trail.style.top = e.clientY + "px";
     });
-
+    
     let timeout;
     document.addEventListener("mousemove", () => {
       clearTimeout(timeout);
@@ -39,8 +39,6 @@
     });
   });
 </script>
-
-<!-- Favicon -->
 <link rel="icon" href="/assets/images/favicon.svg">
 <meta name="theme-color" content="#ff6b35">
 
