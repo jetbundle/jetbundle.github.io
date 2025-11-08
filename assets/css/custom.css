@@ -1,9 +1,14 @@
 /* ============================================
    GLOBAL OVERRIDES - Gauge Theme
+   HIGH SPECIFICITY TO OVERRIDE THEME
    ============================================ */
-/* Body and Background */
-body {
+/* Body and Background - Maximum Specificity */
+html body,
+body.animated,
+body.fadeIn,
+body.container {
   background-color: #0b0e17 !important;
+  background: #0b0e17 !important;
   color: #f1f5f9 !important;
 }
 
