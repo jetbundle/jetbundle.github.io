@@ -1,0 +1,13 @@
+// Override minimal-mistakes variables
+// These will be loaded after the theme's default variables
+
+@import "../custom-variables";
+
+// Map custom variables to minimal-mistakes variables
+$background-color: $dark-bg !default;
+$text-color: $text-primary !default;
+$primary-color: $orange-primary !default;
+$link-color: $blue-primary !default;
+$link-color-hover: $orange-primary !default;
+$masthead-link-color: $text-primary !default;
+$masthead-link-color-hover: $orange-primary !default;

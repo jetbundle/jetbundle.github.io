@@ -1,0 +1,182 @@
+/* Custom styles for JetBundle */
+
+/* Smooth scroll */
+html { 
+  scroll-behavior: smooth; 
+}
+
+/* Selection */
+::selection { 
+  background: $orange-primary; 
+  color: $text-primary; 
+}
+
+::-moz-selection { 
+  background: $orange-primary; 
+  color: $text-primary; 
+}
+
+/* Links */
+a {
+  color: $blue-primary;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $orange-primary;
+  }
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid $orange-primary;
+  background: $card-bg;
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  color: $text-muted;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  
+  th, td {
+    border: 1px solid $border-subtle;
+    padding: 0.8rem;
+    text-align: left;
+  }
+  
+  th {
+    background: $dark-bg;
+    color: $orange-primary;
+    font-weight: 600;
+  }
+  
+  tr:nth-child(even) {
+    background: $card-bg;
+  }
+  
+  tr:hover {
+    background: darken($card-bg, 3%);
+  }
+}
+
+/* Stack Cards */
+.stack-card {
+  background: $card-bg;
+  border: 1px solid $border-subtle;
+  border-radius: 16px;
+  padding: 2rem;
+  text-decoration: none;
+  color: $text-primary;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 1rem 0;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+    border-color: $orange-primary;
+  }
+  
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+  }
+  
+  p {
+    margin: 0;
+    color: $text-muted;
+    font-size: 0.95rem;
+  }
+}
+
+/* Hero Section */
+.hero-fiber {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
+  background: linear-gradient(135deg, $dark-bg 0%, $card-bg 100%);
+  text-align: center;
+  
+  .fiber-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    
+    .fiber {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      opacity: 0;
+      animation: fiberPulse 4s infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes fiberPulse {
+  0%, 100% { 
+    opacity: 0; 
+    transform: translateY(-50%) scaleX(0); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: translateY(-50%) scaleX(1); 
+  }
+}
+
+/* PDF Embed */
+.pdf-embed {
+  margin: 2.5rem 0;
+  border: 2px solid $orange-primary;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(255, 107, 53, 0.2);
+  
+  iframe {
+    width: 100%;
+    border: none;
+    background: $dark-bg;
+  }
+  
+  .pdf-footer {
+    background: $card-bg;
+    padding: 0.8rem 1.2rem;
+    text-align: right;
+    font-size: 0.9rem;
+    border-top: 1px solid $border-subtle;
+    
+    a {
+      color: $blue-primary;
+      text-decoration: none;
+      font-weight: 500;
+      
+      &:hover {
+        color: $orange-primary;
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-fiber {
+    padding: 3rem 0;
+  }
+  
+  .stack-card {
+    padding: 1.5rem;
+  }
+}
+

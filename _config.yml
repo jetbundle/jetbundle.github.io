@@ -119,9 +119,9 @@ sass:
   sass_dir: _sass
   style: compressed
 
-# Custom CSS
-head_includes:
-  - /assets/css/main.scss
+# Load custom CSS
+includes_dir: _includes
+
 
 # Exclude
 exclude:
