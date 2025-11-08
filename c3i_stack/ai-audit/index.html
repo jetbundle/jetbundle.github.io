@@ -62,6 +62,7 @@
     a { color: #0ea5e9 !important; }
     .navbar-icon, nav a, .navbar a { color: #94a3b8 !important; }
     .container, .wrapper, main { background: transparent !important; color: #f1f5f9 !important; }
+    .content-div { color: #f1f5f9 !important; }
   </style>
 
   <!-- Theme CSS -->
@@ -77,11 +78,12 @@
   <!-- MathJax - Async (non-blocking) -->
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-  <!-- All JavaScript deferred to prevent blocking render -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
-  <script defer src="/assets/js/main.js"></script>
+  <!-- JavaScript: Load in correct order with proper dependencies -->
+  <!-- jQuery must load first, then Bootstrap (depends on jQuery), then D3, then theme JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
+  <script src="/assets/js/main.js"></script>
 </head>
 
   <body class="animated fadeIn">
@@ -208,15 +210,24 @@
 </header>
 
     <div class="container">
+      <!-- Theme requires these SVG layers for animated background -->
       <div id="background-div">
         <svg id="background-svg">
-          <lineargradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-            <stop stop-opacity="0" class="bgColor1" offset="0%" />
-            <stop stop-opacity="1" class="bgColor2" offset="100%" />
-          </lineargradient>
+          <defs>
+            <lineargradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+              <stop stop-opacity="0" class="bgColor1" offset="0%" />
+              <stop stop-opacity="1" class="bgColor2" offset="100%" />
+            </lineargradient>
+          </defs>
+          <!-- Theme's main.js expects these layers for animated strips -->
+          <g id="bg-layer1"></g>
+          <g id="bg-layer2"></g>
+          <g id="bg-layer3"></g>
+          <g id="bg-layer4"></g>
         </svg>
       </div>
-      <h1 id="ai-audit-from-alvinn-to-palantir">AI Audit: From ALVINN to Palantir</h1>
+      <div class="content-div">
+        <h1 id="ai-audit-from-alvinn-to-palantir">AI Audit: From ALVINN to Palantir</h1>
 
 <h2 id="the-1980s-neural-net-revival">The 1980s Neural Net Revival</h2>
 
@@ -275,6 +286,7 @@
 <p><strong><a href="/c3i_stack/01_intro/">Back to C3I Stack →</a></strong></p>
 
 
+      </div>
     </div>
     <footer class="page-footer">
   <center>
@@ -310,44 +322,45 @@
 </footer>
 
     
-    <!-- JetBundle Gauge Theme JavaScript - Minimal and Optimized -->
+    <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
-      // Minimal style enforcement - CSS handles most styling
+      // Minimal enhancements - theme's main.js handles initialization
       (function() {
         'use strict';
         
-        // Wait for page to be interactive
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', applyStyles);
-        } else {
-          // Use setTimeout to ensure this runs after deferred scripts
-          setTimeout(applyStyles, 100);
+        // Wait for theme's main.js to initialize
+        function enhanceTheme() {
+          // Only apply SVG gradient overrides after theme initializes
+          setTimeout(function() {
+            try {
+              const svg = document.getElementById('background-svg');
+              if (svg) {
+                const stops = svg.querySelectorAll('stop.bgColor1, stop.bgColor2');
+                stops.forEach(stop => {
+                  if (stop.classList.contains('bgColor1')) {
+                    stop.setAttribute('stop-color', '#0b0e17');
+                  } else if (stop.classList.contains('bgColor2')) {
+                    stop.setAttribute('stop-color', '#0a0d14');
+                  }
+                });
+              }
+            } catch (e) {
+              // Silently fail
+            }
+          }, 600); // Wait for theme's setTimeout(updateBackground, 500)
         }
         
-        function applyStyles() {
-          try {
-            // Only apply styles that CSS can't handle (SVG gradients)
-            const svg = document.getElementById('background-svg');
-            if (svg) {
-              const stops = svg.querySelectorAll('stop:not([data-gauge-theme])');
-              stops.forEach(stop => {
-                stop.setAttribute('data-gauge-theme', 'applied');
-                if (stop.classList.contains('bgColor1')) {
-                  stop.setAttribute('stop-color', '#0b0e17');
-                } else if (stop.classList.contains('bgColor2')) {
-                  stop.setAttribute('stop-color', '#0a0d14');
-                }
-              });
-            }
-          } catch (e) {
-            // Silently fail - CSS handles styling
-          }
+        // Initialize after DOM and scripts are ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', enhanceTheme);
+        } else {
+          enhanceTheme();
         }
         
         // Lightweight cursor trail - only if user moves mouse
         let trailInit = false;
         let trailActive = false;
-        const trailLength = 8; // Reduced for performance
+        const trailLength = 8;
         let container = null;
         let animFrame = null;
         let mx = 0, my = 0;
@@ -386,7 +399,6 @@
             
             const now = Date.now();
             if (now - lastMove > 1000) {
-              // Fade out after 1s inactivity
               let allInvisible = true;
               trail.forEach(p => {
                 p.op = Math.max(0, p.op - 0.3);
@@ -434,8 +446,11 @@
           my = e.clientY;
           lastMove = Date.now();
           if (!trailInit) {
-            // Delay initialization to avoid blocking
-            requestIdleCallback ? requestIdleCallback(initTrail) : setTimeout(initTrail, 200);
+            if (window.requestIdleCallback) {
+              requestIdleCallback(initTrail, { timeout: 200 });
+            } else {
+              setTimeout(initTrail, 200);
+            }
           }
           if (trailInit && !trailActive) {
             startTrail();

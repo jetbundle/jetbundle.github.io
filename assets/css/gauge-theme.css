@@ -140,7 +140,7 @@ nav a:hover,
   text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
 }
 
-/* Override containers */
+/* Override containers - but preserve theme functionality */
 body .container,
 body .wrapper,
 body main,
@@ -152,25 +152,29 @@ html body main,
 main {
   background: transparent !important;
   background-color: transparent !important;
+}
+
+/* Override text - ensure content is visible */
+body .content-div,
+body .content-div p,
+body .content-div li,
+body .content-div span,
+body .content-div div,
+.content-div,
+.content-div p,
+.content-div li,
+.content-div span,
+.content-div div {
   color: #f1f5f9 !important;
 }
 
-/* Override text */
-body .container,
-body .container p,
-body .container li,
-body .container span,
-body .container div,
+/* Ensure paragraphs and list items are visible */
 body p,
 body li,
-body span,
-body div,
-html body p,
-html body li,
+body .content-div p,
+body .content-div li,
 p,
-li,
-span,
-div {
+li {
   color: #f1f5f9 !important;
 }
 
