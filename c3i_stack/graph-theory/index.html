@@ -284,261 +284,238 @@
 </footer>
 
     
-    <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
-    <link rel="stylesheet" href="/assets/css/gauge-theme.css">
-    
-    <!-- JetBundle Gauge Theme JavaScript - Optimized for Performance -->
+    <!-- JetBundle Gauge Theme JavaScript - Deferred and Optimized -->
     <script>
       (function() {
         'use strict';
         
-        let stylesApplied = false;
-        let throttleTimer = null;
-        let lastApplyTime = 0;
-        const THROTTLE_DELAY = 100; // Only apply styles max once per 100ms
-        
-        // Optimized style application - only runs when needed
-        function applyGaugeTheme() {
-          const now = Date.now();
-          if (now - lastApplyTime < THROTTLE_DELAY) {
-            return; // Throttled
-          }
-          lastApplyTime = now;
-          
-          try {
-            // Cache frequently accessed elements
-            const body = document.body;
-            const html = document.documentElement;
-            const bgDiv = document.getElementById('background-div');
-            const svg = document.getElementById('background-svg');
-            
-            if (!body) return;
-            
-            // Apply body styles (only if not already applied)
-            if (!body.hasAttribute('data-gauge-theme')) {
-              body.setAttribute('data-gauge-theme', 'applied');
-              body.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-              body.style.backgroundColor = '#0b0e17';
-              body.style.color = '#f1f5f9';
-            }
-            
-            // Apply html styles
-            if (html && !html.hasAttribute('data-gauge-theme')) {
-              html.setAttribute('data-gauge-theme', 'applied');
-              html.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-              html.style.backgroundColor = '#0b0e17';
-            }
-            
-            // Override background div (only once)
-            if (bgDiv && !bgDiv.hasAttribute('data-gauge-theme')) {
-              bgDiv.setAttribute('data-gauge-theme', 'applied');
-              bgDiv.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
-              bgDiv.style.backgroundColor = '#0b0e17';
-            }
-            
-            // Override SVG gradients (only once)
-            if (svg) {
-              const stops = svg.querySelectorAll('stop');
-              stops.forEach(stop => {
-                if (stop.hasAttribute('data-gauge-theme')) return; // Already processed
-                stop.setAttribute('data-gauge-theme', 'applied');
-                
-                if (stop.classList.contains('bgColor1')) {
-                  stop.setAttribute('stop-color', '#0b0e17');
-                } else if (stop.classList.contains('bgColor2')) {
-                  stop.setAttribute('stop-color', '#0a0d14');
-                }
-              });
-            }
-            
-            // Apply heading styles (cache and batch)
-            if (!stylesApplied) {
-              const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .post-title');
-              headings.forEach(h => {
-                if (h.hasAttribute('data-gauge-theme')) return;
-                h.setAttribute('data-gauge-theme', 'applied');
-                h.style.color = '#ff6b35';
-                if (h.tagName === 'H1' || h.classList.contains('post-title')) {
-                  h.style.background = 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)';
-                  h.style.webkitBackgroundClip = 'text';
-                  h.style.webkitTextFillColor = 'transparent';
-                  h.style.backgroundClip = 'text';
-                }
-              });
-              
-              // Apply link styles (batch)
-              const links = document.querySelectorAll('a');
-              links.forEach(a => {
-                if (a.hasAttribute('data-gauge-theme') || a.closest('h1')) return;
-                a.setAttribute('data-gauge-theme', 'applied');
-                a.style.color = '#0ea5e9';
-              });
-              
-              // Apply navigation styles (batch)
-              const navLinks = document.querySelectorAll('.navbar-icon, nav a, .navbar a, header a, .toolbar a');
-              navLinks.forEach(a => {
-                if (a.hasAttribute('data-gauge-theme')) return;
-                a.setAttribute('data-gauge-theme', 'applied');
-                a.style.color = '#94a3b8';
-              });
-              
-              // Apply container styles (batch)
-              const containers = document.querySelectorAll('.container, .wrapper, main, .content');
-              containers.forEach(el => {
-                if (el.hasAttribute('data-gauge-theme')) return;
-                el.setAttribute('data-gauge-theme', 'applied');
-                el.style.background = 'transparent';
-                el.style.backgroundColor = 'transparent';
-                el.style.color = '#f1f5f9';
-              });
-              
-              stylesApplied = true;
-            }
-          } catch (e) {
-            console.error('Gauge theme error:', e);
-          }
-        }
-        
-        // Throttled apply function
-        function throttledApply() {
-          if (throttleTimer) return;
-          throttleTimer = setTimeout(() => {
-            applyGaugeTheme();
-            throttleTimer = null;
-          }, THROTTLE_DELAY);
-        }
-        
-        // Apply on DOM ready
+        // Defer execution until after page load
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', applyGaugeTheme);
+          document.addEventListener('DOMContentLoaded', initGaugeTheme);
         } else {
-          applyGaugeTheme();
+          // If already loaded, defer with setTimeout
+          setTimeout(initGaugeTheme, 0);
         }
         
-        // Apply once more after a short delay (for dynamic content)
-        setTimeout(applyGaugeTheme, 300);
-        
-        // Throttled MutationObserver - only watches for new elements
-        const observer = new MutationObserver(function(mutations) {
-          let shouldApply = false;
-          for (const mutation of mutations) {
-            // Only react to new nodes being added
-            if (mutation.addedNodes.length > 0) {
-              for (const node of mutation.addedNodes) {
-                if (node.nodeType === 1) { // Element node
-                  // Check if it's a heading, link, or container
-                  if (node.matches && (node.matches('h1, h2, h3, h4, h5, h6, a, .container, .wrapper') || 
-                      node.querySelector('h1, h2, h3, h4, h5, h6, a, .container, .wrapper'))) {
-                    shouldApply = true;
+        function initGaugeTheme() {
+          let stylesApplied = false;
+          let throttleTimer = null;
+          let lastApplyTime = 0;
+          const THROTTLE_DELAY = 150; // Throttle to 150ms
+          
+          // Optimized style application
+          function applyGaugeTheme() {
+            const now = Date.now();
+            if (now - lastApplyTime < THROTTLE_DELAY && stylesApplied) {
+              return;
+            }
+            lastApplyTime = now;
+            
+            try {
+              const body = document.body;
+              const html = document.documentElement;
+              const bgDiv = document.getElementById('background-div');
+              const svg = document.getElementById('background-svg');
+              
+              if (!body) return;
+              
+              // Apply critical styles once
+              if (!body.hasAttribute('data-gauge-theme')) {
+                body.setAttribute('data-gauge-theme', 'applied');
+                body.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+                body.style.backgroundColor = '#0b0e17';
+                body.style.color = '#f1f5f9';
+              }
+              
+              if (html && !html.hasAttribute('data-gauge-theme')) {
+                html.setAttribute('data-gauge-theme', 'applied');
+                html.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+                html.style.backgroundColor = '#0b0e17';
+              }
+              
+              if (bgDiv && !bgDiv.hasAttribute('data-gauge-theme')) {
+                bgDiv.setAttribute('data-gauge-theme', 'applied');
+                bgDiv.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+                bgDiv.style.backgroundColor = '#0b0e17';
+              }
+              
+              // SVG gradients (only once)
+              if (svg) {
+                const stops = svg.querySelectorAll('stop[data-gauge-theme]:not([data-gauge-theme])');
+                stops.forEach(stop => {
+                  stop.setAttribute('data-gauge-theme', 'applied');
+                  if (stop.classList.contains('bgColor1')) {
+                    stop.setAttribute('stop-color', '#0b0e17');
+                  } else if (stop.classList.contains('bgColor2')) {
+                    stop.setAttribute('stop-color', '#0a0d14');
+                  }
+                });
+              }
+              
+              // Batch apply styles to new elements only
+              if (!stylesApplied) {
+                requestAnimationFrame(function() {
+                  const headings = document.querySelectorAll('h1:not([data-gauge-theme]), h2:not([data-gauge-theme]), h3:not([data-gauge-theme]), .post-title:not([data-gauge-theme])');
+                  headings.forEach(h => {
+                    h.setAttribute('data-gauge-theme', 'applied');
+                    h.style.color = '#ff6b35';
+                    if (h.tagName === 'H1') {
+                      h.style.background = 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)';
+                      h.style.webkitBackgroundClip = 'text';
+                      h.style.webkitTextFillColor = 'transparent';
+                    }
+                  });
+                  
+                  const links = document.querySelectorAll('a:not([data-gauge-theme]):not(h1 a)');
+                  links.forEach(a => {
+                    a.setAttribute('data-gauge-theme', 'applied');
+                    a.style.color = '#0ea5e9';
+                  });
+                  
+                  const navLinks = document.querySelectorAll('.navbar-icon:not([data-gauge-theme]), nav a:not([data-gauge-theme])');
+                  navLinks.forEach(a => {
+                    a.setAttribute('data-gauge-theme', 'applied');
+                    a.style.color = '#94a3b8';
+                  });
+                  
+                  stylesApplied = true;
+                });
+              }
+            } catch (e) {
+              console.error('Gauge theme error:', e);
+            }
+          }
+          
+          // Throttled apply
+          function throttledApply() {
+            if (throttleTimer) return;
+            throttleTimer = setTimeout(() => {
+              applyGaugeTheme();
+              throttleTimer = null;
+            }, THROTTLE_DELAY);
+          }
+          
+          // Apply once on load
+          applyGaugeTheme();
+          
+          // Apply once more after a delay for dynamic content
+          setTimeout(applyGaugeTheme, 500);
+          
+          // Lightweight MutationObserver - only for new elements
+          const observer = new MutationObserver(function(mutations) {
+            let hasNewElements = false;
+            for (const mutation of mutations) {
+              if (mutation.addedNodes.length > 0) {
+                for (const node of mutation.addedNodes) {
+                  if (node.nodeType === 1 && (node.matches('h1, h2, h3, a, .container') || node.querySelector('h1, h2, h3, a'))) {
+                    hasNewElements = true;
                     break;
                   }
                 }
               }
             }
-          }
-          if (shouldApply) {
-            stylesApplied = false; // Reset to re-apply to new elements
-            throttledApply();
-          }
-        });
-        
-        // Only observe for child additions, not all attribute changes
-        if (document.body) {
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true
-            // Removed attributes observer to reduce overhead
-          });
-        }
-        
-        // Optimized cursor trail - only animate when mouse moves
-        let trailActive = false;
-        const trail = [];
-        const trailLength = 15; // Reduced from 20
-        let container = null;
-        
-        function initCursorTrail() {
-          if (container) return; // Already initialized
-          
-          container = document.createElement('div');
-          container.id = 'mouse-trail-container';
-          container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
-          document.body.appendChild(container);
-          
-          for (let i = 0; i < trailLength; i++) {
-            const p = document.createElement('div');
-            p.style.cssText = `position:absolute;width:${Math.max(2, 6-i*0.25)}px;height:${Math.max(2, 6-i*0.25)}px;background:radial-gradient(circle,rgba(255,107,53,${Math.max(0, 1-i*0.06)})0%,rgba(14,165,233,${Math.max(0, 0.8-i*0.05)})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;`;
-            container.appendChild(p);
-            trail.push({el:p,x:0,y:0,op:0});
-          }
-        }
-        
-        let mx=0,my=0;
-        let animFrame = null;
-        let lastMouseTime = 0;
-        
-        function startTrail() {
-          if (trailActive) return;
-          trailActive = true;
-          initCursorTrail();
-          
-          function anim() {
-            if (!trailActive) {
-              animFrame = null;
-              return;
+            if (hasNewElements) {
+              stylesApplied = false;
+              throttledApply();
             }
+          });
+          
+          if (document.body) {
+            observer.observe(document.body, { childList: true, subtree: true });
+          }
+          
+          // Optimized cursor trail - lazy loaded
+          let trailInitialized = false;
+          let trailActive = false;
+          const trail = [];
+          const trailLength = 12; // Reduced further
+          let container = null;
+          let animFrame = null;
+          let mx = 0, my = 0;
+          let lastMouseTime = 0;
+          
+          function initTrail() {
+            if (trailInitialized) return;
+            trailInitialized = true;
             
-            const now = Date.now();
-            // Stop animation if mouse hasn't moved in 2 seconds
-            if (now - lastMouseTime > 2000) {
-              trail.forEach(p => {
-                p.op = Math.max(0, p.op - 0.1);
-                p.el.style.opacity = p.op;
-              });
-              // Stop if all particles are invisible
-              if (trail.every(p => p.op < 0.01)) {
-                trailActive = false;
+            container = document.createElement('div');
+            container.id = 'mouse-trail-container';
+            container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
+            document.body.appendChild(container);
+            
+            for (let i = 0; i < trailLength; i++) {
+              const p = document.createElement('div');
+              p.style.cssText = `position:absolute;width:${Math.max(2, 5-i*0.2)}px;height:${Math.max(2, 5-i*0.2)}px;background:radial-gradient(circle,rgba(255,107,53,${Math.max(0, 0.9-i*0.07)})0%,rgba(14,165,233,${Math.max(0, 0.7-i*0.06)})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;`;
+              container.appendChild(p);
+              trail.push({el:p,x:0,y:0,op:0});
+            }
+          }
+          
+          function startTrail() {
+            if (trailActive || !trailInitialized) return;
+            trailActive = true;
+            lastMouseTime = Date.now();
+            
+            function anim() {
+              if (!trailActive) {
                 animFrame = null;
                 return;
               }
-            } else {
-              trail.forEach((p,i)=>{
-                if(i===0){
-                  p.x=mx;
-                  p.y=my;
-                  p.op=1;
-                } else{
-                  const prev=trail[i-1];
-                  const dx=prev.x-p.x;
-                  const dy=prev.y-p.y;
-                  const dist=Math.sqrt(dx*dx+dy*dy);
-                  if(dist>2){
-                    p.x+=dx*0.25;
-                    p.y+=dy*0.25;
-                  } else {
-                    p.x=prev.x;
-                    p.y=prev.y;
-                  }
-                  p.op=Math.max(0,p.op-0.04);
+              
+              const now = Date.now();
+              if (now - lastMouseTime > 1500) {
+                // Fade out if mouse inactive
+                trail.forEach(p => {
+                  p.op = Math.max(0, p.op - 0.15);
+                  p.el.style.opacity = p.op;
+                });
+                if (trail.every(p => p.op < 0.01)) {
+                  trailActive = false;
+                  animFrame = null;
+                  return;
                 }
-                p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
-                p.el.style.opacity = p.op;
-              });
+              } else {
+                trail.forEach((p,i)=>{
+                  if(i===0){
+                    p.x=mx;
+                    p.y=my;
+                    p.op=1;
+                  } else{
+                    const prev=trail[i-1];
+                    const dx=prev.x-p.x;
+                    const dy=prev.y-p.y;
+                    const dist=Math.sqrt(dx*dx+dy*dy);
+                    if(dist>1.5){
+                      p.x+=dx*0.2;
+                      p.y+=dy*0.2;
+                    } else {
+                      p.x=prev.x;
+                      p.y=prev.y;
+                    }
+                    p.op=Math.max(0,p.op-0.05);
+                  }
+                  p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
+                  p.el.style.opacity = p.op;
+                });
+              }
+              animFrame = requestAnimationFrame(anim);
             }
             animFrame = requestAnimationFrame(anim);
           }
           
-          animFrame = requestAnimationFrame(anim);
+          // Lazy load trail on first mouse move
+          document.addEventListener('mousemove', function(e) {
+            mx = e.clientX;
+            my = e.clientY;
+            lastMouseTime = Date.now();
+            if (!trailInitialized) {
+              initTrail();
+            }
+            if (!trailActive) {
+              startTrail();
+            }
+          }, { passive: true, once: false });
         }
-        
-        document.addEventListener('mousemove', function(e) {
-          mx = e.clientX;
-          my = e.clientY;
-          lastMouseTime = Date.now();
-          if (!trailActive) {
-            startTrail();
-          }
-        }, { passive: true });
       })();
     </script>
   </body>
