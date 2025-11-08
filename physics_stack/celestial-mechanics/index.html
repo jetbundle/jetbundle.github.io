@@ -84,9 +84,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
   <script src="/assets/js/main.js"></script>
-  
+
   <!-- Manifold background loads deferred to not block rendering -->
-  <script src="/assets/js/manifold-background.js" defer></script>
+  <!-- Load after page is fully interactive -->
+  <script>
+    // Load manifold background after page load to ensure DOM is ready
+    window.addEventListener('load', function() {
+      const script = document.createElement('script');
+      script.src = '/assets/js/manifold-background.js';
+      script.async = true;
+      document.head.appendChild(script);
+    });
+  </script>
 </head>
 
   <body class="animated fadeIn">
@@ -335,7 +344,7 @@
   </center>
 </footer>
 
-    
+
     <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
       // Minimal enhancements - theme's main.js handles initialization
