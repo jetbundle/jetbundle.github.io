@@ -1,322 +1,253 @@
 /* ============================================
-   GLOBAL OVERRIDES - Gauge Theme
-   MAXIMUM SPECIFICITY TO OVERRIDE POTATO-HACKER THEME
+   GLOBAL OVERRIDES - Gauge Theme with Gradients
    ============================================ */
-/* Body and Background - Override theme gradient */
-html body,
-body.animated,
-body.fadeIn,
-body.container,
-body.animated.fadeIn {
-  background: #0b0e17 !important;
-  background-color: #0b0e17 !important;
-  background-image: none !important;
-  background-repeat: no-repeat !important;
+/* Body with gradient background */
+body, html {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
   background-attachment: fixed !important;
   color: #f1f5f9 !important;
+  min-height: 100vh !important;
 }
 
-/* Override background div and SVG */
-#background-div,
-#background-svg {
-  display: none !important;
-}
-
-/* Container */
-.container {
-  background-color: transparent !important;
-  background: transparent !important;
-}
-
-/* Main Content Areas */
-main,
-.main-content,
-.page-content,
-section {
-  background-color: transparent !important;
-  background: transparent !important;
+/* Main Content Areas with subtle gradient */
+main, .main-content, .page-content, .wrapper, #main-content {
+  background: linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, #0b0e17 100%) !important;
   color: #f1f5f9 !important;
 }
 
-/* Headers - Override theme's green/red colors */
-h1, h2, h3, h4, h5, h6 {
-  color: #f1f5f9 !important;
-}
-
+/* Headers with gradient text */
 h1 {
-  color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
-}
-
-h1 a,
-h1 a:hover {
-  color: #ff6b35 !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: #ff6b35 !important; /* Fallback */
+  font-weight: 700 !important;
 }
 
 h2 {
   color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
-  text-decoration-color: #ff6b35 !important;
+  border-bottom: 2px solid #1e293b !important;
+  padding-bottom: 0.5rem !important;
+  background: linear-gradient(90deg, #ff6b35 0%, transparent 100%) !important;
+  background-size: 200px 2px !important;
+  background-position: 0 100% !important;
+  background-repeat: no-repeat !important;
 }
 
-h3, h4, h5, h6 {
+h3 {
+  color: #ff6b35 !important;
+}
+
+h4, h5, h6 {
   color: #f1f5f9 !important;
 }
 
-/* Links - Override theme's green */
+/* Links with gradient underline */
 a {
   color: #0ea5e9 !important;
   text-decoration: none !important;
+  background: linear-gradient(90deg, #0ea5e9, #0ea5e9) no-repeat !important;
+  background-size: 0% 2px !important;
+  background-position: 0 100% !important;
+  transition: background-size 0.3s ease, color 0.3s ease !important;
 }
 
 a:hover {
+  background-size: 100% 2px !important;
   color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.5) !important;
 }
 
 a:visited {
   color: #0ea5e9 !important;
 }
 
-/* Code and Pre */
+/* Code blocks with gradient border */
 pre, code {
-  background-color: #111827 !important;
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
   color: #f1f5f9 !important;
   border: 1px solid #1e293b !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 code {
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  background-color: #111827 !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px !important;
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
 }
 
 pre {
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  background-color: #111827 !important;
-  border: 1px solid #1e293b !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  border-left: 3px solid #ff6b35 !important;
 }
 
-/* Blockquotes */
+/* Blockquotes with gradient border */
 blockquote {
   border-left: 4px solid #ff6b35 !important;
-  border-color: #ff6b35 !important;
-  background-color: #111827 !important;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
   padding: 1rem 1.5rem !important;
   border-radius: 0 8px 8px 0 !important;
   font-style: normal !important;
   color: #94a3b8 !important;
   margin: 1.5rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Tables */
+/* Tables with gradient headers */
 table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1.5rem 0;
-  font-size: 0.95rem;
-  background-color: transparent !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.95rem !important;
+  background: #0b0e17 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 th, td {
   border: 1px solid #1e293b !important;
-  padding: 0.8rem;
-  text-align: left;
-  color: #f1f5f9 !important;
+  padding: 0.8rem !important;
+  text-align: left !important;
 }
 
 th {
-  background-color: transparent !important;
+  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
   color: #ff6b35 !important;
   font-weight: 600 !important;
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.3) !important;
 }
 
 td {
-  background-color: transparent !important;
+  background: #0b0e17 !important;
   color: #f1f5f9 !important;
 }
 
 tr:nth-child(even) td {
-  background-color: #111827 !important;
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.5) 0%, #111827 100%) !important;
 }
 
-/* Selection */
+tr:hover td {
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%) !important;
+}
+
+/* Selection with gradient */
 ::selection {
-  background: #ff6b35 !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   color: #f1f5f9 !important;
 }
 
 ::-moz-selection {
-  background: #ff6b35 !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   color: #f1f5f9 !important;
 }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Navigation - Override theme's green */
-.navbar,
-nav {
-  background-color: rgba(17, 24, 39, 0.9) !important;
-  background: rgba(17, 24, 39, 0.9) !important;
-}
-
-.navbar-icon {
-  color: #ff6b35 !important;
-}
-
-.navbar-icon:hover {
-  color: #ff4500 !important;
-  text-shadow: 0 0 0.1em #ff6b35 !important;
-}
-
-.navbar a,
-nav a {
-  color: #94a3b8 !important;
-}
-
-.navbar a:hover,
-nav a:hover {
-  color: #ff6b35 !important;
-}
-
-/* Buttons - Override theme's green */
-button,
-.btn,
-.btn-primary {
-  background-color: #ff6b35 !important;
-  color: #f1f5f9 !important;
-  border-color: #ff6b35 !important;
-}
-
-button:hover,
-.btn:hover,
-.btn-primary:hover {
-  background-color: #ff4500 !important;
-  border-color: #ff4500 !important;
-  color: #f1f5f9 !important;
-}
-
-/* Post Title - Override theme's green */
-.post-title {
-  color: #ff6b35 !important;
-}
-
-.post-title a {
-  color: #ff6b35 !important;
-}
-
-/* Page Footer */
-.page-footer {
-  background-color: transparent !important;
-  color: #94a3b8 !important;
-}
-
-.page-footer a,
-.page-footer center div div a i {
-  color: #94a3b8 !important;
-}
-
-.page-footer a:hover {
-  color: #ff6b35 !important;
-}
-
-/* Avatar */
-.avatar-image {
+/* Navigation with gradient background */
+nav, .sidebar, .navigation, .navbar, header, .header, #header {
+  background: linear-gradient(135deg, #111827 0%, #0b0e17 100%) !important;
   border-color: #1e293b !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
-.avatar-description {
+nav a, .sidebar a, .navigation a, .navbar a, header a {
   color: #94a3b8 !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Social Icons - Override theme colors */
-.fa-github:hover {
-  text-shadow: 0 0 0.1em #ff6b35 !important;
+nav a:hover, .sidebar a:hover, .navigation a:hover, .navbar a:hover, header a:hover {
   color: #ff6b35 !important;
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
 }
 
-.fa-facebook:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-twitter:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-linkedin:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-envelope:hover {
-  text-shadow: 0 0 0.1em #ff6b35 !important;
-  color: #ff6b35 !important;
-}
-
-/* Right Links */
-.right-links a i {
-  color: #94a3b8 !important;
-}
-
-.right-links a:hover i {
-  color: #ff6b35 !important;
-}
-
-/* Stack Cards */
-.stack-card {
-  background: #111827 !important;
-  border: 1px solid #1e293b !important;
-  border-radius: 16px;
-  padding: 2rem;
-  text-decoration: none;
+/* Buttons with gradient */
+button, .btn, input[type=submit] {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   color: #f1f5f9 !important;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 1rem 0;
+  border: 1px solid #ff6b35 !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+button:hover, .btn:hover, input[type=submit]:hover {
+  background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%) !important;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Stack Cards with gradient */
+.stack-card {
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  text-decoration: none !important;
+  color: #f1f5f9 !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: block !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stack-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #ff6b35 0%, #0ea5e9 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
 }
 
 .stack-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.3) !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.4) !important;
   border-color: #ff6b35 !important;
 }
 
+.stack-card:hover::before {
+  opacity: 1 !important;
+}
+
 .stack-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.4rem;
-  color: #ff6b35 !important;
+  margin: 0 0 0.5rem !important;
+  font-size: 1.4rem !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #0ea5e9 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .stack-card p {
-  margin: 0;
+  margin: 0 !important;
   color: #94a3b8 !important;
-  font-size: 0.95rem;
+  font-size: 0.95rem !important;
 }
 
-/* Page Content Containers */
-.page, .post, .article, .blog-post {
-  background-color: transparent !important;
+/* Page Content with gradient */
+.page, .post, .article, .content {
+  background: linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, #0b0e17 100%) !important;
   color: #f1f5f9 !important;
 }
 
-/* Footer */
-footer {
-  background-color: transparent !important;
-  border-top-color: #1e293b !important;
+/* Footer with gradient */
+footer, .footer {
+  background: linear-gradient(135deg, #111827 0%, #0b0e17 100%) !important;
+  border-top: 1px solid #1e293b !important;
   color: #94a3b8 !important;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Horizontal Rules */
+/* Horizontal Rules with gradient */
 hr {
-  border-color: #1e293b !important;
+  border: none !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent 0%, #ff6b35 50%, transparent 100%) !important;
+  margin: 2rem 0 !important;
 }
 
 /* Lists */
@@ -328,27 +259,42 @@ li {
   color: #f1f5f9 !important;
 }
 
+li::marker {
+  color: #ff6b35 !important;
+}
+
 /* Strong and Emphasis */
 strong, b {
   color: #f1f5f9 !important;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, transparent 100%) !important;
+  padding: 0 0.2rem !important;
 }
 
 em, i {
   color: #94a3b8 !important;
 }
 
-/* Override theme's gradient background colors */
-.bgColor1 {
-  stop-color: #0b0e17 !important;
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth !important;
 }
 
-.bgColor2 {
-  stop-color: #111827 !important;
+/* Override theme-specific classes */
+.theme-dark, .dark-theme, [data-theme=dark] {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  color: #f1f5f9 !important;
 }
 
-/* Override any remaining theme colors */
-.text-shadow {
-  text-shadow: 0 0 0.01em currentColor !important;
+/* Container overrides */
+.container, .wrapper, .content-wrapper {
+  background: transparent !important;
+}
+
+/* Card styles */
+.card, .post-card {
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
+  border: 1px solid #1e293b !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 /*# sourceMappingURL=custom.css.map */
