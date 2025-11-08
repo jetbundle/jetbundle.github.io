@@ -1,7 +1,7 @@
-<!-- Custom CSS - Must load LAST to override theme -->
+<!-- Custom CSS - Load after theme CSS -->
 <link rel="stylesheet" href="/assets/css/custom.css">
-<style>
-/* Inline critical CSS to ensure it loads and overrides theme */
+<style id="jetbundle-gauge-theme">
+/* Critical inline CSS - Highest priority override */
 :root {
   --orange-primary: #ff6b35;
   --orange-accent: #ff4500;
@@ -14,202 +14,318 @@
   --border-subtle: #1e293b;
 }
 
-/* Force body and html styles */
-html, body, html body {
+/* Maximum specificity - override theme */
+html, body, html.animated body, body.animated, body.animated.fadeIn {
   background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
   background-attachment: fixed !important;
   color: #f1f5f9 !important;
   min-height: 100vh !important;
 }
 
-/* Force main content */
-body .container, body .wrapper, body main, body #main-content, 
-body .main-content, body .page-content {
+/* Override theme's background gradient */
+body {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+}
+
+/* Override container and wrapper */
+body .container, body .wrapper, body main, body #main-content,
+body .main-content, body .page-content, body .container .wrapper,
+html body .container, html body .wrapper {
   background: linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, #0b0e17 100%) !important;
+  background-color: transparent !important;
   color: #f1f5f9 !important;
 }
 
-/* Force headers */
-body h1, html body h1 {
+/* Override background div and SVG */
+body #background-div, html body #background-div {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+}
+
+/* Override SVG gradient stops */
+body #background-svg .bgColor1, html body #background-svg .bgColor1,
+body .bgColor1, html body .bgColor1 {
+  stop-color: #0b0e17 !important;
+}
+
+body #background-svg .bgColor2, html body #background-svg .bgColor2,
+body .bgColor2, html body .bgColor2 {
+  stop-color: #0a0d14 !important;
+}
+
+/* Override headers - theme uses #7F3F3F (red), we want orange */
+body h1, html body h1, body .container h1, body .wrapper h1,
+body .post-title, html body .post-title {
   background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: #ff6b35 !important;
   font-weight: 700 !important;
+  text-decoration-color: #ff6b35 !important;
+  border-bottom-color: #1e293b !important;
 }
 
-body h2, html body h2 {
+body h2, html body h2, body .container h2 {
   color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
   border-bottom: 2px solid #1e293b !important;
+  border-bottom-color: #1e293b !important;
   padding-bottom: 0.5rem !important;
 }
 
 body h3, html body h3 {
   color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
 }
 
-/* Force links */
-body a, html body a {
+body h4, body h5, body h6 {
+  color: #f1f5f9 !important;
+}
+
+/* Override links - theme uses green, we want blue */
+body a, html body a, body .container a, body .wrapper a {
   color: #0ea5e9 !important;
   text-decoration: none !important;
 }
 
 body a:hover, html body a:hover {
   color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.5) !important;
 }
 
-/* Force navigation */
+/* Override navigation - theme uses green */
 body nav, body .navbar, body header, body .header,
-html body nav, html body .navbar, html body header {
+body .toolbar, body .navigation, html body nav {
   background: linear-gradient(135deg, #111827 0%, #0b0e17 100%) !important;
+  background-color: rgba(17, 24, 39, 0.9) !important;
+  border-color: #1e293b !important;
 }
 
-body nav a, body .navbar a, html body nav a {
+body nav a, body .navbar a, body .toolbar a,
+body .navbar-icon, html body nav a, html body .navbar a {
   color: #94a3b8 !important;
 }
 
-body nav a:hover, body .navbar a:hover, html body nav a:hover {
+body nav a:hover, body .navbar a:hover, body .toolbar a:hover,
+body .navbar-icon:hover, html body nav a:hover {
   color: #ff6b35 !important;
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
 }
 
-/* Force background div */
-body #background-div, html body #background-div {
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
-}
-
-/* Force all text colors */
-body, body p, body li, body span, body div,
+/* Override all text */
+body, body p, body li, body span, body div, body .content,
 html body, html body p, html body li {
   color: #f1f5f9 !important;
 }
 
-/* Override theme's background colors */
-body .bgColor1, body .bgColor2,
-html body .bgColor1, html body .bgColor2 {
-  stop-color: #0b0e17 !important;
+/* Override code blocks */
+body pre, body code, body .highlight {
+  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
+  background-color: #111827 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #1e293b !important;
+}
+
+/* Override blockquotes */
+body blockquote {
+  border-left: 4px solid #ff6b35 !important;
+  border-color: #ff6b35 !important;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
+  background-color: #111827 !important;
+  color: #94a3b8 !important;
+}
+
+/* Override tables */
+body table th {
+  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
+  background-color: #0b0e17 !important;
+  color: #ff6b35 !important;
+}
+
+body table td {
+  background-color: #0b0e17 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override buttons */
+body button, body .btn {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  background-color: #ff6b35 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #ff6b35 !important;
 }
 </style>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Enhanced cursor trail with trace effect
-    const trail = [];
-    const trailLength = 20;
-    const trailContainer = document.createElement("div");
-    trailContainer.id = "mouse-trail-container";
-    trailContainer.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 99999;
-    `;
-    document.body.appendChild(trailContainer);
-    
-    // Create trail particles
-    for (let i = 0; i < trailLength; i++) {
-      const particle = document.createElement("div");
-      particle.className = "trail-particle";
-      particle.style.cssText = `
-        position: absolute;
-        width: ${8 - i * 0.3}px;
-        height: ${8 - i * 0.3}px;
-        background: radial-gradient(circle, 
-          rgba(255, 107, 53, ${1 - i * 0.05}) 0%, 
-          rgba(14, 165, 233, ${0.8 - i * 0.04}) 50%,
-          transparent 100%);
-        border-radius: 50%;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        transition: opacity 0.1s ease, transform 0.1s ease;
-        box-shadow: 0 0 ${10 + i * 2}px rgba(255, 107, 53, 0.5),
-                    0 0 ${15 + i * 3}px rgba(14, 165, 233, 0.3);
-        mix-blend-mode: screen;
-      `;
-      trailContainer.appendChild(particle);
-      trail.push({
-        element: particle,
-        x: 0,
-        y: 0,
-        opacity: 0
-      });
-    }
-    
-    let mouseX = 0;
-    let mouseY = 0;
-    let animationFrame = null;
-    
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    function animateTrail() {
-      trail.forEach((particle, index) => {
-        if (index === 0) {
-          particle.x = mouseX;
-          particle.y = mouseY;
-          particle.opacity = 1;
-        } else {
-          const prevParticle = trail[index - 1];
-          const dx = prevParticle.x - particle.x;
-          const dy = prevParticle.y - particle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance > 2) {
-            particle.x += dx * 0.3;
-            particle.y += dy * 0.3;
-          } else {
-            particle.x = prevParticle.x;
-            particle.y = prevParticle.y;
-          }
-          
-          particle.opacity = Math.max(0, particle.opacity - 0.05);
-        }
-        
-        particle.element.style.left = particle.x + "px";
-        particle.element.style.top = particle.y + "px";
-        particle.element.style.opacity = particle.opacity;
-      });
-      
-      animationFrame = requestAnimationFrame(animateTrail);
-    }
-    
-    animateTrail();
-    
-    let timeout;
-    document.addEventListener("mousemove", () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        trail.forEach(particle => {
-          particle.opacity = Math.max(0, particle.opacity - 0.1);
-        });
-      }, 1000);
-    });
-    
-    // Force apply colors after page load
-    setTimeout(() => {
+  // Force apply styles after page load to override theme
+  (function() {
+    function applyGaugeTheme() {
+      // Force body background
       document.body.style.setProperty('background', 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)', 'important');
+      document.body.style.setProperty('background-color', '#0b0e17', 'important');
       document.body.style.setProperty('color', '#f1f5f9', 'important');
       
-      // Apply to all headings
+      // Force HTML background
+      document.documentElement.style.setProperty('background', 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)', 'important');
+      document.documentElement.style.setProperty('background-color', '#0b0e17', 'important');
+      
+      // Override background div
+      const bgDiv = document.getElementById('background-div');
+      if (bgDiv) {
+        bgDiv.style.setProperty('background', 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)', 'important');
+        bgDiv.style.setProperty('background-color', '#0b0e17', 'important');
+      }
+      
+      // Override SVG gradients
+      const bgSvg = document.getElementById('background-svg');
+      if (bgSvg) {
+        const bgColor1 = bgSvg.querySelector('.bgColor1');
+        const bgColor2 = bgSvg.querySelector('.bgColor2');
+        if (bgColor1) bgColor1.setAttribute('stop-color', '#0b0e17');
+        if (bgColor2) bgColor2.setAttribute('stop-color', '#0a0d14');
+      }
+      
+      // Override all headings
       document.querySelectorAll('h1, h2, h3').forEach(h => {
         if (h.tagName === 'H1') {
           h.style.setProperty('color', '#ff6b35', 'important');
+          h.style.setProperty('background', 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)', 'important');
+          h.style.setProperty('-webkit-background-clip', 'text', 'important');
+          h.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
         } else if (h.tagName === 'H2' || h.tagName === 'H3') {
           h.style.setProperty('color', '#ff6b35', 'important');
         }
       });
       
-      // Apply to all links
+      // Override all links
       document.querySelectorAll('a').forEach(a => {
         a.style.setProperty('color', '#0ea5e9', 'important');
       });
-    }, 100);
-  });
+      
+      // Override navigation
+      document.querySelectorAll('nav a, .navbar a, .navbar-icon').forEach(a => {
+        a.style.setProperty('color', '#94a3b8', 'important');
+      });
+      
+      // Override containers
+      document.querySelectorAll('.container, .wrapper, main').forEach(el => {
+        el.style.setProperty('background', 'transparent', 'important');
+        el.style.setProperty('color', '#f1f5f9', 'important');
+      });
+    }
+    
+    // Apply immediately
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyGaugeTheme);
+    } else {
+      applyGaugeTheme();
+    }
+    
+    // Apply after a short delay to override any late-loading styles
+    setTimeout(applyGaugeTheme, 100);
+    setTimeout(applyGaugeTheme, 500);
+    setTimeout(applyGaugeTheme, 1000);
+    
+    // Enhanced cursor trail with trace effect
+    document.addEventListener("DOMContentLoaded", () => {
+      const trail = [];
+      const trailLength = 20;
+      const trailContainer = document.createElement("div");
+      trailContainer.id = "mouse-trail-container";
+      trailContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 99999;
+      `;
+      document.body.appendChild(trailContainer);
+      
+      for (let i = 0; i < trailLength; i++) {
+        const particle = document.createElement("div");
+        particle.className = "trail-particle";
+        particle.style.cssText = `
+          position: absolute;
+          width: ${8 - i * 0.3}px;
+          height: ${8 - i * 0.3}px;
+          background: radial-gradient(circle, 
+            rgba(255, 107, 53, ${1 - i * 0.05}) 0%, 
+            rgba(14, 165, 233, ${0.8 - i * 0.04}) 50%,
+            transparent 100%);
+          border-radius: 50%;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.1s ease, transform 0.1s ease;
+          box-shadow: 0 0 ${10 + i * 2}px rgba(255, 107, 53, 0.5),
+                      0 0 ${15 + i * 3}px rgba(14, 165, 233, 0.3);
+          mix-blend-mode: screen;
+        `;
+        trailContainer.appendChild(particle);
+        trail.push({
+          element: particle,
+          x: 0,
+          y: 0,
+          opacity: 0
+        });
+      }
+      
+      let mouseX = 0;
+      let mouseY = 0;
+      
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      function animateTrail() {
+        trail.forEach((particle, index) => {
+          if (index === 0) {
+            particle.x = mouseX;
+            particle.y = mouseY;
+            particle.opacity = 1;
+          } else {
+            const prevParticle = trail[index - 1];
+            const dx = prevParticle.x - particle.x;
+            const dy = prevParticle.y - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance > 2) {
+              particle.x += dx * 0.3;
+              particle.y += dy * 0.3;
+            } else {
+              particle.x = prevParticle.x;
+              particle.y = prevParticle.y;
+            }
+            
+            particle.opacity = Math.max(0, particle.opacity - 0.05);
+          }
+          
+          particle.element.style.left = particle.x + "px";
+          particle.element.style.top = particle.y + "px";
+          particle.element.style.opacity = particle.opacity;
+        });
+        
+        requestAnimationFrame(animateTrail);
+      }
+      
+      animateTrail();
+      
+      let timeout;
+      document.addEventListener("mousemove", () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          trail.forEach(particle => {
+            particle.opacity = Math.max(0, particle.opacity - 0.1);
+          });
+        }, 1000);
+      });
+    });
+  })();
 </script>
 <link rel="icon" href="/assets/images/favicon.svg">
 <meta name="theme-color" content="#ff6b35">
