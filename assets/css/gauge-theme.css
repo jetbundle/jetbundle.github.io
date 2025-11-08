@@ -337,14 +337,29 @@ body #background-svg {
   z-index: 0 !important;
 }
 
-/* Manifold background canvas */
+/* Manifold background canvas - Must be above base background, below content */
 #manifold-background {
-  z-index: -1 !important;
+  z-index: 0 !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background: transparent !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0.5 !important;
+}
+
+/* Ensure content is above manifold */
+body .content-div {
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+/* Ensure background-div is below manifold */
+body #background-div {
+  z-index: -1 !important;
+  position: relative !important;
 }
