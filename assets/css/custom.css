@@ -1,41 +1,72 @@
 /* ============================================
    GLOBAL OVERRIDES - Gauge Theme
-   HIGH SPECIFICITY TO OVERRIDE THEME
+   MAXIMUM SPECIFICITY TO OVERRIDE POTATO-HACKER THEME
    ============================================ */
-/* Body and Background - Maximum Specificity */
+/* Body and Background - Override theme gradient */
 html body,
 body.animated,
 body.fadeIn,
-body.container {
-  background-color: #0b0e17 !important;
+body.container,
+body.animated.fadeIn {
   background: #0b0e17 !important;
+  background-color: #0b0e17 !important;
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
   color: #f1f5f9 !important;
+}
+
+/* Override background div and SVG */
+#background-div,
+#background-svg {
+  display: none !important;
+}
+
+/* Container */
+.container {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 /* Main Content Areas */
-main, .main-content, .page-content {
-  background-color: #0b0e17 !important;
+main,
+.main-content,
+.page-content,
+section {
+  background-color: transparent !important;
+  background: transparent !important;
   color: #f1f5f9 !important;
 }
 
-/* Headers */
+/* Headers - Override theme's green/red colors */
 h1, h2, h3, h4, h5, h6 {
   color: #f1f5f9 !important;
 }
 
 h1 {
   color: #ff6b35 !important;
+  border-bottom-color: #1e293b !important;
+}
+
+h1 a,
+h1 a:hover {
+  color: #ff6b35 !important;
 }
 
 h2 {
   color: #ff6b35 !important;
   border-bottom-color: #1e293b !important;
+  text-decoration-color: #ff6b35 !important;
 }
 
-/* Links */
+h3, h4, h5, h6 {
+  color: #f1f5f9 !important;
+}
+
+/* Links - Override theme's green */
 a {
   color: #0ea5e9 !important;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 a:hover {
@@ -70,6 +101,7 @@ pre {
 /* Blockquotes */
 blockquote {
   border-left: 4px solid #ff6b35 !important;
+  border-color: #ff6b35 !important;
   background-color: #111827 !important;
   padding: 1rem 1.5rem !important;
   border-radius: 0 8px 8px 0 !important;
@@ -84,23 +116,24 @@ table {
   width: 100%;
   margin: 1.5rem 0;
   font-size: 0.95rem;
-  background-color: #0b0e17 !important;
+  background-color: transparent !important;
 }
 
 th, td {
   border: 1px solid #1e293b !important;
   padding: 0.8rem;
   text-align: left;
+  color: #f1f5f9 !important;
 }
 
 th {
-  background-color: #0b0e17 !important;
+  background-color: transparent !important;
   color: #ff6b35 !important;
   font-weight: 600 !important;
 }
 
 td {
-  background-color: #0b0e17 !important;
+  background-color: transparent !important;
   color: #f1f5f9 !important;
 }
 
@@ -124,30 +157,115 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Navigation and Sidebar */
-nav, .sidebar, .navigation {
-  background-color: #111827 !important;
-  border-color: #1e293b !important;
+/* Navigation - Override theme's green */
+.navbar,
+nav {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+  background: rgba(17, 24, 39, 0.9) !important;
 }
 
-nav a, .sidebar a, .navigation a {
-  color: #94a3b8 !important;
-}
-
-nav a:hover, .sidebar a:hover, .navigation a:hover {
+.navbar-icon {
   color: #ff6b35 !important;
 }
 
-/* Buttons */
-button, .btn {
-  background-color: #ff6b35 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #ff6b35 !important;
+.navbar-icon:hover {
+  color: #ff4500 !important;
+  text-shadow: 0 0 0.1em #ff6b35 !important;
 }
 
-button:hover, .btn:hover {
+.navbar a,
+nav a {
+  color: #94a3b8 !important;
+}
+
+.navbar a:hover,
+nav a:hover {
+  color: #ff6b35 !important;
+}
+
+/* Buttons - Override theme's green */
+button,
+.btn,
+.btn-primary {
+  background-color: #ff6b35 !important;
+  color: #f1f5f9 !important;
+  border-color: #ff6b35 !important;
+}
+
+button:hover,
+.btn:hover,
+.btn-primary:hover {
   background-color: #ff4500 !important;
   border-color: #ff4500 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Post Title - Override theme's green */
+.post-title {
+  color: #ff6b35 !important;
+}
+
+.post-title a {
+  color: #ff6b35 !important;
+}
+
+/* Page Footer */
+.page-footer {
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+}
+
+.page-footer a,
+.page-footer center div div a i {
+  color: #94a3b8 !important;
+}
+
+.page-footer a:hover {
+  color: #ff6b35 !important;
+}
+
+/* Avatar */
+.avatar-image {
+  border-color: #1e293b !important;
+}
+
+.avatar-description {
+  color: #94a3b8 !important;
+}
+
+/* Social Icons - Override theme colors */
+.fa-github:hover {
+  text-shadow: 0 0 0.1em #ff6b35 !important;
+  color: #ff6b35 !important;
+}
+
+.fa-facebook:hover {
+  text-shadow: 0 0 0.1em #0ea5e9 !important;
+  color: #0ea5e9 !important;
+}
+
+.fa-twitter:hover {
+  text-shadow: 0 0 0.1em #0ea5e9 !important;
+  color: #0ea5e9 !important;
+}
+
+.fa-linkedin:hover {
+  text-shadow: 0 0 0.1em #0ea5e9 !important;
+  color: #0ea5e9 !important;
+}
+
+.fa-envelope:hover {
+  text-shadow: 0 0 0.1em #ff6b35 !important;
+  color: #ff6b35 !important;
+}
+
+/* Right Links */
+.right-links a i {
+  color: #94a3b8 !important;
+}
+
+.right-links a:hover i {
+  color: #ff6b35 !important;
 }
 
 /* Stack Cards */
@@ -184,14 +302,14 @@ button:hover, .btn:hover {
 }
 
 /* Page Content Containers */
-.page, .post, .article {
-  background-color: #0b0e17 !important;
+.page, .post, .article, .blog-post {
+  background-color: transparent !important;
   color: #f1f5f9 !important;
 }
 
 /* Footer */
 footer {
-  background-color: #111827 !important;
+  background-color: transparent !important;
   border-top-color: #1e293b !important;
   color: #94a3b8 !important;
 }
@@ -217,6 +335,20 @@ strong, b {
 
 em, i {
   color: #94a3b8 !important;
+}
+
+/* Override theme's gradient background colors */
+.bgColor1 {
+  stop-color: #0b0e17 !important;
+}
+
+.bgColor2 {
+  stop-color: #111827 !important;
+}
+
+/* Override any remaining theme colors */
+.text-shadow {
+  text-shadow: 0 0 0.01em currentColor !important;
 }
 
 /*# sourceMappingURL=custom.css.map */
