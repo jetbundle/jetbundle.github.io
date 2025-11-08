@@ -25,13 +25,10 @@ avatar_description: "Mapping the hidden geometry of modern science."
 highlighter_theme: monokai
 
 toolbar_priority:
-  - "The C3I Stack"
-  - "The Physics Stack"
-  - "The Finance Stack"
-  - "The Cartography"
-  - "The Archive"
-  - "Disclaimer"
-  - "License"
+  - "Home"
+  - "The Stacks"
+  - "Resources"
+  - "About"
 
 # Collections (The "Fibers")
 collections:

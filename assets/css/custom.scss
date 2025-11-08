@@ -1,368 +1,314 @@
 ---
-# Custom CSS for JetBundle Gauge Theme
+# Custom CSS for JetBundle Gauge Theme - Must load after theme CSS
 ---
 
-// JetBundle Gauge Theme Colors
-$orange-primary: #ff6b35;  // Warm Coral Orange (Gauge Needle)
-$orange-accent: #ff4500;   // Orange Red (Hover, Alerts)
-$blue-primary: #0ea5e9;    // Sky Blue (Links, Connections)
-$blue-deep: #1e40af;       // Deep Blue (Headers, Fibers)
-$dark-bg: #0b0e17;         // Near-black void
-$card-bg: #111827;         // Slightly lighter panels
-$text-primary: #f1f5f9;    // Soft white
-$text-muted: #94a3b8;      // Slate gray
-$border-subtle: #1e293b;   // Subtle borders
+// --- JetBundle Gauge Theme Colors ---
+$orange-primary:  #ff6b35;  // Warm Coral Orange (Gauge Needle)
+$orange-accent:   #ff4500;  // Orange Red (Hover, Alerts)
+$blue-primary:    #0ea5e9;  // Sky Blue (Links, Connections)
+$blue-deep:       #1e40af;  // Deep Blue (Headers, Fibers)
+$dark-bg:         #0b0e17;  // Near-black void
+$card-bg:         #111827;  // Slightly lighter panels
+$text-primary:    #f1f5f9;  // Soft white
+$text-muted:      #94a3b8;  // Slate gray
+$border-subtle:   #1e293b;  // Subtle borders
 
 /* ============================================
-   GLOBAL OVERRIDES - Gauge Theme
-   MAXIMUM SPECIFICITY TO OVERRIDE POTATO-HACKER THEME
+   GLOBAL OVERRIDES - Gauge Theme with Gradients
    ============================================ */
 
-/* Body and Background - Override theme gradient */
-html body,
-body.animated,
-body.fadeIn,
-body.container,
-body.animated.fadeIn {
-  background: #0b0e17 !important;
-  background-color: #0b0e17 !important;
-  background-image: none !important;
-  background-repeat: no-repeat !important;
+/* Body with gradient background */
+body, html {
+  background: linear-gradient(135deg, $dark-bg 0%, #0a0d14 100%) !important;
   background-attachment: fixed !important;
-  color: #f1f5f9 !important;
+  color: $text-primary !important;
+  min-height: 100vh !important;
 }
 
-/* Override background div and SVG */
-#background-div,
-#background-svg {
-  display: none !important;
+/* Main Content Areas with subtle gradient */
+main, .main-content, .page-content, .wrapper, #main-content {
+  background: linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, $dark-bg 100%) !important;
+  color: $text-primary !important;
 }
 
-/* Container */
-.container {
-  background-color: transparent !important;
-  background: transparent !important;
-}
-
-/* Main Content Areas */
-main,
-.main-content,
-.page-content,
-section {
-  background-color: transparent !important;
-  background: transparent !important;
-  color: #f1f5f9 !important;
-}
-
-/* Headers - Override theme's green/red colors */
-h1, h2, h3, h4, h5, h6 {
-  color: #f1f5f9 !important;
-}
-
+/* Headers with gradient text */
 h1 {
-  color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
-}
-
-h1 a,
-h1 a:hover {
-  color: #ff6b35 !important;
+  background: linear-gradient(135deg, $orange-primary 0%, $orange-accent 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: $orange-primary !important; /* Fallback */
+  font-weight: 700 !important;
 }
 
 h2 {
-  color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
-  text-decoration-color: #ff6b35 !important;
+  color: $orange-primary !important;
+  border-bottom: 2px solid $border-subtle !important;
+  padding-bottom: 0.5rem !important;
+  background: linear-gradient(90deg, $orange-primary 0%, transparent 100%) !important;
+  background-size: 200px 2px !important;
+  background-position: 0 100% !important;
+  background-repeat: no-repeat !important;
 }
 
-h3, h4, h5, h6 {
-  color: #f1f5f9 !important;
+h3 {
+  color: $orange-primary !important;
 }
 
-/* Links - Override theme's green */
+h4, h5, h6 {
+  color: $text-primary !important;
+}
+
+/* Links with gradient underline */
 a {
-  color: #0ea5e9 !important;
+  color: $blue-primary !important;
   text-decoration: none !important;
+  background: linear-gradient(90deg, $blue-primary, $blue-primary) no-repeat !important;
+  background-size: 0% 2px !important;
+  background-position: 0 100% !important;
+  transition: background-size 0.3s ease, color 0.3s ease !important;
 }
 
 a:hover {
+  background-size: 100% 2px !important;
   color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.5) !important;
 }
 
 a:visited {
-  color: #0ea5e9 !important;
+  color: $blue-primary !important;
 }
 
-/* Code and Pre */
+/* Code blocks with gradient border */
 pre, code {
-  background-color: #111827 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #1e293b !important;
+  background: linear-gradient(135deg, $card-bg 0%, #0d1117 100%) !important;
+  color: $text-primary !important;
+  border: 1px solid $border-subtle !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 code {
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  background-color: #111827 !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px !important;
+  background: linear-gradient(135deg, $card-bg 0%, #0d1117 100%) !important;
 }
 
 pre {
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  background-color: #111827 !important;
-  border: 1px solid #1e293b !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  border-left: 3px solid $orange-primary !important;
 }
 
-/* Blockquotes */
+/* Blockquotes with gradient border */
 blockquote {
-  border-left: 4px solid #ff6b35 !important;
-  border-color: #ff6b35 !important;
-  background-color: #111827 !important;
+  border-left: 4px solid $orange-primary !important;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, $card-bg 100%) !important;
   padding: 1rem 1.5rem !important;
   border-radius: 0 8px 8px 0 !important;
   font-style: normal !important;
-  color: #94a3b8 !important;
+  color: $text-muted !important;
   margin: 1.5rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Tables */
+/* Tables with gradient headers */
 table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1.5rem 0;
-  font-size: 0.95rem;
-  background-color: transparent !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.95rem !important;
+  background: $dark-bg !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 th, td {
-  border: 1px solid #1e293b !important;
-  padding: 0.8rem;
-  text-align: left;
-  color: #f1f5f9 !important;
+  border: 1px solid $border-subtle !important;
+  padding: 0.8rem !important;
+  text-align: left !important;
 }
 
 th {
-  background-color: transparent !important;
-  color: #ff6b35 !important;
+  background: linear-gradient(135deg, $dark-bg 0%, $card-bg 100%) !important;
+  color: $orange-primary !important;
   font-weight: 600 !important;
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.3) !important;
 }
 
 td {
-  background-color: transparent !important;
-  color: #f1f5f9 !important;
+  background: $dark-bg !important;
+  color: $text-primary !important;
 }
 
 tr:nth-child(even) td {
-  background-color: #111827 !important;
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.5) 0%, $card-bg 100%) !important;
 }
 
-/* Selection */
+tr:hover td {
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%) !important;
+}
+
+/* Selection with gradient */
 ::selection {
-  background: #ff6b35 !important;
-  color: #f1f5f9 !important;
+  background: linear-gradient(135deg, $orange-primary 0%, $orange-accent 100%) !important;
+  color: $text-primary !important;
 }
 
 ::-moz-selection {
-  background: #ff6b35 !important;
-  color: #f1f5f9 !important;
+  background: linear-gradient(135deg, $orange-primary 0%, $orange-accent 100%) !important;
+  color: $text-primary !important;
 }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
+/* Navigation with gradient background */
+nav, .sidebar, .navigation, .navbar, header, .header, #header {
+  background: linear-gradient(135deg, $card-bg 0%, $dark-bg 100%) !important;
+  border-color: $border-subtle !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Navigation - Override theme's green */
-.navbar,
-nav {
-  background-color: rgba(17, 24, 39, 0.9) !important;
-  background: rgba(17, 24, 39, 0.9) !important;
+nav a, .sidebar a, .navigation a, .navbar a, header a {
+  color: $text-muted !important;
+  transition: all 0.3s ease !important;
 }
 
-.navbar-icon {
-  color: #ff6b35 !important;
+nav a:hover, .sidebar a:hover, .navigation a:hover, .navbar a:hover, header a:hover {
+  color: $orange-primary !important;
+  text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
 }
 
-.navbar-icon:hover {
-  color: #ff4500 !important;
-  text-shadow: 0 0 0.1em #ff6b35 !important;
+/* Buttons with gradient */
+button, .btn, input[type="submit"] {
+  background: linear-gradient(135deg, $orange-primary 0%, $orange-accent 100%) !important;
+  color: $text-primary !important;
+  border: 1px solid $orange-primary !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
-.navbar a,
-nav a {
-  color: #94a3b8 !important;
+button:hover, .btn:hover, input[type="submit"]:hover {
+  background: linear-gradient(135deg, $orange-accent 0%, $orange-primary 100%) !important;
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.5) !important;
+  transform: translateY(-2px) !important;
 }
 
-.navbar a:hover,
-nav a:hover {
-  color: #ff6b35 !important;
-}
-
-/* Buttons - Override theme's green */
-button,
-.btn,
-.btn-primary {
-  background-color: #ff6b35 !important;
-  color: #f1f5f9 !important;
-  border-color: #ff6b35 !important;
-}
-
-button:hover,
-.btn:hover,
-.btn-primary:hover {
-  background-color: #ff4500 !important;
-  border-color: #ff4500 !important;
-  color: #f1f5f9 !important;
-}
-
-/* Post Title - Override theme's green */
-.post-title {
-  color: #ff6b35 !important;
-}
-
-.post-title a {
-  color: #ff6b35 !important;
-}
-
-/* Page Footer */
-.page-footer {
-  background-color: transparent !important;
-  color: #94a3b8 !important;
-}
-
-.page-footer a,
-.page-footer center div div a i {
-  color: #94a3b8 !important;
-}
-
-.page-footer a:hover {
-  color: #ff6b35 !important;
-}
-
-/* Avatar */
-.avatar-image {
-  border-color: #1e293b !important;
-}
-
-.avatar-description {
-  color: #94a3b8 !important;
-}
-
-/* Social Icons - Override theme colors */
-.fa-github:hover {
-  text-shadow: 0 0 0.1em #ff6b35 !important;
-  color: #ff6b35 !important;
-}
-
-.fa-facebook:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-twitter:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-linkedin:hover {
-  text-shadow: 0 0 0.1em #0ea5e9 !important;
-  color: #0ea5e9 !important;
-}
-
-.fa-envelope:hover {
-  text-shadow: 0 0 0.1em #ff6b35 !important;
-  color: #ff6b35 !important;
-}
-
-/* Right Links */
-.right-links a i {
-  color: #94a3b8 !important;
-}
-
-.right-links a:hover i {
-  color: #ff6b35 !important;
-}
-
-/* Stack Cards */
+/* Stack Cards with gradient */
 .stack-card {
-  background: #111827 !important;
-  border: 1px solid #1e293b !important;
-  border-radius: 16px;
-  padding: 2rem;
-  text-decoration: none;
-  color: #f1f5f9 !important;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 1rem 0;
+  background: linear-gradient(135deg, $card-bg 0%, #0d1117 100%) !important;
+  border: 1px solid $border-subtle !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  text-decoration: none !important;
+  color: $text-primary !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: block !important;
+  margin: 1rem 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stack-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, $orange-primary 0%, $blue-primary 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
 }
 
 .stack-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.3) !important;
-  border-color: #ff6b35 !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(255, 107, 53, 0.4) !important;
+  border-color: $orange-primary !important;
+}
+
+.stack-card:hover::before {
+  opacity: 1 !important;
 }
 
 .stack-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.4rem;
-  color: #ff6b35 !important;
+  margin: 0 0 0.5rem !important;
+  font-size: 1.4rem !important;
+  background: linear-gradient(135deg, $orange-primary 0%, $blue-primary 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .stack-card p {
-  margin: 0;
-  color: #94a3b8 !important;
-  font-size: 0.95rem;
+  margin: 0 !important;
+  color: $text-muted !important;
+  font-size: 0.95rem !important;
 }
 
-/* Page Content Containers */
-.page, .post, .article, .blog-post {
-  background-color: transparent !important;
-  color: #f1f5f9 !important;
+/* Page Content with gradient */
+.page, .post, .article, .content {
+  background: linear-gradient(180deg, rgba(11, 14, 23, 0.95) 0%, $dark-bg 100%) !important;
+  color: $text-primary !important;
 }
 
-/* Footer */
-footer {
-  background-color: transparent !important;
-  border-top-color: #1e293b !important;
-  color: #94a3b8 !important;
+/* Footer with gradient */
+footer, .footer {
+  background: linear-gradient(135deg, $card-bg 0%, $dark-bg 100%) !important;
+  border-top: 1px solid $border-subtle !important;
+  color: $text-muted !important;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Horizontal Rules */
+/* Horizontal Rules with gradient */
 hr {
-  border-color: #1e293b !important;
+  border: none !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent 0%, $orange-primary 50%, transparent 100%) !important;
+  margin: 2rem 0 !important;
 }
 
 /* Lists */
 ul, ol {
-  color: #f1f5f9 !important;
+  color: $text-primary !important;
 }
 
 li {
-  color: #f1f5f9 !important;
+  color: $text-primary !important;
+}
+
+li::marker {
+  color: $orange-primary !important;
 }
 
 /* Strong and Emphasis */
 strong, b {
-  color: #f1f5f9 !important;
+  color: $text-primary !important;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, transparent 100%) !important;
+  padding: 0 0.2rem !important;
 }
 
 em, i {
-  color: #94a3b8 !important;
+  color: $text-muted !important;
 }
 
-/* Override theme's gradient background colors */
-.bgColor1 {
-  stop-color: #0b0e17 !important;
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth !important;
 }
 
-.bgColor2 {
-  stop-color: #111827 !important;
+/* Override theme-specific classes */
+.theme-dark, .dark-theme, [data-theme="dark"] {
+  background: linear-gradient(135deg, $dark-bg 0%, #0a0d14 100%) !important;
+  color: $text-primary !important;
 }
 
-/* Override any remaining theme colors */
-.text-shadow {
-  text-shadow: 0 0 0.01em currentColor !important;
+/* Container overrides */
+.container, .wrapper, .content-wrapper {
+  background: transparent !important;
+}
+
+/* Card styles */
+.card, .post-card {
+  background: linear-gradient(135deg, $card-bg 0%, #0d1117 100%) !important;
+  border: 1px solid $border-subtle !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }

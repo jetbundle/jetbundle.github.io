@@ -1,9 +1,9 @@
 ---
 title: About
 url: /principal/
-priority: 6
+priority: 4
 ---
 
-# Principal
+# About
 
-This site is a **subject-centered technical resource**, not a personal blog.
+Principal information and site purpose.

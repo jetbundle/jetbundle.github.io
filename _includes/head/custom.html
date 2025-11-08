@@ -1,41 +1,112 @@
 <link rel="stylesheet" href="/assets/css/custom.css">
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const trail = document.createElement("div");
-    trail.id = "mouse-trail";
-    document.body.appendChild(trail);
-
-    const style = document.createElement("style");
-    style.textContent = `
-      #mouse-trail {
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+    // Enhanced cursor trail with trace effect
+    const trail = [];
+    const trailLength = 20; // Number of trail particles
+    const trailContainer = document.createElement("div");
+    trailContainer.id = "mouse-trail-container";
+    trailContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    `;
+    document.body.appendChild(trailContainer);
+    
+    // Create trail particles
+    for (let i = 0; i < trailLength; i++) {
+      const particle = document.createElement("div");
+      particle.className = "trail-particle";
+      particle.style.cssText = `
+        position: absolute;
+        width: ${8 - i * 0.3}px;
+        height: ${8 - i * 0.3}px;
+        background: radial-gradient(circle, 
+          rgba(255, 107, 53, ${1 - i * 0.05}) 0%, 
+          rgba(14, 165, 233, ${0.8 - i * 0.04}) 50%,
+          transparent 100%);
         border-radius: 50%;
         pointer-events: none;
-        z-index: 9999;
         transform: translate(-50%, -50%);
         opacity: 0;
-        transition: opacity 0.3s ease;
-        box-shadow: 0 0 12px #ff6b35, 0 0 20px #0ea5e9;
+        transition: opacity 0.1s ease, transform 0.1s ease;
+        box-shadow: 0 0 ${10 + i * 2}px rgba(255, 107, 53, 0.5),
+                    0 0 ${15 + i * 3}px rgba(14, 165, 233, 0.3);
         mix-blend-mode: screen;
-      }
-    `;
-    document.head.appendChild(style);
-
+      `;
+      trailContainer.appendChild(particle);
+      trail.push({
+        element: particle,
+        x: 0,
+        y: 0,
+        opacity: 0
+      });
+    }
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let animationFrame = null;
+    
+    // Update mouse position
     document.addEventListener("mousemove", (e) => {
-      trail.style.opacity = "1";
-      trail.style.left = e.clientX + "px";
-      trail.style.top = e.clientY + "px";
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
-
+    
+    // Animate trail
+    function animateTrail() {
+      let prevX = mouseX;
+      let prevY = mouseY;
+      
+      trail.forEach((particle, index) => {
+        const nextIndex = index === trail.length - 1 ? 0 : index + 1;
+        const nextParticle = trail[nextIndex];
+        
+        if (index === 0) {
+          particle.x = mouseX;
+          particle.y = mouseY;
+          particle.opacity = 1;
+        } else {
+          const prevParticle = trail[index - 1];
+          const dx = prevParticle.x - particle.x;
+          const dy = prevParticle.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance > 2) {
+            particle.x += dx * 0.3;
+            particle.y += dy * 0.3;
+          } else {
+            particle.x = prevParticle.x;
+            particle.y = prevParticle.y;
+          }
+          
+          particle.opacity = Math.max(0, particle.opacity - 0.05);
+        }
+        
+        particle.element.style.left = particle.x + "px";
+        particle.element.style.top = particle.y + "px";
+        particle.element.style.opacity = particle.opacity;
+      });
+      
+      animationFrame = requestAnimationFrame(animateTrail);
+    }
+    
+    // Start animation
+    animateTrail();
+    
+    // Fade out when mouse stops
     let timeout;
     document.addEventListener("mousemove", () => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        trail.style.opacity = "0";
-      }, 800);
+        trail.forEach(particle => {
+          particle.opacity = Math.max(0, particle.opacity - 0.1);
+        });
+      }, 1000);
     });
   });
 </script>
