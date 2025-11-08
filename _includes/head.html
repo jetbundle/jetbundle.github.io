@@ -1,0 +1,195 @@
+<!-- JetBundle Gauge Theme Override -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<style id="jetbundle-gauge-theme-inline">
+/* Force apply gauge theme colors - inline for maximum priority */
+:root {
+  --orange-primary: #ff6b35;
+  --orange-accent: #ff4500;
+  --blue-primary: #0ea5e9;
+  --blue-deep: #1e40af;
+  --dark-bg: #0b0e17;
+  --card-bg: #111827;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-subtle: #1e293b;
+}
+
+/* Override theme's body background (theme uses green gradient) */
+html, body, body.animated, body.animated.fadeIn {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+  background-attachment: fixed !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override background div (theme's SVG gradient) */
+#background-div, #background-svg {
+  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+  background-color: #0b0e17 !important;
+}
+
+/* Override SVG gradient stops (theme uses green #1F7F1F and red #7F3F3F) */
+.bgColor1 {
+  stop-color: #0b0e17 !important;
+}
+
+.bgColor2 {
+  stop-color: #0a0d14 !important;
+}
+
+/* Override headers (theme uses red #7F3F3F) */
+h1, h2, h3, h4, h5, h6, .post-title {
+  color: #ff6b35 !important;
+  text-decoration-color: #ff6b35 !important;
+  border-bottom-color: #1e293b !important;
+}
+
+h1 {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+h1 a, h1 a:hover {
+  color: #ff6b35 !important;
+}
+
+/* Override links (theme uses green #1F7F1F) */
+a {
+  color: #0ea5e9 !important;
+}
+
+a:hover {
+  color: #38bdf8 !important;
+}
+
+/* Override navigation (theme uses green) */
+.navbar, nav {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+}
+
+.navbar-icon, nav a {
+  color: #94a3b8 !important;
+}
+
+.navbar-icon:hover, nav a:hover {
+  color: #ff6b35 !important;
+  text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
+}
+
+/* Override container */
+.container, .wrapper, main {
+  background: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+/* Override all text */
+body, p, li, span, div {
+  color: #f1f5f9 !important;
+}
+</style>
+<script>
+  // Force apply styles after DOM loads
+  (function() {
+    function applyTheme() {
+      // Force body background
+      if (document.body) {
+        document.body.style.setProperty('background', 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)', 'important');
+        document.body.style.setProperty('background-color', '#0b0e17', 'important');
+        document.body.style.setProperty('color', '#f1f5f9', 'important');
+      }
+      
+      // Override background div
+      const bgDiv = document.getElementById('background-div');
+      if (bgDiv) {
+        bgDiv.style.setProperty('background', 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)', 'important');
+        bgDiv.style.setProperty('background-color', '#0b0e17', 'important');
+      }
+      
+      // Override SVG gradients
+      const svg = document.getElementById('background-svg');
+      if (svg) {
+        const stops = svg.querySelectorAll('stop');
+        stops.forEach(stop => {
+          if (stop.classList.contains('bgColor1')) {
+            stop.setAttribute('stop-color', '#0b0e17');
+          } else if (stop.classList.contains('bgColor2')) {
+            stop.setAttribute('stop-color', '#0a0d14');
+          }
+        });
+      }
+      
+      // Override all headings
+      document.querySelectorAll('h1, h2, h3').forEach(h => {
+        h.style.setProperty('color', '#ff6b35', 'important');
+        if (h.tagName === 'H1') {
+          h.style.setProperty('background', 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)', 'important');
+          h.style.setProperty('-webkit-background-clip', 'text', 'important');
+          h.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
+        }
+      });
+      
+      // Override all links
+      document.querySelectorAll('a').forEach(a => {
+        a.style.setProperty('color', '#0ea5e9', 'important');
+      });
+      
+      // Override navigation
+      document.querySelectorAll('.navbar-icon, nav a').forEach(a => {
+        a.style.setProperty('color', '#94a3b8', 'important');
+      });
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyTheme);
+    } else {
+      applyTheme();
+    }
+    
+    // Apply multiple times to ensure it sticks
+    setTimeout(applyTheme, 100);
+    setTimeout(applyTheme, 500);
+    setTimeout(applyTheme, 1000);
+    setTimeout(applyTheme, 2000);
+    
+    // Enhanced cursor trail
+    const trail = [];
+    const trailLength = 20;
+    const container = document.createElement('div');
+    container.id = 'mouse-trail-container';
+    container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
+    document.body.appendChild(container);
+    
+    for (let i = 0; i < trailLength; i++) {
+      const p = document.createElement('div');
+      p.style.cssText = `position:absolute;width:${8-i*0.3}px;height:${8-i*0.3}px;background:radial-gradient(circle,rgba(255,107,53,${1-i*0.05})0%,rgba(14,165,233,${0.8-i*0.04})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.1s;box-shadow:0 0 ${10+i*2}px rgba(255,107,53,0.5),0 0 ${15+i*3}px rgba(14,165,233,0.3);mix-blend-mode:screen;`;
+      container.appendChild(p);
+      trail.push({el:p,x:0,y:0,op:0});
+    }
+    
+    let mx=0,my=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    
+    function anim() {
+      trail.forEach((p,i)=>{
+        if(i===0){p.x=mx;p.y=my;p.op=1;}
+        else{
+          const prev=trail[i-1];
+          const dx=prev.x-p.x,dy=prev.y-p.y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d>2){p.x+=dx*0.3;p.y+=dy*0.3;}else{p.x=prev.x;p.y=prev.y;}
+          p.op=Math.max(0,p.op-0.05);
+        }
+        p.el.style.left=p.x+'px';
+        p.el.style.top=p.y+'px';
+        p.el.style.opacity=p.op;
+      });
+      requestAnimationFrame(anim);
+    }
+    anim();
+  })();
+</script>
+<link rel="icon" href="/assets/images/favicon.svg">
+<meta name="theme-color" content="#ff6b35">
+
