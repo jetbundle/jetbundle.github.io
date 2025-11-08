@@ -296,153 +296,258 @@
     <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
     <link rel="stylesheet" href="/assets/css/gauge-theme.css">
     
-    <!-- JetBundle Gauge Theme JavaScript - Aggressive style enforcement -->
+    <!-- JetBundle Gauge Theme JavaScript - Optimized for Performance -->
     <script>
       (function() {
         'use strict';
         
-        // Inject CSS into head if not already there
-        function injectCSS() {
-          if (!document.getElementById('gauge-theme-css-head')) {
-            const link = document.createElement('link');
-            link.id = 'gauge-theme-css-head';
-            link.rel = 'stylesheet';
-            link.href = '/assets/css/gauge-theme.css';
-            link.media = 'all';
-            document.head.appendChild(link);
-          }
-        }
-        injectCSS();
+        let stylesApplied = false;
+        let throttleTimer = null;
+        let lastApplyTime = 0;
+        const THROTTLE_DELAY = 100; // Only apply styles max once per 100ms
         
-        // Aggressive style application function
+        // Optimized style application - only runs when needed
         function applyGaugeTheme() {
+          const now = Date.now();
+          if (now - lastApplyTime < THROTTLE_DELAY) {
+            return; // Throttled
+          }
+          lastApplyTime = now;
+          
           try {
-            // Override body with maximum specificity
+            // Cache frequently accessed elements
             const body = document.body;
-            if (body) {
-              body.style.cssText += 'background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important; background-color: #0b0e17 !important; color: #f1f5f9 !important;';
-            }
-            
-            // Override html element
             const html = document.documentElement;
-            if (html) {
-              html.style.cssText += 'background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important; background-color: #0b0e17 !important;';
-            }
-            
-            // Override background div
             const bgDiv = document.getElementById('background-div');
-            if (bgDiv) {
-              bgDiv.style.cssText += 'background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important; background-color: #0b0e17 !important;';
+            const svg = document.getElementById('background-svg');
+            
+            if (!body) return;
+            
+            // Apply body styles (only if not already applied)
+            if (!body.hasAttribute('data-gauge-theme')) {
+              body.setAttribute('data-gauge-theme', 'applied');
+              body.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+              body.style.backgroundColor = '#0b0e17';
+              body.style.color = '#f1f5f9';
             }
             
-            // Override SVG gradients - use both class and direct attribute
-            const svg = document.getElementById('background-svg');
+            // Apply html styles
+            if (html && !html.hasAttribute('data-gauge-theme')) {
+              html.setAttribute('data-gauge-theme', 'applied');
+              html.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+              html.style.backgroundColor = '#0b0e17';
+            }
+            
+            // Override background div (only once)
+            if (bgDiv && !bgDiv.hasAttribute('data-gauge-theme')) {
+              bgDiv.setAttribute('data-gauge-theme', 'applied');
+              bgDiv.style.background = 'linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%)';
+              bgDiv.style.backgroundColor = '#0b0e17';
+            }
+            
+            // Override SVG gradients (only once)
             if (svg) {
               const stops = svg.querySelectorAll('stop');
               stops.forEach(stop => {
-                if (stop.classList.contains('bgColor1') || stop.getAttribute('class')?.includes('bgColor1')) {
+                if (stop.hasAttribute('data-gauge-theme')) return; // Already processed
+                stop.setAttribute('data-gauge-theme', 'applied');
+                
+                if (stop.classList.contains('bgColor1')) {
                   stop.setAttribute('stop-color', '#0b0e17');
-                  stop.style.setProperty('stop-color', '#0b0e17', 'important');
-                } else if (stop.classList.contains('bgColor2') || stop.getAttribute('class')?.includes('bgColor2')) {
+                } else if (stop.classList.contains('bgColor2')) {
                   stop.setAttribute('stop-color', '#0a0d14');
-                  stop.style.setProperty('stop-color', '#0a0d14', 'important');
                 }
               });
             }
             
-            // Override all headings with direct style application
-            document.querySelectorAll('h1, h2, h3, h4, h5, h6, .post-title').forEach(h => {
-              h.style.setProperty('color', '#ff6b35', 'important');
-              if (h.tagName === 'H1' || h.classList.contains('post-title')) {
-                h.style.setProperty('background', 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)', 'important');
-                h.style.setProperty('-webkit-background-clip', 'text', 'important');
-                h.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
-                h.style.setProperty('background-clip', 'text', 'important');
-              }
-            });
-            
-            // Override all links
-            document.querySelectorAll('a').forEach(a => {
-              if (!a.closest('h1')) { // Don't override h1 links (they have special gradient)
-                a.style.setProperty('color', '#0ea5e9', 'important');
-              }
-            });
-            
-            // Override navigation with multiple selectors
-            document.querySelectorAll('.navbar-icon, nav a, .navbar a, header a, .toolbar a').forEach(a => {
-              a.style.setProperty('color', '#94a3b8', 'important');
-            });
-            
-            // Override containers
-            document.querySelectorAll('.container, .wrapper, main, .content').forEach(el => {
-              el.style.setProperty('background', 'transparent', 'important');
-              el.style.setProperty('background-color', 'transparent', 'important');
-              el.style.setProperty('color', '#f1f5f9', 'important');
-            });
+            // Apply heading styles (cache and batch)
+            if (!stylesApplied) {
+              const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .post-title');
+              headings.forEach(h => {
+                if (h.hasAttribute('data-gauge-theme')) return;
+                h.setAttribute('data-gauge-theme', 'applied');
+                h.style.color = '#ff6b35';
+                if (h.tagName === 'H1' || h.classList.contains('post-title')) {
+                  h.style.background = 'linear-gradient(135deg, #ff6b35 0%, #ff4500 100%)';
+                  h.style.webkitBackgroundClip = 'text';
+                  h.style.webkitTextFillColor = 'transparent';
+                  h.style.backgroundClip = 'text';
+                }
+              });
+              
+              // Apply link styles (batch)
+              const links = document.querySelectorAll('a');
+              links.forEach(a => {
+                if (a.hasAttribute('data-gauge-theme') || a.closest('h1')) return;
+                a.setAttribute('data-gauge-theme', 'applied');
+                a.style.color = '#0ea5e9';
+              });
+              
+              // Apply navigation styles (batch)
+              const navLinks = document.querySelectorAll('.navbar-icon, nav a, .navbar a, header a, .toolbar a');
+              navLinks.forEach(a => {
+                if (a.hasAttribute('data-gauge-theme')) return;
+                a.setAttribute('data-gauge-theme', 'applied');
+                a.style.color = '#94a3b8';
+              });
+              
+              // Apply container styles (batch)
+              const containers = document.querySelectorAll('.container, .wrapper, main, .content');
+              containers.forEach(el => {
+                if (el.hasAttribute('data-gauge-theme')) return;
+                el.setAttribute('data-gauge-theme', 'applied');
+                el.style.background = 'transparent';
+                el.style.backgroundColor = 'transparent';
+                el.style.color = '#f1f5f9';
+              });
+              
+              stylesApplied = true;
+            }
           } catch (e) {
-            console.error('Gauge theme application error:', e);
+            console.error('Gauge theme error:', e);
           }
         }
         
-        // Apply immediately
+        // Throttled apply function
+        function throttledApply() {
+          if (throttleTimer) return;
+          throttleTimer = setTimeout(() => {
+            applyGaugeTheme();
+            throttleTimer = null;
+          }, THROTTLE_DELAY);
+        }
+        
+        // Apply on DOM ready
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', applyGaugeTheme);
         } else {
           applyGaugeTheme();
         }
         
-        // Apply multiple times with increasing delays
-        [50, 100, 200, 500, 1000, 2000].forEach(delay => {
-          setTimeout(applyGaugeTheme, delay);
-        });
+        // Apply once more after a short delay (for dynamic content)
+        setTimeout(applyGaugeTheme, 300);
         
-        // Use MutationObserver to catch dynamic changes
+        // Throttled MutationObserver - only watches for new elements
         const observer = new MutationObserver(function(mutations) {
-          applyGaugeTheme();
+          let shouldApply = false;
+          for (const mutation of mutations) {
+            // Only react to new nodes being added
+            if (mutation.addedNodes.length > 0) {
+              for (const node of mutation.addedNodes) {
+                if (node.nodeType === 1) { // Element node
+                  // Check if it's a heading, link, or container
+                  if (node.matches && (node.matches('h1, h2, h3, h4, h5, h6, a, .container, .wrapper') || 
+                      node.querySelector('h1, h2, h3, h4, h5, h6, a, .container, .wrapper'))) {
+                    shouldApply = true;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+          if (shouldApply) {
+            stylesApplied = false; // Reset to re-apply to new elements
+            throttledApply();
+          }
         });
         
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['style', 'class']
-        });
+        // Only observe for child additions, not all attribute changes
+        if (document.body) {
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+            // Removed attributes observer to reduce overhead
+          });
+        }
         
-        // Enhanced cursor trail
+        // Optimized cursor trail - only animate when mouse moves
+        let trailActive = false;
         const trail = [];
-        const trailLength = 20;
-        const container = document.createElement('div');
-        container.id = 'mouse-trail-container';
-        container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
-        document.body.appendChild(container);
+        const trailLength = 15; // Reduced from 20
+        let container = null;
         
-        for (let i = 0; i < trailLength; i++) {
-          const p = document.createElement('div');
-          p.style.cssText = `position:absolute;width:${Math.max(2, 8-i*0.3)}px;height:${Math.max(2, 8-i*0.3)}px;background:radial-gradient(circle,rgba(255,107,53,${Math.max(0, 1-i*0.05)})0%,rgba(14,165,233,${Math.max(0, 0.8-i*0.04)})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.1s;box-shadow:0 0 ${10+i*2}px rgba(255,107,53,0.5),0 0 ${15+i*3}px rgba(14,165,233,0.3);mix-blend-mode:screen;`;
-          container.appendChild(p);
-          trail.push({el:p,x:0,y:0,op:0});
+        function initCursorTrail() {
+          if (container) return; // Already initialized
+          
+          container = document.createElement('div');
+          container.id = 'mouse-trail-container';
+          container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
+          document.body.appendChild(container);
+          
+          for (let i = 0; i < trailLength; i++) {
+            const p = document.createElement('div');
+            p.style.cssText = `position:absolute;width:${Math.max(2, 6-i*0.25)}px;height:${Math.max(2, 6-i*0.25)}px;background:radial-gradient(circle,rgba(255,107,53,${Math.max(0, 1-i*0.06)})0%,rgba(14,165,233,${Math.max(0, 0.8-i*0.05)})50%,transparent 100%);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;`;
+            container.appendChild(p);
+            trail.push({el:p,x:0,y:0,op:0});
+          }
         }
         
         let mx=0,my=0;
-        document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+        let animFrame = null;
+        let lastMouseTime = 0;
         
-        function anim() {
-          trail.forEach((p,i)=>{
-            if(i===0){p.x=mx;p.y=my;p.op=1;}
-            else{
-              const prev=trail[i-1];
-              const dx=prev.x-p.x,dy=prev.y-p.y;
-              const d=Math.sqrt(dx*dx+dy*dy);
-              if(d>2){p.x+=dx*0.3;p.y+=dy*0.3;}else{p.x=prev.x;p.y=prev.y;}
-              p.op=Math.max(0,p.op-0.05);
+        function startTrail() {
+          if (trailActive) return;
+          trailActive = true;
+          initCursorTrail();
+          
+          function anim() {
+            if (!trailActive) {
+              animFrame = null;
+              return;
             }
-            p.el.style.left=p.x+'px';
-            p.el.style.top=p.y+'px';
-            p.el.style.opacity=p.op;
-          });
-          requestAnimationFrame(anim);
+            
+            const now = Date.now();
+            // Stop animation if mouse hasn't moved in 2 seconds
+            if (now - lastMouseTime > 2000) {
+              trail.forEach(p => {
+                p.op = Math.max(0, p.op - 0.1);
+                p.el.style.opacity = p.op;
+              });
+              // Stop if all particles are invisible
+              if (trail.every(p => p.op < 0.01)) {
+                trailActive = false;
+                animFrame = null;
+                return;
+              }
+            } else {
+              trail.forEach((p,i)=>{
+                if(i===0){
+                  p.x=mx;
+                  p.y=my;
+                  p.op=1;
+                } else{
+                  const prev=trail[i-1];
+                  const dx=prev.x-p.x;
+                  const dy=prev.y-p.y;
+                  const dist=Math.sqrt(dx*dx+dy*dy);
+                  if(dist>2){
+                    p.x+=dx*0.25;
+                    p.y+=dy*0.25;
+                  } else {
+                    p.x=prev.x;
+                    p.y=prev.y;
+                  }
+                  p.op=Math.max(0,p.op-0.04);
+                }
+                p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
+                p.el.style.opacity = p.op;
+              });
+            }
+            animFrame = requestAnimationFrame(anim);
+          }
+          
+          animFrame = requestAnimationFrame(anim);
         }
-        anim();
+        
+        document.addEventListener('mousemove', function(e) {
+          mx = e.clientX;
+          my = e.clientY;
+          lastMouseTime = Date.now();
+          if (!trailActive) {
+            startTrail();
+          }
+        }, { passive: true });
       })();
     </script>
   </body>
