@@ -1,0 +1,88 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+  <!-- Social: Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@{{ site.twitter_username }}">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.image %}
+  <meta property="twitter:image:src" content="{{ site.url }}{{ page.image }}">
+  {% else %}
+  <meta property="twitter:image:src" content="{{ site.url }}/assets/img/opengraph.png">
+  {% endif %}
+
+  <!-- Social: Facebook / Open Graph -->
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  {% if page.image %}
+  <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+  {% else %}
+  <meta property="og:image" content="{{ site.url }}/assets/img/opengraph.png">
+  {% endif %}
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <!-- Social: Schema.org  -->
+  <meta itemprop="name" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}"/>
+
+  <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
+  <style>
+    /* Critical gauge theme styles - applied immediately */
+    :root {
+      --orange-primary: #ff6b35;
+      --orange-accent: #ff4500;
+      --blue-primary: #0ea5e9;
+      --dark-bg: #0b0e17;
+      --text-primary: #f1f5f9;
+    }
+    html, body, body.animated, body.animated.fadeIn {
+      background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+      background-color: #0b0e17 !important;
+      color: #f1f5f9 !important;
+    }
+    #background-div, #background-svg {
+      background: #0b0e17 !important;
+      background-color: #0b0e17 !important;
+    }
+    .bgColor1 { stop-color: #0b0e17 !important; }
+    .bgColor2 { stop-color: #0a0d14 !important; }
+    h1, h2, h3, h4, h5, h6, .post-title {
+      color: #ff6b35 !important;
+    }
+    h1 {
+      background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+    a { color: #0ea5e9 !important; }
+    .navbar-icon, nav a, .navbar a { color: #94a3b8 !important; }
+    .container, .wrapper, main { background: transparent !important; color: #f1f5f9 !important; }
+  </style>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" id="css-theme" href="/assets/css/main-dark.css">
+  <link rel="stylesheet" href="/assets/css/highlight/monokai.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+
+  <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
+  <link rel="stylesheet" href="/assets/css/gauge-theme.css">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
+  <script type="text/javascript" src="/assets/js/main.js"></script>
+</head>
+
