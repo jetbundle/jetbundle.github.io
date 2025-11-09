@@ -1,484 +1,388 @@
 /**
- * JetBundle Manifold Background Animation - Optimized
- *
- * Visualizes fiber bundles and jet bundles with high performance:
- * - Reduced fiber count for better performance
- * - Optimized rendering pipeline
- * - Lower update frequency
- * - Simplified noise calculations
+ * JetBundle Manifold Background - Stochastic Exploration
+ * 
+ * Two points explore the manifold with stochastic motion:
+ * - Random walk with drift toward center
+ * - Color gradient based on direction of motion
+ * - Memory-efficient trails that fade over time
+ * - Perpetual exploration
  */
 
-(function () {
-    'use strict';
+(function() {
+  'use strict';
 
-    // Highly optimized configuration for regular laptops
-    const CONFIG = {
-        // Minimal fiber system for best performance
-        numBasePoints: 6,         // Further reduced for performance
-        fibersPerPoint: 2,        // Keep at 2
-        maxFiberLength: 100,      // Further reduced
-        fiberStepSize: 1.5,       // Larger steps (fewer points)
-        fiberThickness: 0.6,      // Thinner for performance
-
-        // Slower animation for performance
-        animationSpeed: 0.0015,   // Slower
-        noiseScale: 0.012,        // Smaller scale
-        noiseSpeed: 0.0002,       // Slower
-
+  // Optimized configuration
+  const CONFIG = {
+    // Two explorers
+    numPoints: 2,
+    
+    // Motion parameters
+    stepSize: 2.5,              // Base step size
+    driftStrength: 0.02,        // Drift toward center (0-1)
+    noiseScale: 0.8,            // Randomness (0-1)
+    minSpeed: 0.5,              // Minimum speed
+    maxSpeed: 3.0,              // Maximum speed
+    
+    // Trail parameters
+    trailLength: 80,            // Number of trail points per explorer
+    fadeRate: 0.96,             // Fade per frame (0-1)
+    baseOpacity: 0.4,           // Starting opacity
+    
     // Visual parameters
-    opacityDecay: 0.98,       // Slower decay
-    baseOpacity: 0.20,        // Increased opacity for visibility
-    gradientStops: 2,         // Minimal stops
+    pointRadius: 2.5,           // Current point radius
+    trailWidth: 1.8,            // Trail line width
+    
+    // Color scheme (gauge theme)
+    colors: {
+      orange: { r: 255, g: 107, b: 53 },
+      blue: { r: 14, g: 165, b: 233 },
+      dark: { r: 11, g: 14, b: 23 }
+    },
+    
+    // Performance
+    updateEvery: 1,             // Update every N frames
+    drawEvery: 1                // Draw every N frames
+  };
 
-        // Color scheme (gauge theme)
-        colors: {
-            orange: { r: 255, g: 107, b: 53 },
-            blue: { r: 14, g: 165, b: 233 },
-            dark: { r: 11, g: 14, b: 23 },
-            dark2: { r: 10, g: 13, b: 20 }
-        },
-
-        // Performance tuning - very aggressive
-        maxFibers: 20,            // Further reduced
-        updateInterval: 4,        // Update every 4 frames
-        fadeOutSpeed: 0.99,       // Slower fade (less redraw)
-        maxPointsPerFiber: 60     // Further reduced
-    };
-
-    // Simplified noise generator (more efficient)
-    class NoiseGenerator {
-        constructor(seed) {
-            this.seed = seed || Math.random() * 10000;
-            this.permutation = this.generatePermutation();
-        }
-
-        generatePermutation() {
-            const p = Array.from({ length: 128 }, (_, i) => i); // Reduced from 256
-            for (let i = p.length - 1; i > 0; i--) {
-                const j = Math.floor((this.seed + i) * 0.618033988749) % (i + 1);
-                [p[i], p[j]] = [p[j], p[i]];
-            }
-            return p.concat(p);
-        }
-
-        fade(t) {
-            return t * t * (3 - 2 * t); // Simpler fade function
-        }
-
-        lerp(a, b, t) {
-            return a + t * (b - a);
-        }
-
-        grad(hash, x) {
-            return (hash & 1) === 0 ? x : -x; // Simplified grad
-        }
-
-        noise(x, y) {
-            const X = Math.floor(x) & 127; // Use 127 instead of 255
-            const Y = Math.floor(y) & 127;
-            x -= Math.floor(x);
-            y -= Math.floor(y);
-            const u = this.fade(x);
-            const v = this.fade(y);
-            const A = this.permutation[X] + Y;
-            const AA = this.permutation[A & 255];
-            const AB = this.permutation[(A + 1) & 255];
-            const B = this.permutation[(X + 1) & 127] + Y;
-            const BA = this.permutation[B & 255];
-            const BB = this.permutation[(B + 1) & 255];
-            return this.lerp(
-                this.lerp(this.grad(this.permutation[AA], x),
-                    this.grad(this.permutation[BA], x - 1), u),
-                this.lerp(this.grad(this.permutation[AB], x),
-                    this.grad(this.permutation[BB], x - 1), u),
-                v
-            ) * 0.5 + 0.5;
-        }
+  // Explorer class - a single point exploring the manifold
+  class Explorer {
+    constructor(id, centerX, centerY, width, height) {
+      this.id = id;
+      this.centerX = centerX;
+      this.centerY = centerY;
+      this.width = width;
+      this.height = height;
+      
+      // Start at random position
+      this.x = centerX + (Math.random() - 0.5) * width * 0.6;
+      this.y = centerY + (Math.random() - 0.5) * height * 0.6;
+      
+      // Velocity (for direction-based coloring)
+      this.vx = (Math.random() - 0.5) * 2;
+      this.vy = (Math.random() - 0.5) * 2;
+      
+      // Trail - circular buffer for memory efficiency
+      this.trail = [];
+      this.trailIndex = 0;
+      this.trailFull = false;
+      
+      // Initialize trail with current position
+      for (let i = 0; i < CONFIG.trailLength; i++) {
+        this.trail.push({
+          x: this.x,
+          y: this.y,
+          opacity: 0,
+          vx: this.vx,
+          vy: this.vy
+        });
+      }
     }
 
-    // Simplified Fiber class
-    class Fiber {
-        constructor(basePoint, direction, noiseGen, time) {
-            this.basePoint = basePoint;
-            this.direction = direction;
-            this.noiseGen = noiseGen;
-            this.time = time;
-            this.points = [];
-            this.opacity = CONFIG.baseOpacity;
-            this.color = this.determineColor();
-            this.length = 0;
-            this.maxLength = CONFIG.maxFiberLength * (0.8 + Math.random() * 0.4);
-            this.generatePoints();
+    // Update position with stochastic motion and drift
+    update() {
+      // Random walk component
+      const randomAngle = Math.random() * Math.PI * 2;
+      const randomMagnitude = CONFIG.noiseScale * CONFIG.stepSize * (0.5 + Math.random());
+      
+      const randomVx = Math.cos(randomAngle) * randomMagnitude;
+      const randomVy = Math.sin(randomAngle) * randomMagnitude;
+      
+      // Drift toward center
+      const dx = this.centerX - this.x;
+      const dy = this.centerY - this.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const maxDistance = Math.sqrt(this.width * this.width + this.height * this.height) * 0.5;
+      const normalizedDistance = Math.min(distance / maxDistance, 1);
+      
+      // Stronger drift when further from center
+      const driftFactor = CONFIG.driftStrength * (1 + normalizedDistance * 2);
+      const driftVx = dx * driftFactor;
+      const driftVy = dy * driftFactor;
+      
+      // Combine random walk and drift
+      this.vx = randomVx + driftVx;
+      this.vy = randomVy + driftVy;
+      
+      // Clamp velocity
+      const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      if (speed > CONFIG.maxSpeed) {
+        this.vx = (this.vx / speed) * CONFIG.maxSpeed;
+        this.vy = (this.vy / speed) * CONFIG.maxSpeed;
+      } else if (speed < CONFIG.minSpeed && speed > 0) {
+        this.vx = (this.vx / speed) * CONFIG.minSpeed;
+        this.vy = (this.vy / speed) * CONFIG.minSpeed;
+      }
+      
+      // Update position
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      // Boundary conditions - wrap around (torus topology)
+      if (this.x < 0) this.x += this.width;
+      if (this.x > this.width) this.x -= this.width;
+      if (this.y < 0) this.y += this.height;
+      if (this.y > this.height) this.y -= this.height;
+      
+      // Add current position to trail (circular buffer)
+      const trailPoint = {
+        x: this.x,
+        y: this.y,
+        opacity: CONFIG.baseOpacity,
+        vx: this.vx,
+        vy: this.vy
+      };
+      
+      if (this.trailFull) {
+        // Overwrite oldest point
+        this.trail[this.trailIndex] = trailPoint;
+        this.trailIndex = (this.trailIndex + 1) % CONFIG.trailLength;
+      } else {
+        // Add new point
+        this.trail[this.trailIndex] = trailPoint;
+        this.trailIndex++;
+        if (this.trailIndex >= CONFIG.trailLength) {
+          this.trailFull = true;
+          this.trailIndex = 0;
         }
-
-        determineColor() {
-            const colorChoice = (this.basePoint.x + this.basePoint.y) % 2;
-            return colorChoice === 0 ? CONFIG.colors.orange : CONFIG.colors.blue;
-        }
-
-        generatePoints() {
-            this.points = [];
-            let x = this.basePoint.x;
-            let y = this.basePoint.y;
-            let angle = this.direction;
-            let length = 0;
-            const maxPoints = CONFIG.maxPointsPerFiber;
-
-            while (length < this.maxLength && this.points.length < maxPoints) {
-                this.points.push({ x, y, opacity: this.opacity });
-
-                // Simplified noise calculation
-                const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time,
-                    y * CONFIG.noiseScale + this.time
-                );
-
-                angle += (noiseValue - 0.5) * Math.PI * 0.25; // Reduced variation
-
-                const stepSize = CONFIG.fiberStepSize;
-                x += Math.cos(angle) * stepSize;
-                y += Math.sin(angle) * stepSize;
-                length += stepSize;
-
-                this.opacity *= CONFIG.opacityDecay;
-                if (this.opacity < 0.01) break;
-            }
-
-            this.length = length;
-        }
-
-        update(time) {
-            this.time = time;
-            this.opacity = CONFIG.baseOpacity;
-            this.generatePoints();
-        }
-
-        isVisible(width, height, margin = 150) {
-            // Very quick check - just first and last point
-            if (this.points.length === 0) return false;
-            const first = this.points[0];
-            const last = this.points[this.points.length - 1];
-            return (first.x >= -margin && first.x <= width + margin && first.y >= -margin && first.y <= height + margin) ||
-                (last.x >= -margin && last.x <= width + margin && last.y >= -margin && last.y <= height + margin) ||
-                (this.basePoint.x >= -margin && this.basePoint.x <= width + margin && this.basePoint.y >= -margin && this.basePoint.y <= height + margin);
-        }
+      }
     }
 
-    // Simplified JetBundle class
-    class JetBundle {
-        constructor(basePoint, noiseGen, time) {
-            this.basePoint = basePoint;
-            this.noiseGen = noiseGen;
-            this.time = time;
-            this.jets = [];
-            this.generateJets();
+    // Fade trail points
+    fadeTrail() {
+      for (let i = 0; i < (this.trailFull ? CONFIG.trailLength : this.trailIndex); i++) {
+        if (this.trail[i].opacity > 0.01) {
+          this.trail[i].opacity *= CONFIG.fadeRate;
+        } else {
+          this.trail[i].opacity = 0;
         }
-
-        generateJets() {
-            const numJets = 2; // Fixed at 2 for performance
-            for (let i = 0; i < numJets; i++) {
-                const angle = (Math.PI * 2 * i) / numJets + Math.random() * 0.3;
-                const jet = {
-                    points: [],
-                    color: i % 2 === 0 ? CONFIG.colors.orange : CONFIG.colors.blue,
-                    opacity: CONFIG.baseOpacity * 0.5,
-                    length: CONFIG.maxFiberLength * 0.3
-                };
-
-                let x = this.basePoint.x;
-                let y = this.basePoint.y;
-                let currentAngle = angle;
-                let length = 0;
-                const maxPoints = 40; // Reduced
-
-                while (length < jet.length && jet.points.length < maxPoints) {
-                    jet.points.push({ x, y, opacity: jet.opacity });
-
-                    const noiseValue = this.noiseGen.noise(
-                        x * CONFIG.noiseScale * 1.5 + this.time,
-                        y * CONFIG.noiseScale * 1.5 + this.time
-                    );
-                    currentAngle += (noiseValue - 0.5) * Math.PI * 0.4;
-
-                    const stepSize = CONFIG.fiberStepSize * 0.7;
-                    x += Math.cos(currentAngle) * stepSize;
-                    y += Math.sin(currentAngle) * stepSize;
-                    length += stepSize;
-                    jet.opacity *= 0.94;
-
-                    if (jet.opacity < 0.01) break;
-                }
-
-                this.jets.push(jet);
-            }
-        }
-
-        update(time) {
-            this.time = time;
-            this.generateJets();
-        }
-
-        isVisible(width, height, margin = 150) {
-            // Quick check - just base point and first jet point
-            if (this.jets.length === 0) return false;
-            const baseVisible = this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
-                this.basePoint.y >= -margin && this.basePoint.y <= height + margin;
-            if (baseVisible) return true;
-            return this.jets.some(jet =>
-                jet.points.length > 0 &&
-                jet.points[0].x >= -margin && jet.points[0].x <= width + margin &&
-                jet.points[0].y >= -margin && jet.points[0].y <= height + margin
-            );
-        }
+      }
     }
 
-    // Optimized ManifoldBackground class
-    class ManifoldBackground {
-        constructor(canvas) {
-            this.canvas = canvas;
-            this.ctx = canvas.getContext('2d'); // Keep alpha for fade effects
-            this.width = 0;
-            this.height = 0;
-            this.time = 0;
-            this.frameCount = 0;
-            this.animationId = null;
-            this.isRunning = false;
+    // Get color based on direction (velocity vector)
+    getColor(vx, vy) {
+      // Normalize velocity to get direction
+      const speed = Math.sqrt(vx * vx + vy * vy);
+      if (speed < 0.01) {
+        // No motion - use neutral color
+        return {
+          r: (CONFIG.colors.orange.r + CONFIG.colors.blue.r) / 2,
+          g: (CONFIG.colors.orange.g + CONFIG.colors.blue.g) / 2,
+          b: (CONFIG.colors.orange.b + CONFIG.colors.blue.b) / 2
+        };
+      }
+      
+      // Direction angle (0 to 2π)
+      let angle = Math.atan2(vy, vx);
+      if (angle < 0) angle += Math.PI * 2;
+      
+      // Map angle to color gradient
+      // 0 to π: orange to blue
+      // π to 2π: blue to orange
+      const normalizedAngle = angle / (Math.PI * 2);
+      
+      let t;
+      if (normalizedAngle < 0.5) {
+        // First half: orange to blue
+        t = normalizedAngle * 2;
+      } else {
+        // Second half: blue to orange
+        t = 1 - (normalizedAngle - 0.5) * 2;
+      }
+      
+      // Interpolate between orange and blue
+      const r = Math.round(CONFIG.colors.orange.r * (1 - t) + CONFIG.colors.blue.r * t);
+      const g = Math.round(CONFIG.colors.orange.g * (1 - t) + CONFIG.colors.blue.g * t);
+      const b = Math.round(CONFIG.colors.orange.b * (1 - t) + CONFIG.colors.blue.b * t);
+      
+      return { r, g, b };
+    }
 
-            // Generate unique seed
-            this.seed = Date.now() + Math.random() * 10000;
-            this.noiseGen = new NoiseGenerator(this.seed);
+    // Resize when window resizes
+    resize(centerX, centerY, width, height) {
+      // Scale positions proportionally
+      const scaleX = width / this.width;
+      const scaleY = height / this.height;
+      
+      this.x = centerX + (this.x - this.centerX) * scaleX;
+      this.y = centerY + (this.y - this.centerY) * scaleY;
+      
+      // Scale trail
+      for (let i = 0; i < (this.trailFull ? CONFIG.trailLength : this.trailIndex); i++) {
+        this.trail[i].x = centerX + (this.trail[i].x - this.centerX) * scaleX;
+        this.trail[i].y = centerY + (this.trail[i].y - this.centerY) * scaleY;
+      }
+      
+      this.centerX = centerX;
+      this.centerY = centerY;
+      this.width = width;
+      this.height = height;
+    }
+  }
 
-            // Initialize
-            this.basePoints = [];
-            this.fibers = [];
-            this.jetBundles = [];
-
-            this.resize();
-            this.initializeBaseSpace();
-            this.generateFibers();
-        }
-
-    resize() {
-      // Use window dimensions directly for reliable sizing
+  // Main manifold background class
+  class ManifoldBackground {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
       this.width = window.innerWidth;
       this.height = window.innerHeight;
+      this.centerX = this.width / 2;
+      this.centerY = this.height / 2;
       
-      // Set canvas size (this is separate from CSS size)
       this.canvas.width = this.width;
       this.canvas.height = this.height;
       
-      // Ensure CSS size matches
-      this.canvas.style.width = this.width + 'px';
-      this.canvas.style.height = this.height + 'px';
+      this.frameCount = 0;
+      this.animationId = null;
+      this.isRunning = false;
+      
+      // Create two explorers
+      this.explorers = [];
+      for (let i = 0; i < CONFIG.numPoints; i++) {
+        this.explorers.push(new Explorer(i, this.centerX, this.centerY, this.width, this.height));
+      }
+      
+      console.log('Manifold: Initialized with', this.explorers.length, 'explorers');
+    }
+
+    resize() {
+      const oldWidth = this.width;
+      const oldHeight = this.height;
+      
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.centerX = this.width / 2;
+      this.centerY = this.height / 2;
+      
+      this.canvas.width = this.width;
+      this.canvas.height = this.height;
+      
+      // Resize explorers
+      for (const explorer of this.explorers) {
+        explorer.resize(this.centerX, this.centerY, this.width, this.height);
+      }
       
       console.log('Manifold: Resized to', this.width + 'x' + this.height);
     }
 
-        initializeBaseSpace() {
-            this.basePoints = [];
-            const cols = Math.ceil(Math.sqrt(CONFIG.numBasePoints));
-            const rows = Math.ceil(CONFIG.numBasePoints / cols);
-            const spacingX = this.width / (cols + 1);
-            const spacingY = this.height / (rows + 1);
-
-            for (let i = 0; i < CONFIG.numBasePoints; i++) {
-                const col = i % cols;
-                const row = Math.floor(i / cols);
-                const baseX = spacingX * (col + 1) + (Math.random() - 0.5) * spacingX * 0.2;
-                const baseY = spacingY * (row + 1) + (Math.random() - 0.5) * spacingY * 0.2;
-
-                this.basePoints.push({ x: baseX, y: baseY, id: i });
-            }
-        }
-
-        generateFibers() {
-            this.fibers = [];
-            this.jetBundles = [];
-
-            for (const basePoint of this.basePoints) {
-                for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint + Math.random() * 0.2;
-                    const fiber = new Fiber(basePoint, angle, this.noiseGen, this.time);
-                    this.fibers.push(fiber);
-                }
-
-                if (Math.random() > 0.4) { // Fewer jet bundles
-                    const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
-                    this.jetBundles.push(jetBundle);
-                }
-            }
-
-            if (this.fibers.length > CONFIG.maxFibers) {
-                this.fibers = this.fibers.slice(0, CONFIG.maxFibers);
-            }
-        }
-
-        drawFiber(fiber) {
-            if (fiber.points.length < 2) return;
-
-            const ctx = this.ctx;
-            const color = fiber.color;
-            const points = fiber.points;
-
-            // Simplified drawing - use lineTo instead of quadratic curves
-            ctx.beginPath();
-            ctx.moveTo(points[0].x, points[0].y);
-
-            for (let i = 1; i < points.length; i++) {
-                ctx.lineTo(points[i].x, points[i].y);
-            }
-
-            // Single color with opacity - make it more visible
-            const startOpacity = fiber.opacity;
-            const endOpacity = fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length);
-            const avgOpacity = Math.max(0.15, (startOpacity + endOpacity) / 2); // Ensure minimum visibility
-
-            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${avgOpacity})`;
-            ctx.lineWidth = CONFIG.fiberThickness;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            ctx.stroke();
-        }
-
-        drawJetBundle(jetBundle) {
-            for (const jet of jetBundle.jets) {
-                if (jet.points.length < 2) continue;
-
-                const ctx = this.ctx;
-                const color = jet.color;
-                const points = jet.points;
-
-                ctx.beginPath();
-                ctx.moveTo(points[0].x, points[0].y);
-
-                for (let i = 1; i < points.length; i++) {
-                    ctx.lineTo(points[i].x, points[i].y);
-                }
-
-                ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${jet.opacity * 0.4})`;
-                ctx.lineWidth = CONFIG.fiberThickness * 0.5;
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                ctx.stroke();
-            }
-        }
-
-        animate() {
-            if (!this.isRunning) return;
-
-            this.frameCount++;
-            this.time += CONFIG.animationSpeed;
-
-      // Clear with fade (trail effect) - only if needed
-      if (this.frameCount % 2 === 0) { // Clear every other frame
-        // Use semi-transparent black for fade effect
-        this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
-        this.ctx.fillRect(0, 0, this.width, this.height);
-      } else {
-        // On odd frames, don't clear - this creates the trail effect
-        // But ensure we have a base background
-        if (this.frameCount === 1) {
-          this.ctx.fillStyle = 'rgba(11, 14, 23, 0.95)';
-          this.ctx.fillRect(0, 0, this.width, this.height);
-        }
+    update() {
+      // Update explorers
+      for (const explorer of this.explorers) {
+        explorer.update();
+        explorer.fadeTrail();
       }
-
-            // Update fibers less frequently
-            if (this.frameCount % CONFIG.updateInterval === 0) {
-                for (const fiber of this.fibers) {
-                    if (fiber.isVisible(this.width, this.height)) {
-                        fiber.update(this.time);
-                    }
-                }
-            }
-
-            // Update jet bundles much less frequently
-            if (this.frameCount % (CONFIG.updateInterval * 4) === 0) {
-                for (const jetBundle of this.jetBundles) {
-                    if (jetBundle.isVisible(this.width, this.height)) {
-                        jetBundle.update(this.time);
-                    }
-                }
-            }
-
-            // Draw all fibers (small count, so it's fine)
-            let drawnCount = 0;
-            for (const fiber of this.fibers) {
-                if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
-                    this.drawFiber(fiber);
-                    drawnCount++;
-                }
-            }
-
-            // Draw jet bundles
-            let jetCount = 0;
-            for (const jetBundle of this.jetBundles) {
-                if (jetBundle.isVisible(this.width, this.height)) {
-                    this.drawJetBundle(jetBundle);
-                    jetCount++;
-                }
-            }
-            
-            // Debug log every 60 frames
-            if (this.frameCount % 60 === 0) {
-                console.log('Manifold: Drawing', {
-                    frame: this.frameCount,
-                    fibersDrawn: drawnCount,
-                    jetsDrawn: jetCount,
-                    canvasSize: this.width + 'x' + this.height,
-                    time: this.time.toFixed(2)
-                });
-            }
-
-            this.animationId = requestAnimationFrame(() => this.animate());
-        }
-
-        start() {
-            if (this.isRunning) return;
-            this.isRunning = true;
-            this.animate();
-        }
-
-        stop() {
-            this.isRunning = false;
-            if (this.animationId) {
-                cancelAnimationFrame(this.animationId);
-                this.animationId = null;
-            }
-        }
-
-        destroy() {
-            this.stop();
-            this.canvas = null;
-            this.ctx = null;
-        }
     }
 
-    // Initialize when DOM is ready - very robust initialization
-    function init() {
-        // Prevent multiple initializations
-        if (window.manifoldBackgroundInitialized) {
-            return;
+    draw() {
+      // Clear with fade (trail effect)
+      this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeRate})`;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+      
+      // Draw trails and current points
+      for (const explorer of this.explorers) {
+        const trailSize = explorer.trailFull ? CONFIG.trailLength : explorer.trailIndex;
+        
+        if (trailSize < 2) continue;
+        
+        // Draw trail as connected lines
+        this.ctx.beginPath();
+        let firstPoint = true;
+        
+        // Draw trail in chronological order (wraps around if full)
+        for (let i = 0; i < trailSize; i++) {
+          const idx = explorer.trailFull 
+            ? (explorer.trailIndex + i) % CONFIG.trailLength
+            : i;
+          
+          const point = explorer.trail[idx];
+          
+          if (point.opacity < 0.01) continue;
+          
+          if (firstPoint) {
+            this.ctx.moveTo(point.x, point.y);
+            firstPoint = false;
+          } else {
+            this.ctx.lineTo(point.x, point.y);
+          }
+        }
+        
+        // Draw with gradient color based on direction
+        if (!firstPoint) {
+          // Get color from current velocity
+          const color = explorer.getColor(explorer.vx, explorer.vy);
+          const opacity = Math.min(CONFIG.baseOpacity, explorer.trail[explorer.trailIndex - 1]?.opacity || CONFIG.baseOpacity);
+          
+          this.ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+          this.ctx.lineWidth = CONFIG.trailWidth;
+          this.ctx.lineCap = 'round';
+          this.ctx.lineJoin = 'round';
+          this.ctx.stroke();
+        }
+        
+        // Draw current point
+        const currentColor = explorer.getColor(explorer.vx, explorer.vy);
+        this.ctx.fillStyle = `rgba(${currentColor.r}, ${currentColor.g}, ${currentColor.b}, 0.8)`;
+        this.ctx.beginPath();
+        this.ctx.arc(explorer.x, explorer.y, CONFIG.pointRadius, 0, Math.PI * 2);
+        this.ctx.fill();
+      }
+    }
+
+    animate() {
+      if (!this.isRunning) return;
+      
+      this.frameCount++;
+      
+      // Update
+      if (this.frameCount % CONFIG.updateEvery === 0) {
+        this.update();
+      }
+      
+      // Draw
+      if (this.frameCount % CONFIG.drawEvery === 0) {
+        this.draw();
+      }
+      
+      this.animationId = requestAnimationFrame(() => this.animate());
+    }
+
+    start() {
+      if (this.isRunning) return;
+      this.isRunning = true;
+      this.animate();
+      console.log('Manifold: Started');
+    }
+
+    stop() {
+      this.isRunning = false;
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = null;
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  function init() {
+    if (window.manifoldBackgroundInitialized) {
+      return;
+    }
+
+    const tryInit = () => {
+      if (!document.body) {
+        console.log('Manifold: Waiting for body...');
+        return;
+      }
+
+      try {
+        if (document.getElementById('manifold-background')) {
+          console.log('Manifold: Canvas already exists');
+          return;
         }
 
-        const tryInit = () => {
-            // Must have body
-            if (!document.body) {
-                console.log('Manifold: Waiting for body...');
-                return;
-            }
-
-            try {
-                // Check if canvas already exists
-                if (document.getElementById('manifold-background')) {
-                    console.log('Manifold: Canvas already exists');
-                    return;
-                }
-
-        // Create canvas element
+        // Create canvas
         const canvas = document.createElement('canvas');
         canvas.id = 'manifold-background';
-        // Set inline styles with !important to override any theme CSS
         canvas.setAttribute('style', `
           position: fixed !important;
           top: 0 !important;
@@ -487,138 +391,89 @@
           height: 100% !important;
           z-index: 0 !important;
           pointer-events: none !important;
-          opacity: 0.6 !important;
+          opacity: 0.7 !important;
           background: transparent !important;
           display: block !important;
           visibility: visible !important;
         `);
 
-                // Insert canvas - prefer body prepend
-                let inserted = false;
-                try {
-                    document.body.insertBefore(canvas, document.body.firstChild);
-                    inserted = true;
-                } catch (e) {
-                    try {
-                        document.body.appendChild(canvas);
-                        inserted = true;
-                    } catch (e2) {
-                        console.error('Manifold: Failed to insert canvas', e2);
-                    }
-                }
-
-                if (!inserted) {
-                    console.warn('Manifold: Could not insert canvas');
-                    return;
-                }
-
-        console.log('Manifold: Canvas created and inserted');
-        console.log('Manifold: Canvas computed style', window.getComputedStyle(canvas));
-        console.log('Manifold: Canvas position', canvas.getBoundingClientRect());
-
-        // Initialize manifold background
-        let manifold;
+        // Insert canvas
         try {
-          manifold = new ManifoldBackground(canvas);
-          console.log('Manifold: Initialized', {
-            fibers: manifold.fibers.length,
-            jets: manifold.jetBundles.length,
-            width: manifold.width,
-            height: manifold.height,
-            canvas: canvas.width + 'x' + canvas.height,
-            canvasStyle: canvas.style.cssText
-          });
-          
-          // Test draw to verify canvas is working
-          const testCtx = canvas.getContext('2d');
-          testCtx.fillStyle = 'rgba(255, 0, 0, 0.1)';
-          testCtx.fillRect(0, 0, 100, 100);
-          console.log('Manifold: Test draw completed (red square in top-left)');
+          document.body.insertBefore(canvas, document.body.firstChild);
         } catch (e) {
-          console.error('Manifold: Error creating', e);
-          console.error('Manifold: Stack trace', e.stack);
-          return;
+          document.body.appendChild(canvas);
         }
 
-                // Start animation after brief delay
-                setTimeout(() => {
-                    try {
-                        if (manifold && !manifold.isRunning) {
-                            manifold.start();
-                            window.manifoldBackgroundInitialized = true;
-                            console.log('Manifold: Started successfully');
-                        }
-                    } catch (e) {
-                        console.error('Manifold: Error starting', e);
-                    }
-                }, 200);
+        console.log('Manifold: Canvas created');
 
-                // Handle resize
-                let resizeTimer;
-                const handleResize = () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        try {
-                            if (manifold) {
-                                manifold.resize();
-                                manifold.initializeBaseSpace();
-                                manifold.generateFibers();
-                            }
-                        } catch (e) {
-                            console.error('Manifold: Resize error', e);
-                        }
-                    }, 300);
-                };
-                window.addEventListener('resize', handleResize, { passive: true });
-
-                // Pause when tab hidden
-                document.addEventListener('visibilitychange', () => {
-                    try {
-                        if (manifold) {
-                            if (document.hidden) {
-                                manifold.stop();
-                            } else {
-                                manifold.start();
-                            }
-                        }
-                    } catch (e) {
-                        console.error('Manifold: Visibility error', e);
-                    }
-                }, { passive: true });
-
-                // Expose for debugging
-                window.manifoldBackground = manifold;
-
-            } catch (error) {
-                console.error('Manifold: Init error', error);
+        // Initialize
+        const manifold = new ManifoldBackground(canvas);
+        
+        setTimeout(() => {
+          try {
+            if (manifold && !manifold.isRunning) {
+              manifold.start();
+              window.manifoldBackgroundInitialized = true;
             }
-        };
+          } catch (e) {
+            console.error('Manifold: Error starting', e);
+          }
+        }, 100);
 
-        // Wait for body to exist
-        const waitForBody = () => {
-            if (document.body) {
-                tryInit();
-            } else {
-                setTimeout(waitForBody, 50);
+        // Handle resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            try {
+              if (manifold) {
+                manifold.resize();
+              }
+            } catch (e) {
+              console.error('Manifold: Resize error', e);
             }
-        };
+          }, 300);
+        }, { passive: true });
 
-        // Initialize based on ready state
-        if (document.readyState === 'complete') {
-            waitForBody();
-        } else if (document.readyState === 'interactive') {
-            waitForBody();
-        } else {
-            document.addEventListener('DOMContentLoaded', waitForBody);
-        }
+        // Pause when tab hidden
+        document.addEventListener('visibilitychange', () => {
+          try {
+            if (manifold) {
+              if (document.hidden) {
+                manifold.stop();
+              } else {
+                manifold.start();
+              }
+            }
+          } catch (e) {
+            console.error('Manifold: Visibility error', e);
+          }
+        }, { passive: true });
 
-        // Also try on load
-        window.addEventListener('load', waitForBody);
+        window.manifoldBackground = manifold;
+        
+      } catch (error) {
+        console.error('Manifold: Init error', error);
+      }
+    };
 
-        // Final fallback
-        setTimeout(waitForBody, 1000);
+    const waitForBody = () => {
+      if (document.body) {
+        tryInit();
+      } else {
+        setTimeout(waitForBody, 50);
+      }
+    };
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      waitForBody();
+    } else {
+      document.addEventListener('DOMContentLoaded', waitForBody);
     }
+    
+    window.addEventListener('load', waitForBody);
+    setTimeout(waitForBody, 1000);
+  }
 
-    // Start initialization
-    init();
+  init();
 })();
