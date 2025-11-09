@@ -20,13 +20,13 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - much slower tempo
-        animationSpeed: 0.0008,   // Much slower animation speed (was 0.003)
+        // Smooth, perpetual animation - VERY SLOW TEMPO
+        animationSpeed: 0.0003,   // Much slower animation speed (10x slower)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00015,      // Much slower evolution (was 0.0005)
+        noiseSpeed: 0.00005,      // Much slower evolution (10x slower)
 
-        // Visual parameters - perpetual trails
-        opacityDecay: 0.997,      // Even slower decay for longer trails (was 0.995)
+        // Visual parameters - perpetual trails - VERY SLOW FADE
+        opacityDecay: 0.998,      // Extremely slow decay for very long trails
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
 
@@ -40,8 +40,8 @@
 
         // Performance tuning - balanced for large coverage (unchanged for performance)
         maxFibers: 24,            // Match fibersPerPoint
-        updateInterval: 3,        // Update every 3 frames (slower visual tempo)
-        fadeOutSpeed: 0.997,      // Even slower fade for longer perpetual trails (was 0.995)
+        updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
+        fadeOutSpeed: 0.998,      // Extremely slow fade for very long perpetual trails
         maxPointsPerFiber: 1500   // Support long fibers
     };
 
@@ -128,10 +128,9 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Slower evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000
                 );
 
                 // Smooth angle variation for elegant curves
@@ -661,3 +660,4 @@
     // Start initialization
     init();
 })();
+
