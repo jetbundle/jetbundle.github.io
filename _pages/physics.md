@@ -32,4 +32,3 @@ From Los Alamos to stockpile simulations - computational methods for physical sy
 ---
 
 [View Full Stack →](/physics_stack/01_intro/)
-

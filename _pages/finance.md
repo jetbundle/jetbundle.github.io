@@ -32,4 +32,3 @@ From radar signal processing to microwave networks - low-latency systems and mar
 ---
 
 [View Full Stack →](/finance_stack/01_intro/)
-

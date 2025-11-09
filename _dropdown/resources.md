@@ -1,6 +1,5 @@
 ---
 title: Resources
-url: /resources
+url: /resources/
 priority: 4
 ---
-

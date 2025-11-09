@@ -32,4 +32,3 @@ From Turán to SKYNET to Palantir Gotham - combinatorics and graph algorithms fo
 ---
 
 [View Full Stack →](/computation_stack/01_intro/)
-
