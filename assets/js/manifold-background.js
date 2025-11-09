@@ -137,12 +137,16 @@
             let angle = this.direction;
             let length = 0;
             const maxPoints = CONFIG.maxPointsPerFiber;
+            
+            // Use fiber's current opacity (set by lifecycle) as base
+            // Don't modify this.opacity here - it's managed by update() for fade-out
+            let pointOpacity = this.opacity;
 
             while (length < this.maxLength && this.points.length < maxPoints) {
-                this.points.push({ x, y, opacity: this.opacity });
+                this.points.push({ x, y, opacity: pointOpacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Extremely slow evolution through reduced noiseSpeed multiplier
+                // Very slow evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
                     x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
                     y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
@@ -156,11 +160,12 @@
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Very slow opacity decay for perpetual trails
-                this.opacity *= CONFIG.opacityDecay;
+                // Very slow opacity decay along fiber length (for gradient effect)
+                // This is separate from lifecycle fade-out
+                pointOpacity *= CONFIG.opacityDecay;
 
-                // Only stop if opacity is extremely low (almost invisible)
-                if (this.opacity < 0.005) break;
+                // Only stop if point opacity is extremely low (almost invisible)
+                if (pointOpacity < 0.005) break;
             }
 
             this.length = length;
