@@ -43,18 +43,11 @@
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
         fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
         maxPointsPerFiber: 1500,  // Support long fibers
-        
-        // Center point offset - move off-screen (very close to edge but still hidden)
+
+        // Center point offset - move off-screen (even closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -100,      // Center point 100px off-screen to the left (very close to edge)
-        centerOffsetY: -100,      // Center point 100px off-screen to the top (very close to edge)
-        
-        // Lifetime management - prevent density buildup
-        fiberLifetime: 8000,      // Maximum age of a fiber in frames (remove after this)
-        jetBundleLifetime: 6000,  // Maximum age of a jet bundle in frames
-        targetFiberCount: 20,     // Target number of fibers to maintain
-        targetJetCount: 4,        // Target number of jet bundles to maintain
-        regenerationInterval: 120 // Regenerate new fibers/bundles every N frames
+        centerOffsetX: -150,      // Center point 150px off-screen to the left (close to edge)
+        centerOffsetY: -150       // Center point 150px off-screen to the top (close to edge)
     };
 
     // Simplified noise generator (more efficient)
@@ -120,8 +113,6 @@
             this.color = this.determineColor();
             this.length = 0;
             this.maxLength = CONFIG.maxFiberLength * (0.8 + Math.random() * 0.4);
-            this.age = 0;  // Age in frames
-            this.isExpired = false;  // Flag to mark for removal
             this.generatePoints();
         }
 
@@ -169,14 +160,6 @@
 
         update(time) {
             this.time = time;
-            this.age++;
-            
-            // Check if fiber has exceeded its lifetime
-            if (this.age > CONFIG.fiberLifetime) {
-                this.isExpired = true;
-                return;
-            }
-            
             this.opacity = CONFIG.baseOpacity;
             this.generatePoints();
         }
@@ -234,8 +217,6 @@
             this.noiseGen = noiseGen;
             this.time = time;
             this.jets = [];
-            this.age = 0;  // Age in frames
-            this.isExpired = false;  // Flag to mark for removal
             this.generateJets();
         }
 
@@ -281,14 +262,6 @@
 
         update(time) {
             this.time = time;
-            this.age++;
-            
-            // Check if jet bundle has exceeded its lifetime
-            if (this.age > CONFIG.jetBundleLifetime) {
-                this.isExpired = true;
-                return;
-            }
-            
             this.generateJets();
         }
 
@@ -347,12 +320,11 @@
 
             // Initialize
             this.basePoints = [];
-            this.fibers = [];  // Initialize empty - generateFibers will populate
-            this.jetBundles = [];  // Initialize empty - generateFibers will populate
+            this.fibers = [];
+            this.jetBundles = [];
 
             this.resize();
             this.initializeBaseSpace();
-            // Generate initial fibers/bundles
             this.generateFibers();
         }
 
@@ -378,10 +350,10 @@
 
         initializeBaseSpace() {
             this.basePoints = [];
-            // Single point OFF-SCREEN (top-left corner, 250px outside viewport - closer to edge)
+            // Single point OFF-SCREEN (top-left corner, 150px outside viewport - close to edge)
             // This ensures only the fibers/bundles that extend INTO the screen are visible
-            const centerX = CONFIG.centerOffsetX;  // -250px (off-screen left, closer to edge)
-            const centerY = CONFIG.centerOffsetY;  // -250px (off-screen top, closer to edge)
+            const centerX = CONFIG.centerOffsetX;  // -150px (off-screen left, close to edge)
+            const centerY = CONFIG.centerOffsetY;  // -150px (off-screen top, close to edge)
 
             this.basePoints.push({
                 x: centerX,
@@ -409,42 +381,28 @@
         }
 
         generateFibers() {
-            // Don't clear existing fibers - we'll manage them by age
-            // Only generate new ones if we're below target count
-            
-            // Remove expired fibers and jet bundles
-            this.fibers = this.fibers.filter(f => !f.isExpired);
-            this.jetBundles = this.jetBundles.filter(j => !j.isExpired);
-            
-            // Generate new fibers if below target count
-            if (this.fibers.length < CONFIG.targetFiberCount) {
-                const needed = CONFIG.targetFiberCount - this.fibers.length;
-                for (const basePoint of this.basePoints) {
-                    for (let i = 0; i < needed && i < CONFIG.fibersPerPoint; i++) {
-                        // Evenly distribute angles around the circle with random variation
-                        const angle = Math.random() * Math.PI * 2;
-                        // Add slight random variation for organic feel
-                        const angleVariation = (Math.random() - 0.5) * 0.1;
-                        const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
-                        this.fibers.push(fiber);
-                    }
-                    // Only generate from first base point to avoid duplicates
-                    break;
+            this.fibers = [];
+            this.jetBundles = [];
+
+            for (const basePoint of this.basePoints) {
+                // Generate many fibers radiating from center in all directions
+                for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
+                    // Evenly distribute angles around the circle
+                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
+                    // Add slight random variation for organic feel
+                    const angleVariation = (Math.random() - 0.5) * 0.1;
+                    const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
+                    this.fibers.push(fiber);
+                }
+
+                // Add jet bundles for more complexity
+                if (Math.random() > 0.5) {
+                    const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
+                    this.jetBundles.push(jetBundle);
                 }
             }
-            
-            // Generate new jet bundles if below target count
-            if (this.jetBundles.length < CONFIG.targetJetCount) {
-                const needed = CONFIG.targetJetCount - this.jetBundles.length;
-                for (const basePoint of this.basePoints) {
-                    for (let i = 0; i < needed; i++) {
-                        const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
-                        this.jetBundles.push(jetBundle);
-                    }
-                    // Only generate from first base point to avoid duplicates
-                    break;
-                }
-            }
+
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
         }
 
         drawFiber(fiber) {
@@ -537,15 +495,6 @@
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
-            // Remove expired fibers and jet bundles first
-            this.fibers = this.fibers.filter(f => !f.isExpired);
-            this.jetBundles = this.jetBundles.filter(j => !j.isExpired);
-            
-            // Regenerate fibers/bundles to maintain constant count
-            if (this.frameCount % CONFIG.regenerationInterval === 0) {
-                this.generateFibers();
-            }
-            
             // Update fibers less frequently
             if (this.frameCount % CONFIG.updateInterval === 0) {
                 for (const fiber of this.fibers) {
