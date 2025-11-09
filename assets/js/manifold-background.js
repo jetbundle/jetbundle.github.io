@@ -128,9 +128,10 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
+                // Slower evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
                 );
 
                 // Smooth angle variation for elegant curves
