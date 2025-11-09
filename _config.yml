@@ -1,6 +1,6 @@
 # Site settings
 title: "jetbundle"
-description: "Engineering principles of physics, finance, and computation."
+description: "Mapping the hidden geometry of modern science."
 url: "https://jetbundle.github.io"
 baseurl: ""
 
@@ -20,7 +20,7 @@ theme_switch: "on"
 blog: "on"
 avatar: "on"
 avatar_image: "assets/img/avatar.jpg"
-avatar_description: "Engineering principles of physics, finance, and computation."
+avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 

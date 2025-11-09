@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body class="animated fadeIn">
+  <body class="animated fadeIn{% if page.class %} {{ page.class }}{% endif %}">
     {% include header.html %}
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
@@ -29,7 +29,7 @@
     </footer>
     {% include footer.html %}
 
-    <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
+    <!-- jetbundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
       // Minimal enhancements - theme's main.js handles initialization
       (function() {
