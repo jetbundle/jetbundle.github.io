@@ -90,106 +90,137 @@
 </head>
 
   <body class="animated fadeIn">
-    <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">JetBundle</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li><a href="/dropdown/about.html">About</a></li>
-          
-        
-          
-            <li><a href="/dropdown/blog.html">Blog</a></li>
-          
-        
-          
-            <li><a href="/dropdown/community.html">Community</a></li>
-          
-        
-          
-            <li><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
-          
-        
-          
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                
-                  <li><a href="/overview/">Overview</a></li>
-                
-                  <li><a href="/about/">About</a></li>
-                
-              </ul>
-            </li>
-          
-        
-          
-            <li><a href="/dropdown/license.html">License</a></li>
-          
-        
-          
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                
-                  <li><a href="/stacks/">The Stack</a></li>
-                
-                  <li><a href="/booklist/">Booklist</a></li>
-                
-                  <li><a href="/primary-sources/">Primary Sources</a></li>
-                
-              </ul>
-            </li>
-          
-        
-          
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">The Stacks <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                
-                  <li><a href="/c3i_stack/01_intro/">C3I Stack</a></li>
-                
-                  <li><a href="/physics_stack/01_intro/">Physics Stack</a></li>
-                
-                  <li><a href="/finance_stack/01_intro/">Finance Stack</a></li>
-                
-              </ul>
-            </li>
-          
-        
-      </ul>
+    <header>
+  <div class="row">
+    <div class="col-xs-12">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-toggle collapsed navbar-icon" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+              <i class="fa fa-bars fa-2x"></i>
+            </a>
+            <a class="navbar-brand navbar-icon" href="/">
+                <i class="fa fa-home fa-2x"></i>
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              
+
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-About">
+                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Blog">
+                    <li priority="3"><a href="/dropdown/blog.html">Blog</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Community">
+                    <li priority="4"><a href="/dropdown/community.html">Community</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
+                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-License">
+                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Resources">
+                    <li priority="2"><a href="/dropdown/resources.html">Resources</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-The Stacks">
+                    <li priority="2"><a href="/dropdown/stacks.html">The Stacks</a></li>
+                  </ul>
+                </li>
+              
+              
+
+              <script>
+                // clean repeated dropdowns and add <li> to their positions
+                let done = [];
+                let elements = [];
+                $(".dropdown")
+                  //
+                  .each((index0 , value0) => {
+                    let dropdownClass = "."+$(value0)[0].classList[1];
+                    if (done.indexOf(dropdownClass) !== -1) return
+                    done.push(dropdownClass)
+                    let dropdownMain = $(dropdownClass)[0]
+                    let itemsList = $(dropdownClass+">ul>li").sort((a, b) => parseInt(b.getAttribute("priority") || -9999999) - parseInt(a.getAttribute("priority") || -9999999))
+                    $(dropdownClass+">ul>li").remove();
+                    $(dropdownClass+">ul").append(itemsList)
+                    $(dropdownClass).remove();
+                    elements.push(dropdownMain)
+                });
+                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
+                elements = elements.concat(...$(".nav-item").remove())
+                priority.map(text => {
+                  elements = elements.filter(node => {
+                      let nodeText = node.querySelector("a").textContent.trim()
+                      if (text == nodeText) {
+                          $(".nav").append(node)
+                          return false;
+                      }
+                      return true;
+                  })
+                });
+                $(".nav").append(elements)
+              </script>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
-</nav>
-
-<style>
-  /* Hide house icon if it exists */
-  .navbar-brand .fa-home,
-  .navbar-brand .fa-house,
-  .navbar-brand [class*="home"],
-  .navbar-brand [class*="house"],
-  .navbar-icon,
-  .home-icon {
-    display: none !important;
-  }
-  
-  /* Ensure navbar brand text is visible */
-  .navbar-brand {
-    display: block !important;
-    padding: 15px 15px !important;
-  }
-</style>
-
+</header>
 
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
@@ -211,27 +242,25 @@
       <div class="content-div">
         <h1 id="jetbundle">JetBundle</h1>
 
-<h2 id="engineering-principles-of-physics-finance-and-computation">Engineering Principles of Physics, Finance, and Computation</h2>
-
-<p><strong>Mapping the hidden geometry of modern science.</strong></p>
+<p><strong>Engineering principles of physics, finance, and computation.</strong></p>
 
 <hr />
 
-<h3 id="physics">Physics</h3>
+<h2 id="physics">Physics</h2>
 
-<p>The mathematical foundations of physical systems</p>
-
-<hr />
-
-<h3 id="finance">Finance</h3>
-
-<p>The computational architecture of financial markets</p>
+<p>Mathematical foundations of physical systems.</p>
 
 <hr />
 
-<h3 id="computation">Computation</h3>
+<h2 id="finance">Finance</h2>
 
-<p>The algorithmic structures of modern computing</p>
+<p>Computational methods in financial engineering.</p>
+
+<hr />
+
+<h2 id="computation">Computation</h2>
+
+<p>Algorithms and systems architecture.</p>
 
 <hr />
 
