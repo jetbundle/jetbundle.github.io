@@ -120,7 +120,7 @@
             this.color = this.determineColor();
             this.length = 0;
             this.maxLength = CONFIG.maxFiberLength * (0.8 + Math.random() * 0.4);
-            this.generatePoints();
+            // generatePoints will be called with mouse parameters in update()
         }
 
         determineColor() {
