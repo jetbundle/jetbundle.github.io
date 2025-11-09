@@ -21,12 +21,12 @@
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
         // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
-        animationSpeed: 0.00005,  // Extremely slow animation speed (6x slower than before)
+        animationSpeed: 0.0001,   // Extremely slow animation speed (30x slower than original)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.000008,     // Extremely slow evolution (6x slower than before)
+        noiseSpeed: 0.00001,      // Extremely slow evolution (50x slower than original)
 
         // Visual parameters - perpetual trails - EXTREMELY SLOW FADE
-        opacityDecay: 0.999,      // Nearly imperceptible decay for extremely long trails
+        opacityDecay: 0.999,      // Extremely slow decay for very long trails
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
 
@@ -41,12 +41,13 @@
         // Performance tuning - balanced for large coverage (unchanged for performance)
         maxFibers: 24,            // Match fibersPerPoint
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
-        fadeOutSpeed: 0.999,      // Nearly imperceptible fade for extremely long perpetual trails
-        maxPointsPerFiber: 1500,  // Support long fibers
+        fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
+        maxPointsPerFiber: 1500   // Support long fibers
         
-        // Off-screen base point configuration
-        basePointOffsetX: -500,   // Base point off-screen to the left
-        basePointOffsetY: -500    // Base point off-screen to the top
+        // Center point offset - move off-screen
+        // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
+        centerOffsetX: -800,      // Center point 800px off-screen to the left
+        centerOffsetY: -800,      // Center point 800px off-screen to the top
     };
 
     // Simplified noise generator (more efficient)
@@ -132,10 +133,10 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Extremely slow evolution through reduced noiseSpeed multiplier
+                // Slower evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 300,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 300
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
                 );
 
                 // Smooth angle variation for elegant curves
@@ -163,21 +164,21 @@
         }
 
         isVisible(width, height, margin = 500) {
-            // Large margin for long fibers - check if any part of fiber is visible on screen
-            // Base point is off-screen, so we only care about fiber points that are on-screen
+            // Large margin for long fibers - check if any part of fiber is visible ON SCREEN
+            // Base point is off-screen, so we only check if fiber points enter the viewport
             if (this.points.length === 0) return false;
             
-            // Don't check base point (it's intentionally off-screen)
-            // Only check if any part of the fiber extends onto the visible screen
+            // Don't check base point - it's intentionally off-screen
+            // Only check if fiber points extend into the visible area
             
-            // Check first point (closest to off-screen base)
+            // Check first point (closest to base, might be off-screen)
             const first = this.points[0];
             if (first.x >= -margin && first.x <= width + margin && 
                 first.y >= -margin && first.y <= height + margin) {
                 return true;
             }
             
-            // Check last point (furthest from base)
+            // Check last point (furthest from base, most likely to be on-screen)
             const last = this.points[this.points.length - 1];
             if (last.x >= -margin && last.x <= width + margin && 
                 last.y >= -margin && last.y <= height + margin) {
@@ -185,8 +186,18 @@
             }
             
             // Check middle points (sample every 10th point for performance)
-            // This ensures we catch fibers that curve through the screen
+            // This catches fibers that curve into the viewport
             for (let i = 10; i < this.points.length; i += 10) {
+                const p = this.points[i];
+                if (p.x >= -margin && p.x <= width + margin && 
+                    p.y >= -margin && p.y <= height + margin) {
+                    return true;
+                }
+            }
+            
+            // Also check some points near the end (more likely to be on-screen)
+            const checkPoints = Math.min(5, Math.floor(this.points.length / 4));
+            for (let i = this.points.length - checkPoints; i < this.points.length; i++) {
                 const p = this.points[i];
                 if (p.x >= -margin && p.x <= width + margin && 
                     p.y >= -margin && p.y <= height + margin) {
@@ -252,17 +263,40 @@
             this.generateJets();
         }
 
-        isVisible(width, height, margin = 150) {
-            // Quick check - just base point and first jet point
+        isVisible(width, height, margin = 500) {
+            // Check if any jet extends into the visible viewport
+            // Base point is off-screen, so we only check jet points
             if (this.jets.length === 0) return false;
-            const baseVisible = this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
-                this.basePoint.y >= -margin && this.basePoint.y <= height + margin;
-            if (baseVisible) return true;
-            return this.jets.some(jet =>
-                jet.points.length > 0 &&
-                jet.points[0].x >= -margin && jet.points[0].x <= width + margin &&
-                jet.points[0].y >= -margin && jet.points[0].y <= height + margin
-            );
+            
+            // Check if any jet has points in the visible area
+            for (const jet of this.jets) {
+                if (jet.points.length === 0) continue;
+                
+                // Check first point
+                const first = jet.points[0];
+                if (first.x >= -margin && first.x <= width + margin &&
+                    first.y >= -margin && first.y <= height + margin) {
+                    return true;
+                }
+                
+                // Check last point (more likely to be on-screen)
+                const last = jet.points[jet.points.length - 1];
+                if (last.x >= -margin && last.x <= width + margin &&
+                    last.y >= -margin && last.y <= height + margin) {
+                    return true;
+                }
+                
+                // Check middle points
+                for (let i = 5; i < jet.points.length; i += 5) {
+                    const p = jet.points[i];
+                    if (p.x >= -margin && p.x <= width + margin &&
+                        p.y >= -margin && p.y <= height + margin) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
         }
     }
 
@@ -314,24 +348,34 @@
 
         initializeBaseSpace() {
             this.basePoints = [];
-            // Single point OFF-SCREEN (top-left corner, outside viewport)
-            // This creates an effect where only the fibers that extend onto the screen are visible
-            const baseX = CONFIG.basePointOffsetX;  // Off-screen to the left
-            const baseY = CONFIG.basePointOffsetY;  // Off-screen to the top
+            // Single point OFF-SCREEN (top-left corner, 800px outside viewport)
+            // This ensures only the fibers/bundles that extend INTO the screen are visible
+            const centerX = CONFIG.centerOffsetX;  // -800px (off-screen left)
+            const centerY = CONFIG.centerOffsetY;  // -800px (off-screen top)
             
             this.basePoints.push({ 
-                x: baseX, 
-                y: baseY, 
+                x: centerX, 
+                y: centerY, 
                 id: 0 
             });
             
-            console.log('Manifold: Single base point OFF-SCREEN', { 
-                x: baseX, 
-                y: baseY, 
+            // Verify point is off-screen
+            const isOffScreen = centerX < 0 || centerX > this.width || centerY < 0 || centerY > this.height;
+            console.log('Manifold: Base point OFF-SCREEN', { 
+                x: centerX, 
+                y: centerY, 
                 width: this.width, 
                 height: this.height,
-                note: 'Only fibers extending onto screen will be visible'
+                isOffScreen: isOffScreen,
+                verify: `Point at (${centerX}, ${centerY}) is ${isOffScreen ? 'OFF-SCREEN ✓' : 'ON-SCREEN ✗'}`
             });
+            
+            if (!isOffScreen) {
+                console.warn('Manifold: WARNING - Base point is on-screen! Moving further off-screen...');
+                // Force off-screen if somehow on-screen
+                this.basePoints[0].x = -1000;
+                this.basePoints[0].y = -1000;
+            }
         }
 
         generateFibers() {
@@ -339,16 +383,12 @@
             this.jetBundles = [];
 
             for (const basePoint of this.basePoints) {
-                // Generate many fibers radiating from off-screen point
-                // Only fibers that curve onto the screen will be visible
+                // Generate many fibers radiating from center in all directions
                 for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Focus angles towards screen (roughly 45-135 degrees for top-left base)
-                    // This ensures many fibers will curve onto the screen
-                    const baseAngle = Math.PI * 0.75; // 135 degrees (towards bottom-right)
-                    const angleSpread = Math.PI * 1.5; // Spread over 270 degrees
-                    const angle = baseAngle + (angleSpread * i) / CONFIG.fibersPerPoint - (angleSpread / 2);
+                    // Evenly distribute angles around the circle
+                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
                     // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.15;
+                    const angleVariation = (Math.random() - 0.5) * 0.1;
                     const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
                     this.fibers.push(fiber);
                 }
@@ -360,7 +400,7 @@
                 }
             }
 
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from off-screen base point');
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
         }
 
         drawFiber(fiber) {
@@ -430,14 +470,14 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Perpetual trail effect - extremely slow fade for continuous animation
-            // Clear with nearly imperceptible fade to create extremely long perpetual trails
+            // Perpetual trail effect - very slow fade for continuous animation
+            // Clear with very subtle fade to create perpetual trails
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-            
+
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.99)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
