@@ -433,6 +433,11 @@
 
         generateFibers() {
             // Generate fibers for each base point
+            this.fibers = [];
+            this.jetBundles = [];
+            this.fiberIdCounter = 0;
+            this.jetIdCounter = 0;
+            
             for (let i = 0; i < this.basePoints.length; i++) {
                 const basePoint = this.basePoints[i];
                 
@@ -448,19 +453,17 @@
                     this.fibers.push(fiber);
                 }
 
-                // Generate jet bundle
-                if (Math.random() > 0.3) {
-                    const jetBundle = new ImprovedJetBundle(
-                        basePoint,
-                        this.noiseGen,
-                        this.time,
-                        this.jetIdCounter++
-                    );
-                    this.jetBundles.push(jetBundle);
-                }
+                // Generate jet bundle for each base point
+                const jetBundle = new ImprovedJetBundle(
+                    basePoint,
+                    this.noiseGen,
+                    this.time,
+                    this.jetIdCounter++
+                );
+                this.jetBundles.push(jetBundle);
             }
 
-            // Limit total fibers
+            // Limit total fibers (shouldn't be needed with 2 base points, but safety check)
             if (this.fibers.length > CONFIG.maxFibers) {
                 this.fibers = this.fibers.slice(-CONFIG.maxFibers);
             }
