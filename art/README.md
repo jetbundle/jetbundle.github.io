@@ -154,4 +154,3 @@ To improve the mathematical accuracy or performance:
 ## Contact
 
 For questions or suggestions, please open an issue on the JetBundle GitHub repository.
-

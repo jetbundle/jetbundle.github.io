@@ -179,4 +179,3 @@ The animation helps viewers understand:
 - How mathematical structures evolve over time
 
 This aligns perfectly with the JetBundle project's mission of making abstract mathematical concepts accessible through visualization.
-
