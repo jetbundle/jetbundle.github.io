@@ -302,11 +302,49 @@
 
           // Remove any navigation outside our header
           try {
-            const navs = document.querySelectorAll('nav, .toolbar, aside');
+            const navs = document.querySelectorAll('nav, .toolbar, aside, ul.toolbar, .nav-list');
             navs.forEach(nav => {
-              if (!nav.closest('header') && !nav.classList.contains('navbar-container')) {
+              // Skip our custom header
+              if (!nav.closest('header') && 
+                  !nav.classList.contains('navbar-container') && 
+                  !nav.classList.contains('navbar-menu') &&
+                  !nav.closest('.navbar-container')) {
                 nav.style.display = 'none';
+                nav.style.visibility = 'hidden';
                 nav.remove();
+              }
+            });
+            
+            // Remove any list items that are navigation items
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach(li => {
+              const link = li.querySelector('a');
+              if (link && !link.closest('header')) {
+                const text = link.textContent.trim();
+                // If it's a navigation link (About, Resources, Blog, Community, Home)
+                if (text === 'About' || text === 'Resources' || text === 'Blog' || 
+                    text === 'Community' || text === 'Home' || text.includes('Home')) {
+                  // Only remove if it's not in our header
+                  if (!link.closest('header') && !link.classList.contains('navbar-link')) {
+                    li.remove();
+                  }
+                }
+              }
+            });
+          } catch (e) {
+            // Ignore errors
+          }
+          
+          // Remove any elements with "jetbundleHome" in their text or ID
+          try {
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+              const text = el.textContent || '';
+              const id = el.id || '';
+              const className = el.className || '';
+              if ((text.includes('jetbundleHome') || id.includes('jetbundleHome') || 
+                   className.includes('jetbundleHome')) && !el.closest('header')) {
+                el.remove();
               }
             });
           } catch (e) {
@@ -357,16 +395,25 @@
           setTimeout(removeThemeNavigation, 500);
         });
 
-        // Watch for dynamically added elements
+        // Watch for dynamically added elements (throttled to avoid performance issues)
         if (window.MutationObserver) {
+          let timeout;
           const observer = new MutationObserver(function(mutations) {
-            removeThemeNavigation();
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+              removeThemeNavigation();
+            }, 100);
           });
           observer.observe(document.body, {
             childList: true,
             subtree: true
           });
         }
+        
+        // Aggressive removal - run periodically to catch anything that slips through
+        setInterval(function() {
+          removeThemeNavigation();
+        }, 2000);
 
         // Lightweight cursor trail - only if user moves mouse
         let trailInit = false;
