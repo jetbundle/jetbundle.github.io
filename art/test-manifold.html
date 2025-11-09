@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifold Background Test - JetBundle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        #info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            color: #f1f5f9;
+            font-size: 12px;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        #info h1 {
+            color: #ff6b35;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 5px;
+        }
+
+        #info p {
+            margin: 5px 0;
+            color: #94a3b8;
+        }
+
+        #info strong {
+            color: #0ea5e9;
+        }
+
+        #controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            color: #f1f5f9;
+            font-size: 12px;
+        }
+
+        #controls button {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);
+            color: #f1f5f9;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 11px;
+        }
+
+        #controls button:hover {
+            background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%);
+        }
+
+        #stats {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            color: #f1f5f9;
+            font-size: 11px;
+            line-height: 1.6;
+            min-width: 200px;
+        }
+
+        #stats h2 {
+            color: #ff6b35;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 5px;
+        }
+
+        #stats div {
+            margin: 5px 0;
+            color: #94a3b8;
+        }
+
+        #stats strong {
+            color: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h1>Manifold Background Test</h1>
+        <p><strong>Features:</strong></p>
+        <p>• 2 moving base points with stochastic (Brownian) motion</p>
+        <p>• Improved mathematical accuracy</p>
+        <p>• Memory efficient (perpetual running)</p>
+        <p>• Perpetual space exploration</p>
+        <p>• Minimized computational cost</p>
+    </div>
+
+    <div id="stats">
+        <h2>Statistics</h2>
+        <div id="stats-content">
+            <div>Frame: <strong id="frame-count">0</strong></div>
+            <div>Fibers: <strong id="fiber-count">0</strong></div>
+            <div>Jets: <strong id="jet-count">0</strong></div>
+            <div>Base Point 1: <strong id="bp1-pos">-</strong></div>
+            <div>Base Point 2: <strong id="bp2-pos">-</strong></div>
+            <div>Time: <strong id="time-value">0</strong></div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button onclick="toggleAnimation()">Pause/Resume</button>
+        <button onclick="resetAnimation()">Reset</button>
+        <button onclick="toggleStats()">Toggle Stats</button>
+    </div>
+
+    <script src="manifold-background-improved.js"></script>
+    <script>
+        let statsVisible = true;
+        let statsUpdateInterval = null;
+
+        function updateStats() {
+            if (!window.manifoldBackground) return;
+
+            const m = window.manifoldBackground;
+            document.getElementById('frame-count').textContent = m.frameCount;
+            document.getElementById('fiber-count').textContent = m.fibers.length;
+            document.getElementById('jet-count').textContent = m.jetBundles.length;
+            document.getElementById('time-value').textContent = m.time.toFixed(2);
+
+            if (m.basePoints && m.basePoints.length >= 2) {
+                document.getElementById('bp1-pos').textContent = 
+                    `(${m.basePoints[0].x.toFixed(0)}, ${m.basePoints[0].y.toFixed(0)})`;
+                document.getElementById('bp2-pos').textContent = 
+                    `(${m.basePoints[1].x.toFixed(0)}, ${m.basePoints[1].y.toFixed(0)})`;
+            }
+        }
+
+        function toggleAnimation() {
+            if (!window.manifoldBackground) return;
+            const m = window.manifoldBackground;
+            if (m.isRunning) {
+                m.stop();
+                console.log('Animation paused');
+            } else {
+                m.start();
+                console.log('Animation resumed');
+            }
+        }
+
+        function resetAnimation() {
+            if (!window.manifoldBackground) return;
+            const m = window.manifoldBackground;
+            m.stop();
+            m.time = 0;
+            m.frameCount = 0;
+            m.initializeBaseSpace();
+            m.start();
+            console.log('Animation reset');
+        }
+
+        function toggleStats() {
+            statsVisible = !statsVisible;
+            document.getElementById('stats').style.display = statsVisible ? 'block' : 'none';
+        }
+
+        // Update stats every second
+        setTimeout(() => {
+            statsUpdateInterval = setInterval(updateStats, 1000);
+        }, 1000);
+
+        // Initial stats update
+        setTimeout(updateStats, 500);
+
+        console.log('Manifold Background Test Page Loaded');
+        console.log('Use window.manifoldBackground to access the animation object');
+    </script>
+</body>
+</html>
+

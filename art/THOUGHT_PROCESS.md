@@ -256,4 +256,3 @@ The manifold background successfully balances:
 - ✅ **Educational value**: Helps viewers understand abstract mathematics
 
 While it simplifies some mathematical rigor, it provides an **intuitive and beautiful** representation of fiber bundle theory that aligns with the JetBundle project's mission of making mathematical concepts accessible.
-
