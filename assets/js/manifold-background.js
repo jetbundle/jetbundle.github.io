@@ -702,6 +702,11 @@
                     jetCount++;
                 }
             }
+            
+            // Draw mouse trail (subtle, in background)
+            if (this.mouseTrail.points.length > 1) {
+                this.mouseTrail.draw(this.ctx);
+            }
 
             // Debug log every 60 frames
             if (this.frameCount % 60 === 0) {
@@ -710,7 +715,8 @@
                     fibersDrawn: drawnCount,
                     jetsDrawn: jetCount,
                     canvasSize: this.width + 'x' + this.height,
-                    time: this.time.toFixed(2)
+                    time: this.time.toFixed(2),
+                    mouseActive: this.mouseActive
                 });
             }
 
