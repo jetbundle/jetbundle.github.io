@@ -42,11 +42,11 @@
         maxFibers: 24,            // Match fibersPerPoint
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
         fadeOutSpeed: 0.999,      // Nearly imperceptible fade for extremely long perpetual trails
-        maxPointsPerFiber: 1500   // Support long fibers
+        maxPointsPerFiber: 1500,  // Support long fibers
         
         // Off-screen base point configuration
         basePointOffsetX: -500,   // Base point off-screen to the left
-        basePointOffsetY: -500,   // Base point off-screen to the top
+        basePointOffsetY: -500    // Base point off-screen to the top
     };
 
     // Simplified noise generator (more efficient)
@@ -132,10 +132,10 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Slower evolution through reduced noiseSpeed multiplier
+                // Extremely slow evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 300,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 300
                 );
 
                 // Smooth angle variation for elegant curves
