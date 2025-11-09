@@ -1,15 +1,5 @@
-/* JetBundle Gauge Theme - Direct CSS file for maximum override */
-:root {
-  --orange-primary: #ff6b35;
-  --orange-accent: #ff4500;
-  --blue-primary: #0ea5e9;
-  --blue-deep: #1e40af;
-  --dark-bg: #0b0e17;
-  --card-bg: #111827;
-  --text-primary: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border-subtle: #1e293b;
-}
+/* JetBundle Custom CSS - Additional Overrides */
+/* Main styles are in gauge-theme.css - this file is for theme-specific overrides */
 
 /* Maximum specificity overrides */
 html, body, html body, body.animated, body.animated.fadeIn {
