@@ -284,7 +284,7 @@
         }
 
         resize() {
-            // Use window dimensions directly for reliable sizing
+            // Use window dimensions directly for reliable sizing - full screen coverage
             this.width = window.innerWidth;
             this.height = window.innerHeight;
 
@@ -292,11 +292,15 @@
             this.canvas.width = this.width;
             this.canvas.height = this.height;
 
-            // Ensure CSS size matches
-            this.canvas.style.width = this.width + 'px';
-            this.canvas.style.height = this.height + 'px';
+            // Ensure CSS size matches - full screen coverage
+            this.canvas.style.width = '100%';
+            this.canvas.style.height = '100%';
 
-            console.log('Manifold: Resized to', this.width + 'x' + this.height);
+            // Reinitialize base space (center point) and regenerate fibers for new screen size
+            this.initializeBaseSpace();
+            this.generateFibers();
+
+            console.log('Manifold: Resized to', this.width + 'x' + this.height, '- Full screen coverage');
         }
 
         initializeBaseSpace() {
