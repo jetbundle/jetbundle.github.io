@@ -48,4 +48,4 @@ Microsoft's **Azure Kubernetes Service** is formally authorized for **DoD Impact
 
 ---
 
-**[Back to Computation Stack →](/computation_stack/01_intro/)**
+**[Back to Computation Stack →](/computation_stack/)**

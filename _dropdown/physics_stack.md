@@ -1,10 +1,6 @@
 ---
 title: Physics Stack
 url: /physics_stack/
-priority: 2
+priority: 3
 ---
-
-# Physics Stack
-
-Naval Warfare & Missile Guidance
 

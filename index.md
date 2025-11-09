@@ -31,25 +31,31 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 
 Mastery of **Physics, Finance, and Computation** are the fundamentals for becoming a 21st-century scientist and engineer in a world transformed by artificial intelligence. These three disciplines form the core of human value: eudaimonia through free thinking, free building, and engineering excellence.
 
-### [Computation Stack →](/computation_stack/01_intro/)
+### [Computation Stack →](/computation_stack/)
 
 **Command, Control, Communications & Intelligence**
+
+Mastery of computation—operating systems, artificial intelligence, and graph theory—forms the foundation of modern systems architecture.
 
 - Operating Systems: From Project MAC to Azure IL5
 - Artificial Intelligence: From ALVINN to Palantir
 - Graph Theory: From Turán to SKYNET to Palantir Gotham
 
-### [Physics Stack →](/physics_stack/01_intro/)
+### [Physics Stack →](/physics_stack/)
 
 **Naval Warfare & Missile Guidance**
+
+Mathematical foundations of physical systems—complex analysis, partial differential equations, and scientific computing.
 
 - Complex Analysis: From *Nautilus* hulls to aircraft wings
 - PDEs: From H-bomb shock-waves to hypersonic vehicles
 - Scientific Computing: From Los Alamos to stockpile simulations
 
-### [Finance Stack →](/finance_stack/01_intro/)
+### [Finance Stack →](/finance_stack/)
 
 **The Great Handover: Wall Street Outbids the Pentagon**
+
+Computational methods in financial engineering—from missile guidance to algorithmic trading.
 
 - Kalman Filter: From missile guidance to time-series analysis
 - Pontryagin's Principle: From ballistic trajectories to options pricing

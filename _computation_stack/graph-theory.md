@@ -57,4 +57,4 @@ The same mathematical techniques (graph theory, centrality algorithms, clique de
 
 ---
 
-**[Back to Computation Stack →](/computation_stack/01_intro/)**
+**[Back to Computation Stack →](/computation_stack/)**

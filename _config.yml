@@ -24,8 +24,8 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
-# Navigation - potato-hacker theme uses toolbar_priority and dropdown collection
 toolbar_priority:
+  - "About"
   - "Computation Stack"
   - "Physics Stack"
   - "Finance Stack"
@@ -40,8 +40,6 @@ collections:
   physics_stack:
     output: true
   finance_stack:
-    output: true
-  principal:
     output: true
   dropdown:
     output: true

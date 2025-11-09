@@ -1,10 +1,6 @@
 ---
 title: Computation Stack
 url: /computation_stack/
-priority: 1
+priority: 2
 ---
-
-# Computation Stack
-
-Command, Control, Communications & Intelligence
 

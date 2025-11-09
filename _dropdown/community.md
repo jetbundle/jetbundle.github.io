@@ -1,9 +1,5 @@
 ---
 title: Community
-url: /community/
-priority: 6
+url: /community
+priority: 7
 ---
-
-# Community
-
-Join the Bundle - High-knowledge, high-skilled community.

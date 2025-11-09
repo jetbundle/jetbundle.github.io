@@ -52,4 +52,4 @@ The same mathematical techniques (backpropagation, neural networks) funded by ON
 
 ---
 
-**[Back to Computation Stack →](/computation_stack/01_intro/)**
+**[Back to Computation Stack →](/computation_stack/)**
