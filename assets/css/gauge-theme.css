@@ -494,19 +494,15 @@ body .content-div {
 /* Responsive: reduce margin on smaller screens */
 @media (max-width: 1024px) {
   body .container,
-  body .wrapper,
-  body .content-div {
+  body .wrapper {
     margin-right: 60px !important;
-    max-width: calc(100% - 60px) !important;
   }
 }
 
 @media (max-width: 768px) {
   body .container,
-  body .wrapper,
-  body .content-div {
+  body .wrapper {
     margin-right: 20px !important;
-    max-width: calc(100% - 20px) !important;
   }
   
   .landing-title {
