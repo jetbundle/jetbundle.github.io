@@ -47,7 +47,7 @@
         maxFibers: 12,            // Match fibersPerPoint (fewer fibers)
         updateInterval: 2,        // Update every 2 frames for smooth animation
         fadeOutSpeed: 0.997,      // Moderate fade for periodic clearing (creates space)
-        maxPointsPerFiber: 1500   // Support long fibers
+        maxPointsPerFiber: 1500,  // Support long fibers
 
         // Center point offset - move off-screen (even closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
