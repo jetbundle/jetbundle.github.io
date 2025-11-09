@@ -418,7 +418,7 @@
 
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.99)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
