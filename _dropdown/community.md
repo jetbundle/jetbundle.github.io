@@ -1,10 +1,10 @@
 ---
 title: Community
-url: /community/
+url: /community
 priority: 4
 ---
 
 # Community
 
-Community resources and discussions.
+Community and discussion.
 

@@ -6,26 +6,24 @@ description: Engineering principles of physics, finance, and computation
 
 # JetBundle
 
-## Engineering Principles of Physics, Finance, and Computation
-
-**Mapping the hidden geometry of modern science.**
+**Engineering principles of physics, finance, and computation.**
 
 ---
 
-### Physics
+## Physics
 
-The mathematical foundations of physical systems
-
----
-
-### Finance
-
-The computational architecture of financial markets
+Mathematical foundations of physical systems.
 
 ---
 
-### Computation
+## Finance
 
-The algorithmic structures of modern computing
+Computational methods in financial engineering.
+
+---
+
+## Computation
+
+Algorithms and systems architecture.
 
 ---

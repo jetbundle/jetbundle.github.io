@@ -1,9 +1,9 @@
 ---
 title: About
-url: /about/
-priority: 5
+url: /principal
+priority: 1
 ---
 
 # About
 
-About JetBundle and the project.
+JetBundle - Mapping the hidden geometry of modern science.

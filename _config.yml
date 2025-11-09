@@ -25,11 +25,10 @@ avatar_description: "Mapping the hidden geometry of modern science."
 highlighter_theme: monokai
 
 toolbar_priority:
-  - "Home"
+  - "About"
   - "Resources"
   - "Blog"
   - "Community"
-  - "About"
 
 # Collections (The "Fibers")
 collections:

@@ -1,6 +1,6 @@
 ---
 title: Resources
-url: /resources/
+url: /resources
 priority: 2
 has_children: true
 children:
@@ -9,9 +9,19 @@ children:
   - title: "Booklist"
     url: /booklist/
   - title: "Primary Sources"
-    url: /primary-sources/
+    url: /archive/
 ---
 
 # Resources
 
-The Stack, Booklist, and Primary Sources.
+## The Stack
+
+[The Stack →](/stacks/)
+
+## Booklist
+
+[Booklist →](/booklist/)
+
+## Primary Sources
+
+[Primary Sources →](/archive/)

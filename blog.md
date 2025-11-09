@@ -1,9 +1,5 @@
 ---
-layout: page
+layout: blog-index
 title: Blog
-description: Blog posts and articles
+description: JetBundle Blog
 ---
-
-# Blog
-
-Blog posts and articles.

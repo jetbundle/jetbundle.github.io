@@ -55,7 +55,7 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -100,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetX: -230,      // Center point 250px off-screen to the left (closer to edge)
         centerOffsetY: -5      // Center point 250px off-screen to the top (closer to edge)
     };
 
@@ -383,12 +383,12 @@
 
                 // Apply opacity decay to all points (like manifold) - MUCH FASTER DECAY
                 this.points.forEach((p, i) => {
-                    p.opacity *= 0.92; // Much faster decay (was CONFIG.opacityDecay ~0.998)
+                    p.opacity *= 0.88; // Much faster decay (was CONFIG.opacityDecay ~0.998)
                 });
             } else {
                 // Much faster fade when mouse is still (damped, disappears quickly)
                 this.points.forEach((p, i) => {
-                    p.opacity *= 0.85; // Much faster fade when still (was 0.95)
+                    p.opacity *= 0.80; // Much faster fade when still (was 0.95)
                 });
                 // Remove invisible points
                 this.points = this.points.filter(p => p.opacity > 0.01);

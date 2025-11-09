@@ -1,6 +1,6 @@
 ---
 title: Blog
-url: /blog/
+url: /blog
 priority: 3
 ---
 
