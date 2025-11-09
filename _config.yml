@@ -26,13 +26,11 @@ highlighter_theme: monokai
 
 # Collections (The "Fibers")
 collections:
-  c3i_stack:
+  computation_stack:
     output: true
   physics_stack:
     output: true
   finance_stack:
-    output: true
-  dropdown:
     output: true
 
 # Plugins
@@ -60,6 +58,10 @@ exclude:
   - blog.md
   - _pages/cartography.md
   - _pages/stacks.md
+  - _pages/principal.md
+  - _pages/booklist.md
+  - _pages/archive.md
+  - _dropdown
 
 # PDF Settings
 pdf_height: 900px

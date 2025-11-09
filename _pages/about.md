@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Principal
+title: About
 description: Mapping the hidden geometry of modern science
 ---
 
@@ -23,36 +23,6 @@ In this model:
 3. **The Connection** is the flow of funding. This connection—the grants from the Office of Naval Research (ONR), DARPA, and the Air Force Office of Scientific Research (AFOSR)—defines the "curvature" of the entire system. It dictates how and why the "pure" research of the Base Space is forced to bend to serve the applied needs of the Fiber.
 
 This site is the open-source audit of that structure. We trace the "memo-to-lemma" pipeline.
-
----
-
-## The Fibers (The Applied Stacks)
-
-The applied stacks trace defense-driven innovation to modern engineering practice. For detailed information on each stack, see the [Resources](/resources/) page.
-
-### [The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
-
-**Command, Control, Communications & Intelligence**
-
-- Operating Systems: From Project MAC to Azure IL5
-- Artificial Intelligence: From ALVINN to Palantir
-- Graph Theory: From Turán to SKYNET to Palantir Gotham
-
-### [The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
-
-**Naval Warfare & Missile Guidance**
-
-- Complex Analysis: From *Nautilus* hulls to aircraft wings
-- PDEs: From H-bomb shock-waves to hypersonic vehicles
-- Scientific Computing: From Los Alamos to stockpile simulations
-
-### [The Military-Financial Stack →](/finance_stack/01_intro/)
-
-**The Great Handover: Wall Street Outbids the Pentagon**
-
-- Kalman Filter: From missile guidance to time-series analysis
-- Pontryagin's Principle: From ballistic trajectories to options pricing
-- High-Frequency Trading: From radar signal processing to microwave networks
 
 ---
 
@@ -125,8 +95,8 @@ This is the "declassification by syllabus."
 
 This project is the open-source initiative to map this bundle. The `jetbundle.github.io` site serves as the primer, the audit trail, and the central hub.
 
-- **The Archive** ([Primary Sources →](/archive/)) contains the declassified memos, booklists, and primary sources.
-- **The Audits** ([The Stacks →](/resources/#the-stacks)) apply this forensic methodology to new fields.
+- **The Archive** ([Primary Sources →](/resources/#primary-sources)) contains the declassified memos, booklists, and primary sources.
+- **The Audits** ([The Stacks →](/)) apply this forensic methodology to new fields.
 - **The Simulations** provide open-source code to explore the "lemmas" (Kalman filters, Turán graphs, Byzantine consensus).
 
 The goal is to remove the redactions. The audit trail is the curriculum.
@@ -137,8 +107,6 @@ The goal is to remove the redactions. The audit trail is the curriculum.
 - DARPA's 2007 "Mathematical Challenges" BAA
 - ONR, AFOSR, and DARPA funding records
 - Declassified research reports
-
-For more resources, see the [Resources](/resources/) page.
 
 ---
 
@@ -153,3 +121,4 @@ This website and its content are provided for **research and educational purpose
 **License:** This project is licensed under the MIT License with a non-commercial use restriction. Commercial use, monetization, or use for financial gain is prohibited without explicit written permission. See the [License](/license/) page for full terms.
 
 **Disclaimer:** See the [Disclaimer](/disclaimer/) page for complete legal disclaimers and research methodology.
+
