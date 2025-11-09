@@ -37,7 +37,7 @@
         mouseTrailOpacity: 0.20,    // Slightly more visible opacity for mouse trail
         mouseTrailLength: 120,      // Longer mouse trail fiber (was 60)
         mouseTrailThickness: 0.6,   // Smaller thickness for mouse trail
-        mouseTrailEvolutionStrength: 0.5  // Evolution strength for mouse trail (like regular fibers)
+        mouseTrailEvolutionStrength: 0.5,  // Evolution strength for mouse trail (like regular fibers)
 
         // Color scheme (gauge theme)
         colors: {
