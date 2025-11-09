@@ -27,7 +27,7 @@
 
         // Visual parameters - faster fade for continuous process
         opacityDecay: 0.992,      // Faster decay for continuous fading
-        baseOpacity: 0.25,        // Good visibility
+        baseOpacity: 0.5,         // Increased visibility (was 0.25)
         gradientStops: 2,         // Minimal stops
 
         // Mouse interaction parameters (subtle effects)
@@ -199,43 +199,35 @@
         isVisible(width, height, margin = 500) {
             // Large margin for long fibers - check if any part of fiber is visible ON SCREEN
             // Base point is off-screen, so we only check if fiber points enter the viewport
-            if (this.points.length === 0) return false;
+            if (this.points.length === 0) return true; // Always update if no points yet (needs initial generation)
 
-            // Don't check base point - it's intentionally off-screen
-            // Only check if fiber points extend into the visible area
+            // Check if any point is within viewport (with margin)
+            // Use larger margin for initial visibility check
+            const viewMargin = margin;
 
-            // Check first point (closest to base, might be off-screen)
-            const first = this.points[0];
-            if (first.x >= -margin && first.x <= width + margin &&
-                first.y >= -margin && first.y <= height + margin) {
-                return true;
-            }
-
-            // Check last point (furthest from base, most likely to be on-screen)
-            const last = this.points[this.points.length - 1];
-            if (last.x >= -margin && last.x <= width + margin &&
-                last.y >= -margin && last.y <= height + margin) {
-                return true;
-            }
-
-            // Check middle points (sample every 10th point for performance)
-            // This catches fibers that curve into the viewport
-            for (let i = 10; i < this.points.length; i += 10) {
+            // Check every 5th point for performance (more thorough than before)
+            for (let i = 0; i < this.points.length; i += Math.max(1, Math.floor(this.points.length / 20))) {
                 const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin &&
-                    p.y >= -margin && p.y <= height + margin) {
+                // Check if point could potentially be visible (within extended bounds)
+                if (p.x >= -viewMargin && p.x <= width + viewMargin &&
+                    p.y >= -viewMargin && p.y <= height + viewMargin) {
                     return true;
                 }
             }
 
-            // Also check some points near the end (more likely to be on-screen)
-            const checkPoints = Math.min(5, Math.floor(this.points.length / 4));
-            for (let i = this.points.length - checkPoints; i < this.points.length; i++) {
-                const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin &&
-                    p.y >= -margin && p.y <= height + margin) {
+            // Also check last point (most likely to be on-screen)
+            if (this.points.length > 0) {
+                const last = this.points[this.points.length - 1];
+                if (last.x >= -viewMargin && last.x <= width + viewMargin &&
+                    last.y >= -viewMargin && last.y <= height + viewMargin) {
                     return true;
                 }
+            }
+
+            // If fiber has points but none are in extended view, it might still curve in
+            // Be more permissive - if fiber is long enough, assume it might be visible
+            if (this.points.length > 50) {
+                return true; // Long fibers might curve into view
             }
 
             return false;
@@ -300,28 +292,14 @@
         isVisible(width, height, margin = 500) {
             // Check if any jet extends into the visible viewport
             // Base point is off-screen, so we only check jet points
-            if (this.jets.length === 0) return false;
+            if (this.jets.length === 0) return true; // Always update if no jets yet
 
             // Check if any jet has points in the visible area
             for (const jet of this.jets) {
                 if (jet.points.length === 0) continue;
 
-                // Check first point
-                const first = jet.points[0];
-                if (first.x >= -margin && first.x <= width + margin &&
-                    first.y >= -margin && first.y <= height + margin) {
-                    return true;
-                }
-
-                // Check last point (more likely to be on-screen)
-                const last = jet.points[jet.points.length - 1];
-                if (last.x >= -margin && last.x <= width + margin &&
-                    last.y >= -margin && last.y <= height + margin) {
-                    return true;
-                }
-
-                // Check middle points
-                for (let i = 5; i < jet.points.length; i += 5) {
+                // Check every point (jets are short, so this is fine)
+                for (let i = 0; i < jet.points.length; i++) {
                     const p = jet.points[i];
                     if (p.x >= -margin && p.x <= width + margin &&
                         p.y >= -margin && p.y <= height + margin) {
@@ -330,7 +308,9 @@
                 }
             }
 
-            return false;
+            // If jets exist but none are visible, still return true for long jets
+            // (they might curve into view)
+            return this.jets.some(jet => jet.points.length > 20);
         }
     }
 
@@ -584,24 +564,33 @@
             this.jetBundles = [];
 
             for (const basePoint of this.basePoints) {
-                // Generate many fibers radiating from center in all directions
+                // Generate many fibers radiating from center
+                // Since base point is at (-100, -5), we want fibers to go RIGHT and DOWN into screen
+                // Bias angles toward quadrant 1 (0 to 90 degrees = right and down)
                 for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Evenly distribute angles around the circle
-                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
+                    // Distribute angles but bias toward screen (right/down direction)
+                    // Base point is top-left, so angles should be between -90 and 90 degrees (mostly)
+                    // This ensures fibers grow toward the visible screen area
+                    const angleSpread = Math.PI * 1.5; // 270 degrees (most of the circle)
+                    const angleOffset = -Math.PI * 0.25; // Start at -45 degrees (toward bottom-right)
+                    const angle = (angleSpread * i) / CONFIG.fibersPerPoint + angleOffset;
                     // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.1;
+                    const angleVariation = (Math.random() - 0.5) * 0.15;
                     const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
+                    
+                    // CRITICAL: Generate initial points immediately so fibers are visible from start
+                    fiber.generatePoints(this.mouseX, this.mouseY, this.mouseActive);
+                    
                     this.fibers.push(fiber);
                 }
 
                 // Add jet bundles for more complexity
-                if (Math.random() > 0.5) {
-                    const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
-                    this.jetBundles.push(jetBundle);
-                }
+                const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
+                this.jetBundles.push(jetBundle);
             }
 
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point at (', 
+                this.basePoints[0].x + ',', this.basePoints[0].y + ')');
         }
 
         drawFiber(fiber) {
@@ -705,14 +694,18 @@
             if (this.frameCount === 1) {
                 this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
+                
+                // Draw all fibers immediately on first frame (they have initial points from generateFibers)
+                console.log('Manifold: First frame - drawing', this.fibers.length, 'fibers with initial points');
             }
 
             // Update fibers less frequently
+            // CRITICAL FIX: Always update fibers, then check visibility for drawing
+            // This ensures fibers get initial points even if they start off-screen
             if (this.frameCount % CONFIG.updateInterval === 0) {
                 for (const fiber of this.fibers) {
-                    if (fiber.isVisible(this.width, this.height)) {
-                        fiber.update(this.time, this.mouseX, this.mouseY, this.mouseActive);
-                    }
+                    // Always update fibers - visibility check happens during drawing
+                    fiber.update(this.time, this.mouseX, this.mouseY, this.mouseActive);
                 }
             }
 
@@ -720,20 +713,26 @@
             this.mouseTrail.update(this.mouseX, this.mouseY, this.time);
 
             // Update jet bundles much less frequently
+            // Always update jet bundles (like fibers)
             if (this.frameCount % (CONFIG.updateInterval * 4) === 0) {
                 for (const jetBundle of this.jetBundles) {
-                    if (jetBundle.isVisible(this.width, this.height)) {
-                        jetBundle.update(this.time);
-                    }
+                    jetBundle.update(this.time);
                 }
             }
 
             // Draw all fibers (small count, so it's fine)
+            // CRITICAL: Always try to draw fibers - visibility check is permissive
             let drawnCount = 0;
             for (const fiber of this.fibers) {
-                if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
-                    this.drawFiber(fiber);
-                    drawnCount++;
+                // Draw if fiber has points and is potentially visible
+                // More permissive: draw if fiber has points (even if not strictly visible yet)
+                if (fiber.points.length > 1) {
+                    // Check if fiber might be visible (more permissive check)
+                    const mightBeVisible = fiber.isVisible(this.width, this.height, 1000); // Larger margin for drawing
+                    if (mightBeVisible || this.frameCount < 10) { // Always draw in first 10 frames
+                        this.drawFiber(fiber);
+                        drawnCount++;
+                    }
                 }
             }
 
@@ -820,7 +819,7 @@
           height: 100% !important;
           z-index: 0 !important;
           pointer-events: none !important;
-          opacity: 0.6 !important;
+          opacity: 0.8 !important;
           background: transparent !important;
           display: block !important;
           visibility: visible !important;
