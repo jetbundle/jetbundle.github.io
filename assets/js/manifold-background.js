@@ -43,11 +43,11 @@
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
         fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
         maxPointsPerFiber: 1500,  // Support long fibers
-        
-        // Center point offset - move off-screen
+
+        // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -800,      // Center point 800px off-screen to the left
-        centerOffsetY: -800       // Center point 800px off-screen to the top
+        centerOffsetX: -250,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetY: -250       // Center point 250px off-screen to the top (closer to edge)
     };
 
     // Simplified noise generator (more efficient)
@@ -117,8 +117,9 @@
         }
 
         determineColor() {
-            const colorChoice = (this.basePoint.x + this.basePoint.y) % 2;
-            return colorChoice === 0 ? CONFIG.colors.orange : CONFIG.colors.blue;
+            // Fibers will use gradient from blue to orange, so we can use either as base
+            // The gradient will be applied during drawing
+            return CONFIG.colors.blue; // Base color, gradient applied in drawFiber
         }
 
         generatePoints() {
@@ -167,44 +168,44 @@
             // Large margin for long fibers - check if any part of fiber is visible ON SCREEN
             // Base point is off-screen, so we only check if fiber points enter the viewport
             if (this.points.length === 0) return false;
-            
+
             // Don't check base point - it's intentionally off-screen
             // Only check if fiber points extend into the visible area
-            
+
             // Check first point (closest to base, might be off-screen)
             const first = this.points[0];
-            if (first.x >= -margin && first.x <= width + margin && 
+            if (first.x >= -margin && first.x <= width + margin &&
                 first.y >= -margin && first.y <= height + margin) {
                 return true;
             }
-            
+
             // Check last point (furthest from base, most likely to be on-screen)
             const last = this.points[this.points.length - 1];
-            if (last.x >= -margin && last.x <= width + margin && 
+            if (last.x >= -margin && last.x <= width + margin &&
                 last.y >= -margin && last.y <= height + margin) {
                 return true;
             }
-            
+
             // Check middle points (sample every 10th point for performance)
             // This catches fibers that curve into the viewport
             for (let i = 10; i < this.points.length; i += 10) {
                 const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin && 
+                if (p.x >= -margin && p.x <= width + margin &&
                     p.y >= -margin && p.y <= height + margin) {
                     return true;
                 }
             }
-            
+
             // Also check some points near the end (more likely to be on-screen)
             const checkPoints = Math.min(5, Math.floor(this.points.length / 4));
             for (let i = this.points.length - checkPoints; i < this.points.length; i++) {
                 const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin && 
+                if (p.x >= -margin && p.x <= width + margin &&
                     p.y >= -margin && p.y <= height + margin) {
                     return true;
                 }
             }
-            
+
             return false;
         }
     }
@@ -268,25 +269,25 @@
             // Check if any jet extends into the visible viewport
             // Base point is off-screen, so we only check jet points
             if (this.jets.length === 0) return false;
-            
+
             // Check if any jet has points in the visible area
             for (const jet of this.jets) {
                 if (jet.points.length === 0) continue;
-                
+
                 // Check first point
                 const first = jet.points[0];
                 if (first.x >= -margin && first.x <= width + margin &&
                     first.y >= -margin && first.y <= height + margin) {
                     return true;
                 }
-                
+
                 // Check last point (more likely to be on-screen)
                 const last = jet.points[jet.points.length - 1];
                 if (last.x >= -margin && last.x <= width + margin &&
                     last.y >= -margin && last.y <= height + margin) {
                     return true;
                 }
-                
+
                 // Check middle points
                 for (let i = 5; i < jet.points.length; i += 5) {
                     const p = jet.points[i];
@@ -296,7 +297,7 @@
                     }
                 }
             }
-            
+
             return false;
         }
     }
@@ -349,28 +350,28 @@
 
         initializeBaseSpace() {
             this.basePoints = [];
-            // Single point OFF-SCREEN (top-left corner, 800px outside viewport)
+            // Single point OFF-SCREEN (top-left corner, 250px outside viewport - closer to edge)
             // This ensures only the fibers/bundles that extend INTO the screen are visible
-            const centerX = CONFIG.centerOffsetX;  // -800px (off-screen left)
-            const centerY = CONFIG.centerOffsetY;  // -800px (off-screen top)
-            
-            this.basePoints.push({ 
-                x: centerX, 
-                y: centerY, 
-                id: 0 
+            const centerX = CONFIG.centerOffsetX;  // -250px (off-screen left, closer to edge)
+            const centerY = CONFIG.centerOffsetY;  // -250px (off-screen top, closer to edge)
+
+            this.basePoints.push({
+                x: centerX,
+                y: centerY,
+                id: 0
             });
-            
+
             // Verify point is off-screen
             const isOffScreen = centerX < 0 || centerX > this.width || centerY < 0 || centerY > this.height;
-            console.log('Manifold: Base point OFF-SCREEN', { 
-                x: centerX, 
-                y: centerY, 
-                width: this.width, 
+            console.log('Manifold: Base point OFF-SCREEN', {
+                x: centerX,
+                y: centerY,
+                width: this.width,
                 height: this.height,
                 isOffScreen: isOffScreen,
                 verify: `Point at (${centerX}, ${centerY}) is ${isOffScreen ? 'OFF-SCREEN ✓' : 'ON-SCREEN ✗'}`
             });
-            
+
             if (!isOffScreen) {
                 console.warn('Manifold: WARNING - Base point is on-screen! Moving further off-screen...');
                 // Force off-screen if somehow on-screen
@@ -408,7 +409,6 @@
             if (fiber.points.length < 2) return;
 
             const ctx = this.ctx;
-            const color = fiber.color;
             const points = fiber.points;
 
             // Simplified drawing - use lineTo instead of quadratic curves
@@ -422,20 +422,33 @@
             // Gradient opacity along fiber for smooth, perpetual appearance
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
-
-            // Use gradient for smooth color transition along fiber
+            
+            // Create gradient from blue to orange along the fiber
+            const blueColor = CONFIG.colors.blue;
+            const orangeColor = CONFIG.colors.orange;
+            
             if (points.length > 2) {
+                // Linear gradient from start (blue) to end (orange)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-                gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${startOpacity})`);
-                gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, ${endOpacity})`);
+                
+                // Start with blue (higher opacity)
+                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
+                
+                // Middle transition point (mix of blue and orange)
+                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
+                
+                // End with orange (lower opacity)
+                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
+                
                 ctx.strokeStyle = gradient;
             } else {
-                ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${startOpacity})`;
+                // Fallback for short fibers - use blue-orange mix
+                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
             }
-
+            
             ctx.lineWidth = CONFIG.fiberThickness;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
