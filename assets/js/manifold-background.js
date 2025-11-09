@@ -129,7 +129,7 @@
             return CONFIG.colors.blue; // Base color, gradient applied in drawFiber
         }
 
-        generatePoints() {
+        generatePoints(mouseX, mouseY, mouseActive) {
             this.points = [];
             let x = this.basePoint.x;
             let y = this.basePoint.y;
@@ -150,16 +150,39 @@
                 // Smooth angle variation for elegant curves
                 angle += (noiseValue - 0.5) * Math.PI * 0.15;
 
+                // Mouse perturbation - subtle warping around mouse
+                if (mouseActive) {
+                    const dx = mouseX - x;
+                    const dy = mouseY - y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < CONFIG.mouseInfluenceRadius) {
+                        // Calculate influence strength (stronger when closer)
+                        const influence = CONFIG.mouseInfluenceStrength * (1 - dist / CONFIG.mouseInfluenceRadius);
+                        
+                        // Perturb angle towards/around mouse (creates curl effect)
+                        const angleToMouse = Math.atan2(dy, dx);
+                        const angleDiff = angleToMouse - angle;
+                        // Add subtle curl - fibers curve around mouse
+                        angle += Math.sin(angleDiff) * influence * 0.3;
+                        
+                        // Slight radial push/pull
+                        const radialForce = influence * 0.05;
+                        x += Math.cos(angleToMouse) * radialForce;
+                        y += Math.sin(angleToMouse) * radialForce;
+                    }
+                }
+
                 const stepSize = CONFIG.fiberStepSize;
                 x += Math.cos(angle) * stepSize;
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Very slow opacity decay for perpetual trails
+                // Faster opacity decay for continuous fading
                 this.opacity *= CONFIG.opacityDecay;
-
-                // Only stop if opacity is extremely low (almost invisible)
-                if (this.opacity < 0.005) break;
+                
+                // Stop if opacity is low (faster fade for continuous process)
+                if (this.opacity < 0.01) break;
             }
 
             this.length = length;
@@ -556,30 +579,43 @@
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
 
-            // Create gradient from blue to orange along the fiber
+            // Create subtle gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
+            
+            // More subtle gradient - blend colors more gradually
+            // Use a weighted mix that's closer to blue throughout
+            const subtleBlue = {
+                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
+                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
+                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
+            };
+            const subtleOrange = {
+                r: Math.round(blueColor.r * 0.15 + orangeColor.r * 0.85),
+                g: Math.round(blueColor.g * 0.15 + orangeColor.g * 0.85),
+                b: Math.round(blueColor.b * 0.15 + orangeColor.b * 0.85)
+            };
 
             if (points.length > 2) {
-                // Linear gradient from start (blue) to end (orange)
+                // Linear gradient with more subtle color transition
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
 
-                // Start with blue (higher opacity)
-                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
+                // Start with subtle blue-tinted (higher opacity)
+                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity})`);
 
-                // Middle transition point (mix of blue and orange)
-                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
+                // Very gradual transition - mostly blue throughout
+                gradient.addColorStop(0.7, `rgba(${Math.round(subtleBlue.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleBlue.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleBlue.b * 0.7 + subtleOrange.b * 0.3)}, ${(startOpacity + endOpacity) / 2})`);
 
-                // End with orange (lower opacity)
-                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
+                // End with subtle orange-tinted (lower opacity)
+                gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity})`);
 
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use blue-orange mix
-                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
+                // Fallback for short fibers - use subtle blue-orange mix
+                ctx.strokeStyle = `rgba(${Math.round((subtleBlue.r + subtleOrange.r) / 2)}, ${Math.round((subtleBlue.g + subtleOrange.g) / 2)}, ${Math.round((subtleBlue.b + subtleOrange.b) / 2)}, ${startOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness;
