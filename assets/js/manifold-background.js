@@ -20,13 +20,13 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - VERY SLOW TEMPO
-        animationSpeed: 0.0003,   // Much slower animation speed (10x slower)
+        // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
+        animationSpeed: 0.00005,  // Extremely slow animation speed (6x slower than before)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00005,      // Much slower evolution (10x slower)
+        noiseSpeed: 0.000008,     // Extremely slow evolution (6x slower than before)
 
-        // Visual parameters - perpetual trails - VERY SLOW FADE
-        opacityDecay: 0.998,      // Extremely slow decay for very long trails
+        // Visual parameters - perpetual trails - EXTREMELY SLOW FADE
+        opacityDecay: 0.999,      // Nearly imperceptible decay for extremely long trails
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
 
@@ -41,8 +41,12 @@
         // Performance tuning - balanced for large coverage (unchanged for performance)
         maxFibers: 24,            // Match fibersPerPoint
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
-        fadeOutSpeed: 0.998,      // Extremely slow fade for very long perpetual trails
+        fadeOutSpeed: 0.999,      // Nearly imperceptible fade for extremely long perpetual trails
         maxPointsPerFiber: 1500   // Support long fibers
+        
+        // Off-screen base point configuration
+        basePointOffsetX: -500,   // Base point off-screen to the left
+        basePointOffsetY: -500,   // Base point off-screen to the top
     };
 
     // Simplified noise generator (more efficient)
@@ -159,33 +163,37 @@
         }
 
         isVisible(width, height, margin = 500) {
-            // Large margin for long fibers - check if any part of fiber is visible
+            // Large margin for long fibers - check if any part of fiber is visible on screen
+            // Base point is off-screen, so we only care about fiber points that are on-screen
             if (this.points.length === 0) return false;
-
-            // Check base point (always visible if it's the center)
-            if (this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
-                this.basePoint.y >= -margin && this.basePoint.y <= height + margin) {
-                return true;
-            }
-
-            // Check first and last points
+            
+            // Don't check base point (it's intentionally off-screen)
+            // Only check if any part of the fiber extends onto the visible screen
+            
+            // Check first point (closest to off-screen base)
             const first = this.points[0];
-            const last = this.points[this.points.length - 1];
-
-            if ((first.x >= -margin && first.x <= width + margin && first.y >= -margin && first.y <= height + margin) ||
-                (last.x >= -margin && last.x <= width + margin && last.y >= -margin && last.y <= height + margin)) {
+            if (first.x >= -margin && first.x <= width + margin && 
+                first.y >= -margin && first.y <= height + margin) {
                 return true;
             }
-
+            
+            // Check last point (furthest from base)
+            const last = this.points[this.points.length - 1];
+            if (last.x >= -margin && last.x <= width + margin && 
+                last.y >= -margin && last.y <= height + margin) {
+                return true;
+            }
+            
             // Check middle points (sample every 10th point for performance)
+            // This ensures we catch fibers that curve through the screen
             for (let i = 10; i < this.points.length; i += 10) {
                 const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin &&
+                if (p.x >= -margin && p.x <= width + margin && 
                     p.y >= -margin && p.y <= height + margin) {
                     return true;
                 }
             }
-
+            
             return false;
         }
     }
@@ -306,17 +314,24 @@
 
         initializeBaseSpace() {
             this.basePoints = [];
-            // Single point at center of screen
-            const centerX = this.width / 2;
-            const centerY = this.height / 2;
-
-            this.basePoints.push({
-                x: centerX,
-                y: centerY,
-                id: 0
+            // Single point OFF-SCREEN (top-left corner, outside viewport)
+            // This creates an effect where only the fibers that extend onto the screen are visible
+            const baseX = CONFIG.basePointOffsetX;  // Off-screen to the left
+            const baseY = CONFIG.basePointOffsetY;  // Off-screen to the top
+            
+            this.basePoints.push({ 
+                x: baseX, 
+                y: baseY, 
+                id: 0 
             });
-
-            console.log('Manifold: Single base point at center', { x: centerX, y: centerY, width: this.width, height: this.height });
+            
+            console.log('Manifold: Single base point OFF-SCREEN', { 
+                x: baseX, 
+                y: baseY, 
+                width: this.width, 
+                height: this.height,
+                note: 'Only fibers extending onto screen will be visible'
+            });
         }
 
         generateFibers() {
