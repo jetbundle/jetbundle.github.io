@@ -44,9 +44,9 @@
         },
 
         // Performance tuning - balanced for large coverage (unchanged for performance)
-        maxFibers: 24,            // Match fibersPerPoint
+        maxFibers: 12,            // Match fibersPerPoint (fewer fibers)
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
-        fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
+        fadeOutSpeed: 0.985,      // Quicker fade for faster turnover (but still continuous)
         maxPointsPerFiber: 1500,  // Support long fibers
 
         // Center point offset - move off-screen (closer to edge but still hidden)
@@ -350,10 +350,29 @@
             this.basePoints = [];
             this.fibers = [];
             this.jetBundles = [];
+            
+            // Mouse position tracking
+            this.mouseX = null;
+            this.mouseY = null;
 
             this.resize();
             this.initializeBaseSpace();
             this.generateFibers();
+            this.setupMouseTracking();
+        }
+        
+        setupMouseTracking() {
+            // Track mouse position for fiber interaction
+            document.addEventListener('mousemove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+            }, { passive: true });
+            
+            // Clear mouse position when mouse leaves
+            document.addEventListener('mouseleave', () => {
+                this.mouseX = null;
+                this.mouseY = null;
+            }, { passive: true });
         }
 
         resize() {
@@ -529,14 +548,14 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Perpetual trail effect - very slow fade for continuous animation
-            // Clear with very subtle fade to create perpetual trails
+            // Perpetual trail effect - quicker fade for faster turnover (but still continuous)
+            // Clear with fade to create continuous animation with faster fade
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-
+            
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
