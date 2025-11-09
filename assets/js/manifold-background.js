@@ -20,10 +20,10 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation
-        animationSpeed: 0.003,    // Smooth animation speed
+        // Smooth, perpetual animation - slower tempo
+        animationSpeed: 0.001,    // Slower animation speed (was 0.003)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.0005,       // Continuous evolution
+        noiseSpeed: 0.00015,      // Slower evolution (was 0.0005)
 
         // Visual parameters - perpetual trails
         opacityDecay: 0.995,      // Very slow decay for long trails
@@ -128,9 +128,10 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
+                // Slower evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 1000
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
                 );
 
                 // Smooth angle variation for elegant curves
@@ -143,7 +144,7 @@
 
                 // Very slow opacity decay for perpetual trails
                 this.opacity *= CONFIG.opacityDecay;
-                
+
                 // Only stop if opacity is extremely low (almost invisible)
                 if (this.opacity < 0.005) break;
             }
@@ -160,31 +161,31 @@
         isVisible(width, height, margin = 500) {
             // Large margin for long fibers - check if any part of fiber is visible
             if (this.points.length === 0) return false;
-            
+
             // Check base point (always visible if it's the center)
-            if (this.basePoint.x >= -margin && this.basePoint.x <= width + margin && 
+            if (this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
                 this.basePoint.y >= -margin && this.basePoint.y <= height + margin) {
                 return true;
             }
-            
+
             // Check first and last points
             const first = this.points[0];
             const last = this.points[this.points.length - 1];
-            
+
             if ((first.x >= -margin && first.x <= width + margin && first.y >= -margin && first.y <= height + margin) ||
                 (last.x >= -margin && last.x <= width + margin && last.y >= -margin && last.y <= height + margin)) {
                 return true;
             }
-            
+
             // Check middle points (sample every 10th point for performance)
             for (let i = 10; i < this.points.length; i += 10) {
                 const p = this.points[i];
-                if (p.x >= -margin && p.x <= width + margin && 
+                if (p.x >= -margin && p.x <= width + margin &&
                     p.y >= -margin && p.y <= height + margin) {
                     return true;
                 }
             }
-            
+
             return false;
         }
     }
@@ -308,13 +309,13 @@
             // Single point at center of screen
             const centerX = this.width / 2;
             const centerY = this.height / 2;
-            
-            this.basePoints.push({ 
-                x: centerX, 
-                y: centerY, 
-                id: 0 
+
+            this.basePoints.push({
+                x: centerX,
+                y: centerY,
+                id: 0
             });
-            
+
             console.log('Manifold: Single base point at center', { x: centerX, y: centerY, width: this.width, height: this.height });
         }
 
@@ -361,7 +362,7 @@
             // Gradient opacity along fiber for smooth, perpetual appearance
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
-            
+
             // Use gradient for smooth color transition along fiber
             if (points.length > 2) {
                 const gradient = ctx.createLinearGradient(
@@ -374,7 +375,7 @@
             } else {
                 ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${startOpacity})`;
             }
-            
+
             ctx.lineWidth = CONFIG.fiberThickness;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
@@ -410,16 +411,16 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-      // Perpetual trail effect - very slow fade for continuous animation
-      // Clear with very subtle fade to create perpetual trails
-      this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
-      this.ctx.fillRect(0, 0, this.width, this.height);
-      
-      // Initial background fill on first frame
-      if (this.frameCount === 1) {
-        this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
-        this.ctx.fillRect(0, 0, this.width, this.height);
-      }
+            // Perpetual trail effect - very slow fade for continuous animation
+            // Clear with very subtle fade to create perpetual trails
+            this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
+            this.ctx.fillRect(0, 0, this.width, this.height);
+
+            // Initial background fill on first frame
+            if (this.frameCount === 1) {
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
+                this.ctx.fillRect(0, 0, this.width, this.height);
+            }
 
             // Update fibers less frequently
             if (this.frameCount % CONFIG.updateInterval === 0) {
@@ -660,3 +661,4 @@
     // Start initialization
     init();
 })();
+
