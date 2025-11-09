@@ -370,17 +370,18 @@
                 this.currentX += this.velocityX;
                 this.currentY += this.velocityY;
 
-                // Evolve like manifold - use noise to create smooth curves
+                // Evolve like manifold fibers - use noise to create smooth curves
+                // Use same noise calculation as regular fibers
                 const noiseValue = this.noiseGen.noise(
                     this.currentX * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
                     this.currentY * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
                 );
-
-                // Evolve angle similar to manifold fibers
-                this.angle += (noiseValue - 0.5) * Math.PI * 0.1;
-
-                // Add slight evolution to position (damped)
-                const evolutionStrength = 0.3; // Damped evolution
+                
+                // Evolve angle exactly like regular fibers (same as regular fibers: 0.15)
+                this.angle += (noiseValue - 0.5) * Math.PI * 0.15; // Same as regular fibers
+                
+                // Add evolution to position (like regular fibers, but damped)
+                const evolutionStrength = CONFIG.mouseTrailEvolutionStrength; // Configurable evolution
                 this.currentX += Math.cos(this.angle) * evolutionStrength;
                 this.currentY += Math.sin(this.angle) * evolutionStrength;
 
