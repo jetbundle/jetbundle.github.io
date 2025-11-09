@@ -35,9 +35,9 @@
       (function() {
         'use strict';
 
-        // Remove theme's sidebar/toolbar navigation
+        // Remove theme's sidebar/toolbar navigation - AGGRESSIVE
         function removeThemeNavigation() {
-          // Remove sidebars and toolbars
+          // Remove sidebars and toolbars - comprehensive selectors
           const selectors = [
             'aside',
             '.sidebar',
@@ -46,16 +46,37 @@
             '.side-nav',
             '.nav-sidebar',
             '#sidebar',
-            '#toolbar'
+            '#toolbar',
+            '[class*="toolbar"]',
+            '[class*="sidebar"]',
+            '[id*="toolbar"]',
+            '[id*="sidebar"]'
           ];
           
           selectors.forEach(selector => {
             try {
               const elements = document.querySelectorAll(selector);
               elements.forEach(el => {
-                // Don't remove our custom header
-                if (!el.closest('header') && !el.classList.contains('navbar-container') && !el.classList.contains('navbar-menu')) {
+                // Don't remove our custom header or its children
+                const inOurHeader = el.closest('header.site-header') || 
+                                    el.closest('.navbar-container') || 
+                                    el.closest('.navbar-menu') ||
+                                    el.classList.contains('navbar-container') ||
+                                    el.classList.contains('navbar-menu') ||
+                                    el.classList.contains('site-navbar') ||
+                                    el.classList.contains('navbar-link') ||
+                                    el.classList.contains('navbar-brand');
+                
+                if (!inOurHeader) {
+                  // Hide and remove
                   el.style.display = 'none';
+                  el.style.visibility = 'hidden';
+                  el.style.opacity = '0';
+                  el.style.width = '0';
+                  el.style.height = '0';
+                  el.style.overflow = 'hidden';
+                  el.style.position = 'absolute';
+                  el.style.left = '-9999px';
                   el.remove();
                 }
               });
@@ -63,6 +84,34 @@
               // Ignore errors
             }
           });
+          
+          // Also remove any navigation lists
+          try {
+            const navLists = document.querySelectorAll('ul, ol');
+            navLists.forEach(list => {
+              if (!list.closest('header.site-header') && !list.closest('.navbar-container')) {
+                // Check if it contains navigation links
+                const links = list.querySelectorAll('a');
+                let isNav = false;
+                links.forEach(link => {
+                  const text = link.textContent.trim();
+                  if (text === 'About' || text === 'Resources' || text === 'Blog' || 
+                      text === 'Community' || text === 'Home' || text.includes('Home') ||
+                      text.includes('jetbundle')) {
+                    if (!link.closest('header.site-header')) {
+                      isNav = true;
+                    }
+                  }
+                });
+                if (isNav) {
+                  list.style.display = 'none';
+                  list.remove();
+                }
+              }
+            });
+          } catch (e) {
+            // Ignore
+          }
 
           // Remove "jetbundleHome" or "Home" text links and any unwanted navigation
           try {
