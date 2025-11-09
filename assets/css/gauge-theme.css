@@ -428,7 +428,7 @@ nav a[href="/"]:first-child {
     color: #f1f5f9 !important;
 }
 
-/* Footer - appears at bottom of content with copyright */
+/* Footer - appears at bottom of content with copyright only */
 .site-footer {
     text-align: center !important;
     padding: 3rem 1rem 2rem 1rem !important;
@@ -446,6 +446,33 @@ nav a[href="/"]:first-child {
     margin: 0 !important;
     color: #94a3b8 !important;
     opacity: 0.8 !important;
+}
+
+/* Hide theme footer social links */
+footer.theme-footer,
+footer a[href*="github"],
+footer a[href*="linkedin"],
+footer a[href*="twitter"],
+footer a[href*="facebook"],
+footer .social-links,
+footer .social,
+footer .fa-github,
+footer .fa-linkedin,
+footer .fa-twitter,
+footer .fa-facebook,
+footer i.fa,
+footer .icon {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Hide any social media links in footer */
+footer a[href^="https://github.com"],
+footer a[href^="https://www.linkedin.com"],
+footer a[href^="https://twitter.com"],
+footer a[href^="https://www.facebook.com"] {
+    display: none !important;
+    visibility: hidden !important;
 }
 
 /* Global right margin for manifold space - shift content left */
@@ -478,16 +505,16 @@ body .landing-page .container {
 
 /* Navigation - Custom header with jetbundle brand */
 /* CRITICAL: Hide ALL theme navigation first - maximum specificity */
-html body > nav:not(header nav):not(.navbar-container):not(.site-navbar),
-html body > aside:not(header aside),
-html body > .toolbar:not(.navbar-container):not(.navbar-menu),
-html body > .sidebar,
+html body>nav:not(header nav):not(.navbar-container):not(.site-navbar),
+html body>aside:not(header aside),
+html body>.toolbar:not(.navbar-container):not(.navbar-menu),
+html body>.sidebar,
 html body .toolbar:not(.navbar-container):not(.navbar-menu):not(.site-navbar),
 html body .sidebar:not(header .sidebar),
-body > nav:not(header nav):not(.navbar-container):not(.site-navbar),
-body > aside:not(header aside),
-body > .toolbar:not(.navbar-container):not(.navbar-menu),
-body > .sidebar,
+body>nav:not(header nav):not(.navbar-container):not(.site-navbar),
+body>aside:not(header aside),
+body>.toolbar:not(.navbar-container):not(.navbar-menu),
+body>.sidebar,
 .toolbar:not(.navbar-container):not(.navbar-menu):not(.site-navbar),
 .sidebar:not(header .sidebar) {
     display: none !important;
@@ -525,8 +552,9 @@ header.site-header .site-navbar {
     margin: 0 auto !important;
     padding: 0 2rem !important;
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     align-items: center !important;
+    gap: 3rem !important;
 }
 
 .navbar-brand,
@@ -537,11 +565,12 @@ header .navbar-brand {
     font-size: 1.5rem !important;
     font-weight: 700 !important;
     text-decoration: none !important;
-    margin-right: 2rem !important;
+    margin-right: 0 !important;
     background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
+    display: inline-block !important;
 }
 
 .navbar-brand:hover,
@@ -639,10 +668,10 @@ body .nav-sidebar {
 }
 
 /* Hide any theme navigation that's not our custom header */
-body > nav:not(header nav):not(.navbar-container),
-body > aside:not(header aside),
-body > .toolbar:not(.navbar-container):not(.navbar-menu),
-body > .sidebar {
+body>nav:not(header nav):not(.navbar-container),
+body>aside:not(header aside),
+body>.toolbar:not(.navbar-container):not(.navbar-menu),
+body>.sidebar {
     display: none !important;
     visibility: hidden !important;
 }

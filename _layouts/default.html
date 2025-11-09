@@ -24,10 +24,11 @@
         {{ content }}
       </div>
     </div>
+    {% include footer.html %}
+    <!-- Custom footer with only copyright -->
     <footer class="site-footer">
       <p>Copyright © 2025 Joel Saucedo. All rights reserved.</p>
     </footer>
-    {% include footer.html %}
 
     <!-- jetbundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
@@ -52,21 +53,21 @@
             '[id*="toolbar"]',
             '[id*="sidebar"]'
           ];
-          
+
           selectors.forEach(selector => {
             try {
               const elements = document.querySelectorAll(selector);
               elements.forEach(el => {
                 // Don't remove our custom header or its children
-                const inOurHeader = el.closest('header.site-header') || 
-                                    el.closest('.navbar-container') || 
+                const inOurHeader = el.closest('header.site-header') ||
+                                    el.closest('.navbar-container') ||
                                     el.closest('.navbar-menu') ||
                                     el.classList.contains('navbar-container') ||
                                     el.classList.contains('navbar-menu') ||
                                     el.classList.contains('site-navbar') ||
                                     el.classList.contains('navbar-link') ||
                                     el.classList.contains('navbar-brand');
-                
+
                 if (!inOurHeader) {
                   // Hide and remove
                   el.style.display = 'none';
@@ -84,7 +85,7 @@
               // Ignore errors
             }
           });
-          
+
           // Also remove any navigation lists
           try {
             const navLists = document.querySelectorAll('ul, ol');
@@ -95,7 +96,7 @@
                 let isNav = false;
                 links.forEach(link => {
                   const text = link.textContent.trim();
-                  if (text === 'About' || text === 'Resources' || text === 'Blog' || 
+                  if (text === 'About' || text === 'Resources' || text === 'Blog' ||
                       text === 'Community' || text === 'Home' || text.includes('Home') ||
                       text.includes('jetbundle')) {
                     if (!link.closest('header.site-header')) {
@@ -120,9 +121,9 @@
               const text = link.textContent.trim();
               const href = link.getAttribute('href') || '';
               // Remove if it says "Home", "jetbundleHome", or is a home link that's not our brand
-              if ((text === 'Home' || text.includes('jetbundleHome') || text === 'jetbundleHome' || 
-                   text.toLowerCase() === 'home') && 
-                  !link.classList.contains('navbar-brand') && 
+              if ((text === 'Home' || text.includes('jetbundleHome') || text === 'jetbundleHome' ||
+                   text.toLowerCase() === 'home') &&
+                  !link.classList.contains('navbar-brand') &&
                   !link.closest('header')) {
                 // Remove the link and its parent if it's in a list item
                 const parent = link.parentElement;
@@ -133,7 +134,7 @@
                 }
               }
             });
-            
+
             // Also remove any text nodes containing "jetbundleHome"
             const walker = document.createTreeWalker(
               document.body,
@@ -156,8 +157,8 @@
             const navs = document.querySelectorAll('nav, .toolbar, aside, ul.toolbar, .nav-list');
             navs.forEach(nav => {
               // Skip our custom header
-              if (!nav.closest('header') && 
-                  !nav.classList.contains('navbar-container') && 
+              if (!nav.closest('header') &&
+                  !nav.classList.contains('navbar-container') &&
                   !nav.classList.contains('navbar-menu') &&
                   !nav.closest('.navbar-container')) {
                 nav.style.display = 'none';
@@ -165,7 +166,7 @@
                 nav.remove();
               }
             });
-            
+
             // Remove any list items that are navigation items
             const listItems = document.querySelectorAll('li');
             listItems.forEach(li => {
@@ -173,7 +174,7 @@
               if (link && !link.closest('header')) {
                 const text = link.textContent.trim();
                 // If it's a navigation link (About, Resources, Blog, Community, Home)
-                if (text === 'About' || text === 'Resources' || text === 'Blog' || 
+                if (text === 'About' || text === 'Resources' || text === 'Blog' ||
                     text === 'Community' || text === 'Home' || text.includes('Home')) {
                   // Only remove if it's not in our header
                   if (!link.closest('header') && !link.classList.contains('navbar-link')) {
@@ -185,7 +186,7 @@
           } catch (e) {
             // Ignore errors
           }
-          
+
           // Remove any elements with "jetbundleHome" in their text or ID
           try {
             const allElements = document.querySelectorAll('*');
@@ -193,10 +194,40 @@
               const text = el.textContent || '';
               const id = el.id || '';
               const className = el.className || '';
-              if ((text.includes('jetbundleHome') || id.includes('jetbundleHome') || 
+              if ((text.includes('jetbundleHome') || id.includes('jetbundleHome') ||
                    className.includes('jetbundleHome')) && !el.closest('header')) {
                 el.remove();
               }
+            });
+          } catch (e) {
+            // Ignore errors
+          }
+          
+          // Remove theme footer social links
+          try {
+            const footerLinks = document.querySelectorAll('footer a');
+            footerLinks.forEach(link => {
+              const href = link.getAttribute('href') || '';
+              const text = link.textContent.trim();
+              // Remove social media links
+              if (href.includes('github.com') || href.includes('linkedin.com') || 
+                  href.includes('twitter.com') || href.includes('facebook.com') ||
+                  link.querySelector('.fa-github') || link.querySelector('.fa-linkedin') ||
+                  link.querySelector('.fa-twitter') || link.querySelector('.fa-facebook')) {
+                link.remove();
+              }
+            });
+            
+            // Remove social icons
+            const socialIcons = document.querySelectorAll('footer .fa, footer .icon, footer i');
+            socialIcons.forEach(icon => {
+              icon.remove();
+            });
+            
+            // Remove social link containers
+            const socialContainers = document.querySelectorAll('footer .social, footer .social-links');
+            socialContainers.forEach(container => {
+              container.remove();
             });
           } catch (e) {
             // Ignore errors
@@ -207,12 +238,12 @@
         function enhanceTheme() {
           // Remove theme navigation immediately
           removeThemeNavigation();
-          
+
           // Also remove after a delay (theme might add it dynamically)
           setTimeout(removeThemeNavigation, 100);
           setTimeout(removeThemeNavigation, 500);
           setTimeout(removeThemeNavigation, 1000);
-          
+
           // Only apply SVG gradient overrides after theme initializes
           setTimeout(function() {
             try {
@@ -260,7 +291,7 @@
             subtree: true
           });
         }
-        
+
         // Aggressive removal - run periodically to catch anything that slips through
         setInterval(function() {
           removeThemeNavigation();
