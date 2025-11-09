@@ -133,10 +133,10 @@
                 this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Slower evolution through reduced noiseSpeed multiplier
+                // Extremely slow evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
-                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500,
-                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 500
+                    x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
+                    y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
                 );
 
                 // Smooth angle variation for elegant curves
@@ -239,9 +239,10 @@
                 while (length < jet.length && jet.points.length < maxPoints) {
                     jet.points.push({ x, y, opacity: jet.opacity });
 
+                    // Use extremely slow noise evolution for jets too
                     const noiseValue = this.noiseGen.noise(
-                        x * CONFIG.noiseScale * 1.5 + this.time,
-                        y * CONFIG.noiseScale * 1.5 + this.time
+                        x * CONFIG.noiseScale * 1.5 + this.time * CONFIG.noiseSpeed * 200,
+                        y * CONFIG.noiseScale * 1.5 + this.time * CONFIG.noiseSpeed * 200
                     );
                     currentAngle += (noiseValue - 0.5) * Math.PI * 0.4;
 
@@ -477,7 +478,7 @@
 
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.99)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
