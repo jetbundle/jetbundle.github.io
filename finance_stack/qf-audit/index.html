@@ -200,7 +200,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
+                let priority = [];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {

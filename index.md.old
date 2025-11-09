@@ -5,29 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>The C3I & Surveillance Stack</title>
-  <meta name="description" content="Mapping the hidden geometry of modern science.">
+  <title>JetBundle</title>
+  <meta name="description" content="Engineering principles of physics, finance, and computation">
 
   <!-- Social: Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@">
-  <meta name="twitter:title" content="The C3I & Surveillance Stack">
-  <meta name="twitter:description" content="Mapping the hidden geometry of modern science.">
+  <meta name="twitter:title" content="JetBundle">
+  <meta name="twitter:description" content="Engineering principles of physics, finance, and computation">
   
   <meta property="twitter:image:src" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
 
   <!-- Social: Facebook / Open Graph -->
-  <meta property="og:url" content="https://jetbundle.github.io/c3i_stack/01_intro/">
-  <meta property="og:title" content="The C3I & Surveillance Stack">
+  <meta property="og:url" content="https://jetbundle.github.io/index.md.old">
+  <meta property="og:title" content="JetBundle">
   
   <meta property="og:image" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
-  <meta property="og:description" content="Mapping the hidden geometry of modern science.">
+  <meta property="og:description" content="Engineering principles of physics, finance, and computation">
   <meta property="og:site_name" content="JetBundle">
 
   <!-- Social: Schema.org  -->
-  <meta itemprop="name" content="The C3I & Surveillance Stack"/>
+  <meta itemprop="name" content="JetBundle"/>
 
   <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
   <style>
@@ -200,7 +200,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
+                let priority = [];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -240,55 +240,29 @@
         </svg>
       </div>
       <div class="content-div">
-        <h1 id="the-c3i--surveillance-stack">The C3I &amp; Surveillance Stack</h1>
+        # JetBundle
 
-<p>This stack comprises the technologies of <strong>Command, Control, Communications &amp; Intelligence</strong>.</p>
+**Engineering principles of physics, finance, and computation.**
 
-<h2 id="overview">Overview</h2>
+---
 
-<p>The C3I Stack traces the lineage from military command and control requirements to modern surveillance and artificial intelligence systems. The foundational mathematics (graph theory, combinatorics, algebraic geometry) was funded to solve specific intelligence and command problems, then “laundered” through academic abstraction into “pure” computer science.</p>
+## Physics
 
-<h2 id="core-components">Core Components</h2>
+Mathematical foundations of physical systems.
 
-<h3 id="operating-systems">Operating Systems</h3>
+---
 
-<p>The modern OS is a direct descendant of the 1960s military requirement for a “Survivable SAC command net”. J.C.R. Licklider, as director of DARPA’s IPTO, executed this mandate by funding MIT’s <strong>Project MAC</strong>—the project that built <strong>Multics</strong>, the ancestor of all modern OS.</p>
+## Finance
 
-<p><strong>The Lineage</strong>:</p>
-<ul>
-  <li><strong>1960s</strong>: DARPA IPTO funds Project MAC (MIT)</li>
-  <li><strong>1969</strong>: Multics operational</li>
-  <li><strong>1970s</strong>: UNIX derived from Multics</li>
-  <li><strong>1980s</strong>: POSIX standards</li>
-  <li><strong>2000s</strong>: Linux, macOS, Windows all trace to this lineage</li>
-  <li><strong>2020s</strong>: Microsoft Azure Kubernetes Service authorized for <strong>DoD Impact Level 5 (IL5)</strong> workloads</li>
-</ul>
+Computational methods in financial engineering.
 
-<p><strong>The Connection</strong>: The same DoD that funded Project MAC now leases the “computer utility” from Microsoft.</p>
+---
 
-<h3 id="artificial-intelligence">Artificial Intelligence</h3>
+## Computation
 
-<p>The 1980s neural net revival was funded by ONR and DARPA. The “Killer App” was <strong>ALVINN</strong> (Autonomous Land Vehicle In a Neural Network), a 3-layer backpropagation network built to drive an autonomous HUMVEE.</p>
+Algorithms and systems architecture.
 
-<p><strong>Modern Patrons</strong>: <strong>Palantir</strong> and <strong>Anduril</strong> are operationalizing this 1980s R&amp;D for AI-driven drone swarms and targeting systems.</p>
-
-<h3 id="graph-theory">Graph Theory</h3>
-
-<p>This is the “skeleton key” Fiber for C3I. Its origin is Pál Turán’s 1941 “brick factory problem,” conceived in a forced-labor camp. The math (extremal graph theory) was operationalized by the NSA in its <strong>SKYNET</strong> program, which uses graph centrality algorithms on metadata to find “cliques” of “suspect activity” for drone targeting.</p>
-
-<p><strong>Modern Application</strong>: This <em>exact</em> social network analysis is the core product of <strong>Palantir Gotham</strong>, sold to clients like ICE and the NYPD.</p>
-
-<h2 id="audits-in-this-stack">Audits in This Stack</h2>
-
-<ul>
-  <li><strong><a href="/c3i_stack/os-audit/">Operating Systems Audit →</a></strong> - From Project MAC to Azure IL5</li>
-  <li><strong><a href="/c3i_stack/ai-audit/">AI Audit →</a></strong> - From ALVINN to Palantir</li>
-  <li><strong><a href="/c3i_stack/graph-theory/">Graph Theory Audit →</a></strong> - From Turán to SKYNET to Palantir Gotham</li>
-</ul>
-
-<hr />
-
-<p><strong><a href="/">Back to The Primer →</a></strong></p>
+---
 
 
       </div>
