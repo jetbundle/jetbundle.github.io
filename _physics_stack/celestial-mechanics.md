@@ -59,4 +59,4 @@ The same mathematical techniques (dynamical systems, optimal control, Kalman fil
 
 ---
 
-**[Back to Physics Stack →](/physics_stack/)**
+**[Back to Physics Stack →](/physics_stack/01_intro/)**

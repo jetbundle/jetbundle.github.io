@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "The Military-Financial Stack"
-permalink: /finance_stack/
+permalink: /finance_stack/01_intro/
 ---
 
 # The Military-Financial Stack

@@ -6,9 +6,9 @@ description: Technical stacks and architectures
 
 # The Stacks
 
-## The Computation Stack
+## The C3I & Surveillance Stack
 
-[The Computation Stack →](/computation_stack/)
+[The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
 
 **Command, Control, Communications & Intelligence**
 
@@ -18,7 +18,7 @@ description: Technical stacks and architectures
 
 ## The Ballistics & Hydrodynamics Stack
 
-[The Ballistics & Hydrodynamics Stack →](/physics_stack/)
+[The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
 
 **Naval Warfare & Missile Guidance**
 
@@ -28,7 +28,7 @@ description: Technical stacks and architectures
 
 ## The Military-Financial Stack
 
-[The Military-Financial Stack →](/finance_stack/)
+[The Military-Financial Stack →](/finance_stack/01_intro/)
 
 **The Great Handover: Wall Street Outbids the Pentagon**
 

@@ -1,5 +1,5 @@
 ---
 title: Blog
-url: /blog
-priority: 6
+url: /blog/
+priority: 5
 ---

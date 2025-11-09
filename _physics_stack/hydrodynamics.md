@@ -51,4 +51,4 @@ The same mathematical techniques (conformal mapping, complex analysis) are now u
 
 ---
 
-**[Back to Physics Stack →](/physics_stack/)**
+**[Back to Physics Stack →](/physics_stack/01_intro/)**

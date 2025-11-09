@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "The Ballistics & Hydrodynamics Stack"
-permalink: /physics_stack/
+permalink: /physics_stack/01_intro/
 ---
 
 # The Ballistics & Hydrodynamics Stack

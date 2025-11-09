@@ -1,5 +1,5 @@
 ---
 title: Community
-url: /community
-priority: 7
+url: /community/
+priority: 6
 ---

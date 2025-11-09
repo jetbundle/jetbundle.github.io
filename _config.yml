@@ -24,11 +24,11 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
+# Navigation - Simple page links (no dropdowns)
 toolbar_priority:
-  - "About"
-  - "Computation Stack"
-  - "Physics Stack"
-  - "Finance Stack"
+  - "Computation"
+  - "Physics"
+  - "Finance"
   - "Resources"
   - "Blog"
   - "Community"
@@ -40,6 +40,8 @@ collections:
   physics_stack:
     output: true
   finance_stack:
+    output: true
+  principal:
     output: true
   dropdown:
     output: true
