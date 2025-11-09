@@ -1,4 +1,4 @@
-/* jetbundle Gauge Theme - Maximum Specificity CSS Override */
+/* JetBundle Gauge Theme - Maximum Specificity CSS Override */
 
 /* Override theme's body background - Maximum specificity */
 html body.animated.fadeIn,
@@ -375,177 +375,124 @@ a.navbar-icon[href="/"],
     visibility: hidden !important;
 }
 
-/* Global margin shift to the right for manifold interaction space */
-body .container,
-body .wrapper,
-body .content-div {
-    margin-left: 80px !important; /* Shift content right for manifold space */
-    margin-right: auto !important;
-    max-width: calc(100% - 160px) !important; /* Adjust max-width accordingly */
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+/* Hide home link if it's the first item in toolbar */
+.toolbar a[href="/"]:first-child,
+nav a[href="/"]:first-child {
+    display: none !important;
 }
 
 /* Landing page - centered and simple */
 .landing-page {
-    text-align: center !important;
-    padding: 8rem 2rem 4rem 2rem !important;
-    max-width: 600px !important;
-    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 3rem 0;
 }
 
 .landing-title {
-    font-size: 4rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 1rem !important;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    letter-spacing: -0.02em !important;
 }
 
 .landing-subtitle {
-    font-size: 1.5rem !important;
+    font-size: 1.5rem;
     color: #94a3b8 !important;
-    margin-bottom: 3rem !important;
-    font-weight: 300 !important;
+    margin-bottom: 2rem;
+    font-weight: 400;
 }
 
 .learn-more-button {
-    display: inline-block !important;
-    padding: 1rem 2.5rem !important;
+    display: inline-block;
+    padding: 0.75rem 2rem;
     background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
     color: #f1f5f9 !important;
     text-decoration: none !important;
-    border-radius: 6px !important;
-    font-weight: 600 !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
 }
 
 .learn-more-button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
     color: #f1f5f9 !important;
 }
 
-/* Site footer */
+/* Global right margin for manifold interaction space */
+body .container,
+body .content-div,
+body .wrapper,
+body main {
+    margin-right: 120px !important;
+    max-width: calc(100% - 120px) !important;
+}
+
+@media (max-width: 768px) {
+    body .container,
+    body .content-div,
+    body .wrapper,
+    body main {
+        margin-right: 60px !important;
+        max-width: calc(100% - 60px) !important;
+    }
+}
+
+/* Footer styling */
 .site-footer {
-    text-align: center !important;
-    padding: 3rem 2rem 2rem 2rem !important;
-    margin-top: 4rem !important;
-    margin-left: 80px !important; /* Match content margin */
-    border-top: 1px solid #1e293b !important;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #1e293b;
     color: #94a3b8 !important;
-    font-size: 0.875rem !important;
-    position: relative !important;
-    z-index: 10 !important;
+    background: transparent !important;
 }
 
 .site-footer p {
-    margin: 0 !important;
+    margin: 0;
     color: #94a3b8 !important;
+    font-size: 0.875rem;
 }
 
-/* Responsive footer margins */
-@media (max-width: 1200px) {
-    .site-footer {
-        margin-left: 60px !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .site-footer {
-        margin-left: 20px !important;
-        padding: 2rem 1rem 1rem 1rem !important;
-    }
-}
-
-/* Remove dropdown styles - make all navigation items direct links */
-nav .dropdown,
-nav .dropdown-menu,
-nav .has-children,
-.dropdown-toggle {
+/* Remove dropdown functionality - make all nav items direct links */
+.dropdown,
+.dropdown-menu,
+.dropdown-toggle,
+.has-dropdown {
     display: none !important;
 }
 
-/* Style navigation to show "jetbundle" as home link */
-.navbar-brand,
-.navbar a[href="/"],
-.toolbar a[href="/"] {
+/* Make navigation items direct clickable links */
+nav a,
+.navbar a,
+.toolbar a {
     display: inline-block !important;
-    color: #ff6b35 !important;
-    font-weight: 700 !important;
-    font-size: 1.25rem !important;
     text-decoration: none !important;
-    padding: 0.5rem 1rem !important;
+}
+
+/* Add clickable jetbundle brand/logo in place of home icon */
+.navbar-brand,
+.navbar-icon[href="/"],
+.navbar a[href="/"]:first-child {
+    display: inline-block !important;
+    visibility: visible !important;
+    color: #ff6b35 !important;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none !important;
 }
 
 .navbar-brand:hover,
-.navbar a[href="/"]:hover,
-.toolbar a[href="/"]:hover {
+.navbar-icon[href="/"]:hover,
+.navbar a[href="/"]:first-child:hover {
     color: #ff8c5a !important;
-}
-
-/* Hide home icon, show "jetbundle" text link instead */
-.navbar-icon[href="/"] {
-    display: none !important;
-}
-
-/* Style "jetbundle" home link in navigation */
-a.jetbundle-home,
-nav a[href="/"].jetbundle-home,
-.navbar a[href="/"].jetbundle-home,
-.toolbar a[href="/"].jetbundle-home,
-nav a[href="/"]:first-child,
-.navbar a[href="/"]:first-child,
-.toolbar a[href="/"]:first-child {
-    display: inline-block !important;
-    color: #ff6b35 !important;
-    font-weight: 700 !important;
-    font-size: 1.25rem !important;
-    text-decoration: none !important;
-    padding: 0.5rem 1rem !important;
-    margin-right: 1rem !important;
-}
-
-a.jetbundle-home:hover,
-nav a[href="/"].jetbundle-home:hover,
-.navbar a[href="/"].jetbundle-home:hover,
-.toolbar a[href="/"].jetbundle-home:hover {
-    color: #ff8c5a !important;
-}
-
-/* Responsive: reduce margin on smaller screens */
-@media (max-width: 1200px) {
-    body .container,
-    body .wrapper,
-    body .content-div {
-        margin-left: 60px !important;
-        max-width: calc(100% - 120px) !important;
-    }
-}
-
-@media (max-width: 768px) {
-    body .container,
-    body .wrapper,
-    body .content-div {
-        margin-left: 20px !important;
-        max-width: calc(100% - 40px) !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    .landing-page {
-        padding: 4rem 1rem 2rem 1rem !important;
-    }
-    
-    .landing-title {
-        font-size: 2.5rem !important;
-    }
-    
-    .landing-subtitle {
-        font-size: 1.25rem !important;
-    }
+    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5);
 }

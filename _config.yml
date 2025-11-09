@@ -39,7 +39,7 @@ collections:
   finance_stack:
     output: true
   dropdown:
-    output: false
+    output: true
   items:
     output: true
 
