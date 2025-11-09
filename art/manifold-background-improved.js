@@ -204,8 +204,9 @@
         }
 
         determineColor() {
-            const colorChoice = this.id % 2;
-            return colorChoice === 0 ? CONFIG.colors.orange : CONFIG.colors.blue;
+            // Color will be determined dynamically based on curvature
+            // Return neutral color initially, will be set during generation
+            return CONFIG.colors.orange; // Default, will be updated
         }
 
         generatePoints() {
@@ -216,13 +217,14 @@
             let length = 0;
             const maxPoints = CONFIG.maxPointsPerFiber;
 
+            // Track curvature for color gradient
+            let totalCurvature = 0;
+            let curvatureSamples = 0;
+            let currentCurvature = 0;
+
             // Improved parallel transport simulation with better mathematical accuracy
             while (length < this.maxLength && this.points.length < maxPoints) {
-                this.points.push({ x, y, opacity: this.opacity, angle });
-
                 // Connection form: ω = A_x(x,y,t) dx + A_y(x,y,t) dy
-                // Each component comes from noise (simulating connection coefficients)
-                // This is more accurate than single scalar noise
                 const noiseX = this.noiseGen.noise(
                     x * CONFIG.noiseScale + this.time,
                     y * CONFIG.noiseScale + this.time
@@ -231,35 +233,45 @@
                     x * CONFIG.noiseScale + this.time + 100,
                     y * CONFIG.noiseScale + this.time + 100
                 );
-
+                
                 // Connection coefficients (normalized to [-1, 1])
-                // A_x and A_y represent the connection form components
                 const A_x = (noiseX - 0.5) * 2;
                 const A_y = (noiseY - 0.5) * 2;
 
-                // Parallel transport equation: dθ/dt = -Γ^k_ij (connection coefficients)
-                // For 2D: curvature = (A_x + A_y) / 2 (simplified representation)
-                // This represents how the connection "twists" the fiber as we move along it
-                const curvature = (A_x + A_y) * 0.5;
+                // Curvature (positive or negative)
+                // Positive curvature = orange, negative = blue
+                currentCurvature = (A_x + A_y) * 0.5;
+                totalCurvature += currentCurvature;
+                curvatureSamples++;
 
+                // Store point with curvature for gradient coloring
+                this.points.push({ 
+                    x, y, 
+                    opacity: this.opacity, 
+                    angle,
+                    curvature: currentCurvature 
+                });
+                
                 // Update angle based on connection (parallel transport)
-                // The factor 0.2 controls the strength of the connection effect
-                // In true parallel transport, this would be: dθ/dt = -Γ(θ, v) where v is velocity
-                angle += curvature * Math.PI * 0.2;
+                angle += currentCurvature * Math.PI * 0.15;
 
-                // Step along fiber (geodesic path in the total space E)
-                // This represents moving along the fiber in the fiber bundle
-                // The step follows the direction determined by parallel transport
+                // Step along fiber (geodesic path)
                 const stepSize = CONFIG.fiberStepSize;
                 x += Math.cos(angle) * stepSize;
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Opacity decay (represents how information/energy dissipates along fiber)
-                // Could represent the norm of a section decreasing along the fiber
+                // Opacity decay (slower for longer fibers)
                 this.opacity *= CONFIG.opacityDecay;
-                if (this.opacity < 0.01) break;
+                if (this.opacity < CONFIG.minOpacity) break;
             }
+
+            // Determine overall fiber color based on average curvature
+            // Positive curvature (average > 0) = orange gradient
+            // Negative curvature (average < 0) = blue gradient
+            const avgCurvature = curvatureSamples > 0 ? totalCurvature / curvatureSamples : 0;
+            this.avgCurvature = avgCurvature;
+            // Color will be applied dynamically during drawing based on local curvature
 
             this.length = length;
         }
@@ -311,25 +323,25 @@
 
         generateJets() {
             const numJets = 2;
+            let totalCurvature = 0;
+            let curvatureSamples = 0;
+
             for (let i = 0; i < numJets; i++) {
                 const angle = (Math.PI * 2 * i) / numJets + Math.random() * 0.3;
                 const jet = {
                     points: [],
-                    color: i % 2 === 0 ? CONFIG.colors.orange : CONFIG.colors.blue,
-                    opacity: CONFIG.baseOpacity * 0.5,
-                    length: CONFIG.maxFiberLength * 0.35
+                    opacity: CONFIG.baseOpacity * 0.4,
+                    length: CONFIG.maxFiberLength * 0.4
                 };
 
                 let x = this.basePoint.x;
                 let y = this.basePoint.y;
                 let currentAngle = angle;
                 let length = 0;
-                const maxPoints = 45;
+                const maxPoints = 80; // More points for longer jets
 
                 // Higher-order jet (more curvature)
                 while (length < jet.length && jet.points.length < maxPoints) {
-                    jet.points.push({ x, y, opacity: jet.opacity });
-
                     // Higher curvature for jets (represents derivatives)
                     const noiseValue1 = this.noiseGen.noise(
                         x * CONFIG.noiseScale * 2 + this.time,
@@ -339,20 +351,27 @@
                         x * CONFIG.noiseScale * 2 + this.time + 50,
                         y * CONFIG.noiseScale * 2 + this.time + 50
                     );
-                    const curvature = (noiseValue1 + noiseValue2 - 1) * Math.PI * 0.5;
-                    currentAngle += curvature;
+                    const curvature = (noiseValue1 + noiseValue2 - 1);
+                    totalCurvature += curvature;
+                    curvatureSamples++;
 
-                    const stepSize = CONFIG.fiberStepSize * 0.65;
+                    jet.points.push({ x, y, opacity: jet.opacity, curvature });
+                    currentAngle += curvature * Math.PI * 0.4;
+
+                    const stepSize = CONFIG.fiberStepSize * 0.7;
                     x += Math.cos(currentAngle) * stepSize;
                     y += Math.sin(currentAngle) * stepSize;
                     length += stepSize;
-                    jet.opacity *= 0.93;
+                    jet.opacity *= 0.96;
 
-                    if (jet.opacity < 0.01) break;
+                    if (jet.opacity < CONFIG.minOpacity) break;
                 }
 
                 this.jets.push(jet);
             }
+
+            // Store average curvature for color determination
+            this.avgCurvature = curvatureSamples > 0 ? totalCurvature / curvatureSamples : 0;
         }
 
         update(time, basePoint) {
@@ -530,24 +549,85 @@
             if (fiber.points.length < 2) return;
 
             const ctx = this.ctx;
-            const color = fiber.color;
             const points = fiber.points;
 
+            // Draw fiber with gradient based on curvature (positivity/negativity)
+            // Use gradient that transitions between orange (positive) and blue (negative)
             ctx.beginPath();
             ctx.moveTo(points[0].x, points[0].y);
 
+            // Create gradient along fiber based on curvature
+            // Find bounding box for gradient
+            let minX = Infinity, maxX = -Infinity;
+            let minY = Infinity, maxY = -Infinity;
+            for (const p of points) {
+                minX = Math.min(minX, p.x);
+                maxX = Math.max(maxX, p.x);
+                minY = Math.min(minY, p.y);
+                maxY = Math.max(maxY, p.y);
+            }
+
+            // Create linear gradient along fiber direction
+            const gradient = ctx.createLinearGradient(minX, minY, maxX, maxY);
+            
+            // Add color stops based on curvature at each point
+            const numStops = Math.min(20, points.length); // Limit stops for performance
+            for (let i = 0; i <= numStops; i++) {
+                const idx = Math.floor((i / numStops) * (points.length - 1));
+                const point = points[idx];
+                const t = i / numStops;
+                
+                // Curvature determines color: positive = orange, negative = blue
+                // Normalize curvature to [0, 1] for color mixing
+                const curvatureNorm = Math.max(-1, Math.min(1, point.curvature || 0));
+                const orangeWeight = (curvatureNorm + 1) / 2; // 0 to 1
+                const blueWeight = 1 - orangeWeight;
+                
+                // Mix orange and blue based on curvature
+                const r = Math.floor(CONFIG.colors.orange.r * orangeWeight + CONFIG.colors.blue.r * blueWeight);
+                const g = Math.floor(CONFIG.colors.orange.g * orangeWeight + CONFIG.colors.blue.g * blueWeight);
+                const b = Math.floor(CONFIG.colors.orange.b * orangeWeight + CONFIG.colors.blue.b * blueWeight);
+                
+                // Opacity based on point opacity
+                const opacity = Math.max(CONFIG.minOpacity, point.opacity || fiber.opacity);
+                
+                gradient.addColorStop(t, `rgba(${r}, ${g}, ${b}, ${opacity})`);
+            }
+
+            // Draw the path
             for (let i = 1; i < points.length; i++) {
                 ctx.lineTo(points[i].x, points[i].y);
             }
 
-            const startOpacity = fiber.opacity;
-            const endOpacity = fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length);
-            const avgOpacity = Math.max(0.12, (startOpacity + endOpacity) / 2);
-
-            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${avgOpacity})`;
+            ctx.strokeStyle = gradient;
             ctx.lineWidth = CONFIG.fiberThickness;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
+            ctx.stroke();
+        }
+
+        drawBasePoint(basePoint) {
+            const ctx = this.ctx;
+            const size = CONFIG.basePointSize;
+            
+            // Draw larger base point
+            ctx.beginPath();
+            ctx.arc(basePoint.x, basePoint.y, size, 0, Math.PI * 2);
+            
+            // Gradient fill: orange to blue based on position
+            const gradient = ctx.createRadialGradient(
+                basePoint.x, basePoint.y, 0,
+                basePoint.x, basePoint.y, size
+            );
+            gradient.addColorStop(0, `rgba(255, 107, 53, 0.8)`); // Orange center
+            gradient.addColorStop(1, `rgba(14, 165, 233, 0.4)`); // Blue edge
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Outer glow
+            ctx.strokeStyle = `rgba(255, 107, 53, 0.3)`;
+            ctx.lineWidth = 2;
             ctx.stroke();
         }
 
@@ -648,6 +728,11 @@
             // Cleanup periodically
             if (this.frameCount % CONFIG.cleanupInterval === 0) {
                 this.cleanup();
+            }
+
+            // Draw base points first (so they're behind fibers)
+            for (const basePoint of this.basePoints) {
+                this.drawBasePoint(basePoint);
             }
 
             // Draw fibers
