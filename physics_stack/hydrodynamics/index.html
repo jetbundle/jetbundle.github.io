@@ -126,8 +126,28 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-Archive">
+                    <li priority="4"><a href="/dropdown/archive.html">Archive</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-Blog">
                     <li priority="3"><a href="/dropdown/blog.html">Blog</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Booklist">
+                    <li priority="3"><a href="/dropdown/booklist.html">Booklist</a></li>
                   </ul>
                 </li>
               
@@ -151,6 +171,16 @@
                   </ul>
                 </li>
               
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Stacks">
+                    <li priority="2"><a href="/dropdown/stacks.html">Stacks</a></li>
+                  </ul>
+                </li>
+              
               
 
               <script>
@@ -170,7 +200,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
+                let priority = [ "About",  "Stacks",  "Booklist",  "Archive",  "Blog",  "Community", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -270,38 +300,12 @@
 
       </div>
     </div>
-    <footer class="page-footer">
-  <center>
-    
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        
-<a href="https://github.com/jetbundle" target="_blank">
-  <i class="fa fa-github fa-3x"></i>
-</a>
-
-
-
-<a href="https://www.facebook.com/" target="_blank">
-  <i class="fa fa-facebook fa-3x"></i>
-</a>
-
-
-<a href="https://twitter.com/" target="_blank">
-  <i class="fa fa-twitter fa-3x"></i>
-</a>
-
-
-<a href="https://www.linkedin.com/in/" target="_blank">
-  <i class="fa fa-linkedin fa-3x"></i>
-</a>
-
-
-      </div>
-    </div>
-    
-  </center>
+    <footer class="site-footer">
+  <div class="footer-content">
+    <p>Copyright © 2025 Joel Saucedo. All rights reserved.</p>
+  </div>
 </footer>
+
 
 
     <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->

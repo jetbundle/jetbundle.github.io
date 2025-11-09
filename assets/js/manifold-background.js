@@ -55,7 +55,7 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -300,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetX: -450,      // Center point 250px off-screen to the left (closer to edge)
         centerOffsetY: -5      // Center point 250px off-screen to the top (closer to edge)
     };
 
