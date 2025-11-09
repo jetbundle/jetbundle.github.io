@@ -1,5 +1,5 @@
 /**
- * jetbundle Manifold Background Animation - Optimized
+ * JetBundle Manifold Background Animation - Optimized
  *
  * Visualizes fiber bundles and jet bundles with high performance:
  * - Reduced fiber count for better performance

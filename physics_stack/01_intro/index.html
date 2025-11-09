@@ -29,7 +29,7 @@
   <!-- Social: Schema.org  -->
   <meta itemprop="name" content="The Ballistics & Hydrodynamics Stack"/>
 
-  <!-- jetbundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
+  <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
   <style>
     /* Critical gauge theme styles - applied immediately */
     :root {
@@ -72,7 +72,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 
-  <!-- jetbundle Gauge Theme CSS - Loads after theme CSS -->
+  <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
 
   <!-- MathJax - Async (non-blocking) -->
@@ -192,21 +192,6 @@
   </div>
 </header>
 
-    <!-- Custom home link -->
-    <script>
-      // Add jetbundle home link to navigation
-      document.addEventListener('DOMContentLoaded', function() {
-        const nav = document.querySelector('nav, .navbar, .toolbar');
-        if (nav && !nav.querySelector('a[href="/"].jetbundle-home')) {
-          const homeLink = document.createElement('a');
-          homeLink.href = '/';
-          homeLink.className = 'jetbundle-home';
-          homeLink.textContent = 'jetbundle';
-          homeLink.style.cssText = 'color: #ff6b35 !important; font-weight: 700 !important; font-size: 1.25rem !important; text-decoration: none !important; padding: 0.5rem 1rem !important;';
-          nav.insertBefore(homeLink, nav.firstChild);
-        }
-      });
-    </script>
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
       <div id="background-div">
@@ -313,7 +298,7 @@
 </footer>
 
 
-    <!-- jetbundle Gauge Theme JavaScript - Minimal enhancement -->
+    <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
       // Minimal enhancements - theme's main.js handles initialization
       (function() {
