@@ -185,8 +185,9 @@
 
     // Improved Fiber class with better mathematical accuracy
     class ImprovedFiber {
-        constructor(basePoint, direction, noiseGen, time, id) {
-            this.basePoint = basePoint;
+        constructor(basePoint, direction, noiseGen, time, id, basePointIndex) {
+            this.basePoint = { x: basePoint.x, y: basePoint.y }; // Copy base point
+            this.basePointIndex = basePointIndex; // Track which base point this belongs to
             this.direction = direction;
             this.noiseGen = noiseGen;
             this.time = time;
@@ -250,7 +251,11 @@
 
         update(time, basePoint) {
             this.time = time;
-            this.basePoint = basePoint; // Update base point (for moving points)
+            // Update base point position (for moving points)
+            if (basePoint) {
+                this.basePoint.x = basePoint.x;
+                this.basePoint.y = basePoint.y;
+            }
             this.opacity = CONFIG.baseOpacity;
             this.age++;
             this.generatePoints();
@@ -278,8 +283,9 @@
 
     // Improved JetBundle class
     class ImprovedJetBundle {
-        constructor(basePoint, noiseGen, time, id) {
-            this.basePoint = basePoint;
+        constructor(basePoint, noiseGen, time, id, basePointIndex) {
+            this.basePoint = { x: basePoint.x, y: basePoint.y }; // Copy base point
+            this.basePointIndex = basePointIndex; // Track which base point this belongs to
             this.noiseGen = noiseGen;
             this.time = time;
             this.id = id;
@@ -336,7 +342,11 @@
 
         update(time, basePoint) {
             this.time = time;
-            this.basePoint = basePoint;
+            // Update base point position (for moving points)
+            if (basePoint) {
+                this.basePoint.x = basePoint.x;
+                this.basePoint.y = basePoint.y;
+            }
             this.age++;
             this.generateJets();
         }
@@ -448,7 +458,8 @@
                         angle,
                         this.noiseGen,
                         this.time,
-                        this.fiberIdCounter++
+                        this.fiberIdCounter++,
+                        i // Track base point index
                     );
                     this.fibers.push(fiber);
                 }
@@ -458,7 +469,8 @@
                     basePoint,
                     this.noiseGen,
                     this.time,
-                    this.jetIdCounter++
+                    this.jetIdCounter++,
+                    i // Track base point index
                 );
                 this.jetBundles.push(jetBundle);
             }
