@@ -1,36 +1,36 @@
 /**
- * JetBundle Manifold Background - Stochastic Exploration
- *
+ * JetBundle Manifold Background - Two Points with Direction-Based Gradients
+ * 
  * Two points explore the manifold with stochastic motion:
- * - Random walk with drift toward center
- * - Color gradient based on direction of motion
+ * - Smooth incremental movement with drift toward center
+ * - Orange/blue gradient based on direction of motion (represents jet bundles)
  * - Memory-efficient trails that fade over time
- * - Perpetual exploration
+ * - Larger, more visible trails
  */
 
-(function () {
+(function() {
     'use strict';
 
-    // Optimized configuration
+    // Configuration
     const CONFIG = {
-        // Two explorers
+        // Two explorers (points on the manifold)
         numPoints: 2,
 
         // Motion parameters
-        stepSize: 2.5,              // Base step size
-        driftStrength: 0.02,        // Drift toward center (0-1)
-        noiseScale: 0.8,            // Randomness (0-1)
-        minSpeed: 0.5,              // Minimum speed
-        maxSpeed: 3.0,              // Maximum speed
+        stepSize: 3.0,              // Base step size (increased for bigger movement)
+        driftStrength: 0.015,       // Drift toward center (0-1)
+        noiseScale: 0.6,            // Randomness (0-1)
+        minSpeed: 0.8,              // Minimum speed (increased)
+        maxSpeed: 4.0,              // Maximum speed (increased)
 
-        // Trail parameters
-        trailLength: 80,            // Number of trail points per explorer
-        fadeRate: 0.96,             // Fade per frame (0-1)
-        baseOpacity: 0.4,           // Starting opacity
-
-        // Visual parameters
-        pointRadius: 2.5,           // Current point radius
-        trailWidth: 1.8,            // Trail line width
+        // Trail parameters (bigger, more visible)
+        trailLength: 100,           // Number of trail points per explorer (increased)
+        fadeRate: 0.97,             // Fade per frame (0-1)
+        baseOpacity: 0.5,           // Starting opacity (increased for visibility)
+        
+        // Visual parameters (bigger)
+        pointRadius: 3.5,           // Current point radius (increased)
+        trailWidth: 2.5,            // Trail line width (increased)
 
         // Color scheme (gauge theme)
         colors: {
@@ -40,8 +40,8 @@
         },
 
         // Performance
-        updateEvery: 1,             // Update every N frames
-        drawEvery: 1                // Draw every N frames
+        updateEvery: 1,             // Update every frame
+        drawEvery: 1                // Draw every frame
     };
 
     // Explorer class - a single point exploring the manifold
@@ -58,8 +58,8 @@
             this.y = centerY + (Math.random() - 0.5) * height * 0.6;
 
             // Velocity (for direction-based coloring)
-            this.vx = (Math.random() - 0.5) * 2;
-            this.vy = (Math.random() - 0.5) * 2;
+            this.vx = (Math.random() - 0.5) * 3;
+            this.vy = (Math.random() - 0.5) * 3;
 
             // Trail - circular buffer for memory efficiency
             this.trail = [];
@@ -117,10 +117,9 @@
             this.x += this.vx;
             this.y += this.vy;
 
-      // Boundary conditions - wrap around (torus topology)
-      // Use modulo for proper wrapping
-      this.x = ((this.x % this.width) + this.width) % this.width;
-      this.y = ((this.y % this.height) + this.height) % this.height;
+            // Boundary conditions - wrap around (torus topology)
+            this.x = ((this.x % this.width) + this.width) % this.width;
+            this.y = ((this.y % this.height) + this.height) % this.height;
 
             // Add current position to trail (circular buffer)
             const trailPoint = {
@@ -157,16 +156,16 @@
             }
         }
 
-        // Get color based on direction (velocity vector)
+        // Get color based on direction (velocity vector) - Orange/Blue gradient
         getColor(vx, vy) {
             // Normalize velocity to get direction
             const speed = Math.sqrt(vx * vx + vy * vy);
             if (speed < 0.01) {
-                // No motion - use neutral color
+                // No motion - use neutral color (mix of orange and blue)
                 return {
-                    r: (CONFIG.colors.orange.r + CONFIG.colors.blue.r) / 2,
-                    g: (CONFIG.colors.orange.g + CONFIG.colors.blue.g) / 2,
-                    b: (CONFIG.colors.orange.b + CONFIG.colors.blue.b) / 2
+                    r: Math.round((CONFIG.colors.orange.r + CONFIG.colors.blue.r) / 2),
+                    g: Math.round((CONFIG.colors.orange.g + CONFIG.colors.blue.g) / 2),
+                    b: Math.round((CONFIG.colors.orange.b + CONFIG.colors.blue.b) / 2)
                 };
             }
 
@@ -174,7 +173,7 @@
             let angle = Math.atan2(vy, vx);
             if (angle < 0) angle += Math.PI * 2;
 
-            // Map angle to color gradient
+            // Map angle to orange/blue gradient
             // 0 to π: orange to blue
             // π to 2π: blue to orange
             const normalizedAngle = angle / (Math.PI * 2);
@@ -231,10 +230,6 @@
             this.canvas.width = this.width;
             this.canvas.height = this.height;
 
-            this.frameCount = 0;
-            this.animationId = null;
-            this.isRunning = false;
-
             // Create two explorers
             this.explorers = [];
             for (let i = 0; i < CONFIG.numPoints; i++) {
@@ -283,8 +278,7 @@
 
                 if (trailSize < 2) continue;
 
-                // Draw trail as connected lines
-                // Build array of visible points first for better performance
+                // Build array of visible points for gradient drawing
                 const visiblePoints = [];
                 for (let i = 0; i < trailSize; i++) {
                     const idx = explorer.trailFull
@@ -298,29 +292,32 @@
                     }
                 }
 
-                // Draw connected trail
+                // Draw trail with gradient based on direction
                 if (visiblePoints.length > 1) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(visiblePoints[0].x, visiblePoints[0].y);
-                    for (let i = 1; i < visiblePoints.length; i++) {
-                        this.ctx.lineTo(visiblePoints[i].x, visiblePoints[i].y);
+                    // Draw segments with color based on direction at each point
+                    for (let i = 0; i < visiblePoints.length - 1; i++) {
+                        const p1 = visiblePoints[i];
+                        const p2 = visiblePoints[i + 1];
+                        
+                        // Get color based on direction at this segment
+                        const color = explorer.getColor(p1.vx, p1.vy);
+                        const opacity = Math.min(CONFIG.baseOpacity, p1.opacity || CONFIG.baseOpacity);
+
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(p1.x, p1.y);
+                        this.ctx.lineTo(p2.x, p2.y);
+
+                        this.ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+                        this.ctx.lineWidth = CONFIG.trailWidth;
+                        this.ctx.lineCap = 'round';
+                        this.ctx.lineJoin = 'round';
+                        this.ctx.stroke();
                     }
-
-                    // Draw with gradient color based on direction
-                    const color = explorer.getColor(explorer.vx, explorer.vy);
-                    const latestPoint = visiblePoints[visiblePoints.length - 1];
-                    const opacity = Math.min(CONFIG.baseOpacity, latestPoint.opacity || CONFIG.baseOpacity);
-
-                    this.ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
-                    this.ctx.lineWidth = CONFIG.trailWidth;
-                    this.ctx.lineCap = 'round';
-                    this.ctx.lineJoin = 'round';
-                    this.ctx.stroke();
                 }
 
-                // Draw current point
+                // Draw current point (larger, more visible)
                 const currentColor = explorer.getColor(explorer.vx, explorer.vy);
-                this.ctx.fillStyle = `rgba(${currentColor.r}, ${currentColor.g}, ${currentColor.b}, 0.8)`;
+                this.ctx.fillStyle = `rgba(${currentColor.r}, ${currentColor.g}, ${currentColor.b}, 0.9)`;
                 this.ctx.beginPath();
                 this.ctx.arc(explorer.x, explorer.y, CONFIG.pointRadius, 0, Math.PI * 2);
                 this.ctx.fill();
@@ -348,6 +345,7 @@
         start() {
             if (this.isRunning) return;
             this.isRunning = true;
+            this.frameCount = 0;
             this.animate();
             console.log('Manifold: Started');
         }
@@ -359,29 +357,39 @@
                 this.animationId = null;
             }
         }
+
+        destroy() {
+            this.stop();
+            this.canvas = null;
+            this.ctx = null;
+        }
     }
 
-    // Initialize when DOM is ready
+    // Initialize when DOM is ready - very robust initialization
     function init() {
+        // Prevent multiple initializations
         if (window.manifoldBackgroundInitialized) {
             return;
         }
 
         const tryInit = () => {
+            // Must have body
             if (!document.body) {
                 console.log('Manifold: Waiting for body...');
                 return;
             }
 
             try {
+                // Check if canvas already exists
                 if (document.getElementById('manifold-background')) {
                     console.log('Manifold: Canvas already exists');
                     return;
                 }
 
-                // Create canvas
+                // Create canvas element
                 const canvas = document.createElement('canvas');
                 canvas.id = 'manifold-background';
+                // Set inline styles with !important to override any theme CSS
                 canvas.setAttribute('style', `
           position: fixed !important;
           top: 0 !important;
@@ -396,32 +404,61 @@
           visibility: visible !important;
         `);
 
-                // Insert canvas
+                // Insert canvas - prefer body prepend
+                let inserted = false;
                 try {
                     document.body.insertBefore(canvas, document.body.firstChild);
+                    inserted = true;
                 } catch (e) {
-                    document.body.appendChild(canvas);
+                    try {
+                        document.body.appendChild(canvas);
+                        inserted = true;
+                    } catch (e2) {
+                        console.error('Manifold: Failed to insert canvas', e2);
+                    }
                 }
 
-                console.log('Manifold: Canvas created');
+                if (!inserted) {
+                    console.warn('Manifold: Could not insert canvas');
+                    return;
+                }
 
-                // Initialize
-                const manifold = new ManifoldBackground(canvas);
+                console.log('Manifold: Canvas created and inserted');
+                console.log('Manifold: Canvas computed style', window.getComputedStyle(canvas));
+                console.log('Manifold: Canvas position', canvas.getBoundingClientRect());
 
+                // Initialize manifold background
+                let manifold;
+                try {
+                    manifold = new ManifoldBackground(canvas);
+                    console.log('Manifold: Initialized', {
+                        explorers: manifold.explorers.length,
+                        width: manifold.width,
+                        height: manifold.height,
+                        canvas: canvas.width + 'x' + canvas.height
+                    });
+                } catch (e) {
+                    console.error('Manifold: Error creating', e);
+                    console.error('Manifold: Stack trace', e.stack);
+                    return;
+                }
+
+                // Start animation after brief delay
                 setTimeout(() => {
                     try {
                         if (manifold && !manifold.isRunning) {
                             manifold.start();
                             window.manifoldBackgroundInitialized = true;
+                            console.log('Manifold: Started successfully');
                         }
                     } catch (e) {
                         console.error('Manifold: Error starting', e);
                     }
-                }, 100);
+                }, 200);
 
                 // Handle resize
                 let resizeTimer;
-                window.addEventListener('resize', () => {
+                const handleResize = () => {
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(() => {
                         try {
@@ -432,7 +469,8 @@
                             console.error('Manifold: Resize error', e);
                         }
                     }, 300);
-                }, { passive: true });
+                };
+                window.addEventListener('resize', handleResize, { passive: true });
 
                 // Pause when tab hidden
                 document.addEventListener('visibilitychange', () => {
@@ -449,6 +487,7 @@
                     }
                 }, { passive: true });
 
+                // Expose for debugging
                 window.manifoldBackground = manifold;
 
             } catch (error) {
@@ -456,6 +495,7 @@
             }
         };
 
+        // Wait for body to exist
         const waitForBody = () => {
             if (document.body) {
                 tryInit();
@@ -464,15 +504,22 @@
             }
         };
 
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        // Initialize based on ready state
+        if (document.readyState === 'complete') {
+            waitForBody();
+        } else if (document.readyState === 'interactive') {
             waitForBody();
         } else {
             document.addEventListener('DOMContentLoaded', waitForBody);
         }
 
+        // Also try on load
         window.addEventListener('load', waitForBody);
+
+        // Final fallback
         setTimeout(waitForBody, 1000);
     }
 
+    // Start initialization
     init();
 })();
