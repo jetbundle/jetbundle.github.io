@@ -1,6 +1,6 @@
 /**
  * JetBundle Manifold Background Animation - Improved Mathematical Accuracy
- * 
+ *
  * Features:
  * - 2 moving base points with stochastic (Brownian) motion on the manifold
  * - Improved mathematical accuracy (better connection, parallel transport)
@@ -16,24 +16,26 @@
     const CONFIG = {
         // Two moving base points
         numBasePoints: 2,
-        fibersPerPoint: 3,        // More fibers for better visualization
-        maxFiberLength: 120,
-        fiberStepSize: 1.2,
-        fiberThickness: 0.7,
-        
+        fibersPerPoint: 1,        // One fiber per base point
+        maxFiberLength: 300,      // Much longer fibers
+        fiberStepSize: 1.0,       // Smaller steps for smoother, longer curves
+        fiberThickness: 1.2,      // Thicker fibers for visibility
+        basePointSize: 8,         // Larger base points (radius)
+
         // Stochastic motion parameters
         brownianScale: 0.8,       // Scale of Brownian motion
         brownianSpeed: 0.15,      // Speed of exploration
         boundaryReflection: 0.95, // Boundary reflection coefficient
-        
+
         // Animation parameters
         animationSpeed: 0.002,
         noiseScale: 0.015,
-        
+
         // Visual parameters
-        opacityDecay: 0.97,
-        baseOpacity: 0.18,
-        
+        opacityDecay: 0.995,      // Slower decay for longer fibers
+        baseOpacity: 0.25,        // Higher opacity for visibility
+        minOpacity: 0.08,         // Minimum opacity before stopping
+
         // Color scheme (gauge theme)
         colors: {
             orange: { r: 255, g: 107, b: 53 },
@@ -41,15 +43,15 @@
             dark: { r: 11, g: 14, b: 23 },
             dark2: { r: 10, g: 13, b: 20 }
         },
-        
+
         // Performance and memory
-        maxFibers: 30,
-        updateInterval: 3,
-        fadeOutSpeed: 0.985,
-        maxPointsPerFiber: 70,
-        cleanupInterval: 300,     // Cleanup every N frames
-        maxFiberAge: 600,         // Max age in frames before cleanup
-        viewportMargin: 200       // Margin for visibility check
+        maxFibers: 10,            // Reduced since only 1 fiber per point
+        updateInterval: 2,        // More frequent updates for smoother motion
+        fadeOutSpeed: 0.99,       // Slower fade for longer trails
+        maxPointsPerFiber: 250,   // More points for longer fibers
+        cleanupInterval: 400,     // Less frequent cleanup
+        maxFiberAge: 800,         // Longer age before cleanup
+        viewportMargin: 300       // Larger margin for longer fibers
     };
 
     // Improved noise generator with better mathematical properties
@@ -105,7 +107,7 @@
             const B = this.permutation[X + 1] + Y;
             const BA = this.permutation[B];
             const BB = this.permutation[B + 1];
-            
+
             const result = this.lerp(
                 this.lerp(this.grad(this.permutation[AA], x, y),
                     this.grad(this.permutation[BA], x - 1, y), u),
@@ -145,23 +147,23 @@
             // Generate random step (Gaussian noise)
             const randomAngle = Math.random() * Math.PI * 2;
             const randomMagnitude = Math.sqrt(-2 * Math.log(Math.random())) * this.scale;
-            
+
             // Update velocity (drift term)
             this.velocity.x += (Math.random() - 0.5) * this.speed;
             this.velocity.y += (Math.random() - 0.5) * this.speed;
-            
+
             // Damping to prevent divergence
             this.velocity.x *= 0.98;
             this.velocity.y *= 0.98;
-            
+
             // Brownian step
             const dx = Math.cos(randomAngle) * randomMagnitude * this.speed + this.velocity.x * dt;
             const dy = Math.sin(randomAngle) * randomMagnitude * this.speed + this.velocity.y * dt;
-            
+
             // Update position
             let newX = position.x + dx;
             let newY = position.y + dy;
-            
+
             // Boundary reflection (manifold with boundaries)
             if (newX < 0) {
                 newX = -newX * CONFIG.boundaryReflection;
@@ -170,7 +172,7 @@
                 newX = this.width - (newX - this.width) * CONFIG.boundaryReflection;
                 this.velocity.x *= -CONFIG.boundaryReflection;
             }
-            
+
             if (newY < 0) {
                 newY = -newY * CONFIG.boundaryReflection;
                 this.velocity.y *= -CONFIG.boundaryReflection;
@@ -178,7 +180,7 @@
                 newY = this.height - (newY - this.height) * CONFIG.boundaryReflection;
                 this.velocity.y *= -CONFIG.boundaryReflection;
             }
-            
+
             return { x: newX, y: newY };
         }
     }
@@ -229,7 +231,7 @@
                     x * CONFIG.noiseScale + this.time + 100,
                     y * CONFIG.noiseScale + this.time + 100
                 );
-                
+
                 // Connection coefficients (normalized to [-1, 1])
                 // A_x and A_y represent the connection form components
                 const A_x = (noiseX - 0.5) * 2;
@@ -239,7 +241,7 @@
                 // For 2D: curvature = (A_x + A_y) / 2 (simplified representation)
                 // This represents how the connection "twists" the fiber as we move along it
                 const curvature = (A_x + A_y) * 0.5;
-                
+
                 // Update angle based on connection (parallel transport)
                 // The factor 0.2 controls the strength of the connection effect
                 // In true parallel transport, this would be: dθ/dt = -Γ(θ, v) where v is velocity
@@ -276,12 +278,12 @@
 
         isVisible(width, height, margin = CONFIG.viewportMargin) {
             if (this.points.length === 0) return false;
-            
+
             // Check if base point or any fiber point is visible
             const baseVisible = this.basePoint.x >= -margin && this.basePoint.x <= width + margin &&
                               this.basePoint.y >= -margin && this.basePoint.y <= height + margin;
             if (baseVisible) return true;
-            
+
             // Check first and last points
             const first = this.points[0];
             const last = this.points[this.points.length - 1];
@@ -416,7 +418,7 @@
             this.canvas.height = this.height;
             this.canvas.style.width = this.width + 'px';
             this.canvas.style.height = this.height + 'px';
-            
+
             // Update Brownian motion bounds
             this.brownianMotions.forEach(bm => {
                 bm.width = this.width;
@@ -427,20 +429,20 @@
         initializeBaseSpace() {
             this.basePoints = [];
             this.brownianMotions = [];
-            
+
             // Initialize 2 base points at different locations
             const positions = [
                 { x: this.width * 0.3, y: this.height * 0.4 },
                 { x: this.width * 0.7, y: this.height * 0.6 }
             ];
-            
+
             for (let i = 0; i < CONFIG.numBasePoints; i++) {
                 const pos = positions[i] || {
                     x: Math.random() * this.width,
                     y: Math.random() * this.height
                 };
                 this.basePoints.push({ x: pos.x, y: pos.y, id: i });
-                
+
                 // Create Brownian motion for this point
                 this.brownianMotions.push(new BrownianMotion(
                     this.width,
@@ -449,7 +451,7 @@
                     CONFIG.brownianSpeed
                 ));
             }
-            
+
             // Generate initial fibers
             this.generateFibers();
         }
@@ -460,10 +462,10 @@
             this.jetBundles = [];
             this.fiberIdCounter = 0;
             this.jetIdCounter = 0;
-            
+
             for (let i = 0; i < this.basePoints.length; i++) {
                 const basePoint = this.basePoints[i];
-                
+
                 for (let j = 0; j < CONFIG.fibersPerPoint; j++) {
                     const angle = (Math.PI * 2 * j) / CONFIG.fibersPerPoint + Math.random() * 0.3;
                     const fiber = new ImprovedFiber(
@@ -554,18 +556,36 @@
                 if (jet.points.length < 2) continue;
 
                 const ctx = this.ctx;
-                const color = jet.color;
                 const points = jet.points;
 
+                // Draw jets with curvature-based gradient (similar to fibers)
                 ctx.beginPath();
                 ctx.moveTo(points[0].x, points[0].y);
+
+                // Simple gradient for jets (orange to blue)
+                const gradient = ctx.createLinearGradient(
+                    points[0].x, points[0].y,
+                    points[points.length - 1].x, points[points.length - 1].y
+                );
+                
+                // Use average curvature for jet color
+                const avgCurvature = jetBundle.avgCurvature || 0;
+                const orangeWeight = (avgCurvature + 1) / 2;
+                const blueWeight = 1 - orangeWeight;
+                
+                const r = Math.floor(CONFIG.colors.orange.r * orangeWeight + CONFIG.colors.blue.r * blueWeight);
+                const g = Math.floor(CONFIG.colors.orange.g * orangeWeight + CONFIG.colors.blue.g * blueWeight);
+                const b = Math.floor(CONFIG.colors.orange.b * orangeWeight + CONFIG.colors.blue.b * blueWeight);
+
+                gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${jet.opacity * 0.5})`);
+                gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, ${jet.opacity * 0.2})`);
 
                 for (let i = 1; i < points.length; i++) {
                     ctx.lineTo(points[i].x, points[i].y);
                 }
 
-                ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${jet.opacity * 0.4})`;
-                ctx.lineWidth = CONFIG.fiberThickness * 0.5;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = CONFIG.fiberThickness * 0.6;
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
                 ctx.stroke();
@@ -814,4 +834,3 @@
 
     init();
 })();
-
