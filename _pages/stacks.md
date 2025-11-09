@@ -8,7 +8,7 @@ description: Technical stacks and architectures
 
 ## The Computation Stack
 
-[The Computation Stack →](/computation_stack/01_intro/)
+[The Computation Stack →](/computation_stack/)
 
 **Command, Control, Communications & Intelligence**
 
@@ -18,7 +18,7 @@ description: Technical stacks and architectures
 
 ## The Ballistics & Hydrodynamics Stack
 
-[The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
+[The Ballistics & Hydrodynamics Stack →](/physics_stack/)
 
 **Naval Warfare & Missile Guidance**
 
@@ -28,7 +28,7 @@ description: Technical stacks and architectures
 
 ## The Military-Financial Stack
 
-[The Military-Financial Stack →](/finance_stack/01_intro/)
+[The Military-Financial Stack →](/finance_stack/)
 
 **The Great Handover: Wall Street Outbids the Pentagon**
 

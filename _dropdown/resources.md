@@ -6,5 +6,5 @@ priority: 4
 
 # Resources
 
-The Base Space and Connection
+The Base Space & The Connection
 

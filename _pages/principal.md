@@ -28,7 +28,7 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 
 ## The Fibers (The Applied Stacks)
 
-### [The Computation Stack →](/computation_stack/01_intro/)
+### [The Computation Stack →](/computation_stack/)
 
 **Command, Control, Communications & Intelligence**
 
@@ -36,7 +36,7 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 - Artificial Intelligence: From ALVINN to Palantir
 - Graph Theory: From Turán to SKYNET to Palantir Gotham
 
-### [The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
+### [The Ballistics & Hydrodynamics Stack →](/physics_stack/)
 
 **Naval Warfare & Missile Guidance**
 
@@ -44,7 +44,7 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 - PDEs: From H-bomb shock-waves to hypersonic vehicles
 - Scientific Computing: From Los Alamos to stockpile simulations
 
-### [The Military-Financial Stack →](/finance_stack/01_intro/)
+### [The Military-Financial Stack →](/finance_stack/)
 
 **The Great Handover: Wall Street Outbids the Pentagon**
 

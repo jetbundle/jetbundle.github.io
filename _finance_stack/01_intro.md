@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "The Military-Financial Stack"
-permalink: /finance_stack/01_intro/
+permalink: /finance_stack/
 ---
 
 # The Military-Financial Stack
@@ -53,16 +53,10 @@ HFT firms like Jane Street and Citadel compete in "latency arbitrage"—a "race 
 
 **Modern Application**: The HFT firms *physically build a graph* of "terrestrial microwave networks" to find the "shortest-path (geodesic)", running the *same* signal-processing algorithms to win a microsecond race.
 
-## Content
-
-### Audits
+## Audits in This Stack
 
 - **[Quantitative Finance Audit →](/finance_stack/qf-audit/)** - From missile guidance to options pricing
 - **[High-Frequency Trading Audit →](/finance_stack/hft-audit/)** - From radar to microwave networks
-
-### Toolkit
-
-- **[Finance Stack Toolkit →](/finance_stack/toolkit/)** - How to master the Finance Stack
 
 ---
 

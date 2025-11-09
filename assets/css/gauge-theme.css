@@ -1,498 +1,279 @@
-/* JetBundle Gauge Theme - Professional Design System */
+/* JetBundle Gauge Theme - Professional, High-Fidelity Design */
 
-/* ========================================
-   COLOR PALETTE - Harmonious Expansion
-   ======================================== */
 :root {
   /* Primary Colors */
   --orange-primary: #ff6b35;
   --orange-accent: #ff4500;
-  --orange-light: #ff8c5a;
-  --orange-dark: #d9541f;
+  --orange-subtle: rgba(255, 107, 53, 0.1);
   
   /* Blue Colors */
   --blue-primary: #0ea5e9;
   --blue-light: #38bdf8;
   --blue-deep: #1e40af;
-  --blue-dark: #0c4a6e;
-  --blue-accent: #0284c7;
+  --blue-subtle: rgba(14, 165, 233, 0.1);
   
-  /* Background Colors */
+  /* Dark Backgrounds */
   --dark-bg: #0b0e17;
   --dark-bg-alt: #0a0d14;
-  --dark-bg-elevated: #111827;
-  --dark-bg-card: #1e293b;
+  --card-bg: #111827;
+  --card-bg-alt: #0d1117;
   
   /* Text Colors */
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --text-disabled: #64748b;
+  --text-dim: #64748b;
   
-  /* Border & Divider Colors */
+  /* Borders & Dividers */
   --border-subtle: #1e293b;
   --border-medium: #334155;
   --border-strong: #475569;
   
-  /* Accent Colors */
-  --accent-success: #10b981;
-  --accent-warning: #f59e0b;
-  --accent-error: #ef4444;
+  /* Typography */
+  --font-size-base: 15px;
+  --font-size-sm: 13px;
+  --font-size-lg: 17px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);
-  --gradient-blue: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-  --gradient-dark: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%);
-  --gradient-card: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, #0b0e17 100%);
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 /* ========================================
-   TYPOGRAPHY - Refined & Professional
+   BASE STYLES - Typography & Layout
    ======================================== */
-html {
-  font-size: 16px; /* Base font size */
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+html,
+body,
+html body,
+body.animated,
+body.animated.fadeIn {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-alt) 100%) !important;
+  background-attachment: fixed !important;
+  background-color: var(--dark-bg) !important;
+  color: var(--text-primary) !important;
+  min-height: 100vh !important;
+  font-size: var(--font-size-base) !important;
+  line-height: 1.6 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.9375rem; /* 15px - smaller, more refined */
-  line-height: 1.7;
-  color: var(--text-primary);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+/* Content Container */
+body .container,
+body .wrapper,
+body main,
+body #main-content,
+body .main-content,
+body .page-content,
+body .container .wrapper,
+body .content-div {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: var(--spacing-lg) var(--spacing-md) !important;
 }
 
-/* Headings - Smaller, tighter hierarchy */
-body h1, html body h1 {
-  font-size: 2rem !important; /* 32px - refined */
-  line-height: 1.2 !important;
+/* ========================================
+   TYPOGRAPHY - Smaller, Professional
+   ======================================== */
+
+/* Headings - Smaller, Cleaner */
+body h1,
+html body h1,
+body .container h1,
+body .wrapper h1,
+body .content-div h1 {
+  background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--orange-primary) !important;
+  font-size: var(--font-size-3xl) !important;
   font-weight: 700 !important;
-  margin-top: 0 !important;
-  margin-bottom: 1.5rem !important;
+  line-height: 1.2 !important;
+  margin-top: var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-md) !important;
   letter-spacing: -0.02em !important;
 }
 
-body h2, html body h2 {
-  font-size: 1.5rem !important; /* 24px */
+body h2,
+html body h2,
+body .container h2,
+body .content-div h2 {
+  color: var(--orange-primary) !important;
+  font-size: var(--font-size-2xl) !important;
+  font-weight: 600 !important;
   line-height: 1.3 !important;
-  font-weight: 600 !important;
-  margin-top: 2.5rem !important;
-  margin-bottom: 1.25rem !important;
-  letter-spacing: -0.01em !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding-bottom: var(--spacing-xs) !important;
+  margin-top: var(--spacing-lg) !important;
+  margin-bottom: var(--spacing-md) !important;
 }
 
-body h3, html body h3 {
-  font-size: 1.25rem !important; /* 20px */
+body h3,
+html body h3,
+body .content-div h3 {
+  color: var(--orange-primary) !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: 600 !important;
   line-height: 1.4 !important;
-  font-weight: 600 !important;
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: var(--spacing-md) !important;
+  margin-bottom: var(--spacing-sm) !important;
 }
 
-body h4, html body h4 {
-  font-size: 1.125rem !important; /* 18px */
-  line-height: 1.4 !important;
-  font-weight: 600 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
+body h4,
+html body h4,
+body .content-div h4 {
   color: var(--text-secondary) !important;
+  font-size: var(--font-size-lg) !important;
+  font-weight: 500 !important;
+  margin-top: var(--spacing-md) !important;
+  margin-bottom: var(--spacing-sm) !important;
 }
 
-body h5, body h6, html body h5, html body h6 {
-  font-size: 1rem !important; /* 16px */
-  line-height: 1.5 !important;
-  font-weight: 600 !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.5rem !important;
+body h5,
+body h6,
+html body h5,
+html body h6 {
   color: var(--text-secondary) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: 500 !important;
+  margin-top: var(--spacing-sm) !important;
+  margin-bottom: var(--spacing-xs) !important;
 }
 
-/* Paragraphs - Refined spacing */
-body p, html body p {
-  font-size: 0.9375rem !important; /* 15px */
-  line-height: 1.7 !important;
-  margin-bottom: 1.25rem !important;
+/* Paragraphs & Text */
+body,
+body p,
+body li,
+body span,
+body div,
+body .content,
+html body,
+html body p,
+html body li,
+body .content-div p,
+body .content-div li {
   color: var(--text-primary) !important;
+  font-size: var(--font-size-base) !important;
+  line-height: 1.7 !important;
+  margin-bottom: var(--spacing-sm) !important;
 }
 
-/* Links - Subtle, professional */
-body a, html body a {
+body p {
+  margin-bottom: var(--spacing-md) !important;
+}
+
+/* Links */
+body a,
+html body a,
+body .container a,
+body .wrapper a,
+body .content-div a {
   color: var(--blue-primary) !important;
   text-decoration: none !important;
-  transition: all 0.2s ease !important;
+  transition: color var(--transition-fast) !important;
   border-bottom: 1px solid transparent !important;
 }
 
-body a:hover, html body a:hover {
+body a:hover,
+html body a:hover,
+body .content-div a:hover {
   color: var(--blue-light) !important;
   border-bottom-color: var(--blue-light) !important;
 }
 
 /* ========================================
-   BACKGROUND & LAYOUT
+   NAVIGATION - Top Bar
    ======================================== */
-html, body, body.animated, body.animated.fadeIn {
-  background: var(--gradient-dark) !important;
-  background-attachment: fixed !important;
-  background-color: var(--dark-bg) !important;
-  color: var(--text-primary) !important;
-  min-height: 100vh !important;
-}
 
-body .container, body .wrapper, body main {
-  background: transparent !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 2rem 1.5rem !important;
-}
-
-body .content-div {
-  background: transparent !important;
-  color: var(--text-primary) !important;
-  position: relative !important;
-  z-index: 10 !important;
-  max-width: 900px !important;
-  margin: 0 auto !important;
-  padding: 2rem 0 !important;
-  line-height: 1.7 !important;
-}
-
-/* Improve readability with better spacing */
-body .content-div > * {
-  margin-bottom: 1.25rem;
-}
-
-body .content-div > *:last-child {
-  margin-bottom: 0;
-}
-
-/* ========================================
-   NAVIGATION - Professional Top Bar
-   ======================================== */
-body nav, body .navbar, body .toolbar, body header {
+body nav,
+body .navbar,
+body header,
+body .header,
+body .toolbar,
+body .navigation,
+html body nav {
   background: rgba(17, 24, 39, 0.95) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   border-bottom: 1px solid var(--border-subtle) !important;
-  padding: 0.75rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
-body nav a, body .navbar a, body .toolbar a {
+body nav a,
+body .navbar a,
+body .toolbar a,
+html body nav a,
+html body .navbar a,
+body .navbar-icon {
   color: var(--text-muted) !important;
-  font-size: 0.875rem; /* 14px - smaller nav text */
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  margin: 0 0.25rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: var(--font-size-sm) !important;
+  font-weight: 500 !important;
+  padding: var(--spacing-xs) var(--spacing-sm) !important;
+  margin: 0 var(--spacing-xs) !important;
+  border-radius: 4px !important;
+  transition: all var(--transition-fast) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
 }
 
-body nav a:hover, body .navbar a:hover, body .toolbar a:hover {
+body nav a:hover,
+body .navbar a:hover,
+body .toolbar a:hover,
+body .navbar-icon:hover {
   color: var(--orange-primary) !important;
-  background: rgba(255, 107, 53, 0.1) !important;
+  background: var(--orange-subtle) !important;
   text-shadow: none !important;
 }
 
-/* Active navigation item */
-body nav a.active, body .navbar a.active {
-  color: var(--orange-primary) !important;
-  background: rgba(255, 107, 53, 0.15) !important;
-}
-
 /* Hide home icon */
-.navbar-icon[href="/"],
-.navbar a[href="/"]:first-child,
-.navbar-brand[href="/"],
-a.navbar-icon[href="/"] {
+body nav a[href="/"]:first-child,
+body .navbar a[href="/"]:first-child,
+body .navbar-icon[href="/"],
+.navbar-brand[href="/"] {
   display: none !important;
-  visibility: hidden !important;
 }
 
 /* ========================================
-   HEADINGS - Gradient & Styling
+   BACKGROUND & LAYERS
    ======================================== */
-body h1, html body h1, body .container h1 {
-  background: var(--gradient-primary) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  font-size: 2.25rem; /* Slightly larger for impact */
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
 
-body h2, html body h2 {
-  color: var(--orange-primary) !important;
-  border-bottom: 2px solid var(--border-subtle) !important;
-  padding-bottom: 0.75rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.25rem;
-  font-weight: 600;
-}
-
-body h3, html body h3 {
-  color: var(--orange-light) !important;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-body h4, body h5, body h6 {
-  color: var(--text-secondary) !important;
-  font-weight: 600;
-}
-
-/* ========================================
-   LANDING PAGE - Hero Section
-   ======================================== */
-.hero-section {
-  text-align: center;
-  padding: 4rem 2rem;
-  margin-bottom: 4rem;
-}
-
-.hero-title {
-  font-size: 3rem; /* Larger for hero */
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-  font-weight: 400;
-}
-
-.hero-description {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  line-height: 1.8;
-}
-
-/* Three Foundations Cards */
-.foundations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-.foundation-card {
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 14, 23, 0.9) 100%);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.foundation-card:hover {
-  border-color: var(--orange-primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
-}
-
-.foundation-card h3 {
-  color: var(--orange-primary);
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.foundation-card p {
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.foundation-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.foundation-card li {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.foundation-card li:last-child {
-  border-bottom: none;
-}
-
-.foundation-card a {
-  color: var(--blue-primary);
-  font-weight: 500;
-  display: inline-block;
-  margin-top: 1rem;
-}
-
-/* ========================================
-   CONTENT STYLING
-   ======================================== */
-body p, body li, body .content-div p, body .content-div li {
-  color: var(--text-primary) !important;
-  font-size: 0.9375rem;
-  line-height: 1.7;
-}
-
-body strong, body .content-div strong {
-  color: var(--text-primary) !important;
-  font-weight: 600;
-}
-
-body em, body .content-div em {
-  color: var(--text-secondary) !important;
-  font-style: italic;
-}
-
-/* Lists - Refined */
-body ul, body ol {
-  margin: 1.5rem 0;
-  padding-left: 2rem;
-}
-
-body li {
-  margin: 0.5rem 0;
-  color: var(--text-primary);
-  line-height: 1.7;
-}
-
-body li::marker {
-  color: var(--orange-primary);
-}
-
-/* Blockquotes - Professional */
-body blockquote {
-  border-left: 4px solid var(--orange-primary) !important;
-  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, transparent 100%);
-  padding: 1.25rem 1.5rem;
-  margin: 2rem 0;
-  border-radius: 4px;
-  color: var(--text-secondary) !important;
-  font-style: italic;
-  font-size: 0.9375rem;
-}
-
-/* Code Blocks - Refined */
-body pre, body code, body .highlight {
-  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
-  border: 1px solid var(--border-subtle) !important;
-  border-radius: 4px;
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--text-primary) !important;
-}
-
-body code {
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-  font-size: 0.875rem;
-}
-
-/* Tables - Professional */
-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  background: rgba(17, 24, 39, 0.5);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-body table th {
-  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
-  color: var(--orange-primary) !important;
-  font-weight: 600;
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 2px solid var(--border-subtle);
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-body table td {
-  background-color: transparent !important;
-  color: var(--text-primary) !important;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-subtle);
-  font-size: 0.9375rem;
-}
-
-body table tr:hover td {
-  background: rgba(255, 107, 53, 0.05) !important;
-}
-
-/* Horizontal Rules */
-body hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 50%, transparent 100%);
-  margin: 3rem 0;
-}
-
-/* ========================================
-   BUTTONS & INTERACTIVE ELEMENTS
-   ======================================== */
-body button, body .btn {
-  background: var(--gradient-primary) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--orange-primary) !important;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-body button:hover, body .btn:hover {
-  background: var(--orange-accent) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-}
-
-/* ========================================
-   BACKGROUND ELEMENTS
-   ======================================== */
-body #background-div, body #background-svg {
-  background: var(--gradient-dark) !important;
+body #background-div,
+html body #background-div,
+body #background-svg,
+html body #background-svg {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-alt) 100%) !important;
   background-color: var(--dark-bg) !important;
 }
 
-.bgColor1, stop.bgColor1 {
+body .bgColor1,
+body .bgColor2,
+html body .bgColor1,
+html body .bgColor2 {
   stop-color: var(--dark-bg) !important;
 }
 
-.bgColor2, stop.bgColor2 {
-  stop-color: var(--dark-bg-alt) !important;
-}
-
-/* Manifold background */
+/* Manifold background canvas */
 #manifold-background {
   z-index: 0 !important;
   position: fixed !important;
@@ -501,62 +282,239 @@ body #background-div, body #background-svg {
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
-  opacity: 0.6 !important;
+  background: transparent !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0.8 !important;
+}
+
+/* Content above manifold */
+body .content-div {
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+body #background-div {
+  z-index: -1 !important;
+  position: relative !important;
+}
+
+/* ========================================
+   CODE BLOCKS
+   ======================================== */
+
+body pre,
+body code,
+body .highlight {
+  background: var(--card-bg) !important;
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 4px !important;
+  font-size: var(--font-size-sm) !important;
+  padding: var(--spacing-sm) !important;
+}
+
+body pre {
+  padding: var(--spacing-md) !important;
+  overflow-x: auto !important;
+  line-height: 1.5 !important;
+}
+
+body code {
+  padding: 2px 6px !important;
+  font-size: 0.9em !important;
+}
+
+/* ========================================
+   BLOCKQUOTES
+   ======================================== */
+
+body blockquote {
+  border-left: 3px solid var(--orange-primary) !important;
+  background: var(--orange-subtle) !important;
+  background-color: rgba(255, 107, 53, 0.05) !important;
+  color: var(--text-secondary) !important;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  margin: var(--spacing-md) 0 !important;
+  border-radius: 0 4px 4px 0 !important;
+  font-style: italic !important;
+}
+
+/* ========================================
+   TABLES
+   ======================================== */
+
+body table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: var(--spacing-md) 0 !important;
+  font-size: var(--font-size-sm) !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+}
+
+body table th {
+  background: var(--card-bg-alt) !important;
+  background-color: var(--card-bg-alt) !important;
+  color: var(--orange-primary) !important;
+  font-weight: 600 !important;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+body table td {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+body table tr:last-child td {
+  border-bottom: none !important;
+}
+
+body table tr:hover td {
+  background: rgba(255, 107, 53, 0.05) !important;
+}
+
+/* ========================================
+   LISTS
+   ======================================== */
+
+body ul,
+body ol {
+  margin: var(--spacing-md) 0 !important;
+  padding-left: var(--spacing-lg) !important;
+}
+
+body ul li,
+body ol li {
+  margin-bottom: var(--spacing-xs) !important;
+  color: var(--text-primary) !important;
+}
+
+body ul li::marker,
+body ol li::marker {
+  color: var(--orange-primary) !important;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+body button,
+body .btn {
+  background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%) !important;
+  background-color: var(--orange-primary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--orange-primary) !important;
+  padding: var(--spacing-xs) var(--spacing-md) !important;
+  border-radius: 4px !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+}
+
+body button:hover,
+body .btn:hover {
+  background: linear-gradient(135deg, var(--orange-accent) 0%, var(--orange-primary) 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3) !important;
+}
+
+/* ========================================
+   HORIZONTAL RULES
+   ======================================== */
+
+body hr,
+body .content-div hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 50%, transparent 100%) !important;
+  margin: var(--spacing-xl) 0 !important;
+}
+
+/* ========================================
+   LANDING PAGE SPECIFIC
+   ======================================== */
+
+/* Hero Section */
+body .content-div h1:first-child {
+  font-size: var(--font-size-3xl) !important;
+  margin-top: var(--spacing-lg) !important;
+  margin-bottom: var(--spacing-sm) !important;
+}
+
+/* Subtitle */
+body .content-div p:first-of-type {
+  font-size: var(--font-size-lg) !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: var(--spacing-xl) !important;
+  font-weight: 400 !important;
+}
+
+/* Section Headers on Landing */
+body .content-div h2 {
+  margin-top: var(--spacing-xl) !important;
+  margin-bottom: var(--spacing-md) !important;
+}
+
+/* Stack Cards/Links */
+body .content-div h3 a {
+  color: var(--orange-primary) !important;
+  font-size: var(--font-size-xl) !important;
+}
+
+body .content-div h3 a:hover {
+  color: var(--orange-accent) !important;
+}
+
+/* Lists in Stack Sections */
+body .content-div ul {
+  margin: var(--spacing-sm) 0 var(--spacing-md) 0 !important;
+}
+
+body .content-div ul li {
+  color: var(--text-secondary) !important;
+  font-size: var(--font-size-sm) !important;
 }
 
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
+
 @media (max-width: 768px) {
-  html {
-    font-size: 15px;
+  body .container,
+  body .wrapper,
+  body .content-div {
+    padding: var(--spacing-md) var(--spacing-sm) !important;
   }
   
-  body {
-    font-size: 0.9375rem;
+  body h1 {
+    font-size: var(--font-size-2xl) !important;
   }
   
-  h1 {
-    font-size: 1.75rem;
+  body h2 {
+    font-size: var(--font-size-xl) !important;
   }
   
-  h2 {
-    font-size: 1.375rem;
-  }
-  
-  h3 {
-    font-size: 1.125rem;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .foundations-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  body .container, body .content-div {
-    padding: 1rem;
-  }
-  
-  body nav, body .navbar {
-    padding: 0.5rem 1rem;
-  }
-  
-  body nav a, body .navbar a {
-    font-size: 0.8125rem;
-    padding: 0.4rem 0.75rem;
+  body nav a,
+  body .navbar a,
+  body .toolbar a {
+    font-size: var(--font-size-sm) !important;
+    padding: var(--spacing-xs) !important;
+    margin: 0 2px !important;
   }
 }
 
 /* ========================================
    UTILITY CLASSES
    ======================================== */
-.text-center {
-  text-align: center;
-}
 
 .text-muted {
   color: var(--text-muted) !important;
@@ -566,33 +524,17 @@ body #background-div, body #background-svg {
   color: var(--text-secondary) !important;
 }
 
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mt-3 { margin-top: 3rem; }
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
-.mb-3 { margin-bottom: 3rem; }
-
-/* ========================================
-   Z-INDEX LAYERING
-   ======================================== */
-body #background-div {
-  z-index: -1 !important;
+.text-orange {
+  color: var(--orange-primary) !important;
 }
 
-body #background-svg {
-  z-index: 0 !important;
+.text-blue {
+  color: var(--blue-primary) !important;
 }
 
-#manifold-background {
-  z-index: 0 !important;
-}
-
-body .content-div {
-  z-index: 10 !important;
-  position: relative !important;
-}
-
-body nav, body .navbar {
-  z-index: 1000 !important;
+.bg-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 4px !important;
+  padding: var(--spacing-md) !important;
 }

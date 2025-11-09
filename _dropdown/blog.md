@@ -6,4 +6,4 @@ priority: 5
 
 # Blog
 
-Research, projects, and technical deep dives.
+Research posts, project updates, and technical deep dives.
