@@ -25,9 +25,9 @@
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
         noiseSpeed: 0.0001,       // Much faster evolution (5x slower than original)
 
-        // Visual parameters - faster fade for continuous process
-        opacityDecay: 0.992,      // Faster decay for continuous fading
-        baseOpacity: 0.5,         // Increased visibility (was 0.25)
+        // Visual parameters - slower fade for better visibility
+        opacityDecay: 0.998,      // Slower decay (was 0.992) - fibers stay visible longer
+        baseOpacity: 0.7,         // Higher visibility (was 0.5)
         gradientStops: 2,         // Minimal stops
 
         // Mouse interaction parameters (subtle effects)
@@ -180,11 +180,12 @@
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Faster opacity decay for continuous fading
+                // Slower opacity decay for better visibility
                 this.opacity *= CONFIG.opacityDecay;
 
-                // Stop if opacity is low (faster fade for continuous process)
-                if (this.opacity < 0.01) break;
+                // Stop if opacity is very low or fiber is very long
+                // Don't stop too early - let fibers grow into screen
+                if (this.opacity < 0.005 && length > 500) break;
             }
 
             this.length = length;
@@ -565,21 +566,36 @@
 
             for (const basePoint of this.basePoints) {
                 // Generate many fibers radiating from center
-                // Since base point is at (-100, -5), we want fibers to go RIGHT and DOWN into screen
-                // Bias angles toward quadrant 1 (0 to 90 degrees = right and down)
+                // CRITICAL: Base point is at (-100, -5) (off-screen top-left)
+                // To enter screen (x >= 0, y >= 0), fibers MUST go RIGHT (0°) and DOWN (90°)
+                // Math coordinates: 0° = right, 90° = down, 180° = left, 270° = up
+                // We want angles between -30° and 120° to ensure screen entry
+                // This is 150 degrees total, centered around 45° (down-right)
+                
+                const minAngle = -Math.PI / 6; // -30 degrees (slightly up-right)
+                const maxAngle = Math.PI * 2 / 3; // 120 degrees (slightly down-left, but still enters screen)
+                const angleRange = maxAngle - minAngle; // 150 degrees
+                
                 for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Distribute angles but bias toward screen (right/down direction)
-                    // Base point is top-left, so angles should be between -90 and 90 degrees (mostly)
-                    // This ensures fibers grow toward the visible screen area
-                    const angleSpread = Math.PI * 1.5; // 270 degrees (most of the circle)
-                    const angleOffset = -Math.PI * 0.25; // Start at -45 degrees (toward bottom-right)
-                    const angle = (angleSpread * i) / CONFIG.fibersPerPoint + angleOffset;
-                    // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.15;
-                    const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
+                    // Distribute angles evenly within the range that enters screen
+                    const angle = minAngle + (angleRange * i) / CONFIG.fibersPerPoint;
+                    // Add slight random variation (smaller to keep in valid range)
+                    const angleVariation = (Math.random() - 0.5) * 0.1;
+                    const finalAngle = angle + angleVariation;
+                    
+                    const fiber = new Fiber(basePoint, finalAngle, this.noiseGen, this.time);
                     
                     // CRITICAL: Generate initial points immediately so fibers are visible from start
                     fiber.generatePoints(this.mouseX, this.mouseY, this.mouseActive);
+                    
+                    // Verify fiber will enter screen (debugging)
+                    if (fiber.points.length > 10) {
+                        const testPoint = fiber.points[Math.min(50, fiber.points.length - 1)];
+                        const entersScreen = testPoint.x >= -50 && testPoint.y >= -50;
+                        if (!entersScreen && i < 3) {
+                            console.warn(`Manifold: Fiber ${i} may not enter screen. Angle: ${(finalAngle * 180 / Math.PI).toFixed(1)}°, test point: (${testPoint.x.toFixed(1)}, ${testPoint.y.toFixed(1)})`);
+                        }
+                    }
                     
                     this.fibers.push(fiber);
                 }
@@ -589,8 +605,9 @@
                 this.jetBundles.push(jetBundle);
             }
 
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point at (', 
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point at (',
                 this.basePoints[0].x + ',', this.basePoints[0].y + ')');
+            console.log('Manifold: Angle range: -30° to 120° (ensures screen entry)');
         }
 
         drawFiber(fiber) {
@@ -607,9 +624,9 @@
                 ctx.lineTo(points[i].x, points[i].y);
             }
 
-            // Gradient opacity along fiber for smooth, perpetual appearance
-            const startOpacity = Math.max(0.2, fiber.opacity);
-            const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
+            // Gradient opacity along fiber - higher values for better visibility
+            const startOpacity = Math.max(0.4, fiber.opacity * 0.8); // Higher starting opacity
+            const endOpacity = Math.max(0.1, fiber.opacity * Math.pow(CONFIG.opacityDecay, Math.min(points.length, 200)) * 0.6); // Higher end opacity
 
             // Create subtle gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
@@ -650,7 +667,7 @@
                 ctx.strokeStyle = `rgba(${Math.round((subtleBlue.r + subtleOrange.r) / 2)}, ${Math.round((subtleBlue.g + subtleOrange.g) / 2)}, ${Math.round((subtleBlue.b + subtleOrange.b) / 2)}, ${startOpacity})`;
             }
 
-            ctx.lineWidth = CONFIG.fiberThickness;
+            ctx.lineWidth = CONFIG.fiberThickness * 1.5; // Slightly thicker for visibility
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.stroke();
@@ -686,17 +703,21 @@
             this.time += CONFIG.animationSpeed;
 
             // Perpetual trail effect - very slow fade for continuous animation
-            // Clear with very subtle fade to create perpetual trails
-            this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
+            // Use much slower fade to preserve fiber visibility
+            const fadeAlpha = 1 - CONFIG.fadeOutSpeed; // Should be ~0.015
+            // Reduce fade even more for better visibility
+            this.ctx.fillStyle = `rgba(11, 14, 23, ${fadeAlpha * 0.3})`; // 3x slower fade
             this.ctx.fillRect(0, 0, this.width, this.height);
 
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 1.0)'; // Fully opaque on first frame
                 this.ctx.fillRect(0, 0, this.width, this.height);
                 
                 // Draw all fibers immediately on first frame (they have initial points from generateFibers)
                 console.log('Manifold: First frame - drawing', this.fibers.length, 'fibers with initial points');
+                console.log('Manifold: Canvas size:', this.width + 'x' + this.height);
+                console.log('Manifold: Base point:', this.basePoints[0].x + ',', this.basePoints[0].y);
             }
 
             // Update fibers less frequently
@@ -723,17 +744,32 @@
             // Draw all fibers (small count, so it's fine)
             // CRITICAL: Always try to draw fibers - visibility check is permissive
             let drawnCount = 0;
+            let pointsCount = 0;
             for (const fiber of this.fibers) {
-                // Draw if fiber has points and is potentially visible
-                // More permissive: draw if fiber has points (even if not strictly visible yet)
+                pointsCount += fiber.points.length;
+                // Draw if fiber has points - be very permissive
                 if (fiber.points.length > 1) {
-                    // Check if fiber might be visible (more permissive check)
-                    const mightBeVisible = fiber.isVisible(this.width, this.height, 1000); // Larger margin for drawing
-                    if (mightBeVisible || this.frameCount < 10) { // Always draw in first 10 frames
+                    // Always draw fibers that have points (they should enter screen)
+                    // Only skip if fiber is clearly going away from screen AND is very short
+                    const lastPoint = fiber.points[fiber.points.length - 1];
+                    const isGoingAway = lastPoint.x < -200 && lastPoint.y < -200 && fiber.points.length < 100;
+                    
+                    if (!isGoingAway || this.frameCount < 20) { // Always draw in first 20 frames
                         this.drawFiber(fiber);
                         drawnCount++;
                     }
                 }
+            }
+            
+            // Debug logging
+            if (this.frameCount % 120 === 0) { // Every 2 seconds at 60fps
+                console.log('Manifold: Draw stats', {
+                    frame: this.frameCount,
+                    fibersDrawn: drawnCount,
+                    totalPoints: pointsCount,
+                    avgPointsPerFiber: pointsCount / this.fibers.length,
+                    canvasSize: this.width + 'x' + this.height
+                });
             }
 
             // Draw jet bundles
@@ -863,9 +899,23 @@
 
                     // Test draw to verify canvas is working
                     const testCtx = canvas.getContext('2d');
-                    testCtx.fillStyle = 'rgba(255, 0, 0, 0.1)';
+                    // Draw a bright test pattern to verify canvas is visible
+                    testCtx.fillStyle = 'rgba(255, 0, 0, 0.3)'; // Bright red for visibility
                     testCtx.fillRect(0, 0, 100, 100);
-                    console.log('Manifold: Test draw completed (red square in top-left)');
+                    testCtx.fillStyle = 'rgba(0, 255, 0, 0.3)'; // Bright green
+                    testCtx.fillRect(canvas.width - 100, 0, 100, 100);
+                    console.log('Manifold: Test draw completed (red square top-left, green square top-right)');
+                    console.log('Manifold: If you see colored squares, canvas is working!');
+                    
+                    // Remove test squares after 2 seconds
+                    setTimeout(() => {
+                        if (manifold && manifold.ctx) {
+                            manifold.ctx.fillStyle = 'rgba(11, 14, 23, 1.0)';
+                            manifold.ctx.fillRect(0, 0, 100, 100);
+                            manifold.ctx.fillRect(canvas.width - 100, 0, 100, 100);
+                            console.log('Manifold: Test squares removed');
+                        }
+                    }, 2000);
                 } catch (e) {
                     console.error('Manifold: Error creating', e);
                     console.error('Manifold: Stack trace', e.stack);
