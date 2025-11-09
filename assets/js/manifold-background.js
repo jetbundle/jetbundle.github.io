@@ -44,10 +44,10 @@
         fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
         maxPointsPerFiber: 1500,  // Support long fibers
 
-        // Center point offset - move off-screen (closer to edge but still hidden)
+        // Center point offset - move off-screen (very close to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -250,      // Center point 250px off-screen to the left (closer to edge)
-        centerOffsetY: -250       // Center point 250px off-screen to the top (closer to edge)
+        centerOffsetX: -100,      // Center point 100px off-screen to the left (very close to edge)
+        centerOffsetY: -100       // Center point 100px off-screen to the top (very close to edge)
     };
 
     // Simplified noise generator (more efficient)
