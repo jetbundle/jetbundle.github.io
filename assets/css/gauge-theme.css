@@ -604,10 +604,10 @@ header .navbar-brand:hover {
 
 .navbar-link:hover,
 .navbar-menu a:hover {
+    color: #ff6b35 !important;
+    text-shadow: 0 0 6px rgba(255, 107, 53, 0.4) !important;
     transform: translateY(-2px) !important;
 }
-
-/* Removed duplicate - handled above */
 
 /* Ensure navigation items are clickable (no dropdowns) */
 .toolbar a,
