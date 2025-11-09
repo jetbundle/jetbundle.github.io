@@ -345,7 +345,8 @@
             this.velocityX = 0;
             this.velocityY = 0;
             this.time = 0;
-            this.opacity = CONFIG.mouseTrailOpacity;
+            this.baseOpacity = CONFIG.mouseTrailOpacity;
+            this.angle = 0; // Current direction angle for evolution
         }
 
         update(targetX, targetY, time) {
@@ -361,18 +362,35 @@
             // Only update if mouse has moved (damped)
             if (dist > 0.5) {
                 // Apply damping
-                this.velocityX = this.velocityX * CONFIG.mouseTrailDamping + dx * (1 - CONFIG.mouseTrailDamping) * 0.1;
-                this.velocityY = this.velocityY * CONFIG.mouseTrailDamping + dy * (1 - CONFIG.mouseTrailDamping) * 0.1;
+                this.velocityX = this.velocityX * CONFIG.mouseTrailDamping + dx * (1 - CONFIG.mouseTrailDamping) * 0.12;
+                this.velocityY = this.velocityY * CONFIG.mouseTrailDamping + dy * (1 - CONFIG.mouseTrailDamping) * 0.12;
 
                 // Update position
                 this.currentX += this.velocityX;
                 this.currentY += this.velocityY;
 
+                // Evolve like manifold - use noise to create smooth curves
+                const noiseValue = this.noiseGen.noise(
+                    this.currentX * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
+                    this.currentY * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
+                );
+                
+                // Evolve angle similar to manifold fibers
+                this.angle += (noiseValue - 0.5) * Math.PI * 0.1;
+                
+                // Add slight evolution to position (damped)
+                const evolutionStrength = 0.3; // Damped evolution
+                this.currentX += Math.cos(this.angle) * evolutionStrength;
+                this.currentY += Math.sin(this.angle) * evolutionStrength;
+
+                // Calculate opacity with decay (like manifold fibers)
+                const opacity = this.baseOpacity;
+
                 // Add point to trail
                 this.points.push({
                     x: this.currentX,
                     y: this.currentY,
-                    opacity: this.opacity
+                    opacity: opacity
                 });
 
                 // Limit trail length
@@ -380,15 +398,14 @@
                     this.points.shift();
                 }
 
-                // Fade old points
+                // Apply opacity decay to all points (like manifold)
                 this.points.forEach((p, i) => {
-                    const age = this.points.length - i;
-                    p.opacity = CONFIG.mouseTrailOpacity * Math.exp(-age / 30);
+                    p.opacity *= CONFIG.opacityDecay;
                 });
             } else {
-                // Very slow fade when mouse is still
+                // Faster fade when mouse is still (damped, disappears)
                 this.points.forEach((p, i) => {
-                    p.opacity *= 0.98;
+                    p.opacity *= 0.95; // Faster fade when still
                 });
                 // Remove invisible points
                 this.points = this.points.filter(p => p.opacity > 0.01);
