@@ -34,8 +34,6 @@ collections:
     output: true
   dropdown:
     output: true
-  items:
-    output: true
 
 # Plugins
 plugins:
@@ -60,6 +58,8 @@ exclude:
   - test-manifold-math.html
   - index.md.old
   - blog.md
+  - _pages/cartography.md
+  - _pages/stacks.md
 
 # PDF Settings
 pdf_height: 900px

@@ -1,9 +1,7 @@
 ---
 layout: page
-title: The Archive
+title: Primary Sources
 description: Declassified memos, booklists, and primary sources
-dropdown: The Archive
-priority: 5
 ---
 
 # The Archive
@@ -88,4 +86,4 @@ Contributions to the Archive are welcome. Please submit:
 
 ---
 
-[Back to The Primer →](/)
+[Back to Resources →](/resources/)
