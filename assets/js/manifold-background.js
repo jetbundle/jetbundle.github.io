@@ -43,11 +43,11 @@
             dark2: { r: 10, g: 13, b: 20 }
         },
 
-        // Performance tuning - balanced for large coverage (unchanged for performance)
-        maxFibers: 24,            // Match fibersPerPoint
-        updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
-        fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
-        maxPointsPerFiber: 1500,  // Support long fibers
+        // Performance tuning - balanced for large coverage
+        maxFibers: 12,            // Match fibersPerPoint (fewer fibers)
+        updateInterval: 2,        // Update every 2 frames for smooth animation
+        fadeOutSpeed: 0.997,      // Moderate fade for periodic clearing (creates space)
+        maxPointsPerFiber: 1500   // Support long fibers
 
         // Center point offset - move off-screen (even closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
@@ -118,6 +118,9 @@
             this.color = this.determineColor();
             this.length = 0;
             this.maxLength = CONFIG.maxFiberLength * (0.8 + Math.random() * 0.4);
+            this.birthTime = Date.now();  // Track when fiber was created (use Date.now() for real time)
+            this.age = 0;            // Track fiber age
+            this.isFading = false;   // Track if fiber is fading out
             this.generatePoints();
         }
 
@@ -165,7 +168,8 @@
 
         update(time) {
             this.time = time;
-            this.age = (time - this.birthTime) * 1000; // Age in milliseconds (approx)
+            // Calculate age in milliseconds based on real time
+            this.age = Date.now() - this.birthTime;
             
             // Check if fiber should start fading
             if (this.age > CONFIG.fiberLifetime && !this.isFading) {
@@ -178,6 +182,7 @@
                 if (fadeProgress >= 1.0) {
                     // Fiber has completely faded - mark for removal
                     this.opacity = 0;
+                    this.generatePoints(); // Still generate points but with 0 opacity
                     return;
                 }
                 // Gradual fade-out
@@ -352,6 +357,10 @@
             this.basePoints = [];
             this.fibers = [];
             this.jetBundles = [];
+            
+            // Fiber regeneration timing
+            this.lastRegeneration = Date.now();
+            this.startTime = Date.now();
 
             this.resize();
             this.initializeBaseSpace();
@@ -543,24 +552,28 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Perpetual trail effect - very slow fade for continuous animation
-            // Clear with very subtle fade to create perpetual trails
+            // Continuous trail effect with periodic clearing for space
+            // Moderate fade creates space for new dynamics while maintaining continuity
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-
+            
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
-            // Update fibers less frequently
+            // Update fibers and check for regeneration
             if (this.frameCount % CONFIG.updateInterval === 0) {
+                // Update existing fibers
                 for (const fiber of this.fibers) {
                     if (fiber.isVisible(this.width, this.height)) {
                         fiber.update(this.time);
                     }
                 }
+                
+                // Regenerate fibers periodically for continuous flow
+                this.generateFibers();
             }
 
             // Update jet bundles much less frequently
