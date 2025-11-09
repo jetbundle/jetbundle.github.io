@@ -477,13 +477,19 @@ body .landing-page .container {
 }
 
 /* Navigation - Custom header with jetbundle brand */
-/* CRITICAL: Hide all theme navigation first */
-body > nav:not(header nav),
-body > aside,
-body > .toolbar:not(.navbar-container),
+/* CRITICAL: Hide ALL theme navigation first - maximum specificity */
+html body > nav:not(header nav):not(.navbar-container):not(.site-navbar),
+html body > aside:not(header aside),
+html body > .toolbar:not(.navbar-container):not(.navbar-menu),
+html body > .sidebar,
+html body .toolbar:not(.navbar-container):not(.navbar-menu):not(.site-navbar),
+html body .sidebar:not(header .sidebar),
+body > nav:not(header nav):not(.navbar-container):not(.site-navbar),
+body > aside:not(header aside),
+body > .toolbar:not(.navbar-container):not(.navbar-menu),
 body > .sidebar,
-.toolbar:not(.navbar-container),
-.sidebar {
+.toolbar:not(.navbar-container):not(.navbar-menu):not(.site-navbar),
+.sidebar:not(header .sidebar) {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -492,12 +498,14 @@ body > .sidebar,
     width: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
+    pointer-events: none !important;
 }
 
 /* Our custom header - ensure it's visible and on top */
-header,
-header.navbar,
-header .navbar {
+header.site-header,
+header.site-header.navbar,
+header.site-header .navbar,
+header.site-header .site-navbar {
     background: rgba(17, 24, 39, 0.95) !important;
     backdrop-filter: blur(10px) !important;
     border-bottom: 1px solid #1e293b !important;
@@ -509,6 +517,7 @@ header .navbar {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    margin: 0 !important;
 }
 
 .navbar-container {
