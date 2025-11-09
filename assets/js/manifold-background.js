@@ -661,4 +661,3 @@
     // Start initialization
     init();
 })();
-
