@@ -36,7 +36,7 @@
         mouseTrailDamping: 0.88,    // Damping for mouse trail (higher = more damped)
         mouseTrailOpacity: 0.20,    // Slightly more visible opacity for mouse trail
         mouseTrailLength: 60,       // Length of mouse trail fiber
-        mouseTrailThickness: 0.6    // Smaller thickness for mouse trail
+        mouseTrailThickness: 0.6,   // Smaller thickness for mouse trail
 
         // Color scheme (gauge theme)
         colors: {
