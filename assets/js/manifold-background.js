@@ -33,9 +33,10 @@
         // Mouse interaction parameters (subtle effects)
         mouseInfluenceRadius: 150,  // Radius of mouse influence on fibers
         mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
-        mouseTrailDamping: 0.85,    // Damping for mouse trail (higher = more damped)
-        mouseTrailOpacity: 0.15,    // Subtle opacity for mouse trail
-        mouseTrailLength: 50,       // Length of mouse trail fiber
+        mouseTrailDamping: 0.88,    // Damping for mouse trail (higher = more damped)
+        mouseTrailOpacity: 0.20,    // Slightly more visible opacity for mouse trail
+        mouseTrailLength: 60,       // Length of mouse trail fiber
+        mouseTrailThickness: 0.6    // Smaller thickness for mouse trail
 
         // Color scheme (gauge theme)
         colors: {
