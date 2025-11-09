@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Operating Systems Audit: From Project MAC to Azure IL5"
-permalink: /computation_stack/os-audit/
+permalink: /c3i_stack/os-audit/
 ---
 
 # Operating Systems Audit: From Project MAC to Azure IL5
@@ -48,4 +48,4 @@ Microsoft's **Azure Kubernetes Service** is formally authorized for **DoD Impact
 
 ---
 
-**[Back to Computation Stack →](/computation_stack/01_intro/)**
+**[Back to C3I Stack →](/c3i_stack/01_intro/)**

@@ -6,6 +6,36 @@ description: Resources and references
 
 # Resources
 
+## The Stacks
+
+Technical stacks and architectures tracing defense-driven innovation to modern engineering practice.
+
+### [The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
+
+**Command, Control, Communications & Intelligence**
+
+- Operating Systems: From Project MAC to Azure IL5
+- Artificial Intelligence: From ALVINN to Palantir
+- Graph Theory: From Turán to SKYNET to Palantir Gotham
+
+### [The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
+
+**Naval Warfare & Missile Guidance**
+
+- Complex Analysis: From *Nautilus* hulls to aircraft wings
+- PDEs: From H-bomb shock-waves to hypersonic vehicles
+- Scientific Computing: From Los Alamos to stockpile simulations
+
+### [The Military-Financial Stack →](/finance_stack/01_intro/)
+
+**The Great Handover: Wall Street Outbids the Pentagon**
+
+- Kalman Filter: From missile guidance to time-series analysis
+- Pontryagin's Principle: From ballistic trajectories to options pricing
+- High-Frequency Trading: From radar signal processing to microwave networks
+
+---
+
 ## Booklist
 
 Recommended reading list coming soon.
@@ -16,15 +46,15 @@ Core texts in applied mathematics tracing the defense-academic pipeline.
 
 ### Computational History
 
-Origins of computer science from military command and control requirements.
+Origins of computer science and its military-industrial foundations.
 
 ### Physics Applications
 
-Naval and aerospace applications of complex analysis, PDEs, and scientific computing.
+Naval and aerospace applications of mathematical physics.
 
 ### Financial Engineering
 
-Quantitative finance origins from missile guidance and signal processing.
+Quantitative finance origins and their military-industrial connections.
 
 ---
 
@@ -96,6 +126,4 @@ Contributions to the Resources are welcome. Please submit:
 - Verifiable grant records
 - Primary source materials
 - Historical research documents
-- Recommended books and reading materials
-
-To contribute, please see the [Community](/community/) page for guidelines.
+- Recommended reading materials

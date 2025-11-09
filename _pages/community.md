@@ -8,9 +8,9 @@ description: Community and discussion
 
 ## Our Mission
 
-`jetbundle` is an open-source initiative to map the hidden geometry of modern science. We trace the "memo-to-lemma" pipeline: from classified military requirements to academic abstraction to modern engineering practice.
+**Mapping the hidden geometry of modern science.**
 
-Our mission is to remove the redactions. The audit trail is the curriculum.
+This project is an open-source audit that maps the hidden geometry of modern science. We trace the "memo-to-lemma" pipeline, documenting how defense-driven innovation flows into modern engineering practice.
 
 ---
 
@@ -18,15 +18,11 @@ Our mission is to remove the redactions. The audit trail is the curriculum.
 
 ### Join the Discussion
 
-We welcome discussions, questions, and contributions from researchers, engineers, and anyone interested in tracing the defense-academic pipeline.
-
-**[Join GitHub Discussions →](https://github.com/jetbundle/jetbundle.github.io/discussions)**
+[GitHub Discussions](https://github.com/jetbundle/jetbundle.github.io/discussions) - Join the conversation about the fiber bundle thesis, share insights, and collaborate on audits.
 
 ### Explore the Code
 
-The `jetbundle` project includes open-source simulations and code to explore the "lemmas" (Kalman filters, Turán graphs, Byzantine consensus).
-
-**[Explore the Code →](https://github.com/jetbundle)**
+[GitHub Organization](https://github.com/jetbundle) - Explore open-source simulations and code repositories that demonstrate the mathematical foundations documented in the audits.
 
 ---
 
@@ -34,62 +30,51 @@ The `jetbundle` project includes open-source simulations and code to explore the
 
 ### Submit an Audit
 
-We welcome new "Fiber" audits that trace defense-driven innovation to modern engineering practice. To submit an audit:
+Want to contribute a new "Fiber" audit? Here's how:
 
-1. **Write your audit** as a blog post in the `_posts/` directory.
-2. **Follow the format** of existing audits (see the [Computation Stack](/computation_stack/01_intro/), [Physics Stack](/physics_stack/01_intro/), or [Finance Stack](/finance_stack/01_intro/)).
-3. **Submit a pull request** to the `jetbundle.github.io` repository.
-4. **Include proper citations** and verifiable sources.
+1. **Fork the repository** [jetbundle.github.io](https://github.com/jetbundle/jetbundle.github.io)
+2. **Create a new blog post** in the `_posts/` directory
+3. **Follow the audit methodology:**
+   - Identify the "Base Space" (the academic abstraction)
+   - Trace the "Fiber" (the applied, material problem)
+   - Document the "Connection" (the funding pipeline)
+   - Provide verifiable sources and citations
+4. **Submit a pull request** with your audit
 
 ### Submit a Resource
 
-To add a resource (book, document, or primary source) to the [Resources](/resources/) page:
+Have a declassified document, grant record, or recommended reading? 
 
-1. **Prepare your resource** with proper citations and descriptions.
-2. **Edit the `_pages/resources.md` file** to add your resource.
-3. **Submit a pull request** with your changes.
+1. **Open an issue** or **submit a pull request**
+2. **Include:**
+   - The document or resource
+   - Proper citations
+   - Context about its relevance
+   - Verification of authenticity
+3. **We'll review** and add it to the [Resources](/resources/) page
 
-### Submit Code
+### Contribute to Simulations
 
-To contribute code (simulations, analyses, or tools):
+Want to build open-source simulations of the mathematical foundations?
 
-1. **Create a repository** in the `jetbundle` GitHub organization (or your own fork).
-2. **Document your code** with clear README files and examples.
-3. **Link to your repository** from the relevant stack page or blog post.
-4. **Submit a pull request** to add the link to the main site.
-
----
-
-## Guidelines
-
-### Research Standards
-
-- **Verifiable sources**: All claims must be backed by verifiable sources (declassified documents, grant records, academic papers).
-- **Proper citations**: Include proper citations and links to primary sources.
-- **Academic rigor**: Maintain academic rigor while making content accessible.
-
-### Code Standards
-
-- **Open source**: All code must be open source and well-documented.
-- **Reproducibility**: Include clear instructions for reproducing results.
-- **Testing**: Include tests and examples where applicable.
-
-### Community Standards
-
-- **Respectful discourse**: Maintain respectful and constructive discourse.
-- **Fact-based discussion**: Focus on facts and evidence, not speculation.
-- **Collaboration**: Welcome collaboration and diverse perspectives.
+1. **Check out** the [GitHub Organization](https://github.com/jetbundle)
+2. **Create a new repository** for your simulation
+3. **Follow the coding standards:**
+   - Clear documentation
+   - Verifiable mathematical implementations
+   - Educational focus
+4. **Submit for inclusion** in the resources
 
 ---
 
-## Get Started
+## Code of Conduct
 
-Ready to contribute? Here's how to get started:
+This project is committed to:
 
-1. **Read the [About](/about/) page** to understand the thesis.
-2. **Explore the [Stacks](/)** to see examples of audits.
-3. **Join the [Discussion](https://github.com/jetbundle/jetbundle.github.io/discussions)** to ask questions.
-4. **Submit your first contribution** via pull request.
+- **Academic rigor**: All claims must be verifiable and properly cited
+- **Open source**: All content and code is open for review and contribution
+- **Respectful discourse**: Maintain professional and respectful discussions
+- **Educational purpose**: Focus on understanding and documenting the connections
 
 ---
 
@@ -97,12 +82,9 @@ Ready to contribute? Here's how to get started:
 
 For questions, suggestions, or collaboration opportunities:
 
+- **GitHub Issues**: [Open an issue](https://github.com/jetbundle/jetbundle.github.io/issues)
 - **GitHub Discussions**: [Join the discussion](https://github.com/jetbundle/jetbundle.github.io/discussions)
-- **GitHub Issues**: [Report an issue](https://github.com/jetbundle/jetbundle.github.io/issues)
-- **GitHub Organization**: [Explore the code](https://github.com/jetbundle)
 
 ---
 
-**Copyright © 2025 Joel Saucedo. All rights reserved.**
-
-This project is licensed under the MIT License with a non-commercial use restriction. See the [License](/license/) page for full terms.
+**The goal is to remove the redactions. The audit trail is the curriculum.**

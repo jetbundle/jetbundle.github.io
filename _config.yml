@@ -26,7 +26,7 @@ highlighter_theme: monokai
 
 # Collections (The "Fibers")
 collections:
-  computation_stack:
+  c3i_stack:
     output: true
   physics_stack:
     output: true

@@ -26,6 +26,36 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 
 ---
 
+## The Fibers (The Applied Stacks)
+
+The applied stacks trace defense-driven innovation to modern engineering practice. For detailed information on each stack, see the [Resources](/resources/) page.
+
+### [The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
+
+**Command, Control, Communications & Intelligence**
+
+- Operating Systems: From Project MAC to Azure IL5
+- Artificial Intelligence: From ALVINN to Palantir
+- Graph Theory: From Turán to SKYNET to Palantir Gotham
+
+### [The Ballistics & Hydrodynamics Stack →](/physics_stack/01_intro/)
+
+**Naval Warfare & Missile Guidance**
+
+- Complex Analysis: From *Nautilus* hulls to aircraft wings
+- PDEs: From H-bomb shock-waves to hypersonic vehicles
+- Scientific Computing: From Los Alamos to stockpile simulations
+
+### [The Military-Financial Stack →](/finance_stack/01_intro/)
+
+**The Great Handover: Wall Street Outbids the Pentagon**
+
+- Kalman Filter: From missile guidance to time-series analysis
+- Pontryagin's Principle: From ballistic trajectories to options pricing
+- High-Frequency Trading: From radar signal processing to microwave networks
+
+---
+
 ## The Base Space (The Cartography)
 
 The mathematical foundations mapped to their material origins and modern applications.
@@ -96,7 +126,7 @@ This is the "declassification by syllabus."
 This project is the open-source initiative to map this bundle. The `jetbundle.github.io` site serves as the primer, the audit trail, and the central hub.
 
 - **The Archive** ([Primary Sources →](/resources/#primary-sources)) contains the declassified memos, booklists, and primary sources.
-- **The Audits** ([The Stacks →](/)) apply this forensic methodology to new fields.
+- **The Audits** ([The Stacks →](/resources/#the-stacks)) apply this forensic methodology to new fields.
 - **The Simulations** provide open-source code to explore the "lemmas" (Kalman filters, Turán graphs, Byzantine consensus).
 
 The goal is to remove the redactions. The audit trail is the curriculum.
@@ -107,6 +137,8 @@ The goal is to remove the redactions. The audit trail is the curriculum.
 - DARPA's 2007 "Mathematical Challenges" BAA
 - ONR, AFOSR, and DARPA funding records
 - Declassified research reports
+
+For more resources, see the [Resources](/resources/) page.
 
 ---
 

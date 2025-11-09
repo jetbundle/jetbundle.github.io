@@ -49,7 +49,7 @@ HFT firms *physically build* terrestrial microwave networks to find the "shortes
 
 - **Objective**: Minimize latency between exchanges
 - **Method**: Physical microwave networks
-- **Algorithm**: Same graph theory as SKYNET (see Computation Stack)
+- **Algorithm**: Same graph theory as SKYNET (see C3I Stack)
 - **Application**: Microsecond trading advantages
 
 ## The Connection

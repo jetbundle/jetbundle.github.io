@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Graph Theory Audit: From Turán to SKYNET to Palantir Gotham"
-permalink: /computation_stack/graph-theory/
+permalink: /c3i_stack/graph-theory/
 ---
 
 # Graph Theory Audit: From Turán to SKYNET to Palantir Gotham
@@ -57,4 +57,4 @@ The same mathematical techniques (graph theory, centrality algorithms, clique de
 
 ---
 
-**[Back to Computation Stack →](/computation_stack/01_intro/)**
+**[Back to C3I Stack →](/c3i_stack/01_intro/)**
