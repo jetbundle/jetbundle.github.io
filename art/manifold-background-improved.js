@@ -632,18 +632,25 @@
                 maxY = Math.max(maxY, p.y);
             }
 
-            // Create linear gradient along fiber direction
+            // Create linear gradient along fiber direction (from start to end)
             const gradient = ctx.createLinearGradient(minX, minY, maxX, maxY);
+            
+            // Find center point index (base point should be near middle)
+            const centerIdx = Math.floor(points.length / 2);
+            const maxDist = points.length / 2;
 
             // Add color stops based on curvature at each point
-            const numStops = Math.min(20, points.length); // Limit stops for performance
+            const numStops = Math.min(40, points.length); // More stops for smoother gradient
             for (let i = 0; i <= numStops; i++) {
                 const idx = Math.floor((i / numStops) * (points.length - 1));
                 const point = points[idx];
                 const t = i / numStops;
 
+                // Distance from center affects opacity (brightest at center, fades at ends)
+                const distFromCenter = Math.abs(idx - centerIdx);
+                const centerFactor = Math.max(0.6, 1.0 - (distFromCenter / maxDist) * 0.4);
+
                 // Curvature determines color: positive = orange, negative = blue
-                // Normalize curvature to [0, 1] for color mixing
                 const curvatureNorm = Math.max(-1, Math.min(1, point.curvature || 0));
                 const orangeWeight = (curvatureNorm + 1) / 2; // 0 to 1
                 const blueWeight = 1 - orangeWeight;
@@ -653,8 +660,9 @@
                 const g = Math.floor(CONFIG.colors.orange.g * orangeWeight + CONFIG.colors.blue.g * blueWeight);
                 const b = Math.floor(CONFIG.colors.orange.b * orangeWeight + CONFIG.colors.blue.b * blueWeight);
 
-                // Opacity based on point opacity
-                const opacity = Math.max(CONFIG.minOpacity, point.opacity || fiber.opacity);
+                // Opacity: enhanced at center (base point), uses point's stored opacity
+                const baseOpacity = point.opacity || CONFIG.baseOpacity;
+                const opacity = Math.max(CONFIG.minOpacity, Math.min(1.0, baseOpacity * centerFactor));
 
                 gradient.addColorStop(t, `rgba(${r}, ${g}, ${b}, ${opacity})`);
             }
