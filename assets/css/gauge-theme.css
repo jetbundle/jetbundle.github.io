@@ -449,12 +449,14 @@ nav a[href="/"]:first-child {
 }
 
 /* Global right margin for manifold space - shift content left */
+/* Adjust margins to account for removed sidebar */
 body .container,
 body .wrapper {
-    margin-right: 10% !important;
-    margin-left: 5% !important;
-    max-width: 82% !important;
+    margin-right: 8% !important;
+    margin-left: 8% !important;
+    max-width: 84% !important;
     padding-right: 2rem !important;
+    padding-left: 2rem !important;
 }
 
 body .content-div {
@@ -462,6 +464,7 @@ body .content-div {
     margin-left: 0 !important;
     max-width: 100% !important;
     padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 /* Landing page should be centered */
@@ -474,17 +477,38 @@ body .landing-page .container {
 }
 
 /* Navigation - Custom header with jetbundle brand */
+/* CRITICAL: Hide all theme navigation first */
+body > nav:not(header nav),
+body > aside,
+body > .toolbar:not(.navbar-container),
+body > .sidebar,
+.toolbar:not(.navbar-container),
+.sidebar {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Our custom header - ensure it's visible and on top */
 header,
 header.navbar,
-.navbar {
+header .navbar {
     background: rgba(17, 24, 39, 0.95) !important;
     backdrop-filter: blur(10px) !important;
     border-bottom: 1px solid #1e293b !important;
     padding: 1rem 0 !important;
     position: sticky !important;
     top: 0 !important;
-    z-index: 1000 !important;
+    z-index: 10000 !important;
     width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .navbar-container {
@@ -571,4 +595,52 @@ header .navbar,
 .navbar-icon[href="/"]:not(.navbar-brand),
 .toolbar a[href="/"]:first-child:not(.navbar-brand) {
     display: none !important;
+}
+
+/* HIDE THEME'S SIDEBAR/TOOLBAR COMPLETELY */
+aside,
+.sidebar,
+.toolbar,
+nav.toolbar,
+.side-nav,
+.nav-sidebar,
+aside.toolbar,
+.toolbar-sidebar,
+#sidebar,
+#toolbar,
+[class*="sidebar"],
+[class*="toolbar"]:not(.navbar-container):not(.navbar-menu),
+[id*="sidebar"],
+[id*="toolbar"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Hide any theme navigation that's not our custom header */
+body > nav:not(header nav):not(.navbar-container),
+body > aside,
+body > .toolbar:not(.navbar-container),
+body > .sidebar {
+    display: none !important;
+}
+
+/* Hide "jetbundleHome" or any Home link text */
+a[href="/"]:contains("Home"),
+a:contains("jetbundleHome"),
+a:contains("Home"),
+*:contains("jetbundleHome") {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Ensure only our custom header is visible */
+header .navbar,
+header .navbar-container {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
