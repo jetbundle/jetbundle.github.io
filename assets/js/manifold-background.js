@@ -15,25 +15,25 @@
     const CONFIG = {
         // Single point manifold - center of screen
         numBasePoints: 1,         // Single point at center
-        fibersPerPoint: 12,       // Fewer fibers for cleaner look (was 24)
+        fibersPerPoint: 12,       // Fewer fibers for cleaner look
         maxFiberLength: 3000,     // Long fibers to cover entire screen
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - VERY SLOW TEMPO (even slower)
-        animationSpeed: 0.00005,  // Very slow animation speed (60x slower than original)
+        // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
+        animationSpeed: 0.00005,  // Much slower animation speed (60x slower than original)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.000005,     // Very slow evolution (100x slower than original)
+        noiseSpeed: 0.000005,     // Much slower evolution (100x slower than original)
 
-        // Visual parameters - subtle fade with periodic clearing
-        opacityDecay: 0.998,      // Moderate decay for periodic fade
-        baseOpacity: 0.20,        // Slightly lower opacity for subtlety
+        // Visual parameters - quick fade but continuous
+        opacityDecay: 0.992,      // Quicker fade for fibers (but still continuous)
+        baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
         
-        // Fiber lifecycle - continuous with periodic fade
-        fiberLifetime: 15000,     // Fibers fade after ~15 seconds (at 60fps)
-        fadeOutDuration: 5000,    // Fade out over ~5 seconds
-        regenerateInterval: 2000, // Regenerate fibers every ~2 seconds
+        // Mouse interaction
+        mouseInfluenceRadius: 150,  // Radius of mouse influence
+        mouseForceStrength: 0.15,   // Strength of mouse perturbation (subtle)
+        mouseCurlingStrength: 0.08  // Strength of curling effect around mouse
 
         // Color scheme (gauge theme)
         colors: {
@@ -43,16 +43,16 @@
             dark2: { r: 10, g: 13, b: 20 }
         },
 
-        // Performance tuning - balanced for large coverage
-        maxFibers: 12,            // Match fibersPerPoint (fewer fibers)
-        updateInterval: 2,        // Update every 2 frames for smooth animation
-        fadeOutSpeed: 0.997,      // Moderate fade for periodic clearing (creates space)
+        // Performance tuning - balanced for large coverage (unchanged for performance)
+        maxFibers: 24,            // Match fibersPerPoint
+        updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
+        fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
         maxPointsPerFiber: 1500,  // Support long fibers
 
-        // Center point offset - move off-screen (even closer to edge but still hidden)
+        // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -150,      // Center point 150px off-screen to the left (close to edge)
-        centerOffsetY: -150       // Center point 150px off-screen to the top (close to edge)
+        centerOffsetX: -250,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetY: -250       // Center point 250px off-screen to the top (closer to edge)
     };
 
     // Simplified noise generator (more efficient)
@@ -118,9 +118,6 @@
             this.color = this.determineColor();
             this.length = 0;
             this.maxLength = CONFIG.maxFiberLength * (0.8 + Math.random() * 0.4);
-            this.birthTime = Date.now();  // Track when fiber was created (use Date.now() for real time)
-            this.age = 0;            // Track fiber age
-            this.isFading = false;   // Track if fiber is fading out
             this.generatePoints();
         }
 
@@ -130,23 +127,19 @@
             return CONFIG.colors.blue; // Base color, gradient applied in drawFiber
         }
 
-        generatePoints() {
+        generatePoints(mouseX = null, mouseY = null) {
             this.points = [];
             let x = this.basePoint.x;
             let y = this.basePoint.y;
             let angle = this.direction;
             let length = 0;
             const maxPoints = CONFIG.maxPointsPerFiber;
-            
-            // Use fiber's current opacity (set by lifecycle) as base
-            // Don't modify this.opacity here - it's managed by update() for fade-out
-            let pointOpacity = this.opacity;
 
             while (length < this.maxLength && this.points.length < maxPoints) {
-                this.points.push({ x, y, opacity: pointOpacity });
+                this.points.push({ x, y, opacity: this.opacity });
 
                 // Perpetual noise calculation - creates smooth, evolving curves
-                // Very slow evolution through reduced noiseSpeed multiplier
+                // Extremely slow evolution through reduced noiseSpeed multiplier
                 const noiseValue = this.noiseGen.noise(
                     x * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
                     y * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
@@ -154,54 +147,49 @@
 
                 // Smooth angle variation for elegant curves
                 angle += (noiseValue - 0.5) * Math.PI * 0.15;
+                
+                // Mouse interaction - subtle perturbation
+                if (mouseX !== null && mouseY !== null) {
+                    const dx = x - mouseX;
+                    const dy = y - mouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < CONFIG.mouseInfluenceRadius && dist > 0) {
+                        // Calculate force direction (perpendicular for curling effect)
+                        const forceAngle = Math.atan2(dy, dx) + Math.PI / 2; // Perpendicular
+                        const influence = 1 - (dist / CONFIG.mouseInfluenceRadius); // 1 at center, 0 at edge
+                        
+                        // Apply subtle curling force
+                        const curlForce = CONFIG.mouseCurlingStrength * influence;
+                        angle += curlForce * (1 / dist); // Stronger when closer, curling effect
+                        
+                        // Apply subtle repulsion/push
+                        const pushForce = CONFIG.mouseForceStrength * influence;
+                        const pushAngle = Math.atan2(dy, dx);
+                        x += Math.cos(pushAngle) * pushForce;
+                        y += Math.sin(pushAngle) * pushForce;
+                    }
+                }
 
                 const stepSize = CONFIG.fiberStepSize;
                 x += Math.cos(angle) * stepSize;
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Very slow opacity decay along fiber length (for gradient effect)
-                // This is separate from lifecycle fade-out
-                pointOpacity *= CONFIG.opacityDecay;
-
-                // Only stop if point opacity is extremely low (almost invisible)
-                if (pointOpacity < 0.005) break;
+                // Quicker opacity decay for faster fade (but still continuous)
+                this.opacity *= CONFIG.opacityDecay;
+                
+                // Stop if opacity is very low (fades quickly)
+                if (this.opacity < 0.01) break;
             }
 
             this.length = length;
         }
 
-        update(time) {
+        update(time, mouseX = null, mouseY = null) {
             this.time = time;
-            // Calculate age in milliseconds based on real time
-            this.age = Date.now() - this.birthTime;
-            
-            // Check if fiber should start fading
-            if (this.age > CONFIG.fiberLifetime && !this.isFading) {
-                this.isFading = true;
-            }
-            
-            // Apply fade-out if fiber is fading
-            if (this.isFading) {
-                const fadeProgress = (this.age - CONFIG.fiberLifetime) / CONFIG.fadeOutDuration;
-                if (fadeProgress >= 1.0) {
-                    // Fiber has completely faded - mark for removal
-                    this.opacity = 0;
-                    this.generatePoints(); // Still generate points but with 0 opacity
-                    return;
-                }
-                // Gradual fade-out
-                this.opacity = CONFIG.baseOpacity * (1 - fadeProgress);
-            } else {
-                this.opacity = CONFIG.baseOpacity;
-            }
-            
-            this.generatePoints();
-        }
-        
-        shouldRemove() {
-            // Remove fiber if it's completely faded
-            return this.isFading && this.opacity <= 0.01;
+            this.opacity = CONFIG.baseOpacity;
+            this.generatePoints(mouseX, mouseY);
         }
 
         isVisible(width, height, margin = 500) {
@@ -362,10 +350,6 @@
             this.basePoints = [];
             this.fibers = [];
             this.jetBundles = [];
-            
-            // Fiber regeneration timing
-            this.lastRegeneration = Date.now();
-            this.startTime = Date.now();
 
             this.resize();
             this.initializeBaseSpace();
@@ -394,10 +378,10 @@
 
         initializeBaseSpace() {
             this.basePoints = [];
-            // Single point OFF-SCREEN (top-left corner, 150px outside viewport - close to edge)
+            // Single point OFF-SCREEN (top-left corner, 250px outside viewport - closer to edge)
             // This ensures only the fibers/bundles that extend INTO the screen are visible
-            const centerX = CONFIG.centerOffsetX;  // -150px (off-screen left, close to edge)
-            const centerY = CONFIG.centerOffsetY;  // -150px (off-screen top, close to edge)
+            const centerX = CONFIG.centerOffsetX;  // -250px (off-screen left, closer to edge)
+            const centerY = CONFIG.centerOffsetY;  // -250px (off-screen top, closer to edge)
 
             this.basePoints.push({
                 x: centerX,
@@ -425,41 +409,28 @@
         }
 
         generateFibers() {
-            // Only generate new fibers, don't clear existing ones (for continuous effect)
-            const currentTime = Date.now();
-            const timeSinceRegeneration = currentTime - this.lastRegeneration;
-            
-            // Regenerate fibers periodically to maintain continuous flow
-            if (timeSinceRegeneration >= CONFIG.regenerateInterval || this.fibers.length < CONFIG.maxFibers / 2) {
-                // Remove faded fibers first
-                this.fibers = this.fibers.filter(fiber => !fiber.shouldRemove());
-                
-                // Generate new fibers if we're below the target count
-                const fibersToGenerate = Math.max(0, CONFIG.maxFibers - this.fibers.length);
-                
-                for (const basePoint of this.basePoints) {
-                    // Generate fewer fibers for cleaner look
-                    for (let i = 0; i < fibersToGenerate; i++) {
-                        // Evenly distribute angles around the circle
-                        const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint + (Math.random() - 0.5) * 0.3;
-                        const fiber = new Fiber(basePoint, angle, this.noiseGen, this.time);
-                        this.fibers.push(fiber);
-                    }
+            this.fibers = [];
+            this.jetBundles = [];
+
+            for (const basePoint of this.basePoints) {
+                // Generate many fibers radiating from center in all directions
+                for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
+                    // Evenly distribute angles around the circle
+                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
+                    // Add slight random variation for organic feel
+                    const angleVariation = (Math.random() - 0.5) * 0.1;
+                    const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
+                    this.fibers.push(fiber);
                 }
-                
-                this.lastRegeneration = currentTime;
-                if (fibersToGenerate > 0) {
-                    console.log('Manifold: Regenerated', fibersToGenerate, 'fibers, total:', this.fibers.length);
-                }
-            }
-            
-            // Generate jet bundles less frequently
-            if (this.jetBundles.length < 2 && Math.random() > 0.7) {
-                for (const basePoint of this.basePoints) {
+
+                // Add jet bundles for more complexity
+                if (Math.random() > 0.5) {
                     const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
                     this.jetBundles.push(jetBundle);
                 }
             }
+
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
         }
 
         drawFiber(fiber) {
@@ -480,46 +451,30 @@
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
 
-            // Create subtle gradient from blue to orange along the fiber
+            // Create gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            
-            // More subtle gradient: blend colors more gently
-            // Use 70% of original color, 30% of target color for subtlety
-            const subtleBlue = {
-                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
-                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
-                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
-            };
-            const subtleOrange = {
-                r: Math.round(orangeColor.r * 0.85 + blueColor.r * 0.15),
-                g: Math.round(orangeColor.g * 0.85 + blueColor.g * 0.15),
-                b: Math.round(orangeColor.b * 0.85 + blueColor.b * 0.15)
-            };
-            
+
             if (points.length > 2) {
-                // Linear gradient from start (subtle blue) to end (subtle orange)
+                // Linear gradient from start (blue) to end (orange)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-                
-                // Start with subtle blue-tinted color (higher opacity)
-                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity * fiber.opacity})`);
-                
-                // Very subtle middle transition (mostly blue-tinted)
-                gradient.addColorStop(0.7, `rgba(${Math.round((subtleBlue.r * 0.7 + subtleOrange.r * 0.3))}, ${Math.round((subtleBlue.g * 0.7 + subtleOrange.g * 0.3))}, ${Math.round((subtleBlue.b * 0.7 + subtleOrange.b * 0.3))}, ${((startOpacity + endOpacity) / 2) * fiber.opacity})`);
-                
-                // End with subtle orange-tinted color (lower opacity)
-                gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity * fiber.opacity})`);
-                
+
+                // Start with blue (higher opacity)
+                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
+
+                // Middle transition point (mix of blue and orange)
+                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
+
+                // End with orange (lower opacity)
+                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
+
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use subtle blue-orange mix
-                const mixR = Math.round((subtleBlue.r + subtleOrange.r) / 2);
-                const mixG = Math.round((subtleBlue.g + subtleOrange.g) / 2);
-                const mixB = Math.round((subtleBlue.b + subtleOrange.b) / 2);
-                ctx.strokeStyle = `rgba(${mixR}, ${mixG}, ${mixB}, ${startOpacity * fiber.opacity})`;
+                // Fallback for short fibers - use blue-orange mix
+                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness;
@@ -557,28 +512,24 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Continuous trail effect with periodic clearing for space
-            // Moderate fade creates space for new dynamics while maintaining continuity
+            // Perpetual trail effect - very slow fade for continuous animation
+            // Clear with very subtle fade to create perpetual trails
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-            
+
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
-            // Update fibers and check for regeneration
+            // Update fibers less frequently (with mouse interaction)
             if (this.frameCount % CONFIG.updateInterval === 0) {
-                // Update existing fibers
                 for (const fiber of this.fibers) {
                     if (fiber.isVisible(this.width, this.height)) {
-                        fiber.update(this.time);
+                        fiber.update(this.time, this.mouseX, this.mouseY);
                     }
                 }
-                
-                // Regenerate fibers periodically for continuous flow
-                this.generateFibers();
             }
 
             // Update jet bundles much less frequently
@@ -590,19 +541,13 @@
                 }
             }
 
-            // Draw all fibers (fewer fibers for cleaner look)
+            // Draw all fibers (small count, so it's fine)
             let drawnCount = 0;
             for (const fiber of this.fibers) {
-                // Only draw if fiber has opacity and is visible
-                if (fiber.opacity > 0.01 && fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
+                if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
                     this.drawFiber(fiber);
                     drawnCount++;
                 }
-            }
-            
-            // Remove completely faded fibers periodically
-            if (this.frameCount % 60 === 0) {
-                this.fibers = this.fibers.filter(fiber => !fiber.shouldRemove());
             }
 
             // Draw jet bundles
@@ -817,4 +762,3 @@
     // Start initialization
     init();
 })();
-
