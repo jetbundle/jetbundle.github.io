@@ -24,8 +24,14 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
-# Navigation is now controlled by _data/navigation.yml
-# toolbar_priority is deprecated - using navigation.yml instead
+# Navigation - potato-hacker theme uses toolbar_priority and dropdown collection
+toolbar_priority:
+  - "Computation Stack"
+  - "Physics Stack"
+  - "Finance Stack"
+  - "Resources"
+  - "Blog"
+  - "Community"
 
 # Collections (The "Fibers")
 collections:

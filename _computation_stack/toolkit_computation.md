@@ -172,4 +172,3 @@ To master the Computation Stack, you must understand:
 ---
 
 [Back to Computation Stack →](/computation_stack/)
-

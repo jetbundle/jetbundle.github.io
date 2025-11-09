@@ -40,13 +40,15 @@ This is the "skeleton key" Fiber for Computation. Its origin is Pál Turán's 19
 
 **Modern Application**: This *exact* social network analysis is the core product of **Palantir Gotham**, sold to clients like ICE and the NYPD.
 
-## Audits in This Stack
+## Content
+
+### Audits
 
 - **[Operating Systems Audit →](/computation_stack/os-audit/)** - From Project MAC to Azure IL5
 - **[AI Audit →](/computation_stack/ai-audit/)** - From ALVINN to Palantir
 - **[Graph Theory Audit →](/computation_stack/graph-theory/)** - From Turán to SKYNET to Palantir Gotham
 
-## Toolkit
+### Toolkit
 
 - **[Computation Stack Toolkit →](/computation_stack/toolkit/)** - How to master the Computation Stack
 

@@ -142,4 +142,3 @@ This website and its content are provided for **research and educational purpose
 **License:** This project is licensed under the MIT License with a non-commercial use restriction. Commercial use, monetization, or use for financial gain is prohibited without explicit written permission. See the [License](/license/) page for full terms.
 
 **Disclaimer:** See the [Disclaimer](/disclaimer/) page for complete legal disclaimers and research methodology.
-

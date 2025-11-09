@@ -157,4 +157,3 @@ To master the Finance Stack, you must understand:
 ---
 
 [Back to Finance Stack →](/finance_stack/)
-

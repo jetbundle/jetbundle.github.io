@@ -41,10 +41,16 @@ Funded for Los Alamos implosion simulations and modern stockpile stewardship.
 **The Application**: Weapons design and testing
 **Modern Application**: Stockpile stewardship, materials science
 
-## Audits in This Stack
+## Content
+
+### Audits
 
 - **[Hydrodynamics Audit →](/physics_stack/hydrodynamics/)** - From *Nautilus* to modern fluid dynamics
 - **[Celestial Mechanics Audit →](/physics_stack/celestial-mechanics/)** - From missile trajectories to space exploration
+
+### Toolkit
+
+- **[Physics Stack Toolkit →](/physics_stack/toolkit/)** - How to master the Physics Stack
 
 ---
 

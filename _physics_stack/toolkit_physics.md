@@ -161,4 +161,3 @@ To master the Physics Stack, you must understand:
 ---
 
 [Back to Physics Stack →](/physics_stack/)
-

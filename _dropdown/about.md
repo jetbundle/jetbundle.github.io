@@ -1,7 +1,7 @@
 ---
 title: About
-url: /principal
-priority: 1
+url: /
+priority: 0
 ---
 
 # About

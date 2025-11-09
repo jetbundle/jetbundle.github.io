@@ -75,4 +75,3 @@ The Archive serves as the repository for:
 ---
 
 [Back to Resources →](/resources/)
-

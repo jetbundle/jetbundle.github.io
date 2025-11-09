@@ -54,4 +54,3 @@ Financed by institutions dealing with missiles (NASA), this pillar was the origi
 ---
 
 [Back to Resources →](/resources/)
-

@@ -104,4 +104,3 @@ Ready to join? Here's how:
 ---
 
 **Welcome to the Bundle. Let's build together.**
-

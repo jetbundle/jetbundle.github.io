@@ -1,9 +1,9 @@
 ---
 title: Blog
-url: /blog
-priority: 3
+url: /blog/
+priority: 5
 ---
 
 # Blog
 
-Blog posts and articles.
+Research, projects, and technical deep dives.
