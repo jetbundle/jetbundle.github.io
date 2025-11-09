@@ -4,8 +4,8 @@ url: /c3i_stack/01_intro/
 priority: 2
 has_children: true
 children:
-  - title: "C3I Stack"
-    url: /c3i_stack/01_intro/
+  - title: "Computation Stack"
+    url: /computation_stack/01_intro/
   - title: "Physics Stack"
     url: /physics_stack/01_intro/
   - title: "Finance Stack"

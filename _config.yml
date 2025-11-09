@@ -24,19 +24,18 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
-toolbar_priority:
-  - "About"
-  - "Resources"
-  - "Blog"
-  - "Community"
+# Navigation is now controlled by _data/navigation.yml
+# toolbar_priority is deprecated - using navigation.yml instead
 
 # Collections (The "Fibers")
 collections:
-  c3i_stack:
+  computation_stack:
     output: true
   physics_stack:
     output: true
   finance_stack:
+    output: true
+  principal:
     output: true
   dropdown:
     output: true

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "AI Audit: From ALVINN to Palantir"
-permalink: /c3i_stack/ai-audit/
+permalink: /computation_stack/ai-audit/
 ---
 
 # AI Audit: From ALVINN to Palantir
@@ -52,4 +52,4 @@ The same mathematical techniques (backpropagation, neural networks) funded by ON
 
 ---
 
-**[Back to C3I Stack →](/c3i_stack/01_intro/)**
+**[Back to Computation Stack →](/computation_stack/01_intro/)**

@@ -28,7 +28,7 @@ This site is the open-source audit of that structure. We trace the "memo-to-lemm
 
 ## The Fibers (The Applied Stacks)
 
-### [The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
+### [The Computation Stack →](/computation_stack/01_intro/)
 
 **Command, Control, Communications & Intelligence**
 

@@ -6,9 +6,9 @@ description: Technical stacks and architectures
 
 # The Stacks
 
-## The C3I & Surveillance Stack
+## The Computation Stack
 
-[The C3I & Surveillance Stack →](/c3i_stack/01_intro/)
+[The Computation Stack →](/computation_stack/01_intro/)
 
 **Command, Control, Communications & Intelligence**
 

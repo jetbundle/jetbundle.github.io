@@ -21,9 +21,9 @@
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
         // Smooth, perpetual animation - MUCH SLOWER EVOLUTION
-        animationSpeed: 0.00002,    // Much slower evolution (5x slower)
-        noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00002,       // Much slower evolution (5x slower)
+        animationSpeed: 0.0000000002,    // Much slower evolution (5x slower)
+        noiseScale: 0.0008,        // Fine-scale noise for smooth curves
+        noiseSpeed: 0.0000002,       // Much slower evolution (5x slower)
 
         // Visual parameters - slower fade for better visibility
         opacityDecay: 0.998,      // Slower decay (was 0.992) - fibers stay visible longer
@@ -31,13 +31,13 @@
         gradientStops: 2,         // Minimal stops
 
         // Mouse interaction parameters (subtle effects)
-        mouseInfluenceRadius: 150,  // Radius of mouse influence on fibers
-        mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
+        mouseInfluenceRadius: 200,  // Radius of mouse influence on fibers
+        mouseInfluenceStrength: 0.20, // Strength of mouse perturbation (subtle)
         mouseTrailDamping: 0.88,    // Damping for mouse trail (higher = more damped)
         mouseTrailOpacity: 0.20,    // Slightly more visible opacity for mouse trail
-        mouseTrailLength: 120,      // Longer mouse trail fiber (was 60)
+        mouseTrailLength: 60,      // Longer mouse trail fiber (was 60)
         mouseTrailThickness: 0.6,   // Smaller thickness for mouse trail
-        mouseTrailEvolutionStrength: 0.5,  // Evolution strength for mouse trail (like regular fibers)
+        mouseTrailEvolutionStrength: 0.2,  // Evolution strength for mouse trail (like regular fibers)
 
         // Color scheme (gauge theme)
         colors: {
@@ -55,7 +55,7 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -300,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetX: -400,      // Center point 250px off-screen to the left (closer to edge)
         centerOffsetY: -5      // Center point 250px off-screen to the top (closer to edge)
     };
 
