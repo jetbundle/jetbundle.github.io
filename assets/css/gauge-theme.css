@@ -1,4 +1,4 @@
-/* JetBundle Gauge Theme - Maximum Specificity CSS Override */
+/* jetbundle Gauge Theme - Maximum Specificity CSS Override */
 
 /* Override theme's body background - Maximum specificity */
 html body.animated.fadeIn,
@@ -134,13 +134,11 @@ a:hover {
     color: #38bdf8 !important;
 }
 
-/* Override navigation - Maximum specificity */
-body .navbar,
-body nav,
-html body .navbar,
-html body nav,
-.navbar,
-nav {
+/* Override navigation - Maximum specificity (but allow our custom header) */
+body nav:not(.navbar-container),
+body .navbar:not(.navbar-container),
+html body nav:not(.navbar-container),
+html body .navbar:not(.navbar-container) {
     background-color: rgba(17, 24, 39, 0.9) !important;
     background: rgba(17, 24, 39, 0.9) !important;
 }
@@ -365,162 +363,212 @@ body #background-div {
     position: relative !important;
 }
 
-/* Replace home icon with clickable jetbundle brand */
+/* Hide home icon in navigation */
 .navbar-icon[href="/"],
 .navbar a[href="/"]:first-child,
 .navbar-brand[href="/"],
 a.navbar-icon[href="/"],
-.navbar .navbar-icon:first-child,
+.navbar .navbar-icon:first-child {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Hide home link if it's the first item in toolbar */
 .toolbar a[href="/"]:first-child,
 nav a[href="/"]:first-child {
-    display: inline-block !important;
-    visibility: visible !important;
-    color: #ff6b35 !important;
-    font-weight: 700 !important;
-    font-size: 1.25rem !important;
-    text-decoration: none !important;
-    background: none !important;
-    border: none !important;
-    padding: 0.5rem 1rem !important;
-}
-
-.navbar-icon[href="/"]:hover,
-.navbar a[href="/"]:first-child:hover,
-.navbar-brand[href="/"]:hover,
-a.navbar-icon[href="/"]:hover,
-.navbar .navbar-icon:first-child:hover,
-.toolbar a[href="/"]:first-child:hover,
-nav a[href="/"]:first-child:hover {
-    color: #ff8c5a !important;
-    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
-}
-
-/* Hide home icon image, show text */
-.navbar-icon[href="/"]::before,
-.navbar a[href="/"]:first-child::before {
-    content: "jetbundle" !important;
-    display: inline-block !important;
-}
-
-.navbar-icon[href="/"] i,
-.navbar-icon[href="/"] svg,
-.navbar a[href="/"]:first-child i,
-.navbar a[href="/"]:first-child svg {
     display: none !important;
 }
 
 /* Landing page - centered and simple */
-.landing-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    text-align: center;
-    padding: 3rem 0;
+.landing-content {
+    text-align: center !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    padding: 4rem 2rem !important;
+    min-height: 60vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .landing-title {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    margin: 0 0 1rem 0 !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: #ff6b35 !important;
+}
+
+.landing-subtitle {
+    font-size: 1.5rem !important;
+    color: #94a3b8 !important;
+    margin: 0 0 2rem 0 !important;
+    font-weight: 400 !important;
+}
+
+.learn-more-btn {
+    display: inline-block !important;
+    padding: 0.75rem 2rem !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    color: #f1f5f9 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    margin-top: 1rem !important;
+}
+
+.learn-more-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
+    color: #f1f5f9 !important;
+}
+
+/* Footer - appears at bottom of content with copyright */
+.site-footer {
+    text-align: center !important;
+    padding: 3rem 1rem 2rem 1rem !important;
+    margin-top: 4rem !important;
+    border-top: 1px solid #1e293b !important;
+    background: rgba(11, 14, 23, 0.6) !important;
+    color: #94a3b8 !important;
+    font-size: 0.875rem !important;
+    width: 100% !important;
+    position: relative !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    margin: 0 !important;
+    color: #94a3b8 !important;
+    opacity: 0.8 !important;
+}
+
+/* Global right margin for manifold space - shift content left */
+body .container,
+body .wrapper {
+    margin-right: 10% !important;
+    margin-left: 5% !important;
+    max-width: 82% !important;
+    padding-right: 2rem !important;
+}
+
+body .content-div {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+}
+
+/* Landing page should be centered */
+.landing-page .content-div,
+body .landing-page .container {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    max-width: 800px !important;
+    padding: 0 2rem !important;
+}
+
+/* Navigation - Custom header with jetbundle brand */
+header,
+header.navbar,
+.navbar {
+    background: rgba(17, 24, 39, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid #1e293b !important;
+    padding: 1rem 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+}
+
+.navbar-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.navbar-brand,
+.navbar .navbar-brand,
+nav .navbar-brand,
+header .navbar-brand {
+    color: #ff6b35 !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    margin-right: 2rem !important;
     background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
 }
 
-.landing-subtitle {
-    font-size: 1.5rem;
-    color: #94a3b8 !important;
-    margin-bottom: 2rem;
-    font-weight: 400;
+.navbar-brand:hover,
+.navbar .navbar-brand:hover,
+header .navbar-brand:hover {
+    color: #ff8c5a !important;
+    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
+    transform: scale(1.05) !important;
+    transition: transform 0.2s ease !important;
 }
 
-.learn-more-button {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-    color: #f1f5f9 !important;
+.navbar-menu {
+    display: flex !important;
+    gap: 2rem !important;
+    align-items: center !important;
+}
+
+.navbar-link,
+.navbar-menu a {
+    color: #94a3b8 !important;
     text-decoration: none !important;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: none;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    padding: 0.5rem 0 !important;
+    transition: color 0.2s ease !important;
+    display: inline-block !important;
 }
 
-.learn-more-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-    color: #f1f5f9 !important;
+.navbar-link:hover,
+.navbar-menu a:hover {
+    color: #ff6b35 !important;
+    text-shadow: 0 0 6px rgba(255, 107, 53, 0.4) !important;
 }
 
-/* Global right margin for manifold interaction space */
-body .container,
-body .content-div,
-body .wrapper,
-body main {
-    margin-right: 120px !important;
-    max-width: calc(100% - 120px) !important;
-}
-
-@media (max-width: 768px) {
-    body .container,
-    body .content-div,
-    body .wrapper,
-    body main {
-        margin-right: 60px !important;
-        max-width: calc(100% - 60px) !important;
-    }
-}
-
-/* Footer styling */
-.site-footer {
-    text-align: center;
-    padding: 2rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid #1e293b;
-    color: #94a3b8 !important;
-    background: transparent !important;
-}
-
-.site-footer p {
-    margin: 0;
-    color: #94a3b8 !important;
-    font-size: 0.875rem;
-}
-
-/* Remove dropdown functionality - make all nav items direct links */
-.dropdown,
-.dropdown-menu,
-.dropdown-toggle,
-.has-dropdown {
-    display: none !important;
-}
-
-/* Make navigation items direct clickable links */
+/* Ensure navigation items are clickable (no dropdowns) */
+.toolbar a,
 nav a,
 .navbar a,
-.toolbar a {
+.navbar-link {
     display: inline-block !important;
     text-decoration: none !important;
 }
 
-/* Add clickable jetbundle brand/logo in place of home icon */
-.navbar-brand,
-.navbar-icon[href="/"],
-.navbar a[href="/"]:first-child {
-    display: inline-block !important;
-    visibility: visible !important;
-    color: #ff6b35 !important;
-    font-weight: 700;
-    font-size: 1.25rem;
-    text-decoration: none !important;
+/* Remove dropdown indicators */
+.toolbar a::after,
+nav a::after,
+.navbar a::after,
+.navbar-link::after {
+    display: none !important;
+    content: none !important;
 }
 
-.navbar-brand:hover,
-.navbar-icon[href="/"]:hover,
-.navbar a[href="/"]:first-child:hover {
-    color: #ff8c5a !important;
-    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5);
+/* Ensure our custom navigation is visible */
+header .navbar,
+.navbar-container {
+    display: flex !important;
+}
+
+/* Hide theme's default home icon if it appears */
+.navbar-icon[href="/"]:not(.navbar-brand),
+.toolbar a[href="/"]:first-child:not(.navbar-brand) {
+    display: none !important;
 }

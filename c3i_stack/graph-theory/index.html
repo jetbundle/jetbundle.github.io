@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Graph Theory Audit: From Turán to SKYNET to Palantir Gotham</title>
-  <meta name="description" content="Engineering principles of physics, finance, and computation.">
+  <meta name="description" content="Mapping the hidden geometry of modern science.">
 
   <!-- Social: Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@">
   <meta name="twitter:title" content="Graph Theory Audit: From Turán to SKYNET to Palantir Gotham">
-  <meta name="twitter:description" content="Engineering principles of physics, finance, and computation.">
+  <meta name="twitter:description" content="Mapping the hidden geometry of modern science.">
   
   <meta property="twitter:image:src" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
@@ -23,13 +23,13 @@
   
   <meta property="og:image" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
-  <meta property="og:description" content="Engineering principles of physics, finance, and computation.">
+  <meta property="og:description" content="Mapping the hidden geometry of modern science.">
   <meta property="og:site_name" content="jetbundle">
 
   <!-- Social: Schema.org  -->
   <meta itemprop="name" content="Graph Theory Audit: From Turán to SKYNET to Palantir Gotham"/>
 
-  <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
+  <!-- jetbundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
   <style>
     /* Critical gauge theme styles - applied immediately */
     :root {
@@ -72,7 +72,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 
-  <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
+  <!-- jetbundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
 
   <!-- MathJax - Async (non-blocking) -->
@@ -91,106 +91,19 @@
 
   <body class="animated fadeIn">
     <header>
-  <div class="row">
-    <div class="col-xs-12">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-toggle collapsed navbar-icon" data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1">
-              <i class="fa fa-bars fa-2x"></i>
-            </a>
-            <a class="navbar-brand navbar-icon" href="/">
-                <i class="fa fa-home fa-2x"></i>
-            </a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/">Home</a></li>
-              
-
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-About">
-                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Blog">
-                    <li priority="3"><a href="/dropdown/blog.html">Blog</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Community">
-                    <li priority="4"><a href="/dropdown/community.html">Community</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Resources">
-                    <li priority="2"><a href="/dropdown/resources.html">Resources</a></li>
-                  </ul>
-                </li>
-              
-              
-
-              <script>
-                // clean repeated dropdowns and add <li> to their positions
-                let done = [];
-                let elements = [];
-                $(".dropdown")
-                  //
-                  .each((index0 , value0) => {
-                    let dropdownClass = "."+$(value0)[0].classList[1];
-                    if (done.indexOf(dropdownClass) !== -1) return
-                    done.push(dropdownClass)
-                    let dropdownMain = $(dropdownClass)[0]
-                    let itemsList = $(dropdownClass+">ul>li").sort((a, b) => parseInt(b.getAttribute("priority") || -9999999) - parseInt(a.getAttribute("priority") || -9999999))
-                    $(dropdownClass+">ul>li").remove();
-                    $(dropdownClass+">ul").append(itemsList)
-                    $(dropdownClass).remove();
-                    elements.push(dropdownMain)
-                });
-                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
-                elements = elements.concat(...$(".nav-item").remove())
-                priority.map(text => {
-                  elements = elements.filter(node => {
-                      let nodeText = node.querySelector("a").textContent.trim()
-                      if (text == nodeText) {
-                          $(".nav").append(node)
-                          return false;
-                      }
-                      return true;
-                  })
-                });
-                $(".nav").append(elements)
-              </script>
-            </ul>
-          </div>
-        </div>
-      </nav>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">jetbundle</a>
+      <div class="navbar-menu">
+        <a href="/principal" class="navbar-link">About</a>
+        <a href="/resources" class="navbar-link">Resources</a>
+        <a href="/blog" class="navbar-link">Blog</a>
+        <a href="/community" class="navbar-link">Community</a>
+      </div>
     </div>
-  </div>
+  </nav>
 </header>
+
 
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
@@ -315,7 +228,7 @@
 </footer>
 
 
-    <!-- JetBundle Gauge Theme JavaScript - Minimal enhancement -->
+    <!-- jetbundle Gauge Theme JavaScript - Minimal enhancement -->
     <script>
       // Minimal enhancements - theme's main.js handles initialization
       (function() {
