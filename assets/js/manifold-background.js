@@ -422,24 +422,47 @@
                 ctx.lineTo(this.points[i].x, this.points[i].y);
             }
 
-            // Subtle blue-orange gradient for mouse trail
+            // Subtle gradient from blue to orange (like regular fibers)
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            const avgOpacity = this.points.reduce((sum, p) => sum + p.opacity, 0) / this.points.length;
+            
+            // More subtle gradient - blend colors more gradually (like regular fibers)
+            const subtleBlue = {
+                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
+                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
+                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
+            };
+            const subtleOrange = {
+                r: Math.round(blueColor.r * 0.15 + orangeColor.r * 0.85),
+                g: Math.round(blueColor.g * 0.15 + orangeColor.g * 0.85),
+                b: Math.round(blueColor.b * 0.15 + orangeColor.b * 0.85)
+            };
 
             if (this.points.length > 2) {
                 const gradient = ctx.createLinearGradient(
                     this.points[0].x, this.points[0].y,
                     this.points[this.points.length - 1].x, this.points[this.points.length - 1].y
                 );
-                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${this.points[0].opacity * 0.3})`);
-                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${this.points[this.points.length - 1].opacity * 0.3})`);
+                
+                // Start with subtle blue-tinted
+                const startOpacity = Math.max(0.1, this.points[0].opacity);
+                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity})`);
+                
+                // Middle transition
+                const midOpacity = Math.max(0.05, this.points[Math.floor(this.points.length / 2)].opacity);
+                gradient.addColorStop(0.7, `rgba(${Math.round(subtleBlue.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleBlue.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleBlue.b * 0.7 + subtleOrange.b * 0.3)}, ${midOpacity})`);
+                
+                // End with subtle orange-tinted
+                const endOpacity = Math.max(0.02, this.points[this.points.length - 1].opacity);
+                gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity})`);
+                
                 ctx.strokeStyle = gradient;
             } else {
-                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${avgOpacity * 0.3})`;
+                const avgOpacity = this.points.reduce((sum, p) => sum + p.opacity, 0) / this.points.length;
+                ctx.strokeStyle = `rgba(${Math.round((subtleBlue.r + subtleOrange.r) / 2)}, ${Math.round((subtleBlue.g + subtleOrange.g) / 2)}, ${Math.round((subtleBlue.b + subtleOrange.b) / 2)}, ${avgOpacity})`;
             }
 
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = CONFIG.mouseTrailThickness; // Smaller thickness
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.stroke();
