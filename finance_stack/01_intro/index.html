@@ -63,6 +63,23 @@
     .navbar-icon, nav a, .navbar a { color: #94a3b8 !important; }
     .container, .wrapper, main { background: transparent !important; color: #f1f5f9 !important; }
     .content-div { color: #f1f5f9 !important; }
+    
+    /* CRITICAL: Hide theme navigation immediately */
+    body > nav:not(header nav):not(.site-navbar),
+    body > aside,
+    body > .toolbar:not(.navbar-container),
+    body > .sidebar,
+    .toolbar:not(.navbar-container):not(.site-navbar),
+    .sidebar {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    
+    /* Ensure our header is visible */
+    header.site-header {
+      display: block !important;
+      visibility: visible !important;
+    }
   </style>
 
   <!-- Theme CSS -->
