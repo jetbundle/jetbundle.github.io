@@ -1,6 +1,6 @@
 ---
 title: The Stacks
-url: /c3i_stack/01_intro/
+url: /computation_stack/01_intro/
 priority: 2
 has_children: true
 children:
@@ -14,4 +14,4 @@ children:
 
 # The Stacks
 
-The three fiber bundles: C3I, Physics, and Finance.
+The three fiber bundles: Computation, Physics, and Finance.
