@@ -55,8 +55,8 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -230,      // Center point 250px off-screen to the left (closer to edge)
-        centerOffsetY: 0       // Center point 250px off-screen to the top (closer to edge)
+        centerOffsetX: -200,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetY: -5      // Center point 250px off-screen to the top (closer to edge)
     };
 
     // Simplified noise generator (more efficient)
@@ -376,10 +376,10 @@
                     this.currentX * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
                     this.currentY * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
                 );
-                
+
                 // Evolve angle exactly like regular fibers (same as regular fibers: 0.15)
                 this.angle += (noiseValue - 0.5) * Math.PI * 0.15; // Same as regular fibers
-                
+
                 // Add evolution to position (like regular fibers, but damped)
                 const evolutionStrength = CONFIG.mouseTrailEvolutionStrength; // Configurable evolution
                 this.currentX += Math.cos(this.angle) * evolutionStrength;
