@@ -20,10 +20,10 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - FASTER EVOLUTION
-        animationSpeed: 0.0003,   // Faster evolution (10x slower than original, but faster than before)
+        // Smooth, perpetual animation - MUCH FASTER EVOLUTION
+        animationSpeed: 0.001,    // Much faster evolution (3x slower than original)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00003,      // Faster evolution (15x slower than original, but faster than before)
+        noiseSpeed: 0.0001,       // Much faster evolution (5x slower than original)
 
         // Visual parameters - faster fade for continuous process
         opacityDecay: 0.992,      // Faster decay for continuous fading
@@ -35,8 +35,9 @@
         mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
         mouseTrailDamping: 0.88,    // Damping for mouse trail (higher = more damped)
         mouseTrailOpacity: 0.20,    // Slightly more visible opacity for mouse trail
-        mouseTrailLength: 60,       // Length of mouse trail fiber
+        mouseTrailLength: 120,      // Longer mouse trail fiber (was 60)
         mouseTrailThickness: 0.6,   // Smaller thickness for mouse trail
+        mouseTrailEvolutionStrength: 0.5  // Evolution strength for mouse trail (like regular fibers)
 
         // Color scheme (gauge theme)
         colors: {
@@ -54,8 +55,8 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -250,      // Center point 250px off-screen to the left (closer to edge)
-        centerOffsetY: -250       // Center point 250px off-screen to the top (closer to edge)
+        centerOffsetX: -230,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetY: 0       // Center point 250px off-screen to the top (closer to edge)
     };
 
     // Simplified noise generator (more efficient)
@@ -374,10 +375,10 @@
                     this.currentX * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200,
                     this.currentY * CONFIG.noiseScale + this.time * CONFIG.noiseSpeed * 200
                 );
-                
+
                 // Evolve angle similar to manifold fibers
                 this.angle += (noiseValue - 0.5) * Math.PI * 0.1;
-                
+
                 // Add slight evolution to position (damped)
                 const evolutionStrength = 0.3; // Damped evolution
                 this.currentX += Math.cos(this.angle) * evolutionStrength;
@@ -425,7 +426,7 @@
             // Subtle gradient from blue to orange (like regular fibers)
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            
+
             // More subtle gradient - blend colors more gradually (like regular fibers)
             const subtleBlue = {
                 r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
@@ -443,19 +444,19 @@
                     this.points[0].x, this.points[0].y,
                     this.points[this.points.length - 1].x, this.points[this.points.length - 1].y
                 );
-                
+
                 // Start with subtle blue-tinted
                 const startOpacity = Math.max(0.1, this.points[0].opacity);
                 gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity})`);
-                
+
                 // Middle transition
                 const midOpacity = Math.max(0.05, this.points[Math.floor(this.points.length / 2)].opacity);
                 gradient.addColorStop(0.7, `rgba(${Math.round(subtleBlue.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleBlue.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleBlue.b * 0.7 + subtleOrange.b * 0.3)}, ${midOpacity})`);
-                
+
                 // End with subtle orange-tinted
                 const endOpacity = Math.max(0.02, this.points[this.points.length - 1].opacity);
                 gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity})`);
-                
+
                 ctx.strokeStyle = gradient;
             } else {
                 const avgOpacity = this.points.reduce((sum, p) => sum + p.opacity, 0) / this.points.length;
