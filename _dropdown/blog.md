@@ -7,4 +7,3 @@ priority: 3
 # Blog
 
 Blog posts and articles.
-

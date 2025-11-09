@@ -23,4 +23,3 @@ Recommended reading list.
 Primary sources and archives.
 
 [Primary Sources →](/archive/)
-

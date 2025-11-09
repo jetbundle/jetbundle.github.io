@@ -21,7 +21,7 @@
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
         // Smooth, perpetual animation - MUCH SLOWER EVOLUTION
-        animationSpeed: 0.0002,    // Much slower evolution (5x slower)
+        animationSpeed: 0.00002,    // Much slower evolution (5x slower)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
         noiseSpeed: 0.00002,       // Much slower evolution (5x slower)
 
@@ -55,7 +55,7 @@
 
         // Center point offset - move off-screen (closer to edge but still hidden)
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
-        centerOffsetX: -230,      // Center point 250px off-screen to the left (closer to edge)
+        centerOffsetX: -300,      // Center point 250px off-screen to the left (closer to edge)
         centerOffsetY: -5      // Center point 250px off-screen to the top (closer to edge)
     };
 

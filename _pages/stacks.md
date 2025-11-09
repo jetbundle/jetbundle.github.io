@@ -35,4 +35,3 @@ description: Technical stacks and architectures
 - Kalman Filter: From missile guidance to time-series analysis
 - Pontryagin's Principle: From ballistic trajectories to options pricing
 - High-Frequency Trading: From radar signal processing to microwave networks
-
