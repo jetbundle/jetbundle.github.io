@@ -33,7 +33,7 @@
         // Mouse interaction
         mouseInfluenceRadius: 150,  // Radius of mouse influence
         mouseForceStrength: 0.15,   // Strength of mouse perturbation (subtle)
-        mouseCurlingStrength: 0.08  // Strength of curling effect around mouse
+        mouseCurlingStrength: 0.08,  // Strength of curling effect around mouse
 
         // Color scheme (gauge theme)
         colors: {
@@ -451,30 +451,47 @@
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
 
-            // Create gradient from blue to orange along the fiber
+            // Create subtle gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-
+            
+            // More subtle gradient - blend colors more gradually
+            // Start with mostly blue, transition to a subtle orange tint
+            const blueWeight = 0.7;  // Start with 70% blue
+            const orangeWeight = 0.3; // End with 30% orange (subtle)
+            
             if (points.length > 2) {
-                // Linear gradient from start (blue) to end (orange)
+                // Linear gradient from start (mostly blue) to end (subtle orange tint)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-
-                // Start with blue (higher opacity)
-                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
-
-                // Middle transition point (mix of blue and orange)
-                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
-
-                // End with orange (lower opacity)
-                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
-
+                
+                // Start with mostly blue (subtle)
+                const startR = Math.round(blueColor.r * blueWeight + orangeColor.r * (1 - blueWeight));
+                const startG = Math.round(blueColor.g * blueWeight + orangeColor.g * (1 - blueWeight));
+                const startB = Math.round(blueColor.b * blueWeight + orangeColor.b * (1 - blueWeight));
+                gradient.addColorStop(0, `rgba(${startR}, ${startG}, ${startB}, ${startOpacity})`);
+                
+                // Middle transition point (subtle blend)
+                const midR = Math.round(blueColor.r * 0.5 + orangeColor.r * 0.5);
+                const midG = Math.round(blueColor.g * 0.5 + orangeColor.g * 0.5);
+                const midB = Math.round(blueColor.b * 0.5 + orangeColor.b * 0.5);
+                gradient.addColorStop(0.7, `rgba(${midR}, ${midG}, ${midB}, ${(startOpacity + endOpacity) / 2})`);
+                
+                // End with subtle orange tint (not full orange)
+                const endR = Math.round(blueColor.r * (1 - orangeWeight) + orangeColor.r * orangeWeight);
+                const endG = Math.round(blueColor.g * (1 - orangeWeight) + orangeColor.g * orangeWeight);
+                const endB = Math.round(blueColor.b * (1 - orangeWeight) + orangeColor.b * orangeWeight);
+                gradient.addColorStop(1, `rgba(${endR}, ${endG}, ${endB}, ${endOpacity})`);
+                
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use blue-orange mix
-                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
+                // Fallback for short fibers - use subtle blue-orange blend
+                const blendR = Math.round(blueColor.r * 0.6 + orangeColor.r * 0.4);
+                const blendG = Math.round(blueColor.g * 0.6 + orangeColor.g * 0.4);
+                const blendB = Math.round(blueColor.b * 0.6 + orangeColor.b * 0.4);
+                ctx.strokeStyle = `rgba(${blendR}, ${blendG}, ${blendB}, ${startOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness;
