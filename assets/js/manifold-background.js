@@ -408,28 +408,42 @@
         }
 
         generateFibers() {
-            this.fibers = [];
-            this.jetBundles = [];
-
-            for (const basePoint of this.basePoints) {
-                // Generate many fibers radiating from center in all directions
-                for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Evenly distribute angles around the circle
-                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
-                    // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.1;
-                    const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
-                    this.fibers.push(fiber);
-                }
-
-                // Add jet bundles for more complexity
-                if (Math.random() > 0.5) {
-                    const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
-                    this.jetBundles.push(jetBundle);
+            // Don't clear existing fibers - we'll manage them by age
+            // Only generate new ones if we're below target count
+            
+            // Remove expired fibers and jet bundles
+            this.fibers = this.fibers.filter(f => !f.isExpired);
+            this.jetBundles = this.jetBundles.filter(j => !j.isExpired);
+            
+            // Generate new fibers if below target count
+            if (this.fibers.length < CONFIG.targetFiberCount) {
+                const needed = CONFIG.targetFiberCount - this.fibers.length;
+                for (const basePoint of this.basePoints) {
+                    for (let i = 0; i < needed && i < CONFIG.fibersPerPoint; i++) {
+                        // Evenly distribute angles around the circle with random variation
+                        const angle = Math.random() * Math.PI * 2;
+                        // Add slight random variation for organic feel
+                        const angleVariation = (Math.random() - 0.5) * 0.1;
+                        const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
+                        this.fibers.push(fiber);
+                    }
+                    // Only generate from first base point to avoid duplicates
+                    break;
                 }
             }
-
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
+            
+            // Generate new jet bundles if below target count
+            if (this.jetBundles.length < CONFIG.targetJetCount) {
+                const needed = CONFIG.targetJetCount - this.jetBundles.length;
+                for (const basePoint of this.basePoints) {
+                    for (let i = 0; i < needed; i++) {
+                        const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
+                        this.jetBundles.push(jetBundle);
+                    }
+                    // Only generate from first base point to avoid duplicates
+                    break;
+                }
+            }
         }
 
         drawFiber(fiber) {
