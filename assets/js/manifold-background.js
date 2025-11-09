@@ -15,20 +15,25 @@
     const CONFIG = {
         // Single point manifold - center of screen
         numBasePoints: 1,         // Single point at center
-        fibersPerPoint: 24,       // Many fibers radiating from center
+        fibersPerPoint: 12,       // Fewer fibers for cleaner look (was 24)
         maxFiberLength: 3000,     // Long fibers to cover entire screen
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
-        animationSpeed: 0.0001,   // Extremely slow animation speed (30x slower than original)
+        // Smooth, perpetual animation - VERY SLOW TEMPO (even slower)
+        animationSpeed: 0.00005,  // Very slow animation speed (60x slower than original)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00001,      // Extremely slow evolution (50x slower than original)
+        noiseSpeed: 0.000005,     // Very slow evolution (100x slower than original)
 
-        // Visual parameters - perpetual trails - EXTREMELY SLOW FADE
-        opacityDecay: 0.999,      // Extremely slow decay for very long trails
-        baseOpacity: 0.25,        // Good visibility
+        // Visual parameters - subtle fade with periodic clearing
+        opacityDecay: 0.998,      // Moderate decay for periodic fade
+        baseOpacity: 0.20,        // Slightly lower opacity for subtlety
         gradientStops: 2,         // Minimal stops
+        
+        // Fiber lifecycle - continuous with periodic fade
+        fiberLifetime: 15000,     // Fibers fade after ~15 seconds (at 60fps)
+        fadeOutDuration: 5000,    // Fade out over ~5 seconds
+        regenerateInterval: 2000  // Regenerate fibers every ~2 seconds
 
         // Color scheme (gauge theme)
         colors: {
@@ -160,8 +165,33 @@
 
         update(time) {
             this.time = time;
-            this.opacity = CONFIG.baseOpacity;
+            this.age = (time - this.birthTime) * 1000; // Age in milliseconds (approx)
+            
+            // Check if fiber should start fading
+            if (this.age > CONFIG.fiberLifetime && !this.isFading) {
+                this.isFading = true;
+            }
+            
+            // Apply fade-out if fiber is fading
+            if (this.isFading) {
+                const fadeProgress = (this.age - CONFIG.fiberLifetime) / CONFIG.fadeOutDuration;
+                if (fadeProgress >= 1.0) {
+                    // Fiber has completely faded - mark for removal
+                    this.opacity = 0;
+                    return;
+                }
+                // Gradual fade-out
+                this.opacity = CONFIG.baseOpacity * (1 - fadeProgress);
+            } else {
+                this.opacity = CONFIG.baseOpacity;
+            }
+            
             this.generatePoints();
+        }
+        
+        shouldRemove() {
+            // Remove fiber if it's completely faded
+            return this.isFading && this.opacity <= 0.01;
         }
 
         isVisible(width, height, margin = 500) {
@@ -423,30 +453,46 @@
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
 
-            // Create gradient from blue to orange along the fiber
+            // Create subtle gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-
+            
+            // More subtle gradient: blend colors more gently
+            // Use 70% of original color, 30% of target color for subtlety
+            const subtleBlue = {
+                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
+                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
+                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
+            };
+            const subtleOrange = {
+                r: Math.round(orangeColor.r * 0.85 + blueColor.r * 0.15),
+                g: Math.round(orangeColor.g * 0.85 + blueColor.g * 0.15),
+                b: Math.round(orangeColor.b * 0.85 + blueColor.b * 0.15)
+            };
+            
             if (points.length > 2) {
-                // Linear gradient from start (blue) to end (orange)
+                // Linear gradient from start (subtle blue) to end (subtle orange)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-
-                // Start with blue (higher opacity)
-                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
-
-                // Middle transition point (mix of blue and orange)
-                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
-
-                // End with orange (lower opacity)
-                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
-
+                
+                // Start with subtle blue-tinted color (higher opacity)
+                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity * fiber.opacity})`);
+                
+                // Very subtle middle transition (mostly blue-tinted)
+                gradient.addColorStop(0.7, `rgba(${Math.round((subtleBlue.r * 0.7 + subtleOrange.r * 0.3))}, ${Math.round((subtleBlue.g * 0.7 + subtleOrange.g * 0.3))}, ${Math.round((subtleBlue.b * 0.7 + subtleOrange.b * 0.3))}, ${((startOpacity + endOpacity) / 2) * fiber.opacity})`);
+                
+                // End with subtle orange-tinted color (lower opacity)
+                gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity * fiber.opacity})`);
+                
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use blue-orange mix
-                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
+                // Fallback for short fibers - use subtle blue-orange mix
+                const mixR = Math.round((subtleBlue.r + subtleOrange.r) / 2);
+                const mixG = Math.round((subtleBlue.g + subtleOrange.g) / 2);
+                const mixB = Math.round((subtleBlue.b + subtleOrange.b) / 2);
+                ctx.strokeStyle = `rgba(${mixR}, ${mixG}, ${mixB}, ${startOpacity * fiber.opacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness;
@@ -513,13 +559,19 @@
                 }
             }
 
-            // Draw all fibers (small count, so it's fine)
+            // Draw all fibers (fewer fibers for cleaner look)
             let drawnCount = 0;
             for (const fiber of this.fibers) {
-                if (fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
+                // Only draw if fiber has opacity and is visible
+                if (fiber.opacity > 0.01 && fiber.isVisible(this.width, this.height) && fiber.points.length > 1) {
                     this.drawFiber(fiber);
                     drawnCount++;
                 }
+            }
+            
+            // Remove completely faded fibers periodically
+            if (this.frameCount % 60 === 0) {
+                this.fibers = this.fibers.filter(fiber => !fiber.shouldRemove());
             }
 
             // Draw jet bundles
