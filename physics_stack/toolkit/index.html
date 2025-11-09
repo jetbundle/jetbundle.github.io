@@ -74,6 +74,7 @@
 
   <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
 
   <!-- MathJax - Async (non-blocking) -->
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -117,7 +118,7 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-About">
-                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
+                    <li priority="0"><a href="/dropdown/about.html">About</a></li>
                   </ul>
                 </li>
               
@@ -127,7 +128,7 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Blog">
-                    <li priority="3"><a href="/dropdown/blog.html">Blog</a></li>
+                    <li priority="5"><a href="/dropdown/blog.html">Blog</a></li>
                   </ul>
                 </li>
               
@@ -137,7 +138,17 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Community">
-                    <li priority="4"><a href="/dropdown/community.html">Community</a></li>
+                    <li priority="6"><a href="/dropdown/community.html">Community</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-Computation Stack">
+                    <li priority="1"><a href="/dropdown/computation_stack.html">Computation Stack</a></li>
                   </ul>
                 </li>
               
@@ -156,6 +167,16 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-Finance Stack">
+                    <li priority="3"><a href="/dropdown/finance_stack.html">Finance Stack</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-License">
                     <li priority="8"><a href="/dropdown/license.html">License</a></li>
                   </ul>
@@ -166,8 +187,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Resources">
-                    <li priority="2"><a href="/dropdown/resources.html">Resources</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Physics Stack">
+                    <li priority="2"><a href="/dropdown/physics_stack.html">Physics Stack</a></li>
                   </ul>
                 </li>
               
@@ -176,8 +197,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-The Stacks">
-                    <li priority="2"><a href="/dropdown/stacks.html">The Stacks</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Resources">
+                    <li priority="4"><a href="/dropdown/resources.html">Resources</a></li>
                   </ul>
                 </li>
               
@@ -200,7 +221,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [];
+                let priority = [ "Computation Stack",  "Physics Stack",  "Finance Stack",  "Resources",  "Blog",  "Community", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -455,7 +476,6 @@
 <hr />
 
 <p><a href="/physics_stack/">Back to Physics Stack →</a></p>
-
 
 
       </div>

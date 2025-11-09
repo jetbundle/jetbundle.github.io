@@ -1,343 +1,498 @@
-/* JetBundle Gauge Theme - Maximum Specificity CSS Override */
+/* JetBundle Gauge Theme - Professional Design System */
 
-/* Override theme's body background - Maximum specificity */
-html body.animated.fadeIn,
-html body.animated,
-html body,
-body.animated.fadeIn,
-body.animated,
+/* ========================================
+   COLOR PALETTE - Harmonious Expansion
+   ======================================== */
+:root {
+  /* Primary Colors */
+  --orange-primary: #ff6b35;
+  --orange-accent: #ff4500;
+  --orange-light: #ff8c5a;
+  --orange-dark: #d9541f;
+  
+  /* Blue Colors */
+  --blue-primary: #0ea5e9;
+  --blue-light: #38bdf8;
+  --blue-deep: #1e40af;
+  --blue-dark: #0c4a6e;
+  --blue-accent: #0284c7;
+  
+  /* Background Colors */
+  --dark-bg: #0b0e17;
+  --dark-bg-alt: #0a0d14;
+  --dark-bg-elevated: #111827;
+  --dark-bg-card: #1e293b;
+  
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-disabled: #64748b;
+  
+  /* Border & Divider Colors */
+  --border-subtle: #1e293b;
+  --border-medium: #334155;
+  --border-strong: #475569;
+  
+  /* Accent Colors */
+  --accent-success: #10b981;
+  --accent-warning: #f59e0b;
+  --accent-error: #ef4444;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);
+  --gradient-blue: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  --gradient-dark: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%);
+  --gradient-card: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, #0b0e17 100%);
+}
+
+/* ========================================
+   TYPOGRAPHY - Refined & Professional
+   ======================================== */
+html {
+  font-size: 16px; /* Base font size */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
-  background-color: #0b0e17 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9375rem; /* 15px - smaller, more refined */
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Headings - Smaller, tighter hierarchy */
+body h1, html body h1 {
+  font-size: 2rem !important; /* 32px - refined */
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+  letter-spacing: -0.02em !important;
+}
+
+body h2, html body h2 {
+  font-size: 1.5rem !important; /* 24px */
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+body h3, html body h3 {
+  font-size: 1.25rem !important; /* 20px */
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+body h4, html body h4 {
+  font-size: 1.125rem !important; /* 18px */
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  color: var(--text-secondary) !important;
+}
+
+body h5, body h6, html body h5, html body h6 {
+  font-size: 1rem !important; /* 16px */
+  line-height: 1.5 !important;
+  font-weight: 600 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Paragraphs - Refined spacing */
+body p, html body p {
+  font-size: 0.9375rem !important; /* 15px */
+  line-height: 1.7 !important;
+  margin-bottom: 1.25rem !important;
+  color: var(--text-primary) !important;
+}
+
+/* Links - Subtle, professional */
+body a, html body a {
+  color: var(--blue-primary) !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+body a:hover, html body a:hover {
+  color: var(--blue-light) !important;
+  border-bottom-color: var(--blue-light) !important;
+}
+
+/* ========================================
+   BACKGROUND & LAYOUT
+   ======================================== */
+html, body, body.animated, body.animated.fadeIn {
+  background: var(--gradient-dark) !important;
   background-attachment: fixed !important;
-  color: #f1f5f9 !important;
+  background-color: var(--dark-bg) !important;
+  color: var(--text-primary) !important;
+  min-height: 100vh !important;
 }
 
-/* Override background div and SVG - Maximum specificity */
-body #background-div,
-html body #background-div,
-#background-div {
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
-  background-color: #0b0e17 !important;
-}
-
-body #background-svg,
-html body #background-svg,
-#background-svg {
+body .container, body .wrapper, body main {
   background: transparent !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 2rem 1.5rem !important;
 }
 
-/* Override SVG gradient stops - Direct attribute targeting */
-.bgColor1,
-stop.bgColor1,
-#background-svg stop.bgColor1,
-body #background-svg stop.bgColor1,
-svg stop.bgColor1 {
-  stop-color: #0b0e17 !important;
+body .content-div {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  position: relative !important;
+  z-index: 10 !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 2rem 0 !important;
+  line-height: 1.7 !important;
 }
 
-.bgColor2,
-stop.bgColor2,
-#background-svg stop.bgColor2,
-body #background-svg stop.bgColor2,
-svg stop.bgColor2 {
-  stop-color: #0a0d14 !important;
+/* Improve readability with better spacing */
+body .content-div > * {
+  margin-bottom: 1.25rem;
 }
 
-/* Override headers - Maximum specificity */
-body .container h1,
-body .content-div h1,
-body h1,
-html body h1,
-h1,
-.post-title {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
+body .content-div > *:last-child {
+  margin-bottom: 0;
 }
 
-body .container h1,
-body .content-div h1,
-body h1,
-html body h1,
-h1 {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+/* ========================================
+   NAVIGATION - Professional Top Bar
+   ======================================== */
+body nav, body .navbar, body .toolbar, body header {
+  background: rgba(17, 24, 39, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body nav a, body .navbar a, body .toolbar a {
+  color: var(--text-muted) !important;
+  font-size: 0.875rem; /* 14px - smaller nav text */
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+body nav a:hover, body .navbar a:hover, body .toolbar a:hover {
+  color: var(--orange-primary) !important;
+  background: rgba(255, 107, 53, 0.1) !important;
+  text-shadow: none !important;
+}
+
+/* Active navigation item */
+body nav a.active, body .navbar a.active {
+  color: var(--orange-primary) !important;
+  background: rgba(255, 107, 53, 0.15) !important;
+}
+
+/* Hide home icon */
+.navbar-icon[href="/"],
+.navbar a[href="/"]:first-child,
+.navbar-brand[href="/"],
+a.navbar-icon[href="/"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* ========================================
+   HEADINGS - Gradient & Styling
+   ======================================== */
+body h1, html body h1, body .container h1 {
+  background: var(--gradient-primary) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  color: #ff6b35 !important;
+  font-size: 2.25rem; /* Slightly larger for impact */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
-body h1 a,
-body h1 a:hover,
-body .content-div h1 a,
-body .content-div h1 a:hover,
-h1 a,
-h1 a:hover {
-  color: #ff6b35 !important;
-  background: none !important;
-  -webkit-text-fill-color: #ff6b35 !important;
+body h2, html body h2 {
+  color: var(--orange-primary) !important;
+  border-bottom: 2px solid var(--border-subtle) !important;
+  padding-bottom: 0.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
 }
 
-body .container h2,
-body .content-div h2,
-body h2,
-html body h2,
-h2 {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
-  border-bottom: 2px solid #1e293b !important;
-  border-bottom-color: #1e293b !important;
+body h3, html body h3 {
+  color: var(--orange-light) !important;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
-body .container h3,
-body .content-div h3,
-body h3,
-html body h3,
-h3 {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
+body h4, body h5, body h6 {
+  color: var(--text-secondary) !important;
+  font-weight: 600;
 }
 
-body .container h4,
-body .content-div h4,
-body h4,
-html body h4,
-h4,
-body .container h5,
-body .content-div h5,
-body h5,
-html body h5,
-h5,
-body .container h6,
-body .content-div h6,
-body h6,
-html body h6,
-h6 {
-  color: #ff6b35 !important;
+/* ========================================
+   LANDING PAGE - Hero Section
+   ======================================== */
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
 }
 
-/* Override links - Maximum specificity */
-body .container a,
-body .content-div a,
-body a,
-html body a,
-a {
-  color: #0ea5e9 !important;
+.hero-title {
+  font-size: 3rem; /* Larger for hero */
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
-body .container a:hover,
-body .content-div a:hover,
-body a:hover,
-html body a:hover,
-a:hover {
-  color: #38bdf8 !important;
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-weight: 400;
 }
 
-/* Override navigation - Maximum specificity */
-body .navbar,
-body nav,
-html body .navbar,
-html body nav,
-.navbar,
-nav {
-  background-color: rgba(17, 24, 39, 0.9) !important;
-  background: rgba(17, 24, 39, 0.9) !important;
+.hero-description {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
 }
 
-body .navbar-icon,
-body nav a,
-body .navbar a,
-html body .navbar-icon,
-html body nav a,
-.navbar-icon,
-nav a,
-.navbar a {
-  color: #94a3b8 !important;
+/* Three Foundations Cards */
+.foundations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
 }
 
-body .navbar-icon:hover,
-body nav a:hover,
-body .navbar a:hover,
-html body .navbar-icon:hover,
-html body nav a:hover,
-.navbar-icon:hover,
-nav a:hover,
-.navbar a:hover {
-  color: #ff6b35 !important;
-  text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
+.foundation-card {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 14, 23, 0.9) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-/* Override containers - preserve theme functionality but ensure visibility */
-body .container,
-body .wrapper,
-body main,
-html body .container,
-html body .wrapper,
-html body main,
-.container,
-.wrapper,
-main {
-  background: transparent !important;
-  background-color: transparent !important;
-  position: relative !important;
-  z-index: 1 !important;
+.foundation-card:hover {
+  border-color: var(--orange-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
 }
 
-/* CRITICAL: Ensure content-div and all text is visible */
-body .content-div,
-body .container .content-div,
-html body .content-div,
-.content-div {
-  color: #f1f5f9 !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  position: relative !important;
-  z-index: 2 !important;
+.foundation-card h3 {
+  color: var(--orange-primary);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
-/* Ensure all text elements in content are visible */
-body .content-div p,
-body .content-div li,
-body .content-div span,
-body .content-div div,
-body .content-div strong,
-body .content-div em,
-body .content-div blockquote,
-.content-div p,
-.content-div li,
-.content-div span,
-.content-div div,
-.content-div strong,
-.content-div em,
-.content-div blockquote {
-  color: #f1f5f9 !important;
+.foundation-card p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
-/* Ensure paragraphs and list items are visible everywhere */
-body p,
-body li,
-body .container p,
-body .container li,
-p,
-li {
-  color: #f1f5f9 !important;
+.foundation-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Ensure strong/em are visible but slightly different */
-body .content-div strong,
-body strong,
-strong {
-  color: #f1f5f9 !important;
-  font-weight: 600 !important;
+.foundation-card li {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-body .content-div em,
-body em,
-em {
-  color: #cbd5e1 !important;
-  font-style: italic !important;
+.foundation-card li:last-child {
+  border-bottom: none;
 }
 
-/* Override code blocks */
-body pre,
-body code,
-body .highlight,
-pre,
-code,
-.highlight {
+.foundation-card a {
+  color: var(--blue-primary);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+/* ========================================
+   CONTENT STYLING
+   ======================================== */
+body p, body li, body .content-div p, body .content-div li {
+  color: var(--text-primary) !important;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+body strong, body .content-div strong {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+body em, body .content-div em {
+  color: var(--text-secondary) !important;
+  font-style: italic;
+}
+
+/* Lists - Refined */
+body ul, body ol {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+body li {
+  margin: 0.5rem 0;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+body li::marker {
+  color: var(--orange-primary);
+}
+
+/* Blockquotes - Professional */
+body blockquote {
+  border-left: 4px solid var(--orange-primary) !important;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, transparent 100%);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+  color: var(--text-secondary) !important;
+  font-style: italic;
+  font-size: 0.9375rem;
+}
+
+/* Code Blocks - Refined */
+body pre, body code, body .highlight {
   background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
-  background-color: #111827 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #1e293b !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-primary) !important;
 }
 
-/* Override blockquotes */
-body blockquote,
-body .content-div blockquote,
-blockquote {
-  border-left: 4px solid #ff6b35 !important;
-  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
-  background-color: #111827 !important;
-  color: #94a3b8 !important;
-  padding: 1rem 1.5rem !important;
-  margin: 1.5rem 0 !important;
+body code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.875rem;
 }
 
-/* Override tables */
-body table th,
-body .content-div table th,
-table th {
+/* Tables - Professional */
+body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: rgba(17, 24, 39, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+body table th {
   background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
-  background-color: #0b0e17 !important;
-  color: #ff6b35 !important;
+  color: var(--orange-primary) !important;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-subtle);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-body table td,
-body .content-div table td,
-table td {
-  background-color: #0b0e17 !important;
-  color: #f1f5f9 !important;
+body table td {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9375rem;
 }
 
-/* Override buttons */
-body button,
-body .btn,
-button,
-.btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  background-color: #ff6b35 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #ff6b35 !important;
+body table tr:hover td {
+  background: rgba(255, 107, 53, 0.05) !important;
 }
 
-/* Ensure lists are visible */
-body .content-div ul,
-body .content-div ol,
-body ul,
-body ol,
-.content-div ul,
-.content-div ol,
-ul,
-ol {
-  color: #f1f5f9 !important;
+/* Horizontal Rules */
+body hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 50%, transparent 100%);
+  margin: 3rem 0;
 }
 
-body .content-div ul li,
-body .content-div ol li,
-body ul li,
-body ol li,
-.content-div ul li,
-.content-div ol li,
-ul li,
-ol li {
-  color: #f1f5f9 !important;
+/* ========================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ======================================== */
+body button, body .btn {
+  background: var(--gradient-primary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--orange-primary) !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* Ensure horizontal rules are visible */
-body .content-div hr,
-body hr,
-.content-div hr,
-hr {
-  border-color: #1e293b !important;
-  background-color: #1e293b !important;
+body button:hover, body .btn:hover {
+  background: var(--orange-accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
-/* Fix z-index to ensure content is above background */
-body .content-div {
-  z-index: 10 !important;
-  position: relative !important;
+/* ========================================
+   BACKGROUND ELEMENTS
+   ======================================== */
+body #background-div, body #background-svg {
+  background: var(--gradient-dark) !important;
+  background-color: var(--dark-bg) !important;
 }
 
-body #background-div {
-  z-index: 0 !important;
+.bgColor1, stop.bgColor1 {
+  stop-color: var(--dark-bg) !important;
 }
 
-body #background-svg {
-  z-index: 0 !important;
+.bgColor2, stop.bgColor2 {
+  stop-color: var(--dark-bg-alt) !important;
 }
 
-/* Manifold background canvas - Must be above base background, below content */
+/* Manifold background */
 #manifold-background {
   z-index: 0 !important;
   position: fixed !important;
@@ -346,36 +501,98 @@ body #background-svg {
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
-  background: transparent !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 0.8 !important; /* Increased from 0.5 for better visibility */
+  opacity: 0.6 !important;
 }
 
-/* Ensure content is above manifold */
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  
+  body {
+    font-size: 0.9375rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.375rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .foundations-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  body .container, body .content-div {
+    padding: 1rem;
+  }
+  
+  body nav, body .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  body nav a, body .navbar a {
+    font-size: 0.8125rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+
+/* ========================================
+   Z-INDEX LAYERING
+   ======================================== */
+body #background-div {
+  z-index: -1 !important;
+}
+
+body #background-svg {
+  z-index: 0 !important;
+}
+
+#manifold-background {
+  z-index: 0 !important;
+}
+
 body .content-div {
   z-index: 10 !important;
   position: relative !important;
 }
 
-/* Ensure background-div is below manifold */
-body #background-div {
-  z-index: -1 !important;
-  position: relative !important;
-}
-
-/* Hide home icon in navigation */
-.navbar-icon[href="/"],
-.navbar a[href="/"]:first-child,
-.navbar-brand[href="/"],
-a.navbar-icon[href="/"],
-.navbar .navbar-icon:first-child {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-/* Hide home link if it's the first item in toolbar */
-.toolbar a[href="/"]:first-child,
-nav a[href="/"]:first-child {
-  display: none !important;
+body nav, body .navbar {
+  z-index: 1000 !important;
 }
