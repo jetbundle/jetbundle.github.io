@@ -214,7 +214,6 @@
     <!-- Custom footer - only copyright, no social links -->
 <footer class="theme-footer" style="display: none !important; visibility: hidden !important;"></footer>
 
-
     <!-- Custom footer with only copyright -->
     <footer class="site-footer">
       <p>Copyright © 2025 Joel Saucedo. All rights reserved.</p>
@@ -392,7 +391,7 @@
           } catch (e) {
             // Ignore errors
           }
-          
+
           // Remove theme footer social links
           try {
             const footerLinks = document.querySelectorAll('footer a');
@@ -400,20 +399,20 @@
               const href = link.getAttribute('href') || '';
               const text = link.textContent.trim();
               // Remove social media links
-              if (href.includes('github.com') || href.includes('linkedin.com') || 
+              if (href.includes('github.com') || href.includes('linkedin.com') ||
                   href.includes('twitter.com') || href.includes('facebook.com') ||
                   link.querySelector('.fa-github') || link.querySelector('.fa-linkedin') ||
                   link.querySelector('.fa-twitter') || link.querySelector('.fa-facebook')) {
                 link.remove();
               }
             });
-            
+
             // Remove social icons
             const socialIcons = document.querySelectorAll('footer .fa, footer .icon, footer i');
             socialIcons.forEach(icon => {
               icon.remove();
             });
-            
+
             // Remove social link containers
             const socialContainers = document.querySelectorAll('footer .social, footer .social-links');
             socialContainers.forEach(container => {
