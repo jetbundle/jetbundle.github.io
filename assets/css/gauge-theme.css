@@ -597,45 +597,48 @@ header .navbar,
     display: none !important;
 }
 
-/* HIDE THEME'S SIDEBAR/TOOLBAR COMPLETELY */
-aside,
-.sidebar,
-.toolbar,
-nav.toolbar,
-.side-nav,
-.nav-sidebar,
-aside.toolbar,
-.toolbar-sidebar,
-#sidebar,
-#toolbar,
-[class*="sidebar"],
-[class*="toolbar"]:not(.navbar-container):not(.navbar-menu),
-[id*="sidebar"],
-[id*="toolbar"] {
+/* HIDE THEME'S SIDEBAR/TOOLBAR COMPLETELY - Maximum specificity */
+html body aside,
+html body .sidebar,
+html body .toolbar:not(.navbar-container):not(.navbar-menu),
+html body nav.toolbar:not(header nav):not(.navbar-container),
+html body .side-nav,
+html body .nav-sidebar,
+html body aside.toolbar,
+html body .toolbar-sidebar,
+html body #sidebar,
+html body #toolbar,
+html body [class*="sidebar"]:not(.navbar-menu):not(.navbar-container),
+html body [class*="toolbar"]:not(.navbar-container):not(.navbar-menu),
+html body [id*="sidebar"],
+html body [id*="toolbar"],
+body aside,
+body .sidebar,
+body .toolbar:not(.navbar-container):not(.navbar-menu),
+body nav.toolbar:not(header nav):not(.navbar-container),
+body .side-nav,
+body .nav-sidebar {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     width: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
 }
 
 /* Hide any theme navigation that's not our custom header */
 body > nav:not(header nav):not(.navbar-container),
-body > aside,
-body > .toolbar:not(.navbar-container),
+body > aside:not(header aside),
+body > .toolbar:not(.navbar-container):not(.navbar-menu),
 body > .sidebar {
-    display: none !important;
-}
-
-/* Hide "jetbundleHome" or any Home link text */
-a[href="/"]:contains("Home"),
-a:contains("jetbundleHome"),
-a:contains("Home"),
-*:contains("jetbundleHome") {
     display: none !important;
     visibility: hidden !important;
 }
+
+/* Hide any links with "Home" or "jetbundleHome" text (handled by JavaScript) */
 
 /* Ensure only our custom header is visible */
 header .navbar,
