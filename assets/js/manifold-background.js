@@ -42,12 +42,12 @@
         maxFibers: 24,            // Match fibersPerPoint
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
         fadeOutSpeed: 0.999,      // Extremely slow fade for very long perpetual trails
-        maxPointsPerFiber: 1500   // Support long fibers
+        maxPointsPerFiber: 1500,  // Support long fibers
         
         // Center point offset - move off-screen
         // Negative values = off-screen left/top, positive beyond width/height = off-screen right/bottom
         centerOffsetX: -800,      // Center point 800px off-screen to the left
-        centerOffsetY: -800,      // Center point 800px off-screen to the top
+        centerOffsetY: -800       // Center point 800px off-screen to the top
     };
 
     // Simplified noise generator (more efficient)
