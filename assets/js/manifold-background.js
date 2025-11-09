@@ -33,7 +33,7 @@
         // Fiber lifecycle - continuous with periodic fade
         fiberLifetime: 15000,     // Fibers fade after ~15 seconds (at 60fps)
         fadeOutDuration: 5000,    // Fade out over ~5 seconds
-        regenerateInterval: 2000  // Regenerate fibers every ~2 seconds
+        regenerateInterval: 2000, // Regenerate fibers every ~2 seconds
 
         // Color scheme (gauge theme)
         colors: {
@@ -411,28 +411,41 @@
         }
 
         generateFibers() {
-            this.fibers = [];
-            this.jetBundles = [];
-
-            for (const basePoint of this.basePoints) {
-                // Generate many fibers radiating from center in all directions
-                for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Evenly distribute angles around the circle
-                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
-                    // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.1;
-                    const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
-                    this.fibers.push(fiber);
+            // Only generate new fibers, don't clear existing ones (for continuous effect)
+            const currentTime = Date.now();
+            const timeSinceRegeneration = currentTime - this.lastRegeneration;
+            
+            // Regenerate fibers periodically to maintain continuous flow
+            if (timeSinceRegeneration >= CONFIG.regenerateInterval || this.fibers.length < CONFIG.maxFibers / 2) {
+                // Remove faded fibers first
+                this.fibers = this.fibers.filter(fiber => !fiber.shouldRemove());
+                
+                // Generate new fibers if we're below the target count
+                const fibersToGenerate = Math.max(0, CONFIG.maxFibers - this.fibers.length);
+                
+                for (const basePoint of this.basePoints) {
+                    // Generate fewer fibers for cleaner look
+                    for (let i = 0; i < fibersToGenerate; i++) {
+                        // Evenly distribute angles around the circle
+                        const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint + (Math.random() - 0.5) * 0.3;
+                        const fiber = new Fiber(basePoint, angle, this.noiseGen, this.time);
+                        this.fibers.push(fiber);
+                    }
                 }
-
-                // Add jet bundles for more complexity
-                if (Math.random() > 0.5) {
+                
+                this.lastRegeneration = currentTime;
+                if (fibersToGenerate > 0) {
+                    console.log('Manifold: Regenerated', fibersToGenerate, 'fibers, total:', this.fibers.length);
+                }
+            }
+            
+            // Generate jet bundles less frequently
+            if (this.jetBundles.length < 2 && Math.random() > 0.7) {
+                for (const basePoint of this.basePoints) {
                     const jetBundle = new JetBundle(basePoint, this.noiseGen, this.time);
                     this.jetBundles.push(jetBundle);
                 }
             }
-
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
         }
 
         drawFiber(fiber) {
@@ -786,3 +799,4 @@
     // Start initialization
     init();
 })();
+
