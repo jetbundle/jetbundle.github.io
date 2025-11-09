@@ -263,18 +263,40 @@
             }
           });
 
-          // Remove "jetbundleHome" or "Home" text links
+          // Remove "jetbundleHome" or "Home" text links and any unwanted navigation
           try {
             const allLinks = document.querySelectorAll('a');
             allLinks.forEach(link => {
               const text = link.textContent.trim();
-              if (text === 'Home' || text.includes('jetbundleHome') || text === 'jetbundleHome') {
-                // Only remove if it's not our brand link
-                if (!link.classList.contains('navbar-brand') && link.href === window.location.origin + '/') {
+              const href = link.getAttribute('href') || '';
+              // Remove if it says "Home", "jetbundleHome", or is a home link that's not our brand
+              if ((text === 'Home' || text.includes('jetbundleHome') || text === 'jetbundleHome' || 
+                   text.toLowerCase() === 'home') && 
+                  !link.classList.contains('navbar-brand') && 
+                  !link.closest('header')) {
+                // Remove the link and its parent if it's in a list item
+                const parent = link.parentElement;
+                if (parent && (parent.tagName === 'LI' || parent.classList.contains('nav-item'))) {
+                  parent.remove();
+                } else {
                   link.remove();
                 }
               }
             });
+            
+            // Also remove any text nodes containing "jetbundleHome"
+            const walker = document.createTreeWalker(
+              document.body,
+              NodeFilter.SHOW_TEXT,
+              null,
+              false
+            );
+            let node;
+            while (node = walker.nextNode()) {
+              if (node.textContent.includes('jetbundleHome')) {
+                node.parentElement?.remove();
+              }
+            }
           } catch (e) {
             // Ignore errors
           }
