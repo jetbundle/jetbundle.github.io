@@ -20,13 +20,13 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - slower tempo
-        animationSpeed: 0.001,    // Slower animation speed (was 0.003)
+        // Smooth, perpetual animation - much slower tempo
+        animationSpeed: 0.0008,   // Much slower animation speed (was 0.003)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00015,      // Slower evolution (was 0.0005)
+        noiseSpeed: 0.00015,      // Much slower evolution (was 0.0005)
 
         // Visual parameters - perpetual trails
-        opacityDecay: 0.995,      // Very slow decay for long trails
+        opacityDecay: 0.997,      // Even slower decay for longer trails (was 0.995)
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
 
@@ -38,10 +38,10 @@
             dark2: { r: 10, g: 13, b: 20 }
         },
 
-        // Performance tuning - balanced for large coverage
+        // Performance tuning - balanced for large coverage (unchanged for performance)
         maxFibers: 24,            // Match fibersPerPoint
-        updateInterval: 3,        // Update every 3 frames (slower tempo)
-        fadeOutSpeed: 0.995,      // Very slow fade for perpetual trails
+        updateInterval: 3,        // Update every 3 frames (slower visual tempo)
+        fadeOutSpeed: 0.997,      // Even slower fade for longer perpetual trails (was 0.995)
         maxPointsPerFiber: 1500   // Support long fibers
     };
 
@@ -661,4 +661,3 @@
     // Start initialization
     init();
 })();
-
