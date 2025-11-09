@@ -5,21 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Graph Theory Audit: From Turán to SKYNET to Palantir Gotham</title>
+  <title>Operating Systems Audit: From Project MAC to Azure IL5</title>
   <meta name="description" content="Mapping the hidden geometry of modern science.">
 
   <!-- Social: Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@">
-  <meta name="twitter:title" content="Graph Theory Audit: From Turán to SKYNET to Palantir Gotham">
+  <meta name="twitter:title" content="Operating Systems Audit: From Project MAC to Azure IL5">
   <meta name="twitter:description" content="Mapping the hidden geometry of modern science.">
   
   <meta property="twitter:image:src" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
 
   <!-- Social: Facebook / Open Graph -->
-  <meta property="og:url" content="https://jetbundle.github.io/computation_stack/graph-theory/">
-  <meta property="og:title" content="Graph Theory Audit: From Turán to SKYNET to Palantir Gotham">
+  <meta property="og:url" content="https://jetbundle.github.io/c3i_stack/os-audit/">
+  <meta property="og:title" content="Operating Systems Audit: From Project MAC to Azure IL5">
   
   <meta property="og:image" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
@@ -27,7 +27,7 @@
   <meta property="og:site_name" content="JetBundle">
 
   <!-- Social: Schema.org  -->
-  <meta itemprop="name" content="Graph Theory Audit: From Turán to SKYNET to Palantir Gotham"/>
+  <meta itemprop="name" content="Operating Systems Audit: From Project MAC to Azure IL5"/>
 
   <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
   <style>
@@ -74,8 +74,6 @@
 
   <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
-  <!-- Custom CSS for additional overrides -->
-  <link rel="stylesheet" href="/assets/css/custom.css">
 
   <!-- MathJax - Async (non-blocking) -->
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -118,8 +116,18 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
+                  <ul class="dropdown-menu dropdown-menu-About">
+                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-Blog">
-                    <li priority="5"><a href="/dropdown/blog.html">Blog</a></li>
+                    <li priority="3"><a href="/dropdown/blog.html">Blog</a></li>
                   </ul>
                 </li>
               
@@ -129,7 +137,7 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Community">
-                    <li priority="6"><a href="/dropdown/community.html">Community</a></li>
+                    <li priority="4"><a href="/dropdown/community.html">Community</a></li>
                   </ul>
                 </li>
               
@@ -138,8 +146,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Computation">
-                    <li priority="1"><a href="/dropdown/computation.html">Computation</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
+                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
                   </ul>
                 </li>
               
@@ -148,18 +156,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Finance">
-                    <li priority="3"><a href="/dropdown/finance.html">Finance</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Physics">
-                    <li priority="2"><a href="/dropdown/physics.html">Physics</a></li>
+                  <ul class="dropdown-menu dropdown-menu-License">
+                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
                   </ul>
                 </li>
               
@@ -169,7 +167,17 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Resources">
-                    <li priority="4"><a href="/dropdown/resources.html">Resources</a></li>
+                    <li priority="2"><a href="/dropdown/resources.html">Resources</a></li>
+                  </ul>
+                </li>
+              
+                <li class="dropdown dropdown-">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-The Stacks">
+                    <li priority="2"><a href="/dropdown/stacks.html">The Stacks</a></li>
                   </ul>
                 </li>
               
@@ -192,7 +200,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "Computation",  "Physics",  "Finance",  "Resources",  "Blog",  "Community", ];
+                let priority = [ "About",  "Resources",  "Blog",  "Community", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -232,70 +240,57 @@
         </svg>
       </div>
       <div class="content-div">
-        <h1 id="graph-theory-audit-from-turán-to-skynet-to-palantir-gotham">Graph Theory Audit: From Turán to SKYNET to Palantir Gotham</h1>
+        <h1 id="operating-systems-audit-from-project-mac-to-azure-il5">Operating Systems Audit: From Project MAC to Azure IL5</h1>
 
-<h2 id="the-origin-pál-turáns-brick-factory-problem-1941">The Origin: Pál Turán’s “Brick Factory Problem” (1941)</h2>
+<h2 id="the-military-requirement">The Military Requirement</h2>
 
-<p>Pál Turán’s 1941 “brick factory problem” was conceived in a forced-labor camp. The problem: minimize the number of crossings in a graph representing a factory layout.</p>
+<p>The modern operating system is a direct descendant of the 1960s military requirement for a “Survivable SAC command net”—a distributed computing system that could survive a nuclear first strike and maintain command and control of Strategic Air Command bombers.</p>
 
-<h3 id="the-mathematical-foundation">The Mathematical Foundation</h3>
+<h2 id="the-first-cheque-darpa-ipto">The First Cheque: DARPA IPTO</h2>
 
-<ul>
-  <li><strong>Problem</strong>: Given a bipartite graph, minimize edge crossings</li>
-  <li><strong>Solution</strong>: Extremal graph theory</li>
-  <li><strong>Significance</strong>: Foundation for modern graph algorithms</li>
-</ul>
+<p>J.C.R. Licklider, as director of DARPA’s Information Processing Techniques Office (IPTO), executed this mandate by funding MIT’s <strong>Project MAC</strong> (Mathematics and Computation, later “Multiple Access Computer”).</p>
 
-<h2 id="the-military-application-nsa-skynet">The Military Application: NSA SKYNET</h2>
-
-<p>The NSA’s <strong>SKYNET</strong> program operationalized graph theory for intelligence purposes:</p>
-
-<h3 id="skynet-program">SKYNET Program</h3>
+<h3 id="project-mac-1963-1970">Project MAC (1963-1970)</h3>
 
 <ul>
-  <li><strong>Objective</strong>: Identify “suspect activity” from metadata</li>
-  <li><strong>Method</strong>: Graph centrality algorithms on communication networks</li>
-  <li><strong>Application</strong>: Drone targeting based on social network analysis</li>
-  <li><strong>Technology</strong>: Clique detection, centrality measures, community detection</li>
+  <li><strong>Funding</strong>: DARPA IPTO</li>
+  <li><strong>Objective</strong>: Build a time-sharing, multi-user computing system</li>
+  <li><strong>Deliverable</strong>: Multics (Multiplexed Information and Computing Service)</li>
+  <li><strong>Architecture</strong>: Ring-based security, hierarchical file system, dynamic linking</li>
 </ul>
 
-<h3 id="the-algorithm">The Algorithm</h3>
+<h3 id="the-multics-lineage">The Multics Lineage</h3>
+
+<p><strong>Multics (1969)</strong> → <strong>UNIX (1971)</strong> → <strong>POSIX (1988)</strong> → <strong>Linux (1991)</strong> → <strong>Cloud OS (2000s)</strong></p>
+
+<h2 id="the-60-year-institutional-lineage">The 60-Year Institutional Lineage</h2>
+
+<p>The “Modern Patron” is the same DoD that funded Project MAC. The institutional continuity is unbroken:</p>
 
 <ol>
-  <li><strong>Build Graph</strong>: Nodes = individuals, Edges = communications</li>
-  <li><strong>Calculate Centrality</strong>: Identify “important” nodes</li>
-  <li><strong>Detect Cliques</strong>: Find communities of interest</li>
-  <li><strong>Target Selection</strong>: Prioritize high-centrality nodes in suspicious cliques</li>
+  <li><strong>1960s</strong>: DoD funds Project MAC via DARPA</li>
+  <li><strong>1970s</strong>: DoD adopts UNIX for military computing</li>
+  <li><strong>1980s</strong>: DoD mandates POSIX compliance</li>
+  <li><strong>1990s</strong>: DoD uses Linux for classified systems</li>
+  <li><strong>2000s</strong>: DoD migrates to cloud computing</li>
+  <li><strong>2010s</strong>: Microsoft Azure authorized for <strong>DoD Impact Level 5 (IL5)</strong> workloads</li>
 </ol>
 
-<h2 id="modern-application-palantir-gotham">Modern Application: Palantir Gotham</h2>
+<h2 id="the-connection">The Connection</h2>
 
-<p><strong>Palantir Gotham</strong> is the commercial product that implements this exact methodology:</p>
-
-<h3 id="palantir-gotham">Palantir Gotham</h3>
-
-<ul>
-  <li><strong>Technology</strong>: Graph-based social network analysis</li>
-  <li><strong>Clients</strong>: ICE, NYPD, military and intelligence agencies</li>
-  <li><strong>Application</strong>: Law enforcement, surveillance, targeting</li>
-  <li><strong>Method</strong>: Same graph centrality algorithms as SKYNET</li>
-</ul>
-
-<h3 id="the-connection">The Connection</h3>
-
-<p>The same mathematical techniques (graph theory, centrality algorithms, clique detection) developed for NSA SKYNET are now sold as commercial software by Palantir to government agencies.</p>
+<p>Microsoft’s <strong>Azure Kubernetes Service</strong> is formally authorized for <strong>DoD Impact Level 5 (IL5)</strong> workloads—the same “computer utility” concept that DARPA funded in 1963, now leased back to the DoD.</p>
 
 <h2 id="key-documents">Key Documents</h2>
 
 <ul>
-  <li><strong>Turán’s Original Paper</strong> - The “brick factory problem”</li>
-  <li><strong>NSA SKYNET Documentation</strong> - Declassified program details</li>
-  <li><strong>Palantir Gotham Technical Documentation</strong> - Commercial applications</li>
+  <li><strong>“Intergalactic Computer Network” Memo</strong> (April 23, 1963) - J.C.R. Licklider’s vision</li>
+  <li><strong>Project MAC Documentation</strong> - MIT’s time-sharing research</li>
+  <li><strong>DoD Cloud Computing Strategy</strong> - Modern authorization documents</li>
 </ul>
 
 <hr />
 
-<p><strong><a href="/computation_stack/01_intro/">Back to Computation Stack →</a></strong></p>
+<p><strong><a href="/c3i_stack/01_intro/">Back to C3I Stack →</a></strong></p>
 
 
       </div>
