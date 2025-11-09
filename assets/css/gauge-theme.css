@@ -7,30 +7,30 @@
   --orange-accent: #ff4500;
   --orange-light: #ff8c5a;
   --orange-dark: #cc5529;
-  
+
   /* Blue Colors */
   --blue-primary: #0ea5e9;
   --blue-deep: #1e40af;
   --blue-light: #38bdf8;
   --blue-dark: #0c4a6e;
-  
+
   /* Background Colors */
   --dark-bg: #0b0e17;
   --dark-bg-alt: #0a0d14;
   --card-bg: #111827;
   --card-bg-hover: #1e293b;
-  
+
   /* Text Colors */
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
-  
+
   /* Border Colors */
   --border-subtle: #1e293b;
   --border-medium: #334155;
   --border-accent: #475569;
-  
+
   /* Accent Colors */
   --accent-gradient: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%);
   --blue-gradient: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-deep) 100%);
@@ -424,24 +424,24 @@ body #background-div {
   html {
     font-size: 14px;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .stacks-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   body .container {
     padding: 1rem;
   }
-  
+
   body nav a,
   body .navbar a,
   body .toolbar a {
