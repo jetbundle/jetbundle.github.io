@@ -20,16 +20,16 @@
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
-        // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
-        animationSpeed: 0.0001,   // Extremely slow animation speed (30x slower than original)
+        // Smooth, perpetual animation - FASTER EVOLUTION
+        animationSpeed: 0.0003,   // Faster evolution (10x slower than original, but faster than before)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.00001,      // Extremely slow evolution (50x slower than original)
+        noiseSpeed: 0.00003,      // Faster evolution (15x slower than original, but faster than before)
 
         // Visual parameters - faster fade for continuous process
         opacityDecay: 0.992,      // Faster decay for continuous fading
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
-        
+
         // Mouse interaction parameters (subtle effects)
         mouseInfluenceRadius: 150,  // Radius of mouse influence on fibers
         mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
@@ -155,17 +155,17 @@
                     const dx = mouseX - x;
                     const dy = mouseY - y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    
+
                     if (dist < CONFIG.mouseInfluenceRadius) {
                         // Calculate influence strength (stronger when closer)
                         const influence = CONFIG.mouseInfluenceStrength * (1 - dist / CONFIG.mouseInfluenceRadius);
-                        
+
                         // Perturb angle towards/around mouse (creates curl effect)
                         const angleToMouse = Math.atan2(dy, dx);
                         const angleDiff = angleToMouse - angle;
                         // Add subtle curl - fibers curve around mouse
                         angle += Math.sin(angleDiff) * influence * 0.3;
-                        
+
                         // Slight radial push/pull
                         const radialForce = influence * 0.05;
                         x += Math.cos(angleToMouse) * radialForce;
@@ -180,7 +180,7 @@
 
                 // Faster opacity decay for continuous fading
                 this.opacity *= CONFIG.opacityDecay;
-                
+
                 // Stop if opacity is low (faster fade for continuous process)
                 if (this.opacity < 0.01) break;
             }
@@ -487,7 +487,7 @@
                 this.mouseX = e.clientX;
                 this.mouseY = e.clientY;
                 this.mouseActive = true;
-                
+
                 // Update mouse trail
                 this.mouseTrail.update(this.mouseX, this.mouseY, this.time);
             };
@@ -499,7 +499,7 @@
             // Use passive listeners for performance
             this.canvas.addEventListener('mousemove', handleMouseMove, { passive: true });
             this.canvas.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-            
+
             // Also track on document for better coverage
             document.addEventListener('mousemove', handleMouseMove, { passive: true });
         }
@@ -582,7 +582,7 @@
             // Create subtle gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            
+
             // More subtle gradient - blend colors more gradually
             // Use a weighted mix that's closer to blue throughout
             const subtleBlue = {
@@ -672,7 +672,7 @@
                     }
                 }
             }
-            
+
             // Update mouse trail (always, but it's damped so it won't move when mouse is still)
             this.mouseTrail.update(this.mouseX, this.mouseY, this.time);
 
@@ -702,7 +702,7 @@
                     jetCount++;
                 }
             }
-            
+
             // Draw mouse trail (subtle, in background)
             if (this.mouseTrail.points.length > 1) {
                 this.mouseTrail.draw(this.ctx);
