@@ -347,11 +347,12 @@
 
             // Initialize
             this.basePoints = [];
-            this.fibers = [];
-            this.jetBundles = [];
+            this.fibers = [];  // Initialize empty - generateFibers will populate
+            this.jetBundles = [];  // Initialize empty - generateFibers will populate
 
             this.resize();
             this.initializeBaseSpace();
+            // Generate initial fibers/bundles
             this.generateFibers();
         }
 
