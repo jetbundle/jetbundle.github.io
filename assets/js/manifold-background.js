@@ -15,25 +15,27 @@
     const CONFIG = {
         // Single point manifold - center of screen
         numBasePoints: 1,         // Single point at center
-        fibersPerPoint: 12,       // Fewer fibers for cleaner look
+        fibersPerPoint: 24,       // Many fibers radiating from center
         maxFiberLength: 3000,     // Long fibers to cover entire screen
         fiberStepSize: 2.0,       // Step size for smooth curves
         fiberThickness: 1.0,      // Slightly thicker for visibility
 
         // Smooth, perpetual animation - EXTREMELY SLOW TEMPO
-        animationSpeed: 0.00005,  // Much slower animation speed (60x slower than original)
+        animationSpeed: 0.0001,   // Extremely slow animation speed (30x slower than original)
         noiseScale: 0.008,        // Fine-scale noise for smooth curves
-        noiseSpeed: 0.000005,     // Much slower evolution (100x slower than original)
+        noiseSpeed: 0.00001,      // Extremely slow evolution (50x slower than original)
 
-        // Visual parameters - quick fade but continuous
-        opacityDecay: 0.992,      // Quicker fade for fibers (but still continuous)
+        // Visual parameters - faster fade for continuous process
+        opacityDecay: 0.992,      // Faster decay for continuous fading
         baseOpacity: 0.25,        // Good visibility
         gradientStops: 2,         // Minimal stops
         
-        // Mouse interaction
-        mouseInfluenceRadius: 150,  // Radius of mouse influence
-        mouseForceStrength: 0.15,   // Strength of mouse perturbation (subtle)
-        mouseCurlingStrength: 0.08,  // Strength of curling effect around mouse
+        // Mouse interaction parameters (subtle effects)
+        mouseInfluenceRadius: 150,  // Radius of mouse influence on fibers
+        mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
+        mouseTrailDamping: 0.85,    // Damping for mouse trail (higher = more damped)
+        mouseTrailOpacity: 0.15,    // Subtle opacity for mouse trail
+        mouseTrailLength: 50        // Length of mouse trail fiber
 
         // Color scheme (gauge theme)
         colors: {
@@ -44,9 +46,9 @@
         },
 
         // Performance tuning - balanced for large coverage (unchanged for performance)
-        maxFibers: 12,            // Match fibersPerPoint (fewer fibers)
+        maxFibers: 24,            // Match fibersPerPoint
         updateInterval: 2,        // Update every 2 frames for smooth animation (unchanged)
-        fadeOutSpeed: 0.985,      // Quicker fade for faster turnover (but still continuous)
+        fadeOutSpeed: 0.985,      // Faster fade for continuous process
         maxPointsPerFiber: 1500,  // Support long fibers
 
         // Center point offset - move off-screen (closer to edge but still hidden)
@@ -127,7 +129,7 @@
             return CONFIG.colors.blue; // Base color, gradient applied in drawFiber
         }
 
-        generatePoints(mouseX = null, mouseY = null) {
+        generatePoints() {
             this.points = [];
             let x = this.basePoint.x;
             let y = this.basePoint.y;
@@ -147,49 +149,26 @@
 
                 // Smooth angle variation for elegant curves
                 angle += (noiseValue - 0.5) * Math.PI * 0.15;
-                
-                // Mouse interaction - subtle perturbation
-                if (mouseX !== null && mouseY !== null) {
-                    const dx = x - mouseX;
-                    const dy = y - mouseY;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < CONFIG.mouseInfluenceRadius && dist > 0) {
-                        // Calculate force direction (perpendicular for curling effect)
-                        const forceAngle = Math.atan2(dy, dx) + Math.PI / 2; // Perpendicular
-                        const influence = 1 - (dist / CONFIG.mouseInfluenceRadius); // 1 at center, 0 at edge
-                        
-                        // Apply subtle curling force
-                        const curlForce = CONFIG.mouseCurlingStrength * influence;
-                        angle += curlForce * (1 / dist); // Stronger when closer, curling effect
-                        
-                        // Apply subtle repulsion/push
-                        const pushForce = CONFIG.mouseForceStrength * influence;
-                        const pushAngle = Math.atan2(dy, dx);
-                        x += Math.cos(pushAngle) * pushForce;
-                        y += Math.sin(pushAngle) * pushForce;
-                    }
-                }
 
                 const stepSize = CONFIG.fiberStepSize;
                 x += Math.cos(angle) * stepSize;
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Quicker opacity decay for faster fade (but still continuous)
+                // Very slow opacity decay for perpetual trails
                 this.opacity *= CONFIG.opacityDecay;
-                
-                // Stop if opacity is very low (fades quickly)
-                if (this.opacity < 0.01) break;
+
+                // Only stop if opacity is extremely low (almost invisible)
+                if (this.opacity < 0.005) break;
             }
 
             this.length = length;
         }
 
-        update(time, mouseX = null, mouseY = null) {
+        update(time, mouseX, mouseY, mouseActive) {
             this.time = time;
             this.opacity = CONFIG.baseOpacity;
-            this.generatePoints(mouseX, mouseY);
+            this.generatePoints(mouseX, mouseY, mouseActive);
         }
 
         isVisible(width, height, margin = 500) {
@@ -330,6 +309,102 @@
         }
     }
 
+    // Mouse trail fiber class (damped)
+    class MouseTrailFiber {
+        constructor(noiseGen) {
+            this.noiseGen = noiseGen;
+            this.points = [];
+            this.targetX = 0;
+            this.targetY = 0;
+            this.currentX = 0;
+            this.currentY = 0;
+            this.velocityX = 0;
+            this.velocityY = 0;
+            this.time = 0;
+            this.opacity = CONFIG.mouseTrailOpacity;
+        }
+
+        update(targetX, targetY, time) {
+            this.time = time;
+            this.targetX = targetX;
+            this.targetY = targetY;
+
+            // Damped motion - only moves when target changes
+            const dx = this.targetX - this.currentX;
+            const dy = this.targetY - this.currentY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            // Only update if mouse has moved (damped)
+            if (dist > 0.5) {
+                // Apply damping
+                this.velocityX = this.velocityX * CONFIG.mouseTrailDamping + dx * (1 - CONFIG.mouseTrailDamping) * 0.1;
+                this.velocityY = this.velocityY * CONFIG.mouseTrailDamping + dy * (1 - CONFIG.mouseTrailDamping) * 0.1;
+
+                // Update position
+                this.currentX += this.velocityX;
+                this.currentY += this.velocityY;
+
+                // Add point to trail
+                this.points.push({
+                    x: this.currentX,
+                    y: this.currentY,
+                    opacity: this.opacity
+                });
+
+                // Limit trail length
+                if (this.points.length > CONFIG.mouseTrailLength) {
+                    this.points.shift();
+                }
+
+                // Fade old points
+                this.points.forEach((p, i) => {
+                    const age = this.points.length - i;
+                    p.opacity = CONFIG.mouseTrailOpacity * Math.exp(-age / 30);
+                });
+            } else {
+                // Very slow fade when mouse is still
+                this.points.forEach((p, i) => {
+                    p.opacity *= 0.98;
+                });
+                // Remove invisible points
+                this.points = this.points.filter(p => p.opacity > 0.01);
+            }
+        }
+
+        draw(ctx) {
+            if (this.points.length < 2) return;
+
+            ctx.beginPath();
+            ctx.moveTo(this.points[0].x, this.points[0].y);
+
+            for (let i = 1; i < this.points.length; i++) {
+                ctx.lineTo(this.points[i].x, this.points[i].y);
+            }
+
+            // Subtle blue-orange gradient for mouse trail
+            const blueColor = CONFIG.colors.blue;
+            const orangeColor = CONFIG.colors.orange;
+            const avgOpacity = this.points.reduce((sum, p) => sum + p.opacity, 0) / this.points.length;
+
+            if (this.points.length > 2) {
+                const gradient = ctx.createLinearGradient(
+                    this.points[0].x, this.points[0].y,
+                    this.points[this.points.length - 1].x, this.points[this.points.length - 1].y
+                );
+                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${this.points[0].opacity * 0.3})`);
+                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${this.points[this.points.length - 1].opacity * 0.3})`);
+                ctx.strokeStyle = gradient;
+            } else {
+                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${avgOpacity * 0.3})`;
+            }
+
+            ctx.lineWidth = 0.8;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+        }
+    }
+
     // Optimized ManifoldBackground class
     class ManifoldBackground {
         constructor(canvas) {
@@ -350,29 +425,17 @@
             this.basePoints = [];
             this.fibers = [];
             this.jetBundles = [];
-            
-            // Mouse position tracking
-            this.mouseX = null;
-            this.mouseY = null;
+            this.mouseTrail = new MouseTrailFiber(this.noiseGen);
+
+            // Mouse tracking
+            this.mouseX = -1000;
+            this.mouseY = -1000;
+            this.mouseActive = false;
 
             this.resize();
             this.initializeBaseSpace();
             this.generateFibers();
             this.setupMouseTracking();
-        }
-        
-        setupMouseTracking() {
-            // Track mouse position for fiber interaction
-            document.addEventListener('mousemove', (e) => {
-                this.mouseX = e.clientX;
-                this.mouseY = e.clientY;
-            }, { passive: true });
-            
-            // Clear mouse position when mouse leaves
-            document.addEventListener('mouseleave', () => {
-                this.mouseX = null;
-                this.mouseY = null;
-            }, { passive: true });
         }
 
         resize() {
@@ -470,47 +533,30 @@
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
 
-            // Create subtle gradient from blue to orange along the fiber
+            // Create gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            
-            // More subtle gradient - blend colors more gradually
-            // Start with mostly blue, transition to a subtle orange tint
-            const blueWeight = 0.7;  // Start with 70% blue
-            const orangeWeight = 0.3; // End with 30% orange (subtle)
-            
+
             if (points.length > 2) {
-                // Linear gradient from start (mostly blue) to end (subtle orange tint)
+                // Linear gradient from start (blue) to end (orange)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-                
-                // Start with mostly blue (subtle)
-                const startR = Math.round(blueColor.r * blueWeight + orangeColor.r * (1 - blueWeight));
-                const startG = Math.round(blueColor.g * blueWeight + orangeColor.g * (1 - blueWeight));
-                const startB = Math.round(blueColor.b * blueWeight + orangeColor.b * (1 - blueWeight));
-                gradient.addColorStop(0, `rgba(${startR}, ${startG}, ${startB}, ${startOpacity})`);
-                
-                // Middle transition point (subtle blend)
-                const midR = Math.round(blueColor.r * 0.5 + orangeColor.r * 0.5);
-                const midG = Math.round(blueColor.g * 0.5 + orangeColor.g * 0.5);
-                const midB = Math.round(blueColor.b * 0.5 + orangeColor.b * 0.5);
-                gradient.addColorStop(0.7, `rgba(${midR}, ${midG}, ${midB}, ${(startOpacity + endOpacity) / 2})`);
-                
-                // End with subtle orange tint (not full orange)
-                const endR = Math.round(blueColor.r * (1 - orangeWeight) + orangeColor.r * orangeWeight);
-                const endG = Math.round(blueColor.g * (1 - orangeWeight) + orangeColor.g * orangeWeight);
-                const endB = Math.round(blueColor.b * (1 - orangeWeight) + orangeColor.b * orangeWeight);
-                gradient.addColorStop(1, `rgba(${endR}, ${endG}, ${endB}, ${endOpacity})`);
-                
+
+                // Start with blue (higher opacity)
+                gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
+
+                // Middle transition point (mix of blue and orange)
+                gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
+
+                // End with orange (lower opacity)
+                gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
+
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use subtle blue-orange blend
-                const blendR = Math.round(blueColor.r * 0.6 + orangeColor.r * 0.4);
-                const blendG = Math.round(blueColor.g * 0.6 + orangeColor.g * 0.4);
-                const blendB = Math.round(blueColor.b * 0.6 + orangeColor.b * 0.4);
-                ctx.strokeStyle = `rgba(${blendR}, ${blendG}, ${blendB}, ${startOpacity})`;
+                // Fallback for short fibers - use blue-orange mix
+                ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness;
@@ -548,25 +594,28 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Perpetual trail effect - quicker fade for faster turnover (but still continuous)
-            // Clear with fade to create continuous animation with faster fade
+            // Perpetual trail effect - very slow fade for continuous animation
+            // Clear with very subtle fade to create perpetual trails
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-            
+
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.98)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
-            // Update fibers less frequently (with mouse interaction)
+            // Update fibers less frequently
             if (this.frameCount % CONFIG.updateInterval === 0) {
                 for (const fiber of this.fibers) {
                     if (fiber.isVisible(this.width, this.height)) {
-                        fiber.update(this.time, this.mouseX, this.mouseY);
+                        fiber.update(this.time, this.mouseX, this.mouseY, this.mouseActive);
                     }
                 }
             }
+            
+            // Update mouse trail (always, but it's damped so it won't move when mouse is still)
+            this.mouseTrail.update(this.mouseX, this.mouseY, this.time);
 
             // Update jet bundles much less frequently
             if (this.frameCount % (CONFIG.updateInterval * 4) === 0) {
