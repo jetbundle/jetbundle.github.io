@@ -339,12 +339,16 @@
             this.jetBundles = [];
 
             for (const basePoint of this.basePoints) {
-                // Generate many fibers radiating from center in all directions
+                // Generate many fibers radiating from off-screen point
+                // Only fibers that curve onto the screen will be visible
                 for (let i = 0; i < CONFIG.fibersPerPoint; i++) {
-                    // Evenly distribute angles around the circle
-                    const angle = (Math.PI * 2 * i) / CONFIG.fibersPerPoint;
+                    // Focus angles towards screen (roughly 45-135 degrees for top-left base)
+                    // This ensures many fibers will curve onto the screen
+                    const baseAngle = Math.PI * 0.75; // 135 degrees (towards bottom-right)
+                    const angleSpread = Math.PI * 1.5; // Spread over 270 degrees
+                    const angle = baseAngle + (angleSpread * i) / CONFIG.fibersPerPoint - (angleSpread / 2);
                     // Add slight random variation for organic feel
-                    const angleVariation = (Math.random() - 0.5) * 0.1;
+                    const angleVariation = (Math.random() - 0.5) * 0.15;
                     const fiber = new Fiber(basePoint, angle + angleVariation, this.noiseGen, this.time);
                     this.fibers.push(fiber);
                 }
@@ -356,7 +360,7 @@
                 }
             }
 
-            console.log('Manifold: Generated', this.fibers.length, 'fibers from center point');
+            console.log('Manifold: Generated', this.fibers.length, 'fibers from off-screen base point');
         }
 
         drawFiber(fiber) {
@@ -426,14 +430,14 @@
             this.frameCount++;
             this.time += CONFIG.animationSpeed;
 
-            // Perpetual trail effect - very slow fade for continuous animation
-            // Clear with very subtle fade to create perpetual trails
+            // Perpetual trail effect - extremely slow fade for continuous animation
+            // Clear with nearly imperceptible fade to create extremely long perpetual trails
             this.ctx.fillStyle = `rgba(11, 14, 23, ${1 - CONFIG.fadeOutSpeed})`;
             this.ctx.fillRect(0, 0, this.width, this.height);
-
+            
             // Initial background fill on first frame
             if (this.frameCount === 1) {
-                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.99)';
+                this.ctx.fillStyle = 'rgba(11, 14, 23, 0.995)';
                 this.ctx.fillRect(0, 0, this.width, this.height);
             }
 
