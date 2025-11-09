@@ -284,45 +284,39 @@
                 if (trailSize < 2) continue;
 
                 // Draw trail as connected lines
-                this.ctx.beginPath();
-                let firstPoint = true;
+                // Build array of visible points first for better performance
+                const visiblePoints = [];
+                for (let i = 0; i < trailSize; i++) {
+                    const idx = explorer.trailFull
+                        ? (explorer.trailIndex + i) % CONFIG.trailLength
+                        : i;
 
-        // Draw trail in chronological order (wraps around if full)
-        // Build array of visible points first for better performance
-        const visiblePoints = [];
-        for (let i = 0; i < trailSize; i++) {
-          const idx = explorer.trailFull 
-            ? (explorer.trailIndex + i) % CONFIG.trailLength
-            : i;
-          
-          const point = explorer.trail[idx];
-          
-          if (point && point.opacity >= 0.01) {
-            visiblePoints.push(point);
-          }
-        }
-        
-        // Draw connected trail
-        if (visiblePoints.length > 0) {
-          this.ctx.moveTo(visiblePoints[0].x, visiblePoints[0].y);
-          for (let i = 1; i < visiblePoints.length; i++) {
-            this.ctx.lineTo(visiblePoints[i].x, visiblePoints[i].y);
-          }
-        }
+                    const point = explorer.trail[idx];
 
-        // Draw with gradient color based on direction
-        if (visiblePoints.length > 1) {
-          // Get color from current velocity
-          const color = explorer.getColor(explorer.vx, explorer.vy);
-          const latestPoint = visiblePoints[visiblePoints.length - 1];
-          const opacity = Math.min(CONFIG.baseOpacity, latestPoint.opacity || CONFIG.baseOpacity);
-          
-          this.ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
-          this.ctx.lineWidth = CONFIG.trailWidth;
-          this.ctx.lineCap = 'round';
-          this.ctx.lineJoin = 'round';
-          this.ctx.stroke();
-        }
+                    if (point && point.opacity >= 0.01) {
+                        visiblePoints.push(point);
+                    }
+                }
+
+                // Draw connected trail
+                if (visiblePoints.length > 1) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(visiblePoints[0].x, visiblePoints[0].y);
+                    for (let i = 1; i < visiblePoints.length; i++) {
+                        this.ctx.lineTo(visiblePoints[i].x, visiblePoints[i].y);
+                    }
+
+                    // Draw with gradient color based on direction
+                    const color = explorer.getColor(explorer.vx, explorer.vy);
+                    const latestPoint = visiblePoints[visiblePoints.length - 1];
+                    const opacity = Math.min(CONFIG.baseOpacity, latestPoint.opacity || CONFIG.baseOpacity);
+
+                    this.ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+                    this.ctx.lineWidth = CONFIG.trailWidth;
+                    this.ctx.lineCap = 'round';
+                    this.ctx.lineJoin = 'round';
+                    this.ctx.stroke();
+                }
 
                 // Draw current point
                 const currentColor = explorer.getColor(explorer.vx, explorer.vy);
