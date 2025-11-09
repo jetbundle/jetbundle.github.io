@@ -40,7 +40,7 @@
 
         // Performance tuning - balanced for large coverage
         maxFibers: 24,            // Match fibersPerPoint
-        updateInterval: 2,        // Update every 2 frames for smooth animation
+        updateInterval: 3,        // Update every 3 frames (slower tempo)
         fadeOutSpeed: 0.995,      // Very slow fade for perpetual trails
         maxPointsPerFiber: 1500   // Support long fibers
     };
