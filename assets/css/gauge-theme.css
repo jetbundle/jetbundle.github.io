@@ -640,10 +640,18 @@ body > .sidebar {
 
 /* Hide any links with "Home" or "jetbundleHome" text (handled by JavaScript) */
 
-/* Ensure only our custom header is visible */
-header .navbar,
-header .navbar-container {
+/* Ensure only our custom header is visible and functional */
+header.site-header .navbar,
+header.site-header .navbar-container,
+header.site-header .navbar-menu,
+header.site-header .navbar-link {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+header.site-header .navbar-link {
+    cursor: pointer !important;
+    pointer-events: auto !important;
 }

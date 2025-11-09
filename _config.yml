@@ -24,9 +24,6 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
-# Disable theme's toolbar navigation - using custom header instead
-# toolbar_priority: []
-
 # Collections (The "Fibers")
 collections:
   c3i_stack:
