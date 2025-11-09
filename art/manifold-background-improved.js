@@ -214,34 +214,47 @@
             let length = 0;
             const maxPoints = CONFIG.maxPointsPerFiber;
 
-            // Improved parallel transport simulation
+            // Improved parallel transport simulation with better mathematical accuracy
             while (length < this.maxLength && this.points.length < maxPoints) {
                 this.points.push({ x, y, opacity: this.opacity, angle });
 
-                // Improved connection form (more accurate)
-                // Connection coefficient from noise (simulates ω = A dx + B dy)
-                const connectionX = (this.noiseGen.noise(
+                // Connection form: ω = A_x(x,y,t) dx + A_y(x,y,t) dy
+                // Each component comes from noise (simulating connection coefficients)
+                // This is more accurate than single scalar noise
+                const noiseX = this.noiseGen.noise(
                     x * CONFIG.noiseScale + this.time,
                     y * CONFIG.noiseScale + this.time
-                ) - 0.5) * 2;
-                
-                const connectionY = (this.noiseGen.noise(
+                );
+                const noiseY = this.noiseGen.noise(
                     x * CONFIG.noiseScale + this.time + 100,
                     y * CONFIG.noiseScale + this.time + 100
-                ) - 0.5) * 2;
+                );
+                
+                // Connection coefficients (normalized to [-1, 1])
+                // A_x and A_y represent the connection form components
+                const A_x = (noiseX - 0.5) * 2;
+                const A_y = (noiseY - 0.5) * 2;
 
-                // Parallel transport equation: dθ/dt = -Γ(θ, v)
-                // Simplified: angle change based on connection
-                const curvature = (connectionX + connectionY) * 0.5;
+                // Parallel transport equation: dθ/dt = -Γ^k_ij (connection coefficients)
+                // For 2D: curvature = (A_x + A_y) / 2 (simplified representation)
+                // This represents how the connection "twists" the fiber as we move along it
+                const curvature = (A_x + A_y) * 0.5;
+                
+                // Update angle based on connection (parallel transport)
+                // The factor 0.2 controls the strength of the connection effect
+                // In true parallel transport, this would be: dθ/dt = -Γ(θ, v) where v is velocity
                 angle += curvature * Math.PI * 0.2;
 
-                // Step along fiber (geodesic)
+                // Step along fiber (geodesic path in the total space E)
+                // This represents moving along the fiber in the fiber bundle
+                // The step follows the direction determined by parallel transport
                 const stepSize = CONFIG.fiberStepSize;
                 x += Math.cos(angle) * stepSize;
                 y += Math.sin(angle) * stepSize;
                 length += stepSize;
 
-                // Opacity decay
+                // Opacity decay (represents how information/energy dissipates along fiber)
+                // Could represent the norm of a section decreasing along the fiber
                 this.opacity *= CONFIG.opacityDecay;
                 if (this.opacity < 0.01) break;
             }
