@@ -365,19 +365,47 @@ body #background-div {
     position: relative !important;
 }
 
-/* Hide home icon in navigation */
+/* Replace home icon with clickable jetbundle brand */
 .navbar-icon[href="/"],
 .navbar a[href="/"]:first-child,
 .navbar-brand[href="/"],
 a.navbar-icon[href="/"],
-.navbar .navbar-icon:first-child {
-    display: none !important;
-    visibility: hidden !important;
-}
-
-/* Hide home link if it's the first item in toolbar */
+.navbar .navbar-icon:first-child,
 .toolbar a[href="/"]:first-child,
 nav a[href="/"]:first-child {
+    display: inline-block !important;
+    visibility: visible !important;
+    color: #ff6b35 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    text-decoration: none !important;
+    background: none !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.navbar-icon[href="/"]:hover,
+.navbar a[href="/"]:first-child:hover,
+.navbar-brand[href="/"]:hover,
+a.navbar-icon[href="/"]:hover,
+.navbar .navbar-icon:first-child:hover,
+.toolbar a[href="/"]:first-child:hover,
+nav a[href="/"]:first-child:hover {
+    color: #ff8c5a !important;
+    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
+}
+
+/* Hide home icon image, show text */
+.navbar-icon[href="/"]::before,
+.navbar a[href="/"]:first-child::before {
+    content: "jetbundle" !important;
+    display: inline-block !important;
+}
+
+.navbar-icon[href="/"] i,
+.navbar-icon[href="/"] svg,
+.navbar a[href="/"]:first-child i,
+.navbar a[href="/"]:first-child svg {
     display: none !important;
 }
 
