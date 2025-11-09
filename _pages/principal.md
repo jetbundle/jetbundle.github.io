@@ -4,7 +4,7 @@ title: Principal
 description: Mapping the hidden geometry of modern science
 ---
 
-# JetBundle
+# jetbundle
 
 **Mapping the hidden geometry of modern science.**
 

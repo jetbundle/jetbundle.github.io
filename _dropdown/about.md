@@ -6,4 +6,4 @@ priority: 1
 
 # About
 
-JetBundle - Mapping the hidden geometry of modern science.
+jetbundle - Mapping the hidden geometry of modern science.
