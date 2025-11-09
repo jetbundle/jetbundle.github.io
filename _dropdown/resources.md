@@ -1,19 +1,17 @@
 ---
 title: Resources
-url: /cartography/
-priority: 3
+url: /resources/
+priority: 2
 has_children: true
 children:
-  - title: "Cartography"
-    url: /cartography/
-  - title: "Archive"
-    url: /archive/
-  - title: "License"
-    url: /license/
-  - title: "Disclaimer"
-    url: /disclaimer/
+  - title: "The Stack"
+    url: /stacks/
+  - title: "Booklist"
+    url: /booklist/
+  - title: "Primary Sources"
+    url: /primary-sources/
 ---
 
 # Resources
 
-Cartography, Archive, and legal information.
+The Stack, Booklist, and Primary Sources.

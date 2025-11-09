@@ -1,5 +1,30 @@
 /* JetBundle Gauge Theme - Maximum Specificity CSS Override */
 
+/* Hide house/home icon in navbar */
+.navbar-brand .fa-home,
+.navbar-brand .fa-house,
+.navbar-brand [class*="home"],
+.navbar-brand [class*="house"],
+.navbar-icon,
+.home-icon,
+.navbar .fa-home,
+.navbar .fa-house,
+a[href="/"] .fa-home,
+a[href="/"] .fa-house {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure navbar brand text is visible */
+.navbar-brand {
+  display: block !important;
+}
+
 /* Override theme's body background - Maximum specificity */
 html body.animated.fadeIn,
 html body.animated,

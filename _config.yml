@@ -26,8 +26,9 @@ highlighter_theme: monokai
 
 toolbar_priority:
   - "Home"
-  - "The Stacks"
   - "Resources"
+  - "Blog"
+  - "Community"
   - "About"
 
 # Collections (The "Fibers")

@@ -1,9 +1,9 @@
 ---
 title: About
-url: /principal/
-priority: 4
+url: /about/
+priority: 5
 ---
 
 # About
 
-Principal information and site purpose.
+About JetBundle and the project.
