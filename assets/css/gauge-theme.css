@@ -435,14 +435,31 @@ body .content-div {
     text-align: center !important;
     padding: 3rem 2rem 2rem 2rem !important;
     margin-top: 4rem !important;
+    margin-left: 80px !important; /* Match content margin */
     border-top: 1px solid #1e293b !important;
     color: #94a3b8 !important;
     font-size: 0.875rem !important;
+    position: relative !important;
+    z-index: 10 !important;
 }
 
 .site-footer p {
     margin: 0 !important;
     color: #94a3b8 !important;
+}
+
+/* Responsive footer margins */
+@media (max-width: 1200px) {
+    .site-footer {
+        margin-left: 60px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        margin-left: 20px !important;
+        padding: 2rem 1rem 1rem 1rem !important;
+    }
 }
 
 /* Remove dropdown styles - make all navigation items direct links */
@@ -476,20 +493,11 @@ nav .has-children,
     display: none !important;
 }
 
-/* Add "jetbundle" home link to navigation */
-nav::before,
-.navbar::before,
-.toolbar::before {
-    content: "jetbundle" !important;
-    display: inline-block !important;
-    color: #ff6b35 !important;
-    font-weight: 700 !important;
-    font-size: 1.25rem !important;
-    text-decoration: none !important;
-    padding: 0.5rem 1rem !important;
-    margin-right: 1rem !important;
-}
-
+/* Style "jetbundle" home link in navigation */
+a.jetbundle-home,
+nav a[href="/"].jetbundle-home,
+.navbar a[href="/"].jetbundle-home,
+.toolbar a[href="/"].jetbundle-home,
 nav a[href="/"]:first-child,
 .navbar a[href="/"]:first-child,
 .toolbar a[href="/"]:first-child {
@@ -499,6 +507,14 @@ nav a[href="/"]:first-child,
     font-size: 1.25rem !important;
     text-decoration: none !important;
     padding: 0.5rem 1rem !important;
+    margin-right: 1rem !important;
+}
+
+a.jetbundle-home:hover,
+nav a[href="/"].jetbundle-home:hover,
+.navbar a[href="/"].jetbundle-home:hover,
+.toolbar a[href="/"].jetbundle-home:hover {
+    color: #ff8c5a !important;
 }
 
 /* Responsive: reduce margin on smaller screens */

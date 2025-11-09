@@ -192,6 +192,21 @@
   </div>
 </header>
 
+    <!-- Custom home link -->
+    <script>
+      // Add jetbundle home link to navigation
+      document.addEventListener('DOMContentLoaded', function() {
+        const nav = document.querySelector('nav, .navbar, .toolbar');
+        if (nav && !nav.querySelector('a[href="/"].jetbundle-home')) {
+          const homeLink = document.createElement('a');
+          homeLink.href = '/';
+          homeLink.className = 'jetbundle-home';
+          homeLink.textContent = 'jetbundle';
+          homeLink.style.cssText = 'color: #ff6b35 !important; font-weight: 700 !important; font-size: 1.25rem !important; text-decoration: none !important; padding: 0.5rem 1rem !important;';
+          nav.insertBefore(homeLink, nav.firstChild);
+        }
+      });
+    </script>
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
       <div id="background-div">
