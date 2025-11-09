@@ -35,7 +35,7 @@
         mouseInfluenceStrength: 0.15, // Strength of mouse perturbation (subtle)
         mouseTrailDamping: 0.85,    // Damping for mouse trail (higher = more damped)
         mouseTrailOpacity: 0.15,    // Subtle opacity for mouse trail
-        mouseTrailLength: 50        // Length of mouse trail fiber
+        mouseTrailLength: 50,       // Length of mouse trail fiber
 
         // Color scheme (gauge theme)
         colors: {
@@ -456,6 +456,29 @@
             this.generateFibers();
 
             console.log('Manifold: Resized to', this.width + 'x' + this.height, '- Full screen coverage');
+        }
+
+        setupMouseTracking() {
+            // Track mouse position for fiber perturbation
+            const handleMouseMove = (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+                this.mouseActive = true;
+                
+                // Update mouse trail
+                this.mouseTrail.update(this.mouseX, this.mouseY, this.time);
+            };
+
+            const handleMouseLeave = () => {
+                this.mouseActive = false;
+            };
+
+            // Use passive listeners for performance
+            this.canvas.addEventListener('mousemove', handleMouseMove, { passive: true });
+            this.canvas.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+            
+            // Also track on document for better coverage
+            document.addEventListener('mousemove', handleMouseMove, { passive: true });
         }
 
         initializeBaseSpace() {
