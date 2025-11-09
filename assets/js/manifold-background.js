@@ -422,33 +422,33 @@
             // Gradient opacity along fiber for smooth, perpetual appearance
             const startOpacity = Math.max(0.2, fiber.opacity);
             const endOpacity = Math.max(0.05, fiber.opacity * Math.pow(CONFIG.opacityDecay, points.length));
-            
+
             // Create gradient from blue to orange along the fiber
             const blueColor = CONFIG.colors.blue;
             const orangeColor = CONFIG.colors.orange;
-            
+
             if (points.length > 2) {
                 // Linear gradient from start (blue) to end (orange)
                 const gradient = ctx.createLinearGradient(
                     points[0].x, points[0].y,
                     points[points.length - 1].x, points[points.length - 1].y
                 );
-                
+
                 // Start with blue (higher opacity)
                 gradient.addColorStop(0, `rgba(${blueColor.r}, ${blueColor.g}, ${blueColor.b}, ${startOpacity})`);
-                
+
                 // Middle transition point (mix of blue and orange)
                 gradient.addColorStop(0.5, `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${(startOpacity + endOpacity) / 2})`);
-                
+
                 // End with orange (lower opacity)
                 gradient.addColorStop(1, `rgba(${orangeColor.r}, ${orangeColor.g}, ${orangeColor.b}, ${endOpacity})`);
-                
+
                 ctx.strokeStyle = gradient;
             } else {
                 // Fallback for short fibers - use blue-orange mix
                 ctx.strokeStyle = `rgba(${Math.round((blueColor.r + orangeColor.r) / 2)}, ${Math.round((blueColor.g + orangeColor.g) / 2)}, ${Math.round((blueColor.b + orangeColor.b) / 2)}, ${startOpacity})`;
             }
-            
+
             ctx.lineWidth = CONFIG.fiberThickness;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
