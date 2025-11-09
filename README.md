@@ -21,13 +21,13 @@ This site uses the [jekyll-theme-potato-hacker](https://github.com/luxedo/jekyll
 ```
 jetbundle.github.io/
 ├── _config.yml          # Site configuration
-├── _pages/              # Main pages (Cartography, Archive, Principal)
+├── _pages/              # Main pages (About, Resources, Blog, Community)
 ├── _c3i_stack/          # C3I & Surveillance Stack collection
 ├── _physics_stack/      # Ballistics & Hydrodynamics Stack collection
 ├── _finance_stack/      # Military-Financial Stack collection
-├── _dropdown/           # Navigation dropdown items
-├── _includes/           # Custom includes (PDF embed, custom head)
-└── assets/css/          # Custom CSS (gauge theme)
+├── _dropdown/           # Navigation items (minimal, for theme compatibility)
+├── _includes/           # Custom includes (header, footer, head)
+└── assets/              # CSS, JS, images (gauge theme, manifold background)
 ```
 
 ## Local Development

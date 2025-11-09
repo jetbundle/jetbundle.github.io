@@ -429,7 +429,8 @@ nav a[href="/"]:first-child {
 }
 
 /* Footer - sticky footer at bottom of page */
-html, body {
+html,
+body {
     min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;

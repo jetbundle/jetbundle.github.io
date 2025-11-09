@@ -1,6 +1,6 @@
 # Directory Structure Report & Cleanup Plan
 
-**Generated:** 2025-01-09  
+**Generated:** 2025-01-09
 **Goal:** Consolidate site structure to fit within four main categories: About, Resources, Blog, Community
 
 ---
@@ -208,7 +208,7 @@ collections:
 2. **Resources** (`/resources`)
    - Main content: resources.md
    - Includes: stacks content (merged)
-   - Links: 
+   - Links:
      - C3I Stack (`/c3i_stack/01_intro/`)
      - Physics Stack (`/physics_stack/01_intro/`)
      - Finance Stack (`/finance_stack/01_intro/`)
@@ -264,4 +264,3 @@ collections:
 - **Navigation is custom**: We use `_includes/header.html` for navigation, so `_dropdown` files are no longer needed.
 - **Future expansion**: `_posts/` and `_data/` directories are kept empty for future use (blog posts, data files).
 - **Theme compatibility**: Keep theme structure intact (SVG layers, background divs, etc.) while customizing content organization.
-
