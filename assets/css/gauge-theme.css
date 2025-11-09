@@ -349,7 +349,7 @@ body #background-svg {
   background: transparent !important;
   display: block !important;
   visibility: visible !important;
-  opacity: 0.7 !important;
+  opacity: 0.5 !important;
 }
 
 /* Ensure content is above manifold */
