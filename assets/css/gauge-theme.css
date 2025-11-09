@@ -7,24 +7,24 @@ html body,
 body.animated.fadeIn,
 body.animated,
 body {
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
-  background-color: #0b0e17 !important;
-  background-attachment: fixed !important;
-  color: #f1f5f9 !important;
+    background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+    background-color: #0b0e17 !important;
+    background-attachment: fixed !important;
+    color: #f1f5f9 !important;
 }
 
 /* Override background div and SVG - Maximum specificity */
 body #background-div,
 html body #background-div,
 #background-div {
-  background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
-  background-color: #0b0e17 !important;
+    background: linear-gradient(135deg, #0b0e17 0%, #0a0d14 100%) !important;
+    background-color: #0b0e17 !important;
 }
 
 body #background-svg,
 html body #background-svg,
 #background-svg {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 /* Override SVG gradient stops - Direct attribute targeting */
@@ -33,7 +33,7 @@ stop.bgColor1,
 #background-svg stop.bgColor1,
 body #background-svg stop.bgColor1,
 svg stop.bgColor1 {
-  stop-color: #0b0e17 !important;
+    stop-color: #0b0e17 !important;
 }
 
 .bgColor2,
@@ -41,7 +41,7 @@ stop.bgColor2,
 #background-svg stop.bgColor2,
 body #background-svg stop.bgColor2,
 svg stop.bgColor2 {
-  stop-color: #0a0d14 !important;
+    stop-color: #0a0d14 !important;
 }
 
 /* Override headers - Maximum specificity */
@@ -51,9 +51,9 @@ body h1,
 html body h1,
 h1,
 .post-title {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
-  border-bottom-color: #1e293b !important;
+    color: #ff6b35 !important;
+    text-decoration-color: #ff6b35 !important;
+    border-bottom-color: #1e293b !important;
 }
 
 body .container h1,
@@ -61,11 +61,11 @@ body .content-div h1,
 body h1,
 html body h1,
 h1 {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  color: #ff6b35 !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: #ff6b35 !important;
 }
 
 body h1 a,
@@ -74,9 +74,9 @@ body .content-div h1 a,
 body .content-div h1 a:hover,
 h1 a,
 h1 a:hover {
-  color: #ff6b35 !important;
-  background: none !important;
-  -webkit-text-fill-color: #ff6b35 !important;
+    color: #ff6b35 !important;
+    background: none !important;
+    -webkit-text-fill-color: #ff6b35 !important;
 }
 
 body .container h2,
@@ -84,10 +84,10 @@ body .content-div h2,
 body h2,
 html body h2,
 h2 {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
-  border-bottom: 2px solid #1e293b !important;
-  border-bottom-color: #1e293b !important;
+    color: #ff6b35 !important;
+    text-decoration-color: #ff6b35 !important;
+    border-bottom: 2px solid #1e293b !important;
+    border-bottom-color: #1e293b !important;
 }
 
 body .container h3,
@@ -95,8 +95,8 @@ body .content-div h3,
 body h3,
 html body h3,
 h3 {
-  color: #ff6b35 !important;
-  text-decoration-color: #ff6b35 !important;
+    color: #ff6b35 !important;
+    text-decoration-color: #ff6b35 !important;
 }
 
 body .container h4,
@@ -114,7 +114,7 @@ body .content-div h6,
 body h6,
 html body h6,
 h6 {
-  color: #ff6b35 !important;
+    color: #ff6b35 !important;
 }
 
 /* Override links - Maximum specificity */
@@ -123,7 +123,7 @@ body .content-div a,
 body a,
 html body a,
 a {
-  color: #0ea5e9 !important;
+    color: #0ea5e9 !important;
 }
 
 body .container a:hover,
@@ -131,7 +131,7 @@ body .content-div a:hover,
 body a:hover,
 html body a:hover,
 a:hover {
-  color: #38bdf8 !important;
+    color: #38bdf8 !important;
 }
 
 /* Override navigation - Maximum specificity */
@@ -141,8 +141,8 @@ html body .navbar,
 html body nav,
 .navbar,
 nav {
-  background-color: rgba(17, 24, 39, 0.9) !important;
-  background: rgba(17, 24, 39, 0.9) !important;
+    background-color: rgba(17, 24, 39, 0.9) !important;
+    background: rgba(17, 24, 39, 0.9) !important;
 }
 
 body .navbar-icon,
@@ -153,7 +153,7 @@ html body nav a,
 .navbar-icon,
 nav a,
 .navbar a {
-  color: #94a3b8 !important;
+    color: #94a3b8 !important;
 }
 
 body .navbar-icon:hover,
@@ -164,8 +164,8 @@ html body nav a:hover,
 .navbar-icon:hover,
 nav a:hover,
 .navbar a:hover {
-  color: #ff6b35 !important;
-  text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
+    color: #ff6b35 !important;
+    text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
 }
 
 /* Override containers - preserve theme functionality but ensure visibility */
@@ -178,10 +178,10 @@ html body main,
 .container,
 .wrapper,
 main {
-  background: transparent !important;
-  background-color: transparent !important;
-  position: relative !important;
-  z-index: 1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 /* CRITICAL: Ensure content-div and all text is visible */
@@ -189,11 +189,11 @@ body .content-div,
 body .container .content-div,
 html body .content-div,
 .content-div {
-  color: #f1f5f9 !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  position: relative !important;
-  z-index: 2 !important;
+    color: #f1f5f9 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    position: relative !important;
+    z-index: 2 !important;
 }
 
 /* Ensure all text elements in content are visible */
@@ -211,7 +211,7 @@ body .content-div blockquote,
 .content-div strong,
 .content-div em,
 .content-div blockquote {
-  color: #f1f5f9 !important;
+    color: #f1f5f9 !important;
 }
 
 /* Ensure paragraphs and list items are visible everywhere */
@@ -221,22 +221,22 @@ body .container p,
 body .container li,
 p,
 li {
-  color: #f1f5f9 !important;
+    color: #f1f5f9 !important;
 }
 
 /* Ensure strong/em are visible but slightly different */
 body .content-div strong,
 body strong,
 strong {
-  color: #f1f5f9 !important;
-  font-weight: 600 !important;
+    color: #f1f5f9 !important;
+    font-weight: 600 !important;
 }
 
 body .content-div em,
 body em,
 em {
-  color: #cbd5e1 !important;
-  font-style: italic !important;
+    color: #cbd5e1 !important;
+    font-style: italic !important;
 }
 
 /* Override code blocks */
@@ -246,38 +246,38 @@ body .highlight,
 pre,
 code,
 .highlight {
-  background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
-  background-color: #111827 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #1e293b !important;
+    background: linear-gradient(135deg, #111827 0%, #0d1117 100%) !important;
+    background-color: #111827 !important;
+    color: #f1f5f9 !important;
+    border: 1px solid #1e293b !important;
 }
 
 /* Override blockquotes */
 body blockquote,
 body .content-div blockquote,
 blockquote {
-  border-left: 4px solid #ff6b35 !important;
-  background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
-  background-color: #111827 !important;
-  color: #94a3b8 !important;
-  padding: 1rem 1.5rem !important;
-  margin: 1.5rem 0 !important;
+    border-left: 4px solid #ff6b35 !important;
+    background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
+    background-color: #111827 !important;
+    color: #94a3b8 !important;
+    padding: 1rem 1.5rem !important;
+    margin: 1.5rem 0 !important;
 }
 
 /* Override tables */
 body table th,
 body .content-div table th,
 table th {
-  background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
-  background-color: #0b0e17 !important;
-  color: #ff6b35 !important;
+    background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
+    background-color: #0b0e17 !important;
+    color: #ff6b35 !important;
 }
 
 body table td,
 body .content-div table td,
 table td {
-  background-color: #0b0e17 !important;
-  color: #f1f5f9 !important;
+    background-color: #0b0e17 !important;
+    color: #f1f5f9 !important;
 }
 
 /* Override buttons */
@@ -285,10 +285,10 @@ body button,
 body .btn,
 button,
 .btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  background-color: #ff6b35 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid #ff6b35 !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background-color: #ff6b35 !important;
+    color: #f1f5f9 !important;
+    border: 1px solid #ff6b35 !important;
 }
 
 /* Ensure lists are visible */
@@ -300,7 +300,7 @@ body ol,
 .content-div ol,
 ul,
 ol {
-  color: #f1f5f9 !important;
+    color: #f1f5f9 !important;
 }
 
 body .content-div ul li,
@@ -311,7 +311,7 @@ body ol li,
 .content-div ol li,
 ul li,
 ol li {
-  color: #f1f5f9 !important;
+    color: #f1f5f9 !important;
 }
 
 /* Ensure horizontal rules are visible */
@@ -319,63 +319,201 @@ body .content-div hr,
 body hr,
 .content-div hr,
 hr {
-  border-color: #1e293b !important;
-  background-color: #1e293b !important;
+    border-color: #1e293b !important;
+    background-color: #1e293b !important;
 }
 
 /* Fix z-index to ensure content is above background */
 body .content-div {
-  z-index: 10 !important;
-  position: relative !important;
+    z-index: 10 !important;
+    position: relative !important;
 }
 
 body #background-div {
-  z-index: 0 !important;
+    z-index: 0 !important;
 }
 
 body #background-svg {
-  z-index: 0 !important;
+    z-index: 0 !important;
 }
 
 /* Manifold background canvas - Must be above base background, below content */
 #manifold-background {
-  z-index: 0 !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: none !important;
-  background: transparent !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 0.8 !important; /* Increased from 0.5 for better visibility */
+    z-index: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.8 !important;
+    /* Increased from 0.5 for better visibility */
 }
 
 /* Ensure content is above manifold */
 body .content-div {
-  z-index: 10 !important;
-  position: relative !important;
+    z-index: 10 !important;
+    position: relative !important;
 }
 
 /* Ensure background-div is below manifold */
 body #background-div {
-  z-index: -1 !important;
-  position: relative !important;
+    z-index: -1 !important;
+    position: relative !important;
 }
 
-/* Hide home icon in navigation */
+/* JetBundle brand/logo in navigation - replace home icon */
 .navbar-icon[href="/"],
 .navbar a[href="/"]:first-child,
-.navbar-brand[href="/"],
-a.navbar-icon[href="/"],
 .navbar .navbar-icon:first-child {
-  display: none !important;
-  visibility: hidden !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  color: #ff6b35 !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  padding: 0.5rem 1rem !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transition: opacity 0.2s ease !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* Hide home link if it's the first item in toolbar */
-.toolbar a[href="/"]:first-child,
-nav a[href="/"]:first-child {
+.navbar-icon[href="/"]:hover,
+.navbar a[href="/"]:first-child:hover {
+  opacity: 0.8 !important;
+}
+
+/* Replace home icon content with "JetBundle" text */
+.navbar-icon[href="/"]::before,
+.navbar a[href="/"]:first-child::before {
+  content: "JetBundle" !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Hide any icon images in home link */
+.navbar-icon[href="/"] img,
+.navbar a[href="/"]:first-child img,
+.navbar-icon[href="/"] .fa,
+.navbar a[href="/"]:first-child .fa,
+.navbar-icon[href="/"] i,
+.navbar a[href="/"]:first-child i {
   display: none !important;
+}
+
+/* Global right margin for manifold interaction space */
+body .container,
+body .wrapper {
+  margin-right: 120px !important; /* Space for manifold interaction */
+  margin-left: auto !important;
+  padding-right: 2rem !important;
+}
+
+body .content-div {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Landing page - centered and simple */
+.landing-page {
+  text-align: center !important;
+  padding: 8rem 2rem 4rem 2rem !important;
+  min-height: 60vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.landing-title {
+  font-size: 4rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 1.5rem 0 !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.landing-subtitle {
+  font-size: 1.5rem !important;
+  color: #94a3b8 !important;
+  margin: 0 0 3rem 0 !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.learn-more-btn {
+  display: inline-block !important;
+  padding: 1rem 2.5rem !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+  color: #f1f5f9 !important;
+  text-decoration: none !important;
+  border-radius: 6px !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  border: none !important;
+}
+
+.learn-more-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
+  color: #f1f5f9 !important;
+}
+
+
+/* Footer styles */
+.site-footer {
+  margin-top: 4rem !important;
+  padding: 2rem 0 !important;
+  border-top: 1px solid #1e293b !important;
+  text-align: center !important;
+  color: #94a3b8 !important;
+  font-size: 0.9rem !important;
+}
+
+.footer-content {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+}
+
+.site-footer p {
+  margin: 0 !important;
+  color: #94a3b8 !important;
+}
+
+/* Responsive: reduce margin on smaller screens */
+@media (max-width: 1024px) {
+  body .container,
+  body .wrapper,
+  body .content-div {
+    margin-right: 60px !important;
+    max-width: calc(100% - 60px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body .container,
+  body .wrapper,
+  body .content-div {
+    margin-right: 20px !important;
+    max-width: calc(100% - 20px) !important;
+  }
+  
+  .landing-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .landing-subtitle {
+    font-size: 1.2rem !important;
+  }
 }
