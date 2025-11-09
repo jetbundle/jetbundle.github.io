@@ -1,21 +1,24 @@
-/* JetBundle Gauge Theme - Professional, High-Fidelity Design */
+/* JetBundle Gauge Theme - Professional Design System */
 
-/* ============================================================================
-   COLOR PALETTE - Full Harmonious Composition
-   ============================================================================ */
+/* Color Palette - Full Spectrum */
 :root {
   /* Primary Colors */
   --orange-primary: #ff6b35;
   --orange-accent: #ff4500;
+  --orange-light: #ff8c5a;
+  --orange-dark: #cc5529;
+  
+  /* Blue Colors */
   --blue-primary: #0ea5e9;
   --blue-deep: #1e40af;
   --blue-light: #38bdf8;
+  --blue-dark: #0c4a6e;
   
   /* Background Colors */
   --dark-bg: #0b0e17;
   --dark-bg-alt: #0a0d14;
   --card-bg: #111827;
-  --card-bg-alt: #0d1117;
+  --card-bg-hover: #1e293b;
   
   /* Text Colors */
   --text-primary: #f1f5f9;
@@ -23,497 +26,378 @@
   --text-muted: #94a3b8;
   --text-dim: #64748b;
   
-  /* Border & Accent Colors */
+  /* Border Colors */
   --border-subtle: #1e293b;
-  --border-accent: #334155;
-  --accent-orange: rgba(255, 107, 53, 0.1);
-  --accent-blue: rgba(14, 165, 233, 0.1);
+  --border-medium: #334155;
+  --border-accent: #475569;
   
-  /* Typography */
-  --font-size-base: 15px;
-  --font-size-small: 13px;
-  --font-size-large: 18px;
-  --font-size-h1: 2rem;
-  --font-size-h2: 1.5rem;
-  --font-size-h3: 1.25rem;
-  --font-size-h4: 1.1rem;
-  --line-height-base: 1.7;
-  --line-height-heading: 1.3;
-  
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  
-  /* Layout */
-  --content-width: 900px;
-  --content-padding: 2rem;
-  --border-radius: 4px;
+  /* Accent Colors */
+  --accent-gradient: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%);
+  --blue-gradient: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-deep) 100%);
+  --bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-alt) 100%);
 }
 
-/* ============================================================================
-   BASE STYLES - Typography & Layout
-   ============================================================================ */
-
+/* Base Typography - Smaller, Professional */
 html {
-  font-size: var(--font-size-base);
+  font-size: 15px; /* Base font size - professional and readable */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-gradient) !important;
+  background-attachment: fixed !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body,
-html body,
-body.animated,
-body.animated.fadeIn {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-alt) 100%) !important;
-  background-color: var(--dark-bg) !important;
-  background-attachment: fixed !important;
-  color: var(--text-primary) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  font-size: var(--font-size-base) !important;
-  line-height: var(--line-height-base) !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* ============================================================================
-   TYPOGRAPHY - Smaller, More Professional Fonts
-   ============================================================================ */
-
-/* Headings - Smaller, More Refined */
-body h1,
-html body h1,
-body .container h1,
-body .content-div h1,
-h1,
-.post-title {
-  font-size: var(--font-size-h1) !important;
-  line-height: var(--line-height-heading) !important;
-  font-weight: 700 !important;
-  margin-top: var(--spacing-lg) !important;
-  margin-bottom: var(--spacing-md) !important;
-  color: var(--orange-primary) !important;
-  background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%) !important;
+/* Headings - Professional Hierarchy */
+h1 {
+  font-size: 2rem; /* 32px */
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  background: var(--accent-gradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  border-bottom: 2px solid var(--border-subtle) !important;
-  padding-bottom: var(--spacing-sm) !important;
 }
 
-body h1 a,
-body h1 a:hover,
-h1 a,
-h1 a:hover {
-  color: var(--orange-primary) !important;
-  background: none !important;
-  -webkit-text-fill-color: var(--orange-primary) !important;
-  text-decoration: none !important;
-}
-
-body h2,
-html body h2,
-body .container h2,
-body .content-div h2,
 h2 {
-  font-size: var(--font-size-h2) !important;
-  line-height: var(--line-height-heading) !important;
-  font-weight: 600 !important;
-  margin-top: var(--spacing-lg) !important;
-  margin-bottom: var(--spacing-sm) !important;
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 1.5rem 0 0.75rem 0;
   color: var(--orange-primary) !important;
-  border-bottom: 2px solid var(--border-subtle) !important;
-  padding-bottom: var(--spacing-xs) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding-bottom: 0.5rem !important;
 }
 
-body h3,
-html body h3,
-body .container h3,
-body .content-div h3,
 h3 {
-  font-size: var(--font-size-h3) !important;
-  line-height: var(--line-height-heading) !important;
-  font-weight: 600 !important;
-  margin-top: var(--spacing-md) !important;
-  margin-bottom: var(--spacing-sm) !important;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.25rem 0 0.5rem 0;
   color: var(--orange-primary) !important;
 }
 
-body h4,
-html body h4,
-body .container h4,
-body .content-div h4,
-h4,
-body h5,
-html body h5,
-body .container h5,
-body .content-div h5,
-h5,
-body h6,
-html body h6,
-body .container h6,
-body .content-div h6,
-h6 {
-  font-size: var(--font-size-h4) !important;
-  line-height: var(--line-height-heading) !important;
-  font-weight: 600 !important;
-  margin-top: var(--spacing-md) !important;
-  margin-bottom: var(--spacing-xs) !important;
+h4 {
+  font-size: 1.1rem; /* 17.6px */
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1rem 0 0.5rem 0;
   color: var(--text-secondary) !important;
 }
 
-/* Paragraphs & Text - Smaller, Better Spacing */
-body p,
-html body p,
-body .container p,
-body .content-div p,
-body li,
-html body li,
-body .container li,
-body .content-div li,
-p,
-li {
-  font-size: var(--font-size-base) !important;
-  line-height: var(--line-height-base) !important;
-  color: var(--text-primary) !important;
-  margin-bottom: var(--spacing-sm) !important;
-}
-
-body strong,
-html body strong,
-body .content-div strong,
-strong,
-b {
-  color: var(--text-primary) !important;
-  font-weight: 600 !important;
-}
-
-body em,
-html body em,
-body .content-div em,
-em,
-i {
+h5, h6 {
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0.75rem 0 0.5rem 0;
   color: var(--text-secondary) !important;
-  font-style: italic !important;
 }
 
-/* ============================================================================
-   LINKS - Professional Styling
-   ============================================================================ */
+/* Paragraphs and Text */
+p {
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary) !important;
+}
 
-body a,
-html body a,
-body .container a,
-body .content-div a,
+/* Links */
 a {
   color: var(--blue-primary) !important;
   text-decoration: none !important;
-  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-body a:hover,
-html body a:hover,
-body .container a:hover,
-body .content-div a:hover,
 a:hover {
   color: var(--blue-light) !important;
-  text-shadow: 0 0 8px rgba(14, 165, 233, 0.3) !important;
+  text-shadow: 0 0 6px rgba(14, 165, 233, 0.4) !important;
 }
 
-/* ============================================================================
-   NAVIGATION - Fixed, Professional Top Bar
-   ============================================================================ */
-
-body .navbar,
+/* Navigation Bar - Clean and Professional */
 body nav,
-html body .navbar,
-html body nav,
-.navbar,
-nav {
+body .navbar,
+body .toolbar,
+body header,
+body .header {
   background: rgba(17, 24, 39, 0.95) !important;
-  background-color: rgba(17, 24, 39, 0.95) !important;
-  backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-subtle) !important;
-  padding: var(--spacing-sm) var(--spacing-md) !important;
-  font-size: var(--font-size-small) !important;
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
+  padding: 0.75rem 0 !important;
+  font-size: 0.875rem; /* 14px - smaller nav text */
 }
 
-body .navbar-icon,
 body nav a,
 body .navbar a,
-html body .navbar-icon,
-html body nav a,
-.navbar-icon,
-nav a,
-.navbar a {
+body .toolbar a {
   color: var(--text-muted) !important;
-  font-size: var(--font-size-small) !important;
-  padding: var(--spacing-xs) var(--spacing-sm) !important;
-  margin: 0 var(--spacing-xs) !important;
-  border-radius: var(--border-radius) !important;
-  transition: all 0.2s ease !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease;
+  text-transform: none !important;
 }
 
-body .navbar-icon:hover,
 body nav a:hover,
 body .navbar a:hover,
-html body .navbar-icon:hover,
-html body nav a:hover,
-.navbar-icon:hover,
-nav a:hover,
-.navbar a:hover {
+body .toolbar a:hover {
   color: var(--orange-primary) !important;
-  background: var(--accent-orange) !important;
-  text-shadow: 0 0 8px rgba(255, 107, 53, 0.3) !important;
+  text-shadow: 0 0 6px rgba(255, 107, 53, 0.4) !important;
 }
 
 /* Hide home icon */
 .navbar-icon[href="/"],
 .navbar a[href="/"]:first-child,
 .navbar-brand[href="/"],
-a.navbar-icon[href="/"],
-.navbar .navbar-icon:first-child,
-.toolbar a[href="/"]:first-child,
-nav a[href="/"]:first-child {
+.toolbar a[href="/"]:first-child {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* ============================================================================
-   CONTAINERS & LAYOUT - Clean, Professional Spacing
-   ============================================================================ */
-
+/* Container and Layout */
 body .container,
 body .wrapper,
-body main,
-html body .container,
-html body .wrapper,
-html body main,
-.container,
-.wrapper,
-main {
+body .content-div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   background: transparent !important;
-  background-color: transparent !important;
-  max-width: var(--content-width) !important;
-  margin: 0 auto !important;
-  padding: var(--spacing-lg) var(--content-padding) !important;
-  position: relative !important;
-  z-index: 1 !important;
 }
 
-body .content-div,
-body .container .content-div,
-html body .content-div,
-.content-div {
-  color: var(--text-primary) !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  position: relative !important;
-  z-index: 2 !important;
-  padding: var(--spacing-md) 0 !important;
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 3rem 0 2rem 0;
+  margin-bottom: 3rem;
 }
 
-/* ============================================================================
-   CODE BLOCKS - Professional Styling
-   ============================================================================ */
-
-body pre,
-body code,
-body .highlight,
-pre,
-code,
-.highlight {
-  background: linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg-alt) 100%) !important;
-  background-color: var(--card-bg) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-subtle) !important;
-  border-radius: var(--border-radius) !important;
-  padding: var(--spacing-sm) !important;
-  font-size: var(--font-size-small) !important;
-  line-height: 1.6 !important;
-  overflow-x: auto !important;
+.hero-title {
+  font-size: 3rem; /* 48px */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: var(--accent-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
-body pre,
-pre {
-  padding: var(--spacing-md) !important;
-  margin: var(--spacing-md) 0 !important;
+.hero-subtitle {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 500;
+  color: var(--text-secondary) !important;
+  margin-bottom: 0.75rem;
 }
 
-/* ============================================================================
-   BLOCKQUOTES - Elegant Styling
-   ============================================================================ */
-
-body blockquote,
-body .content-div blockquote,
-blockquote {
-  border-left: 4px solid var(--orange-primary) !important;
-  background: linear-gradient(90deg, var(--accent-orange) 0%, transparent 100%) !important;
-  background-color: rgba(17, 24, 39, 0.5) !important;
+.hero-description {
+  font-size: 1rem; /* 16px */
   color: var(--text-muted) !important;
-  padding: var(--spacing-md) var(--spacing-lg) !important;
-  margin: var(--spacing-md) 0 !important;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
-  font-style: italic !important;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* ============================================================================
-   TABLES - Clean, Professional
-   ============================================================================ */
+/* Stacks Grid */
+.stacks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
 
-body table,
-body .content-div table,
+.stack-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stack-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-medium) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.stack-card h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.stack-card h2 a {
+  color: var(--orange-primary) !important;
+}
+
+.stack-card h2 a:hover {
+  color: var(--orange-light) !important;
+}
+
+.stack-card p {
+  font-size: 0.875rem; /* 14px */
+  color: var(--text-secondary) !important;
+  margin-bottom: 1rem;
+}
+
+.stack-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stack-card li {
+  font-size: 0.875rem; /* 14px */
+  color: var(--text-muted) !important;
+  padding: 0.25rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.stack-card li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--blue-primary);
+  font-weight: bold;
+}
+
+/* Mission Section */
+.mission-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(17, 24, 39, 0.5) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.mission-section h2 {
+  font-size: 1.75rem;
+  margin-top: 0;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.mission-section p {
+  font-size: 0.9375rem;
+  max-width: 700px;
+  margin: 0 auto 1rem auto;
+  color: var(--text-secondary) !important;
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+}
+
+pre {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--text-primary) !important;
+}
+
+code {
+  background: rgba(17, 24, 39, 0.6) !important;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: var(--blue-light) !important;
+  font-size: 0.875em;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--orange-primary) !important;
+  background: rgba(255, 107, 53, 0.08) !important;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 6px 6px 0;
+  color: var(--text-secondary) !important;
+  font-style: italic;
+}
+
+/* Tables */
 table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  margin: var(--spacing-md) 0 !important;
-  font-size: var(--font-size-small) !important;
-}
-
-body table th,
-body .content-div table th,
-table th {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 100%) !important;
-  background-color: var(--card-bg) !important;
-  color: var(--orange-primary) !important;
-  padding: var(--spacing-sm) !important;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem; /* 14px */
+  background: var(--card-bg) !important;
   border: 1px solid var(--border-subtle) !important;
-  font-weight: 600 !important;
-  text-align: left !important;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-body table td,
-body .content-div table td,
-table td {
-  background-color: var(--dark-bg) !important;
-  color: var(--text-primary) !important;
-  padding: var(--spacing-sm) !important;
-  border: 1px solid var(--border-subtle) !important;
-}
-
-body table tr:nth-child(even) td,
-table tr:nth-child(even) td {
-  background-color: rgba(17, 24, 39, 0.3) !important;
-}
-
-body table tr:hover td,
-table tr:hover td {
-  background-color: var(--accent-blue) !important;
-}
-
-/* ============================================================================
-   LISTS - Better Spacing
-   ============================================================================ */
-
-body ul,
-body ol,
-body .content-div ul,
-body .content-div ol,
-ul,
-ol {
-  color: var(--text-primary) !important;
-  margin: var(--spacing-md) 0 !important;
-  padding-left: var(--spacing-lg) !important;
-}
-
-body ul li,
-body ol li,
-body .content-div ul li,
-body .content-div ol li,
-ul li,
-ol li {
-  color: var(--text-primary) !important;
-  margin-bottom: var(--spacing-xs) !important;
-}
-
-body li::marker,
-li::marker {
+th {
+  background: rgba(17, 24, 39, 0.8) !important;
   color: var(--orange-primary) !important;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-subtle) !important;
 }
 
-/* ============================================================================
-   HORIZONTAL RULES - Subtle Dividers
-   ============================================================================ */
-
-body hr,
-body .content-div hr,
-hr {
-  border: none !important;
-  height: 1px !important;
-  background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 50%, transparent 100%) !important;
-  margin: var(--spacing-lg) 0 !important;
+td {
+  padding: 0.75rem 1rem;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* ============================================================================
-   BUTTONS - Professional Styling
-   ============================================================================ */
+tr:hover td {
+  background: rgba(17, 24, 39, 0.5) !important;
+}
 
-body button,
-body .btn,
-button,
-.btn {
-  background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-accent) 100%) !important;
-  background-color: var(--orange-primary) !important;
+/* Lists */
+ul, ol {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+  color: var(--text-primary) !important;
+}
+
+li {
+  margin: 0.25rem 0;
+  color: var(--text-primary) !important;
+  line-height: 1.6;
+}
+
+/* Buttons */
+button, .btn {
+  background: var(--accent-gradient) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--orange-primary) !important;
-  border-radius: var(--border-radius) !important;
-  padding: var(--spacing-xs) var(--spacing-md) !important;
-  font-size: var(--font-size-base) !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-body button:hover,
-body .btn:hover,
-button:hover,
-.btn:hover {
-  background: linear-gradient(135deg, var(--orange-accent) 0%, var(--orange-primary) 100%) !important;
-  box-shadow: 0 0 12px rgba(255, 107, 53, 0.3) !important;
+button:hover, .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
 }
 
-/* ============================================================================
-   BACKGROUND ELEMENTS - Layering
-   ============================================================================ */
-
+/* Background Elements */
 body #background-div,
-html body #background-div,
-#background-div {
-  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-bg-alt) 100%) !important;
+body #background-svg {
+  background: var(--bg-gradient) !important;
   background-color: var(--dark-bg) !important;
-  z-index: -1 !important;
-  position: relative !important;
 }
 
-body #background-svg,
-html body #background-svg,
-#background-svg {
-  background: transparent !important;
-  z-index: 0 !important;
-}
-
-.bgColor1,
-stop.bgColor1,
-#background-svg stop.bgColor1,
-body #background-svg stop.bgColor1,
-svg stop.bgColor1 {
+.bgColor1, .bgColor2 {
   stop-color: var(--dark-bg) !important;
 }
 
-.bgColor2,
-stop.bgColor2,
-#background-svg stop.bgColor2,
-body #background-svg stop.bgColor2,
-svg stop.bgColor2 {
-  stop-color: var(--dark-bg-alt) !important;
-}
-
-/* Manifold background canvas */
+/* Manifold Background */
 #manifold-background {
   z-index: 0 !important;
   position: fixed !important;
@@ -522,80 +406,74 @@ svg stop.bgColor2 {
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
-  background: transparent !important;
-  display: block !important;
-  visibility: visible !important;
   opacity: 0.8 !important;
 }
 
-/* ============================================================================
-   RESPONSIVE DESIGN - Mobile Optimization
-   ============================================================================ */
+/* Content Above Background */
+body .content-div {
+  z-index: 10 !important;
+  position: relative !important;
+}
 
+body #background-div {
+  z-index: -1 !important;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  :root {
-    --font-size-base: 14px;
-    --font-size-h1: 1.75rem;
-    --font-size-h2: 1.35rem;
-    --font-size-h3: 1.15rem;
-    --content-padding: 1rem;
-    --content-width: 100%;
+  html {
+    font-size: 14px;
   }
   
-  body .container,
-  body .wrapper,
-  body main {
-    padding: var(--spacing-md) var(--content-padding) !important;
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .stacks-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  body .container {
+    padding: 1rem;
   }
   
   body nav a,
-  body .navbar a {
-    font-size: var(--font-size-small) !important;
-    padding: var(--spacing-xs) !important;
-    margin: 0 2px !important;
+  body .navbar a,
+  body .toolbar a {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.8125rem !important;
   }
 }
 
-/* ============================================================================
-   PERFORMANCE OPTIMIZATIONS
-   ============================================================================ */
-
-* {
-  box-sizing: border-box !important;
+/* Utility Classes */
+.text-muted {
+  color: var(--text-muted) !important;
 }
 
-body .content-div,
-body .container,
-body nav {
-  will-change: auto !important;
-  transform: translateZ(0) !important;
+.text-secondary {
+  color: var(--text-secondary) !important;
 }
 
-/* ============================================================================
-   ACCESSIBILITY - Better Contrast & Focus
-   ============================================================================ */
-
-body a:focus,
-body button:focus,
-a:focus,
-button:focus {
-  outline: 2px solid var(--blue-primary) !important;
-  outline-offset: 2px !important;
+.text-dim {
+  color: var(--text-dim) !important;
 }
 
-/* ============================================================================
-   PRINT STYLES
-   ============================================================================ */
+/* Ensure all text is visible */
+body, body p, body li, body span, body div, body .content {
+  color: var(--text-primary) !important;
+}
 
-@media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  
-  body .navbar,
-  body nav,
-  #manifold-background {
-    display: none !important;
-  }
+body strong, b {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+body em, i {
+  color: var(--text-secondary) !important;
+  font-style: italic;
 }

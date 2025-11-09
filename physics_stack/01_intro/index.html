@@ -5,21 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>The Military-Financial Stack</title>
+  <title>The Ballistics & Hydrodynamics Stack</title>
   <meta name="description" content="Mapping the hidden geometry of modern science.">
 
   <!-- Social: Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@">
-  <meta name="twitter:title" content="The Military-Financial Stack">
+  <meta name="twitter:title" content="The Ballistics & Hydrodynamics Stack">
   <meta name="twitter:description" content="Mapping the hidden geometry of modern science.">
   
   <meta property="twitter:image:src" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
 
   <!-- Social: Facebook / Open Graph -->
-  <meta property="og:url" content="https://jetbundle.github.io/finance_stack/">
-  <meta property="og:title" content="The Military-Financial Stack">
+  <meta property="og:url" content="https://jetbundle.github.io/physics_stack/01_intro/">
+  <meta property="og:title" content="The Ballistics & Hydrodynamics Stack">
   
   <meta property="og:image" content="https://jetbundle.github.io/assets/img/opengraph.png">
   
@@ -27,7 +27,7 @@
   <meta property="og:site_name" content="JetBundle">
 
   <!-- Social: Schema.org  -->
-  <meta itemprop="name" content="The Military-Financial Stack"/>
+  <meta itemprop="name" content="The Ballistics & Hydrodynamics Stack"/>
 
   <!-- JetBundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
   <style>
@@ -74,6 +74,8 @@
 
   <!-- JetBundle Gauge Theme CSS - Loads after theme CSS -->
   <link rel="stylesheet" href="/assets/css/gauge-theme.css">
+  <!-- Custom CSS for additional overrides -->
+  <link rel="stylesheet" href="/assets/css/custom.css">
 
   <!-- MathJax - Async (non-blocking) -->
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -116,18 +118,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-About">
-                    <li priority="1"><a href="/dropdown/about.html">About</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
                   <ul class="dropdown-menu dropdown-menu-Blog">
-                    <li priority="6"><a href="/dropdown/blog.html">Blog</a></li>
+                    <li priority="5"><a href="/dropdown/blog.html">Blog</a></li>
                   </ul>
                 </li>
               
@@ -137,7 +129,7 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Community">
-                    <li priority="7"><a href="/dropdown/community.html">Community</a></li>
+                    <li priority="6"><a href="/dropdown/community.html">Community</a></li>
                   </ul>
                 </li>
               
@@ -146,8 +138,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Computation Stack">
-                    <li priority="2"><a href="/dropdown/computation_stack.html">Computation Stack</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Computation">
+                    <li priority="1"><a href="/dropdown/computation.html">Computation</a></li>
                   </ul>
                 </li>
               
@@ -156,8 +148,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Disclaimer">
-                    <li priority="7"><a href="/dropdown/disclaimer.html">Disclaimer</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Finance">
+                    <li priority="3"><a href="/dropdown/finance.html">Finance</a></li>
                   </ul>
                 </li>
               
@@ -166,28 +158,8 @@
                     role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-Finance Stack">
-                    <li priority="4"><a href="/dropdown/finance_stack.html">Finance Stack</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-License">
-                    <li priority="8"><a href="/dropdown/license.html">License</a></li>
-                  </ul>
-                </li>
-              
-                <li class="dropdown dropdown-">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-Physics Stack">
-                    <li priority="3"><a href="/dropdown/physics_stack.html">Physics Stack</a></li>
+                  <ul class="dropdown-menu dropdown-menu-Physics">
+                    <li priority="2"><a href="/dropdown/physics.html">Physics</a></li>
                   </ul>
                 </li>
               
@@ -197,7 +169,7 @@
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-Resources">
-                    <li priority="5"><a href="/dropdown/resources.html">Resources</a></li>
+                    <li priority="4"><a href="/dropdown/resources.html">Resources</a></li>
                   </ul>
                 </li>
               
@@ -220,7 +192,7 @@
                     $(dropdownClass).remove();
                     elements.push(dropdownMain)
                 });
-                let priority = [ "About",  "Computation Stack",  "Physics Stack",  "Finance Stack",  "Resources",  "Blog",  "Community", ];
+                let priority = [ "Computation",  "Physics",  "Finance",  "Resources",  "Blog",  "Community", ];
                 elements = elements.concat(...$(".nav-item").remove())
                 priority.map(text => {
                   elements = elements.filter(node => {
@@ -260,66 +232,48 @@
         </svg>
       </div>
       <div class="content-div">
-        <h1 id="the-military-financial-stack">The Military-Financial Stack</h1>
+        <h1 id="the-ballistics--hydrodynamics-stack">The Ballistics &amp; Hydrodynamics Stack</h1>
 
-<p>The “Great Handover” occurred when Wall Street outbid the Pentagon. Quantitative finance did not invent new mathematics; it “re-skinned” the DoD’s toolkit for a new problem set: the market.</p>
+<p>This stack traces the lineage from naval warfare and missile guidance to modern computational physics and engineering.</p>
 
 <h2 id="overview">Overview</h2>
 
-<p>This stack traces the migration of mathematical techniques from military applications to financial markets. The same algorithms used for missile guidance, radar signal processing, and naval warfare are now the foundation of quantitative finance and high-frequency trading.</p>
+<p>The Physics Stack maps the Base Space of mathematics (complex analysis, PDEs, scientific computing) to its material origins in submarine design, ballistic trajectories, and nuclear weapons development.</p>
 
 <h2 id="core-components">Core Components</h2>
 
-<h3 id="missile-guidance--time-series-analysis">Missile Guidance → Time-Series Analysis</h3>
+<h3 id="complex-analysis">Complex Analysis</h3>
 
-<p>The <strong>Kalman Filter</strong> was funded by the AFOSR in 1954 and was the “essential” GNC tool for the Apollo program’s mid-course corrections and the Minuteman-III ICBM.</p>
+<p>Funded by ONR for conformal mapping of <em>Nautilus</em> submarine hulls to minimize hydrodynamic noise vortices.</p>
 
-<p><strong>The Migration</strong>:</p>
-<ul>
-  <li><strong>1950s</strong>: AFOSR funds Kalman filter for missile guidance</li>
-  <li><strong>1960s</strong>: NASA adopts for Apollo program</li>
-  <li><strong>1970s</strong>: Applied to financial time-series analysis</li>
-  <li><strong>1980s</strong>: Becomes standard tool in quantitative finance</li>
-  <li><strong>2000s</strong>: Core technology for algorithmic trading</li>
-</ul>
+<p><strong>The Problem</strong>: Submarine hull design to minimize acoustic signature
+<strong>The Math</strong>: Conformal mapping, complex analysis
+<strong>The Application</strong>: Stealth submarine design
+<strong>Modern Application</strong>: Aircraft wing design, hydroelectric turbines</p>
 
-<p><strong>Modern Application</strong>: This is the <em>exact</em> math taught in <code class="language-plaintext highlighter-rouge">AMS 578: Regression Theory</code> and is now the quintessential tool for filtering a “true” asset signal from “noisy” market data.</p>
+<h3 id="partial-differential-equations">Partial Differential Equations</h3>
 
-<h3 id="ballistics--derivatives-pricing">Ballistics → Derivatives Pricing</h3>
+<p>Funded for H-bomb shock-wave calculations and hypersonic vehicle design.</p>
 
-<p><strong>Pontryagin’s Maximum Principle</strong> (1956) was funded by AFOSR to solve the “optimal Titan-II ascent trajectory”—a problem in solving ordinary differential equations (ODEs).</p>
+<p><strong>The Problem</strong>: Modeling nuclear explosions and hypersonic flight
+<strong>The Math</strong>: PDEs, numerical methods
+<strong>The Application</strong>: Nuclear weapons design, missile trajectories
+<strong>Modern Application</strong>: Hypersonic vehicle design, climate modeling</p>
 
-<p><strong>The Migration</strong>:</p>
-<ul>
-  <li><strong>1950s</strong>: AFOSR funds optimal control theory</li>
-  <li><strong>1960s</strong>: Applied to missile trajectories</li>
-  <li><strong>1970s</strong>: Black-Scholes equation (stochastic PDEs)</li>
-  <li><strong>1980s</strong>: Options pricing and risk management</li>
-  <li><strong>2000s</strong>: Quantitative finance curriculum</li>
-</ul>
+<h3 id="scientific-computing">Scientific Computing</h3>
 
-<p><strong>Modern Application</strong>: This is the <em>exact</em> math taught in <code class="language-plaintext highlighter-rouge">AMS 527: Numerical Analysis</code>, now “re-skinned” to solve the Black-Scholes <strong>PDE</strong> for option pricing.</p>
+<p>Funded for Los Alamos implosion simulations and modern stockpile stewardship.</p>
 
-<h3 id="naval-warfare--high-frequency-trading-hft">Naval Warfare → High-Frequency Trading (HFT)</h3>
-
-<p>HFT firms like Jane Street and Citadel compete in “latency arbitrage”—a “race on speed”. The math they use is from <code class="language-plaintext highlighter-rouge">AMS 523: Mathematics of High Frequency Finance</code>—the “Fourier transforms” and “conformal mapping” originally funded by ONR for <strong>radar signal processing</strong> and <strong>Nautilus hull hydrodynamics</strong>.</p>
-
-<p><strong>The Migration</strong>:</p>
-<ul>
-  <li><strong>1940s</strong>: ONR funds radar signal processing</li>
-  <li><strong>1950s</strong>: Applied to submarine acoustics</li>
-  <li><strong>1960s</strong>: Digital signal processing emerges</li>
-  <li><strong>1980s</strong>: Applied to financial market data</li>
-  <li><strong>2000s</strong>: HFT firms build microwave networks</li>
-</ul>
-
-<p><strong>Modern Application</strong>: The HFT firms <em>physically build a graph</em> of “terrestrial microwave networks” to find the “shortest-path (geodesic)”, running the <em>same</em> signal-processing algorithms to win a microsecond race.</p>
+<p><strong>The Problem</strong>: Nuclear weapons simulations
+<strong>The Math</strong>: Finite element methods, numerical linear algebra
+<strong>The Application</strong>: Weapons design and testing
+<strong>Modern Application</strong>: Stockpile stewardship, materials science</p>
 
 <h2 id="audits-in-this-stack">Audits in This Stack</h2>
 
 <ul>
-  <li><strong><a href="/finance_stack/qf-audit/">Quantitative Finance Audit →</a></strong> - From missile guidance to options pricing</li>
-  <li><strong><a href="/finance_stack/hft-audit/">High-Frequency Trading Audit →</a></strong> - From radar to microwave networks</li>
+  <li><strong><a href="/physics_stack/hydrodynamics/">Hydrodynamics Audit →</a></strong> - From <em>Nautilus</em> to modern fluid dynamics</li>
+  <li><strong><a href="/physics_stack/celestial-mechanics/">Celestial Mechanics Audit →</a></strong> - From missile trajectories to space exploration</li>
 </ul>
 
 <hr />
