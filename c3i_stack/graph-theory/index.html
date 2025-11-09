@@ -104,7 +104,6 @@
   </nav>
 </header>
 
-
     <div class="container">
       <!-- Theme requires these SVG layers for animated background -->
       <div id="background-div">
@@ -234,8 +233,75 @@
       (function() {
         'use strict';
 
+        // Remove theme's sidebar/toolbar navigation
+        function removeThemeNavigation() {
+          // Remove sidebars and toolbars
+          const selectors = [
+            'aside',
+            '.sidebar',
+            '.toolbar',
+            'nav.toolbar',
+            '.side-nav',
+            '.nav-sidebar',
+            '#sidebar',
+            '#toolbar'
+          ];
+          
+          selectors.forEach(selector => {
+            try {
+              const elements = document.querySelectorAll(selector);
+              elements.forEach(el => {
+                // Don't remove our custom header
+                if (!el.closest('header') && !el.classList.contains('navbar-container') && !el.classList.contains('navbar-menu')) {
+                  el.style.display = 'none';
+                  el.remove();
+                }
+              });
+            } catch (e) {
+              // Ignore errors
+            }
+          });
+
+          // Remove "jetbundleHome" or "Home" text links
+          try {
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+              const text = link.textContent.trim();
+              if (text === 'Home' || text.includes('jetbundleHome') || text === 'jetbundleHome') {
+                // Only remove if it's not our brand link
+                if (!link.classList.contains('navbar-brand') && link.href === window.location.origin + '/') {
+                  link.remove();
+                }
+              }
+            });
+          } catch (e) {
+            // Ignore errors
+          }
+
+          // Remove any navigation outside our header
+          try {
+            const navs = document.querySelectorAll('nav, .toolbar, aside');
+            navs.forEach(nav => {
+              if (!nav.closest('header') && !nav.classList.contains('navbar-container')) {
+                nav.style.display = 'none';
+                nav.remove();
+              }
+            });
+          } catch (e) {
+            // Ignore errors
+          }
+        }
+
         // Wait for theme's main.js to initialize
         function enhanceTheme() {
+          // Remove theme navigation immediately
+          removeThemeNavigation();
+          
+          // Also remove after a delay (theme might add it dynamically)
+          setTimeout(removeThemeNavigation, 100);
+          setTimeout(removeThemeNavigation, 500);
+          setTimeout(removeThemeNavigation, 1000);
+          
           // Only apply SVG gradient overrides after theme initializes
           setTimeout(function() {
             try {
@@ -261,6 +327,23 @@
           document.addEventListener('DOMContentLoaded', enhanceTheme);
         } else {
           enhanceTheme();
+        }
+
+        // Also run on load (theme might add navigation after DOMContentLoaded)
+        window.addEventListener('load', function() {
+          setTimeout(removeThemeNavigation, 100);
+          setTimeout(removeThemeNavigation, 500);
+        });
+
+        // Watch for dynamically added elements
+        if (window.MutationObserver) {
+          const observer = new MutationObserver(function(mutations) {
+            removeThemeNavigation();
+          });
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
         }
 
         // Lightweight cursor trail - only if user moves mouse
