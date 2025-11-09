@@ -63,6 +63,9 @@ exclude:
   - vendor
   - .git
   - .gitignore
+  - test-manifold-math.html
+  - index.md.old
+  - blog.md
 
 # PDF Settings
 pdf_height: 900px
