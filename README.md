@@ -1,4 +1,4 @@
-# JetBundle
+# jetbundle
 
 **Mapping the hidden geometry of modern science.**
 

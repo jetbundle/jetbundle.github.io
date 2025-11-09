@@ -1,4 +1,4 @@
-/* JetBundle Gauge Theme - Maximum Specificity CSS Override */
+/* jetbundle Gauge Theme - Maximum Specificity CSS Override */
 
 /* Override theme's body background - Maximum specificity */
 html body.animated.fadeIn,
@@ -365,151 +365,171 @@ body #background-div {
     position: relative !important;
 }
 
-/* JetBundle brand/logo in navigation - replace home icon */
+/* Hide home icon in navigation */
 .navbar-icon[href="/"],
 .navbar a[href="/"]:first-child,
+.navbar-brand[href="/"],
+a.navbar-icon[href="/"],
 .navbar .navbar-icon:first-child {
-  display: inline-block !important;
-  visibility: visible !important;
-  color: #ff6b35 !important;
-  font-size: 1.5rem !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  padding: 0.5rem 1rem !important;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  transition: opacity 0.2s ease !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    display: none !important;
+    visibility: hidden !important;
 }
 
-.navbar-icon[href="/"]:hover,
-.navbar a[href="/"]:first-child:hover {
-  opacity: 0.8 !important;
-}
-
-/* Replace home icon content with "JetBundle" text */
-.navbar-icon[href="/"]::before,
-.navbar a[href="/"]:first-child::before {
-  content: "JetBundle" !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-}
-
-/* Hide any icon images in home link */
-.navbar-icon[href="/"] img,
-.navbar a[href="/"]:first-child img,
-.navbar-icon[href="/"] .fa,
-.navbar a[href="/"]:first-child .fa,
-.navbar-icon[href="/"] i,
-.navbar a[href="/"]:first-child i {
-  display: none !important;
-}
-
-/* Global right margin for manifold interaction space */
+/* Global margin shift to the right for manifold interaction space */
 body .container,
-body .wrapper {
-  margin-right: 120px !important; /* Space for manifold interaction */
-  margin-left: auto !important;
-  padding-right: 2rem !important;
-}
-
+body .wrapper,
 body .content-div {
-  margin-right: 0 !important;
-  padding-right: 0 !important;
+    margin-left: 80px !important; /* Shift content right for manifold space */
+    margin-right: auto !important;
+    max-width: calc(100% - 160px) !important; /* Adjust max-width accordingly */
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
 }
 
 /* Landing page - centered and simple */
 .landing-page {
-  text-align: center !important;
-  padding: 8rem 2rem 4rem 2rem !important;
-  min-height: 60vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
+    text-align: center !important;
+    padding: 8rem 2rem 4rem 2rem !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
 }
 
 .landing-title {
-  font-size: 4rem !important;
-  font-weight: 700 !important;
-  margin: 0 0 1.5rem 0 !important;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  border: none !important;
-  padding: 0 !important;
+    font-size: 4rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    letter-spacing: -0.02em !important;
 }
 
 .landing-subtitle {
-  font-size: 1.5rem !important;
-  color: #94a3b8 !important;
-  margin: 0 0 3rem 0 !important;
-  font-weight: 400 !important;
-  line-height: 1.6 !important;
+    font-size: 1.5rem !important;
+    color: #94a3b8 !important;
+    margin-bottom: 3rem !important;
+    font-weight: 300 !important;
 }
 
-.learn-more-btn {
-  display: inline-block !important;
-  padding: 1rem 2.5rem !important;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-  color: #f1f5f9 !important;
-  text-decoration: none !important;
-  border-radius: 6px !important;
-  font-size: 1.1rem !important;
-  font-weight: 500 !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  border: none !important;
+.learn-more-button {
+    display: inline-block !important;
+    padding: 1rem 2.5rem !important;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    color: #f1f5f9 !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
 }
 
-.learn-more-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
-  color: #f1f5f9 !important;
+.learn-more-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4) !important;
+    color: #f1f5f9 !important;
 }
 
-
-/* Footer styles */
+/* Site footer */
 .site-footer {
-  margin-top: 4rem !important;
-  padding: 2rem 0 !important;
-  border-top: 1px solid #1e293b !important;
-  text-align: center !important;
-  color: #94a3b8 !important;
-  font-size: 0.9rem !important;
-}
-
-.footer-content {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 2rem !important;
+    text-align: center !important;
+    padding: 3rem 2rem 2rem 2rem !important;
+    margin-top: 4rem !important;
+    border-top: 1px solid #1e293b !important;
+    color: #94a3b8 !important;
+    font-size: 0.875rem !important;
 }
 
 .site-footer p {
-  margin: 0 !important;
-  color: #94a3b8 !important;
+    margin: 0 !important;
+    color: #94a3b8 !important;
+}
+
+/* Remove dropdown styles - make all navigation items direct links */
+nav .dropdown,
+nav .dropdown-menu,
+nav .has-children,
+.dropdown-toggle {
+    display: none !important;
+}
+
+/* Style navigation to show "jetbundle" as home link */
+.navbar-brand,
+.navbar a[href="/"],
+.toolbar a[href="/"] {
+    display: inline-block !important;
+    color: #ff6b35 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    text-decoration: none !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.navbar-brand:hover,
+.navbar a[href="/"]:hover,
+.toolbar a[href="/"]:hover {
+    color: #ff8c5a !important;
+}
+
+/* Hide home icon, show "jetbundle" text link instead */
+.navbar-icon[href="/"] {
+    display: none !important;
+}
+
+/* Add "jetbundle" home link to navigation */
+nav::before,
+.navbar::before,
+.toolbar::before {
+    content: "jetbundle" !important;
+    display: inline-block !important;
+    color: #ff6b35 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    text-decoration: none !important;
+    padding: 0.5rem 1rem !important;
+    margin-right: 1rem !important;
+}
+
+nav a[href="/"]:first-child,
+.navbar a[href="/"]:first-child,
+.toolbar a[href="/"]:first-child {
+    display: inline-block !important;
+    color: #ff6b35 !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    text-decoration: none !important;
+    padding: 0.5rem 1rem !important;
 }
 
 /* Responsive: reduce margin on smaller screens */
-@media (max-width: 1024px) {
-  body .container,
-  body .wrapper {
-    margin-right: 60px !important;
-  }
+@media (max-width: 1200px) {
+    body .container,
+    body .wrapper,
+    body .content-div {
+        margin-left: 60px !important;
+        max-width: calc(100% - 120px) !important;
+    }
 }
 
 @media (max-width: 768px) {
-  body .container,
-  body .wrapper {
-    margin-right: 20px !important;
-  }
-  
-  .landing-title {
-    font-size: 2.5rem !important;
-  }
-  
-  .landing-subtitle {
-    font-size: 1.2rem !important;
-  }
+    body .container,
+    body .wrapper,
+    body .content-div {
+        margin-left: 20px !important;
+        max-width: calc(100% - 40px) !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .landing-page {
+        padding: 4rem 1rem 2rem 1rem !important;
+    }
+    
+    .landing-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .landing-subtitle {
+        font-size: 1.25rem !important;
+    }
 }
