@@ -76,11 +76,23 @@
       display: none !important;
       visibility: hidden !important;
     }
-
+    
     /* Ensure our header is visible */
     header.site-header {
       display: block !important;
       visibility: visible !important;
+    }
+    
+    /* Ensure jetbundle brand is visible and clickable */
+    a.navbar-brand,
+    a.jetbundle-logo,
+    header a.navbar-brand {
+      display: inline-block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      color: #ff6b35 !important;
     }
   </style>
 

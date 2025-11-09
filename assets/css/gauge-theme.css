@@ -557,12 +557,17 @@ header.site-header .site-navbar {
     gap: 3rem !important;
 }
 
+/* Jetbundle brand logo - must be visible and clickable */
 .navbar-brand,
 .navbar .navbar-brand,
 nav .navbar-brand,
-header .navbar-brand {
+header .navbar-brand,
+a.navbar-brand,
+a.jetbundle-logo,
+header a.navbar-brand,
+header a.jetbundle-logo {
     color: #ff6b35 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.75rem !important;
     font-weight: 700 !important;
     text-decoration: none !important;
     margin-right: 0 !important;
@@ -571,15 +576,30 @@ header .navbar-brand {
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 10001 !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease !important;
+    text-shadow: none !important;
 }
 
 .navbar-brand:hover,
 .navbar .navbar-brand:hover,
-header .navbar-brand:hover {
+header .navbar-brand:hover,
+a.navbar-brand:hover,
+a.jetbundle-logo:hover,
+header a.navbar-brand:hover,
+header a.jetbundle-logo:hover {
     color: #ff8c5a !important;
-    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
-    transform: scale(1.05) !important;
-    transition: transform 0.2s ease !important;
+    -webkit-text-fill-color: #ff8c5a !important;
+    transform: scale(1.1) !important;
+    text-shadow: 0 0 12px rgba(255, 107, 53, 0.6) !important;
+    transition: all 0.2s ease !important;
+    opacity: 1 !important;
 }
 
 .navbar-menu {
@@ -686,14 +706,28 @@ body>.sidebar {
 header.site-header .navbar,
 header.site-header .navbar-container,
 header.site-header .navbar-menu,
-header.site-header .navbar-link {
+header.site-header .navbar-link,
+header.site-header .navbar-brand {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
 }
 
-header.site-header .navbar-link {
+header.site-header .navbar-link,
+header.site-header .navbar-brand {
     cursor: pointer !important;
     pointer-events: auto !important;
+    z-index: 10001 !important;
+}
+
+/* Ensure jetbundle brand is never hidden */
+a.jetbundle-logo,
+a.navbar-brand[href="/"],
+header a[href="/"].navbar-brand {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
