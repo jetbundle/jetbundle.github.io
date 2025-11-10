@@ -55,8 +55,8 @@ SOFTWARE.
 
 ---
 
-[Full License Text →](../LICENSE)
+[Full License Text →](/LICENSE)
 
-[Disclaimer →](../disclaimer/)
+[Disclaimer →](/disclaimer/)
 
-[Back to Home →](../)
+[Back to Home →](/)

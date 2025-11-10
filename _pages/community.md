@@ -43,7 +43,7 @@ Want to contribute a new "Fiber" audit? Here's how:
 
 ### Submit a Resource
 
-Have a declassified document, grant record, or recommended reading? 
+Have a declassified document, grant record, or recommended reading?
 
 1. **Open an issue** or **submit a pull request**
 2. **Include:**
