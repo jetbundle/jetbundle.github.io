@@ -2,6 +2,7 @@
 layout: page
 title: License
 description: License information and terms of use
+permalink: /license/
 ---
 
 # License

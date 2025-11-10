@@ -2,6 +2,7 @@
 layout: page
 title: Disclaimer
 description: Legal disclaimers and research purposes
+permalink: /disclaimer/
 ---
 
 # Disclaimer

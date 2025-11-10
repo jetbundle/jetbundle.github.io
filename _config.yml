@@ -26,6 +26,9 @@ highlighter_theme: monokai
 
 # Collections (The "Fibers")
 collections:
+  pages:
+    output: true
+    permalink: /:name/
   c3i_stack:
     output: true
   physics_stack:

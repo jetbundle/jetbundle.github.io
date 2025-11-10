@@ -2,6 +2,7 @@
 layout: page
 title: About
 description: Mapping the hidden geometry of modern science
+permalink: /about/
 ---
 
 # jetbundle
