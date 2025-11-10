@@ -14,7 +14,7 @@ Copyright © 2025 Joel Saucedo. All rights reserved.
 
 ## License
 
-This project is licensed under the MIT License with a non-commercial use restriction. See the [LICENSE](../LICENSE) file for full terms.
+This project is licensed under the MIT License with a non-commercial use restriction. See the [LICENSE](/LICENSE) file for full terms.
 
 **Key Points:**
 - Open source for non-commercial use
