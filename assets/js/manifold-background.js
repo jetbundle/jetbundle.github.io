@@ -42,7 +42,7 @@
         // Color scheme (gauge theme)
         colors: {
             orange: { r: 255, g: 107, b: 53 },
-            blue: { r: 14, g: 165, b: 233 },
+            blue: { r: 79, g: 70, b: 229 },  // Changed from blue to indigo
             dark: { r: 11, g: 14, b: 23 },
             dark2: { r: 10, g: 13, b: 20 }
         },
