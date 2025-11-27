@@ -41,8 +41,9 @@
 
         // Color scheme (gauge theme)
         colors: {
-            orange: { r: 255, g: 107, b: 53 },
-            blue: { r: 79, g: 70, b: 229 },  // Changed from blue to indigo
+            orange: { r: 255, g: 140, b: 90 },  // Brightened orange
+            indigo: { r: 79, g: 70, b: 229 },   // Indigo (formerly blue)
+            blue: { r: 79, g: 70, b: 229 },     // Alias for backwards compatibility
             dark: { r: 11, g: 14, b: 23 },
             dark2: { r: 10, g: 13, b: 20 }
         },
@@ -251,7 +252,7 @@
                 const angle = (Math.PI * 2 * i) / numJets + Math.random() * 0.3;
                 const jet = {
                     points: [],
-                    color: i % 2 === 0 ? CONFIG.colors.orange : CONFIG.colors.blue,
+                    color: i % 2 === 0 ? CONFIG.colors.orange : CONFIG.colors.indigo,
                     opacity: CONFIG.baseOpacity * 0.5,
                     length: CONFIG.maxFiberLength * 0.3
                 };
@@ -405,20 +406,20 @@
                 ctx.lineTo(this.points[i].x, this.points[i].y);
             }
 
-            // Subtle gradient from blue to orange (like regular fibers)
-            const blueColor = CONFIG.colors.blue;
+            // Subtle gradient from indigo to orange (like regular fibers)
+            const indigoColor = CONFIG.colors.indigo;
             const orangeColor = CONFIG.colors.orange;
 
             // More subtle gradient - blend colors more gradually (like regular fibers)
-            const subtleBlue = {
-                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
-                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
-                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
+            const subtleIndigo = {
+                r: Math.round(indigoColor.r * 0.85 + orangeColor.r * 0.15),
+                g: Math.round(indigoColor.g * 0.85 + orangeColor.g * 0.15),
+                b: Math.round(indigoColor.b * 0.85 + orangeColor.b * 0.15)
             };
             const subtleOrange = {
-                r: Math.round(blueColor.r * 0.15 + orangeColor.r * 0.85),
-                g: Math.round(blueColor.g * 0.15 + orangeColor.g * 0.85),
-                b: Math.round(blueColor.b * 0.15 + orangeColor.b * 0.85)
+                r: Math.round(indigoColor.r * 0.15 + orangeColor.r * 0.85),
+                g: Math.round(indigoColor.g * 0.15 + orangeColor.g * 0.85),
+                b: Math.round(indigoColor.b * 0.15 + orangeColor.b * 0.85)
             };
 
             if (this.points.length > 2) {
@@ -427,13 +428,13 @@
                     this.points[this.points.length - 1].x, this.points[this.points.length - 1].y
                 );
 
-                // Start with subtle blue-tinted
+                // Start with subtle indigo-tinted
                 const startOpacity = Math.max(0.1, this.points[0].opacity);
-                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity})`);
+                gradient.addColorStop(0, `rgba(${subtleIndigo.r}, ${subtleIndigo.g}, ${subtleIndigo.b}, ${startOpacity})`);
 
                 // Middle transition
                 const midOpacity = Math.max(0.05, this.points[Math.floor(this.points.length / 2)].opacity);
-                gradient.addColorStop(0.7, `rgba(${Math.round(subtleBlue.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleBlue.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleBlue.b * 0.7 + subtleOrange.b * 0.3)}, ${midOpacity})`);
+                gradient.addColorStop(0.7, `rgba(${Math.round(subtleIndigo.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleIndigo.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleIndigo.b * 0.7 + subtleOrange.b * 0.3)}, ${midOpacity})`);
 
                 // End with subtle orange-tinted
                 const endOpacity = Math.max(0.02, this.points[this.points.length - 1].opacity);
@@ -442,7 +443,7 @@
                 ctx.strokeStyle = gradient;
             } else {
                 const avgOpacity = this.points.reduce((sum, p) => sum + p.opacity, 0) / this.points.length;
-                ctx.strokeStyle = `rgba(${Math.round((subtleBlue.r + subtleOrange.r) / 2)}, ${Math.round((subtleBlue.g + subtleOrange.g) / 2)}, ${Math.round((subtleBlue.b + subtleOrange.b) / 2)}, ${avgOpacity})`;
+                ctx.strokeStyle = `rgba(${Math.round((subtleIndigo.r + subtleOrange.r) / 2)}, ${Math.round((subtleIndigo.g + subtleOrange.g) / 2)}, ${Math.round((subtleIndigo.b + subtleOrange.b) / 2)}, ${avgOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.mouseTrailThickness; // Smaller thickness
@@ -628,21 +629,21 @@
             const startOpacity = Math.max(0.4, fiber.opacity * 0.8); // Higher starting opacity
             const endOpacity = Math.max(0.1, fiber.opacity * Math.pow(CONFIG.opacityDecay, Math.min(points.length, 200)) * 0.6); // Higher end opacity
 
-            // Create subtle gradient from blue to orange along the fiber
-            const blueColor = CONFIG.colors.blue;
+            // Create subtle gradient from indigo to orange along the fiber
+            const indigoColor = CONFIG.colors.indigo;
             const orangeColor = CONFIG.colors.orange;
 
             // More subtle gradient - blend colors more gradually
-            // Use a weighted mix that's closer to blue throughout
-            const subtleBlue = {
-                r: Math.round(blueColor.r * 0.85 + orangeColor.r * 0.15),
-                g: Math.round(blueColor.g * 0.85 + orangeColor.g * 0.15),
-                b: Math.round(blueColor.b * 0.85 + orangeColor.b * 0.15)
+            // Use a weighted mix that's closer to indigo throughout
+            const subtleIndigo = {
+                r: Math.round(indigoColor.r * 0.85 + orangeColor.r * 0.15),
+                g: Math.round(indigoColor.g * 0.85 + orangeColor.g * 0.15),
+                b: Math.round(indigoColor.b * 0.85 + orangeColor.b * 0.15)
             };
             const subtleOrange = {
-                r: Math.round(blueColor.r * 0.15 + orangeColor.r * 0.85),
-                g: Math.round(blueColor.g * 0.15 + orangeColor.g * 0.85),
-                b: Math.round(blueColor.b * 0.15 + orangeColor.b * 0.85)
+                r: Math.round(indigoColor.r * 0.15 + orangeColor.r * 0.85),
+                g: Math.round(indigoColor.g * 0.15 + orangeColor.g * 0.85),
+                b: Math.round(indigoColor.b * 0.15 + orangeColor.b * 0.85)
             };
 
             if (points.length > 2) {
@@ -652,19 +653,19 @@
                     points[points.length - 1].x, points[points.length - 1].y
                 );
 
-                // Start with subtle blue-tinted (higher opacity)
-                gradient.addColorStop(0, `rgba(${subtleBlue.r}, ${subtleBlue.g}, ${subtleBlue.b}, ${startOpacity})`);
+                // Start with subtle indigo-tinted (higher opacity)
+                gradient.addColorStop(0, `rgba(${subtleIndigo.r}, ${subtleIndigo.g}, ${subtleIndigo.b}, ${startOpacity})`);
 
-                // Very gradual transition - mostly blue throughout
-                gradient.addColorStop(0.7, `rgba(${Math.round(subtleBlue.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleBlue.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleBlue.b * 0.7 + subtleOrange.b * 0.3)}, ${(startOpacity + endOpacity) / 2})`);
+                // Very gradual transition - mostly indigo throughout
+                gradient.addColorStop(0.7, `rgba(${Math.round(subtleIndigo.r * 0.7 + subtleOrange.r * 0.3)}, ${Math.round(subtleIndigo.g * 0.7 + subtleOrange.g * 0.3)}, ${Math.round(subtleIndigo.b * 0.7 + subtleOrange.b * 0.3)}, ${(startOpacity + endOpacity) / 2})`);
 
                 // End with subtle orange-tinted (lower opacity)
                 gradient.addColorStop(1, `rgba(${subtleOrange.r}, ${subtleOrange.g}, ${subtleOrange.b}, ${endOpacity})`);
 
                 ctx.strokeStyle = gradient;
             } else {
-                // Fallback for short fibers - use subtle blue-orange mix
-                ctx.strokeStyle = `rgba(${Math.round((subtleBlue.r + subtleOrange.r) / 2)}, ${Math.round((subtleBlue.g + subtleOrange.g) / 2)}, ${Math.round((subtleBlue.b + subtleOrange.b) / 2)}, ${startOpacity})`;
+                // Fallback for short fibers - use subtle indigo-orange mix
+                ctx.strokeStyle = `rgba(${Math.round((subtleIndigo.r + subtleOrange.r) / 2)}, ${Math.round((subtleIndigo.g + subtleOrange.g) / 2)}, ${Math.round((subtleIndigo.b + subtleOrange.b) / 2)}, ${startOpacity})`;
             }
 
             ctx.lineWidth = CONFIG.fiberThickness * 1.5; // Slightly thicker for visibility

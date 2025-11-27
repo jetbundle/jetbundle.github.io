@@ -410,22 +410,32 @@ nav a[href="/"]:first-child {
     font-weight: 400 !important;
 }
 
-.learn-more-btn {
+a.learn-more-btn,
+.learn-more-btn,
+.landing-content .learn-more-btn,
+body .learn-more-btn {
     display: inline-block !important;
     padding: 0.75rem 2rem !important;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #ff8c5a 0%, #ff8c5a 100%) !important;
+    background-color: #ff8c5a !important;
     color: #f1f5f9 !important;
     text-decoration: none !important;
     border-radius: 6px !important;
     font-weight: 500 !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     margin-top: 1rem !important;
+    border: none !important;
 }
 
-.learn-more-btn:hover {
+a.learn-more-btn:hover,
+.learn-more-btn:hover,
+.landing-content .learn-more-btn:hover,
+body .learn-more-btn:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
+    box-shadow: 0 4px 12px rgba(255, 140, 90, 0.5) !important;
     color: #f1f5f9 !important;
+    background: linear-gradient(135deg, #ff8c5a 0%, #ff8c5a 100%) !important;
+    background-color: #ff8c5a !important;
 }
 
 /* Footer - sticky footer at bottom of page */
