@@ -24,17 +24,11 @@ avatar_description: "Mapping the hidden geometry of modern science."
 
 highlighter_theme: monokai
 
-# Collections (The "Fibers")
+# Collections
 collections:
   pages:
     output: true
     permalink: /:name/
-  c3i_stack:
-    output: true
-  physics_stack:
-    output: true
-  finance_stack:
-    output: true
 
 # Plugins
 plugins:
@@ -65,6 +59,7 @@ exclude:
   - _pages/booklist.md
   - _pages/archive.md
   - _dropdown
+  - archive
 
 # PDF Settings
 pdf_height: 900px

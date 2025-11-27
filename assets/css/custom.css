@@ -1,8 +1,8 @@
 /* JetBundle Gauge Theme - Direct CSS file for maximum override */
 :root {
-    --orange-primary: #ff6b35;
-    --orange-accent: #ff4500;
-    --blue-primary: #0ea5e9;
+    --orange-primary: #4f46e5;
+    --orange-accent: #4338ca;
+    --blue-primary: #4f46e5;
     --blue-deep: #1e40af;
     --dark-bg: #0b0e17;
     --card-bg: #111827;
@@ -48,39 +48,39 @@ body h1,
 html body h1,
 body .container h1,
 body .wrapper h1 {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
     font-weight: 700 !important;
 }
 
 body h2,
 html body h2,
 body .container h2 {
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
     border-bottom: 2px solid #1e293b !important;
     padding-bottom: 0.5rem !important;
 }
 
 body h3,
 html body h3 {
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 body a,
 html body a,
 body .container a,
 body .wrapper a {
-    color: #0ea5e9 !important;
+    color: #4f46e5 !important;
     text-decoration: none !important;
 }
 
 body a:hover,
 html body a:hover {
-    color: #38bdf8 !important;
-    text-shadow: 0 0 8px rgba(14, 165, 233, 0.5) !important;
+    color: #6366f1 !important;
+    text-shadow: 0 0 8px rgba(79, 70, 229, 0.5) !important;
 }
 
 body nav,
@@ -106,8 +106,8 @@ html body .navbar a {
 body nav a:hover,
 body .navbar a:hover,
 body .toolbar a:hover {
-    color: #ff6b35 !important;
-    text-shadow: 0 0 8px rgba(255, 107, 53, 0.5) !important;
+    color: #4f46e5 !important;
+    text-shadow: 0 0 8px rgba(79, 70, 229, 0.5) !important;
 }
 
 body,
@@ -139,8 +139,8 @@ body .highlight {
 }
 
 body blockquote {
-    border-left: 4px solid #ff6b35 !important;
-    background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
+    border-left: 4px solid #4f46e5 !important;
+    background: linear-gradient(90deg, rgba(79, 70, 229, 0.1) 0%, #111827 100%) !important;
     background-color: #111827 !important;
     color: #94a3b8 !important;
 }
@@ -148,7 +148,7 @@ body blockquote {
 body table th {
     background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
     background-color: #0b0e17 !important;
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 body table td {
@@ -158,8 +158,8 @@ body table td {
 
 body button,
 body .btn {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-    background-color: #ff6b35 !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+    background-color: #4f46e5 !important;
     color: #f1f5f9 !important;
-    border: 1px solid #ff6b35 !important;
+    border: 1px solid #4f46e5 !important;
 }
