@@ -51,8 +51,8 @@ body h1,
 html body h1,
 h1,
 .post-title {
-    color: #ff6b35 !important;
-    text-decoration-color: #ff6b35 !important;
+    color: #4f46e5 !important;
+    text-decoration-color: #4f46e5 !important;
     border-bottom-color: #1e293b !important;
 }
 
@@ -61,11 +61,11 @@ body .content-div h1,
 body h1,
 html body h1,
 h1 {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 body h1 a,
@@ -74,9 +74,9 @@ body .content-div h1 a,
 body .content-div h1 a:hover,
 h1 a,
 h1 a:hover {
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
     background: none !important;
-    -webkit-text-fill-color: #ff6b35 !important;
+    -webkit-text-fill-color: #4f46e5 !important;
 }
 
 body .container h2,
@@ -84,8 +84,8 @@ body .content-div h2,
 body h2,
 html body h2,
 h2 {
-    color: #ff6b35 !important;
-    text-decoration-color: #ff6b35 !important;
+    color: #4f46e5 !important;
+    text-decoration-color: #4f46e5 !important;
     border-bottom: 2px solid #1e293b !important;
     border-bottom-color: #1e293b !important;
 }
@@ -95,8 +95,8 @@ body .content-div h3,
 body h3,
 html body h3,
 h3 {
-    color: #ff6b35 !important;
-    text-decoration-color: #ff6b35 !important;
+    color: #4f46e5 !important;
+    text-decoration-color: #4f46e5 !important;
 }
 
 body .container h4,
@@ -114,7 +114,7 @@ body .content-div h6,
 body h6,
 html body h6,
 h6 {
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 /* Override links - Maximum specificity */
@@ -123,7 +123,7 @@ body .content-div a,
 body a,
 html body a,
 a {
-    color: #0ea5e9 !important;
+    color: #4f46e5 !important;
 }
 
 body .container a:hover,
@@ -131,7 +131,7 @@ body .content-div a:hover,
 body a:hover,
 html body a:hover,
 a:hover {
-    color: #38bdf8 !important;
+    color: #6366f1 !important;
 }
 
 /* Override navigation - Maximum specificity (but allow our custom header) */
@@ -162,8 +162,8 @@ html body nav a:hover,
 .navbar-icon:hover,
 nav a:hover,
 .navbar a:hover {
-    color: #ff6b35 !important;
-    text-shadow: 0 0 .1em rgba(255, 107, 53, 0.5) !important;
+    color: #4f46e5 !important;
+    text-shadow: 0 0 .1em rgba(79, 70, 229, 0.5) !important;
 }
 
 /* Override containers - preserve theme functionality but ensure visibility */
@@ -254,8 +254,8 @@ code,
 body blockquote,
 body .content-div blockquote,
 blockquote {
-    border-left: 4px solid #ff6b35 !important;
-    background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, #111827 100%) !important;
+    border-left: 4px solid #4f46e5 !important;
+    background: linear-gradient(90deg, rgba(79, 70, 229, 0.1) 0%, #111827 100%) !important;
     background-color: #111827 !important;
     color: #94a3b8 !important;
     padding: 1rem 1.5rem !important;
@@ -268,7 +268,7 @@ body .content-div table th,
 table th {
     background: linear-gradient(135deg, #0b0e17 0%, #111827 100%) !important;
     background-color: #0b0e17 !important;
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 body table td,
@@ -283,10 +283,10 @@ body button,
 body .btn,
 button,
 .btn {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
-    background-color: #ff6b35 !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+    background-color: #4f46e5 !important;
     color: #f1f5f9 !important;
-    border: 1px solid #ff6b35 !important;
+    border: 1px solid #4f46e5 !important;
 }
 
 /* Ensure lists are visible */
@@ -396,11 +396,11 @@ nav a[href="/"]:first-child {
     font-size: 4rem !important;
     font-weight: 700 !important;
     margin: 0 0 1rem 0 !important;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
 }
 
 .landing-subtitle {
@@ -413,7 +413,7 @@ nav a[href="/"]:first-child {
 .learn-more-btn {
     display: inline-block !important;
     padding: 0.75rem 2rem !important;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
     color: #f1f5f9 !important;
     text-decoration: none !important;
     border-radius: 6px !important;
@@ -424,7 +424,7 @@ nav a[href="/"]:first-child {
 
 .learn-more-btn:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4) !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
     color: #f1f5f9 !important;
 }
 
@@ -589,12 +589,12 @@ a.navbar-brand,
 a.jetbundle-logo,
 header a.navbar-brand,
 header a.jetbundle-logo {
-    color: #ff6b35 !important;
+    color: #4f46e5 !important;
     font-size: 1.75rem !important;
     font-weight: 700 !important;
     text-decoration: none !important;
     margin-right: 0 !important;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%) !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -617,10 +617,10 @@ a.navbar-brand:hover,
 a.jetbundle-logo:hover,
 header a.navbar-brand:hover,
 header a.jetbundle-logo:hover {
-    color: #ff8c5a !important;
-    -webkit-text-fill-color: #ff8c5a !important;
+    color: #6366f1 !important;
+    -webkit-text-fill-color: #6366f1 !important;
     transform: scale(1.1) !important;
-    text-shadow: 0 0 12px rgba(255, 107, 53, 0.6) !important;
+    text-shadow: 0 0 12px rgba(79, 70, 229, 0.6) !important;
     transition: all 0.2s ease !important;
     opacity: 1 !important;
 }
@@ -647,8 +647,8 @@ header a.jetbundle-logo:hover {
 
 .navbar-link:hover,
 .navbar-menu a:hover {
-    color: #ff6b35 !important;
-    text-shadow: 0 0 6px rgba(255, 107, 53, 0.4) !important;
+    color: #4f46e5 !important;
+    text-shadow: 0 0 6px rgba(79, 70, 229, 0.4) !important;
     transform: translateY(-2px) !important;
 }
 
