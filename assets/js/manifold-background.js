@@ -127,9 +127,9 @@
         }
 
         determineColor() {
-            // Fibers will use gradient from blue to orange, so we can use either as base
+            // Fibers will use gradient from indigo to orange, so we can use either as base
             // The gradient will be applied during drawing
-            return CONFIG.colors.blue; // Base color, gradient applied in drawFiber
+            return CONFIG.colors.indigo; // Base color, gradient applied in drawFiber
         }
 
         generatePoints(mouseX, mouseY, mouseActive) {
