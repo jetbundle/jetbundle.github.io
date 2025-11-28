@@ -99,7 +99,7 @@ More content...
 
 **Inline math**: `$E = mc^2$` renders as $E = mc^2$
 
-**Display math**: 
+**Display math**:
 ```
 $$
 \frac{d^2y}{dt^2} + \omega^2 y = 0
@@ -154,8 +154,8 @@ The widget system allows you to create interactive computational modules with sl
     <div class="widget-controls">
       <div class="widget-control">
         <label>Parameter λ</label>
-        <input type="range" class="widget-slider" 
-               data-param="lambda" 
+        <input type="range" class="widget-slider"
+               data-param="lambda"
                min="0.1" max="5" step="0.1" value="1">
         <span class="widget-value" data-param="lambda">1.0</span>
       </div>
@@ -209,8 +209,8 @@ create_plot([trace], layout)</code></pre>
       <!-- Code selector dropdown -->
       <div class="widget-control">
         <label>ODE Type</label>
-        <select class="widget-dropdown" 
-                data-param="ode_type" 
+        <select class="widget-dropdown"
+                data-param="ode_type"
                 data-code-selector="true">
           <option value="mode1">Mode 1: Exponential</option>
           <option value="mode2">Mode 2: Oscillatory</option>
@@ -221,7 +221,7 @@ create_plot([trace], layout)</code></pre>
       <!-- Regular sliders -->
       <div class="widget-control">
         <label>Parameter</label>
-        <input type="range" class="widget-slider" 
+        <input type="range" class="widget-slider"
                data-param="param1" min="0" max="10" step="0.1" value="1">
         <span class="widget-value" data-param="param1">1.0</span>
       </div>
@@ -574,7 +574,7 @@ To customize navigation, edit `_includes/textbook_nav.html`.
     <div class="widget-controls">
       <div class="widget-control">
         <label>λ</label>
-        <input type="range" class="widget-slider" 
+        <input type="range" class="widget-slider"
                data-param="lambda" min="0.1" max="3" step="0.1" value="1">
         <span class="widget-value" data-param="lambda">1.0</span>
       </div>
@@ -597,13 +597,13 @@ create_plot([trace], layout)</code></pre>
   <div class="widget-controls">
     <div class="widget-control">
       <label>Initial Value</label>
-      <input type="range" class="widget-slider" 
+      <input type="range" class="widget-slider"
              data-param="y0" min="0" max="5" step="0.1" value="1">
       <span class="widget-value" data-param="y0">1.0</span>
     </div>
     <div class="widget-control">
       <label>Time Span</label>
-      <input type="range" class="widget-slider" 
+      <input type="range" class="widget-slider"
              data-param="t_max" min="1" max="10" step="0.5" value="5">
       <span class="widget-value" data-param="t_max">5.0</span>
     </div>
@@ -662,4 +662,3 @@ For issues or questions:
 **Last Updated**: 2025-01-XX
 
 **Version**: 1.0
-
