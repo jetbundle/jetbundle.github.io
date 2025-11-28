@@ -253,22 +253,23 @@ class WidgetEngine {
         throw new Error('Pyodide not loaded');
       }
 
-      // Use consistent plot data variable per widget (not regenerated each time)
-      const widgetId = widgetData.element.id || `widget_${Date.now()}`;
-      const plotDataVar = widgetData.plotDataVar || `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
-      widgetData.plotDataVar = plotDataVar; // Store for future use
+      // Use consistent widget ID
+      const widgetId = widgetData.element.id || `widget_${this.widgets.size}`;
+      widgetData.element.id = widgetId; // Ensure ID is set
       
+      // Use consistent plot data variable per widget
+      if (!widgetData.plotDataVar) {
+        widgetData.plotDataVar = `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+      }
+      const plotDataVar = widgetData.plotDataVar;
+
       await window.textbookEngine.pyodide.runPythonAsync(`${plotDataVar} = None`);
 
-      // Only define create_plot once per widget (check if it exists)
-      const createPlotVarName = `create_plot_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
-      const plotHelperExists = window.textbookEngine.pyodide.runPython(`'${createPlotVarName}' in globals()`);
-      
-      if (!plotHelperExists || !widgetData.plotHelperDefined) {
-        // Construct Python code with widget-specific variable name
+      // Define create_plot helper if not already defined for this widget
+      if (!widgetData.plotHelperDefined) {
         const plotHelperCode = `import json
 
-def ${createPlotVarName}(traces, layout=None):
+def create_plot(traces, layout=None):
     """Helper function to create plot data for Plotly.js"""
     global ${plotDataVar}
     if layout is None:
@@ -281,6 +282,8 @@ def ${createPlotVarName}(traces, layout=None):
         for key, value in trace.items():
             if hasattr(value, 'tolist'):
                 trace_dict[key] = value.tolist()
+            elif isinstance(value, (list, tuple)):
+                trace_dict[key] = list(value)
             else:
                 trace_dict[key] = value
         plot_traces.append(trace_dict)
@@ -290,13 +293,11 @@ def ${createPlotVarName}(traces, layout=None):
         'layout': layout
     }
     return ${plotDataVar}
-
-# Alias for backward compatibility
-create_plot = ${createPlotVarName}
       `;
 
         await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
         widgetData.plotHelperDefined = true;
+        console.log('create_plot helper defined for widget:', widgetId);
       }
 
       // Log the code that will be executed for debugging
@@ -367,7 +368,8 @@ else:
         const isContinuousUpdate = skipButtonState && widgetData.hasPlot && widgetData.isContinuous;
 
         // Check if we should use Plotly.react for continuous updates
-        const shouldUseReact = skipButtonState && widgetData.hasPlot && widgetData.isContinuous && output.data;
+        // Use react if: continuous widget, plot already exists, and we're in continuous mode
+        const shouldUseReact = widgetData.isContinuous && widgetData.hasPlot && output.data && output.data.length > 0;
         
         if (shouldUseReact) {
           // Use Plotly.react for efficient updates (doesn't recreate the plot DOM)
@@ -417,9 +419,16 @@ else:
 
           // Use Plotly.newPlot for initial render
           try {
+            console.log('Rendering plot with Plotly.newPlot, data:', plotData.data);
             Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
               widgetData.hasPlot = true;
-              console.log('Plot rendered successfully');
+              console.log('Plot rendered successfully with Plotly.newPlot, hasPlot set to true');
+              // Verify plot was created
+              if (output.data && output.data.length > 0) {
+                console.log('Plot verified - output.data exists');
+              } else {
+                console.warn('Plot may not have rendered - output.data is empty');
+              }
               // Trigger MathJax rendering after plot is rendered
               if (window.MathJax && window.MathJax.typesetPromise) {
                 window.MathJax.typesetPromise([output]).catch((err) => {
@@ -429,10 +438,12 @@ else:
             }).catch(err => {
               console.error('Plotly.newPlot error:', err);
               output.innerHTML = `<div style="color: red; padding: 1rem;">Error rendering plot: ${err.message}</div>`;
+              widgetData.hasPlot = false; // Reset flag on error
             });
           } catch (err) {
             console.error('Error calling Plotly.newPlot:', err);
             output.innerHTML = `<div style="color: red; padding: 1rem;">Error: ${err.message}</div>`;
+            widgetData.hasPlot = false; // Reset flag on error
           }
         }
       } else {
