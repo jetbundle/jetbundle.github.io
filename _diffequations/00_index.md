@@ -139,17 +139,6 @@ The PDE *is* the Manifold
 
 ---
 
-## Math Formatting Guidelines
-
-**IMPORTANT:** When writing mathematical expressions, **always use `\mid` instead of `|`** for mathematical separators.
-
-- ✅ **CORRECT**: `$\{x \mid x > 0\}$` (set notation)
-- ❌ **WRONG**: `$\{x | x > 0\}$` (causes table parsing errors)
-
-**Exception:** Use `\left|` and `\right|` for absolute value delimiters: `$\left| x \right|$`
-
-📖 See the [Math Formatting Guide]({{ '/diffequations/math-formatting-guide/' | relative_url }}) for complete guidelines.
-
 ## About This Resource
 
 This online resource presents a unified narrative of differential equations, progressing from classical explicit methods through functional analysis, geometric formulation, symmetry methods, stochastic analysis, intrinsic geometric PDEs, and finally categorical resolution. Each chapter builds on the previous, with limitations exposed that motivate the next phase of development.
@@ -165,10 +154,15 @@ This resource is designed for advanced undergraduate and graduate students in ma
 This work and its source code are released under an open source license. The content and code are freely available for educational and non-commercial use.
 
 **Terms:**
+
 - **Educational Use**: Free to use for teaching, learning, and research
+
 - **Non-Commercial Use**: Free for personal and academic purposes
+
 - **Commercial Use**: Prohibited without explicit written permission
+
 - **Modification**: Source code may be modified for personal/educational use
+
 - **Distribution**: May be shared with attribution for non-commercial purposes
 
 While the code is open source, commercial use of either the content or code requires explicit permission from the copyright holder.

@@ -104,7 +104,7 @@ Or manually:
 
 ### Summary
 
-**Remember:** 
+**Remember:**
 - **Separators** (such that, conditional) → Use `\mid`
 - **Delimiters** (absolute value, norm) → Use `\left|` and `\right|`
 
