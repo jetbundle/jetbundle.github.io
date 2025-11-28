@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 2: Functional Analysis, Distributions & Weak Solutions
 
+The Geometry of Infinite Dimensions.
+
 ## Introduction
 
 Chapter 1 revealed that we can formally manipulate divergent series and delta functions, but they lack a rigorous foundation in standard calculus. This chapter constructs the rigorous analytical framework required to support these heuristic objects. We build a cathedral of analysis on infinite-dimensional spaces, providing the mathematical infrastructure for distributions, weak solutions, and the spectral theory that justifies the methods of Chapter 1.
 
-**Theme:** The Geometry of Infinite Dimensions.
-
-**Narrative Goal:** To construct the rigorous analytical framework required to support the heuristic objects of Chapter 1.
+We wish to construct the rigorous analytical framework required to support the heuristic objects of Chapter 1.
 
 ## Chapter Overview
 
@@ -60,7 +60,7 @@ This chapter builds the analytical foundation for everything that follows. We re
 
 We develop the geometry of infinite-dimensional spaces, showing how functions can be viewed as vectors, how operators act on these spaces, and how variational principles provide existence results. The chapter culminates in Fredholm theory, which classifies operators that are "almost" invertible and introduces the index—a topological invariant that will play a crucial role in later chapters.
 
-**The Cliffhanger:** We have built a cathedral of analysis, but it rests on the flat ground of $\mathbb{R}^n$. Physics, however, lives on curved manifolds where "global vector addition" is meaningless. This limitation motivates Chapter 3, where we detach differential equations from coordinate systems and formulate them intrinsically on manifolds.
+**We have built a cathedral of analysis, but it rests on the flat ground of $\mathbb{R}^n$.** Physics, however, lives on curved manifolds where "global vector addition" is meaningless. This limitation motivates Chapter 3, where we detach differential equations from coordinate systems and formulate them intrinsically on manifolds.
 
 ## Prerequisites
 

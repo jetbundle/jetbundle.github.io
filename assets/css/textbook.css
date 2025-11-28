@@ -17,9 +17,11 @@
   --text-secondary-dark: #e2e8f0;
   --border-dark: #334155;
 
-  /* Theme-Agnostic Accent Colors */
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
+  /* Theme-Agnostic Accent Colors - Optimized for both light and dark themes */
+  --accent: #60a5fa;  /* Light blue that works in both themes */
+  --accent-hover: #3b82f6;  /* Medium blue for hover */
+  --accent-dark: #3b82f6;  /* Slightly darker for dark theme */
+  --accent-light: #2563eb;  /* Darker for light theme */
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -166,6 +168,35 @@
 .textbook-content p {
   color: var(--text-primary);
   margin: 1rem 0;
+}
+
+/* Link styles - optimized for both light and dark themes */
+.textbook-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.textbook-content a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent);
+}
+
+.theme-light .textbook-content a {
+  color: var(--accent-light);
+}
+
+.theme-light .textbook-content a:hover {
+  color: var(--accent-hover);
+}
+
+.theme-dark .textbook-content a {
+  color: var(--accent);
+}
+
+.theme-dark .textbook-content a:hover {
+  color: var(--accent-hover);
 }
 
 .textbook-content ul,

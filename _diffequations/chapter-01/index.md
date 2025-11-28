@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
 
+The Rise and Fall of the Specific Solution
+
 ## Introduction
 
 This chapter establishes the classical toolkit for solving differential equations explicitly. We begin with the intuitive assumption that solutions are explicit formulas—functions we can write down and compute. Through systematic exploration, we demonstrate that "solving" by formula is an exceptional, rather than generic, event. Each section introduces powerful methods, applies them to their limits, and reveals fundamental limitations that motivate the machinery of subsequent chapters.
 
-**Theme:** The Rise and Fall of the Specific Solution.
-
-**Narrative Goal:** To establish the classical toolkit and demonstrate that "solving" by formula is an exceptional, rather than generic, event.
+Our goal in thiss chapter is to establish the classical toolkit and demonstrate that "solving" by formula is an exceptional, rather than generic, event.
 
 ## Chapter Overview
 
@@ -60,7 +60,7 @@ This chapter exhausts explicit methods to reveal the necessity of approximation.
 
 The narrative tension builds as each method reveals its limitations: exact methods fail for non-integrable systems, special functions exhibit non-global analytic behavior (Stokes phenomenon), integral transforms face convergence issues, eigenfunction expansions raise questions about metric spaces, asymptotic methods provide only local truth, and perturbation series diverge factorially.
 
-**The Cliffhanger:** We can formally manipulate divergent series and delta functions, but they do not exist within standard calculus. We lack a rigorous topological space to contain them. This limitation motivates Chapter 2, where we construct the analytical framework to support these heuristic objects.
+**We can formally manipulate divergent series and delta functions, but they do not exist within standard calculus.** We lack a rigorous topological space to contain them. This limitation motivates Chapter 2, where we construct the analytical framework to support these heuristic objects.
 
 ## Prerequisites
 

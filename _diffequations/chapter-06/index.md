@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
 
+The PDE *is* the Manifold.
+
 ## Introduction
 
 Chapter 5 showed that noise dissolves background geometry, and we are still solving equations *on* a space. This chapter reformulates PDEs as submanifolds of jet space, viewing the equation itself as the fundamental geometric object. We erase the distinction between dependent and independent variables, study the geometry of solution spaces (moduli spaces), and develop geometric evolution equations like Ricci flow.
 
-**Theme:** The PDE *is* the Manifold.
-
-**Narrative Goal:** To reformulate PDEs as submanifolds of Jet Space and study the geometry of the solution space itself.
+Now the goal is to reformulate PDEs as submanifolds of Jet Space and study the geometry of the solution space itself.
 
 ## Chapter Overview
 
@@ -60,7 +60,7 @@ This chapter geometrizes PDEs completely. We erase the artificial distinction be
 
 We zoom out to study the space of all possible geometries—the moduli space of metrics. Geometric evolution equations like Ricci flow define dynamics on this infinite-dimensional space. Singularity formation becomes topological surgery, and instantons emerge as supersymmetric vacua connecting to Chapter 5.
 
-**The Cliffhanger:** We have geometrized everything, but the moduli spaces (solution spaces) are often singular or non-compact. We cannot do simple calculus on them. We need a tool that is robust against these singularities. This motivates Chapter 7, where we resolve singularities using the algebraic tools of the cotangent bundle and category theory.
+**We have geometrized everything, but the moduli spaces (solution spaces) are often singular or non-compact. We cannot do simple calculus on them**  We need a tool that is robust against these singularities. This motivates Chapter 7, where we resolve singularities using the algebraic tools of the cotangent bundle and category theory.
 
 ## Prerequisites
 

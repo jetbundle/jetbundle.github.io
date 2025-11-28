@@ -12,13 +12,14 @@ parent_chapter: null
 
 # Chapter 4: Symmetry, Lie Theory & Classical Integrability
 
+
+Solvability is Symmetry.
+
 ## Introduction
 
 Chapter 3 showed that we can write invariant equations, but generally cannot solve nonlinear ones. Yet certain systems (like KdV) exhibit miraculous soliton behavior. This chapter reveals that the "miraculous" solvability of certain equations is a consequence of hidden algebraic structure—symmetry. We systematize the "tricks" of Chapter 1 by viewing symmetries as continuous groups acting on solution spaces, and show how infinite hierarchies of symmetries lead to complete integrability.
 
-**Theme:** Solvability is Symmetry.
-
-**Narrative Goal:** To reveal that the "miraculous" solvability of certain equations is a consequence of hidden algebraic structure.
+The goal now is to reveal that the "miraculous" solvability of certain equations is a consequence of hidden algebraic structure.
 
 ## Chapter Overview
 
@@ -63,7 +64,7 @@ This chapter reveals that integrability is not a miracle but a consequence of sy
 
 Lax pairs show that nonlinear evolution can be viewed as isospectral flow, where eigenvalues remain constant. The inverse scattering transform provides a "nonlinear Fourier transform" that solves initial value problems. Recursion operators systematically generate symmetries, and Hirota's method reveals combinatorial structure underlying solitons.
 
-**The Cliffhanger:** Integrability is beautiful but fragile. It relies on precise algebraic cancellation. Real-world systems are subject to thermal noise and roughness, which destroy these infinite symmetries. How do we do analysis in a noisy, rough world? This question motivates Chapter 5, where we rebuild calculus for non-differentiable trajectories.
+Integrability is beautiful but fragile. **It relies on precise algebraic cancellation. Real-world systems are subject to thermal noise and roughness, which destroy these infinite symmetries.** How do we do analysis in a noisy, rough world? This question motivates Chapter 5, where we rebuild calculus for non-differentiable trajectories.
 
 ## Prerequisites
 

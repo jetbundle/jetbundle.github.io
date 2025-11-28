@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
 
+Regularity is an Exception; Roughness is the Rule.
+
 ## Introduction
 
 Chapter 4 revealed that integrability relies on precise algebraic cancellation, which is destroyed by noise and roughness in real-world systems. This chapter rebuilds calculus for trajectories that are nowhere differentiable and possess memory. We confront the non-differentiable nature of physical trajectories, developing stochastic calculus, rough path theory, fractional calculus, and the supersymmetric theory that unifies these approaches.
 
-**Theme:** Regularity is an Exception; Roughness is the Rule.
-
-**Narrative Goal:** To rebuild calculus for trajectories that are nowhere differentiable and possess memory.
+We will rebuild calculus for trajectories that are nowhere differentiable and possess memory.
 
 ## Chapter Overview
 
@@ -68,7 +68,7 @@ Rough path theory provides a deterministic framework for non-smooth calculus, de
 
 The chapter culminates in the supersymmetric theory of stochastics, revealing that all SDEs possess hidden topological supersymmetry. Chaos and turbulence emerge as spontaneous symmetry breaking, with the Witten index providing a robust topological invariant.
 
-**The Cliffhanger:** Noise dissolves the background geometry. We are still solving equations *on* a space. We need a framework where the PDE defines the geometry *intrinsically*. This motivates Chapter 6, where we view the equation itself as the fundamental geometric object.
+Noise dissolves the background geometry. We are still solving equations *on* a space. We need a framework where the PDE defines the geometry *intrinsically*. This motivates Chapter 6, where we view the equation itself as the fundamental geometric object.
 
 ## Prerequisites
 

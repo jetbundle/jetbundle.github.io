@@ -50,6 +50,14 @@ markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
+  math_engine_opts:
+    preview: AsciiMath
+    preview_as_mathml: true
+  syntax_highlighter: rouge
+  hard_wrap: false
+  auto_ids: true
+  footnote_backlink: "&#8617;"
+  footnote_backlink_inline: true
 
 # Exclude
 exclude:

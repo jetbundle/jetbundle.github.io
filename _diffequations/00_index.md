@@ -1,7 +1,7 @@
 ---
 layout: textbook
 title: "A Survey of Differential Equations and their Algebraic Geometry"
-description: "Saucedo 2025 - The Jetbundle Project"
+description: "J. Saucedo 2025"
 permalink: /diffequations/
 order: 0
 chapter: 0
@@ -12,7 +12,7 @@ parent_chapter: null
 
 # A Survey of Differential Equations and their Algebraic Geometry
 
-**J. Saucedo 2025 - The Jetbundle Project**
+**J. Saucedo 2025** 
 
 ## Preface: The Mathematical Ascent
 
@@ -20,26 +20,26 @@ This online resource treats differential equations not as a collection of isolat
 
 The content is organized into seven phases, each resolving the limitations of its predecessor:
 
-1. **The Classical Arsenal:** We exhaust explicit methods to reveal the necessity of approximation.
+1. We exhaust explicit methods of solution to reveal the necessity of approximation.
 
-2. **The Analytic Foundation:** We construct infinite-dimensional spaces to house singular solutions.
+2. We construct infinite-dimensional function spaces to house singular solutions.
 
-3. **The Geometric Reformulation:** We leave flat space to understand physical invariance.
+3. We leave flat space to understand physical invariance.
 
-4. **The Algebraic Revelation:** We uncover hidden symmetries that order nonlinear chaos.
+4. We uncover hidden symmetries that order nonlinear chaos.
 
-5. **The Stochastic Reality:** We confront the non-differentiable nature of physical trajectories.
+5. We confront the non-differentiable nature of physical trajectories.
 
-6. **The Intrinsic Synthesis:** We view the equation itself as the fundamental geometric object.
+6. We view the equation itself as the fundamental geometric object.
 
-7. **The Categorical Resolution:** We conclude that topology dictates analysis.
+7. We conclude that topology dictates analysis.
 
-Each chapter establishes a mathematical paradigm, exploits it to its limit, and then exposes a fundamental failure that necessitates the specific machinery of the subsequent chapter. The journey ascends from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. By the end, the reader understands that a differential equation is not merely a problem to be solved, but the language through which the topology of the universe speaks to itself.
+Each chapter establishes a mathematical paradigm, exploits it to its limit, and then exposes a fundamental failure that necessitates the specific machinery of the subsequent chapter. The journey ascends from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. By the end, the reader understands that a differential equation is not merely a problem to be solved, but the language through which the topology of the universe is speaking to itself.
 
 ## Complete Table of Contents
 
 ### Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
-**Theme:** The Rise and Fall of the Specific Solution
+The Rise and Fall of the Specific Solution
 
 - [Chapter 1 Introduction]({{ '/diffequations/chapter-01/' | relative_url }})
   - [1.1 Exact Methods for Ordinary Differential Equations]({{ '/diffequations/chapter-01/01-1-exact-methods/' | relative_url }})
@@ -51,7 +51,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [1.7 Classical Renormalization & Non-Perturbative Methods]({{ '/diffequations/chapter-01/01-7-renormalization/' | relative_url }})
 
 ### Chapter 2: Functional Analysis, Distributions & Weak Solutions
-**Theme:** The Geometry of Infinite Dimensions
+The Geometry of Infinite Dimensions
 
 - [Chapter 2 Introduction]({{ '/diffequations/chapter-02/' | relative_url }})
   - [2.1 Distributions & Test Functions]({{ '/diffequations/chapter-02/02-1-distributions/' | relative_url }})
@@ -63,7 +63,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [2.7 Fredholm Theory & Index]({{ '/diffequations/chapter-02/02-7-fredholm-theory/' | relative_url }})
 
 ### Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
-**Theme:** Physics is Invariant; Coordinates are Artifacts
+Physics is Invariant; Coordinates are Artifacts
 
 - [Chapter 3 Introduction]({{ '/diffequations/chapter-03/' | relative_url }})
   - [3.1 Manifolds, Tensors & Covariant Derivatives]({{ '/diffequations/chapter-03/03-1-manifolds-tensors/' | relative_url }})
@@ -74,7 +74,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [3.6 Geometric Optics, Rays & Caustics]({{ '/diffequations/chapter-03/03-6-geometric-optics/' | relative_url }})
 
 ### Chapter 4: Symmetry, Lie Theory & Classical Integrability
-**Theme:** Solvability is Symmetry
+Solvability is Symmetry
 
 - [Chapter 4 Introduction]({{ '/diffequations/chapter-04/' | relative_url }})
   - [4.1 Lie Symmetries & Prolongation]({{ '/diffequations/chapter-04/04-1-lie-symmetries/' | relative_url }})
@@ -87,7 +87,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [4.8 Nonlocal Symmetries & Potential Systems]({{ '/diffequations/chapter-04/04-8-nonlocal-symmetries/' | relative_url }})
 
 ### Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
-**Theme:** Regularity is an Exception; Roughness is the Rule
+Regularity is an Exception; Roughness is a Rule
 
 - [Chapter 5 Introduction]({{ '/diffequations/chapter-05/' | relative_url }})
   - [5.1 Stochastic Calculus Foundations]({{ '/diffequations/chapter-05/05-1-stochastic-calculus/' | relative_url }})
@@ -101,7 +101,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [5.9 Supersymmetric Theory of Stochastics]({{ '/diffequations/chapter-05/05-9-susy-stochastics/' | relative_url }})
 
 ### Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
-**Theme:** The PDE *is* the Manifold
+The PDE *is* the Manifold
 
 - [Chapter 6 Introduction]({{ '/diffequations/chapter-06/' | relative_url }})
   - [6.1 Jet Bundles & Prolongation]({{ '/diffequations/chapter-06/06-1-jet-bundles/' | relative_url }})
@@ -113,7 +113,7 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [6.7 Fully Nonlinear & Overdetermined Systems]({{ '/diffequations/chapter-06/06-7-nonlinear-systems/' | relative_url }})
 
 ### Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
-**Theme:** The Phase Space is the Reality
+*The Phase Space is the Reality
 
 - [Chapter 7 Introduction]({{ '/diffequations/chapter-07/' | relative_url }})
   - [7.1 D-Modules & Holonomic Systems]({{ '/diffequations/chapter-07/07-1-d-modules/' | relative_url }})
@@ -125,7 +125,15 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
   - [7.7 Noncommutative Geometry]({{ '/diffequations/chapter-07/07-7-noncommutative/' | relative_url }})
   - [7.8 Higher Categories, Derived Stacks & TQFT]({{ '/diffequations/chapter-07/07-8-higher-categories/' | relative_url }})
 
+### Epilogue
+
+- [Epilogue: The Eternal Structure]({{ '/diffequations/epilogue/' | relative_url }})
+
 ## Navigation
+
+<div style="margin: 2rem 0; padding: 1rem; background: var(--bg-secondary, #f8fafc); border-left: 4px solid var(--accent, #3b82f6); border-radius: 4px;">
+  <p style="margin: 0;"><strong>←</strong> <a href="https://jetbundle.github.io" style="color: var(--accent, #3b82f6); text-decoration: none; font-weight: 500;">Back to the JetBundle Project</a></p>
+</div>
 
 {% include page_navigation.html %}
 
@@ -136,14 +144,6 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
 This online resource presents a unified narrative of differential equations, progressing from classical explicit methods through functional analysis, geometric formulation, symmetry methods, stochastic analysis, intrinsic geometric PDEs, and finally categorical resolution. Each chapter builds on the previous, with limitations exposed that motivate the next phase of development.
 
 This resource is designed for advanced undergraduate and graduate students in mathematics, physics, and engineering who seek a deep understanding of the structural foundations underlying differential equations. While familiarity with real analysis, linear algebra, basic topology, and elementary differential equations is helpful, these prerequisites should not deter interested readers. We strongly recommend reading from start to finish in order, as references for further reading, conceptual dependencies, important results, and complete examples are provided at every point in the journey. Each section includes the necessary background material and connections to foundational concepts, making the content accessible to motivated readers regardless of their initial preparation.
-
-## Notation and Conventions
-
-- Mathematical notation follows standard conventions
-- Theorems are numbered by chapter.section.theorem
-- References are provided at the end of each section
-- Complete worked examples illustrate key concepts
-- Cross-references link related material across chapters
 
 ---
 
