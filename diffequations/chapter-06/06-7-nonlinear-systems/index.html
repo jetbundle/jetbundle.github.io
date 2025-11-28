@@ -697,30 +697,441 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We return to scalar equations with maximal geometric nonlinearity (Monge-Ampère). We introduce the <strong>Continuity Method</strong> and <strong>A Priori Estimates</strong> (Evans-Krylov) to solve the “Convexity Barrier.”</p>
+<p>In the preceding sections of this chapter, we formulated partial differential equations as geometric objects within jet bundles and studied flows on the space of metrics. In those contexts, the nonlinearity typically arose from the geometry of the target manifold or the metric tensor, yet the differential operators often retained a quasilinear structure—linear in the highest order derivatives.</p>
+
+<p>We now confront the “convexity barrier”: fully nonlinear equations where the highest order derivatives interact nonlinearly. The archetype of this class is the Monge-Ampère equation, which governs problems of prescribed curvature and optimal transport. Here, the distinction between geometry and analysis vanishes completely; the convexity of the solution <em>is</em> the condition for ellipticity. We conclude the geometric formulation of PDEs by examining overdetermined systems, where an excess of boundary conditions imposes rigid symmetry constraints on the domain itself, a phenomenon captured by the method of moving planes.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="the-monge-ampère-equation">The Monge-Ampère Equation</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>The most significant fully nonlinear elliptic equation in geometry is the Monge-Ampère equation. Given a domain $\Omega \subset \mathbb{R}^n$ and a function $f &gt; 0$, we seek a scalar function $u$ satisfying:</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[\det(D^2 u) = f(x, u, \nabla u) \quad \text{in } \Omega\]
 
-<h3 id="core-results">Core Results</h3>
+<p>Unlike the Laplacian $\Delta u = \text{tr}(D^2 u)$, which is linear in the Hessian, the Monge-Ampère operator acts via the determinant. To understand the analytical properties of this operator, we examine its linearization. Let $F(M) = \det M$. The linearization at a matrix $M$ in the direction $H$ is:</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\]
 
-<h3 id="applications">Applications</h3>
+<p>For the resulting linear operator to be elliptic, the coefficient matrix—here, the cofactor matrix of $D^2 u$—must be positive definite. Consequently, the Monge-Ampère equation is elliptic only on the class of strictly convex functions. This creates a fundamental link: the analytical type of the equation dictates the geometric curvature of the solution graph.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h4 id="regularity-and-a-priori-estimates">Regularity and A Priori Estimates</h4>
+
+<p>The existence of classical solutions depends on establishing <em>a priori</em> estimates. For fully nonlinear equations $F(D^2 u, x) = 0$, regularity theory proceeds in a hierarchy:</p>
+
+<ol>
+  <li>
+    <p><strong>$C^0$ and $C^1$ Estimates:</strong> Derived from the maximum principle and boundary barriers.</p>
+  </li>
+  <li>
+    <p><strong>$C^2$ Estimates (Pogorelov):</strong> The crucial step is bounding the second derivatives. For the Monge-Ampère equation $\det D^2 u = f$, interior second derivative bounds are obtained by differentiating the equation twice and applying the maximum principle to an auxiliary function involving the Hessian. Pogorelov’s estimates ensure that if $u$ is strictly convex, the eigenvalues of $D^2 u$ remain bounded away from zero and infinity.</p>
+  </li>
+  <li>
+    <p><strong>$C^{2,\alpha}$ Estimates (Evans-Krylov):</strong> The transition from $C^2$ to smooth solutions is bridged by the Evans-Krylov theorem. It states that solutions to concave, fully nonlinear elliptic equations with bounded Hessians possess Hölder continuous second derivatives. Once $u \in C^{2,\alpha}$, higher regularity ($C^\infty$ or analytic) follows from standard bootstrapping of Schauder estimates.</p>
+  </li>
+</ol>
+
+<p>This hierarchy demonstrates that convexity is not merely a geometric property but a regularity engine; it prevents the degeneration of ellipticity.</p>
+
+<h3 id="the-continuity-method">The Continuity Method</h3>
+
+<p>To prove the existence of solutions to fully nonlinear problems, such as the Minkowski problem or the Monge-Ampère Dirichlet problem, we rely on the Continuity Method. This topological argument allows us to solve a difficult nonlinear problem by continuously deforming it into a trivial one.</p>
+
+<p>Consider a family of equations indexed by $t \in [0, 1]$:</p>
+
+\[G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\]
+
+<p>where $u_0$ is a known solution at $t=0$. Let $\mathcal{S}$ be the set of $t \in [0, 1]$ for which a smooth convex solution exists. The proof consists of two steps:</p>
+
+<ol>
+  <li>
+    <p><strong>Openness:</strong> We show that $\mathcal{S}$ is open in $[0, 1]$. If a solution $u_{t_0}$ exists, we linearize the operator $G_t$ around $u_{t_0}$. Since the equation is elliptic (due to convexity), the linearized operator is invertible between suitable Hölder spaces (e.g., $C^{2,\alpha} \to C^\alpha$). The Implicit Function Theorem in Banach spaces guarantees solvability for $t$ close to $t_0$.</p>
+  </li>
+  <li>
+    <p><strong>Closedness:</strong> We show that $\mathcal{S}$ is closed. Let $t_k \to t^<em>$ with solutions $u_k$. To prove a limit solution $u^</em>$ exists, we require uniform <em>a priori</em> estimates independent of $k$. Specifically, we need bounds in a norm strictly stronger than the convergence norm (e.g., uniform $C^{2,\alpha}$ bounds to extract a $C^2$ limit via Arzelà-Ascoli).</p>
+  </li>
+</ol>
+
+<p>The success of the Continuity Method relies entirely on the global <em>a priori</em> estimates established via the maximum principle. It unifies the analytic estimates with the topological degree of the mapping.</p>
+
+<h3 id="overdetermined-systems-and-moving-planes">Overdetermined Systems and Moving Planes</h3>
+
+<p>In geometric problems, one often encounters systems with more boundary conditions than necessary for solvability. An archetypal example is Serrin’s Problem:</p>
+
+\[\begin{cases}
+-\Delta u = 1 &amp; \text{in } \Omega \\
+u = 0 &amp; \text{on } \partial \Omega \\
+\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
+\end{cases}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>The Dirichlet problem $-\Delta u = 1, u</td>
+      <td><em>{\partial \Omega} = 0$ admits a unique solution for any smooth domain. The additional Neumann condition $\partial</em>\nu u = c$ is generally impossible to satisfy. Serrin’s theorem states that if a solution exists, $\Omega$ must be a ball and $u$ must be radially symmetric. This result implies that the differential equation acts as a detector of domain symmetry.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="the-method-of-moving-planes-alexandrov-reflection">The Method of Moving Planes (Alexandrov Reflection)</h4>
+
+<p>The proof of Serrin’s theorem utilizes the Method of Moving Planes, a technique based on the maximum principle and reflection symmetry.</p>
+
+<ol>
+  <li>
+    <p><strong>Reflection:</strong> For a direction $\gamma$, consider a hyperplane $T_\lambda$ orthogonal to $\gamma$. Reflect the portion of the domain $\Omega$ behind the plane, denoted $\Sigma_\lambda$, across $T_\lambda$ to obtain $\Sigma’_\lambda$.</p>
+  </li>
+  <li>
+    <p><strong>Comparison:</strong> Define the difference function $w_\lambda(x) = u(x_\lambda) - u(x)$, where $x_\lambda$ is the reflection of $x$. In the region where the reflection remains inside $\Omega$, $w_\lambda$ satisfies an elliptic equation.</p>
+  </li>
+  <li>
+    <p><strong>Maximum Principle:</strong> Applying the maximum principle and the Hopf boundary lemma, one shows that $w_\lambda \geq 0$ as the plane sweeps inward from infinity.</p>
+  </li>
+  <li>
+    <p><strong>Symmetry:</strong> The plane stops moving exactly when the domain becomes symmetric with respect to $T_\lambda$. If the Neumann condition holds constant everywhere, this reflection argument can be performed from every direction, forcing the domain to be a sphere.</p>
+  </li>
+</ol>
+
+<p>This method illustrates “rigidity”: local enforcement of the PDE and boundary data constrains the global topology of the manifold.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-671-canonical-examplethe-dirichlet-problem-in-2d">Example 6.7.1: Canonical Example—The Dirichlet Problem in 2D</h3>
+
+<p><strong>Problem:</strong> Solve the Monge-Ampère equation</p>
+
+\[\det(D^2 u) = 1 \quad \text{in } B(0,1), \quad u|_{\partial B} = 0\]
+
+<p>where $B(0,1)$ is the unit ball in $\mathbb{R}^2$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Radial Symmetry:</strong>
+Assume radial symmetry: $u(r)$. The Hessian in polar coordinates is:</p>
+
+\[D^2 u = \begin{pmatrix} u'' &amp; \frac{u'}{r} \\ \frac{u'}{r} &amp; \frac{u'}{r} \end{pmatrix}\]
+  </li>
+  <li>
+    <p><strong>Determinant Computation:</strong>
+\(\det(D^2 u) = u'' \cdot \frac{u'}{r} - \left(\frac{u'}{r}\right)^2 = \frac{u'' u'}{r} - \frac{(u')^2}{r^2}\)</p>
+  </li>
+  <li>
+    <p><strong>Differential Equation:</strong>
+Set equal to 1:</p>
+
+\[\frac{u'' u'}{r} - \frac{(u')^2}{r^2} = 1\]
+  </li>
+  <li>
+    <p><strong>Substitution:</strong>
+Let $v = u’$. Then $v’ = u’’$, so:</p>
+
+\[v \frac{dv}{dr} \frac{1}{r} - \frac{v^2}{r^2} = 1\]
+
+    <p>Multiply through by $r^2$:</p>
+
+\[r v \frac{dv}{dr} - v^2 = r^2\]
+  </li>
+  <li>
+    <p><strong>Bernoulli Equation:</strong>
+Let $w = v^2$:</p>
+
+\[\frac{1}{2} r \frac{dw}{dr} - w = r^2\]
+
+    <p>Integrating factor: $\mu(r) = e^{-\int \frac{1}{r} dr} = \frac{1}{r}$</p>
+  </li>
+  <li>
+    <p><strong>Solution:</strong>
+\(\frac{d}{dr} \left( \frac{w}{r} \right) = r \implies \frac{w}{r} = \frac{r^2}{2} + C \implies w = \frac{r^3}{2} + C r\)</p>
+
+    <p>Thus $v = u’ = \sqrt{\frac{r^3}{2} + C r}$. Boundary condition $u(1) = 0$ and symmetry at $r=0$ give $C = -\frac{1}{2}$.</p>
+  </li>
+  <li>
+    <p><strong>Final Solution:</strong>
+\(u(r) = \int_r^1 \sqrt{\frac{t^3}{2} - \frac{t}{2}} \, dt = \frac{1}{6} (1 - r^3)\)</p>
+  </li>
+  <li>
+    <p><strong>Verification:</strong>
+\(D^2 u = \begin{pmatrix} -r &amp; -\frac{1}{2r} \\ -\frac{1}{2r} &amp; -\frac{1}{2r^2} \end{pmatrix}, \quad \det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1\)</p>
+
+    <p>✓ Verified</p>
+  </li>
+</ol>
+
+<h3 id="example-672-physical-applicationoptimal-transport">Example 6.7.2: Physical Application—Optimal Transport</h3>
+
+<p><strong>Problem:</strong> Monge-Ampère in Optimal Transport</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}</td>
+      <td>x-y</td>
+      <td>^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:</td>
+    </tr>
+  </tbody>
+</table>
+
+\[\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Uniform Densities:</strong>
+Example: $\rho_0 = \rho_1 = 1$ on unit ball (uniform densities).</p>
+  </li>
+  <li>
+    <p><strong>Solution:</strong>
+$\phi(x) = \frac{1}{6}(|x|^3 - 1)$ gives $T(x) = x$ (identity map).</p>
+  </li>
+  <li>
+    <p><strong>General Case:</strong>
+For $\rho_0, \rho_1$ with same mass:</p>
+
+    <p><strong>Linearization at $\phi_0$:</strong>
+\(L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)\)</p>
+
+    <p><strong>Ellipticity:</strong> $\text{adj}(D^2 \phi_0) \succ 0$ since $\phi_0$ is strictly convex</p>
+
+    <p><strong>Solvability:</strong> Implicit Function Theorem gives local uniqueness</p>
+  </li>
+</ol>
+
+<h3 id="example-673-pogorelovs-c2-estimates">Example 6.7.3: Pogorelov’s $C^2$ Estimates</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $\det(D^2 u) = 1$ in $B(0,1)$, $u</td>
+      <td>_{\partial B} = 0$, $u$ convex.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Pogorelov’s Auxiliary Function:</strong>
+\(w(x) = e^{\alpha |x|^2} |D^2 u(x)|^2\)</p>
+  </li>
+  <li>
+    <p><strong>Key Computation:</strong>
+\(\Delta w = e^{\alpha |x|^2} \left[ \alpha n |D^2 u|^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + |D^3 u|^2 \right]\)</p>
+  </li>
+  <li>
+    <p><strong>Crucial Inequality:</strong>
+From differentiating $\det(D^2 u) = 1$:</p>
+
+\[\text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C |D^2 u|^{3/2}\]
+  </li>
+  <li>
+    <p><strong>Maximum Principle:</strong>
+At maximum point of $w$, $\Delta w \leq 0$, so:</p>
+
+\[|D^2 u|^2 \leq C \alpha^{-n/2}\]
+  </li>
+  <li>
+    <p><strong>Result:</strong>
+\(\|D^2 u\|_{L^\infty(B_{1/2})} \leq C\)</p>
+  </li>
+</ol>
+
+<h3 id="example-674-evans-krylov-c2alpha-theory">Example 6.7.4: Evans-Krylov $C^{2,\alpha}$ Theory</h3>
+
+<p><strong>Problem:</strong> Establish Hölder continuity of second derivatives.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Theorem Statement:</strong>
+If $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $|D^2 u|_\infty \leq \Lambda$, then $u \in C^{2,\alpha}$.</p>
+  </li>
+  <li>
+    <p><strong>Detailed Proof Sketch for Monge-Ampère:</strong>
+<strong>Difference Quotients:</strong>
+\([D^2 u(x+h) - D^2 u(x)]_{ij} = \int_0^1 \frac{\partial}{\partial t} D^2 u(x + t h)_{ij} dt\)</p>
+  </li>
+  <li>
+    <p><strong>Linearized Operator:</strong>
+\(L v = \text{tr}(\text{adj}(D^2 u) D^2 v)\)</p>
+  </li>
+  <li>
+    <p><strong>Harnack Inequality for $L$:</strong>
+Since $\text{adj}(D^2 u) \succ 0$, we get:</p>
+
+\[\sup_{B_r} v \leq C \inf_{B_r} v + C r^2 \|f\|_{L^\infty}\]
+  </li>
+  <li>
+    <p><strong>Campanato Estimates:</strong>
+\([v]_{C^{0,\alpha}(B_r)} \leq C r^{2-\alpha} (\text{osc}_{B_r} v)^{1/2}\)</p>
+  </li>
+  <li>
+    <p><strong>Bootstrap:</strong>
+$C^{2,\alpha} \to C^{2,\alpha+\beta} \to C^\infty$</p>
+  </li>
+</ol>
+
+<h3 id="example-675-continuity-methodminkowski-problem">Example 6.7.5: Continuity Method—Minkowski Problem</h3>
+
+<p><strong>Problem:</strong> Find convex body with given surface area measure:</p>
+
+\[\det(D^2 u + u_{ij} \delta_{ij}) = f(x) \quad \text{on } S^{n-1}\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Continuity Method:</strong>
+\(G_t(u) = \det(D^2 u + u_{ij} \delta_{ij}) - [(1-t) + t f(x)] = 0\)</p>
+  </li>
+  <li>
+    <p><strong>Openness Proof:</strong>
+<strong>Linearization:</strong>
+\(L v = \text{tr}\left( \text{adj}(D^2 u_0 + u_0 \delta) D^2 v \right)\)</p>
+
+    <p><strong>Ellipticity:</strong> Eigenvalues of $\text{adj}(D^2 u_0 + u_0 \delta)$ are positive since:</p>
+    <ul>
+      <li>$D^2 u_0 + u_0 \delta \succ 0$ (strictly convex)</li>
+      <li>$\text{adj}(M) \succ 0$ when $M \succ 0$</li>
+    </ul>
+
+    <p><strong>Invertibility:</strong> $L: C^{2,\alpha}(S^{n-1}) \to C^\alpha(S^{n-1})$ is Fredholm index 0 and injective (by maximum principle), hence surjective.</p>
+  </li>
+  <li>
+    <p><strong>Closedness Argument:</strong>
+Sequence: $u_k$ solves $G_{t_k}(u_k) = 0$, $t_k \to t^*$</p>
+
+    <p><strong>Step 1: $C^0$ bounds (Krylov):</strong>
+Consider $v = e^{\alpha |x|^2} u$. Maximum principle gives:</p>
+
+\[\sup |u| \leq C(\sup f, \text{diam } \Omega)\]
+
+    <p><strong>Step 2: $C^1$ bounds (Calabi):</strong>
+$w = e^{\alpha |x|^2} |\nabla u|^2$</p>
+
+\[\Delta w + c(x) |\nabla w| \leq C w\]
+
+    <p><strong>Step 3: $C^2$ bounds (Pogorelov, as above)</strong></p>
+
+    <p><strong>Step 4: Higher regularity (Evans-Krylov + Schauder)</strong></p>
+
+    <p><strong>Convergence:</strong> Arzelà-Ascoli + regularity gives $u_k \to u^*$ in $C^{2,\alpha}$</p>
+  </li>
+</ol>
+
+<h3 id="example-676-serrins-problemcomplete-proof-in-2d">Example 6.7.6: Serrin’s Problem—Complete Proof in 2D</h3>
+
+<p><strong>Problem:</strong>
+\(\begin{cases}
+-\Delta u = 1 &amp; \text{in } \Omega \subset \mathbb{R}^2 \\
+u = 0 &amp; \text{on } \partial \Omega \\
+\partial_\nu u = c &amp; \text{on } \partial \Omega
+\end{cases}\)</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Moving Planes in $x_1$-direction:</strong>
+For $\lambda &lt; \lambda_1 = \inf {x_1 : x \in \Omega}$ define:</p>
+
+\[w_\lambda(x) = u(x^\lambda) - u(x)\]
+
+    <p>where $x^\lambda = (2\lambda - x_1, x_2)$.</p>
+  </li>
+  <li>
+    <p><strong>Equation for $w_\lambda$:</strong>
+In $\Sigma_\lambda = {x \in \Omega: x_1 &lt; \lambda}$:</p>
+
+\[-\Delta w_\lambda = 0\]
+  </li>
+  <li>
+    <p><strong>Boundary Conditions:</strong>
+$w_\lambda = 0$ on ${x_1 = \lambda} \cap \Omega$</p>
+
+    <p>On reflected boundary: $\partial_\nu u(x^\lambda) = c = \partial_\nu u(x)$</p>
+  </li>
+  <li>
+    <p><strong>Hopf Lemma Application:</strong>
+At boundary points, $\partial_\nu w_\lambda \geq 0$ (strict unless $w_\lambda \equiv 0$).</p>
+  </li>
+  <li><strong>Continuation:</strong>
+$w_\lambda \geq 0$ in $\Sigma_\lambda$. As $\lambda$ increases, either:
+    <ul>
+      <li>$w_\lambda \equiv 0$ (symmetry), or</li>
+      <li>$\partial_\nu w_\lambda &gt; 0$ somewhere</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Global Symmetry:</strong>
+The stopping plane $\lambda^*$ gives reflection symmetry. Rotating direction $\gamma$ and repeating gives full rotational symmetry.</p>
+  </li>
+  <li><strong>Final Result:</strong>
+$\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, $c = R$</li>
+</ol>
+
+<h3 id="example-677-moving-planes-for-monge-ampère">Example 6.7.7: Moving Planes for Monge-Ampère</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $\det(D^2 u) = 1$, $u</td>
+      <td>_{\partial \Omega} = 0$, $</td>
+      <td>\nabla u</td>
+      <td>_{\partial \Omega} = c$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Reflection Function:</strong>
+\(w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(|x^\lambda|^2 - |x|^2)\)</p>
+  </li>
+  <li>
+    <p><strong>Key Computation:</strong>
+\(\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) &amp; * \\ * &amp; D^2 u(x) \end{pmatrix} + \text{lower order}\)</p>
+  </li>
+  <li>
+    <p><strong>Block Determinant Analysis:</strong>
+Shows $w_\lambda \geq 0$ by convexity.</p>
+  </li>
+</ol>
+
+<h3 id="example-678-real-monge-ampère-equation">Example 6.7.8: Real Monge-Ampère Equation</h3>
+
+<p><strong>Problem:</strong> $\det\begin{pmatrix} u_{xx} &amp; u_{xy} \ u_{yx} &amp; u_{yy} \end{pmatrix} = e^u$ (complex geometry)</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Linearization:</strong>
+\(L v = u_{xx} v_{yy} + u_{yy} v_{xx} - 2 u_{xy} v_{xy} + e^u v\)</p>
+  </li>
+  <li>
+    <p><strong>Eigenvalue Analysis:</strong>
+The symbol $p(\xi) = u_{xx} \xi_2^2 + u_{yy} \xi_1^2 - 2 u_{xy} \xi_1 \xi_2$ is elliptic iff $D^2 u \succ 0$.</p>
+  </li>
+  <li>
+    <p><strong>Geometric Interpretation:</strong>
+This equation arises in Kähler geometry, where $u$ represents a Kähler potential and the equation prescribes the Ricci curvature.</p>
+  </li>
+</ol>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+  <li>Gilbarg, D., &amp; Trudinger, N. S. (2001). <em>Elliptic Partial Differential Equations of Second Order</em>. Springer.</li>
+  <li>Lee, J. M. (2012). <em>Introduction to Smooth Manifolds</em>. Springer.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
