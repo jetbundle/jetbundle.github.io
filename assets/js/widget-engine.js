@@ -363,12 +363,8 @@ else:
           }
         };
 
-        // For continuous widgets after first render, use Plotly.react for efficient updates
-        // For first render or manual widgets, use Plotly.newPlot
-        const isContinuousUpdate = skipButtonState && widgetData.hasPlot && widgetData.isContinuous;
-
         // Check if we should use Plotly.react for continuous updates
-        // Use react if: continuous widget, plot already exists, and we're in continuous mode
+        // Use react if: continuous widget, plot already exists (hasPlot=true), and output has data
         const shouldUseReact = widgetData.isContinuous && widgetData.hasPlot && output.data && output.data.length > 0;
         
         if (shouldUseReact) {
