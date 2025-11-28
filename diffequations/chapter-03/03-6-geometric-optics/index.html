@@ -904,11 +904,11 @@
 
 <p>A continuous function $u$ is a viscosity subsolution of $H(x, \nabla u) = 0$ if for every test function $\phi \in C^\infty(\Omega)$ such that $u - \phi$ has a local maximum at $x_0$:</p>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)0</p>
+\[H(x_0, \nabla \phi(x_0)) \le 0\]
 
 <p>Conversely, $u$ is a viscosity supersolution if for every test function $\psi$ such that $u - \psi$ has a local minimum at $x_0$:</p>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)1</p>
+\[H(x_0, \nabla \psi(x_0)) \ge 0\]
 
 <p>As proven in Evans (2010), the viscosity solution is unique and corresponds physically to the distance function defined by the minimal optical path length. This framework allows us to define the “wavefront” globally, even after rays have crossed and the classical function $S(x)$ has become multi-valued. The viscosity solution automatically selects the “first arrival” branch of the wavefront, discarding the self-intersecting characteristic tails that lack physical meaning in the zero-wavelength limit.</p>
 
@@ -918,50 +918,50 @@
 
 <p><strong>Problem:</strong> Consider the Helmholtz equation in a stratified medium:</p>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)2</p>
+\[\Delta u + k^2 n^2(z) u = 0, \quad n(z) = 1 + \frac{1}{2}z^2\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>WKB Ansatz:</strong>
-\(u(x) \sim a(x) e^{ik S(x)}\)3</p>
+\(u(x,z) \sim a(x,z) e^{ik S(x,z)}\)</p>
   </li>
   <li>
     <p><strong>Eikonal Equation ($O(k^2)$):</strong>
-\(u(x) \sim a(x) e^{ik S(x)}\)4</p>
+\(|\nabla S|^2 = n^2(z) = \left(1 + \frac{1}{2}z^2\right)^2\)</p>
   </li>
 </ol>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)5</p>
+\[S_z^2 + S_x^2 = 1 + z^2 + \frac{1}{4}z^4\]
 
 <p>Assume plane wave in $x$: $S(x,z) = x + T(z)$</p>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)6</p>
+\[T'(z)^2 = 1 + z^2 + \frac{1}{4}z^4 - 1 = z^2 + \frac{1}{4}z^4\]
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)7</p>
+\[T'(z) = z \sqrt{1 + \frac{1}{4}z^2}\]
 
 <ol>
   <li><strong>Exact Integration:</strong>
 Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 </ol>
 
-<p>\(u(x) \sim a(x) e^{ik S(x)}\)8</p>
+\[T(z) = 4\int_1^{1 + \frac{1}{4}z^2} \sqrt{w} \, dw = \frac{8}{3} \left[ \left(1 + \frac{z^2}{4}\right)^{3/2} - 1 \right]\]
 
 <ol>
   <li><strong>Transport Equation ($O(k)$):</strong>
-\(u(x) \sim a(x) e^{ik S(x)}\)9</li>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)</li>
 </ol>
 
 <p>With $\nabla S = (1, T’(z))$ and $\Delta S = T’‘(z)$, assuming $a(x,z) = A(z)$:</p>
 
-<p>\(|\nabla S(x)|^2 = n^2(x)\)0</p>
+\[2T'(z)A'(z) + T''(z)A(z) = 0\]
 
-<p>\(|\nabla S(x)|^2 = n^2(x)\)1</p>
+\[A(z) = C \exp\left(-\frac{1}{2}\int_0^z \frac{T''(t)}{T'(t)} \, dt\right)\]
 
 <ol>
   <li><strong>Complete Solution:</strong>
-\(|\nabla S(x)|^2 = n^2(x)\)2</li>
+\(u(x,z) \sim C \exp\left(-\frac{1}{2}\int_0^z \frac{T''(t)}{T'(t)} \, dt\right) \exp\left(ik\left[x + \frac{8}{3}\left(\left(1 + \frac{z^2}{4}\right)^{3/2} - 1\right)\right]\right)\)</li>
 </ol>
 
 <h3 id="example-362-physical-applicationatmospheric-wave-propagation">Example 3.6.2: Physical Application—Atmospheric Wave Propagation</h3>
@@ -973,7 +973,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Eikonal:</strong>
-\(|\nabla S(x)|^2 = n^2(x)\)3</p>
+\(|\nabla S|^2 = 1 - \frac{z^2}{h^2}\)</p>
   </li>
   <li>
     <p><strong>Turning Point:</strong> $z = h$ where $\nabla S = 0$</p>
@@ -983,7 +983,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
   </li>
   <li>
     <p><strong>Phase Computation:</strong>
-\(|\nabla S(x)|^2 = n^2(x)\)4</p>
+\(S(x,z) = \int_0^z \sqrt{1 - \frac{t^2}{h^2}} \, dt = \frac{h}{2}\left[z\sqrt{1 - \frac{z^2}{h^2}} + \arcsin\left(\frac{z}{h}\right)\right]\)</p>
   </li>
 </ol>
 
@@ -998,15 +998,15 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Hamiltonian:</strong>
-\(|\nabla S(x)|^2 = n^2(x)\)5</p>
+\(H(x,y,p_x,p_y) = \frac{1}{2}(p_x^2 + p_y^2 - (1 - x^2))\)</p>
   </li>
   <li>
     <p><strong>Hamilton’s Equations:</strong>
-\(|\nabla S(x)|^2 = n^2(x)\)6</p>
+\(\dot{x} = p_x, \quad \dot{p}_x = x\)</p>
   </li>
 </ol>
 
-<p>\(|\nabla S(x)|^2 = n^2(x)\)7</p>
+\[\dot{y} = p_y, \quad \dot{p}_y = 0\]
 
 <ol>
   <li><strong>Solutions:</strong>
@@ -1014,17 +1014,17 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 - $x$-motion: Harmonic oscillator $\ddot{x} + x = 0$</li>
 </ol>
 
-<p>\(|\nabla S(x)|^2 = n^2(x)\)8</p>
+\[x(t) = A\cos t + B\sin t, \quad p_x(t) = -A\sin t + B\cos t\]
 
 <ol>
   <li><strong>Initial Conditions:</strong> $x(0)=0$, $p_x(0)=p_0$:</li>
 </ol>
 
-<p>\(|\nabla S(x)|^2 = n^2(x)\)9</p>
+\[x(t) = p_0 \sin t, \quad p_x(t) = p_0 \cos t\]
 
 <ol>
   <li><strong>Complete Ray:</strong>
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)0</li>
+\((x(t),y(t)) = (p_0 \sin t, p_y t)\)</li>
 </ol>
 
 <p><strong>Geometric Interpretation:</strong> Rays are cycloids in the $(x,y)$-plane, periodic in $x$-direction.</p>
@@ -1035,13 +1035,13 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 
 <p><strong>Solution:</strong></p>
 
-<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)1</p>
+\[S(x,y) = \int_0^{t(x,y)} n^2(\gamma(\tau)) \, d\tau\]
 
 <p>Compute:</p>
 
-<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)2</p>
+\[n^2(\gamma(t)) = 1 - x^2(t) = 1 - p_0^2 \sin^2 t\]
 
-<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)3</p>
+\[S(x,y) = \int_0^t (1 - p_0^2 \sin^2 \tau) \, d\tau = t - p_0^2 \left(\frac{t}{2} - \frac{\sin 2t}{4}\right)\]
 
 <p>Inverse: $t = \arcsin(x/p_0)$, substitute to get explicit $S(x,y)$.</p>
 
@@ -1056,7 +1056,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Ray Family:</strong> Lines from $(c,0)$ with slope $m$:
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)4</p>
+\(y = m(x - c)\)</p>
   </li>
   <li>
     <p><strong>Envelope Computation (Caustic):</strong>
@@ -1065,7 +1065,7 @@ Family: $F(x,y,m) = y - m(x - c) = 0$</p>
 </ol>
 
 <p>Envelope condition: $\frac{\partial F}{\partial m} = 0$:
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)5</p>
+\(-(x - c) = 0 \implies x = c\)</p>
 
 <p>Substitute: $y = m(0) = 0$</p>
 
@@ -1095,14 +1095,14 @@ Incident $\vec{i} = (0,1)$, normal $\vec{n} = \frac{(-x,2f)}{\sqrt{x^2 + 4f^2}}$
 </ol>
 
 <p>Reflected ray:
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)6</p>
+\(\vec{r} = \vec{i} - 2(\vec{i} \cdot \vec{n})\vec{n}\)</p>
 
 <p>At $x=x_0$: $\vec{r} = \left(\frac{x_0}{f}, -1\right)$</p>
 
 <ol>
   <li>
     <p><strong>Parametric Equation:</strong>
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)7</p>
+\(x(t) = x_0 + \frac{x_0}{f}t, \quad y(t) = f - t\)</p>
   </li>
   <li>
     <p><strong>Caustic (Envelope):</strong>
@@ -1131,7 +1131,7 @@ Family: $F(x,y,x_0) = y + t - f = 0$, $x = x_0(1 + t/f)$</p>
   </li>
   <li>
     <p><strong>Conjugate Condition:</strong>
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)8</p>
+\(\det\left(\frac{\partial(x_1,...,x_n)}{\partial(v_1,...,v_n)}\right) = 0\)</p>
   </li>
   <li>
     <p><strong>For Harmonic Oscillator</strong> ($n(x) = \sqrt{1-x^2}$):
@@ -1162,7 +1162,7 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
   <li>
     <p><strong>Viscosity Solution:</strong>
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)9</p>
+\(u(x) = \min_{y\in\partial B} |x-y| = 1 - |x|\)</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
@@ -1171,7 +1171,7 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
   <li>
     <p><strong>Viscous Approximation:</strong>
-\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)0</p>
+\(-\epsilon\Delta u^\epsilon + |\nabla u^\epsilon| = 1\)</p>
   </li>
 </ol>
 
@@ -1189,7 +1189,7 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
   <li>
     <p><strong>First Arrival Time:</strong>
-\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)1</p>
+\(T(x,y) = \inf\{t: \exists p_0, p_y \text{ s.t. }(x,y) = (p_0\sin t, p_y t)\}\)</p>
   </li>
   <li>
     <p><strong>Solution:</strong> $u(x,y) = \min{T(x,y)}$</p>
@@ -1260,7 +1260,7 @@ Solve: $x = p_0\sin t$, $y = p_y t$</p>
   </li>
   <li>
     <p><strong>Uniform Ansatz:</strong>
-\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)2</p>
+\(u \sim \text{Ai}\left(k^{2/3}\xi\right) e^{ik\phi_0}\)</p>
   </li>
 </ol>
 

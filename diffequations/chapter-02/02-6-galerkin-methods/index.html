@@ -901,7 +901,7 @@
 
 <p>where $\left[\cdot\right]$ denotes the jump of the normal flux across interior faces. There exist mesh-independent constants $c,C&gt;0$ such that</p>
 
-<p>\(a(u_{h},v_{h})=F(v_{h})\qquad\forall v_{h}\in V_{h}.\)0</p>
+\[c\sum_{K}\eta_{K}^{2}\le \left\|u-u_{h}\right\|_{H^{1}(\Omega)}^{2}\le C\sum_{K}\eta_{K}^{2}.\]
 
 <p>Consequently, large local indicators signal regions requiring mesh refinement. Adaptive algorithms iterate: solve on $\mathcal{T}<em>{h}$, compute $\eta</em>{K}$, mark elements with $\eta_{K}$ above a threshold, refine, and repeat. This concentrates degrees of freedom where boundary layers, singular sources, or geometric irregularities degrade uniform discretizations, often yielding optimal accuracy with significantly fewer unknowns than uniform refinement.</p>
 
@@ -931,7 +931,11 @@
 
 <p>With nodes at $0,\tfrac{1}{2},1$, the quadratic basis functions $\phi_{1}(x)=2x(1-x)^{2}$, $\phi_{2}(x)=-4x^{2}(1-x)$, and $\phi_{3}(x)=2x^{2}(1-x)$ yield a stiffness matrix</p>
 
-<p>\(a(u_{h},v_{h})=F(v_{h})\qquad\forall v_{h}\in V_{h}.\)1</p>
+\[A=\begin{pmatrix}
+\tfrac{11}{15} &amp; -\tfrac{2}{5} &amp; \tfrac{1}{30}\[4pt]
+-\tfrac{2}{5} &amp; \tfrac{8}{15} &amp; -\tfrac{2}{5}\[4pt]
+\tfrac{1}{30} &amp; -\tfrac{2}{5} &amp; \tfrac{11}{15}
+\end{pmatrix},\]
 
 <p>and load vector $F=(\tfrac{1}{2},\tfrac{1}{4},\tfrac{1}{2})^{\top}$. Solving yields $c=(1,\tfrac{1}{2},1)^{\top}$, so $u_{h}=\sin(\pi x)$ reproduces the exact eigenfunction, illustrating how higher-degree elements can exactly represent modal solutions aligned with the mesh.</p>
 
@@ -947,7 +951,10 @@
 
 <p>The bilinear form $a(u,v)=\varepsilon\int u’v’+\int u’v$ has continuity constant $M=\max(\varepsilon,1)=1$ and coercivity $\alpha=\varepsilon$, so $C=M/\alpha=100$. The resulting stiffness matrix</p>
 
-<p>\(a(u_{h},v_{h})=F(v_{h})\qquad\forall v_{h}\in V_{h}.\)2</p>
+\[A=\begin{pmatrix}
+\tfrac{\varepsilon}{3}+\tfrac{1}{2} &amp; -\tfrac{\varepsilon}{6}-\tfrac{1}{2}\[4pt]
+-\tfrac{\varepsilon}{6}-\tfrac{1}{2} &amp; \tfrac{\varepsilon}{3}+\tfrac{1}{2}
+\end{pmatrix}\]
 
 <p>exhibits ill-conditioning as $\varepsilon\to 0$, motivating stabilized or Petrov–Galerkin variants introduced in later chapters.</p>
 
@@ -963,7 +970,11 @@
 
 <p>With linear shape functions $\phi_{1}=1-x-y$, $\phi_{2}=x$, and $\phi_{3}=y$, the gradients are constant: $\nabla\phi_{1}=(-1,-1)$, $\nabla\phi_{2}=(1,0)$, and $\nabla\phi_{3}=(0,1)$. Integrating over the triangle of area $1/2$ yields</p>
 
-<p>\(a(u_{h},v_{h})=F(v_{h})\qquad\forall v_{h}\in V_{h}.\)3</p>
+\[A=\begin{pmatrix}
+2 &amp; -1 &amp; -1\
+-1 &amp; 1 &amp; 0\
+-1 &amp; 0 &amp; 1
+\end{pmatrix},\]
 
 <p>while the load vector computed with exact integration is $F=(\tfrac{8}{\pi^{2}},\tfrac{4}{\pi^{2}},\tfrac{4}{\pi^{2}})^{\top}$. Solving produces coefficients $(1,\tfrac{1}{2},\tfrac{1}{2})$, exactly matching the restriction of the analytic solution to the triangle.</p>
 

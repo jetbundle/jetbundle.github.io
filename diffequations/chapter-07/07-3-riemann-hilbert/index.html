@@ -1062,7 +1062,7 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
 <ol>
   <li>
     <p><strong>Why NOT Regular Holonomic?</strong>
-\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)0</p>
+\(\mathcal{D} = \partial_z^2 - z\)</p>
 
     <p><strong>Characteristic variety:</strong> $\zeta^2 - z = 0$ (2-sheeted cover)</p>
 
@@ -1070,7 +1070,7 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
 
     <p><strong>Asymptotic solutions:</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)1</p>
+\[\text{Ai}(z) \sim \frac{e^{-\frac{2}{3}z^{3/2}}}{2\sqrt{\pi}z^{1/4}}, \quad \text{Bi}(z) \sim \frac{e^{+\frac{2}{3}z^{3/2}}}{\sqrt{\pi}z^{1/4}}\]
 
     <p><strong>Stokes phenomenon:</strong> Solutions have exponential growth, violating regularity.</p>
   </li>
@@ -1078,11 +1078,11 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
     <p><strong>Regularization via Confluence:</strong>
 Transform to regular singular form:</p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)2</p>
+\[w(t) = e^{t^3/3}y(e^{-t})\]
 
     <p><strong>Resulting equation:</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)3</p>
+\[\frac{d^2w}{dt^2} + \left(t - \frac{1}{t}\right)\frac{dw}{dt} + \frac{1}{3t^2}w = 0\]
 
     <p><strong>Now regular at $t=0,\infty$!</strong> Monodromy computable.</p>
   </li>
@@ -1099,7 +1099,7 @@ Transform to regular singular form:</p>
 
 <p><strong>Problem:</strong> Find $M(z)$ analytic in $\mathbb{C} \setminus [-1,1]$ such that:</p>
 
-<p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)4</p>
+\[M_+(z) = M_-(z) \begin{pmatrix} 1 + i\rho(z) &amp; \rho(z) \ -\rho(z) &amp; 1 - i\rho(z) \end{pmatrix}, \quad z \in [-1,1]\]
 
 <p>where $\rho(z) = e^{i k \phi(z)}$, $\phi(z) = \log\frac{1+z}{1-z}$.</p>
 
@@ -1110,7 +1110,7 @@ Transform to regular singular form:</p>
     <p><strong>Sectionally Analytic Solution:</strong>
 <strong>Ansatz:</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)5</p>
+\[M(z) = I + \frac{1}{2\pi i} \int_{-1}^1 \frac{G(t)}{t-z} dt\]
   </li>
   <li>
     <p><strong>Plemelj Formula Application:</strong>
@@ -1118,21 +1118,21 @@ Transform to regular singular form:</p>
 
     <p><strong>Solution:</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)6</p>
+\[M(z) = \frac{1}{2\pi i} \int_{-1}^1 \frac{\log\det J(t)}{t-z} \frac{dt}{\sqrt{(t+1)(1-t)}}\]
   </li>
   <li>
     <p><strong>D-Module Reconstruction:</strong>
 <strong>Associated operator (from scattering data):</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)7</p>
+\[\mathcal{D} = \partial_z^2 + q(z)\partial_z + r(z)\]
 
     <p>where:</p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)8</p>
+\[q(z) = \frac{M_{12}'(z)}{M_{11}(z)}, \quad r(z) = \frac{\det M'(z)}{\det M(z)}\]
 
     <p><strong>Explicit computation for $\rho(z) = e^{ikz}$:</strong></p>
 
-    <p>\(\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\)9</p>
+\[q(z) = \frac{i k}{2} \cot\left(\frac{k}{2}\log\frac{z-1}{z+1}\right)\]
   </li>
 </ol>
 
@@ -1140,7 +1140,7 @@ Transform to regular singular form:</p>
 
 <p><strong>Problem:</strong> KZ equation (correlation functions in WZW model):</p>
 
-<p>\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)0</p>
+\[\partial_{z_i} \Psi = \frac{\kappa}{z_i - z_j} t^a_j \Psi, \quad i \neq j\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1149,13 +1149,13 @@ Transform to regular singular form:</p>
     <p><strong>D-Module Structure:</strong>
 $\mathcal{D}_{z_1,\dots,z_n}$-module with relations:</p>
 
-    <p>\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)1</p>
+\[\partial_{z_i} - \sum_{j \neq i} \frac{\kappa t^a_j}{z_i - z_j} = 0\]
   </li>
   <li>
     <p><strong>Monodromy Representation:</strong>
 Around $z_i = z_j$:</p>
 
-    <p>\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)2</p>
+\[M_{ij} = \exp\left(2\pi i \kappa t^a_j\right)\]
   </li>
   <li>
     <p><strong>Perverse Sheaf:</strong>
@@ -1224,7 +1224,7 @@ Classification by monodromy data $(M_0,M_1,M_\infty) \in \text{SL}(2,\mathbb{C})
 
     <p><strong>Explicit computation for rigid case:</strong></p>
 
-    <p>\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)3</p>
+\[\mathcal{D} = \partial_z^2 + \frac{1}{z(z-1)}\partial_z\]
 
     <p><strong>Monodromy:</strong> Unipotent at 0,1</p>
 
@@ -1241,7 +1241,7 @@ Classification by monodromy data $(M_0,M_1,M_\infty) \in \text{SL}(2,\mathbb{C})
 <ol>
   <li>
     <p><strong>Case 1: Bessel Equation (Irregular at $\infty$):</strong>
-\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)4</p>
+\(y'' + \frac{1}{z}y' + \left(1 - \frac{\nu^2}{z^2}\right)y = 0\)</p>
 
     <p><strong>Stokes multipliers:</strong> Non-trivial, indicating essential singularity</p>
 

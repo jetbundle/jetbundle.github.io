@@ -957,65 +957,25 @@ First iterate (linear response):</p>
 
     <p>Second iterate:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$0</td>
-        </tr>
-      </tbody>
-    </table>
+\[u_\varepsilon^{(2)}(t,x) = 1 + \mathcal{I}(\xi_\varepsilon) + \mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))\]
   </li>
   <li>
     <p><strong>Variance Computation Reveals Divergence:</strong>
 Compute $\mathbb{E}[u_\varepsilon^{(2)}(t,x)^2]$:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$1</td>
-        </tr>
-      </tbody>
-    </table>
+\[\mathbb{E}[u_\varepsilon^{(2)}]^2 = 1 + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon)] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))^2]\]
 
     <p>The critical term is $\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2]$:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \mathbb{E}\left[\int_0^t \int_0^t \int_{\mathbb{T}^2} p_{t-s}(x-y) p_{t-r}(x-z) \xi_\varepsilon(s,y) \xi_\varepsilon(r,z) \, dy \, dz \, ds \, dr\right]\]
 
     <p>Using the white noise covariance:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$3</td>
-        </tr>
-      </tbody>
-    </table>
+\[\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \int_0^t \int_{\mathbb{T}} p_{t-s}(x-y)^2 * \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, ds\]
 
     <p>As $\varepsilon \to 0$, $\rho_\varepsilon * \rho_\varepsilon(0) \sim \varepsilon^{-2}$, and:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$4</td>
-        </tr>
-      </tbody>
-    </table>
+\[\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] \sim \frac{C}{\varepsilon}\]
 
     <p><strong>Key Observation:</strong> The variance diverges as $\varepsilon^{-1}$!</p>
   </li>
@@ -1023,27 +983,11 @@ Compute $\mathbb{E}[u_\varepsilon^{(2)}(t,x)^2]$:</p>
     <p><strong>Wick Renormalization:</strong>
 Define the renormalized noise:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$5</td>
-        </tr>
-      </tbody>
-    </table>
+\[\xi_\varepsilon^\text{ren}(t,x) = \xi_\varepsilon(t,x) - \mathbb{E}[\xi_\varepsilon(t,x)^2] = \xi_\varepsilon(t,x) - \frac{C}{\varepsilon}\]
 
     <p>The renormalized solution:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(\Pi_x \tau)(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\alpha$$6</td>
-        </tr>
-      </tbody>
-    </table>
+\[u_\varepsilon^\text{ren}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) u_\varepsilon^\text{ren}(s,y) \xi_\varepsilon^\text{ren}(s,y) \, dy \, ds\]
 
     <p><strong>Result:</strong> $\mathbb{E}[u_\varepsilon^\text{ren}(t,x)] \to 1$ and $\text{Var}(u_\varepsilon^\text{ren}) \to \text{finite limit}$.</p>
   </li>
@@ -1068,78 +1012,38 @@ Index set $A = {0, -1/2 - \kappa, 1/2 - \kappa} \cup {|\tau| : \tau \in T}$ wher
   <li>
     <p><strong>Generate Trees Up to Order 3:</strong>
 <strong>Level 1:</strong>
-\(|(\Pi_x \tau)(\varphi_x^\lambda)| \lesssim \lambda^\alpha\)7</p>
+\(\Xi \quad \in \quad T_{-1/2-\kappa}\)</p>
 
     <p><strong>Level 2:</strong>
-\(|(\Pi_x \tau)(\varphi_x^\lambda)| \lesssim \lambda^\alpha\)8</p>
+\(\mathcal{I}(\Xi) \quad \in \quad T_{3/2-\kappa}\)</p>
 
     <p><strong>Level 3:</strong>
-\(|(\Pi_x \tau)(\varphi_x^\lambda)| \lesssim \lambda^\alpha\)9</p>
+\(\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) \quad \in \quad T_{5/2-2\kappa}\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$0</td>
-        </tr>
-      </tbody>
-    </table>
+\[\mathcal{I}(\Xi)^2 \quad \in \quad T_{3-\kappa}\]
 
     <p><strong>Level 4 (relevant for nonlinearity):</strong>
-\(|(U - \Pi_x U(x))(\varphi_x^\lambda)| \lesssim \lambda^\gamma\)1</p>
+\(\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))) \quad \in \quad T_{7/2-3\kappa}\)</p>
   </li>
   <li>
     <p><strong>Structure Group Action:</strong>
 The structure group $G$ acts by “re-centering.” For a tree $\tau$, the action is:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[(\Pi_x \tau)(z) = \Pi_x \tau(z-x) + \text{polynomial correction}\]
 
     <p>Explicit computation for $\mathcal{I}(\Xi)$:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$3</td>
-        </tr>
-      </tbody>
-    </table>
+\[[\Gamma_x \mathcal{I}(\Xi)]_z = \Pi_z \mathcal{I}(\Xi) - \Pi_x \mathcal{I}(\Xi)\]
   </li>
   <li>
     <p><strong>Fixed-Point Equation in Regularity Structure:</strong>
 The PAM equation becomes:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$4</td>
-        </tr>
-      </tbody>
-    </table>
+\[U = \mathcal{I}(\Xi U) + \mathbf{1}\]
 
     <p>Expand in regularity structure:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$5</td>
-        </tr>
-      </tbody>
-    </table>
+\[U = u_{-1/2-\kappa} \Xi + u_{3/2-\kappa} \mathcal{I}(\Xi) + u_{5/2-2\kappa} \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) + \cdots\]
 
     <p>Substitute and collect terms:
 - <strong>Order $-1/2-\kappa$:</strong> $u_{-1/2-\kappa} = 0$ (no noise in solution)
@@ -1152,27 +1056,11 @@ The PAM equation becomes:</p>
     <p><strong>Renormalization of Quadratic Term:</strong>
 The problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$6</td>
-        </tr>
-      </tbody>
-    </table>
+\[|\Xi \cdot \mathcal{I}(\Xi)| = -1/2-\kappa + 3/2-\kappa = 1-2\kappa &gt; 0\]
 
     <p>But $\mathbb{E}[\Xi \cdot \mathcal{I}(\Xi)] = \infty$. Define:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$7</td>
-        </tr>
-      </tbody>
-    </table>
+\[\Xi \cdot \mathcal{I}(\Xi) \mapsto \Xi \cdot \mathcal{I}(\Xi) - C\]
 
     <p>where $C = \lim_{\varepsilon \to 0} \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)]$.</p>
   </li>
@@ -1182,15 +1070,7 @@ The problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity:</p>
 
 <p><strong>Problem:</strong> Solve the KPZ equation in 1D:</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$</td>
-      <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-      <td>\lesssim \lambda^\gamma$$8</td>
-    </tr>
-  </tbody>
-</table>
+\[\partial_t h = \frac{1}{2} \partial_{xx} h + \frac{1}{2} (\partial_x h)^2 + \xi\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1199,19 +1079,11 @@ The problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity:</p>
     <p><strong>Cole-Hopf Transformation:</strong>
 Let $Z = e^h$. Then:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$</td>
-          <td>(U - \Pi_x U(x))(\varphi_x^\lambda)</td>
-          <td>\lesssim \lambda^\gamma$$9</td>
-        </tr>
-      </tbody>
-    </table>
+\[\partial_t Z = \frac{1}{2} \partial_{xx} Z + Z \xi\]
 
     <p>This is exactly PAM! The solution is:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)0</p>
+\[h(t,x) = \log Z(t,x)\]
   </li>
   <li>
     <p><strong>Regularity Structure Construction:</strong>
@@ -1265,15 +1137,15 @@ For fixed-point equation $H = \mathcal{I}(\Xi + \frac{1}{2} (\partial_x H)^2)$:<
     <p><strong>Renormalization Constants:</strong>
 Compute divergent expectations:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)1</p>
+\[\mathbb{E}[\Xi^2] = \infty \quad \Rightarrow \quad \Xi^2 \mapsto \Xi^2 - C_0\]
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)2</p>
+\[\mathbb{E}[\partial_x \mathcal{I}(\Xi) \cdot \partial_x \mathcal{I}(\Xi)] = \infty \quad \Rightarrow \quad \text{requires } C_1\]
   </li>
   <li>
     <p><strong>Universality Demonstration:</strong>
 Consider the Edwards-Wilkinson equation with nonlinearities:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)3</p>
+\[\partial_t h^\lambda = \Delta h^\lambda + \lambda \mathcal{N}(h^\lambda) + \xi\]
 
     <p><strong>Theorem:</strong> For $\mathcal{N}(h) = (\partial_x h)^2$, the scaling limit as mesh $\to 0$ converges to KPZ.</p>
 
@@ -1298,7 +1170,7 @@ Scaling: $[t] = 2$, $[x] = 1$, $\xi \in C^{-2-\kappa}$.</p>
 
     <p>Critical product:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)4</p>
+\[|\Xi \cdot \mathcal{I}(\Xi)| = -2-\kappa + 2-\kappa = -2\kappa \approx 0\]
 
     <p><strong>Danger:</strong> Product is at the regularity threshold!</p>
   </li>
@@ -1306,17 +1178,17 @@ Scaling: $[t] = 2$, $[x] = 1$, $\xi \in C^{-2-\kappa}$.</p>
     <p><strong>Explicit Divergence Computation:</strong>
 Mollified expectation:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)5</p>
+\[\mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)(0,0)] = \int_0^T \int_{\mathbb{T}^2} p_t(y)^2 \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, dt\]
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)6</p>
+\[p_t(y) = \frac{1}{4\pi t} e^{-|y|^2/(4t)}\]
 
     <p>Asymptotic:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)7</p>
+\[\int_{\mathbb{T}^2} p_t(y)^2 \, dy \sim \frac{1}{4\pi t}\]
 
     <p>Thus:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)8</p>
+\[\mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)] \sim \frac{\log(1/\varepsilon)}{4\pi}\]
 
     <p><strong>Result:</strong> Logarithmic divergence, not power law!</p>
   </li>
@@ -1324,11 +1196,11 @@ Mollified expectation:</p>
     <p><strong>Regularity Structure Rescue:</strong>
 Introduce auxiliary trees:</p>
 
-    <p>\(U = \mathcal{K}_\gamma (\Xi + U \Xi) + P\)9</p>
+\[\tau_1 = \Xi, \quad \tau_2 = \mathcal{I}(\tau_1), \quad \tau_3 = \mathcal{I}(\tau_1 \tau_2)\]
 
     <p>Renormalized structure:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)0</p>
+\[\tau_3 \mapsto \mathcal{I}(\tau_1 \tau_2 - C \log(1/\varepsilon) \mathbf{1})\]
   </li>
   <li>
     <p><strong>Fixed-Point Iteration with Renormalization:</strong>
@@ -1340,7 +1212,7 @@ Introduce auxiliary trees:</p>
 
     <p>Renormalized:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)1</p>
+\[U^{(3)\text{ren}} = \mathcal{I}\Big(\Xi \cdot \big(\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) - C_1 \log(1/\varepsilon)\big)\Big)\]
   </li>
   <li>
     <p><strong>Convergence Proof:</strong>
@@ -1388,23 +1260,23 @@ Modeled distribution space $\mathcal{D}^\gamma$, $\gamma = -1/2-\kappa$:</p>
     <p><strong>Define the Realization $\Pi$:</strong>
 For a fixed noise realization $\xi$:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)2</p>
+\[\Pi(\mathbf{1}) = 1\]
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)3</p>
+\[\Pi(\Xi) = \xi\]
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)4</p>
+\[\Pi(\mathcal{I}(\tau))(t,x) = \int_0^t \int p_{t-s}(x-y) \Pi(\tau)(s,y) \, dy \, ds\]
   </li>
   <li>
     <p><strong>Structure Group Element:</strong>
 For translation by $z = (t_0,x_0)$:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)5</p>
+\[\Gamma_z \tau = \sum_{\sigma \preceq \tau} \Pi_z(\sigma) \cdot R_{z,\tau/\sigma}\]
 
     <p>where $R_{z,\tau}$ is the “remainder” term.</p>
 
     <p>Explicit computation for $\mathcal{I}(\Xi)$:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)6</p>
+\[\Gamma_{(t_0,x_0)} \mathcal{I}(\Xi) = \Pi_{(t_0,x_0)}(\mathcal{I}(\Xi)) - \Pi_{(0,0)}(\mathcal{I}(\Xi))\]
   </li>
   <li>
     <p><strong>Verify Model Property:</strong>
@@ -1419,11 +1291,11 @@ For translation by $z = (t_0,x_0)$:</p>
     <p><strong>Reconstruction Theorem Application:</strong>
 Given local expansions:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)7</p>
+\[U(z) = \sum_{|\tau| &lt; \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau) + R_z\]
 
     <p><strong>Theorem:</strong> $\exists! U \in \mathcal{D}’$ such that:</p>
 
-    <p>\(\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1\)8</p>
+\[|U(\phi_z^\lambda) - \sum_{|\tau| &lt; \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau)(\phi_z^\lambda)| \lesssim \lambda^\gamma\]
 
     <p><strong>Proof sketch:</strong>
 - Local Whitney-type estimates

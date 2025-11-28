@@ -922,7 +922,12 @@
 
 <p>The flux $F(\rho)=\rho(1-\rho)$ has derivative $F’(\rho)=1-2\rho$. Left/right characteristic speeds are $-0.6$ and $0.6$, so the Riemann problem generates a centered rarefaction. The self-similar solution $\rho(x,t)=\frac{1 - x/t}{2}$ for $-0.6t &lt; x &lt; 0.6t$, matched to constant states outside, gives</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)0</p>
+\[\rho(x,t)=
+\begin{cases}
+0.8, &amp; x &lt; -0.6t, \
+\frac{1 - x/t}{2}, &amp; -0.6t &lt; x &lt; 0.6t, \
+0.2, &amp; x &gt; 0.6t.
+\end{cases}\]
 
 <p>Fluxes on both sides equal $0.16$, so no shock is required; the rarefaction satisfies the Rankine–Hugoniot condition automatically.</p>
 
@@ -930,13 +935,19 @@
 
 <p><strong>Problem:</strong> For Burgers’ equation with</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)1</p>
+\[u(x,0) = \begin{cases} 1, &amp; x &lt; 0, \ 1 - x, &amp; 0 \le x \le 1, \ 0, &amp; x &gt; 1, \end{cases}\]
 
 <p>compute the breaking time.</p>
 
 <p>Characteristics emanating from $\xi \in (0,1)$ have slopes $1-\xi$ and gradients $\partial_{x}u = \frac{-1}{1+t}$, so all compression points experience infinite slope at $t=1$. The solution before breaking is</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)2</p>
+\[\nu(x,t)=
+\begin{cases}
+1, &amp; x &lt; t, \
+\frac{x}{t}, &amp; t &lt; x &lt; 1, \
+1 - x, &amp; 1 &lt; x &lt; 2 - t, \
+0, &amp; x &gt; 2 - t,
+\end{cases}\]
 
 <p>with gradients $\partial_{x}u = 1/t$ in the expanding fan and $-1/(1+t)$ in the compression region. At $t=1$ all compression characteristics collide simultaneously, producing an instantaneous shock—a vivid illustration of how nonlinear hyperbolic equations destroy smoothness.</p>
 
@@ -950,7 +961,7 @@
 
 <p><strong>Problem:</strong> For the isentropic Euler system</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)3</p>
+\[\partial_{t} \begin{pmatrix} \rho \ \rho u \end{pmatrix} + \partial_{x} \begin{pmatrix} \rho u \ \rho u^{2} + p(\rho) \end{pmatrix} = 0, \quad p(\rho)=K\rho^{\gamma},\]
 
 <p>find eigenvalues and Riemann invariants.</p>
 
@@ -966,7 +977,7 @@
 
 <p><strong>Problem:</strong> Analyze the shallow-water system</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)4</p>
+\[\partial_{t} h + \partial_{x}(h u) = 0, \qquad \partial_{t}(h u) + \partial_{x}\left(h u^{2} + \tfrac{1}{2} g h^{2}\right) = 0.\]
 
 <p>Quasilinearization gives $A(U)=\begin{pmatrix} u &amp; h \ g &amp; u \end{pmatrix}$ with eigenvalues $u \pm \sqrt{gh}$. The Riemann invariants $r_{\pm}=u \pm 2\sqrt{gh}$ remain constant along characteristics $dx/dt = u \pm \sqrt{gh}$. Because $\nabla \lambda_{\pm} \cdot r_{\pm} \neq 0$, both characteristic fields are genuinely nonlinear, implying that shocks generically form from smooth initial perturbations—exactly as in the scalar Burgers setting.</p>
 
@@ -976,7 +987,7 @@
 
 <p>With $\lambda_{+}=u+c$, $r_{+}=(1, u+c)^{T}$, and $\nabla \lambda_{+}=(1, c/\rho)$, the dot product is</p>
 
-<p>\(\partial_{t} u + \nabla \cdot F(u) = 0.\)5</p>
+\[\nabla \lambda_{+} \cdot r_{+} = 1 + \frac{c}{\rho}(u+c) &gt; 0\]
 
 <p>for all physically relevant states. Thus the $+$ field is genuinely nonlinear, ensuring that compression waves steepen into shocks unless moderated by dispersion or viscosity. This computation also confirms that entropy conditions will later be required to select admissible discontinuities.</p>
 

@@ -971,23 +971,23 @@ Let $v = u’$. Then $v’ = u’’$, so:</p>
     <p><strong>Bernoulli Equation:</strong>
 Let $w = v^2$:</p>
 
-    <p>\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)0</p>
+\[\frac{1}{2} r \frac{dw}{dr} - w = r^2\]
 
     <p>Integrating factor: $\mu(r) = e^{-\int \frac{1}{r} dr} = \frac{1}{r}$</p>
   </li>
   <li>
     <p><strong>Solution:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)1</p>
+\(\frac{d}{dr} \left( \frac{w}{r} \right) = r \implies \frac{w}{r} = \frac{r^2}{2} + C \implies w = \frac{r^3}{2} + C r\)</p>
 
     <p>Thus $v = u’ = \sqrt{\frac{r^3}{2} + C r}$. Boundary condition $u(1) = 0$ and symmetry at $r=0$ give $C = -\frac{1}{2}$.</p>
   </li>
   <li>
     <p><strong>Final Solution:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)2</p>
+\(u(r) = \int_r^1 \sqrt{\frac{t^3}{2} - \frac{t}{2}} \, dt = \frac{1}{6} (1 - r^3)\)</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)3</p>
+\(D^2 u = \begin{pmatrix} -r &amp; -\frac{1}{2r} \ -\frac{1}{2r} &amp; -\frac{1}{2r^2} \end{pmatrix}, \quad \det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1\)</p>
 
     <p>✓ Verified</p>
   </li>
@@ -999,7 +999,7 @@ Let $w = v^2$:</p>
 
 <p>Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}|x-y|^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:</p>
 
-<p>\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)4</p>
+\[\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1017,7 +1017,7 @@ $\phi(x) = \frac{1}{6}(|x|^3 - 1)$ gives $T(x) = x$ (identity map).</p>
 For $\rho_0, \rho_1$ with same mass:</p>
 
     <p><strong>Linearization at $\phi_0$:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)5</p>
+\(L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)\)</p>
 
     <p><strong>Ellipticity:</strong> $\text{adj}(D^2 \phi_0) \succ 0$ since $\phi_0$ is strictly convex</p>
 
@@ -1034,27 +1034,27 @@ For $\rho_0, \rho_1$ with same mass:</p>
 <ol>
   <li>
     <p><strong>Pogorelov’s Auxiliary Function:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)6</p>
+\(w(x) = e^{\alpha |x|^2} |D^2 u(x)|^2\)</p>
   </li>
   <li>
     <p><strong>Key Computation:</strong>
-\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)7</p>
+\(\Delta w = e^{\alpha |x|^2} \left[ \alpha n |D^2 u|^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + |D^3 u|^2 \right]\)</p>
   </li>
   <li>
     <p><strong>Crucial Inequality:</strong>
 From differentiating $\det(D^2 u) = 1$:</p>
 
-    <p>\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)8</p>
+\[\text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C |D^2 u|^{3/2}\]
   </li>
   <li>
     <p><strong>Maximum Principle:</strong>
 At maximum point of $w$, $\Delta w \leq 0$, so:</p>
 
-    <p>\(D F(M) \cdot H = \text{tr}(\text{adj}(M) H) = \det(M) \text{tr}(M^{-1} H)\)9</p>
+\[|D^2 u|^2 \leq C \alpha^{-n/2}\]
   </li>
   <li>
     <p><strong>Result:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)0</p>
+\(\|D^2 u\|_{L^\infty(B_{1/2})} \leq C\)</p>
   </li>
 </ol>
 
@@ -1072,21 +1072,21 @@ If $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $\|D^2 u\|
   <li>
     <p><strong>Detailed Proof Sketch for Monge-Ampère:</strong>
 <strong>Difference Quotients:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)1</p>
+\([D^2 u(x+h) - D^2 u(x)]_{ij} = \int_0^1 \frac{\partial}{\partial t} D^2 u(x + t h)_{ij} dt\)</p>
   </li>
   <li>
     <p><strong>Linearized Operator:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)2</p>
+\(L v = \text{tr}(\text{adj}(D^2 u) D^2 v)\)</p>
   </li>
   <li>
     <p><strong>Harnack Inequality for $L$:</strong>
 Since $\text{adj}(D^2 u) \succ 0$, we get:</p>
 
-    <p>\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)3</p>
+\[\sup_{B_r} v \leq C \inf_{B_r} v + C r^2 \|f\|_{L^\infty}\]
   </li>
   <li>
     <p><strong>Campanato Estimates:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)4</p>
+\([v]_{C^{0,\alpha}(B_r)} \leq C r^{2-\alpha} (\text{osc}_{B_r} v)^{1/2}\)</p>
   </li>
   <li>
     <p><strong>Bootstrap:</strong>
@@ -1098,19 +1098,19 @@ $C^{2,\alpha} \to C^{2,\alpha+\beta} \to C^\infty$</p>
 
 <p><strong>Problem:</strong> Find convex body with given surface area measure:</p>
 
-<p>\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)5</p>
+\[\det(D^2 u + u_{ij} \delta_{ij}) = f(x) \quad \text{on } S^{n-1}\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Continuity Method:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)6</p>
+\(G_t(u) = \det(D^2 u + u_{ij} \delta_{ij}) - [(1-t) + t f(x)] = 0\)</p>
   </li>
   <li>
     <p><strong>Openness Proof:</strong>
 <strong>Linearization:</strong>
-\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)7</p>
+\(L v = \text{tr}\left( \text{adj}(D^2 u_0 + u_0 \delta) D^2 v \right)\)</p>
 
     <p><strong>Ellipticity:</strong> Eigenvalues of $\text{adj}(D^2 u_0 + u_0 \delta)$ are positive since:
 - $D^2 u_0 + u_0 \delta \succ 0$ (strictly convex)
@@ -1125,12 +1125,12 @@ Sequence: $u_k$ solves $G_{t_k}(u_k) = 0$, $t_k \to t^*$</p>
     <p><strong>Step 1: $C^0$ bounds (Krylov):</strong>
 Consider $v = e^{\alpha |x|^2} u$. Maximum principle gives:</p>
 
-    <p>\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)8</p>
+\[\sup |u| \leq C(\sup f, \text{diam } \Omega)\]
 
     <p><strong>Step 2: $C^1$ bounds (Calabi):</strong>
 $w = e^{\alpha |x|^2} |\nabla u|^2$</p>
 
-    <p>\(G_t(u) \equiv \det(D^2 u) - [(1-t) \det(D^2 u_0) + t f] = 0\)9</p>
+\[\Delta w + c(x) |\nabla w| \leq C w\]
 
     <p><strong>Step 3: $C^2$ bounds (Pogorelov, as above)</strong></p>
 
@@ -1144,10 +1144,10 @@ $w = e^{\alpha |x|^2} |\nabla u|^2$</p>
 
 <p><strong>Problem:</strong>
 \(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
+-\Delta u = 1 &amp; \text{in } \Omega \subset \mathbb{R}^2 \
 u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)0</p>
+\partial_\nu u = c &amp; \text{on } \partial \Omega
+\end{cases}\)</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1156,11 +1156,7 @@ u = 0 &amp; \text{on } \partial \Omega \
     <p><strong>Moving Planes in $x_1$-direction:</strong>
 For $\lambda &lt; \lambda_1 = \inf {x_1 : x \in \Omega}$ define:</p>
 
-    <p>\(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)1</p>
+\[w_\lambda(x) = u(x^\lambda) - u(x)\]
 
     <p>where $x^\lambda = (2\lambda - x_1, x_2)$.</p>
   </li>
@@ -1168,11 +1164,7 @@ u = 0 &amp; \text{on } \partial \Omega \
     <p><strong>Equation for $w_\lambda$:</strong>
 In $\Sigma_\lambda = {x \in \Omega: x_1 &lt; \lambda}$:</p>
 
-    <p>\(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)2</p>
+\[-\Delta w_\lambda = 0\]
   </li>
   <li>
     <p><strong>Boundary Conditions:</strong>
@@ -1208,19 +1200,11 @@ $\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, $c = R$</li>
 <ol>
   <li>
     <p><strong>Reflection Function:</strong>
-\(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)3</p>
+\(w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(|x^\lambda|^2 - |x|^2)\)</p>
   </li>
   <li>
     <p><strong>Key Computation:</strong>
-\(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)4</p>
+\(\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) &amp; * \ * &amp; D^2 u(x) \end{pmatrix} + \text{lower order}\)</p>
   </li>
   <li>
     <p><strong>Block Determinant Analysis:</strong>
@@ -1237,11 +1221,7 @@ Shows $w_\lambda \geq 0$ by convexity.</p>
 <ol>
   <li>
     <p><strong>Linearization:</strong>
-\(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
-\frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
-\end{cases}\)5</p>
+\(L v = u_{xx} v_{yy} + u_{yy} v_{xx} - 2 u_{xy} v_{xy} + e^u v\)</p>
   </li>
   <li>
     <p><strong>Eigenvalue Analysis:</strong>

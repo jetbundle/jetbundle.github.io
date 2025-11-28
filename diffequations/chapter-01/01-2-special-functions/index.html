@@ -935,7 +935,7 @@
 
 <p>so</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)0</p>
+\[y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),\]
 
 <p>which matches ${}<em>2F</em>{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.</p>
 
@@ -945,11 +945,11 @@
 
 <p>Separation yields the angular ODE</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)1</p>
+\[\frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda \Theta=0.\]
 
 <p>Setting $x=\cos\theta$ produces the Legendre equation</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)2</p>
+\[(1-x^{2})\Theta''-2x\Theta'+\lambda \Theta=0.\]
 
 <p>Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.</p>
 
@@ -959,7 +959,7 @@
 
 <p>Start from ${}<em>2F</em>{1}\left(a,b;c;z\right)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)3</p>
+\[J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).\]
 
 <p>For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{z}{2}\right)^{2k}$, recovering the Bessel series and illustrating confluence.</p>
 
@@ -975,7 +975,7 @@
 
 <p>WKB analysis gives asymptotics</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)4</p>
+\[\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp\left(-\frac{2}{3}x^{3/2}\right),\]
 
 <p>valid for $\lvert \arg x\rvert&lt;\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.</p>
 
@@ -985,7 +985,7 @@
 
 <p>Using Rodrigues’ formula</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)5</p>
+\[P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},\]
 
 <p>integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.</p>
 
@@ -995,7 +995,7 @@
 
 <p>Coefficients are</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)6</p>
+\[c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\lvert x\rvert P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,\]
 
 <p>yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.</p>
 
@@ -1005,11 +1005,11 @@
 
 <p>Writing $-(x y’)’=\lambda x y$ yields orthogonality</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)7</p>
+\[\int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),\]
 
 <p>and Parseval’s identity</p>
 
-<p>\({}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\)8</p>
+\[\int_{0}^{1}x\left|f(x)\right|^{2}\,dx=\sum_{n=1}^{\infty}\left|\frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx\right|^{2}.\]
 
 <p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.
 ## Navigation</p>

@@ -224,7 +224,7 @@ if 'plot_data' in globals() and plot_data is not None:
 /**
  * Fix incorrectly parsed math tables
  * Kramdown sometimes interprets $...$ with pipes as tables
- * This function detects and fixes these cases
+ * This function detects and fixes these cases by converting tables back to math
  */
 function fixMathTables() {
   const content = document.querySelector('.textbook-content');
@@ -232,31 +232,97 @@ function fixMathTables() {
 
   // Find tables that look like they should be math
   const tables = content.querySelectorAll('table');
+  let fixedCount = 0;
+  
   tables.forEach(table => {
     const rows = table.querySelectorAll('tr');
+    
+    // Check for single-row tables that might be math
     if (rows.length === 1) {
-      // Single row table - might be incorrectly parsed math
       const cells = rows[0].querySelectorAll('td, th');
       if (cells.length > 0) {
-        const cellText = Array.from(cells).map(cell => cell.textContent.trim()).join(' ');
-        // Check if it looks like math (contains $ or math symbols)
-        if (cellText.includes('$') || 
-            /[\\{}^_]/.test(cellText) || 
-            cellText.match(/\$\$?[^$]+\$\$?/)) {
-          // This is likely a math expression, not a table
-          // Convert back to inline math
-          const mathMatch = cellText.match(/\$([^$]+)\$/);
-          if (mathMatch) {
-            const mathContent = mathMatch[1].replace(/\s+/g, ' ');
+        // Get all text from cells
+        const cellTexts = Array.from(cells).map(cell => cell.textContent.trim());
+        const fullText = cellTexts.join(' ');
+        
+        // Check if it looks like math (contains $, math symbols, or LaTeX commands)
+        const hasMathIndicators = fullText.includes('$') || 
+                                  /[\\{}^_]|\\left|\\right|\\frac|\\sqrt/.test(fullText) ||
+                                  fullText.match(/\$\$?[^$]+\$\$?/);
+        
+        if (hasMathIndicators) {
+          // Try to reconstruct the math expression
+          // Look for $...$ patterns in the cell text
+          const mathMatches = fullText.match(/\$([^$]+)\$/g);
+          
+          if (mathMatches && mathMatches.length > 0) {
+            // Reconstruct the original text with math
+            // Get the text before the table
+            const tableParent = table.parentNode;
+            const textBefore = table.previousSibling;
+            const textAfter = table.nextSibling;
+            
+            // Create a text node with the math expression
+            // Replace the table with the reconstructed math
+            const mathText = mathMatches.map(m => {
+              // Restore any pipes that might have been in the math
+              return m.replace(/\s+/g, ' ').trim();
+            }).join(' ');
+            
+            // Create a span for the math
             const mathSpan = document.createElement('span');
             mathSpan.className = 'math';
-            mathSpan.textContent = `$${mathContent}$`;
+            mathSpan.textContent = mathText;
+            
+            // Replace table with math span
             table.parentNode.replaceChild(mathSpan, table);
+            fixedCount++;
+          } else {
+            // Try to reconstruct from cell contents
+            // If cells contain math-like content, combine them
+            const reconstructed = cellTexts.join('').replace(/\s+/g, ' ').trim();
+            if (reconstructed.match(/\$.*\$/)) {
+              const mathSpan = document.createElement('span');
+              mathSpan.className = 'math';
+              mathSpan.textContent = reconstructed;
+              table.parentNode.replaceChild(mathSpan, table);
+              fixedCount++;
+            }
           }
         }
       }
     }
+    
+    // Also check for tables with multiple rows that might be math split across rows
+    if (rows.length > 1 && rows.length <= 3) {
+      const allText = Array.from(rows).map(row => {
+        return Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent.trim()).join(' ');
+      }).join(' ');
+      
+      // If it looks like a single math expression split across rows
+      if (allText.match(/\$[^$]*\|[^$]*\$/)) {
+        const mathMatch = allText.match(/\$([^$]+)\$/);
+        if (mathMatch) {
+          const mathContent = mathMatch[1].replace(/\s+/g, ' ').trim();
+          const mathSpan = document.createElement('span');
+          mathSpan.className = 'math';
+          mathSpan.textContent = `$${mathContent}$`;
+          table.parentNode.replaceChild(mathSpan, table);
+          fixedCount++;
+        }
+      }
+    }
   });
+  
+  if (fixedCount > 0) {
+    console.log(`Fixed ${fixedCount} incorrectly parsed math table(s)`);
+    // Re-run MathJax on the fixed content
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise([content]).catch(err => {
+        console.log('MathJax re-render after fix:', err);
+      });
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -267,10 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
       window.textbookEngine.ensureEventListeners();
     }
   }, 100);
-  
+
   // Fix incorrectly parsed math tables
   fixMathTables();
-  
+
   // Also run after MathJax processes (if available)
   if (window.MathJax && window.MathJax.startup) {
     window.MathJax.startup.promise.then(() => {

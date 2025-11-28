@@ -928,7 +928,7 @@
 
     <p>where $\eta_{\mu\nu}^a$ are ‘t Hooft symbols:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)0</p>
+\[\eta_{ij}^a = \epsilon_{aij}, \quad \eta_{4j}^a = \delta_{aj}, \quad \eta_{i4}^a = -\delta_{aj}\]
   </li>
   <li>
     <p><strong>Curvature Computation:</strong>
@@ -936,27 +936,27 @@ Compute $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$<
 
     <p>For $\mu=i$, $\nu=j$:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)1</p>
+\[F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^a \sigma^a\]
   </li>
   <li>
     <p><strong>Self-Duality Verification:</strong>
 Compute $*F_{ij} = \frac{1}{2} \epsilon_{ijkl} F_{kl}$:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)2</p>
+\[*F_{ij} = \frac{1}{2} \epsilon_{ijkl} \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{kl}^b \sigma^b\]
 
     <p>Using $\epsilon_{ijkl} \eta_{kl}^b = 2 \eta_{ij}^b$:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)3</p>
+\[*F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^b \sigma^b = F_{ij}\]
 
     <p><strong>Result:</strong> $F = *F$ ✓ Self-dual instanton verified</p>
   </li>
   <li>
     <p><strong>Yang-Mills Functional:</strong>
-\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)4</p>
+\(\mathcal{YM}(A) = \int_{\mathbb{R}^4} |F|^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2\)</p>
   </li>
   <li>
     <p><strong>Topological Charge:</strong>
-\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)5</p>
+\(k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1\)</p>
   </li>
   <li>
     <p><strong>Gauge Transformation &amp; Moduli:</strong>
@@ -964,7 +964,7 @@ Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-d
 
     <p>Global gauge transformation:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)6</p>
+\[A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}, \quad g(x) = \frac{x^4 + i x^a \sigma^a}{|x|}\]
 
     <p>Verification: $F^{g} = g F g^{-1}$ preserves self-duality.</p>
   </li>
@@ -985,13 +985,13 @@ Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-d
   </li>
   <li>
     <p><strong>Deformation Complex:</strong>
-\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)7</p>
+\(0 \to \Omega^0(\mathfrak{su}(2)) \xrightarrow{d_A} \Omega^1(\mathfrak{su}(2)) \xrightarrow{d_A^+} \Omega^{2+}(\mathfrak{su}(2)) \to 0\)</p>
   </li>
   <li>
     <p><strong>Index Computation:</strong>
 Dimension formula:</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)8</p>
+\[\dim \mathcal{M}_1 = 8 \cdot 1 - 3(1 - b_1 + b_2^+) = 8 - 3(1 - 0 + 0) = 5\]
   </li>
   <li>
     <p><strong>Explicit Cohomology Computation:</strong>
@@ -999,9 +999,9 @@ Harmonic forms on $S^4$: $\dim H^0 = 1$, $\dim H^1 = 0$, $\dim H^2 = 0$, $\dim H
 
     <p>Bundle cohomology (by Atiyah-Hitchin-Singer):</p>
 
-    <p>\(\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\)9</p>
+\[\dim \ker d_A^+ = h^0 + h^2_+ = 1 + 3 = 4\]
 
-    <p>\(d_A^* F_A = 0\)0</p>
+\[\dim \coker d_A = h^1 + h^3 = 0 + 0 = 0\]
 
     <p>Index $= 4 - 0 + \dim \ker d_A = 5$ ✓</p>
   </li>
@@ -1033,25 +1033,25 @@ ADHM data for $k=2$:</p>
   </li>
   <li>
     <p><strong>Moment Map Equations:</strong>
-\(d_A^* F_A = 0\)1</p>
+\([B_1, B_1^\dagger] + [B_2, B_2^\dagger] + I I^\dagger = 0\)</p>
 
-    <p>\(d_A^* F_A = 0\)2</p>
+\[[B_1, B_2^\dagger] - [B_2, B_1^\dagger] + I J^\dagger - J I^\dagger = 0\]
   </li>
   <li>
     <p><strong>Explicit Solution (Atiyah-Drinfeld-Hitchin-Manin):</strong>
-\(d_A^* F_A = 0\)3</p>
+\(B_1 = \begin{pmatrix} z_1 &amp; 0 \ 0 &amp; z_2 \end{pmatrix}, \quad B_2 = \begin{pmatrix} 0 &amp; -w_2 \ w_1 &amp; 0 \end{pmatrix}\)</p>
 
     <p>Positions: $z_1, z_2 \in \mathbb{C}^2$ (8 real parameters)</p>
   </li>
   <li>
     <p><strong>Moduli Space Metric (Atiyah-Hitchin metric):</strong>
-\(d_A^* F_A = 0\)4</p>
+\(ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2\)</p>
 
     <p>where $r = |z_1 - z_2|$ is separation distance.</p>
   </li>
   <li>
     <p><strong>Explicit Computation for Small $r$:</strong>
-\(d_A^* F_A = 0\)5</p>
+\(h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)\)</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
@@ -1070,17 +1070,17 @@ As $r \to 0$, metric degenerates (bubbling point).</p>
     <p><strong>Bubbling Sequence Construction:</strong>
 Construct sequence $A_n$ on $S^4$:</p>
 
-    <p>\(d_A^* F_A = 0\)6</p>
+\[A_n = A_1 + \frac{1}{n} A_2 \circ \phi_n\]
 
     <p>where $\phi_n: S^4 \to S^4$ is stereographic projection concentrating at north pole.</p>
   </li>
   <li>
     <p><strong>Energy Decomposition:</strong>
-\(d_A^* F_A = 0\)7</p>
+\(\mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)\)</p>
   </li>
   <li>
     <p><strong>Curvature Concentration:</strong>
-\(d_A^* F_A = 0\)8</p>
+\(\int_{B(p,1/n)} |F_{A_n}|^2 \to 8\pi^2 \quad \text{as} \quad n \to \infty\)</p>
   </li>
   <li>
     <p><strong>Weak Convergence Analysis:</strong>
@@ -1094,7 +1094,7 @@ Extract bubble:</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
-\(d_A^* F_A = 0\)9</p>
+\(\int_{\mathbb{R}^4} |F_{\tilde{A}_n}|^2 \to 8\pi^2\)</p>
 
     <p>Boundary behavior: $\tilde{A}_n \to 0$ weakly at infinity.</p>
   </li>
@@ -1115,7 +1115,7 @@ Extract bubble:</p>
   </li>
   <li>
     <p><strong>4th Donaldson Invariant:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)0</p>
+\(D_4([\mathbb{CP}^2], k=1) = \int_{\mathcal{M}_1} \omega_2^2\)</p>
 
     <p>where $\omega_2 \in H^2(\mathcal{M}_1)$ is universal cohomology class.</p>
   </li>
@@ -1129,7 +1129,7 @@ Moduli space: $\mathcal{M}_1(\mathbb{CP}^2) \cong \mathbb{CP}^3$</p>
   </li>
   <li>
     <p><strong>Integral Evaluation:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)1</p>
+\(\int_{\mathbb{CP}^3} \omega_{\mathcal{M}}^2 = \int_{\mathbb{CP}^3} c_1^2(\mathcal{O}(1)) = 1\)</p>
   </li>
   <li>
     <p><strong>Result:</strong> $D_4(\mathbb{CP}^2, 1) = 1$</p>
@@ -1181,7 +1181,7 @@ Moduli space: $\mathcal{M}_1(\mathbb{CP}^2) \cong \mathbb{CP}^3$</p>
 <ol>
   <li>
     <p><strong>Supersymmetry Algebra:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)2</p>
+\(\{Q_\alpha, \bar{Q}_{\dot{\beta}}\} = \delta_{\alpha\dot{\beta}} H\)</p>
   </li>
   <li>
     <p><strong>Instanton Equation:</strong>
@@ -1189,11 +1189,11 @@ $F^+ = 0 \iff [Q, \bar{Q}] A = 0$</p>
   </li>
   <li>
     <p><strong>Witten Index Application:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)3</p>
+\(\text{Witten Index} = \dim \ker D^+ - \dim \ker D^-\)</p>
 
     <p>For BPST instanton:</p>
 
-    <p>\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)4</p>
+\[\text{Index}(D^+) = 5, \quad \text{Index}(D^-) = 0\]
   </li>
   <li>
     <p><strong>Physical Interpretation:</strong>
@@ -1215,28 +1215,28 @@ $F^+ = 0 \iff [Q, \bar{Q}] A = 0$</p>
   </li>
   <li>
     <p><strong>Deformation Complex Cohomology:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)5</p>
+\(H^1(\text{ad} P) \neq 0, \quad H^2_+(\text{ad} P) \neq 0\)</p>
   </li>
   <li>
     <p><strong>Obstruction Space:</strong> $H^2_+(\text{ad} P)$</p>
   </li>
   <li>
     <p><strong>Kuranishi Map:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)6</p>
+\(\Phi: \ker d_A \to H^2_+(\text{ad} P)\)</p>
   </li>
   <li>
     <p><strong>Explicit Computation for Torsion Bundle:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)7</p>
+\(\Phi(\phi) = \int_M \phi \wedge \omega_2\)</p>
   </li>
   <li>
     <p><strong>Resolution:</strong>
 Moduli space near singularity:</p>
 
-    <p>\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)8</p>
+\[\mathcal{M} \cong \{ \phi \in \ker d_A : \Phi(\phi) = 0 \}\]
   </li>
   <li>
     <p><strong>Dimension:</strong>
-\(\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\)9</p>
+\(\dim \ker d_A - \dim H^2_+ = 8k - 3(1-b_1+b_2^+) - \text{obstructions}\)</p>
 
     <p><strong>Key Insight:</strong> The Kuranishi method provides a systematic way to resolve singularities in moduli spaces, connecting to the obstruction theory of Chapter 6.2.</p>
   </li>

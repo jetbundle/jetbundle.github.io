@@ -926,15 +926,7 @@
 
 <p><strong>Setup:</strong> Let $f(v) = M(v)$ be the Maxwellian:</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-      <td>v - v_*</td>
-      <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$0</td>
-    </tr>
-  </tbody>
-</table>
+\[M(v) = (2\pi)^{-3/2} \exp(-|v|^2/2)\]
 
 <p>Compute $Q(M,M)(v)$ at $v = (1,0,0)$.</p>
 
@@ -943,21 +935,13 @@
 <ol>
   <li>
     <p><strong>Post-collision velocities (elastic collision):</strong>
-\(Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(|v - v_*|, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*\)1</p>
+\(v' = v - [(v-v_*) \cdot \omega] \omega\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-          <td>v - v_*</td>
-          <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[v_*' = v_* + [(v-v_*) \cdot \omega] \omega\]
   </li>
   <li>
     <p><strong>Collision operator:</strong>
-\(Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(|v - v_*|, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*\)3</p>
+\(Q(M,M)(v) = \int\int [M(v')M(v_*') - M(v)M(v_*)] \, d\omega \, dv_*\)</p>
   </li>
   <li>
     <p><strong>Conservation properties:</strong>
@@ -975,15 +959,7 @@ For Maxwell molecules: $Q(M,M)(v) \equiv 0$ $\forall v$</p>
 
     <p><strong>Proof:</strong> The collision operator is self-adjoint and Maxwellians are equilibrium states</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-          <td>v - v_*</td>
-          <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$4</td>
-        </tr>
-      </tbody>
-    </table>
+\[\langle Q(M,M), \phi \rangle = \int\int\int\int B [M'M_*'-MM_*] \phi(v) \, d\omega \, dv_* \, dv \, dv_* = 0\]
 
     <p>by antisymmetry and conservation laws</p>
 
@@ -1000,11 +976,11 @@ For Maxwell molecules: $Q(M,M)(v) \equiv 0$ $\forall v$</p>
 <ol>
   <li>
     <p><strong>Collision operator in 1D (simplified):</strong>
-\(Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(|v - v_*|, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*\)5</p>
+\(Q(f,f)(v) = \int B(|v-v_*|)[f(v')f(v_*') - f(v)f(v_*)] \, dv_*\)</p>
   </li>
   <li>
     <p><strong>Entropy evolution:</strong>
-\(Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(|v - v_*|, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*\)6</p>
+\(\frac{d}{dt} H[f] = \int Q(f,f) \log f \, dv = -\int\int\int B f f_* |\log(f/f_*) - \log(f_*/f_*)|^2 \, d\omega \, dv \, dv_* \leq 0\)</p>
   </li>
   <li>
     <p><strong>Explicit computation for small perturbations:</strong>
@@ -1012,15 +988,7 @@ Let $f(v,t) = M(v)[1 + \varepsilon(t) \cos(\pi v)]$</p>
 
     <p>Then $H[f] \approx \int M \log M + \varepsilon^2(t)/2 \int M \cos^2(\pi v) \, dv$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-          <td>v - v_*</td>
-          <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$7</td>
-        </tr>
-      </tbody>
-    </table>
+\[\frac{d}{dt} H[f] \approx \varepsilon'(t)\varepsilon(t) = -\lambda \varepsilon^2(t) &lt; 0, \quad \lambda &gt; 0\]
 
     <p><strong>Result:</strong> Exponential relaxation: $\varepsilon(t) = \varepsilon(0)e^{-\lambda t}$, with explicit decay rate $\lambda \approx 0.8$.</p>
   </li>
@@ -1030,25 +998,9 @@ Let $f(v,t) = M(v)[1 + \varepsilon(t) \cos(\pi v)]$</p>
 
 <p><strong>Problem:</strong> Find steady-state solutions to the 1D Vlasov-Poisson system:</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-      <td>v - v_*</td>
-      <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$8</td>
-    </tr>
-  </tbody>
-</table>
+\[\partial_t f + v \partial_x f - \partial_x \phi \partial_v f = 0\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(</td>
-      <td>v - v_*</td>
-      <td>, \omega) \left[ f(v’)f(v_<em>’) - f(v)f(v_</em>) \right] \, d\omega \, dv_*$$9</td>
-    </tr>
-  </tbody>
-</table>
+\[\Delta \phi = \int f \, dv = \rho\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1056,7 +1008,7 @@ Let $f(v,t) = M(v)[1 + \varepsilon(t) \cos(\pi v)]$</p>
   <li>
     <p><strong>Steady state:</strong> $\partial_t f = 0$, so characteristics satisfy:</p>
 
-    <p>\(\frac{d}{dt} \int H[f] \, dx \leq 0\)0</p>
+\[\frac{dx}{dt} = v, \quad \frac{dv}{dt} = -\partial_x \phi\]
   </li>
   <li>
     <p><strong>Bernstein-Greene-Kruskal (BGK) modes:</strong>
@@ -1070,19 +1022,19 @@ Assume $\phi(x) = A \cos(kx)$</p>
   </li>
   <li>
     <p><strong>Vlasov equation becomes:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)1</p>
+\(v \partial_x g - A k^2 \cos(kx) \partial_v g = 0\)</p>
   </li>
   <li>
     <p><strong>Method of characteristics:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)2</p>
+\(\frac{dv}{dx} = -\frac{A k^2 \cos(kx)}{v}\)</p>
 
-    <p>\(\frac{d}{dt} \int H[f] \, dx \leq 0\)3</p>
+\[\int v \, dv = -A k^2 \int \cos(kx) \, dx\]
 
-    <p>\(\frac{d}{dt} \int H[f] \, dx \leq 0\)4</p>
+\[\frac{v^2}{2} = -A k \sin(kx) + C\]
   </li>
   <li>
     <p><strong>Distribution function:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)5</p>
+\(g(\xi) = \frac{C \exp(-\xi^2/2)}{\sqrt{1 + 2A k \sin(kx)}}\)</p>
 
     <p>where $\xi = v - u(x)$, $u(x) = \sqrt{2A k \sin(kx)}$</p>
 
@@ -1095,7 +1047,7 @@ Assume $\phi(x) = A \cos(kx)$</p>
 <p><strong>Problem:</strong> Consider $N$ particles with logarithmic interaction. Show factorization for $k=2$ marginals.</p>
 
 <p><strong>Setup:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)6</p>
+\(dX_i = V_i \, dt, \quad dV_i = \frac{1}{N} \sum_{j \neq i} \frac{1}{|X_i-X_j|} \partial_{X_i} \log|X_i-X_j| \, dt\)</p>
 
 <p><strong>Analytical Solution:</strong></p>
 
@@ -1106,7 +1058,7 @@ $P^2_N(t,x_1,v_1,x_2,v_2) = $ probability density for particles 1,2</p>
   </li>
   <li>
     <p><strong>Mean-field limit:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)7</p>
+\(P^2_N \to f(t,x_1,v_1)f(t,x_2,v_2) \quad \text{as } N \to \infty\)</p>
   </li>
   <li>
     <p><strong>Explicit computation for Gaussian initial data:</strong>
@@ -1116,7 +1068,7 @@ Initial: $X_i(0) \sim N(0,1)$, $V_i(0) \sim N(0,1)$ independent</p>
   </li>
   <li>
     <p><strong>Correlation decay:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)8</p>
+\(|\text{Corr}(X_1(t),X_2(t))| \leq \frac{C}{N \log N}\)</p>
 
     <p><strong>Result:</strong> Explicit error bound showing propagation of chaos with rate $O(1/N)$.</p>
   </li>
@@ -1133,7 +1085,7 @@ Initial: $X_i(0) \sim N(0,1)$, $V_i(0) \sim N(0,1)$ independent</p>
 <ol>
   <li>
     <p><strong>JKO step:</strong>
-\(\frac{d}{dt} \int H[f] \, dx \leq 0\)9</p>
+\(\rho_1 = \text{argmin}_\rho \left[\int \rho \log \rho \, dx + \frac{1}{2\tau} W_2^2(\rho,\rho_0)\right]\)</p>
   </li>
   <li>
     <p><strong>Optimal transport map:</strong>
@@ -1141,7 +1093,7 @@ $T: \rho_0 \to \rho_1$, $T(x) = x + \tau \nabla \log \rho_1(x)$</p>
   </li>
   <li>
     <p><strong>First iteration ($\tau = 0.1$):</strong>
-\(M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{|v-u|^2}{2T}}\)0</p>
+\(W_2^2(\rho,\rho_0) = \int |x - T(x)|^2 \rho_0(x) \, dx\)</p>
 
     <p>Entropy: $S(\rho) = \int \rho \log \rho \, dx$</p>
   </li>
@@ -1149,39 +1101,15 @@ $T: \rho_0 \to \rho_1$, $T(x) = x + \tau \nabla \log \rho_1(x)$</p>
     <p><strong>Explicit solution via Brenier map:</strong>
 For Gaussians: $\rho_0 = N(0,1)$, optimal $\rho_1 = N(0,1+2\tau)$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$1</td>
-        </tr>
-      </tbody>
-    </table>
+\[W_2^2(\rho_1,\rho_0) = |\mu_1-\mu_0|^2 + \text{Tr}(\Sigma_1 + \Sigma_0 - 2(\Sigma_1\Sigma_0)^{1/2})\]
   </li>
   <li>
     <p><strong>Compute:</strong>
 $\Sigma_0 = 1$, $\Sigma_1 = 1 + 2\tau = 1.2$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[W_2^2 = 0 + (1.2 + 1 - 2\sqrt{1.2}) = 0.0858\]
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$3</td>
-        </tr>
-      </tbody>
-    </table>
+\[S(\rho_1) = \frac{1}{2} \log(2\pi e \Sigma_1) = 0.9102\]
 
     <p>Total functional: $0.9102 + 0.0858/0.2 = 1.5389$</p>
   </li>
@@ -1214,29 +1142,13 @@ $\mu = \frac{1}{2} \mathbf{1}<em>{[0,1]}$, $\nu = \frac{1}{2} \mathbf{1}</em>{[2
 
     <p>Optimal map: $T(x) = x + 2$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$4</td>
-        </tr>
-      </tbody>
-    </table>
+\[W_2^2 = \int_0^1 |x+2-x|^2 \frac{1}{2} \, dx = \int_0^1 4 \, dx = 4\]
   </li>
   <li>
     <p><strong>Case 3: Gaussian to Gaussian</strong>
 $\mu = N(0,\sigma_1^2)$, $\nu = N(m,\sigma_2^2)$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$5</td>
-        </tr>
-      </tbody>
-    </table>
+\[W_2^2 = |m|^2 + (\sigma_1 - \sigma_2)^2\]
   </li>
   <li>
     <p><strong>Case 4: Challenging case—Uniform to Gaussian</strong>
@@ -1244,15 +1156,7 @@ $\mu = \frac{1}{2} \mathbf{1}_{[0,1]}$, $\nu = (2\pi)^{-1/2} \exp(-x^2/2)$</p>
 
     <p>Optimal map requires solving Monge-Ampère:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-          <td>v-u</td>
-          <td>^2}{2T}}$$6</td>
-        </tr>
-      </tbody>
-    </table>
+\[\partial_x [F_\mu^{-1}(F_\nu(x))] = \frac{\exp(-x^2/2)}{\sqrt{2\pi}}\]
 
     <p>Numerical verification shows $W_2 \approx 0.867$</p>
   </li>
@@ -1262,25 +1166,9 @@ $\mu = \frac{1}{2} \mathbf{1}_{[0,1]}$, $\nu = (2\pi)^{-1/2} \exp(-x^2/2)$</p>
 
 <p><strong>Problem:</strong> Solve the deterministic ($\nu=0$) MFG system:</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-      <td>v-u</td>
-      <td>^2}{2T}}$$7</td>
-    </tr>
-  </tbody>
-</table>
+\[-\partial_t u + \frac{1}{2}|\nabla u|^2 = V(x)m\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{</td>
-      <td>v-u</td>
-      <td>^2}{2T}}$$8</td>
-    </tr>
-  </tbody>
-</table>
+\[\partial_t m - \text{div}(m \nabla u) = 0\]
 
 <p>$m(0) = m_0$, $u(T) = G(x)$</p>
 
@@ -1291,11 +1179,11 @@ $\mu = \frac{1}{2} \mathbf{1}_{[0,1]}$, $\nu = (2\pi)^{-1/2} \exp(-x^2/2)$</p>
 <ol>
   <li>
     <p><strong>Hamilton-Jacobi-Bellman:</strong>
-\(M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{|v-u|^2}{2T}}\)9</p>
+\(-\partial_t u + \frac{1}{2}|\nabla u|^2 = x m(t,x)\)</p>
   </li>
   <li>
     <p><strong>Fokker-Planck:</strong>
-\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)0</p>
+\(\partial_t m - \text{div}(m \nabla u) = 0\)</p>
   </li>
   <li>
     <p><strong>Ansatz:</strong>
@@ -1303,19 +1191,19 @@ Assume $u(t,x) = a(t)x^2 + b(t)x + c(t)$</p>
   </li>
   <li>
     <p><strong>Plug into HJB:</strong>
-\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)1</p>
+\(\partial_t u = a'x^2 + b'x + c'\)</p>
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)2</p>
+\[\frac{1}{2}|\nabla u|^2 = \frac{1}{2}(2a x + b)^2 = 2a^2 x^2 + 2ab x + \frac{b^2}{2}\]
 
     <p>Right-hand side: $x m(t,x)$</p>
   </li>
   <li>
     <p><strong>ODE system:</strong>
-\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)3</p>
+\(a' + 4a^2 = 0\)</p>
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)4</p>
+\[b' + 2ab = \int x m \, dx \quad \text{(center of mass)}\]
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)5</p>
+\[c' + \frac{b^2}{2} = \int x^2 m \, dx \quad \text{(second moment)}\]
   </li>
   <li>
     <p><strong>Terminal conditions:</strong>
@@ -1323,25 +1211,25 @@ $u(1,x) = x^2/2 \to a(1) = 1/2$, $b(1) = 0$, $c(1) = 0$</p>
   </li>
   <li>
     <p><strong>Solve Riccati equation:</strong>
-\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)6</p>
+\(a' = -4a^2, \quad a(1) = 1/2\)</p>
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)7</p>
+\[\frac{da}{dt} = -4a^2 \to \int \frac{da}{a^2} = -4 \int dt\]
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)8</p>
+\[-\frac{1}{a} = -4t + C\]
 
-    <p>\(f_N^{(k)}(z_1, \dots, z_k) \to \prod_{i=1}^k f(z_i) \quad \text{weakly in } L^1\)9</p>
+\[a(t) = \frac{1}{4(1-t)}\]
   </li>
   <li>
     <p><strong>Center of mass equation:</strong>
 $m(t,x) = \delta(x - X(t))$</p>
 
-    <p>\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)0</p>
+\[\partial_t X = -\partial_x u = -2a(t)X - b(t)\]
 
     <p>With $b’ + 2a b = 0$, $b(t) = 0$ (symmetry)</p>
 
-    <p>\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)1</p>
+\[X' = -2a(t)X = -\frac{8X}{4(1-t)}\]
 
-    <p>\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)2</p>
+\[X(t) = X(0) (1-t)^2 = 0\]
 
     <p><strong>Result:</strong> $m(t,x) = \delta(x)$, $u(t,x) = \frac{x^2}{4(1-t)}$</p>
   </li>
@@ -1365,11 +1253,11 @@ Each player assumes others follow mean-field $m$.</p>
   </li>
   <li>
     <p><strong>HJB for player 1:</strong>
-\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)3</p>
+\(-\partial_t u^1 - \nu \Delta u^1 + \frac{1}{2}|\nabla u^1|^2 = V(x,m) + \frac{1}{2}\nu\)</p>
   </li>
   <li>
     <p><strong>3-player coupling:</strong>
-\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)4</p>
+\(m^N(t,x) = \frac{1}{3} \sum \delta_{X_i(t)}(x)\)</p>
   </li>
   <li>
     <p><strong>Explicit computation for linear $V(x,m) = \alpha x m$:</strong>
@@ -1379,13 +1267,13 @@ Assume $u^i(t,x) = a(t)x + b^i(t)$</p>
   </li>
   <li>
     <p><strong>Fokker-Planck for empirical measure:</strong>
-\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)5</p>
+\(\partial_t m^N = \nu \Delta m^N + \text{div}(m^N a(t))\)</p>
   </li>
   <li>
     <p><strong>Convergence as $N \to \infty$:</strong>
-\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)6</p>
+\(\text{Var}(m^N) = O(1/N)\)</p>
 
-    <p>\(\partial_t f + v \cdot \nabla_x f + E[f] \cdot \nabla_v f = 0\)7</p>
+\[\|u^1 - u^{\text{MF}}\|_{L^2} = O(1/\sqrt{N})\]
 
     <p><strong>Result:</strong> Explicit error estimates showing mean-field limit convergence.</p>
   </li>

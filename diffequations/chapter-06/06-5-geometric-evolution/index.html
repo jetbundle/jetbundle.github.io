@@ -947,15 +947,15 @@ The normalized flow is:</p>
   </li>
   <li>
     <p><strong>Exact Solution:</strong>
-\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)0</p>
+\(\frac{df^2}{dt} = 2(f^2 - 1) \implies \frac{df^2}{f^2 - 1} = 2\, dt\)</p>
 
     <p>Integration:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)1</p>
+\[\int \frac{df^2}{f^2 - 1} = 2t + C \implies \tanh^{-1}f = t + C\]
 
     <p>Initial condition $f(0) = f_0$:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)2</p>
+\[f(t) = \tanh(t + \tanh^{-1}f_0)\]
   </li>
   <li>
     <p><strong>Geometric Interpretation:</strong>
@@ -980,27 +980,27 @@ As $t \to \infty$: $f(t) \to 1$, converging to standard round metric</p>
     <p><strong>Ricci Flow Linearization:</strong>
 The Ricci flow $\partial_t g = -2\text{Ric}(g)$ has linearization:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)3</p>
+\[\mathcal{L} h_{ij} = -\Delta_L h_{ij} + \text{lower order terms}\]
 
     <p>where $\Delta_L$ is the Lichnerowicz Laplacian:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)4</p>
+\[\Delta_L h_{ij} = \Delta h_{ij} + 2 R_{ikjl} h^{kl} - 2 R_{ik} h_j^k - 2 R_{jk} h_i^k + 2 R_{ij} \text{tr}_h g\]
   </li>
   <li>
     <p><strong>Gauge Degeneracy:</strong>
 The symbol of $\Delta_L$ is degenerate due to diffeomorphism invariance:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)5</p>
+\[\sigma(\Delta_L)(\xi) h_{ij} = -|\xi|^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i\]
   </li>
   <li>
     <p><strong>De Turck Modification:</strong>
 Introduce vector field $W$ solving:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)6</p>
+\[\Delta_L W_i + \nabla_j \nabla_i W^j = \Gamma_k(g, \partial_t g)\]
 
     <p>Modified flow:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)7</p>
+\[\partial_t g_{ij} = -2\text{Ric}_{ij} + \mathcal{L}_W g_{ij}\]
 
     <p>where $\mathcal{L}<em>W g</em>{ij} = \nabla_i W_j + \nabla_j W_i$</p>
   </li>
@@ -1012,15 +1012,15 @@ Initial metric: $g_0 = dx^2 + dy^2$</p>
 
     <p>De Turck vector: $W = (w_1, w_2)$ where:</p>
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)8</p>
+\[\Delta w_1 = \partial_x h_{11} + \partial_y h_{12}\]
 
-    <p>\(\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i\)9</p>
+\[\Delta w_2 = 2\partial_x h_{12} + \partial_y h_{22}\]
   </li>
   <li>
     <p><strong>Symbol Analysis:</strong>
 Modified symbol:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)0</p>
+\[\sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = |\xi|^2 g_{ij}\]
 
     <p><strong>Result:</strong> Strictly parabolic with principal symbol $|\xi|^2 &gt; 0$</p>
 
@@ -1039,13 +1039,13 @@ Modified symbol:</p>
     <p><strong>Curvature Evolution on $S^2$:</strong>
 For metric $g(t) = f(t)^2 g_{\text{round}}$, sectional curvature $K = 1/f(t)^2$. Evolution:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)1</p>
+\[\partial_t K = \Delta K + 2K(R - 2K)\]
   </li>
   <li>
     <p><strong>Tensor Maximum Principle Application:</strong>
 General form: For tensor $T$ satisfying:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)2</p>
+\[\partial_t T \ge \Delta T + Q(T)\]
 
     <p>where $Q$ is quadratic. If $T \ge 0$ initially and $Q(T) \ge 0$ when $T \ge 0$, then $T(t) \ge 0$.</p>
   </li>
@@ -1061,7 +1061,7 @@ Lichnerowicz Laplacian: $\Delta K = f^{-4} \partial_\theta (\sin\theta \partial_
     <p><strong>Explicit Verification:</strong>
 From Example 6.5.1: $f(t) = \tanh(t + C)$. Then:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)3</p>
+\[K(t) = \frac{1}{f(t)^2} = \frac{1}{\tanh^2(t + C)} = \coth^2(t + C)\]
 
     <p>Check: $\partial_t K = -2\coth^2(t + C) \tanh(t + C) \ge 0$ for $t \ge 0$</p>
 
@@ -1082,7 +1082,7 @@ Metric: $g(t) = u(x,t) dx^2$, $x \in [0,2\pi]$</p>
 
     <p>$\mathcal{F}$-functional:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)4</p>
+\[\mathcal{F}(u, f) = \int_0^{2\pi} \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) e^{-f} \sqrt{u}\, dx\]
   </li>
   <li>
     <p><strong>Ricci Flow Evolution:</strong>
@@ -1094,23 +1094,23 @@ Ricci curvature: $\text{Ric} = -\frac{1}{2} \frac{u_{xx}}{u^2}$</p>
     <p><strong>Coupled Evolution:</strong>
 Perelman’s system:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)5</p>
+\[\partial_t u = u_{xx}\]
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)6</p>
+\[\partial_t f = -\log u + \text{constant}\]
   </li>
   <li>
     <p><strong>Monotonicity Computation:</strong>
 First variation:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)7</p>
+\[\frac{d}{dt} \mathcal{F} = \int \left[ 2\left|\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1\right|^2 + \text{boundary terms} \right] e^{-f} \sqrt{u}\, dx\]
 
     <p>Detailed calculation:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)8</p>
+\[\frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx\]
 
     <p>After integration by parts and substitution:</p>
 
-    <p>\(\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)\)9</p>
+\[\frac{d}{dt} \mathcal{F} = 2 \int \left| \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \right|^2 e^{-f} \sqrt{u}\, dx \ge 0\]
   </li>
   <li>
     <p><strong>Geometric Interpretation:</strong>
@@ -1135,7 +1135,7 @@ Equality case: $\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} = 1$</p>
     <p><strong>Ansatz for Cylinder:</strong>
 Domain: $S^1 \times \mathbb{R}$ with metric:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)0</p>
+\[g(t) = dr^2 + \alpha(r,t)^2 d\theta^2\]
   </li>
   <li>
     <p><strong>Ricci Flow Evolution:</strong>
@@ -1143,7 +1143,7 @@ Ricci tensor: $\text{Ric} = -\partial_{rr} \log \alpha \cdot g_{\theta\theta}$</
 
     <p>Evolution:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)1</p>
+\[\partial_t \alpha = \alpha_{rr}\]
   </li>
   <li>
     <p><strong>Self-Similar Solution:</strong>
@@ -1151,17 +1151,17 @@ Assume $\alpha(r,t) = \frac{1}{\sqrt{T-t}} \beta\left(\frac{r}{\sqrt{T-t}}\right
 
     <p>Reduced equation:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)2</p>
+\[\beta'' + \frac{1}{2} \beta' + \frac{1}{2} \frac{\beta'^2}{\beta} = 0\]
   </li>
   <li>
     <p><strong>Exact Solution:</strong>
 Let $\gamma = \log \beta$. Then:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)3</p>
+\[\gamma'' + \frac{1}{2} (\gamma')^2 + \frac{1}{2} \gamma' = 0\]
 
     <p>Solution: $\gamma’ = -\frac{1}{1 + e^{r/\sqrt{2}}}$</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)4</p>
+\[\beta(r) = \sqrt{2} \tanh\left(\frac{r}{2\sqrt{2}}\right)\]
   </li>
   <li>
     <p><strong>Singularity Analysis:</strong>
@@ -1200,25 +1200,25 @@ Ansatz: $F(x,t) = \sqrt{T-t} \cdot \phi(x)$</p>
 
     <p>Reduced MCF:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)5</p>
+\[\Delta \phi + \frac{1}{2} \phi = 0\]
   </li>
   <li>
     <p><strong>Huisken Functional:</strong>
 Gaussian density:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)6</p>
+\[\Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-|x-p|^2/4(T-t_0)} d\mathcal{H}^{n-1}\]
   </li>
   <li>
     <p><strong>Monotonicity Computation:</strong>
 Evolution:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)7</p>
+\[\frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int |\vec{H} + \frac{x-p}{2(T-t_0)}|^2 e^{-|x-p|^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0\]
   </li>
   <li>
     <p><strong>Asymptotic Analysis:</strong>
 As $t \to T^-$:</p>
 
-    <p>\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)8</p>
+\[\lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}\]
 
     <p>where $\omega_{n-1}$ is the solid angle of $S^{n-1}$.</p>
 
@@ -1235,29 +1235,29 @@ As $t \to T^-$:</p>
 <ol>
   <li>
     <p><strong>Einstein-Hilbert Action:</strong>
-\(\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g\)9</p>
+\(S[g] = \int_M R[g] dV_g\)</p>
   </li>
   <li>
     <p><strong>Stochastic Quantization:</strong>
 Langevin equation:</p>
 
-    <p>\(\frac{d}{dt} \mathcal{F}(g(t), f(t)) \ge 0\)0</p>
+\[\partial_t g_{ij} = -2\text{Ric}_{ij} + \xi_{ij}\]
 
     <p>where $\xi_{ij}$ is space-time white noise:</p>
 
-    <p>\(\frac{d}{dt} \mathcal{F}(g(t), f(t)) \ge 0\)1</p>
+\[\mathbb{E}[\xi_{ij}(x,t) \xi_{kl}(x',t')] = \delta_{ik}\delta_{jl} \delta(x-x')\delta(t-t')\]
   </li>
   <li>
     <p><strong>Fokker-Planck Equation:</strong>
 Probability density $P[g,t]$:</p>
 
-    <p>\(\frac{d}{dt} \mathcal{F}(g(t), f(t)) \ge 0\)2</p>
+\[\partial_t P = \int \frac{\delta}{\delta g_{ij}} \left[ \frac{\delta}{\delta g_{ij}} + 2\text{Ric}_{ij} \right] P\, dV_g\]
   </li>
   <li>
     <p><strong>Mean-Field Limit:</strong>
 Averaged evolution:</p>
 
-    <p>\(\frac{d}{dt} \mathcal{F}(g(t), f(t)) \ge 0\)3</p>
+\[\partial_t \langle g_{ij} \rangle = -2 \langle \text{Ric}_{ij} \rangle\]
 
     <p>Fluctuation-dissipation: Higher moments controlled by Perelman’s $\mathcal{W}$-entropy.</p>
   </li>

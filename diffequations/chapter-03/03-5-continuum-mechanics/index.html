@@ -913,11 +913,15 @@
 <ol>
   <li>
     <p><strong>Deformation Gradient:</strong>
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)0</p>
+\(F = D_X \varphi = \begin{pmatrix}
+\lambda &amp; 0 &amp; 0 \
+0 &amp; \lambda^{-1/2} &amp; 0 \
+0 &amp; 0 &amp; \lambda^{-1/2}
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Jacobian (Volume Preservation Check):</strong>
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)1</p>
+\(J = \det F = \lambda \cdot \lambda^{-1/2} \cdot \lambda^{-1/2} = \lambda \cdot \lambda^{-1} = 1\)</p>
   </li>
 </ol>
 
@@ -926,16 +930,24 @@
 <ol>
   <li>
     <p><strong>Right Cauchy-Green Tensor:</strong>
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)2</p>
+\(C = F^T F = \begin{pmatrix}
+\lambda^2 &amp; 0 &amp; 0 \
+0 &amp; \lambda^{-1} &amp; 0 \
+0 &amp; 0 &amp; \lambda^{-1}
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Green-Lagrange Strain:</strong>
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)3</p>
+\(E = \frac{1}{2}(C - I) = \frac{1}{2} \begin{pmatrix}
+\lambda^2 - 1 &amp; 0 &amp; 0 \
+0 &amp; \lambda^{-1} - 1 &amp; 0 \
+0 &amp; 0 &amp; \lambda^{-1} - 1
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Neo-Hookean Energy Density:</strong>
 The stored energy function is:
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)4
+\(W(F) = \frac{\mu}{2} (I_1 - 3) - \mu \ln J + \frac{\kappa}{2} (J - 1)^2,\)
 where $I_1 = \text{tr}(C)$. For our incompressible case ($J=1$):</p>
   </li>
 </ol>
@@ -949,12 +961,12 @@ where $I_1 = \text{tr}(C)$. For our incompressible case ($J=1$):</p>
   <li>
     <p><strong>First Piola-Kirchhoff Stress:</strong>
 For uniaxial tension (stress only in $X_1$ direction):
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)5</p>
+\(P_{11} = \frac{\partial W}{\partial \lambda} = \mu \left( \lambda - \lambda^{-2} \right)\)</p>
   </li>
   <li>
     <p><strong>Cauchy Stress (True Stress):</strong>
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)6
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)7</p>
+\(\sigma = J^{-1} P F^T = P F^T \quad (\text{since } J=1)\)
+\(\sigma_{11} = P_{11} \lambda = \mu (\lambda^2 - \lambda^{-1})\)</p>
   </li>
 </ol>
 
@@ -964,7 +976,7 @@ For uniaxial tension (stress only in $X_1$ direction):
 
 <p><strong>Problem:</strong> Solve the static equilibrium of a Saint-Venant-Kirchhoff material under uniaxial tension. The energy density is:</p>
 
-<p>\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)8</p>
+\[W(F) = \frac{\lambda}{2} (\text{tr} E)^2 + \mu \|E\|^2\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -972,7 +984,7 @@ For uniaxial tension (stress only in $X_1$ direction):
   <li>
     <p><strong>Stress-Strain Relation:</strong>
 The Second Piola-Kirchhoff stress is:
-\(C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\)9</p>
+\(S = \frac{\partial W}{\partial E} = \lambda (\text{tr} E) I + 2\mu E\)</p>
   </li>
   <li>
     <p><strong>Uniaxial Extension:</strong>
@@ -983,7 +995,7 @@ For $F = \text{diag}(\lambda, \nu, \nu)$ with incompressibility constraint $\lam
 <ul>
   <li>
     <p>Green-Lagrange components:
-\(E = \frac{1}{2}(C - I).\)0</p>
+\(E_{11} = \frac{1}{2}(\lambda^2 - 1), \quad E_{22} = E_{33} = \frac{1}{2}(\lambda^{-1} - 1)\)</p>
   </li>
   <li>
     <p>Trace: $\text{tr} E = \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3)$</p>
@@ -993,20 +1005,20 @@ For $F = \text{diag}(\lambda, \nu, \nu)$ with incompressibility constraint $\lam
 <ol>
   <li>
     <p><strong>Second Piola-Kirchhoff Stress:</strong>
-\(E = \frac{1}{2}(C - I).\)1</p>
+\(S_{11} = \lambda \cdot \text{tr} E + 2\mu E_{11} = \lambda \cdot \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu (\lambda^2 - 1)\)</p>
   </li>
   <li>
     <p><strong>Nominal Stress (First Piola-Kirchhoff):</strong>
-\(E = \frac{1}{2}(C - I).\)2</p>
+\(P_{11} = F_{11} S_{11} = \lambda \left[ \frac{\lambda}{2} (\lambda^2 + 2\lambda^{-1} - 3) + \mu (\lambda^2 - 1) \right]\)</p>
   </li>
   <li>
     <p><strong>Explicit Formula:</strong>
-\(E = \frac{1}{2}(C - I).\)3</p>
+\(P_{11}(\lambda) = \frac{\lambda}{2} (\lambda^3 - 3\lambda + 2) + \mu \lambda (\lambda^2 - 1)\)</p>
   </li>
 </ol>
 
 <p><strong>Verification at Small Strains:</strong> Linearization with $\lambda = 1 + \varepsilon$, $\varepsilon \ll 1$:
-\(E = \frac{1}{2}(C - I).\)4</p>
+\(P_{11} \approx (\lambda + 2\mu) \varepsilon\)</p>
 
 <p>This matches linear elasticity with Young’s modulus $E = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu}$.</p>
 
@@ -1014,22 +1026,30 @@ For $F = \text{diag}(\lambda, \nu, \nu)$ with incompressibility constraint $\lam
 
 <p><strong>Problem:</strong> Verify frame indifference for simple shear deformation:</p>
 
-<p>\(E = \frac{1}{2}(C - I).\)5</p>
+\[\varphi(X_1, X_2, X_3) = (X_1 + \gamma X_2, X_2, X_3)\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Deformation Gradient:</strong>
-\(E = \frac{1}{2}(C - I).\)6</p>
+\(F = \begin{pmatrix}
+1 &amp; \gamma &amp; 0 \
+0 &amp; 1 &amp; 0 \
+0 &amp; 0 &amp; 1
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Right Cauchy-Green Tensor:</strong>
-\(E = \frac{1}{2}(C - I).\)7</p>
+\(C = F^T F = \begin{pmatrix}
+1 &amp; \gamma &amp; 0 \
+\gamma &amp; 1 + \gamma^2 &amp; 0 \
+0 &amp; 0 &amp; 1
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Principal Invariants:</strong>
-\(E = \frac{1}{2}(C - I).\)8</p>
+\(I_1 = \text{tr} C = 3 + \gamma^2, \quad I_2 = 2 + \gamma^2, \quad I_3 = \det C = 1\)</p>
   </li>
   <li>
     <p><strong>Frame Indifference Test:</strong>
@@ -1046,7 +1066,7 @@ Apply rotation $Q = \begin{pmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \ \sin\
 
 <ol>
   <li><strong>Stress Computation (Neo-Hookean):</strong>
-\(E = \frac{1}{2}(C - I).\)9</li>
+\(W = \frac{\mu}{2} (I_1 - 3) = \frac{\mu}{2} \gamma^2\)</li>
 </ol>
 
 <p>Shear stress: $\sigma_{12} = \mu \gamma^3$</p>
@@ -1057,27 +1077,35 @@ Apply rotation $Q = \begin{pmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \ \sin\
 
 <p><strong>Problem:</strong> Solve the anti-plane shear problem for a neo-Hookean material:</p>
 
-<p>\(\rho \dot{v} = \text{div}_x \sigma + f,\)0</p>
+\[\varphi(X_1, X_2, X_3) = (X_1, X_2, w(X_1, X_2))\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Deformation Gradient:</strong>
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)1</p>
+\(F = \begin{pmatrix}
+1 &amp; 0 &amp; 0 \
+0 &amp; 1 &amp; 0 \
+w_1 &amp; w_2 &amp; 1
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Cauchy-Green Tensor:</strong>
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)2</p>
+\(C = \begin{pmatrix}
+1 + w_1^2 &amp; w_1 w_2 &amp; w_1 \
+w_1 w_2 &amp; 1 + w_2^2 &amp; w_2 \
+w_1 &amp; w_2 &amp; 1
+\end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Invariants:</strong>
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)3</p>
+\(I_1 = 3 + |\nabla w|^2, \quad I_3 = 1\)</p>
   </li>
   <li>
     <p><strong>Equilibrium Equations:</strong>
 For static equilibrium with no body forces:
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)4</p>
+\(\text{Div} P = 0 \implies \Delta w = 0\)</p>
   </li>
 </ol>
 
@@ -1086,11 +1114,11 @@ For static equilibrium with no body forces:
 <ol>
   <li><strong>Explicit Solutions:</strong>
 Circular hole in infinite plate:
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)5</li>
+\(w(r, \theta) = A \theta \quad (r &gt; a)\)</li>
 </ol>
 
 <p>Deformation gradient components:
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)6</p>
+\(w_r = 0, \quad w_\theta = \frac{A}{r}\)</p>
 
 <p>Physical interpretation: Pure azimuthal shear around the hole.</p>
 
@@ -1098,23 +1126,23 @@ Circular hole in infinite plate:
 
 <p><strong>Problem:</strong> Compute complete stress state for equibiaxial stretching of Mooney-Rivlin material:</p>
 
-<p>\(\rho \dot{v} = \text{div}_x \sigma + f,\)7</p>
+\[W(F) = C_1 (I_1 - 3) + C_2 (I_2 - 3)\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Deformation:</strong>
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)8</p>
+\(F = \text{diag}(\lambda, \lambda, \lambda^{-2})\)</p>
   </li>
   <li>
     <p><strong>Invariants:</strong>
-\(\rho \dot{v} = \text{div}_x \sigma + f,\)9</p>
+\(I_1 = 2\lambda^2 + \lambda^{-4}, \quad I_2 = 2\lambda^{-2} + \lambda^4\)</p>
   </li>
   <li>
     <p><strong>Stress Response:</strong>
 For Mooney-Rivlin:
-\(P = J \sigma F^{-T}.\)0</p>
+\(S = 2 \left[ \frac{\partial W}{\partial I_1} + I_1 \frac{\partial W}{\partial I_2} \right] I - 2 \frac{\partial W}{\partial I_2} C\)</p>
   </li>
 </ol>
 
@@ -1123,11 +1151,11 @@ For Mooney-Rivlin:
 <ol>
   <li>
     <p><strong>Diagonal Stress Components:</strong>
-\(P = J \sigma F^{-T}.\)1</p>
+\(S_{11} = S_{22} = 2(C_1 + C_2)(\lambda^2 - \lambda^{-4})\)</p>
   </li>
   <li>
     <p><strong>Cauchy Stress:</strong>
-\(P = J \sigma F^{-T}.\)2</p>
+\(\sigma_{11} = \lambda^2 S_{11} = 2\lambda^2 (C_1 + C_2) (\lambda^2 - \lambda^{-4})\)</p>
   </li>
 </ol>
 
@@ -1164,7 +1192,7 @@ For Mooney-Rivlin:
 
 <p><strong>Problem:</strong> Verify polyconvexity for the Ogden material model:</p>
 
-<p>\(P = J \sigma F^{-T}.\)3</p>
+\[W(F) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2} \left( \lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3 \right)\]
 
 <p><strong>Complete Proof Sketch:</strong></p>
 
@@ -1179,7 +1207,7 @@ Each term $\lambda_k^{\alpha_i}$ is a convex function of $(\lambda_1, \lambda_2,
   </li>
   <li>
     <p><strong>Explicit Convex Combination:</strong>
-\(P = J \sigma F^{-T}.\)4</p>
+\(\phi(F, \text{cof } F, J) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2} \left( \lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3 \right)\)</p>
   </li>
   <li>
     <p><strong>Verification of Convexity:</strong>
@@ -1199,7 +1227,7 @@ Hessian computation for each term shows positive definiteness.</p>
 
 <ol>
   <li><strong>Radial Deformation:</strong>
-\(P = J \sigma F^{-T}.\)5</li>
+\(\varphi(R) = r(R), \quad F = \frac{dr}{dR}, \quad \lambda_\theta = \frac{r}{R}\)</li>
 </ol>
 
 <p>Incompressibility: $r^2 - a^2 = R^2 - a^2 \implies r = \sqrt{R^2 + c}$</p>
@@ -1207,19 +1235,19 @@ Hessian computation for each term shows positive definiteness.</p>
 <ol>
   <li>
     <p><strong>Equilibrium Equation:</strong>
-\(P = J \sigma F^{-T}.\)6</p>
+\(\frac{d}{dR} \left( r \sigma_{rr} \right) = \sigma_{\theta\theta} \frac{dr}{dR}\)</p>
   </li>
   <li>
     <p><strong>Stress Components:</strong>
-\(P = J \sigma F^{-T}.\)7</p>
+\(\sigma_{rr} = \mu \left( 1 - \left(\frac{R}{r}\right)^2 \right), \quad \sigma_{\theta\theta} = \mu \left( 1 + \left(\frac{R}{r}\right)^2 \right)\)</p>
   </li>
   <li>
     <p><strong>Boundary Conditions:</strong>
-\(P = J \sigma F^{-T}.\)8</p>
+\(\sigma_{rr}(a) = -P_i, \quad \sigma_{rr}(b) = 0\)</p>
   </li>
   <li>
     <p><strong>Pressure Relation:</strong>
-\(P = J \sigma F^{-T}.\)9</p>
+\(P_i = \mu \left[ 1 - \left(\frac{a}{b}\right)^2 + \ln\left(\frac{b^2}{a^2}\right) \right]\)</p>
   </li>
 </ol>
 

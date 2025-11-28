@@ -969,7 +969,7 @@ $\phi(x) = \phi_0(x)$ with $\phi_0(0) = 1$.</p>
   </li>
   <li>
     <p><strong>Fourier Transform:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)0</p>
+\(\widehat{\phi_0 u}(\xi) = \int \phi_0(x) e^{i(\xi_0 - \xi) \cdot x} dx = \widehat{\phi_0}(\xi - \xi_0)\)</p>
   </li>
   <li>
     <p><strong>Decay Analysis:</strong>
@@ -979,7 +979,7 @@ $\phi(x) = \phi_0(x)$ with $\phi_0(0) = 1$.</p>
   </li>
   <li>
     <p><strong>Wave Front Set:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)1</p>
+\(WF(u) = \{(x_0, \xi_0) : x_0 \in \mathbb{R}^n\}\)</p>
   </li>
 </ol>
 
@@ -998,13 +998,13 @@ Jump at $x_1 = 0$.</p>
   </li>
   <li>
     <p><strong>Fourier Analysis:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)2</p>
+\(\widehat{H}(\xi_1) = \pi \delta(\xi_1) - i \text{P.V.} \frac{1}{\xi_1}\)</p>
   </li>
   <li>
     <p><strong>Local Analysis near $(0,\xi_1,0)$:</strong>
 Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$.</p>
 
-    <p>\(\pi(WF(u)) = \text{sing supp}(u).\)3</p>
+\[\widehat{\phi H}(\xi_1,\xi_2) \sim \int_{-\infty}^0 \psi(x_1) e^{-ix_1\xi_1} dx_1\]
   </li>
   <li>
     <p><strong>Decay Analysis:</strong>
@@ -1014,7 +1014,7 @@ Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$.</p>
   </li>
   <li>
     <p><strong>Wave Front Set:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)4</p>
+\(WF(H) = \{(0,\xi_1,0) : \xi_1 &gt; 0\}\)</p>
   </li>
 </ol>
 
@@ -1031,15 +1031,15 @@ Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$.</p>
 <ol>
   <li>
     <p><strong>Fourier Symbol:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)5</p>
+\(\widehat{Hf}(\xi) = -i \text{sgn}(\xi) \hat{f}(\xi)\)</p>
   </li>
   <li>
     <p><strong>Symbol:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)6</p>
+\(a(x,\xi) = -i \text{sgn}(\xi)\)</p>
   </li>
   <li>
     <p><strong>Symbol Class Verification:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)7</p>
+\(|D_\xi^\alpha a(x,\xi)| = \begin{cases} 0 &amp; \text{if } |\alpha| \geq 1 \ 1 &amp; \text{if } |\alpha| = 0 \end{cases}\)</p>
   </li>
   <li>
     <p><strong>Order:</strong>
@@ -1068,7 +1068,7 @@ $WF(Hf) \subseteq WF(f)$</p>
   </li>
   <li>
     <p><strong>Composition Formula:</strong>
-\(\pi(WF(u)) = \text{sing supp}(u).\)8</p>
+\((a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b\)</p>
   </li>
   <li>
     <p><strong>Compute Terms:</strong>
@@ -1076,13 +1076,13 @@ $WF(Hf) \subseteq WF(f)$</p>
 
     <p><strong>$|\alpha| = 1$:</strong> $\alpha = (1,0,\dots)$</p>
 
-    <p>\(\pi(WF(u)) = \text{sing supp}(u).\)9</p>
+\[\frac{i^{-1}}{1!} \partial_\xi (i\xi) \cdot \partial_x (x) = (-i)(i) \cdot 1 = 1\]
 
     <p><strong>$|\alpha| \geq 2$:</strong> $\partial_\xi^\alpha (i\xi) = 0$</p>
   </li>
   <li>
     <p><strong>Result:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)0</p>
+\((a \# b)(x,\xi) = i\xi x + 1\)</p>
   </li>
   <li><strong>Verification:</strong>
 $A \circ B = \partial_x (x \cdot) = 1 + x \partial_x$</li>
@@ -1099,15 +1099,15 @@ $A \circ B = \partial_x (x \cdot) = 1 + x \partial_x$</li>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)1</p>
+\(p(x,\xi) = |\xi|^2 + 1\)</p>
   </li>
   <li>
     <p><strong>Parametrix Symbol:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)2</p>
+\(a(x,\xi) = \frac{1}{|\xi|^2 + 1}\)</p>
   </li>
   <li>
     <p><strong>Verify $\Psi$DO Class:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)3</p>
+\(|D_\xi^\alpha a| \leq C_\alpha (1+|\xi|^2)^{-1 + |\alpha|/2} \in S^{-2}\)</p>
   </li>
   <li>
     <p><strong>Regularity:</strong>
@@ -1115,7 +1115,7 @@ For $f \in H^s$, $u \in H^{s+2}$.</p>
   </li>
   <li>
     <p><strong>Wave Front Set:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)4</p>
+\(WF(u) \subseteq WF(f) \cup \text{Char}(-\Delta + 1) = WF(f)\)</p>
   </li>
 </ol>
 
@@ -1130,7 +1130,7 @@ For $f \in H^s$, $u \in H^{s+2}$.</p>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)5</p>
+\(p(t,x;\tau,\xi) = \tau^2 - \xi^2\)</p>
   </li>
   <li>
     <p><strong>Characteristic Set:</strong>
@@ -1138,17 +1138,17 @@ $\tau^2 = \xi^2$ or $|\tau| = |\xi|$.</p>
   </li>
   <li>
     <p><strong>Initial Wave Front:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)6</p>
+\(WF(u(0,\cdot)) = \{(0,\xi,0) : \xi &gt; 0\}\)</p>
   </li>
   <li>
     <p><strong>Bicharacteristic Flow:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)7</p>
+\(H_p = \tau \partial_t + \xi \partial_x - \xi \partial_\tau - \tau \partial_\xi\)</p>
 
     <p><strong>Solutions:</strong> $(t(s),x(s),\tau(s),\xi(s)) = (s,x_0 + s\xi_0/\tau_0,\tau_0,\xi_0)$</p>
   </li>
   <li>
     <p><strong>Propagated WF:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)8</p>
+\(WF(u(t,\cdot)) = \{(x,t\xi_0/\tau_0,\xi_0) : \xi_0 &gt; 0\}\)</p>
   </li>
   <li>
     <p><strong>Physical Interpretation:</strong>
@@ -1167,7 +1167,7 @@ Singularity propagates along light cone $x = t$.</p>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\)9</p>
+\(p(t,x;\tau,\xi) = \tau + \xi\)</p>
   </li>
   <li>
     <p><strong>Characteristics:</strong>
@@ -1175,7 +1175,7 @@ $\tau = -\xi$.</p>
   </li>
   <li>
     <p><strong>Hamiltonian Flow:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)0</p>
+\(\dot{t} = 1, \quad \dot{x} = 1, \quad \dot{\tau} = 0, \quad \dot{\xi} = 0\)</p>
   </li>
   <li>
     <p><strong>Bicharacteristics:</strong>
@@ -1183,7 +1183,7 @@ $(t,x_0 + t,\tau_0,-\tau_0)$</p>
   </li>
   <li>
     <p><strong>Wave Front Evolution:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)1</p>
+\(WF(u(t,\cdot)) = \{(x_0 + t,-\xi_0,\xi_0) : \xi_0 &gt; 0\}\)</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
@@ -1200,19 +1200,19 @@ Solution $u(t,x) = H(x-t)$ has jump along $x = t$.</p>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)2</p>
+\(p = \tau^2 - c^2(x)\xi^2\)</p>
   </li>
   <li>
     <p><strong>Hamiltonian:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)3</p>
+\(H_p = 2\tau \partial_t + 2c^2\xi \partial_x - 2c c' \xi^2 \partial_\tau\)</p>
   </li>
   <li>
     <p><strong>Bicharacteristic ODEs:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)4</p>
+\(\dot{t} = 2\tau, \quad \dot{x} = 2c^2\xi, \quad \dot{\tau} = 2c c' \xi^2\)</p>
   </li>
   <li>
     <p><strong>Ray Speed:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)5</p>
+\(v = \frac{dx}{dt} = \frac{c^2\xi}{\tau} = c(x)\)</p>
   </li>
   <li>
     <p><strong>Initial Condition:</strong>
@@ -1235,7 +1235,7 @@ Rays follow optical paths $\frac{dx}{ds} = c(x)$.</p>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)6 everywhere.</p>
+\(p = |\xi|^2 + 1 &gt; 0\) everywhere.</p>
   </li>
   <li>
     <p><strong>Characteristic Set:</strong>
@@ -1243,7 +1243,7 @@ $\emptyset$.</p>
   </li>
   <li>
     <p><strong>Parametrix:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)7</p>
+\(E(x) = \frac{e^{-|x|}}{4\pi |x|}\)</p>
   </li>
   <li>
     <p><strong>Solution:</strong>
@@ -1270,15 +1270,15 @@ $WF(u) = \emptyset$ (u is smooth!)</li>
 <ol>
   <li>
     <p><strong>Initial WF:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)8</p>
+\(WF(u(0)) = \{(0,k_1,k_2) : k_1 &gt; 0\}\)</p>
   </li>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\)9</p>
+\(p = \tau + |\xi|^2\)</p>
   </li>
   <li>
     <p><strong>Bicharacteristic Flow:</strong>
-\((a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).\)0</p>
+\(H_p = \partial_t + 2\xi \cdot \nabla_x - 2\xi \cdot \nabla_\xi\)</p>
   </li>
   <li>
     <p><strong>Flow Equations:</strong></p>
@@ -1317,7 +1317,7 @@ $WF(u) = \emptyset$ (u is smooth!)</li>
   </li>
   <li>
     <p><strong>Evolved WF:</strong>
-\((a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).\)1</p>
+\(WF(u(t)) = \{(x_0 + 2tk_1, k_1, k_2) : k_1 &gt; 0\}\)</p>
   </li>
   <li>
     <p><strong>Physical Interpretation:</strong></p>

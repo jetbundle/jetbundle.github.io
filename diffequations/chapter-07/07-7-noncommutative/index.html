@@ -1035,7 +1035,7 @@
   </li>
   <li>
     <p><strong>Dirac Operator:</strong>
-\(d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ |\phi(a) - \psi(a)| : \| [D, a] \| \le 1 \}\)0</p>
+\(D = \begin{pmatrix} 0 &amp; 1 \ 1 &amp; 0 \end{pmatrix}\)</p>
 
     <p>(Off-diagonal connects the two points)</p>
   </li>
@@ -1043,46 +1043,24 @@
     <p><strong>Verify Conditions:</strong>
 <strong>Commutator:</strong></p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$1</td>
-        </tr>
-      </tbody>
-    </table>
+\[[D, a] = \begin{pmatrix} 0 &amp; 0 \ 0 &amp; (a_1-a_2) \end{pmatrix}\]
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[\|[D, a]\| = |a_1 - a_2|\]
   </li>
   <li>
     <p><strong>Compute Connes Distance:</strong>
 <strong>States:</strong> $\phi_1(a) = a_1$, $\phi_2(a) = a_2$ (evaluation at points)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$3</td>
-        </tr>
-      </tbody>
-    </table>
+\[d(\phi_1, \phi_2) = \sup\{|a_1 - a_2| : \|[D, a]\| \leq 1\}\]
 
     <table>
       <tbody>
         <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$4 ✓</td>
+          <td>$$= \sup{</td>
+          <td>a_1 - a_2</td>
+          <td>:</td>
+          <td>a_1 - a_2</td>
+          <td>\leq 1} = 1$$ ✓</td>
         </tr>
       </tbody>
     </table>
@@ -1103,41 +1081,17 @@
 <ol>
   <li>
     <p><strong>Compute Commutator:</strong>
-\(d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ |\phi(a) - \psi(a)| : \| [D, a] \| \le 1 \}\)5</p>
+\([D, f]\psi = (-i\partial_\theta(f\psi) \oplus i\partial_\theta(f\psi)) = (-i(f'\psi + f\psi') \oplus i(f'\psi + f\psi'))\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$6</td>
-        </tr>
-      </tbody>
-    </table>
+\[= (-i f' \psi \oplus i f' \psi) + (-i f \partial_\theta \oplus i f \partial_\theta)\psi\]
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$7</td>
-        </tr>
-      </tbody>
-    </table>
+\[= \begin{pmatrix} -i f' &amp; 0 \ 0 &amp; i f' \end{pmatrix} \psi\]
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} {</td>
-          <td>\phi(a) - \psi(a)</td>
-          <td>: | [D, a] | \le 1 }$$8</td>
-        </tr>
-      </tbody>
-    </table>
+\[\|[D, f]\| = \|f'\|_\infty\]
   </li>
   <li>
     <p><strong>1-Lipschitz Condition:</strong>
-\(d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ |\phi(a) - \psi(a)| : \| [D, a] \| \le 1 \}\)9</p>
+\(\|[D, f]\| \leq 1 \iff \|f'\|_\infty \leq 1\)</p>
 
     <p>$f(\theta) = \theta$ (on $[0, 2\pi)$) is 1-Lipschitz</p>
   </li>
@@ -1145,11 +1099,11 @@
     <p><strong>Distance Calculation:</strong>
 $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)0</p>
+\[d(\theta, \phi) = \sup\{|f(\theta) - f(\phi)| : \|f'\|_\infty \leq 1\}\]
 
     <p><strong>Test with $f(\theta) = \theta$:</strong></p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)1</p>
+\[|f(\theta) - f(\phi)| = |\theta - \phi|\]
 
     <p>This achieves the supremum → $d(\theta, \phi) = \min(|\theta - \phi|, 2\pi - |\theta - \phi|)$</p>
 
@@ -1168,29 +1122,29 @@ $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$</p>
     <p><strong>Construction:</strong>
 <strong>Vertices:</strong> ${1, 2, 3}$</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)2</p>
+\[\mathcal{H} = \mathbb{C}^3 \otimes \mathbb{C}^2 \quad \text{(3 sites × 2 spinors)}\]
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)3</p>
+\[\mathcal{A} = \mathbb{C}^3 \quad \text{(functions on vertices)}\]
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)4</p>
+\[D = \begin{pmatrix} 0 &amp; 1 &amp; 0 \ 1 &amp; 0 &amp; 1 \ 0 &amp; 1 &amp; 0 \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Distance between vertices 1 and 2:</strong>
 $\phi_1(a) = a_1$, $\phi_2(a) = a_2$</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)5</p>
+\[d(1,2) = \sup\{|a_1 - a_2| : \|[D, a]\| \leq 1\}\]
   </li>
   <li>
     <p><strong>Compute $[D, a]$:</strong>
-\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)6</p>
+\([D, a] = D \text{diag}(a_1, a_2, a_3) - \text{diag}(a_1, a_2, a_3) D\)</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)7</p>
+\[= \begin{pmatrix} 0 &amp; a_1-a_2 &amp; 0 \ a_2-a_1 &amp; 0 &amp; a_2-a_3 \ 0 &amp; a_3-a_1 &amp; 0 \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Spectral Radius Calculation:</strong>
 Characteristic polynomial of $[D, a]$:</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)8</p>
+\[\det(\lambda I - [D, a]) = \lambda(\lambda^2 - (a_1-a_2)^2 - (a_2-a_3)^2 - (a_3-a_1)^2) + \cdots\]
 
     <p>After computation: $\rho([D, a]) = \sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]}/\sqrt{2}$</p>
   </li>
@@ -1200,9 +1154,9 @@ Maximize $|a_1 - a_2|$ subject to $\sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^
 
     <p><strong>Optimal:</strong> $a_1 = 1$, $a_2 = 0$, $a_3 = 0$</p>
 
-    <p>\(\mathcal{H} = L^2([0,1]) \oplus L^2([0,1]) \quad \text{(spinor bundle)}\)9</p>
+\[\|[D, a]\| = \sqrt{[(1-0)^2 + (0-0)^2 + (0-1)^2]}/\sqrt{2} = 1\]
 
-    <p>\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)0</p>
+\[|a_1 - a_2| = 1\]
 
     <p><strong>Result:</strong> $d(1,2) = 1$ ✓ (graph distance recovered)</p>
   </li>
@@ -1229,7 +1183,7 @@ Classical points correspond to pure states $\phi: \mathcal{A} \to \mathbb{C}$</p
   </li>
   <li>
     <p><strong>Reconstruction Step 2: Recover Differential Structure</strong>
-\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)1</p>
+\(\nabla f \leftrightarrow [D, f] = -i f' \otimes \sigma_3\)</p>
 
     <p><strong>Metric:</strong> $ds^2 = g([D, f], [D, f]) = |f’|^2 d\theta^2$</p>
   </li>
@@ -1250,33 +1204,33 @@ Dixmier trace $\text{Tr}<em>\omega(|D|^{-1}) = \int</em>{S^1} d\theta = 2\pi$</p
 <ol>
   <li>
     <p><strong>Algebra:</strong>
-\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)2</p>
+\(\mathcal{A}_\theta = C^*(U, V \mid UV = e^{2\pi i\theta} VU), \quad \theta \text{ irrational}\)</p>
 
     <p><strong>Basis:</strong> $U^m V^n$, $m,n \in \mathbb{Z}$</p>
   </li>
   <li>
     <p><strong>Hilbert Space:</strong>
-\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)3</p>
+\(\mathcal{H} = \ell^2(\mathbb{Z} \times \mathbb{Z}) \otimes \mathbb{C}^2\)</p>
 
-    <p>\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)4</p>
+\[(U^m V^n \psi)_{k,l} = \psi_{k-m,l-n}\]
   </li>
   <li>
     <p><strong>Derivations (noncommutative partial derivatives):</strong>
-\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)5</p>
+\(\delta_1(U^m V^n) = 2\pi i m U^m V^n, \quad \delta_1(V^m U^n) = 0\)</p>
 
-    <p>\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)6</p>
+\[\delta_2(U^m V^n) = 2\pi i n U^m V^n, \quad \delta_2(U^m V^n) = 2\pi i n U^m V^n\]
   </li>
   <li>
     <p><strong>Dirac Operator:</strong>
-\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)7</p>
+\(D = \sigma_1 \delta_1 + \sigma_2 \delta_2\)</p>
 
-    <p>\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)8</p>
+\[[D, U^m V^n] = \sigma_1(2\pi i m) + \sigma_2(2\pi i n)\]
   </li>
   <li>
     <p><strong>Distance Function (between states):</strong>
 For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
 
-    <p>\(\mathcal{A} = C^\infty([0,1]) \text{ acting by multiplication:}\)9</p>
+\[d(\phi, \psi) = \sup\{ |\phi(a) - \psi(a)| : \|[D, a]\| \leq 1 \}\]
 
     <p><strong>Key Property:</strong> When $\theta \to 0$, $\mathcal{A}_\theta \to C^\infty(T^2)$, $D \to$ classical Dirac operator</p>
   </li>
@@ -1293,7 +1247,7 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
     <p><strong>Construction:</strong>
 <strong>Approximation:</strong> $G_0 =$ triangle, $G_1 =$ 3 copies scaled by $1/2$</p>
 
-    <p>\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)0</p>
+\[\mathcal{H}_n = \ell^2(G_n) \otimes \mathbb{C}^2\]
 
     <p><strong>Limit:</strong> $\mathcal{H} = \bigoplus_n \mathcal{H}_n$</p>
   </li>
@@ -1308,7 +1262,7 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
     <p><strong>Hausdorff Dimension Recovery:</strong>
 <strong>Eigenvalue growth:</strong> $\lambda_k \sim k^{2/\log_2 3}$</p>
 
-    <p>\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)1</p>
+\[\dim_H = \log_2 3 \approx 1.58496\]
 
     <p>$\text{Tr}_\omega(|D|^{-d})$ finite iff $d = \log_2 3$ ✓</p>
   </li>
@@ -1323,21 +1277,21 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
 <ol>
   <li>
     <p><strong>Algebra:</strong>
-\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)2</p>
+\(\mathcal{A} = C^\infty(M), \quad M = \text{instanton moduli space}\)</p>
   </li>
   <li>
     <p><strong>Hilbert Space:</strong>
-\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)3</p>
+\(\mathcal{H} = L^2(M, E) \otimes \mathbb{C}^2, \quad E = \text{bundle over base}\)</p>
   </li>
   <li>
     <p><strong>Dirac Operator:</strong>
-\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)4</p>
+\(D = D_{\text{base}} + \delta_{\text{moduli}}\)</p>
 
     <p>$[D, f]$ encodes deformation theory</p>
   </li>
   <li>
     <p><strong>Distance Interpretation:</strong>
-\((a \oplus b) \cdot (f \oplus g) = (a \cdot f \oplus b \cdot g)\)5</p>
+\(d([A_1], [A_2]) = \inf\{ \|[D, f]\| : f([A_1]) = 1, f([A_2]) = 0 \}\)</p>
 
     <p>Measures “moduli distance” between connections</p>
   </li>

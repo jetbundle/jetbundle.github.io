@@ -978,13 +978,16 @@ An integral manifold $N \subset \mathbb{R}^3$ satisfies $\iota^*\theta = 0$, whe
 
     <p>This gives the Pfaffian system:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)0</p>
+\[\begin{cases}
+u_x = f(x,y) \
+u_y = 0
+\end{cases}\]
   </li>
   <li>
     <p><strong>Solution:</strong>
 $u(x,y) = \int_0^x f(t,y) dt + g(y)$, but $u_y = 0$ implies $g’(y) = 0$, so:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)1</p>
+\[u(x,y) = \int_0^x f(t,y) dt + c\]
 
     <p><strong>Geometric Interpretation:</strong> Solutions are graphs of functions whose $x$-derivative matches $f$.</p>
   </li>
@@ -1001,11 +1004,11 @@ $u(x,y) = \int_0^x f(t,y) dt + g(y)$, but $u_y = 0$ implies $g’(y) = 0$, so:</
     <p><strong>EDS Construction:</strong>
 $M = \mathbb{R}^4$ with coordinates $(x,y,P,Q)$. The EDS is:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)2</p>
+\[\mathcal{I} = \{ \omega = P_y - Q_x \}\]
   </li>
   <li>
     <p><strong>Differential Closure:</strong>
-\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)3</p>
+\(d\omega = d(P_y - Q_x) = P_{yx} dx \wedge dy - Q_{xy} dy \wedge dx = 0\)</p>
 
     <p>Since $P_{yx} = Q_{xy}$ (equality of mixed partials), $d\omega = 0 \in \mathcal{I}$.</p>
   </li>
@@ -1013,11 +1016,11 @@ $M = \mathbb{R}^4$ with coordinates $(x,y,P,Q)$. The EDS is:</p>
     <p><strong>Integral Elements:</strong>
 At each point $(x_0,y_0,P_0,Q_0)$, find $E \subset T_{(x_0,y_0,P_0,Q_0)}M$ such that:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)4</p>
+\[\omega(v_1,v_2) = 0 \quad \forall v_1,v_2 \in E\]
 
     <p>The condition $P_y = Q_x$ constrains the $(x,y)$-directions. Integral manifolds are surfaces where:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)5</p>
+\[P(x,y), Q(x,y) \text{ satisfy } \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}\]
   </li>
   <li>
     <p><strong>Complete Solution:</strong>
@@ -1042,7 +1045,7 @@ Set $P(x,y) = \int_0^y f(x,t) dt + g(x)$.</p>
     <p><strong>EDS Construction:</strong>
 $M = J^1(\mathbb{R}^2,\mathbb{R})$ with coordinates $(x,y,z,p,q)$. The ideal is:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)6</p>
+\[\mathcal{I} = \left\{ \theta = dz - p dx - q dy, \quad \omega = dp \wedge dx + dq \wedge dy - F dx \wedge dy \right\}\]
   </li>
   <li>
     <p><strong>Contact Structure:</strong>
@@ -1061,11 +1064,11 @@ Find 2-planes $E \subset T_{(x,y,z,p,q)}M$ such that:
 
     <p>An integral element must lie in $\ker \theta$, spanned by:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)7</p>
+\[v_1 = \partial_x + p \partial_z, \quad v_2 = \partial_y + q \partial_z, \quad v_3 = \partial_p, \quad v_4 = \partial_q\]
 
     <p><strong>Condition 2:</strong> Evaluate $\omega$ on this distribution:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)8</p>
+\[\omega(v_1,v_2) = \omega(\partial_x + p\partial_z, \partial_y + q\partial_z) = -F\]
 
     <p>Thus $\omega(v_1,v_2) = -F \neq 0$ unless $F = 0$.</p>
   </li>
@@ -1073,15 +1076,15 @@ Find 2-planes $E \subset T_{(x,y,z,p,q)}M$ such that:
     <p><strong>Corrected Integral Elements:</strong>
 We need $E = \text{span}{v_1,v_2}$ where:</p>
 
-    <p>\(\alpha(v_1, \dots, v_k) = 0 \quad \text{for all } v_1, \dots, v_k \in E.\)9</p>
+\[v_1 = \partial_x + p \partial_z + a \partial_p + b \partial_q\]
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)0</p>
+\[v_2 = \partial_y + q \partial_z + c \partial_p + d \partial_q\]
   </li>
   <li>
     <p><strong>Cartan Test Application:</strong>
 The polar space $H(E)$ consists of vectors $w$ such that $\text{span}(E \cup {w})$ remains integral. Compute:</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)1</p>
+\[\omega(v_1,v_2) = 0, \quad \omega(v_1,w) = 0, \quad \omega(v_2,w) = 0\]
 
     <p>This gives a $2 \times 4$ matrix whose rank determines involutivity.</p>
 
@@ -1089,7 +1092,7 @@ The polar space $H(E)$ consists of vectors $w$ such that $\text{span}(E \cup {w}
 
     <p><strong>Involutivity Condition:</strong></p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)2</p>
+\[\dim V_2(E) = 2s_1 + 1s_2 = 2 + 1 = 3\]
 
     <p>If the rank condition holds, the system is involutive.</p>
   </li>
@@ -1104,9 +1107,9 @@ The polar space $H(E)$ consists of vectors $w$ such that $\text{span}(E \cup {w}
 <ol>
   <li>
     <p><strong>EDS:</strong>
-\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)3</p>
+\(\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy,\)</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)4</p>
+\[\omega_2 = dq - s dx - t dy, \omega_3 = r t - s^2 - 1 \}\]
   </li>
   <li>
     <p><strong>Cartan Test Computation (at generic point):</strong>
@@ -1126,7 +1129,7 @@ $\dim V_2 = 1 \cdot 2 + 2 \cdot 0 = 2$, involutive.</p>
 
 <p><strong>Problem:</strong> Solve the nonlinear wave equation:</p>
 
-<p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)5</p>
+\[u_{xy} = f(x,y,u,u_x,u_y)\]
 
 <p><strong>Initial Data:</strong> $u(x,0) = \phi(x)$, $u(0,y) = \psi(y)$</p>
 
@@ -1137,7 +1140,7 @@ $\dim V_2 = 1 \cdot 2 + 2 \cdot 0 = 2$, involutive.</p>
     <p><strong>EDS Construction:</strong>
 $M = J^1(\mathbb{R}^2,\mathbb{R})$, coordinates $(x,y,u,p,q)$</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)6</p>
+\[\mathcal{I} = \{ \theta = du - p dx - q dy, \omega = dp \wedge dy - f dx \wedge dy \}\]
   </li>
   <li>
     <p><strong>Verify Involutivity:</strong>
@@ -1151,7 +1154,7 @@ Integral elements at $(x_0,y_0,u_0,p_0,q_0)$:</p>
 
     <p>Compute:</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)7</p>
+\[\omega(v_1,v_2) = \omega(\partial_x,\partial_y) + \text{terms involving } a,b,c,d = -f + (d - b)\]
 
     <p>Set $d = b$. Polar space dimension: 3 parameters $(a,b,c)$.</p>
 
@@ -1165,11 +1168,11 @@ Integral elements at $(x_0,y_0,u_0,p_0,q_0)$:</p>
 
     <p><strong>Extension to $P_2$:</strong> Solve for $q(x,0)$ using $\omega|_P = 0$:</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)8</p>
+\[dp \wedge dy = f dx \wedge dy \implies \frac{\partial p}{\partial y}\bigg|_{y=0} = f(x,0,\phi(x),\phi'(x),q)\]
 
     <p>This is an ODE for $q(x,0)$:</p>
 
-    <p>\(\text{dim } V_n(E) = \sum_{k=1}^n k s_k.\)9</p>
+\[\frac{dq}{dx} = \frac{\partial f}{\partial p} \phi''(x) + \frac{\partial f}{\partial q}\]
   </li>
   <li><strong>Analytic Solution (assuming $f$ analytic):</strong>
 By Cauchy-Kovalevskaya, local solution exists. Cartan-Kähler guarantees:
@@ -1199,7 +1202,7 @@ Initial data: $\phi(x) = x^2$, $\psi(y) = y^2$</p>
 <ol>
   <li>
     <p><strong>EDS:</strong>
-\(\mathcal{I} = \{ \theta = du - f(x,y)dx \}\)0</p>
+\(\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp, \omega_2 = dp \wedge dy \}\)</p>
   </li>
   <li>
     <p><strong>Cartan Test:</strong>
@@ -1228,9 +1231,9 @@ Add $d\omega_2 = 0 \implies d^2p = 0$, revealing full Laplace equation.</p>
 <ol>
   <li>
     <p><strong>EDS (in $J^2$):</strong>
-\(\mathcal{I} = \{ \theta = du - f(x,y)dx \}\)1</p>
+\(\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy,\)</p>
 
-    <p>\(\mathcal{I} = \{ \theta = du - f(x,y)dx \}\)2</p>
+\[\omega_2 = dq - s dx - t dy, \omega_3 = (r t - s^2) - 1 \}\]
   </li>
   <li>
     <p><strong>Complete Cartan Analysis:</strong>

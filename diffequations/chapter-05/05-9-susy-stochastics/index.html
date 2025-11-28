@@ -917,11 +917,11 @@
     <p><strong>Supercharge Construction:</strong>
 \(Q = e^{-V/2} d e^{V/2} = d + \frac{1}{2}V'(x)\)</p>
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)0</p>
+\[Q = \frac{d}{dx} + \frac{1}{2}(x^3 - x)\]
   </li>
   <li>
     <p><strong>Witten Laplacian on Forms:</strong>
-\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)1</p>
+\(H = \{Q, Q^\dagger\} = Q Q^\dagger + Q^\dagger Q\)</p>
 
     <p>On 0-forms (functions): $H_0 = -\frac{d^2}{dx^2} + \frac{1}{4}|V’|^2 - \frac{1}{2}V’’$</p>
 
@@ -929,9 +929,9 @@
 
     <p>Explicitly:</p>
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)2</p>
+\[H_0 = -\partial^2 + \frac{1}{4}(x^3-x)^2 - \frac{1}{2}(3x^2-1)\]
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)3</p>
+\[H_1 = -\partial^2 + \frac{1}{4}(x^3-x)^2 + \frac{1}{2}(3x^2-1)\]
   </li>
   <li>
     <p><strong>Ground State Computation:</strong>
@@ -939,7 +939,7 @@ For $H_0$ (even sector):</p>
 
     <p>Solve $H_0\psi_0 = 0$</p>
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)4</p>
+\[\left[-\partial^2 + \frac{1}{4}(x^3-x)^2 - \frac{1}{2}(3x^2-1)\right] \psi_0 = 0\]
 
     <p>Ansatz: $\psi_0 = e^{-V/2} = e^{-x^4/8 + x^2/4}$</p>
 
@@ -957,7 +957,7 @@ For $H_0$ (even sector):</p>
   </li>
   <li>
     <p><strong>Witten Index Calculation:</strong>
-\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)5</p>
+\(\text{Tr}((-1)^F e^{-\beta H}) = n_B^0 - n_F^0 = 1 - 1 = 0\)</p>
 
     <p>$\chi(\mathbb{R}^1) = 1 - 1 = 0$ ✓</p>
   </li>
@@ -978,9 +978,9 @@ Forms on $S^1$: $\Omega^0(S^1) = \oplus \mathbb{R} e^{in\theta}$, $\Omega^1(S^1)
   </li>
   <li>
     <p><strong>Witten Laplacian Matrix Elements:</strong>
-\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)6</p>
+\(Q e^{in\theta} = \left[\partial_\theta + \frac{1}{2}\sin(\theta)\right] e^{in\theta} = in e^{in\theta} + \frac{1}{2}\sin(\theta)e^{in\theta}\)</p>
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)7</p>
+\[Q e^{in\theta} d\theta = \left[-in + \frac{1}{2}\sin(\theta)\right] e^{in\theta} d\theta\]
   </li>
   <li>
     <p><strong>Perturbative Ground States:</strong>
@@ -1009,7 +1009,7 @@ $\chi(S^1) = 0$</p>
 <ol>
   <li>
     <p><strong>Instanton Equation (Euclidean time):</strong>
-\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)8</p>
+\(\frac{d^2x}{d\tau^2} = V'(x) = x^3 - x\)</p>
 
     <p>Multiply by $\frac{dx}{d\tau}$: $\frac{1}{2}\left(\frac{dx}{d\tau}\right)^2 = V(x) + C$</p>
   </li>
@@ -1017,31 +1017,15 @@ $\chi(S^1) = 0$</p>
     <p><strong>Bouncing Solution:</strong>
 $C = 0$ (connects minima $x=\pm 1$)</p>
 
-    <p>\(\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.\)9</p>
+\[\frac{dx}{d\tau} = \pm\sqrt{2V(x)} = \pm\sqrt{\frac{x^2}{2} - \frac{x^4}{4}}\]
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-          <td>\nabla V</td>
-          <td>^2 - \frac{1}{2} \Delta V.$$0</td>
-        </tr>
-      </tbody>
-    </table>
+\[\tau = \int \frac{dx}{\sqrt{x^2/2 - x^4/4}}\]
   </li>
   <li>
     <p><strong>Action Computation:</strong>
-\(H_0 = -\Delta + \frac{1}{4} |\nabla V|^2 - \frac{1}{2} \Delta V.\)1</p>
+\(S = \int_{-\infty}^\infty \left[\frac{1}{2}\left(\frac{dx}{d\tau}\right)^2 + V(x)\right] d\tau = 2 \int_{-1}^1 \sqrt{2V(x)} \, dx\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-          <td>\nabla V</td>
-          <td>^2 - \frac{1}{2} \Delta V.$$2</td>
-        </tr>
-      </tbody>
-    </table>
+\[S = 2 \int_{-1}^1 \sqrt{\frac{x^2}{2} - \frac{x^4}{4}} \, dx = \frac{4}{3}\sqrt{2}\]
   </li>
   <li>
     <p><strong>Supersymmetric Interpretation:</strong>
@@ -1080,7 +1064,7 @@ $H^+ = A^\dagger A$, $H^- = AA^\dagger$</p>
   </li>
   <li>
     <p><strong>Witten Index:</strong>
-\(H_0 = -\Delta + \frac{1}{4} |\nabla V|^2 - \frac{1}{2} \Delta V.\)3</p>
+\(\text{Tr}((-1)^F) = \dim \ker H^+_0 - \dim \ker H^-_0\)</p>
 
     <p>For $\lambda &gt; 0$: both have 1 ground state $\to$ Index = 0</p>
 
@@ -1097,31 +1081,15 @@ $H^+ = A^\dagger A$, $H^- = AA^\dagger$</p>
 <ol>
   <li>
     <p><strong>Supercharge:</strong>
-\(H_0 = -\Delta + \frac{1}{4} |\nabla V|^2 - \frac{1}{2} \Delta V.\)4</p>
+\(Q = \partial + \frac{1}{2}(-x) = \partial - \frac{x}{2}\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-          <td>\nabla V</td>
-          <td>^2 - \frac{1}{2} \Delta V.$$5</td>
-        </tr>
-      </tbody>
-    </table>
+\[Q^\dagger = -\partial - \frac{x}{2}\]
   </li>
   <li>
     <p><strong>Witten Laplacian:</strong>
-\(H_0 = -\Delta + \frac{1}{4} |\nabla V|^2 - \frac{1}{2} \Delta V.\)6</p>
+\(H_0 = Q^\dagger Q = -\partial^2 + \left(\frac{x}{2}\right)^2 + \frac{1}{2}\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-          <td>\nabla V</td>
-          <td>^2 - \frac{1}{2} \Delta V.$$7</td>
-        </tr>
-      </tbody>
-    </table>
+\[H_1 = QQ^\dagger = -\partial^2 + \left(\frac{x}{2}\right)^2 - \frac{1}{2}\]
   </li>
   <li>
     <p><strong>Ground State Analysis:</strong>
@@ -1199,15 +1167,7 @@ $n_B^0 = \dim H^0 \oplus H^2 = 1 + 1 = 2$</p>
 
 <p><strong>Key Calculation:</strong></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-      <td>\nabla V</td>
-      <td>^2 - \frac{1}{2} \Delta V.$$8</td>
-    </tr>
-  </tbody>
-</table>
+\[\text{Witten Index } \Delta\chi = \# \text{ stable} - \# \text{ unstable fixed points}\]
 
 <p>When $|\Delta\chi| \to 0$: supersymmetry breaking</p>
 
@@ -1224,15 +1184,7 @@ $n_B^0 = \dim H^0 \oplus H^2 = 1 + 1 = 2$</p>
     <p><strong>Instanton Moduli Space:</strong>
 Instanton = map $\phi: \mathbb{R} \to M$ satisfying</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$$H_0 = -\Delta + \frac{1}{4}</td>
-          <td>\nabla V</td>
-          <td>^2 - \frac{1}{2} \Delta V.$$9</td>
-        </tr>
-      </tbody>
-    </table>
+\[\nabla_\tau^2 \phi = \nabla V(\phi)\]
 
     <p>Moduli space = ${\phi} / \text{Diff}(\mathbb{R})$</p>
 

@@ -989,14 +989,14 @@
   <li>
     <p><strong>Step 2: Compute Virtual Dimension</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)0</p>
+\[\text{vdim} = (-K_{\mathbb{CP}^2} \cdot d) + (1-g)n = 3d + 5 = 8 \quad (g=0)\]
   </li>
   <li>
     <p><strong>Step 3: Construct Virtual Fundamental Class</strong></p>
 
     <p>The virtual fundamental class is:</p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)1</p>
+\[[\mathcal{M}_{0,5}(\mathbb{CP}^2, d)]^{\text{vir}} \in H_0(\mathcal{M}_{0,5}(\mathbb{CP}^2, d), \mathbb{Q})\]
   </li>
   <li>
     <p><strong>Step 4: Explicit Calculation for $d=1$</strong></p>
@@ -1019,7 +1019,7 @@
 
 <p><strong>Classical Computation (Yang-Mills):</strong></p>
 
-<p>\(Z: \text{Bord}_n \to \text{Vect}\)2</p>
+\[\mathcal{M}_k(\mathbb{R}^4) = \{ \text{SU}(2)\text{-connections with } c_2 = k \}/\text{Gauge}\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1027,26 +1027,26 @@
   <li>
     <p><strong>Step 1: Define the Derived Stack</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)3</p>
+\[\mathcal{M}_k^{\text{der}} = \left\{ A \;\middle|\; F_A^+ = 0 \right\} \Big/ \text{Derived Gauge Group}\]
   </li>
   <li>
     <p><strong>Step 2: Compute Deformation Complex</strong></p>
 
     <p>At an instanton $A_0$:</p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)4</p>
+\[\mathbb{L}_{A_0} = \left[ \Omega^0(\text{ad}P) \xrightarrow{D_{A_0}^+} \Omega^{2,+}(\text{ad}P) \right]\]
   </li>
   <li>
     <p><strong>Step 3: Index Computation</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)5</p>
+\[\text{index}(D_{A_0}^+) = 8k - 3(1 - b_2^+) = 8k - 3\]
   </li>
   <li>
     <p><strong>Step 4: Explicit Example—BPST Instanton ($k=1$)</strong></p>
 
     <p><strong>Self-dual connection:</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)6</p>
+\[A = \frac{\eta_{\mu\nu}^a x^\nu}{x^2 + \rho^2} \sigma^a\]
 
     <p><strong>Deformation complex cohomology:</strong></p>
 
@@ -1060,7 +1060,7 @@
 
     <p><strong>Virtual Fundamental Class:</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)7</p>
+\[[\mathcal{M}_1^{\text{der}}]^{\text{vir}} = [\mathbb{R}^5] \in H_5(\mathcal{M}_1^{\text{der}})\]
 
     <p><strong>Physical Interpretation:</strong> The 5 parameters correspond to collective coordinates of the instanton.</p>
   </li>
@@ -1076,24 +1076,24 @@
   <li>
     <p><strong>Step 1: Define the Functor</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)8</p>
+\[Z: \text{Bord}_2 \to \text{Vect}_k\]
 
     <p><strong>Objects ($1$-manifolds):</strong></p>
 
-    <p>\(Z: \text{Bord}_n \to \text{Vect}\)9</p>
+\[Z(\Sigma) = H^\bullet(\Sigma, k)\]
 
     <p><strong>Morphisms ($2$-cobordisms $M: \Sigma_1 \to \Sigma_2$):</strong></p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)0</p>
+\[Z(M): H^\bullet(\Sigma_1) \to H^\bullet(\Sigma_2)\]
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)1</p>
+\[Z(M)(\alpha) = M_* \alpha\]
   </li>
   <li>
     <p><strong>Step 2: Verify Axioms</strong></p>
 
     <p><strong>Monoidality:</strong></p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)2</p>
+\[Z(\Sigma_1 \sqcup \Sigma_2) = H^\bullet(\Sigma_1) \otimes H^\bullet(\Sigma_2)\]
 
     <p>$\because H^\bullet(\Sigma_1 \sqcup \Sigma_2) \cong H^\bullet(\Sigma_1) \otimes H^\bullet(\Sigma_2)$</p>
 
@@ -1101,7 +1101,7 @@
 
     <p>For $M_1: \Sigma \to S$, $M_2: S \to T$:</p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)3</p>
+\[Z(M_2 \circ M_1) = Z(M_2) \circ Z(M_1)\]
 
     <p>$\because$ Künneth + Mayer-Vietoris</p>
   </li>
@@ -1149,11 +1149,11 @@
 
     <p>For closed surface $\Sigma_{g,n}$:</p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)4</p>
+\[Z(\Sigma_{g,n}) = \dim H^\bullet(\Sigma_{g,n}) = 1 + (-1)^n b_1(\Sigma_{g,n})\]
 
     <p><strong>Connection to Index Theorem (Ch 7.6):</strong></p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)5</p>
+\[Z(\Sigma) = \text{Atiyah-Singer index of } \bar{\partial} \text{ on } \Sigma\]
   </li>
 </ol>
 
@@ -1161,7 +1161,7 @@
 
 <p><strong>Problem:</strong> Construct factorization algebra for 2D scalar field $\phi$ with action:</p>
 
-<p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)6</p>
+\[S[\phi] = \int \frac{1}{2} (\partial \phi)^2\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1171,7 +1171,7 @@
 
     <p>For open set $U$:</p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)7</p>
+\[\mathcal{F}(U) = \text{Sym}^* \left( \Omega^\bullet(U)[1] \right)\]
 
     <p><strong>Generators:</strong></p>
 
@@ -1185,20 +1185,20 @@
 
     <p>For disjoint $U_1, U_2 \subset V$:</p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)8</p>
+\[\mathcal{F}(U_1) \otimes \mathcal{F}(U_2) \to \mathcal{F}(V)\]
 
     <p><strong>Explicit computation:</strong></p>
 
-    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)9</p>
+\[(\phi(U_1) \star \phi(U_2)) = \phi(U_1 \cup U_2)\]
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)0</p>
+\[(\star \phi(U_1)) \star (\star \phi(U_2)) = \langle \phi(U_1), \phi(U_2) \rangle = -\log |x-y|\]
   </li>
   <li>
     <p><strong>Step 3: OPE Computation</strong></p>
 
     <p>Near $x \sim y$:</p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)1</p>
+\[\phi(x) \star \phi(y) \sim -\log |x-y| + \text{regular}\]
   </li>
   <li>
     <p><strong>Step 4: Renormalization Connection (Ch 5.6)</strong></p>
@@ -1209,7 +1209,7 @@
 
     <p>For test functions $\psi_1, \psi_2$:</p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)2</p>
+\[\int :\phi\psi_1: \cdot :\phi\psi_2: = \int \phi\psi_1 \phi\psi_2 - \langle \psi_1, G \psi_2 \rangle\]
 
     <p>Where $G$ is the Green function, matching Hairer’s renormalization.</p>
   </li>
@@ -1225,12 +1225,12 @@
   <li>
     <p><strong>Step 1: Derived Moduli Stack</strong></p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)3</p>
+\[\mathcal{M}_k^{\text{der}}(X, G) = \left\{ A \;\middle|\; F_A^+ = 0 \right\} \Big/ \mathcal{G}^{\text{der}}\]
   </li>
   <li>
     <p><strong>Step 2: Virtual Fundamental Class</strong></p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)4</p>
+\[[\mathcal{M}_k^{\text{der}}]^{\text{vir}} = c_{\text{top}}(R^1 \pi_* \text{ad}P) \cap [\mathcal{M}_k]\]
   </li>
   <li>
     <p><strong>Step 3: TQFT Construction</strong></p>
@@ -1239,18 +1239,18 @@
 
     <p><strong>Morphisms:</strong> Cobordisms with connections</p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)5</p>
+\[Z(M) = \int_{[\mathcal{M}^{\text{der}}(M)]^{\text{vir}}} e^{\omega}\]
   </li>
   <li>
     <p><strong>Step 4: Explicit Computation for $X = \mathbb{CP}^2$</strong></p>
 
     <p><strong>Donaldson polynomial:</strong></p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)6</p>
+\[D_k = \int_{[\mathcal{M}_k^{\text{der}}]^{\text{vir}}} c_2(\text{ad}P)^2\]
 
     <p><strong>Result (via virtual localization):</strong></p>
 
-    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)7</p>
+\[D_1(\mathbb{CP}^2) = 1, \quad D_2(\mathbb{CP}^2) = 9\]
 
     <p><strong>Connection to Chapter 6.6:</strong> These are exactly the instanton numbers computed via Uhlenbeck compactness!</p>
   </li>

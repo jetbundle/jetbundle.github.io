@@ -927,19 +927,19 @@ The formal series is:</p>
   </li>
   <li>
     <p><strong>Borel Transform:</strong>
-\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)0</p>
+\(\mathcal{B}[\tilde{U}](\zeta) = \sum_{n=0}^\infty \frac{c_n}{n!} \zeta^n\)</p>
 
     <p><strong>Explicit computation:</strong></p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)1</p>
+\[\mathcal{B}[\tilde{U}](\zeta) = 1 + \frac{1}{6}\zeta + \frac{13}{72}\frac{\zeta^2}{2!} + \frac{533}{5184}\frac{\zeta^3}{3!} + \frac{38053}{460800}\frac{\zeta^4}{4!} + O(\zeta^5)\]
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)2</p>
+\[= 1 + 0.166667\zeta + 0.090278\zeta^2 + 0.048004\zeta^3 + 0.041092\zeta^4 + O(\zeta^5)\]
   </li>
   <li>
     <p><strong>Analytic Continuation &amp; Singularities:</strong>
 The Borel transform $\mathcal{B}<a href="\zeta">\tilde{U}</a>$ has singularities at:</p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)3</p>
+\[\Omega = \left\{\frac{2}{3}, \frac{4}{3}, 2, \frac{8}{3}, \frac{10}{3}, \dots\right\}\]
 
     <p><strong>Key Stokes lines:</strong> $\theta = 0, \pm 2\pi/3, \pm 4\pi/3$</p>
   </li>
@@ -947,21 +947,21 @@ The Borel transform $\mathcal{B}<a href="\zeta">\tilde{U}</a>$ has singularities
     <p><strong>Lateral Borel Summation:</strong>
 <strong>Along $\theta = 0$ (physical sector):</strong></p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)4</p>
+\[S_0 \tilde{U}(z) = \int_0^\infty e^{-z\zeta} \mathcal{B}[\tilde{U}](\zeta) \, d\zeta\]
 
     <p><strong>Along $\theta = 2\pi/3$ (crossing first Stokes line):</strong></p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)5</p>
+\[S_{2\pi/3} \tilde{U}(z) = \int_0^{e^{i2\pi/3}\infty} e^{-z\zeta} \mathcal{B}[\tilde{U}](\zeta) \, d\zeta\]
   </li>
   <li>
     <p><strong>Stokes Jump Computation:</strong>
 The Stokes multiplier at $\omega_1 = 2/3$ is $S_1 = i$:</p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)6</p>
+\[S_{2\pi/3} \tilde{U}(z) - S_0 \tilde{U}(z) = i \exp\left(-\frac{2}{3} z\right) S_0 \tilde{U}(z)\]
 
     <p><strong>Verification:</strong> This matches the exact connection formula for Airy functions:</p>
 
-    <p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)7</p>
+\[\text{Ai}(z e^{i2\pi/3}) = e^{i2\pi/3} \text{Ai}(z) + i \exp\left(-\frac{2}{3} z^{3/2}\right) \text{Ai}(z)\]
 
     <p><strong>Insight:</strong> The divergent series encodes the exact global analytic continuation through its Borel singularities!</p>
   </li>
@@ -971,38 +971,38 @@ The Stokes multiplier at $\omega_1 = 2/3$ is $S_1 = i$:</p>
 
 <p><strong>Problem:</strong> Solve the first Painlevé equation:</p>
 
-<p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)8</p>
+\[u'' = 6u^2 + z\]
 
 <p>The formal solution at $z = \infty$ is a transseries:</p>
 
-<p>\(\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\)9</p>
+\[\tilde{u}(z) = \sum_{k=0}^\infty \sum_{n=0}^\infty a_{k,n} (-6z)^{-n/5} \exp\left(-k \sqrt{\frac{6}{5}} z^{5/4}\right)\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Perturbative Sector ($k=0$):</strong>
-\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)0</p>
+\(\tilde{u}_0(z) = \sum_{n=0}^\infty a_{0,n} (-6z)^{-n/5}\)</p>
 
     <p><strong>Recursive computation of coefficients:</strong></p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)1</p>
+\[a_{0,0} = 0, \quad a_{0,1} = -\frac{1}{10}, \quad a_{0,2} = -\frac{7}{2000}, \quad a_{0,3} = -\frac{113}{500000}, \quad a_{0,4} = -\frac{2519}{150000000}\]
   </li>
   <li>
     <p><strong>Borel Transform of Perturbative Sector:</strong>
-\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)2</p>
+\(\mathcal{B}[\tilde{u}_0](\zeta) = \sum_{n=1}^\infty \frac{a_{0,n}}{(n-1)!} \zeta^{n-1}\)</p>
 
     <p><strong>First terms:</strong></p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)3</p>
+\[\mathcal{B}[\tilde{u}_0](\zeta) = -\frac{1}{10} + \left(-\frac{7}{2000}\right)\frac{\zeta}{1!} + \left(-\frac{113}{500000}\right)\frac{\zeta^2}{2!} + \cdots\]
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)4</p>
+\[= -0.1 - 0.0035\zeta - 0.000113\zeta^2 + O(\zeta^3)\]
   </li>
   <li>
     <p><strong>Instanton Sector ($k=1$):</strong>
 The first instanton contribution:</p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)5</p>
+\[\tilde{u}_1(z) = A_1 \exp\left(-\sqrt{\frac{6}{5}} z^{5/4}\right) \tilde{u}_0(z)\]
 
     <p>where $A_1$ is the Stokes constant to be determined.</p>
   </li>
@@ -1010,11 +1010,11 @@ The first instanton contribution:</p>
     <p><strong>Alien Derivative Computation:</strong>
 The alien derivative at the first singularity $\omega_1 = \sqrt{6/5}$:</p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)6</p>
+\[\Delta_{\omega_1} \tilde{u}_0 = A_1 \tilde{u}_0\]
 
     <p><strong>Bridge Equation verification:</strong></p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)7</p>
+\[[\Delta_{\omega_1}, \partial_z] \tilde{u}_0 = 0\]
 
     <p>This commutativity confirms resurgence!</p>
   </li>
@@ -1022,7 +1022,7 @@ The alien derivative at the first singularity $\omega_1 = \sqrt{6/5}$:</p>
     <p><strong>Stokes Automorphism:</strong>
 The Stokes automorphism across the first Stokes line:</p>
 
-    <p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)8</p>
+\[S_{+} = S_{-} + i A_1 \exp(-\omega_1 z)\]
 
     <p><strong>Exact computation:</strong> $A_1 = -i \sqrt{2\pi/\sqrt{30}}$ matches numerical resurgence calculations.</p>
   </li>
@@ -1034,11 +1034,11 @@ The Stokes automorphism across the first Stokes line:</p>
 
 <p><strong>Problem:</strong> Consider the double-well potential:</p>
 
-<p>\(S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta\)9</p>
+\[V(x) = \frac{x^2(x-1)^2}{4}\]
 
 <p>The WKB quantization condition generates a divergent series:</p>
 
-<p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)0</p>
+\[E_n = n + \frac{1}{2} + \sum_{k=1}^\infty c_k \exp\left(-\frac{k S}{\hbar}\right)\]
 
 <p>where $S = \int_0^1 \sqrt{2V(x)} \, dx = \frac{2\sqrt{2}}{3}$ is the instanton action.</p>
 
@@ -1049,31 +1049,31 @@ The Stokes automorphism across the first Stokes line:</p>
     <p><strong>Perturbative Energy Levels:</strong>
 For the left well approximation:</p>
 
-    <p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)1</p>
+\[E_n^{(\text{left})} \sim n + \frac{1}{2} + \sum_{m=1}^\infty d_m \hbar^m\]
   </li>
   <li>
     <p><strong>Borel Transform:</strong>
-\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)2</p>
+\(\mathcal{B}[E_n^{(\text{left})}](\zeta) = \sum_{m=1}^\infty \frac{d_m}{m!} \zeta^m\)</p>
   </li>
   <li>
     <p><strong>Instanton Contribution:</strong>
 The tunneling correction:</p>
 
-    <p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)3</p>
+\[\Delta E_n = 2 \sqrt{\frac{\hbar}{\pi}} \omega_n \exp\left(-\frac{S}{2\hbar}\right) \cos(\pi(n+\frac{1}{2}) + \phi_n)\]
   </li>
   <li>
     <p><strong>Alien Derivative at Instanton Singularity:</strong>
-\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)4</p>
+\(\Delta_S E_n^{(\text{left})} = 2 \sqrt{\frac{1}{\pi}} \omega_n \cos(\pi(n+\frac{1}{2}) + \phi_n) E_n^{(\text{left})}\)</p>
   </li>
   <li>
     <p><strong>Resurgent Structure:</strong>
 The full transseries is:</p>
 
-    <p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)5</p>
+\[E_n = E_n^{(\text{left})} + \Delta E_n + \sum_{k=2}^\infty A_k \exp\left(-\frac{k S}{\hbar}\right)\]
 
     <p><strong>Key Result:</strong> The alien derivative at the first instanton generates all higher instantons via the Bridge Equation:</p>
 
-    <p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)6</p>
+\[\Delta_{kS} = (\Delta_S)^k\]
   </li>
 </ol>
 
@@ -1083,7 +1083,7 @@ The full transseries is:</p>
 
 <p><strong>Problem:</strong> Consider the resurgent version of Laplace’s method for:</p>
 
-<p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)7</p>
+\[I(\lambda) = \int_0^\infty \exp\left(-\lambda\left(\frac{t^3}{3} + t\right)\right) dt\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1092,27 +1092,27 @@ The full transseries is:</p>
     <p><strong>Asymptotic Expansion:</strong>
 The saddle-point contribution at $t = -1$ gives:</p>
 
-    <p>\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)8</p>
+\[I(\lambda) \sim \sqrt{\frac{2\pi}{\lambda}} \exp\left(\frac{\lambda}{3}\right) \sum_{n=0}^\infty a_n \lambda^{-n}\]
   </li>
   <li>
     <p><strong>First-Level Borel Sum:</strong>
-\((S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}\)9</p>
+\(S_1(\lambda) = \int_0^\infty \exp(-\lambda\zeta) \mathcal{B}\left[\sum \frac{a_n}{n!} \zeta^n\right] d\zeta\)</p>
   </li>
   <li>
     <p><strong>Second-Level Resummation (Hyperasymptotics):</strong>
 The remainder after optimal truncation has its own asymptotic expansion:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)0</p>
+\[R_N(\lambda) \sim \sum_{k=0}^\infty b_k \exp\left(-\frac{(N+k+1/2)}{\sqrt{\lambda}}\right)\]
 
     <p><strong>Borel transform of remainder:</strong></p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)1</p>
+\[\mathcal{B}[R_N](\zeta) = \sum_{k=0}^\infty \frac{b_k}{k!} \zeta^k\]
   </li>
   <li>
     <p><strong>Complete Resurgent Structure:</strong>
 The full resummation is:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)2</p>
+\[I(\lambda) = S_1(\lambda) + \sum_{m=1}^\infty S_m[R_{N_m}(\lambda)]\]
 
     <p>where each $S_m$ is a higher-order Borel sum along optimally chosen rays.</p>
   </li>
@@ -1120,11 +1120,11 @@ The full resummation is:</p>
     <p><strong>Alien Calculus Verification:</strong>
 Alien derivatives satisfy:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)3</p>
+\[\Delta_{\omega_m} S_1 = S_m[\Delta_{\omega_m} R_{N_m}]\]
 
     <p><strong>Bridge Equation:</strong></p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)4</p>
+\[[\Delta_{\omega_m}, \Delta_{\omega_n}] = 0\]
 
     <p><strong>Result:</strong> The algebraic structure of alien operators governs the nested resurgence structure!</p>
   </li>
@@ -1141,27 +1141,27 @@ Alien derivatives satisfy:</p>
     <p><strong>Divergent Moments:</strong>
 The formal power series for correlation functions:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)5</p>
+\[\langle \phi(x)\phi(y) \rangle = \sum_{n=0}^\infty c_n (x-y)^{2-n}\]
   </li>
   <li>
     <p><strong>Borel Transform:</strong>
-\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)6</p>
+\(\mathcal{B}[\langle \phi\phi \rangle](\zeta) = \sum_{n=0}^\infty \frac{c_n}{n!} \zeta^n\)</p>
   </li>
   <li>
     <p><strong>Singularities = Counterterms:</strong>
 Each pole in $\mathcal{B}<a href="\zeta">\langle \phi\phi \rangle</a>$ at $\zeta = \omega_k$ corresponds to a renormalization counterterm:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)7</p>
+\[Z_k = \text{Res}_{\zeta=\omega_k} \mathcal{B}[\langle \phi\phi \rangle](\zeta)\]
   </li>
   <li>
     <p><strong>Alien Derivative Interpretation:</strong>
-\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)8</p>
+\(\Delta_{\omega_k} \langle \phi\phi \rangle = Z_k \langle \phi\phi \rangle\)</p>
   </li>
   <li>
     <p><strong>Renormalization Group Flow:</strong>
 The RG flow is the alien derivative flow:</p>
 
-    <p>\(S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega\)9</p>
+\[\frac{d}{d\mu} \langle \phi\phi \rangle = \sum_k \beta_k \Delta_{\omega_k} \langle \phi\phi \rangle\]
   </li>
 </ol>
 
@@ -1171,28 +1171,28 @@ The RG flow is the alien derivative flow:</p>
 
 <p><strong>Problem:</strong> Consider a series with double factorial divergence:</p>
 
-<p>\(\Delta_\omega \tilde{u} = A_\omega \tilde{u}\)0</p>
+\[f(z) = \sum_{n=0}^\infty n!^2 z^n\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>First Borel Transform (Fails):</strong>
-\(\Delta_\omega \tilde{u} = A_\omega \tilde{u}\)1</p>
+\(\mathcal{B}_1[f](\zeta) = \sum_{n=0}^\infty n! \zeta^n\)</p>
 
     <p>Still divergent!</p>
   </li>
   <li>
     <p><strong>Second Borel Transform:</strong>
-\(\Delta_\omega \tilde{u} = A_\omega \tilde{u}\)2</p>
+\(\mathcal{B}_2[f](\eta) = \sum_{n=0}^\infty \frac{\zeta^n}{n!} = e^\eta\)</p>
   </li>
   <li>
     <p><strong>Double Laplace Transform:</strong>
-\(\Delta_\omega \tilde{u} = A_\omega \tilde{u}\)3</p>
+\(S_2[f](z) = \int_0^\infty \exp\left(-\frac{\zeta}{z}\right) \left[\int_0^\infty \exp\left(-\frac{\eta}{\zeta}\right) e^\eta \, d\eta\right] d\zeta\)</p>
   </li>
   <li>
     <p><strong>Explicit Computation:</strong>
-\(\Delta_\omega \tilde{u} = A_\omega \tilde{u}\)4</p>
+\(S_2[f](z) = \int_0^\infty \frac{\zeta}{\zeta-z} \exp\left(-\frac{1}{z}\right) d\zeta = -\text{Ei}\left(-\frac{1}{z}\right)\)</p>
 
     <p>where $\text{Ei}$ is the exponential integral.</p>
   </li>
