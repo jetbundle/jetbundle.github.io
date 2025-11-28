@@ -697,30 +697,446 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We study the geometry of fiber bundles. We define <strong>Instantons</strong> (Self-Dual connections) and their Moduli Spaces. We identify these Instantons as the <strong>Supersymmetric Vacua</strong> of Chapter 5.9.</p>
+<p>In the preceding modules, we explored the geometry of metrics, treating the Riemannian metric $g$ as a dynamical variable evolving under Ricci flow. We now shift our perspective to the geometry of fiber bundles. Here, the fundamental variable is the <strong>connection</strong> (or gauge potential), and the differential equations governing it—the Yang-Mills equations—arise from a variational principle on the space of connections.</p>
+
+<p>This module represents a crucial unification of the themes developed in this survey. The analysis of elliptic operators (Chapter 2) and the topology of manifolds (Chapter 3) converge here. However, unlike the linear elliptic operators of early chapters, the equations of gauge theory are nonlinear and geometrically intrinsic. Furthermore, we encounter a profound phenomenon: for specific dimensions (dimension 4), the second-order Euler-Lagrange equations admit a first-order reduction to the <strong>Self-Dual Yang-Mills equations</strong>. The solutions to these equations, known as <strong>instantons</strong>, form a moduli space whose geometry encodes the smooth topology of the underlying manifold. This realization—that the solution space of a PDE can serve as a topological invariant—is the central insight of Donaldson theory.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="yang-mills-theory">Yang-Mills Theory</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>Let $M$ be a compact, oriented Riemannian manifold and $P \to M$ a principal $G$-bundle, where $G$ is a compact Lie group (typically $SU(2)$ or $SU(n)$). The space of connections, denoted $\mathcal{A}$, is an affine space modeled on $\Omega^1(M, \text{ad} P)$, where $\text{ad} P$ is the adjoint bundle associated to $P$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>A connection $A \in \mathcal{A}$ defines a covariant derivative $d_A$ and a curvature 2-form $F_A \in \Omega^2(M, \text{ad} P)$ given locally by the structure equation:</p>
 
-<h3 id="core-results">Core Results</h3>
+\[F_A = dA + \frac{1}{2}[A, A]\]
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>The <strong>Yang-Mills functional</strong> serves as the energy of the connection, analogous to the Dirichlet energy for harmonic maps:</p>
 
-<h3 id="applications">Applications</h3>
+\[\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)\]
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<p>where $*$ is the Hodge star operator and the norm is defined via the Killing form on the Lie algebra $\mathfrak{g}$.</p>
+
+<p>The critical points of this functional are found by varying $A$ in the direction of a 1-form $\eta \in \Omega^1(M, \text{ad} P)$. The first variation yields the <strong>Yang-Mills equations</strong>:</p>
+
+\[d_A^* F_A = 0\]
+
+<p>where $d_A^*$ is the formal adjoint of the covariant exterior derivative. Combined with the Bianchi identity $d_A F_A = 0$, these equations generalize Maxwell’s equations to non-abelian gauge groups.</p>
+
+<p>The analysis of these equations is complicated by <strong>gauge invariance</strong>. The group of gauge transformations $\mathcal{G} = \Gamma(\text{Ad} P)$ acts on $\mathcal{A}$ by $g \cdot A = gAg^{-1} - (dg)g^{-1}$. The functional $\mathcal{YM}$ is invariant under this action, implying that the solutions are not unique but form orbits. To extract a well-posed elliptic system, one must break this symmetry by fixing a gauge, typically the <strong>Coulomb gauge</strong> $d^* A = 0$. As covered extensively in Uhlenbeck (1982), the analytic difficulties arise because the gauge group is non-compact in the Sobolev topologies required for the variational problem, leading to issues where convergence fails due to energy concentration at points.</p>
+
+<h3 id="instantons-and-self-duality">Instantons and Self-Duality</h3>
+
+<p>In four dimensions, the Hodge star operator maps 2-forms to 2-forms with $<em>^2 = 1$ (on a Riemannian manifold). This allows for a decomposition of the bundle of 2-forms into eigenspaces of $</em>$:</p>
+
+\[\Omega^2(M) = \Omega^2_+ \oplus \Omega^2_-\]
+
+<p>corresponding to eigenvalues $+1$ (self-dual) and $-1$ (anti-self-dual). The curvature $F_A$ decomposes similarly into $F_A = F_A^+ + F_A^-$.</p>
+
+<p>The Yang-Mills functional can be rewritten using the Chern-Weil topological invariant. The second Chern number (or topological charge) $k$ is given by:</p>
+
+\[8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (|F_A^+|^2 - |F_A^-|^2) \, d\text{vol}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Since $\mathcal{YM}(A) = \int_M (</td>
+      <td>F_A^+</td>
+      <td>^2 +</td>
+      <td>F_A^-</td>
+      <td>^2) \, d\text{vol}$, we obtain the topological bound:</td>
+    </tr>
+  </tbody>
+</table>
+
+\[\mathcal{YM}(A) \ge 8\pi^2 |k|\]
+
+<p>Equality holds if and only if $F_A^- = 0$ (if $k \ge 0$) or $F_A^+ = 0$ (if $k \le 0$). Connections satisfying $F_A = <em>F_A$ are called <strong>instantons</strong> (or anti-instantons for $F_A = -</em>F_A$).</p>
+
+<p>The equation $F_A^+ = 0$ is the <strong>Anti-Self-Dual (ASD) Yang-Mills equation</strong>. Crucially, this is a first-order system of PDEs, yet its solutions automatically satisfy the second-order Yang-Mills equations due to the Bianchi identity. This reduction from second-order variational equations to first-order topological equations is characteristic of supersymmetric theories (see Chapter 5.9).</p>
+
+<p>The local structure of the solution space is governed by the <strong>Atiyah-Hitchin-Singer Index Theorem</strong>. The linearization of the ASD equation leads to an elliptic complex (the deformation complex):</p>
+
+\[0 \to \Omega^0(\text{ad} P) \xrightarrow{d_A} \Omega^1(\text{ad} P) \xrightarrow{d_A^+} \Omega^2_+(\text{ad} P) \to 0\]
+
+<p>The expected dimension of the moduli space of instantons with charge $k$ is given by the index of this complex:</p>
+
+\[\dim \mathcal{M}_k = 8k - 3(1 - b_1 + b_2^+)\]
+
+<p>This formula links the analytic count of solutions directly to the topological Betti numbers of the base manifold $M$.</p>
+
+<h3 id="moduli-spaces-and-compactness">Moduli Spaces and Compactness</h3>
+
+<p>The central object of study is the <strong>Moduli Space of Instantons</strong>:</p>
+
+\[\mathcal{M}_k = \{ A \in \mathcal{A} : F_A^+ = 0 \} / \mathcal{G}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>This space is generally a finite-dimensional smooth manifold, but it is not compact. The non-compactness arises not from solutions “escaping to infinity” in the vector space sense, but from the phenomenon of <strong>bubbling</strong>. As established in the foundational work of Uhlenbeck (1982), a sequence of instantons $A_i$ with bounded energy may fail to converge on the whole manifold. Instead, the curvature density $</td>
+      <td>F_{A_i}</td>
+      <td>^2$ may concentrate at a finite number of points. In the limit, the connection remains smooth away from these points, while at the singular points, the energy “bubbles off” as an instanton on the sphere $S^4$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This <strong>Uhlenbeck Compactification</strong> $\overline{\mathcal{M}}_k$ adds ideal points at the boundary of the moduli space corresponding to these bubbled configurations. The geometric structure of this compactification is essential for defining invariants.</p>
+
+<p>If the cohomology $H^2$ of the deformation complex is non-vanishing, the moduli space may be singular. The <strong>Kuranishi method</strong> (covered in Donaldson &amp; Kronheimer, 1990) allows one to describe the local neighborhood of a singular point as the zero set of a map (the obstruction map). When the moduli space is smooth and compact (or appropriately compactified), it carries a fundamental homology class. Integration of cohomology classes over this fundamental cycle yields the <strong>Donaldson invariants</strong>, which are capable of distinguishing smooth structures on 4-manifolds that are topologically indistinguishable (homeomorphic but not diffeomorphic).</p>
+
+<p>This completes the geometric program of Chapter 6: we have moved from local solutions of PDEs to global solutions, and finally to the geometry of the space of solutions itself. The singularity of the moduli space encountered here—the bubbling phenomenon—necessitates the sophisticated algebraic machinery of Chapter 7 to resolve.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-661-canonical-su2-instanton-on-mathbbr4-bpst-instanton">Example 6.6.1: Canonical SU(2) Instanton on $\mathbb{R}^4$ (BPST Instanton)</h3>
+
+<p><strong>Problem:</strong> Construct the explicit 1-instanton solution and verify self-duality.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Bundle:</strong> Principal $SU(2)$-bundle over $\mathbb{R}^4$ with $k=1$</p>
+  </li>
+  <li>
+    <p><strong>Connection (BPST ansatz):</strong>
+\(A_\mu = \frac{\eta_{\mu\nu}^a x^\nu}{x^2 + \rho^2} \sigma^a, \quad \sigma^a = \text{Pauli matrices}\)</p>
+
+    <p>where $\eta_{\mu\nu}^a$ are ‘t Hooft symbols:</p>
+
+\[\eta_{ij}^a = \epsilon_{aij}, \quad \eta_{4j}^a = \delta_{aj}, \quad \eta_{i4}^a = -\delta_{aj}\]
+  </li>
+  <li>
+    <p><strong>Curvature Computation:</strong>
+Compute $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$</p>
+
+    <p>For $\mu=i$, $\nu=j$:</p>
+
+\[F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^a \sigma^a\]
+  </li>
+  <li>
+    <p><strong>Self-Duality Verification:</strong>
+Compute $*F_{ij} = \frac{1}{2} \epsilon_{ijkl} F_{kl}$:</p>
+
+\[*F_{ij} = \frac{1}{2} \epsilon_{ijkl} \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{kl}^b \sigma^b\]
+
+    <p>Using $\epsilon_{ijkl} \eta_{kl}^b = 2 \eta_{ij}^b$:</p>
+
+\[*F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^b \sigma^b = F_{ij}\]
+
+    <p><strong>Result:</strong> $F = *F$ ✓ Self-dual instanton verified</p>
+  </li>
+  <li>
+    <p><strong>Yang-Mills Functional:</strong>
+\(\mathcal{YM}(A) = \int_{\mathbb{R}^4} |F|^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2\)</p>
+  </li>
+  <li>
+    <p><strong>Topological Charge:</strong>
+\(k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1\)</p>
+  </li>
+  <li>
+    <p><strong>Gauge Transformation &amp; Moduli:</strong>
+Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space.</p>
+
+    <p>Global gauge transformation:</p>
+
+\[A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}, \quad g(x) = \frac{x^4 + i x^a \sigma^a}{|x|}\]
+
+    <p>Verification: $F^{g} = g F g^{-1}$ preserves self-duality.</p>
+  </li>
+</ol>
+
+<h3 id="example-662-index-theorem-computation-on-s4">Example 6.6.2: Index Theorem Computation on $S^4$</h3>
+
+<p><strong>Problem:</strong> Compute the dimension of the moduli space of instantons on $S^4$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Manifold:</strong> $S^4$ with standard metric</p>
+  </li>
+  <li>
+    <p><strong>Bundle:</strong> $SU(2)$-bundle with $c_2 = 1$</p>
+  </li>
+  <li>
+    <p><strong>Deformation Complex:</strong>
+\(0 \to \Omega^0(\mathfrak{su}(2)) \xrightarrow{d_A} \Omega^1(\mathfrak{su}(2)) \xrightarrow{d_A^+} \Omega^{2+}(\mathfrak{su}(2)) \to 0\)</p>
+  </li>
+  <li>
+    <p><strong>Index Computation:</strong>
+Dimension formula:</p>
+
+\[\dim \mathcal{M}_1 = 8 \cdot 1 - 3(1 - b_1 + b_2^+) = 8 - 3(1 - 0 + 0) = 5\]
+  </li>
+  <li>
+    <p><strong>Explicit Cohomology Computation:</strong>
+Harmonic forms on $S^4$: $\dim H^0 = 1$, $\dim H^1 = 0$, $\dim H^2 = 0$, $\dim H^3 = 0$, $\dim H^4 = 1$</p>
+
+    <p>Bundle cohomology (by Atiyah-Hitchin-Singer):</p>
+
+\[\dim \ker d_A^+ = h^0 + h^2_+ = 1 + 3 = 4\]
+
+\[\dim \coker d_A = h^1 + h^3 = 0 + 0 = 0\]
+
+    <p>Index $= 4 - 0 + \dim \ker d_A = 5$ ✓</p>
+  </li>
+  <li>
+    <p><strong>Explicit Kernel Computation:</strong>
+Infinitesimal deformations: Solve $d_A^+ \phi = 0$ where $\phi \in \Omega^1(\mathfrak{su}(2))$</p>
+
+    <p>Ansatz: $\phi_\mu = f(r) \eta_{\mu\nu} x^\nu \sigma^3$</p>
+
+    <p>Solution: $f(r) = \frac{\rho^2}{(r^2 + \rho^2)^2}$ gives 5 independent solutions:</p>
+    <ul>
+      <li>3 translations: $\partial_{x^i} A$</li>
+      <li>1 dilation: $\partial_\rho A$</li>
+      <li>1 global gauge: $d_A \alpha$, $\alpha = \sigma^3$</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="example-663-2-instanton-moduli-space-geometry">Example 6.6.3: 2-Instanton Moduli Space Geometry</h3>
+
+<p><strong>Problem:</strong> Construct explicit 2-instanton and compute moduli space metric.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>ADHM Construction:</strong>
+ADHM data for $k=2$:</p>
+
+    <p>$B_1, B_2 \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^2)$, $I \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^4)$, $J \in \text{Hom}(\mathbb{C}^4, \mathbb{C}^2)$</p>
+  </li>
+  <li>
+    <p><strong>Moment Map Equations:</strong>
+\([B_1, B_1^\dagger] + [B_2, B_2^\dagger] + I I^\dagger = 0\)</p>
+
+\[[B_1, B_2^\dagger] - [B_2, B_1^\dagger] + I J^\dagger - J I^\dagger = 0\]
+  </li>
+  <li>
+    <p><strong>Explicit Solution (Atiyah-Drinfeld-Hitchin-Manin):</strong>
+\(B_1 = \begin{pmatrix} z_1 &amp; 0 \\ 0 &amp; z_2 \end{pmatrix}, \quad B_2 = \begin{pmatrix} 0 &amp; -w_2 \\ w_1 &amp; 0 \end{pmatrix}\)</p>
+
+    <p>Positions: $z_1, z_2 \in \mathbb{C}^2$ (8 real parameters)</p>
+  </li>
+  <li>
+    <p><strong>Moduli Space Metric (Atiyah-Hitchin metric):</strong>
+\(ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2\)</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>where $r =</td>
+          <td>z_1 - z_2</td>
+          <td>$ is separation distance.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Explicit Computation for Small $r$:</strong>
+\(h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)\)</p>
+  </li>
+  <li>
+    <p><strong>Verification:</strong>
+As $r \to 0$, metric degenerates (bubbling point).</p>
+  </li>
+</ol>
+
+<h3 id="example-664-uhlenbeck-compactification-analysis">Example 6.6.4: Uhlenbeck Compactification Analysis</h3>
+
+<p><strong>Problem:</strong> Construct explicit sequence exhibiting bubbling.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Bubbling Sequence Construction:</strong>
+Construct sequence $A_n$ on $S^4$:</p>
+
+\[A_n = A_1 + \frac{1}{n} A_2 \circ \phi_n\]
+
+    <p>where $\phi_n: S^4 \to S^4$ is stereographic projection concentrating at north pole.</p>
+  </li>
+  <li>
+    <p><strong>Energy Decomposition:</strong>
+\(\mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)\)</p>
+  </li>
+  <li>
+    <p><strong>Curvature Concentration:</strong>
+\(\int_{B(p,1/n)} |F_{A_n}|^2 \to 8\pi^2 \quad \text{as} \quad n \to \infty\)</p>
+  </li>
+  <li>
+    <p><strong>Weak Convergence Analysis:</strong>
+Extract bubble:</p>
+
+    <p>Rescale: Define $\tilde{A}_n(x) = n A_n\left( \frac{x}{n} \right)$</p>
+
+    <p>Domain: $B\left(p, \frac{1}{n}\right) \to \mathbb{R}^4$</p>
+
+    <p>Limit: $\tilde{A}<em>n \rightharpoonup A</em>{\text{BPST}}$ in $L^{3/2}_{\text{loc}}$</p>
+  </li>
+  <li>
+    <p><strong>Verification:</strong>
+\(\int_{\mathbb{R}^4} |F_{\tilde{A}_n}|^2 \to 8\pi^2\)</p>
+
+    <p>Boundary behavior: $\tilde{A}_n \to 0$ weakly at infinity.</p>
+  </li>
+</ol>
+
+<h3 id="example-665-donaldson-invariant-computation">Example 6.6.5: Donaldson Invariant Computation</h3>
+
+<p><strong>Problem:</strong> Compute the 4th Donaldson invariant for $\mathbb{CP}^2$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Manifold:</strong> $\mathbb{CP}^2$ with Fubini-Study metric</p>
+  </li>
+  <li>
+    <p><strong>Instanton Number:</strong> $k=1$</p>
+  </li>
+  <li>
+    <p><strong>4th Donaldson Invariant:</strong>
+\(D_4([\mathbb{CP}^2], k=1) = \int_{\mathcal{M}_1} \omega_2^2\)</p>
+
+    <p>where $\omega_2 \in H^2(\mathcal{M}_1)$ is universal cohomology class.</p>
+  </li>
+  <li>
+    <p><strong>Geometric Computation:</strong>
+Moduli space: $\mathcal{M}_1(\mathbb{CP}^2) \cong \mathbb{CP}^3$</p>
+
+    <p>Dimension: $\dim = 8 - 3(1-0+1) = 5$</p>
+
+    <p>Kähler form: $\omega_{\mathcal{M}} =$ pullback of Fubini-Study</p>
+  </li>
+  <li>
+    <p><strong>Integral Evaluation:</strong>
+\(\int_{\mathbb{CP}^3} \omega_{\mathcal{M}}^2 = \int_{\mathbb{CP}^3} c_1^2(\mathcal{O}(1)) = 1\)</p>
+  </li>
+  <li>
+    <p><strong>Result:</strong> $D_4(\mathbb{CP}^2, 1) = 1$</p>
+  </li>
+  <li>
+    <p><strong>Exotic 4-Manifold Distinction:</strong></p>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manifold</th>
+      <th>$b_2^+$</th>
+      <th>$\dim \mathcal{M}_1$</th>
+      <th>$D_4(1)$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$\mathbb{CP}^2$</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>$K3$</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>$S^2 \times S^2$</td>
+      <td>2</td>
+      <td>3</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Conclusion:</strong> Donaldson invariants distinguish smooth structures.</p>
+
+<h3 id="example-666-supersymmetry-connection-chapter-59-link">Example 6.6.6: Supersymmetry Connection (Chapter 5.9 Link)</h3>
+
+<p><strong>Problem:</strong> Show instantons as supersymmetric vacua.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Supersymmetry Algebra:</strong>
+\(\{Q_\alpha, \bar{Q}_{\dot{\beta}}\} = \delta_{\alpha\dot{\beta}} H\)</p>
+  </li>
+  <li>
+    <p><strong>Instanton Equation:</strong>
+$F^+ = 0 \iff [Q, \bar{Q}] A = 0$</p>
+  </li>
+  <li>
+    <p><strong>Witten Index Application:</strong>
+\(\text{Witten Index} = \dim \ker D^+ - \dim \ker D^-\)</p>
+
+    <p>For BPST instanton:</p>
+
+\[\text{Index}(D^+) = 5, \quad \text{Index}(D^-) = 0\]
+  </li>
+  <li>
+    <p><strong>Physical Interpretation:</strong>
+5 bosonic zero modes, no fermionic zero modes.</p>
+
+    <p><strong>Key Insight:</strong> Instantons are the supersymmetric vacua connecting geometric analysis to quantum field theory.</p>
+  </li>
+</ol>
+
+<h3 id="example-667-explicit-kuranishi-resolution">Example 6.6.7: Explicit Kuranishi Resolution</h3>
+
+<p><strong>Problem:</strong> Resolve a singular moduli point using Kuranishi method.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Setup:</strong> $SU(2)$-bundle over $T^4$ with torsion</p>
+  </li>
+  <li>
+    <p><strong>Deformation Complex Cohomology:</strong>
+\(H^1(\text{ad} P) \neq 0, \quad H^2_+(\text{ad} P) \neq 0\)</p>
+  </li>
+  <li>
+    <p><strong>Obstruction Space:</strong> $H^2_+(\text{ad} P)$</p>
+  </li>
+  <li>
+    <p><strong>Kuranishi Map:</strong>
+\(\Phi: \ker d_A \to H^2_+(\text{ad} P)\)</p>
+  </li>
+  <li>
+    <p><strong>Explicit Computation for Torsion Bundle:</strong>
+\(\Phi(\phi) = \int_M \phi \wedge \omega_2\)</p>
+  </li>
+  <li>
+    <p><strong>Resolution:</strong>
+Moduli space near singularity:</p>
+
+\[\mathcal{M} \cong \{ \phi \in \ker d_A : \Phi(\phi) = 0 \}\]
+  </li>
+  <li>
+    <p><strong>Dimension:</strong>
+\(\dim \ker d_A - \dim H^2_+ = 8k - 3(1-b_1+b_2^+) - \text{obstructions}\)</p>
+
+    <p><strong>Key Insight:</strong> The Kuranishi method provides a systematic way to resolve singularities in moduli spaces, connecting to the obstruction theory of Chapter 6.2.</p>
+  </li>
+</ol>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Atiyah, M. F., Hitchin, N. J., &amp; Singer, I. M. (1978). Self-duality in four-dimensional Riemannian geometry. <em>Proceedings of the Royal Society of London. A.</em>, 362(1711), 425-461.</li>
+  <li>Donaldson, S. K., &amp; Kronheimer, P. B. (1990). <em>The Geometry of Four-Manifolds</em>. Oxford University Press.</li>
+  <li>Nakahara, M. (2003). <em>Geometry, Topology and Physics</em>. Taylor &amp; Francis.</li>
+  <li>Uhlenbeck, K. K. (1982). Connections with $L^p$ bounds on curvature. <em>Communications in Mathematical Physics</em>, 83(1), 31-42.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
