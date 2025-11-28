@@ -700,27 +700,185 @@
 <p>Acknowledging that exact solutions are rare, we turn to approximation in limits. <strong>Laplace’s Method</strong> and <strong>Stationary Phase</strong> reveal that integrals are dominated by critical points. The <strong>WKB Approximation</strong> connects wave mechanics to classical ray trajectories. This module emphasizes “local truth”—accurate behavior at $\infty$ or $0$—while exposing the lack of global connection formulas, necessitating a topological understanding of the Stokes phenomenon.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="laplaces-method-dominance-of-critical-points">Laplace’s Method: Dominance of Critical Points</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>For integrals with a large parameter,</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[I(M)=\int_{a}^{b}g(x)e^{M h(x)}\,dx,\qquad M\to\infty,\]
 
-<h3 id="core-results">Core Results</h3>
+<p>the main contribution arises near the global maximum of $h$. If $h$ has a unique interior maximum at $x_{0}$ with $h’‘(x_{0})&lt;0$, Taylor expansion gives</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\]
 
-<h3 id="applications">Applications</h3>
+<p>When the maximum occurs at an endpoint with $h’(a)\neq 0$, the scaling changes to $I(M)\sim g(a)e^{M h(a)}/(M\lvert h’(a)\rvert)$, illustrating the discontinuous dependence on critical-point geometry (Whittaker &amp; Watson, 1927).</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h3 id="method-of-stationary-phase">Method of Stationary Phase</h3>
+
+<p>For oscillatory integrals</p>
+
+\[I(M)=\int_{-\infty}^{\infty}g(x)e^{i M h(x)}\,dx,\]
+
+<p>rapid oscillations cancel except near stationary points where $h’(x_{0})=0$. Expanding $h$ quadratically yields</p>
+
+\[I(M)\sim g(x_{0})e^{i M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}e^{i\frac{\pi}{4}\operatorname{sgn}(h''(x_{0}))},\]
+
+<p>introducing the Maslov phase shift $\pi/4$ that later reappears in semiclassical quantization (Stein &amp; Shakarchi, 2003).</p>
+
+<h3 id="wkb-approximation">WKB Approximation</h3>
+
+<p>For $\epsilon^{2}y’‘+Q(x)y=0$ with $\epsilon\to 0$, seek $y=\exp\left(\epsilon^{-1}\sum_{n=0}^{\infty}\epsilon^{n}S_{n}(x)\right)$. The leading terms satisfy</p>
+
+\[(S_{0}')^{2}+Q(x)=0,\qquad 2S_{0}'S_{1}'+S_{0}''=0,\]
+
+<p>giving</p>
+
+\[y(x)\sim \frac{A}{Q(x)^{1/4}}\exp\left(\pm\frac{i}{\epsilon}\int^{x}\sqrt{Q(t)}\,dt\right).\]
+
+<p>Oscillatory behavior occurs where $Q&gt;0$, exponential where $Q&lt;0$. Near turning points $Q(x_{0})=0$, WKB fails and must be matched to Airy-function solutions to obtain connection formulas (Olver, 2010).</p>
+
+<h3 id="stokes-phenomenon">Stokes Phenomenon</h3>
+
+<p>Asymptotic expansions like</p>
+
+\[y(z)\sim e^{\lambda z}\sum_{n=0}^{\infty}\frac{a_{n}}{z^{n}}\]
+
+<p>are sectorial: they hold only within wedges bounded by Stokes lines where $\Re(\lambda z)$ is constant. Crossing a Stokes line activates subdominant exponentials with discontinuous multipliers (often $\pm i$). Borel summation interprets the divergent series in each sector and glues them using these jumps, foreshadowing resurgence theory.</p>
+
+<h2 id="connections-to-chapter-narrative">Connections to Chapter Narrative</h2>
+
+<p>Asymptotics converts intractable integrals and differential equations into local expansions controlled by critical points and turning points. The resulting sectorial truths and Stokes jumps expose the topological constraints governing analytic continuation, anticipating the microlocal and resurgent frameworks of later chapters.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-151-endpoint-laplace-method">Example 1.5.1: Endpoint Laplace Method</h3>
+
+<p><strong>Problem:</strong> Estimate $I(M)=\int_{0}^{1}e^{M(\ln x - x)}\,dx$ as $M\to\infty$.</p>
+
+<p>The phase $h(x)=\ln x - x$ attains its maximum at $x=1$, an endpoint with $h’(1)=0$ and $h’‘(1)=-1$. Setting $x=1-t$ yields $h(1-t)\approx -t-\tfrac{t^{2}}{2}$, so</p>
+
+\[I(M)\approx \int_{0}^{\infty}e^{-M t-M t^{2}/2}\,dt\sim \frac{1}{M}.\]
+
+<p>This matches the asymptotic of the exponential integral $E_{1}(M)$.</p>
+
+<h3 id="example-152-partition-function-via-laplace-method">Example 1.5.2: Partition Function via Laplace Method</h3>
+
+<p><strong>Problem:</strong> Evaluate $Z(\beta)=\int_{-\infty}^{\infty}e^{-\beta (x^{4}-2x^{2})}\,dx$ for $\beta\to\infty$.</p>
+
+<p>The potential $V(x)=x^{4}-2x^{2}$ has minima at $x=\pm 1$ with $V’’(\pm 1)=8$. Each contributes</p>
+
+\[Z(\beta)\sim 2 e^{\beta}\sqrt{\frac{2\pi}{\beta \cdot 8}}=e^{\beta}\sqrt{\frac{\pi}{2\beta}}.\]
+
+<p>The free energy $F=-(1/\beta)\ln Z$ approaches $-1+\tfrac{1}{2\beta}\ln(\pi/2\beta)$, revealing the ground-state energy plus thermal corrections.</p>
+
+<h3 id="example-153-multiple-critical-points">Example 1.5.3: Multiple Critical Points</h3>
+
+<p><strong>Problem:</strong> Analyze $I(M)=\int_{0}^{2\pi}e^{M\cos^{3}\theta}\,d\theta$.</p>
+
+<p>Critical points at $\theta=0,\pi$ give quadratic contributions $\sim e^{M}\sqrt{2\pi/(3M)}$ and $e^{-M}\sqrt{2\pi/(3M)}$ (negligible). Degenerate points at $\theta=\pi/2,3\pi/2$ produce cubic scaling $\sim 0.838\,M^{-1/3}$. Thus</p>
+
+\[I(M)\sim e^{M}\sqrt{\frac{2\pi}{3M}}+0.838\,M^{-1/3}+\cdots,\]
+
+<p>illustrating how different critical-point types set distinct powers of $M$.</p>
+
+<h3 id="example-154-stationary-phase-fresnel-integral">Example 1.5.4: Stationary Phase Fresnel Integral</h3>
+
+<p><strong>Problem:</strong> Estimate $I(M)=\int_{0}^{\infty}e^{i M x^{2}}\,dx$.</p>
+
+<p>The stationary point at $x=0$ (an endpoint) yields</p>
+
+\[I(M)\sim \tfrac{1}{2}\sqrt{\frac{\pi}{M}}e^{i\pi/4},\]
+
+<p>matching the exact Fresnel integral and exhibiting the $\pi/4$ phase.</p>
+
+<h3 id="example-155-wave-diffraction">Example 1.5.5: Wave Diffraction</h3>
+
+<p><strong>Problem:</strong> In Kirchhoff diffraction, $U(P)=\frac{1}{i\lambda}\iint_{S}\frac{e^{ik r}}{r}\cos\theta\,dS$ with $k\to\infty$.</p>
+
+<p>Stationary phase at the specular point $(r=r_{0})$ gives $U(P)\sim \frac{A}{\sqrt{k}}e^{ik r_{0}}e^{i\pi/4}$, explaining the $k^{-1/2}$ decay and phase shift of Fresnel diffraction fringes.</p>
+
+<h3 id="example-156-coherent-vs-incoherent-stationary-points">Example 1.5.6: Coherent vs. Incoherent Stationary Points</h3>
+
+<p><strong>Problem:</strong> Evaluate $I(M)=\int_{0}^{2\pi}e^{iM(\cos\theta +0.1\sin 2\theta)}\,d\theta$.</p>
+
+<p>Two stationary points contribute amplitudes $I_{1,2}\sim (2\pi/M)^{1/2}e^{iM h(\theta_{1,2})\pm i\pi/4}$. The relative phase $\Delta\phi=M(h(\theta_{1})-h(\theta_{2}))$ determines interference: if $\Delta\phi\ll 2\pi$, the contributions add coherently; if $\Delta\phi\gg 2\pi$, intensities add incoherently.</p>
+
+<h3 id="example-157-wkb-for-the-harmonic-oscillator">Example 1.5.7: WKB for the Harmonic Oscillator</h3>
+
+<p><strong>Problem:</strong> Solve $\epsilon^{2}y’’+(1-x^{2})y=0$ via WKB.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $</td>
+      <td>x</td>
+      <td>&lt;1$ is</td>
+    </tr>
+  </tbody>
+</table>
+
+\[y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos\left(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}\right).\]
+
+<h3 id="example-158-quantum-tunneling-via-wkb">Example 1.5.8: Quantum Tunneling via WKB</h3>
+
+<p><strong>Problem:</strong> Estimate tunneling in $V(x)=x^{4}-2x^{2}$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>In the forbidden region $</td>
+      <td>x</td>
+      <td>&gt;1$, the WKB solution is $y\sim</td>
+      <td>Q</td>
+      <td>^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{</td>
+      <td>Q</td>
+      <td>}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-159-airy-turning-point-matching">Example 1.5.9: Airy Turning-Point Matching</h3>
+
+<p><strong>Problem:</strong> For $Q(x)=x$, match WKB solutions across $x=0$.</p>
+
+<p>The Airy equation $y’‘-xy=0$ has asymptotics</p>
+
+\[\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi}x^{1/4}}e^{-\frac{2}{3}x^{3/2}},\quad x\to+\infty,\]
+
+<p>and</p>
+
+\[\operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}|x|^{1/4}}\sin\left(\frac{2}{3}|x|^{3/2}+\frac{\pi}{4}\right),\quad x\to -\infty.\]
+
+<p>Matching these yields the $\pi/4$ phase shift in the oscillatory region.</p>
+
+<h3 id="example-1510-stokes-lines-for-airy-function">Example 1.5.10: Stokes Lines for Airy Function</h3>
+
+<p><strong>Problem:</strong> Track $\operatorname{Ai}(z)$ across the complex plane.</p>
+
+<p>Stokes lines occur at $\arg z=\pm\pi/3,\pi$. On $0&lt;\arg z&lt;2\pi/3$, only $e^{-\zeta}$ appears; crossing $\arg z=2\pi/3$ activates the subdominant $e^{+\zeta}$ with multiplier $i$. This discontinuity encodes the global analytic structure.</p>
+
+<h3 id="example-1511-quantum-barrier-penetration-and-stokes-jumps">Example 1.5.11: Quantum Barrier Penetration and Stokes Jumps</h3>
+
+<p><strong>Problem:</strong> In alpha decay, analytic continuation around a turning point causes the transmission coefficient to jump discretely.</p>
+
+<p>WKB solutions in the complex $r$-plane pick up Stokes multipliers when circling the barrier, quantizing decay rates and connecting asymptotic analysis to observable half-lives.</p>
+
+<h3 id="example-1512-borel-summation-of-a-divergent-series">Example 1.5.12: Borel Summation of a Divergent Series</h3>
+
+<p><strong>Problem:</strong> Sum $y(z)\sim e^{\lambda z}\sum_{n=0}^{\infty}\frac{(-1)^{n}n!}{z^{n}}$.</p>
+
+<p>The Borel transform $B(t)=\sum (-1)^{n}t^{n}/(n!)^{2}=I_{0}(2\sqrt{t})$. The Laplace integral</p>
+
+\[S(z)=\int_{0}^{\infty}e^{-t}I_{0}(2\sqrt{t})e^{\lambda t/z}\,dt\]
+
+<p>defines analytic continuations in different sectors. Choosing integration contours above or below the positive axis reproduces the Stokes jumps.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Olver, F. W. J., Lozier, D. W., Boisvert, R. F., &amp; Clark, C. W. (2010). <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
+  <li>Stein, E. M., &amp; Shakarchi, R. (2003). <em>Fourier Analysis: An Introduction</em>. Princeton University Press.</li>
+  <li>Whittaker, E. T., &amp; Watson, G. N. (1927). <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
