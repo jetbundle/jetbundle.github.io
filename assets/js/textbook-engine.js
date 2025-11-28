@@ -166,11 +166,11 @@ if 'plot_data' in globals() and plot_data is not None:
       if (hasPlotData) {
         const plotJson = this.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
-        
+
         // Ensure dark theme for Plotly
         const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
         const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
-        
+
         // Enable LaTeX rendering in Plotly
         if (plotData.layout) {
           plotData.layout.font = plotData.layout.font || {};
@@ -181,11 +181,27 @@ if 'plot_data' in globals() and plot_data is not None:
           }
         }
 
-        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, {
+        // Configure Plotly for LaTeX rendering
+        const plotConfig = {
           template: plotlyTemplate,
           responsive: true,
-          mathjax: 'cdn'  // Enable MathJax for LaTeX in Plotly
-        });
+          toImageButtonOptions: {
+            format: 'png',
+            filename: 'plot',
+            height: plotData.layout?.height || 400,
+            width: 1200,
+            scale: 1
+          }
+        };
+
+        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig);
+        
+        // Trigger MathJax rendering if MathJax is available
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([outputContainer]).catch((err) => {
+            console.log('MathJax rendering issue:', err);
+          });
+        }
       } else {
         outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';
       }

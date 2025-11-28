@@ -30,24 +30,60 @@ class WidgetEngine {
 
   attachWidgetListeners() {
     this.widgets.forEach((widgetData, widgetId) => {
-      widgetData.sliders.forEach(slider => {
-        slider.addEventListener('input', (e) => {
-          const paramName = e.target.dataset.param;
-          const paramValue = e.target.value;
+      // Check if this widget has continuous update mode
+      const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
+                           widgetData.element.dataset.updateMode === 'continuous';
+      
+      // Throttle function for efficient continuous updates
+      const throttleUpdate = this.throttle((e) => {
+        const paramName = e.target.dataset.param;
+        const paramValue = e.target.value;
 
-          const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
-          if (valueDisplay) {
-            valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
-          }
-        });
+        const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
+        if (valueDisplay) {
+          valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
+        }
+
+        // Update plot if in continuous mode
+        if (isContinuous) {
+          this.executeWidget(widgetData, true); // true = skip button state changes
+        }
+      }, 150); // 150ms throttle for smooth but efficient updates
+
+      widgetData.sliders.forEach(slider => {
+        if (isContinuous) {
+          slider.addEventListener('input', throttleUpdate);
+        } else {
+          slider.addEventListener('input', (e) => {
+            const paramName = e.target.dataset.param;
+            const paramValue = e.target.value;
+
+            const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
+            if (valueDisplay) {
+              valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
+            }
+          });
+        }
       });
 
-      if (widgetData.runButton) {
+      if (widgetData.runButton && !isContinuous) {
         widgetData.runButton.addEventListener('click', () => {
           this.executeWidget(widgetData);
         });
       }
     });
+  }
+
+  throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   }
 
   injectParameters(code, params) {
@@ -65,7 +101,7 @@ class WidgetEngine {
     return modifiedCode;
   }
 
-  async executeWidget(widgetData) {
+  async executeWidget(widgetData, skipButtonState = false) {
     const button = widgetData.runButton;
     const output = widgetData.output;
 
@@ -73,10 +109,17 @@ class WidgetEngine {
       return;
     }
 
-    button.disabled = true;
-    const originalText = button.textContent;
-    button.innerHTML = '<span class="loading"></span> Computing...';
-    output.innerHTML = '<div class="computing">Computing solution...</div>';
+    // Only update button state if not in continuous mode
+    if (!skipButtonState && button) {
+      button.disabled = true;
+      const originalText = button.textContent;
+      button.innerHTML = '<span class="loading"></span> Computing...';
+    }
+    
+    // Show computing message only if output is empty or not already computing
+    if (!output.innerHTML || !output.innerHTML.includes('Computing')) {
+      output.innerHTML = '<div class="computing">Computing solution...</div>';
+    }
 
     try {
       const params = {};
@@ -171,11 +214,11 @@ if 'plot_data' in globals() and plot_data is not None:
       if (hasPlotData) {
         const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
-        
+
         // Ensure dark theme for Plotly
         const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
         const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
-        
+
         // Enable LaTeX rendering in Plotly
         if (plotData.layout) {
           plotData.layout.font = plotData.layout.font || {};
@@ -186,22 +229,41 @@ if 'plot_data' in globals() and plot_data is not None:
           }
         }
 
-        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, {
+        // Configure Plotly for LaTeX rendering
+        const plotConfig = {
           template: plotlyTemplate,
           responsive: true,
-          mathjax: 'cdn'  // Enable MathJax for LaTeX in Plotly
-        });
+          toImageButtonOptions: {
+            format: 'png',
+            filename: 'plot',
+            height: plotData.layout?.height || 400,
+            width: 1200,
+            scale: 1
+          }
+        };
+
+        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig);
+        
+        // Trigger MathJax rendering if MathJax is available
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([output]).catch((err) => {
+            console.log('MathJax rendering issue:', err);
+          });
+        }
       } else {
         output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
       }
 
-    } catch (error) {
-      console.error('Widget execution error:', error);
-      output.innerHTML = `<div style="color: var(--error); padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--error); border-radius: 8px; margin: 1rem 0;"><strong>Error:</strong> ${error.message}</div>`;
-    } finally {
-      button.disabled = false;
-      button.textContent = originalText;
-    }
+      } catch (error) {
+        console.error('Widget execution error:', error);
+        output.innerHTML = `<div style="color: var(--error); padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--error); border-radius: 8px; margin: 1rem 0;"><strong>Error:</strong> ${error.message}</div>`;
+      } finally {
+        // Only restore button state if not in continuous mode
+        if (!skipButtonState && button) {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      }
   }
 }
 
