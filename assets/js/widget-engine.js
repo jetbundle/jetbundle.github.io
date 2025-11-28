@@ -55,11 +55,24 @@ class WidgetEngine {
       // Check if this widget has continuous update mode
       const isContinuous = widgetData.isContinuous;
 
-      // For continuous widgets: initially sliders only update display values
-      // After clicking Run, continuous updates will be enabled
+      // Create throttled update function for continuous widgets (created once, used later)
+      const throttleUpdate = this.throttle(() => {
+        // Check state at execution time, not closure time
+        if (widgetData.continuousActivated && !widgetData.executing) {
+          console.log('Continuous update triggered for widget:', widgetId);
+          this.executeWidget(widgetData, true).catch(err => {
+            console.error('Error in continuous update:', err);
+          });
+        }
+      }, 150); // 150ms throttle for smooth but efficient updates
+
+      // Store the throttle function on widgetData for later use
+      widgetData.throttleUpdate = throttleUpdate;
+
+      // For all widgets: sliders update display values immediately
       widgetData.sliders.forEach(slider => {
         // Always allow slider value display updates
-        slider.addEventListener('input', (e) => {
+        const displayUpdateHandler = (e) => {
           const paramName = e.target.dataset.param;
           const paramValue = e.target.value;
 
@@ -67,34 +80,36 @@ class WidgetEngine {
           if (valueDisplay) {
             valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
           }
-        });
-      });
 
-      // Throttle function for efficient continuous updates (used after Run is clicked)
-      const throttleUpdate = this.throttle((e) => {
-        if (widgetData.continuousActivated) {
-          this.executeWidget(widgetData, true); // true = skip button state changes
-        }
-      }, 150); // 150ms throttle for smooth but efficient updates
+          // If continuous widget is activated, also trigger plot update
+          if (isContinuous && widgetData.continuousActivated) {
+            throttleUpdate();
+          }
+        };
+
+        slider.addEventListener('input', displayUpdateHandler);
+        // Store handler for potential removal (though we don't need to remove it)
+        slider._displayUpdateHandler = displayUpdateHandler;
+      });
 
       // Handle Run button click
       if (widgetData.runButton) {
         widgetData.runButton.addEventListener('click', () => {
           if (isContinuous && !widgetData.continuousActivated) {
             // First Run click: execute and activate continuous mode
-            // Mark as activated immediately to prevent button restoration
-            widgetData.continuousActivated = true;
+            console.log('Activating continuous mode for widget:', widgetId);
             
             this.executeWidget(widgetData, true).then(() => {
-              // After successful execution, hide button and enable continuous updates
+              // After successful execution, activate continuous mode
+              widgetData.continuousActivated = true;
+              
+              // Hide button
               if (widgetData.runButton) {
                 widgetData.runButton.style.display = 'none';
               }
-              
-              // Attach continuous update listeners to sliders
-              widgetData.sliders.forEach(slider => {
-                slider.addEventListener('input', throttleUpdate);
-              });
+
+              console.log('Continuous mode activated for widget:', widgetId);
+              console.log('Now sliders will trigger continuous updates');
             }).catch(err => {
               console.error('Error activating continuous mode:', err);
               // Reset if execution failed
