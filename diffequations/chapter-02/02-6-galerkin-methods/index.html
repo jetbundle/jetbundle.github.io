@@ -6,60 +6,51 @@
   <title>Section 2.6: Galerkin Methods & Finite Elements</title>
   <meta name="description" content="Finite-dimensional projection, error estimates">
 
-  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
+  <!-- MathJax 3 - Standards-compliant LaTeX configuration -->
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        // Standard LaTeX delimiters
+        inlineMath: [['\\(', '\\)']],  // Use \( \) for inline to avoid table conflicts
+        displayMath: [['\\[', '\\]']], // Use \[ \] for display
+        // Also support $ for compatibility, but with proper escaping
+        macros: {
+          // Define common macros for consistency
+          RR: '{\\mathbb{R}}',
+          NN: '{\\mathbb{N}}',
+          ZZ: '{\\mathbb{Z}}',
+          QQ: '{\\mathbb{Q}}',
+          CC: '{\\mathbb{C}}'
+        },
+        // Process escapes and environments
         processEscapes: true,
         processEnvironments: true,
-        // Configure delimiters to handle \left| and \right| properly
+        // Use AMS math tags
         tags: 'ams',
+        // Autoload common packages
         autoload: {
           color: [],
           colorv2: ['color'],
           bbox: ['bbox'],
           cancel: ['cancel', 'bcancel', 'xcancel', 'cancelto'],
           enclose: ['enclose', 'cancel', 'color']
-        }
+        },
+        // Packages to load
+        packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        // Skip HTML tags that shouldn't contain math
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
         ignoreHtmlClass: 'no-math',
         processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
           MathJax.startup.defaultReady();
-          console.log('MathJax is ready');
-          // Fix any remaining placeholder issues
-          fixMathPlaceholders();
+          console.log('MathJax 3 ready with standards-compliant LaTeX configuration');
         }
       }
     };
-
-    // Function to fix any remaining placeholders in math
-    function fixMathPlaceholders() {
-      const content = document.querySelector('.textbook-content');
-      if (!content) return;
-
-      // Find any remaining placeholders and restore them
-      const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
-      let node;
-      while (node = walker.nextNode()) {
-        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
-          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
-        }
-      }
-
-      // Re-run MathJax if we made changes
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise([content]).catch(err => {
-          console.log('MathJax re-render after placeholder fix:', err);
-        });
-      }
-    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
@@ -716,6 +707,10 @@
         
       
     
+      
+        
+      
+    
 
     
       </ul>
@@ -842,6 +837,16 @@
     
       
     
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/latex-style-guide/" >
+              LaTeX Style Guide & Test Page
+            </a>
+          </li>
+        
       
     
       
