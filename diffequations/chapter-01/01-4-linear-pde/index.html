@@ -701,27 +701,186 @@
 
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="classification-and-canonical-forms">Classification and Canonical Forms</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>Consider the second-order linear PDE</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[A u_{xx}+2B u_{xy}+C u_{yy}+D u_{x}+E u_{y}+F u=G,\]
 
-<h3 id="core-results">Core Results</h3>
+<p>with discriminant $\Delta=B^{2}-AC$. The sign of $\Delta$ distinguishes physical regimes (John, 1982):</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<ul>
+  <li><strong>Elliptic ($\Delta&lt;0$)</strong> – e.g., Laplace’s equation $\Delta u=0$, modeling equilibrium and instantaneous smoothing.</li>
+  <li><strong>Parabolic ($\Delta=0$)</strong> – e.g., Heat equation $u_{t}-\Delta u=0$, capturing diffusive dynamics with a causal time arrow.</li>
+  <li><strong>Hyperbolic ($\Delta&gt;0$)</strong> – e.g., Wave equation $u_{tt}-c^{2}\Delta u=0$, describing finite-speed propagation along characteristics.</li>
+</ul>
 
-<h3 id="applications">Applications</h3>
+<p>Characteristic curves satisfy $A(dy)^{2}-2B dx\,dy+C(dx)^{2}=0$. Transforming to characteristic coordinates $(\xi,\eta)$ diagonalizes the principal part, yielding canonical forms such as $u_{\xi\eta}=0$ in the hyperbolic case (Evans, 2010).</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h3 id="separation-of-variables-and-spectral-theory">Separation of Variables and Spectral Theory</h3>
+
+<p>Symmetric domains admit separated solutions $u(x,t)=X(x)T(t)$. Substitution reduces the PDE to a spatial eigenvalue problem</p>
+
+\[\mathcal{L}X=\lambda w(x)X,\]
+
+<p>subject to homogeneous boundary conditions. The Rayleigh quotient</p>
+
+\[\lambda_{1}=\min_{u\neq 0}\frac{\int_{\Omega}\left|\nabla u\right|^{2}dx}{\int_{\Omega}u^{2}dx}\]
+
+<p>characterizes the principal eigenvalue (Gilbarg &amp; Trudinger, 2001). Maximum principles imply interior extrema occur on $\partial\Omega$, providing uniqueness and a priori bounds without explicit solutions.</p>
+
+<h3 id="fourier-series-and-eigenfunction-expansions">Fourier Series and Eigenfunction Expansions</h3>
+
+<p>Eigenfunctions ${\phi_{n}}$ yield superpositions $u(x,t)=\sum_{n}a_{n}(t)\phi_{n}(x)$. Convergence issues arise when reconstructing initial data $f(x)$ from the series $\sum c_{n}\phi_{n}(x)$:</p>
+
+<ul>
+  <li><strong>Dirichlet’s theorem</strong> gives pointwise convergence for piecewise $C^{1}$ data to $\tfrac{1}{2}(f(x^{+})+f(x^{-}))$.</li>
+  <li><strong>Divergence examples</strong> show continuous functions whose Fourier series diverge at points (Stein &amp; Shakarchi, 2003).</li>
+  <li><strong>Gibbs phenomenon</strong> exhibits persistent overshoot near jumps.</li>
+</ul>
+
+<p>Cesàro summation via the Fejér kernel $F_{N}$ restores uniform convergence for continuous data, foreshadowing mollification and Sobolev-space regularization.</p>
+
+<h3 id="method-of-characteristics">Method of Characteristics</h3>
+
+<p>First-order hyperbolic equations propagate data along characteristic curves. For</p>
+
+\[u_{t}+a(x,t,u)u_{x}=0,\]
+
+<p>characteristics satisfy $\frac{dx}{dt}=a$ and $\frac{du}{dt}=0$, yielding $u(x,t)=u_{0}(x-at)$ for constant $a$. Nonlinear velocities $a(u)$ cause characteristic intersection, signaling shock formation and motivating weak/entropy solutions in Chapter 3.</p>
+
+<h3 id="spherical-harmonics-and-special-coordinates">Spherical Harmonics and Special Coordinates</h3>
+
+<p>Solving $\Delta u=0$ in curvilinear coordinates separates the Laplacian into orthogonal pieces:</p>
+
+<ul>
+  <li>In spherical coordinates, the angular part produces spherical harmonics $Y_{\ell}^{m}(\theta,\phi)$ and radial Euler equations with solutions $r^{\ell}$ and $r^{-(\ell+1)}$.</li>
+  <li>
+    <p>The addition theorem</p>
+
+\[P_{\ell}(\cos\gamma)=\frac{4\pi}{2\ell+1}\sum_{m=-\ell}^{\ell}Y_{\ell}^{m}(\Omega_{1})\overline{Y_{\ell}^{m}(\Omega_{2})}\]
+
+    <p>enables expansions of rotationally invariant potentials (Andrews, Askey, &amp; Roy, 1999).</p>
+  </li>
+</ul>
+
+<p>Spherical and cylindrical coordinates align with domain symmetries, dictating the special functions encountered in separation of variables.</p>
+
+<h2 id="connections-to-chapter-narrative">Connections to Chapter Narrative</h2>
+
+<p>Classical PDE methods expose the dependence of explicit solutions on domain geometry and spectral data. Their limitations—convergence failures, shocks, and irregular boundaries—motivate the functional analysis, distribution theory, and geometric frameworks introduced in Chapter 2 and beyond.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-141-discriminant-classification">Example 1.4.1: Discriminant Classification</h3>
+
+<p><strong>Problem:</strong> Classify $3u_{xx}+4u_{xy}+5u_{yy}=0$.</p>
+
+<p>The discriminant $\Delta=4^{2}-3\cdot 5=1&gt;0$, so the PDE is hyperbolic. Characteristics solve $3(dy)^{2}-4 dx\,dy+5(dx)^{2}=0$, yielding complex slopes $(2\pm i\sqrt{11})/3$. Real canonical coordinates $\xi=x$, $\eta=y-\tfrac{2}{3}x$ reduce the equation to $u_{\xi\xi}-u_{\eta\eta}=0$, revealing wave-like behavior.</p>
+
+<h3 id="example-142-variable-coefficient-classification">Example 1.4.2: Variable-Coefficient Classification</h3>
+
+<p><strong>Problem:</strong> Determine the type of $x u_{xx}+2u_{xy}+y u_{yy}=0$.</p>
+
+<p>Here $\Delta(x,y)=4-xy$. The equation is elliptic where $xy&lt;4$, parabolic on $xy=4$, and hyperbolic when $xy&gt;4$. The curve $xy=4$ resembles the Tricomi equation, modeling mixed-type phenomena such as transonic flow.</p>
+
+<h3 id="example-143-canonical-hyperbolic-reduction">Example 1.4.3: Canonical Hyperbolic Reduction</h3>
+
+<p><strong>Problem:</strong> Reduce $u_{xx}-3u_{xy}+2u_{yy}=0$.</p>
+
+<p>The discriminant is $\Delta=(-3)^{2}-4\cdot 1\cdot 2=1&gt;0$. Characteristics satisfy $dy/dx=r$ with $r_{1,2}={2,1}$. Coordinates $\xi=y-2x$ and $\eta=y-x$ transform the PDE to $u_{\xi\eta}=0$, leading to $u(x,y)=f(y-2x)+g(y-x)$.</p>
+
+<h3 id="example-144-heat-equation-with-dirichlet-data">Example 1.4.4: Heat Equation with Dirichlet Data</h3>
+
+<p><strong>Problem:</strong> Solve $u_{t}=u_{xx}$ on $0&lt;x&lt;\pi$ with $u(0,t)=u(\pi,t)=0$, $u(x,0)=\sin(3x)$.</p>
+
+<p>Separation $u=XT$ gives $X’’+\lambda X=0$ with eigenvalues $\lambda_{n}=n^{2}$ and eigenfunctions $\sin(nx)$. The temporal factors are $T_{n}=e^{-n^{2}t}$. Expanding the initial data reveals only $n=3$ is present, so $u(x,t)=e^{-9t}\sin(3x)$.</p>
+
+<h3 id="example-145-rayleigh-quotient-verification">Example 1.4.5: Rayleigh Quotient Verification</h3>
+
+<p><strong>Problem:</strong> Verify $\lambda_{1}=1$ for $-u’’=\lambda u$ with $u(0)=u(\pi)=0$.</p>
+
+<p>The Rayleigh quotient</p>
+
+\[R[u]=\frac{\int_{0}^{\pi}(u')^{2}dx}{\int_{0}^{\pi}u^{2}dx}\]
+
+<p>is minimized by $u=\sin x$, giving $R[\sin x]=1$. Alternative test functions yield $R[u]&gt;1$, confirming the principal eigenvalue.</p>
+
+<h3 id="example-146-wave-equation-with-mixed-boundaries">Example 1.4.6: Wave Equation with Mixed Boundaries</h3>
+
+<p><strong>Problem:</strong> Solve $u_{tt}=u_{xx}$ on $0&lt;x&lt;\pi$, with $u(0,t)=0$ and $u_{x}(\pi,t)=0$.</p>
+
+<p>Separation imposes $X(0)=0$ and $X’(\pi)=0$, leading to eigenfunctions $\sin\big((2n-1)x/2\big)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is</p>
+
+\[u(x,t)=\sum_{n=1}^{\infty}\left(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2}\right)\sin\frac{(2n-1)x}{2},\]
+
+<p>with coefficients fixed by initial data.</p>
+
+<h3 id="example-147-fourier-series-and-gibbs-phenomenon">Example 1.4.7: Fourier Series and Gibbs Phenomenon</h3>
+
+<p><strong>Problem:</strong> Expand $f(x)=\operatorname{sgn}(x)$ on $(-\pi,\pi)$.</p>
+
+<p>Only sine terms appear: $f(x)\sim \frac{4}{\pi}\sum_{k=1,3,5,\dots}\frac{\sin(kx)}{k}$. Partial sums overshoot near $x=0$ by approximately $0.08949$ (17.9% of the jump) regardless of how many terms are added—the Gibbs phenomenon—illustrating the limitations of pointwise convergence.</p>
+
+<h3 id="example-148-cesàro-summability-via-fejér-kernel">Example 1.4.8: Cesàro Summability via Fejér Kernel</h3>
+
+<p><strong>Problem:</strong> Show Fejér means converge uniformly for continuous $f$.</p>
+
+<p>Define $\sigma_{N}(f)=\frac{1}{N+1}\sum_{k=0}^{N}S_{k}(f)=f*F_{N}$, where $F_{N}$ is the Fejér kernel. Since $F_{N}\ge 0$, $\int F_{N}=2\pi$, and $F_{N}$ concentrates at $0$, convolution with $F_{N}$ approximates $f$ uniformly by continuity, demonstrating a summability method that bypasses Gibbs oscillations.</p>
+
+<h3 id="example-149-transport-equation">Example 1.4.9: Transport Equation</h3>
+
+<p><strong>Problem:</strong> Solve $u_{t}+3u_{x}=0$ with $u(x,0)=\sin x$.</p>
+
+<p>Characteristics satisfy $x=x_{0}+3t$. Along each, $u$ is constant, so $u(x,t)=\sin(x-3t)$, confirming the transport of initial data without distortion.</p>
+
+<h3 id="example-1410-variable-coefficient-transport">Example 1.4.10: Variable-Coefficient Transport</h3>
+
+<p><strong>Problem:</strong> Solve $u_{t}+(x+t)u_{x}=0$ with $u(x,0)=e^{x}$.</p>
+
+<p>Characteristics solve $\frac{dx}{dt}=x+t$, giving $x+t=Ce^{t}$ and $C=x_{0}$. Along the curve, $u$ remains $e^{x_{0}}$, yielding $u(x,t)=\exp(x e^{-t}+t e^{-t})$ after eliminating $x_{0}$.</p>
+
+<h3 id="example-1411-burgers-equation-shock">Example 1.4.11: Burgers’ Equation Shock</h3>
+
+<p><strong>Problem:</strong> For $u_{t}+u u_{x}=0$ with $u(x,0)=1-x$, find shock time.</p>
+
+<p>Characteristics satisfy $dx/dt=u=1-x_{0}$, so $x=x_{0}+(1-x_{0})t$. Inverting gives $x_{0}=(x-t)/(1+t)$ and $u=(1+x)/(1+t)$. Since $\partial x/\partial x_{0}=1-(1)t=1-t$ vanishes at $t=1$, characteristics intersect and a shock forms for $t&gt;1$.</p>
+
+<h3 id="example-1412-spherical-harmonics-for-laplaces-equation">Example 1.4.12: Spherical Harmonics for Laplace’s Equation</h3>
+
+<p><strong>Problem:</strong> Solve $\Delta u=0$ in the unit ball with $u(1,\theta,\phi)=\cos\theta$.</p>
+
+<p>Separation yields radial factors $r^{\ell}$ and angular spherical harmonics $Y_{\ell}^{m}$. The boundary data correspond to $\ell=1$, $m=0$, so $u(r,\theta,\phi)=r Y_{1}^{0}(\theta,\phi)=r\cos\theta$.</p>
+
+<h3 id="example-1413-addition-theorem-check">Example 1.4.13: Addition Theorem Check</h3>
+
+<p><strong>Problem:</strong> Verify the addition theorem for $\ell=1$.</p>
+
+<p>Using explicit forms of $Y_{1}^{m}$, one obtains</p>
+
+\[\cos\gamma=\frac{4\pi}{3}\sum_{m=-1}^{1}Y_{1}^{m}(\Omega_{1})\overline{Y_{1}^{m}(\Omega_{2})},\]
+
+<p>where $\gamma$ is the angle between $\Omega_{1}$ and $\Omega_{2}$. This identity underpins expansions of rotationally symmetric kernels.</p>
+
+<h3 id="example-1414-exterior-harmonic-potential-via-spherical-harmonics">Example 1.4.14: Exterior Harmonic Potential via Spherical Harmonics</h3>
+
+<p><strong>Problem:</strong> Solve $\Delta u=0$ for $r&gt;1$ with $u(1,\theta,\phi)=\cos^{3}\theta$.</p>
+
+<p>Using $\cos^{3}\theta=\tfrac{3}{4}\cos\theta+\tfrac{1}{4}\cos 3\theta$ and expanding in $Y_{\ell}^{0}$, the exterior solution becomes</p>
+
+\[u(r,\theta,\phi)=\frac{1}{3}r^{-2}Y_{1}^{0}(\theta,\phi)+\frac{1}{15}r^{-4}Y_{3}^{0}(\theta,\phi),\]
+
+<p>illustrating how spherical harmonics encode boundary data.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Andrews, G. E., Askey, R., &amp; Roy, R. (1999). <em>Special Functions</em>. Cambridge University Press.</li>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+  <li>Gilbarg, D., &amp; Trudinger, N. S. (2001). <em>Elliptic Partial Differential Equations of Second Order</em>. Springer.</li>
+  <li>John, F. (1982). <em>Partial Differential Equations</em>. Springer-Verlag.</li>
+  <li>Stein, E. M., &amp; Shakarchi, R. (2003). <em>Fourier Analysis: An Introduction</em>. Princeton University Press.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
