@@ -125,10 +125,6 @@ The PDE *is* the Manifold
   - [7.7 Noncommutative Geometry]({{ '/diffequations/chapter-07/07-7-noncommutative/' | relative_url }})
   - [7.8 Higher Categories, Derived Stacks & TQFT]({{ '/diffequations/chapter-07/07-8-higher-categories/' | relative_url }})
 
-### Reference & Style Guide
-
-- [LaTeX Style Guide & Test Page]({{ '/diffequations/latex-style-guide/' | relative_url }})
-
 ### Epilogue
 
 - [Epilogue: The Eternal Structure]({{ '/diffequations/epilogue/' | relative_url }})
@@ -142,6 +138,17 @@ The PDE *is* the Manifold
 {% include page_navigation.html %}
 
 ---
+
+## Math Formatting Guidelines
+
+**IMPORTANT:** When writing mathematical expressions, **always use `\mid` instead of `|`** for mathematical separators.
+
+- ✅ **CORRECT**: `$\{x \mid x > 0\}$` (set notation)
+- ❌ **WRONG**: `$\{x | x > 0\}$` (causes table parsing errors)
+
+**Exception:** Use `\left|` and `\right|` for absolute value delimiters: `$\left| x \right|$`
+
+📖 See the [Math Formatting Guide]({{ '/diffequations/math-formatting-guide/' | relative_url }}) for complete guidelines.
 
 ## About This Resource
 
