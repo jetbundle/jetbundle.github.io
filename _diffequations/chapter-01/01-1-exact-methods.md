@@ -223,12 +223,12 @@ This example demonstrates the critical nature of the Lipschitz condition. The fu
 
 The failure of uniqueness is immediate: we have the trivial solution $y_1(t) = 0$ for all $t$, but also the non-trivial solution $y_2(t) = \begin{cases} \frac{t^2}{4} & t \geq 0 \\ 0 & t < 0 \end{cases}$.
 
-To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that $$
+To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that
+$$
 \sqrt{\frac{t^2}{4}} = \frac{t}{2} = \left|y_2(t)\right|^{1/2}.
 $$
 
 This confirms that the constructed function satisfies the differential equation. This non-uniqueness reveals the sharpness of the Lipschitz condition in the Picard-Lindelöf theorem.
-
 
 
 
