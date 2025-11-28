@@ -17,7 +17,6 @@ parent_section: null
 ## Introduction
 
 We extend ODE methods to fields. **Separation of Variables** is framed as the simultaneous diagonalization of commuting operators. We demonstrate that the geometry of the domain (sphere, cylinder, box) dictates the choice of special functions. **Eigenfunction Expansions** are constructed, but we highlight the open question: in what metric space does an infinite series of functions converge to a discontinuous boundary condition?
-We extend ODE methods to fields. **Separation of Variables** is framed as the simultaneous diagonalization of commuting operators. We demonstrate that the geometry of the domain (sphere, cylinder, box) dictates the choice of special functions. **Eigenfunction Expansions** are constructed, but we highlight the open question: in what metric space does an infinite series of functions converge to a discontinuous boundary condition?
 
 ## Mathematical Content
 

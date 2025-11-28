@@ -17,7 +17,6 @@ parent_section: null
 ## Introduction
 
 When elementary functions fail, we define new ones via differential equations. We present the **Hypergeometric Master Equation** to unify the "zoo" of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the **Frobenius Method** to classify these singularities (regular vs. irregular). The narrative tension arises from the **Stokes Phenomenon**: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.
-When elementary functions fail, we define new ones via differential equations. We present the **Hypergeometric Master Equation** to unify the "zoo" of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the **Frobenius Method** to classify these singularities (regular vs. irregular). The narrative tension arises from the **Stokes Phenomenon**: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.
 
 ## Mathematical Content
 
