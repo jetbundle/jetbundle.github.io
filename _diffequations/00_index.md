@@ -1,7 +1,7 @@
 ---
 layout: textbook
 title: "A Survey of Differential Equations and their Algebraic Geometry"
-description: "2025 Edition - Complete Table of Contents"
+description: "Saucedo 2025 - The Jetbundle Project"
 permalink: /diffequations/
 order: 0
 chapter: 0
@@ -12,7 +12,7 @@ parent_chapter: null
 
 # A Survey of Differential Equations and their Algebraic Geometry
 
-**2025 Edition**
+**J. Saucedo 2025 - The Jetbundle Project**
 
 ## Preface: The Mathematical Ascent
 
@@ -149,20 +149,20 @@ This resource is designed for advanced undergraduate and graduate students in ma
 
 ## Copyright and License
 
-**Copyright © 2025**
+**Copyright © Joel Saucedo 2025**
 
-This work and its source code are released under an open source license. The content and code are freely available for educational and non-commercial use. 
+This work and its source code are released under an open source license. The content and code are freely available for educational and non-commercial use.
 
 **Terms:**
-- ✅ **Educational Use**: Free to use for teaching, learning, and research
-- ✅ **Non-Commercial Use**: Free for personal and academic purposes
-- ❌ **Commercial Use**: Prohibited without explicit written permission
-- ✅ **Modification**: Source code may be modified for personal/educational use
-- ✅ **Distribution**: May be shared with attribution for non-commercial purposes
+- **Educational Use**: Free to use for teaching, learning, and research
+- **Non-Commercial Use**: Free for personal and academic purposes
+- **Commercial Use**: Prohibited without explicit written permission
+- **Modification**: Source code may be modified for personal/educational use
+- **Distribution**: May be shared with attribution for non-commercial purposes
 
-The source code for this website is available in the repository. While the code is open source, commercial use of either the content or code requires explicit permission from the copyright holder.
+While the code is open source, commercial use of either the content or code requires explicit permission from the copyright holder.
 
-For commercial licensing inquiries, please contact the repository maintainers.
+For commercial licensing inquiries, please contact the repository owner.
 
 ---
 

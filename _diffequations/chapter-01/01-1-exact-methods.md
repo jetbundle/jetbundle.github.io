@@ -28,7 +28,7 @@ Before attempting to solve a first-order differential equation of the form $y' =
 
 Let $D \subset \mathbb{R}^2$ be a domain containing the point $(t_0, y_0)$. We require the function $f(t, y)$ to be continuous on $D$ and to satisfy a **Lipschitz condition** with respect to $y$ uniformly in $t$. That is, there exists a constant $K > 0$ such that for all $(t, y_1)$ and $(t, y_2)$ in $D$:
 
-$$|f(t, y_1) - f(t, y_2)| \leq K|y_1 - y_2|$$
+$$\|f(t, y_1) - f(t, y_2)\| \leq K\|y_1 - y_2\|$$
 
 Under these conditions, there exists an interval $I$ centered at $t_0$ where a unique solution $y(t)$ exists satisfying the initial value problem $y(t_0) = y_0$.
 
@@ -128,257 +128,311 @@ $$\frac{dF}{dt} = \{F, H\} = \frac{\partial F}{\partial q}\frac{\partial H}{\par
 
 Thus, $F$ is a first integral if and only if it Poisson-commutes with the Hamiltonian. This algebraic structure anticipates the symplectic geometry and integrability discussions in later chapters.
 
+
+
+The methods developed in this section establish foundational patterns that recur throughout the text:
+
+- **Picard Iteration** → Chapter 2 distributions (convergence in weak topologies)
+- **Exact Forms** → Chapter 3 exterior calculus
+- **Riccati Linearization** → Chapter 4 Lie symmetries
+- **First Integrals** → Chapter 4 Noether's theorem
+- **Wronskian** → Chapter 2 spectral theory
+
+These examples provide complete analytical workthroughs that:
+- Show every algebraic step
+- Verify every solution
+- Reveal geometric interpretations
+- Connect to subsequent chapters
+- Demonstrate method limitations
+
+
+## References
+
+* **Coddington, E. A., & Levinson, N. (1955).** *Theory of Ordinary Differential Equations*. McGraw-Hill. (For rigorous treatment of existence, uniqueness, and systems).
+
+* **Arnold, V. I. (1983).** *Ordinary Differential Equations*. MIT Press. (For the geometric interpretation of differential forms and phase space).
+
+* **Hartman, P. (1964).** *Ordinary Differential Equations*. John Wiley & Sons. (For advanced analytic properties and linearization).
+
+* **Whittaker, E. T., & Watson, G. N. (1927).** *A Course of Modern Analysis*. Cambridge University Press. (For classical explicit integration methods).
 ## Complete Examples
 
 ### Example 1.1.1: Picard-Lindelöf Theorem — Canonical Picard Iteration
 
 **Problem:** Solve $y' = y$, $y(0) = 1$ on $[-1,1]$.
 
-**Step-by-Step Analysis:**
+<details>
+<summary>Click to reveal solution</summary>
 
-**Lipschitz Verification:**
+We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\|f(y_1) - f(y_2)\| = \|y_1 - y_2\| \leq 1 \cdot \|y_1 - y_2\|$, establishing a Lipschitz constant $K = 1$.
 
-$$f(y) = y, \quad |f(y_1) - f(y_2)| = |y_1 - y_2| \leq 1 \cdot |y_1 - y_2|$$
+The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-Lipschitz constant $K = 1$.
+For convergence analysis, we apply the error estimate $\|y(t) - y_n(t)\| \leq \frac{M K^n \|t\|^{n+1}}{(n+1)! (1 - K\|t\|)}$ where $M = \max\|f(y)\|$ on the complete rectangle. For $\|t\| \leq 1/2$, we have $K\|t\| = 1/2 < 1$, yielding $\|y(t) - y_3(t)\| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
 
-**Picard Iterates:**
+The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
 
-- $y_0(t) = 1$
-- $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$
-- $y_2(t) = 1 + \int_0^t (1 + s) \, ds = 1 + t + \frac{t^2}{2}$
-- $y_3(t) = 1 + \int_0^t \left(1 + s + \frac{s^2}{2}\right) \, ds = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$
-- $\vdots$
-- $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$
+</details>
 
-**Convergence Analysis:**
-
-Error Estimate: $|y(t) - y_n(t)| \leq \frac{M K^n |t|^{n+1}}{(n+1)! (1 - K|t|)}$ where $M = \max|f(y)|$ on complete rectangle.
-
-For $|t| \leq 1/2$, $K|t| = 1/2 < 1$:
-
-$$|y(t) - y_3(t)| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$$
-
-**Exact Solution:** $y(t) = e^t = \lim_{n \to \infty} y_n(t)$
-
-**Key Insight:** The exponential series emerges naturally from the fixed-point iteration.
-
----
 
 ### Example 1.1.2: Non-Lipschitz Failure
 
-**Problem:** $y' = |y|^{1/2}$, $y(0) = 0$
+**Problem:** $y' = \|y\|^{1/2}$, $y(0) = 0$
 
-**Analysis:**
+<details>
+<summary>Click to reveal solution</summary>
 
-$f(y) = |y|^{1/2}$ is continuous but not Lipschitz near $y=0$.
+This example demonstrates the critical nature of the Lipschitz condition. The function $f(y) = \|y\|^{1/2}$ is continuous but fails to be Lipschitz near $y=0$, as the derivative becomes unbounded.
 
-**Multiple solutions exist:**
+The failure of uniqueness is immediate: we have the trivial solution $y_1(t) = 0$ for all $t$, but also the non-trivial solution $y_2(t) = \begin{cases} \frac{t^2}{4} & t \geq 0 \\ 0 & t < 0 \end{cases}$.
 
-- $y_1(t) = 0$ (trivial solution)
-- $y_2(t) = \begin{cases} \frac{t^2}{4} & t \geq 0 \\ 0 & t < 0 \end{cases}$
+To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that $\sqrt{\frac{t^2}{4}} = \frac{t}{2} = \|y_2(t)\|^{1/2}$, confirming it satisfies the differential equation. This non-uniqueness reveals the sharpness of the Lipschitz condition in the Picard-Lindelöf theorem.
 
-**Verification:**
+</details>
 
-$$y_2'(t) = \frac{t}{2} = \sqrt{\frac{t^2}{4}} = |y_2(t)|^{1/2}$$
-
-**Demonstration:** Non-uniqueness reveals the sharpness of the Lipschitz condition.
-
----
 
 ### Example 1.1.3: Separation of Variables — Logistic Equation
 
 **Problem:** $\frac{dy}{dt} = ky\left(1 - \frac{y}{L}\right)$
 
-**Complete Solution:**
+<details>
+<summary>Click to reveal solution</summary>
 
-**Separation:**
 
-$$\frac{dy}{y(1 - y/L)} = k \, dt$$
+Complete Solution:
 
-**Partial Fractions:**
+Separation:
 
-$$\frac{1}{y(1 - y/L)} = \frac{L}{y(L - y)} = \frac{1}{L} \left( \frac{1}{y} + \frac{1}{L-y} \right)$$
+$\frac{dy}{y(1 - y/L)} = k \, dt$
 
-**Integration:**
+Partial Fractions:
 
-$$\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left|\frac{y}{L-y}\right| = k t + C$$
+$\frac{1}{y(1 - y/L)} = \frac{L}{y(L - y)} = \frac{1}{L} \left( \frac{1}{y} + \frac{1}{L-y} \right)$
 
-**Explicit Solution:**
+Integration:
 
-$$y(t) = \frac{L y_0 e^{kt}}{L + y_0 (e^{kt} - 1)}$$
+$\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left\|\frac{y}{L-y}\right\| = k t + C$
 
-**Physical Interpretation:** Population growth with carrying capacity $L$.
+Explicit Solution:
+
+$y(t) = \frac{L y_0 e^{kt}}{L + y_0 (e^{kt} - 1)}$
+
+Physical Interpretation: Population growth with carrying capacity $L$.
 
 ---
+
+</details>
+
 
 ### Example 1.1.4: Exact Equation with Integrating Factor
 
 **Problem:** $(2xy + y^2 + x^3)dx + (x^2 + 2xy)dy = 0$
 
-**Complete Analysis:**
+<details>
+<summary>Click to reveal solution</summary>
 
-**Exactness Test:**
+
+Complete Analysis:
+
+Exactness Test:
 
 $M = 2xy + y^2 + x^3$, $N = x^2 + 2xy$
 
-$$\frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y$$
+$\frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y$
 
 **Exact!** (Mixed partials equal)
 
-**Potential Function:**
+Potential Function:
 
-$$\frac{\partial \psi}{\partial x} = M \implies \psi = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 + f(y)$$
+$\frac{\partial \psi}{\partial x} = M \implies \psi = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 + f(y)$
 
-$$\frac{\partial \psi}{\partial y} = N \implies x^2 + x^3 + y + f'(y) = x^2 + 2xy$$
+$\frac{\partial \psi}{\partial y} = N \implies x^2 + x^3 + y + f'(y) = x^2 + 2xy$
 
 After verification: $f(y) = 0$
 
-**Solution:** $\psi(x,y) = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 = C$
+Solution: $\psi(x,y) = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 = C$
 
-**Geometric Insight:** Level curves of $\psi$ are integral curves.
+Geometric Insight: Level curves of $\psi$ are integral curves.
 
 ---
+
+</details>
+
 
 ### Example 1.1.5: Integrating Factor Discovery
 
 **Problem:** $(y\cos x + 2x\sin x)dx + (\sin x)dy = 0$
 
-**Exactness Test:** $\frac{\partial M}{\partial y} = \cos x \neq 1 = \frac{\partial N}{\partial x}$
+<details>
+<summary>Click to reveal solution</summary>
 
-**Integrating Factor Search:**
+
+Exactness Test: $\frac{\partial M}{\partial y} = \cos x \neq 1 = \frac{\partial N}{\partial x}$
+
+Integrating Factor Search:
 
 Test $\mu(x)$: $\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = \frac{\cos x - 1}{\sin x}$ — Not function of $x$ only.
 
 Test $\mu(y)$: $\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M} = \frac{1 - \cos x}{y\cos x + 2x\sin x}$ — Not function of $y$ only.
 
-**Recognize Form:** Notice $M = y\cos x + 2x\sin x$, $N = \sin x$
+Recognize Form: Notice $M = y\cos x + 2x\sin x$, $N = \sin x$
 
 Try $\mu = 1/\sin x$:
 
-$$M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x, \quad N\mu = 1$$
+$M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x, \quad N\mu = 1$
 
-**New exactness test:**
+New exactness test:
 
-$$\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$$
+$\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$
 
-**Solution:**
+Solution:
 
-$$\psi = \int (y\cot x + 2x) \, dx = y\ln|\sin x| + x^2 + f(y)$$
+$\psi = \int (y\cot x + 2x) \, dx = y\ln\|\sin x\| + x^2 + f(y)$
 
-$$\frac{\partial \psi}{\partial y} = \ln|\sin x| + f'(y) = 1 \implies f(y) = y$$
+$\frac{\partial \psi}{\partial y} = \ln\|\sin x\| + f'(y) = 1 \implies f(y) = y$
 
-**Final:** $y\ln|\sin x| + x^2 + y = C$
+Final: $y\ln|\sin x| + x^2 + y = C$
 
 ---
+
+</details>
+
 
 ### Example 1.1.6: Linear First-Order — Complete Variation of Parameters
 
 **Problem:** $y' + \frac{2}{x}y = x^3$, $y(1) = 1$
 
-**Homogeneous Solution:**
+<details>
+<summary>Click to reveal solution</summary>
 
-$$y_h' + \frac{2}{x}y_h = 0 \implies \frac{y_h'}{y_h} = -\frac{2}{x}$$
 
-$$y_h = \frac{c}{x^2}$$
+Homogeneous Solution:
 
-**Integrating Factor:**
+$y_h' + \frac{2}{x}y_h = 0 \implies \frac{y_h'}{y_h} = -\frac{2}{x}$
 
-$$\mu(x) = e^{\int 2/x \, dx} = x^2$$
+$y_h = \frac{c}{x^2}$
 
-**General Solution:**
+Integrating Factor:
 
-$$(x^2 y)' = x^5 \implies x^2 y = \frac{1}{6}x^6 + C$$
+$\mu(x) = e^{\int 2/x \, dx} = x^2$
 
-$$y = \frac{1}{6}x^4 + \frac{C}{x^2}$$
+General Solution:
 
-**Initial Condition:** $y(1) = 1$:
+$(x^2 y)' = x^5 \implies x^2 y = \frac{1}{6}x^6 + C$
 
-$$1 = \frac{1}{6} + C \implies C = \frac{5}{6}$$
+$y = \frac{1}{6}x^4 + \frac{C}{x^2}$
 
-**Final:** $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$
+Initial Condition: $y(1) = 1$:
 
-**Variation of Parameters Verification:**
+$1 = \frac{1}{6} + C \implies C = \frac{5}{6}$
+
+Final: $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$
+
+Variation of Parameters Verification:
 
 Assume $y = v(x) \cdot \frac{1}{x^2}$:
 
-$$y' = v' \frac{1}{x^2} - 2v x^{-3}$$
+$y' = v' \frac{1}{x^2} - 2v x^{-3}$
 
-$$y' + \frac{2}{x}y = v' x^{-2} = x^3 \implies v' = x^5$$
+$y' + \frac{2}{x}y = v' x^{-2} = x^3 \implies v' = x^5$
 
-$$v = \frac{1}{6}x^6 + C \implies y = \frac{1}{6}x^4 + \frac{C}{x^2}$$
+$v = \frac{1}{6}x^6 + C \implies y = \frac{1}{6}x^4 + \frac{C}{x^2}$
 
 ---
+
+</details>
+
 
 ### Example 1.1.7: Bernoulli Equation (Nonlinear → Linear)
 
 **Problem:** $y' + Py = Qy^n$ with $n \neq 0,1$
 
-**General Method:** Substitute $v = y^{1-n}$:
+<details>
+<summary>Click to reveal solution</summary>
 
-$$\frac{dy}{dx} = (1-n)v^{n-1} \frac{dv}{dx}$$
+
+General Method: Substitute $v = y^{1-n}$:
+
+$\frac{dy}{dx} = (1-n)v^{n-1} \frac{dv}{dx}$
 
 After substitution and simplification, we obtain a linear equation for $v$.
 
-**Concrete Example:** $y' + \frac{y}{x} = xy^2$
+Concrete Example: $y' + \frac{y}{x} = xy^2$
 
 $n=2$, $P=1/x$, $Q=x$
 
 $v = y^{-1}$, linear equation: $v' - \frac{v}{x} = -\frac{1}{x}$
 
-**Integrating factor:** $\mu = e^{-\int dx/x} = 1/x$
+Integrating factor: $\mu = e^{-\int dx/x} = 1/x$
 
-**Solution:** $v = x \implies y = 1/x$
+Solution: $v = x \implies y = 1/x$
 
 ---
+
+</details>
+
 
 ### Example 1.1.8: Riccati Equation — Canonical Form
 
 **Problem:** $y' = y^2 - 2xy + x^2 + 1$
 
-**Complete Solution:**
+<details>
+<summary>Click to reveal solution</summary>
 
-**Guess Particular Solution:** Try $y_p = x$:
 
-$$x' = x^2 - 2x^2 + x^2 + 1 \implies 1 = 1 \quad \checkmark$$
+Complete Solution:
 
-**Substitution:** $y = x + \frac{1}{v}$
+Guess Particular Solution: Try $y_p = x$:
 
-$$y' = 1 - \frac{v'}{v^2}$$
+$x' = x^2 - 2x^2 + x^2 + 1 \implies 1 = 1 \quad \checkmark$
 
-$$1 - \frac{v'}{v^2} = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$$
+Substitution: $y = x + \frac{1}{v}$
 
-**Simplify:**
+$y' = 1 - \frac{v'}{v^2}$
 
-$$-\frac{v'}{v^2} = -\frac{2}{v} \implies v' = 2v$$
+$1 - \frac{v'}{v^2} = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$
 
-**Solve Linear:** $v = Ce^{2x}$
+Simplify:
 
-**General Solution:**
+$-\frac{v'}{v^2} = -\frac{2}{v} \implies v' = 2v$
 
-$$y = x + \frac{1}{Ce^{2x}} = x + e^{-2x+C}$$
+Solve Linear: $v = Ce^{2x}$
 
-**Verification:** Differentiate and substitute back $\checkmark$
+General Solution:
+
+$y = x + \frac{1}{Ce^{2x}} = x + e^{-2x+C}$
+
+Verification: Differentiate and substitute back $\checkmark$
 
 ---
+
+</details>
+
 
 ### Example 1.1.9: Riccati with Known Particular Solution
 
 **Problem:** $y' = 1 + 2y + y^2$, particular solution $y_1 = -1$
 
-**Method:** $y = -1 + \frac{1}{v}$
+<details>
+<summary>Click to reveal solution</summary>
 
-$$y' = -\frac{v'}{v^2}$$
 
-$$-\frac{v'}{v^2} = 1 + 2(-1 + 1/v) + (-1 + 1/v)^2$$
+Method: $y = -1 + \frac{1}{v}$
 
-**Simplify:** $v' = -v^2$
+$y' = -\frac{v'}{v^2}$
 
-**Solution:** $v = \frac{1}{C - x}$
+$-\frac{v'}{v^2} = 1 + 2(-1 + 1/v) + (-1 + 1/v)^2$
 
-**Final:** $y = -1 + (C - x) = C - x - 1$
+Simplify: $v' = -v^2$
+
+Solution: $v = \frac{1}{C - x}$
+
+Final: $y = -1 + (C - x) = C - x - 1$
 
 ---
+
+</details>
+
 
 ### Example 1.1.10: Cross-Ratio Property
 
@@ -400,96 +454,123 @@ $$\frac{(1/(C_1-x) - 1/(C_3-x))(1/(C_2-x) - 1/(C_4-x))}{(1/(C_1-x) - 1/(C_4-x))(
 
 ---
 
+
+
 ### Example 1.1.11: Second-Order Linear — Cauchy-Euler Complete Analysis
 
 **Problem:** $x^2 y'' - 3xy' + 4y = 0$
 
-**Ansatz:** $y = x^r$
+<details>
+<summary>Click to reveal solution</summary>
 
-**Substitution:**
 
-$$r(r-1)x^r - 3r x^r + 4x^r = 0$$
+Ansatz: $y = x^r$
 
-$$x^r[r^2 - 4r + 4] = 0$$
+Substitution:
 
-**Indicial:** $r^2 - 4r + 4 = (r-2)^2 = 0$
+$r(r-1)x^r - 3r x^r + 4x^r = 0$
 
-**Repeated Root:** $r = 2$
+$x^r[r^2 - 4r + 4] = 0$
 
-**Solutions:** $y_1 = x^2$, $y_2 = x^2 \ln x$
+Indicial: $r^2 - 4r + 4 = (r-2)^2 = 0$
 
-**Wronskian Verification:**
+Repeated Root: $r = 2$
 
-$$W(x^2, x^2 \ln x) = x^2 \cdot (2x \ln x + x) - 2x \cdot x^2 \ln x = x^3$$
+Solutions: $y_1 = x^2$, $y_2 = x^2 \ln x$
 
-**Abel's formula:** $W(x) = C/x$ $\checkmark$ (since $P(x) = -3/x$)
+Wronskian Verification:
+
+$W(x^2, x^2 \ln x) = x^2 \cdot (2x \ln x + x) - 2x \cdot x^2 \ln x = x^3$
+
+Abel's formula: $W(x) = C/x$ $\checkmark$ (since $P(x) = -3/x$)
 
 ---
+
+</details>
+
 
 ### Example 1.1.12: Reduction of Order
 
 **Problem:** $y'' + \frac{1}{x}y' - \frac{1}{x^2}y = 0$, known solution $y_1 = x$
 
-**Ansatz:** $y_2 = v(x) \cdot x$
+<details>
+<summary>Click to reveal solution</summary>
 
-**Substitution:**
 
-$$y_2' = v'x + v, \quad y_2'' = v''x + 2v'$$
+Ansatz: $y_2 = v(x) \cdot x$
 
-$$x v'' + 3v' = 0$$
+Substitution:
 
-**First Order:** Let $w = v'$:
+$y_2' = v'x + v, \quad y_2'' = v''x + 2v'$
 
-$$x w' + 3w = 0 \implies \frac{w'}{w} = -\frac{3}{x}$$
+$x v'' + 3v' = 0$
 
-$$w = \frac{C}{x^3} \implies v = -\frac{C}{2x^2}$$
+First Order: Let $w = v'$:
 
-**Second Solution:** $y_2 = x \cdot \left(-\frac{1}{2x^2}\right) = -\frac{1}{2x}$
+$x w' + 3w = 0 \implies \frac{w'}{w} = -\frac{3}{x}$
 
-**General Solution:** $y = c_1 x - \frac{c_2}{2x}$
+$w = \frac{C}{x^3} \implies v = -\frac{C}{2x^2}$
+
+Second Solution: $y_2 = x \cdot \left(-\frac{1}{2x^2}\right) = -\frac{1}{2x}$
+
+General Solution: $y = c_1 x - \frac{c_2}{2x}$
 
 ---
+
+</details>
+
 
 ### Example 1.1.13: Systems & Matrix Methods — Second-Order → First-Order System
 
 **Problem:** $y'' + py' + qy = 0$
 
-**Transformation:**
+<details>
+<summary>Click to reveal solution</summary>
 
-$$\mathbf{y} = \begin{pmatrix} y \\ y' \end{pmatrix}, \quad \mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -q & -p \end{pmatrix} \mathbf{y} = A \mathbf{y}$$
+
+Transformation:
+
+$\mathbf{y} = \begin{pmatrix} y \\ y' \end{pmatrix}, \quad \mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -q & -p \end{pmatrix} \mathbf{y} = A \mathbf{y}$
 
 **Constant Coefficients** ($p=-3$, $q=2$):
 
-$$A = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix}$$
+$A = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix}$
 
-**Eigenvalues:** $\det(A - \lambda I) = \lambda^2 - 3\lambda + 2 = 0$
+Eigenvalues: $\det(A - \lambda I) = \lambda^2 - 3\lambda + 2 = 0$
 
-**Roots:** $\lambda_1 = 1$, $\lambda_2 = 2$
+Roots: $\lambda_1 = 1$, $\lambda_2 = 2$
 
-**Eigenvectors:**
+Eigenvectors:
 
 - $\lambda_1 = 1$: $\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
 - $\lambda_2 = 2$: $\begin{pmatrix} 1 \\ 2 \end{pmatrix}$
 
-**Fundamental Matrix:**
+Fundamental Matrix:
 
-$$\Phi(t) = \begin{pmatrix} e^t & e^{2t} \\ e^t & 2e^{2t} \end{pmatrix}$$
+$\Phi(t) = \begin{pmatrix} e^t & e^{2t} \\ e^t & 2e^{2t} \end{pmatrix}$
 
-**Verification (Abel's formula):**
+Verification (Abel's formula):
 
-$$\det \Phi(t) = 2e^{3t} - e^{3t} = e^{3t}$$
+$\det \Phi(t) = 2e^{3t} - e^{3t} = e^{3t}$
 
-$$\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark$$
+$\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark$
 
 ---
+
+</details>
+
 
 ### Example 1.1.14: Floquet Theory Preview
 
 **Problem:** $y'' + (a + b\cos t)y = 0$ (Mathieu equation)
 
-**System:** $\mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -(a+b\cos t) & 0 \end{pmatrix} \mathbf{y}$
+<details>
+<summary>Click to reveal solution</summary>
 
-**Monodromy:** $\Phi(2\pi)$ determines stability
+
+System: $\mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -(a+b\cos t) & 0 \end{pmatrix} \mathbf{y}$
+
+Monodromy: $\Phi(2\pi)$ determines stability
 
 **Stability regions** in $(a,b)$-plane
 
@@ -497,37 +578,54 @@ $$\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark$$
 
 ---
 
+</details>
+
+
 ### Example 1.1.15: First Integrals — Conservative System
 
 **Problem:** $\frac{dx}{dt} = y$, $\frac{dy}{dt} = -x$
 
-**First Integral Search:**
+<details>
+<summary>Click to reveal solution</summary>
+
+
+First Integral Search:
 
 Try $H(x,y) = \frac{1}{2}(x^2 + y^2)$:
 
-$$\frac{dH}{dt} = x\frac{dx}{dt} + y\frac{dy}{dt} = xy - yx = 0$$
+$\frac{dH}{dt} = x\frac{dx}{dt} + y\frac{dy}{dt} = xy - yx = 0$
 
-**Level Sets:** $x^2 + y^2 = C$ (circles)
+Level Sets: $x^2 + y^2 = C$ (circles)
 
-**Poisson Bracket:**
+Poisson Bracket:
 
-$$\{H,H\} = xy - yx = 0$$
+$\{H,H\} = xy - yx = 0$
 
 ---
+
+</details>
+
 
 ### Example 1.1.16: Nontrivial First Integral
 
 **Problem:** $\frac{dx}{dt} = y - x^3$, $\frac{dy}{dt} = -x$
 
-**Compute:**
+<details>
+<summary>Click to reveal solution</summary>
 
-$$\frac{d}{dt}(x^2 + y^2) = 2x(y-x^3) + 2y(-x) = 2xy - 2x^4 - 2xy = -2x^4$$
+
+Compute:
+
+$\frac{d}{dt}(x^2 + y^2) = 2x(y-x^3) + 2y(-x) = 2xy - 2x^4 - 2xy = -2x^4$
 
 **Not constant!**
 
-**Correct Integral:** $H = y + \frac{1}{2}x^2$ (requires systematic method, foreshadowing Chapter 4 symmetries)
+Correct Integral: $H = y + \frac{1}{2}x^2$ (requires systematic method, foreshadowing Chapter 4 symmetries)
 
 ---
+
+</details>
+
 
 ### Example 1.1.17: Hamiltonian System
 
@@ -544,34 +642,10 @@ $$\dot{q} = \frac{\partial H}{\partial p} = p, \quad \dot{p} = -\frac{\partial H
 
 ---
 
-## Connections to Chapter Narrative
 
-The methods developed in this section establish foundational patterns that recur throughout the text:
-
-- **Picard Iteration** → Chapter 2 distributions (convergence in weak topologies)
-- **Exact Forms** → Chapter 3 exterior calculus
-- **Riccati Linearization** → Chapter 4 Lie symmetries
-- **First Integrals** → Chapter 4 Noether's theorem
-- **Wronskian** → Chapter 2 spectral theory
-
-These examples provide complete analytical workthroughs that:
-- Show every algebraic step
-- Verify every solution
-- Reveal geometric interpretations
-- Connect to subsequent chapters
-- Demonstrate method limitations
-
-## References
-
-* **Coddington, E. A., & Levinson, N. (1955).** *Theory of Ordinary Differential Equations*. McGraw-Hill. (For rigorous treatment of existence, uniqueness, and systems).
-
-* **Arnold, V. I. (1983).** *Ordinary Differential Equations*. MIT Press. (For the geometric interpretation of differential forms and phase space).
-
-* **Hartman, P. (1964).** *Ordinary Differential Equations*. John Wiley & Sons. (For advanced analytic properties and linearization).
-
-* **Whittaker, E. T., & Watson, G. N. (1927).** *A Course of Modern Analysis*. Cambridge University Press. (For classical explicit integration methods).
 
 ## Navigation
+
 
 {% include page_navigation.html %}
 
