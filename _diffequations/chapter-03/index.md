@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
 
+Physics is Invariant; Coordinates are Artifacts.
+
 ## Introduction
 
 Chapter 2 built a rigorous analytical framework, but it rested on the flat ground of $\mathbb{R}^n$. Physics, however, lives on curved manifolds where global vector addition is meaningless. This chapter detaches differential equations from coordinate systems and formulates them intrinsically on manifolds. We develop the geometric language of tensors, covariant derivatives, and differential forms, enabling us to write equations that are invariant under coordinate transformations.
 
-**Theme:** Physics is Invariant; Coordinates are Artifacts.
-
-**Narrative Goal:** To detach differential equations from coordinate systems and formulate them intrinsically on manifolds.
+We will detach differential equations from coordinate systems and formulate them intrinsically on manifolds.
 
 ## Chapter Overview
 
@@ -57,7 +57,7 @@ This chapter reformulates differential equations in geometric language. We repla
 
 We demonstrate that even smooth initial data can evolve into singularities (shocks) in finite time for nonlinear hyperbolic systems, proving that the smoothness recovered in Chapter 2 is not generic. We develop entropy conditions to select physically meaningful solutions and show how exterior calculus unifies vector calculus operations in a coordinate-free manner.
 
-**The Cliffhanger:** We can write invariant equations, but we generally cannot solve the nonlinear ones. Yet, certain specific nonlinear systems (like KdV) exhibit miraculous behavior—solitons that pass through one another unchanged. Why? This question motivates Chapter 4, where we reveal that solvability is symmetry.
+**We can write invariant equations, but we generally cannot solve the nonlinear ones.** Yet, certain specific nonlinear systems (like KdV) exhibit miraculous behavior—solitons that pass through one another unchanged. Why? This question motivates Chapter 4, where we reveal that solvability is symmetry.
 
 ## Prerequisites
 

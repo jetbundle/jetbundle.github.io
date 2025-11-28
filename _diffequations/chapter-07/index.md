@@ -12,13 +12,13 @@ parent_chapter: null
 
 # Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
 
+The Phase Space is the Reality.
+
 ## Introduction
 
 Chapter 6 geometrized PDEs completely, but moduli spaces are often singular or non-compact, preventing simple calculus. This final chapter resolves these singularities using the algebraic tools of the cotangent bundle and category theory. We replace the "solution" with the system itself, refine the concept of singularity via wave front sets, and ultimately frame physics as a topological quantum field theory—a functor from cobordisms to vector spaces.
 
-**Theme:** The Phase Space is the Reality.
-
-**Narrative Goal:** To resolve the singularities of analysis and geometry using the algebraic tools of the cotangent bundle and category theory.
+The final goal of this endeavour is to resolve the singularities of analysis and geometry using the algebraic tools of the cotangent bundle and category theory.
 
 ## Chapter Overview
 
@@ -65,7 +65,7 @@ Resurgence theory resolves the divergent series of Chapter 1, showing that diver
 
 Noncommutative geometry abstracts away points entirely, defining geometry via operator spectra. Finally, we frame physics itself as a topological quantum field theory—a functor from the category of cobordisms to vector spaces. The differential equation has dissolved; only the categorical structure remains.
 
-**Epilogue:** The journey is complete. We have ascended from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. A differential equation is not merely a problem to be solved, but the language through which the topology of the universe speaks to itself.
+The journey is complete. We have ascended from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. **A differential equation is not merely a problem to be solved, but the language through which the topology of the universe speaks to itself.**
 
 ## Prerequisites
 

@@ -44,6 +44,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-remote-theme
+  # Math protection plugin (if using custom plugins)
 
 # Markdown
 markdown: kramdown
@@ -58,6 +59,9 @@ kramdown:
   auto_ids: true
   footnote_backlink: "&#8617;"
   footnote_backlink_inline: true
+  # Disable GFM table parsing to avoid conflicts with math blocks
+  # Tables will still work but won't conflict with $...$ math
+  gfm_quirks: []
 
 # Exclude
 exclude:

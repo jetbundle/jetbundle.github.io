@@ -12,7 +12,7 @@ parent_chapter: null
 
 # A Survey of Differential Equations and their Algebraic Geometry
 
-**J. Saucedo 2025** 
+**J. Saucedo 2025**
 
 ## Preface: The Mathematical Ascent
 
