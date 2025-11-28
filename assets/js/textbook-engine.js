@@ -27,9 +27,10 @@ class TextbookEngine {
       await this.pyodide.loadPackage([
         "numpy",
         "scipy",
-        "matplotlib",
-        "micropip"
+        "matplotlib"
       ]);
+      
+      await this.pyodide.loadPackage("micropip");
       
       await this.pyodide.runPythonAsync(`
         import micropip
