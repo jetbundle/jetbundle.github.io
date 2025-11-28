@@ -195,7 +195,7 @@ if 'plot_data' in globals() and plot_data is not None:
         };
 
         Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig);
-        
+
         // Trigger MathJax rendering if MathJax is available
         if (window.MathJax && window.MathJax.typesetPromise) {
           window.MathJax.typesetPromise([outputContainer]).catch((err) => {
