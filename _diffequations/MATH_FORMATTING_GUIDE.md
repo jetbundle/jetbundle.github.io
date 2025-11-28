@@ -44,16 +44,16 @@ Use `\mid` for:
 - **"Such that" in definitions**: $f: X \to Y \mid f(x) = x^2$
 - **General mathematical separators**: Any context where you mean "such that" or a logical separator
 
-### When to Use `|` (with `\left` and `\right`)
+### Absolute Values and Norms
 
-**Still use `|`** when it's part of **delimiter pairs** with `\left` and `\right`:
+**Use `\mid` for absolute values and norms** (do NOT use `\left|` and `\right|`):
 
 ```markdown
-The absolute value: $\left| x \right|$
-The norm: $\left\| \mathbf{v} \right\|$
+The absolute value: $\mid x \mid$
+The norm: $\mid \mathbf{v} \mid$
 ```
 
-These are **delimiters**, not separators, and MathJax handles them correctly.
+This avoids all markdown table parsing conflicts while maintaining mathematical clarity.
 
 ### Quick Reference
 
@@ -61,8 +61,8 @@ These are **delimiters**, not separators, and MathJax handles them correctly.
 |---------|-----|---------|
 | Set notation ("such that") | `\mid` | $\{x \mid x > 0\}$ |
 | Conditional probability | `\mid` | $P(A \mid B)$ |
-| Absolute value (delimiter) | `\left\| \right\|` | $\left\| x \right\|$ |
-| Norm (delimiter) | `\left\| \right\|` | $\left\| \mathbf{v} \right\|$ |
+| Absolute value | `\mid` | $\mid x \mid$ |
+| Norm | `\mid` | $\mid \mathbf{v} \mid$ |
 | Divides (relation) | `\mid` | $a \mid b$ (a divides b) |
 | Does not divide | `\nmid` | $a \nmid b$ |
 
@@ -105,7 +105,8 @@ Or manually:
 ### Summary
 
 **Remember:**
-- **Separators** (such that, conditional) → Use `\mid`
-- **Delimiters** (absolute value, norm) → Use `\left|` and `\right|`
+- **ALL mathematical uses of pipe** → Use `\mid`
+- **NEVER use `|`, `\left|`, or `\right|`** in math expressions
+- **Only use `|` in markdown tables** (not in math)
 
 This simple rule will prevent all table parsing issues and make your mathematical notation more professional and semantically correct.
