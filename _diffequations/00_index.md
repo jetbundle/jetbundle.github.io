@@ -184,21 +184,21 @@ from scipy.integrate import odeint
 def dydt(y, t, lambda_param):
     return -lambda_param * y
 
-t = np.linspace(0, t_max_val, 200)
+t = np.linspace(0, t_max_val, 150)  # Fewer points for faster continuous updates
 sol = odeint(dydt, y0_val, t, args=(lambda_val,))
 
 trace = {
     'x': t.tolist(),
     'y': sol.flatten().tolist(),
     'mode': 'lines',
-    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
-    'line': {'width': 3, 'color': '#3b82f6'}
+    'name': f'y(t) = {y0_val:.2f} * exp(-{lambda_val:.2f}t)',
+    'line': {'width': 3, 'color': '#ff8c5a'}
 }
 
 layout = {
-    'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
-    'xaxis': {'title': 'Time t'},
-    'yaxis': {'title': 'y(t)'},
+    'title': f'ODE Solution: $\\frac{{dy}}{{dt}} = -{lambda_val:.2f}y$',
+    'xaxis': {'title': 'Time $t$'},
+    'yaxis': {'title': '$y(t)$'},
     'height': 400
 }
 
