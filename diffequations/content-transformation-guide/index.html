@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Transformation Guide</title>
-  <meta name="description" content="How to restructure textbook sections using the Theory-Example-Reflection architecture">
+  <meta name="description" content="Guidelines for restructuring textbook sections">
 
   <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
@@ -893,67 +893,75 @@
     <main class="textbook-main">
       <header class="textbook-header">
         <h1>Content Transformation Guide</h1>
-        <p class="description">How to restructure textbook sections using the Theory-Example-Reflection architecture</p>
+        <p class="description">Guidelines for restructuring textbook sections</p>
       </header>
 
       <article class="textbook-content">
         <h1 id="content-transformation-guide">Content Transformation Guide</h1>
 
-<h2 id="overview">Overview</h2>
+<p>This guide provides systematic instructions for transforming textbook sections from the traditional “theory-then-examples” structure to an integrated narrative that follows the <strong>Theory-Example-Reflection</strong> loop.</p>
 
-<p>This guide provides step-by-step instructions for transforming textbook sections from the traditional “Mathematical Content + Examples” format to the integrated “Theory-Example-Reflection” architecture.</p>
+<h2 id="global-architectural-directives">Global Architectural Directives</h2>
 
-<h2 id="the-five-global-architectural-directives">The Five Global Architectural Directives</h2>
+<h3 id="1-the-theory-example-reflection-loop">1. The Theory-Example-Reflection Loop</h3>
 
-<h3 id="1-the-theory-example-reflection-loop">1. The “Theory-Example-Reflection” Loop</h3>
-
-<p><strong>Principle:</strong> Never segregate theory from examples. Integrate them immediately.</p>
+<p><strong>Principle:</strong> Do not segregate “Mathematical Content” from “Examples.” Instead, integrate them seamlessly.</p>
 
 <p><strong>Structure:</strong>
-1. <strong>State the Concept</strong>: Define the mathematical object or theorem rigorously
-2. <strong>Immediate Illustration</strong>: Provide a worked example right after the definition (use blockquotes or distinct styling)
-3. <strong>Narrative Bridge</strong>: Explain what the example revealed or what it failed to do, leading to the next concept</p>
+1. <strong>State the Concept:</strong> Define the mathematical object or theorem rigorously.
+2. <strong>Immediate Illustration:</strong> Immediately following the definition, provide a worked example (using blockquotes or distinct visual style) to ground the abstract concept.
+3. <strong>Narrative Bridge:</strong> Follow the example with a “Reflection” paragraph explaining what the example revealed, what it failed to do, or what nuance it exposed, leading into the next concept.</p>
+
+<p><strong>Example Transformation:</strong></p>
 
 <p><strong>Before:</strong>
 ```markdown
 ## Mathematical Content</p>
 
-<h3 id="existence-and-uniqueness">Existence and Uniqueness</h3>
+<h3 id="separation-of-variables">Separation of Variables</h3>
 
-<p>We model first-order equations as $y’ = f(x,y)$…</p>
+<p>When the field factors as $y’ = P(x)/Q(y)$ we obtain…</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<h3 id="example-111-picardlindelöf-iteration">Example 1.1.1: Picard–Lindelöf Iteration</h3>
-<p>…
+<h3 id="example-114-separation-of-variables">Example 1.1.4: Separation of Variables</h3>
+
+<p><strong>Problem:</strong> Solve $y’ = xy$…
 ```</p>
 
 <p><strong>After:</strong>
 ```markdown
-## The Deterministic Assumption: Existence and Uniqueness</p>
+## Separation of Variables: The Simplest Case</p>
 
-<p>Before seeking a formula, we must establish that a solution exists…</p>
-
-<p><strong>Definition: The Lipschitz Condition</strong></p>
-
-<p>A function $f$ is Lipschitz in $y$ if…</p>
+<p>When the field factors as $y’ = P(x)/Q(y)$ we obtain…</p>
 
 <blockquote>
-  <p><strong>Illustrative Example: The Failure of Determinism</strong></p>
+  <p><strong>Illustrative Example: Exponential Growth</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>Consider the initial value problem…</p>
+  <p>Solve $y’ = xy$ with $y(0) = 1$.</p>
 </blockquote>
 
 <blockquote>
-  <p><strong>The Nuance:</strong> Because the uniqueness theorem fails…
+  <p>We have $dy/y = x\,dx$…</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Reflection:</strong> This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics.
 ```</p>
 </blockquote>
 
-<h3 id="2-the-prerequisite-in-lining-strategy">2. The “Prerequisite In-lining” Strategy</h3>
+<h3 id="2-the-prerequisite-in-lining-strategy">2. The Prerequisite In-lining Strategy</h3>
 
-<p><strong>Principle:</strong> Define concepts “just-in-time” within the narrative flow.</p>
+<p><strong>Principle:</strong> Avoid laundry lists of prerequisites at the start. Define necessary concepts “just-in-time” within the narrative flow.</p>
+
+<p><strong>Structure:</strong>
+- Use inline definitions with <strong>bold</strong> or <em>italic</em> emphasis
+- Place definitions immediately before they are needed
+- Use concise definition blocks when necessary</p>
+
+<p><strong>Example:</strong></p>
 
 <p><strong>Before:</strong>
 ```markdown
@@ -966,363 +974,230 @@
 </ul>
 
 <h2 id="mathematical-content">Mathematical Content</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-**After:**
+
+<p>We use the Cauchy Criterion…
+```</p>
+
+<p><strong>After:</strong>
 ```markdown
-## Mathematical Content
+## Convergence and Completeness</p>
 
-To discuss convergence rigorously, we recall the **Cauchy Criterion**: a sequence converges if and only if the distance between arbitrary terms goes to zero...
-</code></pre></div></div>
+<p>To discuss convergence rigorously, we recall the <strong>Cauchy Criterion</strong>: a sequence converges if and only if the distance between arbitrary terms goes to zero. This allows us to…
+```</p>
 
-<h3 id="3-the-architectural-challenge-ending">3. The “Architectural Challenge” Ending</h3>
+<h3 id="3-the-challenge-problems-replacing-complete-examples">3. The Challenge Problems (Replacing Complete Examples)</h3>
 
-<p><strong>Principle:</strong> Replace long lists of solved examples with two high-level, collapsible problems.</p>
+<p><strong>Principle:</strong> Remove the long list of solved examples at the end. Replace them with two specific, high-level problems labeled “Challenge Problems.”</p>
 
 <p><strong>Structure:</strong>
-- <strong>Challenge 1 (Computational/Derivation)</strong>: A difficult derivation connecting multiple concepts
-- <strong>Challenge 2 (Conceptual/Counter-example)</strong>: Tests the boundaries of the theory</p>
+- <strong>Challenge 1 (Computational/Derivation):</strong> A difficult derivation that connects multiple concepts in the section.
+- <strong>Challenge 2 (Conceptual/Counter-example):</strong> A problem that tests the boundaries of the theory (e.g., a case where uniqueness fails, or a series diverges).</p>
 
 <p><strong>Format:</strong>
-```markdown
-## Architectural Challenges</p>
+- Provide detailed solutions, but keep them in collapsible <code class="language-plaintext highlighter-rouge">&lt;details&gt;</code> blocks
+- Include hints when appropriate
+- Connect to broader themes in the narrative</p>
 
-<h3 id="challenge-1-descriptive-title">Challenge 1: [Descriptive Title]</h3>
+<p><strong>Example:</strong></p>
 
-<p>[Problem statement]</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Challenge Problems</span>
 
-<p><em>(Hint: [guidance])</em></p>
+<span class="gu">### Challenge 1: The Osgood Uniqueness Criterion</span>
 
-<details>
-<summary><strong>Expand Solution</strong></summary>
+[Problem statement with hint]
 
-[Detailed solution with key insights]
+<span class="nt">&lt;details&gt;</span>
+<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
 
-</details>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-### 4. Visualizing the Argument
+[Detailed solution with connections to theory]
 
-**Principle:** Use strategic image tags to illustrate geometric arguments, not just results.
-
-**When to add images:**
-- Geometric interpretations (characteristic lines, phase portraits)
-- Visual proofs (area under curves, vector fields)
-- Conceptual diagrams (hierarchies, relationships)
-
-**Format:**
-```markdown
-![Description of geometric argument](path/to/image.png)
-
-*Figure: [Caption explaining what the visualization demonstrates]*
+<span class="nt">&lt;/details&gt;</span>
 </code></pre></div></div>
 
-<h3 id="5-unified-tone---the-ascent-narrative">5. Unified Tone - The “Ascent” Narrative</h3>
+<h3 id="4-visualizing-the-argument">4. Visualizing the Argument</h3>
 
-<p><strong>Principle:</strong> Every section must end by explicitly stating the “failure” or “limitation” that motivates the next section.</p>
+<p><strong>Principle:</strong> Use image tags strategically to illustrate geometric arguments, not just results.</p>
+
+<p><strong>Guidelines:</strong>
+- Add image placeholders for geometric visualizations
+- Focus on process, not just outcomes
+- Use alt text that describes the mathematical content</p>
+
+<p><strong>Example:</strong>
+```markdown
+When discussing the Method of Characteristics, we visualize the crossing of characteristic lines:</p>
+
+<p><img src="path/to/image.png" alt="Characteristic lines crossing to form a shock" /></p>
+
+<p>This geometric structure reveals…
+```</p>
+
+<h3 id="5-unified-tone-and-narrative-flow">5. Unified Tone and Narrative Flow</h3>
+
+<p><strong>Principle:</strong> Maintain the “Ascent” narrative. Every section must end by explicitly stating the “failure” or “limitation” of the current method, which acts as the hook for the next section or chapter.</p>
 
 <p><strong>Structure:</strong>
-- End each section with: “This limitation leads us to [next concept]…”
-- Connect to the broader narrative arc
-- Use transition phrases like “However, when…”, “The failure of…”, “This exposes…”</p>
+- End each section with a “Connections to Chapter Narrative” subsection
+- Explicitly state what the current methods cannot do
+- Foreshadow the next section’s approach</p>
+
+<p><strong>Example:</strong>
+```markdown
+## Connections to Chapter Narrative</p>
+
+<p>Exact methods succeed when symmetry or coordinate choice flattens the vector field, but their fragility—non-Lipschitz behavior, elusive integrating factors—necessitates the special functions and spectral frameworks developed later in Chapter 1 and beyond.
+```</p>
+
+<h2 id="math-formatting-rules">Math Formatting Rules</h2>
+
+<h3 id="critical-use-mid-instead-of-">Critical: Use <code class="language-plaintext highlighter-rouge">\mid</code> Instead of <code class="language-plaintext highlighter-rouge">|</code></h3>
+
+<p><strong>Rule:</strong> Always use <code class="language-plaintext highlighter-rouge">\mid</code> instead of <code class="language-plaintext highlighter-rouge">|</code> for mathematical separators.</p>
+
+<p><strong>When to use <code class="language-plaintext highlighter-rouge">\mid</code>:</strong>
+- Set notation: <code class="language-plaintext highlighter-rouge">$\{x \mid x &gt; 0\}$</code>
+- Conditional probability: <code class="language-plaintext highlighter-rouge">$P(A \mid B)$</code>
+- “Such that” in definitions
+- Divides relation: <code class="language-plaintext highlighter-rouge">$a \mid b$</code></p>
+
+<p><strong>When to use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>:</strong>
+- Absolute value: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code>
+- Norm: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code>
+- Delimiters (not separators)</p>
+
+<p><strong>Never use standalone <code class="language-plaintext highlighter-rouge">|</code> in math expressions</strong> (except in markdown tables).</p>
 
 <h2 id="step-by-step-transformation-process">Step-by-Step Transformation Process</h2>
 
-<h3 id="step-1-add-essence-block">Step 1: Add Essence Block</h3>
+<h3 id="phase-1-content-analysis">Phase 1: Content Analysis</h3>
 
-<p>Add a high-level quote at the very top, immediately after the title:</p>
+<ol>
+  <li><strong>Read the entire section</strong> to understand the flow</li>
+  <li><strong>Identify all examples</strong> and their corresponding concepts</li>
+  <li><strong>List all prerequisites</strong> that are assumed</li>
+  <li><strong>Note the ending</strong> - what limitation does it expose?</li>
+</ol>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Section X.X: [Title]</span>
-<span class="gt">
-&gt; [One-sentence essence that captures the section's core insight]</span>
+<h3 id="phase-2-restructuring">Phase 2: Restructuring</h3>
 
-<span class="gu">## Introduction</span>
-</code></pre></div></div>
+<ol>
+  <li><strong>Add Essence Quote</strong> at the very top (one sentence capturing the section’s core)</li>
+  <li><strong>Integrate examples</strong> into theory sections using blockquotes</li>
+  <li><strong>Add Reflection paragraphs</strong> after each example</li>
+  <li><strong>Inline prerequisites</strong> as definitions within the flow</li>
+  <li><strong>Remove “Complete Examples” section</strong></li>
+  <li><strong>Create 2 Challenge Problems</strong> that synthesize concepts</li>
+</ol>
 
-<h3 id="step-2-restructure-mathematical-content">Step 2: Restructure Mathematical Content</h3>
+<h3 id="phase-3-math-formatting">Phase 3: Math Formatting</h3>
 
-<p>For each concept:
-1. <strong>Define rigorously</strong> (in-line, not assumed)
-2. <strong>Immediate example</strong> (blockquote format)
-3. <strong>Reflection paragraph</strong> (what it revealed/failed)</p>
+<ol>
+  <li><strong>Search for standalone <code class="language-plaintext highlighter-rouge">|</code></strong> in math expressions</li>
+  <li><strong>Replace with <code class="language-plaintext highlighter-rouge">\mid</code></strong> for separators</li>
+  <li><strong>Keep <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code></strong> for delimiters</li>
+  <li><strong>Verify all math renders correctly</strong></li>
+</ol>
 
-<h3 id="step-3-integrate-examples">Step 3: Integrate Examples</h3>
+<h3 id="phase-4-narrative-polish">Phase 4: Narrative Polish</h3>
 
-<p>Move examples from the bottom to immediately after their relevant theory:
-- Use blockquote styling: <code class="language-plaintext highlighter-rouge">&gt; **Worked Example: [Title]**</code>
-- Include “The Nuance” or “Reflection” paragraph after each</p>
+<ol>
+  <li><strong>Add transitions</strong> between concepts</li>
+  <li><strong>Strengthen “Connections” section</strong> with explicit limitations</li>
+  <li><strong>Ensure flow</strong> from one concept to the next</li>
+  <li><strong>Check tone</strong> consistency throughout</li>
+</ol>
 
-<h3 id="step-4-replace-example-list-with-challenges">Step 4: Replace Example List with Challenges</h3>
-
-<p>Remove the “Complete Examples” section and replace with:
-- Two Architectural Challenges
-- Make solutions collapsible using <code class="language-plaintext highlighter-rouge">&lt;details&gt;</code> tags
-- Ensure challenges synthesize multiple concepts</p>
-
-<h3 id="step-5-fix-math-formatting">Step 5: Fix Math Formatting</h3>
-
-<p><strong>Critical:</strong> Replace all <code class="language-plaintext highlighter-rouge">|</code> with <code class="language-plaintext highlighter-rouge">\mid</code> EXCEPT in <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code> delimiters.</p>
-
-<p><strong>Find and Replace:</strong>
-- <code class="language-plaintext highlighter-rouge">\{x | x &gt; 0\}</code> → <code class="language-plaintext highlighter-rouge">\{x \mid x &gt; 0\}</code>
-- <code class="language-plaintext highlighter-rouge">P(A | B)</code> → <code class="language-plaintext highlighter-rouge">P(A \mid B)</code>
-- Keep: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code> (absolute value)
-- Keep: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code> (norm)</p>
-
-<h3 id="step-6-add-narrative-hooks">Step 6: Add Narrative Hooks</h3>
-
-<p>End each subsection with a transition that:
-- States a limitation
-- Connects to the next concept
-- Maintains the “ascent” narrative</p>
-
-<h2 id="example-transformation">Example Transformation</h2>
-
-<h3 id="before-traditional-format">Before (Traditional Format):</h3>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Mathematical Content</span>
-
-<span class="gu">### Existence and Uniqueness</span>
-
-We model first-order equations as $y' = f(x,y)$...
-
-<span class="gu">## Complete Examples</span>
-
-<span class="gu">### Example 1.1.1: Picard–Lindelöf Iteration</span>
-
-<span class="gs">**Problem:**</span> Solve $y' = y$ with $y(0) = 1$...
-
-<span class="gu">### Example 1.1.2: Radioactive Decay</span>
-
-<span class="gs">**Problem:**</span> Solve $y' = -ky + P$...
-</code></pre></div></div>
-
-<h3 id="after-theory-example-reflection">After (Theory-Example-Reflection):</h3>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## The Deterministic Assumption: Existence and Uniqueness</span>
-
-Before seeking a formula, we must establish that a solution exists...
-
-<span class="gs">**Definition: The Lipschitz Condition**</span>
-
-A function $f$ is Lipschitz in $y$ if there exists a constant $K$ such that:
-
-$$|f(x, y_1) - f(x, y_2)| <span class="se">\l</span>eq K |y_1 - y_2|$$
-<span class="gt">
-&gt; **Illustrative Example: The Failure of Determinism**</span>
-<span class="gt">
-&gt; Consider the initial value problem $y' = \sqrt{|y|}$ with $y(0) = 0$.</span>
-<span class="gt">
-&gt; [Solution details...]</span>
-<span class="gt">
-&gt; **The Nuance:** Because the uniqueness theorem fails, a particle at the origin can wait for an arbitrary time before spontaneously moving. The physical history is erased at the singularity.</span>
-
-However, when the Lipschitz condition holds, we can construct solutions via iteration...
-</code></pre></div></div>
-
-<h2 id="checklist-for-each-section">Checklist for Each Section</h2>
+<h2 id="example-transformation-checklist">Example Transformation Checklist</h2>
 
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added essence block quote at top</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Integrated examples immediately after definitions</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Used blockquote styling for examples</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added “The Nuance” or “Reflection” after each example</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Replaced all <code class="language-plaintext highlighter-rouge">|</code> with <code class="language-plaintext highlighter-rouge">\mid</code> (except in <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code>)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Removed “Complete Examples” section</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added two Architectural Challenges with collapsible solutions</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Ended section with narrative hook to next concept</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />In-lined prerequisites (no separate prerequisites section)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Maintained unified “ascent” tone throughout</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Essence quote added at top</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All examples integrated into theory (not separate section)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Each example followed by Reflection paragraph</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Prerequisites inlined (not listed at start)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />“Complete Examples” section removed</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />2 Challenge Problems created with collapsible solutions</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All <code class="language-plaintext highlighter-rouge">|</code> replaced with <code class="language-plaintext highlighter-rouge">\mid</code> (except in <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code>)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />“Connections to Chapter Narrative” section updated</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Explicit limitation/failure stated to hook next section</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Narrative flow verified</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All original content preserved (just reorganized)</li>
 </ul>
 
 <h2 id="common-patterns">Common Patterns</h2>
 
-<h3 id="pattern-1-definition--example--reflection">Pattern 1: Definition → Example → Reflection</h3>
+<h3 id="pattern-1-definition--example--reflection--next-concept">Pattern 1: Definition → Example → Reflection → Next Concept</h3>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">**Definition: [Concept Name]**</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Concept Name</span>
 
-[Formal definition]
+[Definition with mathematical rigor]
 <span class="gt">
-&gt; **Worked Example: [Title]**</span>
+&gt; **Illustrative Example: [Name]**</span>
 <span class="gt">
-&gt; [Problem and solution]</span>
+&gt; [Worked solution]</span>
 <span class="gt">
-&gt; **The Nuance:** [What this reveals about limitations or connections]</span>
+&gt; **Reflection:** [What this reveals, what it fails to do, connection to next concept]</span>
 
-[Transition to next concept]
+[Next concept builds on this]
 </code></pre></div></div>
 
 <h3 id="pattern-2-theorem--application--limitation">Pattern 2: Theorem → Application → Limitation</h3>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">**Theorem X.X (Name)**</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Theorem Name</span>
 
-[Statement]
+[Theorem statement]
+<span class="gt">
+&gt; **Worked Example: [Application]**</span>
+<span class="gt">
+&gt; [Solution demonstrating theorem]</span>
+<span class="gt">
+&gt; **Reflection:** [When theorem applies, when it fails]</span>
 
-<span class="gs">**Proof Sketch:**</span> [Key steps]
-<span class="gt">
-&gt; **Application: [Title]**</span>
-<span class="gt">
-&gt; [Concrete application]</span>
-<span class="gt">
-&gt; **Reflection:** [Where this method fails or what it cannot capture]</span>
-
-This limitation motivates [next concept]...
+[Discussion of limitations leading to next method]
 </code></pre></div></div>
 
-<h2 id="math-formatting-rules">Math Formatting Rules</h2>
+<h3 id="pattern-3-challenge-problem-structure">Pattern 3: Challenge Problem Structure</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">### Challenge 1: [Descriptive Name]</span>
+
+[Problem statement that synthesizes multiple concepts]
+
+<span class="ge">*(Hint: [Guiding thought])*</span>
+
+<span class="nt">&lt;details&gt;</span>
+<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
+
+[Step-by-step solution with connections to theory]
+<span class="p">
+*</span> [Key insight 1]
+<span class="p">*</span> [Key insight 2]
+
+<span class="nt">&lt;/details&gt;</span>
+</code></pre></div></div>
+
+<h2 id="quality-criteria">Quality Criteria</h2>
+
+<p>A successfully transformed section should:</p>
 
 <ol>
-  <li><strong>Separators</strong> → Use <code class="language-plaintext highlighter-rouge">\mid</code>
-    <ul>
-      <li>Set notation: <code class="language-plaintext highlighter-rouge">$\{x \mid x &gt; 0\}$</code></li>
-      <li>Conditional: <code class="language-plaintext highlighter-rouge">$P(A \mid B)$</code></li>
-      <li>Divides: <code class="language-plaintext highlighter-rouge">$a \mid b$</code></li>
-    </ul>
-  </li>
-  <li><strong>Delimiters</strong> → Use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>
-    <ul>
-      <li>Absolute value: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code></li>
-      <li>Norm: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code></li>
-    </ul>
-  </li>
-  <li><strong>Never use bare <code class="language-plaintext highlighter-rouge">|</code></strong> in math expressions (causes table parsing)</li>
+  <li><strong>Flow naturally</strong> from concept to concept without jarring transitions</li>
+  <li><strong>Ground abstractions</strong> with immediate concrete examples</li>
+  <li><strong>Reveal limitations</strong> explicitly to motivate next section</li>
+  <li><strong>Preserve all content</strong> while improving organization</li>
+  <li><strong>Maintain rigor</strong> while improving readability</li>
+  <li><strong>Use proper math syntax</strong> (<code class="language-plaintext highlighter-rouge">\mid</code> for separators, <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code> for delimiters)</li>
 </ol>
 
-<h2 id="quality-checks">Quality Checks</h2>
+<h2 id="notes-on-generality">Notes on Generality</h2>
 
-<p>Before finalizing, verify:
-- All examples are integrated (none at the bottom)
-- Two Architectural Challenges replace example list
-- Solutions are collapsible
-- Math uses <code class="language-plaintext highlighter-rouge">\mid</code> for separators
-- Narrative flows from concept to concept
-- Each subsection ends with a hook to the next
-- Essence block captures the section’s core</p>
+<ul>
+  <li><strong>Avoid uniformity:</strong> Each section should have its own character while following these principles</li>
+  <li><strong>Preserve randomness:</strong> Don’t force examples into identical formats—let the mathematics guide the structure</li>
+  <li><strong>Maintain rigor:</strong> Never sacrifice mathematical precision for narrative flow</li>
+  <li><strong>Prove computations:</strong> All examples should include complete, verifiable calculations</li>
+  <li><strong>Narrative flow:</strong> Connect concepts through the story of mathematical discovery</li>
+</ul>
 
-<h2 id="template-for-new-sections">Template for New Sections</h2>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
-<span class="na">layout</span><span class="pi">:</span> <span class="s">textbook</span>
-<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Section</span><span class="nv"> </span><span class="s">X.X:</span><span class="nv"> </span><span class="s">[Title]"</span>
-<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">[Brief</span><span class="nv"> </span><span class="s">description]"</span>
-<span class="na">permalink</span><span class="pi">:</span> <span class="s">/diffequations/chapter-X/XX-[slug]/</span>
-<span class="na">order</span><span class="pi">:</span> <span class="s">X.X</span>
-<span class="na">chapter</span><span class="pi">:</span> <span class="s">X</span>
-<span class="na">section</span><span class="pi">:</span> <span class="s">X</span>
-<span class="na">nav_order</span><span class="pi">:</span> <span class="s">X.X</span>
-<span class="na">is_chapter_index</span><span class="pi">:</span> <span class="kc">false</span>
-<span class="na">parent_chapter</span><span class="pi">:</span> <span class="s">X</span>
-<span class="na">parent_section</span><span class="pi">:</span> <span class="kc">null</span>
-<span class="nn">---</span>
-
-<span class="gh"># Section X.X: [Title]</span>
-<span class="gt">
-&gt; [One-sentence essence]</span>
-
-<span class="gu">## Introduction</span>
-
-[Context and motivation, connecting to previous section's limitations]
-
-<span class="gu">## [First Major Concept]</span>
-
-[Definition in-line]
-<span class="gt">
-&gt; **Worked Example: [Title]**</span>
-<span class="gt">
-&gt; [Problem and solution]</span>
-<span class="gt">
-&gt; **The Nuance:** [Reflection]</span>
-
-[Transition paragraph]
-
-<span class="gu">## [Second Major Concept]</span>
-
-[Continue pattern...]
-
-<span class="gu">## Architectural Challenges</span>
-
-<span class="gu">### Challenge 1: [Computational/Derivation]</span>
-
-[Problem statement]
-
-<span class="ge">*(Hint: [guidance])*</span>
-
-<span class="nt">&lt;details&gt;</span>
-<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
-
-[Detailed solution]
-
-<span class="nt">&lt;/details&gt;</span>
-
-<span class="gu">### Challenge 2: [Conceptual/Counter-example]</span>
-
-[Problem statement]
-
-<span class="nt">&lt;details&gt;</span>
-<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
-
-[Detailed solution]
-
-<span class="nt">&lt;/details&gt;</span>
-
-<span class="gu">## References</span>
-<span class="p">
-*</span> [Author]. <span class="ge">*Title*</span>. Publisher, Year.
-
-<span class="gu">## Navigation</span><span class="sb">
-
-
-
-
-
-
-
-</span>  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-    
-    
-
-<span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"page-navigation"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"nav-previous"</span><span class="nt">&gt;</span>
-    
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/diffequations/"</span> <span class="na">class=</span><span class="s">"nav-link"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-arrow"</span><span class="nt">&gt;</span>←<span class="nt">&lt;/span&gt;</span>
-        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-text"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-label"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
-          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-title"</span><span class="nt">&gt;</span>A Survey of Differential Equations and their Algebraic Geometry<span class="nt">&lt;/span&gt;</span>
-        <span class="nt">&lt;/span&gt;</span>
-      <span class="nt">&lt;/a&gt;</span>
-    
-  <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"nav-next"</span><span class="nt">&gt;</span>
-    
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/diffequations/chapter-01/"</span> <span class="na">class=</span><span class="s">"nav-link"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-text"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-label"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
-          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-title"</span><span class="nt">&gt;</span>Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal<span class="nt">&lt;/span&gt;</span>
-        <span class="nt">&lt;/span&gt;</span>
-        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-arrow"</span><span class="nt">&gt;</span>→<span class="nt">&lt;/span&gt;</span>
-      <span class="nt">&lt;/a&gt;</span>
-    
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/nav&gt;</span><span class="sb">
-
-
-</span><span class="p">---
-</span>
-<span class="gu">## Related Sections</span>
-<span class="p">
--</span> [Previous/Next sections]
-</code></pre></div></div>
-
-<p>This transformation guide ensures consistency across all sections while maintaining mathematical rigor and narrative flow.</p>
+<p>This transformation process ensures that every section tells a coherent story while maintaining mathematical rigor and preserving all important content.</p>
 
 
       </article>
