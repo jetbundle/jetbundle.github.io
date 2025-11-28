@@ -233,10 +233,10 @@ function fixMathTables() {
   // Find tables that look like they should be math
   const tables = content.querySelectorAll('table');
   let fixedCount = 0;
-  
+
   tables.forEach(table => {
     const rows = table.querySelectorAll('tr');
-    
+
     // Check for single-row tables that might be math
     if (rows.length === 1) {
       const cells = rows[0].querySelectorAll('td, th');
@@ -244,36 +244,36 @@ function fixMathTables() {
         // Get all text from cells
         const cellTexts = Array.from(cells).map(cell => cell.textContent.trim());
         const fullText = cellTexts.join(' ');
-        
+
         // Check if it looks like math (contains $, math symbols, or LaTeX commands)
-        const hasMathIndicators = fullText.includes('$') || 
+        const hasMathIndicators = fullText.includes('$') ||
                                   /[\\{}^_]|\\left|\\right|\\frac|\\sqrt/.test(fullText) ||
                                   fullText.match(/\$\$?[^$]+\$\$?/);
-        
+
         if (hasMathIndicators) {
           // Try to reconstruct the math expression
           // Look for $...$ patterns in the cell text
           const mathMatches = fullText.match(/\$([^$]+)\$/g);
-          
+
           if (mathMatches && mathMatches.length > 0) {
             // Reconstruct the original text with math
             // Get the text before the table
             const tableParent = table.parentNode;
             const textBefore = table.previousSibling;
             const textAfter = table.nextSibling;
-            
+
             // Create a text node with the math expression
             // Replace the table with the reconstructed math
             const mathText = mathMatches.map(m => {
               // Restore any pipes that might have been in the math
               return m.replace(/\s+/g, ' ').trim();
             }).join(' ');
-            
+
             // Create a span for the math
             const mathSpan = document.createElement('span');
             mathSpan.className = 'math';
             mathSpan.textContent = mathText;
-            
+
             // Replace table with math span
             table.parentNode.replaceChild(mathSpan, table);
             fixedCount++;
@@ -292,13 +292,13 @@ function fixMathTables() {
         }
       }
     }
-    
+
     // Also check for tables with multiple rows that might be math split across rows
     if (rows.length > 1 && rows.length <= 3) {
       const allText = Array.from(rows).map(row => {
         return Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent.trim()).join(' ');
       }).join(' ');
-      
+
       // If it looks like a single math expression split across rows
       if (allText.match(/\$[^$]*\|[^$]*\$/)) {
         const mathMatch = allText.match(/\$([^$]+)\$/);
@@ -313,7 +313,7 @@ function fixMathTables() {
       }
     }
   });
-  
+
   if (fixedCount > 0) {
     console.log(`Fixed ${fixedCount} incorrectly parsed math table(s)`);
     // Re-run MathJax on the fixed content

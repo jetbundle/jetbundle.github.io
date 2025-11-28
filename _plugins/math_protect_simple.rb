@@ -25,27 +25,7 @@ module Jekyll
         math_content = $1
         # Only process if it contains a pipe
         if math_content.include?('|')
-          # Protect pipes, but NOT those that are part of \left| or \right| commands
-          # These are LaTeX delimiters and must remain intact for MathJax
-          # Strategy: First protect \left| and \right|, then replace other pipes, then restore
-          protected = math_content.dup
-          
-          # Temporarily replace \left| and \right| with placeholders
-          left_right_placeholders = []
-          protected = protected.gsub(/\\(left|right)\|/) do |match|
-            placeholder = "LEFT_RIGHT_PIPE_#{left_right_placeholders.length}"
-            left_right_placeholders << match
-            placeholder
-          end
-          
-          # Now replace remaining pipes
-          protected = protected.gsub(/\|/, MATH_PIPE_PLACEHOLDER)
-          
-          # Restore \left| and \right|
-          left_right_placeholders.each_with_index do |original, index|
-            protected = protected.gsub("LEFT_RIGHT_PIPE_#{index}", original)
-          end
-          
+          protected = math_content.gsub(/\|/, MATH_PIPE_PLACEHOLDER)
           "$#{protected}$"
         else
           match
@@ -69,10 +49,6 @@ module Jekyll
 
   # Only process diffequations collection
   Jekyll::Hooks.register [:documents], :pre_render do |doc|
-    # Check if plugin is enabled
-    site = doc.site
-    next unless site.config.fetch('math_protect_enabled', true)
-
     next unless doc.content.is_a?(String)
     next unless doc.respond_to?(:collection) && doc.collection&.label == 'diffequations'
     next unless doc.content.include?('$') && doc.content.include?('|')
@@ -93,10 +69,6 @@ module Jekyll
   end
 
   Jekyll::Hooks.register [:documents], :post_render do |doc|
-    # Check if plugin is enabled
-    site = doc.site
-    next unless site.config.fetch('math_protect_enabled', true)
-
     next unless doc.output.is_a?(String)
     next unless doc.respond_to?(:collection) && doc.collection&.label == 'diffequations'
     next unless doc.output.include?(Jekyll::MathProtectSimple::MATH_PIPE_PLACEHOLDER)
