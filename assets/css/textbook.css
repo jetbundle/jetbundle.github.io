@@ -391,6 +391,28 @@
   border: none;
 }
 
+.widget-dropdown {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  min-width: 200px;
+}
+
+.widget-dropdown:hover {
+  border-color: var(--accent);
+}
+
+.widget-dropdown:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 .widget-value {
   min-width: 60px;
   text-align: right;
