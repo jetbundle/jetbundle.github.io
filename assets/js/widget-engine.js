@@ -94,18 +94,23 @@ class WidgetEngine {
       }).join('\n');
       
       // Remove any placeholder parameter lines and inject real values
+      // Remove comment lines about parameters
       code = code.replace(/# Parameters from widgets.*?\n/g, '');
-      code = code.replace(/lambda_val = .*?\n/g, '');
-      code = code.replace(/y0_val = .*?\n/g, '');
-      code = code.replace(/t_max_val = .*?\n/g, '');
+      // Remove any existing parameter assignments (may have template syntax)
+      code = code.replace(/lambda_val\s*=.*?\n/g, '');
+      code = code.replace(/y0_val\s*=.*?\n/g, '');
+      code = code.replace(/t_max_val\s*=.*?\n/g, '');
+      // Remove any Liquid template syntax that might remain
+      code = code.replace(/\{\{.*?\}\}/g, '');
       
-      // Insert parameter assignments at the beginning after imports
-      const importEnd = code.indexOf('\n\n');
-      if (importEnd > 0) {
-        code = code.substring(0, importEnd + 2) + 
-               '# Parameters from widgets\n' + 
+      // Insert parameter assignments after imports
+      const importSection = code.match(/(^import .+?\n)+/m);
+      if (importSection) {
+        const importEnd = importSection[0].length;
+        code = code.substring(0, importEnd) + 
+               '\n# Parameters from widgets\n' + 
                paramLines + '\n' + 
-               code.substring(importEnd + 2);
+               code.substring(importEnd);
       } else {
         code = '# Parameters from widgets\n' + paramLines + '\n\n' + code;
       }
