@@ -4,6 +4,7 @@ title: "Differential Equations Laboratory"
 description: "Production-ready computational infrastructure"
 permalink: /diffequations/
 order: 0
+chapter: 0
 ---
 
 # Differential Equations Laboratory
