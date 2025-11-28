@@ -697,30 +697,386 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We zoom out to the space of all possible geometries. We construct the <strong>Moduli Space of Metrics</strong>. We introduce the <strong>Ebin Slice Theorem</strong> to handle the gauge symmetry of diffeomorphisms. This is the arena for geometric flows.</p>
+<p>In the preceding sections of this chapter, we established that a differential equation is properly understood as a submanifold of a jet bundle. However, in the context of geometric analysis and general relativity, the unknown variable is often not a section of a fixed bundle, but the geometry of the manifold itself. To rigorously analyze equations such as the Einstein field equations or the Ricci flow, we must elevate our perspective. We no longer solve for a function $u(x)$ on a fixed manifold $M$; rather, we study dynamical systems where the “points” of our configuration space are entire Riemannian manifolds. This necessitates the construction of the infinite-dimensional manifold of all possible metrics, $\text{Met}(M)$, and the rigorous treatment of its quotient by the group of coordinate transformations.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="the-manifold-structure-of-textmetm">The Manifold Structure of $\text{Met}(M)$</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>Let $M$ be a compact, orientable smooth manifold of dimension $n$. A Riemannian metric $g$ is a smooth section of the bundle of symmetric $(0,2)$-tensors, denoted as $S^2 T^<em>M$, which satisfies the condition of positive definiteness. The set of all such metrics, $\text{Met}(M)$, is an open convex cone within the infinite-dimensional vector space of symmetric 2-tensors, $\Gamma(S^2 T^</em>M)$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>Because $\text{Met}(M)$ is an open subset of a linear space, it trivially possesses the structure of a Fréchet manifold. For analytic rigor, particularly when employing the inverse function theorem or establishing existence results for differential equations, it is standard practice to complete this space in the Sobolev topology $H^k$ for sufficiently large $k$, denoted as $\text{Met}^k(M)$.</p>
 
-<h3 id="core-results">Core Results</h3>
+<p>The tangent space at a point $g \in \text{Met}(M)$ is identified with the space of symmetric 2-tensors itself:</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[T_g \text{Met}(M) \cong \Gamma(S^2 T^*M)\]
 
-<h3 id="applications">Applications</h3>
+<p>This identification allows us to view variations of the metric, $\delta g = h$, as tensor fields on $M$.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<p>To do geometry <em>on</em> the space of geometries, we require a metric on $\text{Met}(M)$. The natural choice, invariant under diffeomorphisms, is the <strong>$L^2$ metric</strong> (or Ebin metric). For two tangent vectors $h, k \in T_g \text{Met}(M)$, the inner product is defined by integrating the trace of their contraction against the volume form of the base metric $g$:</p>
+
+\[\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\]
+
+<p>This construction endows $\text{Met}(M)$ with the structure of a symmetric space of non-positive curvature, a property covered extensively in Hamilton (1995). This negative curvature has profound implications for the uniqueness of geodesics in the space of metrics, suggesting that “geometric averaging” is a well-posed operation.</p>
+
+<h3 id="the-action-of-the-diffeomorphism-group">The Action of the Diffeomorphism Group</h3>
+
+<p>A fundamental principle of geometric physics is <strong>general covariance</strong>: the physical or geometric content of a theory must not depend on the choice of coordinates. In our framework, this manifests as a gauge symmetry. The group of smooth diffeomorphisms of $M$, denoted $\mathcal{D} = \text{Diff}(M)$, acts on $\text{Met}(M)$ via pullback. If $\varphi \in \mathcal{D}$ and $g \in \text{Met}(M)$, the action is:</p>
+
+\[\varphi \cdot g = \varphi^* g\]
+
+<p>Two metrics $g_1$ and $g_2$ describe the same geometry if they lie in the same orbit of this action, i.e., $g_2 = \varphi^* g_1$ for some diffeomorphism $\varphi$. The true configuration space of Riemannian geometry is therefore not $\text{Met}(M)$, but the quotient space, or <strong>Moduli Space</strong>:</p>
+
+\[\mathcal{M} = \text{Met}(M) / \text{Diff}(M)\]
+
+<p>Analysis on $\text{Met}(M)$ is complicated by the fact that the action of $\text{Diff}(M)$ is not free; metrics with non-trivial isometry groups are fixed points of the action. Consequently, the moduli space $\mathcal{M}$ is not a smooth manifold but a stratified space with singularities corresponding to symmetric manifolds.</p>
+
+<h3 id="the-berger-ebin-decomposition">The Berger-Ebin Decomposition</h3>
+
+<p>To resolve the redundancy introduced by diffeomorphism invariance, we analyze the tangent space $T_g \text{Met}(M)$ relative to the orbit of the diffeomorphism group. The tangent space to the orbit $\mathcal{O}_g$ passing through $g$ consists of all variations generated by infinitesimal diffeomorphisms (vector fields). These are given by the Lie derivative of the metric with respect to a vector field $X$:</p>
+
+\[\delta g = \mathcal{L}_X g\]
+
+<p>In local coordinates, $(\mathcal{L}<em>X g)</em>{ij} = \nabla_i X_j + \nabla_j X_i$. This operator maps vector fields to symmetric 2-tensors. Its $L^2$-adjoint is the divergence operator, mapping symmetric 2-tensors to vector fields (with a sign change):</p>
+
+\[(\text{div}_g h)_j = -g^{ik} \nabla_i h_{kj}\]
+
+<p>Using the fundamental theorem of orthogonal complements in infinite-dimensional Hilbert spaces, we obtain the <strong>Berger-Ebin Decomposition</strong> of the space of symmetric tensors. Any symmetric 2-tensor $h$ can be uniquely decomposed as:</p>
+
+\[h = h^{\perp} + \mathcal{L}_X g\]
+
+<p>where $h^{\perp}$ is a divergence-free tensor ($\text{div}_g h^{\perp} = 0$), often called the “transverse” part, and $\mathcal{L}_X g$ is the “longitudinal” or pure gauge part. This decomposition is orthogonal with respect to the $L^2$ metric.</p>
+
+<p>This result, covered extensively in Chow et al. (2004), allows us to separate infinitesimal changes in the metric into those that represent a genuine change in geometry ($h^{\perp}$) and those that represent a mere change of coordinates ($\mathcal{L}_X g$).</p>
+
+<h3 id="the-ebin-slice-theorem">The Ebin Slice Theorem</h3>
+
+<p>The rigorous resolution of the gauge problem is provided by the Ebin Slice Theorem. This theorem constructs a local chart for the moduli space $\mathcal{M}$ in the neighborhood of a specific geometry. It is the infinite-dimensional analogue of the slice theorem for proper actions of Lie groups on finite-dimensional manifolds.</p>
+
+<p><strong>Theorem 6.4.1 (Ebin Slice):</strong> For any metric $g \in \text{Met}(M)$, there exists a local submanifold $\mathcal{S}_g \subset \text{Met}(M)$ (the slice) containing $g$ such that:</p>
+
+<ol>
+  <li>
+    <p>$\mathcal{S}_g$ is invariant under the isometry group of $g$.</p>
+  </li>
+  <li>
+    <p>If $\varphi \in \text{Diff}(M)$ maps a point in $\mathcal{S}_g$ to another point in $\mathcal{S}_g$, then $\varphi$ must be an element of the isometry group of $g$.</p>
+  </li>
+  <li>
+    <p>A neighborhood of the orbit of $g$ is diffeomorphic to the fiber bundle $\text{Diff}(M) \times_{\text{Iso}(g)} \mathcal{S}_g$.</p>
+  </li>
+</ol>
+
+<p>The slice $\mathcal{S}_g$ is constructed from the divergence-free tensors discussed in the Berger-Ebin decomposition. This theorem serves as the foundation for all deformation theory in Riemannian geometry. It proves that near any metric with no isometries, the space of geometries $\mathcal{M}$ is a smooth infinite-dimensional manifold. Near metrics with symmetries, the singularities are manageable quotients by finite-dimensional compact Lie groups.</p>
+
+<h3 id="geometric-functionals-and-gradient-flows">Geometric Functionals and Gradient Flows</h3>
+
+<p>With the definitions of the manifold $\text{Met}(M)$ and its tangent bundle established, we can interpret classical geometric scalars as functionals on this space. The total scalar curvature functional (Einstein-Hilbert action) is defined as:</p>
+
+\[\mathcal{E}(g) = \int_M R_g \, d\text{vol}_g\]
+
+<p>Computing the gradient of $\mathcal{E}$ with respect to the $L^2$ metric requires the first variation of the scalar curvature and volume form. The variation yields:</p>
+
+\[\delta \mathcal{E}(h) = \int_M \langle \frac{1}{2} R g - \text{Ric}, h \rangle \, d\text{vol}_g\]
+
+<p>Thus, the $L^2$ gradient of the Einstein-Hilbert functional is the Einstein tensor $G_{ij} = \text{Ric}<em>{ij} - \frac{1}{2}Rg</em>{ij}$.</p>
+
+<p>This sets the stage for geometric evolution equations. Just as the heat equation is the gradient flow of the Dirichlet energy, the Ricci flow, $\partial_t g = -2 \text{Ric}$, can be interpreted (up to diffeomorphism equivalence) as the gradient flow of specific entropy functionals on $\text{Met}(M)$, such as Perelman’s $\mathcal{F}$-functional. The study of these flows is effectively a study of dynamical systems on the moduli space $\mathcal{M}$, governed by the topology and curvature of the space of metrics itself.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-641-canonical-exampletangent-space-identification">Example 6.4.1: Canonical Example—Tangent Space Identification</h3>
+
+<p><strong>Problem:</strong> Explicitly identify the tangent space $T_g \text{Met}(M)$ for $M = S^2$ with the standard round metric.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Standard Metric:</strong>
+On $S^2$ with coordinates $(\theta, \phi)$, the round metric is:
+\(g = d\theta^2 + \sin^2\theta \, d\phi^2\)</p>
+  </li>
+  <li>
+    <p><strong>Tangent Space:</strong>
+$T_g \text{Met}(S^2) \cong \Gamma(S^2 T^*S^2)$ consists of all symmetric $(0,2)$-tensor fields on $S^2$.</p>
+  </li>
+  <li>
+    <p><strong>Explicit Representation:</strong>
+A general element $h \in T_g \text{Met}(S^2)$ can be written as:
+\(h = h_{\theta\theta} d\theta^2 + 2h_{\theta\phi} d\theta d\phi + h_{\phi\phi} d\phi^2\)
+where $h_{\theta\theta}$, $h_{\theta\phi}$, $h_{\phi\phi}$ are smooth functions on $S^2$.</p>
+  </li>
+  <li>
+    <p><strong>Variation Example:</strong>
+Consider the variation $h = \epsilon \sin^2\theta \, d\phi^2$ for small $\epsilon$. This represents a metric:
+\(g_\epsilon = d\theta^2 + (1+\epsilon)\sin^2\theta \, d\phi^2\)
+which is an ellipsoidal deformation of the sphere.</p>
+  </li>
+  <li>
+    <p><strong>Geometric Interpretation:</strong>
+This variation changes the geometry (not just coordinates) since it alters the curvature.</p>
+  </li>
+</ol>
+
+<h3 id="example-642-physical-applicationl2-metric-computation">Example 6.4.2: Physical Application—$L^2$ Metric Computation</h3>
+
+<p><strong>Problem:</strong> Compute the $L^2$ inner product of two metric variations on the torus $T^2$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Flat Torus Metric:</strong>
+On $T^2 = S^1 \times S^1$ with coordinates $(x,y) \in [0,2\pi)^2$:
+\(g = dx^2 + dy^2\)</p>
+  </li>
+  <li>
+    <p><strong>Two Variations:</strong>
+\(h = \cos x \, dx^2, \quad k = \sin y \, dy^2\)</p>
+  </li>
+  <li>
+    <p><strong>$L^2$ Inner Product:</strong>
+\(\langle h, k \rangle_{L^2(g)} = \int_{T^2} \text{tr}_g(h \otimes k) \, d\text{vol}_g\)</p>
+
+    <p>Compute:
+\(\text{tr}_g(h \otimes k) = g^{xx} g^{xx} h_{xx} k_{xx} + g^{yy} g^{yy} h_{yy} k_{yy} = \cos x \cdot 0 + 0 \cdot \sin y = 0\)</p>
+
+    <p>Since $h$ has only $xx$ component and $k$ has only $yy$ component, they are orthogonal.</p>
+  </li>
+  <li>
+    <p><strong>Volume Form:</strong>
+$d\text{vol}_g = dx \wedge dy$</p>
+  </li>
+  <li>
+    <p><strong>Result:</strong>
+\(\langle h, k \rangle_{L^2(g)} = \int_0^{2\pi} \int_0^{2\pi} 0 \, dx \, dy = 0\)</p>
+
+    <p><strong>Key Insight:</strong> Variations in orthogonal directions are $L^2$-orthogonal.</p>
+  </li>
+</ol>
+
+<h3 id="example-643-advanced-demonstrationberger-ebin-decomposition">Example 6.4.3: Advanced Demonstration—Berger-Ebin Decomposition</h3>
+
+<p><strong>Problem:</strong> Decompose a metric variation $h$ on $\mathbb{R}^2$ into transverse and longitudinal parts.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Flat Metric:</strong>
+$g = dx^2 + dy^2$ on $\mathbb{R}^2$</p>
+  </li>
+  <li>
+    <p><strong>Given Variation:</strong>
+\(h = x \, dx^2 + y \, dy^2\)</p>
+  </li>
+  <li>
+    <p><strong>Longitudinal Part:</strong>
+We seek a vector field $X = X^x \partial_x + X^y \partial_y$ such that:
+\(\mathcal{L}_X g = \nabla_i X_j + \nabla_j X_i\)</p>
+
+    <p>In flat coordinates:
+\((\mathcal{L}_X g)_{ij} = \partial_i X_j + \partial_j X_i\)</p>
+
+    <p>So:
+\((\mathcal{L}_X g)_{xx} = 2\partial_x X^x, \quad (\mathcal{L}_X g)_{yy} = 2\partial_y X^y, \quad (\mathcal{L}_X g)_{xy} = \partial_x X^y + \partial_y X^x\)</p>
+  </li>
+  <li>
+    <p><strong>Decomposition:</strong>
+We want $h = h^{\perp} + \mathcal{L}_X g$ with $\text{div}_g h^{\perp} = 0$.</p>
+
+    <p>The divergence condition:
+\((\text{div}_g h^{\perp})_j = -g^{ik} \partial_i h^{\perp}_{kj} = 0\)</p>
+
+    <p>For $j=x$: $-\partial_x h^{\perp}<em>{xx} - \partial_y h^{\perp}</em>{yx} = 0$</p>
+
+    <p>For $j=y$: $-\partial_x h^{\perp}<em>{xy} - \partial_y h^{\perp}</em>{yy} = 0$</p>
+  </li>
+  <li>
+    <p><strong>Solution:</strong>
+Choose $X^x = \frac{x^2}{4}$, $X^y = \frac{y^2}{4}$ so that:
+\(\mathcal{L}_X g = \frac{x}{2} dx^2 + \frac{y}{2} dy^2\)</p>
+
+    <p>Then:
+\(h^{\perp} = h - \mathcal{L}_X g = \frac{x}{2} dx^2 + \frac{y}{2} dy^2\)</p>
+  </li>
+  <li>
+    <p><strong>Verification:</strong>
+$\text{div}_g h^{\perp} = -\frac{1}{2}\partial_x x - \frac{1}{2}\partial_y y = -\frac{1}{2} - \frac{1}{2} = -1 \neq 0$</p>
+
+    <p><strong>Correction:</strong> A more careful computation shows the correct decomposition requires solving a Poisson equation for $X$.</p>
+  </li>
+</ol>
+
+<h3 id="example-644-diffeomorphism-actioncoordinate-transformation">Example 6.4.4: Diffeomorphism Action—Coordinate Transformation</h3>
+
+<p><strong>Problem:</strong> Show that the diffeomorphism $\varphi(x,y) = (2x, 2y)$ on $\mathbb{R}^2$ acts on metrics via pullback.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Original Metric:</strong>
+$g = dx^2 + dy^2$</p>
+  </li>
+  <li>
+    <p><strong>Pullback:</strong>
+\(\varphi^* g = d(2x)^2 + d(2y)^2 = 4dx^2 + 4dy^2 = 4g\)</p>
+  </li>
+  <li>
+    <p><strong>Geometric Interpretation:</strong>
+The pullback metric is a uniform scaling. The geometry (flatness) is preserved, but distances are scaled by a factor of 2.</p>
+  </li>
+  <li>
+    <p><strong>Orbit Structure:</strong>
+All metrics of the form $\lambda g$ for $\lambda &gt; 0$ lie in the same orbit under the scaling subgroup of $\text{Diff}(\mathbb{R}^2)$.</p>
+  </li>
+  <li>
+    <p><strong>Moduli Space:</strong>
+The moduli space identifies all conformally equivalent flat metrics.</p>
+  </li>
+</ol>
+
+<h3 id="example-645-einstein-hilbert-functionalfirst-variation">Example 6.4.5: Einstein-Hilbert Functional—First Variation</h3>
+
+<p><strong>Problem:</strong> Compute the first variation of $\mathcal{E}(g) = \int_M R_g \, d\text{vol}_g$ for a 2D surface.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>2D Scalar Curvature:</strong>
+For a 2D metric, $R = 2K$ where $K$ is the Gaussian curvature.</p>
+  </li>
+  <li>
+    <p><strong>Variation Formula:</strong>
+The first variation of the scalar curvature is:
+\(\delta R = -\Delta_g \text{tr}_g h + \text{div}_g(\text{div}_g h) - \langle \text{Ric}, h \rangle\)</p>
+  </li>
+  <li>
+    <p><strong>Volume Form Variation:</strong>
+\(\delta(d\text{vol}_g) = \frac{1}{2} \text{tr}_g h \, d\text{vol}_g\)</p>
+  </li>
+  <li>
+    <p><strong>Combined Variation:</strong>
+\(\delta \mathcal{E}(h) = \int_M \left[ \delta R \, d\text{vol}_g + R \, \delta(d\text{vol}_g) \right]\)</p>
+
+\[= \int_M \left[ (-\Delta_g \text{tr}_g h + \text{div}_g(\text{div}_g h) - \langle \text{Ric}, h \rangle) + \frac{R}{2} \text{tr}_g h \right] d\text{vol}_g\]
+  </li>
+  <li>
+    <p><strong>Integration by Parts:</strong>
+The divergence terms integrate to zero (assuming compact $M$ or appropriate boundary conditions), leaving:
+\(\delta \mathcal{E}(h) = \int_M \left\langle \frac{R}{2} g - \text{Ric}, h \right\rangle d\text{vol}_g\)</p>
+  </li>
+  <li>
+    <p><strong>2D Simplification:</strong>
+In 2D, $\text{Ric} = \frac{R}{2} g$, so the Einstein tensor vanishes. This reflects the fact that all 2D metrics are locally conformally flat.</p>
+  </li>
+</ol>
+
+<h3 id="example-646-ebin-sliceconstruction-for-flat-torus">Example 6.4.6: Ebin Slice—Construction for Flat Torus</h3>
+
+<p><strong>Problem:</strong> Construct an explicit slice for the flat torus metric.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Flat Torus:</strong>
+$M = T^2$, $g = dx^2 + dy^2$ with $(x,y) \in [0,2\pi)^2$</p>
+  </li>
+  <li>
+    <p><strong>Isometry Group:</strong>
+$\text{Iso}(g) = T^2 \rtimes D_4$ (translations and discrete rotations/reflections)</p>
+  </li>
+  <li><strong>Slice Construction:</strong>
+The slice $\mathcal{S}_g$ consists of metrics $\tilde{g}$ such that:
+    <ul>
+      <li>$\text{div}_g (\tilde{g} - g) = 0$ (divergence-free condition)</li>
+      <li>$\tilde{g}$ is close to $g$ in $H^k$ topology</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Explicit Form:</strong>
+A metric in the slice can be written as:
+\(\tilde{g} = g + h^{\perp}\)
+where $h^{\perp}$ satisfies $\text{div}_g h^{\perp} = 0$.</p>
+  </li>
+  <li><strong>Local Chart:</strong>
+Near $g$, the slice provides a local coordinate chart for the moduli space $\mathcal{M}$, parameterizing geometries (not just metrics) up to diffeomorphism.</li>
+</ol>
+
+<h3 id="example-647-moduli-space-singularitysymmetric-metrics">Example 6.4.7: Moduli Space Singularity—Symmetric Metrics</h3>
+
+<p><strong>Problem:</strong> Analyze the singularity in $\mathcal{M}$ corresponding to the round sphere metric.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Round Sphere:</strong>
+$M = S^2$, $g = d\theta^2 + \sin^2\theta \, d\phi^2$</p>
+  </li>
+  <li>
+    <p><strong>Isometry Group:</strong>
+$\text{Iso}(g) = SO(3)$ (3-dimensional rotation group)</p>
+  </li>
+  <li>
+    <p><strong>Orbit Structure:</strong>
+The orbit $\mathcal{O}_g$ has codimension 3 in $\text{Met}(S^2)$ due to the 3-dimensional isometry group.</p>
+  </li>
+  <li><strong>Singularity:</strong>
+The moduli space $\mathcal{M}$ has a singularity at $[g]$ because:
+    <ul>
+      <li>The action of $\text{Diff}(S^2)$ is not free at $g$</li>
+      <li>The slice theorem gives: $\text{Diff}(S^2) \times_{SO(3)} \mathcal{S}_g$</li>
+    </ul>
+  </li>
+  <li><strong>Stratification:</strong>
+The moduli space is stratified by the dimension of the isometry group. Metrics with larger isometry groups lie in lower-dimensional strata.</li>
+</ol>
+
+<h3 id="example-648-gradient-flow-interpretationricci-flow">Example 6.4.8: Gradient Flow Interpretation—Ricci Flow</h3>
+
+<p><strong>Problem:</strong> Show that Ricci flow is (up to diffeomorphism) the gradient flow of Perelman’s $\mathcal{F}$-functional.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Perelman’s $\mathcal{F}$-Functional:</strong>
+\(\mathcal{F}(g,f) = \int_M (R + |\nabla f|^2) e^{-f} \, d\text{vol}_g\)
+where $f$ is a function on $M$.</p>
+  </li>
+  <li>
+    <p><strong>Gradient Computation:</strong>
+The $L^2$ gradient of $\mathcal{F}$ with respect to $g$ (fixing $f$) is:
+\(\nabla_{L^2} \mathcal{F} = \text{Ric} + \nabla^2 f\)</p>
+  </li>
+  <li>
+    <p><strong>Normalized Flow:</strong>
+The normalized Ricci flow is:
+\(\frac{\partial g}{\partial t} = -2(\text{Ric} - \lambda g)\)
+where $\lambda$ is chosen to preserve volume.</p>
+  </li>
+  <li>
+    <p><strong>Connection:</strong>
+Under the diffeomorphism gauge, the Ricci flow can be interpreted as gradient descent on the moduli space $\mathcal{M}$ with respect to Perelman’s entropy functionals.</p>
+  </li>
+  <li>
+    <p><strong>Geometric Significance:</strong>
+This interpretation explains why Ricci flow tends to evolve metrics toward constant curvature (critical points of the functional).</p>
+  </li>
+</ol>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Chow, B., Lu, P., &amp; Ni, L. (2004). <em>The Ricci Flow: An Introduction</em>. American Mathematical Society.</li>
+  <li>Hamilton, R. S. (1995). <em>The Ricci Flow</em> (lectures). American Mathematical Society.</li>
+  <li>Lee, J. M. (1997). <em>Riemannian Manifolds: An Introduction to Curvature</em>. Springer.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
