@@ -31,7 +31,7 @@ chapter: 0
 <div class="interactive-module">
   <div class="module-header">
     <h3>First-Order Linear ODE</h3>
-    <button class="run-button">Run Python Code</button>
+    <button class="run-button">Run</button>
   </div>
 
   <div class="code-block hidden">
@@ -109,7 +109,7 @@ create_plot([trace1, trace2], layout)</code></pre>
         <span class="widget-value" data-param="t_max">5.0</span>
       </div>
     </div>
-    <button class="run-button widget-run">Run Code</button>
+    <button class="run-button widget-run">Run</button>
   </div>
 
   <div class="code-block hidden">
@@ -152,7 +152,7 @@ create_plot([trace], layout)</code></pre>
 <div class="widget-module widget-continuous" id="ode-widget-continuous" data-update-mode="continuous">
   <div class="module-header">
     <h3>Continuous Update ODE Explorer</h3>
-    <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Drag sliders to see real-time updates</p>
+    <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Click Run, then drag sliders to see real-time updates</p>
     <div class="widget-controls">
       <div class="widget-control">
         <label>λ (Decay Rate)</label>
@@ -172,6 +172,7 @@ create_plot([trace], layout)</code></pre>
         <span class="widget-value" data-param="t_max">5.0</span>
       </div>
     </div>
+    <button class="run-button widget-run">Run</button>
   </div>
 
   <div class="code-block hidden">

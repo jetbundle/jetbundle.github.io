@@ -199,7 +199,7 @@ if 'plot_data' in globals() and plot_data is not None:
           Plotly.purge(outputContainer);
         }
         outputContainer.innerHTML = '';
-        
+
         Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
           // Trigger MathJax rendering after plot is rendered
           if (window.MathJax && window.MathJax.typesetPromise) {

@@ -15,57 +15,8 @@ class WidgetEngine {
   }
 
   async initializeContinuousWidgets() {
-    // Auto-execute continuous widgets on page load after Pyodide is ready
-    const executeContinuous = async () => {
-      // Wait for Pyodide to be ready first
-      if (window.textbookEngine) {
-        const loaded = await window.textbookEngine.waitForLoad();
-        if (!loaded) {
-          console.error('Pyodide failed to load, cannot initialize continuous widgets');
-          return;
-        }
-      } else {
-        // Wait for textbookEngine to be available
-        let attempts = 0;
-        while (!window.textbookEngine && attempts < 50) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-          attempts++;
-        }
-        if (!window.textbookEngine) {
-          console.error('TextbookEngine not available');
-          return;
-        }
-        await window.textbookEngine.waitForLoad();
-      }
-
-      // Additional delay to ensure Pyodide is fully initialized
-      await new Promise(resolve => setTimeout(resolve, 300));
-
-      // Execute each continuous widget independently
-      for (const [widgetId, widgetData] of this.widgets.entries()) {
-        const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
-                             widgetData.element.dataset.updateMode === 'continuous';
-        if (isContinuous && widgetData.output) {
-          // Only execute if output is empty and not already executing
-          if (!widgetData.executing && (!widgetData.output.innerHTML || widgetData.output.innerHTML.trim() === '' || widgetData.output.innerHTML.includes('Computing'))) {
-            // Execute each widget with a small delay to avoid race conditions
-            await new Promise(resolve => setTimeout(resolve, 100));
-            this.executeWidget(widgetData, true).catch(err => {
-              console.error(`Error executing continuous widget ${widgetId}:`, err);
-            });
-          }
-        }
-      }
-    };
-    
-    // Wait for DOM to be ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(executeContinuous, 2000);
-      });
-    } else {
-      setTimeout(executeContinuous, 2000);
-    }
+    // Don't auto-execute continuous widgets - they require user to click "Run" first
+    // This method is kept for future use but currently does nothing
   }
 
   discoverWidgets() {
@@ -83,13 +34,18 @@ class WidgetEngine {
         output = widget.querySelector('.plotly-container');
       }
 
+      const isContinuous = widget.classList.contains('widget-continuous') ||
+                           widget.dataset.updateMode === 'continuous';
+
       this.widgets.set(widgetId, {
         element: widget,
         sliders: Array.from(widget.querySelectorAll('.widget-slider')),
         runButton: widget.querySelector('.widget-run'),
         output: output,
         code: widget.querySelector('pre code')?.textContent || '',
-        executing: false  // Track execution state to prevent duplicates
+        executing: false,  // Track execution state to prevent duplicates
+        isContinuous: isContinuous,
+        continuousActivated: false  // Track if continuous mode has been activated (after first Run click)
       });
     });
   }
@@ -97,44 +53,53 @@ class WidgetEngine {
   attachWidgetListeners() {
     this.widgets.forEach((widgetData, widgetId) => {
       // Check if this widget has continuous update mode
-      const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
-                           widgetData.element.dataset.updateMode === 'continuous';
+      const isContinuous = widgetData.isContinuous;
 
-      // Throttle function for efficient continuous updates
+      // For continuous widgets: initially sliders only update display values
+      // After clicking Run, continuous updates will be enabled
+      widgetData.sliders.forEach(slider => {
+        // Always allow slider value display updates
+        slider.addEventListener('input', (e) => {
+          const paramName = e.target.dataset.param;
+          const paramValue = e.target.value;
+
+          const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
+          if (valueDisplay) {
+            valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
+          }
+        });
+      });
+
+      // Throttle function for efficient continuous updates (used after Run is clicked)
       const throttleUpdate = this.throttle((e) => {
-        const paramName = e.target.dataset.param;
-        const paramValue = e.target.value;
-
-        const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
-        if (valueDisplay) {
-          valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
-        }
-
-        // Update plot if in continuous mode
-        if (isContinuous) {
+        if (widgetData.continuousActivated) {
           this.executeWidget(widgetData, true); // true = skip button state changes
         }
       }, 150); // 150ms throttle for smooth but efficient updates
 
-      widgetData.sliders.forEach(slider => {
-        if (isContinuous) {
-          slider.addEventListener('input', throttleUpdate);
-        } else {
-          slider.addEventListener('input', (e) => {
-            const paramName = e.target.dataset.param;
-            const paramValue = e.target.value;
-
-            const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
-            if (valueDisplay) {
-              valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
-            }
-          });
-        }
-      });
-
-      if (widgetData.runButton && !isContinuous) {
+      // Handle Run button click
+      if (widgetData.runButton) {
         widgetData.runButton.addEventListener('click', () => {
-          this.executeWidget(widgetData);
+          if (isContinuous && !widgetData.continuousActivated) {
+            // First Run click: execute and activate continuous mode
+            this.executeWidget(widgetData, false).then(() => {
+              // After successful execution, hide button and enable continuous updates
+              if (widgetData.runButton) {
+                widgetData.runButton.style.display = 'none';
+              }
+              widgetData.continuousActivated = true;
+              
+              // Attach continuous update listeners to sliders
+              widgetData.sliders.forEach(slider => {
+                slider.addEventListener('input', throttleUpdate);
+              });
+            }).catch(err => {
+              console.error('Error activating continuous mode:', err);
+            });
+          } else {
+            // Manual widget or already activated continuous widget
+            this.executeWidget(widgetData, false);
+          }
         });
       }
     });
@@ -323,7 +288,7 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
 
         // Clear output completely before rendering
         output.innerHTML = '';
-        
+
         // Use Plotly.newPlot which automatically replaces any existing plot
         Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
           // Trigger MathJax rendering after plot is rendered
@@ -342,7 +307,7 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
         output.innerHTML = `<div style="color: var(--error); padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--error); border-radius: 8px; margin: 1rem 0;"><strong>Error:</strong> ${error.message}</div>`;
       } finally {
         widgetData.executing = false;
-        
+
         // Only restore button state if not in continuous mode
         if (!skipButtonState && button) {
           button.disabled = false;
