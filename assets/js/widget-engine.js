@@ -46,7 +46,9 @@ class WidgetEngine {
         executing: false,  // Track execution state to prevent duplicates
         isContinuous: isContinuous,
         continuousActivated: false,  // Track if continuous mode has been activated (after first Run click)
-        hasPlot: false  // Track if plot has been created (for Plotly.react vs newPlot)
+        hasPlot: false,  // Track if plot has been created (for Plotly.react vs newPlot)
+        plotDataVar: null,  // Store consistent plot data variable name
+        plotHelperDefined: false  // Track if create_plot helper has been defined
       });
     });
   }
