@@ -37,12 +37,35 @@ class WidgetEngine {
       const isContinuous = widget.classList.contains('widget-continuous') ||
                            widget.dataset.updateMode === 'continuous';
 
+      // Find dropdowns that can change code blocks
+      const codeSelector = widget.querySelector('.widget-dropdown[data-code-selector="true"]');
+      
+      // Collect all code blocks (for dropdown-based code selection)
+      const codeBlocks = Array.from(widget.querySelectorAll('.code-block[data-code-type]'));
+      const codeMap = new Map();
+      codeBlocks.forEach(block => {
+        const codeType = block.dataset.codeType;
+        const code = block.querySelector('pre code')?.textContent || '';
+        if (codeType && code) {
+          codeMap.set(codeType, code);
+        }
+      });
+      
+      // If no code blocks with data-code-type, use the default code block
+      let defaultCode = '';
+      if (codeMap.size === 0) {
+        defaultCode = widget.querySelector('pre code')?.textContent || '';
+      }
+
       this.widgets.set(widgetId, {
         element: widget,
         sliders: Array.from(widget.querySelectorAll('.widget-slider')),
+        dropdowns: Array.from(widget.querySelectorAll('.widget-dropdown')),
+        codeSelector: codeSelector,  // Dropdown that selects which code to run
+        codeMap: codeMap,  // Map of code-type -> code content
         runButton: widget.querySelector('.widget-run'),
         output: output,
-        code: widget.querySelector('pre code')?.textContent || '',
+        code: defaultCode,  // Default code (used when no dropdown selection)
         executing: false,  // Track execution state to prevent duplicates
         isContinuous: isContinuous,
         continuousActivated: false,  // Track if continuous mode has been activated (after first Run click)
@@ -93,6 +116,23 @@ class WidgetEngine {
         slider.addEventListener('input', displayUpdateHandler);
         // Store handler for potential removal (though we don't need to remove it)
         slider._displayUpdateHandler = displayUpdateHandler;
+      });
+
+      // Handle dropdowns (including code selector dropdowns)
+      widgetData.dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('change', (e) => {
+          // If this is a code selector dropdown, update the active code block
+          if (dropdown.dataset.codeSelector === 'true' && widgetData.codeMap.size > 0) {
+            const selectedType = e.target.value;
+            console.log('Code type changed to:', selectedType);
+            
+            // Update which code block is visible (optional visual feedback)
+            const codeBlocks = widgetData.element.querySelectorAll('.code-block[data-code-type]');
+            codeBlocks.forEach(block => {
+              block.style.display = block.dataset.codeType === selectedType ? 'block' : 'none';
+            });
+          }
+        });
       });
 
       // Handle Run button click
@@ -212,7 +252,27 @@ class WidgetEngine {
 
       console.log(`Widget ${widgetData.element.id || 'unknown'} execution with params:`, params);
 
+      // Get code based on dropdown selection if code selector exists
       let code = widgetData.code;
+      if (widgetData.codeSelector && widgetData.codeMap.size > 0) {
+        const selectedType = widgetData.codeSelector.value;
+        if (widgetData.codeMap.has(selectedType)) {
+          code = widgetData.codeMap.get(selectedType);
+          console.log('Using code for type:', selectedType);
+        } else {
+          console.warn('Selected code type not found:', selectedType, 'using default');
+        }
+      }
+      
+      // Also collect dropdown values for parameters
+      widgetData.dropdowns.forEach(dropdown => {
+        if (!dropdown.dataset.codeSelector) {  // Don't include code selector as a param
+          const paramName = dropdown.dataset.param;
+          if (paramName) {
+            params[paramName] = dropdown.value;
+          }
+        }
+      });
 
       // Inject parameters - map widget param names to Python variable names
       const paramMapping = {
@@ -363,7 +423,7 @@ else:
             scale: 1
           }
         };
-        
+
         // Only add mathjax config if MathJax is fully loaded
         if (window.MathJax && window.MathJax.startup && window.MathJax.startup.document && window.MathJax.typesetPromise) {
           plotConfig.mathjax = 'cdn';
