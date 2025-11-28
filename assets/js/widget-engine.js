@@ -82,12 +82,14 @@ class WidgetEngine {
         widgetData.runButton.addEventListener('click', () => {
           if (isContinuous && !widgetData.continuousActivated) {
             // First Run click: execute and activate continuous mode
-            this.executeWidget(widgetData, false).then(() => {
+            // Mark as activated immediately to prevent button restoration
+            widgetData.continuousActivated = true;
+            
+            this.executeWidget(widgetData, true).then(() => {
               // After successful execution, hide button and enable continuous updates
               if (widgetData.runButton) {
                 widgetData.runButton.style.display = 'none';
               }
-              widgetData.continuousActivated = true;
               
               // Attach continuous update listeners to sliders
               widgetData.sliders.forEach(slider => {
@@ -95,6 +97,11 @@ class WidgetEngine {
               });
             }).catch(err => {
               console.error('Error activating continuous mode:', err);
+              // Reset if execution failed
+              widgetData.continuousActivated = false;
+              if (widgetData.runButton) {
+                widgetData.runButton.style.display = '';
+              }
             });
           } else {
             // Manual widget or already activated continuous widget
