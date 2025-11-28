@@ -28,13 +28,13 @@ Before attempting to solve a first-order differential equation of the form $y' =
 
 Let $D \subset \mathbb{R}^2$ be a domain containing the point $(t_0, y_0)$. We require the function $f(t, y)$ to be continuous on $D$ and to satisfy a **Lipschitz condition** with respect to $y$ uniformly in $t$. That is, there exists a constant $K > 0$ such that for all $(t, y_1)$ and $(t, y_2)$ in $D$:
 
-$$\|f(t, y_1) - f(t, y_2)\| \leq K\|y_1 - y_2\|$$
+$\|f(t, y_1) - f(t, y_2)\| \leq K\|y_1 - y_2\|$
 
 Under these conditions, there exists an interval $I$ centered at $t_0$ where a unique solution $y(t)$ exists satisfying the initial value problem $y(t_0) = y_0$.
 
 The proof of this theorem transforms the differential equation into an equivalent integral equation:
 
-$$y(t) = y_0 + \int_{t_0}^t f(s, y(s)) \, ds$$
+$y(t) = y_0 + \int_{t_0}^t f(s, y(s)) \, ds$
 
 We define an operator $T$ on the space of continuous functions such that $(Ty)(t)$ equals the right-hand side of the equation above. The existence proof proceeds via the **Banach Fixed Point Theorem**. We show that under the Lipschitz condition, the operator $T$ is a contraction mapping on a complete metric space of functions. The sequence of Picard iterates defined by $y_{n+1} = Ty_n$ converges uniformly to the unique fixed point, which is the solution to the ODE.
 
@@ -46,11 +46,11 @@ A more geometric perspective arises when we treat the ODE as a relation between 
 
 The necessary and sufficient condition for exactness on a simply connected domain (by Poincaré's Lemma) is the equality of mixed partial derivatives:
 
-$$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$
+$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$
 
 When an equation is not exact, we seek an **integrating factor** $\mu(x, y)$ such that the form $\mu M dx + \mu N dy = 0$ satisfies the exactness condition. This leads to a partial differential equation for $\mu$:
 
-$$M \frac{\partial \mu}{\partial y} - N \frac{\partial \mu}{\partial x} = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)$$
+$M \frac{\partial \mu}{\partial y} - N \frac{\partial \mu}{\partial x} = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)$
 
 While generally difficult to solve, this often simplifies if $\mu$ depends on only one variable.
 
@@ -58,11 +58,11 @@ While generally difficult to solve, this often simplifies if $\mu$ depends on on
 
 The linear first-order equation is the prototype for the theory of differential operators. Written in the standard form:
 
-$$y' + P(x)y = Q(x)$$
+$y' + P(x)y = Q(x)$
 
 we apply the method of integrating factors. By multiplying the entire equation by $\mu(x) = \exp\left(\int P(x) \, dx\right)$, the left-hand side becomes the derivative of a product, $(\mu y)'$. Integration yields the general solution:
 
-$$y(x) = e^{-\int P(x)dx} \left( \int Q(x) e^{\int P(x)dx} \, dx + C \right)$$
+$y(x) = e^{-\int P(x)dx} \left( \int Q(x) e^{\int P(x)dx} \, dx + C \right)$
 
 This structure introduces the concept of **Variation of Parameters**. If we know the solution $y_h$ to the homogeneous equation ($Q(x)=0$), we assume the solution to the inhomogeneous equation takes the form $y(x) = v(x)y_h(x)$. Substituting this ansatz into the ODE yields a separable equation for the unknown function $v(x)$.
 
@@ -70,15 +70,15 @@ This structure introduces the concept of **Variation of Parameters**. If we know
 
 The **Riccati equation** is a nonlinear ODE of the form:
 
-$$y' = P(x) + Q(x)y + R(x)y^2$$
+$y' = P(x) + Q(x)y + R(x)y^2$
 
 Despite its nonlinearity, the Riccati equation is intimately connected to linear theory. It can be transformed into a second-order linear homogeneous equation via the substitution:
 
-$$y(x) = -\frac{1}{R(x)} \frac{u'(x)}{u(x)}$$
+$y(x) = -\frac{1}{R(x)} \frac{u'(x)}{u(x)}$
 
 This transforms the original nonlinear problem for $y$ into the linear problem for $u$:
 
-$$u'' - \left( \frac{R'}{R} + Q \right)u' + (PR)u = 0$$
+$u'' - \left( \frac{R'}{R} + Q \right)u' + (PR)u = 0$
 
 Furthermore, the Riccati equation possesses a remarkable property related to projective geometry: the **cross-ratio** of any four solutions is independent of the independent variable $x$. If one particular solution $y_1(x)$ is known, the general solution can be found using the substitution $y = y_1 + 1/v$, which reduces the Riccati equation to a linear equation for $v$.
 
@@ -86,7 +86,7 @@ Furthermore, the Riccati equation possesses a remarkable property related to pro
 
 We now consider linear equations of the second order:
 
-$$y'' + P(x)y' + Q(x)y = 0$$
+$y'' + P(x)y' + Q(x)y = 0$
 
 If the coefficients are constants, the substitution $y = e^{rx}$ yields the **characteristic equation** $r^2 + ar + b = 0$, the roots of which determine the fundamental solution set.
 
@@ -94,11 +94,11 @@ For the **Cauchy-Euler equation**, $x^2 y'' + axy' + by = 0$, the scaling symmet
 
 A fundamental tool in the study of general linear equations is **Reduction of Order**. If one non-trivial solution $y_1(x)$ is known, a second linearly independent solution $y_2(x)$ can be constructed using the ansatz $y_2(x) = v(x)y_1(x)$. This leads to the formula:
 
-$$y_2(x) = y_1(x) \int \frac{\exp(-\int P(x) dx)}{y_1(x)^2} \, dx$$
+$y_2(x) = y_1(x) \int \frac{\exp(-\int P(x) dx)}{y_1(x)^2} \, dx$
 
 The quantity in the numerator is related to the **Wronskian determinant**, $W(y_1, y_2) = y_1 y_2' - y_1' y_2$. The evolution of the Wronskian is governed by **Abel's Identity**:
 
-$$W(x) = W(x_0) \exp\left( -\int_{x_0}^x P(t) \, dt \right)$$
+$W(x) = W(x_0) \exp\left( -\int_{x_0}^x P(t) \, dt \right)$
 
 This identity implies that if the Wronskian is non-zero at a single point, it is non-zero everywhere, ensuring the linear independence of solutions.
 
@@ -106,13 +106,13 @@ This identity implies that if the Wronskian is non-zero at a single point, it is
 
 The theory of higher-order linear equations can be unified by considering first-order systems:
 
-$$\mathbf{y}' = A(x)\mathbf{y}$$
+$\mathbf{y}' = A(x)\mathbf{y}$
 
 where $\mathbf{y}$ is a vector and $A(x)$ is a matrix-valued function. A **Fundamental Matrix** $\Phi(x)$ is a matrix whose columns form a basis of linearly independent solutions. The general solution is $\mathbf{y}(x) = \Phi(x)\mathbf{c}$.
 
 Analogous to the scalar case, the determinant of the fundamental matrix satisfies a trace version of Abel's formula:
 
-$$\det \Phi(x) = \det \Phi(x_0) \exp\left( \int_{x_0}^x \text{tr}(A(t)) \, dt \right)$$
+$\det \Phi(x) = \det \Phi(x_0) \exp\left( \int_{x_0}^x \text{tr}(A(t)) \, dt \right)$
 
 This result connects the algebraic properties of the coefficient matrix (its trace) to the geometric volume expansion or contraction of the solution flow. For systems with periodic coefficients $A(x+T) = A(x)$, **Floquet Theory** analyzes the spectrum of the monodromy matrix $\Phi(T)$ to determine stability.
 
@@ -120,11 +120,11 @@ This result connects the algebraic properties of the coefficient matrix (its tra
 
 We conclude this section by re-examining solutions not as functions of time, but as geometric loci in phase space. A function $H(x, y)$ is a **First Integral** of the system if it remains constant along trajectories. That is, for a dynamical system defined by vector field $\mathbf{V}$, the derivative along the flow vanishes:
 
-$$\frac{dH}{dt} = \nabla H \cdot \mathbf{V} = 0$$
+$\frac{dH}{dt} = \nabla H \cdot \mathbf{V} = 0$
 
 The solution curves lie on the level sets $H(x, y) = C$. In the context of Hamiltonian mechanics, where the system is defined by canonical coordinates $(q, p)$ and Hamiltonian $H$, the time evolution of any observable $F$ is given by the **Poisson Bracket**:
 
-$$\frac{dF}{dt} = \{F, H\} = \frac{\partial F}{\partial q}\frac{\partial H}{\partial p} - \frac{\partial F}{\partial p}\frac{\partial H}{\partial q}$$
+$\frac{dF}{dt} = \{F, H\} = \frac{\partial F}{\partial q}\frac{\partial H}{\partial p} - \frac{\partial F}{\partial p}\frac{\partial H}{\partial q}$
 
 Thus, $F$ is a first integral if and only if it Poisson-commutes with the Hamiltonian. This algebraic structure anticipates the symplectic geometry and integrability discussions in later chapters.
 
@@ -198,28 +198,15 @@ To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, a
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Complete Solution:
-
-Separation:
-
 $\frac{dy}{y(1 - y/L)} = k \, dt$
-
-Partial Fractions:
 
 $\frac{1}{y(1 - y/L)} = \frac{L}{y(L - y)} = \frac{1}{L} \left( \frac{1}{y} + \frac{1}{L-y} \right)$
 
-Integration:
-
 $\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left\|\frac{y}{L-y}\right\| = k t + C$
-
-Explicit Solution:
 
 $y(t) = \frac{L y_0 e^{kt}}{L + y_0 (e^{kt} - 1)}$
 
 Physical Interpretation: Population growth with carrying capacity $L$.
-
----
 
 </details>
 
@@ -231,18 +218,11 @@ Physical Interpretation: Population growth with carrying capacity $L$.
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Complete Analysis:
-
-Exactness Test:
-
 $M = 2xy + y^2 + x^3$, $N = x^2 + 2xy$
 
 $\frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y$
 
 **Exact!** (Mixed partials equal)
-
-Potential Function:
 
 $\frac{\partial \psi}{\partial x} = M \implies \psi = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 + f(y)$
 
@@ -254,8 +234,6 @@ Solution: $\psi(x,y) = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 = C$
 
 Geometric Insight: Level curves of $\psi$ are integral curves.
 
----
-
 </details>
 
 
@@ -266,34 +244,11 @@ Geometric Insight: Level curves of $\psi$ are integral curves.
 <details>
 <summary>Click to reveal solution</summary>
 
+We first test for exactness and find $\frac{\partial M}{\partial y} = \cos x \neq 1 = \frac{\partial N}{\partial x}$, so the equation is not exact. We search for an integrating factor by testing whether $\mu$ depends on $x$ alone. Computing $\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = \frac{\cos x - 1}{\sin x}$ reveals this is not a function of $x$ only. Similarly, testing for $\mu(y)$ yields $\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M} = \frac{1 - \cos x}{y\cos x + 2x\sin x}$, which is also not a function of $y$ only.
 
-Exactness Test: $\frac{\partial M}{\partial y} = \cos x \neq 1 = \frac{\partial N}{\partial x}$
+However, by recognizing the structure of the equation—specifically that $M = y\cos x + 2x\sin x$ and $N = \sin x$—we can try the integrating factor $\mu = 1/\sin x$. This yields $M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x$ and $N\mu = 1$. The new exactness test confirms $\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$.
 
-Integrating Factor Search:
-
-Test $\mu(x)$: $\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = \frac{\cos x - 1}{\sin x}$ — Not function of $x$ only.
-
-Test $\mu(y)$: $\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M} = \frac{1 - \cos x}{y\cos x + 2x\sin x}$ — Not function of $y$ only.
-
-Recognize Form: Notice $M = y\cos x + 2x\sin x$, $N = \sin x$
-
-Try $\mu = 1/\sin x$:
-
-$M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x, \quad N\mu = 1$
-
-New exactness test:
-
-$\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$
-
-Solution:
-
-$\psi = \int (y\cot x + 2x) \, dx = y\ln\|\sin x\| + x^2 + f(y)$
-
-$\frac{\partial \psi}{\partial y} = \ln\|\sin x\| + f'(y) = 1 \implies f(y) = y$
-
-Final: $y\ln|\sin x| + x^2 + y = C$
-
----
+We now construct the potential function $\psi = \int (y\cot x + 2x) \, dx = y\ln\|\sin x\| + x^2 + f(y)$. Differentiating with respect to $y$ gives $\frac{\partial \psi}{\partial y} = \ln\|\sin x\| + f'(y) = 1$, from which we deduce $f(y) = y$. The final solution is $y\ln\|\sin x\| + x^2 + y = C$.
 
 </details>
 
@@ -305,40 +260,25 @@ Final: $y\ln|\sin x| + x^2 + y = C$
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Homogeneous Solution:
-
 $y_h' + \frac{2}{x}y_h = 0 \implies \frac{y_h'}{y_h} = -\frac{2}{x}$
 
 $y_h = \frac{c}{x^2}$
 
-Integrating Factor:
-
 $\mu(x) = e^{\int 2/x \, dx} = x^2$
-
-General Solution:
 
 $(x^2 y)' = x^5 \implies x^2 y = \frac{1}{6}x^6 + C$
 
 $y = \frac{1}{6}x^4 + \frac{C}{x^2}$
 
-Initial Condition: $y(1) = 1$:
-
 $1 = \frac{1}{6} + C \implies C = \frac{5}{6}$
 
 Final: $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$
-
-Variation of Parameters Verification:
-
-Assume $y = v(x) \cdot \frac{1}{x^2}$:
 
 $y' = v' \frac{1}{x^2} - 2v x^{-3}$
 
 $y' + \frac{2}{x}y = v' x^{-2} = x^3 \implies v' = x^5$
 
 $v = \frac{1}{6}x^6 + C \implies y = \frac{1}{6}x^4 + \frac{C}{x^2}$
-
----
 
 </details>
 
@@ -349,9 +289,6 @@ $v = \frac{1}{6}x^6 + C \implies y = \frac{1}{6}x^4 + \frac{C}{x^2}$
 
 <details>
 <summary>Click to reveal solution</summary>
-
-
-General Method: Substitute $v = y^{1-n}$:
 
 $\frac{dy}{dx} = (1-n)v^{n-1} \frac{dv}{dx}$
 
@@ -367,8 +304,6 @@ Integrating factor: $\mu = e^{-\int dx/x} = 1/x$
 
 Solution: $v = x \implies y = 1/x$
 
----
-
 </details>
 
 
@@ -379,11 +314,6 @@ Solution: $v = x \implies y = 1/x$
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Complete Solution:
-
-Guess Particular Solution: Try $y_p = x$:
-
 $x' = x^2 - 2x^2 + x^2 + 1 \implies 1 = 1 \quad \checkmark$
 
 Substitution: $y = x + \frac{1}{v}$
@@ -392,19 +322,13 @@ $y' = 1 - \frac{v'}{v^2}$
 
 $1 - \frac{v'}{v^2} = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$
 
-Simplify:
-
 $-\frac{v'}{v^2} = -\frac{2}{v} \implies v' = 2v$
 
 Solve Linear: $v = Ce^{2x}$
 
-General Solution:
-
 $y = x + \frac{1}{Ce^{2x}} = x + e^{-2x+C}$
 
 Verification: Differentiate and substitute back $\checkmark$
-
----
 
 </details>
 
@@ -415,7 +339,6 @@ Verification: Differentiate and substitute back $\checkmark$
 
 <details>
 <summary>Click to reveal solution</summary>
-
 
 Method: $y = -1 + \frac{1}{v}$
 
@@ -428,8 +351,6 @@ Simplify: $v' = -v^2$
 Solution: $v = \frac{1}{C - x}$
 
 Final: $y = -1 + (C - x) = C - x - 1$
-
----
 
 </details>
 
@@ -446,7 +367,7 @@ Final: $y = -1 + (C - x) = C - x - 1$
 
 **Cross-ratio computation:**
 
-$$\frac{(1/(C_1-x) - 1/(C_3-x))(1/(C_2-x) - 1/(C_4-x))}{(1/(C_1-x) - 1/(C_4-x))(1/(C_2-x) - 1/(C_3-x))} = \frac{(C_3-C_1)(C_4-C_2)}{(C_4-C_1)(C_3-C_2)}$$
+$\frac{(1/(C_1-x) - 1/(C_3-x))(1/(C_2-x) - 1/(C_4-x))}{(1/(C_1-x) - 1/(C_4-x))(1/(C_2-x) - 1/(C_3-x))} = \frac{(C_3-C_1)(C_4-C_2)}{(C_4-C_1)(C_3-C_2)}$
 
 **Constant independent of $x$!**
 
@@ -463,10 +384,7 @@ $$\frac{(1/(C_1-x) - 1/(C_3-x))(1/(C_2-x) - 1/(C_4-x))}{(1/(C_1-x) - 1/(C_4-x))(
 <details>
 <summary>Click to reveal solution</summary>
 
-
 Ansatz: $y = x^r$
-
-Substitution:
 
 $r(r-1)x^r - 3r x^r + 4x^r = 0$
 
@@ -478,13 +396,9 @@ Repeated Root: $r = 2$
 
 Solutions: $y_1 = x^2$, $y_2 = x^2 \ln x$
 
-Wronskian Verification:
-
 $W(x^2, x^2 \ln x) = x^2 \cdot (2x \ln x + x) - 2x \cdot x^2 \ln x = x^3$
 
 Abel's formula: $W(x) = C/x$ $\checkmark$ (since $P(x) = -3/x$)
-
----
 
 </details>
 
@@ -496,16 +410,11 @@ Abel's formula: $W(x) = C/x$ $\checkmark$ (since $P(x) = -3/x$)
 <details>
 <summary>Click to reveal solution</summary>
 
-
 Ansatz: $y_2 = v(x) \cdot x$
-
-Substitution:
 
 $y_2' = v'x + v, \quad y_2'' = v''x + 2v'$
 
 $x v'' + 3v' = 0$
-
-First Order: Let $w = v'$:
 
 $x w' + 3w = 0 \implies \frac{w'}{w} = -\frac{3}{x}$
 
@@ -514,8 +423,6 @@ $w = \frac{C}{x^3} \implies v = -\frac{C}{2x^2}$
 Second Solution: $y_2 = x \cdot \left(-\frac{1}{2x^2}\right) = -\frac{1}{2x}$
 
 General Solution: $y = c_1 x - \frac{c_2}{2x}$
-
----
 
 </details>
 
@@ -527,12 +434,7 @@ General Solution: $y = c_1 x - \frac{c_2}{2x}$
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Transformation:
-
 $\mathbf{y} = \begin{pmatrix} y \\ y' \end{pmatrix}, \quad \mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -q & -p \end{pmatrix} \mathbf{y} = A \mathbf{y}$
-
-**Constant Coefficients** ($p=-3$, $q=2$):
 
 $A = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix}$
 
@@ -540,22 +442,15 @@ Eigenvalues: $\det(A - \lambda I) = \lambda^2 - 3\lambda + 2 = 0$
 
 Roots: $\lambda_1 = 1$, $\lambda_2 = 2$
 
-Eigenvectors:
-
 - $\lambda_1 = 1$: $\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+
 - $\lambda_2 = 2$: $\begin{pmatrix} 1 \\ 2 \end{pmatrix}$
 
-Fundamental Matrix:
-
 $\Phi(t) = \begin{pmatrix} e^t & e^{2t} \\ e^t & 2e^{2t} \end{pmatrix}$
-
-Verification (Abel's formula):
 
 $\det \Phi(t) = 2e^{3t} - e^{3t} = e^{3t}$
 
 $\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark$
-
----
 
 </details>
 
@@ -567,7 +462,6 @@ $\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark$
 <details>
 <summary>Click to reveal solution</summary>
 
-
 System: $\mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -(a+b\cos t) & 0 \end{pmatrix} \mathbf{y}$
 
 Monodromy: $\Phi(2\pi)$ determines stability
@@ -575,8 +469,6 @@ Monodromy: $\Phi(2\pi)$ determines stability
 **Stability regions** in $(a,b)$-plane
 
 **Characteristic exponents** from eigenvalues of $\Phi(2\pi)$
-
----
 
 </details>
 
@@ -588,20 +480,11 @@ Monodromy: $\Phi(2\pi)$ determines stability
 <details>
 <summary>Click to reveal solution</summary>
 
-
-First Integral Search:
-
-Try $H(x,y) = \frac{1}{2}(x^2 + y^2)$:
-
 $\frac{dH}{dt} = x\frac{dx}{dt} + y\frac{dy}{dt} = xy - yx = 0$
 
 Level Sets: $x^2 + y^2 = C$ (circles)
 
-Poisson Bracket:
-
 $\{H,H\} = xy - yx = 0$
-
----
 
 </details>
 
@@ -613,16 +496,11 @@ $\{H,H\} = xy - yx = 0$
 <details>
 <summary>Click to reveal solution</summary>
 
-
-Compute:
-
 $\frac{d}{dt}(x^2 + y^2) = 2x(y-x^3) + 2y(-x) = 2xy - 2x^4 - 2xy = -2x^4$
 
 **Not constant!**
 
 Correct Integral: $H = y + \frac{1}{2}x^2$ (requires systematic method, foreshadowing Chapter 4 symmetries)
-
----
 
 </details>
 
@@ -633,7 +511,7 @@ Correct Integral: $H = y + \frac{1}{2}x^2$ (requires systematic method, foreshad
 
 **Equations:**
 
-$$\dot{q} = \frac{\partial H}{\partial p} = p, \quad \dot{p} = -\frac{\partial H}{\partial q} = -V'(q)$$
+$\dot{q} = \frac{\partial H}{\partial p} = p, \quad \dot{p} = -\frac{\partial H}{\partial q} = -V'(q)$
 
 **First Integrals:** Any $F$ with $\{F,H\} = 0$
 
