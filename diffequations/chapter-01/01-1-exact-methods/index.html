@@ -944,25 +944,13 @@ We now construct the potential function $\psi = \int (y\cot x + 2x) \, dx = y\ln
 <details>
 <summary>Click to reveal solution</summary>
 
-$y_h' + \frac{2}{x}y_h = 0 \implies \frac{y_h'}{y_h} = -\frac{2}{x}$
+We begin by solving the homogeneous equation $y_h' + \frac{2}{x}y_h = 0$. Separating variables gives $\frac{y_h'}{y_h} = -\frac{2}{x}$, which integrates to $y_h = \frac{c}{x^2}$.
 
-$y_h = \frac{c}{x^2}$
+For the inhomogeneous equation, we apply the method of integrating factors. The integrating factor is $\mu(x) = e^{\int 2/x \, dx} = x^2$. Multiplying the entire equation by $\mu(x)$ transforms the left-hand side into a perfect derivative: $(x^2 y)' = x^5$. Integrating both sides yields $x^2 y = \frac{1}{6}x^6 + C$, from which we obtain the general solution $y = \frac{1}{6}x^4 + \frac{C}{x^2}$.
 
-$\mu(x) = e^{\int 2/x \, dx} = x^2$
+Applying the initial condition $y(1) = 1$ gives $1 = \frac{1}{6} + C$, so $C = \frac{5}{6}$. The final solution is $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$.
 
-$(x^2 y)' = x^5 \implies x^2 y = \frac{1}{6}x^6 + C$
-
-$y = \frac{1}{6}x^4 + \frac{C}{x^2}$
-
-$1 = \frac{1}{6} + C \implies C = \frac{5}{6}$
-
-Final: $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$
-
-$y' = v' \frac{1}{x^2} - 2v x^{-3}$
-
-$y' + \frac{2}{x}y = v' x^{-2} = x^3 \implies v' = x^5$
-
-$v = \frac{1}{6}x^6 + C \implies y = \frac{1}{6}x^4 + \frac{C}{x^2}$
+We can verify this using variation of parameters. Assuming $y = v(x) \cdot \frac{1}{x^2}$, we compute $y' = v' \frac{1}{x^2} - 2v x^{-3}$. Substituting into the original equation, the terms involving $v$ cancel, leaving $v' x^{-2} = x^3$, which simplifies to $v' = x^5$. Integrating gives $v = \frac{1}{6}x^6 + C$, confirming our solution $y = \frac{1}{6}x^4 + \frac{C}{x^2}$.
 
 </details>
 
