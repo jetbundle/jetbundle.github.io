@@ -700,27 +700,117 @@
 <p>Physical operators like the Laplacian are unbounded (differentiation roughens functions). We introduce the domain subtleties of <strong>Self-Adjointness</strong> versus Symmetricity. We construct the <strong>Resolvent Operator</strong> and use <strong>Stone’s Theorem</strong> to define time evolution ($e^{itH}$) as a unitary group, providing a rigorous foundation for Quantum Mechanics without relying on convergent power series.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="unbounded-operators-and-domains">Unbounded Operators and Domains</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>An operator $A$ on a Hilbert space $H$ is a linear map $A:D(A)\to H$ defined on a subspace $D(A)\subset H$. It is <strong>densely defined</strong> if $\overline{D(A)}=H$, a prerequisite for defining the adjoint $A^{*}$. The graph $\Gamma(A)={(x,Ax):x\in D(A)}$ is a subspace of $H\times H$. The operator $A$ is <strong>closed</strong> if $\Gamma(A)$ is closed; this ensures that convergence $x_{n}\to x$ and $Ax_{n}\to y$ implies $x\in D(A)$ and $Ax=y$. A closable operator admits a smallest closed extension $\bar{A}$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>For a densely defined $A$, the adjoint $A^{<em>}$ has domain
+\(D(A^{*})=\{ y\in H : x\mapsto \langle Ax,y\rangle \text{ is continuous on } D(A) \},\)
+and satisfies $\langle Ax,y\rangle = \langle x,A^{</em>}y\rangle$ for all $x\in D(A)$.</p>
 
-<h3 id="core-results">Core Results</h3>
+<h3 id="symmetric-vs-self-adjoint">Symmetric vs. Self-Adjoint</h3>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>An operator $A$ is <strong>symmetric</strong> if $\langle Ax,y\rangle=\langle x,Ay\rangle$ for all $x,y\in D(A)$; equivalently $A\subseteq A^{<em>}$. It is <strong>self-adjoint</strong> if $A=A^{</em>}$, i.e., $D(A)=D(A^{<em>})$ and $A$ agrees with $A^{</em>}$ on this domain. Symmetric operators have real expectation values, but only self-adjoint operators generate unitary dynamics. Deficiency indices $n_{\pm}=\dim\ker(A^{*}\mp iI)$ classify self-adjoint extensions: $A$ admits extensions iff $n_{+}=n_{-}$.</p>
 
-<h3 id="applications">Applications</h3>
+<p>The spectral theorem extends to self-adjoint (possibly unbounded) operators: there exists a projection-valued measure $E(\lambda)$ such that
+\(A=\int_{-\infty}^{\infty} \lambda\, dE(\lambda),\)
+allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lambda)\,dE(\lambda)$.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h3 id="resolvents-and-spectrum">Resolvents and Spectrum</h3>
+
+<p>The <strong>resolvent set</strong> $\rho(A)$ consists of $\lambda\in\mathbb{C}$ for which $(A-\lambda I):D(A)\to H$ is bijective with bounded inverse $R(\lambda,A)=(A-\lambda I)^{-1}$. The spectrum $\sigma(A)$ is its complement. For self-adjoint $A$, $\sigma(A)\subset\mathbb{R}$ and $|R(\lambda,A)|\le 1/\text{dist}(\lambda,\sigma(A))$.</p>
+
+<p>The spectrum decomposes into point spectrum (eigenvalues), continuous spectrum, and residual spectrum; in unbounded settings continuous spectrum often dominates (e.g., Laplacian on $\mathbb{R}^{n}$).</p>
+
+<h3 id="strongly-continuous-semigroups">Strongly Continuous Semigroups</h3>
+
+<p>For the abstract Cauchy problem $u’(t)=Au(t)$ with $u(0)=u_{0}$, we seek a strongly continuous semigroup ${T(t)}<em>{t\ge 0}$ such that $T(0)=I$, $T(t+s)=T(t)T(s)$, and $\lim</em>{t\to 0^{+}}|T(t)u-u|=0$. The generator $A$ is defined on
+\(D(A)=\left\{ u\in H : \lim_{t\to 0^{+}}\frac{T(t)u-u}{t} \text{ exists} \right\},\quad Au=\lim_{t\to 0^{+}}\frac{T(t)u-u}{t}.\)</p>
+
+<p>The <strong>Hille–Yosida theorem</strong> characterizes generators of contraction semigroups: a densely defined closed operator $A$ generates a $C_{0}$-contraction semigroup iff $(0,\infty)\subset\rho(A)$ and $|R(\lambda,A)|\le 1/\lambda$ for all $\lambda&gt;0$.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-241-differentiation-operator-on-l201">Example 2.4.1: Differentiation Operator on $L^{2}(0,1)$</h3>
+
+<p><strong>Problem:</strong> Analyze $A=\frac{d}{dx}$ with $D(A)=H^{1}_{0}(0,1)$.</p>
+
+<p>Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)={(u,u’) : u\in H^{1}<em>{0}}$ is closed: if $u</em>{n}\to u$ and $u’<em>{n}\to v$ in $L^{2}$, then $u\in H^{1}</em>{0}$ and $u’=v$ by definition of weak derivatives. $A$ is unbounded because $|Au_{n}|/|u_{n}|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.</p>
+
+<h3 id="example-242-momentum-operator-on-mathbbr">Example 2.4.2: Momentum Operator on $\mathbb{R}$</h3>
+
+<p><strong>Problem:</strong> Consider $A=-i\frac{d}{dx}$ on $D(A)=H^{1}(\mathbb{R})$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Via Fourier transform, $D(A)={u\in L^{2} : \int</td>
+      <td>\xi</td>
+      <td>^{2}</td>
+      <td>\hat{u}(\xi)</td>
+      <td>^{2}&lt;\infty}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-</td>
+      <td>x</td>
+      <td>/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-243-non-closed-domain">Example 2.4.3: Non-Closed Domain</h3>
+
+<p><strong>Problem:</strong> Let $A=\frac{d}{dx}$ with $D(A)=C^{1}[0,1]\cap L^{2}$. This domain is not maximal. The closure $\bar{A}$ has domain $H^{1}_{0}(0,1)$, illustrating the need to work with closed extensions.</p>
+
+<h3 id="example-244-symmetric-vs-self-adjoint-laplacian">Example 2.4.4: Symmetric vs. Self-Adjoint Laplacian</h3>
+
+<p><strong>Problem:</strong> For $A=-\frac{d^{2}}{dx^{2}}$ on $L^{2}(0,\pi)$, compare domains.</p>
+
+<p>With $D_{1}={u\in H^{2}:u(0)=u(\pi)=0}$, $A$ is self-adjoint and has spectrum ${n^{2}}<em>{n\in\mathbb{N}}$. With $D</em>{3}={u\in H^{2}:u(0)=u’(\pi)=0}$, $A$ is symmetric but not self-adjoint; deficiency indices $(1,1)$ yield a one-parameter family of self-adjoint extensions corresponding to different boundary conditions.</p>
+
+<h3 id="example-245-momentum-vs-position-operators">Example 2.4.5: Momentum vs. Position Operators</h3>
+
+<p>On $L^{2}(\mathbb{R})$, the position operator $X$ (multiplication by $x$) and momentum operator $P=-i\frac{d}{dx}$ are self-adjoint on domains $D(X)={u : xu\in L^{2}}$ and $D(P)=H^{1}(\mathbb{R})$. They satisfy the canonical commutation relation $[P,X]=-iI$, but $PX$ and $XP$ require careful domain intersections, highlighting the role of unbounded operator algebra.</p>
+
+<h3 id="example-246-resolvent-of-the-laplacian">Example 2.4.6: Resolvent of the Laplacian</h3>
+
+<p><strong>Problem:</strong> Compute $(A-\lambda I)^{-1}$ for $A=-\Delta$ on $\mathbb{R}^{3}$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{</td>
+      <td>\xi</td>
+      <td>^{2}-\lambda}$. For $\text{Re}(\lambda)&lt;0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}</td>
+      <td>x-y</td>
+      <td>}}{4\pi</td>
+      <td>x-y</td>
+      <td>}$, exhibiting the exponential decay of the resolvent.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-247-resolvent-estimate">Example 2.4.7: Resolvent Estimate</h3>
+
+<p>For $A=-\frac{d^{2}}{dx^{2}}$ on $(0,\pi)$ with Dirichlet conditions, the resolvent satisfies
+\(R(\lambda,A)f=\sum_{n=1}^{\infty}\frac{\langle f,\sin(n\pi x)\rangle}{n^{2}\pi^{2}-\lambda}\sin(n\pi x),\quad \|R(\lambda,A)\|\le \frac{1}{\text{dist}(\lambda,\{n^{2}\pi^{2}\})}.\)</p>
+
+<h3 id="example-248-heat-semigroup-via-hilleyosida">Example 2.4.8: Heat Semigroup via Hille–Yosida</h3>
+
+<p><strong>Problem:</strong> Show $A=\frac{d^{2}}{dx^{2}}$ with $D(A)=H^{2}\cap H^{1}_{0}$ generates the heat semigroup.</p>
+
+<p>The resolvent satisfies $|R(\lambda,A)|\le 1/\lambda$ for $\lambda&gt;0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.</p>
+
+<h3 id="example-249-semigroup-failure">Example 2.4.9: Semigroup Failure</h3>
+
+<p>Let $A=\frac{d}{dx}$ on $L^{2}(0,1)$ with domain $H^{1}(0,1)$ (no boundary conditions). The resolvent estimate fails and $\rho(A)=\emptyset$, so $A$ does not generate a $C_{0}$-semigroup. This illustrates the need for proper domain choices to ensure well-posed evolution.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+  <li>Reed, M., &amp; Simon, B. (1972). <em>Methods of Modern Mathematical Physics I: Functional Analysis</em>. Academic Press.</li>
+  <li>Reed, M., &amp; Simon, B. (1975). <em>Methods of Modern Mathematical Physics II: Fourier Analysis, Self-Adjointness</em>. Academic Press.</li>
+  <li>Rudin, W. (1991). <em>Functional Analysis</em>. McGraw-Hill.</li>
+  <li>Yosida, K. (1980). <em>Functional Analysis</em>. Springer.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
