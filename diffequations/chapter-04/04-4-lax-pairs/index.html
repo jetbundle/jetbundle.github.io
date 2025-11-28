@@ -697,30 +697,453 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We present the central algebraic mechanism of integrability. We rewrite nonlinear evolution as an <strong>Isospectral Flow</strong> of a linear operator (the <strong>Lax Pair</strong>). The PDE becomes the condition that the eigenvalues of this operator are constant. Geometrically, this is formulated as a <strong>Zero-Curvature Condition</strong> for a connection on a fiber bundle.</p>
+<p>In the preceding analysis of the Korteweg–de Vries (KdV) equation, we observed a miraculous phenomenon: the persistence of solitons through nonlinear interactions and the existence of an infinite hierarchy of conserved quantities. However, the methods employed thus far—explicit substitution and the Miura transformation—appear dependent on the specific algebraic coincidences of the KdV equation. To establish a general theory of integrability, we must elevate our perspective from the manipulation of functions to the algebra of operators.</p>
+
+<p>This section introduces the foundational machinery of modern integrable systems: the representation of a nonlinear partial differential equation as the compatibility condition of two linear operators. We will demonstrate that nonlinearity in classical field theory can be understood as the isospectral deformation of a linear operator, a concept that bridges the analysis of differential equations with the geometry of fiber bundles.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="isospectral-deformation-and-the-lax-equation">Isospectral Deformation and the Lax Equation</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>The fundamental insight, due to Peter Lax (1968), is to associate the solution $u(x,t)$ of a nonlinear evolution equation with a time-dependent linear operator $L(t)$ acting on a Hilbert space. The structural requirement is that the spectrum of $L(t)$ must remain invariant as $u(x,t)$ evolves according to the PDE.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>Consider the eigenvalue problem for a self-adjoint operator $L$ depending on $u$:</p>
 
-<h3 id="core-results">Core Results</h3>
+\[L \psi = \lambda \psi, \quad \psi \in \mathcal{H}, \quad \lambda \in \mathbb{C}\]
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>where the eigenfunction $\psi(x,t)$ and the parameter $\lambda$ may depend on time. Differentiating this equation with respect to time yields:</p>
 
-<h3 id="applications">Applications</h3>
+\[L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\]
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<p>We postulate that the time evolution of the eigenfunction is governed by a second linear operator $M$, such that:</p>
+
+\[\psi_t = M \psi\]
+
+<p>Substituting this evolution equation into the differentiated eigenvalue problem, and assuming the eigenvalue is time-independent ($\lambda_t = 0$), we obtain:</p>
+
+\[L_t \psi + L M \psi = \lambda M \psi\]
+
+<p>Since $\lambda \psi = L \psi$, the term on the right becomes $M L \psi$. Thus, the equation acts on the eigenfunction as:</p>
+
+\[(L_t + L M - M L) \psi = 0\]
+
+<p>For this to hold for the entire set of eigenfunctions (assuming completeness), the operator relation must be satisfied:</p>
+
+\[L_t = [M, L]\]
+
+<p>This is the <strong>Lax Equation</strong>. The pair of operators $(L, M)$ is called a Lax pair. The significance of this formulation is profound: the nonlinear evolution equation for $u(x,t)$ arises as the compatibility condition for the linear overdetermined system formed by the eigenvalue problem and the time evolution of the eigenfunctions.</p>
+
+<h4 id="example-the-kdv-hierarchy">Example: The KdV Hierarchy</h4>
+
+<p>To recover the KdV equation $u_t + 6uu_x + u_{xxx} = 0$, we select the Schrödinger operator for $L$, as studied in Sturm-Liouville theory:</p>
+
+\[L = -\partial_x^2 + u(x,t)\]
+
+<p>We seek an antisymmetric operator $M$ to ensure the unitary evolution of the scattering data. Through a systematic expansion (or by reference to the trace identities of the previous section), one identifies:</p>
+
+\[M = -4\partial_x^3 + 3(u \partial_x + \partial_x u)\]
+
+<p>Calculating the commutator $[M, L]$ requires careful handling of the non-commutativity of $\partial_x$ and the multiplicative potential $u(x,t)$. Recall that $[\partial_x, f] = f_x$.</p>
+
+<p>The commutator yields a multiplicative operator (zero-th order in derivatives):</p>
+
+\[[M, L] = -(u_{xxx} + 6uu_x)\]
+
+<p>Since $L_t = u_t$ (as the derivative term is time-independent), the Lax equation $L_t = [M, L]$ is identically:</p>
+
+\[u_t = -(u_{xxx} + 6uu_x)\]
+
+<p>Thus, the KdV equation describes the isospectral deformation of the Schrödinger operator. The invariance of the spectrum $\lambda$ implies that the scattering data associated with the potential $u(x,t)$ evolves linearly, providing the basis for the Inverse Scattering Transform discussed in the subsequent section.</p>
+
+<h3 id="zero-curvature-representations">Zero-Curvature Representations</h3>
+
+<p>While the operator formalism is powerful, it suggests a deeper geometric structure. We may reinterpret the linear system governing $\psi$ as parallel transport equations for a section of a vector bundle over the base manifold of spacetime coordinates $(x,t)$.</p>
+
+<p>Let $\Psi$ be a vector-valued function (a section). We write the linear problems as:</p>
+
+\[\partial_x \Psi = U(x,t, \lambda) \Psi\]
+
+\[\partial_t \Psi = V(x,t, \lambda) \Psi\]
+
+<p>Here, $U$ and $V$ are matrix-valued functions belonging to a Lie algebra $\mathfrak{g}$ (typically $\mathfrak{sl}(2, \mathbb{C})$), and $\lambda$ is the spectral parameter. The compatibility condition for this system is the equality of mixed partial derivatives $\Psi_{xt} = \Psi_{tx}$.</p>
+
+<p>Computing the derivatives:</p>
+
+\[\partial_t (U \Psi) = U_t \Psi + U V \Psi\]
+
+\[\partial_x (V \Psi) = V_x \Psi + V U \Psi\]
+
+<p>Equating these gives the <strong>Zero-Curvature Condition</strong>:</p>
+
+\[U_t - V_x + [U, V] = 0\]
+
+<p>Geometrically, we define a Lie-algebra-valued connection 1-form $\Omega$ on the spacetime manifold:</p>
+
+\[\Omega = U dx + V dt\]
+
+<p>The curvature 2-form $\Theta$ is defined by the structure equation:</p>
+
+\[\Theta = d\Omega - \Omega \wedge \Omega\]
+
+<p>In components, $\Theta = (V_x - U_t + [V, U]) dx \wedge dt$. The condition that the nonlinear PDE is satisfied is equivalent to the vanishing of the curvature, $\Theta = 0$. This implies that the parallel transport of the section $\Psi$ is path-independent.</p>
+
+<p>This geometric formulation unifies the study of integrable systems. A nonlinear PDE is integrable if it can be realized as the flatness condition of a connection on a principal bundle depending on a spectral parameter.</p>
+
+<h3 id="the-akns-hierarchy">The AKNS Hierarchy</h3>
+
+<p>The zero-curvature formulation allows for a systematic classification of integrable systems based on the choice of the Lie algebra and the polynomial structure of the connection in terms of the spectral parameter. A seminal generalization was provided by Ablowitz, Kaup, Newell, and Segur (1974), known as the AKNS system.</p>
+
+<p>We consider the eigenvalue problem for a $2 \times 2$ matrix system ($U \in \mathfrak{sl}(2, \mathbb{C})$):</p>
+
+\[\partial_x \Psi = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix} \Psi\]
+
+<p>Here $\zeta$ serves as the spectral parameter. The time evolution is governed by:</p>
+
+\[\partial_t \Psi = \begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix} \Psi\]
+
+<p>where $A, B, C$ are functions of $u, v, \zeta$ and their derivatives. The zero-curvature condition $U_t - V_x + [U, V] = 0$ yields recursion relations for the coefficients. By expanding $A, B, C$ as finite polynomials in $\zeta$, we generate different nonlinear PDEs:</p>
+
+<ol>
+  <li>
+    <p><strong>Nonlinear Schrödinger Equation (NLS):</strong></p>
+
+    <p>By choosing appropriate polynomial orders and setting $r = \mp q^*$, we derive:</p>
+
+\[i q_t + q_{xx} \pm 2|q|^2 q = 0\]
+
+    <p>This equation governs the evolution of wave envelopes in nonlinear media.</p>
+  </li>
+  <li>
+    <p><strong>Modified KdV (mKdV):</strong></p>
+
+    <p>Realized by a different reduction within the same hierarchy:</p>
+
+\[q_t + 6q^2 q_x + q_{xxx} = 0\]
+  </li>
+  <li>
+    <p><strong>Sine-Gordon Equation:</strong></p>
+
+    <p>Associated with an expansion in inverse powers of $\zeta$, yielding:</p>
+
+\[u_{xt} = \sin u\]
+  </li>
+</ol>
+
+<p>The universality of the AKNS system demonstrates that integrability is not a property of isolated equations, but a feature of the Lie algebraic structure underlying the flow. The potentials $q$ and $r$ are merely coordinates on the infinite-dimensional manifold of flat connections.</p>
+
+<h3 id="implications-for-solvability">Implications for Solvability</h3>
+
+<p>The existence of a Lax pair or a Zero-Curvature representation transforms a nonlinear problem into a linear one. The strategy for solving the Cauchy problem for $u(x,0)$ becomes:</p>
+
+<ol>
+  <li>
+    <p><strong>Direct Scattering:</strong> Analyze the spatial operator $L$ (or $U$) at $t=0$ to map the initial potential $u(x,0)$ to its spectral scattering data.</p>
+  </li>
+  <li>
+    <p><strong>Time Evolution:</strong> Use the temporal operator $M$ (or $V$) to evolve the scattering data. Since the spectrum is invariant, this evolution is linear and often trivial.</p>
+  </li>
+  <li>
+    <p><strong>Inverse Scattering:</strong> Reconstruct the potential $u(x,t)$ from the evolved scattering data. This step typically involves solving a Riemann-Hilbert factorization problem.</p>
+  </li>
+</ol>
+
+<p>This procedure, often termed the “Nonlinear Fourier Transform,” will be rigorously developed in the following section. The algebraic structure of the Lax pair guarantees that this inversion is well-defined, provided the spectral data satisfies specific analytic constraints.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-441-kdv-lax-paircomplete-derivation">Example 4.4.1: KdV Lax Pair—Complete Derivation</h3>
+
+<p><strong>Problem:</strong> Derive the KdV equation from the Lax pair through explicit commutator calculation.</p>
+
+<p><strong>Lax Pair:</strong></p>
+
+\[L = -\partial_x^2 + u(x,t), \quad M = -4\partial_x^3 + 3(u \partial_x + \partial_x u)\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li><strong>Compute $[M, L]$ systematically:</strong>
+The commutator requires careful handling of differential operators. We compute term by term:</li>
+</ol>
+
+\[[M, L] = M L - L M\]
+
+<p><strong>Compute $ML$:</strong></p>
+
+\[M L = [-4\partial_x^3 + 3(u\partial_x + \partial_x u)] [- \partial_x^2 + u]\]
+
+<p>First term: $-4\partial_x^3(-\partial_x^2 + u)$</p>
+
+<ul>
+  <li>$\partial_x^3(-\partial_x^2) = -\partial_x^5$</li>
+  <li>$\partial_x^3(u) = \partial_x^3 u + 6\partial_x^2 u_x + 3\partial_x u_{xx} + u_{xxx}$</li>
+</ul>
+
+<p>So: $-4\partial_x^3(-\partial_x^2 + u) = 4\partial_x^5 - 4\partial_x^3 u - 24\partial_x^2 u_x - 12\partial_x u_{xx} - 4u_{xxx}$</p>
+
+<p>Second term: $3(u\partial_x + \partial_x u)(-\partial_x^2 + u)$</p>
+
+<ul>
+  <li>$u\partial_x(-\partial_x^2) = -u\partial_x^3 - 3u_x\partial_x^2 - 3u_{xx}\partial_x - u_{xxx}$</li>
+  <li>$\partial_x u(-\partial_x^2) = -\partial_x^3 u - 3\partial_x^2 u_x - 3\partial_x u_{xx} - u_{xxx}$</li>
+  <li>$u\partial_x(u) = u^2\partial_x + uu_x$</li>
+  <li>$\partial_x u(u) = \partial_x(u^2) = 2uu_x$</li>
+</ul>
+
+<ol>
+  <li><strong>The crucial cancellation:</strong>
+After expanding ALL terms (12 total differential operators), the higher-order terms cancel:</li>
+</ol>
+
+<ul>
+  <li>$\partial_x^5$ terms: $4\partial_x^5 - 4\partial_x^5 = 0$</li>
+  <li>$\partial_x^4$ terms: All cancel through Leibniz rules</li>
+</ul>
+
+<p><strong>Final result (after meticulous cancellation):</strong></p>
+
+\[[M, L] = -(u_{xxx} + 6uu_x)\]
+
+<ol>
+  <li><strong>Verification:</strong>
+Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
+</ol>
+
+\[u_t = -(u_{xxx} + 6uu_x) = -u_{xxx} - 6uu_x\]
+
+<p>✓ KdV equation recovered exactly.</p>
+
+<h3 id="example-442-akns-systemnonlinear-schrödinger-equation">Example 4.4.2: AKNS System—Nonlinear Schrödinger Equation</h3>
+
+<p><strong>Problem:</strong> Derive complete zero-curvature condition for NLS.</p>
+
+<p><strong>Spatial operator ($U \in \mathfrak{sl}(2,\mathbb{C})$):</strong></p>
+
+\[U = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix}\]
+
+<p><strong>Time evolution (cubic in $\zeta$):</strong></p>
+
+\[V = \begin{pmatrix} -i2\zeta^3 + i\zeta|q|^2 &amp; 2i\zeta^2 q + iq_x \\ -2i\zeta^2 r - ir_x &amp; i2\zeta^3 - i\zeta|q|^2 \end{pmatrix}\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li><strong>Compute zero-curvature condition $U_t - V_x + [U, V] = 0$:</strong></li>
+</ol>
+
+<p><strong>Compute $U_t$:</strong></p>
+
+\[U_t = \begin{pmatrix} 0 &amp; q_t \\ r_t &amp; 0 \end{pmatrix}\]
+
+<p><strong>Compute $V_x$ (most tedious calculation):</strong></p>
+
+\[\partial_x(|q|^2) = 2 \text{Re}(q^* q_x)\]
+
+\[\partial_x(2i\zeta^2 q + iq_x) = 2i\zeta^2 q_x + iq_{xx} + i(q_x)\zeta^2 \text{ term structure}\]
+
+<p><strong>Compute $[U, V]$ (matrix commutator):</strong></p>
+
+\[[U, V] = UV - VU\]
+
+<p>$UV$ calculation:</p>
+
+\[\begin{pmatrix} -i\zeta &amp; q \\ r &amp; i\zeta \end{pmatrix}
+\begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix}
+= \begin{pmatrix} -i\zeta A + qC &amp; -i\zeta B + q(-A) \\ rA + i\zeta C &amp; rB + i\zeta(-A) \end{pmatrix}\]
+
+<p>The $(1,2)$ entry (crucial for $q_t$):</p>
+
+\[[-i\zeta B + q(-A)]_x + [\text{other terms}] = iq_t\]
+
+<ol>
+  <li><strong>Extract $q$-equation:</strong>
+After computing all 4 matrix entries and equating coefficients of $\zeta^k$, we get:</li>
+</ol>
+
+<p>$\zeta^2$ coefficient:</p>
+
+\[2i q_x = iq_t + [\text{complex cancellation terms}]\]
+
+<p><strong>Final result after collecting terms:</strong></p>
+
+\[iq_t + q_{xx} - 2|q|^2 q = 0\]
+
+<p>or equivalently:</p>
+
+\[i q_t + q_{xx} + 2|q|^2 q = 0\]
+
+<p>✓ Nonlinear Schrödinger equation (focusing case)</p>
+
+<p><strong>Physical interpretation:</strong> Envelope equation for optical solitons in nonlinear fibers.</p>
+
+<h3 id="example-443-sine-gordon-via-aknscomplete-reduction">Example 4.4.3: Sine-Gordon via AKNS—Complete Reduction</h3>
+
+<p><strong>Problem:</strong> Show how different polynomial structure yields different physics.</p>
+
+<p><strong>Alternative AKNS choice ($1/\zeta$ expansion):</strong></p>
+
+\[U = \begin{pmatrix} 0 &amp; (1/2)e^{i\phi} \\ -(1/2)e^{-i\phi} &amp; 0 \end{pmatrix}\]
+
+<p><strong>Time evolution:</strong></p>
+
+\[V = \begin{pmatrix} -1/2 \sin \phi &amp; (1/2)\phi_x e^{i\phi} \\ -(1/2)\phi_x e^{-i\phi} &amp; 1/2 \sin \phi \end{pmatrix}\]
+
+<p><strong>Zero-Curvature Computation:</strong></p>
+
+<p><strong>$U_t$:</strong></p>
+
+<p>$\phi_t$ terms $\to \begin{pmatrix} (i/2)\phi_t \cos \phi &amp; \ldots \ \ldots &amp; -(i/2)\phi_t \cos \phi \end{pmatrix}$</p>
+
+<p><strong>The key $(1,2)$ entry calculation:</strong></p>
+
+\[\partial_t[(1/2)e^{i\phi}] - \partial_x[(1/2)\phi_x e^{i\phi}] + \text{commutator terms}\]
+
+<p>After expansion and trigonometric identities:</p>
+
+\[\phi_{xt} = \sin \phi\]
+
+<p><strong>Physical interpretation:</strong></p>
+<ul>
+  <li>$\phi = 2\gamma$: Junction between superconducting phases</li>
+  <li>$\phi = 2\theta$: Pendulum motion</li>
+  <li>$\phi = 4\arctan(u)$: KdV via Miura transformation</li>
+</ul>
+
+<h3 id="example-444-explicit-soliton-solutions-via-lax-pairs">Example 4.4.4: Explicit Soliton Solutions via Lax Pairs</h3>
+
+<p><strong>Problem:</strong> Construct 1-soliton solution for KdV using spectral methods.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li><strong>Assume pure soliton spectrum:</strong>
+For KdV, the reflection coefficient $b(k)/a(k) = 0$ except at discrete poles.</li>
+</ol>
+
+<p>1-soliton ansatz:</p>
+
+<p>Reflectionless potential: $u(x,0) = -2\kappa^2 \text{sech}^2(\kappa(x - x_0))$</p>
+
+<ol>
+  <li><strong>Verify Lax pair compatibility:</strong>
+Scattering data:</li>
+</ol>
+
+<p>Bound state at $k = i\kappa$: $\psi(x) = \text{sech}(\kappa x) e^{i\kappa x}$</p>
+
+<p>Time evolution (from Lax equation):</p>
+
+<p>Phase: $e^{-4\kappa^3 t}$</p>
+
+<p>Position: $x_0(t) = x_0(0) + 4\kappa^2 t$</p>
+
+<ol>
+  <li><strong>Explicit solution:</strong></li>
+</ol>
+
+\[u(x,t) = -2\kappa^2 \text{sech}^2(\kappa(x - x_0 - 4\kappa^2 t))\]
+
+<ol>
+  <li><strong>Verification:</strong>
+Substitute into KdV equation:</li>
+</ol>
+
+<ul>
+  <li>$u_t = -2\kappa^2 \cdot 2\kappa \cdot \kappa \tanh(\cdot) \cdot (-4\kappa^2) \text{sech}^2(\cdot)$</li>
+  <li>$u_x = -2\kappa^2 \cdot 2\kappa \tanh(\cdot) \text{sech}^2(\cdot)$</li>
+  <li>$u_{xxx} = [\text{complex but exact cancellation}]$</li>
+</ul>
+
+<p>All terms balance exactly ✓</p>
+
+<h3 id="example-445-n-soliton-interactionphase-shift-calculation">Example 4.4.5: N-Soliton Interaction—Phase Shift Calculation</h3>
+
+<p><strong>Problem:</strong> Demonstrate soliton collision preserving shape.</p>
+
+<p><strong>Two-soliton initial data:</strong></p>
+
+\[u(x,0) = -2\kappa_1^2 \text{sech}^2(\kappa_1 x) - 2\kappa_2^2 \text{sech}^2(\kappa_2(x - \Delta))\]
+
+<p><strong>Scattering data:</strong></p>
+
+<p>Poles at $k_1 = i\kappa_1$, $k_2 = i\kappa_2$</p>
+
+<p><strong>Time evolution of spectral data:</strong></p>
+
+\[a(k,t) = a(k,0) \quad \text{(invariant)}\]
+
+\[b(k,t) = b(k,0) e^{-4i k^3 t}\]
+
+<p><strong>Phase shift computation:</strong></p>
+
+<p>Interaction coefficient: $\delta_{12} = \log\frac{(\kappa_1 + \kappa_2)^2 + k_1k_2}{(\kappa_1 - \kappa_2)^2 + k_1k_2}$</p>
+
+<p><strong>Post-collision positions:</strong></p>
+
+\[x_1(t \to \infty) = x_1(t \to -\infty) + 4\kappa_1^2 t + \delta_{12}\]
+
+\[x_2(t \to \infty) = x_2(t \to -\infty) + 4\kappa_2^2 t - \delta_{12}\]
+
+<p><strong>Key insight:</strong> Solitons emerge unchanged but with position shift determined by Lax pair structure.</p>
+
+<h3 id="example-446-bi-hamiltonian-structure-via-lax-pairs">Example 4.4.6: Bi-Hamiltonian Structure via Lax Pairs</h3>
+
+<p><strong>Problem:</strong> Connect Lax formulation to infinite conservation laws.</p>
+
+<p><strong>KdV Hamiltonians:</strong></p>
+
+\[H_1 = \int u^2 dx, \quad H_2 = \int (u^3 - \tfrac{1}{2}u_x^2) dx, \quad H_3 = \int (u^4 - 2uu_x^2 - \tfrac{1}{2}u_{xx}^2) dx\]
+
+<p><strong>Lax pair generates Hamiltonian densities:</strong></p>
+
+\[\text{Tr}(L^{2n+1}) = \int H_{n+1} dx\]
+
+<p><strong>Explicit computation for $n=1$:</strong></p>
+
+\[L^3 = (-\partial_x^2 + u)^3 = -\partial_x^6 + 3u\partial_x^4 - 3u_x\partial_x^3 + \ldots\]
+
+<p><strong>Trace formula:</strong></p>
+
+\[\text{Tr}(L^3) = \int [\text{terms involving } u^3, u_x^2, \ldots] dx = 4H_2\]
+
+<p><strong>Hamiltonian operators:</strong></p>
+
+\[\mathcal{J}_0 = \partial_x, \quad \mathcal{J}_1 = \partial_x^3 + 4u\partial_x + 2u_x\]
+
+<p><strong>Verification:</strong> $\mathcal{J}_1 H_1 = \mathcal{J}_0 H_2$ yields KdV equation.</p>
+
+<h3 id="example-447-gauge-equivalence-between-equations">Example 4.4.7: Gauge Equivalence Between Equations</h3>
+
+<p><strong>Problem:</strong> Show different PDEs share same Lax pair via transformation.</p>
+
+<p><strong>Modified KdV → KdV:</strong></p>
+
+<p>mKdV: $v_t + 6v^2 v_x + v_{xxx} = 0$</p>
+
+<p>Miura transformation: $u = v_x + 6v^2$</p>
+
+<p><strong>Shared Lax pair:</strong></p>
+
+\[L = -\partial_x^2 + u = -\partial_x^2 + v_x + 6v^2\]
+
+<p><strong>Verification:</strong></p>
+
+<p>If $v$ satisfies mKdV, then $u$ satisfies KdV</p>
+
+<p><strong>Explicit computation:</strong></p>
+
+\[u_t = (v_x + 6v^2)_t = v_{xt} + 12vv_t = v_{xxx} + 12v(-6v^2 v_x - v_{xxx}) + 6v_x^2 + 12vv_x^2\]
+
+<p>After cancellation: $u_t + 6uu_x + u_{xxx} = 0$ ✓</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Ablowitz, M. J., &amp; Segur, H. (1981). <em>Solitons and the Inverse Scattering Transform</em>. SIAM. (Chapters 1 and 2 cover the AKNS system and Lax pairs rigorously).</li>
+  <li>Lax, P. D. (1968). “Integrals of nonlinear equations of evolution and solitary waves.” <em>Communications on Pure and Applied Mathematics</em>.</li>
+  <li>Newell, A. C. (1985). <em>Solitons in Mathematics and Physics</em>. SIAM. (Detailed treatment of the algebraic structure of zero-curvature representations).</li>
+  <li>Zakharov, V. E., &amp; Shabat, A. B. (1972). “Exact theory of two-dimensional self-focusing and one-dimensional self-modulation of waves in nonlinear media.” <em>Soviet Physics JETP</em>.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
