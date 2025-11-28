@@ -11,6 +11,21 @@ class WidgetEngine {
   init() {
     this.discoverWidgets();
     this.attachWidgetListeners();
+    this.initializeContinuousWidgets();
+  }
+
+  async initializeContinuousWidgets() {
+    // Auto-execute continuous widgets on page load
+    for (const [widgetId, widgetData] of this.widgets.entries()) {
+      const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
+                           widgetData.element.dataset.updateMode === 'continuous';
+      if (isContinuous) {
+        // Wait a bit for Pyodide to potentially load
+        setTimeout(() => {
+          this.executeWidget(widgetData, true);
+        }, 1000);
+      }
+    }
   }
 
   discoverWidgets() {
