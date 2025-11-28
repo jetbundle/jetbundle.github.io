@@ -314,7 +314,12 @@ create_plot([trace], layout)</code></pre>
 
   <!-- Pyodide & Plotly (Load asynchronously) -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+  <!-- MathJax for Plotly LaTeX support -->
+  <script>
+    window.PlotlyConfig = {MathJaxConfig: 'local'};
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script>
 
   <!-- Textbook JavaScript -->
   <script src="/assets/js/theme-manager.js"></script>
