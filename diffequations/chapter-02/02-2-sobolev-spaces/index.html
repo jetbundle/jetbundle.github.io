@@ -700,27 +700,201 @@
 <p>Distributions are too rough for physics (they lack energy concepts). We define <strong>Sobolev Spaces</strong> $H^k$ based on the $L^2$ integrability of weak derivatives. The <strong>Sobolev Embedding Theorems</strong> provide the crucial bridge: sufficient “weak” energy implies classical continuity. We rigorously construct <strong>Trace Operators</strong> to handle boundary conditions, resolving the convergence issues of eigenfunction expansions.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="weak-derivatives">Weak Derivatives</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>For $u,v \in L^1_{\text{loc}}(\Omega)$ and multi-index $\alpha$, we define $D^{\alpha}u = v$ in the <strong>weak sense</strong> if</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[\int_{\Omega} u(x) D^{\alpha}\phi(x)\,dx = (-1)^{|\alpha|} \int_{\Omega} v(x)\phi(x)\,dx\]
 
-<h3 id="core-results">Core Results</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>for all $\phi \in C_{c}^{\infty}(\Omega)$. If the classical derivative exists, it coincides with the weak derivative; conversely, functions such as $</td>
+      <td>x</td>
+      <td>$ have weak derivatives despite lacking classical differentiability everywhere. Weak derivatives are linear, satisfy Leibniz rules when multiplying by smooth functions, but the classical chain rule can fail when composing with non-smooth maps.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<h3 id="sobolev-spaces">Sobolev Spaces</h3>
 
-<h3 id="applications">Applications</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>For integer $k\ge 0$, the Sobolev space $H^{k}(\Omega)=W^{k,2}(\Omega)$ consists of functions $u\in L^{2}(\Omega)$ whose weak derivatives $D^{\alpha}u$ belong to $L^{2}(\Omega)$ for all $</td>
+      <td>\alpha</td>
+      <td>\le k$. The inner product</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[\langle u,v\rangle_{H^{k}}=\sum_{|\alpha|\le k}\int_{\Omega} D^{\alpha}u(x)\,\overline{D^{\alpha}v(x)}\,dx\]
+
+<p>induces the norm $|u|<em>{H^{k}}=\langle u,u\rangle</em>{H^{k}}^{1/2}$. Equipped with this norm, $H^{k}(\Omega)$ is a Hilbert space. The Meyers–Serrin theorem states $C^{\infty}(\Omega)\cap H^{k}(\Omega)$ is dense in $H^{k}(\Omega)$, enabling approximation of Sobolev functions by smooth functions.</p>
+
+<h3 id="sobolev-embedding">Sobolev Embedding</h3>
+
+<p>Sobolev spaces control classical regularity through embeddings. If $k&gt; n/2$, then $H^{k}(\Omega)$ embeds continuously into $C^{0}(\bar{\Omega})$; more generally, for $k - \ell &gt; n/2$, $H^{k}(\Omega)\hookrightarrow C^{\ell}(\bar{\Omega})$. In the scale $H^{1}$, Gagliardo–Nirenberg–Sobolev inequalities provide $H^{1}(\mathbb{R}^{n})\hookrightarrow L^{p}(\mathbb{R}^{n})$ for $2\le p \le 2n/(n-2)$ when $n\ge 3$. These embeddings quantify when finite energy implies continuity or boundedness.</p>
+
+<h3 id="trace-theorem">Trace Theorem</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>To impose boundary conditions on $H^{1}$ functions, one defines the trace operator $\gamma:C^{\infty}(\bar{\Omega})\to C^{\infty}(\partial\Omega)$ by $\gamma u = u</td>
+      <td><em>{\partial \Omega}$. Using Sobolev estimates, $\gamma$ extends uniquely to a bounded map $\gamma:H^{1}(\Omega)\to H^{1/2}(\partial \Omega)$ with $|\gamma u|</em>{L^{2}(\partial \Omega)} \le C|u|<em>{H^{1}(\Omega)}$. The subspace $\ker(\gamma)=H^{1}</em>{0}(\Omega)$ provides the correct setting for homogeneous Dirichlet problems.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-221-weak-derivative-of-the-heaviside-function">Example 2.2.1: Weak Derivative of the Heaviside Function</h3>
+
+<p><strong>Problem:</strong> Show $H’(x)=\delta(x)$ weakly.</p>
+
+<p>For $\phi\in C_{c}^{\infty}(\mathbb{R})$,</p>
+
+\[\int_{\mathbb{R}} H(x) \phi'(x)\,dx = \int_{0}^{\infty}\phi'(x)\,dx = -\phi(0) = -\int_{\mathbb{R}}\delta(x)\phi(x)\,dx.\]
+
+<p>Thus $H’=\delta$ in $\mathcal{D}’$.</p>
+
+<h3 id="example-222-weak-derivatives-of-x">Example 2.2.2: Weak Derivatives of $|x|$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Compute weak derivatives of $u(x)=</td>
+      <td>x</td>
+      <td>$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Integrating by parts shows</p>
+
+\[u'(x)=\operatorname{sgn}(x),\qquad u''(x)=2\delta(x),\]
+
+<p>demonstrating how kinks generate Dirac deltas.</p>
+
+<h3 id="example-223-chain-rule-failure">Example 2.2.3: Chain Rule Failure</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Let $f(t)=t^{2}$ and $u(x)=</td>
+      <td>x</td>
+      <td>$. Compute $(f\circ u)’$ weakly.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Direct computation yields</p>
+
+\[(f\circ u)' = -4|x| + 2\delta(x),\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>whereas the classical chain rule would predict $2</td>
+      <td>x</td>
+      <td>\operatorname{sgn}(x)$. The discrepancy arises from the singularity at $x=0$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-224-membership-in-h101">Example 2.2.4: Membership in $H^{1}(0,1)$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Is $u(x)=</td>
+      <td>x-\tfrac{1}{2}</td>
+      <td>$ in $H^{1}(0,1)$?</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$u\in L^{2}(0,1)$ and $u’(x)=\operatorname{sgn}(x-\tfrac{1}{2})\in L^{2}(0,1)$, so $u\in H^{1}(0,1)$ with $|u|_{H^{1}}^{2}=\frac{13}{12}$.</p>
+
+<h3 id="example-225-failure-of-h2-membership">Example 2.2.5: Failure of $H^{2}$ Membership</h3>
+
+<p>The second derivative $u’‘=2\delta(x-\tfrac{1}{2})$ is not in $L^{2}$, so $u\notin H^{2}(0,1)$. Hence $H^{2}\subsetneq H^{1}$.</p>
+
+<h3 id="example-226-sobolev-embedding-in-1d">Example 2.2.6: Sobolev Embedding in 1D</h3>
+
+<p><strong>Problem:</strong> Prove $|u|<em>{L^{\infty}(0,1)}\le \sqrt{2}|u|</em>{H^{1}(0,1)}$ for $u(0)=0$.</p>
+
+<p>Using Cauchy–Schwarz,</p>
+
+\[|u(x)|=\left|\int_{0}^{x}u'(t)\,dt\right|\le \sqrt{x}\|u'\|_{L^{2}}\le \|u'\|_{L^{2}}.\]
+
+<p>Together with Poincaré’s inequality $|u|<em>{L^{2}}\le |u’|</em>{L^{2}}$, we obtain the stated bound.</p>
+
+<h3 id="example-227-critical-embedding-failure">Example 2.2.7: Critical Embedding Failure</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let $u_{\epsilon}(x)=</td>
+      <td>\log x</td>
+      <td>^{1/4}\chi_{(0,\epsilon)}(x)$. Then $|u_{\epsilon}|<em>{H^{1}}\to C&lt;\infty$ as $\epsilon\to 0$, but $|u</em>{\epsilon}|_{L^{4}}\to\infty$. Hence no embedding $H^{1}\hookrightarrow L^{p}$ exists at the critical exponent.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-228-sobolev-embedding-in-mathbbr2">Example 2.2.8: Sobolev Embedding in $\mathbb{R}^{2}$</h3>
+
+<p>For $u(r)=\log(1/r)$ in the unit disk, $\nabla u=1/r$ is not square-integrable. However, its regularizations $u_{\epsilon}(r)=\log((1+\epsilon)/r)$ belong to $H^{1}$ and illustrate the borderline nature of $H^{1}(\mathbb{R}^{2})$ embeddings.</p>
+
+<h3 id="example-229-trace-of-sqrtx">Example 2.2.9: Trace of $\sqrt{x}$</h3>
+
+<p>For $u(x)=\sqrt{x}$ on $(0,1)$, the trace at $x=0$ satisfies</p>
+
+\[\gamma u(0)=\lim_{\epsilon\to 0^+}\frac{1}{2\epsilon}\int_{-\epsilon}^{\epsilon}\sqrt{|x|}\,dx=0,\]
+
+<p>while $\gamma u(1)=1$. Thus $u$ admits well-defined boundary values in the trace sense.</p>
+
+<h3 id="example-2210-poincaréfriedrichs-inequality">Example 2.2.10: Poincaré–Friedrichs Inequality</h3>
+
+<p>For $u\in H^{1}_{0}(0,1)$,</p>
+
+\[\|u\|_{L^{2}(0,1)}^{2}\le \int_{0}^{1}\int_{0}^{1}|u'(t)|^{2}\,dt\,dx = \|u'\|_{L^{2}}^{2}.\]
+
+<p>This inequality quantifies control of $u$ by its gradient.</p>
+
+<h3 id="example-2211-meyersserrin-approximation">Example 2.2.11: Meyers–Serrin Approximation</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let $u(x)=</td>
+      <td>x-\tfrac{1}{2}</td>
+      <td>$ and $\rho_{\epsilon}$ be a mollifier. Then $u_{\epsilon}=u*\rho_{\epsilon}\in C^{\infty}$ and $|u-u_{\epsilon}|_{H^{1}}\to 0$, illustrating density of smooth functions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-2212-trace-space-h12">Example 2.2.12: Trace Space $H^{1/2}$</h3>
+
+<p>The function $g(t)=t^{-1/4}$ lies in $L^{2}(0,1)$ but not in $H^{1/2}(0,1)$, since</p>
+
+\[\iint_{(0,1)^{2}}\frac{|g(t)-g(s)|^{2}}{|t-s|^{2}}\,ds\,dt=\infty.\]
+
+<p>Thus $H^{1/2}(\partial\Omega)\subsetneq L^{2}(\partial\Omega)$.</p>
+
+<h3 id="example-2213-extension-operator">Example 2.2.13: Extension Operator</h3>
+
+<p>Define $\tilde{u}(x)=u(x)$ for $x\in(0,1)$, extend odd into $(-1,0)$, and set $\tilde{u}=0$ outside $(-1,1)$. Then $\tilde{u}\in H^{1}(\mathbb{R})$ and coincides with $u$ on $(0,1)$, demonstrating existence of bounded extension operators for Lipschitz domains.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Adams, R. A., &amp; Fournier, J. J. F. (2003). <em>Sobolev Spaces</em>. Academic Press.</li>
+  <li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+  <li>Folland, G. B. (1999). <em>Real Analysis: Modern Techniques and Their Applications</em>. Wiley.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
