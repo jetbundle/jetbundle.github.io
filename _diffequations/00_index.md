@@ -125,6 +125,10 @@ The PDE *is* the Manifold
   - [7.7 Noncommutative Geometry]({{ '/diffequations/chapter-07/07-7-noncommutative/' | relative_url }})
   - [7.8 Higher Categories, Derived Stacks & TQFT]({{ '/diffequations/chapter-07/07-8-higher-categories/' | relative_url }})
 
+### Reference & Style Guide
+
+- [LaTeX Style Guide & Test Page]({{ '/diffequations/latex-style-guide/' | relative_url }})
+
 ### Epilogue
 
 - [Epilogue: The Eternal Structure]({{ '/diffequations/epilogue/' | relative_url }})
