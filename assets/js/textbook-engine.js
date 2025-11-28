@@ -166,11 +166,25 @@ if 'plot_data' in globals() and plot_data is not None:
       if (hasPlotData) {
         const plotJson = this.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
-        const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
+        
+        // Ensure dark theme for Plotly
+        const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
+        const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
+        
+        // Enable LaTeX rendering in Plotly
+        if (plotData.layout) {
+          plotData.layout.font = plotData.layout.font || {};
+          if (isDark) {
+            plotData.layout.font.color = '#f8fafc';
+            plotData.layout.plot_bgcolor = '#0a0e1a';
+            plotData.layout.paper_bgcolor = '#111827';
+          }
+        }
 
         Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, {
           template: plotlyTemplate,
-          responsive: true
+          responsive: true,
+          mathjax: 'cdn'  // Enable MathJax for LaTeX in Plotly
         });
       } else {
         outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';

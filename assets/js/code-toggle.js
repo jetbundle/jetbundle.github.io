@@ -40,7 +40,9 @@ class CodeToggle {
         if (!codeBlock.querySelector('.code-toggle-btn')) {
           const toggleBtn = document.createElement('button');
           toggleBtn.className = 'code-toggle-btn';
-          toggleBtn.textContent = 'Hide Code';
+          // Check if code block starts hidden
+          const startsHidden = codeBlock.classList.contains('hidden');
+          toggleBtn.textContent = startsHidden ? 'Show Code' : 'Hide Code';
           toggleBtn.setAttribute('aria-label', 'Toggle code visibility');
 
           toggleBtn.addEventListener('click', () => {

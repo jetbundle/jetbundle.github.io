@@ -86,17 +86,23 @@ class WidgetEngine {
 
       let code = widgetData.code;
 
-      // Inject parameters at the start of the code
+      // Inject parameters - map widget param names to Python variable names
+      const paramMapping = {
+        'lambda': 'lambda_val',
+        'y0': 'y0_val',
+        't_max': 't_max_val'
+      };
+
       const paramLines = Object.entries(params).map(([key, value]) => {
-        // Handle special case for 'lambda' (Python keyword)
-        const paramName = key === 'lambda' ? 'lambda_val' : key;
+        // Map widget parameter names to Python variable names
+        const paramName = paramMapping[key] || key;
         return `${paramName} = ${value}`;
       }).join('\n');
 
-      // Remove any placeholder parameter lines and inject real values
-      // Remove comment lines about parameters
+      // Remove any placeholder comment lines about parameters
       code = code.replace(/# Parameters from widgets.*?\n/g, '');
-      // Remove any existing parameter assignments (may have template syntax)
+      code = code.replace(/# lambda_val, y0_val, t_max_val.*?\n/g, '');
+      // Remove any existing parameter assignments (may have template syntax or placeholders)
       code = code.replace(/lambda_val\s*=.*?\n/g, '');
       code = code.replace(/y0_val\s*=.*?\n/g, '');
       code = code.replace(/t_max_val\s*=.*?\n/g, '');
@@ -165,11 +171,25 @@ if 'plot_data' in globals() and plot_data is not None:
       if (hasPlotData) {
         const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
-        const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
+        
+        // Ensure dark theme for Plotly
+        const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
+        const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
+        
+        // Enable LaTeX rendering in Plotly
+        if (plotData.layout) {
+          plotData.layout.font = plotData.layout.font || {};
+          if (isDark) {
+            plotData.layout.font.color = '#f8fafc';
+            plotData.layout.plot_bgcolor = '#0a0e1a';
+            plotData.layout.paper_bgcolor = '#111827';
+          }
+        }
 
         Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, {
           template: plotlyTemplate,
-          responsive: true
+          responsive: true,
+          mathjax: 'cdn'  // Enable MathJax for LaTeX in Plotly
         });
       } else {
         output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
