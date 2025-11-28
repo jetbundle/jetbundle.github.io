@@ -1,0 +1,54 @@
+{% assign current_order = page.nav_order %}
+{% assign collection = site.diffequations | sort: 'nav_order' %}
+{% assign prev_page = null %}
+{% assign next_page = null %}
+
+{% for item in collection %}
+  {% if item.nav_order < current_order %}
+    {% assign prev_page = item %}
+  {% endif %}
+  {% if item.nav_order > current_order and next_page == null %}
+    {% assign next_page = item %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<nav class="page-navigation">
+  <div class="nav-previous">
+    {% if prev_page %}
+      <a href="{{ prev_page.url | relative_url }}" class="nav-link">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+          <span class="nav-title">{{ prev_page.title }}</span>
+        </span>
+      </a>
+    {% else %}
+      <span class="nav-disabled">
+        <span class="nav-arrow">←</span>
+        <span class="nav-text">
+          <span class="nav-label">Previous</span>
+        </span>
+      </span>
+    {% endif %}
+  </div>
+  <div class="nav-next">
+    {% if next_page %}
+      <a href="{{ next_page.url | relative_url }}" class="nav-link">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+          <span class="nav-title">{{ next_page.title }}</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </a>
+    {% else %}
+      <span class="nav-disabled">
+        <span class="nav-text">
+          <span class="nav-label">Next</span>
+        </span>
+        <span class="nav-arrow">→</span>
+      </span>
+    {% endif %}
+  </div>
+</nav>
+
