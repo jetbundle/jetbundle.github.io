@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Transformation Guide</title>
+  <meta name="description" content="How to restructure textbook sections using the Theory-Example-Reflection architecture">
+
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        // Configure delimiters to handle \left| and \right| properly
+        tags: 'ams',
+        autoload: {
+          color: [],
+          colorv2: ['color'],
+          bbox: ['bbox'],
+          cancel: ['cancel', 'bcancel', 'xcancel', 'cancelto'],
+          enclose: ['enclose', 'cancel', 'color']
+        }
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
+      },
+      startup: {
+        ready: () => {
+          MathJax.startup.defaultReady();
+          console.log('MathJax is ready');
+          // Fix any remaining placeholder issues
+          fixMathPlaceholders();
+        }
+      }
+    };
+
+    // Function to fix any remaining placeholders in math
+    function fixMathPlaceholders() {
+      const content = document.querySelector('.textbook-content');
+      if (!content) return;
+
+      // Find any remaining placeholders and restore them
+      const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
+        }
+      }
+
+      // Re-run MathJax if we made changes
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([content]).catch(err => {
+          console.log('MathJax re-render after placeholder fix:', err);
+        });
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  <!-- Prism.js Syntax Highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <!-- Textbook CSS -->
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+</head>
+<body class="textbook-body theme-dark">
+  <div class="theme-toggle-container">
+  <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
+    <span class="theme-icon-sun">☀</span>
+    <span class="theme-icon-moon">🌙</span>
+  </button>
+</div>
+
+
+  <div class="textbook-container">
+    <!-- Sidebar Navigation -->
+    <nav class="textbook-sidebar">
+      <div class="nav-header">
+  <h3>Differential Equations</h3>
+  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">2025 Edition</p>
+</div>
+
+<nav class="nav-content">
+  <ul>
+    
+    
+
+    
+      
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/" >
+              0. A Survey of Differential Equations and their Algebraic Geometry
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/content-transformation-guide/" class="active">
+              0. Content Transformation Guide
+            </a>
+          </li>
+        
+      
+    
+      
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-01/" >
+            Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-1-exact-methods/" >
+              1.1 Exact Methods for Ordinary Differential Equations
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-2-special-functions/" >
+              1.2 Special Functions of Mathematical Physics
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-3-integral-transforms/" >
+              1.3 Integral Transforms
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-4-linear-pde/" >
+              1.4 Classical Linear Partial Differential Equations
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" >
+              1.5 Asymptotic Analysis
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
+              1.6 Classical Perturbation Theory
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-7-renormalization/" >
+              1.7 Classical Renormalization & Non-Perturbative Methods
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-02/" >
+            Chapter 2: Functional Analysis, Distributions & Weak Solutions
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-1-distributions/" >
+              2.1 Distributions & Test Functions
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-2-sobolev-spaces/" >
+              2.2 Sobolev Spaces & Weak Derivatives
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-3-hilbert-spaces/" >
+              2.3 Hilbert Space Theory & Spectral Theorem
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-4-unbounded-operators/" >
+              2.4 Unbounded Operators, Resolvents & Semigroups
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-5-variational-methods/" >
+              2.5 Variational Methods & Lax-Milgram
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-6-galerkin-methods/" >
+              2.6 Galerkin Methods & Finite Elements
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-7-fredholm-theory/" >
+              2.7 Fredholm Theory & Index
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-03/" >
+            Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-1-manifolds-tensors/" >
+              3.1 Manifolds, Tensors & Covariant Derivatives
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-2-conservation-laws/" >
+              3.2 Systems of Conservation Laws & Hyperbolicity
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-3-entropy-solutions/" >
+              3.3 Entropy Solutions & Shock Theory
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-4-exterior-calculus/" >
+              3.4 Exterior Calculus & Hodge Decomposition
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-5-continuum-mechanics/" >
+              3.5 Continuum Mechanics & Elasticity
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-6-geometric-optics/" >
+              3.6 Geometric Optics, Rays & Caustics
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-04/" >
+            Chapter 4: Symmetry, Lie Theory & Classical Integrability
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-1-lie-symmetries/" >
+              4.1 Lie Symmetries & Prolongation
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-2-noether-theorem/" >
+              4.2 Noether's Theorem & Invariant Reduction
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-3-integrable-systems/" >
+              4.3 Completely Integrable Systems
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-4-lax-pairs/" >
+              4.4 Lax Pairs & Zero-Curvature Representations
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-5-riemann-hilbert/" >
+              4.5 Riemann-Hilbert & Inverse Scattering
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-6-recursion-operators/" >
+              4.6 Recursion Operators & Hirota Bilinearization
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-7-susy-qm/" >
+              4.7 Supersymmetric Quantum Mechanics
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-8-nonlocal-symmetries/" >
+              4.8 Nonlocal Symmetries & Potential Systems
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-05/" >
+            Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-1-stochastic-calculus/" >
+              5.1 Stochastic Calculus Foundations
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-2-sdes/" >
+              5.2 SDEs & Diffusion Processes
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-3-geometric-stochastic/" >
+              5.3 Geometric Stochastic Analysis
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-4-rough-paths/" >
+              5.4 Rough Paths & Controlled Rough Paths
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-5-fractional-calculus/" >
+              5.5 Fractional Calculus & Nonlocal Operators
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-6-spdes/" >
+              5.6 SPDEs & Regularity Structures
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-7-kinetic-theory/" >
+              5.7 Kinetic Theory & Mean-Field Games
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-8-fractal-geometry/" >
+              5.8 Fractal Geometry & Dirichlet Forms
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-9-susy-stochastics/" >
+              5.9 Supersymmetric Theory of Stochastics
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-06/" >
+            Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-1-jet-bundles/" >
+              6.1 Jet Bundles & Prolongation
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-2-formal-integrability/" >
+              6.2 Formal Integrability & Spencer Cohomology
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-3-exterior-systems/" >
+              6.3 Exterior Differential Systems & Cartan-Kähler
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-4-metric-space/" >
+              6.4 The Space of Riemannian Metrics
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-5-geometric-evolution/" >
+              6.5 Geometric Evolution Equations
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-6-gauge-theories/" >
+              6.6 Gauge Theories & Instanton Moduli
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-7-nonlinear-systems/" >
+              6.7 Fully Nonlinear & Overdetermined Systems
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-07/" >
+            Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-1-d-modules/" >
+              7.1 D-Modules & Holonomic Systems
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-2-microlocal-analysis/" >
+              7.2 Microlocal Analysis & Wave Front Sets
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-3-riemann-hilbert/" >
+              7.3 Riemann-Hilbert Correspondence
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-4-fourier-integral/" >
+              7.4 Fourier Integral Operators
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-5-resurgence/" >
+              7.5 Resurgence, Borel Summation & Alien Calculus
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-6-index-theorems/" >
+              7.6 Index Theorems & K-Theory
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-7-noncommutative/" >
+              7.7 Noncommutative Geometry
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-8-higher-categories/" >
+              7.8 Higher Categories, Derived Stacks & TQFT
+            </a>
+          </li>
+        
+      
+    
+      
+        
+      
+    
+
+    
+      </ul>
+    </li>
+    
+
+    
+    
+      
+    
+      
+        
+      
+    
+      
+        
+          
+          <li class="chapter-item" style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+            <a href="/diffequations/content-transformation-guide/" class="active">
+              📖 Content Transformation Guide
+            </a>
+          </li>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+    </nav>
+
+    <!-- Main Content -->
+    <main class="textbook-main">
+      <header class="textbook-header">
+        <h1>Content Transformation Guide</h1>
+        <p class="description">How to restructure textbook sections using the Theory-Example-Reflection architecture</p>
+      </header>
+
+      <article class="textbook-content">
+        <h1 id="content-transformation-guide">Content Transformation Guide</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>This guide provides step-by-step instructions for transforming textbook sections from the traditional “Mathematical Content + Examples” format to the integrated “Theory-Example-Reflection” architecture.</p>
+
+<h2 id="the-five-global-architectural-directives">The Five Global Architectural Directives</h2>
+
+<h3 id="1-the-theory-example-reflection-loop">1. The “Theory-Example-Reflection” Loop</h3>
+
+<p><strong>Principle:</strong> Never segregate theory from examples. Integrate them immediately.</p>
+
+<p><strong>Structure:</strong>
+1. <strong>State the Concept</strong>: Define the mathematical object or theorem rigorously
+2. <strong>Immediate Illustration</strong>: Provide a worked example right after the definition (use blockquotes or distinct styling)
+3. <strong>Narrative Bridge</strong>: Explain what the example revealed or what it failed to do, leading to the next concept</p>
+
+<p><strong>Before:</strong>
+```markdown
+## Mathematical Content</p>
+
+<h3 id="existence-and-uniqueness">Existence and Uniqueness</h3>
+
+<p>We model first-order equations as $y’ = f(x,y)$…</p>
+
+<h2 id="complete-examples">Complete Examples</h2>
+
+<h3 id="example-111-picardlindelöf-iteration">Example 1.1.1: Picard–Lindelöf Iteration</h3>
+<p>…
+```</p>
+
+<p><strong>After:</strong>
+```markdown
+## The Deterministic Assumption: Existence and Uniqueness</p>
+
+<p>Before seeking a formula, we must establish that a solution exists…</p>
+
+<p><strong>Definition: The Lipschitz Condition</strong></p>
+
+<p>A function $f$ is Lipschitz in $y$ if…</p>
+
+<blockquote>
+  <p><strong>Illustrative Example: The Failure of Determinism</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Consider the initial value problem…</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>The Nuance:</strong> Because the uniqueness theorem fails…
+```</p>
+</blockquote>
+
+<h3 id="2-the-prerequisite-in-lining-strategy">2. The “Prerequisite In-lining” Strategy</h3>
+
+<p><strong>Principle:</strong> Define concepts “just-in-time” within the narrative flow.</p>
+
+<p><strong>Before:</strong>
+```markdown
+## Prerequisites</p>
+
+<ul>
+  <li>Real Analysis</li>
+  <li>Linear Algebra</li>
+  <li>Basic Topology</li>
+</ul>
+
+<h2 id="mathematical-content">Mathematical Content</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+**After:**
+```markdown
+## Mathematical Content
+
+To discuss convergence rigorously, we recall the **Cauchy Criterion**: a sequence converges if and only if the distance between arbitrary terms goes to zero...
+</code></pre></div></div>
+
+<h3 id="3-the-architectural-challenge-ending">3. The “Architectural Challenge” Ending</h3>
+
+<p><strong>Principle:</strong> Replace long lists of solved examples with two high-level, collapsible problems.</p>
+
+<p><strong>Structure:</strong>
+- <strong>Challenge 1 (Computational/Derivation)</strong>: A difficult derivation connecting multiple concepts
+- <strong>Challenge 2 (Conceptual/Counter-example)</strong>: Tests the boundaries of the theory</p>
+
+<p><strong>Format:</strong>
+```markdown
+## Architectural Challenges</p>
+
+<h3 id="challenge-1-descriptive-title">Challenge 1: [Descriptive Title]</h3>
+
+<p>[Problem statement]</p>
+
+<p><em>(Hint: [guidance])</em></p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+[Detailed solution with key insights]
+
+</details>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+### 4. Visualizing the Argument
+
+**Principle:** Use strategic image tags to illustrate geometric arguments, not just results.
+
+**When to add images:**
+- Geometric interpretations (characteristic lines, phase portraits)
+- Visual proofs (area under curves, vector fields)
+- Conceptual diagrams (hierarchies, relationships)
+
+**Format:**
+```markdown
+![Description of geometric argument](path/to/image.png)
+
+*Figure: [Caption explaining what the visualization demonstrates]*
+</code></pre></div></div>
+
+<h3 id="5-unified-tone---the-ascent-narrative">5. Unified Tone - The “Ascent” Narrative</h3>
+
+<p><strong>Principle:</strong> Every section must end by explicitly stating the “failure” or “limitation” that motivates the next section.</p>
+
+<p><strong>Structure:</strong>
+- End each section with: “This limitation leads us to [next concept]…”
+- Connect to the broader narrative arc
+- Use transition phrases like “However, when…”, “The failure of…”, “This exposes…”</p>
+
+<h2 id="step-by-step-transformation-process">Step-by-Step Transformation Process</h2>
+
+<h3 id="step-1-add-essence-block">Step 1: Add Essence Block</h3>
+
+<p>Add a high-level quote at the very top, immediately after the title:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Section X.X: [Title]</span>
+<span class="gt">
+&gt; [One-sentence essence that captures the section's core insight]</span>
+
+<span class="gu">## Introduction</span>
+</code></pre></div></div>
+
+<h3 id="step-2-restructure-mathematical-content">Step 2: Restructure Mathematical Content</h3>
+
+<p>For each concept:
+1. <strong>Define rigorously</strong> (in-line, not assumed)
+2. <strong>Immediate example</strong> (blockquote format)
+3. <strong>Reflection paragraph</strong> (what it revealed/failed)</p>
+
+<h3 id="step-3-integrate-examples">Step 3: Integrate Examples</h3>
+
+<p>Move examples from the bottom to immediately after their relevant theory:
+- Use blockquote styling: <code class="language-plaintext highlighter-rouge">&gt; **Worked Example: [Title]**</code>
+- Include “The Nuance” or “Reflection” paragraph after each</p>
+
+<h3 id="step-4-replace-example-list-with-challenges">Step 4: Replace Example List with Challenges</h3>
+
+<p>Remove the “Complete Examples” section and replace with:
+- Two Architectural Challenges
+- Make solutions collapsible using <code class="language-plaintext highlighter-rouge">&lt;details&gt;</code> tags
+- Ensure challenges synthesize multiple concepts</p>
+
+<h3 id="step-5-fix-math-formatting">Step 5: Fix Math Formatting</h3>
+
+<p><strong>Critical:</strong> Replace all <code class="language-plaintext highlighter-rouge">|</code> with <code class="language-plaintext highlighter-rouge">\mid</code> EXCEPT in <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code> delimiters.</p>
+
+<p><strong>Find and Replace:</strong>
+- <code class="language-plaintext highlighter-rouge">\{x | x &gt; 0\}</code> → <code class="language-plaintext highlighter-rouge">\{x \mid x &gt; 0\}</code>
+- <code class="language-plaintext highlighter-rouge">P(A | B)</code> → <code class="language-plaintext highlighter-rouge">P(A \mid B)</code>
+- Keep: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code> (absolute value)
+- Keep: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code> (norm)</p>
+
+<h3 id="step-6-add-narrative-hooks">Step 6: Add Narrative Hooks</h3>
+
+<p>End each subsection with a transition that:
+- States a limitation
+- Connects to the next concept
+- Maintains the “ascent” narrative</p>
+
+<h2 id="example-transformation">Example Transformation</h2>
+
+<h3 id="before-traditional-format">Before (Traditional Format):</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Mathematical Content</span>
+
+<span class="gu">### Existence and Uniqueness</span>
+
+We model first-order equations as $y' = f(x,y)$...
+
+<span class="gu">## Complete Examples</span>
+
+<span class="gu">### Example 1.1.1: Picard–Lindelöf Iteration</span>
+
+<span class="gs">**Problem:**</span> Solve $y' = y$ with $y(0) = 1$...
+
+<span class="gu">### Example 1.1.2: Radioactive Decay</span>
+
+<span class="gs">**Problem:**</span> Solve $y' = -ky + P$...
+</code></pre></div></div>
+
+<h3 id="after-theory-example-reflection">After (Theory-Example-Reflection):</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## The Deterministic Assumption: Existence and Uniqueness</span>
+
+Before seeking a formula, we must establish that a solution exists...
+
+<span class="gs">**Definition: The Lipschitz Condition**</span>
+
+A function $f$ is Lipschitz in $y$ if there exists a constant $K$ such that:
+
+$$|f(x, y_1) - f(x, y_2)| <span class="se">\l</span>eq K |y_1 - y_2|$$
+<span class="gt">
+&gt; **Illustrative Example: The Failure of Determinism**</span>
+<span class="gt">
+&gt; Consider the initial value problem $y' = \sqrt{|y|}$ with $y(0) = 0$.</span>
+<span class="gt">
+&gt; [Solution details...]</span>
+<span class="gt">
+&gt; **The Nuance:** Because the uniqueness theorem fails, a particle at the origin can wait for an arbitrary time before spontaneously moving. The physical history is erased at the singularity.</span>
+
+However, when the Lipschitz condition holds, we can construct solutions via iteration...
+</code></pre></div></div>
+
+<h2 id="checklist-for-each-section">Checklist for Each Section</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added essence block quote at top</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Integrated examples immediately after definitions</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Used blockquote styling for examples</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added “The Nuance” or “Reflection” after each example</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Replaced all <code class="language-plaintext highlighter-rouge">|</code> with <code class="language-plaintext highlighter-rouge">\mid</code> (except in <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code>)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Removed “Complete Examples” section</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Added two Architectural Challenges with collapsible solutions</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Ended section with narrative hook to next concept</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />In-lined prerequisites (no separate prerequisites section)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Maintained unified “ascent” tone throughout</li>
+</ul>
+
+<h2 id="common-patterns">Common Patterns</h2>
+
+<h3 id="pattern-1-definition--example--reflection">Pattern 1: Definition → Example → Reflection</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">**Definition: [Concept Name]**</span>
+
+[Formal definition]
+<span class="gt">
+&gt; **Worked Example: [Title]**</span>
+<span class="gt">
+&gt; [Problem and solution]</span>
+<span class="gt">
+&gt; **The Nuance:** [What this reveals about limitations or connections]</span>
+
+[Transition to next concept]
+</code></pre></div></div>
+
+<h3 id="pattern-2-theorem--application--limitation">Pattern 2: Theorem → Application → Limitation</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gs">**Theorem X.X (Name)**</span>
+
+[Statement]
+
+<span class="gs">**Proof Sketch:**</span> [Key steps]
+<span class="gt">
+&gt; **Application: [Title]**</span>
+<span class="gt">
+&gt; [Concrete application]</span>
+<span class="gt">
+&gt; **Reflection:** [Where this method fails or what it cannot capture]</span>
+
+This limitation motivates [next concept]...
+</code></pre></div></div>
+
+<h2 id="math-formatting-rules">Math Formatting Rules</h2>
+
+<ol>
+  <li><strong>Separators</strong> → Use <code class="language-plaintext highlighter-rouge">\mid</code>
+    <ul>
+      <li>Set notation: <code class="language-plaintext highlighter-rouge">$\{x \mid x &gt; 0\}$</code></li>
+      <li>Conditional: <code class="language-plaintext highlighter-rouge">$P(A \mid B)$</code></li>
+      <li>Divides: <code class="language-plaintext highlighter-rouge">$a \mid b$</code></li>
+    </ul>
+  </li>
+  <li><strong>Delimiters</strong> → Use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>
+    <ul>
+      <li>Absolute value: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code></li>
+      <li>Norm: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code></li>
+    </ul>
+  </li>
+  <li><strong>Never use bare <code class="language-plaintext highlighter-rouge">|</code></strong> in math expressions (causes table parsing)</li>
+</ol>
+
+<h2 id="quality-checks">Quality Checks</h2>
+
+<p>Before finalizing, verify:
+- All examples are integrated (none at the bottom)
+- Two Architectural Challenges replace example list
+- Solutions are collapsible
+- Math uses <code class="language-plaintext highlighter-rouge">\mid</code> for separators
+- Narrative flows from concept to concept
+- Each subsection ends with a hook to the next
+- Essence block captures the section’s core</p>
+
+<h2 id="template-for-new-sections">Template for New Sections</h2>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">textbook</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Section</span><span class="nv"> </span><span class="s">X.X:</span><span class="nv"> </span><span class="s">[Title]"</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">[Brief</span><span class="nv"> </span><span class="s">description]"</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">/diffequations/chapter-X/XX-[slug]/</span>
+<span class="na">order</span><span class="pi">:</span> <span class="s">X.X</span>
+<span class="na">chapter</span><span class="pi">:</span> <span class="s">X</span>
+<span class="na">section</span><span class="pi">:</span> <span class="s">X</span>
+<span class="na">nav_order</span><span class="pi">:</span> <span class="s">X.X</span>
+<span class="na">is_chapter_index</span><span class="pi">:</span> <span class="kc">false</span>
+<span class="na">parent_chapter</span><span class="pi">:</span> <span class="s">X</span>
+<span class="na">parent_section</span><span class="pi">:</span> <span class="kc">null</span>
+<span class="nn">---</span>
+
+<span class="gh"># Section X.X: [Title]</span>
+<span class="gt">
+&gt; [One-sentence essence]</span>
+
+<span class="gu">## Introduction</span>
+
+[Context and motivation, connecting to previous section's limitations]
+
+<span class="gu">## [First Major Concept]</span>
+
+[Definition in-line]
+<span class="gt">
+&gt; **Worked Example: [Title]**</span>
+<span class="gt">
+&gt; [Problem and solution]</span>
+<span class="gt">
+&gt; **The Nuance:** [Reflection]</span>
+
+[Transition paragraph]
+
+<span class="gu">## [Second Major Concept]</span>
+
+[Continue pattern...]
+
+<span class="gu">## Architectural Challenges</span>
+
+<span class="gu">### Challenge 1: [Computational/Derivation]</span>
+
+[Problem statement]
+
+<span class="ge">*(Hint: [guidance])*</span>
+
+<span class="nt">&lt;details&gt;</span>
+<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
+
+[Detailed solution]
+
+<span class="nt">&lt;/details&gt;</span>
+
+<span class="gu">### Challenge 2: [Conceptual/Counter-example]</span>
+
+[Problem statement]
+
+<span class="nt">&lt;details&gt;</span>
+<span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
+
+[Detailed solution]
+
+<span class="nt">&lt;/details&gt;</span>
+
+<span class="gu">## References</span>
+<span class="p">
+*</span> [Author]. <span class="ge">*Title*</span>. Publisher, Year.
+
+<span class="gu">## Navigation</span><span class="sb">
+
+
+
+
+
+
+
+</span>  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    
+    
+
+<span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"page-navigation"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"nav-previous"</span><span class="nt">&gt;</span>
+    
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/diffequations/"</span> <span class="na">class=</span><span class="s">"nav-link"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-arrow"</span><span class="nt">&gt;</span>←<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-text"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-label"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-title"</span><span class="nt">&gt;</span>A Survey of Differential Equations and their Algebraic Geometry<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"nav-next"</span><span class="nt">&gt;</span>
+    
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/diffequations/chapter-01/"</span> <span class="na">class=</span><span class="s">"nav-link"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-text"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-label"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-title"</span><span class="nt">&gt;</span>Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal<span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"nav-arrow"</span><span class="nt">&gt;</span>→<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span><span class="sb">
+
+
+</span><span class="p">---
+</span>
+<span class="gu">## Related Sections</span>
+<span class="p">
+-</span> [Previous/Next sections]
+</code></pre></div></div>
+
+<p>This transformation guide ensures consistency across all sections while maintaining mathematical rigor and narrative flow.</p>
+
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Pyodide & Plotly (Load asynchronously) -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+
+  <!-- Textbook JavaScript -->
+  <script src="/assets/js/theme-manager.js"></script>
+  <script src="/assets/js/textbook-engine.js"></script>
+  <script src="/assets/js/widget-engine.js"></script>
+  <script src="/assets/js/code-toggle.js"></script>
+</body>
+</html>
