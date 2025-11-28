@@ -20,533 +20,218 @@ We begin with the concept of reduction to quadrature. We examine **Separable** a
 
 ## Mathematical Content
 
-The study of ordinary differential equations (ODEs) begins with the search for explicit solutions. Historically, this pursuit was characterized by the classification of equation types that could be reduced to quadrature—that is, solved via finite integration. While modern analysis focuses on existence, uniqueness, and asymptotic behavior, the classical methods provide the essential vocabulary for these higher-level discussions. We begin by establishing the rigorous conditions under which solutions exist, then systematically explore the algebraic and geometric transformations that render specific classes of equations solvable.
+### Existence and Uniqueness
 
-### Existence and Uniqueness Theory
-
-Before attempting to solve a first-order differential equation of the form $y' = f(t, y)$, we must establish that a solution exists and is unique. The fundamental result in this domain is the **Picard-Lindelöf Theorem**, which relies on the concept of Lipschitz continuity.
-
-Let $D \subset \mathbb{R}^2$ be a domain containing the point $(t_0, y_0)$. We require the function $f(t, y)$ to be continuous on $D$ and to satisfy a **Lipschitz condition** with respect to $y$ uniformly in $t$. That is, there exists a constant $K > 0$ such that for all $(t, y_1)$ and $(t, y_2)$ in $D$:
+We model first-order equations as $y' = f(x,y)$ with $y(x_{0}) = y_{0}$. The Picard–Lindelöf theorem guarantees local solvability: if $f$ is continuous on a rectangle containing $(x_{0}, y_{0})$ and satisfies $\left|f(x,y_{1}) - f(x,y_{2})\right| \leq K \left|y_{1}-y_{2}\right|$, then the operator
 
 $$
-\left|f(t, y_1) - f(t, y_2)\right| \leq K\left|y_1 - y_2\right|.
+(\mathcal{T}y)(x) = y_{0} + \int_{x_{0}}^{x} f(t, y(t))\,dt
 $$
 
-Under these conditions, there exists an interval $I$ centered at $t_0$ where a unique solution $y(t)$ exists satisfying the initial value problem $y(t_0) = y_0$.
+is a contraction on a sufficiently small interval. Banach’s fixed-point theorem furnishes a unique fixed point, and loss of the Lipschitz condition explains non-uniqueness phenomena.
 
-The proof of this theorem transforms the differential equation into an equivalent integral equation:
+### Separation of Variables and Exact Forms
 
-$$
-y(t) = y_0 + \int_{t_0}^t f(s, y(s)) \, ds
-$$
-We define an operator $T$ on the space of continuous functions such that $(Ty)(t)$ equals the right-hand side of the equation above. The existence proof proceeds via the **Banach Fixed Point Theorem**. We show that under the Lipschitz condition, the operator $T$ is a contraction mapping on a complete metric space of functions. The sequence of Picard iterates defined by $y_{n+1} = Ty_n$ converges uniformly to the unique fixed point, which is the solution to the ODE.
-
-### First-Order Equations and Differential Forms
-
-The simplest class of solvable equations are those amenable to **Separation of Variables**. If the rate of change can be factored as $dy/dx = g(x)h(y)$, the equation can be rewritten as $dy/h(y) = g(x)dx$, reducing the problem immediately to independent integrations.
-
-A more geometric perspective arises when we treat the ODE as a relation between differential forms. An equation written as $M(x, y)dx + N(x, y)dy = 0$ is called **exact** if the 1-form $\omega = Mdx + Ndy$ is the total differential of some potential function $\psi(x, y)$. That is, $d\psi = \frac{\partial \psi}{\partial x}dx + \frac{\partial \psi}{\partial y}dy$. If this holds, the implicit solution is given by the level sets $\psi(x, y) = C$.
-
-The necessary and sufficient condition for exactness on a simply connected domain (by Poincaré's Lemma) is the equality of mixed partial derivatives:
+When the field factors as $y' = P(x)/Q(y)$ we obtain
 
 $$
-\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}
+Q(y)\,dy = P(x)\,dx, \qquad \int Q(y)\,dy = \int P(x)\,dx,
 $$
-When an equation is not exact, we seek an **integrating factor** $\mu(x, y)$ such that the form $\mu M dx + \mu N dy = 0$ satisfies the exactness condition. This leads to a partial differential equation for $\mu$:
+
+reducing the problem to quadrature. Writing $M(x,y)\,dx + N(x,y)\,dy = 0$ reveals structure: if
 
 $$
-M \frac{\partial \mu}{\partial y} - N \frac{\partial \mu}{\partial x} = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)
+\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x},
 $$
-While generally difficult to solve, this often simplifies if $\mu$ depends on only one variable.
+
+then the form is exact and $d\psi = M\,dx + N\,dy$, so $\psi(x,y) = c$ describes solutions. Integrating factors $\mu(x,y)$ enforce exactness via $\partial(\mu M)/\partial y = \partial(\mu N)/\partial x$, often guided by symmetry.
 
 ### Linear First-Order Equations
 
-The linear first-order equation is the prototype for the theory of differential operators. Written in the standard form:
+The linear equation $y' + P(x) y = Q(x)$ uses the integrating factor
 
 $$
-y' + P(x)y = Q(x)
+\mu(x) = \exp\left(\int P(x)\,dx\right), \qquad (\mu y)' = \mu Q.
 $$
-we apply the method of integrating factors. By multiplying the entire equation by $\mu(x) = \exp\left(\int P(x) \, dx\right)$, the left-hand side becomes the derivative of a product, $(\mu y)'$. Integration yields the general solution:
 
-$$
-y(x) = e^{-\int P(x)dx} \left( \int Q(x) e^{\int P(x)dx} \, dx + C \right)
-$$
-This structure introduces the concept of **Variation of Parameters**. If we know the solution $y_h$ to the homogeneous equation ($Q(x)=0$), we assume the solution to the inhomogeneous equation takes the form $y(x) = v(x)y_h(x)$. Substituting this ansatz into the ODE yields a separable equation for the unknown function $v(x)$.
+This is a special case of variation of parameters: given a homogeneous solution $y_{h}$, set $y = v(x) y_{h}(x)$ and derive a separable equation for $v$. Bernoulli equations $y' + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v = y^{1-n}$.
 
 ### The Riccati Equation and Linearization
 
-The **Riccati equation** is a nonlinear ODE of the form:
+Riccati equations
 
 $$
-y' = P(x) + Q(x)y + R(x)y^2
+y' = P(x) + Q(x) y + R(x) y^{2}
 $$
-Despite its nonlinearity, the Riccati equation is intimately connected to linear theory. It can be transformed into a second-order linear homogeneous equation via the substitution:
+
+bridge linear and nonlinear dynamics. If $y_{1}$ is a particular solution, substituting $y = y_{1} + 1/v$ produces a linear first-order equation for $v$. Alternatively, $y = -u'/(R u)$ converts the Riccati equation into
 
 $$
-y(x) = -\frac{1}{R(x)} \frac{u'(x)}{u(x)}
+u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0,
 $$
-This transforms the original nonlinear problem for $y$ into the linear problem for $u$:
 
-$$
-u'' - \left( \frac{R'}{R} + Q \right)u' + (PR)u = 0
-$$
-Furthermore, the Riccati equation possesses a remarkable property related to projective geometry: the **cross-ratio** of any four solutions is independent of the independent variable $x$. If one particular solution $y_1(x)$ is known, the general solution can be found using the substitution $y = y_1 + 1/v$, which reduces the Riccati equation to a linear equation for $v$.
+showing how nonlinearity can arise from projecting higher-dimensional linear flow.
 
 ### Second-Order Linear Homogeneous Equations
 
-We now consider linear equations of the second order:
+Equations like $y'' + p(x) y' + q(x) y = 0$ underpin classical physics. Constant coefficients yield the characteristic polynomial $r^{2} + pr + q = 0$ with exponential solutions. Cauchy–Euler equations $x^{2} y'' + a x y' + by = 0$ admit $y = x^{r}$. When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving
 
 $$
-y'' + P(x)y' + Q(x)y = 0
+y_{2}(x) = y_{1}(x) \int \frac{\exp\left(-\int p(s)\,ds\right)}{y_{1}(t)^{2}}\,dt.
 $$
-If the coefficients are constants, the substitution $y = e^{rx}$ yields the **characteristic equation** $r^2 + ar + b = 0$, the roots of which determine the fundamental solution set.
 
-For the **Cauchy-Euler equation**, $x^2 y'' + axy' + by = 0$, the scaling symmetry suggests the ansatz $y = x^r$, leading to the indicial equation $r(r-1) + ar + b = 0$.
-
-A fundamental tool in the study of general linear equations is **Reduction of Order**. If one non-trivial solution $y_1(x)$ is known, a second linearly independent solution $y_2(x)$ can be constructed using the ansatz $y_2(x) = v(x)y_1(x)$. This leads to the formula:
-
-$$
-y_2(x) = y_1(x) \int \frac{\exp(-\int P(x) dx)}{y_1(x)^2} \, dx
-$$
-The quantity in the numerator is related to the **Wronskian determinant**, $W(y_1, y_2) = y_1 y_2' - y_1' y_2$. The evolution of the Wronskian is governed by **Abel's Identity**:
-
-$$
-W(x) = W(x_0) \exp\left( -\int_{x_0}^x P(t) \, dt \right)
-$$
-This identity implies that if the Wronskian is non-zero at a single point, it is non-zero everywhere, ensuring the linear independence of solutions.
+The Wronskian $W = y_{1} y_{2}' - y_{1}' y_{2}$ satisfies Abel’s identity $W' = -p(x) W$, so $W \neq 0$ at one point implies linear independence everywhere.
 
 ### Systems and Matrix Methods
 
-The theory of higher-order linear equations can be unified by considering first-order systems:
+Systems $\mathbf{y}' = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional vector space with fundamental matrix $\Phi$ satisfying $\Phi' = A\Phi$. The general solution is $\mathbf{y} = \Phi \mathbf{c}$. Abel’s formula extends via
 
 $$
-\mathbf{y}' = A(x)\mathbf{y}
+\det \Phi(x) = \det \Phi(x_{0}) \exp\left( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt \right),
 $$
-where $\mathbf{y}$ is a vector and $A(x)$ is a matrix-valued function. A **Fundamental Matrix** $\Phi(x)$ is a matrix whose columns form a basis of linearly independent solutions. The general solution is $\mathbf{y}(x) = \Phi(x)\mathbf{c}$.
 
-Analogous to the scalar case, the determinant of the fundamental matrix satisfies a trace version of Abel's formula:
-
-$$
-\det \Phi(x) = \det \Phi(x_0) \exp\left( \int_{x_0}^x \text{tr}(A(t)) \, dt \right)
-$$
-This result connects the algebraic properties of the coefficient matrix (its trace) to the geometric volume expansion or contraction of the solution flow. For systems with periodic coefficients $A(x+T) = A(x)$, **Floquet Theory** analyzes the spectrum of the monodromy matrix $\Phi(T)$ to determine stability.
+tying phase-space volume change to $\operatorname{tr} A$.
 
 ### First Integrals and Level Sets
 
-We conclude this section by re-examining solutions not as functions of time, but as geometric loci in phase space. A function $H(x, y)$ is a **First Integral** of the system if it remains constant along trajectories. That is, for a dynamical system defined by vector field $\mathbf{V}$, the derivative along the flow vanishes:
+Autonomous systems often admit first integrals $H(x,y)$ with $dH/dt = 0$, so trajectories lie on $H = c$. In Hamiltonian form the Poisson bracket
 
 $$
-\frac{dH}{dt} = \nabla H \cdot \mathbf{V} = 0
+\{F, H\} = \nabla F \cdot J \nabla H
 $$
-The solution curves lie on the level sets $H(x, y) = C$. In the context of Hamiltonian mechanics, where the system is defined by canonical coordinates $(q, p)$ and Hamiltonian $H$, the time evolution of any observable $F$ is given by the **Poisson Bracket**:
 
-$$
-\frac{dF}{dt} = \{F, H\} = \frac{\partial F}{\partial q}\frac{\partial H}{\partial p} - \frac{\partial F}{\partial p}\frac{\partial H}{\partial q}
-$$
-Thus, $F$ is a first integral if and only if it Poisson-commutes with the Hamiltonian. This algebraic structure anticipates the symplectic geometry and integrability discussions in later chapters.
+encodes conservation: if $\{F, H\} = 0$, then $F$ is invariant. This foreshadows the symplectic viewpoint of later sections.
 
+## Connections to Chapter Narrative
 
-
-The methods developed in this section establish foundational patterns that recur throughout the text:
-
-- **Picard Iteration** → Chapter 2 distributions (convergence in weak topologies)
-- **Exact Forms** → Chapter 3 exterior calculus
-- **Riccati Linearization** → Chapter 4 Lie symmetries
-- **First Integrals** → Chapter 4 Noether's theorem
-- **Wronskian** → Chapter 2 spectral theory
-
-These examples provide complete analytical workthroughs that:
-- Show every algebraic step
-- Verify every solution
-- Reveal geometric interpretations
-- Connect to subsequent chapters
-- Demonstrate method limitations
-
+Exact methods comprise the opening tier of the “explicit arsenal.” They succeed when symmetry or coordinate choice flattens the vector field, but their fragility—non-Lipschitz behavior, elusive integrating factors, scarce Riccati solutions—necessitates the special functions, integral transforms, and spectral frameworks developed later in Chapter 1 and beyond.
 
 ## References
 
-* **Coddington, E. A., & Levinson, N. (1955).** *Theory of Ordinary Differential Equations*. McGraw-Hill. (For rigorous treatment of existence, uniqueness, and systems).
+* **Arnold, V. I. (1983).** *Ordinary Differential Equations*. Springer.
+* **Coddington, E. A., & Levinson, N. (1955).** *Theory of Ordinary Differential Equations*. McGraw–Hill.
+* **Hartman, P. (1964).** *Ordinary Differential Equations*. Wiley.
+* **Perko, L. (2013).** *Differential Equations and Dynamical Systems*. Springer.
 
-* **Arnold, V. I. (1983).** *Ordinary Differential Equations*. MIT Press. (For the geometric interpretation of differential forms and phase space).
-
-* **Hartman, P. (1964).** *Ordinary Differential Equations*. John Wiley & Sons. (For advanced analytic properties and linearization).
-
-* **Whittaker, E. T., & Watson, G. N. (1927).** *A Course of Modern Analysis*. Cambridge University Press. (For classical explicit integration methods).
 ## Complete Examples
 
-### Example 1.1.1: Picard-Lindelöf Theorem — Canonical Picard Iteration
+### Example 1.1.1: Picard–Lindelöf Iteration and Well-Posedness
 
-**Problem:** Solve $y' = y$, $y(0) = 1$ on $[-1,1]$.
+**Problem:** Solve $y' = y$ with $y(0) = 1$ and demonstrate convergence of Picard iteration.
 
-We begin by verifying the Lipschitz condition. For $f(y) = y$, we have
+The exact solution is $y = e^{x}$. Picard iteration starts with $y_{0} = 1$ and applies $y_{n+1}(x) = 1 + \int_{0}^{x} y_{n}(t)\,dt$, giving
 
 $$
-\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|.
+y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6},
 $$
 
-This establishes a Lipschitz constant $K = 1$.
+so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\lvert x \rvert < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.
 
-The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
+### Example 1.1.2: Radioactive Decay with Production
 
-For convergence analysis, we apply the error estimate
+**Problem:** Solve $y' = -ky + P$ with $y(0) = y_{0}$ and verify Picard iteration.
 
-$$
-\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! \left(1 - K\left|t\right|\right)}.
-$$
-
-Here $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding
-
-$$
-\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078.
-$$
-
-The exact solution emerges as
-
-$$
-y(t) = e^t = \lim_{n \to \infty} y_n(t),
-$$
-
-revealing that the exponential series arises naturally from the fixed-point iteration process.
-
-
-
-
-### Example 1.1.2: Non-Lipschitz Failure
-
-**Problem:** Solve the initial value problem
-
-$$
-y' = \left|y\right|^{1/2}, \quad y(0) = 0.
-$$
-
-This example demonstrates the critical nature of the Lipschitz condition. The function $f(y) = \left|y\right|^{1/2}$ is continuous but fails to be Lipschitz near $y=0$, as the derivative becomes unbounded.
-
-The failure of uniqueness is immediate: we have the trivial solution $y_1(t) = 0$ for all $t$, but also the non-trivial solution $y_2(t) = \begin{cases} \frac{t^2}{4} & t \geq 0 \\ 0 & t < 0 \end{cases}$.
-
-To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that
-$$
-\sqrt{\frac{t^2}{4}} = \frac{t}{2} = \left|y_2(t)\right|^{1/2}.
-$$
-
-This confirms that the constructed function satisfies the differential equation. This non-uniqueness reveals the sharpness of the Lipschitz condition in the Picard-Lindelöf theorem.
-
-
-
-### Example 1.1.3: Separation of Variables — Logistic Equation
-
-**Problem:** Solve the logistic differential equation
-
-$$
-\frac{dy}{dt} = ky\left(1 - \frac{y}{L}\right).
-$$
-
-$$
-\frac{dy}{y(1 - y/L)} = k \, dt
-$$
-$$
-\frac{1}{y(1 - y/L)} = \frac{L}{y(L - y)} = \frac{1}{L} \left( \frac{1}{y} + \frac{1}{L-y} \right)
-$$
-$$
-\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left|\frac{y}{L-y}\right| = k t + C
-$$
-$$
-y(t) = \frac{L y_0 e^{kt}}{L + y_0 (e^{kt} - 1)}
-$$
-Physical Interpretation: Population growth with carrying capacity $L$.
-
-
-
-
-### Example 1.1.4: Exact Equation with Integrating Factor
-
-**Problem:** $(2xy + y^2 + x^3)dx + (x^2 + 2xy)dy = 0$
-
-$$
-M = 2xy + y^2 + x^3$, $N = x^2 + 2xy
-$$
-$$
-\frac{\partial M}{\partial y} = 2x + 2y, \quad \frac{\partial N}{\partial x} = 2x + 2y
-$$
-**Exact!** (Mixed partials equal)
-
-$$
-\frac{\partial \psi}{\partial x} = M \implies \psi = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 + f(y)
-$$
-$$
-\frac{\partial \psi}{\partial y} = N \implies x^2 + x^3 + y + f'(y) = x^2 + 2xy
-$$
-After verification: $f(y) = 0$
-
-Solution: $\psi(x,y) = x^2y + \frac{1}{3}x^3y + \frac{1}{2}y^2 = C$
-
-Geometric Insight: Level curves of $\psi$ are integral curves.
-
-
-
-
-### Example 1.1.5: Integrating Factor Discovery
-
-**Problem:** $(y\cos x + 2x\sin x)dx + (\sin x)dy = 0$
-
-We first test for exactness and find $\frac{\partial M}{\partial y} = \cos x \neq 1 = \frac{\partial N}{\partial x}$, so the equation is not exact. We search for an integrating factor by testing whether $\mu$ depends on $x$ alone. Computing $\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = \frac{\cos x - 1}{\sin x}$ reveals this is not a function of $x$ only. Similarly, testing for $\mu(y)$ yields $\frac{\frac{\partial N}{\partial x} - \frac{\partial M}{\partial y}}{M} = \frac{1 - \cos x}{y\cos x + 2x\sin x}$, which is also not a function of $y$ only.
-
-However, by recognizing the structure of the equation—specifically that $M = y\cos x + 2x\sin x$ and $N = \sin x$—we can try the integrating factor $\mu = 1/\sin x$. This yields $M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x$ and $N\mu = 1$. The new exactness test confirms $\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$.
-
-We now construct the potential function $\psi = \int (y\cot x + 2x) \, dx = y\ln\left|\sin x\right| + x^2 + f(y)$. Differentiating with respect to $y$ gives $\frac{\partial \psi}{\partial y} = \ln\left|\sin x\right| + f'(y) = 1$, from which we deduce $f(y) = y$. The final solution is $y\ln\left|\sin x\right| + x^2 + y = C$.
-
-
-
-
-### Example 1.1.6: Linear First-Order — Complete Variation of Parameters
-
-**Problem:** $y' + \frac{2}{x}y = x^3$, $y(1) = 1$
-
-We begin by solving the homogeneous equation $y_h' + \frac{2}{x}y_h = 0$. Separating variables gives $\frac{y_h'}{y_h} = -\frac{2}{x}$, which integrates to $y_h = \frac{c}{x^2}$.
-
-For the inhomogeneous equation, we apply the method of integrating factors. The integrating factor is $\mu(x) = e^{\int 2/x \, dx} = x^2$. Multiplying the entire equation by $\mu(x)$ transforms the left-hand side into a perfect derivative: $(x^2 y)' = x^5$. Integrating both sides yields $x^2 y = \frac{1}{6}x^6 + C$, from which we obtain the general solution $y = \frac{1}{6}x^4 + \frac{C}{x^2}$.
-
-Applying the initial condition $y(1) = 1$ gives $1 = \frac{1}{6} + C$, so $C = \frac{5}{6}$. The final solution is $y(x) = \frac{1}{6}x^4 + \frac{5}{6x^2}$.
-
-We can verify this using variation of parameters. Assuming $y = v(x) \cdot \frac{1}{x^2}$, we compute $y' = v' \frac{1}{x^2} - 2v x^{-3}$. Substituting into the original equation, the terms involving $v$ cancel, leaving $v' x^{-2} = x^3$, which simplifies to $v' = x^5$. Integrating gives $v = \frac{1}{6}x^6 + C$, confirming our solution $y = \frac{1}{6}x^4 + \frac{C}{x^2}$.
-
-
-
-
-### Example 1.1.7: Bernoulli Equation (Nonlinear → Linear)
-
-**Problem:** $y' + Py = Qy^n$ with $n \neq 0,1$
-
-$$
-\frac{dy}{dx} = (1-n)v^{n-1} \frac{dv}{dx}
-$$
-After substitution and simplification, we obtain a linear equation for $v$.
+The solution is
 
-Concrete Example: $y' + \frac{y}{x} = xy^2$
-
-$$
-n=2$, $P=1/x$, $Q=x
-$$
-$$
-v = y^{-1}$, linear equation: $v' - \frac{v}{x} = -\frac{1}{x}
-$$
-Integrating factor: $\mu = e^{-\int dx/x} = 1/x$
-
-Solution: $v = x \implies y = 1/x$
-
-
-
-
-### Example 1.1.8: Riccati Equation — Canonical Form
-
-**Problem:** $y' = y^2 - 2xy + x^2 + 1$
-
-$$
-x' = x^2 - 2x^2 + x^2 + 1 \implies 1 = 1 \quad \checkmark
-$$
-Substitution: $y = x + \frac{1}{v}$
-
-$$
-y' = 1 - \frac{v'}{v^2}
-$$
-$$
-1 - \frac{v'}{v^2} = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1
-$$
-$$
--\frac{v'}{v^2} = -\frac{2}{v} \implies v' = 2v
-$$
-Solve Linear: $v = Ce^{2x}$
-
-$$
-y = x + \frac{1}{Ce^{2x}} = x + e^{-2x+C}
-$$
-Verification: Differentiate and substitute back $\checkmark$
-
-
-
-
-### Example 1.1.9: Riccati with Known Particular Solution
-
-**Problem:** $y' = 1 + 2y + y^2$, particular solution $y_1 = -1$
-
-Method: $y = -1 + \frac{1}{v}$
-
-$$
-y' = -\frac{v'}{v^2}
-$$
-$$
--\frac{v'}{v^2} = 1 + 2(-1 + 1/v) + (-1 + 1/v)^2
-$$
-Simplify: $v' = -v^2$
-
-Solution: $v = \frac{1}{C - x}$
-
-Final: $y = -1 + (C - x) = C - x - 1$
-
-
-
-
-### Example 1.1.10: Cross-Ratio Property
-
-**Four solutions:** $y_1, y_2, y_3, y_4$ of same Riccati equation
-
-**Cross-ratio:** $(y_1, y_2; y_3, y_4) = \frac{(y_1-y_3)(y_2-y_4)}{(y_1-y_4)(y_2-y_3)}$
-
-**Demonstration:** For $y' = y^2$:
-
-**Solutions:** $y_k = \frac{1}{C_k - x}$
-
-**Cross-ratio computation:**
-
 $$
-\frac{(1/(C_1-x) - 1/(C_3-x))(1/(C_2-x) - 1/(C_4-x))}{(1/(C_1-x) - 1/(C_4-x))(1/(C_2-x) - 1/(C_3-x))} = \frac{(C_3-C_1)(C_4-C_2)}{(C_4-C_1)(C_3-C_2)}
+y(x) = \left(y_{0} - \frac{P}{k}\right) e^{-kx} + \frac{P}{k}.
 $$
-**Constant independent of $x$!**
-
-**Geometric Interpretation:** Solutions as points on projective line $\mathbb{P}^1$.
-
----
-
-
-
-### Example 1.1.11: Second-Order Linear — Cauchy-Euler Complete Analysis
 
-**Problem:** $x^2 y'' - 3xy' + 4y = 0$
+Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$.
 
-Ansatz: $y = x^r$
+### Example 1.1.3: Failure without Lipschitz Continuity
 
-$$
-r(r-1)x^r - 3r x^r + 4x^r = 0
-$$
-$$
-x^r[r^2 - 4r + 4] = 0
-$$
-Indicial: $r^2 - 4r + 4 = (r-2)^2 = 0$
-
-Repeated Root: $r = 2$
+**Problem:** Analyze $y' = \sqrt{\left|y\right|}$ with $y(0) = 0$.
 
-Solutions: $y_1 = x^2$, $y_2 = x^2 \ln x$
+Both $y = 0$ and $y = (x/2)^{2}$ satisfy the equation for $x \geq 0$. Since
 
 $$
-W(x^2, x^2 \ln x) = x^2 \cdot (2x \ln x + x) - 2x \cdot x^2 \ln x = x^3
+\frac{\left|\sqrt{\left|y_{1}\right|} - \sqrt{\left|y_{2}\right|}\right|}{\left|y_{1} - y_{2}\right|} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
 $$
-Abel's formula: $W(x) = C/x$ $\checkmark$ (since $P(x) = -3/x$)
 
+the Lipschitz condition fails and uniqueness is lost.
 
+### Example 1.1.4: Separation of Variables
 
+**Problem:** Solve $y' = xy$ with $y(0) = 1$.
 
-### Example 1.1.12: Reduction of Order
+We have $dy/y = x\,dx$, leading to $\ln \left|y\right| = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.
 
-**Problem:** $y'' + \frac{1}{x}y' - \frac{1}{x^2}y = 0$, known solution $y_1 = x$
+### Example 1.1.5: Newton’s Law of Cooling
 
-Ansatz: $y_2 = v(x) \cdot x$
-
-$$
-y_2' = v'x + v, \quad y_2'' = v''x + 2v'
-$$
-$$
-x v'' + 3v' = 0
-$$
-$$
-x w' + 3w = 0 \implies \frac{w'}{w} = -\frac{3}{x}
-$$
-$$
-w = \frac{C}{x^3} \implies v = -\frac{C}{2x^2}
-$$
-Second Solution: $y_2 = x \cdot \left(-\frac{1}{2x^2}\right) = -\frac{1}{2x}$
+**Problem:** Solve $T' = -k(T - T_{a})$.
 
-General Solution: $y = c_1 x - \frac{c_2}{2x}$
+Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.
 
+### Example 1.1.6: Logistic Growth
 
+**Problem:** Solve $y' = ry(1 - y/K)$.
 
+Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \left|\frac{y}{K - y}\right| = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.
 
-### Example 1.1.13: Systems & Matrix Methods — Second-Order → First-Order System
+### Example 1.1.7: Exact Equation
 
-**Problem:** $y'' + py' + qy = 0$
+**Problem:** Solve $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.
 
-$$
-\mathbf{y} = \begin{pmatrix} y \\ y' \end{pmatrix}, \quad \mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -q & -p \end{pmatrix} \mathbf{y} = A \mathbf{y}
-$$
-$$
-A = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix}
-$$
-Eigenvalues: $\det(A - \lambda I) = \lambda^2 - 3\lambda + 2 = 0$
+Since $\partial M/\partial y = \partial N/\partial x = 2x + 2y$, the equation is exact. Integrating $M$ with respect to $x$ yields $\psi = x^{2}y + xy^{2}$, so $\psi = C$ describes level sets.
 
-Roots: $\lambda_1 = 1$, $\lambda_2 = 2$
+### Example 1.1.8: Linear First-Order Equation
 
-- $\lambda_1 = 1$: $\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+**Problem:** Solve $y' + 2xy = x$ with $y(0) = 0$.
 
-- $\lambda_2 = 2$: $\begin{pmatrix} 1 \\ 2 \end{pmatrix}$
+Using $\mu = e^{x^{2}}$,
 
-$$
-\Phi(t) = \begin{pmatrix} e^t & e^{2t} \\ e^t & 2e^{2t} \end{pmatrix}
-$$
-$$
-\det \Phi(t) = 2e^{3t} - e^{3t} = e^{3t}
 $$
+\frac{d}{dx}\left(y e^{x^{2}}\right) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}\left(1 - e^{-x^{2}}\right).
 $$
-\text{tr}(A) = 3 \implies e^{\int_0^t 3 \, ds} = e^{3t} \quad \checkmark
-$$
-### Example 1.1.14: Floquet Theory Preview
-
-**Problem:** $y'' + (a + b\cos t)y = 0$ (Mathieu equation)
 
-System: $\mathbf{y}' = \begin{pmatrix} 0 & 1 \\ -(a+b\cos t) & 0 \end{pmatrix} \mathbf{y}$
+### Example 1.1.9: Bernoulli Equation
 
-Monodromy: $\Phi(2\pi)$ determines stability
+**Problem:** Solve $y' + y = x y^{3}$.
 
-**Stability regions** in $(a,b)$-plane
+Set $v = y^{-2}$ to obtain $v' - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.
 
-**Characteristic exponents** from eigenvalues of $\Phi(2\pi)$
+### Example 1.1.10: Riccati Equation
 
+**Problem:** Solve $y' = y^{2} - 2xy + x^{2} + 1$.
 
+The particular solution $y_{p} = x$ permits $y = x + 1/v$, leading to $v' = 0$ and $y = x + 1/C$. A single known solution collapses the Riccati equation to linear form.
 
+### Example 1.1.11: Constant-Coefficient Second Order
 
-### Example 1.1.15: First Integrals — Conservative System
-
-**Problem:** $\frac{dx}{dt} = y$, $\frac{dy}{dt} = -x$
-
-$$
-\frac{dH}{dt} = x\frac{dx}{dt} + y\frac{dy}{dt} = xy - yx = 0
-$$
-Level Sets: $x^2 + y^2 = C$ (circles)
+**Problem:** Solve $y'' - 3y' + 2y = 0$.
 
-$$
-\{H,H\} = xy - yx = 0
-$$
-### Example 1.1.16: Nontrivial First Integral
+The characteristic polynomial $(r - 1)(r - 2) = 0$ produces $y = C_{1} e^{x} + C_{2} e^{2x}$.
 
-**Problem:** $\frac{dx}{dt} = y - x^3$, $\frac{dy}{dt} = -x$
+### Example 1.1.12: Cauchy–Euler Equation
 
-$$
-\frac{d}{dt}(x^2 + y^2) = 2x(y-x^3) + 2y(-x) = 2xy - 2x^4 - 2xy = -2x^4
-$$
-**Not constant!**
+**Problem:** Solve $x^{2} y'' - 3x y' + 4y = 0$.
 
-Correct Integral: $H = y + \frac{1}{2}x^2$ (requires systematic method, foreshadowing Chapter 4 symmetries)
+Substituting $y = x^{r}$ yields $(r - 2)^{2} = 0$, so $y = C_{1} x^{2} + C_{2} x^{2} \ln x$.
 
+### Example 1.1.13: Reduction of Order
 
+**Problem:** Given $y_{1} = e^{x^{2}/2}$ solves $x y'' + y' - xy = 0$, find $y_{2}$.
 
+Let $y_{2} = v y_{1}$. Substituting leads to $v'' + (2x + 1/x) v' = 0$. Setting $w = v'$ gives $w = C/(x e^{x^{2}})$, and integrating yields $y_{2} = -\operatorname{Ei}(-x^{2}) e^{x^{2}/2}$.
 
-### Example 1.1.17: Hamiltonian System
+### Example 1.1.14: Linear System via Eigen-Decomposition
 
-**Hamiltonian:** $H(q,p) = \frac{p^2}{2} + V(q)$
+**Problem:** Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.
 
-**Equations:**
+With $A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$, eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield
 
 $$
-\dot{q} = \frac{\partial H}{\partial p} = p, \quad \dot{p} = -\frac{\partial H}{\partial q} = -V'(q)
+\mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1 \\ -2 \end{pmatrix}.
 $$
-**First Integrals:** Any $F$ with $\{F,H\} = 0$
-
-- **Energy conservation:** $H(q,p)$ itself
-- **Momentum conservation:** $p$ (if $V$ translation invariant)
 
----
+### Example 1.1.15: First Integrals of the Harmonic Oscillator
 
+**Problem:** Show $H(x,y) = \tfrac{1}{2}(x^{2} + y^{2})$ is conserved for $x' = y$, $y' = -x$.
 
+Compute $dH/dt = x y + y(-x) = 0$, so trajectories lie on circles $x^{2} + y^{2} = C$. The Poisson bracket with $H$ vanishes for any function of $x^{2} + y^{2}$, illustrating conserved quantities.
 
 ## Navigation
-
 
 {% include page_navigation.html %}
 
