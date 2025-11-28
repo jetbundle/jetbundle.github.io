@@ -284,14 +284,26 @@ def create_plot(traces, layout=None):
       `;
 
       await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
+      
+      // Log the code that will be executed for debugging
+      console.log('Executing Python code with parameters:', params);
+      console.log('Plot data variable name:', plotDataVar);
 
       const modifiedCode = code + `
 # Store plot data if create_plot was called
 if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
     pass  # ${plotDataVar} already set
+else:
+    print(f"Warning: ${plotDataVar} is None or not in globals after code execution")
       `;
 
       await window.textbookEngine.pyodide.runPythonAsync(modifiedCode);
+      
+      // Check Python stdout for any print statements
+      const stdout = window.textbookEngine.pyodide.runPython('import sys; sys.stdout.getvalue() if hasattr(sys.stdout, "getvalue") else ""');
+      if (stdout) {
+        console.log('Python stdout:', stdout);
+      }
 
       // Check for plot data using widget-specific variable
       const hasPlotData = window.textbookEngine.pyodide.runPython(`${plotDataVar} is not None`);
