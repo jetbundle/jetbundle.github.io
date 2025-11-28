@@ -245,12 +245,13 @@ class WidgetEngine {
         throw new Error('Pyodide not loaded');
       }
 
-      // Reset plot data for this execution (use unique variable per widget)
-      const plotDataVar = `plot_data_${widgetData.element.id || 'widget'}`;
+      // Reset plot data for this execution (use unique variable per widget to prevent conflicts)
+      const widgetId = widgetData.element.id || `widget_${Date.now()}`;
+      const plotDataVar = `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
       await window.textbookEngine.pyodide.runPythonAsync(`${plotDataVar} = None`);
 
-      const plotHelperCode = `
-import json
+      // Construct Python code with widget-specific variable name
+      const plotHelperCode = `import json
 
 def create_plot(traces, layout=None):
     """Helper function to create plot data for Plotly.js"""
