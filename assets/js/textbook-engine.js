@@ -222,6 +222,50 @@ if 'plot_data' in globals() and plot_data is not None:
 }
 
 /**
+ * Convert $...$ to \(...\) for standards compliance
+ * This prevents table parsing conflicts while maintaining compatibility
+ */
+function convertDollarMath() {
+  const content = document.querySelector('.textbook-content');
+  if (!content) return;
+  
+  // Find text nodes that contain $...$ patterns
+  const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+  let node;
+  const replacements = [];
+  
+  while (node = walker.nextNode()) {
+    const text = node.textContent;
+    // Match $...$ but not $$...$$
+    const dollarMathRegex = /(?<!\$)\$(?!\$)([^$\n]+?)\$(?!\$)/g;
+    let match;
+    let newText = text;
+    
+    while ((match = dollarMathRegex.exec(text)) !== null) {
+      const mathContent = match[1];
+      // Convert $...$ to \(...\)
+      const replacement = `\\(${mathContent}\\)`;
+      newText = newText.replace(match[0], replacement);
+    }
+    
+    if (newText !== text) {
+      replacements.push({ node, newText });
+    }
+  }
+  
+  // Apply replacements
+  replacements.forEach(({ node, newText }) => {
+    node.textContent = newText;
+  });
+  
+  if (replacements.length > 0 && window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([content]).catch(err => {
+      console.log('MathJax re-render after $ conversion:', err);
+    });
+  }
+}
+
+/**
  * Fix incorrectly parsed math tables
  * Kramdown sometimes interprets $...$ with pipes as tables
  * This function detects and fixes these cases by converting tables back to math
@@ -333,13 +377,17 @@ document.addEventListener('DOMContentLoaded', () => {
       window.textbookEngine.ensureEventListeners();
     }
   }, 100);
-
+  
+  // Convert $...$ to \(...\) for standards compliance
+  convertDollarMath();
+  
   // Fix incorrectly parsed math tables
   fixMathTables();
-
+  
   // Also run after MathJax processes (if available)
   if (window.MathJax && window.MathJax.startup) {
     window.MathJax.startup.promise.then(() => {
+      convertDollarMath();
       fixMathTables();
     });
   }
