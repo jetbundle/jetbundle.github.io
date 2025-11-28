@@ -697,30 +697,610 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We refine the concept of singularity. We introduce the <strong>Wave Front Set</strong> in the cotangent bundle ($T^<em>M$), distinguishing singularities by position *and</em> direction. We prove the <strong>Propagation of Singularities</strong> theorem, explaining the “Rays” of Chapter 3 via symplectic geometry.</p>
+<p>In Chapter 2, we established the theory of distributions to handle singular solutions, identifying the <strong>singular support</strong> of a distribution $u$ as the set of points $x$ where $u$ is not smooth. However, this spatial localization is insufficient for hyperbolic dynamics. As observed in Chapter 3 via geometric optics, singularities do not simply exist at locations; they propagate along specific trajectories determined by momentum or frequency.</p>
+
+<p>Microlocal analysis resolves this by lifting the analysis from the base manifold $X$ to the cotangent bundle $T^*X$. By localizing distributions not just in position space (via test functions) but simultaneously in frequency space (via the Fourier transform), we construct the <strong>Wave Front Set</strong>. This object refines the singular support, assigning to every singularity a specific direction of propagation. This development allows us to treat differential operators as algebraic objects—<strong>pseudodifferential operators</strong>—acting on the phase space, rigorously justifying the ray optics and bicharacteristic flows encountered in earlier chapters.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="the-wave-front-set">The Wave Front Set</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}’(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $</td>
+      <td>\xi</td>
+      <td>\to \infty$.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>A singularity occurs when this rapid decay fails. The wave front set identifies precisely <em>in which directions</em> the decay fails.</p>
 
-<h3 id="core-results">Core Results</h3>
+<p><strong>Definition 7.2.1 (Wave Front Set).</strong> Let $X$ be a smooth manifold and $u \in \mathcal{D}’(X)$. A point $(x_0, \xi_0) \in T^*X \setminus {0}$ is <strong>not</strong> in the wave front set $WF(u)$ if there exists a neighborhood $U$ of $x_0$, a conic neighborhood $\Gamma$ of $\xi_0$, and a test function $\phi \in C_c^\infty(U)$ with $\phi(x_0) = 1$ such that for all $N \in \mathbb{N}$, there exists a constant $C_N$ satisfying:</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[|\widehat{\phi u}(\xi)| \leq C_N (1 + |\xi|)^{-N}\]
 
-<h3 id="applications">Applications</h3>
+<p>for all $\xi \in \Gamma$.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<p>The wave front set $WF(u)$ is the complement of such points in $T^*X \setminus {0}$. It is a closed, conic subset of the cotangent bundle. The projection of $WF(u)$ onto the base manifold $X$ recovers the singular support:</p>
+
+\[\pi(WF(u)) = \text{sing supp}(u).\]
+
+<p>This definition provides the rigorous language to describe “directional singularities.” For example, the Dirac delta function $\delta(x)$ is singular at $x=0$, but its Fourier transform is constant (no decay in any direction). Thus, $WF(\delta) = {(0, \xi) : \xi \neq 0}$, the entire fiber above the origin. Conversely, a plane wave distribution oscillating in direction $\xi_0$ has a wave front set concentrated solely at that direction.</p>
+
+<p>In the algebraic framework of Kashiwara (1995), this concept generalizes to the <strong>microsupport</strong> of a sheaf, allowing these analytic techniques to extend to the combinatorial and topological settings of constructible sheaves discussed in Section 7.3.</p>
+
+<h3 id="pseudodifferential-operators">Pseudodifferential Operators</h3>
+
+<p>To manipulate wave front sets, we must generalize differential operators. A linear partial differential operator $P(x, D) = \sum a_\alpha(x) D^\alpha$ acts on the Fourier side as multiplication by a polynomial $P(x, \xi)$. If we relax the requirement that the symbol be a polynomial and allow general smooth functions $a(x, \xi)$ with specific growth conditions, we obtain <strong>pseudodifferential operators</strong> ($\Psi$DOs).</p>
+
+<p><strong>Definition 7.2.2 (Symbol Classes).</strong> The symbol class $S^m_{1,0}(X)$, denoted $S^m$, consists of smooth functions $a(x, \xi)$ on $T^*X$ satisfying the estimates:</p>
+
+\[|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}\]
+
+<p>for all multi-indices $\alpha, \beta$. The index $m$ is the order of the operator.</p>
+
+<p>A pseudodifferential operator $A = \text{Op}(a)$ associated with a symbol $a \in S^m$ is defined by the oscillatory integral:</p>
+
+\[Au(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{i \langle x, \xi \rangle} a(x, \xi) \hat{u}(\xi) \, d\xi.\]
+
+<p>This class includes all differential operators, parametrices of elliptic operators, and singular integral operators.</p>
+
+<p>The algebraic power of $\Psi$DOs lies in their closure under composition. If $A = \text{Op}(a)$ and $B = \text{Op}(b)$, their composition $A \circ B$ is a pseudodifferential operator with symbol $a # b$. The <strong>composition formula</strong> provides an asymptotic expansion for this new symbol:</p>
+
+\[(a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).\]
+
+<p>This non-commutative product on the algebra of symbols corresponds to the quantization of the phase space. The leading term is the pointwise product $a(x, \xi)b(x, \xi)$, implying that to leading order, operators commute. The lower-order terms encode the non-commutativity arising from the Heisenberg uncertainty principle ($[x, \xi] \neq 0$).</p>
+
+<p>These operators are <strong>microlocal</strong>: they preserve the wave front set. Specifically, for any $A \in \Psi^m$ and $u \in \mathcal{D}’(X)$:</p>
+
+\[WF(Au) \subseteq WF(u) \cap \text{cone}(\text{supp}(a)).\]
+
+<p>This property allows us to construct operators that cut out specific parts of phase space, isolating singularities directionally.</p>
+
+<h3 id="propagation-of-singularities">Propagation of Singularities</h3>
+
+<p>The central triumph of microlocal analysis is the rigorous description of how singularities move. In Chapter 3, we utilized the method of characteristics to solve hyperbolic equations. We now reframe this using the geometry of the cotangent bundle.</p>
+
+<p>Let $P$ be a pseudodifferential operator of order $m$ with principal symbol $p_m(x, \xi)$. The <strong>characteristic set</strong> of $P$ is the zero set of the principal symbol:</p>
+
+\[\text{Char}(P) = \{ (x, \xi) \in T^*X \setminus \{0\} : p_m(x, \xi) = 0 \}.\]
+
+<p>For a differential operator, this is precisely the set where the operator fails to be elliptic.</p>
+
+<p>On the characteristic set, the symbol $p_m$ defines a Hamiltonian vector field $H_{p_m}$:</p>
+
+\[H_{p_m} = \sum_{j=1}^n \left( \frac{\partial p_m}{\partial \xi_j} \frac{\partial}{\partial x_j} - \frac{\partial p_m}{\partial x_j} \frac{\partial}{\partial \xi_j} \right).\]
+
+<p>The integral curves of this vector field are called <strong>bicharacteristics</strong> (or null bicharacteristics). These are curves in phase space $(x(t), \xi(t))$ along which the principal symbol vanishes.</p>
+
+<p><strong>Theorem 7.2.1 (Propagation of Singularities, Hörmander).</strong> Let $P \in \Psi^m$ have a real principal symbol. If $Pu = f$ where $f \in C^\infty$, then $WF(u)$ is invariant under the bicharacteristic flow. That is, if $(x_0, \xi_0) \in WF(u)$, then the entire bicharacteristic strip passing through $(x_0, \xi_0)$ is contained in $WF(u)$.</p>
+
+<p>This theorem provides the complete geometric picture of hyperbolic dynamics:</p>
+
+<ol>
+  <li>
+    <p><strong>Elliptic Regularity:</strong> If $(x, \xi) \notin \text{Char}(P)$, then $p_m(x, \xi) \neq 0$. The operator is microlocally invertible, so no singularities can exist there. $WF(u) \subseteq \text{Char}(P)$.</p>
+  </li>
+  <li>
+    <p><strong>Hyperbolic Propagation:</strong> Inside $\text{Char}(P)$, singularities cannot disappear or spontaneously appear; they must transport along the Hamiltonian flow lines.</p>
+  </li>
+</ol>
+
+<p>This result rigorously validates the geometric optics of Chapter 3. The “rays” of optics are simply the spatial projections of the bicharacteristics in $T^*X$. The wave front set explains why shadows have sharp edges and why focusing (caustics) occurs when the projection of the Lagrangian manifold of bicharacteristics becomes singular. By lifting the analysis to phase space, we resolve the intersection of dynamics and singularities.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-721-canonical-exampledirac-delta-function">Example 7.2.1: Canonical Example—Dirac Delta Function</h3>
+
+<p><strong>Problem:</strong> Compute $WF(\delta)$ where $\delta(x) = \delta(x_1)$ in $\mathbb{R}^2$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Local Test:</strong>
+Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$ with $\psi(0) = 1$, $\chi(0) = 1$.</p>
+  </li>
+  <li>
+    <p><strong>Fourier Transform:</strong>
+\(\widehat{\phi \delta}(\xi_1,\xi_2) = \int \phi(x_1,x_2) \delta(x_1) e^{-i(x_1\xi_1 + x_2\xi_2)} dx = \psi(0)\chi(0) = 1\)</p>
+  </li>
+  <li>
+    <p><strong>Decay Analysis:</strong>
+$|\widehat{\phi \delta}(\xi)| = 1$ for all $(\xi_1,\xi_2) \neq (0,0)$.</p>
+  </li>
+  <li>
+    <p><strong>Conclusion:</strong>
+No conic neighborhood $\Gamma$ exists where rapid decay occurs.</p>
+  </li>
+  <li>
+    <p><strong>Wave Front Set:</strong>
+\(WF(\delta) = \{(0,\xi_1,\xi_2) \in T^*\mathbb{R}^2 : (\xi_1,\xi_2) \neq (0,0)\}\)</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> The Dirac delta is singular at $x=0$ in all frequency directions.</p>
+
+<h3 id="example-722-physical-applicationplane-wave">Example 7.2.2: Physical Application—Plane Wave</h3>
+
+<p><strong>Problem:</strong> Compute $WF(u)$ where $u(x) = e^{i\xi_0 \cdot x}$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Local Test:</strong>
+$\phi(x) = \phi_0(x)$ with $\phi_0(0) = 1$.</p>
+  </li>
+  <li>
+    <p><strong>Fourier Transform:</strong>
+\(\widehat{\phi_0 u}(\xi) = \int \phi_0(x) e^{i(\xi_0 - \xi) \cdot x} dx = \widehat{\phi_0}(\xi - \xi_0)\)</p>
+  </li>
+  <li>
+    <p><strong>Decay Analysis:</strong>
+<strong>Around $\xi = \xi_0$:</strong> $|\widehat{\phi_0 u}(\xi_0 + \eta)| = |\widehat{\phi_0}(\eta)| \leq C_N (1+|\eta|)^{-N}$.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Away from $\xi_0$:</strong> $</td>
+          <td>\widehat{\phi_0 u}(\xi)</td>
+          <td>=</td>
+          <td>\widehat{\phi_0}(\xi - \xi_0)</td>
+          <td>$ decays rapidly.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Wave Front Set:</strong>
+\(WF(u) = \{(x_0, \xi_0) : x_0 \in \mathbb{R}^n\}\)</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> Oscillations in direction $\xi_0$ create singularities everywhere but only in direction $\xi_0$.</p>
+
+<h3 id="example-723-advanced-demonstrationcharacteristic-function">Example 7.2.3: Advanced Demonstration—Characteristic Function</h3>
+
+<p><strong>Problem:</strong> Compute $WF(u)$ where $u(x) = H(x_1)$ (Heaviside function).</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Singularity Location:</strong>
+Jump at $x_1 = 0$.</p>
+  </li>
+  <li>
+    <p><strong>Fourier Analysis:</strong>
+\(\widehat{H}(\xi_1) = \pi \delta(\xi_1) - i \text{P.V.} \frac{1}{\xi_1}\)</p>
+  </li>
+  <li>
+    <p><strong>Local Analysis near $(0,\xi_1,0)$:</strong>
+Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$.</p>
+
+\[\widehat{\phi H}(\xi_1,\xi_2) \sim \int_{-\infty}^0 \psi(x_1) e^{-ix_1\xi_1} dx_1\]
+  </li>
+  <li>
+    <p><strong>Decay Analysis:</strong>
+<strong>For $\xi_1 &gt; 0$ large:</strong> Boundary term dominates, decay like $1/|\xi_1|$.</p>
+
+    <p><strong>For $\xi_1 &lt; 0$ large:</strong> Rapid decay.</p>
+  </li>
+  <li>
+    <p><strong>Wave Front Set:</strong>
+\(WF(H) = \{(0,\xi_1,0) : \xi_1 &gt; 0\}\)</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> Jump discontinuities propagate only forward in the normal direction to the discontinuity surface.</p>
+
+<h3 id="example-724-canonical-psidohilbert-transform">Example 7.2.4: Canonical $\Psi$DO—Hilbert Transform</h3>
+
+<p><strong>Problem:</strong> Verify that the Hilbert transform is a $\Psi$DO of order 0.</p>
+
+<p><strong>Definition:</strong> $H f(x) = \text{P.V.} \int \frac{f(y)}{x-y} dy$</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Fourier Symbol:</strong>
+\(\widehat{Hf}(\xi) = -i \text{sgn}(\xi) \hat{f}(\xi)\)</p>
+  </li>
+  <li>
+    <p><strong>Symbol:</strong>
+\(a(x,\xi) = -i \text{sgn}(\xi)\)</p>
+  </li>
+  <li>
+    <p><strong>Symbol Class Verification:</strong>
+\(|D_\xi^\alpha a(x,\xi)| = \begin{cases} 0 &amp; \text{if } |\alpha| \geq 1 \\ 1 &amp; \text{if } |\alpha| = 0 \end{cases}\)</p>
+  </li>
+  <li>
+    <p><strong>Order:</strong>
+$m = 0$ since $|a(x,\xi)| \leq C$.</p>
+  </li>
+  <li>
+    <p><strong>Microlocal Property:</strong>
+$WF(Hf) \subseteq WF(f)$</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> The Hilbert transform preserves singularities but rotates their phase.</p>
+
+<h3 id="example-725-composition-formula-demonstration">Example 7.2.5: Composition Formula Demonstration</h3>
+
+<p><strong>Problem:</strong> Compute the composition symbol for $A = \partial_x$, $B = x$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li><strong>Symbols:</strong>
+    <ul>
+      <li>$a(x,\xi) = i\xi$ (order 1)</li>
+      <li>$b(x,\xi) = x$ (order 0)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Composition Formula:</strong>
+\((a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b\)</p>
+  </li>
+  <li>
+    <p><strong>Compute Terms:</strong>
+<strong>$|\alpha| = 0$:</strong> $ab = i\xi \cdot x$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>**$</td>
+          <td>\alpha</td>
+          <td>= 1$:** $\alpha = (1,0,\dots)$</td>
+        </tr>
+      </tbody>
+    </table>
+
+\[\frac{i^{-1}}{1!} \partial_\xi (i\xi) \cdot \partial_x (x) = (-i)(i) \cdot 1 = 1\]
+
+    <table>
+      <tbody>
+        <tr>
+          <td>**$</td>
+          <td>\alpha</td>
+          <td>\geq 2$:** $\partial_\xi^\alpha (i\xi) = 0$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Result:</strong>
+\((a \# b)(x,\xi) = i\xi x + 1\)</p>
+  </li>
+  <li><strong>Verification:</strong>
+$A \circ B = \partial_x (x \cdot) = 1 + x \partial_x$</li>
+</ol>
+
+<p><strong>Key Insight:</strong> The $+1$ term is the Heisenberg correction $[x,\partial_x] = 1$.</p>
+
+<h3 id="example-726-parametrix-construction">Example 7.2.6: Parametrix Construction</h3>
+
+<p><strong>Problem:</strong> Construct a parametrix for $(-\Delta + 1)u = f$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p(x,\xi) = |\xi|^2 + 1\)</p>
+  </li>
+  <li>
+    <p><strong>Parametrix Symbol:</strong>
+\(a(x,\xi) = \frac{1}{|\xi|^2 + 1}\)</p>
+  </li>
+  <li>
+    <p><strong>Verify $\Psi$DO Class:</strong>
+\(|D_\xi^\alpha a| \leq C_\alpha (1+|\xi|^2)^{-1 + |\alpha|/2} \in S^{-2}\)</p>
+  </li>
+  <li>
+    <p><strong>Regularity:</strong>
+For $f \in H^s$, $u \in H^{s+2}$.</p>
+  </li>
+  <li>
+    <p><strong>Wave Front Set:</strong>
+\(WF(u) \subseteq WF(f) \cup \text{Char}(-\Delta + 1) = WF(f)\)</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> Elliptic operators smooth solutions microlocally away from characteristics.</p>
+
+<h3 id="example-727-canonical-propagationwave-equation">Example 7.2.7: Canonical Propagation—Wave Equation</h3>
+
+<p><strong>Problem:</strong> Solve $u_{tt} - u_{xx} = 0$ with $u(0,x) = H(x)$, $u_t(0,x) = 0$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p(t,x;\tau,\xi) = \tau^2 - \xi^2\)</p>
+  </li>
+  <li>
+    <p><strong>Characteristic Set:</strong>
+$\tau^2 = \xi^2$ or $|\tau| = |\xi|$.</p>
+  </li>
+  <li>
+    <p><strong>Initial Wave Front:</strong>
+\(WF(u(0,\cdot)) = \{(0,\xi,0) : \xi &gt; 0\}\)</p>
+  </li>
+  <li>
+    <p><strong>Bicharacteristic Flow:</strong>
+\(H_p = \tau \partial_t + \xi \partial_x - \xi \partial_\tau - \tau \partial_\xi\)</p>
+
+    <p><strong>Solutions:</strong> $(t(s),x(s),\tau(s),\xi(s)) = (s,x_0 + s\xi_0/\tau_0,\tau_0,\xi_0)$</p>
+  </li>
+  <li>
+    <p><strong>Propagated WF:</strong>
+\(WF(u(t,\cdot)) = \{(x,t\xi_0/\tau_0,\xi_0) : \xi_0 &gt; 0\}\)</p>
+  </li>
+  <li>
+    <p><strong>Physical Interpretation:</strong>
+Singularity propagates along light cone $x = t$.</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> The jump discontinuity travels at speed of light.</p>
+
+<h3 id="example-728-transport-equation">Example 7.2.8: Transport Equation</h3>
+
+<p><strong>Problem:</strong> Solve $u_t + u_x = 0$ with $u(0,x) = H(x)$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p(t,x;\tau,\xi) = \tau + \xi\)</p>
+  </li>
+  <li>
+    <p><strong>Characteristics:</strong>
+$\tau = -\xi$.</p>
+  </li>
+  <li>
+    <p><strong>Hamiltonian Flow:</strong>
+\(\dot{t} = 1, \quad \dot{x} = 1, \quad \dot{\tau} = 0, \quad \dot{\xi} = 0\)</p>
+  </li>
+  <li>
+    <p><strong>Bicharacteristics:</strong>
+$(t,x_0 + t,\tau_0,-\tau_0)$</p>
+  </li>
+  <li>
+    <p><strong>Wave Front Evolution:</strong>
+\(WF(u(t,\cdot)) = \{(x_0 + t,-\xi_0,\xi_0) : \xi_0 &gt; 0\}\)</p>
+  </li>
+  <li>
+    <p><strong>Verification:</strong>
+Solution $u(t,x) = H(x-t)$ has jump along $x = t$.</p>
+  </li>
+</ol>
+
+<h3 id="example-729-advancedvariable-coefficient-wave-equation">Example 7.2.9: Advanced—Variable Coefficient Wave Equation</h3>
+
+<p><strong>Problem:</strong> Solve $u_{tt} - c^2(x)u_{xx} = 0$ with $u(0,x) = H(x)$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p = \tau^2 - c^2(x)\xi^2\)</p>
+  </li>
+  <li>
+    <p><strong>Hamiltonian:</strong>
+\(H_p = 2\tau \partial_t + 2c^2\xi \partial_x - 2c c' \xi^2 \partial_\tau\)</p>
+  </li>
+  <li>
+    <p><strong>Bicharacteristic ODEs:</strong>
+\(\dot{t} = 2\tau, \quad \dot{x} = 2c^2\xi, \quad \dot{\tau} = 2c c' \xi^2\)</p>
+  </li>
+  <li>
+    <p><strong>Ray Speed:</strong>
+\(v = \frac{dx}{dt} = \frac{c^2\xi}{\tau} = c(x)\)</p>
+  </li>
+  <li>
+    <p><strong>Initial Condition:</strong>
+At $t=0$, $(0,0,\tau_0,\xi_0)$ with $\tau_0 = c(0)|\xi_0|$.</p>
+  </li>
+  <li>
+    <p><strong>Solution Path:</strong>
+Rays follow optical paths $\frac{dx}{ds} = c(x)$.</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> Geometric optics rays are bicharacteristic projections.</p>
+
+<h3 id="example-7210-failure-modeelliptic-regularity">Example 7.2.10: Failure Mode—Elliptic Regularity</h3>
+
+<p><strong>Problem:</strong> Solve $-\Delta u + u = H(x_1)$ in $\mathbb{R}^2$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p = |\xi|^2 + 1 &gt; 0\) everywhere.</p>
+  </li>
+  <li>
+    <p><strong>Characteristic Set:</strong>
+$\emptyset$.</p>
+  </li>
+  <li>
+    <p><strong>Parametrix:</strong>
+\(E(x) = \frac{e^{-|x|}}{4\pi |x|}\)</p>
+  </li>
+  <li>
+    <p><strong>Solution:</strong>
+$u = E * H(x_1)$.</p>
+  </li>
+  <li><strong>Wave Front Analysis:</strong>
+    <ul>
+      <li>$WF(H(x_1)) = {(0,\xi_1,0) : \xi_1 &gt; 0}$</li>
+      <li>$WF(E)$ has support only at $(0,0)$</li>
+    </ul>
+  </li>
+  <li><strong>Result:</strong>
+$WF(u) = \emptyset$ (u is smooth!)</li>
+</ol>
+
+<p><strong>Key Insight:</strong> Elliptic operators smooth all singularities.</p>
+
+<h3 id="example-7211-comprehensive-demonstrationschrödinger-evolution">Example 7.2.11: Comprehensive Demonstration—Schrödinger Evolution</h3>
+
+<p><strong>Problem:</strong> Track $WF(u(t,\cdot))$ for $i u_t + \Delta u = 0$, $u(0,x) = e^{i k \cdot x} H(x_1)$.</p>
+
+<p><strong>Complete Analysis:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Initial WF:</strong>
+\(WF(u(0)) = \{(0,k_1,k_2) : k_1 &gt; 0\}\)</p>
+  </li>
+  <li>
+    <p><strong>Principal Symbol:</strong>
+\(p = \tau + |\xi|^2\)</p>
+  </li>
+  <li>
+    <p><strong>Bicharacteristic Flow:</strong>
+\(H_p = \partial_t + 2\xi \cdot \nabla_x - 2\xi \cdot \nabla_\xi\)</p>
+  </li>
+  <li>
+    <p><strong>Flow Equations:</strong></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>ODE</th>
+          <th>Solution</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$t(s)$</td>
+          <td>$\dot{t} = 1$</td>
+          <td>$t = s$</td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$x(s)$</td>
+          <td>$\dot{x} = 2\xi$</td>
+          <td>$x = x_0 + 2 s \xi$</td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$\xi(s)$</td>
+          <td>$\dot{\xi} = 0$</td>
+          <td>$\xi = \text{constant}$</td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$\tau(s)$</td>
+          <td>$\dot{\tau} = 0$</td>
+          <td>$\tau = -</td>
+          <td>\xi</td>
+          <td>^2$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Evolved WF:</strong>
+\(WF(u(t)) = \{(x_0 + 2tk_1, k_1, k_2) : k_1 &gt; 0\}\)</p>
+  </li>
+  <li>
+    <p><strong>Physical Interpretation:</strong></p>
+    <ul>
+      <li>Singularity translates with group velocity $2k$</li>
+      <li>Frequency preserved (dispersionless in direction)</li>
+      <li>Plane wave packet moves ballistically</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Connection to Chapter 3:</strong> This is exactly the WKB ray dynamics made rigorous!</p>
+
+<h3 id="example-7212-theoretical-extensionssummary-table">Example 7.2.12: Theoretical Extensions—Summary Table</h3>
+
+<p><strong>Summary Table: WF Evolution Examples</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation</th>
+      <th>Initial WF</th>
+      <th>Bicharacteristic Flow</th>
+      <th>Physical Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Transport</td>
+      <td>${(0,\xi) : \xi &gt; 0}$</td>
+      <td>$x(t) = x_0 + t$</td>
+      <td>Advection at speed 1</td>
+    </tr>
+    <tr>
+      <td>Wave</td>
+      <td>${(0,\xi) : \xi &gt; 0}$</td>
+      <td>$x(t) = x_0 \pm t$</td>
+      <td>Light cone propagation</td>
+    </tr>
+    <tr>
+      <td>Schrödinger</td>
+      <td>${(0,k)}$</td>
+      <td>$x(t) = x_0 + 2tk$</td>
+      <td>Group velocity $2k$</td>
+    </tr>
+    <tr>
+      <td>Variable Wave</td>
+      <td>${(0,\xi)}$</td>
+      <td>$\frac{dx}{dt} = c(x)$</td>
+      <td>Optical ray paths</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Narrative Connections:</strong></p>
+<ul>
+  <li><strong>To Chapter 3.6:</strong> Caustics occur when bicharacteristic projections have critical points</li>
+  <li><strong>To Chapter 4:</strong> Lax pairs preserve WF along isospectral flows</li>
+  <li><strong>To Chapter 6:</strong> Geometric flows have WF evolving along Ricci flow geodesics</li>
+  <li><strong>To Chapter 7.3:</strong> D-modules encode WF as characteristic varieties</li>
+</ul>
+
+<p><strong>Cliffhanger:</strong> WF sets are Lagrangian manifolds → need Fourier integral operators (7.4)</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>
+    <p>Hörmander, L. (1983). <em>The Analysis of Linear Partial Differential Operators I: Distribution Theory and Fourier Analysis</em>. Springer-Verlag.</p>
+  </li>
+  <li>
+    <p>Duistermaat, J. J., &amp; Hörmander, L. (1972). Fourier Integral Operators II. <em>Acta Mathematica</em>, 128, 183-269.</p>
+  </li>
+  <li>
+    <p>Kashiwara, M. (1995). <em>D-Modules and Microlocal Calculus</em>. American Mathematical Society.</p>
+  </li>
+  <li>
+    <p>Grigis, A., &amp; Sjöstrand, J. (1994). <em>Microlocal Analysis for Differential Operators</em>. Cambridge University Press.</p>
+  </li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
