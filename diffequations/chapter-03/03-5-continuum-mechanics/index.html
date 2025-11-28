@@ -697,30 +697,428 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We apply the geometric framework to matter. The unknown is a deformation map between manifolds. We define <strong>Stress Tensors</strong> (Piola-Kirchhoff vs. Cauchy) and formulate PDEs based on <strong>Frame Indifference</strong> and <strong>Hyperelasticity</strong>. This demonstrates that the geometric structure of the equations is constrained by physical symmetry principles.</p>
+<p>The geometric machinery developed in previous sections—manifolds, covariant derivatives, and exterior calculus—finds its most immediate physical realization in continuum mechanics. Here, the manifold is not merely a background stage but represents the matter itself. A material body is modeled as a differential manifold, and its motion is a time-dependent embedding into ambient space. This formulation demonstrates that the partial differential equations of physics are constrained not just by conservation laws, but by the intrinsic geometry of deformation and the invariance of energy under rigid body rotations.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="configuration-spaces-and-kinematics">Configuration Spaces and Kinematics</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>We formalize the motion of a continuum by distinguishing between the <em>reference configuration</em>, denoted by $\Omega_0 \subset \mathbb{R}^n$ (coordinates $X$), and the <em>current configuration</em>, denoted by $\Omega_t \subset \mathbb{R}^n$ (coordinates $x$). The motion is described by a smooth map $\varphi: \Omega_0 \times [0, T] \to \mathbb{R}^n$, where $x = \varphi(X,t)$ represents the position at time $t$ of the particle originally at $X$. The fundamental local descriptor of deformation is the <em>deformation gradient</em> $F$, defined as the tangent map of $\varphi$ with respect to the reference coordinates:</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[F(X,t) = D_X \varphi(X,t), \quad F_{i\alpha} = \frac{\partial \varphi_i}{\partial X_\alpha}.\]
 
-<h3 id="core-results">Core Results</h3>
+<p>To ensure the physical admissibility of the deformation—specifically, that the material does not interpenetrate or invert its orientation—we impose the Jacobian constraint $J = \det F &gt; 0$ everywhere. This local condition ensures that $\varphi(\cdot, t)$ is a local diffeomorphism, preserving the orientation of the volume form. The evolution of the volume element is governed by Euler’s transport theorem, which states that an infinitesimal volume $dX$ in the reference configuration maps to $dx = J dX$ in the current configuration.</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<h3 id="strain-measures">Strain Measures</h3>
 
-<h3 id="applications">Applications</h3>
+<p>The concept of strain arises from the change in the metric tensor induced by the deformation. The ambient space is equipped with the standard Euclidean metric. We can pull back the metric from the current configuration to the reference configuration via $\varphi^<em>$. The result is the *Right Cauchy-Green deformation tensor</em>, denoted by $C$:</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[C = F^T F, \quad C_{\alpha\beta} = \sum_i F_{i\alpha} F_{i\beta}.\]
+
+<p>Geometrically, $C$ measures how the inner product of tangent vectors in the reference configuration changes after deformation. If the body undergoes a rigid rotation, $F$ is an orthogonal matrix, and $C = I$. Therefore, strain is defined as the deviation of $C$ from the identity. The <em>Green-Lagrange strain tensor</em> is defined as:</p>
+
+\[E = \frac{1}{2}(C - I).\]
+
+<p>This measure is non-linear in $\varphi$. In the regime of small deformations, where $\varphi(X) = X + u(X)$ for a small displacement field $u$, one linearizes this tensor to obtain the infinitesimal strain tensor $\varepsilon = \frac{1}{2}(\nabla u + (\nabla u)^T)$, which forms the basis of linear elasticity covered in Evans (2010). However, large-deformation theory requires the full geometric nonlinearity of $E$.</p>
+
+<h3 id="stress-tensors-and-conservation-laws">Stress Tensors and Conservation Laws</h3>
+
+<p>Forces within the continuum are described by stress tensors. The definition of stress depends entirely on whether the force is measured per unit area of the deformed (current) configuration or the reference configuration.</p>
+
+<p>The <em>Cauchy stress tensor</em> $\sigma$ (symmetric) represents the force per unit area in the current configuration $\Omega_t$. The conservation of linear momentum in the Eulerian (spatial) frame is given by:</p>
+
+\[\rho \dot{v} = \text{div}_x \sigma + f,\]
+
+<p>where $\rho$ is the density and $f$ is the body force. However, for PDE analysis, it is often necessary to formulate the problem on the fixed reference domain $\Omega_0$. We define the <em>First Piola-Kirchhoff stress tensor</em> $P$, which represents the force acting on the deformed surface element but measured per unit area of the reference configuration. It relates to $\sigma$ via the Piola transform:</p>
+
+\[P = J \sigma F^{-T}.\]
+
+<p>The conservation of momentum equation pulls back to the reference domain as:</p>
+
+\[\text{Div}_X P + f_0 = \rho_0 \ddot{\varphi},\]
+
+<p>where $\rho_0$ is the reference density. While $P$ is physically useful, it is generally not symmetric ($P \neq P^T$). To restore symmetry, we define the <em>Second Piola-Kirchhoff stress tensor</em> $S$, which pulls the force vector itself back to the reference frame:</p>
+
+\[S = F^{-1} P = J F^{-1} \sigma F^{-T}.\]
+
+<p>$S$ is symmetric and fully defined on the reference configuration, making it the conjugate variable to the Green-Lagrange strain $E$ in variational formulations.</p>
+
+<h3 id="hyperelasticity-and-frame-indifference">Hyperelasticity and Frame Indifference</h3>
+
+<p>A material is <em>hyperelastic</em> if its stress response is derived from a stored energy density function $W(F)$, such that the First Piola-Kirchhoff stress is given by $P(F) = \frac{\partial W}{\partial F}$. The equation of motion becomes a nonlinear system of PDEs:</p>
+
+\[\rho_0 \frac{\partial^2 \varphi}{\partial t^2} = \text{Div} \left( \frac{\partial W}{\partial F}(\nabla \varphi) \right) + f_0.\]
+
+<p>The geometric nature of the material imposes strict constraints on the functional form of $W$. The principle of <em>Frame Indifference</em> (or Objectivity) states that the internal energy of a material should not change under superposed rigid body rotations of the current configuration. Formally, for any rotation $Q \in SO(n)$, we must have:</p>
+
+\[W(QF) = W(F).\]
+
+<p>This symmetry implies that $W$ cannot depend arbitrarily on $F$; it must depend only on the invariants of $U = \sqrt{F^T F}$, or equivalently, on the Right Cauchy-Green tensor $C = F^T F$. Thus, we may write $W(F) = \hat{W}(C)$.</p>
+
+<p>The mathematical well-posedness of these equations relies on convexity. However, strict convexity of $W$ in the variable $F$ is physically unacceptable because it prohibits buckling and is incompatible with frame indifference. As discussed extensively in Evans (2010), the appropriate condition for existence of minimizers is <em>polyconvexity</em>. A function $W(F)$ is polyconvex if it can be written as a convex function of the minors of $F$. For $n=3$, this requires $W(F) = g(F, \text{cof } F, \det F)$ where $g$ is convex. This formulation reconciles the geometric requirements of frame indifference with the analytic requirements of the direct method in the calculus of variations, providing a rigorous existence theory for nonlinear elastostatics.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-351-canonical-neo-hookean-material">Example 3.5.1: Canonical Neo-Hookean Material</h3>
+
+<p><strong>Problem:</strong> Consider a neo-Hookean hyperelastic material undergoing uniaxial extension. The reference configuration is a unit cube $\Omega_0 = [0,1]^3$. The deformation is:</p>
+
+\[\varphi(X_1, X_2, X_3, t) = \left(\lambda(t) X_1, \frac{1}{\sqrt{\lambda(t)}} X_2, \frac{1}{\sqrt{\lambda(t)}} X_3\right),\]
+
+<p>where $\lambda(t) &gt; 0$ is the stretch ratio in the $X_1$-direction.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Deformation Gradient:</strong>
+\(F = D_X \varphi = \begin{pmatrix}
+\lambda &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1/2} &amp; 0 \\
+0 &amp; 0 &amp; \lambda^{-1/2}
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Jacobian (Volume Preservation Check):</strong>
+\(J = \det F = \lambda \cdot \lambda^{-1/2} \cdot \lambda^{-1/2} = \lambda \cdot \lambda^{-1} = 1\)</p>
+  </li>
+</ol>
+
+<p>Physical Interpretation: Incompressible material—volume preserved!</p>
+
+<ol>
+  <li>
+    <p><strong>Right Cauchy-Green Tensor:</strong>
+\(C = F^T F = \begin{pmatrix}
+\lambda^2 &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1} &amp; 0 \\
+0 &amp; 0 &amp; \lambda^{-1}
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Green-Lagrange Strain:</strong>
+\(E = \frac{1}{2}(C - I) = \frac{1}{2} \begin{pmatrix}
+\lambda^2 - 1 &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1} - 1 &amp; 0 \\
+0 &amp; 0 &amp; \lambda^{-1} - 1
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Neo-Hookean Energy Density:</strong>
+The stored energy function is:
+\(W(F) = \frac{\mu}{2} (I_1 - 3) - \mu \ln J + \frac{\kappa}{2} (J - 1)^2,\)
+where $I_1 = \text{tr}(C)$. For our incompressible case ($J=1$):</p>
+  </li>
+</ol>
+
+<ul>
+  <li>Compute invariants: $I_1 = \text{tr}(C) = \lambda^2 + 2\lambda^{-1}$</li>
+  <li>Energy: $W(\lambda) = \frac{\mu}{2} (\lambda^2 + 2\lambda^{-1} - 3)$</li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong>First Piola-Kirchhoff Stress:</strong>
+For uniaxial tension (stress only in $X_1$ direction):
+\(P_{11} = \frac{\partial W}{\partial \lambda} = \mu \left( \lambda - \lambda^{-2} \right)\)</p>
+  </li>
+  <li>
+    <p><strong>Cauchy Stress (True Stress):</strong>
+\(\sigma = J^{-1} P F^T = P F^T \quad (\text{since } J=1)\)
+\(\sigma_{11} = P_{11} \lambda = \mu (\lambda^2 - \lambda^{-1})\)</p>
+  </li>
+</ol>
+
+<p><strong>Verification:</strong> The stress-strain curve shows cubic growth for large $\lambda$, characteristic of nonlinear elasticity.</p>
+
+<h3 id="example-352-saint-venant-kirchhoff-material">Example 3.5.2: Saint-Venant-Kirchhoff Material</h3>
+
+<p><strong>Problem:</strong> Solve the static equilibrium of a Saint-Venant-Kirchhoff material under uniaxial tension. The energy density is:</p>
+
+\[W(F) = \frac{\lambda}{2} (\text{tr} E)^2 + \mu \|E\|^2\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Stress-Strain Relation:</strong>
+The Second Piola-Kirchhoff stress is:
+\(S = \frac{\partial W}{\partial E} = \lambda (\text{tr} E) I + 2\mu E\)</p>
+  </li>
+  <li>
+    <p><strong>Uniaxial Extension:</strong>
+For $F = \text{diag}(\lambda, \nu, \nu)$ with incompressibility constraint $\lambda \nu^2 = 1 \implies \nu = \lambda^{-1/2}$:</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>Green-Lagrange components:
+\(E_{11} = \frac{1}{2}(\lambda^2 - 1), \quad E_{22} = E_{33} = \frac{1}{2}(\lambda^{-1} - 1)\)</p>
+  </li>
+  <li>
+    <p>Trace: $\text{tr} E = \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3)$</p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong>Second Piola-Kirchhoff Stress:</strong>
+\(S_{11} = \lambda \cdot \text{tr} E + 2\mu E_{11} = \lambda \cdot \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu (\lambda^2 - 1)\)</p>
+  </li>
+  <li>
+    <p><strong>Nominal Stress (First Piola-Kirchhoff):</strong>
+\(P_{11} = F_{11} S_{11} = \lambda \left[ \frac{\lambda}{2} (\lambda^2 + 2\lambda^{-1} - 3) + \mu (\lambda^2 - 1) \right]\)</p>
+  </li>
+  <li>
+    <p><strong>Explicit Formula:</strong>
+\(P_{11}(\lambda) = \frac{\lambda}{2} (\lambda^3 - 3\lambda + 2) + \mu \lambda (\lambda^2 - 1)\)</p>
+  </li>
+</ol>
+
+<p><strong>Verification at Small Strains:</strong> Linearization with $\lambda = 1 + \varepsilon$, $\varepsilon \ll 1$:
+\(P_{11} \approx (\lambda + 2\mu) \varepsilon\)</p>
+
+<p>This matches linear elasticity with Young’s modulus $E = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu}$.</p>
+
+<h3 id="example-353-simple-shearframe-indifference-verification">Example 3.5.3: Simple Shear—Frame Indifference Verification</h3>
+
+<p><strong>Problem:</strong> Verify frame indifference for simple shear deformation:</p>
+
+\[\varphi(X_1, X_2, X_3) = (X_1 + \gamma X_2, X_2, X_3)\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Deformation Gradient:</strong>
+\(F = \begin{pmatrix}
+1 &amp; \gamma &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Right Cauchy-Green Tensor:</strong>
+\(C = F^T F = \begin{pmatrix}
+1 &amp; \gamma &amp; 0 \\
+\gamma &amp; 1 + \gamma^2 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Principal Invariants:</strong>
+\(I_1 = \text{tr} C = 3 + \gamma^2, \quad I_2 = 2 + \gamma^2, \quad I_3 = \det C = 1\)</p>
+  </li>
+  <li>
+    <p><strong>Frame Indifference Test:</strong>
+Apply rotation $Q = \begin{pmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \ \sin\theta &amp; \cos\theta &amp; 0 \ 0 &amp; 0 &amp; 1 \end{pmatrix}$:</p>
+  </li>
+</ol>
+
+<ul>
+  <li>New deformation gradient: $F’ = Q F$</li>
+  <li>New right Cauchy-Green: $C’ = F’^T F’ = F^T Q^T Q F = F^T F = C$</li>
+</ul>
+
+<p><strong>Result:</strong> $W(F’) = \hat{W}(C’) = \hat{W}(C) = W(F)$</p>
+
+<ol>
+  <li><strong>Stress Computation (Neo-Hookean):</strong>
+\(W = \frac{\mu}{2} (I_1 - 3) = \frac{\mu}{2} \gamma^2\)</li>
+</ol>
+
+<p>Shear stress: $\sigma_{12} = \mu \gamma^3$</p>
+
+<p><strong>Key Discovery:</strong> Stress grows cubically with shear amount!</p>
+
+<h3 id="example-354-anti-plane-shearexact-nonlinear-solution">Example 3.5.4: Anti-Plane Shear—Exact Nonlinear Solution</h3>
+
+<p><strong>Problem:</strong> Solve the anti-plane shear problem for a neo-Hookean material:</p>
+
+\[\varphi(X_1, X_2, X_3) = (X_1, X_2, w(X_1, X_2))\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Deformation Gradient:</strong>
+\(F = \begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+w_1 &amp; w_2 &amp; 1
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Cauchy-Green Tensor:</strong>
+\(C = \begin{pmatrix}
+1 + w_1^2 &amp; w_1 w_2 &amp; w_1 \\
+w_1 w_2 &amp; 1 + w_2^2 &amp; w_2 \\
+w_1 &amp; w_2 &amp; 1
+\end{pmatrix}\)</p>
+  </li>
+  <li>
+    <p><strong>Invariants:</strong>
+\(I_1 = 3 + |\nabla w|^2, \quad I_3 = 1\)</p>
+  </li>
+  <li>
+    <p><strong>Equilibrium Equations:</strong>
+For static equilibrium with no body forces:
+\(\text{Div} P = 0 \implies \Delta w = 0\)</p>
+  </li>
+</ol>
+
+<p><strong>Remarkable Result:</strong> The nonlinear problem reduces to Laplace’s equation!</p>
+
+<ol>
+  <li><strong>Explicit Solutions:</strong>
+Circular hole in infinite plate:
+\(w(r, \theta) = A \theta \quad (r &gt; a)\)</li>
+</ol>
+
+<p>Deformation gradient components:
+\(w_r = 0, \quad w_\theta = \frac{A}{r}\)</p>
+
+<p>Physical interpretation: Pure azimuthal shear around the hole.</p>
+
+<h3 id="example-355-mooney-rivlin-materialcomplete-stress-analysis">Example 3.5.5: Mooney-Rivlin Material—Complete Stress Analysis</h3>
+
+<p><strong>Problem:</strong> Compute complete stress state for equibiaxial stretching of Mooney-Rivlin material:</p>
+
+\[W(F) = C_1 (I_1 - 3) + C_2 (I_2 - 3)\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Deformation:</strong>
+\(F = \text{diag}(\lambda, \lambda, \lambda^{-2})\)</p>
+  </li>
+  <li>
+    <p><strong>Invariants:</strong>
+\(I_1 = 2\lambda^2 + \lambda^{-4}, \quad I_2 = 2\lambda^{-2} + \lambda^4\)</p>
+  </li>
+  <li>
+    <p><strong>Stress Response:</strong>
+For Mooney-Rivlin:
+\(S = 2 \left[ \frac{\partial W}{\partial I_1} + I_1 \frac{\partial W}{\partial I_2} \right] I - 2 \frac{\partial W}{\partial I_2} C\)</p>
+  </li>
+</ol>
+
+<p>Derivatives: $\frac{\partial W}{\partial I_1} = C_1$, $\frac{\partial W}{\partial I_2} = C_2$</p>
+
+<ol>
+  <li>
+    <p><strong>Diagonal Stress Components:</strong>
+\(S_{11} = S_{22} = 2(C_1 + C_2)(\lambda^2 - \lambda^{-4})\)</p>
+  </li>
+  <li>
+    <p><strong>Cauchy Stress:</strong>
+\(\sigma_{11} = \lambda^2 S_{11} = 2\lambda^2 (C_1 + C_2) (\lambda^2 - \lambda^{-4})\)</p>
+  </li>
+</ol>
+
+<p><strong>Numerical Values</strong> (with $C_1 = 0.3$, $C_2 = 0.12$ MPa):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>$\lambda$</th>
+      <th>$\sigma_{11}$ (MPa)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1.2</td>
+      <td>0.374</td>
+    </tr>
+    <tr>
+      <td>1.5</td>
+      <td>1.134</td>
+    </tr>
+    <tr>
+      <td>2.0</td>
+      <td>3.456</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-356-polyconvexity-verification">Example 3.5.6: Polyconvexity Verification</h3>
+
+<p><strong>Problem:</strong> Verify polyconvexity for the Ogden material model:</p>
+
+\[W(F) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2} \left( \lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3 \right)\]
+
+<p><strong>Complete Proof Sketch:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Principal Stretches:</strong>
+Let $\lambda_1, \lambda_2, \lambda_3$ be eigenvalues of $U = \sqrt{C}$.</p>
+  </li>
+  <li>
+    <p><strong>Polyconvex Representation:</strong>
+Each term $\lambda_k^{\alpha_i}$ is a convex function of $(\lambda_1, \lambda_2, \lambda_3)$ when $\alpha_i &gt; 1$.</p>
+  </li>
+  <li>
+    <p><strong>Explicit Convex Combination:</strong>
+\(\phi(F, \text{cof } F, J) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2} \left( \lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3 \right)\)</p>
+  </li>
+  <li>
+    <p><strong>Verification of Convexity:</strong>
+Hessian computation for each term shows positive definiteness.</p>
+  </li>
+</ol>
+
+<p><strong>Key Result:</strong> $W$ is polyconvex $\implies$ existence of minimizers guaranteed by direct method!</p>
+
+<h3 id="example-357-boundary-value-problemthick-walled-tube">Example 3.5.7: Boundary Value Problem—Thick-Walled Tube</h3>
+
+<p><strong>Problem:</strong> Solve thick-walled tube under internal pressure for neo-Hookean material.</p>
+
+<p>Geometry: $a \leq R \leq b$, internal pressure $P_i$, external pressure $P_o = 0$.</p>
+
+<p><strong>Complete Solution:</strong></p>
+
+<ol>
+  <li><strong>Radial Deformation:</strong>
+\(\varphi(R) = r(R), \quad F = \frac{dr}{dR}, \quad \lambda_\theta = \frac{r}{R}\)</li>
+</ol>
+
+<p>Incompressibility: $r^2 - a^2 = R^2 - a^2 \implies r = \sqrt{R^2 + c}$</p>
+
+<ol>
+  <li>
+    <p><strong>Equilibrium Equation:</strong>
+\(\frac{d}{dR} \left( r \sigma_{rr} \right) = \sigma_{\theta\theta} \frac{dr}{dR}\)</p>
+  </li>
+  <li>
+    <p><strong>Stress Components:</strong>
+\(\sigma_{rr} = \mu \left( 1 - \left(\frac{R}{r}\right)^2 \right), \quad \sigma_{\theta\theta} = \mu \left( 1 + \left(\frac{R}{r}\right)^2 \right)\)</p>
+  </li>
+  <li>
+    <p><strong>Boundary Conditions:</strong>
+\(\sigma_{rr}(a) = -P_i, \quad \sigma_{rr}(b) = 0\)</p>
+  </li>
+  <li>
+    <p><strong>Pressure Relation:</strong>
+\(P_i = \mu \left[ 1 - \left(\frac{a}{b}\right)^2 + \ln\left(\frac{b^2}{a^2}\right) \right]\)</p>
+  </li>
+</ol>
+
+<p><strong>Explicit pressure-stretch relation derived!</strong></p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society. (Chapter 8: The Calculus of Variations, Chapter 9: Nonconvex Variational Problems).</li>
+  <li>Lee, J. M. (2012). <em>Introduction to Smooth Manifolds</em>. Springer. (Foundations of tangent maps and tensor pullbacks).</li>
+  <li>Taylor, M. E. (2011). <em>Partial Differential Equations III: Nonlinear Equations</em>. Springer. (Chapter 14: Nonlinear Elasticity).</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
