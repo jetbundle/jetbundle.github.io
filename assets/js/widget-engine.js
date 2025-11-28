@@ -251,15 +251,22 @@ class WidgetEngine {
         throw new Error('Pyodide not loaded');
       }
 
-      // Reset plot data for this execution (use unique variable per widget to prevent conflicts)
+      // Use consistent plot data variable per widget (not regenerated each time)
       const widgetId = widgetData.element.id || `widget_${Date.now()}`;
-      const plotDataVar = `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+      const plotDataVar = widgetData.plotDataVar || `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+      widgetData.plotDataVar = plotDataVar; // Store for future use
+      
       await window.textbookEngine.pyodide.runPythonAsync(`${plotDataVar} = None`);
 
-      // Construct Python code with widget-specific variable name
-      const plotHelperCode = `import json
+      // Only define create_plot once per widget (check if it exists)
+      const createPlotVarName = `create_plot_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+      const plotHelperExists = window.textbookEngine.pyodide.runPython(`'${createPlotVarName}' in globals()`);
+      
+      if (!plotHelperExists || !widgetData.plotHelperDefined) {
+        // Construct Python code with widget-specific variable name
+        const plotHelperCode = `import json
 
-def create_plot(traces, layout=None):
+def ${createPlotVarName}(traces, layout=None):
     """Helper function to create plot data for Plotly.js"""
     global ${plotDataVar}
     if layout is None:
@@ -281,10 +288,15 @@ def create_plot(traces, layout=None):
         'layout': layout
     }
     return ${plotDataVar}
+
+# Alias for backward compatibility
+create_plot = ${createPlotVarName}
       `;
 
-      await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
-      
+        await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
+        widgetData.plotHelperDefined = true;
+      }
+
       // Log the code that will be executed for debugging
       console.log('Executing Python code with parameters:', params);
       console.log('Plot data variable name:', plotDataVar);
@@ -298,7 +310,7 @@ else:
       `;
 
       await window.textbookEngine.pyodide.runPythonAsync(modifiedCode);
-      
+
       // Check Python stdout for any print statements
       const stdout = window.textbookEngine.pyodide.runPython('import sys; sys.stdout.getvalue() if hasattr(sys.stdout, "getvalue") else ""');
       if (stdout) {
@@ -307,7 +319,7 @@ else:
 
       // Check for plot data using widget-specific variable
       const hasPlotData = window.textbookEngine.pyodide.runPython(`${plotDataVar} is not None`);
-      
+
       console.log(`Widget ${widgetData.element.id || 'unknown'} hasPlotData:`, hasPlotData);
       console.log(`Widget ${widgetData.element.id || 'unknown'} plotDataVar:`, plotDataVar);
 
@@ -352,10 +364,17 @@ else:
         // For first render or manual widgets, use Plotly.newPlot
         const isContinuousUpdate = skipButtonState && widgetData.hasPlot && widgetData.isContinuous;
 
-        if (isContinuousUpdate && output.data && output.data.length > 0) {
+        // Check if we should use Plotly.react for continuous updates
+        const shouldUseReact = skipButtonState && widgetData.hasPlot && widgetData.isContinuous && output.data;
+        
+        if (shouldUseReact) {
           // Use Plotly.react for efficient updates (doesn't recreate the plot DOM)
           console.log('Using Plotly.react for continuous update');
+          
+          // Don't clear innerHTML for react - just update the data
           Plotly.react(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+            widgetData.hasPlot = true; // Ensure flag is set
+            console.log('Plot updated successfully with Plotly.react');
             // Trigger MathJax rendering after plot update
             if (window.MathJax && window.MathJax.typesetPromise) {
               window.MathJax.typesetPromise([output]).catch((err) => {
