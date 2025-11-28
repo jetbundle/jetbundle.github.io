@@ -700,27 +700,119 @@
 <p>We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of <strong>Hilbert Space</strong> (orthogonality, projection). The central result is the <strong>Spectral Theorem for Compact Self-Adjoint Operators</strong>, which provides the rigorous justification for the “separation of variables” and series expansions employed heuristically in Chapter 1.4.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="hilbert-space-geometry">Hilbert Space Geometry</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>A Hilbert space $H$ is a complete inner-product space. The inner product induces the norm $|u|=\sqrt{\langle u,u\rangle}$ and the notion of orthogonality. The canonical example is $L^{2}(\Omega)$ with $\langle f,g\rangle = \int_{\Omega} f \overline{g}\,dx$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>The <strong>Riesz Representation Theorem</strong> states that every continuous linear functional $\phi\in H^{*}$ is uniquely represented by an element $f\in H$ such that $\phi(u)=\langle u,f\rangle$ for all $u\in H$. This self-duality underpins variational methods.</p>
 
-<h3 id="core-results">Core Results</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>An <strong>orthonormal basis</strong> ${e_{n}}$ satisfies $\langle e_{n},e_{m}\rangle=\delta_{nm}$ and spans $H$ densely. Every $f\in H$ admits the Fourier expansion $f=\sum \langle f,e_{n}\rangle e_{n}$, and <strong>Parseval’s identity</strong> preserves the norm: $|f|^{2}=\sum</td>
+      <td>\langle f,e_{n}\rangle</td>
+      <td>^{2}$.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<h3 id="compact-operators">Compact Operators</h3>
 
-<h3 id="applications">Applications</h3>
+<p>A bounded operator $K:H\to H$ is <strong>compact</strong> if it maps bounded sets to relatively compact sets. Equivalently, for any bounded sequence ${u_{n}}$, the sequence ${Ku_{n}}$ has a convergent subsequence. Integral operators with square-integrable kernels (Hilbert-Schmidt operators) are compact; they model Green’s operators that smooth data.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h3 id="spectral-theorem-for-compact-self-adjoint-operators">Spectral Theorem for Compact Self-Adjoint Operators</h3>
+
+<p>If $T:H\to H$ is compact and self-adjoint ($T=T^{*}$), then:</p>
+
+<ol>
+  <li>The spectrum $\sigma(T)$ consists of real eigenvalues ${\lambda_{n}}$ with $\lambda_{n}\to 0$.</li>
+  <li>Nonzero eigenvalues have finite multiplicity and accumulate only at $0$.</li>
+  <li>There exists an orthonormal basis ${\phi_{n}}$ of eigenvectors.</li>
+  <li>$Tu=\sum \lambda_{n} \langle u,\phi_{n}\rangle \phi_{n}$.</li>
+</ol>
+
+<p>This diagonalization extends finite-dimensional intuition to infinite dimensions and yields the Fredholm alternative for $(I-\lambda K)u=f$.</p>
+
+<p><strong>Mercer’s theorem</strong> specializes to positive integral kernels: if $K(x,y)$ is continuous, symmetric, and positive-definite, then
+\(K(x,y)=\sum_{n=1}^{\infty}\lambda_{n}\phi_{n}(x)\overline{\phi_{n}(y)}\)
+uniformly on $\Omega\times \Omega$.</p>
+
+<h3 id="applications-to-pdes">Applications to PDEs</h3>
+
+<p>For elliptic operators such as $-\Delta$ with homogeneous Dirichlet boundary conditions, the inverse (solution operator) $S:f\mapsto u$ is compact from $L^{2}(\Omega)$ to $H^{1}_{0}(\Omega)$ (Rellich-Kondrachov). Hence $S$ is compact self-adjoint, and the spectral theorem provides:</p>
+
+<ol>
+  <li>A discrete sequence of eigenvalues $0&lt;\lambda_{1}\le\lambda_{2}\le\dots\to\infty$.</li>
+  <li>An orthonormal basis of eigenfunctions in $L^{2}(\Omega)$.</li>
+  <li>Rigorous justification for eigenfunction expansions used in separation of variables.</li>
+</ol>
+
+<p>Weyl’s law describes the asymptotic distribution of eigenvalues, connecting spectrum to geometry: $N(\lambda)\sim \frac{\omega_{n}}{(2\pi)^{n}}\operatorname{vol}(\Omega)\lambda^{n/2}$.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-231-riesz-representation-on-l202pi">Example 2.3.1: Riesz Representation on $L^{2}[0,2\pi]$</h3>
+
+<p><strong>Problem:</strong> Find the representing vector for $\phi(u)=\int_{0}^{2\pi} u(x)\sin x\,dx$.</p>
+
+<p>In $L^{2}[0,2\pi]$ with inner product $\langle f,g\rangle=\frac{1}{2\pi}\int f\overline{g}$, the Riesz theorem gives $f(x)=\sin x$, since $\phi(u)=\langle u,\sin x\rangle$.</p>
+
+<h3 id="example-232-parsevals-identity-for-a-square-wave">Example 2.3.2: Parseval’s Identity for a Square Wave</h3>
+
+<p><strong>Problem:</strong> Verify Parseval for $f(x)=\operatorname{sgn}(\sin x)$ on $[0,2\pi]$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Fourier coefficients: $b_{n}=\frac{4}{\pi n}$ for odd $n$, zero otherwise. Then $|f|^{2}=1$ and $\sum</td>
+      <td>b_{n}</td>
+      <td>^{2}=\frac{16}{\pi^{2}}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^{2}}=\frac{16}{\pi^{2}}\cdot\frac{\pi^{2}}{8}=1$, confirming Parseval.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-233-hilbert-schmidt-operator">Example 2.3.3: Hilbert-Schmidt Operator</h3>
+
+<p>Consider $K:L^{2}[0,1]\to L^{2}[0,1]$ with kernel $K(x,y)=\min(x,y)$. Compute</p>
+
+\[\|K\|_{HS}^{2}=\int_{0}^{1}\int_{0}^{1} \min(x,y)^{2}\,dx\,dy=\frac{1}{3}&lt;\infty,\]
+
+<p>so $K$ is Hilbert-Schmidt and hence compact.</p>
+
+<h3 id="example-234-spectral-decomposition-of-k">Example 2.3.4: Spectral Decomposition of $K$</h3>
+
+<p>Solve $Ku=\lambda u$. Differentiating the integral equation yields $-u’’=\lambda^{-1}u$ with $u(0)=u(1)=0$, giving eigenfunctions $\phi_{n}(x)=\sqrt{2}\sin(n\pi x)$ and eigenvalues $\lambda_{n}=\frac{1}{(n\pi)^{2}}$. The kernel admits the Mercer expansion</p>
+
+\[K(x,y)=2\sum_{n=1}^{\infty}\frac{\sin(n\pi x)\sin(n\pi y)}{(n\pi)^{2}}.\]
+
+<h3 id="example-235-sturmliouville-problem">Example 2.3.5: Sturm–Liouville Problem</h3>
+
+<p>For $-(1-x^{2})u’‘-2xu’=\lambda u$ on $[-1,1]$, solutions are Legendre polynomials $P_{n}(x)$ with $\lambda=n(n+1)$. Their orthogonality $\int_{-1}^{1}P_{n}P_{m}\,dx=0$ ($n\ne m$) and completeness justify polynomial expansions in Chapter 1.</p>
+
+<h3 id="example-236-fredholm-alternative">Example 2.3.6: Fredholm Alternative</h3>
+
+<p>Solve $(I-\lambda K)u=f$ with $K$ above. If $\lambda\neq 1/\lambda_{n}$, the solution is unique. At resonance ($\lambda=1/\lambda_{n}$), solvability requires $f$ orthogonal to the corresponding eigenfunction. Explicit computation shows failure when $\lambda=\pi^{2}/4$ unless $f\perp \sin(\pi x/2)$.</p>
+
+<h3 id="example-237-weyls-law-on-a-square">Example 2.3.7: Weyl’s Law on a Square</h3>
+
+<p>For $-\Delta$ on $[0,\pi]^{2}$ with Dirichlet boundary, eigenvalues are $\lambda_{mn}=m^{2}+n^{2}$. Counting eigenvalues up to $\lambda$ approximates the number of lattice points in a quarter circle, yielding $N(\lambda)\sim \lambda/4$, in agreement with Weyl’s law.</p>
+
+<h3 id="example-238-heat-equation-convergence">Example 2.3.8: Heat Equation Convergence</h3>
+
+<p>For $u_{t}=u_{xx}$ on $(0,\pi)$ with Dirichlet data, the solution $u(x,t)=\sum c_{n}e^{-n^{2}t}\sin(nx)$ converges in $L^{2}$. Error estimates show $|u-u_{N}|\le C N^{-3}e^{-N^{2}t}$ for smooth initial data, illustrating spectral convergence.</p>
+
+<h3 id="example-239-semiclassical-asymptotics">Example 2.3.9: Semiclassical Asymptotics</h3>
+
+<p>For the harmonic oscillator $-h^{2}u’‘+x^{2}u=Eu$, eigenvalues satisfy $E_{n}=n+\tfrac{1}{2}$ exactly. Weyl’s law predicts $N(E)\sim E/h$, matching the exact distribution and connecting spectral theory to semiclassical analysis.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+  <li>Reed, M., &amp; Simon, B. (1972). <em>Methods of Modern Mathematical Physics I: Functional Analysis</em>. Academic Press.</li>
+  <li>Rudin, W. (1987). <em>Real and Complex Analysis</em>. McGraw-Hill.</li>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
