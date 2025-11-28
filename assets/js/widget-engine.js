@@ -245,15 +245,16 @@ class WidgetEngine {
         throw new Error('Pyodide not loaded');
       }
 
-      // Reset plot data and inject helper function
-      await window.textbookEngine.pyodide.runPythonAsync(`plot_data = None`);
+      // Reset plot data for this execution (use unique variable per widget)
+      const plotDataVar = `plot_data_${widgetData.element.id || 'widget'}`;
+      await window.textbookEngine.pyodide.runPythonAsync(`${plotDataVar} = None`);
 
       const plotHelperCode = `
 import json
 
 def create_plot(traces, layout=None):
     """Helper function to create plot data for Plotly.js"""
-    global plot_data
+    global ${plotDataVar}
     if layout is None:
         layout = {}
 
@@ -268,28 +269,28 @@ def create_plot(traces, layout=None):
                 trace_dict[key] = value
         plot_traces.append(trace_dict)
 
-    plot_data = {
+    ${plotDataVar} = {
         'data': plot_traces,
         'layout': layout
     }
-    return plot_data
+    return ${plotDataVar}
       `;
 
       await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
 
       const modifiedCode = code + `
 # Store plot data if create_plot was called
-if 'plot_data' in globals() and plot_data is not None:
-    pass  # plot_data already set
+if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
+    pass  # ${plotDataVar} already set
       `;
 
       await window.textbookEngine.pyodide.runPythonAsync(modifiedCode);
 
-      // Check for plot data
-      const hasPlotData = window.textbookEngine.pyodide.runPython(`plot_data is not None`);
+      // Check for plot data using widget-specific variable
+      const hasPlotData = window.textbookEngine.pyodide.runPython(`${plotDataVar} is not None`);
 
       if (hasPlotData) {
-        const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(plot_data)`);
+        const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(${plotDataVar})`);
         const plotData = JSON.parse(plotJson);
 
         // Ensure dark theme for Plotly
