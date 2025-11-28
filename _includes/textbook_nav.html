@@ -39,7 +39,7 @@
     {% comment %} Handle standalone pages like Math Guide (low nav_order) and Epilogue (high nav_order) {% endcomment %}
     {% for nav_page in pages %}
       {% if nav_page.is_chapter_index == false and nav_page.section == null %}
-        {% if nav_page.nav_order > 0 and nav_order < 1 %}
+        {% if nav_page.nav_order > 0 and nav_page.nav_order < 1 %}
           {% comment %} Math Formatting Guide appears before chapters {% endcomment %}
           <li class="chapter-item" style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
             <a href="{{ nav_page.url | relative_url }}" {% if nav_page.url == page.url %}class="active"{% endif %}>
