@@ -39,7 +39,7 @@ class WidgetEngine {
 
       // Find dropdowns that can change code blocks
       const codeSelector = widget.querySelector('.widget-dropdown[data-code-selector="true"]');
-      
+
       // Collect all code blocks (for dropdown-based code selection)
       const codeBlocks = Array.from(widget.querySelectorAll('.code-block[data-code-type]'));
       const codeMap = new Map();
@@ -50,7 +50,7 @@ class WidgetEngine {
           codeMap.set(codeType, code);
         }
       });
-      
+
       // If no code blocks with data-code-type, use the default code block
       let defaultCode = '';
       if (codeMap.size === 0) {
@@ -125,7 +125,7 @@ class WidgetEngine {
           if (dropdown.dataset.codeSelector === 'true' && widgetData.codeMap.size > 0) {
             const selectedType = e.target.value;
             console.log('Code type changed to:', selectedType);
-            
+
             // Update which code block is visible (optional visual feedback)
             const codeBlocks = widgetData.element.querySelectorAll('.code-block[data-code-type]');
             codeBlocks.forEach(block => {
@@ -263,7 +263,7 @@ class WidgetEngine {
           console.warn('Selected code type not found:', selectedType, 'using default');
         }
       }
-      
+
       // Also collect dropdown values for parameters
       widgetData.dropdowns.forEach(dropdown => {
         if (!dropdown.dataset.codeSelector) {  // Don't include code selector as a param
