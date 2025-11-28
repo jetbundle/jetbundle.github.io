@@ -46,20 +46,15 @@ Each example must follow this structure:
 
 **Problem:** [Problem statement in bold]
 
-<details>
-<summary>Click to reveal solution</summary>
-
-[Narrative solution with complete workthrough]
-
-</details>
+[Narrative solution with complete workthrough — no collapsible toggle]
 ```
 
 ### Formatting Rules
 
 1. **Only "Problem:" is bold** - All other text uses normal formatting
-2. **Solutions are collapsible** - Use HTML `<details>` and `<summary>` tags
-3. **Narrative style** - Solutions should read as a story, not just steps
-4. **LaTeX formatting** - All absolute values use `\|` not `|` in math mode
+2. **Narrative style** - Solutions should read as a story, not just steps
+3. **Display math for primary equations** - Any equation involving equality, fractions, or absolute values must use `$$ ... $$`
+4. **LaTeX formatting** - All absolute values use `\left|` and `\right|`
 5. **No bold section headers** - Remove `**Step 1:**`, `**Solution:**`, etc.
 
 ### LaTeX Absolute Value Formatting
@@ -141,7 +136,7 @@ For each example:
 
 1. **Extract problem:**
    - Keep only "Problem:" in bold
-   - Remove any other bold formatting from problem statement
+   - Remove any other bold formatting from the problem statement
 
 2. **Process solution:**
    - Remove all bold section headers (`**Step 1:**`, `**Solution:**`, etc.)
@@ -149,28 +144,48 @@ For each example:
    - Fix LaTeX absolute values (`|` → `\left|` and `\right|`)
    - Make it read as a continuous story
 
-3. **Wrap in collapsible:**
-   - Use `<details>` and `<summary>` HTML
-   - Summary text: "Click to reveal solution"
+3. **Promote primary equations to display math:**
+   - Use `$$ ... $$` for any equation involving equality, fractions, or absolute values
+   - Keep short symbolic references inline only when they truly function as part of the sentence
 
-4. **Example structure:**
+4. **Compose the solution narrative:**
+   - Present the solution immediately after the problem statement
+   - Do not hide content behind collapsible toggles
+   - Reference display equations in the surrounding prose
+
+Example structure:
 ```markdown
 ### Example 1.1.1: Picard-Lindelöf Theorem — Canonical Picard Iteration
 
 **Problem:** Solve $y' = y$, $y(0) = 1$ on $[-1,1]$.
 
-<details>
-<summary>Click to reveal solution</summary>
+We begin by verifying the Lipschitz condition. For $f(y) = y$, we have
 
-We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|$, establishing a Lipschitz constant $K = 1$.
+$$
+\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|.
+$$
 
-The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
+This establishes a Lipschitz constant $K = 1$. The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-For convergence analysis, we apply the error estimate $\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! (1 - K\left|t\right|)}$ where $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding $\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
+For convergence analysis, we apply the error estimate
 
-The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
+$$
+\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! \left(1 - K\left|t\right|\right)}.
+$$
 
-</details>
+Here $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding
+
+$$
+\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078.
+$$
+
+The exact solution emerges as
+
+$$
+y(t) = e^t = \lim_{n \to \infty} y_n(t),
+$$
+
+revealing that the exponential series arises naturally from the fixed-point iteration process.
 ```
 
 #### Step 4: Assemble Final Structure
@@ -187,47 +202,9 @@ The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, reveali
 2. **Verify:**
    - All LaTeX absolute values use `\left|` and `\right|`
    - Only "Problem:" bold in examples
-   - All solutions collapsible
+   - Primary equations use display math `$$ ... $$`
+   - Solutions are presented inline (no collapsible toggles)
    - Narrative flow maintained
-
----
-
-## CSS Requirements
-
-Add the following to `assets/css/textbook.css`:
-
-```css
-/* Collapsible Example Solutions */
-details {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-details summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--accent);
-  padding: 0.5rem;
-  user-select: none;
-}
-
-details summary:hover {
-  color: var(--accent-hover);
-}
-
-details[open] summary {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.5rem;
-}
-
-details .solution-content {
-  padding-top: 1rem;
-}
-```
 
 ---
 
@@ -237,7 +214,7 @@ Before finalizing each section:
 
 - [ ] Examples moved after References
 - [ ] Only "Problem:" is bold in examples
-- [ ] All solutions are collapsible (`<details>`)
+- [ ] Solutions are presented inline (no collapsible toggles)
 - [ ] All LaTeX absolute values use `\left|` and `\right|`
 - [ ] Solutions written in narrative style
 - [ ] No bold section headers in solutions
@@ -260,16 +237,17 @@ When processing new content:
    - Extract problem (keep bold)
    - Convert solution to narrative
    - Fix LaTeX absolute values (`|` → `\left|` and `\right|`)
-   - Wrap in collapsible
+   - Promote primary equations to display math (`$$ ... $$`)
 4. **Assemble** in optimal order
 5. **Verify** against checklist
+6. **Deploy**: Commit and push to `main` to trigger GitHub Actions (GitHub Pages deployment)
 
 ### Key Principles
 
 - **Narrative over steps**: Solutions should read as explanations, not just procedures
-- **Pedagogy first**: Collapsible solutions encourage active learning
+- **Pedagogy first**: Keep solutions fully visible to encourage active learning
 - **Consistency**: Same structure and formatting across all sections
-- **Accessibility**: Clear problem statements, hidden solutions
+- **Accessibility**: Use clear problem statements and visible solutions (no hidden content)
 
 ---
 
@@ -306,18 +284,34 @@ Lipschitz constant $K = 1$.
 
 **Problem:** Solve $y' = y$, $y(0) = 1$ on $[-1,1]$.
 
-<details>
-<summary>Click to reveal solution</summary>
+We begin by verifying the Lipschitz condition. For $f(y) = y$, we have
 
-We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\|f(y_1) - f(y_2)\| = \|y_1 - y_2\| \leq 1 \cdot \|y_1 - y_2\|$, establishing a Lipschitz constant $K = 1$.
+$$
+\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|.
+$$
 
-The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
+This establishes a Lipschitz constant $K = 1$. The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-For convergence analysis, we apply the error estimate $\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! (1 - K\left|t\right|)}$ where $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding $\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
+For convergence analysis, we apply the error estimate
 
-The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
+$$
+\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! \left(1 - K\left|t\right|\right)}.
+$$
 
-</details>
+Here $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding
+
+$$
+\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078.
+$$
+
+The exact solution emerges as
+
+$$
+y(t) = e^t = \lim_{n \to \infty} y_n(t),
+$$
+
+revealing that the exponential series arises naturally from the fixed-point iteration process.
+
 ```
 
 ---
@@ -325,7 +319,7 @@ The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, reveali
 ## Notes
 
 - This structure optimizes learning by encouraging problem-solving before solution viewing
-- Collapsible solutions reduce visual clutter while maintaining accessibility
+- Clear, visible solutions reduce cognitive overhead while maintaining accessibility
 - Narrative style makes solutions more engaging and easier to follow
 - Consistent formatting ensures professional appearance across all sections
 
