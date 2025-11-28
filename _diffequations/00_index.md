@@ -206,41 +206,7 @@ layout = {
 create_plot([trace], layout)</code></pre>
   </div>
 
-  <div class="plotly-container widget-output">    </div>
-
-  <div class="code-block hidden">
-    <pre><code class="language-python">import numpy as np
-from scipy.integrate import odeint
-
-# Parameters from widgets (injected by widget engine)
-# lambda_val, y0_val, t_max_val are set by widget sliders
-
-def dydt(y, t, lambda_param):
-    return -lambda_param * y
-
-t = np.linspace(0, t_max_val, 150)  # Fewer points for faster continuous updates
-sol = odeint(dydt, y0_val, t, args=(lambda_val,))
-
-trace = {
-    'x': t.tolist(),
-    'y': sol.flatten().tolist(),
-    'mode': 'lines',
-    'name': f'y(t) = {y0_val:.2f} * exp(-{lambda_val:.2f}t)',
-    'line': {'width': 3, 'color': '#ff8c5a'}
-}
-
-layout = {
-    'title': f'ODE Solution: $\\frac{{dy}}{{dt}} = -{lambda_val:.2f}y$',
-    'xaxis': {'title': 'Time $t$'},
-    'yaxis': {'title': '$y(t)$'},
-    'height': 400
-}
-
-# Store plot data for rendering
-create_plot([trace], layout)</code></pre>
-  </div>
-
-  <div class="plotly-container widget-output"></div>
+  <div class="plotly-container widget-output" id="continuous-plot-output"></div>
 </div>
 
 ## Mathematics Test
