@@ -700,27 +700,108 @@
 <p>The chapter concludes with a crisis: perturbation series often diverge factorially ($\sum n! x^n$). We introduce <strong>Renormalization Group (RG)</strong> techniques for ODEs to resum secular terms and <strong>Borel Summation</strong> to assign meaning to divergent series. We touch upon <strong>Non-perturbative effects</strong> (Instantons) that are invisible to power series.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="divergent-series-and-gevrey-classes">Divergent Series and Gevrey Classes</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\left</td>
+      <td>f(x)-\sum_{n=0}^{N}a_{n}x^{n}\right</td>
+      <td>=O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\lvert a_{n}\rvert\le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K</td>
+      <td>x</td>
+      <td>)$, producing an exponentially small remainder $\sim \exp\left(-1/(K</td>
+      <td>x</td>
+      <td>)\right)$ that encodes non-perturbative effects invisible to any Taylor series.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<h3 id="borel-summation">Borel Summation</h3>
 
-<h3 id="core-results">Core Results</h3>
+<p>Given $A(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$ with Gevrey-1 growth, define the Borel transform</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[\mathcal{B}A(t)=\sum_{n=0}^{\infty}\frac{a_{n}}{n!}t^{n},\]
 
-<h3 id="applications">Applications</h3>
+<p>which converges near $t=0$. If $\mathcal{B}A$ admits analytic continuation along $[0,\infty)$ with suitable growth, the Laplace integral</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[\mathcal{S}A(x)=\frac{1}{x}\int_{0}^{\infty}\mathcal{B}A(t)e^{-t/x}\,dt\]
+
+<p>defines the Borel sum, recovering the original divergent series as an asymptotic expansion. Singularities of $\mathcal{B}A$ along the integration path lead to different lateral sums $\mathcal{S}^{\pm}$ (contours above/below the pole). Their difference is exponentially small, producing the Stokes phenomenon observed in Section 1.5.</p>
+
+<h3 id="renormalization-group-for-odes">Renormalization Group for ODEs</h3>
+
+<p>Secular terms in perturbation theory reflect sensitivity to the initial time. Introducing an arbitrary renormalization scale $\tau$ and allowing integration constants to depend on $\tau$ yields $y(t,\tau)$ with the requirement $\partial y/\partial \tau=0$. This Renormalization Group (RG) equation produces flow equations for amplitudes and phases, summing secular terms to all orders and recovering multiple-scales envelopes without ad hoc assumptions (Olver, 1995).</p>
+
+<h3 id="instantons-and-non-perturbative-effects">Instantons and Non-Perturbative Effects</h3>
+
+<p>Exponentially small effects such as $e^{-S/\epsilon}$ arise from classical trajectories (instantons) connecting distinct minima. Flat functions like $e^{-1/x^{2}}$ have zero Taylor coefficients yet dominate the optimal truncation error. Large-order perturbative coefficients are governed by the closest singularity in the Borel plane, equating divergence rates with instanton actions. Thus, asymptotic divergence encodes the missing non-perturbative physics.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-171-gevrey-1-series-and-optimal-truncation">Example 1.7.1: Gevrey-1 Series and Optimal Truncation</h3>
+
+<p><strong>Problem:</strong> Analyze $\sum_{n=0}^{\infty}(-1)^{n}n!x^{n}$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The ratio $\lvert a_{n+1}x^{n+1}/(a_{n}x^{n})\rvert=(n+1)\lvert x\rvert$ implies the least term occurs near $N_{\text{opt}}\approx 1/</td>
+      <td>x</td>
+      <td>$. Truncating at this index yields an error $O(e^{-1/</td>
+      <td>x</td>
+      <td>})$, the same order as the non-perturbative contribution absent from the series.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-172-asymptotic-expansion-of-operatornameerfcx">Example 1.7.2: Asymptotic Expansion of $\operatorname{erfc}(x)$</h3>
+
+<p>Using repeated integration by parts,</p>
+
+\[\operatorname{erfc}(x)\sim \frac{e^{-x^{2}}}{x\sqrt{\pi}}\left(1-\frac{1}{2x^{2}}+\frac{3}{4x^{4}}-\frac{15}{8x^{6}}+\cdots\right),\qquad x\to\infty.\]
+
+<p>Coefficients grow factorially, $a_{n}\sim (-1)^{n}(2n)!/(2^{2n}n!)$, exhibiting Gevrey-1 behavior and necessitating optimal truncation at $n\approx 2x^{2}$.</p>
+
+<h3 id="example-173-wkb-divergence">Example 1.7.3: WKB Divergence</h3>
+
+<p>For $\epsilon^{2}y’‘+Q(x)y=0$, the WKB series $y\sim Q^{-1/4}\exp\left(\pm \epsilon^{-1}\int\sqrt{Q}\right)\sum_{n\ge 0}\epsilon^{n}S_{n}(x)$ has $S_{n}\sim n!$, driven by repeated differentiation. Optimal truncation yields errors $\sim e^{-1/\epsilon}$ corresponding to Stokes transitions (Section 1.5).</p>
+
+<h3 id="example-174-borel-sum-of-sum--1nn-xn">Example 1.7.4: Borel Sum of $\sum (-1)^{n}n! x^{n}$</h3>
+
+<p>The Borel transform $\mathcal{B}(t)=\sum(-t)^{n}/(n!)^{2}=I_{0}(2\sqrt{t})$ leads to</p>
+
+\[\mathcal{S}(x)=\frac{1}{x}\int_{0}^{\infty}I_{0}(2\sqrt{t})e^{-t/x}\,dt=e,\]
+
+<p>showing that a divergent series can be resummed to an elementary function.</p>
+
+<h3 id="example-175-airy-function-and-stokes-jump">Example 1.7.5: Airy Function and Stokes Jump</h3>
+
+<p>The Airy asymptotic series has a Borel transform with singularities on the positive axis. Lateral Borel sums differ by $\Delta \operatorname{Ai}(x)=\frac{i}{2\sqrt{\pi}x^{1/4}}e^{+\zeta}$, precisely the subdominant exponential that turns on across $\arg x=2\pi/3$, matching the Stokes phenomenon described in Section 1.5.</p>
+
+<h3 id="example-176-rg-treatment-of-the-rayleigh-oscillator">Example 1.7.6: RG Treatment of the Rayleigh Oscillator</h3>
+
+<p>For $y’’+\epsilon \left(\frac{y’^2}{3}-1\right)y’+y=0$, naïve perturbation produces secular terms. Introducing a renormalization time $\tau$ and demanding $\partial y/\partial \tau=0$ yields amplitude and phase flows $dA/d\tau=-A^{2}/8$, $d\phi/d\tau=1/8$. Solving gives $A(t)=8/(t+8/A_{0})$, identical to the amplitude envelope obtained via multiple scales.</p>
+
+<h3 id="example-177-van-der-pol-oscillator-via-rg">Example 1.7.7: Van der Pol Oscillator via RG</h3>
+
+<p>Applying RG to $y’’-\epsilon(1-y^{2})y’+y=0$ produces $dA/dt=\tfrac{\epsilon}{2}(1-A^{2}/4)A$, showing convergence to the limit-cycle amplitude $A\to 2$ without assuming slow times a priori.</p>
+
+<h3 id="example-178-instanton-in-a-double-well-potential">Example 1.7.8: Instanton in a Double-Well Potential</h3>
+
+<p>For $H=-\epsilon^{2}d^{2}/dx^{2}+(x^{2}-1)^{2}$, expanding about $x=-1$ yields a divergent series for the ground-state energy. The instanton trajectory $x(\tau)=\tanh(2\tau)$ has action $S=8\sqrt{2}/3$, producing a level splitting $\Delta E\sim e^{-S/\epsilon}$. Large-order perturbative coefficients grow as $(-1)^{n}n! (6)^{n/2}$, consistent with a Borel singularity at $t=S$.</p>
+
+<h3 id="example-179-flat-function">Example 1.7.9: Flat Function</h3>
+
+<p>The function $f(x)=e^{-1/x^{2}}$ for $x&gt;0$ (and $0$ otherwise) has all derivatives zero at $x=0$, yet $f(x)$ is nonzero for $x&gt;0$. No power series captures $f$; it represents a purely non-perturbative contribution comparable to instanton effects.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Hardy, G. H. (1949). <em>Divergent Series</em>. Oxford University Press.</li>
+  <li>Olver, F. W. J., et al. (2010). <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
+  <li>Olver, P. J. (1995). <em>Equivalence, Invariants, and Symmetry</em>. Cambridge University Press.</li>
+  <li>Whittaker, E. T., &amp; Watson, G. N. (1927). <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
