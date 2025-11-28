@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -956,9 +956,25 @@
     <p><strong>Witten Laplacian on Forms:</strong>
 \(H = \{Q, Q^\dagger\} = Q Q^\dagger + Q^\dagger Q\)</p>
 
-    <p>On 0-forms (functions): $H_0 = -\frac{d^2}{dx^2} + \frac{1}{4}|V’|^2 - \frac{1}{2}V’’$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>On 0-forms (functions): $H_0 = -\frac{d^2}{dx^2} + \frac{1}{4}</td>
+          <td>V’</td>
+          <td>^2 - \frac{1}{2}V’’$</td>
+        </tr>
+      </tbody>
+    </table>
 
-    <p>On 1-forms: $H_1 = -\frac{d^2}{dx^2} + \frac{1}{4}|V’|^2 + \frac{1}{2}V’’$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>On 1-forms: $H_1 = -\frac{d^2}{dx^2} + \frac{1}{4}</td>
+          <td>V’</td>
+          <td>^2 + \frac{1}{2}V’’$</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>Explicitly:</p>
 
@@ -1202,7 +1218,15 @@ $n_B^0 = \dim H^0 \oplus H^2 = 1 + 1 = 2$</p>
 
 \[\text{Witten Index } \Delta\chi = \# \text{ stable} - \# \text{ unstable fixed points}\]
 
-<p>When $|\Delta\chi| \to 0$: supersymmetry breaking</p>
+<table>
+  <tbody>
+    <tr>
+      <td>When $</td>
+      <td>\Delta\chi</td>
+      <td>\to 0$: supersymmetry breaking</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Manifests as: $1/f$ noise, intermittency</p>
 

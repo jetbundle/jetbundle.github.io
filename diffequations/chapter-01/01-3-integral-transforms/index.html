@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -881,7 +881,15 @@
 
 \[\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.\]
 
-<p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\left|f(t)\right|\leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)&gt;\sigma$. Integration by parts algebraizes differentiation:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\left</td>
+      <td>f(t)\right</td>
+      <td>\leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)&gt;\sigma$. Integration by parts algebraizes differentiation:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\mathcal{L}\{f'\}(s)=sF(s)-f(0), \qquad \mathcal{L}\{f^{(n)}\}(s)=s^{n}F(s)-\sum_{k=1}^{n}s^{n-k}f^{(k-1)}(0),\]
 
@@ -917,7 +925,17 @@
 
 \[\Delta x\,\Delta \xi \geq \frac{1}{4\pi},\]
 
-<p>where the variances are defined using $\left|f\right|^{2}$ and $\left|\hat{f}\right|^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>where the variances are defined using $\left</td>
+      <td>f\right</td>
+      <td>^{2}$ and $\left</td>
+      <td>\hat{f}\right</td>
+      <td>^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="greens-functions-and-resolvent-kernels">Green’s Functions and Resolvent Kernels</h3>
 
@@ -1043,7 +1061,15 @@
 
 \[\hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi \xi}=\operatorname{sinc}(2\xi).\]
 
-<p>The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval’s identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\left|\hat{f}(\xi)\right|^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval’s identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\left</td>
+      <td>\hat{f}(\xi)\right</td>
+      <td>^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-136-heat-equation-via-fourier-transform">Example 1.3.6: Heat Equation via Fourier Transform</h3>
 
@@ -1067,7 +1093,7 @@
 
 \[G(x,\xi)=
 \begin{cases}
-\phi_{1}(x)\phi_{2}(\xi), &amp; x&lt;\xi,\
+\phi_{1}(x)\phi_{2}(\xi), &amp; x&lt;\xi,\\
 \phi_{1}(\xi)\phi_{2}(x), &amp; x&gt;\xi,
 \end{cases}\]
 
@@ -1087,11 +1113,19 @@
 
 <p><strong>Problem:</strong> Solve $u(x)=f(x)+\lambda\int_{0}^{1}xye^{-xy}u(y)\,dy$ with $\lambda=0.1$ and $f(x)=1$.</p>
 
-<p>Writing $u=(I-\lambda K)^{-1}f$ with $(Ku)(x)=\int_{0}^{1}xye^{-xy}u(y)\,dy$, the Neumann series converges because $\lambda\|K\|&lt;1$. The first iterate gives</p>
+<p>Writing $u=(I-\lambda K)^{-1}f$ with $(Ku)(x)=\int_{0}^{1}xye^{-xy}u(y)\,dy$, the Neumann series converges because $\lambda|K|&lt;1$. The first iterate gives</p>
 
 \[u_{1}(x)=1+\lambda\int_{0}^{1}xye^{-xy}\,dy=1+0.1\bigl(1-e^{-x}\bigr),\]
 
-<p>already capturing the primary correction. Spectral radius estimates show convergence for $\left|\lambda\right|&lt;1/e$, so summing the series delivers the full solution.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>already capturing the primary correction. Spectral radius estimates show convergence for $\left</td>
+      <td>\lambda\right</td>
+      <td>&lt;1/e$, so summing the series delivers the full solution.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-1310-mellin-transform-of-an-eulercauchy-equation">Example 1.3.10: Mellin Transform of an Euler–Cauchy Equation</h3>
 

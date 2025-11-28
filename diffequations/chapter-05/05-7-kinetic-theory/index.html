@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -941,7 +941,7 @@
 
 <p>Let $u(t, x)$ be the value function (expected cost) for a representative agent, and $m(t, x)$ be the distribution of agents. The system is described by:</p>
 
-\[\begin{cases} -\partial_t u - \nu \Delta u + H(x, \nabla u) = F(x, m) &amp; \text{(Backward HJB)} \ \partial_t m - \nu \Delta m - \text{div}(m \nabla_p H(x, \nabla u)) = 0 &amp; \text{(Forward FP)} \end{cases}\]
+\[\begin{cases} -\partial_t u - \nu \Delta u + H(x, \nabla u) = F(x, m) &amp; \text{(Backward HJB)} \\ \partial_t m - \nu \Delta m - \text{div}(m \nabla_p H(x, \nabla u)) = 0 &amp; \text{(Forward FP)} \end{cases}\]
 
 <p>with initial condition $m(0) = m_0$ and terminal condition $u(T) = G(x, m(T))$.</p>
 
@@ -955,7 +955,15 @@
 
 <h3 id="example-571-maxwell-moleculesexact-collision-operator-computation">Example 5.7.1: Maxwell Molecules—Exact Collision Operator Computation</h3>
 
-<p><strong>Problem:</strong> Consider Maxwell molecules where the collision kernel is constant: $B(|v-v_*|, \omega) = 1$. Compute the collision operator for a specific velocity distribution.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Consider Maxwell molecules where the collision kernel is constant: $B(</td>
+      <td>v-v_*</td>
+      <td>, \omega) = 1$. Compute the collision operator for a specific velocity distribution.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Setup:</strong> Let $f(v) = M(v)$ be the Maxwellian:</p>
 
@@ -1165,7 +1173,15 @@ Exact solution at $t=\tau$: $\rho(t,x) = (2\pi(1+2t))^{-1/2} \exp(-x^2/(2(1+2t))
     <p><strong>Case 1: Two Diracs</strong>
 $\mu = \delta_0$, $\nu = \delta_1$</p>
 
-    <p>$W_2(\mu,\nu) = |0-1| = 1$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>$W_2(\mu,\nu) =</td>
+          <td>0-1</td>
+          <td>= 1$</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>Optimal plan: $\gamma = \delta_0 \times \delta_1$</p>
   </li>

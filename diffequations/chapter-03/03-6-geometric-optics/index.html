@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -893,11 +893,27 @@
 
 \[2\nabla S \cdot \nabla a + (\Delta S)a = 0\]
 
-<p>This linear hyperbolic equation governs the evolution of the amplitude $a(x)$ along the flow determined by $\nabla S$. As discussed in Evans (2010), this equation implies the conservation of energy flux along the rays. Specifically, the quantity $a^2 |\nabla S|$ is conserved along the characteristics of the Eikonal equation.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>This linear hyperbolic equation governs the evolution of the amplitude $a(x)$ along the flow determined by $\nabla S$. As discussed in Evans (2010), this equation implies the conservation of energy flux along the rays. Specifically, the quantity $a^2</td>
+      <td>\nabla S</td>
+      <td>$ is conserved along the characteristics of the Eikonal equation.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="hamilton-jacobi-theory">Hamilton-Jacobi Theory</h3>
 
-<p>To solve the Eikonal equation $|\nabla S|^2 = n^2(x)$, we employ the method of characteristics, framing the problem within Hamilton-Jacobi mechanics. We define the Hamiltonian $H(x,p)$ on the cotangent bundle $T^*\Omega$ (phase space):</p>
+<table>
+  <tbody>
+    <tr>
+      <td>To solve the Eikonal equation $</td>
+      <td>\nabla S</td>
+      <td>^2 = n^2(x)$, we employ the method of characteristics, framing the problem within Hamilton-Jacobi mechanics. We define the Hamiltonian $H(x,p)$ on the cotangent bundle $T^*\Omega$ (phase space):</td>
+    </tr>
+  </tbody>
+</table>
 
 \[H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\]
 
@@ -1160,16 +1176,21 @@ Family: $F(x,y,x_0) = y + t - f = 0$, $x = x_0(1 + t/f)$</p>
     <p><strong>Exponential Map:</strong> $\gamma(t,v) = \text{Exp}_0(tv)$</p>
   </li>
   <li>
-    <p><strong>Jacobi Field:</strong> $J(t) = \frac{d}{ds}\gamma(t,su)|_{s=0}$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Jacobi Field:</strong> $J(t) = \frac{d}{ds}\gamma(t,su)</td>
+          <td>_{s=0}$</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Conjugate Condition:</strong>
 \(\det\left(\frac{\partial(x_1,...,x_n)}{\partial(v_1,...,v_n)}\right) = 0\)</p>
   </li>
-  <li>
-    <p><strong>For Harmonic Oscillator</strong> ($n(x) = \sqrt{1-x^2}$):
-Ray: $x(t) = A\sin t$</p>
-  </li>
+  <li><strong>For Harmonic Oscillator</strong> ($n(x) = \sqrt{1-x^2}$):
+Ray: $x(t) = A\sin t$</li>
 </ol>
 
 <p>Jacobi: $J’’ + J = 0$, $J(0)=1$, $J’(0)=0$</p>
@@ -1182,7 +1203,15 @@ Ray: $x(t) = A\sin t$</p>
 
 <h3 id="example-368-explicit-viscosity-solutiondistance-function">Example 3.6.8: Explicit Viscosity Solution—Distance Function</h3>
 
-<p><strong>Problem:</strong> $|\nabla u| = 1$ in unit disk, $u=0$ on boundary.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $</td>
+      <td>\nabla u</td>
+      <td>= 1$ in unit disk, $u=0$ on boundary.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Solution:</strong></p>
 
@@ -1208,11 +1237,27 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
 </ol>
 
-<p>Convergence: $u^\epsilon \to 1-|x|$ uniformly</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Convergence: $u^\epsilon \to 1-</td>
+      <td>x</td>
+      <td>$ uniformly</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-369-refractive-index-with-caustic">Example 3.6.9: Refractive Index with Caustic</h3>
 
-<p><strong>Problem:</strong> $|\nabla u| = n(x)$ where $n(x,y) = \sqrt{1-x^2}$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $</td>
+      <td>\nabla u</td>
+      <td>= n(x)$ where $n(x,y) = \sqrt{1-x^2}$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Solution:</strong></p>
 
@@ -1251,28 +1296,38 @@ Solve: $x = p_0\sin t$, $y = p_y t$</p>
       <th>Hyperbolic Conservation</th>
       <th>Geometric Optics</th>
       <th>Viscosity Solution</th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>$u_t + u u_x = 0$</td>
-      <td>$|\nabla S|^2 = n^2$</td>
+      <td>$</td>
+      <td>\nabla S</td>
+      <td>^2 = n^2$</td>
       <td>First arrival time</td>
     </tr>
     <tr>
       <td>Characteristics cross</td>
       <td>Rays focus</td>
       <td>Distance function</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Weak solution multi-valued</td>
       <td>Phase multi-valued</td>
       <td>Minimum principle</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Lax entropy</td>
       <td>Vanishing viscosity</td>
       <td>Selection principle</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>

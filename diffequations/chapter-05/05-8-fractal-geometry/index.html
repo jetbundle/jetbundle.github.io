@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -925,7 +925,15 @@
 
 <h4 id="anomalous-diffusion-and-walk-dimension">Anomalous Diffusion and Walk Dimension</h4>
 
-<p>The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[|X_t|^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[</td>
+      <td>X_t</td>
+      <td>^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\mathbb{E}[|X_t|^2] \sim t^{2/d_w}\]
 
@@ -1099,11 +1107,11 @@ Solve $-\Delta_m u = \lambda u$ on $V_1$ with Dirichlet boundary conditions $u(A
     <p>Matrix formulation:</p>
 
 \[L_1 = \begin{pmatrix}
-4 &amp; -1 &amp; -1 &amp; -1 &amp; 0 &amp; 0 \
--1 &amp; 4 &amp; 0 &amp; 0 &amp; -1 &amp; -1 \
--1 &amp; 0 &amp; 4 &amp; -1 &amp; -1 &amp; 0 \
--1 &amp; 0 &amp; -1 &amp; 4 &amp; 0 &amp; -1 \
-0 &amp; -1 &amp; -1 &amp; 0 &amp; 4 &amp; -1 \
+4 &amp; -1 &amp; -1 &amp; -1 &amp; 0 &amp; 0 \\
+-1 &amp; 4 &amp; 0 &amp; 0 &amp; -1 &amp; -1 \\
+-1 &amp; 0 &amp; 4 &amp; -1 &amp; -1 &amp; 0 \\
+-1 &amp; 0 &amp; -1 &amp; 4 &amp; 0 &amp; -1 \\
+0 &amp; -1 &amp; -1 &amp; 0 &amp; 4 &amp; -1 \\
 0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 4
 \end{pmatrix}\]
 
@@ -1165,7 +1173,15 @@ At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the r
 
 <h3 id="example-584-anomalous-diffusionmean-square-displacement">Example 5.8.4: Anomalous Diffusion—Mean Square Displacement</h3>
 
-<p><strong>Objective:</strong> Compute explicit random walk probabilities and verify $\mathbb{E}[|X_t|^2] \sim t^{2/d_w}$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Objective:</strong> Compute explicit random walk probabilities and verify $\mathbb{E}[</td>
+      <td>X_t</td>
+      <td>^2] \sim t^{2/d_w}$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1175,11 +1191,11 @@ At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the r
 Transition matrix $P$ on $V_1$:</p>
 
 \[P = \frac{1}{4} \begin{pmatrix}
-0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \
-1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \
-1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \
-0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0
 \end{pmatrix}\]
   </li>
@@ -1223,7 +1239,9 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
       <thead>
         <tr>
           <th>Time $t$</th>
-          <th>Exact $\mathbb{E}[|X_t|^2]$</th>
+          <th>Exact $\mathbb{E}[</th>
+          <th>X_t</th>
+          <th>^2]$</th>
           <th>$t^{0.861}$</th>
         </tr>
       </thead>
@@ -1232,16 +1250,22 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
           <td>1</td>
           <td>0.75</td>
           <td>0.75</td>
+          <td> </td>
+          <td> </td>
         </tr>
         <tr>
           <td>2</td>
           <td>1.12</td>
           <td>1.15</td>
+          <td> </td>
+          <td> </td>
         </tr>
         <tr>
           <td>4</td>
           <td>1.58</td>
           <td>1.62</td>
+          <td> </td>
+          <td> </td>
         </tr>
       </tbody>
     </table>
@@ -1335,8 +1359,8 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
 Discrete system at interior vertices:</p>
 
 \[\begin{cases}
-4u(M_{AB}) - u(M_{BC}) - u(M_{CA}) = 4 \quad \text{(at } M_{AB}) \
-u(M_{AB}) + 4u(M_{BC}) - u(M_{CA}) = 0 \quad \text{(at } M_{BC}) \
+4u(M_{AB}) - u(M_{BC}) - u(M_{CA}) = 4 \quad \text{(at } M_{AB}) \\
+u(M_{AB}) + 4u(M_{BC}) - u(M_{CA}) = 0 \quad \text{(at } M_{BC}) \\
 u(M_{AB}) - u(M_{BC}) + 4u(M_{CA}) = 0 \quad \text{(at } M_{CA})
 \end{cases}\]
   </li>

@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -877,7 +877,15 @@
 
 <h3 id="pseudodifferential-operators">Pseudodifferential Operators</h3>
 
-<p>We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{|\alpha| \le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{</td>
+      <td>\alpha</td>
+      <td>\le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[P(x, D)u(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{ix\cdot\xi} p(x, \xi) \hat{u}(\xi) \, d\xi\]
 
@@ -887,7 +895,19 @@
 
 \[|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\]
 
-<p>The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $|a(x,\xi)| \ge c|\xi|^m$ for large $|\xi|$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $</td>
+      <td>a(x,\xi)</td>
+      <td>\ge c</td>
+      <td>\xi</td>
+      <td>^m$ for large $</td>
+      <td>\xi</td>
+      <td>$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="fourier-integral-operators">Fourier Integral Operators</h3>
 
@@ -935,7 +955,15 @@
 
 \[\text{WF}(u(t)) \subset \chi_t(\text{WF}(f)) \cup \chi_{-t}(\text{WF}(f))\]
 
-<p>where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$. This serves as the rigorous proof of Huygens’ principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $</td>
+      <td>\xi</td>
+      <td>$. This serves as the rigorous proof of Huygens’ principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
@@ -1272,7 +1300,15 @@ $(x_0, \xi_0) \in \text{WF}(u) \setminus \text{char}(\Delta) \Rightarrow (x_0, \
     <p><strong>Complete Proof:</strong>
 Let $(x_0, \xi_0) \in \text{WF}(\Delta u)$, $\xi_0 \neq 0$.</p>
 
-    <p>Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset {\xi : |\xi - \xi_0| &lt; \delta}$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset {\xi :</td>
+          <td>\xi - \xi_0</td>
+          <td>&lt; \delta}$</td>
+        </tr>
+      </tbody>
+    </table>
 
 \[\sigma(\psi\Delta\hat{\psi}) = \hat{\psi}(x_0) \hat{\psi}(\xi_0) |\xi_0|^2 \neq 0\]
 
@@ -1311,7 +1347,17 @@ For each $(x_0, \xi_0) \in T^*X$, $\exists$ chart where</p>
 
     <p>$\Lambda_\phi$ projects cleanly onto neighborhood</p>
 
-    <p>$|a(x, x, \theta)| \geq c|\theta|^m$ near $\theta = \xi_0$.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>$</td>
+          <td>a(x, x, \theta)</td>
+          <td>\geq c</td>
+          <td>\theta</td>
+          <td>^m$ near $\theta = \xi_0$.</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Invertibility:</strong>

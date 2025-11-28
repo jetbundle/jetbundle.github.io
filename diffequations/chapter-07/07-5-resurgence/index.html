@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -883,7 +883,15 @@
 
 \[\tilde{u}(z) = \sum_{n=0}^\infty a_n z^{-n}\]
 
-<p>In physical contexts, the coefficients $a_n$ often exhibit <strong>Gevrey-1 growth</strong>, satisfying bounds of the form $|a_n| \leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the <strong>Borel Transform</strong> $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>In physical contexts, the coefficients $a_n$ often exhibit <strong>Gevrey-1 growth</strong>, satisfying bounds of the form $</td>
+      <td>a_n</td>
+      <td>\leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the <strong>Borel Transform</strong> $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}\]
 
@@ -939,7 +947,15 @@
 
 <h3 id="example-751-canonical-resurgent-functionthe-airy-function">Example 7.5.1: Canonical Resurgent Function—The Airy Function</h3>
 
-<p><strong>Problem:</strong> Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $|\arg z| &lt; \pi/3$:</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $</td>
+      <td>\arg z</td>
+      <td>&lt; \pi/3$:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\text{Ai}(z) \sim \frac{1}{2\sqrt{\pi}} z^{-1/4} \exp\left(-\frac{2}{3} z^{3/2}\right) \times \sum_{n=0}^\infty c_n z^{-3n/2}\]
 

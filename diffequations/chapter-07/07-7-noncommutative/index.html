@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -908,7 +908,15 @@
 
 <p><strong>The Dimension:</strong></p>
 
-<p>The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $|D|^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl’s Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $</td>
+      <td>D</td>
+      <td>^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl’s Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="connes-distance-formula">Connes Distance Formula</h3>
 
@@ -924,7 +932,7 @@
 
 \[d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ |\phi(a) - \psi(a)| : \| [D, a] \| \le 1 \}\]
 
-<p>In the classical case where $\mathcal{A} = C^\infty(M)$ and $D$ is the Dirac operator, the condition $\| [D, a] \| \le 1$ is equivalent to $\| \nabla a \|_\infty \le 1$ (the function is 1-Lipschitz). The supremum of the difference between values of 1-Lipschitz functions recovers the geodesic distance exactly.</p>
+<p>In the classical case where $\mathcal{A} = C^\infty(M)$ and $D$ is the Dirac operator, the condition $| [D, a] | \le 1$ is equivalent to $| \nabla a |_\infty \le 1$ (the function is 1-Lipschitz). The supremum of the difference between values of 1-Lipschitz functions recovers the geodesic distance exactly.</p>
 
 <p>This formula allows us to define metrics on the space of connections (Chapter 6.6), on discrete lattices, and on fractals (Chapter 5.8) using a unified algebraic formalism. For example, on a two-point space, the algebra is $\mathbb{C} \oplus \mathbb{C}$, and the distance depends on the interaction term in the Dirac operator connecting the two copies of the Hilbert space.</p>
 
@@ -993,11 +1001,17 @@
     <p>The <strong>Connes distance</strong> recovers the metric on the fractal.</p>
   </li>
   <li>
-    <p>The <strong>Dixmier trace</strong> $\text{Tr}_\omega(|D|^{-d})$ recovers the Hausdorff measure (volume) of the fractal.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>The <strong>Dixmier trace</strong> $\text{Tr}_\omega(</td>
+          <td>D</td>
+          <td>^{-d})$ recovers the Hausdorff measure (volume) of the fractal.</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
-  <li>
-    <p>The value $d$ for which the trace is finite and non-zero is the Hausdorff dimension.</p>
-  </li>
+  <li>The value $d$ for which the trace is finite and non-zero is the Hausdorff dimension.</li>
 </ul>
 
 <p>Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate generalization of the differential equation. It unifies the smooth operators of Chapter 2, the geometric invariants of Chapter 3, and the fractal scaling of Chapter 5 into a single algebraic framework, proving that geometry is not a property of space, but a property of the algebra of observables.</p>
@@ -1021,7 +1035,7 @@
   </li>
   <li>
     <p><strong>Dirac Operator:</strong>
-\(D = -i \frac{d}{dx} \oplus i \frac{d}{dx} = \begin{pmatrix} -i\partial_x &amp; 0 \ 0 &amp; i\partial_x \end{pmatrix}\)</p>
+\(D = -i \frac{d}{dx} \oplus i \frac{d}{dx} = \begin{pmatrix} -i\partial_x &amp; 0 \\ 0 &amp; i\partial_x \end{pmatrix}\)</p>
 
     <p><strong>Domain:</strong> $H^1([0,1]) \oplus H^1([0,1])$ with periodic BCs</p>
   </li>
@@ -1045,7 +1059,7 @@
 
     <p><strong>Condition 4:</strong> Bounded commutators</p>
 
-\[[D, f] = \begin{pmatrix} -i f' &amp; 0 \ 0 &amp; i f' \end{pmatrix}\]
+\[[D, f] = \begin{pmatrix} -i f' &amp; 0 \\ 0 &amp; i f' \end{pmatrix}\]
 
 \[\|[D, f]\| = \|f'\|_\infty\]
 
@@ -1068,7 +1082,7 @@
   </li>
   <li>
     <p><strong>Dirac Operator:</strong>
-\(D = \begin{pmatrix} 0 &amp; 1 \ 1 &amp; 0 \end{pmatrix}\)</p>
+\(D = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\)</p>
 
     <p>(Off-diagonal connects the two points)</p>
   </li>
@@ -1076,7 +1090,7 @@
     <p><strong>Verify Conditions:</strong>
 <strong>Commutator:</strong></p>
 
-\[[D, a] = \begin{pmatrix} 0 &amp; 0 \ 0 &amp; (a_1-a_2) \end{pmatrix}\]
+\[[D, a] = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; (a_1-a_2) \end{pmatrix}\]
 
 \[\|[D, a]\| = |a_1 - a_2|\]
   </li>
@@ -1118,7 +1132,7 @@
 
 \[= (-i f' \psi \oplus i f' \psi) + (-i f \partial_\theta \oplus i f \partial_\theta)\psi\]
 
-\[= \begin{pmatrix} -i f' &amp; 0 \ 0 &amp; i f' \end{pmatrix} \psi\]
+\[= \begin{pmatrix} -i f' &amp; 0 \\ 0 &amp; i f' \end{pmatrix} \psi\]
 
 \[\|[D, f]\| = \|f'\|_\infty\]
   </li>
@@ -1138,7 +1152,17 @@ $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$</p>
 
 \[|f(\theta) - f(\phi)| = |\theta - \phi|\]
 
-    <p>This achieves the supremum → $d(\theta, \phi) = \min(|\theta - \phi|, 2\pi - |\theta - \phi|)$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>This achieves the supremum → $d(\theta, \phi) = \min(</td>
+          <td>\theta - \phi</td>
+          <td>, 2\pi -</td>
+          <td>\theta - \phi</td>
+          <td>)$</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><strong>Result:</strong> Connes distance = arc length metric ✓</p>
   </li>
@@ -1159,7 +1183,7 @@ $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$</p>
 
 \[\mathcal{A} = \mathbb{C}^3 \quad \text{(functions on vertices)}\]
 
-\[D = \begin{pmatrix} 0 &amp; 1 &amp; 0 \ 1 &amp; 0 &amp; 1 \ 0 &amp; 1 &amp; 0 \end{pmatrix}\]
+\[D = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 0 \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Distance between vertices 1 and 2:</strong>
@@ -1171,7 +1195,7 @@ $\phi_1(a) = a_1$, $\phi_2(a) = a_2$</p>
     <p><strong>Compute $[D, a]$:</strong>
 \([D, a] = D \text{diag}(a_1, a_2, a_3) - \text{diag}(a_1, a_2, a_3) D\)</p>
 
-\[= \begin{pmatrix} 0 &amp; a_1-a_2 &amp; 0 \ a_2-a_1 &amp; 0 &amp; a_2-a_3 \ 0 &amp; a_3-a_1 &amp; 0 \end{pmatrix}\]
+\[= \begin{pmatrix} 0 &amp; a_1-a_2 &amp; 0 \\ a_2-a_1 &amp; 0 &amp; a_2-a_3 \\ 0 &amp; a_3-a_1 &amp; 0 \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Spectral Radius Calculation:</strong>
@@ -1218,7 +1242,15 @@ Classical points correspond to pure states $\phi: \mathcal{A} \to \mathbb{C}$</p
     <p><strong>Reconstruction Step 2: Recover Differential Structure</strong>
 \(\nabla f \leftrightarrow [D, f] = -i f' \otimes \sigma_3\)</p>
 
-    <p><strong>Metric:</strong> $ds^2 = g([D, f], [D, f]) = |f’|^2 d\theta^2$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Metric:</strong> $ds^2 = g([D, f], [D, f]) =</td>
+          <td>f’</td>
+          <td>^2 d\theta^2$</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Reconstruction Step 3: Recover Volume Form</strong>
@@ -1297,7 +1329,15 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
 
 \[\dim_H = \log_2 3 \approx 1.58496\]
 
-    <p>$\text{Tr}_\omega(|D|^{-d})$ finite iff $d = \log_2 3$ ✓</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>$\text{Tr}_\omega(</td>
+          <td>D</td>
+          <td>^{-d})$ finite iff $d = \log_2 3$ ✓</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
 </ol>
 
@@ -1340,6 +1380,10 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
       <th>Classical</th>
       <th>Spectral Triple</th>
       <th>Example Computation</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -1347,26 +1391,46 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
       <td>Points $p \in M$</td>
       <td>Pure states $\phi \in \text{Spec}(\mathcal{A})$</td>
       <td>$\phi_f(p) = f(p)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Distance $d(p,q)$</td>
       <td>Connes distance</td>
-      <td>$\sup{ |\phi-\psi| : |[D,a]| \leq 1}$</td>
+      <td>$\sup{</td>
+      <td>\phi-\psi</td>
+      <td>:</td>
+      <td>[D,a]</td>
+      <td>\leq 1}$</td>
     </tr>
     <tr>
       <td>$\nabla f$</td>
       <td>$[D, f]$</td>
       <td>$\begin{pmatrix} -i f’ &amp; 0 \ 0 &amp; i f’ \end{pmatrix}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Volume form</td>
       <td>Dixmier trace</td>
-      <td>$\text{Tr}_\omega(|D|^{-d})$</td>
+      <td>$\text{Tr}_\omega(</td>
+      <td>D</td>
+      <td>^{-d})$</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Riemannian metric</td>
-      <td>$| [D,f] |^2$</td>
-      <td>$|f’|^2$</td>
+      <td>$</td>
+      <td>[D,f]</td>
+      <td>^2$</td>
+      <td>$</td>
+      <td>f’</td>
+      <td>^2$</td>
     </tr>
   </tbody>
 </table>
@@ -1380,6 +1444,8 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
       <th>Core Concept</th>
       <th>Key Computation</th>
       <th>Result</th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -1388,29 +1454,39 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
       <td>Basic triple</td>
       <td>$[D,f] = -i f’$</td>
       <td>All conditions ✓</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>2: 2-points</td>
       <td>Discrete geometry</td>
       <td>$d(\phi_1,\phi_2) = 1$</td>
       <td>Graph distance ✓</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>3: Circle</td>
       <td>Distance recovery</td>
-      <td>$d(\theta,\phi) = |\theta-\phi|$</td>
+      <td>$d(\theta,\phi) =</td>
+      <td>\theta-\phi</td>
+      <td>$</td>
       <td>Arc length ✓</td>
     </tr>
     <tr>
       <td>4: Graph</td>
       <td>Network distance</td>
-      <td>Optimization $|a_1-a_2|$</td>
+      <td>Optimization $</td>
+      <td>a_1-a_2</td>
+      <td>$</td>
       <td>Edge length = 1 ✓</td>
     </tr>
     <tr>
       <td>5: Reconstruction</td>
       <td>Manifold recovery</td>
-      <td>$\text{Tr}_\omega(|D|^{-1}) = 2\pi$</td>
+      <td>$\text{Tr}_\omega(</td>
+      <td>D</td>
+      <td>^{-1}) = 2\pi$</td>
       <td>Volume recovered ✓</td>
     </tr>
     <tr>
@@ -1418,18 +1494,24 @@ For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$</p>
       <td>Quantum geometry</td>
       <td>$[D,U^m V^n] = 2\pi i(m\sigma_1+n\sigma_2)$</td>
       <td>Noncommutative derivs ✓</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>7: Fractal</td>
       <td>Hausdorff dim</td>
       <td>$\lambda_k \sim k^{2/\log_2 3}$</td>
       <td>$\dim_H = \log_2 3$ ✓</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>8: Moduli</td>
       <td>Deformation theory</td>
       <td>$d([A_1],[A_2])$</td>
       <td>Moduli distance ✓</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>

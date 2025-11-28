@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -967,7 +967,7 @@
 
 <p>The success of the Hirota method suggests that $\tau$-functions are not arbitrary scalar fields but possess specific algebraic structures. In the context of the Kadomtsev-Petviashvili (KP) hierarchy (a 2D generalization of KdV), Sato proved that the $\tau$-function can be represented as a Wronskian determinant of linear eigenfunctions:</p>
 
-\[\tau(x,t) = \det \begin{pmatrix} \phi_1 &amp; \phi_1' &amp; \dots &amp; \phi_1^{(N-1)} \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ \phi_N &amp; \phi_N' &amp; \dots &amp; \phi_N^{(N-1)} \end{pmatrix}\]
+\[\tau(x,t) = \det \begin{pmatrix} \phi_1 &amp; \phi_1' &amp; \dots &amp; \phi_1^{(N-1)} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \phi_N &amp; \phi_N' &amp; \dots &amp; \phi_N^{(N-1)} \end{pmatrix}\]
 
 <p>where the $\phi_i$ satisfy the linear flow equations.</p>
 
@@ -1211,9 +1211,9 @@ For $k_1 = 2$, $k_2 = 1$:</p>
 <p><strong>Wronskian:</strong></p>
 
 \[\tau_N = \det \begin{pmatrix}
-\phi_1 &amp; \phi_1' &amp; \cdots &amp; \phi_1^{(N-1)} \
-\phi_2 &amp; \phi_2' &amp; \cdots &amp; \phi_2^{(N-1)} \
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+\phi_1 &amp; \phi_1' &amp; \cdots &amp; \phi_1^{(N-1)} \\
+\phi_2 &amp; \phi_2' &amp; \cdots &amp; \phi_2^{(N-1)} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 \phi_N &amp; \phi_N' &amp; \cdots &amp; \phi_N^{(N-1)}
 \end{pmatrix}\]
 

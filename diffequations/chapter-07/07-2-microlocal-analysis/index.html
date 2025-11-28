@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -879,7 +879,15 @@
 
 <h3 id="the-wave-front-set">The Wave Front Set</h3>
 
-<p>The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}’(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $|\xi| \to \infty$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}’(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $</td>
+      <td>\xi</td>
+      <td>\to \infty$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>A singularity occurs when this rapid decay fails. The wave front set identifies precisely <em>in which directions</em> the decay fails.</p>
 
@@ -1008,7 +1016,17 @@ $\phi(x) = \phi_0(x)$ with $\phi_0(0) = 1$.</p>
     <p><strong>Decay Analysis:</strong>
 <strong>Around $\xi = \xi_0$:</strong> $|\widehat{\phi_0 u}(\xi_0 + \eta)| = |\widehat{\phi_0}(\eta)| \leq C_N (1+|\eta|)^{-N}$.</p>
 
-    <p><strong>Away from $\xi_0$:</strong> $|\widehat{\phi_0 u}(\xi)| = |\widehat{\phi_0}(\xi - \xi_0)|$ decays rapidly.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Away from $\xi_0$:</strong> $</td>
+          <td>\widehat{\phi_0 u}(\xi)</td>
+          <td>=</td>
+          <td>\widehat{\phi_0}(\xi - \xi_0)</td>
+          <td>$ decays rapidly.</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Wave Front Set:</strong>
@@ -1072,7 +1090,7 @@ Take $\phi(x_1,x_2) = \psi(x_1)\chi(x_2)$.</p>
   </li>
   <li>
     <p><strong>Symbol Class Verification:</strong>
-\(|D_\xi^\alpha a(x,\xi)| = \begin{cases} 0 &amp; \text{if } |\alpha| \geq 1 \ 1 &amp; \text{if } |\alpha| = 0 \end{cases}\)</p>
+\(|D_\xi^\alpha a(x,\xi)| = \begin{cases} 0 &amp; \text{if } |\alpha| \geq 1 \\ 1 &amp; \text{if } |\alpha| = 0 \end{cases}\)</p>
   </li>
   <li>
     <p><strong>Order:</strong>
@@ -1107,11 +1125,27 @@ $WF(Hf) \subseteq WF(f)$</p>
     <p><strong>Compute Terms:</strong>
 <strong>$|\alpha| = 0$:</strong> $ab = i\xi \cdot x$</p>
 
-    <p><strong>$|\alpha| = 1$:</strong> $\alpha = (1,0,\dots)$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>**$</td>
+          <td>\alpha</td>
+          <td>= 1$:** $\alpha = (1,0,\dots)$</td>
+        </tr>
+      </tbody>
+    </table>
 
 \[\frac{i^{-1}}{1!} \partial_\xi (i\xi) \cdot \partial_x (x) = (-i)(i) \cdot 1 = 1\]
 
-    <p><strong>$|\alpha| \geq 2$:</strong> $\partial_\xi^\alpha (i\xi) = 0$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>**$</td>
+          <td>\alpha</td>
+          <td>\geq 2$:** $\partial_\xi^\alpha (i\xi) = 0$</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Result:</strong>
@@ -1322,6 +1356,8 @@ $WF(u) = \emptyset$ (u is smooth!)</li>
           <th>Variable</th>
           <th>ODE</th>
           <th>Solution</th>
+          <th> </th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>
@@ -1329,21 +1365,29 @@ $WF(u) = \emptyset$ (u is smooth!)</li>
           <td>$t(s)$</td>
           <td>$\dot{t} = 1$</td>
           <td>$t = s$</td>
+          <td> </td>
+          <td> </td>
         </tr>
         <tr>
           <td>$x(s)$</td>
           <td>$\dot{x} = 2\xi$</td>
           <td>$x = x_0 + 2 s \xi$</td>
+          <td> </td>
+          <td> </td>
         </tr>
         <tr>
           <td>$\xi(s)$</td>
           <td>$\dot{\xi} = 0$</td>
           <td>$\xi = \text{constant}$</td>
+          <td> </td>
+          <td> </td>
         </tr>
         <tr>
           <td>$\tau(s)$</td>
           <td>$\dot{\tau} = 0$</td>
-          <td>$\tau = -|\xi|^2$</td>
+          <td>$\tau = -</td>
+          <td>\xi</td>
+          <td>^2$</td>
         </tr>
       </tbody>
     </table>

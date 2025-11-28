@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -933,12 +933,19 @@
 <p>In geometric problems, one often encounters systems with more boundary conditions than necessary for solvability. An archetypal example is Serrin’s Problem:</p>
 
 \[\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \
-u = 0 &amp; \text{on } \partial \Omega \
+-\Delta u = 1 &amp; \text{in } \Omega \\
+u = 0 &amp; \text{on } \partial \Omega \\
 \frac{\partial u}{\partial \nu} = \text{const} &amp; \text{on } \partial \Omega
 \end{cases}\]
 
-<p>The Dirichlet problem $-\Delta u = 1, u|<em>{\partial \Omega} = 0$ admits a unique solution for any smooth domain. The additional Neumann condition $\partial</em>\nu u = c$ is generally impossible to satisfy. Serrin’s theorem states that if a solution exists, $\Omega$ must be a ball and $u$ must be radially symmetric. This result implies that the differential equation acts as a detector of domain symmetry.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The Dirichlet problem $-\Delta u = 1, u</td>
+      <td><em>{\partial \Omega} = 0$ admits a unique solution for any smooth domain. The additional Neumann condition $\partial</em>\nu u = c$ is generally impossible to satisfy. Serrin’s theorem states that if a solution exists, $\Omega$ must be a ball and $u$ must be radially symmetric. This result implies that the differential equation acts as a detector of domain symmetry.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="the-method-of-moving-planes-alexandrov-reflection">The Method of Moving Planes (Alexandrov Reflection)</h4>
 
@@ -978,7 +985,7 @@ u = 0 &amp; \text{on } \partial \Omega \
     <p><strong>Radial Symmetry:</strong>
 Assume radial symmetry: $u(r)$. The Hessian in polar coordinates is:</p>
 
-\[D^2 u = \begin{pmatrix} u'' &amp; \frac{u'}{r} \ \frac{u'}{r} &amp; \frac{u'}{r} \end{pmatrix}\]
+\[D^2 u = \begin{pmatrix} u'' &amp; \frac{u'}{r} \\ \frac{u'}{r} &amp; \frac{u'}{r} \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Determinant Computation:</strong>
@@ -1020,7 +1027,7 @@ Let $w = v^2$:</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
-\(D^2 u = \begin{pmatrix} -r &amp; -\frac{1}{2r} \ -\frac{1}{2r} &amp; -\frac{1}{2r^2} \end{pmatrix}, \quad \det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1\)</p>
+\(D^2 u = \begin{pmatrix} -r &amp; -\frac{1}{2r} \\ -\frac{1}{2r} &amp; -\frac{1}{2r^2} \end{pmatrix}, \quad \det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1\)</p>
 
     <p>✓ Verified</p>
   </li>
@@ -1030,7 +1037,15 @@ Let $w = v^2$:</p>
 
 <p><strong>Problem:</strong> Monge-Ampère in Optimal Transport</p>
 
-<p>Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}|x-y|^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}</td>
+      <td>x-y</td>
+      <td>^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}\]
 
@@ -1060,7 +1075,14 @@ For $\rho_0, \rho_1$ with same mass:</p>
 
 <h3 id="example-673-pogorelovs-c2-estimates">Example 6.7.3: Pogorelov’s $C^2$ Estimates</h3>
 
-<p><strong>Problem:</strong> $\det(D^2 u) = 1$ in $B(0,1)$, $u|_{\partial B} = 0$, $u$ convex.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $\det(D^2 u) = 1$ in $B(0,1)$, $u</td>
+      <td>_{\partial B} = 0$, $u$ convex.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1100,7 +1122,7 @@ At maximum point of $w$, $\Delta w \leq 0$, so:</p>
 <ol>
   <li>
     <p><strong>Theorem Statement:</strong>
-If $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $\|D^2 u\|_\infty \leq \Lambda$, then $u \in C^{2,\alpha}$.</p>
+If $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $|D^2 u|_\infty \leq \Lambda$, then $u \in C^{2,\alpha}$.</p>
   </li>
   <li>
     <p><strong>Detailed Proof Sketch for Monge-Ampère:</strong>
@@ -1177,8 +1199,8 @@ $w = e^{\alpha |x|^2} |\nabla u|^2$</p>
 
 <p><strong>Problem:</strong>
 \(\begin{cases}
--\Delta u = 1 &amp; \text{in } \Omega \subset \mathbb{R}^2 \
-u = 0 &amp; \text{on } \partial \Omega \
+-\Delta u = 1 &amp; \text{in } \Omega \subset \mathbb{R}^2 \\
+u = 0 &amp; \text{on } \partial \Omega \\
 \partial_\nu u = c &amp; \text{on } \partial \Omega
 \end{cases}\)</p>
 
@@ -1226,7 +1248,16 @@ $\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, $c = R$</li>
 
 <h3 id="example-677-moving-planes-for-monge-ampère">Example 6.7.7: Moving Planes for Monge-Ampère</h3>
 
-<p><strong>Problem:</strong> $\det(D^2 u) = 1$, $u|<em>{\partial \Omega} = 0$, $|\nabla u|</em>{\partial \Omega} = c$</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $\det(D^2 u) = 1$, $u</td>
+      <td>_{\partial \Omega} = 0$, $</td>
+      <td>\nabla u</td>
+      <td>_{\partial \Omega} = c$</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1237,7 +1268,7 @@ $\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, $c = R$</li>
   </li>
   <li>
     <p><strong>Key Computation:</strong>
-\(\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) &amp; * \ * &amp; D^2 u(x) \end{pmatrix} + \text{lower order}\)</p>
+\(\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) &amp; * \\ * &amp; D^2 u(x) \end{pmatrix} + \text{lower order}\)</p>
   </li>
   <li>
     <p><strong>Block Determinant Analysis:</strong>

@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -980,9 +980,9 @@ Let $\mathcal{D} = \mathbb{C}[t,x][\partial_t, \partial_x]$ with relations:</p>
   <li>
     <p><strong>Order Filtration:</strong>
 \(\begin{align*}
-F_0\mathcal{D} &amp;= \mathbb{C}[t,x] \
-F_1\mathcal{D} &amp;= F_0 + \mathbb{C}[t,x]\partial_t + \mathbb{C}[t,x]\partial_x \
-F_2\mathcal{D} &amp;= F_1 + \mathbb{C}[t,x]\partial_x^2 + \text{mixed terms} \
+F_0\mathcal{D} &amp;= \mathbb{C}[t,x] \\
+F_1\mathcal{D} &amp;= F_0 + \mathbb{C}[t,x]\partial_t + \mathbb{C}[t,x]\partial_x \\
+F_2\mathcal{D} &amp;= F_1 + \mathbb{C}[t,x]\partial_x^2 + \text{mixed terms} \\
 &amp;\vdots
 \end{align*}\)</p>
 
@@ -1063,7 +1063,16 @@ The characteristic variety ${(x,0)}$ is Lagrangian in $T^*\mathbb{C}_x$:
     <ul>
       <li>$\omega = dx \wedge d\xi$ is the symplectic form</li>
       <li>$\text{Ch}(\mathcal{M})$ is 1-dimensional in 2-dimensional symplectic space</li>
-      <li><strong>Maximal isotropy:</strong> $\omega|_{\text{Ch}(\mathcal{M})} = 0$</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Maximal isotropy:</strong> $\omega</td>
+              <td>_{\text{Ch}(\mathcal{M})} = 0$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
   </li>
 </ol>
@@ -1091,7 +1100,15 @@ For each $E \in \mathbb{C}$:</p>
     <p><strong>Geometric Analysis:</strong>
 <strong>Case 1:</strong> $E &lt; 0$</p>
 
-    <p>$\xi^2 = x^2 + |E|$ (hyperbola)</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>$\xi^2 = x^2 +</td>
+          <td>E</td>
+          <td>$ (hyperbola)</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>$\dim \text{Ch}(\mathcal{M}_E) = 1 = n$</p>
 
@@ -1162,7 +1179,14 @@ The harmonic oscillator D-modules are holonomic due to their factorization:</p>
     <p><strong>Lagrangian Verification:</strong>
 <strong>Symplectic form:</strong> $\omega = dx \wedge d\xi$</p>
 
-    <p><strong>Restricted to $x=0$:</strong> $\omega|_{x=0} = 0$ (since $dx = 0$)</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Restricted to $x=0$:</strong> $\omega</td>
+          <td>_{x=0} = 0$ (since $dx = 0$)</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><strong>Conclusion:</strong> The Dirac delta module is <strong>HOLONOMIC</strong>!</p>
   </li>

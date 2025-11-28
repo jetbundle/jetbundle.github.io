@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -881,7 +881,19 @@
 
 \[- \psi_{xx} + u(x,t)\psi = k^2 \psi\]
 
-<p>Here, $k$ is the spectral parameter. We assume the potential $u(x,t)$ decays sufficiently rapidly as $|x| \to \infty$, specifically satisfying the Faddeev condition $\int_{-\infty}^{\infty} (1+|x|)|u(x)| dx &lt; \infty$. This allows us to define solutions via their asymptotic behavior. We define the Jost functions, $\phi(x,k)$ and $\psi(x,k)$, as the unique solutions satisfying the boundary conditions:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Here, $k$ is the spectral parameter. We assume the potential $u(x,t)$ decays sufficiently rapidly as $</td>
+      <td>x</td>
+      <td>\to \infty$, specifically satisfying the Faddeev condition $\int_{-\infty}^{\infty} (1+</td>
+      <td>x</td>
+      <td>)</td>
+      <td>u(x)</td>
+      <td>dx &lt; \infty$. This allows us to define solutions via their asymptotic behavior. We define the Jost functions, $\phi(x,k)$ and $\psi(x,k)$, as the unique solutions satisfying the boundary conditions:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\]
 
@@ -1186,14 +1198,14 @@ Exact phase shifts match interaction coefficient:</p>
 
 <p><strong>Jump Matrix:</strong>
 \(V(k) = \begin{pmatrix}
-1 - |r(k)|^2 &amp; -\bar{r}(k) e^{-2ikx} \
+1 - |r(k)|^2 &amp; -\bar{r}(k) e^{-2ikx} \\
 r(k) e^{2ikx} &amp; 1
 \end{pmatrix}\)</p>
 
 <p>For pure soliton: $r(k) = 0$ except poles</p>
 
 <p><strong>Sectionally Analytic Functions:</strong>
-\(M^+(x,k) = \begin{pmatrix} 1 &amp; 0 \ 0 &amp; 1/a(k) \end{pmatrix}, \quad M^-(x,k) = \begin{pmatrix} 1 &amp; 0 \ 0 &amp; 1 \end{pmatrix}\)</p>
+\(M^+(x,k) = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1/a(k) \end{pmatrix}, \quad M^-(x,k) = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\)</p>
 
 <p><strong>Potential Recovery:</strong>
 \(q(x) = 2i \lim_{k \to 0} \frac{\partial}{\partial k} \log m_{12}(x,k)\)</p>

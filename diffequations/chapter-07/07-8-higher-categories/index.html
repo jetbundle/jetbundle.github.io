@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -1236,7 +1236,15 @@
   <li>
     <p><strong>Step 4: Renormalization Connection (Ch 5.6)</strong></p>
 
-    <p>The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log |x-y|$ is exactly the factorization structure map!</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log</td>
+          <td>x-y</td>
+          <td>$ is exactly the factorization structure map!</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><strong>Verification:</strong></p>
 
@@ -1300,6 +1308,8 @@
       <th>Example</th>
       <th>Computational Result</th>
       <th>Physical Meaning</th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -1308,29 +1318,39 @@
       <td>Harmonic maps</td>
       <td>$H^0 = 4$, $H^1 = 0$</td>
       <td>Smooth derived structure</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Virtual Class</td>
       <td>GW invariants</td>
       <td>$\langle \text{pt}^5 \rangle_1 = 1$</td>
       <td>Exact curve counting</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Derived Stack</td>
       <td>Instanton moduli</td>
       <td>$\dim = 8k-3$</td>
       <td>Gauge theory resolution</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>TQFT Functor</td>
       <td>de Rham cohomology</td>
       <td>Pair of pants matrices</td>
       <td>Topological invariance</td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>Factorization</td>
       <td>Free field</td>
-      <td>OPE: $-\log |x-y|$</td>
+      <td>OPE: $-\log</td>
+      <td>x-y</td>
+      <td>$</td>
       <td>QFT observables</td>
     </tr>
   </tbody>

@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -892,16 +892,16 @@ allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lamb
 
 <h3 id="resolvents-and-spectrum">Resolvents and Spectrum</h3>
 
-<p>The <strong>resolvent set</strong> $\rho(A)$ consists of $\lambda\in\mathbb{C}$ for which $(A-\lambda I):D(A)\to H$ is bijective with bounded inverse $R(\lambda,A)=(A-\lambda I)^{-1}$. The spectrum $\sigma(A)$ is its complement. For self-adjoint $A$, $\sigma(A)\subset\mathbb{R}$ and $\|R(\lambda,A)\|\le 1/\text{dist}(\lambda,\sigma(A))$.</p>
+<p>The <strong>resolvent set</strong> $\rho(A)$ consists of $\lambda\in\mathbb{C}$ for which $(A-\lambda I):D(A)\to H$ is bijective with bounded inverse $R(\lambda,A)=(A-\lambda I)^{-1}$. The spectrum $\sigma(A)$ is its complement. For self-adjoint $A$, $\sigma(A)\subset\mathbb{R}$ and $|R(\lambda,A)|\le 1/\text{dist}(\lambda,\sigma(A))$.</p>
 
 <p>The spectrum decomposes into point spectrum (eigenvalues), continuous spectrum, and residual spectrum; in unbounded settings continuous spectrum often dominates (e.g., Laplacian on $\mathbb{R}^{n}$).</p>
 
 <h3 id="strongly-continuous-semigroups">Strongly Continuous Semigroups</h3>
 
-<p>For the abstract Cauchy problem $u’(t)=Au(t)$ with $u(0)=u_{0}$, we seek a strongly continuous semigroup ${T(t)}<em>{t\ge 0}$ such that $T(0)=I$, $T(t+s)=T(t)T(s)$, and $\lim</em>{t\to 0^{+}}\|T(t)u-u\|=0$. The generator $A$ is defined on
+<p>For the abstract Cauchy problem $u’(t)=Au(t)$ with $u(0)=u_{0}$, we seek a strongly continuous semigroup ${T(t)}<em>{t\ge 0}$ such that $T(0)=I$, $T(t+s)=T(t)T(s)$, and $\lim</em>{t\to 0^{+}}|T(t)u-u|=0$. The generator $A$ is defined on
 \(D(A)=\left\{ u\in H : \lim_{t\to 0^{+}}\frac{T(t)u-u}{t} \text{ exists} \right\},\quad Au=\lim_{t\to 0^{+}}\frac{T(t)u-u}{t}.\)</p>
 
-<p>The <strong>Hille–Yosida theorem</strong> characterizes generators of contraction semigroups: a densely defined closed operator $A$ generates a $C_{0}$-contraction semigroup iff $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$ for all $\lambda&gt;0$.</p>
+<p>The <strong>Hille–Yosida theorem</strong> characterizes generators of contraction semigroups: a densely defined closed operator $A$ generates a $C_{0}$-contraction semigroup iff $(0,\infty)\subset\rho(A)$ and $|R(\lambda,A)|\le 1/\lambda$ for all $\lambda&gt;0$.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
@@ -909,13 +909,25 @@ allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lamb
 
 <p><strong>Problem:</strong> Analyze $A=\frac{d}{dx}$ with $D(A)=H^{1}_{0}(0,1)$.</p>
 
-<p>Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)={(u,u’) : u\in H^{1}<em>{0}}$ is closed: if $u</em>{n}\to u$ and $u’<em>{n}\to v$ in $L^{2}$, then $u\in H^{1}</em>{0}$ and $u’=v$ by definition of weak derivatives. $A$ is unbounded because $\|Au_{n}\|/\|u_{n}\|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.</p>
+<p>Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)={(u,u’) : u\in H^{1}<em>{0}}$ is closed: if $u</em>{n}\to u$ and $u’<em>{n}\to v$ in $L^{2}$, then $u\in H^{1}</em>{0}$ and $u’=v$ by definition of weak derivatives. $A$ is unbounded because $|Au_{n}|/|u_{n}|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.</p>
 
 <h3 id="example-242-momentum-operator-on-mathbbr">Example 2.4.2: Momentum Operator on $\mathbb{R}$</h3>
 
 <p><strong>Problem:</strong> Consider $A=-i\frac{d}{dx}$ on $D(A)=H^{1}(\mathbb{R})$.</p>
 
-<p>Via Fourier transform, $D(A)={u\in L^{2} : \int |\xi|^{2}|\hat{u}(\xi)|^{2}&lt;\infty}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-|x|/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Via Fourier transform, $D(A)={u\in L^{2} : \int</td>
+      <td>\xi</td>
+      <td>^{2}</td>
+      <td>\hat{u}(\xi)</td>
+      <td>^{2}&lt;\infty}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-</td>
+      <td>x</td>
+      <td>/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-243-non-closed-domain">Example 2.4.3: Non-Closed Domain</h3>
 
@@ -935,7 +947,19 @@ allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lamb
 
 <p><strong>Problem:</strong> Compute $(A-\lambda I)^{-1}$ for $A=-\Delta$ on $\mathbb{R}^{3}$.</p>
 
-<p>Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{|\xi|^{2}-\lambda}$. For $\text{Re}(\lambda)&lt;0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}|x-y|}}{4\pi |x-y|}$, exhibiting the exponential decay of the resolvent.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{</td>
+      <td>\xi</td>
+      <td>^{2}-\lambda}$. For $\text{Re}(\lambda)&lt;0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}</td>
+      <td>x-y</td>
+      <td>}}{4\pi</td>
+      <td>x-y</td>
+      <td>}$, exhibiting the exponential decay of the resolvent.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-247-resolvent-estimate">Example 2.4.7: Resolvent Estimate</h3>
 
@@ -946,7 +970,7 @@ allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lamb
 
 <p><strong>Problem:</strong> Show $A=\frac{d^{2}}{dx^{2}}$ with $D(A)=H^{2}\cap H^{1}_{0}$ generates the heat semigroup.</p>
 
-<p>The resolvent satisfies $\|R(\lambda,A)\|\le 1/\lambda$ for $\lambda&gt;0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.</p>
+<p>The resolvent satisfies $|R(\lambda,A)|\le 1/\lambda$ for $\lambda&gt;0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.</p>
 
 <h3 id="example-249-semigroup-failure">Example 2.4.9: Semigroup Failure</h3>
 

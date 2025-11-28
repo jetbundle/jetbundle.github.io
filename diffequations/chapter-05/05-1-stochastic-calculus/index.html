@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -899,7 +899,14 @@
 
 \[I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\]
 
-<p>Crucially, the integrand $H_{t_i}$ is evaluated at the <em>left</em> endpoint of the interval. This choice preserves the <strong>martingale property</strong>: the expectation of the increment, conditional on the present, is zero ($E[H_{t_i}(B_{t_{i+1}} - B_{t_i}) | \mathcal{F}<em>{t_i}] = H</em>{t_i} E[B_{t_{i+1}} - B_{t_i}] = 0$).</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Crucially, the integrand $H_{t_i}$ is evaluated at the <em>left</em> endpoint of the interval. This choice preserves the <strong>martingale property</strong>: the expectation of the increment, conditional on the present, is zero ($E[H_{t_i}(B_{t_{i+1}} - B_{t_i})</td>
+      <td>\mathcal{F}<em>{t_i}] = H</em>{t_i} E[B_{t_{i+1}} - B_{t_i}] = 0$).</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>The construction is extended to general square-integrable adapted processes via the <strong>Itô Isometry</strong>, a central result in stochastic analysis discussed in Øksendal (2003). The isometry states that the $L^2$ norm of the integral is equal to the $L^2$ norm of the integrand over time:</p>
 
@@ -954,7 +961,7 @@
 <ol>
   <li>
     <p><strong>Partition Setup:</strong>
-Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with mesh size $\|\Pi_n\| = \max_i (t_{i+1} - t_i) \to 0$.</p>
+Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with mesh size $|\Pi_n| = \max_i (t_{i+1} - t_i) \to 0$.</p>
   </li>
   <li>
     <p><strong>Quadratic Variation Sum:</strong>

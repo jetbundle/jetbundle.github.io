@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -1105,8 +1105,8 @@ Lagrangian density: $L(r, v, v’) = (v’)^2 r^2$</li>
   <li>
     <p><strong>First Three Hamiltonians:</strong>
 \(\begin{align*}
-H_0 &amp;= \int u \, dx &amp; &amp;(\text{Mass}) \
-H_1 &amp;= \int \frac{1}{2} u^2 \, dx &amp; &amp;(\text{Momentum}) \
+H_0 &amp;= \int u \, dx &amp; &amp;(\text{Mass}) \\
+H_1 &amp;= \int \frac{1}{2} u^2 \, dx &amp; &amp;(\text{Momentum}) \\
 H_2 &amp;= \int \left( \frac{1}{2} u_x^2 - u^3 \right) \, dx &amp; &amp;(\text{Energy})
 \end{align*}\)</p>
   </li>
@@ -1117,8 +1117,8 @@ The recursion operator $R = \partial_x^2 + 4u + 2 u_x \partial_x^{-1}$ generates
 </ol>
 
 \[\begin{align*}
-Q_0 &amp;= u &amp; &amp;(\text{Translation}) \
-Q_1 &amp;= u_x &amp; &amp;(\text{Galilean boost}) \
+Q_0 &amp;= u &amp; &amp;(\text{Translation}) \\
+Q_1 &amp;= u_x &amp; &amp;(\text{Galilean boost}) \\
 Q_2 &amp;= u_{xx} - 6 u u_x &amp; &amp;(\text{Scaling})
 \end{align*}\]
 

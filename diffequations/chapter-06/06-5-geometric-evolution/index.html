@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -1055,7 +1055,15 @@ Modified symbol:</p>
 
 \[\sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = |\xi|^2 g_{ij}\]
 
-    <p><strong>Result:</strong> Strictly parabolic with principal symbol $|\xi|^2 &gt; 0$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Result:</strong> Strictly parabolic with principal symbol $</td>
+          <td>\xi</td>
+          <td>^2 &gt; 0$</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><strong>Key Insight:</strong> The De Turck trick transforms a weakly parabolic system into a strictly parabolic one while preserving the geometric content.</p>
   </li>
@@ -1208,7 +1216,15 @@ Neck radius: $\alpha(0,t) \sim \sqrt{T-t}$</p>
     <p><strong>Canonical Neighborhood:</strong>
 High curvature region $r \lesssim \sqrt{T-t}$ resembles shrinking cylinder.</p>
 
-    <p>Surgery: Remove $|r| &lt; \epsilon \sqrt{T-t}$, cap with standard spheres.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Surgery: Remove $</td>
+          <td>r</td>
+          <td>&lt; \epsilon \sqrt{T-t}$, cap with standard spheres.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p><strong>Key Insight:</strong> Neck pinches are universal and admit explicit self-similar models.</p>
   </li>
@@ -1225,7 +1241,15 @@ High curvature region $r \lesssim \sqrt{T-t}$ resembles shrinking cylinder.</p>
     <p><strong>MCF Equation:</strong>
 Embedding: $F(x,t): S^{n-1} \to \mathbb{R}^n$</p>
 
-    <p>Evolution: $\partial_t F = \vec{H} = -(n-1) F/|F|^2$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Evolution: $\partial_t F = \vec{H} = -(n-1) F/</td>
+          <td>F</td>
+          <td>^2$</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Self-Similar Solution:</strong>

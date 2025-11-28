@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -901,11 +901,27 @@
 
 <h3 id="the-fractional-laplacian">The Fractional Laplacian</h3>
 
-<p>Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-|\xi|^2$ in frequency space, the <strong>Fractional Laplacian</strong> $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-</td>
+      <td>\xi</td>
+      <td>^2$ in frequency space, the <strong>Fractional Laplacian</strong> $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\mathcal{F}((-\Delta)^s u)(\xi) = |\xi|^{2s} \hat{u}(\xi).\]
 
-<p>While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $|\xi|^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $</td>
+      <td>\xi</td>
+      <td>^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{|x-y|^{n+2s}} \, dy,\]
 
@@ -1139,7 +1155,15 @@ $v(r) = r^{-\frac{n-2s}{2}} w(z)$, $z = \log r$:</p>
 
 <h3 id="example-557-canonical-computationexplicit-extension">Example 5.5.7: Canonical Computation—Explicit Extension</h3>
 
-<p><strong>Problem:</strong> Find the extension $v(x,y)$ for $u(x) = e^{-|x|^2}$ with $s=1/2$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Find the extension $v(x,y)$ for $u(x) = e^{-</td>
+      <td>x</td>
+      <td>^2}$ with $s=1/2$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1207,7 +1231,7 @@ $y = |\xi|^{-2/(1-a)} w$:</p>
 
 <h3 id="example-559-advanced-demonstrationhardy-littlewood-sobolev-inequality">Example 5.5.9: Advanced Demonstration—Hardy-Littlewood-Sobolev Inequality</h3>
 
-<p><strong>Problem:</strong> Prove $\|(-\Delta)^{-s} f\|<em>{L^q} \leq C \|f\|</em>{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.</p>
+<p><strong>Problem:</strong> Prove $|(-\Delta)^{-s} f|<em>{L^q} \leq C |f|</em>{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 

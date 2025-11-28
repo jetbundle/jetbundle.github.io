@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -879,7 +879,15 @@
 
 <h3 id="symbol-and-principal-part">Symbol and Principal Part</h3>
 
-<p>To analyze the solvability of a system, we linearize the highest-order terms. Let $\pi: E \to M$ be a fiber bundle, and let the PDE be defined by a submanifold $\mathcal{R}_k \subset J^k(E)$. Locally, this is described by the vanishing of functions $F^\mu(x^i, u^\alpha, p^\alpha_I) = 0$ for $|I| \le k$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>To analyze the solvability of a system, we linearize the highest-order terms. Let $\pi: E \to M$ be a fiber bundle, and let the PDE be defined by a submanifold $\mathcal{R}_k \subset J^k(E)$. Locally, this is described by the vanishing of functions $F^\mu(x^i, u^\alpha, p^\alpha_I) = 0$ for $</td>
+      <td>I</td>
+      <td>\le k$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>The <em>principal symbol</em> of the system at a point $q \in \mathcal{R}<em>k$ encodes the algebraic relations imposed on the highest derivatives. We define the geometric symbol $\sigma_q(\mathcal{R}_k)$ as a subspace of the symmetric tensor product of the cotangent space with the vertical tangent space. Specifically, considering the vertical projection $V</em>\pi E = \ker d\pi$, the symbol is the kernel of the linearized map restricted to the highest order jet components:</p>
 
@@ -985,7 +993,7 @@ The symbol describes a parabolic cone in cotangent space. This is involutive (no
   <li>
     <p><strong>PDE System:</strong>
 \(\begin{cases}
-F^1 = u_x - v_y = 0 \
+F^1 = u_x - v_y = 0 \\
 F^2 = u_y + v_x = 0
 \end{cases}\)</p>
   </li>
@@ -997,7 +1005,7 @@ F^2 = u_y + v_x = 0
   </li>
   <li>
     <p><strong>Symbol Matrix:</strong>
-\(\sigma_1(F) = \begin{pmatrix} \xi_x - \xi_y &amp; 0 \ 0 &amp; \xi_x + \xi_y \end{pmatrix}\)</p>
+\(\sigma_1(F) = \begin{pmatrix} \xi_x - \xi_y &amp; 0 \\ 0 &amp; \xi_x + \xi_y \end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Symbol Module:</strong>
@@ -1018,7 +1026,7 @@ When $\xi_x \neq \xi_y$ and $\xi_x \neq -\xi_y$: $g_1 = 0$ (elliptic)</p>
 <p><strong>Problem:</strong> Original System (order 1):</p>
 
 \[\begin{cases}
-F^1: u_x = 0 \
+F^1: u_x = 0 \\
 F^2: u_y = 0
 \end{cases}\]
 
@@ -1047,9 +1055,9 @@ $D_y(D_x(F^1)) = D_x(D_y(F^1))$ gives $u_{xxy} = u_{xyx}$ (always true by equali
   </li>
   <li>
     <p><strong>Symbol Evolution:</strong>
-\(g_1 = \ker\begin{pmatrix} \xi_x &amp; 0 \ 0 &amp; \xi_y \end{pmatrix} = \{0\}\)</p>
+\(g_1 = \ker\begin{pmatrix} \xi_x &amp; 0 \\ 0 &amp; \xi_y \end{pmatrix} = \{0\}\)</p>
 
-\[g_2 = \ker\begin{pmatrix} \xi_x^2 &amp; 0 &amp; 0 \ \xi_x\xi_y &amp; 0 &amp; 0 \ 0 &amp; \xi_x\xi_y &amp; 0 \ 0 &amp; 0 &amp; \xi_y^2 \end{pmatrix} = \{0\}\]
+\[g_2 = \ker\begin{pmatrix} \xi_x^2 &amp; 0 &amp; 0 \\ \xi_x\xi_y &amp; 0 &amp; 0 \\ 0 &amp; \xi_x\xi_y &amp; 0 \\ 0 &amp; 0 &amp; \xi_y^2 \end{pmatrix} = \{0\}\]
   </li>
   <li>
     <p><strong>Conclusion:</strong>
@@ -1062,8 +1070,8 @@ Formally integrable $\to$ solutions exist: $u =$ constant.</p>
 <p><strong>Problem:</strong> Original System:</p>
 
 \[\begin{cases}
-F^1: u_x = v \
-F^2: u_y = w \
+F^1: u_x = v \\
+F^2: u_y = w \\
 F^3: v_x + w_y = 1
 \end{cases}\]
 
@@ -1160,8 +1168,8 @@ Involutive $\to$ Cartan-Kähler guarantees solutions.</p>
 <p><strong>PDE System (Christoffel symbols compatibility):</strong></p>
 
 \[\begin{cases}
-F^1: \Gamma^x_{xx} = \partial_x \log\sqrt{E} \
-F^2: \Gamma^y_{xy} = \partial_y \log\sqrt{E} \
+F^1: \Gamma^x_{xx} = \partial_x \log\sqrt{E} \\
+F^2: \Gamma^y_{xy} = \partial_y \log\sqrt{E} \\
 F^3: R^x_{yxy} = 0
 \end{cases}\]
 

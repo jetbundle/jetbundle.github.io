@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -1018,7 +1018,7 @@ The heat kernel on $S^1$ is:</li>
 <p><strong>SDE on $S^2$:</strong></p>
 
 \[\begin{cases}
-d\theta_t = \sigma_1 \circ dB^1_t \
+d\theta_t = \sigma_1 \circ dB^1_t \\
 d\phi_t = \sin^{-1}(\theta_t) \sigma_2 \circ dB^2_t
 \end{cases}\]
 
@@ -1104,8 +1104,8 @@ Let $X_t = (x_t, y_t, z_t)$. The Malliavin derivatives $J_t = D_t X_s$ satisfy:<
 </ol>
 
 \[\begin{cases}
-dJ^x_u = 0, &amp; J^x_t = 1 \
-dJ^y_u = 0, &amp; J^y_t = 0 \
+dJ^x_u = 0, &amp; J^x_t = 1 \\
+dJ^y_u = 0, &amp; J^y_t = 0 \\
 dJ^z_u = -\frac{y_u}{2} dJ^x_u + \frac{x_u}{2} dJ^y_u, &amp; J^z_t = 0
 \end{cases}\]
 
@@ -1117,8 +1117,8 @@ The Malliavin covariance matrix at time $T$:</li>
 </ol>
 
 \[\sigma_T = \int_0^T J_t J_t^T dt = \begin{pmatrix}
-T &amp; 0 &amp; 0 \
-0 &amp; T &amp; 0 \
+T &amp; 0 &amp; 0 \\
+0 &amp; T &amp; 0 \\
 0 &amp; 0 &amp; \int_0^T \int_t^T [X_r, Y_r] dr dt
 \end{pmatrix}\]
 
@@ -1257,12 +1257,12 @@ The Skorokhod integral $\delta(u)$ satisfies:</li>
 
 <ol>
   <li><strong>Malliavin Matrix:</strong>
-\(J_t = \begin{pmatrix} D_t x_s &amp; D_t y_s \ 0 &amp; 1 \end{pmatrix}\)</li>
+\(J_t = \begin{pmatrix} D_t x_s &amp; D_t y_s \\ 0 &amp; 1 \end{pmatrix}\)</li>
 </ol>
 
 <p>Compute: $D_t x_s = \int_t^s -y_r dr$, $D_t y_s = 1$</p>
 
-\[\sigma_T = \int_0^T \begin{pmatrix} \left(\int_t^T -y_r dr\right)^2 &amp; \int_t^T -y_r dr \ \int_t^T -y_r dr &amp; T \end{pmatrix} dt\]
+\[\sigma_T = \int_0^T \begin{pmatrix} \left(\int_t^T -y_r dr\right)^2 &amp; \int_t^T -y_r dr \\ \int_t^T -y_r dr &amp; T \end{pmatrix} dt\]
 
 <h3 id="example-538-physical-applicationstochastic-rigid-body">Example 5.3.8: Physical Application—Stochastic Rigid Body</h3>
 

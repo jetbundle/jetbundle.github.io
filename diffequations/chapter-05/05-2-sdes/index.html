@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -906,7 +906,15 @@
 
 <h4 id="picard-iteration-in-l2">Picard Iteration in $L^2$</h4>
 
-<p>Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}<em>t$ in the Banach space of square-integrable adapted processes equipped with the norm $\|X\| = \mathbb{E}[\sup</em>{0 \leq t \leq T} |X_t|^2]^{1/2}$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}<em>t$ in the Banach space of square-integrable adapted processes equipped with the norm $|X| = \mathbb{E}[\sup</em>{0 \leq t \leq T}</td>
+      <td>X_t</td>
+      <td>^2]^{1/2}$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Let $X^{(0)}_t = X_0$. The recurrence is defined by:</p>
 
@@ -985,7 +993,14 @@
 
 <h4 id="the-backward-equation">The Backward Equation</h4>
 
-<p>Let $u(t, x) = \mathbb{E}[f(X_T) | X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Let $u(t, x) = \mathbb{E}[f(X_T)</td>
+      <td>X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\frac{\partial u}{\partial t} + \mathcal{L}u = 0, \quad t &lt; T\]
 
@@ -1018,12 +1033,70 @@
 <ol>
   <li><strong>Verify Lipschitz Conditions:</strong>
     <ul>
-      <li>Drift: $b(t,x) = \mu x$, $|b(t,x) - b(t,y)| = |\mu||x-y|$</li>
-      <li>Diffusion: $\sigma(t,x) = \sigma x$, $|\sigma(t,x) - \sigma(t,y)| = |\sigma||x-y|$</li>
-      <li>Linear growth: $|b(t,x)| + |\sigma(t,x)| = (|\mu| + |\sigma|)|x| \leq K(1+|x|)$</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Drift: $b(t,x) = \mu x$, $</td>
+              <td>b(t,x) - b(t,y)</td>
+              <td>=</td>
+              <td>\mu</td>
+              <td> </td>
+              <td>x-y</td>
+              <td>$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Diffusion: $\sigma(t,x) = \sigma x$, $</td>
+              <td>\sigma(t,x) - \sigma(t,y)</td>
+              <td>=</td>
+              <td>\sigma</td>
+              <td> </td>
+              <td>x-y</td>
+              <td>$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Linear growth: $</td>
+              <td>b(t,x)</td>
+              <td>+</td>
+              <td>\sigma(t,x)</td>
+              <td>= (</td>
+              <td>\mu</td>
+              <td>+</td>
+              <td>\sigma</td>
+              <td>)</td>
+              <td>x</td>
+              <td>\leq K(1+</td>
+              <td>x</td>
+              <td>)$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
 
-    <p>Conditions satisfied with $K = \max(|\mu|, |\sigma|)$</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>Conditions satisfied with $K = \max(</td>
+          <td>\mu</td>
+          <td>,</td>
+          <td>\sigma</td>
+          <td>)$</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Exact Solution via Itô’s Formula:</strong>
@@ -1330,7 +1403,15 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 
 <h3 id="example-5213-advanced-demonstrationnon-uniqueness-without-lipschitz">Example 5.2.13: Advanced Demonstration—Non-Uniqueness Without Lipschitz</h3>
 
-<p><strong>Problem:</strong> $dX_t = |X_t|^\alpha dB_t$, $\alpha \in (0,1)$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> $dX_t =</td>
+      <td>X_t</td>
+      <td>^\alpha dB_t$, $\alpha \in (0,1)$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Analysis:</strong></p>
 
@@ -1338,7 +1419,17 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
   <li><strong>No Pathwise Uniqueness:</strong> Multiple solutions from $X_0 = 0$
     <ul>
       <li>Solution 1: $X_t \equiv 0$</li>
-      <li>Solution 2: $X_t = \left( \int_0^t |B_s|^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Solution 2: $X_t = \left( \int_0^t</td>
+              <td>B_s</td>
+              <td>^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
   </li>
   <li><strong>Weak Uniqueness:</strong> Holds but strong solutions don’t</li>

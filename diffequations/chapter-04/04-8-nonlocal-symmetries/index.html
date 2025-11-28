@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -977,7 +977,7 @@ Introduce potential $v(x,t)$:</li>
 </ol>
 
 \[\begin{cases}
-v_x = u \
+v_x = u \\
 v_t = -(-u^m u_x) = u^m u_x
 \end{cases}\]
 
@@ -1082,7 +1082,7 @@ Local conservation law (energy-type):</li>
   <li>
     <p><strong>Potential System:</strong>
 \(\begin{cases}
-v_S = V_S \
+v_S = V_S \\
 v_t = -\left(-\frac{1}{2}\sigma^2 S^2 V_{SS} - r S V_S + r V\right)
 \end{cases}\)</p>
   </li>
@@ -1142,12 +1142,12 @@ Introduce potentials:</li>
 </ol>
 
 \[\begin{cases}
-v_x = u \
+v_x = u \\
 v_t = u^2 u_x
 \end{cases}\]
 
 \[\begin{cases}
-w_x = \frac{1}{2} u u_x \
+w_x = \frac{1}{2} u u_x \\
 w_t = -\left(-\frac{1}{3} u^2 u_{xx} - \frac{1}{2} u u_x^2\right)
 \end{cases}\]
 
@@ -1199,7 +1199,7 @@ Known conservation law:</li>
   <li>
     <p><strong>Potential System:</strong>
 \(\begin{cases}
-v_x = \frac{u_{xx}}{u} \
+v_x = \frac{u_{xx}}{u} \\
 v_t = -\left(-\frac{u_{xxx}}{u} + \frac{u_x u_{xx}}{u^2}\right)
 \end{cases}\)</p>
   </li>

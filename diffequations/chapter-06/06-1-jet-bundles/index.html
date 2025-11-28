@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -921,7 +921,15 @@
 
 \[\theta^\alpha_I = du^\alpha_I - u^\alpha_{I,j} dx^j, \quad 0 \leq |I| &lt; k\]
 
-<p>Note that there are no contact forms for the highest order derivatives ($|I|=k$).</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Note that there are no contact forms for the highest order derivatives ($</td>
+      <td>I</td>
+      <td>=k$).</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>The <strong>Cartan Distribution</strong> $\mathcal{H}$ is the sub-bundle of the tangent bundle $T(J^k(\pi))$ consisting of vectors that annihilate the contact ideal. A tangent vector $\mathbf{v} \in T_p J^k(\pi)$ belongs to $\mathcal{H}_p$ if $\langle \omega, \mathbf{v} \rangle = 0$ for all $\omega \in \mathcal{C}_p$.</p>
 

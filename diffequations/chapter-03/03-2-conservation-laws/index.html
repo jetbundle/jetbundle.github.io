@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -941,9 +941,27 @@
 
 <p><strong>Problem:</strong> Solve $\partial_{t}u + u \partial_{x}u = 0$ with</p>
 
-\[u(x,0) = \begin{cases} 1 - \frac{|x|}{2}, &amp; |x| \le 2, \ 0, &amp; |x| &gt; 2. \end{cases}\]
+\[u(x,0) = \begin{cases} 1 - \frac{|x|}{2}, &amp; |x| \le 2, \\ 0, &amp; |x| &gt; 2. \end{cases}\]
 
-<p>Characteristics through $(\xi,0)$ satisfy $x(t)=\xi+u(\xi,0)t$, yielding $u(x,t)=u(\xi,0)$ with $\xi = x - u(\xi,0)t$. For $|\xi|&gt;2$, $u \equiv 0$ and $x=\xi$. For $|\xi|&lt;2$ we solve $\xi = x - (1-|\xi|/2)t$, leading to three regions: (i) $|x|&gt;2+t$ with $u=0$, (ii) $|x|&lt;2-t$ with $u=1-|x|/2$, and (iii) an intermediate region where $\xi$ solves a quadratic. The gradient evolves as</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Characteristics through $(\xi,0)$ satisfy $x(t)=\xi+u(\xi,0)t$, yielding $u(x,t)=u(\xi,0)$ with $\xi = x - u(\xi,0)t$. For $</td>
+      <td>\xi</td>
+      <td>&gt;2$, $u \equiv 0$ and $x=\xi$. For $</td>
+      <td>\xi</td>
+      <td>&lt;2$ we solve $\xi = x - (1-</td>
+      <td>\xi</td>
+      <td>/2)t$, leading to three regions: (i) $</td>
+      <td>x</td>
+      <td>&gt;2+t$ with $u=0$, (ii) $</td>
+      <td>x</td>
+      <td>&lt;2-t$ with $u=1-</td>
+      <td>x</td>
+      <td>/2$, and (iii) an intermediate region where $\xi$ solves a quadratic. The gradient evolves as</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\partial_{x}u = \frac{-1/2}{1 - t/2} = \frac{-1}{2 - t},\]
 
@@ -957,8 +975,8 @@
 
 \[\rho(x,t)=
 \begin{cases}
-0.8, &amp; x &lt; -0.6t, \
-\frac{1 - x/t}{2}, &amp; -0.6t &lt; x &lt; 0.6t, \
+0.8, &amp; x &lt; -0.6t, \\
+\frac{1 - x/t}{2}, &amp; -0.6t &lt; x &lt; 0.6t, \\
 0.2, &amp; x &gt; 0.6t.
 \end{cases}\]
 
@@ -968,7 +986,7 @@
 
 <p><strong>Problem:</strong> For Burgers’ equation with</p>
 
-\[u(x,0) = \begin{cases} 1, &amp; x &lt; 0, \ 1 - x, &amp; 0 \le x \le 1, \ 0, &amp; x &gt; 1, \end{cases}\]
+\[u(x,0) = \begin{cases} 1, &amp; x &lt; 0, \\ 1 - x, &amp; 0 \le x \le 1, \\ 0, &amp; x &gt; 1, \end{cases}\]
 
 <p>compute the breaking time.</p>
 
@@ -976,9 +994,9 @@
 
 \[\nu(x,t)=
 \begin{cases}
-1, &amp; x &lt; t, \
-\frac{x}{t}, &amp; t &lt; x &lt; 1, \
-1 - x, &amp; 1 &lt; x &lt; 2 - t, \
+1, &amp; x &lt; t, \\
+\frac{x}{t}, &amp; t &lt; x &lt; 1, \\
+1 - x, &amp; 1 &lt; x &lt; 2 - t, \\
 0, &amp; x &gt; 2 - t,
 \end{cases}\]
 
@@ -994,7 +1012,7 @@
 
 <p><strong>Problem:</strong> For the isentropic Euler system</p>
 
-\[\partial_{t} \begin{pmatrix} \rho \ \rho u \end{pmatrix} + \partial_{x} \begin{pmatrix} \rho u \ \rho u^{2} + p(\rho) \end{pmatrix} = 0, \quad p(\rho)=K\rho^{\gamma},\]
+\[\partial_{t} \begin{pmatrix} \rho \\ \rho u \end{pmatrix} + \partial_{x} \begin{pmatrix} \rho u \\ \rho u^{2} + p(\rho) \end{pmatrix} = 0, \quad p(\rho)=K\rho^{\gamma},\]
 
 <p>find eigenvalues and Riemann invariants.</p>
 

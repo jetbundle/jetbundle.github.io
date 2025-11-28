@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -969,11 +969,11 @@
 
 <p>We consider the eigenvalue problem for a $2 \times 2$ matrix system ($U \in \mathfrak{sl}(2, \mathbb{C})$):</p>
 
-\[\partial_x \Psi = \begin{pmatrix} -i\zeta &amp; q(x,t) \ r(x,t) &amp; i\zeta \end{pmatrix} \Psi\]
+\[\partial_x \Psi = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix} \Psi\]
 
 <p>Here $\zeta$ serves as the spectral parameter. The time evolution is governed by:</p>
 
-\[\partial_t \Psi = \begin{pmatrix} A &amp; B \ C &amp; -A \end{pmatrix} \Psi\]
+\[\partial_t \Psi = \begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix} \Psi\]
 
 <p>where $A, B, C$ are functions of $u, v, \zeta$ and their derivatives. The zero-curvature condition $U_t - V_x + [U, V] = 0$ yields recursion relations for the coefficients. By expanding $A, B, C$ as finite polynomials in $\zeta$, we generate different nonlinear PDEs:</p>
 
@@ -1093,11 +1093,11 @@ Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 
 <p><strong>Spatial operator ($U \in \mathfrak{sl}(2,\mathbb{C})$):</strong></p>
 
-\[U = \begin{pmatrix} -i\zeta &amp; q(x,t) \ r(x,t) &amp; i\zeta \end{pmatrix}\]
+\[U = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix}\]
 
 <p><strong>Time evolution (cubic in $\zeta$):</strong></p>
 
-\[V = \begin{pmatrix} -i2\zeta^3 + i\zeta|q|^2 &amp; 2i\zeta^2 q + iq_x \ -2i\zeta^2 r - ir_x &amp; i2\zeta^3 - i\zeta|q|^2 \end{pmatrix}\]
+\[V = \begin{pmatrix} -i2\zeta^3 + i\zeta|q|^2 &amp; 2i\zeta^2 q + iq_x \\ -2i\zeta^2 r - ir_x &amp; i2\zeta^3 - i\zeta|q|^2 \end{pmatrix}\]
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1107,7 +1107,7 @@ Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 
 <p><strong>Compute $U_t$:</strong></p>
 
-\[U_t = \begin{pmatrix} 0 &amp; q_t \ r_t &amp; 0 \end{pmatrix}\]
+\[U_t = \begin{pmatrix} 0 &amp; q_t \\ r_t &amp; 0 \end{pmatrix}\]
 
 <p><strong>Compute $V_x$ (most tedious calculation):</strong></p>
 
@@ -1121,9 +1121,9 @@ Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 
 <p>$UV$ calculation:</p>
 
-\[\begin{pmatrix} -i\zeta &amp; q \ r &amp; i\zeta \end{pmatrix}
-\begin{pmatrix} A &amp; B \ C &amp; -A \end{pmatrix}
-= \begin{pmatrix} -i\zeta A + qC &amp; -i\zeta B + q(-A) \ rA + i\zeta C &amp; rB + i\zeta(-A) \end{pmatrix}\]
+\[\begin{pmatrix} -i\zeta &amp; q \\ r &amp; i\zeta \end{pmatrix}
+\begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix}
+= \begin{pmatrix} -i\zeta A + qC &amp; -i\zeta B + q(-A) \\ rA + i\zeta C &amp; rB + i\zeta(-A) \end{pmatrix}\]
 
 <p>The $(1,2)$ entry (crucial for $q_t$):</p>
 
@@ -1156,11 +1156,11 @@ After computing all 4 matrix entries and equating coefficients of $\zeta^k$, we 
 
 <p><strong>Alternative AKNS choice ($1/\zeta$ expansion):</strong></p>
 
-\[U = \begin{pmatrix} 0 &amp; (1/2)e^{i\phi} \ -(1/2)e^{-i\phi} &amp; 0 \end{pmatrix}\]
+\[U = \begin{pmatrix} 0 &amp; (1/2)e^{i\phi} \\ -(1/2)e^{-i\phi} &amp; 0 \end{pmatrix}\]
 
 <p><strong>Time evolution:</strong></p>
 
-\[V = \begin{pmatrix} -1/2 \sin \phi &amp; (1/2)\phi_x e^{i\phi} \ -(1/2)\phi_x e^{-i\phi} &amp; 1/2 \sin \phi \end{pmatrix}\]
+\[V = \begin{pmatrix} -1/2 \sin \phi &amp; (1/2)\phi_x e^{i\phi} \\ -(1/2)\phi_x e^{-i\phi} &amp; 1/2 \sin \phi \end{pmatrix}\]
 
 <p><strong>Zero-Curvature Computation:</strong></p>
 

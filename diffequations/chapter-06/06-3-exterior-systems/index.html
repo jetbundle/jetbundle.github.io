@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -1012,7 +1012,7 @@ An integral manifold $N \subset \mathbb{R}^3$ satisfies $\iota^*\theta = 0$, whe
     <p>This gives the Pfaffian system:</p>
 
 \[\begin{cases}
-u_x = f(x,y) \
+u_x = f(x,y) \\
 u_y = 0
 \end{cases}\]
   </li>
@@ -1087,8 +1087,26 @@ $\theta = 0$ enforces $(p,q) = (z_x,z_y)$.</p>
   <li><strong>Integral Elements:</strong>
 Find 2-planes $E \subset T_{(x,y,z,p,q)}M$ such that:
     <ul>
-      <li>$E$ annihilates $\theta$: $\theta|_E = 0$</li>
-      <li>$E$ annihilates $\omega$: $\omega|_E = 0$</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$E$ annihilates $\theta$: $\theta</td>
+              <td>_E = 0$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$E$ annihilates $\omega$: $\omega</td>
+              <td>_E = 0$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
 
     <p>Basis for $T M$: $\partial_x, \partial_y, \partial_z, \partial_p, \partial_q$</p>
@@ -1199,7 +1217,14 @@ Integral elements at $(x_0,y_0,u_0,p_0,q_0)$:</p>
     <p><strong>Cartan-Kähler Application:</strong>
 <strong>Initial manifold $P_1$:</strong> Along $y=0$, $u = \phi(x)$, $p = \phi’(x)$, $q$ free.</p>
 
-    <p><strong>Extension to $P_2$:</strong> Solve for $q(x,0)$ using $\omega|_P = 0$:</p>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Extension to $P_2$:</strong> Solve for $q(x,0)$ using $\omega</td>
+          <td>_P = 0$:</td>
+        </tr>
+      </tbody>
+    </table>
 
 \[dp \wedge dy = f dx \wedge dy \implies \frac{\partial p}{\partial y}\bigg|_{y=0} = f(x,0,\phi(x),\phi'(x),q)\]
 

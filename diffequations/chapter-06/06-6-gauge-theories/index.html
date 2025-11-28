@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -911,7 +911,17 @@
 
 \[8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (|F_A^+|^2 - |F_A^-|^2) \, d\text{vol}\]
 
-<p>Since $\mathcal{YM}(A) = \int_M (|F_A^+|^2 + |F_A^-|^2) \, d\text{vol}$, we obtain the topological bound:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Since $\mathcal{YM}(A) = \int_M (</td>
+      <td>F_A^+</td>
+      <td>^2 +</td>
+      <td>F_A^-</td>
+      <td>^2) \, d\text{vol}$, we obtain the topological bound:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[\mathcal{YM}(A) \ge 8\pi^2 |k|\]
 
@@ -935,7 +945,15 @@
 
 \[\mathcal{M}_k = \{ A \in \mathcal{A} : F_A^+ = 0 \} / \mathcal{G}\]
 
-<p>This space is generally a finite-dimensional smooth manifold, but it is not compact. The non-compactness arises not from solutions “escaping to infinity” in the vector space sense, but from the phenomenon of <strong>bubbling</strong>. As established in the foundational work of Uhlenbeck (1982), a sequence of instantons $A_i$ with bounded energy may fail to converge on the whole manifold. Instead, the curvature density $|F_{A_i}|^2$ may concentrate at a finite number of points. In the limit, the connection remains smooth away from these points, while at the singular points, the energy “bubbles off” as an instanton on the sphere $S^4$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>This space is generally a finite-dimensional smooth manifold, but it is not compact. The non-compactness arises not from solutions “escaping to infinity” in the vector space sense, but from the phenomenon of <strong>bubbling</strong>. As established in the foundational work of Uhlenbeck (1982), a sequence of instantons $A_i$ with bounded energy may fail to converge on the whole manifold. Instead, the curvature density $</td>
+      <td>F_{A_i}</td>
+      <td>^2$ may concentrate at a finite number of points. In the limit, the connection remains smooth away from these points, while at the singular points, the energy “bubbles off” as an instanton on the sphere $S^4$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>This <strong>Uhlenbeck Compactification</strong> $\overline{\mathcal{M}}_k$ adds ideal points at the boundary of the moduli space corresponding to these bubbled configurations. The geometric structure of this compactification is essential for defining invariants.</p>
 
@@ -1072,7 +1090,7 @@ ADHM data for $k=2$:</p>
   </li>
   <li>
     <p><strong>Explicit Solution (Atiyah-Drinfeld-Hitchin-Manin):</strong>
-\(B_1 = \begin{pmatrix} z_1 &amp; 0 \ 0 &amp; z_2 \end{pmatrix}, \quad B_2 = \begin{pmatrix} 0 &amp; -w_2 \ w_1 &amp; 0 \end{pmatrix}\)</p>
+\(B_1 = \begin{pmatrix} z_1 &amp; 0 \\ 0 &amp; z_2 \end{pmatrix}, \quad B_2 = \begin{pmatrix} 0 &amp; -w_2 \\ w_1 &amp; 0 \end{pmatrix}\)</p>
 
     <p>Positions: $z_1, z_2 \in \mathbb{C}^2$ (8 real parameters)</p>
   </li>
@@ -1080,7 +1098,15 @@ ADHM data for $k=2$:</p>
     <p><strong>Moduli Space Metric (Atiyah-Hitchin metric):</strong>
 \(ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2\)</p>
 
-    <p>where $r = |z_1 - z_2|$ is separation distance.</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>where $r =</td>
+          <td>z_1 - z_2</td>
+          <td>$ is separation distance.</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Explicit Computation for Small $r$:</strong>

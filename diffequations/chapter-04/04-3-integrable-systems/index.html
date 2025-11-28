@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -996,7 +996,15 @@ The traveling wave ansatz $u(x,t) = f(x - ct)$ yields:</li>
 
 \[\frac{1}{2}(F')^2 = \frac{c}{2}F^2 - F^3 + A\]
 
-<p>For localized solutions ($F \to 0$ as $|x| \to \infty$), $A = 0$. The solution is:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>For localized solutions ($F \to 0$ as $</td>
+      <td>x</td>
+      <td>\to \infty$), $A = 0$. The solution is:</td>
+    </tr>
+  </tbody>
+</table>
 
 \[F = \frac{\sqrt{c}}{2} \text{sech}\left(\frac{\sqrt{c}}{2}(x - ct)\right)\]
 

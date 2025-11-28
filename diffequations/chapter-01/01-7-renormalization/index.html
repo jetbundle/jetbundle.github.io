@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -876,7 +876,19 @@
 
 <h3 id="divergent-series-and-gevrey-classes">Divergent Series and Gevrey Classes</h3>
 
-<p>Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\left|f(x)-\sum_{n=0}^{N}a_{n}x^{n}\right|=O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\lvert a_{n}\rvert\le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K|x|)$, producing an exponentially small remainder $\sim \exp\left(-1/(K|x|)\right)$ that encodes non-perturbative effects invisible to any Taylor series.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\left</td>
+      <td>f(x)-\sum_{n=0}^{N}a_{n}x^{n}\right</td>
+      <td>=O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\lvert a_{n}\rvert\le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K</td>
+      <td>x</td>
+      <td>)$, producing an exponentially small remainder $\sim \exp\left(-1/(K</td>
+      <td>x</td>
+      <td>)\right)$ that encodes non-perturbative effects invisible to any Taylor series.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="borel-summation">Borel Summation</h3>
 
@@ -904,7 +916,17 @@
 
 <p><strong>Problem:</strong> Analyze $\sum_{n=0}^{\infty}(-1)^{n}n!x^{n}$.</p>
 
-<p>The ratio $\lvert a_{n+1}x^{n+1}/(a_{n}x^{n})\rvert=(n+1)\lvert x\rvert$ implies the least term occurs near $N_{\text{opt}}\approx 1/|x|$. Truncating at this index yields an error $O(e^{-1/|x|})$, the same order as the non-perturbative contribution absent from the series.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The ratio $\lvert a_{n+1}x^{n+1}/(a_{n}x^{n})\rvert=(n+1)\lvert x\rvert$ implies the least term occurs near $N_{\text{opt}}\approx 1/</td>
+      <td>x</td>
+      <td>$. Truncating at this index yields an error $O(e^{-1/</td>
+      <td>x</td>
+      <td>})$, the same order as the non-perturbative contribution absent from the series.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-172-asymptotic-expansion-of-operatornameerfcx">Example 1.7.2: Asymptotic Expansion of $\operatorname{erfc}(x)$</h3>
 

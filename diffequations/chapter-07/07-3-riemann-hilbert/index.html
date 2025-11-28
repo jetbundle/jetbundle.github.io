@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -980,7 +980,7 @@ Around $z=0$ (local coordinate), solutions are:</p>
 
     <p><strong>Monodromy matrix $M_0$</strong> (counterclockwise around $z=0$):</p>
 
-\[\begin{pmatrix} 1 &amp; 0 \ 0 &amp; e^{2\pi i(1-c)} \end{pmatrix}\]
+\[\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i(1-c)} \end{pmatrix}\]
   </li>
   <li>
     <p><strong>Complete Monodromy Data:</strong></p>
@@ -1132,7 +1132,7 @@ Transform to regular singular form:</p>
 
 <p><strong>Problem:</strong> Find $M(z)$ analytic in $\mathbb{C} \setminus [-1,1]$ such that:</p>
 
-\[M_+(z) = M_-(z) \begin{pmatrix} 1 + i\rho(z) &amp; \rho(z) \ -\rho(z) &amp; 1 - i\rho(z) \end{pmatrix}, \quad z \in [-1,1]\]
+\[M_+(z) = M_-(z) \begin{pmatrix} 1 + i\rho(z) &amp; \rho(z) \\ -\rho(z) &amp; 1 - i\rho(z) \end{pmatrix}, \quad z \in [-1,1]\]
 
 <p>where $\rho(z) = e^{i k \phi(z)}$, $\phi(z) = \log\frac{1+z}{1-z}$.</p>
 

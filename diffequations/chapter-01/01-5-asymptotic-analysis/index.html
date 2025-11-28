@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -980,7 +980,15 @@
 
 <p><strong>Problem:</strong> Solve $\epsilon^{2}y’’+(1-x^{2})y=0$ via WKB.</p>
 
-<p>The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $|x|&lt;1$ is</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $</td>
+      <td>x</td>
+      <td>&lt;1$ is</td>
+    </tr>
+  </tbody>
+</table>
 
 \[y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos\left(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}\right).\]
 
@@ -988,7 +996,19 @@
 
 <p><strong>Problem:</strong> Estimate tunneling in $V(x)=x^{4}-2x^{2}$.</p>
 
-<p>In the forbidden region $|x|&gt;1$, the WKB solution is $y\sim |Q|^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{|Q|}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>In the forbidden region $</td>
+      <td>x</td>
+      <td>&gt;1$, the WKB solution is $y\sim</td>
+      <td>Q</td>
+      <td>^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{</td>
+      <td>Q</td>
+      <td>}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-159-airy-turning-point-matching">Example 1.5.9: Airy Turning-Point Matching</h3>
 

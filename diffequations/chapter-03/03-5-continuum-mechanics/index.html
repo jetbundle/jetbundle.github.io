@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -947,8 +947,8 @@
   <li>
     <p><strong>Deformation Gradient:</strong>
 \(F = D_X \varphi = \begin{pmatrix}
-\lambda &amp; 0 &amp; 0 \
-0 &amp; \lambda^{-1/2} &amp; 0 \
+\lambda &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1/2} &amp; 0 \\
 0 &amp; 0 &amp; \lambda^{-1/2}
 \end{pmatrix}\)</p>
   </li>
@@ -964,16 +964,16 @@
   <li>
     <p><strong>Right Cauchy-Green Tensor:</strong>
 \(C = F^T F = \begin{pmatrix}
-\lambda^2 &amp; 0 &amp; 0 \
-0 &amp; \lambda^{-1} &amp; 0 \
+\lambda^2 &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1} &amp; 0 \\
 0 &amp; 0 &amp; \lambda^{-1}
 \end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Green-Lagrange Strain:</strong>
 \(E = \frac{1}{2}(C - I) = \frac{1}{2} \begin{pmatrix}
-\lambda^2 - 1 &amp; 0 &amp; 0 \
-0 &amp; \lambda^{-1} - 1 &amp; 0 \
+\lambda^2 - 1 &amp; 0 &amp; 0 \\
+0 &amp; \lambda^{-1} - 1 &amp; 0 \\
 0 &amp; 0 &amp; \lambda^{-1} - 1
 \end{pmatrix}\)</p>
   </li>
@@ -1067,16 +1067,16 @@ For $F = \text{diag}(\lambda, \nu, \nu)$ with incompressibility constraint $\lam
   <li>
     <p><strong>Deformation Gradient:</strong>
 \(F = \begin{pmatrix}
-1 &amp; \gamma &amp; 0 \
-0 &amp; 1 &amp; 0 \
+1 &amp; \gamma &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
 0 &amp; 0 &amp; 1
 \end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Right Cauchy-Green Tensor:</strong>
 \(C = F^T F = \begin{pmatrix}
-1 &amp; \gamma &amp; 0 \
-\gamma &amp; 1 + \gamma^2 &amp; 0 \
+1 &amp; \gamma &amp; 0 \\
+\gamma &amp; 1 + \gamma^2 &amp; 0 \\
 0 &amp; 0 &amp; 1
 \end{pmatrix}\)</p>
   </li>
@@ -1118,16 +1118,16 @@ Apply rotation $Q = \begin{pmatrix} \cos\theta &amp; -\sin\theta &amp; 0 \ \sin\
   <li>
     <p><strong>Deformation Gradient:</strong>
 \(F = \begin{pmatrix}
-1 &amp; 0 &amp; 0 \
-0 &amp; 1 &amp; 0 \
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
 w_1 &amp; w_2 &amp; 1
 \end{pmatrix}\)</p>
   </li>
   <li>
     <p><strong>Cauchy-Green Tensor:</strong>
 \(C = \begin{pmatrix}
-1 + w_1^2 &amp; w_1 w_2 &amp; w_1 \
-w_1 w_2 &amp; 1 + w_2^2 &amp; w_2 \
+1 + w_1^2 &amp; w_1 w_2 &amp; w_1 \\
+w_1 w_2 &amp; 1 + w_2^2 &amp; w_2 \\
 w_1 &amp; w_2 &amp; 1
 \end{pmatrix}\)</p>
   </li>

@@ -38,21 +38,21 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.includes('|')) {
-          node.textContent = node.textContent.replace(/|/g, '|');
+        if (node.textContent.includes('MATH_PIPE_PLACEHOLDER_XYZ123')) {
+          node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
@@ -918,7 +918,15 @@
 
 \[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}\]
 
-<p>has radius $|\epsilon|&lt;3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>has radius $</td>
+      <td>\epsilon</td>
+      <td>&lt;3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-163-linear-boundary-layer">Example 1.6.3: Linear Boundary Layer</h3>
 
