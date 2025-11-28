@@ -1,0 +1,35 @@
+<div class="widget-module" data-module-id="{{ include.module_id | default: 'default' }}">
+  <div class="module-header">
+    <h3>{{ include.title | default: "Interactive Module" }}</h3>
+    <div class="widget-controls">
+      {% if include.params %}
+        {% assign param_list = include.params | split: ',' %}
+        {% for param in param_list %}
+          {% assign param_parts = param | split: ':' %}
+          {% assign param_name = param_parts[0] %}
+          {% assign param_default = param_parts[1] | default: "1" %}
+          {% assign param_min = param_parts[2] | default: "0" %}
+          {% assign param_max = param_parts[3] | default: "10" %}
+          {% assign param_step = param_parts[4] | default: "0.1" %}
+          <div class="widget-control">
+            <label>{{ param_name }}</label>
+            <input type="range" class="widget-slider" data-param="{{ param_name }}" 
+                   min="{{ param_min }}" max="{{ param_max }}" step="{{ param_step }}" 
+                   value="{{ param_default }}">
+            <span class="widget-value" data-param="{{ param_name }}">{{ param_default }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <button class="run-button widget-run">Run Code</button>
+  </div>
+
+  {% if include.code %}
+  <div class="code-block">
+    <pre><code class="language-python">{{ include.code }}</code></pre>
+  </div>
+  {% endif %}
+
+  <div class="plotly-container widget-output"></div>
+</div>
+

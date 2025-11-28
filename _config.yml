@@ -29,6 +29,15 @@ collections:
   pages:
     output: true
     permalink: /:name/
+  diffequations:
+    output: true
+    permalink: /diffequations/:name/
+
+defaults:
+  - scope:
+      type: diffequations
+    values:
+      layout: textbook
 
 # Plugins
 plugins:

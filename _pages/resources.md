@@ -13,7 +13,7 @@ A collection of computational tools, interactive modules, and structured learnin
 
 The **language of mathematical physics** begins with differential equations.
 
-**Recommendation**: Start with [A Survey of Differential Equations and their Algebraic Geometry](/diffequations/)
+**Recommendation**: Start with [A Survey of Differential Equations and their Algebraic Geometry](/diffequations/) (Infrastructure in development)
 
 This complete modern treatment covers:
 - Classical theory (ODEs, PDEs)

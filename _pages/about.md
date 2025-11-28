@@ -59,6 +59,4 @@ Use these resources. Build on them. Extend them. Share what you discover. Join t
 
 **To be human is to be an imaginative mathematician exploring the deeply intentional structure of reality.**
 
-*— Joel Saucedo*
-
 ---

@@ -1,0 +1,20 @@
+<div class="nav-header">
+  <h3>Differential Equations</h3>
+  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">Computational Laboratory</p>
+</div>
+
+<nav class="nav-content">
+  <ul>
+    {% assign pages = site.diffequations | sort: 'order' %}
+    {% for nav_page in pages %}
+      {% if nav_page.title %}
+        <li>
+          <a href="{{ nav_page.url | relative_url }}" {% if nav_page.url == page.url %}class="active"{% endif %}>
+            {% if nav_page.chapter %}{{ nav_page.chapter }}. {% endif %}{{ nav_page.title }}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
