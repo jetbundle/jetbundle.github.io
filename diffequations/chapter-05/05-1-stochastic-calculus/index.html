@@ -697,30 +697,401 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We demonstrate the failure of classical calculus for Brownian paths (infinite variation). We introduce <strong>Itô Integration</strong> and the <strong>Itô Isometry</strong>, proving that the Chain Rule must be modified to include a second-order term (<strong>Quadratic Variation</strong>). We confront the geometric ambiguity between Itô (martingale) and Stratonovich (geometric) calculi.</p>
+<p>The progression of the previous chapters relied on the implicit assumption of smoothness. In the classical theory of differential equations, we assume that trajectories are differentiable manifolds and that functions admit Taylor expansions. However, physical reality often defies this assumption. Thermal fluctuations, quantum uncertainty, and complex feedback loops introduce a fundamental roughness to dynamics. This chapter abandons the comfort of $C^\infty$ regularity to construct a calculus for trajectories that are continuous but nowhere differentiable. We begin with the foundational theory of stochastic integration, specifically focusing on the breakdown of the classical chain rule and the emergence of the quadratic variation as a non-negligible geometric quantity.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="brownian-motion-and-the-failure-of-classical-calculus">Brownian Motion and the Failure of Classical Calculus</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>The fundamental object of study is the Brownian motion (or Wiener process), denoted $B_t$. Rigorously constructed as a limit of random walks or via the Kolmogorov continuity theorem, $B_t$ is characterized by independent, stationary Gaussian increments. Specifically, for any $0 \leq s &lt; t$, the increment $B_t - B_s$ follows a normal distribution $\mathcal{N}(0, t-s)$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>While $B_t$ is almost surely continuous, its analytic properties are pathological compared to classical functions. As covered extensively in Karatzas &amp; Shreve (1991), Brownian paths are nowhere differentiable. More precisely, the paths are locally Hölder continuous with exponent $\alpha$ for any $\alpha &lt; 1/2$, but fail to be Hölder continuous for $\alpha \geq 1/2$. Consequently, the total variation of a Brownian path over any finite interval $[0, T]$ is infinite almost surely:</p>
 
-<h3 id="core-results">Core Results</h3>
+\[\lim_{\|\Pi\| \to 0} \sum_{i} |B_{t_{i+1}} - B_{t_i}| = \infty,\]
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>where $\Pi$ is a partition of the interval.</p>
 
-<h3 id="applications">Applications</h3>
+<p>The infinite total variation renders the classical Lebesgue-Stieltjes integral $\int f(t) dB_t$ ill-defined. However, while the first variation diverges, the <strong>quadratic variation</strong> converges to a deterministic limit. For a sequence of partitions with mesh size going to zero, we have:</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[[B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\]
+
+<p>In the language of differentials, we write $(dB_t)^2 = dt$. This non-vanishing quadratic variation is the distinct geometric signature of stochastic processes, contrasting sharply with smooth functions where $(df)^2 = (f’ dt)^2 = 0$ to first order in $dt$.</p>
+
+<h3 id="itô-integration">Itô Integration</h3>
+
+<p>To define integration against Brownian motion, we must construct a new integral theory. Let $(\Omega, \mathcal{F}, P)$ be a probability space with a filtration $\mathcal{F}<em>t$. We consider the class of elementary (simple) processes $H_t$, which are piecewise constant on intervals $[t_i, t</em>{i+1})$ and adapted to the filtration $\mathcal{F}_{t_i}$ (meaning the value of $H$ on the interval depends only on information available at time $t_i$).</p>
+
+<p>The <strong>Itô integral</strong> for such a simple process is defined as:</p>
+
+\[I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>Crucially, the integrand $H_{t_i}$ is evaluated at the <em>left</em> endpoint of the interval. This choice preserves the <strong>martingale property</strong>: the expectation of the increment, conditional on the present, is zero ($E[H_{t_i}(B_{t_{i+1}} - B_{t_i})</td>
+      <td>\mathcal{F}<em>{t_i}] = H</em>{t_i} E[B_{t_{i+1}} - B_{t_i}] = 0$).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The construction is extended to general square-integrable adapted processes via the <strong>Itô Isometry</strong>, a central result in stochastic analysis discussed in Øksendal (2003). The isometry states that the $L^2$ norm of the integral is equal to the $L^2$ norm of the integrand over time:</p>
+
+\[\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\]
+
+<p>This isometry allows us to define the Itô integral as an $L^2(\Omega)$-limit of integrals of elementary processes. Unlike the Riemann integral, which converges pointwise for smooth functions, the Itô integral converges in probability.</p>
+
+<h3 id="the-itô-formula">The Itô Formula</h3>
+
+<p>The non-zero quadratic variation of Brownian motion forces a revision of the fundamental theorem of calculus. If we attempt to expand a smooth function $f(B_t)$ using a Taylor series, the second-order terms can no longer be discarded.</p>
+
+\[f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\]
+
+<p>Since $(\Delta B_t)^2 \approx \Delta t$, the second derivative term contributes to the drift. The rigorous statement is <strong>Itô’s Lemma</strong> (or the Itô Formula):</p>
+
+<p>Let $X_t$ be an Itô process given by $dX_t = \mu_t dt + \sigma_t dB_t$, and let $f(t,x)$ be a function with continuous partial derivatives. Then:</p>
+
+\[df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t.\]
+
+<p>The extra term $\frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} dt$ represents the convexity adjustment required due to the infinite variation of the path. In higher dimensions, for a vector of Itô processes $\mathbf{X}_t$, the formula generalizes involving the Hessian of $f$:</p>
+
+\[df = \left( \nabla f \cdot d\mathbf{X}_t \right) + \frac{1}{2} \text{Tr}\left( \mathbf{H}_f d[\mathbf{X}, \mathbf{X}]_t \right),\]
+
+<p>where $d[\mathbf{X}, \mathbf{X}]_t$ is the covariance matrix of the driving noise.</p>
+
+<h3 id="stratonovich-integration-and-the-wong-zakai-theorem">Stratonovich Integration and the Wong-Zakai Theorem</h3>
+
+<p>While the Itô integral is essential for probabilistic estimates due to its martingale property, it fails to satisfy the classical chain rule of differential geometry. This poses a problem when defining stochastic processes on manifolds, where coordinate invariance is required.</p>
+
+<p>To address this, we introduce the <strong>Stratonovich integral</strong>, denoted by $\circ dB_t$. It is defined by evaluating the integrand at the midpoint of the interval (or taking the limit of the trapezoidal rule):</p>
+
+\[\int_0^T H_t \circ dB_t = \lim_{\|\Pi\| \to 0} \sum_{i} \frac{H_{t_{i+1}} + H_{t_i}}{2} (B_{t_{i+1}} - B_{t_i}).\]
+
+<p>The Stratonovich integral satisfies the standard chain rule of calculus: $df(B_t) = f’(B_t) \circ dB_t$. However, Stratonovich integrals are generally not martingales; they contain a “look-ahead” bias.</p>
+
+<p>The relationship between the two integrals is given by a specific conversion formula involving the quadratic covariation:</p>
+
+\[\int_0^T H_t \circ dB_t = \int_0^T H_t dB_t + \frac{1}{2} [H, B]_T.\]
+
+<p>If $H_t = \sigma(B_t)$, then $[H, B]_t = \int \sigma’(B_t) dt$, yielding the familiar correction term from Itô’s formula.</p>
+
+<p>The physical justification for the Stratonovich integral is provided by the <strong>Wong-Zakai Theorem</strong>, extensively covered in Revuz &amp; Yor (2004). This theorem states that if we approximate white noise $dB_t$ by a smooth, colored noise $B_t^{(n)}$ (e.g., via piecewise linear interpolation) and solve the corresponding ODEs, the solutions converge to the Stratonovich solution of the SDE, not the Itô solution. Thus, the Stratonovich calculus is the natural limit of smooth dynamical systems with short correlation times, while Itô calculus is the natural language of martingales and intrinsic noise.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-511-canonical-casequadratic-variation-of-brownian-motion">Example 5.1.1: Canonical Case—Quadratic Variation of Brownian Motion</h3>
+
+<p><strong>Problem:</strong> Compute the quadratic variation of Brownian motion $B_t$ over $[0, T]$ explicitly.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Partition Setup:</strong>
+Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with mesh size $|\Pi_n| = \max_i (t_{i+1} - t_i) \to 0$.</p>
+  </li>
+  <li>
+    <p><strong>Quadratic Variation Sum:</strong>
+\(Q_n = \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2\)</p>
+  </li>
+  <li>
+    <p><strong>Expectation Calculation:</strong>
+\(\mathbb{E}[Q_n] = \sum_{i=0}^{n-1} \mathbb{E}[(B_{t_{i+1}} - B_{t_i})^2] = \sum_{i=0}^{n-1} (t_{i+1} - t_i) = T\)</p>
+  </li>
+  <li>
+    <p><strong>Variance Calculation:</strong>
+For independent increments:
+\(\text{Var}(Q_n) = \sum_{i=0}^{n-1} \text{Var}[(B_{t_{i+1}} - B_{t_i})^2]\)</p>
+  </li>
+</ol>
+
+<p>Since $(B_{t_{i+1}} - B_{t_i}) \sim \mathcal{N}(0, t_{i+1} - t_i)$:
+\(\text{Var}[(B_{t_{i+1}} - B_{t_i})^2] = 2(t_{i+1} - t_i)^2\)</p>
+
+<p>Therefore:
+\(\text{Var}(Q_n) = 2 \sum_{i=0}^{n-1} (t_{i+1} - t_i)^2 \leq 2 \|\Pi_n\| T \to 0\)</p>
+
+<ol>
+  <li><strong>Convergence Result:</strong>
+By Chebyshev’s inequality:
+\(P(|Q_n - T| &gt; \epsilon) \leq \frac{\text{Var}(Q_n)}{\epsilon^2} \to 0\)</li>
+</ol>
+
+<p><strong>Final Result:</strong>
+\([B]_T = \lim_{\|\Pi_n\| \to 0} Q_n = T \quad \text{a.s.}\)</p>
+
+<p><strong>Key Insight:</strong> The quadratic variation is deterministic, unlike the path itself!</p>
+
+<h3 id="example-512-itô-integralelementary-process">Example 5.1.2: Itô Integral—Elementary Process</h3>
+
+<p><strong>Problem:</strong> Compute $\int_0^T B_t dB_t$ using the Itô definition.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Approximation by Simple Process:</strong>
+For partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$, define:
+\(H_t^{(n)} = \sum_{i=0}^{n-1} B_{t_i} \mathbf{1}_{[t_i, t_{i+1})}(t)\)</p>
+  </li>
+  <li>
+    <p><strong>Itô Integral for Simple Process:</strong>
+\(I_n = \int_0^T H_t^{(n)} dB_t = \sum_{i=0}^{n-1} B_{t_i} (B_{t_{i+1}} - B_{t_i})\)</p>
+  </li>
+  <li>
+    <p><strong>Algebraic Manipulation:</strong>
+Use the identity:
+\(B_{t_i}(B_{t_{i+1}} - B_{t_i}) = \frac{1}{2}[(B_{t_{i+1}})^2 - (B_{t_i})^2 - (B_{t_{i+1}} - B_{t_i})^2]\)</p>
+  </li>
+  <li>
+    <p><strong>Telescoping Sum:</strong>
+\(I_n = \sum_{i=0}^{n-1} B_{t_i}(B_{t_{i+1}} - B_{t_i}) = \frac{1}{2} \sum_{i=0}^{n-1} [(B_{t_{i+1}})^2 - (B_{t_i})^2] - \frac{1}{2} \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2\)</p>
+  </li>
+</ol>
+
+\[= \frac{1}{2} B_T^2 - \frac{1}{2} \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2\]
+
+<ol>
+  <li><strong>Limit as Partition Refines:</strong>
+\(\lim_{\|\Pi_n\| \to 0} I_n = \frac{1}{2} B_T^2 - \frac{1}{2} [B]_T = \frac{1}{2} B_T^2 - \frac{1}{2} T\)</li>
+</ol>
+
+<p><strong>Final Result:</strong>
+\(\int_0^T B_t dB_t = \frac{1}{2} B_T^2 - \frac{1}{2} T\)</p>
+
+<p><strong>Key Insight:</strong> The extra term $-T/2$ is the Itô correction! Classical calculus would give $B_T^2/2$.</p>
+
+<h3 id="example-513-itôs-formulageometric-brownian-motion">Example 5.1.3: Itô’s Formula—Geometric Brownian Motion</h3>
+
+<p><strong>Problem:</strong> Apply Itô’s formula to compute $d(e^{B_t})$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Setup:</strong>
+Let $f(x) = e^x$ and $X_t = B_t$ (so $\mu_t = 0$, $\sigma_t = 1$).</p>
+  </li>
+  <li>
+    <p><strong>Itô’s Formula:</strong>
+\(df(B_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t\)</p>
+  </li>
+  <li><strong>Compute Derivatives:</strong>
+    <ul>
+      <li>$\frac{\partial f}{\partial t} = 0$</li>
+      <li>$\frac{\partial f}{\partial x} = e^{B_t}$</li>
+      <li>$\frac{\partial^2 f}{\partial x^2} = e^{B_t}$</li>
+    </ul>
+  </li>
+  <li><strong>Substitute:</strong>
+\(de^{B_t} = \left( 0 + 0 + \frac{1}{2} \cdot 1^2 \cdot e^{B_t} \right) dt + 1 \cdot e^{B_t} dB_t\)</li>
+</ol>
+
+\[= \frac{1}{2} e^{B_t} dt + e^{B_t} dB_t\]
+
+<ol>
+  <li><strong>Integral Form:</strong>
+\(e^{B_t} = 1 + \int_0^t \frac{1}{2} e^{B_s} ds + \int_0^t e^{B_s} dB_s\)</li>
+</ol>
+
+<p><strong>Key Insight:</strong> The drift term $\frac{1}{2} e^{B_t} dt$ is the convexity adjustment!</p>
+
+<h3 id="example-514-physical-applicationgeometric-brownian-motion-for-stock-prices">Example 5.1.4: Physical Application—Geometric Brownian Motion for Stock Prices</h3>
+
+<p><strong>Problem:</strong> Derive the Black-Scholes model using Itô’s formula.</p>
+
+<p><strong>Setup:</strong> Stock price $S_t$ follows geometric Brownian motion:</p>
+
+\[dS_t = \mu S_t dt + \sigma S_t dB_t\]
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Apply Itô’s Formula to $\ln S_t$:</strong>
+Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
+  </li>
+  <li>
+    <p><strong>Itô’s Formula:</strong>
+\(d(\ln S_t) = \left( 0 + \mu S_t \cdot \frac{1}{S_t} + \frac{1}{2} \sigma^2 S_t^2 \cdot \left(-\frac{1}{S_t^2}\right) \right) dt + \sigma S_t \cdot \frac{1}{S_t} dB_t\)</p>
+  </li>
+</ol>
+
+\[= \left( \mu - \frac{\sigma^2}{2} \right) dt + \sigma dB_t\]
+
+<ol>
+  <li>
+    <p><strong>Integrate:</strong>
+\(\ln S_t = \ln S_0 + \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma B_t\)</p>
+  </li>
+  <li>
+    <p><strong>Exponentiate:</strong>
+\(S_t = S_0 \exp\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma B_t \right)\)</p>
+  </li>
+  <li>
+    <p><strong>Expected Value:</strong>
+\(\mathbb{E}[S_t] = S_0 e^{\mu t}\)</p>
+  </li>
+</ol>
+
+<p><strong>Key Insight:</strong> The drift correction $-\sigma^2/2$ ensures the expected return is $\mu$!</p>
+
+<h3 id="example-515-stratonovich-vs-itôexplicit-comparison">Example 5.1.5: Stratonovich vs Itô—Explicit Comparison</h3>
+
+<p><strong>Problem:</strong> Compute $\int_0^T B_t \circ dB_t$ (Stratonovich) and compare to Itô integral.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Stratonovich Definition:</strong>
+\(\int_0^T B_t \circ dB_t = \lim_{\|\Pi_n\| \to 0} \sum_{i=0}^{n-1} \frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i})\)</p>
+  </li>
+  <li>
+    <p><strong>Algebraic Manipulation:</strong>
+\(\frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i}) = \frac{1}{2}[(B_{t_{i+1}})^2 - (B_{t_i})^2]\)</p>
+  </li>
+  <li>
+    <p><strong>Telescoping Sum:</strong>
+\(\sum_{i=0}^{n-1} \frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i}) = \frac{1}{2} \sum_{i=0}^{n-1} [(B_{t_{i+1}})^2 - (B_{t_i})^2] = \frac{1}{2} B_T^2\)</p>
+  </li>
+  <li>
+    <p><strong>Final Result:</strong>
+\(\int_0^T B_t \circ dB_t = \frac{1}{2} B_T^2\)</p>
+  </li>
+  <li>
+    <p><strong>Comparison:</strong></p>
+    <ul>
+      <li><strong>Itô:</strong> $\int_0^T B_t dB_t = \frac{1}{2} B_T^2 - \frac{1}{2} T$</li>
+      <li><strong>Stratonovich:</strong> $\int_0^T B_t \circ dB_t = \frac{1}{2} B_T^2$</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Conversion Formula Verification:</strong>
+\(\int_0^T B_t \circ dB_t = \int_0^T B_t dB_t + \frac{1}{2} [B, B]_T = \left(\frac{1}{2} B_T^2 - \frac{T}{2}\right) + \frac{1}{2} T = \frac{1}{2} B_T^2 \quad ✓\)</p>
+
+<p><strong>Key Insight:</strong> Stratonovich satisfies the classical chain rule!</p>
+
+<h3 id="example-516-advanced-demonstrationitôs-formula-in-higher-dimensions">Example 5.1.6: Advanced Demonstration—Itô’s Formula in Higher Dimensions</h3>
+
+<p><strong>Problem:</strong> Apply Itô’s formula to $f(X_t, Y_t)$ where:</p>
+
+\[dX_t = \mu_X dt + \sigma_X dB_t^{(1)}, \quad dY_t = \mu_Y dt + \sigma_Y dB_t^{(2)}\]
+
+<p>with correlation $d[B^{(1)}, B^{(2)}]_t = \rho dt$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Itô’s Formula (2D):</strong>
+\(df(X_t, Y_t) = \frac{\partial f}{\partial x} dX_t + \frac{\partial f}{\partial y} dY_t + \frac{1}{2} \left[ \frac{\partial^2 f}{\partial x^2} (dX_t)^2 + 2 \frac{\partial^2 f}{\partial x \partial y} dX_t dY_t + \frac{\partial^2 f}{\partial y^2} (dY_t)^2 \right]\)</p>
+  </li>
+  <li><strong>Quadratic Variations:</strong>
+    <ul>
+      <li>$(dX_t)^2 = \sigma_X^2 dt$</li>
+      <li>$(dY_t)^2 = \sigma_Y^2 dt$</li>
+      <li>$dX_t dY_t = \sigma_X \sigma_Y \rho dt$</li>
+    </ul>
+  </li>
+  <li><strong>Substitute:</strong>
+\(df = \frac{\partial f}{\partial x} (\mu_X dt + \sigma_X dB_t^{(1)}) + \frac{\partial f}{\partial y} (\mu_Y dt + \sigma_Y dB_t^{(2)})\)</li>
+</ol>
+
+\[+ \frac{1}{2} \left[ \frac{\partial^2 f}{\partial x^2} \sigma_X^2 + 2 \frac{\partial^2 f}{\partial x \partial y} \sigma_X \sigma_Y \rho + \frac{\partial^2 f}{\partial y^2} \sigma_Y^2 \right] dt\]
+
+<ol>
+  <li><strong>Example: $f(x,y) = xy$</strong>
+    <ul>
+      <li>$\frac{\partial f}{\partial x} = y$, $\frac{\partial f}{\partial y} = x$</li>
+      <li>$\frac{\partial^2 f}{\partial x^2} = 0$, $\frac{\partial^2 f}{\partial x \partial y} = 1$, $\frac{\partial^2 f}{\partial y^2} = 0$</li>
+    </ul>
+  </li>
+</ol>
+
+\[d(X_t Y_t) = Y_t dX_t + X_t dY_t + \sigma_X \sigma_Y \rho dt\]
+
+<p><strong>Key Insight:</strong> The correlation term $\sigma_X \sigma_Y \rho dt$ is the cross-variation contribution!</p>
+
+<h3 id="example-517-itô-isometry-verification">Example 5.1.7: Itô Isometry Verification</h3>
+
+<p><strong>Problem:</strong> Verify the Itô isometry for $H_t = B_t$.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Left Side:</strong>
+\(\mathbb{E}\left[ \left( \int_0^T B_t dB_t \right)^2 \right] = \mathbb{E}\left[ \left( \frac{1}{2} B_T^2 - \frac{T}{2} \right)^2 \right]\)</p>
+  </li>
+  <li>
+    <p><strong>Expand:</strong>
+\(= \frac{1}{4} \mathbb{E}[B_T^4] - \frac{T}{2} \mathbb{E}[B_T^2] + \frac{T^2}{4}\)</p>
+  </li>
+  <li><strong>Use Gaussian Moments:</strong>
+    <ul>
+      <li>$\mathbb{E}[B_T^2] = T$</li>
+      <li>$\mathbb{E}[B_T^4] = 3T^2$ (since $B_T \sim \mathcal{N}(0, T)$)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Compute:</strong>
+\(= \frac{1}{4} \cdot 3T^2 - \frac{T}{2} \cdot T + \frac{T^2}{4} = \frac{3T^2}{4} - \frac{T^2}{2} + \frac{T^2}{4} = \frac{T^2}{2}\)</p>
+  </li>
+  <li><strong>Right Side:</strong>
+\(\mathbb{E}\left[ \int_0^T B_t^2 dt \right] = \int_0^T \mathbb{E}[B_t^2] dt = \int_0^T t dt = \frac{T^2}{2}\)</li>
+</ol>
+
+<p><strong>Verification:</strong> Both sides equal $\frac{T^2}{2}$ ✓</p>
+
+<h3 id="example-518-wong-zakai-theoremsmooth-approximation">Example 5.1.8: Wong-Zakai Theorem—Smooth Approximation</h3>
+
+<p><strong>Problem:</strong> Demonstrate that smooth approximations converge to Stratonovich integrals.</p>
+
+<p><strong>Setup:</strong> Approximate $dB_t$ by smooth process $B_t^{(n)}$ with piecewise linear interpolation.</p>
+
+<p><strong>Step-by-Step Solution:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Smooth Approximation:</strong>
+For partition $\Pi_n$, define:
+\(B_t^{(n)} = B_{t_i} + \frac{t - t_i}{t_{i+1} - t_i} (B_{t_{i+1}} - B_{t_i}), \quad t \in [t_i, t_{i+1})\)</p>
+  </li>
+  <li>
+    <p><strong>ODE Solution:</strong>
+Solve $dX_t^{(n)} = X_t^{(n)} dB_t^{(n)}$ (smooth ODE):</p>
+  </li>
+</ol>
+
+\[X_t^{(n)} = X_0 \exp(B_t^{(n)})\]
+
+<ol>
+  <li><strong>Limit as $n \to \infty$:</strong>
+The Wong-Zakai theorem states:
+\(\lim_{n \to \infty} X_t^{(n)} = X_t^{\text{Stratonovich}}\)</li>
+</ol>
+
+<p>where $X_t^{\text{Stratonovich}}$ solves:
+\(dX_t = X_t \circ dB_t\)</p>
+
+<ol>
+  <li><strong>Verification:</strong>
+Using Stratonovich chain rule:
+\(d(\ln X_t) = \frac{1}{X_t} \circ dX_t = \circ dB_t\)</li>
+</ol>
+
+\[\ln X_t = B_t \implies X_t = X_0 e^{B_t}\]
+
+<p><strong>Key Insight:</strong> Smooth approximations naturally select Stratonovich calculus!</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Karatzas, I., &amp; Shreve, S. E. (1991). <em>Brownian Motion and Stochastic Calculus</em>. Springer.</li>
+  <li>Øksendal, B. (2003). <em>Stochastic Differential Equations: An Introduction with Applications</em>. Springer.</li>
+  <li>Revuz, D., &amp; Yor, M. (2004). <em>Continuous Martingales and Brownian Motion</em>. Springer.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
