@@ -2,6 +2,7 @@
 layout: textbook
 title: "Differential Equations Laboratory"
 description: "Production-ready computational infrastructure"
+permalink: /diffequations/
 order: 0
 ---
 
