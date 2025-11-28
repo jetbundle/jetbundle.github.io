@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Differential Equations Laboratory</title>
   <meta name="description" content="Production-ready computational infrastructure">
-  
+
   <!-- MathJax -->
   <script>
     window.MathJax = {
@@ -19,12 +19,12 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-  
+
   <!-- Prism.js Syntax Highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-  
+
   <!-- Textbook CSS -->
   <link rel="stylesheet" href="/assets/css/textbook.css">
 </head>
@@ -37,7 +37,6 @@
 </div>
 
 
-  
   <div class="textbook-container">
     <!-- Sidebar Navigation -->
     <nav class="textbook-sidebar">
@@ -58,19 +57,26 @@
         </li>
       
     
+      
+        <li>
+          <a href="/diffequations/" class="active">
+            Differential Equations Laboratory
+          </a>
+        </li>
+      
+    
   </ul>
 </nav>
 
-
     </nav>
-    
+
     <!-- Main Content -->
     <main class="textbook-main">
       <header class="textbook-header">
         <h1>Differential Equations Laboratory</h1>
         <p class="description">Production-ready computational infrastructure</p>
       </header>
-      
+
       <article class="textbook-content">
         <h1 id="differential-equations-laboratory">Differential Equations Laboratory</h1>
 
@@ -139,7 +145,7 @@
     <h3>First-Order Linear ODE</h3>
     <button class="run-button">Run Python Code</button>
   </div>
-  
+
   <div class="code-block">
     <pre><code class="language-python">import numpy as np
 import plotly.graph_objects as go
@@ -158,35 +164,34 @@ y0 = 1.0
 # Solve ODE
 sol = odeint(dydt, y0, t)
 
-# Create plot data for Plotly.js
-trace1 = {
-    'x': t.tolist(),
-    'y': sol.flatten().tolist(),
-    'mode': 'lines',
-    'name': 'y(t) = e^(-2t)',
-    'line': {'color': '#3b82f6', 'width': 3}
-}
+# Create Plotly figure
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=t, y=sol.flatten(),
+    mode='lines',
+    name='y(t) = e^(-2t)',
+    line=dict(color='#3b82f6', width=3)
+))
 
 # Analytical solution for comparison
-trace2 = {
-    'x': t.tolist(),
-    'y': np.exp(-2*t).tolist(),
-    'mode': 'lines',
-    'name': 'Analytical: e^(-2t)',
-    'line': {'color': '#10b981', 'width': 2, 'dash': 'dash'}
-}
+fig.add_trace(go.Scatter(
+    x=t, y=np.exp(-2*t),
+    mode='lines',
+    name='Analytical: e^(-2t)',
+    line=dict(color='#10b981', width=2, dash='dash')
+))
 
-layout = {
-    'title': 'First-Order Linear ODE Solution',
-    'xaxis': {'title': 'Time t'},
-    'yaxis': {'title': 'y(t)'},
-    'height': 400
-}
+fig.update_layout(
+    title="First-Order Linear ODE Solution",
+    xaxis_title="Time t",
+    yaxis_title="y(t)",
+    template="plotly_dark",
+    height=400
+)
 
-# Store plot data for rendering
-create_plot([trace1, trace2], layout)</code></pre>
+# Convert to JSON for rendering (handled by engine)</code></pre>
   </div>
-  
+
   <div class="plotly-container" id="ode-demo-plot"></div>
 </div>
 
@@ -203,13 +208,13 @@ create_plot([trace1, trace2], layout)</code></pre>
         <input type="range" class="widget-slider" data-param="lambda" min="0.1" max="3" step="0.1" value="1" />
         <span class="widget-value" data-param="lambda">1.0</span>
       </div>
-      
+
       <div class="widget-control">
         <label>y₀ (Initial)</label>
         <input type="range" class="widget-slider" data-param="y0" min="-2" max="2" step="0.1" value="1" />
         <span class="widget-value" data-param="y0">1.0</span>
       </div>
-      
+
       <div class="widget-control">
         <label>Time Span</label>
         <input type="range" class="widget-slider" data-param="t_max" min="1" max="10" step="0.5" value="5" />
@@ -235,25 +240,25 @@ def dydt(y, t, lambda_param):
 t = np.linspace(0, t_max_val, 200)
 sol = odeint(dydt, y0_val, t, args=(lambda_val,))
 
-trace = {
-    'x': t.tolist(),
-    'y': sol.flatten().tolist(),
-    'mode': 'lines',
-    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
-    'line': {'width': 3, 'color': '#3b82f6'}
-}
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=t, y=sol.flatten(),
+    mode='lines',
+    name=f'y(t) = {y0_val} * exp(-{lambda_val}t)',
+    line=dict(width=3)
+))
 
-layout = {
-    'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
-    'xaxis': {'title': 'Time t'},
-    'yaxis': {'title': 'y(t)'},
-    'height': 400
-}
+fig.update_layout(
+    title=f"ODE Solution: dy/dt = -{lambda_val}*y",
+    xaxis_title="Time t",
+    yaxis_title="y(t)",
+    template="plotly_dark",
+    height=400
+)
 
-# Store plot data for rendering
-create_plot([trace], layout)</code></pre>
+# Convert to JSON for rendering (handled by engine)</code></pre>
   </div>
-  
+
   <div class="plotly-container widget-output"></div>
 </div>
 
@@ -314,7 +319,6 @@ create_plot([trace], layout)</code></pre>
 
 <p><strong>Infrastructure Complete. Ready for textbook content deployment.</strong></p>
 
-
       </article>
     </main>
   </div>
@@ -322,11 +326,11 @@ create_plot([trace], layout)</code></pre>
   <!-- Pyodide & Plotly (Load asynchronously) -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-  
+
   <!-- Textbook JavaScript -->
   <script src="/assets/js/theme-manager.js"></script>
   <script src="/assets/js/textbook-engine.js"></script>
   <script src="/assets/js/widget-engine.js"></script>
+  <script src="/assets/js/code-toggle.js"></script>
 </body>
 </html>
-

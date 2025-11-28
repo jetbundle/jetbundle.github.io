@@ -17,7 +17,7 @@ class WidgetEngine {
     document.querySelectorAll('.widget-module').forEach((widget, index) => {
       const widgetId = widget.id || `widget-${index}`;
       widget.id = widgetId;
-      
+
       this.widgets.set(widgetId, {
         element: widget,
         sliders: Array.from(widget.querySelectorAll('.widget-slider')),
@@ -34,7 +34,7 @@ class WidgetEngine {
         slider.addEventListener('input', (e) => {
           const paramName = e.target.dataset.param;
           const paramValue = e.target.value;
-          
+
           const valueDisplay = widgetData.element.querySelector(`.widget-value[data-param="${paramName}"]`);
           if (valueDisplay) {
             valueDisplay.textContent = parseFloat(paramValue).toFixed(2);
@@ -68,7 +68,7 @@ class WidgetEngine {
   async executeWidget(widgetData) {
     const button = widgetData.runButton;
     const output = widgetData.output;
-    
+
     if (!output) {
       return;
     }
@@ -91,42 +91,60 @@ class WidgetEngine {
         throw new Error('Pyodide not loaded');
       }
 
-      const modifiedCode = code + `
-# Capture plotly figure data
+      // Reset plot data and inject helper function
+      await window.textbookEngine.pyodide.runPythonAsync(`plot_data = None`);
+      
+      const plotHelperCode = `
 import json
-if 'fig' in locals() and hasattr(fig, 'to_dict'):
-    fig_dict = fig.to_dict()
-    plotly_json = json.dumps(fig_dict)
+
+def create_plot(traces, layout=None):
+    """Helper function to create plot data for Plotly.js"""
+    global plot_data
+    if layout is None:
+        layout = {}
+    
+    # Convert numpy arrays to lists
+    plot_traces = []
+    for trace in traces:
+        trace_dict = {}
+        for key, value in trace.items():
+            if hasattr(value, 'tolist'):
+                trace_dict[key] = value.tolist()
+            else:
+                trace_dict[key] = value
+        plot_traces.append(trace_dict)
+    
+    plot_data = {
+        'data': plot_traces,
+        'layout': layout
+    }
+    return plot_data
       `;
 
-      await window.textbookEngine.pyodide.runPythonAsync(`
-        try:
-          plotly_divs
-        except NameError:
-          plotly_divs = []
-        plotly_divs.clear()
-      `);
+      await window.textbookEngine.pyodide.runPythonAsync(plotHelperCode);
+
+      const modifiedCode = code + `
+# Store plot data if create_plot was called
+if 'plot_data' in globals() and plot_data is not None:
+    pass  # plot_data already set
+      `;
 
       await window.textbookEngine.pyodide.runPythonAsync(modifiedCode);
 
-      try {
-        const plotlyJson = window.textbookEngine.pyodide.runPython(`
-          plotly_json if 'plotly_json' in locals() else '{}'
-        `);
-        
-        if (plotlyJson && plotlyJson !== '{}') {
-          const plotData = JSON.parse(plotlyJson);
-          const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
-          
-          Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, {
-            template: plotlyTemplate,
-            responsive: true
-          });
-        } else {
-          output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
-        }
-      } catch (plotError) {
-        output.innerHTML = '<div class="computing">Execution complete</div>';
+      // Check for plot data
+      const hasPlotData = window.textbookEngine.pyodide.runPython(`plot_data is not None`);
+
+      if (hasPlotData) {
+        const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(plot_data)`);
+        const plotData = JSON.parse(plotJson);
+        const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
+
+        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, {
+          template: plotlyTemplate,
+          responsive: true
+        });
+      } else {
+        output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
       }
 
     } catch (error) {
@@ -142,4 +160,3 @@ if 'fig' in locals() and hasattr(fig, 'to_dict'):
 document.addEventListener('DOMContentLoaded', () => {
   window.widgetEngine = new WidgetEngine();
 });
-
