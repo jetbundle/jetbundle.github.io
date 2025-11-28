@@ -309,9 +309,10 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
         widgetData.executing = false;
 
         // Only restore button state if not in continuous mode
-        if (!skipButtonState && button) {
+        // For continuous widgets, button is hidden after first Run, so don't restore it
+        if (!skipButtonState && button && !widgetData.continuousActivated) {
           button.disabled = false;
-          button.textContent = originalText || 'Run Code';
+          button.textContent = originalText || 'Run';
         }
       }
   }
