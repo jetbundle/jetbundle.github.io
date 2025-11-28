@@ -85,14 +85,14 @@ class WidgetEngine {
       });
 
       let code = widgetData.code;
-      
+
       // Inject parameters at the start of the code
       const paramLines = Object.entries(params).map(([key, value]) => {
         // Handle special case for 'lambda' (Python keyword)
         const paramName = key === 'lambda' ? 'lambda_val' : key;
         return `${paramName} = ${value}`;
       }).join('\n');
-      
+
       // Remove any placeholder parameter lines and inject real values
       // Remove comment lines about parameters
       code = code.replace(/# Parameters from widgets.*?\n/g, '');
@@ -102,14 +102,14 @@ class WidgetEngine {
       code = code.replace(/t_max_val\s*=.*?\n/g, '');
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
-      
+
       // Insert parameter assignments after imports
       const importSection = code.match(/(^import .+?\n)+/m);
       if (importSection) {
         const importEnd = importSection[0].length;
-        code = code.substring(0, importEnd) + 
-               '\n# Parameters from widgets\n' + 
-               paramLines + '\n' + 
+        code = code.substring(0, importEnd) +
+               '\n# Parameters from widgets\n' +
+               paramLines + '\n' +
                code.substring(importEnd);
       } else {
         code = '# Parameters from widgets\n' + paramLines + '\n\n' + code;
