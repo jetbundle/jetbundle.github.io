@@ -26,17 +26,13 @@ class TextbookEngine {
       
       await this.pyodide.loadPackage([
         "numpy",
-        "scipy",
-        "matplotlib"
+        "scipy"
       ]);
       
-      await this.pyodide.loadPackage("micropip");
-      
+      // Initialize global variable for plot data
       await this.pyodide.runPythonAsync(`
-        import micropip
-        await micropip.install('plotly')
-        import plotly.graph_objects as go
-        plotly_divs = []
+        import json
+        plot_data = None
       `);
       
       this.isLoaded = true;
@@ -104,43 +100,62 @@ class TextbookEngine {
     }
 
     try {
-      await this.pyodide.runPythonAsync(`
-        try:
-          plotly_divs
-        except NameError:
-          plotly_divs = []
-        plotly_divs.clear()
-      `);
+      // Reset plot data
+      await this.pyodide.runPythonAsync(`plot_data = None`);
       
-      const modifiedCode = code + `
-# Capture plotly figure data
+      // Inject helper function for creating plots
+      const plotHelperCode = `
 import json
-if 'fig' in locals() and hasattr(fig, 'to_dict'):
-    fig_dict = fig.to_dict()
-    plotly_json = json.dumps(fig_dict)
+
+def create_plot(traces, layout=None):
+    """Helper function to create plot data for Plotly.js"""
+    global plot_data
+    if layout is None:
+        layout = {}
+    
+    # Convert numpy arrays to lists
+    plot_traces = []
+    for trace in traces:
+        trace_dict = {}
+        for key, value in trace.items():
+            if hasattr(value, 'tolist'):
+                trace_dict[key] = value.tolist()
+            else:
+                trace_dict[key] = value
+        plot_traces.append(trace_dict)
+    
+    plot_data = {
+        'data': plot_traces,
+        'layout': layout
+    }
+    return plot_data
+      `;
+      
+      await this.pyodide.runPythonAsync(plotHelperCode);
+      
+      // Execute user code
+      const modifiedCode = code + `
+# Store plot data if create_plot was called
+if 'plot_data' in globals() and plot_data is not None:
+    pass  # plot_data already set
       `;
       
       await this.pyodide.runPythonAsync(modifiedCode);
       
-      try {
-        const plotlyJson = this.pyodide.runPython(`
-          plotly_json if 'plotly_json' in locals() else '{}'
-        `);
+      // Check for plot data
+      const hasPlotData = this.pyodide.runPython(`plot_data is not None`);
+      
+      if (hasPlotData) {
+        const plotJson = this.pyodide.runPython(`json.dumps(plot_data)`);
+        const plotData = JSON.parse(plotJson);
+        const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
         
-        if (plotlyJson && plotlyJson !== '{}') {
-          const plotData = JSON.parse(plotlyJson);
-          const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
-          
-          Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, { 
-            template: plotlyTemplate,
-            responsive: true
-          });
-        } else {
-          outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';
-        }
-      } catch (plotError) {
-        console.log('No plotly output, checking for other output');
-        outputContainer.innerHTML = '<div class="computing">Execution complete</div>';
+        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, { 
+          template: plotlyTemplate,
+          responsive: true
+        });
+      } else {
+        outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';
       }
     } catch (error) {
       console.error('Execution error:', error);
