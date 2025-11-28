@@ -4,6 +4,7 @@
 
 class ThemeManager {
   constructor() {
+    // Default to dark theme
     this.currentTheme = localStorage.getItem('theme') || 'dark';
     this.systemPreference = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     this.init();
