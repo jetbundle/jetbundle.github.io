@@ -194,14 +194,20 @@ if 'plot_data' in globals() and plot_data is not None:
           }
         };
 
-        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig);
-
-        // Trigger MathJax rendering if MathJax is available
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([outputContainer]).catch((err) => {
-            console.log('MathJax rendering issue:', err);
-          });
+        // Clear output and destroy any existing Plotly plot
+        if (outputContainer.data && Plotly && typeof Plotly.purge === 'function') {
+          Plotly.purge(outputContainer);
         }
+        outputContainer.innerHTML = '';
+        
+        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+          // Trigger MathJax rendering after plot is rendered
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([outputContainer]).catch((err) => {
+              console.log('MathJax rendering issue:', err);
+            });
+          }
+        });
       } else {
         outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';
       }

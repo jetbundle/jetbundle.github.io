@@ -17,31 +17,54 @@ class WidgetEngine {
   async initializeContinuousWidgets() {
     // Auto-execute continuous widgets on page load after Pyodide is ready
     const executeContinuous = async () => {
+      // Wait for Pyodide to be ready first
+      if (window.textbookEngine) {
+        const loaded = await window.textbookEngine.waitForLoad();
+        if (!loaded) {
+          console.error('Pyodide failed to load, cannot initialize continuous widgets');
+          return;
+        }
+      } else {
+        // Wait for textbookEngine to be available
+        let attempts = 0;
+        while (!window.textbookEngine && attempts < 50) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          attempts++;
+        }
+        if (!window.textbookEngine) {
+          console.error('TextbookEngine not available');
+          return;
+        }
+        await window.textbookEngine.waitForLoad();
+      }
+
+      // Additional delay to ensure Pyodide is fully initialized
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Execute each continuous widget independently
       for (const [widgetId, widgetData] of this.widgets.entries()) {
         const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
                              widgetData.element.dataset.updateMode === 'continuous';
         if (isContinuous && widgetData.output) {
-          // Wait for Pyodide to be ready
-          if (window.textbookEngine) {
-            await window.textbookEngine.waitForLoad();
-          }
-          // Small delay to ensure everything is ready
-          await new Promise(resolve => setTimeout(resolve, 500));
-          // Only execute if output is empty (not already computing or rendered)
-          if (!widgetData.output.innerHTML || widgetData.output.innerHTML.trim() === '') {
-            this.executeWidget(widgetData, true);
+          // Only execute if output is empty and not already executing
+          if (!widgetData.executing && (!widgetData.output.innerHTML || widgetData.output.innerHTML.trim() === '' || widgetData.output.innerHTML.includes('Computing'))) {
+            // Execute each widget with a small delay to avoid race conditions
+            await new Promise(resolve => setTimeout(resolve, 100));
+            this.executeWidget(widgetData, true).catch(err => {
+              console.error(`Error executing continuous widget ${widgetId}:`, err);
+            });
           }
         }
       }
     };
     
-    // Wait for DOM and Pyodide to be ready
+    // Wait for DOM to be ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(executeContinuous, 1500);
+        setTimeout(executeContinuous, 2000);
       });
     } else {
-      setTimeout(executeContinuous, 1500);
+      setTimeout(executeContinuous, 2000);
     }
   }
 
@@ -50,12 +73,23 @@ class WidgetEngine {
       const widgetId = widget.id || `widget-${index}`;
       widget.id = widgetId;
 
+      // Find the output container - prioritize widget-output, then plotly-container
+      // Make sure it's within this widget module
+      let output = widget.querySelector('.widget-output');
+      if (!output) {
+        output = widget.querySelector('.plotly-container.widget-output');
+      }
+      if (!output) {
+        output = widget.querySelector('.plotly-container');
+      }
+
       this.widgets.set(widgetId, {
         element: widget,
         sliders: Array.from(widget.querySelectorAll('.widget-slider')),
         runButton: widget.querySelector('.widget-run'),
-        output: widget.querySelector('.widget-output') || widget.querySelector('.plotly-container'),
-        code: widget.querySelector('pre code')?.textContent || ''
+        output: output,
+        code: widget.querySelector('pre code')?.textContent || '',
+        executing: false  // Track execution state to prevent duplicates
       });
     });
   }
@@ -134,22 +168,34 @@ class WidgetEngine {
   }
 
   async executeWidget(widgetData, skipButtonState = false) {
+    // Prevent duplicate executions
+    if (widgetData.executing) {
+      console.log('Widget already executing, skipping...');
+      return;
+    }
+
     const button = widgetData.runButton;
     const output = widgetData.output;
 
     if (!output) {
+      console.error('No output container found for widget');
       return;
     }
 
+    widgetData.executing = true;
+
     // Only update button state if not in continuous mode
+    let originalText = '';
     if (!skipButtonState && button) {
       button.disabled = true;
-      const originalText = button.textContent;
+      originalText = button.textContent;
       button.innerHTML = '<span class="loading"></span> Computing...';
     }
 
-    // Clear any previous error messages or plots
-    // Show computing message
+    // Clear any previous error messages or plots - destroy Plotly plot if exists
+    if (output.data && Plotly && typeof Plotly.purge === 'function') {
+      Plotly.purge(output);
+    }
     output.innerHTML = '<div class="computing">Computing solution...</div>';
 
     try {
@@ -273,14 +319,18 @@ if 'plot_data' in globals() and plot_data is not None:
           }
         };
 
-        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig);
-
-        // Trigger MathJax rendering if MathJax is available
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([output]).catch((err) => {
-            console.log('MathJax rendering issue:', err);
-          });
-        }
+        // Clear output completely before rendering
+        output.innerHTML = '';
+        
+        // Use Plotly.newPlot which automatically replaces any existing plot
+        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+          // Trigger MathJax rendering after plot is rendered
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([output]).catch((err) => {
+              console.log('MathJax rendering issue:', err);
+            });
+          }
+        });
       } else {
         output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
       }
@@ -289,14 +339,12 @@ if 'plot_data' in globals() and plot_data is not None:
         console.error('Widget execution error:', error);
         output.innerHTML = `<div style="color: var(--error); padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--error); border-radius: 8px; margin: 1rem 0;"><strong>Error:</strong> ${error.message}</div>`;
       } finally {
+        widgetData.executing = false;
+        
         // Only restore button state if not in continuous mode
         if (!skipButtonState && button) {
           button.disabled = false;
           button.textContent = originalText || 'Run Code';
-        }
-        // Clear computing message if still showing
-        if (output.innerHTML && output.innerHTML.includes('Computing solution...')) {
-          output.innerHTML = '<div class="computing">Execution failed. Check console for details.</div>';
         }
       }
   }
