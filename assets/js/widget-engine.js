@@ -126,11 +126,50 @@ class WidgetEngine {
             const selectedType = e.target.value;
             console.log('Code type changed to:', selectedType);
 
-            // Update which code block is visible (optional visual feedback)
+            // Update which code block is visible but preserve toggle state
+            // Find the toggle button states first
             const codeBlocks = widgetData.element.querySelectorAll('.code-block[data-code-type]');
+            const toggleStates = new Map();
             codeBlocks.forEach(block => {
-              block.style.display = block.dataset.codeType === selectedType ? 'block' : 'none';
+              const wrapper = block.closest('.code-toggle-wrapper');
+              if (wrapper) {
+                const toggleBtn = wrapper.querySelector('.code-toggle-btn');
+                if (toggleBtn) {
+                  const wasHidden = block.classList.contains('hidden');
+                  toggleStates.set(block.dataset.codeType, wasHidden);
+                }
+              }
             });
+
+            // Update visibility based on selection, preserving toggle state
+            codeBlocks.forEach(block => {
+              if (block.dataset.codeType === selectedType) {
+                // This is the selected code block - use its stored toggle state
+                const shouldBeHidden = toggleStates.get(block.dataset.codeType) || false;
+                if (shouldBeHidden) {
+                  block.classList.add('hidden');
+                } else {
+                  block.classList.remove('hidden');
+                }
+              } else {
+                // Hide other code blocks but preserve their toggle state for when they're selected again
+                // Don't change the hidden class, just visually hide with display:none
+                block.style.display = 'none';
+              }
+            });
+
+            // Show the selected code block
+            const selectedBlock = widgetData.element.querySelector(`.code-block[data-code-type="${selectedType}"]`);
+            if (selectedBlock) {
+              const shouldBeHidden = toggleStates.get(selectedType) || false;
+              selectedBlock.style.display = shouldBeHidden ? 'none' : 'block';
+              // Ensure hidden class matches the toggle state
+              if (shouldBeHidden) {
+                selectedBlock.classList.add('hidden');
+              } else {
+                selectedBlock.classList.remove('hidden');
+              }
+            }
           }
         });
       });
