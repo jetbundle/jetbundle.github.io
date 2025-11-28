@@ -19,193 +19,207 @@ parent_section: null
 When elementary functions fail, we define new ones via differential equations. We present the **Hypergeometric Master Equation** to unify the "zoo" of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the **Frobenius Method** to classify these singularities (regular vs. irregular). The narrative tension arises from the **Stokes Phenomenon**: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.
 
 ## Mathematical Content
+### The Hypergeometric Master Equation
 
-The exact integration methods of Section 1.1 assume coefficients that are constant or transformable to constants. Physical boundary conditions and symmetries often give rise to variable-coefficient equations whose qualitative behavior is dictated by the geometry of their singularities in the complex plane. Special functions therefore form a hierarchy organized by this singular structure.
-
-### Hypergeometric Master Equation
-
-The Gauss hypergeometric equation is the canonical linear equation with three regular singular points (at $z=0,1,\infty$):
+The hypergeometric equation is the canonical second-order linear ODE with three regular singular points on the Riemann sphere:
 
 $$
-z(1-z)\frac{d^2 y}{dz^2} + \big[c - (a+b+1)z\big]\frac{dy}{dz} - ab\,y = 0.
+x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0.
 $$
 
-Inside $\lvert z \rvert < 1$, the solution is the Gauss series
+Its solutions are defined by power series, yielding the Gauss hypergeometric function
 
 $$
-{}_2F_1(a,b;c;z) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n}{(c)_n}\frac{z^n}{n!},
+{}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.
 $$
 
-with $(a)_n = \Gamma(a+n)/\Gamma(a)$. When $a$ or $b$ is a non-positive integer, the series terminates and produces polynomial solutions. Analytic continuation (with branch cut $[1,\infty)$) follows from Euler integrals, and the fifteen contiguous relations summarized in **Andrews, Askey & Roy (1999)** show that the topology of the Riemann sphere governs all transformations among these solutions.
+The series converges for $\lvert x\rvert<1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer’s 24 solutions, highlighting the group structure of the solution space.
 
-### Confluence and Singular Limits
+### Confluent Limits and Classical Descendants
 
-Most named functions arise as confluent limits of ${}_2F_1$, where regular singularities merge into irregular ones:
+Merging singularities (confluence) produces equations with fewer regular singular points but introduces irregular ones, creating the classical special functions.
 
-1. **Bessel functions.** Rescaling $z \mapsto z/b$ and letting $b\to\infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_\nu$.
-2. **Kummer/Whittaker functions.** When two singularities coalesce, the confluent hypergeometric function ${}_1F_1(a;c;z)$ emerges, featuring one regular and one irregular singular point.
-3. **Legendre polynomials.** Integer parameter choices in ${}_2F_1$ recover $P_n(x)$, representing spherical symmetry.
+- **Bessel equation**: letting $c\to \infty$ while scaling $x$ appropriately degenerates the hypergeometric equation into
 
-Because confluence is performed at the level of singular geometry, recurrence relations, integral representations, and asymptotic behavior flow from the hypergeometric master to its descendants (**Whittaker & Watson, 1927**).
+  $$
+  x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,
+  $$
 
-### Frobenius Method and Riemann $P$-Symbols
+  whose solutions $J_{\nu}$ arise as confluent limits of ${}_2F_{1}$.
 
-For a linear equation $y'' + P(z) y' + Q(z)y = 0$, a point $z_0$ is a **regular singular point** if $(z-z_0)P(z)$ and $(z-z_0)^2 Q(z)$ are analytic at $z_0$. The Frobenius ansatz
+- **Legendre polynomials**: integer parameters terminate the series, giving
 
-$$
-y(z) = (z-z_0)^r \sum_{n=0}^{\infty} a_n (z-z_0)^n, \qquad a_0 \neq 0,
-$$
+  $$
+  P_{n}(x)={}_2F_{1}\left(-n,n+1;1;\frac{1-x}{2}\right),
+  $$
 
-leads to the indicial equation
+  central to spherical harmonics.
 
-$$
-r(r-1) + p_0 r + q_0 = 0,
-$$
+- **Kummer/Whittaker functions**: merging two singular points yields the confluent hypergeometric equation
 
-where $p_0 = \lim_{z\to z_0} (z-z_0)P(z)$ and $q_0 = \lim_{z\to z_0} (z-z_0)^2 Q(z)$. Differences of the roots determine whether logarithmic terms are required for linear independence. The Riemann $P$-symbol records these exponents, and any equation with three regular singularities is equivalent (via Möbius transformations) to ${}_2F_1$.
+  $$
+  xy''+(c-x)y'-ay=0,
+  $$
 
-### Irregular Singularities and Asymptotic Analysis
+  with solution ${}_1F_{1}(a;c;x)$, encompassing Hermite polynomials, error functions, and exponential integrals.
 
-When singularities merge, an **irregular singular point** forms, typically at infinity for physical problems. Frobenius series fail and solutions develop essential singularities with divergent asymptotic expansions
+### Frobenius Method and Regular Singularities
 
-$$
-y(z) \sim e^{S(z)} z^{\rho} \sum_{n=0}^{\infty} a_n z^{-n}.
-$$
-
-The divergence records the **Stokes phenomenon**: as $\arg z$ crosses certain rays, the coefficients of exponentially suppressed terms jump discontinuously. Controlling these jumps via connection formulae or Borel summation provides the analytic continuation machinery used later in the text (**Olver et al., 2010**).
-
-### Sturm–Liouville Orthogonality
-
-Many special functions are eigenfunctions of self-adjoint Sturm–Liouville operators
+For $y''+P(x)y'+Q(x)y=0$, a point $x_{0}$ is regular singular if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic. Frobenius proposes
 
 $$
--\frac{d}{dx}\left[p(x)\frac{dy}{dx}\right] + q(x) y = \lambda w(x) y.
+y(x)=(x-x_{0})^{r}\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}, \qquad a_{0}\neq 0,
 $$
 
-Under suitable boundary conditions, the eigenvalues are real and discrete and the eigenfunctions form an orthogonal basis of $L^2_w([a,b])$:
+producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$. The Riemann $P$-symbol lists all singularities and their exponents, fully encoding the local monodromy.
+
+### Irregular Singularities and Stokes Phenomenon
+
+When singularities coalesce, regular points become irregular, and Frobenius series fail. Solutions near such points take asymptotic forms
 
 $$
-\int_a^b \phi_n(x)\phi_m(x) w(x)\,dx = \delta_{nm} N_n.
+y(z)\sim z^{\rho}e^{S(z)}\sum_{n=0}^{\infty}a_{n}z^{-n},
 $$
 
-This Hilbert-space perspective explains why Bessel, Legendre, and Hermite functions provide complete expansions for cylindrical, spherical, and oscillator problems.
+valid only within sectors bounded by Stokes lines, where the subdominant exponentials switch on or off. Crossing a Stokes line causes discontinuous jumps (Stokes phenomenon), encoding global analytic data beyond perturbation theory.
 
-## Complete Examples
+### Orthogonality and Completeness
 
-### Example 1.2.1: Legendre Polynomials from ${}_2F_1$
-
-**Problem:** Show that the Legendre polynomials can be written as truncated hypergeometric series.
-
-Mapping $x$ to $z = (1-x)/2$ and taking $a=-n$, $b=n+1$, $c=1$ gives
+Special functions serve as orthogonal bases for Sturm–Liouville problems written in self-adjoint form
 
 $$
-P_n(x) = {}_2F_1\left(-n,n+1;1;\frac{1-x}{2}\right) = \sum_{k=0}^{n} \frac{(-n)_k (n+1)_k}{k!}\left(\frac{1-x}{2}\right)^k.
+-\frac{d}{dx}\left(p(x)\frac{dy}{dx}\right)+q(x)y=\lambda w(x)y.
 $$
 
-For $n=2$,
+On compact domains with regular coefficients, eigenfunctions $\phi_{n}$ satisfy
 
 $$
-P_2(x) = 1 - 6\left(\frac{1-x}{2}\right) + 3\left(\frac{1-x}{2}\right)^2 = \frac{3x^2 - 1}{2},
+\int_{a}^{b}\phi_{n}(x)\phi_{m}(x)w(x)\,dx=\delta_{nm},
 $$
 
-which satisfies $(1-x^2)P_2'' - 2x P_2' + 6P_2 = 0$, verifying the connection to the Gauss equation.
+and any $f\in L^{2}_{w}$ admits an expansion $f(x)\sim \sum_{n} c_{n}\phi_{n}(x)$ with spectral coefficients $c_{n}=\int f \phi_{n}w$. This spectral completeness generalizes Fourier analysis and foreshadows the Hilbert-space machinery of Chapter 2.
 
-### Example 1.2.2: Hydrogenic $2s$ Radial Mode
+## Connections to Chapter Narrative
 
-**Problem:** Derive the $2s$ radial solution of the hydrogen atom using ${}_1F_1$.
-
-The radial Schrödinger equation
-
-$$
--u''(r) + \left[\frac{\ell(\ell+1)}{r^2} - \frac{2}{r}\right]u(r) = 2E\,u(r)
-$$
-
-is simplified by $u(r) = e^{-\rho/2} \rho^{\ell} v(\rho)$ with $\rho = 2\sqrt{-2E}\,r$. The transformed equation reads
-
-$$
-\rho v'' + \big[2(\ell+1) - \rho\big] v' + (n-\ell-1) v = 0,
-$$
-
-so $v(\rho) = {}_1F_1(n-\ell-1; 2\ell+2; \rho)$. For $n=2$, $\ell = 0$,
-
-$$
-v(\rho) = {}_1F_1(1;2;\rho) = 1 + \frac{\rho}{2},
-$$
-
-and
-
-$$
-u_{2s}(r) = e^{-\rho/2}\left(1 + \frac{\rho}{2}\right), \qquad \rho = \frac{r}{a_0},
-$$
-
-which matches the textbook hydrogenic state up to normalization.
-
-### Example 1.2.3: Confluence to Bessel Functions
-
-**Problem:** Obtain $J_\nu$ as a confluent limit of ${}_2F_1$.
-
-Consider ${}_2F_1(a,b;c;2z/b)$ with $b\to\infty$. Since $(b)_n = b^n\left[1 + O\!\left(rac{1}{b}\right)\right]$, the series approaches
-
-$$
-{}_0F_1(c; z) = \sum_{n=0}^{\infty} \frac{1}{(c)_n}\frac{z^n}{n!}.
-$$
-
-Choosing $c = \nu+1$ and $z = -\tfrac{x^2}{4}$ yields
-
-$$
-J_\nu(x) = \frac{(x/2)^\nu}{\Gamma(\nu+1)}\, {}_0F_1\left(\nu+1; -\frac{x^2}{4}\right),
-$$
-
-showing that the entire Bessel hierarchy inherits its analytic structure from the hypergeometric parent.
-
-### Example 1.2.4: Frobenius Analysis of the Bessel Equation
-
-**Problem:** Apply the Frobenius method at $x=0$ to $x^2 y'' + x y' + (x^2 - \nu^2)y = 0$.
-
-Because $xP(x)=1$ and $x^2 Q(x)=x^2 - \nu^2$ are analytic at $x=0$, we expand $y = x^r \sum_{n=0}^{\infty} a_n x^n$. The indicial equation is
-
-$$
-r(r-1) + r - \nu^2 = 0 \quad \Longrightarrow \quad r = \pm \nu.
-$$
-
-The $r=+\nu$ branch yields
-
-$$
-J_\nu(x) = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!\,\Gamma(k+\nu+1)}\left(\frac{x}{2}\right)^{2k+\nu},
-$$
-
-while the $r=-\nu$ branch produces $J_{-\nu}$ (and, when $\nu\in\mathbb{Z}$, the logarithmic partner $Y_\nu$), clarifying how exponent differences govern logarithmic corrections.
-
-### Example 1.2.5: Fourier–Bessel Orthogonality
-
-**Problem:** Prove the orthogonality of radial Bessel modes on $[0,a]$ with Dirichlet boundary conditions.
-
-Expanding $f(r)$ as
-
-$$
-f(r) = \sum_{n=1}^{\infty} c_n J_0\left(\frac{\lambda_n r}{a}\right), \qquad \lambda_n = \text{nth zero of } J_0,
-$$
-
-and using the weight $w(r)=r$ gives
-
-$$
-\int_{0}^{a} r\, J_0\left(\frac{\lambda_m r}{a}\right) J_0\left(\frac{\lambda_n r}{a}\right) dr = \frac{a^2}{2} J_1^2(\lambda_n)\,\delta_{mn}.
-$$
-
-Hence
-
-$$
-c_n = \frac{2}{a^2 J_1^2(\lambda_n)} \int_{0}^{a} r\, f(r)\, J_0\left(\frac{\lambda_n r}{a}\right) dr,
-$$
-
-demonstrating the Sturm–Liouville origin of Fourier–Bessel series for cylindrical heat or wave propagation.
+Special functions extend the explicit arsenal by defining solutions as canonical responses to singular geometries. Hypergeometric unification and Sturm–Liouville completeness reveal that structure arises from singular-point placement. Their asymptotics and Stokes data lead directly to the analytic continuation, spectral theory, and microlocal analysis developed in later chapters.
 
 ## References
 
 * **Andrews, G. E., Askey, R., & Roy, R. (1999).** *Special Functions*. Cambridge University Press.
-* **Olver, F. W. J., et al. (2010).** *NIST Handbook of Mathematical Functions*. Cambridge University Press.
+* **Coddington, E. A., & Levinson, N. (1955).** *Theory of Ordinary Differential Equations*. McGraw–Hill.
+* **Olver, F. W. J. (1997).** *Asymptotics and Special Functions*. AK Peters.
+* **Titchmarsh, E. C. (1946).** *Eigenfunction Expansions Associated with Second-Order Differential Equations*. Clarendon Press.
 * **Whittaker, E. T., & Watson, G. N. (1927).** *A Course of Modern Analysis*. Cambridge University Press.
 
+## Complete Examples
+
+### Example 1.2.1: Hypergeometric Series Solution
+
+**Problem:** Solve $x(1-x)y''+(2-3x)y'-y=0$.
+
+We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence
+
+$$
+a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
+$$
+
+so
+
+$$
+y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
+$$
+
+which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
+
+### Example 1.2.2: Legendre Polynomials from Separation of Variables
+
+**Problem:** Solve Laplace’s equation in spherical coordinates with $u(1,\theta)=\cos\theta$.
+
+Separation yields the angular ODE
+
+$$
+\frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda \Theta=0.
+$$
+
+Setting $x=\cos\theta$ produces the Legendre equation
+
+$$
+(1-x^{2})\Theta''-2x\Theta'+\lambda \Theta=0.
+$$
+
+Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.
+
+### Example 1.2.3: Bessel Functions as Confluent Limits
+
+**Problem:** Derive $J_{0}$ as a limit of ${}_2F_{1}$.
+
+Start from ${}_2F_{1}\left(a,b;c;z\right)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
+
+$$
+J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).
+$$
+
+For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{z}{2}\right)^{2k}$, recovering the Bessel series and illustrating confluence.
+
+### Example 1.2.4: Frobenius Analysis at a Regular Singular Point
+
+**Problem:** Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.
+
+This is Bessel’s equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}=0$, so $r=0$ is a double root. The first solution is $y_{1}(x)=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(n!)^{2}}x^{2n}$; the second involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{0}$ and $Y_{0}$, showing how Frobenius captures both series and logarithmic structures.
+
+### Example 1.2.5: Airy Equation and Stokes Phenomenon
+
+**Problem:** Analyze $y''-xy=0$ (Airy equation) near $x\to +\infty$.
+
+WKB analysis gives asymptotics
+
+$$
+\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp\left(-\frac{2}{3}x^{3/2}\right),
+$$
+
+valid for $\lvert \arg x\rvert<\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
+
+### Example 1.2.6: Orthogonality of Legendre Polynomials
+
+**Problem:** Prove $\int_{-1}^{1}P_{m}(x)P_{n}(x)\,dx=\frac{2}{2n+1}\delta_{mn}$.
+
+Using Rodrigues’ formula
+
+$$
+P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},
+$$
+
+integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.
+
+### Example 1.2.7: Fourier–Legendre Series for $\lvert x\rvert$
+
+**Problem:** Expand $f(x)=\lvert x\rvert$ on $[-1,1]$.
+
+Coefficients are
+
+$$
+c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\lvert x\rvert P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
+$$
+
+yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.
+
+### Example 1.2.8: Sturm–Liouville Completeness for Bessel Functions
+
+**Problem:** Show $\{J_{0}(\lambda_{n} x)\}$ forms a complete set on $[0,1]$ with weight $x$, where $\lambda_{n}$ are zeros of $J_{0}$.
+
+Writing $-(x y')'=\lambda x y$ yields orthogonality
+
+$$
+\int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
+$$
+
+and Parseval’s identity
+
+$$
+\int_{0}^{1}x\left|f(x)\right|^{2}\,dx=\sum_{n=1}^{\infty}\left|\frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx\right|^{2}.
+$$
+
+This shows how Bessel functions provide a Fourier-like expansion for radial problems.
 ## Navigation
 
 {% include page_navigation.html %}
