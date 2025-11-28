@@ -257,17 +257,25 @@ create_plot([trace], layout)</code></pre>
   <div class="plotly-container widget-output"></div>
 </div>
 
-<h3 id="continuous-update-ode-explorer-real-time">Continuous Update ODE Explorer (Real-time)</h3>
+<h3 id="interactive-ode-explorer-with-mode-selection">Interactive ODE Explorer with Mode Selection</h3>
 
-<div class="widget-module widget-continuous" id="ode-widget-continuous" data-update-mode="continuous">
+<div class="widget-module" id="ode-widget-mode">
   <div class="module-header">
-    <h3>Continuous Update ODE Explorer</h3>
-    <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Click Run, then drag sliders to see real-time updates</p>
+    <h3>Interactive ODE Explorer</h3>
     <div class="widget-controls">
       <div class="widget-control">
+        <label>ODE Type</label>
+        <select class="widget-dropdown" data-param="ode_type" data-code-selector="true">
+          <option value="exponential">Exponential Decay: dy/dt = -λy</option>
+          <option value="oscillatory">Oscillatory: dy/dt = -ω²y</option>
+          <option value="logistic">Logistic Growth: dy/dt = ry(1 - y/K)</option>
+        </select>
+      </div>
+
+      <div class="widget-control">
         <label>λ (Decay Rate)</label>
-        <input type="range" class="widget-slider" data-param="lambda" min="0.1" max="3" step="0.1" value="1.5" />
-        <span class="widget-value" data-param="lambda">1.5</span>
+        <input type="range" class="widget-slider" data-param="lambda" min="0.1" max="3" step="0.1" value="1" />
+        <span class="widget-value" data-param="lambda">1.0</span>
       </div>
 
       <div class="widget-control">
@@ -285,7 +293,8 @@ create_plot([trace], layout)</code></pre>
     <button class="run-button widget-run">Run</button>
   </div>
 
-  <div class="code-block hidden">
+  <!-- Code block for Exponential Decay -->
+  <div class="code-block hidden" data-code-type="exponential">
     <pre><code class="language-python">import numpy as np
 from scipy.integrate import odeint
 
@@ -295,21 +304,21 @@ from scipy.integrate import odeint
 def dydt(y, t, lambda_param):
     return -lambda_param * y
 
-t = np.linspace(0, t_max_val, 150)  # Fewer points for faster continuous updates
+t = np.linspace(0, t_max_val, 200)
 sol = odeint(dydt, y0_val, t, args=(lambda_val,))
 
 trace = {
     'x': t.tolist(),
     'y': sol.flatten().tolist(),
     'mode': 'lines',
-    'name': f'y(t) = {y0_val:.2f} * exp(-{lambda_val:.2f}t)',
-    'line': {'width': 3, 'color': '#ff8c5a'}
+    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
+    'line': {'width': 3, 'color': '#3b82f6'}
 }
 
 layout = {
-    'title': f'ODE Solution: $\\frac = -{lambda_val:.2f}y$',
-    'xaxis': {'title': 'Time $t$'},
-    'yaxis': {'title': '$y(t)$'},
+    'title': f'Exponential Decay: dy/dt = -{lambda_val}*y',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
     'height': 400
 }
 
@@ -317,7 +326,80 @@ layout = {
 create_plot([trace], layout)</code></pre>
   </div>
 
-  <div class="plotly-container widget-output" id="continuous-plot-output"></div>
+  <!-- Code block for Oscillatory -->
+  <div class="code-block hidden" data-code-type="oscillatory">
+    <pre><code class="language-python">import numpy as np
+from scipy.integrate import odeint
+
+# Parameters from widgets (injected by widget engine)
+# lambda_val (used as ω²), y0_val, t_max_val are set by widget sliders
+omega_squared = lambda_val  # Using lambda slider as ω²
+
+def dydt(y, t, omega2):
+    # Oscillatory: d²y/dt² = -ω²y, written as first-order system
+    # y[0] = y, y[1] = dy/dt
+    return [y[1], -omega2 * y[0]]
+
+t = np.linspace(0, t_max_val, 200)
+# Initial conditions: [y(0), dy/dt(0)] = [y0_val, 0]
+y0_system = [y0_val, 0]
+sol = odeint(dydt, y0_system, t, args=(omega_squared,))
+
+trace = {
+    'x': t.tolist(),
+    'y': sol[:, 0].tolist(),  # Extract y(t) from system solution
+    'mode': 'lines',
+    'name': f'Oscillatory: y(t) with ω² = {omega_squared}',
+    'line': {'width': 3, 'color': '#10b981'}
+}
+
+layout = {
+    'title': f'Oscillatory ODE: d²y/dt² = -{omega_squared}*y',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
+
+# Store plot data for rendering
+create_plot([trace], layout)</code></pre>
+  </div>
+
+  <!-- Code block for Logistic Growth -->
+  <div class="code-block hidden" data-code-type="logistic">
+    <pre><code class="language-python">import numpy as np
+from scipy.integrate import odeint
+
+# Parameters from widgets (injected by widget engine)
+# lambda_val (used as r), y0_val, t_max_val are set by widget sliders
+r = lambda_val  # Growth rate
+K = 2.0  # Carrying capacity (fixed for now)
+
+def dydt(y, t, r_param, K_param):
+    return r_param * y * (1 - y / K_param)
+
+t = np.linspace(0, t_max_val, 200)
+sol = odeint(dydt, y0_val, t, args=(r, K))
+
+trace = {
+    'x': t.tolist(),
+    'y': sol.flatten().tolist(),
+    'mode': 'lines',
+    'name': f'Logistic Growth: r={r}, K={K}',
+    'line': {'width': 3, 'color': '#f59e0b'}
+}
+
+layout = {
+    'title': f'Logistic Growth: dy/dt = {r}*y*(1 - y/{K})',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
+
+# Store plot data for rendering
+create_plot([trace], layout)</code></pre>
+  </div>
+
+  <div class="plotly-container widget-output"></div>
 </div>
 
 <h2 id="mathematics-test">Mathematics Test</h2>
