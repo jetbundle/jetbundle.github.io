@@ -256,7 +256,7 @@ class WidgetEngine {
       // Use consistent widget ID
       const widgetId = widgetData.element.id || `widget_${this.widgets.size}`;
       widgetData.element.id = widgetId; // Ensure ID is set
-      
+
       // Use consistent plot data variable per widget
       if (!widgetData.plotDataVar) {
         widgetData.plotDataVar = `plot_data_${widgetId.replace(/[^a-zA-Z0-9_]/g, '_')}`;
@@ -351,6 +351,7 @@ else:
         }
 
         // Configure Plotly for LaTeX rendering
+        // Remove mathjax config if MathJax isn't fully loaded to avoid errors
         const plotConfig = {
           template: plotlyTemplate,
           responsive: true,
@@ -362,15 +363,29 @@ else:
             scale: 1
           }
         };
+        
+        // Only add mathjax config if MathJax is fully loaded
+        if (window.MathJax && window.MathJax.startup && window.MathJax.startup.document && window.MathJax.typesetPromise) {
+          plotConfig.mathjax = 'cdn';
+        } else {
+          console.log('MathJax not fully loaded, skipping LaTeX rendering in Plotly');
+          // Convert LaTeX in titles to plain text for now
+          if (plotData.layout && plotData.layout.title && typeof plotData.layout.title === 'string') {
+            plotData.layout.title = plotData.layout.title
+              .replace(/\$.*?\$/g, '') // Remove $...$
+              .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1)/($2)') // Convert frac to readable
+              .replace(/\\/g, ''); // Remove remaining backslashes
+          }
+        }
 
         // Check if we should use Plotly.react for continuous updates
         // Use react if: continuous widget, plot already exists (hasPlot=true), and output has data
         const shouldUseReact = widgetData.isContinuous && widgetData.hasPlot && output.data && output.data.length > 0;
-        
+
         if (shouldUseReact) {
           // Use Plotly.react for efficient updates (doesn't recreate the plot DOM)
           console.log('Using Plotly.react for continuous update');
-          
+
           // Don't clear innerHTML for react - just update the data
           Plotly.react(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
             widgetData.hasPlot = true; // Ensure flag is set
@@ -425,16 +440,27 @@ else:
               } else {
                 console.warn('Plot may not have rendered - output.data is empty');
               }
-              // Trigger MathJax rendering after plot is rendered
-              if (window.MathJax && window.MathJax.typesetPromise) {
-                window.MathJax.typesetPromise([output]).catch((err) => {
-                  console.log('MathJax rendering issue:', err);
-                });
-              }
+              // Don't trigger MathJax rendering - let Plotly handle it if mathjax config is set
+              // MathJax in Plotly plots is handled internally by Plotly
             }).catch(err => {
               console.error('Plotly.newPlot error:', err);
-              output.innerHTML = `<div style="color: red; padding: 1rem;">Error rendering plot: ${err.message}</div>`;
-              widgetData.hasPlot = false; // Reset flag on error
+              // Check if error is MathJax related and retry without mathjax
+              if (err.message && err.message.includes('MathJax')) {
+                console.log('Retrying plot without MathJax configuration');
+                const configWithoutMathJax = { ...plotConfig };
+                delete configWithoutMathJax.mathjax;
+                Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, configWithoutMathJax).then(() => {
+                  widgetData.hasPlot = true;
+                  console.log('Plot rendered successfully without MathJax');
+                }).catch(retryErr => {
+                  console.error('Plot rendering failed even without MathJax:', retryErr);
+                  output.innerHTML = `<div style="color: red; padding: 1rem;">Error rendering plot: ${retryErr.message}</div>`;
+                  widgetData.hasPlot = false;
+                });
+              } else {
+                output.innerHTML = `<div style="color: red; padding: 1rem;">Error rendering plot: ${err.message}</div>`;
+                widgetData.hasPlot = false; // Reset flag on error
+              }
             });
           } catch (err) {
             console.error('Error calling Plotly.newPlot:', err);
