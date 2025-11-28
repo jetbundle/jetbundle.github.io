@@ -1,40 +1,64 @@
 ---
 layout: page
 title: About
-description: Mapping the hidden geometry of modern science
+description: A personal laboratory for mathematical imagination
 permalink: /about/
 ---
 
 # jetbundle
 
-**Mapping the hidden geometry of modern science.**
+**A personal laboratory for the mathematical imagination.**
 
-## Preamble: The Bundle as the True Architecture
+## What This Is
 
-This project is an audit. It maps the hidden geometry of modern science.
+**jetbundle** is my personal exploration of the hidden patterns and secret connections in mathematics, physics, engineering, and philosophy.
 
-The premise of `jetbundle` is that mathematics, physics, computer science, and finance are not independent disciplines. They are components of a single, unified structure—a **fiber bundle**—whose geometry is dictated by patronage.
+This is **not** an institutional project. It's **not** a curriculum. It's **not** an audit.
 
-In this model:
+It's a **laboratory** - a collection of computational tools, resources, and reflections born from moments of clarity: staring at deep starfields from mountain summits, watching ocean waves break, tracing patterns in market data, or simply in the infinite silence of one's existence.
 
-1. **The Base Space** is "pure" academia: the university curriculum, the syllabus, the textbook, the journal paper. It is the world of abstract, "unmotivated" definitions—the "ugly scholastic pseudo-mathematics" that Vladimir Arnold identified.
+## The Philosophy
 
-2. **The Fiber** is the world of classified, high-stakes, material applications. It is the *actual problem* a given abstraction was funded to solve. At the point on the Base Space labeled "Complex Analysis," the attached Fiber contains the classified blueprints for a *Nautilus* submarine hull. At "Graph Theory," the Fiber contains the NSA's SKYNET drone-targeting algorithm.
+**Every great discovery begins with imagination.**
 
-3. **The Connection** is the flow of funding. This connection—the grants from the Office of Naval Research (ONR), DARPA, and the Air Force Office of Scientific Research (AFOSR)—defines the "curvature" of the entire system. It dictates how and why the "pure" research of the Base Space is forced to bend to serve the applied needs of the Fiber.
+Mathematics is not a collection of theorems or abstract ideas. Nor is it simply the formal consequences of arbitrary axioms. It's a **language of pattern**, communicating the trancendental architecture of nature itself.
 
-This site is the open-source audit of that structure. We trace the "memo-to-lemma" pipeline.
+This site will maps those patterns across disciplines.
+
+## The Method
+
+I build this site the way great mathematics is discovered:
+
+1. **Observe** — Watch reality (stars, waves, markets, equations)
+2. **Pattern match** — Find universal structures
+3. **Synthesize** — Connect distant fields
+4. **Build** — Create tools others can use
+5. **Reflect** — Ask what it means to be human capable of doing such things.
+
+**We live in a deeply mathematical universe.**
+
+## For Whom
+
+- **Self-directed learners** who want to understand the big picture
+- **Imaginative mathematicians** who see patterns everywhere
+- **Builders** who want to apply mathematics and physics to problems that need solutions
+- **Curious minds** who ask "where did this idea come from?"
+
+
+**This is independent work** — no grants, no sponsors, no institutions.
+
+## The Invitation
+
+**Mathematics belongs to everyone with imagination.**
+
+Use these resources. Build on them. Extend them. Share what you discover. Join the community.
+
+**The only requirement**: Study and master the material. Look at reality with fresh eyes. Become capable to ask better questions those that have been asked before. Follow the patterns wherever they lead.
 
 ---
 
-## Legal and Research Disclaimers
+**To be human is to be an imaginative mathematician exploring the deeply intentional structure of reality.**
 
-**Copyright © 2025 Joel Saucedo. All rights reserved.**
+*— Joel Saucedo*
 
-This website and its content are provided for **research and educational purposes only**. All content, analysis, and conclusions represent the **personal opinions and research of the author** and do not necessarily reflect the views of any institution or organization.
-
-**No Conflicts of Interest:** The author declares no conflicts of interest. This research is conducted independently and is not funded by, sponsored by, or affiliated with any organization that could influence the content or conclusions.
-
-**License:** This project is licensed under the MIT License with a non-commercial use restriction. Commercial use, monetization, or use for financial gain is prohibited without explicit written permission.
-
-**Disclaimer:** See the Disclaimer page for complete legal disclaimers and research methodology.
+---
