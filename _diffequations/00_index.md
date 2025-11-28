@@ -52,32 +52,33 @@ y0 = 1.0
 # Solve ODE
 sol = odeint(dydt, y0, t)
 
-# Create Plotly figure
-fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=t, y=sol.flatten(), 
-    mode='lines',
-    name='y(t) = e^(-2t)',
-    line=dict(color='#3b82f6', width=3)
-))
+# Create plot data for Plotly.js
+trace1 = {
+    'x': t.tolist(),
+    'y': sol.flatten().tolist(),
+    'mode': 'lines',
+    'name': 'y(t) = e^(-2t)',
+    'line': {'color': '#3b82f6', 'width': 3}
+}
 
 # Analytical solution for comparison
-fig.add_trace(go.Scatter(
-    x=t, y=np.exp(-2*t),
-    mode='lines',
-    name='Analytical: e^(-2t)',
-    line=dict(color='#10b981', width=2, dash='dash')
-))
+trace2 = {
+    'x': t.tolist(),
+    'y': np.exp(-2*t).tolist(),
+    'mode': 'lines',
+    'name': 'Analytical: e^(-2t)',
+    'line': {'color': '#10b981', 'width': 2, 'dash': 'dash'}
+}
 
-fig.update_layout(
-    title="First-Order Linear ODE Solution",
-    xaxis_title="Time t",
-    yaxis_title="y(t)",
-    template="plotly_dark",
-    height=400
-)
+layout = {
+    'title': 'First-Order Linear ODE Solution',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
 
-# Convert to JSON for rendering (handled by engine)</code></pre>
+# Store plot data for rendering
+create_plot([trace1, trace2], layout)</code></pre>
   </div>
   
   <div class="plotly-container" id="ode-demo-plot"></div>
