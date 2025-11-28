@@ -700,27 +700,204 @@
 <p>We resolve the ambiguity of the delta function by redefining differentiation. By testing functions against smooth, compact “instruments” (Test Functions), we define <strong>Distributions</strong>. Differentiation becomes a duality operation, making every locally integrable function infinitely differentiable. This creates a rigorous home for the Green’s functions and impulses of Chapter 1.3.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="test-functions">Test Functions</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>Let $\Omega \subset \mathbb{R}^{n}$ be open. The test-function space $\mathcal{D}(\Omega)=C_{c}^{\infty}(\Omega)$ consists of smooth functions with compact support. Its topology is the strict inductive limit of Fréchet spaces: choose compact exhaustion $K_{1}\subset K_{2}\subset \cdots \subset \Omega$, define seminorms</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[p_{N,K}(\phi)=\max_{|\alpha|\le N}\sup_{x\in K} |D^{\alpha}\phi(x)|,\]
 
-<h3 id="core-results">Core Results</h3>
+<p>and equip $\mathcal{D}<em>{K}(\Omega)$ with all $p</em>{N,K}$. A sequence $\phi_{j}\to 0$ in $\mathcal{D}(\Omega)$ iff there exists a fixed compact $K$ containing every $\operatorname{supp}\phi_{j}$ and $D^{\alpha}\phi_{j}\to 0$ uniformly on $K$ for all multi-indices $\alpha$. Differentiation is continuous in this topology.</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<h3 id="distributions">Distributions</h3>
 
-<h3 id="applications">Applications</h3>
+<p>A <strong>distribution</strong> is a continuous linear functional $T:\mathcal{D}(\Omega)\to\mathbb{C}$. Continuity means: for each compact $K\subset \Omega$, there exist $C&gt;0$ and integer $N\ge 0$ such that for all $\phi\in \mathcal{D}_{K}(\Omega)$,</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[\big|\langle T,\phi\rangle\big|\le C \sum_{|\alpha|\le N}\sup_{x\in K}\big|D^{\alpha}\phi(x)\big|.\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>The smallest such $N$ is the <strong>order</strong> of $T$. The Dirac mass $\delta_{a}$ defined by $\langle \delta_{a},\phi\rangle=\phi(a)$ satisfies $</td>
+      <td>\phi(a)</td>
+      <td>\le \sup</td>
+      <td>\phi</td>
+      <td>$, so $\delta_{a}$ has order $0$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The dual space $\mathcal{D}’(\Omega)$ carries the weak-$\ast$ topology: $T_{j}\to T$ if $\langle T_{j},\phi\rangle\to \langle T,\phi\rangle$ for every $\phi\in\mathcal{D}(\Omega)$. Fourier series, Green’s functions, and impulse responses converge naturally in this topology.</p>
+
+<h3 id="calculus-of-distributions">Calculus of Distributions</h3>
+
+<p>Integration by parts motivates the definition of derivatives: for multi-index $\alpha$,</p>
+
+\[\langle \partial^{\alpha} T,\phi\rangle := (-1)^{|\alpha|}\langle T,\partial^{\alpha}\phi\rangle.\]
+
+<p>Since $\phi\mapsto \partial^{\alpha}\phi$ is continuous on $\mathcal{D}$, $\partial^{\alpha}T$ is a distribution. Thus every distribution is infinitely differentiable. Multiplication by smooth functions is defined via $\langle fT,\phi\rangle=\langle T,f\phi\rangle$ for $f\in C^{\infty}(\Omega)$. Convolution with test functions produces smooth functions, and convolution of two distributions is defined when at least one has compact support.</p>
+
+<h3 id="regular-distributions">Regular Distributions</h3>
+
+<p>Every locally integrable function $f\in L^{1}<em>{\text{loc}}(\Omega)$ defines a <strong>regular distribution</strong> $T</em>{f}$ via $\langle T_{f},\phi\rangle = \int_{\Omega} f(x)\phi(x)\,dx$. This embedding identifies $L^{1}_{\text{loc}}(\Omega)$ with a subspace of $\mathcal{D}’(\Omega)$. Singular objects (point masses, principal values) coexist with regular ones, providing a unified framework. However, $\mathcal{D}’$ is too broad for energy estimates; Sobolev spaces refine regularity notions, motivating Section 2.2.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-211-dirac-delta-and-its-derivatives">Example 2.1.1: Dirac Delta and Its Derivatives</h3>
+
+<p><strong>Problem:</strong> Show $\delta_{a}$ has order $0$ and compute its derivatives.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>For $\phi\in\mathcal{D}$, $</td>
+      <td>\langle \delta_{a},\phi\rangle</td>
+      <td>=</td>
+      <td>\phi(a)</td>
+      <td>\le \sup</td>
+      <td>\phi</td>
+      <td>=p_{0}(\phi)$, so order $0$. Differentiating,</td>
+    </tr>
+  </tbody>
+</table>
+
+\[\langle \delta_{a}',\phi\rangle=-\langle \delta_{a},\phi'\rangle=-\phi'(a),\qquad
+\langle \delta_{a}^{(n)},\phi\rangle=(-1)^{n}\phi^{(n)}(a),\]
+
+<p>and each derivative has order $n$.</p>
+
+<h3 id="example-212-heaviside-function">Example 2.1.2: Heaviside Function</h3>
+
+<p><strong>Problem:</strong> Compute $H’$ distributionally for $H(x)=1$ if $x\ge 0$, $0$ otherwise.</p>
+
+<p>For $\phi\in\mathcal{D}(\mathbb{R})$,</p>
+
+\[\langle H',\phi\rangle=-\langle H,\phi'\rangle=-\int_{0}^{\infty}\phi'(x)\,dx=\phi(0)=\langle \delta,\phi\rangle.\]
+
+<p>Therefore $H’=\delta$. Differentiating again yields $H’’=\delta’$.</p>
+
+<h3 id="example-213-greens-function-in-mathbbr2">Example 2.1.3: Green’s Function in $\mathbb{R}^{2}$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Verify $-\Delta \Phi=\delta$ with $\Phi(x)=-\frac{1}{2\pi}\log</td>
+      <td>x</td>
+      <td>$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For $\phi\in\mathcal{D}(\mathbb{R}^{2})$,</p>
+
+\[\langle -\Delta \Phi,\phi\rangle=\langle \Phi,-\Delta \phi\rangle
+ = -\frac{1}{2\pi}\int_{\mathbb{R}^{2}}\log|x|\Delta\phi(x)\,dx.\]
+
+<p>Integration by parts (boundary terms vanish due to compact support) shows this equals $\phi(0)$, so $-\Delta\Phi=\delta$.</p>
+
+<h3 id="example-214-fourier-series-convergence-in-mathcald">Example 2.1.4: Fourier Series Convergence in $\mathcal{D}’$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Show the Fourier series of $f(x)=</td>
+      <td>x</td>
+      <td>$ on $(-\pi,\pi)$ converges to $f$ in $\mathcal{D}’$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Partial sums satisfy $\langle S_{N},\phi\rangle=\int_{-\pi}^{\pi}S_{N}(x)\phi(x)\,dx\to \int_{-\pi}^{\pi}</td>
+      <td>x</td>
+      <td>\phi(x)\,dx$ as $N\to\infty$, because $\phi$ decays near the endpoints. Thus $S_{N}\to f$ distributionally, even though Gibbs oscillations persist pointwise.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-215-periodic-delta-comb">Example 2.1.5: Periodic Delta Comb</h3>
+
+<p><strong>Problem:</strong> Express $\sum_{k\in\mathbb{Z}}\delta(x-2\pi k)$ via Fourier series.</p>
+
+<p>Pairing with $e^{-inx}$ gives coefficients $c_{n}=\frac{1}{2\pi}$. Hence</p>
+
+\[\sum_{k\in\mathbb{Z}}\delta(x-2\pi k)=\frac{1}{2\pi}\sum_{n\in\mathbb{Z}}e^{inx},\]
+
+<p>the Poisson summation formula in $\mathcal{D}’$.</p>
+
+<h3 id="example-216-homogeneous-distributions">Example 2.1.6: Homogeneous Distributions</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Show $</td>
+      <td>x</td>
+      <td>^{\lambda-n}$ is homogeneous of degree $\lambda$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For $t&gt;0$,</p>
+
+\[\left\langle |x|^{\lambda-n},\phi(x/t)\right\rangle
+ = t^{\lambda}\langle |x|^{\lambda-n},\phi\rangle\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>after the change $y=x/t$. Special cases include $\delta$ (degree $-n$) and $</td>
+      <td>x</td>
+      <td>^{2-n}$ (Green’s function in $\mathbb{R}^{n}$, degree $2-n$).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-217-wave-equation-fundamental-solution">Example 2.1.7: Wave Equation Fundamental Solution</h3>
+
+<p><strong>Problem:</strong> Solve $\partial_{tt}u-\partial_{xx}u=\delta(x)\delta(t)$ with $u=0$ for $t&lt;0$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The distribution $E(x,t)=H(t-</td>
+      <td>x</td>
+      <td>)$ satisfies $\partial_{tt}E-\partial_{xx}E=\delta(x)\delta(t)$. Verification follows by testing against $\phi$ and integrating by parts; $E$ describes the light cone in $1+1$ dimensions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-218-order-of-deltan">Example 2.1.8: Order of $\delta^{(n)}$</h3>
+
+<p><strong>Problem:</strong> Prove $\delta^{(n)}$ has order exactly $n$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>We have $</td>
+      <td>\langle \delta^{(n)},\phi\rangle</td>
+      <td>\le p_{n}(\phi)$. To show order $\ge n$, choose $\phi_{\epsilon}(x)=\epsilon^{n+1}\psi(x/\epsilon)$ with $\psi^{(n)}(0)=1$. Then $</td>
+      <td>\langle \delta^{(n)},\phi_{\epsilon}\rangle</td>
+      <td>=\epsilon$, while $p_{k}(\phi_{\epsilon})=O(\epsilon^{n+1-k})$. For $k&lt;n$, $</td>
+      <td>\langle \delta^{(n)},\phi_{\epsilon}\rangle</td>
+      <td>/p_{k}(\phi_{\epsilon})\to \infty$, so no lower order bound exists.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-219-mollification">Example 2.1.9: Mollification</h3>
+
+<p><strong>Problem:</strong> Show $T*\rho_{\epsilon}\in C^{\infty}$ when $T$ has compact support.</p>
+
+<p>Define $(T<em>\rho_{\epsilon})(x)=\langle T_{y},\rho_{\epsilon}(x-y)\rangle$. Differentiating under the pairing gives $\partial_{x}^{\alpha}(T</em>\rho_{\epsilon})=\langle T_{y},\partial_{x}^{\alpha}\rho_{\epsilon}(x-y)\rangle$, smooth in $x$. Thus mollification approximates distributions by smooth functions.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+  <li>Hörmander, L. (1983). <em>The Analysis of Linear Partial Differential Operators I</em>. Springer.</li>
+  <li>Rudin, W. (1991). <em>Functional Analysis</em>. McGraw–Hill.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
