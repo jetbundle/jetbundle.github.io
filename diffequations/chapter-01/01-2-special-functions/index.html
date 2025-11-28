@@ -707,12 +707,12 @@
 
 <p>The Gauss hypergeometric equation is the canonical linear equation with three regular singular points (at $z=0,1,\infty$):</p>
 
-\[z(1-z)rac{d^2y}{dz^2} + ig[c - (a+b+1)zig]rac{dy}{dz} - ab\,y = 0.\]
+\[z(1-z)\frac{d^2y}{dz^2} + \big[c - (a+b+1)z\big]\frac{dy}{dz} - ab\,y = 0.\]
 
 <p>Inside $\lvert z
-vert &lt; 1$, the solution is the Gauss series</p>
+\rvert &lt; 1$, the solution is the Gauss series</p>
 
-\[{}_2F_1(a,b;c;z) = \sum_{n=0}^{\infty} rac{(a)_n (b)_n}{(c)_n}rac{z^n}{n!},\]
+\[{}_2F_1(a,b;c;z) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n}{(c)_n}\frac{z^n}{n!},\]
 
 <p>with $(a)_n = \Gamma(a+n)/\Gamma(a)$. When $a$ or $b$ is a non-positive integer, the series terminates and produces polynomial solutions. Analytic continuation (with branch cut $[1,\infty)$) follows from Euler integrals, and the fifteen contiguous relations summarized in <strong>Andrews, Askey &amp; Roy (1999)</strong> show that the topology of the Riemann sphere governs all transformations among these solutions.</p>
 
@@ -721,7 +721,7 @@ vert &lt; 1$, the solution is the Gauss series</p>
 <p>Most named functions arise as confluent limits of ${}_2F_1$, where regular singularities merge into irregular ones:</p>
 
 <ol>
-  <li><strong>Bessel functions.</strong> Rescaling $z\mapsto z/b$ and letting $b	o\infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_
+  <li><strong>Bessel functions.</strong> Rescaling $z\mapsto z/b$ and letting $b\to\infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_
 u$.</li>
   <li><strong>Kummer/Whittaker functions.</strong> When two singularities coalesce, the confluent hypergeometric function ${}_1F_1(a;c;z)$ emerges, featuring one regular and one irregular singular point.</li>
   <li><strong>Legendre polynomials.</strong> Integer parameter choices in ${}_2F_1$ recover $P_n(x)$, representing spherical symmetry.</li>
@@ -733,14 +733,14 @@ u$.</li>
 
 <p>For a linear equation $y’’ + P(z) y’ + Q(z)y = 0$, a point $z_0$ is a <strong>regular singular point</strong> if $(z-z_0)P(z)$ and $(z-z_0)^2 Q(z)$ are analytic at $z_0$. The Frobenius ansatz</p>
 
-\[y(z) = (z-z_0)^r \sum_{n=0}^{\infty} a_n (z-z_0)^n, \qquad a_0 
+\[y(z) = (z-z_0)^r \sum_{n=0}^{\infty} a_n (z-z_0)^n, \qquad a_0
 eq 0,\]
 
 <p>leads to the indicial equation</p>
 
 \[r(r-1) + p_0 r + q_0 = 0,\]
 
-<p>where $p_0 = \lim_{z	o z_0} (z-z_0)P(z)$ and $q_0 = \lim_{z	o z_0} (z-z_0)^2 Q(z)$. Differences of the roots determine whether logarithmic terms are required for linear independence. The Riemann $P$-symbol records these exponents, and any equation with three regular singularities is equivalent (via Möbius transformations) to ${}_2F_1$.</p>
+<p>where $p_0 = \lim_{z\to z_0} (z-z_0)P(z)$ and $q_0 = \lim_{z\to z_0} (z-z_0)^2 Q(z)$. Differences of the roots determine whether logarithmic terms are required for linear independence. The Riemann $P$-symbol records these exponents, and any equation with three regular singularities is equivalent (via Möbius transformations) to ${}_2F_1$.</p>
 
 <h3 id="irregular-singularities-and-asymptotic-analysis">Irregular Singularities and Asymptotic Analysis</h3>
 
@@ -749,13 +749,13 @@ eq 0,\]
 \[y(z) \sim e^{S(z)} z^{
 ho} \sum_{n=0}^{\infty} a_n z^{-n}.\]
 
-<p>The divergence records the <strong>Stokes phenomenon</strong>: as $rg z$ crosses certain rays, the coefficients of exponentially suppressed terms jump discontinuously. Controlling these jumps via connection formulae or Borel summation provides the analytic continuation machinery used later in the text (<strong>Olver et al., 2010</strong>).</p>
+<p>The divergence records the <strong>Stokes phenomenon</strong>: as $\arg z$ crosses certain rays, the coefficients of exponentially suppressed terms jump discontinuously. Controlling these jumps via connection formulae or Borel summation provides the analytic continuation machinery used later in the text (<strong>Olver et al., 2010</strong>).</p>
 
 <h3 id="sturmliouville-orthogonality">Sturm–Liouville Orthogonality</h3>
 
 <p>Many special functions are eigenfunctions of self-adjoint Sturm–Liouville operators</p>
 
-\[-rac{d}{dx}\left[p(x)rac{dy}{dx}
+\[-\frac{d}{dx}\left[p(x)\frac{dy}{dx}
 ight] + q(x) y = \lambda w(x) y.\]
 
 <p>Under suitable boundary conditions, the eigenvalues are real and discrete and the eigenfunctions form an orthogonal basis of $L^2_w([a,b])$:</p>
@@ -772,15 +772,15 @@ ight] + q(x) y = \lambda w(x) y.\]
 
 <p>Mapping $x$ to $z = (1-x)/2$ and taking $a=-n$, $b=n+1$, $c=1$ gives</p>
 
-\[P_n(x) = {}_2F_1\left(-n,n+1;1;rac{1-x}{2}
-ight) = \sum_{k=0}^{n} rac{(-n)_k (n+1)_k}{k!}\left(rac{1-x}{2}
+\[P_n(x) = {}_2F_1\left(-n,n+1;1;\frac{1-x}{2}
+ight) = \sum_{k=0}^{n} \frac{(-n)_k (n+1)_k}{k!}\left(\frac{1-x}{2}
 ight)^k.\]
 
 <p>For $n=2$,</p>
 
-\[P_2(x) = 1 - 6\left(rac{1-x}{2}
-ight) + 3\left(rac{1-x}{2}
-ight)^2 = rac{3x^2 - 1}{2},\]
+\[P_2(x) = 1 - 6\left(\frac{1-x}{2}
+ight) + 3\left(\frac{1-x}{2}
+ight)^2 = \frac{3x^2 - 1}{2},\]
 
 <p>which satisfies $(1-x^2)P_2’’ - 2x P_2’ + 6P_2 = 0$, verifying the connection to the Gauss equation.</p>
 
@@ -790,34 +790,34 @@ ight)^2 = rac{3x^2 - 1}{2},\]
 
 <p>The radial Schrödinger equation</p>
 
-\[-u''(r) + \left[rac{\ell(\ell+1)}{r^2} - rac{2}{r}
+\[-u''(r) + \left[\frac{\ell(\ell+1)}{r^2} - \frac{2}{r}
 ight]u(r) = 2E\,u(r)\]
 
 <p>is simplified by $u(r) = e^{-
-ho/2} 
+ho/2}
 ho^{\ell} v(
 ho)$ with $
 ho = 2\sqrt{-2E}\,r$. The transformed equation reads</p>
 
-\[ho v'' + [2(\ell+1) - 
+\[ho v'' + [2(\ell+1) -
 ho] v' + (n-\ell-1) v = 0,\]
 
 <p>so $v(
-ho) = {}_1F_1(n-\ell-1; 2\ell+2; 
+ho) = {}_1F_1(n-\ell-1; 2\ell+2;
 ho)$. For $n=2$, $\ell=0$,</p>
 
 \[v(
 ho) = {}_1F_1(1;2;
-ho) = 1 + rac{
+ho) = 1 + \frac{
 ho}{2},\]
 
 <p>and</p>
 
 \[u_{2s}(r) = e^{-
-ho/2}\left(1 + rac{
+ho/2}\left(1 + \frac{
 ho}{2}
-ight), \qquad 
-ho = rac{r}{a_0},\]
+ight), \qquad
+ho = \frac{r}{a_0},\]
 
 <p>which matches the textbook hydrogenic state up to normalization.</p>
 
@@ -826,42 +826,42 @@ ho = rac{r}{a_0},\]
 <p><strong>Problem:</strong> Obtain $J_
 u$ as a confluent limit of ${}_2F_1$.</p>
 
-<p>Consider ${}_2F_1(a,b;c;2z/b)$ with $b	o\infty$. Since $(b)_n = b^n \left[1 + O!\left(rac{1}{b}
+<p>Consider ${}_2F_1(a,b;c;2z/b)$ with $b\to\infty$. Since $(b)_n = b^n \left[1 + O!\left(\frac{1}{b}
 ight)
 ight]$, the series approaches</p>
 
-\[{}_0F_1(c; z) = \sum_{n=0}^{\infty} rac{1}{(c)_n}rac{z^n}{n!}.\]
+\[{}_0F_1(c; z) = \sum_{n=0}^{\infty} \frac{1}{(c)_n}\frac{z^n}{n!}.\]
 
-<p>Choosing $c = 
-u+1$ and $z = -	frac{x^2}{4}$ yields</p>
+<p>Choosing $c =
+u+1$ and $z = -\tfrac{x^2}{4}$ yields</p>
 
 \[J_
-u(x) = rac{(x/2)^
+u(x) = \frac{(x/2)^
 u}{\Gamma(
 u+1)}\, {}_0F_1\left(
-u+1; -rac{x^2}{4}
+u+1; -\frac{x^2}{4}
 ight),\]
 
 <p>showing that the entire Bessel hierarchy inherits its analytic structure from the hypergeometric parent.</p>
 
 <h3 id="example-124-frobenius-analysis-of-the-bessel-equation">Example 1.2.4: Frobenius Analysis of the Bessel Equation</h3>
 
-<p><strong>Problem:</strong> Apply the Frobenius method at $x=0$ to $x^2 y’’ + x y’ + (x^2 - 
+<p><strong>Problem:</strong> Apply the Frobenius method at $x=0$ to $x^2 y’’ + x y’ + (x^2 -
 u^2)y = 0$.</p>
 
-<p>Because $xP(x)=1$ and $x^2 Q(x)=x^2 - 
+<p>Because $xP(x)=1$ and $x^2 Q(x)=x^2 -
 u^2$ are analytic at $x=0$, we expand $y = x^r \sum_{n=0}^{\infty} a_n x^n$. The indicial equation is</p>
 
-\[r(r-1) + r - 
-u^2 = 0 \quad \Longrightarrow \quad r = \pm 
+\[r(r-1) + r -
+u^2 = 0 \quad \Longrightarrow \quad r = \pm
 u.\]
 
 <p>The $r=+
 u$ branch yields</p>
 
 \[J_
-u(x) = \sum_{k=0}^{\infty} rac{(-1)^k}{k!\,\Gamma(k+
-u+1)}\left(rac{x}{2}
+u(x) = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!\,\Gamma(k+
+u+1)}\left(\frac{x}{2}
 ight)^{2k+
 u},\]
 
@@ -877,18 +877,18 @@ u$), clarifying how exponent differences govern logarithmic corrections.</p>
 
 <p>Expanding $f(r)$ as</p>
 
-\[f(r) = \sum_{n=1}^{\infty} c_n J_0\left(rac{\lambda_n r}{a}
-ight), \qquad \lambda_n = 	ext{nth zero of }J_0,\]
+\[f(r) = \sum_{n=1}^{\infty} c_n J_0\left(\frac{\lambda_n r}{a}
+ight), \qquad \lambda_n = \text{nth zero of }J_0,\]
 
 <p>and using the weight $w(r)=r$ gives</p>
 
-\[\int_{0}^{a} r\, J_0\left(rac{\lambda_m r}{a}
-ight) J_0\left(rac{\lambda_n r}{a}
-ight) dr = rac{a^2}{2} J_1^2(\lambda_n)\,\delta_{mn}.\]
+\[\int_{0}^{a} r\, J_0\left(\frac{\lambda_m r}{a}
+ight) J_0\left(\frac{\lambda_n r}{a}
+ight) dr = \frac{a^2}{2} J_1^2(\lambda_n)\,\delta_{mn}.\]
 
 <p>Hence</p>
 
-\[c_n = rac{2}{a^2 J_1^2(\lambda_n)} \int_{0}^{a} r\, f(r)\, J_0\left(rac{\lambda_n r}{a}
+\[c_n = \frac{2}{a^2 J_1^2(\lambda_n)} \int_{0}^{a} r\, f(r)\, J_0\left(\frac{\lambda_n r}{a}
 ight) dr,\]
 
 <p>demonstrating the Sturm–Liouville origin of Fourier–Bessel series for cylindrical heat or wave propagation.</p>
