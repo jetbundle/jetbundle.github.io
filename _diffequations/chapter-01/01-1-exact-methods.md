@@ -28,7 +28,7 @@ Before attempting to solve a first-order differential equation of the form $y' =
 
 Let $D \subset \mathbb{R}^2$ be a domain containing the point $(t_0, y_0)$. We require the function $f(t, y)$ to be continuous on $D$ and to satisfy a **Lipschitz condition** with respect to $y$ uniformly in $t$. That is, there exists a constant $K > 0$ such that for all $(t, y_1)$ and $(t, y_2)$ in $D$:
 
-$\|f(t, y_1) - f(t, y_2)\| \leq K\|y_1 - y_2\|$
+$\left|f(t, y_1) - f(t, y_2)\right| \leq K\left|y_1 - y_2\right|$
 
 Under these conditions, there exists an interval $I$ centered at $t_0$ where a unique solution $y(t)$ exists satisfying the initial value problem $y(t_0) = y_0$.
 
@@ -164,11 +164,11 @@ These examples provide complete analytical workthroughs that:
 <details>
 <summary>Click to reveal solution</summary>
 
-We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\|f(y_1) - f(y_2)\| = \|y_1 - y_2\| \leq 1 \cdot \|y_1 - y_2\|$, establishing a Lipschitz constant $K = 1$.
+We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|$, establishing a Lipschitz constant $K = 1$.
 
 The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-For convergence analysis, we apply the error estimate $\|y(t) - y_n(t)\| \leq \frac{M K^n \|t\|^{n+1}}{(n+1)! (1 - K\|t\|)}$ where $M = \max\|f(y)\|$ on the complete rectangle. For $\|t\| \leq 1/2$, we have $K\|t\| = 1/2 < 1$, yielding $\|y(t) - y_3(t)\| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
+For convergence analysis, we apply the error estimate $\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! (1 - K\left|t\right|)}$ where $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding $\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
 
 The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
 
@@ -177,16 +177,16 @@ The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, reveali
 
 ### Example 1.1.2: Non-Lipschitz Failure
 
-**Problem:** $y' = \|y\|^{1/2}$, $y(0) = 0$
+**Problem:** $y' = \left|y\right|^{1/2}$, $y(0) = 0$
 
 <details>
 <summary>Click to reveal solution</summary>
 
-This example demonstrates the critical nature of the Lipschitz condition. The function $f(y) = \|y\|^{1/2}$ is continuous but fails to be Lipschitz near $y=0$, as the derivative becomes unbounded.
+This example demonstrates the critical nature of the Lipschitz condition. The function $f(y) = \left|y\right|^{1/2}$ is continuous but fails to be Lipschitz near $y=0$, as the derivative becomes unbounded.
 
 The failure of uniqueness is immediate: we have the trivial solution $y_1(t) = 0$ for all $t$, but also the non-trivial solution $y_2(t) = \begin{cases} \frac{t^2}{4} & t \geq 0 \\ 0 & t < 0 \end{cases}$.
 
-To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that $\sqrt{\frac{t^2}{4}} = \frac{t}{2} = \|y_2(t)\|^{1/2}$, confirming it satisfies the differential equation. This non-uniqueness reveals the sharpness of the Lipschitz condition in the Picard-Lindelöf theorem.
+To verify the second solution, we compute $y_2'(t) = \frac{t}{2}$ for $t > 0$, and observe that $\sqrt{\frac{t^2}{4}} = \frac{t}{2} = \left|y_2(t)\right|^{1/2}$, confirming it satisfies the differential equation. This non-uniqueness reveals the sharpness of the Lipschitz condition in the Picard-Lindelöf theorem.
 
 </details>
 
@@ -202,7 +202,7 @@ $\frac{dy}{y(1 - y/L)} = k \, dt$
 
 $\frac{1}{y(1 - y/L)} = \frac{L}{y(L - y)} = \frac{1}{L} \left( \frac{1}{y} + \frac{1}{L-y} \right)$
 
-$\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left\|\frac{y}{L-y}\right\| = k t + C$
+$\int \frac{dy}{y(1 - y/L)} = \frac{1}{L} \ln\left|\frac{y}{L-y}\right| = k t + C$
 
 $y(t) = \frac{L y_0 e^{kt}}{L + y_0 (e^{kt} - 1)}$
 
@@ -248,7 +248,7 @@ We first test for exactness and find $\frac{\partial M}{\partial y} = \cos x \ne
 
 However, by recognizing the structure of the equation—specifically that $M = y\cos x + 2x\sin x$ and $N = \sin x$—we can try the integrating factor $\mu = 1/\sin x$. This yields $M\mu = \frac{y\cos x}{\sin x} + 2x = y\cot x + 2x$ and $N\mu = 1$. The new exactness test confirms $\frac{\partial (M\mu)}{\partial y} = \cot x = \frac{\partial (N\mu)}{\partial x}$.
 
-We now construct the potential function $\psi = \int (y\cot x + 2x) \, dx = y\ln\|\sin x\| + x^2 + f(y)$. Differentiating with respect to $y$ gives $\frac{\partial \psi}{\partial y} = \ln\|\sin x\| + f'(y) = 1$, from which we deduce $f(y) = y$. The final solution is $y\ln\|\sin x\| + x^2 + y = C$.
+We now construct the potential function $\psi = \int (y\cot x + 2x) \, dx = y\ln\left|\sin x\right| + x^2 + f(y)$. Differentiating with respect to $y$ gives $\frac{\partial \psi}{\partial y} = \ln\left|\sin x\right| + f'(y) = 1$, from which we deduce $f(y) = y$. The final solution is $y\ln\left|\sin x\right| + x^2 + y = C$.
 
 </details>
 

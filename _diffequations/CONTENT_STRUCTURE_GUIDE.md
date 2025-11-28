@@ -1,7 +1,7 @@
 # Content Structure Guide: Section Formatting Standards
 
-**Version:** 1.0  
-**Last Updated:** 2025-01-XX  
+**Version:** 1.0
+**Last Updated:** 2025-01-XX
 **Purpose:** Defines the optimal structure and formatting standards for section content in the Differential Equations resource.
 
 ---
@@ -62,14 +62,19 @@ Each example must follow this structure:
 4. **LaTeX formatting** - All absolute values use `\|` not `|` in math mode
 5. **No bold section headers** - Remove `**Step 1:**`, `**Solution:**`, etc.
 
-### LaTeX Pipe Fix
+### LaTeX Absolute Value Formatting
 
-In all LaTeX expressions, replace `|` with `\|` for absolute values:
+In all LaTeX expressions, replace `|` with `\left|` and `\right|` for absolute values:
 
 - ❌ Wrong: `$|f(y_1) - f(y_2)|$`
-- ✅ Correct: `$\|f(y_1) - f(y_2)\|$`
+- ❌ Also Wrong: `$\|f(y_1) - f(y_2)\|$`
+- ✅ Correct: `$\left|f(y_1) - f(y_2)\right|$`
 
-**Exception**: If already escaped (`\|`), leave as is.
+**Rules:**
+- Always use `\left|` to open and `\right|` to close
+- This ensures proper scaling of absolute value bars
+- For single absolute values: `$\left|x\right|$`
+- For expressions: `$\left|\frac{a}{b}\right|$`
 
 ---
 
@@ -121,9 +126,10 @@ The user will provide content in this format:
    - Maintain logical flow
    - Preserve all LaTeX
 
-2. **Fix LaTeX pipes:**
-   - Replace `|` with `\|` in all math expressions
+2. **Fix LaTeX absolute values:**
+   - Replace `|` with `\left|` and `\right|` in all math expressions
    - Check both inline `$...$` and display `$$...$$`
+   - Ensure proper pairing: every `\left|` has a matching `\right|`
 
 3. **Format theorems/definitions:**
    - Use `**Theorem [X.Y.Z]** ([Name])` format
@@ -140,7 +146,7 @@ For each example:
 2. **Process solution:**
    - Remove all bold section headers (`**Step 1:**`, `**Solution:**`, etc.)
    - Convert to narrative style
-   - Fix LaTeX pipes (`|` → `\|`)
+   - Fix LaTeX absolute values (`|` → `\left|` and `\right|`)
    - Make it read as a continuous story
 
 3. **Wrap in collapsible:**
@@ -156,11 +162,11 @@ For each example:
 <details>
 <summary>Click to reveal solution</summary>
 
-We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\|f(y_1) - f(y_2)\| = \|y_1 - y_2\| \leq 1 \cdot \|y_1 - y_2\|$, establishing a Lipschitz constant $K = 1$.
+We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\left|f(y_1) - f(y_2)\right| = \left|y_1 - y_2\right| \leq 1 \cdot \left|y_1 - y_2\right|$, establishing a Lipschitz constant $K = 1$.
 
 The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-For convergence analysis, we apply the error estimate $|y(t) - y_n(t)| \leq \frac{M K^n |t|^{n+1}}{(n+1)! (1 - K|t|)}$ where $M = \max|f(y)|$ on the complete rectangle. For $|t| \leq 1/2$, we have $K|t| = 1/2 < 1$, yielding $|y(t) - y_3(t)| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
+For convergence analysis, we apply the error estimate $\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! (1 - K\left|t\right|)}$ where $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding $\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
 
 The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
 
@@ -179,7 +185,7 @@ The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, reveali
    - Related Sections
 
 2. **Verify:**
-   - All LaTeX pipes fixed
+   - All LaTeX absolute values use `\left|` and `\right|`
    - Only "Problem:" bold in examples
    - All solutions collapsible
    - Narrative flow maintained
@@ -232,7 +238,7 @@ Before finalizing each section:
 - [ ] Examples moved after References
 - [ ] Only "Problem:" is bold in examples
 - [ ] All solutions are collapsible (`<details>`)
-- [ ] All LaTeX pipes fixed (`|` → `\|`)
+- [ ] All LaTeX absolute values use `\left|` and `\right|`
 - [ ] Solutions written in narrative style
 - [ ] No bold section headers in solutions
 - [ ] Structure follows optimal order
@@ -253,7 +259,7 @@ When processing new content:
 3. **Process examples** individually:
    - Extract problem (keep bold)
    - Convert solution to narrative
-   - Fix LaTeX pipes
+   - Fix LaTeX absolute values (`|` → `\left|` and `\right|`)
    - Wrap in collapsible
 4. **Assemble** in optimal order
 5. **Verify** against checklist
@@ -307,7 +313,7 @@ We begin by verifying the Lipschitz condition. For $f(y) = y$, we have $\|f(y_1)
 
 The Picard iteration process starts with the initial guess $y_0(t) = 1$. The first iterate is computed as $y_1(t) = 1 + \int_0^t y_0(s) \, ds = 1 + t$. Continuing this process, we find $y_2(t) = 1 + t + \frac{t^2}{2}$, and $y_3(t) = 1 + t + \frac{t^2}{2} + \frac{t^3}{6}$. The pattern becomes clear: $y_n(t) = \sum_{k=0}^n \frac{t^k}{k!}$.
 
-For convergence analysis, we apply the error estimate $\|y(t) - y_n(t)\| \leq \frac{M K^n \|t\|^{n+1}}{(n+1)! (1 - K\|t\|)}$ where $M = \max\|f(y)\|$ on the complete rectangle. For $\|t\| \leq 1/2$, we have $K\|t\| = 1/2 < 1$, yielding $\|y(t) - y_3(t)\| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
+For convergence analysis, we apply the error estimate $\left|y(t) - y_n(t)\right| \leq \frac{M K^n \left|t\right|^{n+1}}{(n+1)! (1 - K\left|t\right|)}$ where $M = \max\left|f(y)\right|$ on the complete rectangle. For $\left|t\right| \leq 1/2$, we have $K\left|t\right| = 1/2 < 1$, yielding $\left|y(t) - y_3(t)\right| \leq \frac{3 \cdot (1/2)^4}{4!} = \frac{3}{384} \approx 0.0078$.
 
 The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, revealing that the exponential series arises naturally from the fixed-point iteration process.
 
@@ -325,7 +331,6 @@ The exact solution emerges as $y(t) = e^t = \lim_{n \to \infty} y_n(t)$, reveali
 
 ---
 
-**Document Status:** Active Reference  
-**Maintained By:** Content Processing System  
+**Document Status:** Active Reference
+**Maintained By:** Content Processing System
 **Related Documents:** `IMPLEMENTATION_PLAN.md`, `PHASE_1_2_EXECUTION_PLAN.md`
-
