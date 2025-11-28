@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Section 3.3: Entropy Solutions & Shock Theory</title>
-  <meta name="description" content="Rankine-Hugoniot, Lax entropy condition">
+  <meta name="description" content="Rankine-Hugoniot, entropy inequalities, TVD schemes">
 
   <!-- MathJax -->
   <script>
@@ -689,7 +689,7 @@
     <main class="textbook-main">
       <header class="textbook-header">
         <h1>Section 3.3: Entropy Solutions & Shock Theory</h1>
-        <p class="description">Rankine-Hugoniot, Lax entropy condition</p>
+        <p class="description">Rankine-Hugoniot, entropy inequalities, TVD schemes</p>
       </header>
 
       <article class="textbook-content">
@@ -697,30 +697,139 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>Since weak solutions to shock problems are not unique, we require a physical selection principle. We introduce the <strong>Rankine-Hugoniot conditions</strong> and the <strong>Lax Entropy Condition</strong>, which enforces irreversibility (information loss). <strong>Kruzhkov’s Theory</strong> provides the rigorous existence and uniqueness for these scalar entropy solutions.</p>
+<p>Characteristics show that nonlinear hyperbolic flows convert smooth data into vertical gradients in finite time. The differential form $\partial_{t}u + \nabla \cdot f(u) = 0$ ceases to make classical sense at the breaking time, yet the integral balance law remains valid. By enlarging the solution space to distributions we retain conservation, but weak solutions are non-unique. Physical irreversibility must be reintroduced analytically via <strong>entropy conditions</strong>. This section derives the Rankine–Hugoniot jump relation, explains why weak formulations alone fail, and presents Lax’s entropy admissibility, entropy–entropy flux pairs, Kruzhkov’s $L^{1}$-contraction theory, and constructive schemes such as Glimm’s method.</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="rankinehugoniot-jump-condition">Rankine–Hugoniot Jump Condition</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>For a one-dimensional conservation law $\partial_{t}u + \partial_{x}f(u) = 0$, suppose $u$ has a discontinuity along $x=s(t)$ with limits $u_{L}$ and $u_{R}$. Integrating over a shrinking space–time control volume and applying the divergence theorem yields the <strong>Rankine–Hugoniot condition</strong></p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[\sigma [u] = [f(u)], \qquad \sigma = \frac{f(u_{R}) - f(u_{L})}{u_{R}-u_{L}},\]
 
-<h3 id="core-results">Core Results</h3>
+<p>where $[v]=v_{R}-v_{L}$. This algebraic relation completely determines the shock speed once the states are known. In multiple dimensions the jump law reads $\sigma [u] = [f(u)\cdot n]$, with $n$ the unit normal to the shock surface (Evans, 2010; Lax, 1973).</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<h3 id="non-uniqueness-of-weak-solutions">Non-Uniqueness of Weak Solutions</h3>
 
-<h3 id="applications">Applications</h3>
+<p>Rankine–Hugoniot is necessary but not sufficient. For Burgers’ flux $f(u)=u^{2}/2$ and Riemann data $u_{L}=-1$, $u_{R}=1$, the stationary discontinuity $u(x,t)=-\operatorname{sgn}(x)$ satisfies the jump law with $\sigma=0$. The rarefaction fan</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+\[u(x,t)=\begin{cases}-1,&amp;x&lt;-t,\\ x/t,&amp;-t\le x\le t,\\ 1,&amp;x&gt;t,\end{cases}\]
 
-<h2 id="complete-examples">Complete Examples</h2>
+<p>also satisfies the integral conservation law. Thus weak solutions are not unique and extra admissibility is required to exclude shocks that emit characteristics.</p>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="lax-entropy-condition">Lax Entropy Condition</h3>
+
+<p>Physical shocks destroy information: characteristics must enter the discontinuity. For a scalar law with convex flux $f’‘&gt;0$, Lax’s condition demands</p>
+
+\[f'(u_{L}) &gt; \sigma &gt; f'(u_{R}).\]
+
+<p>In Burgers with $u_{L}=-1$, $u_{R}=1$, this inequality would require $-1&gt;0&gt;1$, which is false; hence the stationary shock is rejected and the rarefaction is selected. For systems with eigenvalues $\lambda_{1}&lt;\dots&lt;\lambda_{m}$, a $k$-shock with speed $\sigma$ is admissible if $\lambda_{k}(u_{L})&gt;\sigma&gt;\lambda_{k}(u_{R})$ and $\sigma$ lies strictly between the neighboring characteristic families (Lax, 1973).</p>
+
+<h3 id="entropyentropy-flux-pairs">Entropy–Entropy Flux Pairs</h3>
+
+<p>To encode admissibility in distributional form, choose a strictly convex entropy $\eta(u)$ and define an associated flux $q(u)$ via $q’(u)=\eta’(u)f’(u)$. Smooth solutions satisfy $\partial_{t}\eta(u)+\partial_{x}q(u)=0$. Across shocks, convexity produces an inequality, leading to the definition: a weak solution is an <strong>entropy solution</strong> if for every entropy pair $(\eta,q)$,</p>
+
+\[\partial_{t}\eta(u)+\partial_{x}q(u) \le 0\]
+
+<p>in distributions. This ensures that the total entropy $\int \eta(u)dx$ is non-increasing and that discontinuities only dissipate information.</p>
+
+<h3 id="kruzhkovs-l1-contraction-theorem">Kruzhkov’s $L^{1}$ Contraction Theorem</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Kruzhkov (1970) introduced a complete entropy family $\eta_{k}(u)=</td>
+      <td>u-k</td>
+      <td>$ with fluxes $q_{k}(u)=\operatorname{sgn}(u-k)\big(f(u)-f(k)\big)$. He proved that if $u$ and $v$ are entropy solutions with initial data $u_{0}$ and $v_{0}$, then for all $t&gt;0$,</td>
+    </tr>
+  </tbody>
+</table>
+
+\[\|u(\cdot,t)-v(\cdot,t)\|_{L^{1}} \le \|u_{0}-v_{0}\|_{L^{1}}.\]
+
+<p>Consequences include uniqueness, continuous dependence on initial data, and a non-expansive semigroup in $L^{1}$. Thus $L^{1}$ emerges as the natural topology for scalar hyperbolic evolution, contrasting with the $L^{2}$ framework of elliptic problems in Chapter 2.</p>
+
+<h3 id="glimm-scheme-and-tvd-bounds">Glimm Scheme and TVD Bounds</h3>
+
+<p>Existence for general systems with small total variation follows from Glimm’s random choice method (Glimm, 1965). The scheme approximates data by piecewise constants, solves exact Riemann problems at each interface, and randomly samples states to prevent wave overlap. Glimm’s interaction functional shows that the total variation remains bounded (TVD), and the sequence converges (along subsequences) to an entropy solution. This constructive argument underlies modern high-resolution shock-capturing algorithms and links analytical entropy theory to numerical practice.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Entropy conditions reconcile conservation with irreversibility: shocks satisfy Rankine–Hugoniot but must also dissipate entropy. Lax’s geometric criterion and Kruzhkov’s functional inequalities filter out unphysical weak solutions, while Glimm’s scheme guarantees existence under small total variation. The result is a robust, thermodynamically consistent theory of hyperbolic evolution, preparing us for the coordinate-free integration theory of Section 3.4.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em> (2nd ed.). American Mathematical Society.</li>
+  <li>Glimm, J. (1965). Solutions in the large for nonlinear hyperbolic systems of equations. <em>Communications on Pure and Applied Mathematics</em>, 18, 697–715.</li>
+  <li>Kruzhkov, S. N. (1970). First order quasilinear equations in several independent variables. <em>Mathematics of the USSR-Sbornik</em>, 10(2), 217–243.</li>
+  <li>Lax, P. D. (1973). <em>Hyperbolic Systems of Conservation Laws and the Mathematical Theory of Shock Waves</em>. SIAM.</li>
+  <li>Smoller, J. (1983). <em>Shock Waves and Reaction–Diffusion Equations</em>. Springer.</li>
+</ul>
+
+<h2 id="complete-examples">Complete Examples</h2>
+
+<h3 id="example-331-rankinehugoniot-shock-for-burgers">Example 3.3.1: Rankine–Hugoniot Shock for Burgers</h3>
+
+<p><strong>Problem:</strong> Solve $\partial_{t}u + \partial_{x}(u^{2}/2)=0$ with $u(x,0)=1$ for $x&lt;0$ and $u(x,0)=0$ for $x\ge 0$.</p>
+
+<p>Characteristics from $x_{0}&lt;0$ travel with slope $1$; those from $x_{0}\ge 0$ remain stationary. They intersect at $t=1$, so a shock forms. Rankine–Hugoniot gives $\sigma = \frac{0^{2}/2 - 1^{2}/2}{0-1}=1/2$, hence $s(t)=t/2$ and</p>
+
+\[u(x,t)=\begin{cases}1,&amp;x&lt;t/2,\\0,&amp;x&gt;t/2.\end{cases}\]
+
+<p>Plugging this piecewise function into the weak formulation confirms that it solves the PDE in distributions.</p>
+
+<h3 id="example-332-entropy-violation-and-rarefaction">Example 3.3.2: Entropy Violation and Rarefaction</h3>
+
+<p><strong>Problem:</strong> For Burgers with $u(x,0)=-1$ for $x&lt;0$ and $u(x,0)=1$ for $x&gt;0$, compare the stationary shock with the rarefaction fan.</p>
+
+<p>The jump law yields $\sigma=0$, producing $u(x,t)=-\operatorname{sgn}(x)$, but Lax’s condition would require $-1&gt;0&gt;1$, which fails. Instead, the admissible solution is the rarefaction</p>
+
+\[u(x,t)=\begin{cases}-1,&amp;x&lt;-t,\\ x/t,&amp;-t\le x\le t,\\ 1,&amp;x&gt;t,\end{cases}\]
+
+<p>which preserves causality by allowing characteristics to spread rather than emerge from the discontinuity.</p>
+
+<h3 id="example-333-entropy-inequality-verification">Example 3.3.3: Entropy Inequality Verification</h3>
+
+<p><strong>Problem:</strong> Verify that the rarefaction in Example 3.3.2 satisfies the entropy inequality for $(\eta, q)=(u^{2}, u^{3}/3)$.</p>
+
+<p>In each smooth region $\partial_{t}\eta + \partial_{x}q = 0$. Across the self-similar fan $u=x/t$, one computes $\partial_{t}(x^{2}/t^{2}) = -2x^{2}/t^{3}$ and $\partial_{x}(x^{3}/(3t^{3})) = x^{2}/t^{3}$, summing to zero. At $x=\pm t$, the jump terms vanish because the boundaries move with the characteristic speed, so the distributional inequality holds.</p>
+
+<h3 id="example-334-explicit-l1-contraction">Example 3.3.4: Explicit $L^{1}$ Contraction</h3>
+
+<p><strong>Problem:</strong> Let $u_{0}=\chi_{(-1,1)}$ and $v_{0}=\chi_{(-1.1,1.1)}$ for Burgers. Show that $|u(\cdot,t)-v(\cdot,t)|_{L^{1}}$ remains constant.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Both solutions consist of rectangular pulses transported by shocks at speed $1/2$. The overlap region keeps measure $2$, while the mismatched boundary intervals each have measure $0.1$, so $|u_{0}-v_{0}|<em>{L^{1}}=0.2$ and the same holds for all $t$. Kruzhkov’s general proof integrates $\partial</em>{t}</td>
+      <td>u-v</td>
+      <td>+ \partial_{x}\operatorname{sgn}(u-v)(f(u)-f(v)) \le 0$ to obtain $L^{1}$ contraction.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-335-three-steps-of-the-glimm-scheme">Example 3.3.5: Three Steps of the Glimm Scheme</h3>
+
+<p><strong>Problem:</strong> Apply Glimm’s random choice method to Burgers with $u_{0}(x)=\sin(2\pi x)$, grid size $\Delta x=0.1$, and $\Delta t=0.02$.</p>
+
+<ol>
+  <li><strong>Initialization:</strong> Set $u_{j}^{0}=\sin(2\pi j\Delta x)$. Each cell interface defines a local Riemann problem.</li>
+  <li><strong>Riemann solves:</strong> At, say, $j=5$, the left/right states are $-0.587$ and $0$, producing a shock with $\sigma\approx 0.172$.</li>
+  <li><strong>Random sampling:</strong> Choose a point $\xi_{j}^{1}\in[j\Delta x,(j+1)\Delta x]$; set $u_{j}^{1}$ to the Riemann solution evaluated at $(\xi_{j}^{1},\Delta t)$. Repeat each step to march forward. Glimm’s interaction functional shows that the total variation $\mathrm{TV}(u^{n})$ decreases, ensuring convergence of the sequence to an entropy solution.</li>
+</ol>
+
+<h3 id="example-336-two-dimensional-rankinehugoniot">Example 3.3.6: Two-Dimensional Rankine–Hugoniot</h3>
+
+<p><strong>Problem:</strong> Solve $\partial_{t}u + \partial_{x}(u^{2}/2) + \partial_{y}u = 0$ with quadrant data $u=1$ for $x&gt;0,y&gt;0$, $u=0$ in the upper-left and lower-left quadrants, and $u=-1$ for $x&gt;0,y&lt;0$.</p>
+
+<p>Across $y=0$ the normal $n=(0,1)$ yields $\sigma = \frac{g(-1)-g(0)}{-1-0}=1$. Across $x=0$, $n=(1,0)$ gives $\sigma=\frac{f(1)-f(0)}{1-0}=1/2$. At the origin the shocks interact; solving the coupled jump conditions with an entropy inequality determines the admissible wedge structure. This example illustrates how the multidimensional Rankine–Hugoniot condition constrains shock geometry.</p>
+
+<h3 id="example-337-non-convex-flux-and-compound-waves">Example 3.3.7: Non-Convex Flux and Compound Waves</h3>
+
+<p><strong>Problem:</strong> Consider $f(u)=u^{3}-u$ with $u_{L}=-1$, $u_{R}=1$.</p>
+
+<p>The naive stationary shock has $\sigma=0$, but because $f’‘(u)=6u^{2}-2$ changes sign, the entropy condition is subtler. Liu’s criterion requires $\sigma(u_{L},u_{R}) \ge \sigma(u,u_{R})$ for all $u\in(u_{L},u_{R})$. The admissible solution consists of a shock from $-1$ to $u_{m}=-1/\sqrt{3}$ followed by a rarefaction from $u_{m}$ to $1$. This <strong>compound wave</strong> demonstrates how non-convex fluxes produce mixed shock–rarefaction structures and necessitate generalized entropy conditions.</p>
 
 <h2 id="navigation">Navigation</h2>
 
