@@ -45,7 +45,8 @@ class WidgetEngine {
         code: widget.querySelector('pre code')?.textContent || '',
         executing: false,  // Track execution state to prevent duplicates
         isContinuous: isContinuous,
-        continuousActivated: false  // Track if continuous mode has been activated (after first Run click)
+        continuousActivated: false,  // Track if continuous mode has been activated (after first Run click)
+        hasPlot: false  // Track if plot has been created (for Plotly.react vs newPlot)
       });
     });
   }
@@ -98,11 +99,11 @@ class WidgetEngine {
           if (isContinuous && !widgetData.continuousActivated) {
             // First Run click: execute and activate continuous mode
             console.log('Activating continuous mode for widget:', widgetId);
-            
+
             this.executeWidget(widgetData, true).then(() => {
               // After successful execution, activate continuous mode
               widgetData.continuousActivated = true;
-              
+
               // Hide button
               if (widgetData.runButton) {
                 widgetData.runButton.style.display = 'none';
@@ -186,10 +187,13 @@ class WidgetEngine {
     output.innerHTML = '<div class="computing">Computing solution...</div>';
 
     try {
+      // Get current slider values
       const params = {};
       widgetData.sliders.forEach(slider => {
         params[slider.dataset.param] = parseFloat(slider.value);
       });
+
+      console.log(`Widget ${widgetData.element.id || 'unknown'} execution with params:`, params);
 
       let code = widgetData.code;
 
@@ -280,6 +284,12 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
       if (hasPlotData) {
         const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(${plotDataVar})`);
         const plotData = JSON.parse(plotJson);
+        
+        console.log(`Widget ${widgetData.element.id || 'unknown'} plot data received:`, {
+          traceCount: plotData.data?.length || 0,
+          hasLayout: !!plotData.layout,
+          title: plotData.layout?.title || 'No title'
+        });
 
         // Ensure dark theme for Plotly
         const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
@@ -308,18 +318,49 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
           }
         };
 
-        // Clear output completely before rendering
-        output.innerHTML = '';
-
-        // Use Plotly.newPlot which automatically replaces any existing plot
-        Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
-          // Trigger MathJax rendering after plot is rendered
-          if (window.MathJax && window.MathJax.typesetPromise) {
-            window.MathJax.typesetPromise([output]).catch((err) => {
-              console.log('MathJax rendering issue:', err);
+        // For continuous widgets after first render, use Plotly.react for efficient updates
+        // For first render or manual widgets, use Plotly.newPlot
+        const isContinuousUpdate = skipButtonState && widgetData.hasPlot && widgetData.isContinuous;
+        
+        if (isContinuousUpdate && output.data && output.data.length > 0) {
+          // Use Plotly.react for efficient updates (doesn't recreate the plot DOM)
+          console.log('Using Plotly.react for continuous update');
+          Plotly.react(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+            // Trigger MathJax rendering after plot update
+            if (window.MathJax && window.MathJax.typesetPromise) {
+              window.MathJax.typesetPromise([output]).catch((err) => {
+                console.log('MathJax rendering issue:', err);
+              });
+            }
+          }).catch(err => {
+            console.error('Plotly.react error, falling back to newPlot:', err);
+            // Fallback to newPlot if react fails
+            output.innerHTML = '';
+            Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+              widgetData.hasPlot = true;
+              if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([output]).catch((err) => {
+                  console.log('MathJax rendering issue:', err);
+                });
+              }
             });
-          }
-        });
+          });
+        } else {
+          // Clear output completely before rendering (first time or manual widget)
+          output.innerHTML = '';
+          console.log('Using Plotly.newPlot for initial render');
+
+          // Use Plotly.newPlot for initial render
+          Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+            widgetData.hasPlot = true;
+            // Trigger MathJax rendering after plot is rendered
+            if (window.MathJax && window.MathJax.typesetPromise) {
+              window.MathJax.typesetPromise([output]).catch((err) => {
+                console.log('MathJax rendering issue:', err);
+              });
+            }
+          });
+        }
       } else {
         output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
       }
