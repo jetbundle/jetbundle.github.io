@@ -163,10 +163,25 @@ class WidgetEngine {
     }
 
     const button = widgetData.runButton;
-    const output = widgetData.output;
+    let output = widgetData.output;
+
+    // Re-find output container in case DOM changed
+    if (!output) {
+      output = widgetData.element.querySelector('.widget-output');
+      if (!output) {
+        output = widgetData.element.querySelector('.plotly-container.widget-output');
+      }
+      if (!output) {
+        output = widgetData.element.querySelector('.plotly-container');
+      }
+      if (output) {
+        widgetData.output = output; // Update reference
+      }
+    }
 
     if (!output) {
-      console.error('No output container found for widget');
+      console.error('No output container found for widget:', widgetData.element.id || 'unknown');
+      console.error('Widget element:', widgetData.element);
       return;
     }
 
@@ -280,11 +295,14 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
 
       // Check for plot data using widget-specific variable
       const hasPlotData = window.textbookEngine.pyodide.runPython(`${plotDataVar} is not None`);
+      
+      console.log(`Widget ${widgetData.element.id || 'unknown'} hasPlotData:`, hasPlotData);
+      console.log(`Widget ${widgetData.element.id || 'unknown'} plotDataVar:`, plotDataVar);
 
       if (hasPlotData) {
         const plotJson = window.textbookEngine.pyodide.runPython(`json.dumps(${plotDataVar})`);
         const plotData = JSON.parse(plotJson);
-        
+
         console.log(`Widget ${widgetData.element.id || 'unknown'} plot data received:`, {
           traceCount: plotData.data?.length || 0,
           hasLayout: !!plotData.layout,
@@ -321,7 +339,7 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
         // For continuous widgets after first render, use Plotly.react for efficient updates
         // For first render or manual widgets, use Plotly.newPlot
         const isContinuousUpdate = skipButtonState && widgetData.hasPlot && widgetData.isContinuous;
-        
+
         if (isContinuousUpdate && output.data && output.data.length > 0) {
           // Use Plotly.react for efficient updates (doesn't recreate the plot DOM)
           console.log('Using Plotly.react for continuous update');
@@ -349,20 +367,48 @@ if '${plotDataVar}' in globals() and ${plotDataVar} is not None:
           // Clear output completely before rendering (first time or manual widget)
           output.innerHTML = '';
           console.log('Using Plotly.newPlot for initial render');
+          console.log('Plot data:', {
+            dataLength: plotData.data?.length || 0,
+            layout: plotData.layout,
+            outputElement: output,
+            outputId: output.id || 'no-id',
+            outputClasses: output.className
+          });
+
+          // Verify Plotly is available
+          if (typeof Plotly === 'undefined') {
+            console.error('Plotly is not loaded!');
+            output.innerHTML = '<div style="color: red; padding: 1rem;">Error: Plotly library not loaded</div>';
+            return;
+          }
 
           // Use Plotly.newPlot for initial render
-          Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
-            widgetData.hasPlot = true;
-            // Trigger MathJax rendering after plot is rendered
-            if (window.MathJax && window.MathJax.typesetPromise) {
-              window.MathJax.typesetPromise([output]).catch((err) => {
-                console.log('MathJax rendering issue:', err);
-              });
-            }
-          });
+          try {
+            Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
+              widgetData.hasPlot = true;
+              console.log('Plot rendered successfully');
+              // Trigger MathJax rendering after plot is rendered
+              if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([output]).catch((err) => {
+                  console.log('MathJax rendering issue:', err);
+                });
+              }
+            }).catch(err => {
+              console.error('Plotly.newPlot error:', err);
+              output.innerHTML = `<div style="color: red; padding: 1rem;">Error rendering plot: ${err.message}</div>`;
+            });
+          } catch (err) {
+            console.error('Error calling Plotly.newPlot:', err);
+            output.innerHTML = `<div style="color: red; padding: 1rem;">Error: ${err.message}</div>`;
+          }
         }
       } else {
-        output.innerHTML = '<div class="computing">Execution complete (no plot output)</div>';
+        console.warn(`Widget ${widgetData.element.id || 'unknown'} execution completed but no plot data was generated`);
+        console.log('Checking if create_plot was called...');
+        // Try to check if create_plot exists and was called
+        const createPlotExists = window.textbookEngine.pyodide.runPython(`'create_plot' in globals()`);
+        console.log('create_plot exists:', createPlotExists);
+        output.innerHTML = '<div class="computing">Execution complete (no plot output). Check console for details.</div>';
       }
 
       } catch (error) {
