@@ -6,15 +6,19 @@
   <title>Chapter 2: Functional Analysis, Distributions & Weak Solutions</title>
   <meta name="description" content="The Geometry of Infinite Dimensions">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -699,13 +836,13 @@
       <article class="textbook-content">
         <h1 id="chapter-2-functional-analysis-distributions--weak-solutions">Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions</h1>
 
+<p>The Geometry of Infinite Dimensions.</p>
+
 <h2 id="introduction">Introduction</h2>
 
 <p>Chapter 1 revealed that we can formally manipulate divergent series and delta functions, but they lack a rigorous foundation in standard calculus. This chapter constructs the rigorous analytical framework required to support these heuristic objects. We build a cathedral of analysis on infinite-dimensional spaces, providing the mathematical infrastructure for distributions, weak solutions, and the spectral theory that justifies the methods of Chapter 1.</p>
 
-<p><strong>Theme:</strong> The Geometry of Infinite Dimensions.</p>
-
-<p><strong>Narrative Goal:</strong> To construct the rigorous analytical framework required to support the heuristic objects of Chapter 1.</p>
+<p>We wish to construct the rigorous analytical framework required to support the heuristic objects of Chapter 1.</p>
 
 <h2 id="chapter-overview">Chapter Overview</h2>
 
@@ -782,7 +919,7 @@
 
 <p>We develop the geometry of infinite-dimensional spaces, showing how functions can be viewed as vectors, how operators act on these spaces, and how variational principles provide existence results. The chapter culminates in Fredholm theory, which classifies operators that are “almost” invertible and introduces the index—a topological invariant that will play a crucial role in later chapters.</p>
 
-<p><strong>The Cliffhanger:</strong> We have built a cathedral of analysis, but it rests on the flat ground of $\mathbb{R}^n$. Physics, however, lives on curved manifolds where “global vector addition” is meaningless. This limitation motivates Chapter 3, where we detach differential equations from coordinate systems and formulate them intrinsically on manifolds.</p>
+<p><strong>We have built a cathedral of analysis, but it rests on the flat ground of $\mathbb{R}^n$.</strong> Physics, however, lives on curved manifolds where “global vector addition” is meaningless. This limitation motivates Chapter 3, where we detach differential equations from coordinate systems and formulate them intrinsically on manifolds.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 

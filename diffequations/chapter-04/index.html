@@ -6,15 +6,19 @@
   <title>Chapter 4: Symmetry, Lie Theory & Classical Integrability</title>
   <meta name="description" content="Solvability is Symmetry">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -699,13 +836,13 @@
       <article class="textbook-content">
         <h1 id="chapter-4-symmetry-lie-theory--classical-integrability">Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability</h1>
 
+<p>Solvability is Symmetry.</p>
+
 <h2 id="introduction">Introduction</h2>
 
 <p>Chapter 3 showed that we can write invariant equations, but generally cannot solve nonlinear ones. Yet certain systems (like KdV) exhibit miraculous soliton behavior. This chapter reveals that the “miraculous” solvability of certain equations is a consequence of hidden algebraic structure—symmetry. We systematize the “tricks” of Chapter 1 by viewing symmetries as continuous groups acting on solution spaces, and show how infinite hierarchies of symmetries lead to complete integrability.</p>
 
-<p><strong>Theme:</strong> Solvability is Symmetry.</p>
-
-<p><strong>Narrative Goal:</strong> To reveal that the “miraculous” solvability of certain equations is a consequence of hidden algebraic structure.</p>
+<p>The goal now is to reveal that the “miraculous” solvability of certain equations is a consequence of hidden algebraic structure.</p>
 
 <h2 id="chapter-overview">Chapter Overview</h2>
 
@@ -786,7 +923,7 @@
 
 <p>Lax pairs show that nonlinear evolution can be viewed as isospectral flow, where eigenvalues remain constant. The inverse scattering transform provides a “nonlinear Fourier transform” that solves initial value problems. Recursion operators systematically generate symmetries, and Hirota’s method reveals combinatorial structure underlying solitons.</p>
 
-<p><strong>The Cliffhanger:</strong> Integrability is beautiful but fragile. It relies on precise algebraic cancellation. Real-world systems are subject to thermal noise and roughness, which destroy these infinite symmetries. How do we do analysis in a noisy, rough world? This question motivates Chapter 5, where we rebuild calculus for non-differentiable trajectories.</p>
+<p>Integrability is beautiful but fragile. <strong>It relies on precise algebraic cancellation. Real-world systems are subject to thermal noise and roughness, which destroy these infinite symmetries.</strong> How do we do analysis in a noisy, rough world? This question motivates Chapter 5, where we rebuild calculus for non-differentiable trajectories.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 

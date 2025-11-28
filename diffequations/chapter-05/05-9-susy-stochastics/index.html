@@ -6,15 +6,19 @@
   <title>Section 5.9: Supersymmetric Theory of Stochastics</title>
   <meta name="description" content="Hidden supersymmetry, Witten index">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -683,6 +687,139 @@
     
       </ul>
     </li>
+    
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
     
   </ul>
 </nav>

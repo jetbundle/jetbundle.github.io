@@ -6,15 +6,19 @@
   <title>Chapter 1: Classical Explicit & Quasi-Explicit Arsenal</title>
   <meta name="description" content="The Rise and Fall of the Specific Solution">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -699,13 +836,13 @@
       <article class="textbook-content">
         <h1 id="chapter-1-classical-explicit--quasi-explicit-arsenal">Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal</h1>
 
+<p>The Rise and Fall of the Specific Solution</p>
+
 <h2 id="introduction">Introduction</h2>
 
 <p>This chapter establishes the classical toolkit for solving differential equations explicitly. We begin with the intuitive assumption that solutions are explicit formulas—functions we can write down and compute. Through systematic exploration, we demonstrate that “solving” by formula is an exceptional, rather than generic, event. Each section introduces powerful methods, applies them to their limits, and reveals fundamental limitations that motivate the machinery of subsequent chapters.</p>
 
-<p><strong>Theme:</strong> The Rise and Fall of the Specific Solution.</p>
-
-<p><strong>Narrative Goal:</strong> To establish the classical toolkit and demonstrate that “solving” by formula is an exceptional, rather than generic, event.</p>
+<p>Our goal in thiss chapter is to establish the classical toolkit and demonstrate that “solving” by formula is an exceptional, rather than generic, event.</p>
 
 <h2 id="chapter-overview">Chapter Overview</h2>
 
@@ -782,7 +919,7 @@
 
 <p>The narrative tension builds as each method reveals its limitations: exact methods fail for non-integrable systems, special functions exhibit non-global analytic behavior (Stokes phenomenon), integral transforms face convergence issues, eigenfunction expansions raise questions about metric spaces, asymptotic methods provide only local truth, and perturbation series diverge factorially.</p>
 
-<p><strong>The Cliffhanger:</strong> We can formally manipulate divergent series and delta functions, but they do not exist within standard calculus. We lack a rigorous topological space to contain them. This limitation motivates Chapter 2, where we construct the analytical framework to support these heuristic objects.</p>
+<p><strong>We can formally manipulate divergent series and delta functions, but they do not exist within standard calculus.</strong> We lack a rigorous topological space to contain them. This limitation motivates Chapter 2, where we construct the analytical framework to support these heuristic objects.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 

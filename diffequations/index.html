@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Survey of Differential Equations and their Algebraic Geometry</title>
-  <meta name="description" content="Saucedo 2025 - The Jetbundle Project">
+  <meta name="description" content="J. Saucedo 2025">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -693,13 +830,13 @@
     <main class="textbook-main">
       <header class="textbook-header">
         <h1>A Survey of Differential Equations and their Algebraic Geometry</h1>
-        <p class="description">Saucedo 2025 - The Jetbundle Project</p>
+        <p class="description">J. Saucedo 2025</p>
       </header>
 
       <article class="textbook-content">
         <h1 id="a-survey-of-differential-equations-and-their-algebraic-geometry">A Survey of Differential Equations and their Algebraic Geometry</h1>
 
-<p><strong>J. Saucedo 2025 - The Jetbundle Project</strong></p>
+<p><strong>J. Saucedo 2025</strong></p>
 
 <h2 id="preface-the-mathematical-ascent">Preface: The Mathematical Ascent</h2>
 
@@ -709,34 +846,34 @@
 
 <ol>
   <li>
-    <p><strong>The Classical Arsenal:</strong> We exhaust explicit methods to reveal the necessity of approximation.</p>
+    <p>We exhaust explicit methods of solution to reveal the necessity of approximation.</p>
   </li>
   <li>
-    <p><strong>The Analytic Foundation:</strong> We construct infinite-dimensional spaces to house singular solutions.</p>
+    <p>We construct infinite-dimensional function spaces to house singular solutions.</p>
   </li>
   <li>
-    <p><strong>The Geometric Reformulation:</strong> We leave flat space to understand physical invariance.</p>
+    <p>We leave flat space to understand physical invariance.</p>
   </li>
   <li>
-    <p><strong>The Algebraic Revelation:</strong> We uncover hidden symmetries that order nonlinear chaos.</p>
+    <p>We uncover hidden symmetries that order nonlinear chaos.</p>
   </li>
   <li>
-    <p><strong>The Stochastic Reality:</strong> We confront the non-differentiable nature of physical trajectories.</p>
+    <p>We confront the non-differentiable nature of physical trajectories.</p>
   </li>
   <li>
-    <p><strong>The Intrinsic Synthesis:</strong> We view the equation itself as the fundamental geometric object.</p>
+    <p>We view the equation itself as the fundamental geometric object.</p>
   </li>
   <li>
-    <p><strong>The Categorical Resolution:</strong> We conclude that topology dictates analysis.</p>
+    <p>We conclude that topology dictates analysis.</p>
   </li>
 </ol>
 
-<p>Each chapter establishes a mathematical paradigm, exploits it to its limit, and then exposes a fundamental failure that necessitates the specific machinery of the subsequent chapter. The journey ascends from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. By the end, the reader understands that a differential equation is not merely a problem to be solved, but the language through which the topology of the universe speaks to itself.</p>
+<p>Each chapter establishes a mathematical paradigm, exploits it to its limit, and then exposes a fundamental failure that necessitates the specific machinery of the subsequent chapter. The journey ascends from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. By the end, the reader understands that a differential equation is not merely a problem to be solved, but the language through which the topology of the universe is speaking to itself.</p>
 
 <h2 id="complete-table-of-contents">Complete Table of Contents</h2>
 
 <h3 id="chapter-1-classical-explicit--quasi-explicit-arsenal">Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal</h3>
-<p><strong>Theme:</strong> The Rise and Fall of the Specific Solution</p>
+<p>The Rise and Fall of the Specific Solution</p>
 
 <ul>
   <li><a href="/diffequations/chapter-01/">Chapter 1 Introduction</a>
@@ -753,7 +890,7 @@
 </ul>
 
 <h3 id="chapter-2-functional-analysis-distributions--weak-solutions">Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions</h3>
-<p><strong>Theme:</strong> The Geometry of Infinite Dimensions</p>
+<p>The Geometry of Infinite Dimensions</p>
 
 <ul>
   <li><a href="/diffequations/chapter-02/">Chapter 2 Introduction</a>
@@ -770,7 +907,7 @@
 </ul>
 
 <h3 id="chapter-3-tensor-fields-conservation-laws--geometric-formulation">Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation</h3>
-<p><strong>Theme:</strong> Physics is Invariant; Coordinates are Artifacts</p>
+<p>Physics is Invariant; Coordinates are Artifacts</p>
 
 <ul>
   <li><a href="/diffequations/chapter-03/">Chapter 3 Introduction</a>
@@ -786,7 +923,7 @@
 </ul>
 
 <h3 id="chapter-4-symmetry-lie-theory--classical-integrability">Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability</h3>
-<p><strong>Theme:</strong> Solvability is Symmetry</p>
+<p>Solvability is Symmetry</p>
 
 <ul>
   <li><a href="/diffequations/chapter-04/">Chapter 4 Introduction</a>
@@ -804,7 +941,7 @@
 </ul>
 
 <h3 id="chapter-5-stochastic-rough-fractional--nonlocal-dynamics">Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics</h3>
-<p><strong>Theme:</strong> Regularity is an Exception; Roughness is the Rule</p>
+<p>Regularity is an Exception; Roughness is a Rule</p>
 
 <ul>
   <li><a href="/diffequations/chapter-05/">Chapter 5 Introduction</a>
@@ -823,7 +960,7 @@
 </ul>
 
 <h3 id="chapter-6-jet-bundles-exterior-differential-systems--intrinsic-geometric-pdes">Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs</h3>
-<p><strong>Theme:</strong> The PDE <em>is</em> the Manifold</p>
+<p>The PDE <em>is</em> the Manifold</p>
 
 <ul>
   <li><a href="/diffequations/chapter-06/">Chapter 6 Introduction</a>
@@ -840,7 +977,7 @@
 </ul>
 
 <h3 id="chapter-7-microlocal-analysis-d-modules--categorical-resolution">Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution</h3>
-<p><strong>Theme:</strong> The Phase Space is the Reality</p>
+<p>*The Phase Space is the Reality</p>
 
 <ul>
   <li><a href="/diffequations/chapter-07/">Chapter 7 Introduction</a>
@@ -857,7 +994,17 @@
   </li>
 </ul>
 
+<h3 id="epilogue">Epilogue</h3>
+
+<ul>
+  <li><a href="/diffequations/epilogue/">Epilogue: The Eternal Structure</a></li>
+</ul>
+
 <h2 id="navigation">Navigation</h2>
+
+<div style="margin: 2rem 0; padding: 1rem; background: var(--bg-secondary, #f8fafc); border-left: 4px solid var(--accent, #3b82f6); border-radius: 4px;">
+  <p style="margin: 0;"><strong>←</strong> <a href="https://jetbundle.github.io" style="color: var(--accent, #3b82f6); text-decoration: none; font-weight: 500;">Back to the JetBundle Project</a></p>
+</div>
 
 <nav class="page-navigation">
   <div class="nav-previous">
@@ -890,16 +1037,6 @@
 <p>This online resource presents a unified narrative of differential equations, progressing from classical explicit methods through functional analysis, geometric formulation, symmetry methods, stochastic analysis, intrinsic geometric PDEs, and finally categorical resolution. Each chapter builds on the previous, with limitations exposed that motivate the next phase of development.</p>
 
 <p>This resource is designed for advanced undergraduate and graduate students in mathematics, physics, and engineering who seek a deep understanding of the structural foundations underlying differential equations. While familiarity with real analysis, linear algebra, basic topology, and elementary differential equations is helpful, these prerequisites should not deter interested readers. We strongly recommend reading from start to finish in order, as references for further reading, conceptual dependencies, important results, and complete examples are provided at every point in the journey. Each section includes the necessary background material and connections to foundational concepts, making the content accessible to motivated readers regardless of their initial preparation.</p>
-
-<h2 id="notation-and-conventions">Notation and Conventions</h2>
-
-<ul>
-  <li>Mathematical notation follows standard conventions</li>
-  <li>Theorems are numbered by chapter.section.theorem</li>
-  <li>References are provided at the end of each section</li>
-  <li>Complete worked examples illustrate key concepts</li>
-  <li>Cross-references link related material across chapters</li>
-</ul>
 
 <hr />
 

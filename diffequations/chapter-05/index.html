@@ -6,15 +6,19 @@
   <title>Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics</title>
   <meta name="description" content="Regularity is an Exception; Roughness is the Rule">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -699,13 +836,13 @@
       <article class="textbook-content">
         <h1 id="chapter-5-stochastic-rough-fractional--nonlocal-dynamics">Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics</h1>
 
+<p>Regularity is an Exception; Roughness is the Rule.</p>
+
 <h2 id="introduction">Introduction</h2>
 
 <p>Chapter 4 revealed that integrability relies on precise algebraic cancellation, which is destroyed by noise and roughness in real-world systems. This chapter rebuilds calculus for trajectories that are nowhere differentiable and possess memory. We confront the non-differentiable nature of physical trajectories, developing stochastic calculus, rough path theory, fractional calculus, and the supersymmetric theory that unifies these approaches.</p>
 
-<p><strong>Theme:</strong> Regularity is an Exception; Roughness is the Rule.</p>
-
-<p><strong>Narrative Goal:</strong> To rebuild calculus for trajectories that are nowhere differentiable and possess memory.</p>
+<p>We will rebuild calculus for trajectories that are nowhere differentiable and possess memory.</p>
 
 <h2 id="chapter-overview">Chapter Overview</h2>
 
@@ -792,7 +929,7 @@
 
 <p>The chapter culminates in the supersymmetric theory of stochastics, revealing that all SDEs possess hidden topological supersymmetry. Chaos and turbulence emerge as spontaneous symmetry breaking, with the Witten index providing a robust topological invariant.</p>
 
-<p><strong>The Cliffhanger:</strong> Noise dissolves the background geometry. We are still solving equations <em>on</em> a space. We need a framework where the PDE defines the geometry <em>intrinsically</em>. This motivates Chapter 6, where we view the equation itself as the fundamental geometric object.</p>
+<p>Noise dissolves the background geometry. We are still solving equations <em>on</em> a space. We need a framework where the PDE defines the geometry <em>intrinsically</em>. This motivates Chapter 6, where we view the equation itself as the fundamental geometric object.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 

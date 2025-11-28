@@ -6,15 +6,19 @@
   <title>Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs</title>
   <meta name="description" content="The PDE is the Manifold">
 
-  <!-- MathJax -->
+  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
+        ignoreHtmlClass: 'no-math',
+        processHtmlClass: 'math'
       },
       startup: {
         ready: () => {
@@ -684,6 +688,139 @@
       </ul>
     </li>
     
+
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
+              Epilogue: The Eternal Structure
+            </a>
+          </li>
+        
+      
+    
   </ul>
 </nav>
 
@@ -699,13 +836,13 @@
       <article class="textbook-content">
         <h1 id="chapter-6-jet-bundles-exterior-differential-systems--intrinsic-geometric-pdes">Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs</h1>
 
+<p>The PDE <em>is</em> the Manifold.</p>
+
 <h2 id="introduction">Introduction</h2>
 
 <p>Chapter 5 showed that noise dissolves background geometry, and we are still solving equations <em>on</em> a space. This chapter reformulates PDEs as submanifolds of jet space, viewing the equation itself as the fundamental geometric object. We erase the distinction between dependent and independent variables, study the geometry of solution spaces (moduli spaces), and develop geometric evolution equations like Ricci flow.</p>
 
-<p><strong>Theme:</strong> The PDE <em>is</em> the Manifold.</p>
-
-<p><strong>Narrative Goal:</strong> To reformulate PDEs as submanifolds of Jet Space and study the geometry of the solution space itself.</p>
+<p>Now the goal is to reformulate PDEs as submanifolds of Jet Space and study the geometry of the solution space itself.</p>
 
 <h2 id="chapter-overview">Chapter Overview</h2>
 
@@ -782,7 +919,7 @@
 
 <p>We zoom out to study the space of all possible geometries—the moduli space of metrics. Geometric evolution equations like Ricci flow define dynamics on this infinite-dimensional space. Singularity formation becomes topological surgery, and instantons emerge as supersymmetric vacua connecting to Chapter 5.</p>
 
-<p><strong>The Cliffhanger:</strong> We have geometrized everything, but the moduli spaces (solution spaces) are often singular or non-compact. We cannot do simple calculus on them. We need a tool that is robust against these singularities. This motivates Chapter 7, where we resolve singularities using the algebraic tools of the cotangent bundle and category theory.</p>
+<p><strong>We have geometrized everything, but the moduli spaces (solution spaces) are often singular or non-compact. We cannot do simple calculus on them</strong>  We need a tool that is robust against these singularities. This motivates Chapter 7, where we resolve singularities using the algebraic tools of the cotangent bundle and category theory.</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
