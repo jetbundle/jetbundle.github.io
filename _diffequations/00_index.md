@@ -85,7 +85,7 @@ create_plot([trace1, trace2], layout)</code></pre>
 
 ## Widget System Test
 
-### Interactive ODE Explorer
+### Interactive ODE Explorer (Manual Update)
 
 <div class="widget-module" id="ode-widget">
   <div class="module-header">
@@ -137,6 +137,102 @@ layout = {
     'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
     'xaxis': {'title': 'Time t'},
     'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
+
+# Store plot data for rendering
+create_plot([trace], layout)</code></pre>
+  </div>
+
+  <div class="plotly-container widget-output"></div>
+</div>
+
+### Continuous Update ODE Explorer (Real-time)
+
+<div class="widget-module widget-continuous" id="ode-widget-continuous" data-update-mode="continuous">
+  <div class="module-header">
+    <h3>Continuous Update ODE Explorer</h3>
+    <p style="margin: 0.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">Drag sliders to see real-time updates</p>
+    <div class="widget-controls">
+      <div class="widget-control">
+        <label>λ (Decay Rate)</label>
+        <input type="range" class="widget-slider" data-param="lambda" min="0.1" max="3" step="0.1" value="1.5">
+        <span class="widget-value" data-param="lambda">1.5</span>
+      </div>
+
+      <div class="widget-control">
+        <label>y₀ (Initial)</label>
+        <input type="range" class="widget-slider" data-param="y0" min="-2" max="2" step="0.1" value="1">
+        <span class="widget-value" data-param="y0">1.0</span>
+      </div>
+
+      <div class="widget-control">
+        <label>Time Span</label>
+        <input type="range" class="widget-slider" data-param="t_max" min="1" max="10" step="0.5" value="5">
+        <span class="widget-value" data-param="t_max">5.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-block hidden">
+    <pre><code class="language-python">import numpy as np
+from scipy.integrate import odeint
+
+# Parameters from widgets (injected by widget engine)
+# lambda_val, y0_val, t_max_val are set by widget sliders
+
+def dydt(y, t, lambda_param):
+    return -lambda_param * y
+
+t = np.linspace(0, t_max_val, 200)
+sol = odeint(dydt, y0_val, t, args=(lambda_val,))
+
+trace = {
+    'x': t.tolist(),
+    'y': sol.flatten().tolist(),
+    'mode': 'lines',
+    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
+    'line': {'width': 3, 'color': '#3b82f6'}
+}
+
+layout = {
+    'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
+
+# Store plot data for rendering
+create_plot([trace], layout)</code></pre>
+  </div>
+
+  <div class="plotly-container widget-output">    </div>
+
+  <div class="code-block hidden">
+    <pre><code class="language-python">import numpy as np
+from scipy.integrate import odeint
+
+# Parameters from widgets (injected by widget engine)
+# lambda_val, y0_val, t_max_val are set by widget sliders
+
+def dydt(y, t, lambda_param):
+    return -lambda_param * y
+
+t = np.linspace(0, t_max_val, 150)  # Fewer points for faster continuous updates
+sol = odeint(dydt, y0_val, t, args=(lambda_val,))
+
+trace = {
+    'x': t.tolist(),
+    'y': sol.flatten().tolist(),
+    'mode': 'lines',
+    'name': f'y(t) = {y0_val:.2f} * exp(-{lambda_val:.2f}t)',
+    'line': {'width': 3, 'color': '#ff8c5a'}
+}
+
+layout = {
+    'title': f'ODE Solution: $\\frac{{dy}}{{dt}} = -{lambda_val:.2f}y$',
+    'xaxis': {'title': 'Time $t$'},
+    'yaxis': {'title': '$y(t)$'},
     'height': 400
 }
 
