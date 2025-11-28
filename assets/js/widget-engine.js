@@ -15,16 +15,33 @@ class WidgetEngine {
   }
 
   async initializeContinuousWidgets() {
-    // Auto-execute continuous widgets on page load
-    for (const [widgetId, widgetData] of this.widgets.entries()) {
-      const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
-                           widgetData.element.dataset.updateMode === 'continuous';
-      if (isContinuous) {
-        // Wait a bit for Pyodide to potentially load
-        setTimeout(() => {
-          this.executeWidget(widgetData, true);
-        }, 1000);
+    // Auto-execute continuous widgets on page load after Pyodide is ready
+    const executeContinuous = async () => {
+      for (const [widgetId, widgetData] of this.widgets.entries()) {
+        const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
+                             widgetData.element.dataset.updateMode === 'continuous';
+        if (isContinuous && widgetData.output) {
+          // Wait for Pyodide to be ready
+          if (window.textbookEngine) {
+            await window.textbookEngine.waitForLoad();
+          }
+          // Small delay to ensure everything is ready
+          await new Promise(resolve => setTimeout(resolve, 500));
+          // Only execute if output is empty (not already computing or rendered)
+          if (!widgetData.output.innerHTML || widgetData.output.innerHTML.trim() === '') {
+            this.executeWidget(widgetData, true);
+          }
+        }
       }
+    };
+    
+    // Wait for DOM and Pyodide to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(executeContinuous, 1500);
+      });
+    } else {
+      setTimeout(executeContinuous, 1500);
     }
   }
 
@@ -48,7 +65,7 @@ class WidgetEngine {
       // Check if this widget has continuous update mode
       const isContinuous = widgetData.element.classList.contains('widget-continuous') ||
                            widgetData.element.dataset.updateMode === 'continuous';
-      
+
       // Throttle function for efficient continuous updates
       const throttleUpdate = this.throttle((e) => {
         const paramName = e.target.dataset.param;
@@ -130,11 +147,10 @@ class WidgetEngine {
       const originalText = button.textContent;
       button.innerHTML = '<span class="loading"></span> Computing...';
     }
-    
-    // Show computing message only if output is empty or not already computing
-    if (!output.innerHTML || !output.innerHTML.includes('Computing')) {
-      output.innerHTML = '<div class="computing">Computing solution...</div>';
-    }
+
+    // Clear any previous error messages or plots
+    // Show computing message
+    output.innerHTML = '<div class="computing">Computing solution...</div>';
 
     try {
       const params = {};
@@ -258,7 +274,7 @@ if 'plot_data' in globals() and plot_data is not None:
         };
 
         Plotly.newPlot(output, plotData.data || [], plotData.layout || {}, plotConfig);
-        
+
         // Trigger MathJax rendering if MathJax is available
         if (window.MathJax && window.MathJax.typesetPromise) {
           window.MathJax.typesetPromise([output]).catch((err) => {
@@ -276,7 +292,11 @@ if 'plot_data' in globals() and plot_data is not None:
         // Only restore button state if not in continuous mode
         if (!skipButtonState && button) {
           button.disabled = false;
-          button.textContent = originalText;
+          button.textContent = originalText || 'Run Code';
+        }
+        // Clear computing message if still showing
+        if (output.innerHTML && output.innerHTML.includes('Computing solution...')) {
+          output.innerHTML = '<div class="computing">Execution failed. Check console for details.</div>';
         }
       }
   }
