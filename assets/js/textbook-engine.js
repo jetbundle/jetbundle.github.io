@@ -46,6 +46,11 @@ class TextbookEngine {
     }
   }
 
+  ensureEventListeners() {
+    // Ensure listeners are attached even if Pyodide hasn't loaded yet
+    this.attachEventListeners();
+  }
+
   async waitForLoad() {
     if (this.isLoaded) {
       return true;
@@ -182,4 +187,10 @@ if 'plot_data' in globals() and plot_data is not None:
 
 document.addEventListener('DOMContentLoaded', () => {
   window.textbookEngine = new TextbookEngine();
+  // Also attach listeners immediately on DOM ready
+  setTimeout(() => {
+    if (window.textbookEngine) {
+      window.textbookEngine.ensureEventListeners();
+    }
+  }, 100);
 });
