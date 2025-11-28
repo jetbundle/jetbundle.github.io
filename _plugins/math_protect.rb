@@ -49,6 +49,10 @@ module Jekyll
 
   # Only process diffequations collection
   Jekyll::Hooks.register [:documents], :pre_render do |doc|
+    # Check if plugin is enabled
+    site = doc.site
+    next unless site.config.fetch('math_protect_enabled', true)
+    
     next unless doc.content.is_a?(String)
     next unless doc.respond_to?(:collection) && doc.collection&.label == 'diffequations'
     next unless doc.content.include?('$') && doc.content.include?('|')
@@ -69,6 +73,10 @@ module Jekyll
   end
 
   Jekyll::Hooks.register [:documents], :post_render do |doc|
+    # Check if plugin is enabled
+    site = doc.site
+    next unless site.config.fetch('math_protect_enabled', true)
+    
     next unless doc.output.is_a?(String)
     next unless doc.respond_to?(:collection) && doc.collection&.label == 'diffequations'
     next unless doc.output.include?(Jekyll::MathProtectSimple::MATH_PIPE_PLACEHOLDER)

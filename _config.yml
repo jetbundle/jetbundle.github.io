@@ -63,6 +63,10 @@ kramdown:
   # Tables will still work but won't conflict with $...$ math
   gfm_quirks: []
 
+# Math protection plugin settings
+# Set to false to disable the math protection plugin (relies on JavaScript fallback)
+math_protect_enabled: true
+
 # Exclude
 exclude:
   - Gemfile
