@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Transformation Guide</title>
-  <meta name="description" content="Guidelines for restructuring textbook sections">
+  <meta name="description" content="Systematic guidelines for restructuring textbook sections into integrated narratives">
 
   <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
@@ -893,13 +893,15 @@
     <main class="textbook-main">
       <header class="textbook-header">
         <h1>Content Transformation Guide</h1>
-        <p class="description">Guidelines for restructuring textbook sections</p>
+        <p class="description">Systematic guidelines for restructuring textbook sections into integrated narratives</p>
       </header>
 
       <article class="textbook-content">
         <h1 id="content-transformation-guide">Content Transformation Guide</h1>
 
 <p>This guide provides systematic instructions for transforming textbook sections from the traditional “theory-then-examples” structure to an integrated narrative that follows the <strong>Theory-Example-Reflection</strong> loop.</p>
+
+<p><strong>Critical Principle:</strong> Show, don’t tell. Never explicitly label sections as “Reflection:” or “Illustrative Example:”—integrate them naturally into the narrative flow.</p>
 
 <h2 id="global-architectural-directives">Global Architectural Directives</h2>
 
@@ -909,8 +911,8 @@
 
 <p><strong>Structure:</strong>
 1. <strong>State the Concept:</strong> Define the mathematical object or theorem rigorously.
-2. <strong>Immediate Illustration:</strong> Immediately following the definition, provide a worked example (using blockquotes or distinct visual style) to ground the abstract concept.
-3. <strong>Narrative Bridge:</strong> Follow the example with a “Reflection” paragraph explaining what the example revealed, what it failed to do, or what nuance it exposed, leading into the next concept.</p>
+2. <strong>Immediate Illustration:</strong> Immediately following the definition, provide a worked example (using blockquotes) to ground the abstract concept.
+3. <strong>Narrative Bridge:</strong> Follow the example with a paragraph explaining what the example revealed, what it failed to do, or what nuance it exposed, leading into the next concept.</p>
 
 <p><strong>Example Transformation:</strong></p>
 
@@ -936,7 +938,7 @@
 <p>When the field factors as $y’ = P(x)/Q(y)$ we obtain…</p>
 
 <blockquote>
-  <p><strong>Illustrative Example: Exponential Growth</strong></p>
+  <p><strong>Exponential Growth</strong></p>
 </blockquote>
 
 <blockquote>
@@ -948,7 +950,7 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics.
+  <p>This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics.
 ```</p>
 </blockquote>
 
@@ -987,11 +989,12 @@
 
 <h3 id="3-the-challenge-problems-replacing-complete-examples">3. The Challenge Problems (Replacing Complete Examples)</h3>
 
-<p><strong>Principle:</strong> Remove the long list of solved examples at the end. Replace them with two specific, high-level problems labeled “Challenge Problems.”</p>
+<p><strong>Principle:</strong> Remove the long list of solved examples at the end. Replace them with 2-4 specific, high-level problems labeled “Challenge Problems.”</p>
 
 <p><strong>Structure:</strong>
 - <strong>Challenge 1 (Computational/Derivation):</strong> A difficult derivation that connects multiple concepts in the section.
-- <strong>Challenge 2 (Conceptual/Counter-example):</strong> A problem that tests the boundaries of the theory (e.g., a case where uniqueness fails, or a series diverges).</p>
+- <strong>Challenge 2 (Conceptual/Counter-example):</strong> A problem that tests the boundaries of the theory (e.g., a case where uniqueness fails, or a series diverges).
+- <strong>Additional Challenges:</strong> Add more if there are many examples—preserve the key conceptual narrative while making it more cohesive and illustrative.</p>
 
 <p><strong>Format:</strong>
 - Provide detailed solutions, but keep them in collapsible <code class="language-plaintext highlighter-rouge">&lt;details&gt;</code> blocks
@@ -1010,13 +1013,16 @@
 <span class="nt">&lt;summary&gt;&lt;strong&gt;</span>Expand Solution<span class="nt">&lt;/strong&gt;&lt;/summary&gt;</span>
 
 [Detailed solution with connections to theory]
+<span class="p">
+*</span> [Key insight 1]
+<span class="p">*</span> [Key insight 2]
 
 <span class="nt">&lt;/details&gt;</span>
 </code></pre></div></div>
 
 <h3 id="4-visualizing-the-argument">4. Visualizing the Argument</h3>
 
-<p><strong>Principle:</strong> Use image tags strategically to illustrate geometric arguments, not just results.</p>
+<p><strong>Principle:</strong> Use image tags strategically to illustrate geometric/algebraic arguments, not just results.</p>
 
 <p><strong>Guidelines:</strong>
 - Add image placeholders for geometric visualizations
@@ -1052,20 +1058,21 @@ When discussing the Method of Characteristics, we visualize the crossing of char
 
 <h3 id="critical-use-mid-instead-of-">Critical: Use <code class="language-plaintext highlighter-rouge">\mid</code> Instead of <code class="language-plaintext highlighter-rouge">|</code></h3>
 
-<p><strong>Rule:</strong> Always use <code class="language-plaintext highlighter-rouge">\mid</code> instead of <code class="language-plaintext highlighter-rouge">|</code> for mathematical separators.</p>
+<p><strong>Rule:</strong> Always use <code class="language-plaintext highlighter-rouge">\mid</code> instead of <code class="language-plaintext highlighter-rouge">|</code> for ALL mathematical uses of the pipe character.</p>
 
 <p><strong>When to use <code class="language-plaintext highlighter-rouge">\mid</code>:</strong>
 - Set notation: <code class="language-plaintext highlighter-rouge">$\{x \mid x &gt; 0\}$</code>
 - Conditional probability: <code class="language-plaintext highlighter-rouge">$P(A \mid B)$</code>
 - “Such that” in definitions
-- Divides relation: <code class="language-plaintext highlighter-rouge">$a \mid b$</code></p>
+- Divides relation: <code class="language-plaintext highlighter-rouge">$a \mid b$</code>
+- <strong>Absolute value:</strong> <code class="language-plaintext highlighter-rouge">$\mid x \mid$</code> (NOT <code class="language-plaintext highlighter-rouge">\left| x \right|</code>)
+- <strong>Norm:</strong> <code class="language-plaintext highlighter-rouge">$\mid \mathbf{v} \mid$</code> (NOT <code class="language-plaintext highlighter-rouge">\left\| \mathbf{v} \right\|</code>)</p>
 
-<p><strong>When to use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>:</strong>
-- Absolute value: <code class="language-plaintext highlighter-rouge">$\left| x \right|$</code>
-- Norm: <code class="language-plaintext highlighter-rouge">$\left\| \mathbf{v} \right\|$</code>
-- Delimiters (not separators)</p>
+<p><strong>NEVER use:</strong>
+- <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code> for delimiters
+- Standalone <code class="language-plaintext highlighter-rouge">|</code> in math expressions (except in markdown tables)</p>
 
-<p><strong>Never use standalone <code class="language-plaintext highlighter-rouge">|</code> in math expressions</strong> (except in markdown tables).</p>
+<p><strong>Rationale:</strong> The pipe character <code class="language-plaintext highlighter-rouge">|</code> is used by markdown processors to create tables. Using <code class="language-plaintext highlighter-rouge">\mid</code> avoids all parsing conflicts and is semantically correct for mathematical separators.</p>
 
 <h2 id="step-by-step-transformation-process">Step-by-Step Transformation Process</h2>
 
@@ -1076,6 +1083,7 @@ When discussing the Method of Characteristics, we visualize the crossing of char
   <li><strong>Identify all examples</strong> and their corresponding concepts</li>
   <li><strong>List all prerequisites</strong> that are assumed</li>
   <li><strong>Note the ending</strong> - what limitation does it expose?</li>
+  <li><strong>Count examples</strong> - determine how many challenge problems are needed (typically 2-4)</li>
 </ol>
 
 <h3 id="phase-2-restructuring">Phase 2: Restructuring</h3>
@@ -1083,18 +1091,18 @@ When discussing the Method of Characteristics, we visualize the crossing of char
 <ol>
   <li><strong>Add Essence Quote</strong> at the very top (one sentence capturing the section’s core)</li>
   <li><strong>Integrate examples</strong> into theory sections using blockquotes</li>
-  <li><strong>Add Reflection paragraphs</strong> after each example</li>
+  <li><strong>Add narrative bridges</strong> after each example (explaining what it reveals/fails to do)</li>
   <li><strong>Inline prerequisites</strong> as definitions within the flow</li>
   <li><strong>Remove “Complete Examples” section</strong></li>
-  <li><strong>Create 2 Challenge Problems</strong> that synthesize concepts</li>
+  <li><strong>Create Challenge Problems</strong> that synthesize concepts (preserve all important examples as challenges)</li>
 </ol>
 
 <h3 id="phase-3-math-formatting">Phase 3: Math Formatting</h3>
 
 <ol>
-  <li><strong>Search for standalone <code class="language-plaintext highlighter-rouge">|</code></strong> in math expressions</li>
-  <li><strong>Replace with <code class="language-plaintext highlighter-rouge">\mid</code></strong> for separators</li>
-  <li><strong>Keep <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code></strong> for delimiters</li>
+  <li><strong>Search for all <code class="language-plaintext highlighter-rouge">|</code> characters</strong> in math expressions</li>
+  <li><strong>Replace with <code class="language-plaintext highlighter-rouge">\mid</code></strong> for all mathematical uses</li>
+  <li><strong>Replace <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code></strong> with <code class="language-plaintext highlighter-rouge">\mid</code> (even for absolute values)</li>
   <li><strong>Verify all math renders correctly</strong></li>
 </ol>
 
@@ -1105,6 +1113,7 @@ When discussing the Method of Characteristics, we visualize the crossing of char
   <li><strong>Strengthen “Connections” section</strong> with explicit limitations</li>
   <li><strong>Ensure flow</strong> from one concept to the next</li>
   <li><strong>Check tone</strong> consistency throughout</li>
+  <li><strong>Verify all original content is preserved</strong> (just reorganized)</li>
 </ol>
 
 <h2 id="example-transformation-checklist">Example Transformation Checklist</h2>
@@ -1112,11 +1121,11 @@ When discussing the Method of Characteristics, we visualize the crossing of char
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Essence quote added at top</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All examples integrated into theory (not separate section)</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Each example followed by Reflection paragraph</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Each example followed by narrative bridge paragraph</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Prerequisites inlined (not listed at start)</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />“Complete Examples” section removed</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />2 Challenge Problems created with collapsible solutions</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All <code class="language-plaintext highlighter-rouge">|</code> replaced with <code class="language-plaintext highlighter-rouge">\mid</code> (except in <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code>)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />2-4 Challenge Problems created with collapsible solutions</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />All <code class="language-plaintext highlighter-rouge">|</code> replaced with <code class="language-plaintext highlighter-rouge">\mid</code> (including <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>)</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />“Connections to Chapter Narrative” section updated</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Explicit limitation/failure stated to hook next section</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Narrative flow verified</li>
@@ -1125,17 +1134,17 @@ When discussing the Method of Characteristics, we visualize the crossing of char
 
 <h2 id="common-patterns">Common Patterns</h2>
 
-<h3 id="pattern-1-definition--example--reflection--next-concept">Pattern 1: Definition → Example → Reflection → Next Concept</h3>
+<h3 id="pattern-1-definition--example--narrative-bridge--next-concept">Pattern 1: Definition → Example → Narrative Bridge → Next Concept</h3>
 
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Concept Name</span>
 
 [Definition with mathematical rigor]
 <span class="gt">
-&gt; **Illustrative Example: [Name]**</span>
+&gt; **Example Name**</span>
 <span class="gt">
 &gt; [Worked solution]</span>
 <span class="gt">
-&gt; **Reflection:** [What this reveals, what it fails to do, connection to next concept]</span>
+&gt; This demonstrates that [what this reveals, what it fails to do, connection to next concept]</span>
 
 [Next concept builds on this]
 </code></pre></div></div>
@@ -1150,7 +1159,7 @@ When discussing the Method of Characteristics, we visualize the crossing of char
 <span class="gt">
 &gt; [Solution demonstrating theorem]</span>
 <span class="gt">
-&gt; **Reflection:** [When theorem applies, when it fails]</span>
+&gt; [When theorem applies, when it fails, leading to next method]</span>
 
 [Discussion of limitations leading to next method]
 </code></pre></div></div>
@@ -1184,10 +1193,10 @@ When discussing the Method of Characteristics, we visualize the crossing of char
   <li><strong>Reveal limitations</strong> explicitly to motivate next section</li>
   <li><strong>Preserve all content</strong> while improving organization</li>
   <li><strong>Maintain rigor</strong> while improving readability</li>
-  <li><strong>Use proper math syntax</strong> (<code class="language-plaintext highlighter-rouge">\mid</code> for separators, <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code> for delimiters)</li>
+  <li><strong>Use proper math syntax</strong> (<code class="language-plaintext highlighter-rouge">\mid</code> everywhere, never <code class="language-plaintext highlighter-rouge">|</code> or <code class="language-plaintext highlighter-rouge">\left|</code>/<code class="language-plaintext highlighter-rouge">\right|</code>)</li>
 </ol>
 
-<h2 id="notes-on-generality">Notes on Generality</h2>
+<h2 id="notes-on-generality-and-flexibility">Notes on Generality and Flexibility</h2>
 
 <ul>
   <li><strong>Avoid uniformity:</strong> Each section should have its own character while following these principles</li>
@@ -1195,10 +1204,56 @@ When discussing the Method of Characteristics, we visualize the crossing of char
   <li><strong>Maintain rigor:</strong> Never sacrifice mathematical precision for narrative flow</li>
   <li><strong>Prove computations:</strong> All examples should include complete, verifiable calculations</li>
   <li><strong>Narrative flow:</strong> Connect concepts through the story of mathematical discovery</li>
+  <li><strong>Flexible challenge count:</strong> Use 2-4 challenge problems depending on the number of important examples—the goal is to preserve all key concepts, not to rigidly follow a template</li>
 </ul>
 
-<p>This transformation process ensures that every section tells a coherent story while maintaining mathematical rigor and preserving all important content.</p>
+<h2 id="specific-transformations-applied-to-section-11">Specific Transformations Applied to Section 1.1</h2>
 
+<p>As a concrete example, the following transformations were applied to Section 1.1:</p>
+
+<ol>
+  <li>
+    <p><strong>Essence Quote Added:</strong> “Exactness is the first algebraic structure that renders a differential equation integrable by quadrature.”</p>
+  </li>
+  <li><strong>Examples Integrated:</strong>
+    <ul>
+      <li>Picard iteration example moved immediately after Lipschitz condition definition</li>
+      <li>Non-uniqueness example integrated into existence/uniqueness discussion</li>
+      <li>Exact equation example placed after exactness condition</li>
+      <li>All 15 original examples preserved, either integrated into theory or converted to challenge problems</li>
+    </ul>
+  </li>
+  <li><strong>Prerequisites Inlined:</strong>
+    <ul>
+      <li>Lipschitz condition defined in situ</li>
+      <li>Differential forms introduced just-in-time</li>
+      <li>Wronskian and Abel’s identity explained when needed</li>
+    </ul>
+  </li>
+  <li><strong>Challenge Problems Created:</strong>
+    <ul>
+      <li>Challenge 1: Osgood Uniqueness Criterion (conceptual/counter-example)</li>
+      <li>Challenge 2: Generalized Integrating Factor (computational/derivation)</li>
+      <li>Challenge 3: Riccati and Projective Geometry (additional synthesis)</li>
+    </ul>
+  </li>
+  <li><strong>Math Formatting:</strong>
+    <ul>
+      <li>All <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code> replaced with <code class="language-plaintext highlighter-rouge">\mid</code></li>
+      <li>All standalone <code class="language-plaintext highlighter-rouge">|</code> in math replaced with <code class="language-plaintext highlighter-rouge">\mid</code></li>
+      <li>Verified no table parsing conflicts</li>
+    </ul>
+  </li>
+  <li><strong>Narrative Flow:</strong>
+    <ul>
+      <li>Each example followed by a paragraph explaining its significance</li>
+      <li>Transitions added between concepts</li>
+      <li>“Connections” section explicitly states limitations</li>
+    </ul>
+  </li>
+</ol>
+
+<p>This transformation process ensures that every section tells a coherent story while maintaining mathematical rigor and preserving all important content.</p>
 
       </article>
     </main>

@@ -931,15 +931,15 @@
 - <strong>“Such that” in definitions</strong>: $f: X \to Y \mid f(x) = x^2$
 - <strong>General mathematical separators</strong>: Any context where you mean “such that” or a logical separator</p>
 
-<h3 id="when-to-use--with-left-and-right">When to Use <code class="language-plaintext highlighter-rouge">|</code> (with <code class="language-plaintext highlighter-rouge">\left</code> and <code class="language-plaintext highlighter-rouge">\right</code>)</h3>
+<h3 id="absolute-values-and-norms">Absolute Values and Norms</h3>
 
-<p><strong>Still use <code class="language-plaintext highlighter-rouge">|</code></strong> when it’s part of <strong>delimiter pairs</strong> with <code class="language-plaintext highlighter-rouge">\left</code> and <code class="language-plaintext highlighter-rouge">\right</code>:</p>
+<p><strong>Use <code class="language-plaintext highlighter-rouge">\mid</code> for absolute values and norms</strong> (do NOT use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code>):</p>
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The absolute value: $<span class="se">\l</span>eft| x <span class="se">\r</span>ight|$
-The norm: $<span class="se">\l</span>eft<span class="se">\|</span> <span class="se">\m</span>athbf{v} <span class="se">\r</span>ight<span class="se">\|</span>$
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The absolute value: $<span class="se">\m</span>id x <span class="se">\m</span>id$
+The norm: $<span class="se">\m</span>id <span class="se">\m</span>athbf{v} <span class="se">\m</span>id$
 </code></pre></div></div>
 
-<p>These are <strong>delimiters</strong>, not separators, and MathJax handles them correctly.</p>
+<p>This avoids all markdown table parsing conflicts while maintaining mathematical clarity.</p>
 
 <h3 id="quick-reference">Quick Reference</h3>
 
@@ -963,14 +963,14 @@ The norm: $<span class="se">\l</span>eft<span class="se">\|</span> <span class="
       <td>$P(A \mid B)$</td>
     </tr>
     <tr>
-      <td>Absolute value (delimiter)</td>
-      <td><code class="language-plaintext highlighter-rouge">\left\| \right\|</code></td>
-      <td>$\left| x \right|$</td>
+      <td>Absolute value</td>
+      <td><code class="language-plaintext highlighter-rouge">\mid</code></td>
+      <td>$\mid x \mid$</td>
     </tr>
     <tr>
-      <td>Norm (delimiter)</td>
-      <td><code class="language-plaintext highlighter-rouge">\left\| \right\|</code></td>
-      <td>$\left| \mathbf{v} \right|$</td>
+      <td>Norm</td>
+      <td><code class="language-plaintext highlighter-rouge">\mid</code></td>
+      <td>$\mid \mathbf{v} \mid$</td>
     </tr>
     <tr>
       <td>Divides (relation)</td>
@@ -1025,8 +1025,9 @@ The norm: $<span class="se">\l</span>eft<span class="se">\|</span> <span class="
 <h3 id="summary">Summary</h3>
 
 <p><strong>Remember:</strong>
-- <strong>Separators</strong> (such that, conditional) → Use <code class="language-plaintext highlighter-rouge">\mid</code>
-- <strong>Delimiters</strong> (absolute value, norm) → Use <code class="language-plaintext highlighter-rouge">\left|</code> and <code class="language-plaintext highlighter-rouge">\right|</code></p>
+- <strong>ALL mathematical uses of pipe</strong> → Use <code class="language-plaintext highlighter-rouge">\mid</code>
+- <strong>NEVER use <code class="language-plaintext highlighter-rouge">|</code>, <code class="language-plaintext highlighter-rouge">\left|</code>, or <code class="language-plaintext highlighter-rouge">\right|</code></strong> in math expressions
+- <strong>Only use <code class="language-plaintext highlighter-rouge">|</code> in markdown tables</strong> (not in math)</p>
 
 <p>This simple rule will prevent all table parsing issues and make your mathematical notation more professional and semantically correct.</p>
 

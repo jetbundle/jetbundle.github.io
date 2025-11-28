@@ -911,24 +911,24 @@
 
 <h2 id="the-deterministic-assumption-existence-and-uniqueness">The Deterministic Assumption: Existence and Uniqueness</h2>
 
-<p>Before seeking a formula, we must establish that a solution exists. The fundamental guarantee of classical mechanics is provided by the <strong>Picard–Lindelöf Theorem</strong>: if the vector field $f(x,y)$ is continuous and locally Lipschitz in $y$, a unique solution exists on a small interval.</p>
+<p>Before seeking a formula, we must establish that a solution exists. The fundamental guarantee of classical mechanics is provided by the <strong>Picard–Lindelöf Theorem</strong>: if the vector field $f(x,y)$ is continuous and locally <strong>Lipschitz</strong> in $y$, a unique solution exists on a small interval.</p>
 
 <p><strong>Definition: The Lipschitz Condition</strong></p>
 
-<p>A function $f$ is <strong>Lipschitz in $y$</strong> if there exists a constant $K$ such that for all $y_1, y_2$ in the domain:</p>
+<p>A function $f$ is <strong>Lipschitz</strong> in $y$ if there exists a constant $K$ such that for all $y_1, y_2$ in the domain:</p>
 
-\[\left|f(x, y_1) - f(x, y_2)\right| \leq K \left|y_1 - y_2\right|\]
+\[\mid f(x, y_1) - f(x, y_2) \mid \leq K \mid y_1 - y_2 \mid\]
 
 <p>This condition prevents the vector field from changing “infinitely fast,” ensuring trajectories cannot split or merge.</p>
 
-<p>The Picard–Lindelöf theorem guarantees local solvability: if $f$ is continuous on a rectangle containing $(x_{0}, y_{0})$ and satisfies the Lipschitz condition, then the operator</p>
+<p>The proof constructs a contraction mapping on a function space. Define the operator</p>
 
 \[(\mathcal{T}y)(x) = y_{0} + \int_{x_{0}}^{x} f(t, y(t))\,dt\]
 
-<p>is a contraction on a sufficiently small interval. Banach’s fixed-point theorem furnishes a unique fixed point.</p>
+<p>On a sufficiently small interval, the Lipschitz condition ensures $\mathcal{T}$ is a contraction. Banach’s fixed-point theorem furnishes a unique fixed point, which is the solution.</p>
 
 <blockquote>
-  <p><strong>Illustrative Example: Picard Iteration</strong></p>
+  <p><strong>Picard Iteration: Exponential Growth</strong></p>
 </blockquote>
 
 <blockquote>
@@ -944,49 +944,25 @@
 </blockquote>
 
 <blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\left</td>
-        <td>x\right</td>
-        <td>&lt; 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.</td>
-      </tr>
-    </tbody>
-  </table>
+  <p>so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\mid x \mid &lt; 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.</p>
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> This demonstrates that the abstract fixed-point argument yields a constructive algorithm. However, the convergence is only guaranteed locally, and the rate depends on the Lipschitz constant.</p>
+  <p>This demonstrates that the abstract fixed-point argument yields a constructive algorithm. The iteration converges geometrically, with error bounded by $K^n \mid x \mid^n / n!$.</p>
 </blockquote>
 
 <p>However, when the Lipschitz condition fails, determinism breaks down. This is our first encounter with the limitations of classical analysis.</p>
 
 <blockquote>
-  <p><strong>Illustrative Example: The Failure of Determinism</strong></p>
+  <p><strong>Failure of Determinism: Non-Uniqueness</strong></p>
 </blockquote>
 
 <blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>Consider the initial value problem $y’ = \sqrt{\left</td>
-        <td>y\right</td>
-        <td>}$ with $y(0) = 0$.</td>
-      </tr>
-    </tbody>
-  </table>
+  <p>Consider the initial value problem $y’ = \sqrt{\mid y \mid}$ with $y(0) = 0$.</p>
 </blockquote>
 
 <blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>The function $f(y) = \sqrt{\left</td>
-        <td>y\right</td>
-        <td>}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:</td>
-      </tr>
-    </tbody>
-  </table>
+  <p>The function $f(y) = \sqrt{\mid y \mid}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:</p>
 </blockquote>
 
 <blockquote>
@@ -994,96 +970,18 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>The Nuance:</strong> Because the uniqueness theorem fails, a particle at the origin can wait for an arbitrary time $C$ before spontaneously moving along the parabola. The physical history is erased at the singularity.</p>
+  <p>Since</p>
 </blockquote>
 
 <blockquote>
-  <p>To quantify this failure, observe that</p>
+\[\frac{\mid \sqrt{\mid y_{1} \mid} - \sqrt{\mid y_{2} \mid} \mid}{\mid y_{1} - y_{2} \mid} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,\]
 </blockquote>
 
 <blockquote>
-\[\frac{\left|\sqrt{\left|y_{1}\right|} - \sqrt{\left|y_{2}\right|}\right|}{\left|y_{1} - y_{2}\right|} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,\]
+  <p>the Lipschitz condition fails and uniqueness is lost. A particle at the origin can wait for an arbitrary time before spontaneously moving along the parabola. The physical history is erased at the singularity.</p>
 </blockquote>
 
-<blockquote>
-  <p>confirming that the Lipschitz condition fails and uniqueness is lost.</p>
-</blockquote>
-
-<blockquote>
-  <p><strong>Reflection:</strong> This example reveals that the classical theory of differential equations is not universal. When the vector field becomes singular, multiple trajectories can emerge from the same initial condition, challenging the deterministic worldview.</p>
-</blockquote>
-
-<h2 id="separation-of-variables-the-simplest-case">Separation of Variables: The Simplest Case</h2>
-
-<p>When the field factors as $y’ = P(x)/Q(y)$, we obtain</p>
-
-\[Q(y)\,dy = P(x)\,dx, \qquad \int Q(y)\,dy = \int P(x)\,dx,\]
-
-<p>reducing the problem to quadrature.</p>
-
-<blockquote>
-  <p><strong>Illustrative Example: Exponential Growth</strong></p>
-</blockquote>
-
-<blockquote>
-  <p>Solve $y’ = xy$ with $y(0) = 1$.</p>
-</blockquote>
-
-<blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>We have $dy/y = x\,dx$, leading to $\ln \left</td>
-        <td>y\right</td>
-        <td>= x^{2}/2 + C$ and $y = e^{x^{2}/2}$.</td>
-      </tr>
-    </tbody>
-  </table>
-</blockquote>
-
-<blockquote>
-  <p><strong>Reflection:</strong> This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics.</p>
-</blockquote>
-
-<blockquote>
-  <p><strong>Illustrative Example: Newton’s Law of Cooling</strong></p>
-</blockquote>
-
-<blockquote>
-  <p>Solve $T’ = -k(T - T_{a})$ where $T_{a}$ is the ambient temperature.</p>
-</blockquote>
-
-<blockquote>
-  <p>Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.</p>
-</blockquote>
-
-<blockquote>
-  <p><strong>Reflection:</strong> The solution exhibits exponential approach to equilibrium, a fundamental pattern in dissipative systems.</p>
-</blockquote>
-
-<blockquote>
-  <p><strong>Illustrative Example: Logistic Growth</strong></p>
-</blockquote>
-
-<blockquote>
-  <p>Solve $y’ = ry(1 - y/K)$ where $r$ is the growth rate and $K$ is the carrying capacity.</p>
-</blockquote>
-
-<blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \left</td>
-        <td>\frac{y}{K - y}\right</td>
-        <td>= rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.</td>
-      </tr>
-    </tbody>
-  </table>
-</blockquote>
-
-<blockquote>
-  <p><strong>Reflection:</strong> The logistic equation bridges exponential growth and saturation, modeling population dynamics and resource-limited systems.</p>
-</blockquote>
+<p>This failure motivates the need for more sophisticated existence and uniqueness criteria, such as Osgood’s condition, which we explore in the challenge problems.</p>
 
 <h2 id="the-geometry-of-exactness">The Geometry of Exactness</h2>
 
@@ -1100,7 +998,7 @@
 <p>Geometrically, this states that the vector field $(M, N)$ is irrotational (has zero curl) in the plane.</p>
 
 <blockquote>
-  <p><strong>Worked Example: Exact Construction</strong></p>
+  <p><strong>Exact Construction</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1129,9 +1027,7 @@
   <p>The general solution is the implicit curve $x^2y + xy^2 = C$.</p>
 </blockquote>
 
-<blockquote>
-  <p><strong>Reflection:</strong> Exactness transforms the differential equation into a problem of finding level sets of a potential function. This geometric viewpoint will prove essential when we generalize to higher dimensions and manifolds.</p>
-</blockquote>
+<p>This demonstrates that exactness is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The level sets of $\psi$ are the integral curves.</p>
 
 <h3 id="integrating-factors-as-coordinate-transformations">Integrating Factors as Coordinate Transformations</h3>
 
@@ -1141,12 +1037,40 @@
 
 <p>satisfies the exactness condition.</p>
 
-<p>The classical <strong>Linear First-Order Equation</strong> $y’ + P(x)y = Q(x)$ is the archetype of this method. The specific factor $\mu(x) = \exp\left(\int P(x)\,dx\right)$ is not merely a heuristic trick; it is the unique transformation that renders the differential operator self-adjoint with respect to the weight $\mu$, allowing the equation to be written as a total derivative:</p>
+<p>The classical <strong>Linear First-Order Equation</strong> $y’ + P(x)y = Q(x)$ is the archetype of this method. The specific factor $\mu(x) = \exp(\int P(x) dx)$ is not merely a heuristic trick; it is the unique transformation that renders the differential operator self-adjoint with respect to the weight $\mu$, allowing the equation to be written as a total derivative:</p>
 
 \[\frac{d}{dx}(\mu y) = \mu Q\]
 
 <blockquote>
-  <p><strong>Worked Example: Linear First-Order Equation</strong></p>
+  <p><strong>Linear First-Order: Radioactive Decay with Production</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $y’ = -ky + P$ with $y(0) = y_{0}$.</p>
+</blockquote>
+
+<blockquote>
+  <p>The integrating factor is $\mu(x) = e^{kx}$. Multiplying both sides:</p>
+</blockquote>
+
+<blockquote>
+\[\frac{d}{dx}(y e^{kx}) = P e^{kx}\]
+</blockquote>
+
+<blockquote>
+  <p>Integrating and applying the initial condition:</p>
+</blockquote>
+
+<blockquote>
+\[y(x) = \left(y_{0} - \frac{P}{k}\right) e^{-kx} + \frac{P}{k}\]
+</blockquote>
+
+<blockquote>
+  <p>Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution exhibits exponential decay to the equilibrium $P/k$.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Linear First-Order: Exponential Growth with Forcing</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1162,27 +1086,63 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> The integrating factor method reveals that linear equations are always solvable by quadrature, in contrast to the general nonlinear case.</p>
+  <p>The integrating factor method transforms the non-homogeneous equation into a total derivative, revealing the structure of the solution.</p>
 </blockquote>
 
-<p>This is a special case of variation of parameters: given a homogeneous solution $y_{h}$, set $y = v(x) y_{h}(x)$ and derive a separable equation for $v$.</p>
+<h2 id="separation-of-variables-the-simplest-case">Separation of Variables: The Simplest Case</h2>
 
-<p><strong>Bernoulli equations</strong> $y’ + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v = y^{1-n}$.</p>
+<p>When the field factors as $y’ = P(x)/Q(y)$ we obtain</p>
 
-<blockquote>
-  <p><strong>Worked Example: Bernoulli Equation</strong></p>
-</blockquote>
+\[Q(y)\,dy = P(x)\,dx, \qquad \int Q(y)\,dy = \int P(x)\,dx,\]
 
-<blockquote>
-  <p>Solve $y’ + y = x y^{3}$.</p>
-</blockquote>
+<p>reducing the problem to quadrature.</p>
 
 <blockquote>
-  <p>Set $v = y^{-2}$ to obtain $v’ - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.</p>
+  <p><strong>Exponential Growth</strong></p>
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> The Bernoulli substitution demonstrates that certain nonlinear equations are linearizable through power-law transformations, a theme that will recur in the study of scaling symmetries.</p>
+  <p>Solve $y’ = xy$ with $y(0) = 1$.</p>
+</blockquote>
+
+<blockquote>
+  <p>We have $dy/y = x\,dx$, leading to $\ln \mid y \mid = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.</p>
+</blockquote>
+
+<blockquote>
+  <p>This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The solution grows super-exponentially, faster than any polynomial.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Newton’s Law of Cooling</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $T’ = -k(T - T_{a})$.</p>
+</blockquote>
+
+<blockquote>
+  <p>Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.</p>
+</blockquote>
+
+<blockquote>
+  <p>The temperature approaches the ambient temperature exponentially, with rate constant $k$. This is a fundamental model of heat transfer.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Logistic Growth</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $y’ = ry(1 - y/K)$.</p>
+</blockquote>
+
+<blockquote>
+  <p>Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \mid \frac{y}{K - y} \mid = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.</p>
+</blockquote>
+
+<blockquote>
+  <p>The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and many other bounded growth phenomena.</p>
 </blockquote>
 
 <h2 id="linearization-and-the-riccati-link">Linearization and the Riccati Link</h2>
@@ -1191,14 +1151,14 @@
 
 \[y' = P(x) + Q(x)y + R(x)y^{2}\]
 
-<p>This equation possesses a remarkable property: it is a “projection” of a higher-dimensional linear system. By making the substitution $y = -u’/(R u)$, we transform the nonlinear first-order Riccati equation into a <strong>linear second-order equation</strong>:</p>
+<p>This equation possesses a remarkable property: it is a “projection” of a higher-dimensional linear system. If $y_{1}$ is a particular solution, substituting $y = y_{1} + 1/v$ produces a linear first-order equation for $v$. Alternatively, $y = -u’/(R u)$ converts the Riccati equation into</p>
 
-\[u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0\]
+\[u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0,\]
 
-<p>This transformation reveals that the singularity where $y \to \infty$ in the Riccati equation corresponds to a simple zero $u=0$ in the linear system.</p>
+<p>showing how nonlinearity can arise from projecting higher-dimensional linear flow.</p>
 
 <blockquote>
-  <p><strong>Worked Example: Reducing Riccati</strong></p>
+  <p><strong>Reducing Riccati to Linear Form</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1222,7 +1182,7 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear equations often exhibit <strong>finite-time blowup</strong>. This singularity structure will be central to our understanding of integrable systems in Chapter 4.</p>
+  <p>Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear equations often exhibit <strong>finite-time blowup</strong>. This singularity represents a fundamental difference between linear and nonlinear dynamics.</p>
 </blockquote>
 
 <h2 id="second-order-linear-homogeneous-equations">Second-Order Linear Homogeneous Equations</h2>
@@ -1230,7 +1190,7 @@
 <p>Equations like $y’’ + p(x) y’ + q(x) y = 0$ underpin classical physics. Constant coefficients yield the characteristic polynomial $r^{2} + pr + q = 0$ with exponential solutions.</p>
 
 <blockquote>
-  <p><strong>Worked Example: Constant-Coefficient Second Order</strong></p>
+  <p><strong>Constant-Coefficient Second Order</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1242,13 +1202,11 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> The exponential ansatz reduces the differential equation to an algebraic problem, demonstrating the power of eigenfunction methods.</p>
+  <p>The general solution is a linear combination of exponentials, with coefficients determined by initial conditions.</p>
 </blockquote>
 
-<p><strong>Cauchy–Euler equations</strong> $x^{2} y’’ + a x y’ + by = 0$ admit power-law solutions $y = x^{r}$.</p>
-
 <blockquote>
-  <p><strong>Worked Example: Cauchy–Euler Equation</strong></p>
+  <p><strong>Cauchy–Euler Equation</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1260,7 +1218,7 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> The Cauchy–Euler equation demonstrates that scaling symmetries in the independent variable lead to power-law solutions, a precursor to the dimensional analysis methods of Chapter 1.5.</p>
+  <p>The repeated root produces a logarithmic term, demonstrating that the solution space structure depends on the algebraic multiplicity of eigenvalues.</p>
 </blockquote>
 
 <p>When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving</p>
@@ -1268,7 +1226,7 @@
 \[y_{2}(x) = y_{1}(x) \int \frac{\exp\left(-\int p(s)\,ds\right)}{y_{1}(t)^{2}}\,dt.\]
 
 <blockquote>
-  <p><strong>Worked Example: Reduction of Order</strong></p>
+  <p><strong>Reduction of Order</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1280,23 +1238,21 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> Reduction of order demonstrates that knowledge of a single solution can generate the full solution space, revealing the linear structure underlying second-order equations.</p>
+  <p>The second solution involves the exponential integral, a special function that cannot be expressed in elementary terms. This foreshadows the need for special functions developed in later sections.</p>
 </blockquote>
 
 <p>The Wronskian $W = y_{1} y_{2}’ - y_{1}’ y_{2}$ satisfies Abel’s identity $W’ = -p(x) W$, so $W \neq 0$ at one point implies linear independence everywhere.</p>
 
 <h2 id="systems-and-matrix-methods">Systems and Matrix Methods</h2>
 
-<p>Systems $\mathbf{y}’ = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional vector space with fundamental matrix $\Phi$ satisfying $\Phi’ = A\Phi$. The general solution is $\mathbf{y} = \Phi \mathbf{c}$.</p>
-
-<p>Abel’s formula extends via</p>
+<p>Systems $\mathbf{y}’ = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional vector space with fundamental matrix $\Phi$ satisfying $\Phi’ = A\Phi$. The general solution is $\mathbf{y} = \Phi \mathbf{c}$. Abel’s formula extends via</p>
 
 \[\det \Phi(x) = \det \Phi(x_{0}) \exp\left( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt \right),\]
 
 <p>tying phase-space volume change to $\operatorname{tr} A$.</p>
 
 <blockquote>
-  <p><strong>Worked Example: Linear System via Eigen-Decomposition</strong></p>
+  <p><strong>Linear System via Eigen-Decomposition</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1312,7 +1268,7 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> The eigen-decomposition method reveals that linear systems decouple along invariant subspaces, a fundamental principle that will generalize to infinite-dimensional systems in Chapter 2.</p>
+  <p>The solution is a linear combination of eigenmodes, each growing or decaying according to its eigenvalue. The unstable mode ($\lambda = 3$) dominates for large $x$, while the stable mode ($\lambda = -1$) dominates for large negative $x$.</p>
 </blockquote>
 
 <h2 id="first-integrals-and-level-sets">First Integrals and Level Sets</h2>
@@ -1324,7 +1280,7 @@
 <p>encodes conservation: if ${F, H} = 0$, then $F$ is invariant. This foreshadows the symplectic viewpoint of later sections.</p>
 
 <blockquote>
-  <p><strong>Worked Example: First Integrals of the Harmonic Oscillator</strong></p>
+  <p><strong>First Integrals of the Harmonic Oscillator</strong></p>
 </blockquote>
 
 <blockquote>
@@ -1336,56 +1292,36 @@
 </blockquote>
 
 <blockquote>
-  <p><strong>Reflection:</strong> First integrals provide a geometric constraint on trajectories, reducing the dimension of the solution space. This conservation structure will be central to the study of integrable systems in Chapter 4.</p>
+  <p>The phase space is foliated by level sets of $H$, each representing a different energy. This geometric structure is fundamental to Hamiltonian mechanics and will be developed extensively in later chapters.</p>
 </blockquote>
 
-<h2 id="radioactive-decay-with-production">Radioactive Decay with Production</h2>
+<h2 id="bernoulli-equations-and-power-law-nonlinearity">Bernoulli Equations and Power-Law Nonlinearity</h2>
+
+<p>Bernoulli equations $y’ + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v = y^{1-n}$.</p>
 
 <blockquote>
-  <p><strong>Worked Example: Radioactive Decay with Production</strong></p>
-</blockquote>
-
-<blockquote>
-  <p>Solve $y’ = -ky + P$ with $y(0) = y_{0}$ and verify Picard iteration.</p>
+  <p><strong>Bernoulli Transformation</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>The solution is</p>
+  <p>Solve $y’ + y = x y^{3}$.</p>
 </blockquote>
 
 <blockquote>
-\[y(x) = \left(y_{0} - \frac{P}{k}\right) e^{-kx} + \frac{P}{k}.\]
+  <p>Set $v = y^{-2}$ to obtain $v’ - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.</p>
 </blockquote>
 
 <blockquote>
-  <p>Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$.</p>
+  <p>The substitution transforms the nonlinear equation into a linear one, demonstrating that certain nonlinearities are merely coordinate artifacts.</p>
 </blockquote>
-
-<blockquote>
-  <p><strong>Reflection:</strong> This example demonstrates that production terms can stabilize decay processes, leading to equilibrium solutions. The linear structure ensures global existence, in contrast to nonlinear systems that may exhibit finite-time blowup.</p>
-</blockquote>
-
-<h2 id="connections-to-chapter-narrative">Connections to Chapter Narrative</h2>
-
-<p>Exact methods comprise the opening tier of the “explicit arsenal.” They succeed when symmetry or coordinate choice flattens the vector field, but their fragility—non-Lipschitz behavior, elusive integrating factors, scarce Riccati solutions—necessitates the special functions, integral transforms, and spectral frameworks developed later in Chapter 1 and beyond.</p>
-
-<p>The failure of exact methods to handle generic nonlinear systems introduces the need for approximation techniques, which we develop in Section 1.5 (Asymptotic Analysis) and Section 1.6 (Perturbation Theory). The geometric structure revealed by exactness—differential forms, level sets, and conservation laws—will be formalized in Chapter 3 through the language of manifolds and exterior calculus.</p>
 
 <h2 id="challenge-problems">Challenge Problems</h2>
 
-<p>The following problems are designed to test your ability to synthesize the concepts of existence, uniqueness, and algebraic exactness.</p>
+<p>The following problems synthesize the concepts of existence, uniqueness, and algebraic exactness.</p>
 
 <h3 id="challenge-1-the-osgood-uniqueness-criterion">Challenge 1: The Osgood Uniqueness Criterion</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>We established that $y’ = \sqrt{\left</td>
-      <td>y\right</td>
-      <td>}$ fails uniqueness because the derivative of $\sqrt{y}$ blows up at 0. Let us refine the Lipschitz condition.</td>
-    </tr>
-  </tbody>
-</table>
+<p>We established that $y’ = \sqrt{y}$ fails uniqueness because the derivative of $\sqrt{y}$ blows up at 0. Let us refine the Lipschitz condition.</p>
 
 <p>Consider the equation $y’ = \phi(y)$ with $y(0)=0$, where $\phi(y)$ is continuous, $\phi(0)=0$, and $\phi(y) &gt; 0$ for $y&gt;0$.</p>
 
@@ -1406,9 +1342,10 @@ $$x_1 = \int_{0}^{y(x_1)} \frac{dy}{\phi(y)}$$
 
 If the integral on the right diverges to $\infty$, this implies $x_1 = \infty$. This contradicts the assumption that the particle moved away from 0 in finite time. Thus, no such trajectory exists, and $y(x)=0$ is unique.
 
-* For $\phi(y) = y$, integral is $\ln y$ (diverges $\to$ unique).
-
-* For $\phi(y) = \sqrt{y}$, integral is $2\sqrt{y}$ (converges $\to$ non-unique).
+**Key Insights:**
+- For $\phi(y) = y$, the integral is $\ln y$ (diverges $\to$ unique).
+- For $\phi(y) = \sqrt{y}$, the integral is $2\sqrt{y}$ (converges $\to$ non-unique).
+- Osgood's condition generalizes the Lipschitz criterion to handle singular behavior at isolated points.
 
 </details>
 
@@ -1437,23 +1374,56 @@ For this to be consistent, the Right Hand Side must be a function of $z=xy$ only
 
 $$\mu(xy) = \exp \left( \int \frac{N_x - M_y}{xM - yN} \, dz \right)$$
 
+**Key Insights:**
+- The condition $(N_x - M_y)/(xM - yN) = f(xy)$ is both necessary and sufficient.
+- This generalizes the standard integrating factor methods to cases with product symmetry.
+- The method fails when $xM = yN$, indicating a different symmetry structure.
+
 </details>
+
+<h3 id="challenge-3-riccati-and-projective-geometry">Challenge 3: Riccati and Projective Geometry</h3>
+
+<p>Show that the Riccati equation $y’ = P(x) + Q(x)y + R(x)y^{2}$ can be transformed into a linear second-order equation via the substitution $y = -u’/(R u)$, and derive the resulting equation.</p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Starting with $y = -u'/(R u)$, we compute:
+
+$$y' = -\frac{u''}{R u} + \frac{u' R'}{(R u)^2} + \frac{(u')^2}{R u^2}$$
+
+Substituting into the Riccati equation:
+
+$$-\frac{u''}{R u} + \frac{u' R'}{(R u)^2} + \frac{(u')^2}{R u^2} = P(x) + Q(x)\left(-\frac{u'}{R u}\right) + R(x)\left(-\frac{u'}{R u}\right)^2$$
+
+Multiplying through by $R u$ and simplifying:
+
+$$-u'' + \frac{R'}{R} u' + \frac{(u')^2}{u} = P R u - Q u' + \frac{(u')^2}{u}$$
+
+The $(u')^2/u$ terms cancel, leaving:
+
+$$u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0$$
+
+**Key Insights:**
+- The Riccati equation is a projection of a linear system in a higher-dimensional space.
+- The singularity $y \to \infty$ corresponds to $u = 0$ in the linear system.
+- This transformation reveals the deep connection between nonlinear first-order and linear second-order equations.
+
+</details>
+
+<h2 id="connections-to-chapter-narrative">Connections to Chapter Narrative</h2>
+
+<p>Exact methods comprise the opening tier of the “explicit arsenal.” They succeed when symmetry or coordinate choice flattens the vector field, but their fragility—non-Lipschitz behavior, elusive integrating factors, scarce Riccati solutions—necessitates the special functions, integral transforms, and spectral frameworks developed later in Chapter 1 and beyond.</p>
+
+<p>The failure of explicit methods for non-integrable systems introduces the concept of <strong>Chaos</strong> as the generic state of dynamical systems. When exact solutions are unavailable, we must turn to approximation, special functions, and ultimately the functional-analytic framework of Chapter 2.</p>
 
 <h2 id="references">References</h2>
 
 <ul>
-  <li>
-    <p><strong>Arnold, V. I. (1983).</strong> <em>Ordinary Differential Equations</em>. Springer.</p>
-  </li>
-  <li>
-    <p><strong>Coddington, E. A., &amp; Levinson, N. (1955).</strong> <em>Theory of Ordinary Differential Equations</em>. McGraw–Hill.</p>
-  </li>
-  <li>
-    <p><strong>Hartman, P. (1964).</strong> <em>Ordinary Differential Equations</em>. Wiley.</p>
-  </li>
-  <li>
-    <p><strong>Perko, L. (2013).</strong> <em>Differential Equations and Dynamical Systems</em>. Springer.</p>
-  </li>
+  <li><strong>Arnold, V. I. (1983).</strong> <em>Ordinary Differential Equations</em>. Springer.</li>
+  <li><strong>Coddington, E. A., &amp; Levinson, N. (1955).</strong> <em>Theory of Ordinary Differential Equations</em>. McGraw–Hill.</li>
+  <li><strong>Hartman, P. (1964).</strong> <em>Ordinary Differential Equations</em>. Wiley.</li>
+  <li><strong>Perko, L. (2013).</strong> <em>Differential Equations and Dynamical Systems</em>. Springer.</li>
 </ul>
 
 <h2 id="navigation">Navigation</h2>
