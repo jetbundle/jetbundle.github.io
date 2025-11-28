@@ -38,12 +38,12 @@
         }
       }
     };
-    
+
     // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-      
+
       // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
@@ -52,7 +52,7 @@
           node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-      
+
       // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
