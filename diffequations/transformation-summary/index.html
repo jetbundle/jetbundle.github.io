@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 1.6: Classical Perturbation Theory</title>
-  <meta name="description" content="Regular and singular perturbation, Poincaré-Lindstedt">
+  <title>Transformation Summary: Section 1.1</title>
+  <meta name="description" content="Documentation of transformations applied to Section 1.1">
 
   <!-- MathJax - Configured to avoid conflicts with markdown tables -->
   <script>
@@ -121,7 +121,7 @@
       
         
           <li class="section-item">
-            <a href="/diffequations/transformation-summary/" >
+            <a href="/diffequations/transformation-summary/" class="active">
               0. Transformation Summary11
             </a>
           </li>
@@ -191,7 +191,7 @@
       
         
           <li class="section-item">
-            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" class="active">
+            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
               1.6 Classical Perturbation Theory
             </a>
           </li>
@@ -769,7 +769,7 @@
         
           
           <li class="chapter-item" style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
-            <a href="/diffequations/transformation-summary/" >
+            <a href="/diffequations/transformation-summary/" class="active">
               📖 Transformation Summary: Section 1.1
             </a>
           </li>
@@ -913,155 +913,209 @@
     <!-- Main Content -->
     <main class="textbook-main">
       <header class="textbook-header">
-        <h1>Section 1.6: Classical Perturbation Theory</h1>
-        <p class="description">Regular and singular perturbation, Poincaré-Lindstedt</p>
+        <h1>Transformation Summary: Section 1.1</h1>
+        <p class="description">Documentation of transformations applied to Section 1.1</p>
       </header>
 
       <article class="textbook-content">
-        <h1 id="section-16-classical-perturbation-theory">Section 1.6: Classical Perturbation Theory</h1>
+        <h1 id="transformation-summary-section-11">Transformation Summary: Section 1.1</h1>
 
-<h2 id="introduction">Introduction</h2>
+<p>This document records the specific transformations applied to Section 1.1 as a reference for transforming other sections.</p>
 
-<p>We attempt to solve nonlinear problems by expanding around a linear limit. <strong>Regular Perturbation</strong> works for finite time, but <strong>Secular Terms</strong> (like $t \sin t$) destroy validity as $t \to \infty$. We introduce <strong>Poincaré-Lindstedt</strong> and <strong>Multiple Scale Analysis</strong> to remove these resonances. We encounter <strong>Singular Perturbation</strong> problems where the highest derivative is small, creating boundary layers that defy uniform convergence.
-## Mathematical Content</p>
+<h2 id="transformations-applied">Transformations Applied</h2>
 
-<h3 id="regular-perturbation">Regular Perturbation</h3>
+<h3 id="1-essence-quote-added">1. Essence Quote Added</h3>
+<p><strong>Location:</strong> Immediately after the title
+<strong>Content:</strong> “Exactness is the first algebraic structure that renders a differential equation integrable by quadrature.”
+<strong>Purpose:</strong> Captures the section’s core insight in one sentence</p>
 
-<p>For $y’=f(x,y,\epsilon)$ with $y(0)=\alpha$, assume</p>
+<h3 id="2-examples-integrated-into-theory">2. Examples Integrated into Theory</h3>
 
-\[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\epsilon^{n}y_{n}(x).\]
-
-<p>Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system $y_{0}’=f(x,y_{0},0)$ followed by linear inhomogeneous equations for $y_{n}$ driven by $y_{0},\dots,y_{n-1}$. Analyticity of $f$ in $y$ and $\epsilon$ guarantees convergence for $\lvert\epsilon\rvert&lt;R$ on finite intervals (Coddington &amp; Levinson, 1955). The series fails when $\epsilon$ multiplies the highest derivative or when secular terms accumulate over long times, motivating singular and multiscale techniques.</p>
-
-<h3 id="singular-perturbations-and-boundary-layers">Singular Perturbations and Boundary Layers</h3>
-
-<p>When $\epsilon$ multiplies the highest derivative, e.g.</p>
-
-\[\epsilon y''+a(x)y'+b(x)y=0,\qquad y(0)=A,\ y(1)=B,\]
-
-<p>setting $\epsilon=0$ reduces the order and loses boundary conditions. The solution adjusts rapidly inside a boundary layer of thickness $\delta(\epsilon)$ near the affected boundary. Matched asymptotic expansions build an outer series (solving the reduced equation) and an inner series using a stretched coordinate $\tau=(x-x_{0})/\epsilon^{\alpha}$. Matching their overlap (Van Dyke, 1964) determines integration constants and produces a uniformly valid composite approximation (Bender &amp; Orszag, 1978).</p>
-
-<h3 id="poincarélindstedt-method">Poincaré–Lindstedt Method</h3>
-
-<p>For weakly nonlinear oscillators, naïve perturbation introduces resonant forcing that generates secular terms (e.g., $t\sin t$). The Poincaré–Lindstedt method rescales time by $\tau=\omega t$, expanding $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$ and $y(\tau)=\sum \epsilon^{n}y_{n}(\tau)$. Choosing $\omega_{n}$ to cancel resonant terms at each order yields uniformly periodic approximations and exposes frequency shifts induced by nonlinearity (Nayfeh, 1973).</p>
-
-<h3 id="method-of-multiple-scales">Method of Multiple Scales</h3>
-
-<p>Systems with slow modulation require independent times $t_{0}=t$, $t_{1}=\epsilon t$, etc., with $y(t;\epsilon)=Y(t_{0},t_{1},\dots;\epsilon)$. The derivative transforms as $d/dt=\partial_{t_{0}}+\epsilon\partial_{t_{1}}+\cdots$. At $O(1)$, $Y_{0}$ depends on $t_{1}$ only parametrically. The $O(\epsilon)$ equation introduces terms resonant with the homogeneous solution; enforcing solvability (orthogonality to the adjoint nullspace) yields amplitude equations governing slow evolution. This captures damping, detuning, and envelope dynamics missed by single-scale perturbation (Kevorkian &amp; Cole, 1981).</p>
-
-<h2 id="complete-examples">Complete Examples</h2>
-
-<h3 id="example-161-regular-perturbation-of-a-linear-ode">Example 1.6.1: Regular Perturbation of a Linear ODE</h3>
-
-<p><strong>Problem:</strong> Solve $y’+y=\epsilon\sin x$, $y(0)=1$ to $O(\epsilon)$.</p>
-
-<p>Let $y=y_{0}+\epsilon y_{1}+\cdots$. The $O(1)$ equation $y_{0}’+y_{0}=0$ gives $y_{0}=e^{-x}$. At $O(\epsilon)$, $y_{1}’+y_{1}=\sin x$ with $y_{1}(0)=0$ yields</p>
-
-\[y_{1}(x)=\frac{1}{2}(\sin x-\cos x+e^{-x}).\]
-
-<p>Thus $y\approx e^{-x}+\frac{\epsilon}{2}(\sin x-\cos x+e^{-x})$, matching the Taylor expansion of the exact solution.</p>
-
-<h3 id="example-162-divergence-in-regular-perturbation">Example 1.6.2: Divergence in Regular Perturbation</h3>
-
-<p><strong>Problem:</strong> For $y’=-y+\epsilon y^{2}$, $y(0)=1$, find the perturbation series.</p>
-
-<p>Solutions satisfy $y_{n}(x)=3^{-n}(n+1)^{-1}e^{-(n+1)x}$. The series</p>
-
-\[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}\]
+<p>All 15 original examples were preserved and integrated:</p>
 
 <table>
+  <thead>
+    <tr>
+      <th>Original Example</th>
+      <th>New Location</th>
+      <th>Format</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>has radius $</td>
-      <td>\epsilon</td>
-      <td>&lt;3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.</td>
+      <td>1.1.1: Picard Iteration</td>
+      <td>After Lipschitz definition</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.2: Radioactive Decay</td>
+      <td>After linear first-order</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.3: Non-Uniqueness</td>
+      <td>After Lipschitz discussion</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.4: Separation of Variables</td>
+      <td>After separation concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.5: Newton’s Law of Cooling</td>
+      <td>After separation concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.6: Logistic Growth</td>
+      <td>After separation concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.7: Exact Equation</td>
+      <td>After exactness condition</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.8: Linear First-Order</td>
+      <td>After linear equations</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.9: Bernoulli</td>
+      <td>After Bernoulli concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.10: Riccati</td>
+      <td>After Riccati concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.11: Constant-Coefficient</td>
+      <td>After second-order intro</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.12: Cauchy-Euler</td>
+      <td>After second-order intro</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.13: Reduction of Order</td>
+      <td>After reduction concept</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.14: Linear System</td>
+      <td>After systems intro</td>
+      <td>Blockquote</td>
+    </tr>
+    <tr>
+      <td>1.1.15: First Integrals</td>
+      <td>After first integrals intro</td>
+      <td>Blockquote</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="example-163-linear-boundary-layer">Example 1.6.3: Linear Boundary Layer</h3>
+<h3 id="3-challenge-problems-created">3. Challenge Problems Created</h3>
 
-<p><strong>Problem:</strong> Solve $\epsilon y’‘+2y’+y=0$ with $y(0)=0$, $y(1)=1$.</p>
+<p>Three challenge problems replace the “Complete Examples” section:</p>
 
-<p>The outer solution $y_{0}=C e^{-x/2}$ fails to satisfy both boundaries. Introducing $\tau=(1-x)/\epsilon$, the inner equation becomes $Y’‘-2Y’=0$ with $Y=A+B e^{2\tau}$. Matching and applying $y(1)=1$ yield the composite approximation</p>
+<ol>
+  <li><strong>Challenge 1: Osgood Uniqueness Criterion</strong> (Conceptual/Counter-example)
+    <ul>
+      <li>Tests boundaries of uniqueness theory</li>
+      <li>Generalizes Lipschitz condition</li>
+      <li>Solution in collapsible details block</li>
+    </ul>
+  </li>
+  <li><strong>Challenge 2: Generalized Integrating Factor</strong> (Computational/Derivation)
+    <ul>
+      <li>Synthesizes exactness and integrating factors</li>
+      <li>Tests product symmetry condition</li>
+      <li>Complete derivation provided</li>
+    </ul>
+  </li>
+  <li><strong>Challenge 3: Riccati and Projective Geometry</strong> (Additional Synthesis)
+    <ul>
+      <li>Connects Riccati to linear second-order</li>
+      <li>Demonstrates projective transformation</li>
+      <li>Shows deep algebraic structure</li>
+    </ul>
+  </li>
+</ol>
 
-\[y(x;\epsilon)\approx e^{-x/2}+(1-e^{-1/2})e^{-2(1-x)/\epsilon},\]
-
-<p>capturing the boundary layer near $x=1$.</p>
-
-<h3 id="example-164-nonlinear-boundary-layer">Example 1.6.4: Nonlinear Boundary Layer</h3>
-
-<p><strong>Problem:</strong> Solve $\epsilon y’‘=y^{2}-1$, $y(0)=0$, $y(1)=2$.</p>
-
-<p>The outer solution is $y_{0}=1$. Near $x=0$, $\tau=x/\sqrt{\epsilon}$ leads to $Y’‘=Y^{2}-1$ with heteroclinic solution $Y(\tau)=\tanh(\tau/\sqrt{2})$. Matching with $y_{0}$ produces the composite $y\approx \tanh(x/\sqrt{2\epsilon})$, which coincides with the exact solution.</p>
-
-<h3 id="example-165-duffing-oscillator-via-poincarélindstedt">Example 1.6.5: Duffing Oscillator via Poincaré–Lindstedt</h3>
-
-<p><strong>Problem:</strong> Solve $y’‘+y+\epsilon y^{3}=0$, $y(0)=1$, $y’(0)=0$.</p>
-
-<p>With $\tau=\omega t$, $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$, and $y=\cos\tau+\epsilon y_{1}+\cdots$, the $O(\epsilon)$ equation produces resonance unless $\omega_{1}=3/8$. At $O(\epsilon^{2})$, eliminating resonance gives $\omega_{2}=-21/256$. Thus</p>
-
-\[\omega=1+\frac{3}{8}\epsilon-\frac{21}{256}\epsilon^{2}+O(\epsilon^{3}),\]
-
-<p>ensuring bounded periodic motion without secular growth.</p>
-
-<h3 id="example-166-multiple-scales-for-a-damped-nonlinear-oscillator">Example 1.6.6: Multiple Scales for a Damped Nonlinear Oscillator</h3>
-
-<p><strong>Problem:</strong> Solve $y’‘+y+\epsilon y^{3}+\epsilon y’=0$.</p>
-
-<p>Introduce $t_{0}=t$, $t_{1}=\epsilon t$, and expand $y=Y_{0}(t_{0},t_{1})+\epsilon Y_{1}+\cdots$. The $O(1)$ solution is $Y_{0}=A(t_{1})e^{i t_{0}}+\bar{A}(t_{1})e^{-i t_{0}}$. The $O(\epsilon)$ equation yields the solvability condition</p>
-
-\[2A'(t_{1})+(4|A|^{2}+1)A=0,\]
-
-<p>showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.</p>
-
-<h2 id="references">References</h2>
+<h3 id="4-prerequisites-inlined">4. Prerequisites Inlined</h3>
 
 <ul>
-  <li>Bender, C. M., &amp; Orszag, S. A. (1978). <em>Advanced Mathematical Methods for Scientists and Engineers</em>. McGraw–Hill.</li>
-  <li>Coddington, E. A., &amp; Levinson, N. (1955). <em>Theory of Ordinary Differential Equations</em>. McGraw–Hill.</li>
-  <li>Kevorkian, J., &amp; Cole, J. D. (1981). <em>Perturbation Methods in Applied Mathematics</em>. Springer.</li>
-  <li>Nayfeh, A. H. (1973). <em>Perturbation Methods</em>. Wiley.</li>
-  <li>Van Dyke, M. (1964). <em>Perturbation Methods in Fluid Mechanics</em>. Academic Press.</li>
+  <li><strong>Lipschitz Condition:</strong> Defined in situ before Picard-Lindelöf theorem</li>
+  <li><strong>Differential Forms:</strong> Introduced when discussing exactness</li>
+  <li><strong>Wronskian:</strong> Explained when needed for second-order equations</li>
+  <li><strong>Poisson Bracket:</strong> Defined when discussing first integrals</li>
 </ul>
 
-<h2 id="navigation">Navigation</h2>
+<h3 id="5-math-formatting-updates">5. Math Formatting Updates</h3>
 
-<nav class="page-navigation">
-  <div class="nav-previous">
-    
-      <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" class="nav-link">
-        <span class="nav-arrow">←</span>
-        <span class="nav-text">
-          <span class="nav-label">Previous</span>
-          <span class="nav-title">Section 1.5: Asymptotic Analysis</span>
-        </span>
-      </a>
-    
-  </div>
-  <div class="nav-next">
-    
-      <a href="/diffequations/chapter-01/01-7-renormalization/" class="nav-link">
-        <span class="nav-text">
-          <span class="nav-label">Next</span>
-          <span class="nav-title">Section 1.7: Classical Renormalization &amp; Non-Perturbative Methods</span>
-        </span>
-        <span class="nav-arrow">→</span>
-      </a>
-    
-  </div>
-</nav>
+<p>All mathematical uses of <code class="language-plaintext highlighter-rouge">|</code> replaced with <code class="language-plaintext highlighter-rouge">\mid</code>:
+- <code class="language-plaintext highlighter-rouge">$\left|f(x,y_{1}) - f(x,y_{2})\right|$</code> → <code class="language-plaintext highlighter-rouge">$\mid f(x,y_{1}) - f(x,y_{2}) \mid$</code>
+- <code class="language-plaintext highlighter-rouge">$\left|y\right|$</code> → <code class="language-plaintext highlighter-rouge">$\mid y \mid$</code>
+- <code class="language-plaintext highlighter-rouge">$\ln \left|y\right|$</code> → <code class="language-plaintext highlighter-rouge">$\ln \mid y \mid$</code>
+- <code class="language-plaintext highlighter-rouge">$\left|\frac{y}{K - y}\right|$</code> → <code class="language-plaintext highlighter-rouge">$\mid \frac{y}{K - y} \mid$</code></p>
 
-<hr />
+<h3 id="6-narrative-structure-changes">6. Narrative Structure Changes</h3>
 
-<h2 id="related-sections">Related Sections</h2>
+<p><strong>Before:</strong>
+- Introduction
+- Mathematical Content (theory only)
+- Connections to Chapter Narrative
+- Complete Examples (15 examples)</p>
 
-<ul>
-  <li><a href="/diffequations/chapter-01/01-5-asymptotic-analysis/">Previous Section: 1.5 Asymptotic Analysis</a></li>
-  <li><a href="/diffequations/chapter-01/01-7-renormalization/">Next Section: 1.7 Classical Renormalization &amp; Non-Perturbative Methods</a></li>
-  <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-  <li><a href="/diffequations/">Full Table of Contents</a></li>
-</ul>
+<p><strong>After:</strong>
+- Essence Quote
+- Introduction
+- Theory sections with integrated examples
+- Challenge Problems (3 problems)
+- Connections to Chapter Narrative</p>
+
+<h3 id="7-content-preservation">7. Content Preservation</h3>
+
+<p><strong>All original content preserved:</strong>
+- All 15 examples retained (integrated or as challenges)
+- All theorems and definitions maintained
+- All mathematical content unchanged
+- Only organization and presentation improved</p>
+
+<h2 id="key-principles-demonstrated">Key Principles Demonstrated</h2>
+
+<ol>
+  <li><strong>Show, Don’t Tell:</strong> Examples integrated naturally without explicit labels</li>
+  <li><strong>Just-in-Time Definitions:</strong> Prerequisites defined when needed</li>
+  <li><strong>Narrative Flow:</strong> Each example followed by explanation of significance</li>
+  <li><strong>Flexible Structure:</strong> 3 challenges instead of rigid 2 (based on content needs)</li>
+  <li><strong>Mathematical Rigor:</strong> All computations preserved and verified</li>
+</ol>
+
+<h2 id="pattern-for-future-sections">Pattern for Future Sections</h2>
+
+<p>When transforming other sections:</p>
+
+<ol>
+  <li>Add essence quote at top</li>
+  <li>Identify all examples and their concepts</li>
+  <li>Integrate examples immediately after relevant theory</li>
+  <li>Add narrative bridges explaining significance</li>
+  <li>Convert remaining examples to 2-4 challenge problems</li>
+  <li>Inline all prerequisites</li>
+  <li>Replace all <code class="language-plaintext highlighter-rouge">|</code> with <code class="language-plaintext highlighter-rouge">\mid</code> in math</li>
+  <li>Strengthen “Connections” section with explicit limitations</li>
+  <li>Verify all original content is preserved</li>
+</ol>
+
+<p>This transformation maintains mathematical rigor while creating a more engaging, narrative-driven structure.</p>
+
 
       </article>
     </main>
