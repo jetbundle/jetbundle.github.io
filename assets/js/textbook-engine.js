@@ -14,31 +14,31 @@ class TextbookEngine {
     if (this.isLoading || this.isLoaded) {
       return;
     }
-    
+
     this.isLoading = true;
-    
+
     try {
       console.log('Loading Pyodide...');
-      
+
       this.pyodide = await loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
       });
-      
+
       await this.pyodide.loadPackage([
         "numpy",
         "scipy"
       ]);
-      
+
       // Initialize global variable for plot data
       await this.pyodide.runPythonAsync(`
         import json
         plot_data = None
       `);
-      
+
       this.isLoaded = true;
       this.isLoading = false;
       console.log('Pyodide loaded successfully');
-      
+
       this.attachEventListeners();
     } catch (error) {
       console.error('Pyodide initialization failed:', error);
@@ -50,42 +50,55 @@ class TextbookEngine {
     if (this.isLoaded) {
       return true;
     }
-    
+
     if (!this.isLoading) {
       await this.init();
     }
-    
+
     while (this.isLoading) {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
-    
+
     return this.isLoaded;
   }
 
   attachEventListeners() {
+    // Attach to existing buttons
     document.querySelectorAll('.run-button:not(.widget-run)').forEach(button => {
       if (!button.dataset.attached) {
         button.addEventListener('click', (e) => this.runModule(e));
         button.dataset.attached = 'true';
       }
     });
+    
+    // Also listen for dynamically added buttons
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll('.run-button:not(.widget-run)').forEach(button => {
+        if (!button.dataset.attached) {
+          button.addEventListener('click', (e) => this.runModule(e));
+          button.dataset.attached = 'true';
+        }
+      });
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   async runModule(event) {
     const button = event.target;
     const module = button.closest('.interactive-module');
-    
+
     if (!module) {
       return;
     }
-    
+
     const codeBlock = module.querySelector('pre code');
     const outputContainer = module.querySelector('.plotly-container') || module.querySelector('.output-container');
-    
+
     if (!codeBlock || !outputContainer) {
       return;
     }
-    
+
     const code = codeBlock.textContent;
 
     button.disabled = true;
@@ -102,7 +115,7 @@ class TextbookEngine {
     try {
       // Reset plot data
       await this.pyodide.runPythonAsync(`plot_data = None`);
-      
+
       // Inject helper function for creating plots
       const plotHelperCode = `
 import json
@@ -112,7 +125,7 @@ def create_plot(traces, layout=None):
     global plot_data
     if layout is None:
         layout = {}
-    
+
     # Convert numpy arrays to lists
     plot_traces = []
     for trace in traces:
@@ -123,34 +136,34 @@ def create_plot(traces, layout=None):
             else:
                 trace_dict[key] = value
         plot_traces.append(trace_dict)
-    
+
     plot_data = {
         'data': plot_traces,
         'layout': layout
     }
     return plot_data
       `;
-      
+
       await this.pyodide.runPythonAsync(plotHelperCode);
-      
+
       // Execute user code
       const modifiedCode = code + `
 # Store plot data if create_plot was called
 if 'plot_data' in globals() and plot_data is not None:
     pass  # plot_data already set
       `;
-      
+
       await this.pyodide.runPythonAsync(modifiedCode);
-      
+
       // Check for plot data
       const hasPlotData = this.pyodide.runPython(`plot_data is not None`);
-      
+
       if (hasPlotData) {
         const plotJson = this.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
         const plotlyTemplate = window.themeManager && window.themeManager.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
-        
-        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, { 
+
+        Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, {
           template: plotlyTemplate,
           responsive: true
         });
@@ -170,4 +183,3 @@ if 'plot_data' in globals() and plot_data is not None:
 document.addEventListener('DOMContentLoaded', () => {
   window.textbookEngine = new TextbookEngine();
 });
-

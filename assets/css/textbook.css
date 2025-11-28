@@ -8,7 +8,7 @@
   --text-primary-light: #0f172a;
   --text-secondary-light: #475569;
   --border-light: #e2e8f0;
-  
+
   /* Dark Theme Colors */
   --bg-primary-dark: #0a0e1a;
   --bg-secondary-dark: #111827;
@@ -16,7 +16,7 @@
   --text-primary-dark: #f8fafc;
   --text-secondary-dark: #e2e8f0;
   --border-dark: #334155;
-  
+
   /* Theme-Agnostic Accent Colors */
   --accent: #3b82f6;
   --accent-hover: #2563eb;
@@ -213,6 +213,30 @@
   margin: 2rem 0;
   position: relative;
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.code-block.hidden {
+  display: none;
+}
+
+.code-toggle-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.code-toggle-btn:hover {
+  background: var(--bg-primary);
+  transform: translateY(-1px);
 }
 
 .code-block pre {
@@ -439,15 +463,15 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease;
   }
-  
+
   .textbook-sidebar.open {
     transform: translateX(0);
   }
-  
+
   .textbook-main {
     margin-left: 0;
   }
-  
+
   .textbook-header,
   .textbook-content {
     padding: 2rem;
@@ -458,25 +482,25 @@
   .textbook-header h1 {
     font-size: 2rem;
   }
-  
+
   .textbook-content {
     padding: 1.5rem;
   }
-  
+
   .module-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .widget-controls {
     gap: 1.5rem;
   }
-  
+
   .widget-control {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .widget-slider {
     width: 100%;
   }
@@ -499,4 +523,3 @@
   background: var(--bg-tertiary);
   color: var(--text-primary);
 }
-

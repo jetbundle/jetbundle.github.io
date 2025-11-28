@@ -4,7 +4,6 @@ title: "Differential Equations Laboratory"
 description: "Production-ready computational infrastructure"
 permalink: /diffequations/
 order: 0
-chapter: 0
 ---
 
 # Differential Equations Laboratory
@@ -52,33 +51,32 @@ y0 = 1.0
 # Solve ODE
 sol = odeint(dydt, y0, t)
 
-# Create plot data for Plotly.js
-trace1 = {
-    'x': t.tolist(),
-    'y': sol.flatten().tolist(),
-    'mode': 'lines',
-    'name': 'y(t) = e^(-2t)',
-    'line': {'color': '#3b82f6', 'width': 3}
-}
+# Create Plotly figure
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=t, y=sol.flatten(),
+    mode='lines',
+    name='y(t) = e^(-2t)',
+    line=dict(color='#3b82f6', width=3)
+))
 
 # Analytical solution for comparison
-trace2 = {
-    'x': t.tolist(),
-    'y': np.exp(-2*t).tolist(),
-    'mode': 'lines',
-    'name': 'Analytical: e^(-2t)',
-    'line': {'color': '#10b981', 'width': 2, 'dash': 'dash'}
-}
+fig.add_trace(go.Scatter(
+    x=t, y=np.exp(-2*t),
+    mode='lines',
+    name='Analytical: e^(-2t)',
+    line=dict(color='#10b981', width=2, dash='dash')
+))
 
-layout = {
-    'title': 'First-Order Linear ODE Solution',
-    'xaxis': {'title': 'Time t'},
-    'yaxis': {'title': 'y(t)'},
-    'height': 400
-}
+fig.update_layout(
+    title="First-Order Linear ODE Solution",
+    xaxis_title="Time t",
+    yaxis_title="y(t)",
+    template="plotly_dark",
+    height=400
+)
 
-# Store plot data for rendering
-create_plot([trace1, trace2], layout)</code></pre>
+# Convert to JSON for rendering (handled by engine)</code></pre>
   </div>
 
   <div class="plotly-container" id="ode-demo-plot"></div>
@@ -129,23 +127,23 @@ def dydt(y, t, lambda_param):
 t = np.linspace(0, t_max_val, 200)
 sol = odeint(dydt, y0_val, t, args=(lambda_val,))
 
-trace = {
-    'x': t.tolist(),
-    'y': sol.flatten().tolist(),
-    'mode': 'lines',
-    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
-    'line': {'width': 3, 'color': '#3b82f6'}
-}
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=t, y=sol.flatten(),
+    mode='lines',
+    name=f'y(t) = {y0_val} * exp(-{lambda_val}t)',
+    line=dict(width=3)
+))
 
-layout = {
-    'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
-    'xaxis': {'title': 'Time t'},
-    'yaxis': {'title': 'y(t)'},
-    'height': 400
-}
+fig.update_layout(
+    title=f"ODE Solution: dy/dt = -{lambda_val}*y",
+    xaxis_title="Time t",
+    yaxis_title="y(t)",
+    template="plotly_dark",
+    height=400
+)
 
-# Store plot data for rendering
-create_plot([trace], layout)</code></pre>
+# Convert to JSON for rendering (handled by engine)</code></pre>
   </div>
 
   <div class="plotly-container widget-output"></div>

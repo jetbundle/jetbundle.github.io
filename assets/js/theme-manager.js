@@ -17,10 +17,10 @@ class ThemeManager {
   applyTheme(theme) {
     document.documentElement.className = `theme-${theme}`;
     document.body.className = `textbook-body theme-${theme}`;
-    
+
     const sunIcon = document.querySelector('.theme-icon-sun');
     const moonIcon = document.querySelector('.theme-icon-moon');
-    
+
     if (sunIcon && moonIcon) {
       if (theme === 'dark') {
         sunIcon.style.opacity = '1';
@@ -30,10 +30,10 @@ class ThemeManager {
         moonIcon.style.opacity = '1';
       }
     }
-    
+
     localStorage.setItem('theme', theme);
     this.currentTheme = theme;
-    
+
     this.syncPlotlyTheme();
   }
 
@@ -46,10 +46,10 @@ class ThemeManager {
     if (typeof Plotly === 'undefined') {
       return;
     }
-    
+
     const plotlyTemplate = this.currentTheme === 'dark' ? 'plotly_dark' : 'plotly_white';
     const plotContainers = document.querySelectorAll('.plotly-container');
-    
+
     plotContainers.forEach(container => {
       if (container.data && container.layout) {
         Plotly.relayout(container, { template: plotlyTemplate });
@@ -62,7 +62,7 @@ class ThemeManager {
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => this.toggleTheme());
     }
-    
+
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
         this.applyTheme(e.matches ? 'light' : 'dark');
@@ -74,4 +74,3 @@ class ThemeManager {
 document.addEventListener('DOMContentLoaded', () => {
   window.themeManager = new ThemeManager();
 });
-

@@ -13,8 +13,8 @@
           {% assign param_step = param_parts[4] | default: "0.1" %}
           <div class="widget-control">
             <label>{{ param_name }}</label>
-            <input type="range" class="widget-slider" data-param="{{ param_name }}" 
-                   min="{{ param_min }}" max="{{ param_max }}" step="{{ param_step }}" 
+            <input type="range" class="widget-slider" data-param="{{ param_name }}"
+                   min="{{ param_min }}" max="{{ param_max }}" step="{{ param_step }}"
                    value="{{ param_default }}">
             <span class="widget-value" data-param="{{ param_name }}">{{ param_default }}</span>
           </div>
@@ -32,4 +32,3 @@
 
   <div class="plotly-container widget-output"></div>
 </div>
-
