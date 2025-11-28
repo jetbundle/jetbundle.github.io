@@ -87,4 +87,3 @@ This chapter assumes familiarity with:
 ---
 
 **Previous Chapter:** [Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs]({{ '/diffequations/chapter-06/' | relative_url }})
-

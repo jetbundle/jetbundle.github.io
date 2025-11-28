@@ -16,7 +16,8 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
+We trade differential complexity for algebraic simplicity. The **Laplace** and **Fourier Transforms** are presented as diagonalizing operators. We construct **Green's Functions** to solve inhomogeneous linear problems, introducing the Dirac delta as a heuristic tool. The limitation exposed here is convergence: for general initial data, the inverse transform integrals may not converge in any classical sense, hinting at the need for a generalized calculus.
+We trade differential complexity for algebraic simplicity. The **Laplace** and **Fourier Transforms** are presented as diagonalizing operators. We construct **Green's Functions** to solve inhomogeneous linear problems, introducing the Dirac delta as a heuristic tool. The limitation exposed here is convergence: for general initial data, the inverse transform integrals may not converge in any classical sense, hinting at the need for a generalized calculus.
 
 ## Mathematical Content
 

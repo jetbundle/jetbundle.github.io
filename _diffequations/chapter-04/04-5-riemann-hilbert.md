@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We solve the initial value problem for integrable systems using the **Inverse Scattering Transform**. This is framed as a "Nonlinear Fourier Transform": we map data to scattering space (where evolution is linear) and invert via the **Riemann-Hilbert Factorization** problem.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

@@ -16,9 +16,9 @@ parent_chapter: null
 
 ## Preface: The Mathematical Ascent
 
-This textbook treats differential equations not as a collection of isolated techniques, but as a continuous narrative of mathematical structuralism. We begin with the intuitive assumption that solutions are explicit formulas. We systematically dismantle this illusion, revealing that the "solution" to a differential equation is rarely a function, but rather a geometric invariant, a distribution, or a cohomology class.
+This online resource treats differential equations not as a collection of isolated techniques, but as a continuous narrative of mathematical structuralism. We begin with the intuitive assumption that solutions are explicit formulas. We systematically dismantle this illusion, revealing that the "solution" to a differential equation is rarely a function, but rather a geometric invariant, a distribution, or a cohomology class.
 
-The text is organized into seven phases, each resolving the limitations of its predecessor:
+The content is organized into seven phases, each resolving the limitations of its predecessor:
 
 1. **The Classical Arsenal:** We exhaust explicit methods to reveal the necessity of approximation.
 
@@ -131,11 +131,11 @@ Each chapter establishes a mathematical paradigm, exploits it to its limit, and 
 
 ---
 
-## About This Textbook
+## About This Resource
 
-This textbook presents a unified narrative of differential equations, progressing from classical explicit methods through functional analysis, geometric formulation, symmetry methods, stochastic analysis, intrinsic geometric PDEs, and finally categorical resolution. Each chapter builds on the previous, with limitations exposed that motivate the next phase of development.
+This online resource presents a unified narrative of differential equations, progressing from classical explicit methods through functional analysis, geometric formulation, symmetry methods, stochastic analysis, intrinsic geometric PDEs, and finally categorical resolution. Each chapter builds on the previous, with limitations exposed that motivate the next phase of development.
 
-The text is designed for advanced undergraduate and graduate students in mathematics, physics, and engineering who seek a deep understanding of the structural foundations underlying differential equations. Prerequisites include real analysis, linear algebra, basic topology, and familiarity with elementary differential equations.
+This resource is designed for advanced undergraduate and graduate students in mathematics, physics, and engineering who seek a deep understanding of the structural foundations underlying differential equations. While familiarity with real analysis, linear algebra, basic topology, and elementary differential equations is helpful, these prerequisites should not deter interested readers. We strongly recommend reading from start to finish in order, as references for further reading, conceptual dependencies, important results, and complete examples are provided at every point in the journey. Each section includes the necessary background material and connections to foundational concepts, making the content accessible to motivated readers regardless of their initial preparation.
 
 ## Notation and Conventions
 
@@ -147,5 +147,23 @@ The text is designed for advanced undergraduate and graduate students in mathema
 
 ---
 
-**Begin Reading:** [Chapter 1: Classical Explicit & Quasi-Explicit Arsenal]({{ '/diffequations/chapter-01/' | relative_url }})
+## Copyright and License
 
+**Copyright © 2025**
+
+This work and its source code are released under an open source license. The content and code are freely available for educational and non-commercial use. 
+
+**Terms:**
+- ✅ **Educational Use**: Free to use for teaching, learning, and research
+- ✅ **Non-Commercial Use**: Free for personal and academic purposes
+- ❌ **Commercial Use**: Prohibited without explicit written permission
+- ✅ **Modification**: Source code may be modified for personal/educational use
+- ✅ **Distribution**: May be shared with attribution for non-commercial purposes
+
+The source code for this website is available in the repository. While the code is open source, commercial use of either the content or code requires explicit permission from the copyright holder.
+
+For commercial licensing inquiries, please contact the repository maintainers.
+
+---
+
+**Begin Reading:** [Chapter 1: Classical Explicit & Quasi-Explicit Arsenal]({{ '/diffequations/chapter-01/' | relative_url }})

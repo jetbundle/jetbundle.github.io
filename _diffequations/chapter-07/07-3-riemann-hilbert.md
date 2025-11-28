@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We connect Algebra to Topology. We state the **Riemann-Hilbert Correspondence**: the category of Regular Holonomic D-modules is equivalent to the category of **Perverse Sheaves**. This implies that the analytic solutions of a PDE are completely determined by the topology of the space.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

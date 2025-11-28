@@ -16,7 +16,7 @@ parent_section: null
 
 ## Introduction
 
-We begin with the concept of reduction to quadrature—the search for methods that reduce differential equations to finite integration. We examine separable and exact equations not as algebraic tricks, but as manifestations of local geometry—specifically, the search for a coordinate system where the vector field flattens. We introduce the Riccati equation to show how nonlinear problems can sometimes be linearized via transformation. The section concludes with the failure of these methods for non-integrable systems, introducing the concept of chaos as the generic state of dynamical systems.
+We begin with the concept of reduction to quadrature. We examine **Separable** and **Exact** equations not as algebraic tricks, but as manifestations of local geometry—specifically, the search for a coordinate system where the vector field flattens. We introduce the **Riccati Equation** to show how nonlinear problems can sometimes be linearized via transformation. The section concludes with the failure of these methods for non-integrable systems, introducing the concept of **Chaos** as the generic state of dynamical systems.
 
 ## Mathematical Content
 
@@ -53,4 +53,3 @@ We begin with the concept of reduction to quadrature—the search for methods th
 - [Next Section: 1.2 Special Functions of Mathematical Physics]({{ '/diffequations/chapter-01/01-2-special-functions/' | relative_url }})
 - [Chapter Index]({{ '/diffequations/chapter-01/' | relative_url }})
 - [Full Table of Contents]({{ '/diffequations/' | relative_url }})
-

@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We project infinite-dimensional problems onto finite subspaces. **Céa's Lemma** proves that the error of the projection is determined purely by the geometry of the subspace. This connects the abstract theory to computational reality and establishes error estimates based on Sobolev norms.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

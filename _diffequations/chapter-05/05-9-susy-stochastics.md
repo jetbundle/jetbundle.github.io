@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+The synthesis of Chapter 5. We reveal that *all* SDEs possess a hidden topological **Supersymmetry**. We identify **Dynamical Long-Range Order** (chaos, turbulence) as the spontaneous breaking of this symmetry. The **Witten Index** emerges as a topological invariant robust against noise.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

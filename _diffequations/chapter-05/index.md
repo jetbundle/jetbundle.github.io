@@ -89,6 +89,5 @@ This chapter assumes familiarity with:
 
 ---
 
-**Previous Chapter:** [Chapter 4: Symmetry, Lie Theory & Classical Integrability]({{ '/diffequations/chapter-04/' | relative_url }})  
+**Previous Chapter:** [Chapter 4: Symmetry, Lie Theory & Classical Integrability]({{ '/diffequations/chapter-04/' | relative_url }})
 **Next Chapter:** [Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs]({{ '/diffequations/chapter-06/' | relative_url }})
-

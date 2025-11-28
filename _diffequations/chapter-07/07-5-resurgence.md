@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We resolve the divergence of Chapter 1. We introduce **Alien Calculus** and the **Bridge Equation**. We show that the "counterterms" of Chapter 5.6 and the "divergences" of Chapter 1 are encoded in the **Resurgence** properties of the functions. Divergence is revealed to be an information carrier for non-perturbative physics.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We lift stochastic processes to manifolds. We define **Stochastic Parallel Transport** and the **Malliavin Derivative** (calculus of variations on Wiener space). **Hörmander's Theorem** is presented as a condition for the smoothness of probability densities, linking Lie algebra structure (Ch 4) to analytic regularity.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

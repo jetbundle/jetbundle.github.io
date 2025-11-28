@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We replace the "solution" with the system itself. We define **D-Modules** (modules over the ring of differential operators). We define **Holonomicity** as the algebraic condition of being "determined." We replace integration and restriction with **Derived Functors** on modules.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

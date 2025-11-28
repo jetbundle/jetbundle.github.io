@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We zoom out to the space of all possible geometries. We construct the **Moduli Space of Metrics**. We introduce the **Ebin Slice Theorem** to handle the gauge symmetry of diffeomorphisms. This is the arena for geometric flows.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

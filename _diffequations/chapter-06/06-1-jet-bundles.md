@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We erase the distinction between dependent and independent variables. We construct the **Jet Bundle** $J^k$ and the **Contact Structure**. A PDE is rigorously defined as a closed submanifold of the Jet Bundle. Solving the PDE is finding an integral manifold tangent to the contact distribution.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

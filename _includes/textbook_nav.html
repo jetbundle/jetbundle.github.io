@@ -7,7 +7,7 @@
   <ul>
     {% assign pages = site.diffequations | sort: 'nav_order' %}
     {% assign current_chapter = 0 %}
-    
+
     {% for nav_page in pages %}
       {% if nav_page.is_chapter_index %}
         {% if current_chapter > 0 %}
@@ -30,7 +30,7 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-    
+
     {% if current_chapter > 0 %}
       </ul>
     </li>

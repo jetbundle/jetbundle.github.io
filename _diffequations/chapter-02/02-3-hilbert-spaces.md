@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of **Hilbert Space** (orthogonality, projection). The central result is the **Spectral Theorem for Compact Self-Adjoint Operators**, which provides the rigorous justification for the "separation of variables" and series expansions employed heuristically in Chapter 1.4.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

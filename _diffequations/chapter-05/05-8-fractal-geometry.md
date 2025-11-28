@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We do analysis on spaces without tangent vectors. We define Laplacians on fractals (like the Sierpinski Gasket) via **Dirichlet Forms** and energy scaling.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

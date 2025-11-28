@@ -79,6 +79,5 @@ This chapter assumes familiarity with:
 
 ---
 
-**Previous Chapter:** [Chapter 2: Functional Analysis, Distributions & Weak Solutions]({{ '/diffequations/chapter-02/' | relative_url }})  
+**Previous Chapter:** [Chapter 2: Functional Analysis, Distributions & Weak Solutions]({{ '/diffequations/chapter-02/' | relative_url }})
 **Next Chapter:** [Chapter 4: Symmetry, Lie Theory & Classical Integrability]({{ '/diffequations/chapter-04/' | relative_url }})
-

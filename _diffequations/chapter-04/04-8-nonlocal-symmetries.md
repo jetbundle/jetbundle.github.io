@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We push beyond point symmetries. By introducing **Potential Variables** via conservation laws, we discover **Nonlocal Symmetries** hidden from the Lie algorithm. This reveals that the "algebraic structure" of a PDE depends on the choice of covering space.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

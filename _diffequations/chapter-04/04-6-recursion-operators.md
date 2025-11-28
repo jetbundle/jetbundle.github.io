@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We systematically generate infinite hierarchies of symmetries using **Recursion Operators**. We introduce **Hirota's Direct Method** and **$\tau$-functions**, showing that solitons can be expressed via determinants, hinting at a combinatorial structure underlying the analysis.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

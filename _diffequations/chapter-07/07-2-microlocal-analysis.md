@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We refine the concept of singularity. We introduce the **Wave Front Set** in the cotangent bundle ($T^*M$), distinguishing singularities by position *and* direction. We prove the **Propagation of Singularities** theorem, explaining the "Rays" of Chapter 3 via symplectic geometry.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

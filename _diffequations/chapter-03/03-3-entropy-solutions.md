@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+Since weak solutions to shock problems are not unique, we require a physical selection principle. We introduce the **Rankine-Hugoniot conditions** and the **Lax Entropy Condition**, which enforces irreversibility (information loss). **Kruzhkov's Theory** provides the rigorous existence and uniqueness for these scalar entropy solutions.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

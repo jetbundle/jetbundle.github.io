@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We present the central algebraic mechanism of integrability. We rewrite nonlinear evolution as an **Isospectral Flow** of a linear operator (the **Lax Pair**). The PDE becomes the condition that the eigenvalues of this operator are constant. Geometrically, this is formulated as a **Zero-Curvature Condition** for a connection on a fiber bundle.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

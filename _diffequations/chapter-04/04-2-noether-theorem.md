@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+For systems with a Lagrangian, we prove **Noether's Theorem**: every continuous symmetry yields a conservation law. We show that "Integrability" is linked to the existence of enough symmetries to restrict the solution manifold significantly.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

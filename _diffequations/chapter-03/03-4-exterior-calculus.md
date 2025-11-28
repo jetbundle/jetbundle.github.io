@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We enable integration without coordinates. **Differential Forms** and the **Exterior Derivative** ($d$) unify gradient, curl, and divergence. **Stokes' Theorem** is presented in its generalized form. The **Hodge Laplacian** reveals that the wave operator depends intimately on the curvature of the underlying space.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

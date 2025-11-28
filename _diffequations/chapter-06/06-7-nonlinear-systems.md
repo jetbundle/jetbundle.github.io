@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We return to scalar equations with maximal geometric nonlinearity (Monge-Ampère). We introduce the **Continuity Method** and **A Priori Estimates** (Evans-Krylov) to solve the "Convexity Barrier."
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

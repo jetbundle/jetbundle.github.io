@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We abandon locality. We introduce the **Fractional Laplacian** $(-\Delta)^s$ and **Levy Flights**, modeling systems with long-range correlations and memory. We show via the **Caffarelli-Silvestre extension** that non-locality in $n$ dimensions can be viewed as locality in $n+1$ dimensions.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

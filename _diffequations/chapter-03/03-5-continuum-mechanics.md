@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We apply the geometric framework to matter. The unknown is a deformation map between manifolds. We define **Stress Tensors** (Piola-Kirchhoff vs. Cauchy) and formulate PDEs based on **Frame Indifference** and **Hyperelasticity**. This demonstrates that the geometric structure of the equations is constrained by physical symmetry principles.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

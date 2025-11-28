@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We resolve the ambiguity of the delta function by redefining differentiation. By testing functions against smooth, compact "instruments" (Test Functions), we define **Distributions**. Differentiation becomes a duality operation, making every locally integrable function infinitely differentiable. This creates a rigorous home for the Green's functions and impulses of Chapter 1.3.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

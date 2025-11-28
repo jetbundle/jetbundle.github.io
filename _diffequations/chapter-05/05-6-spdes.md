@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We tackle the problem of multiplying distributions (e.g., noise $\times$ solution). We present Hairer's **Regularity Structures** as a generalization of Taylor expansions to "noisy" bases. We revisit **Renormalization** (from Ch 1.7) as a rigorous algebraic requirement to define these equations, subtracting infinite counterterms to yield finite physics.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

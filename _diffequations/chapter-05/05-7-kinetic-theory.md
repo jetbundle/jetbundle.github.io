@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We connect the microscopic to the macroscopic. We derive the **Boltzmann Equation** from particle dynamics and study **Mean-Field Games** as the limit of $N \to \infty$ agents. We introduce **Wasserstein Gradient Flows** to view diffusion as geometry on the space of probability measures.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

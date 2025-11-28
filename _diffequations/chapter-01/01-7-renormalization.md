@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+The chapter concludes with a crisis: perturbation series often diverge factorially ($\sum n! x^n$). We introduce **Renormalization Group (RG)** techniques for ODEs to resum secular terms and **Borel Summation** to assign meaning to divergent series. We touch upon **Non-perturbative effects** (Instantons) that are invisible to power series.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

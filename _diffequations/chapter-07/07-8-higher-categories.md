@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+The final resolution. We address the singular moduli spaces of Ch 6 by treating them as **Derived Stacks**. We frame physics as a **Topological Quantum Field Theory (TQFT)**—a functor from the category of cobordisms to vector spaces. The differential equation has dissolved; only the categorical structure remains.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

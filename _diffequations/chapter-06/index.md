@@ -82,6 +82,5 @@ This chapter assumes familiarity with:
 
 ---
 
-**Previous Chapter:** [Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics]({{ '/diffequations/chapter-05/' | relative_url }})  
+**Previous Chapter:** [Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics]({{ '/diffequations/chapter-05/' | relative_url }})
 **Next Chapter:** [Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution]({{ '/diffequations/chapter-07/' | relative_url }})
-

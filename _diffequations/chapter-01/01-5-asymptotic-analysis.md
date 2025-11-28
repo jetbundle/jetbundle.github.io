@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+Acknowledging that exact solutions are rare, we turn to approximation in limits. **Laplace's Method** and **Stationary Phase** reveal that integrals are dominated by critical points. The **WKB Approximation** connects wave mechanics to classical ray trajectories. This module emphasizes "local truth"—accurate behavior at $\infty$ or $0$—while exposing the lack of global connection formulas, necessitating a topological understanding of the Stokes phenomenon.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

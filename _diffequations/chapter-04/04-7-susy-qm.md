@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We revisit the special functions of Chapter 1. We show that the solvability of the Schrödinger equation for specific potentials is due to **Factorization** and **Shape Invariance**, properties equivalent to a local supersymmetry.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

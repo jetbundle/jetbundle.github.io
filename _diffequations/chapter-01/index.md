@@ -83,4 +83,3 @@ Throughout this chapter, we use standard notation:
 ---
 
 **Next Chapter:** [Chapter 2: Functional Analysis, Distributions & Weak Solutions]({{ '/diffequations/chapter-02/' | relative_url }})
-

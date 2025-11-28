@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We move to dynamical fields. **Conservation Laws** are expressed as the divergence of flux. We define **Hyperbolicity** and the **Method of Characteristics** for systems. We demonstrate the breakdown of classical solutions: even smooth initial data can evolve into singularities (**Shocks**) in finite time, proving that the smoothness recovered in Ch 2.5 is not generic for nonlinear hyperbolic systems.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

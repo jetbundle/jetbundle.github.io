@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We abstract away the points. We introduce **Spectral Triples** to define geometry solely via the spectrum of the Dirac operator. This handles the Fractal geometries of Ch 5.8 and the Quantum Geometries of physics within a single framework.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

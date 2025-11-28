@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We define dynamics on the space of metrics. **Ricci Flow** is presented as the gradient flow of the Einstein-Hilbert action (modified by Perelman entropy). We interpret this flow as the "Drift" term of the stochastic quantization from Chapter 5. We discuss **Singularity Formation** (neck pinches) as topological surgery.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

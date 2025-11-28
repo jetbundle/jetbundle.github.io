@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We investigate the Soliton miracle. We prove that the **Korteweg-de Vries (KdV)** equation possesses an **infinite hierarchy** of conserved quantities. We introduce the **Gardner Transform** and the **Miura Transformation**, revealing that some nonlinear equations are actually linear equations in disguise.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

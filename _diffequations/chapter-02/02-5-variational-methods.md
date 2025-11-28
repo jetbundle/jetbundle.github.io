@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We reframe PDE solving as energy minimization. The **Lax-Milgram Theorem** provides a robust "existence machine" for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove **Weyl's Lemma**, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

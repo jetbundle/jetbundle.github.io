@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+Physical operators like the Laplacian are unbounded (differentiation roughens functions). We introduce the domain subtleties of **Self-Adjointness** versus Symmetricity. We construct the **Resolvent Operator** and use **Stone's Theorem** to define time evolution ($e^{itH}$) as a unitary group, providing a rigorous foundation for Quantum Mechanics without relying on convergent power series.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

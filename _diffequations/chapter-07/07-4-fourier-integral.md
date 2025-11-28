@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We quantize canonical transformations. **FIOs** generalize the Fourier transform to curved manifolds. We link this to **Symplectic Geometry** via Egorov's Theorem, showing the quantum-classical correspondence is exact at the level of symbols.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

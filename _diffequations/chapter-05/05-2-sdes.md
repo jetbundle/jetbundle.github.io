@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We replace the deterministic PDE with the **Stochastic Differential Equation**. We connect SDEs to parabolic PDEs via the **Feynman-Kac Formula**. We introduce the **Girsanov Theorem** to handle changes of measure (drift removal), reframing analysis as measure theory on path space.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

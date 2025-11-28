@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We define the **Symbol** of a PDE as a geometric object. We introduce **Spencer Cohomology** to measure the formal obstructions to solving the equation (compatibility conditions). We define **Involution** as the algebraic state where no hidden obstructions exist.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

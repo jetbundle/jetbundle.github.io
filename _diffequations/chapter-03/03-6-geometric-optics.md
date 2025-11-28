@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We examine the high-frequency limit of wave equations. The **Eikonal Equation** emerges as a fully nonlinear PDE governing wave fronts. We study **Caustics**—singularities where ray theory predicts infinite amplitude—connecting back to the Airy functions of Chapter 1.2.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

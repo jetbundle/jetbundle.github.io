@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We systematize the "tricks" of Chapter 1. We view symmetries as continuous groups acting on the solution space. We introduce **Prolongation** to lift vector fields to the jet space of derivatives. The **Determining Equations** provide an algorithmic method to find all symmetries of a given PDE, allowing for systematic **Symmetry Reduction**.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

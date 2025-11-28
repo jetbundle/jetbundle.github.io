@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We localize linearity. Replacing $\mathbb{R}^n$ with a **Manifold**, we define vectors in the local **Tangent Space**. We introduce **Tensors** as multilinear geometric objects and the **Covariant Derivative** ($\nabla$) to define parallel transport. PDEs are now written using $\nabla$, rendering them invariant under coordinate transformations.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We demonstrate the failure of classical calculus for Brownian paths (infinite variation). We introduce **Itô Integration** and the **Itô Isometry**, proving that the Chain Rule must be modified to include a second-order term (**Quadratic Variation**). We confront the geometric ambiguity between Itô (martingale) and Stratonovich (geometric) calculi.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

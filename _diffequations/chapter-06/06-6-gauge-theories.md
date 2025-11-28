@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We study the geometry of fiber bundles. We define **Instantons** (Self-Dual connections) and their Moduli Spaces. We identify these Instantons as the **Supersymmetric Vacua** of Chapter 5.9.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

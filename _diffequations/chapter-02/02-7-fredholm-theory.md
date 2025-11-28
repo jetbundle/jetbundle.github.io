@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We confront the failure of uniqueness. **Fredholm Theory** classifies operators that are "almost" invertible, introducing the **Index** (dimension of kernel minus dimension of cokernel). We prove the stability of the Index under compact perturbations.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

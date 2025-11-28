@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We decouple roughness from probability. We introduce the **Signature** of a path and Terry Lyons' **Rough Path Theory**. We show that to solve differential equations driven by rough signals, one must track not just the path, but its iterated integrals. This is a deterministic theory of non-smooth calculus.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

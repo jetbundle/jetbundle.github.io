@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We attempt to solve nonlinear problems by expanding around a linear limit. **Regular Perturbation** works for finite time, but **Secular Terms** (like $t \sin t$) destroy validity as $t \to \infty$. We introduce **Poincaré-Lindstedt** and **Multiple Scale Analysis** to remove these resonances. We encounter **Singular Perturbation** problems where the highest derivative is small, creating boundary layers that defy uniform convergence.
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]

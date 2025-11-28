@@ -16,8 +16,7 @@ parent_section: null
 
 ## Introduction
 
-[PLACEHOLDER: Brief introduction to section, connection to previous section, statement of goals]
-
+We treat PDEs as **Differential Ideals** in the exterior algebra. We present the **Cartan-Kähler Theorem** (the geometric Cauchy-Kovalevskaya) which guarantees analytic solutions for involutive systems. This converts analysis into the algebraic problem of constructing "integral elements."
 ## Mathematical Content
 
 [PLACEHOLDER: Main mathematical content will be added in Phase 2]
