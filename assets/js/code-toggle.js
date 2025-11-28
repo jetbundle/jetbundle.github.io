@@ -13,9 +13,11 @@ class CodeToggle {
       if (!codeBlock.querySelector('.code-toggle-btn')) {
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'code-toggle-btn';
-        toggleBtn.textContent = 'Hide Code';
+        // Check if code block starts hidden
+        const startsHidden = codeBlock.classList.contains('hidden');
+        toggleBtn.textContent = startsHidden ? 'Show Code' : 'Hide Code';
         toggleBtn.setAttribute('aria-label', 'Toggle code visibility');
-        
+
         toggleBtn.addEventListener('click', () => {
           const isHidden = codeBlock.classList.contains('hidden');
           if (isHidden) {
@@ -26,12 +28,12 @@ class CodeToggle {
             toggleBtn.textContent = 'Show Code';
           }
         });
-        
+
         codeBlock.style.position = 'relative';
         codeBlock.appendChild(toggleBtn);
       }
     });
-    
+
     // Also watch for dynamically added code blocks
     const observer = new MutationObserver(() => {
       document.querySelectorAll('.interactive-module .code-block, .widget-module .code-block').forEach(codeBlock => {
@@ -40,7 +42,7 @@ class CodeToggle {
           toggleBtn.className = 'code-toggle-btn';
           toggleBtn.textContent = 'Hide Code';
           toggleBtn.setAttribute('aria-label', 'Toggle code visibility');
-          
+
           toggleBtn.addEventListener('click', () => {
             const isHidden = codeBlock.classList.contains('hidden');
             if (isHidden) {
@@ -51,13 +53,13 @@ class CodeToggle {
               toggleBtn.textContent = 'Show Code';
             }
           });
-          
+
           codeBlock.style.position = 'relative';
           codeBlock.appendChild(toggleBtn);
         }
       });
     });
-    
+
     observer.observe(document.body, { childList: true, subtree: true });
   }
 }
@@ -65,4 +67,3 @@ class CodeToggle {
 document.addEventListener('DOMContentLoaded', () => {
   window.codeToggle = new CodeToggle();
 });
-

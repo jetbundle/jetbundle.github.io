@@ -34,9 +34,8 @@ chapter: 0
     <button class="run-button">Run Python Code</button>
   </div>
 
-  <div class="code-block">
+  <div class="code-block hidden">
     <pre><code class="language-python">import numpy as np
-import plotly.graph_objects as go
 from scipy.integrate import odeint
 
 # Define ODE: dy/dt = -2y
@@ -113,15 +112,12 @@ create_plot([trace1, trace2], layout)</code></pre>
     <button class="run-button widget-run">Update Plot</button>
   </div>
 
-  <div class="code-block">
+  <div class="code-block hidden">
     <pre><code class="language-python">import numpy as np
-import plotly.graph_objects as go
 from scipy.integrate import odeint
 
-# Parameters from widgets
-lambda_val = {{ lambda }}
-y0_val = {{ y0 }}
-t_max_val = {{ t_max }}
+# Parameters from widgets (injected by widget engine)
+# lambda_val, y0_val, t_max_val are set by widget sliders
 
 def dydt(y, t, lambda_param):
     return -lambda_param * y

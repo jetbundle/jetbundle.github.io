@@ -85,7 +85,30 @@ class WidgetEngine {
       });
 
       let code = widgetData.code;
-      code = this.injectParameters(code, params);
+      
+      // Inject parameters at the start of the code
+      const paramLines = Object.entries(params).map(([key, value]) => {
+        // Handle special case for 'lambda' (Python keyword)
+        const paramName = key === 'lambda' ? 'lambda_val' : key;
+        return `${paramName} = ${value}`;
+      }).join('\n');
+      
+      // Remove any placeholder parameter lines and inject real values
+      code = code.replace(/# Parameters from widgets.*?\n/g, '');
+      code = code.replace(/lambda_val = .*?\n/g, '');
+      code = code.replace(/y0_val = .*?\n/g, '');
+      code = code.replace(/t_max_val = .*?\n/g, '');
+      
+      // Insert parameter assignments at the beginning after imports
+      const importEnd = code.indexOf('\n\n');
+      if (importEnd > 0) {
+        code = code.substring(0, importEnd + 2) + 
+               '# Parameters from widgets\n' + 
+               paramLines + '\n' + 
+               code.substring(importEnd + 2);
+      } else {
+        code = '# Parameters from widgets\n' + paramLines + '\n\n' + code;
+      }
 
       if (!window.textbookEngine || !(await window.textbookEngine.waitForLoad())) {
         throw new Error('Pyodide not loaded');
@@ -93,7 +116,7 @@ class WidgetEngine {
 
       // Reset plot data and inject helper function
       await window.textbookEngine.pyodide.runPythonAsync(`plot_data = None`);
-      
+
       const plotHelperCode = `
 import json
 
@@ -102,7 +125,7 @@ def create_plot(traces, layout=None):
     global plot_data
     if layout is None:
         layout = {}
-    
+
     # Convert numpy arrays to lists
     plot_traces = []
     for trace in traces:
@@ -113,7 +136,7 @@ def create_plot(traces, layout=None):
             else:
                 trace_dict[key] = value
         plot_traces.append(trace_dict)
-    
+
     plot_data = {
         'data': plot_traces,
         'layout': layout

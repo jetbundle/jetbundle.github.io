@@ -75,7 +75,7 @@ class TextbookEngine {
         button.dataset.attached = 'true';
       }
     });
-    
+
     // Also listen for dynamically added buttons
     const observer = new MutationObserver(() => {
       document.querySelectorAll('.run-button:not(.widget-run)').forEach(button => {
@@ -85,7 +85,7 @@ class TextbookEngine {
         }
       });
     });
-    
+
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
