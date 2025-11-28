@@ -129,23 +129,23 @@ def dydt(y, t, lambda_param):
 t = np.linspace(0, t_max_val, 200)
 sol = odeint(dydt, y0_val, t, args=(lambda_val,))
 
-fig = go.Figure()
-fig.add_trace(go.Scatter(
-    x=t, y=sol.flatten(), 
-    mode='lines',
-    name=f'y(t) = {y0_val} * exp(-{lambda_val}t)',
-    line=dict(width=3)
-))
+trace = {
+    'x': t.tolist(),
+    'y': sol.flatten().tolist(),
+    'mode': 'lines',
+    'name': f'y(t) = {y0_val} * exp(-{lambda_val}t)',
+    'line': {'width': 3, 'color': '#3b82f6'}
+}
 
-fig.update_layout(
-    title=f"ODE Solution: dy/dt = -{lambda_val}*y",
-    xaxis_title="Time t",
-    yaxis_title="y(t)",
-    template="plotly_dark",
-    height=400
-)
+layout = {
+    'title': f'ODE Solution: dy/dt = -{lambda_val}*y',
+    'xaxis': {'title': 'Time t'},
+    'yaxis': {'title': 'y(t)'},
+    'height': 400
+}
 
-# Convert to JSON for rendering (handled by engine)</code></pre>
+# Store plot data for rendering
+create_plot([trace], layout)</code></pre>
   </div>
   
   <div class="plotly-container widget-output"></div>
