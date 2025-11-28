@@ -933,21 +933,21 @@ from scipy.integrate import odeint
 try:
     # Parameters from widgets
     # lambda_val, y0_val, t_max_val are set by widget sliders
-    
+
     # Validate inputs
     if lambda_val <= 0:
         raise ValueError("Lambda must be positive")
-    
+
     def dydt(y, t, lambda_param):
         return -lambda_param * y
-    
+
     t = np.linspace(0, t_max_val, 200)
     sol = odeint(dydt, y0_val, t, args=(lambda_val,))
-    
+
     # Check for numerical issues
     if np.any(np.isnan(sol)) or np.any(np.isinf(sol)):
         raise ValueError("Numerical solution failed - try different parameters")
-    
+
     trace = {
         'x': t.tolist(),
         'y': sol.flatten().tolist(),
@@ -955,16 +955,16 @@ try:
         'name': f'y(t) with λ={lambda_val}',
         'line': {'width': 3, 'color': '#3b82f6'}
     }
-    
+
     layout = {
         'title': f'Solution: dy/dt = -{lambda_val}*y',
         'xaxis': {'title': 'Time t'},
         'yaxis': {'title': 'y(t)'},
         'height': 400
     }
-    
+
     create_plot([trace], layout)
-    
+
 except Exception as e:
     # Error will be caught and displayed in the widget output
     # The error message will be shown to the user
@@ -1286,18 +1286,18 @@ This comprehensive debugging output helps identify exactly where issues occur.
    ```python
    # For exponential decay: dy/dt = -λy
    # Analytical solution: y(t) = y₀ * exp(-λt)
-   
+
    # Numerical solution
    sol_numerical = odeint(dydt, y0_val, t, args=(lambda_val,))
-   
+
    # Analytical solution (for verification)
    sol_analytical = y0_val * np.exp(-lambda_val * t)
-   
+
    # Compare (should be very close)
    error = np.abs(sol_numerical.flatten() - sol_analytical)
    max_error = np.max(error)
    print(f"Maximum error: {max_error:.2e}")
-   
+
    # If error is too large, there's a problem
    if max_error > 1e-6:
        print("Warning: Large numerical error detected")
