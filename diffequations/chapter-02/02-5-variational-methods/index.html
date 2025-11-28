@@ -700,27 +700,136 @@
 <p>We reframe PDE solving as energy minimization. The <strong>Lax-Milgram Theorem</strong> provides a robust “existence machine” for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove <strong>Weyl’s Lemma</strong>, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.</p>
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="variational-formulation">Variational Formulation</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>For the Poisson problem
+\(\begin{cases}
+-\Delta u = f &amp; \text{in }\Omega,\\
+u=0 &amp; \text{on }\partial\Omega,
+\end{cases}\)
+multiply by a test function $v\in C_{c}^{\infty}(\Omega)$ and integrate:
+\(\int_{\Omega} \nabla u\cdot \nabla v\,dx = \int_{\Omega} f v\,dx.\)
+This identity extends to $u,v\in H_{0}^{1}(\Omega)$. Define
+\(a(u,v)=\int_{\Omega}\nabla u\cdot \nabla v\,dx,\qquad F(v)=\int_{\Omega} f v\,dx.\)
+The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ for all $v\in H_{0}^{1}(\Omega)$. When $a$ is symmetric, $u$ minimizes the energy functional $J(u)=\frac{1}{2}a(u,u)-F(u)$.</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<h3 id="laxmilgram-theorem">Lax–Milgram Theorem</h3>
 
-<h3 id="core-results">Core Results</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($</td>
+      <td>a(u,v)</td>
+      <td>\le \beta|u|<em>{H}|v|</em>{H}$) and coercive ($a(u,u)\ge \alpha |u|_{H}^{2}$) for some $\alpha,\beta&gt;0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>In the Poisson case, boundedness follows from Cauchy–Schwarz, and coercivity from Poincaré’s inequality on $H_{0}^{1}(\Omega)$, ensuring a unique weak solution.</p>
+
+<h3 id="regularity-and-weyls-lemma">Regularity and Weyl’s Lemma</h3>
+
+<p>Weak solutions gain additional smoothness under elliptic regularity. Weyl’s lemma states that if $\Delta u=0$ in distributions, then $u$ is smooth. More generally, if $-\Delta u=f$ with $f\in L^{2}(\Omega)$, then $u\in H^{2}(\Omega)$. Difference quotient methods show $u’’$ exists in $L^{2}$; iterating yields $u\in H^{k+2}$ whenever $f\in H^{k}$, and Sobolev embeddings translate $H^{k}$ regularity to classical $C^{m}$ regularity for $k&gt;n/2+m$.</p>
 
 <h3 id="applications">Applications</h3>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<ol>
+  <li><strong>Linear elasticity:</strong> The displacement $\mathbf{u}$ minimizes elastic energy. The bilinear form involves the strain tensor $\varepsilon(\mathbf{u})$; Korn’s inequality provides coercivity.</li>
+  <li><strong>Reaction-diffusion:</strong> Bilinear forms of the type $\int (\nabla u\cdot \nabla v + c uv)$ remain coercive if $c\ge 0$; negative lower-order terms require spectral analysis.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Eigenvalue problems:</strong> Minimizing the Rayleigh quotient $\dfrac{\int</td>
+          <td>\nabla u</td>
+          <td>^{2}}{\int</td>
+          <td>u</td>
+          <td>^{2}}$ yields eigenpairs of $-\Delta$.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<p>These examples illustrate how variational methods provide existence, uniqueness, and qualitative properties of solutions.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-251-poisson-equation-on-01">Example 2.5.1: Poisson Equation on $(0,1)$</h3>
+
+<p><strong>Problem:</strong> Solve $-u’‘=2$ with $u(0)=u(1)=0$.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u’v’=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int</td>
+      <td>u’</td>
+      <td>^{2}-\int 2u$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-252-galerkin-approximation">Example 2.5.2: Galerkin Approximation</h3>
+
+<p>Approximate $u$ using hat functions ${\phi_{j}}<em>{j=1}^{N-1}$ with $\phi</em>{j}(x_{i})=\delta_{ij}$, $x_{j}=j/N$. Solve $A\mathbf{c}=\mathbf{b}$ where $A_{ij}=\int \phi_{i}’\phi_{j}’$, $b_{j}=\int 2\phi_{j}$. For $N=2$, $A=(4)$, $b=(1/2)$, giving $c_{1}=1/8$. The approximation $u_{2}$ converges in $H^{1}$ as $N\to\infty$.</p>
+
+<h3 id="example-253-laxmilgram-on-the-unit-disk">Example 2.5.3: Lax–Milgram on the Unit Disk</h3>
+
+<p>For $-\Delta u=1$ in $B_{1}(0)$ with $u=0$ on $\partial B_{1}$, $a(u,v)=\int \nabla u\cdot\nabla v$ is bounded and coercive on $H_{0}^{1}(B_{1})$. $F(v)=\int v$ is continuous. Lax–Milgram yields a unique weak solution, which by symmetry is $u(r)=(1-r^{2})/4$.</p>
+
+<h3 id="example-254-reactiondiffusion">Example 2.5.4: Reaction–Diffusion</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int</td>
+      <td>\nabla u</td>
+      <td>^{2}+c</td>
+      <td>u</td>
+      <td>^{2}\ge \int</td>
+      <td>\nabla u</td>
+      <td>^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-255-weyls-lemma-via-difference-quotients">Example 2.5.5: Weyl’s Lemma via Difference Quotients</h3>
+
+<p>Let $u\in H^{1}<em>{\text{loc}}(\mathbb{R}^{n})$ satisfy $-\Delta u=f\in L^{2}</em>{\text{loc}}$. Using difference quotients $\tau_{h}u(x)=\frac{u(x+h)-u(x)}{h}$ as test functions shows $\tau_{h}u’$ is bounded in $L^{2}$, implying $u\in H^{2}_{\text{loc}}$. Repeating yields higher regularity when $f$ is smoother.</p>
+
+<h3 id="example-256-linear-elasticity">Example 2.5.6: Linear Elasticity</h3>
+
+<p>For $\mathbf{u}\in [H_{0}^{1}(\Omega)]^{2}$, the Lamé system has variational form
+\(a(\mathbf{u},\mathbf{v})=\int_{\Omega}\left(2\mu\,\varepsilon(\mathbf{u}):\varepsilon(\mathbf{v})+\lambda (\nabla\cdot\mathbf{u})(\nabla\cdot\mathbf{v})\right)dx.\)
+Korn’s inequality provides $a(\mathbf{u},\mathbf{u})\ge C|\mathbf{u}|_{H^{1}}^{2}$, leading to existence and uniqueness.</p>
+
+<h3 id="example-257-eigenvalue-problem">Example 2.5.7: Eigenvalue Problem</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Minimize $R[u]=\dfrac{\int</td>
+      <td>\nabla u</td>
+      <td>^{2}}{\int</td>
+      <td>u</td>
+      <td>^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-258-mixed-boundary-problem">Example 2.5.8: Mixed Boundary Problem</h3>
+
+<p>For $-\Delta u=1$ on $(0,1)^{2}$ with Dirichlet conditions on $y=0,1$ and Neumann on $x=0,1$, set $V={u\in H^{1} : u(x,0)=u(x,1)=0}$. The bilinear form $a(u,v)=\int \nabla u\cdot \nabla v$ is coercive on $V$. Expanding in $\sin(m\pi y)\cos(nx)$ bases satisfies the mixed boundary conditions and converges to the exact solution.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+  <li>Ciarlet, P. G. (1988). <em>Mathematical Elasticity, Vol. 1: Three-Dimensional Elasticity</em>. North-Holland.</li>
+  <li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+  <li>Gilbarg, D., &amp; Trudinger, N. S. (2001). <em>Elliptic Partial Differential Equations of Second Order</em>. Springer.</li>
+  <li>Monk, P. (2003). <em>Finite Element Methods for Maxwell’s Equations</em>. Oxford University Press.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
