@@ -42,7 +42,7 @@ with $(a)_n = \Gamma(a+n)/\Gamma(a)$. When $a$ or $b$ is a non-positive integer,
 
 Most named functions arise as confluent limits of ${}_2F_1$, where regular singularities merge into irregular ones:
 
-1. **Bessel functions.** Rescaling $z \mapsto z/b$ and letting $b \to \infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_\nu$.
+1. **Bessel functions.** Rescaling $z \mapsto z/b$ and letting $b\to\infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_\nu$.
 2. **Kummer/Whittaker functions.** When two singularities coalesce, the confluent hypergeometric function ${}_1F_1(a;c;z)$ emerges, featuring one regular and one irregular singular point.
 3. **Legendre polynomials.** Integer parameter choices in ${}_2F_1$ recover $P_n(x)$, representing spherical symmetry.
 
@@ -85,7 +85,7 @@ $$
 Under suitable boundary conditions, the eigenvalues are real and discrete and the eigenfunctions form an orthogonal basis of $L^2_w([a,b])$:
 
 $$
-\int_a^b \phi_n(x) \phi_m(x) w(x)\,dx = \delta_{nm} N_n.
+\int_a^b \phi_n(x)\phi_m(x) w(x)\,dx = \delta_{nm} N_n.
 $$
 
 This Hilbert-space perspective explains why Bessel, Legendre, and Hermite functions provide complete expansions for cylindrical, spherical, and oscillator problems.
@@ -117,13 +117,13 @@ which satisfies $(1-x^2)P_2'' - 2x P_2' + 6P_2 = 0$, verifying the connection to
 The radial Schrödinger equation
 
 $$
--u''(r) + \left[\frac{\ell(\ell+1)}{r^2} - \frac{2}{r}\right] u(r) = 2E\,u(r)
+-u''(r) + \left[\frac{\ell(\ell+1)}{r^2} - \frac{2}{r}\right]u(r) = 2E\,u(r)
 $$
 
 is simplified by $u(r) = e^{-\rho/2} \rho^{\ell} v(\rho)$ with $\rho = 2\sqrt{-2E}\,r$. The transformed equation reads
 
 $$
-\rho v'' + [2(\ell+1) - \rho] v' + (n-\ell-1) v = 0,
+\rho v'' + \big[2(\ell+1) - \rho\big] v' + (n-\ell-1) v = 0,
 $$
 
 so $v(\rho) = {}_1F_1(n-\ell-1; 2\ell+2; \rho)$. For $n=2$, $\ell = 0$,
@@ -144,10 +144,10 @@ which matches the textbook hydrogenic state up to normalization.
 
 **Problem:** Obtain $J_\nu$ as a confluent limit of ${}_2F_1$.
 
-Consider ${}_2F_1(a,b;c;2z/b)$ with $b\to\infty$. Since $(b)_n = b^n \left[1 + O\!\left(\frac{1}{b}\right)\right]$, the series approaches
+Consider ${}_2F_1(a,b;c;2z/b)$ with $b\to\infty$. Since $(b)_n = b^n\left[1 + O\!\left(rac{1}{b}\right)\right]$, the series approaches
 
 $$
-{}_0F_1(c; z) = \sum_{n=0}^{\infty} \frac{1}{(c)_n} \frac{z^n}{n!}.
+{}_0F_1(c; z) = \sum_{n=0}^{\infty} \frac{1}{(c)_n}\frac{z^n}{n!}.
 $$
 
 Choosing $c = \nu+1$ and $z = -\tfrac{x^2}{4}$ yields
@@ -174,7 +174,7 @@ $$
 J_\nu(x) = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!\,\Gamma(k+\nu+1)}\left(\frac{x}{2}\right)^{2k+\nu},
 $$
 
-while the $r=-\nu$ branch produces $J_{-\nu}$ (and, when $\nu \in \mathbb{Z}$, the logarithmic partner $Y_\nu$), clarifying how exponent differences govern logarithmic corrections.
+while the $r=-\nu$ branch produces $J_{-\nu}$ (and, when $\nu\in\mathbb{Z}$, the logarithmic partner $Y_\nu$), clarifying how exponent differences govern logarithmic corrections.
 
 ### Example 1.2.5: Fourier–Bessel Orthogonality
 
