@@ -846,15 +846,7 @@
 
 <h3 id="symbol-and-principal-part">Symbol and Principal Part</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>To analyze the solvability of a system, we linearize the highest-order terms. Let $\pi: E \to M$ be a fiber bundle, and let the PDE be defined by a submanifold $\mathcal{R}_k \subset J^k(E)$. Locally, this is described by the vanishing of functions $F^\mu(x^i, u^\alpha, p^\alpha_I) = 0$ for $</td>
-      <td>I</td>
-      <td>\le k$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>To analyze the solvability of a system, we linearize the highest-order terms. Let $\pi: E \to M$ be a fiber bundle, and let the PDE be defined by a submanifold $\mathcal{R}_k \subset J^k(E)$. Locally, this is described by the vanishing of functions $F^\mu(x^i, u^\alpha, p^\alpha_I) = 0$ for $|I| \le k$.</p>
 
 <p>The <em>principal symbol</em> of the system at a point $q \in \mathcal{R}<em>k$ encodes the algebraic relations imposed on the highest derivatives. We define the geometric symbol $\sigma_q(\mathcal{R}_k)$ as a subspace of the symmetric tensor product of the cotangent space with the vertical tangent space. Specifically, considering the vertical projection $V</em>\pi E = \ker d\pi$, the symbol is the kernel of the linearized map restricted to the highest order jet components:</p>
 
@@ -960,7 +952,7 @@ The symbol describes a parabolic cone in cotangent space. This is involutive (no
   <li>
     <p><strong>PDE System:</strong>
 \(\begin{cases}
-F^1 = u_x - v_y = 0 \\
+F^1 = u_x - v_y = 0 \
 F^2 = u_y + v_x = 0
 \end{cases}\)</p>
   </li>
@@ -968,15 +960,15 @@ F^2 = u_y + v_x = 0
     <p><strong>Principal Symbol:</strong>
 \(\sigma_1(F^1)(\xi_x, \xi_y) = \xi_x \cdot 1 + \xi_y \cdot (-1) = \xi_x - \xi_y\)</p>
 
-\[\sigma_1(F^2)(\xi_x, \xi_y) = \xi_x \cdot 1 + \xi_y \cdot 1 = \xi_x + \xi_y\]
+    <p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)0</p>
   </li>
   <li>
     <p><strong>Symbol Matrix:</strong>
-\(\sigma_1(F) = \begin{pmatrix} \xi_x - \xi_y &amp; 0 \\ 0 &amp; \xi_x + \xi_y \end{pmatrix}\)</p>
+\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)1</p>
   </li>
   <li>
     <p><strong>Symbol Module:</strong>
-\(g_1 = \ker \sigma_1(F) = \left\{ (\eta^u, \eta^v) \;\middle|\; (\xi_x - \xi_y)\eta^u = 0, \; (\xi_x + \xi_y)\eta^v = 0 \right\}\)</p>
+\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)2</p>
   </li>
   <li>
     <p><strong>Analysis:</strong>
@@ -992,10 +984,7 @@ When $\xi_x \neq \xi_y$ and $\xi_x \neq -\xi_y$: $g_1 = 0$ (elliptic)</p>
 
 <p><strong>Problem:</strong> Original System (order 1):</p>
 
-\[\begin{cases}
-F^1: u_x = 0 \\
-F^2: u_y = 0
-\end{cases}\]
+<p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)3</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1004,13 +993,13 @@ F^2: u_y = 0
     <p><strong>First Prolongation:</strong>
 Compute total derivatives:</p>
 
-\[D_x(F^1) = D_x(u_x) = u_{xx} = 0\]
+    <p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)4</p>
 
-\[D_y(F^1) = D_y(u_x) = u_{xy} = 0\]
+    <p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)5</p>
 
-\[D_x(F^2) = D_x(u_y) = u_{yx} = 0\]
+    <p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)6</p>
 
-\[D_y(F^2) = D_y(u_y) = u_{yy} = 0\]
+    <p>\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)7</p>
   </li>
   <li>
     <p><strong>Compatibility Check:</strong>
@@ -1018,13 +1007,13 @@ $D_y(D_x(F^1)) = D_x(D_y(F^1))$ gives $u_{xxy} = u_{xyx}$ (always true by equali
   </li>
   <li>
     <p><strong>Prolonged System (order 2):</strong>
-\(\mathcal{R}_2 = \left\{ u_x = 0, u_y = 0, u_{xx} = 0, u_{xy} = 0, u_{yx} = 0, u_{yy} = 0 \right\}\)</p>
+\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)8</p>
   </li>
   <li>
     <p><strong>Symbol Evolution:</strong>
-\(g_1 = \ker\begin{pmatrix} \xi_x &amp; 0 \\ 0 &amp; \xi_y \end{pmatrix} = \{0\}\)</p>
+\(\sigma_k(F)(\xi) = \sum_{|\alpha|=k} a^\alpha_\beta(x,u) \xi_\alpha\)9</p>
 
-\[g_2 = \ker\begin{pmatrix} \xi_x^2 &amp; 0 &amp; 0 \\ \xi_x\xi_y &amp; 0 &amp; 0 \\ 0 &amp; \xi_x\xi_y &amp; 0 \\ 0 &amp; 0 &amp; \xi_y^2 \end{pmatrix} = \{0\}\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)0</p>
   </li>
   <li>
     <p><strong>Conclusion:</strong>
@@ -1036,38 +1025,34 @@ Formally integrable $\to$ solutions exist: $u =$ constant.</p>
 
 <p><strong>Problem:</strong> Original System:</p>
 
-\[\begin{cases}
-F^1: u_x = v \\
-F^2: u_y = w \\
-F^3: v_x + w_y = 1
-\end{cases}\]
+<p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)1</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>First Prolongation:</strong>
-\(D_x(F^1): u_{xx} = v_x\)</p>
+\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)2</p>
 
-\[D_y(F^1): u_{xy} = v_y\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)3</p>
 
-\[D_x(F^2): u_{yx} = w_x\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)4</p>
 
-\[D_y(F^2): u_{yy} = w_y\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)5</p>
 
-\[D_x(F^3): v_{xx} + w_{xy} = 0\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)6</p>
 
-\[D_y(F^3): v_{xy} + w_{yy} = 0\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)7</p>
   </li>
   <li>
     <p><strong>Compatibility Obstruction:</strong>
 Compute mixed derivatives:</p>
 
-\[D_y(D_x(F^1)) = D_x(D_y(F^1)) \implies u_{xxy} = u_{xyx}\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)8</p>
 
     <p>But substitute using original equations:</p>
 
-\[D_y(v_x) = D_x(w_y) \implies v_{xy} = w_{xy}\]
+    <p>\(g_{k+1} \subset S^{k+1} T^*M \otimes VE\)9</p>
 
     <p>From $D_x(F^3)$: $w_{xy} = -v_{xx}$</p>
 
@@ -1094,23 +1079,23 @@ The prolonged system introduces a new independent equation, indicating failure o
 <ol>
   <li>
     <p><strong>Symbol:</strong>
-\(\sigma_2(\xi) = \xi_x^2 + \xi_y^2\)</p>
+\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)0</p>
 
-\[g_2 = \ker(\xi_x^2 + \xi_y^2) = \{0\} \quad \text{(elliptic)}\]
+    <p>\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)1</p>
   </li>
   <li>
     <p><strong>Spencer Complex (at generic point):</strong>
-\(0 \to g_2 \xrightarrow{\delta} T^*M \otimes g_1 \xrightarrow{\delta} \Lambda^2 T^*M \otimes g_0 \to 0\)</p>
+\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)2</p>
 
     <p>Since $g_2 = {0}$, the complex is:</p>
 
-\[0 \to 0 \to T^*M \otimes V_uE \xrightarrow{\delta} \Lambda^2 T^*M \otimes \mathbb{R} \to 0\]
+    <p>\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)3</p>
   </li>
   <li>
     <p><strong>Spencer Operator:</strong>
-\(\delta: T^*M \otimes V_uE \to \Lambda^2 T^*M \otimes \mathbb{R}\)</p>
+\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)4</p>
 
-\[\delta(\xi_x \partial_x \otimes \eta^u + \xi_y \partial_y \otimes \eta^u) = (\xi_x d\xi_y - \xi_y d\xi_x) \eta^u\]
+    <p>\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)5</p>
   </li>
   <li>
     <p><strong>Cohomology Computation:</strong>
@@ -1134,11 +1119,7 @@ Involutive $\to$ Cartan-Kähler guarantees solutions.</p>
 
 <p><strong>PDE System (Christoffel symbols compatibility):</strong></p>
 
-\[\begin{cases}
-F^1: \Gamma^x_{xx} = \partial_x \log\sqrt{E} \\
-F^2: \Gamma^y_{xy} = \partial_y \log\sqrt{E} \\
-F^3: R^x_{yxy} = 0
-\end{cases}\]
+<p>\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)6</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1149,17 +1130,17 @@ $g_1 \subset S^1 T^*M \otimes V_{\Gamma}E$</p>
   </li>
   <li>
     <p><strong>First Prolongation generates Gaussian curvature constraint:</strong>
-\(K = \frac{1}{E} \left( \partial_{xx} \log E + \partial_{yy} \log E - \partial_{xy} \log EG \right) = 0\)</p>
+\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)7</p>
   </li>
   <li>
     <p><strong>Spencer Complex:</strong>
-\(0 \to g_2 \xrightarrow{\delta} T^*M \otimes g_1 \xrightarrow{\delta} \Lambda^2 T^*M \otimes g_0\)</p>
+\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)8</p>
   </li>
   <li>
     <p><strong>Key Computation:</strong>
 The curvature $K$ appears as a cocycle in $H^{2,0}$:</p>
 
-\[[K] \in Z^2(g_\bullet) = \ker(d: \Lambda^2 T^*M \otimes g_0 \to \Lambda^3 T^*M \otimes g_{-1})\]
+    <p>\(\dots \to \mathcal{R}_{k+1} \to \mathcal{R}_k \to \dots\)9</p>
   </li>
   <li>
     <p><strong>Non-vanishing Cohomology:</strong>
@@ -1186,13 +1167,13 @@ The Gaussian curvature is the obstruction to flatness. Solutions exist if and on
   </li>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(\sigma_2(\xi) = \xi_x^2 \eta_{yy} - 2\xi_x\xi_y \eta_{xy} + \xi_y^2 \eta_{xx}\)</p>
+\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)0</p>
 
     <p>where $\eta = (D^2u)$ represents the Hessian.</p>
   </li>
   <li>
     <p><strong>Symbol Module:</strong>
-\(g_2 = \left\{ \eta \in S^2 T^*M \otimes V_uE \;\middle|\; \det\eta = 1 \right\}\)</p>
+\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)1</p>
   </li>
   <li>
     <p><strong>Prolongation:</strong>
@@ -1223,9 +1204,9 @@ $F(t,x,u,u_x,u_{xx},u_{txx},u_{xxx}) = u_{txx} - 6u_x u_{xx} - u_x u_{xxx} = 0$<
   </li>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(\sigma_3(F)(\xi_t, \xi_x) = \xi_t \cdot 1 - \xi_x^3 \cdot 1 = \xi_t - \xi_x^3\)</p>
+\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)2</p>
 
-\[g_3 = \ker(\xi_t - \xi_x^3) = \left\{ (\xi_t, \xi_x) \;\middle|\; \xi_t = \xi_x^3 \right\}\]
+    <p>\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)3</p>
   </li>
   <li>
     <p><strong>First Prolongation:</strong>
@@ -1233,7 +1214,7 @@ Compute total derivatives $D_t F = 0$, $D_x F = 0$:</p>
 
     <p>$D_t F$:</p>
 
-\[D_t(u_{txx}) = 6 D_t(u_x u_{xx}) + D_t(u_x u_{xxx})\]
+    <p>\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)4</p>
 
     <p>This generates higher-order compatibility conditions.</p>
   </li>
@@ -1245,7 +1226,7 @@ After tedious computation (standard in integrability theory), all prolongations 
     <p><strong>Spencer Cohomology:</strong>
 The symbol $g_3$ is involutive:</p>
 
-\[H^{p,q}(g_\bullet) = 0 \quad \forall p \geq 1, q \geq 0\]
+    <p>\(\delta: \Lambda^j T^*M \otimes g_{k+1} \to \Lambda^{j+1} T^*M \otimes g_k\)5</p>
   </li>
   <li>
     <p><strong>Verification:</strong>

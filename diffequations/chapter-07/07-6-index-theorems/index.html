@@ -953,11 +953,9 @@
       </li>
     </ul>
 
-    <p><strong>Kernel computation:</strong></p>
-    <ul>
-      <li>$\ker D^+ = {\text{spinors with eigenvalue } +1/2}$ → dimension 1</li>
-      <li>$\ker D^- = {\text{spinors with eigenvalue } -1/2}$ → dimension 0</li>
-    </ul>
+    <p><strong>Kernel computation:</strong>
+- $\ker D^+ = {\text{spinors with eigenvalue } +1/2}$ → dimension 1
+- $\ker D^- = {\text{spinors with eigenvalue } -1/2}$ → dimension 0</p>
 
 \[\text{ind}(D) = \dim(\ker D^+) - \dim(\ker D^-) = 1 - 0 = 1\]
   </li>
@@ -971,12 +969,10 @@
     <p><strong>Index formula for Dirac:</strong>
 \(\text{ind}(D) = \int_{S^2} \hat{A}(TS^2) = \frac{1}{3}\)</p>
 
-    <p><strong>Correction:</strong> Standard normalization uses unit volume $S^2$:</p>
-    <ul>
-      <li>Volume form integrates to $4\pi$</li>
-      <li>Corrected: $\hat{A} = 1 - \frac{p_1}{24} = 1 + \frac{1}{3}$ (in cohomology)</li>
-      <li>$\int_{S^2} \hat{A}_2 = 1$</li>
-    </ul>
+    <p><strong>Correction:</strong> Standard normalization uses unit volume $S^2$:
+- Volume form integrates to $4\pi$
+- Corrected: $\hat{A} = 1 - \frac{p_1}{24} = 1 + \frac{1}{3}$ (in cohomology)
+- $\int_{S^2} \hat{A}_2 = 1$</p>
 
     <p><strong>Verified:</strong> $\text{ind}(D) = 1 = 1$. Perfect match!</p>
   </li>
@@ -1010,14 +1006,14 @@
     <p><strong>Degree 1 component:</strong> $\text{td}_1 = 2h$</p>
 
     <p><strong>Integration:</strong>
-\(\int_{\mathbb{CP}^1} \text{td}_1 = \int_{\mathbb{CP}^1} 2h = 2 \cdot 1 = 2\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)0</p>
 
     <p><strong>Correction:</strong> For $\bar{\partial}: \Omega^{0,\bullet} \to \Omega^{0,\bullet+1}$, the formula is:</p>
 
-\[\text{ind}(\bar{\partial}) = \int_{\mathbb{CP}^1} \text{td}(T\mathbb{CP}^1)\]
+    <p>\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)1</p>
 
     <p><strong>Full computation:</strong>
-\(\text{ind} = \int_{\mathbb{CP}^1} \left(1 + 2h + \frac{1}{3}h^2\right)\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)2</p>
 
     <ul>
       <li>Degree 0: $\int 1 = 0$</li>
@@ -1028,15 +1024,15 @@
     <p><strong>Total:</strong> $0 + 2 + \frac{1}{3} = \frac{7}{3}$</p>
 
     <p><strong>Correct formula (Dolbeault complex):</strong>
-\(\text{ind}(\bar{\partial}) = \sum (-1)^q h^{0,q} = h^{0,0} - h^{0,1} = 1\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)3</p>
 
     <p><strong>Resolution:</strong> The correct HRR formula for the full Dolbeault complex is:</p>
 
-\[\chi(\mathcal{O}) = \int_{\mathbb{CP}^1} \text{td}(T\mathbb{CP}^1) \cdot \text{ch}(\mathcal{O})\]
+    <p>\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)4</p>
 
     <p>Since $\text{ch}(\mathcal{O}) = 1$:</p>
 
-\[\chi = \int \left(1 + 2h + \frac{1}{3}h^2\right) = 1 \quad \text{(using correct normalization)}\]
+    <p>\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)5</p>
 
     <p><strong>Verified:</strong> $1 = 1$. Correct!</p>
   </li>
@@ -1100,20 +1096,20 @@
 <strong>Chern character:</strong> $\text{ch}(\mathcal{O}(k)) = e^{kh} = 1 + kh + \frac{(kh)^2}{2}$</p>
 
     <p><strong>Index formula:</strong>
-\(\text{ind}(k) = \int_{\mathbb{CP}^1} \text{ch}(\mathcal{O}(k)) \cdot \text{td}(T\mathbb{CP}^1)\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)6</p>
 
     <p><strong>Degree 1 terms:</strong>
-\(\text{ch}_1 \cdot \text{td}_0 + \text{ch}_0 \cdot \text{td}_1 = kh \cdot 1 + 1 \cdot 2h = (k + 2)h\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)7</p>
 
     <p><strong>Integration:</strong>
-\(\text{ind}(k) = \int (k + 2)h = k + 2 \quad \text{(for } k \geq 0\text{)}\)</p>
+\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)8</p>
 
     <p><strong>Correction:</strong> Riemann-Roch theorem gives:</p>
 
-\[h^0(\mathcal{O}(k)) - h^1(\mathcal{O}(k)) = k + 1\]
+    <p>\(\text{ch}(E) = \sum_{j=1}^k e^{x_j} = \text{rk}(E) + c_1(E) + \frac{1}{2}(c_1(E)^2 - 2c_2(E)) + \cdots\)9</p>
 
     <p><strong>Correct topological formula:</strong>
-\(\text{ind}(\bar{\partial}_k) = \int_{\mathbb{CP}^1} c_1(\mathcal{O}(k)) + \text{td}_1 = k + 1\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)0</p>
 
     <p><strong>Perfect match for all $k \geq 0$:</strong> $k + 1 = k + 1$</p>
   </li>
@@ -1130,23 +1126,21 @@
     <p><strong>Analytical Index:</strong>
 <strong>Betti numbers:</strong> $b^0 = 1$, $b^1 = 2$, $b^2 = 1$</p>
 
-    <p><strong>Harmonic forms:</strong></p>
-    <ul>
-      <li><strong>Even:</strong> $\Omega^0$ (1 form) + $\Omega^2$ (1 form) = 2 forms</li>
-      <li><strong>Odd:</strong> $\Omega^1$ (2 forms) = 2 forms</li>
-    </ul>
+    <p><strong>Harmonic forms:</strong>
+- <strong>Even:</strong> $\Omega^0$ (1 form) + $\Omega^2$ (1 form) = 2 forms
+- <strong>Odd:</strong> $\Omega^1$ (2 forms) = 2 forms</p>
 
-\[\text{sign}(T^2) = 2 - 2 = 0\]
+    <p>\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)1</p>
   </li>
   <li>
     <p><strong>Hirzebruch Signature Theorem:</strong>
 <strong>Pontryagin classes:</strong> $p_1(TT^2) = 0$ (flat manifold)</p>
 
     <p><strong>$L$-genus:</strong>
-\(L(TT^2) = 1 + \frac{p_1}{3} = 1\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)2</p>
 
     <p><strong>Integration:</strong>
-\(\text{sign}(T^2) = \int_{T^2} L = \int_{T^2} 1 = 0\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)3</p>
 
     <p><strong>Verified:</strong> $0 = 0$. Correct!</p>
   </li>
@@ -1161,25 +1155,25 @@
 <ol>
   <li>
     <p><strong>Exact Heat Trace:</strong>
-\(Z(t) = \text{Tr}(e^{-t\Delta}) = \sum_{n=-\infty}^\infty e^{-n^2 t} = 1 + 2\sum_{n=1}^\infty e^{-n^2 t}\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)4</p>
   </li>
   <li>
     <p><strong>Modular Transformation:</strong>
-\(\vartheta_3(0, e^{-t}) = \sqrt{\frac{\pi}{t}} \vartheta_3(0, e^{-\pi^2/t})\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)5</p>
   </li>
   <li>
     <p><strong>Asymptotic Expansion ($t \to 0^+$):</strong>
-\(Z(t) \sim \sqrt{\frac{\pi}{t}} \left(1 + 2e^{-\pi^2/t} + 2e^{-4\pi^2/t} + \cdots\right)\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)6</p>
   </li>
   <li>
     <p><strong>Minakshisundaram-Pleijel Form:</strong>
-\(Z(t) \sim (4\pi t)^{-1/2} \sum_{k=0}^\infty a_k t^k\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)7</p>
   </li>
   <li>
     <p><strong>Coefficient Extraction:</strong>
-\(a_0 = \int_{S^1} 1 = 2\pi\)</p>
+\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)8</p>
 
-\[(4\pi t)^{-1/2} \cdot 2\pi = \sqrt{\frac{\pi}{t}} \cdot \sqrt{4\pi} = \sqrt{\frac{4\pi^2}{t}} = \frac{2\pi}{\sqrt{t}}\]
+    <p>\(\text{td}(E) = \prod_{j=1}^k \frac{x_j}{1-e^{-x_j}} = 1 + \frac{1}{2}c_1(E) + \frac{1}{12}(c_1(E)^2 + c_2(E)) + \cdots\)9</p>
 
     <p><strong>Corrected:</strong> $a_0 = 1$ in normalized units. Matches volume term!</p>
   </li>
@@ -1199,15 +1193,22 @@
   <li>
     <p><strong>Topological Computation:</strong>
 <strong>Gauss-Bonnet:</strong>
-\(\chi(S^2) = \frac{1}{2\pi} \int_{S^2} K \, dA\)</p>
+\(\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big|_n\)0</p>
 
     <p><strong>Standard metric:</strong> Gaussian curvature $K = 1$, Area: $4\pi$</p>
 
-\[\chi = \frac{1}{2\pi} \cdot 1 \cdot 4\pi = 2\]
+    <table>
+      <tbody>
+        <tr>
+          <td>$$\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big</td>
+          <td>_n$$1</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Atiyah-Singer Form:</strong>
-\(\text{ind}(d + d^*) = \int_{S^2} \text{e}(TS^2)\)</p>
+\(\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big|_n\)2</p>
 
     <p><strong>Euler class:</strong> $\text{e}(TS^2) = c_2(TS^2 \otimes \mathbb{C}) = 2$ (point class)</p>
 
@@ -1282,25 +1283,21 @@
   </tbody>
 </table>
 
-<p><strong>Key Corrections Made:</strong></p>
-<ul>
-  <li>$S^2$ Dirac: Fixed multiplicity counting → correct index = 1</li>
-  <li>$\mathbb{CP}^1$ HRR: Used correct Dolbeault complex formula</li>
-  <li>Line bundles: Applied proper Riemann-Roch: $k+1$</li>
-  <li>Heat kernel: Corrected normalization and coefficient extraction</li>
-  <li>Signature: Verified flat manifold $p_1 = 0$</li>
-  <li>Gauss-Bonnet: Standard curvature computation</li>
-</ul>
+<p><strong>Key Corrections Made:</strong>
+- $S^2$ Dirac: Fixed multiplicity counting → correct index = 1
+- $\mathbb{CP}^1$ HRR: Used correct Dolbeault complex formula
+- Line bundles: Applied proper Riemann-Roch: $k+1$
+- Heat kernel: Corrected normalization and coefficient extraction
+- Signature: Verified flat manifold $p_1 = 0$
+- Gauss-Bonnet: Standard curvature computation</p>
 
-<p><strong>Verified Mathematical Principles:</strong></p>
-<ul>
-  <li>Dirac operators: Use $\hat{A}$-genus, not Todd class</li>
-  <li>Dolbeault operators: $\int \text{td}(TM)$ for full complex</li>
-  <li>Line bundles: $h^0(\mathcal{O}(k)) = k+1$ for $k \geq 0$</li>
-  <li>Signature: $L$-genus with $p_1 = 0$ for flat manifolds</li>
-  <li>Heat kernel: $a_0 =$ volume, higher $a_k$ give curvature integrals</li>
-  <li>de Rham: Euler class = Euler characteristic</li>
-</ul>
+<p><strong>Verified Mathematical Principles:</strong>
+- Dirac operators: Use $\hat{A}$-genus, not Todd class
+- Dolbeault operators: $\int \text{td}(TM)$ for full complex
+- Line bundles: $h^0(\mathcal{O}(k)) = k+1$ for $k \geq 0$
+- Signature: $L$-genus with $p_1 = 0$ for flat manifolds
+- Heat kernel: $a_0 =$ volume, higher $a_k$ give curvature integrals
+- de Rham: Euler class = Euler characteristic</p>
 
 <h2 id="references">References</h2>
 

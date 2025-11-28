@@ -221,6 +221,44 @@ if 'plot_data' in globals() and plot_data is not None:
   }
 }
 
+/**
+ * Fix incorrectly parsed math tables
+ * Kramdown sometimes interprets $...$ with pipes as tables
+ * This function detects and fixes these cases
+ */
+function fixMathTables() {
+  const content = document.querySelector('.textbook-content');
+  if (!content) return;
+
+  // Find tables that look like they should be math
+  const tables = content.querySelectorAll('table');
+  tables.forEach(table => {
+    const rows = table.querySelectorAll('tr');
+    if (rows.length === 1) {
+      // Single row table - might be incorrectly parsed math
+      const cells = rows[0].querySelectorAll('td, th');
+      if (cells.length > 0) {
+        const cellText = Array.from(cells).map(cell => cell.textContent.trim()).join(' ');
+        // Check if it looks like math (contains $ or math symbols)
+        if (cellText.includes('$') || 
+            /[\\{}^_]/.test(cellText) || 
+            cellText.match(/\$\$?[^$]+\$\$?/)) {
+          // This is likely a math expression, not a table
+          // Convert back to inline math
+          const mathMatch = cellText.match(/\$([^$]+)\$/);
+          if (mathMatch) {
+            const mathContent = mathMatch[1].replace(/\s+/g, ' ');
+            const mathSpan = document.createElement('span');
+            mathSpan.className = 'math';
+            mathSpan.textContent = `$${mathContent}$`;
+            table.parentNode.replaceChild(mathSpan, table);
+          }
+        }
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   window.textbookEngine = new TextbookEngine();
   // Also attach listeners immediately on DOM ready
@@ -229,4 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.textbookEngine.ensureEventListeners();
     }
   }, 100);
+  
+  // Fix incorrectly parsed math tables
+  fixMathTables();
+  
+  // Also run after MathJax processes (if available)
+  if (window.MathJax && window.MathJax.startup) {
+    window.MathJax.startup.promise.then(() => {
+      fixMathTables();
+    });
+  }
 });

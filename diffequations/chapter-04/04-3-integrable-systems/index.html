@@ -932,15 +932,15 @@
   <li>
     <p><strong>Second Structure (Magri):</strong></p>
 
-\[\mathcal{J}_1 = \partial_x^3 + 2u\partial_x + 2\partial_x u, \quad H_0 = \frac{1}{2} \int u^2 \, dx\]
+    <p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)0</p>
 
-\[u_t = \mathcal{J}_1 \frac{\delta H_0}{\delta u} = (\partial_x^3 + 2u\partial_x + 2\partial_x u) u = u_{xxx} + 6uu_x\]
+    <p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)1</p>
   </li>
 </ol>
 
 <p>Because these two symplectic operators $\mathcal{J}_0$ and $\mathcal{J}_1$ are compatible (their linear combination is also a Poisson structure), they allow for a recursive generation of conserved quantities known as the <strong>Lenard Recursion</strong>:</p>
 
-\[\mathcal{J}_1 \frac{\delta H_n}{\delta u} = \mathcal{J}_0 \frac{\delta H_{n+1}}{\delta u}\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)2</p>
 
 <p>This recursion relation $R = \mathcal{J}_1 \mathcal{J}_0^{-1}$ is the <strong>Recursion Operator</strong>. It allows one to climb the ladder of integrability, generating the entire hierarchy of conserved quantities $H_n$ and their associated symmetries solely from the algebraic properties of the operators, without solving the differential equation itself.</p>
 
@@ -957,38 +957,30 @@
 The traveling wave ansatz $u(x,t) = f(x - ct)$ yields:</li>
 </ol>
 
-\[-f'c + 6ff' + f''' = 0 \quad \Rightarrow \quad -cF + 3F^2 + F'' = 0\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)3</p>
 
 <p>where $F = \int f’ dx$. Multiply by $F’$ and integrate:</p>
 
-\[\frac{1}{2}(F')^2 = \frac{c}{2}F^2 - F^3 + A\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)4</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>For localized solutions ($F \to 0$ as $</td>
-      <td>x</td>
-      <td>\to \infty$), $A = 0$. The solution is:</td>
-    </tr>
-  </tbody>
-</table>
+<p>For localized solutions ($F \to 0$ as $|x| \to \infty$), $A = 0$. The solution is:</p>
 
-\[F = \frac{\sqrt{c}}{2} \text{sech}\left(\frac{\sqrt{c}}{2}(x - ct)\right)\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)5</p>
 
 <p>Thus:</p>
 
-\[u_1(x,t) = \frac{c_1}{2} \text{sech}^2\left(\frac{\sqrt{c_1}}{2}(x - c_1 t - x_1)\right)\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)6</p>
 
 <ol>
   <li><strong>Two-Soliton Ansatz via Hirota Method:</strong>
 Assume:</li>
 </ol>
 
-\[u(x,t) = 2 \partial_x^2 \ln \tau(x,t), \quad \tau = 1 + e^{\eta_1} + e^{\eta_2} + A e^{\eta_1 + \eta_2}\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)7</p>
 
 <p>where $\eta_i = k_i(x - c_i t) + \eta_i^0$. The interaction coefficient $A$ is determined by requiring $\tau$ satisfies the bilinear form. Direct computation yields:</p>
 
-\[A = \frac{(k_1 - k_2)^2}{(k_1 + k_2)^2}\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)8</p>
 
 <p>where $k_i = \sqrt{c_i}/2$.</p>
 
@@ -997,15 +989,15 @@ Assume:</li>
 As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptotic behavior is:</li>
 </ol>
 
-\[\tau \sim 1 + e^{\eta_1 + \delta_1} + e^{\eta_2}, \quad e^{\delta_1} = A = \left(\frac{k_1 - k_2}{k_1 + k_2}\right)^2\]
+<p>\(u(x,t) = \frac{c}{2} \text{sech}^2\left(\frac{\sqrt{c}}{2}(x - ct - x_0)\right)\)9</p>
 
 <p>Thus:</p>
 
-\[\delta_1 = 2 \ln\left(\frac{k_1 - k_2}{k_1 + k_2}\right) = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)0</p>
 
 <p><strong>Verification:</strong> Substitute $c_1 = 4$, $c_2 = 1$:</p>
 
-\[\delta_1 = \frac{1}{2} \ln\left(\frac{2-1}{2+1}\right) = \frac{1}{2} \ln\left(\frac{1}{3}\right) \approx -0.549\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)1</p>
 
 <h3 id="example-432-physical-applicationshallow-water-waves">Example 4.3.2: Physical Application—Shallow Water Waves</h3>
 
@@ -1013,19 +1005,19 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Setup:</strong> Consider water waves with depth $h = 10$ cm, surface tension $\sigma = 0.073$ N/m, density $\rho = 1000$ kg/m³. The KdV equation arises from:</p>
 
-\[u_t + c_0 u_x + \frac{3c_0}{2h}u u_x + \frac{c_0 h^2}{6} u_{xxx} = 0\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)2</p>
 
 <p>where $c_0 = \sqrt{gh} \approx 0.994$ m/s.</p>
 
 <p><strong>Soliton Solution:</strong> For amplitude $a = 2$ cm:</p>
 
-\[c = c_0\left(1 + \frac{a}{h}\right) = 0.994 \times 1.2 = 1.193 \, \text{m/s}\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)3</p>
 
 <p><strong>Phase Shift Prediction:</strong> Two solitons with $a_1 = 2$ cm, $a_2 = 1$ cm:</p>
 
-\[c_1 = 1.193, \quad c_2 = 1.094\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)4</p>
 
-\[\delta_1 = \frac{1}{\sqrt{1.193}} \ln\left(\frac{\sqrt{1.193} - \sqrt{1.094}}{\sqrt{1.193} + \sqrt{1.094}}\right) \approx 0.78 \, \text{cm}\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)5</p>
 
 <p><strong>Experimental Validation:</strong> Matches observations by Zabusky &amp; Kruskal (1965) within 3% error.</p>
 
@@ -1037,15 +1029,15 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p>Three-soliton $\tau$-function:</p>
 
-\[\tau = 1 + e^{\eta_1} + e^{\eta_2} + e^{\eta_3} + A_{12}e^{\eta_1+\eta_2} + A_{13}e^{\eta_1+\eta_3} + A_{23}e^{\eta_2+\eta_3} + A_{123}e^{\eta_1+\eta_2+\eta_3}\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)6</p>
 
 <p>Interaction coefficients:</p>
 
-\[A_{ij} = \left(\frac{k_i - k_j}{k_i + k_j}\right)^2, \quad A_{123} = \frac{(k_1-k_2)(k_1-k_3)(k_2-k_3)}{(k_1+k_2)(k_1+k_3)(k_2+k_3)}\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)7</p>
 
 <p>Total phase shift for soliton 1 after triple collision:</p>
 
-\[\Delta_1 = \delta_{12} + \delta_{13} + \delta_{23}\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)8</p>
 
 <p>where each $\delta_{ij}$ follows the two-soliton formula.</p>
 
@@ -1104,7 +1096,7 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p>Using $u_t = -6uu_x - u_{xxx}$:</p>
 
-\[\partial_t T_3 + \partial_x X_3 = \partial_t\left(u^3 - \frac{1}{2}u_x^2\right) + \partial_x\left(\frac{1}{2}u_x^3 - 3u^2 u_x\right)\]
+<p>\(\delta_1 = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right), \quad \delta_2 = -\frac{1}{\sqrt{c_2}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)\)9</p>
 
 <p>After cancellation, $\partial_t T_3 + \partial_x X_3 = 0$. ✓</p>
 
@@ -1169,11 +1161,11 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Proof for $H_0, H_1$:</strong></p>
 
-\[\{H_0, H_1\} = \int \frac{\delta H_0}{\delta u} \partial_x \frac{\delta H_1}{\delta u} \, dx = \int u \partial_x(-u_{xx} - 3u^2) \, dx\]
+<p>\(\partial_t T + \partial_x X = 0\)0</p>
 
 <p>Integrate by parts:</p>
 
-\[= -\int u_x(-u_{xx} - 3u^2) \, dx = \int u_{xxx}u + 3u^2 u_x \, dx = 0\]
+<p>\(\partial_t T + \partial_x X = 0\)1</p>
 
 <p>by total derivative structure.</p>
 
@@ -1185,17 +1177,17 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Proof:</strong></p>
 
-\[u_t = 2vv_t + v_{xt} = 2v(-6v^2 v_x + v_{xxx}) + v_{xxt} = -12v^3 v_x + 2v v_{xxx} + v_{xxt}\]
+<p>\(\partial_t T + \partial_x X = 0\)2</p>
 
-\[u_x = 2vv_x + v_{xx}, \quad uu_x = (v^2 + v_x)(2vv_x + v_{xx}) = 2v^3 v_x + v^2 v_{xx} + 2vv_x^2 + v_x v_{xx}\]
+<p>\(\partial_t T + \partial_x X = 0\)3</p>
 
-\[6uu_x = 12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}\]
+<p>\(\partial_t T + \partial_x X = 0\)4</p>
 
-\[u_{xxx} = \partial_x^2(2vv_x + v_{xx}) = 2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}\]
+<p>\(\partial_t T + \partial_x X = 0\)5</p>
 
 <p><strong>Combine:</strong></p>
 
-\[u_t + 6uu_x + u_{xxx} = [-12v^3 v_x + 2v v_{xxx} + v_{xxt}] + [12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}] + [2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}]\]
+<p>\(\partial_t T + \partial_x X = 0\)6</p>
 
 <p>All terms cancel using $v_t = 6v^2 v_x - v_{xxx}$. ✓</p>
 
@@ -1207,7 +1199,7 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p>Introduce $u = 6\epsilon v_x - v^2$. For small $\epsilon$:</p>
 
-\[v = v_0 + \epsilon v_1 + \epsilon^2 v_2 + \cdots\]
+<p>\(\partial_t T + \partial_x X = 0\)7</p>
 
 <ul>
   <li><strong>Order $\epsilon^0$:</strong> $v_{0t} + 6v_0^2 v_{0x} + v_{0xxx} = 0$ (mKdV)</li>
@@ -1217,7 +1209,7 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Explicit Computation for $n=1$:</strong></p>
 
-\[u = -v_0^2 + 6\epsilon v_{0x} + O(\epsilon^2)\]
+<p>\(\partial_t T + \partial_x X = 0\)8</p>
 
 <p>Conservation from mKdV: $\partial_t v_0 + \partial_x(v_0^3 + \frac{1}{3}v_{0xx}) = 0$</p>
 
@@ -1233,7 +1225,7 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Verification:</strong> If $\psi$ is eigenfunction of mKdV operator:</p>
 
-\[(-\partial_x^2 + v^2 + v_x)\psi = \lambda \psi\]
+<p>\(\partial_t T + \partial_x X = 0\)9</p>
 
 <p>Apply Miura: $u = v^2 + v_x \implies L_{\text{KdV}}\psi = \lambda \psi$</p>
 
@@ -1245,17 +1237,17 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>First Structure $\mathcal{J}_0 = \partial_x$:</strong></p>
 
-\[H_1 = \int\left(\frac{1}{2}u_x^2 - u^3\right) dx, \quad \frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)0</p>
 
-\[u_t = \partial_x(-u_{xx} - 3u^2) = -u_{xxx} - 6uu_x \quad \checkmark \text{KdV}\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)1</p>
 
 <p><strong>Second Structure $\mathcal{J}_1 = \partial_x^3 + 2u\partial_x + 2\partial_x u$:</strong></p>
 
-\[H_0 = \frac{1}{2} \int u^2 \, dx, \quad \frac{\delta H_0}{\delta u} = u\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)2</p>
 
 <p>Compute $\mathcal{J}_1 u$:</p>
 
-\[\partial_x^3 u + 2u u_x + 2 u_x u = u_{xxx} + 6uu_x \quad \checkmark \text{KdV}\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)3</p>
 
 <h3 id="example-4311-physical-applicationlenard-recursion">Example 4.3.11: Physical Application—Lenard Recursion</h3>
 
@@ -1263,7 +1255,7 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p><strong>Solution:</strong></p>
 
-\[\mathcal{J}_1 \frac{\delta H_1}{\delta u} = \mathcal{J}_0 \frac{\delta H_2}{\delta u}\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)4</p>
 
 <p>Left side: $\mathcal{J}<em>1(-u</em>{xx} - 3u^2)$</p>
 
@@ -1310,13 +1302,13 @@ As $t \to +\infty$, the faster soliton ($c_1 &gt; c_2$) separates. The asymptoti
 
 <p>Generate next Hamiltonian density:</p>
 
-\[\frac{\delta H_{n+1}}{\delta u} = R \frac{\delta H_n}{\delta u}\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)5</p>
 
 <p><strong>Explicit computation $H_0 \to H_1$:</strong></p>
 
-\[\frac{\delta H_0}{\delta u} = u\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)6</p>
 
-\[R u = \partial_x^2 u + 4u^2 + 2u_x \partial_x^{-1} u = u_{xx} + 4u^2 + 2u_x \cdot 0 = u_{xx} + 4u^2\]
+<p>\(v_t - 6v^2v_x + v_{xxx} = 0\)7</p>
 
 <p>Correct (up to sign and constants): $\frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2$</p>
 

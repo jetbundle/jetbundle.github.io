@@ -866,14 +866,7 @@
 
 \[I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>Crucially, the integrand $H_{t_i}$ is evaluated at the <em>left</em> endpoint of the interval. This choice preserves the <strong>martingale property</strong>: the expectation of the increment, conditional on the present, is zero ($E[H_{t_i}(B_{t_{i+1}} - B_{t_i})</td>
-      <td>\mathcal{F}<em>{t_i}] = H</em>{t_i} E[B_{t_{i+1}} - B_{t_i}] = 0$).</td>
-    </tr>
-  </tbody>
-</table>
+<p>Crucially, the integrand $H_{t_i}$ is evaluated at the <em>left</em> endpoint of the interval. This choice preserves the <strong>martingale property</strong>: the expectation of the increment, conditional on the present, is zero ($E[H_{t_i}(B_{t_{i+1}} - B_{t_i}) | \mathcal{F}<em>{t_i}] = H</em>{t_i} E[B_{t_{i+1}} - B_{t_i}] = 0$).</p>
 
 <p>The construction is extended to general square-integrable adapted processes via the <strong>Itô Isometry</strong>, a central result in stochastic analysis discussed in Øksendal (2003). The isometry states that the $L^2$ norm of the integral is equal to the $L^2$ norm of the integrand over time:</p>
 
@@ -928,7 +921,7 @@
 <ol>
   <li>
     <p><strong>Partition Setup:</strong>
-Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with mesh size $|\Pi_n| = \max_i (t_{i+1} - t_i) \to 0$.</p>
+Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with mesh size $\|\Pi_n\| = \max_i (t_{i+1} - t_i) \to 0$.</p>
   </li>
   <li>
     <p><strong>Quadratic Variation Sum:</strong>
@@ -936,29 +929,29 @@ Consider a partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$ with m
   </li>
   <li>
     <p><strong>Expectation Calculation:</strong>
-\(\mathbb{E}[Q_n] = \sum_{i=0}^{n-1} \mathbb{E}[(B_{t_{i+1}} - B_{t_i})^2] = \sum_{i=0}^{n-1} (t_{i+1} - t_i) = T\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)0</p>
   </li>
   <li>
     <p><strong>Variance Calculation:</strong>
 For independent increments:
-\(\text{Var}(Q_n) = \sum_{i=0}^{n-1} \text{Var}[(B_{t_{i+1}} - B_{t_i})^2]\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)1</p>
   </li>
 </ol>
 
 <p>Since $(B_{t_{i+1}} - B_{t_i}) \sim \mathcal{N}(0, t_{i+1} - t_i)$:
-\(\text{Var}[(B_{t_{i+1}} - B_{t_i})^2] = 2(t_{i+1} - t_i)^2\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)2</p>
 
 <p>Therefore:
-\(\text{Var}(Q_n) = 2 \sum_{i=0}^{n-1} (t_{i+1} - t_i)^2 \leq 2 \|\Pi_n\| T \to 0\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)3</p>
 
 <ol>
   <li><strong>Convergence Result:</strong>
 By Chebyshev’s inequality:
-\(P(|Q_n - T| &gt; \epsilon) \leq \frac{\text{Var}(Q_n)}{\epsilon^2} \to 0\)</li>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)4</li>
 </ol>
 
 <p><strong>Final Result:</strong>
-\([B]_T = \lim_{\|\Pi_n\| \to 0} Q_n = T \quad \text{a.s.}\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)5</p>
 
 <p><strong>Key Insight:</strong> The quadratic variation is deterministic, unlike the path itself!</p>
 
@@ -972,32 +965,32 @@ By Chebyshev’s inequality:
   <li>
     <p><strong>Approximation by Simple Process:</strong>
 For partition $\Pi_n = {0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = T}$, define:
-\(H_t^{(n)} = \sum_{i=0}^{n-1} B_{t_i} \mathbf{1}_{[t_i, t_{i+1})}(t)\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)6</p>
   </li>
   <li>
     <p><strong>Itô Integral for Simple Process:</strong>
-\(I_n = \int_0^T H_t^{(n)} dB_t = \sum_{i=0}^{n-1} B_{t_i} (B_{t_{i+1}} - B_{t_i})\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)7</p>
   </li>
   <li>
     <p><strong>Algebraic Manipulation:</strong>
 Use the identity:
-\(B_{t_i}(B_{t_{i+1}} - B_{t_i}) = \frac{1}{2}[(B_{t_{i+1}})^2 - (B_{t_i})^2 - (B_{t_{i+1}} - B_{t_i})^2]\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)8</p>
   </li>
   <li>
     <p><strong>Telescoping Sum:</strong>
-\(I_n = \sum_{i=0}^{n-1} B_{t_i}(B_{t_{i+1}} - B_{t_i}) = \frac{1}{2} \sum_{i=0}^{n-1} [(B_{t_{i+1}})^2 - (B_{t_i})^2] - \frac{1}{2} \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2\)</p>
+\([B]_t = \lim_{\|\Pi\| \to 0} \sum_{i} (B_{t_{i+1}} - B_{t_i})^2 = t \quad \text{a.s.}\)9</p>
   </li>
 </ol>
 
-\[= \frac{1}{2} B_T^2 - \frac{1}{2} \sum_{i=0}^{n-1} (B_{t_{i+1}} - B_{t_i})^2\]
+<p>\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)0</p>
 
 <ol>
   <li><strong>Limit as Partition Refines:</strong>
-\(\lim_{\|\Pi_n\| \to 0} I_n = \frac{1}{2} B_T^2 - \frac{1}{2} [B]_T = \frac{1}{2} B_T^2 - \frac{1}{2} T\)</li>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)1</li>
 </ol>
 
 <p><strong>Final Result:</strong>
-\(\int_0^T B_t dB_t = \frac{1}{2} B_T^2 - \frac{1}{2} T\)</p>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)2</p>
 
 <p><strong>Key Insight:</strong> The extra term $-T/2$ is the Itô correction! Classical calculus would give $B_T^2/2$.</p>
 
@@ -1014,24 +1007,25 @@ Let $f(x) = e^x$ and $X_t = B_t$ (so $\mu_t = 0$, $\sigma_t = 1$).</p>
   </li>
   <li>
     <p><strong>Itô’s Formula:</strong>
-\(df(B_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t\)</p>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)3</p>
   </li>
-  <li><strong>Compute Derivatives:</strong>
-    <ul>
-      <li>$\frac{\partial f}{\partial t} = 0$</li>
-      <li>$\frac{\partial f}{\partial x} = e^{B_t}$</li>
-      <li>$\frac{\partial^2 f}{\partial x^2} = e^{B_t}$</li>
-    </ul>
+  <li>
+    <p><strong>Compute Derivatives:</strong>
+- $\frac{\partial f}{\partial t} = 0$
+- $\frac{\partial f}{\partial x} = e^{B_t}$
+- $\frac{\partial^2 f}{\partial x^2} = e^{B_t}$</p>
   </li>
-  <li><strong>Substitute:</strong>
-\(de^{B_t} = \left( 0 + 0 + \frac{1}{2} \cdot 1^2 \cdot e^{B_t} \right) dt + 1 \cdot e^{B_t} dB_t\)</li>
+  <li>
+    <p><strong>Substitute:</strong>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)4</p>
+  </li>
 </ol>
 
-\[= \frac{1}{2} e^{B_t} dt + e^{B_t} dB_t\]
+<p>\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)5</p>
 
 <ol>
   <li><strong>Integral Form:</strong>
-\(e^{B_t} = 1 + \int_0^t \frac{1}{2} e^{B_s} ds + \int_0^t e^{B_s} dB_s\)</li>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)6</li>
 </ol>
 
 <p><strong>Key Insight:</strong> The drift term $\frac{1}{2} e^{B_t} dt$ is the convexity adjustment!</p>
@@ -1042,7 +1036,7 @@ Let $f(x) = e^x$ and $X_t = B_t$ (so $\mu_t = 0$, $\sigma_t = 1$).</p>
 
 <p><strong>Setup:</strong> Stock price $S_t$ follows geometric Brownian motion:</p>
 
-\[dS_t = \mu S_t dt + \sigma S_t dB_t\]
+<p>\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)7</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1053,24 +1047,24 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
   </li>
   <li>
     <p><strong>Itô’s Formula:</strong>
-\(d(\ln S_t) = \left( 0 + \mu S_t \cdot \frac{1}{S_t} + \frac{1}{2} \sigma^2 S_t^2 \cdot \left(-\frac{1}{S_t^2}\right) \right) dt + \sigma S_t \cdot \frac{1}{S_t} dB_t\)</p>
+\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)8</p>
   </li>
 </ol>
 
-\[= \left( \mu - \frac{\sigma^2}{2} \right) dt + \sigma dB_t\]
+<p>\(I(H) = \int_0^T H_t dB_t = \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_i}).\)9</p>
 
 <ol>
   <li>
     <p><strong>Integrate:</strong>
-\(\ln S_t = \ln S_0 + \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma B_t\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)0</p>
   </li>
   <li>
     <p><strong>Exponentiate:</strong>
-\(S_t = S_0 \exp\left( \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma B_t \right)\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)1</p>
   </li>
   <li>
     <p><strong>Expected Value:</strong>
-\(\mathbb{E}[S_t] = S_0 e^{\mu t}\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)2</p>
   </li>
 </ol>
 
@@ -1085,31 +1079,29 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
 <ol>
   <li>
     <p><strong>Stratonovich Definition:</strong>
-\(\int_0^T B_t \circ dB_t = \lim_{\|\Pi_n\| \to 0} \sum_{i=0}^{n-1} \frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i})\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)3</p>
   </li>
   <li>
     <p><strong>Algebraic Manipulation:</strong>
-\(\frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i}) = \frac{1}{2}[(B_{t_{i+1}})^2 - (B_{t_i})^2]\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)4</p>
   </li>
   <li>
     <p><strong>Telescoping Sum:</strong>
-\(\sum_{i=0}^{n-1} \frac{B_{t_{i+1}} + B_{t_i}}{2} (B_{t_{i+1}} - B_{t_i}) = \frac{1}{2} \sum_{i=0}^{n-1} [(B_{t_{i+1}})^2 - (B_{t_i})^2] = \frac{1}{2} B_T^2\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)5</p>
   </li>
   <li>
     <p><strong>Final Result:</strong>
-\(\int_0^T B_t \circ dB_t = \frac{1}{2} B_T^2\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)6</p>
   </li>
   <li>
-    <p><strong>Comparison:</strong></p>
-    <ul>
-      <li><strong>Itô:</strong> $\int_0^T B_t dB_t = \frac{1}{2} B_T^2 - \frac{1}{2} T$</li>
-      <li><strong>Stratonovich:</strong> $\int_0^T B_t \circ dB_t = \frac{1}{2} B_T^2$</li>
-    </ul>
+    <p><strong>Comparison:</strong>
+- <strong>Itô:</strong> $\int_0^T B_t dB_t = \frac{1}{2} B_T^2 - \frac{1}{2} T$
+- <strong>Stratonovich:</strong> $\int_0^T B_t \circ dB_t = \frac{1}{2} B_T^2$</p>
   </li>
 </ol>
 
 <p><strong>Conversion Formula Verification:</strong>
-\(\int_0^T B_t \circ dB_t = \int_0^T B_t dB_t + \frac{1}{2} [B, B]_T = \left(\frac{1}{2} B_T^2 - \frac{T}{2}\right) + \frac{1}{2} T = \frac{1}{2} B_T^2 \quad ✓\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)7</p>
 
 <p><strong>Key Insight:</strong> Stratonovich satisfies the classical chain rule!</p>
 
@@ -1117,7 +1109,7 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
 
 <p><strong>Problem:</strong> Apply Itô’s formula to $f(X_t, Y_t)$ where:</p>
 
-\[dX_t = \mu_X dt + \sigma_X dB_t^{(1)}, \quad dY_t = \mu_Y dt + \sigma_Y dB_t^{(2)}\]
+<p>\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)8</p>
 
 <p>with correlation $d[B^{(1)}, B^{(2)}]_t = \rho dt$.</p>
 
@@ -1126,31 +1118,29 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
 <ol>
   <li>
     <p><strong>Itô’s Formula (2D):</strong>
-\(df(X_t, Y_t) = \frac{\partial f}{\partial x} dX_t + \frac{\partial f}{\partial y} dY_t + \frac{1}{2} \left[ \frac{\partial^2 f}{\partial x^2} (dX_t)^2 + 2 \frac{\partial^2 f}{\partial x \partial y} dX_t dY_t + \frac{\partial^2 f}{\partial y^2} (dY_t)^2 \right]\)</p>
+\(\mathbb{E}\left[ \left( \int_0^T H_t dB_t \right)^2 \right] = \mathbb{E}\left[ \int_0^T H_t^2 dt \right].\)9</p>
   </li>
-  <li><strong>Quadratic Variations:</strong>
-    <ul>
-      <li>$(dX_t)^2 = \sigma_X^2 dt$</li>
-      <li>$(dY_t)^2 = \sigma_Y^2 dt$</li>
-      <li>$dX_t dY_t = \sigma_X \sigma_Y \rho dt$</li>
-    </ul>
+  <li>
+    <p><strong>Quadratic Variations:</strong>
+- $(dX_t)^2 = \sigma_X^2 dt$
+- $(dY_t)^2 = \sigma_Y^2 dt$
+- $dX_t dY_t = \sigma_X \sigma_Y \rho dt$</p>
   </li>
-  <li><strong>Substitute:</strong>
-\(df = \frac{\partial f}{\partial x} (\mu_X dt + \sigma_X dB_t^{(1)}) + \frac{\partial f}{\partial y} (\mu_Y dt + \sigma_Y dB_t^{(2)})\)</li>
+  <li>
+    <p><strong>Substitute:</strong>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)0</p>
+  </li>
 </ol>
 
-\[+ \frac{1}{2} \left[ \frac{\partial^2 f}{\partial x^2} \sigma_X^2 + 2 \frac{\partial^2 f}{\partial x \partial y} \sigma_X \sigma_Y \rho + \frac{\partial^2 f}{\partial y^2} \sigma_Y^2 \right] dt\]
+<p>\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)1</p>
 
 <ol>
   <li><strong>Example: $f(x,y) = xy$</strong>
-    <ul>
-      <li>$\frac{\partial f}{\partial x} = y$, $\frac{\partial f}{\partial y} = x$</li>
-      <li>$\frac{\partial^2 f}{\partial x^2} = 0$, $\frac{\partial^2 f}{\partial x \partial y} = 1$, $\frac{\partial^2 f}{\partial y^2} = 0$</li>
-    </ul>
-  </li>
+- $\frac{\partial f}{\partial x} = y$, $\frac{\partial f}{\partial y} = x$
+- $\frac{\partial^2 f}{\partial x^2} = 0$, $\frac{\partial^2 f}{\partial x \partial y} = 1$, $\frac{\partial^2 f}{\partial y^2} = 0$</li>
 </ol>
 
-\[d(X_t Y_t) = Y_t dX_t + X_t dY_t + \sigma_X \sigma_Y \rho dt\]
+<p>\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)2</p>
 
 <p><strong>Key Insight:</strong> The correlation term $\sigma_X \sigma_Y \rho dt$ is the cross-variation contribution!</p>
 
@@ -1163,24 +1153,25 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
 <ol>
   <li>
     <p><strong>Left Side:</strong>
-\(\mathbb{E}\left[ \left( \int_0^T B_t dB_t \right)^2 \right] = \mathbb{E}\left[ \left( \frac{1}{2} B_T^2 - \frac{T}{2} \right)^2 \right]\)</p>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)3</p>
   </li>
   <li>
     <p><strong>Expand:</strong>
-\(= \frac{1}{4} \mathbb{E}[B_T^4] - \frac{T}{2} \mathbb{E}[B_T^2] + \frac{T^2}{4}\)</p>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)4</p>
   </li>
-  <li><strong>Use Gaussian Moments:</strong>
-    <ul>
-      <li>$\mathbb{E}[B_T^2] = T$</li>
-      <li>$\mathbb{E}[B_T^4] = 3T^2$ (since $B_T \sim \mathcal{N}(0, T)$)</li>
-    </ul>
+  <li>
+    <p><strong>Use Gaussian Moments:</strong>
+- $\mathbb{E}[B_T^2] = T$
+- $\mathbb{E}[B_T^4] = 3T^2$ (since $B_T \sim \mathcal{N}(0, T)$)</p>
   </li>
   <li>
     <p><strong>Compute:</strong>
-\(= \frac{1}{4} \cdot 3T^2 - \frac{T}{2} \cdot T + \frac{T^2}{4} = \frac{3T^2}{4} - \frac{T^2}{2} + \frac{T^2}{4} = \frac{T^2}{2}\)</p>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)5</p>
   </li>
-  <li><strong>Right Side:</strong>
-\(\mathbb{E}\left[ \int_0^T B_t^2 dt \right] = \int_0^T \mathbb{E}[B_t^2] dt = \int_0^T t dt = \frac{T^2}{2}\)</li>
+  <li>
+    <p><strong>Right Side:</strong>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)6</p>
+  </li>
 </ol>
 
 <p><strong>Verification:</strong> Both sides equal $\frac{T^2}{2}$ ✓</p>
@@ -1197,7 +1188,7 @@ Let $f(x) = \ln x$, so $f’(x) = 1/x$, $f’‘(x) = -1/x^2$.</p>
   <li>
     <p><strong>Smooth Approximation:</strong>
 For partition $\Pi_n$, define:
-\(B_t^{(n)} = B_{t_i} + \frac{t - t_i}{t_{i+1} - t_i} (B_{t_{i+1}} - B_{t_i}), \quad t \in [t_i, t_{i+1})\)</p>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)7</p>
   </li>
   <li>
     <p><strong>ODE Solution:</strong>
@@ -1205,24 +1196,24 @@ Solve $dX_t^{(n)} = X_t^{(n)} dB_t^{(n)}$ (smooth ODE):</p>
   </li>
 </ol>
 
-\[X_t^{(n)} = X_0 \exp(B_t^{(n)})\]
+<p>\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)8</p>
 
 <ol>
   <li><strong>Limit as $n \to \infty$:</strong>
 The Wong-Zakai theorem states:
-\(\lim_{n \to \infty} X_t^{(n)} = X_t^{\text{Stratonovich}}\)</li>
+\(f(B_{t+\Delta t}) - f(B_t) \approx f'(B_t)\Delta B_t + \frac{1}{2}f''(B_t)(\Delta B_t)^2.\)9</li>
 </ol>
 
 <p>where $X_t^{\text{Stratonovich}}$ solves:
-\(dX_t = X_t \circ dB_t\)</p>
+\(df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t.\)0</p>
 
 <ol>
   <li><strong>Verification:</strong>
 Using Stratonovich chain rule:
-\(d(\ln X_t) = \frac{1}{X_t} \circ dX_t = \circ dB_t\)</li>
+\(df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t.\)1</li>
 </ol>
 
-\[\ln X_t = B_t \implies X_t = X_0 e^{B_t}\]
+<p>\(df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dB_t.\)2</p>
 
 <p><strong>Key Insight:</strong> Smooth approximations naturally select Stratonovich calculus!</p>
 

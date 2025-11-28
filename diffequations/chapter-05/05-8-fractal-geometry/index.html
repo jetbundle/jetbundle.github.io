@@ -892,15 +892,7 @@
 
 <h4 id="anomalous-diffusion-and-walk-dimension">Anomalous Diffusion and Walk Dimension</h4>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[</td>
-      <td>X_t</td>
-      <td>^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:</td>
-    </tr>
-  </tbody>
-</table>
+<p>The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[|X_t|^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:</p>
 
 \[\mathbb{E}[|X_t|^2] \sim t^{2/d_w}\]
 
@@ -957,7 +949,7 @@ New vertices: $M_{AB}$, $M_{BC}$, $M_{CA}$ (midpoints)</p>
 
     <p>Discrete energy:</p>
 
-\[\mathcal{E}_1(u^{(1)}) = 3 \times \left[ (1-0.5)^2 + (0-0.5)^2 + (0.5-0.5)^2 \right] = 3 \times 0.75 = 2.25\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)0</p>
   </li>
   <li>
     <p><strong>Stage 2: Second Iteration ($m=2$):</strong>
@@ -971,13 +963,13 @@ Each triangle → 4 smaller triangles</p>
 
     <p>Key computation for one representative vertex $P$ in smallest triangle:</p>
 
-\[u(P) = \frac{1}{4} \left[ u(M_{AB}) + u(M_{BC}) + u(Q_1) + u(Q_2) \right]\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)1</p>
 
     <p>where $Q_1, Q_2$ are other new vertices.</p>
 
     <p>Complete energy calculation:</p>
 
-\[\mathcal{E}_2(u^{(2)}) = 9 \times \left[ 3 \times (0.25)^2 + 6 \times (0.5-0.25)^2 \right] = 9 \times 1.125 = 10.125\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)2</p>
   </li>
   <li>
     <p><strong>Renormalization Analysis:</strong></p>
@@ -1011,7 +1003,7 @@ Each triangle → 4 smaller triangles</p>
 
     <p><strong>Convergence:</strong> The renormalized energies increase but stabilize. The limit exists:</p>
 
-\[\mathcal{E}(u,u) = \lim_{m\to\infty} \left(\frac{5}{3}\right)^m \mathcal{E}_m(u^{(m)}) &lt; \infty\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)3</p>
 
     <p><strong>Key Insight:</strong> The factor $r = 3/5 &lt; 1$ ensures the limit exists, defining $u \in \mathcal{D}(\mathcal{E})$.</p>
   </li>
@@ -1032,29 +1024,29 @@ Each triangle → 4 smaller triangles</p>
 <ol>
   <li>
     <p><strong>Discrete Laplacian at $M_{AB}$:</strong>
-\(\Delta u(M_{AB}) = \frac{1}{\deg(M_{AB})} \sum_{y \sim M_{AB}} (u(y) - u(M_{AB}))\)</p>
+\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)4</p>
 
     <p>Neighbors of $M_{AB}$: $A$, $B$, $M_{BC}$, $M_{CA}$</p>
 
-\[\Delta u(M_{AB}) = \frac{1}{4} \left[ (0 - 0.5) + (1 - 0.5) + (0.5 - 0.5) + (0.5 - 0.5) \right] = 0\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)5</p>
   </li>
   <li>
     <p><strong>Renormalized Laplacian:</strong>
 The fractal Laplacian is obtained by:</p>
 
-\[\Delta_\mu u(x) = \lim_{m\to\infty} r^{-m} \Delta_m u(x)\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)6</p>
   </li>
   <li>
     <p><strong>Verification of Dirichlet Identity:</strong>
-\(\mathcal{E}(u,v) = -\int_K (\Delta_\mu u) v \, d\mu\)</p>
+\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)7</p>
 
     <p>For our harmonic function, $\Delta_\mu u \equiv 0$ at interior points, so:</p>
 
-\[\mathcal{E}(u,u) = \int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma\]
+    <p>\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)8</p>
   </li>
   <li>
     <p><strong>Boundary computation:</strong>
-\(\int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma = u(B) \cdot 1 + u(A) \cdot 0 + u(C) \cdot 0 = 1\)</p>
+\(\mathcal{E}(u, u) = \lim_{m \to \infty} r^{-m} \mathcal{E}_m(u)\)9</p>
 
     <p>This matches our earlier energy calculation after proper normalization!</p>
   </li>
@@ -1073,18 +1065,11 @@ Solve $-\Delta_m u = \lambda u$ on $V_1$ with Dirichlet boundary conditions $u(A
 
     <p>Matrix formulation:</p>
 
-\[L_1 = \begin{pmatrix}
-4 &amp; -1 &amp; -1 &amp; -1 &amp; 0 &amp; 0 \\
--1 &amp; 4 &amp; 0 &amp; 0 &amp; -1 &amp; -1 \\
--1 &amp; 0 &amp; 4 &amp; -1 &amp; -1 &amp; 0 \\
--1 &amp; 0 &amp; -1 &amp; 4 &amp; 0 &amp; -1 \\
-0 &amp; -1 &amp; -1 &amp; 0 &amp; 4 &amp; -1 \\
-0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 4
-\end{pmatrix}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)0</p>
 
     <p>Eigenvalues (computed explicitly):</p>
 
-\[\lambda_1^{(1)} = 2, \quad \lambda_2^{(1)} = 3, \quad \lambda_3^{(1)} = 4\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)1</p>
   </li>
   <li>
     <p><strong>Level 2 Eigenvalue Problem:</strong>
@@ -1092,11 +1077,11 @@ At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the r
 
     <p>Scaling relation:</p>
 
-\[\lambda_k^{(m+1)} = r \lambda_k^{(m)}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)2</p>
 
     <p>Complete spectrum at level 2:</p>
 
-\[\lambda_k^{(2)} = \frac{3}{5} \cdot \{\text{spectrum at level 1 with multiplicity}\}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)3</p>
   </li>
   <li>
     <p><strong>Eigenvalue counting:</strong></p>
@@ -1130,25 +1115,17 @@ At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the r
   </li>
   <li>
     <p><strong>Asymptotic analysis:</strong>
-\(N(\lambda) \sim c \lambda^{d_s/2}, \quad d_s = \frac{2\log 3}{\log 5} \approx 1.365\)</p>
+\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)4</p>
 
     <p><strong>Verification:</strong></p>
 
-\[\lambda^{d_s/2} = \lambda^{0.6825} \quad \text{matches numerical counting}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)5</p>
   </li>
 </ol>
 
 <h3 id="example-584-anomalous-diffusionmean-square-displacement">Example 5.8.4: Anomalous Diffusion—Mean Square Displacement</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Objective:</strong> Compute explicit random walk probabilities and verify $\mathbb{E}[</td>
-      <td>X_t</td>
-      <td>^2] \sim t^{2/d_w}$.</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Objective:</strong> Compute explicit random walk probabilities and verify $\mathbb{E}[|X_t|^2] \sim t^{2/d_w}$.</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1157,18 +1134,11 @@ At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the r
     <p><strong>Level 1 Random Walk:</strong>
 Transition matrix $P$ on $V_1$:</p>
 
-\[P = \frac{1}{4} \begin{pmatrix}
-0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
-1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
-1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0
-\end{pmatrix}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)6</p>
   </li>
   <li>
     <p><strong>Starting at $M_{AB}$, compute 2-step probabilities:</strong>
-\(P^2(M_{AB}, M_{AB}) = \frac{1}{16} (1 + 1 + 1 + 1) = \frac{1}{4}\)</p>
+\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)7</p>
   </li>
   <li>
     <p><strong>Resistance Distance Computation:</strong>
@@ -1193,11 +1163,11 @@ Effective resistance between $A$ and $B$:</p>
     <p><strong>Walk Dimension Calculation:</strong>
 Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
 
-\[d_w = \frac{\log(5/3)}{\log 2} \approx 2.322\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)8</p>
 
     <p>Mean square displacement:</p>
 
-\[\mathbb{E}[|X_t|^2] \sim t^{2/d_w} \approx t^{0.861}\]
+    <p>\(\mathcal{E}(u, v) = - \int_K (\Delta_\mu u) v \, d\mu\)9</p>
   </li>
   <li>
     <p><strong>Verification with explicit computation:</strong></p>
@@ -1206,9 +1176,7 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
       <thead>
         <tr>
           <th>Time $t$</th>
-          <th>Exact $\mathbb{E}[</th>
-          <th>X_t</th>
-          <th>^2]$</th>
+          <th>Exact $\mathbb{E}[|X_t|^2]$</th>
           <th>$t^{0.861}$</th>
         </tr>
       </thead>
@@ -1217,22 +1185,16 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
           <td>1</td>
           <td>0.75</td>
           <td>0.75</td>
-          <td> </td>
-          <td> </td>
         </tr>
         <tr>
           <td>2</td>
           <td>1.12</td>
           <td>1.15</td>
-          <td> </td>
-          <td> </td>
         </tr>
         <tr>
           <td>4</td>
           <td>1.58</td>
           <td>1.62</td>
-          <td> </td>
-          <td> </td>
         </tr>
       </tbody>
     </table>
@@ -1274,7 +1236,7 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
 
 <p><strong>Heat kernel verification:</strong></p>
 
-\[p_t(x,x) \sim t^{-d_s/2} = t^{-0.6825}\]
+<p>\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)0</p>
 
 <p><strong>Explicit computation at level 2:</strong></p>
 
@@ -1316,7 +1278,7 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
 
 <p><strong>Problem:</strong></p>
 
-\[-\Delta_\mu u = \delta_{M_{AB}}, \quad u|_{\partial K} = 0\]
+<p>\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)1</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1325,25 +1287,21 @@ Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$</p>
     <p><strong>Level 1 Solution:</strong>
 Discrete system at interior vertices:</p>
 
-\[\begin{cases}
-4u(M_{AB}) - u(M_{BC}) - u(M_{CA}) = 4 \quad \text{(at } M_{AB}) \\
-u(M_{AB}) + 4u(M_{BC}) - u(M_{CA}) = 0 \quad \text{(at } M_{BC}) \\
-u(M_{AB}) - u(M_{BC}) + 4u(M_{CA}) = 0 \quad \text{(at } M_{CA})
-\end{cases}\]
+    <p>\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)2</p>
   </li>
   <li>
     <p><strong>Solution:</strong>
-\(u(M_{AB}) = \frac{4}{10} = 0.4, \quad u(M_{BC}) = u(M_{CA}) = 0.2\)</p>
+\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)3</p>
   </li>
   <li>
     <p><strong>Energy computation:</strong>
-\(\mathcal{E}(u,u) = \sum_{\text{edges}} (u(x) - u(y))^2 = 0.96\)</p>
+\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)4</p>
   </li>
   <li>
     <p><strong>Level 2 Refinement:</strong>
 Apply same procedure to 9 interior vertices. The solution converges in the Dirichlet form norm:</p>
 
-\[\|u^{(m)} - u^{(m+1)}\|_{\mathcal{D}(\mathcal{E})} \to 0\]
+    <p>\(N(\lambda) \sim \lambda^{d_s/2} \quad \text{as } \lambda \to \infty\)5</p>
   </li>
   <li>
     <p><strong>Green’s function property:</strong>

@@ -848,19 +848,7 @@
 
 \[- \psi_{xx} + u(x,t)\psi = k^2 \psi\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>Here, $k$ is the spectral parameter. We assume the potential $u(x,t)$ decays sufficiently rapidly as $</td>
-      <td>x</td>
-      <td>\to \infty$, specifically satisfying the Faddeev condition $\int_{-\infty}^{\infty} (1+</td>
-      <td>x</td>
-      <td>)</td>
-      <td>u(x)</td>
-      <td>dx &lt; \infty$. This allows us to define solutions via their asymptotic behavior. We define the Jost functions, $\phi(x,k)$ and $\psi(x,k)$, as the unique solutions satisfying the boundary conditions:</td>
-    </tr>
-  </tbody>
-</table>
+<p>Here, $k$ is the spectral parameter. We assume the potential $u(x,t)$ decays sufficiently rapidly as $|x| \to \infty$, specifically satisfying the Faddeev condition $\int_{-\infty}^{\infty} (1+|x|)|u(x)| dx &lt; \infty$. This allows us to define solutions via their asymptotic behavior. We define the Jost functions, $\phi(x,k)$ and $\psi(x,k)$, as the unique solutions satisfying the boundary conditions:</p>
 
 \[\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\]
 
@@ -910,11 +898,9 @@
 
 <p><strong>Problem:</strong> Find the 1-soliton solution to KdV using IST with zero reflection coefficient.</p>
 
-<p><strong>Scattering Data:</strong></p>
-<ul>
-  <li>Discrete eigenvalue: $k_1 = i\kappa_1$, $\kappa_1 = 1/2$</li>
-  <li>Reflection coefficient: $r(k) = 0$</li>
-</ul>
+<p><strong>Scattering Data:</strong>
+- Discrete eigenvalue: $k_1 = i\kappa_1$, $\kappa_1 = 1/2$
+- Reflection coefficient: $r(k) = 0$</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -942,7 +928,7 @@ The Jost solutions are:</li>
 
 <ol>
   <li><strong>Solve GLM Equation:</strong>
-\(K(x,y) + \text{sech}^2(x+y) + \int_x^{\infty} K(x,z) \text{sech}^2(z+y) dz = 0\)</li>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)0</li>
 </ol>
 
 <p><strong>Ansatz:</strong> $K(x,y) = A(x) \text{sech}(x+y)$</p>
@@ -957,60 +943,59 @@ The Jost solutions are:</li>
 
 <ol>
   <li><strong>Recover Potential:</strong>
-\(u(x) = -2 \frac{\partial}{\partial x} K(x,x) = -2 \frac{\partial}{\partial x} [-\text{sech}(x)] = 2 \text{sech}^2(x)\)</li>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)1</li>
 </ol>
 
 <p><strong>Complete Solution:</strong>
-\(u(x,t) = 2 \text{sech}^2(x - 4\kappa_1^2 t) = 2 \text{sech}^2(x - t)\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)2</p>
 
 <h3 id="example-452-2-soliton-scattering-data">Example 4.5.2: 2-Soliton Scattering Data</h3>
 
 <p><strong>Problem:</strong> Construct 2-soliton solution from scattering data.</p>
 
-<p><strong>Scattering Data:</strong></p>
-<ul>
-  <li>$k_1 = i/2$, $k_2 = i$</li>
-  <li>$r(k) = 0$</li>
-</ul>
+<p><strong>Scattering Data:</strong>
+- $k_1 = i/2$, $k_2 = i$
+- $r(k) = 0$</p>
 
 <p><strong>GLM Kernel:</strong>
-\(F(x) = |\psi_1(x)|^2 + |\psi_2(x)|^2\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)3</p>
 
 <p>where $\psi_j(x) \propto \text{sech}(\kappa_j x)$</p>
 
 <p><strong>Algebraic Solution:</strong>
 The $2 \times 2$ system for $K(x,x_1)$, $K(x,x_2)$ yields:</p>
 
-\[u(x,t) = 2 \frac{\partial^2}{\partial x^2} \log|\tau(x,t)|^2\]
+<p>\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)4</p>
 
 <p>where:
-\(\tau(x,t) = 1 + e^{\eta_1} + e^{\eta_2} + A_{12} e^{\eta_1+\eta_2}\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)5</p>
 
-\[\eta_j = 2i k_j x + 8 k_j^3 t + \eta_j^0, \quad A_{12} = \left(\frac{k_1 - k_2}{k_1 + k_2}\right)^2\]
+<p>\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)6</p>
 
 <h3 id="example-453-physical-applicationwater-wave-solitons">Example 4.5.3: Physical Application—Water Wave Solitons</h3>
 
 <p><strong>Problem:</strong> Shallow water waves with surface elevation $\eta(x,t)$.</p>
 
 <p><strong>Physical Context:</strong>
-\(\eta_t + c \eta_x + \frac{3c}{2h}(\eta^2)_x + \frac{c h^2}{6} \eta_{xxx} = 0\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)7</p>
 
 <p><strong>Connection to KdV:</strong>
 Let $u = -3\eta/c$, then $u$ satisfies standard KdV.</p>
 
-<p><strong>Scattering Analysis:</strong></p>
+<p><strong>Scattering Analysis:</strong>
+1. Measure initial wave profile: $\eta(x,0)$
+2. Compute scattering data:
+   Solve: $-\psi’’ + [-6\eta(x,0)/h] \psi = k^2 \psi$
+   Extract: $a(k,0)$, $b(k,0)$, ${k_j}$</p>
+
 <ol>
-  <li>Measure initial wave profile: $\eta(x,0)$</li>
-  <li>
-    <p>Compute scattering data:
-Solve: $-\psi’’ + [-6\eta(x,0)/h] \psi = k^2 \psi$
-Extract: $a(k,0)$, $b(k,0)$, ${k_j}$</p>
-  </li>
   <li>
     <p><strong>Time evolution:</strong>
 Each soliton $j$: $\eta_j(x,t) = A_j \text{sech}^2\left[\sqrt{A_j/3}(x - x_j - 4A_j t)\right]$</p>
   </li>
-  <li><strong>Superposition via $\tau$-function</strong></li>
+  <li>
+    <p><strong>Superposition via $\tau$-function</strong></p>
+  </li>
 </ol>
 
 <p><strong>Quantitative Example:</strong>
@@ -1027,16 +1012,16 @@ Initial condition: $\eta(x,0) = \text{sech}^2(x/2)$</p>
 <p><strong>Problem:</strong> Nonlinear Schrödinger equation for optical pulse propagation.</p>
 
 <p><strong>Physical Context:</strong>
-\(i q_t + q_{xx} + 2 |q|^2 q = 0\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)8</p>
 
 <p><strong>AKNS Scattering Problem:</strong>
-\(v_1' = -i k v_1 + q v_2, \quad v_2' = -\bar{q} v_1 + i k v_2\)</p>
+\(\phi(x,k) \sim e^{-ikx} \quad \text{as } x \to -\infty, \quad \psi(x,k) \sim e^{ikx} \quad \text{as } x \to +\infty\)9</p>
 
 <p><strong>Scattering Data Evolution:</strong>
-\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0) e^{-4i k^3 t}\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)0</p>
 
 <p><strong>Soliton Solution:</strong>
-\(q(x,t) = 2\kappa e^{i(\theta + 2\kappa^2 t)} \text{sech}[\kappa(x - x_0 - 4\kappa^2 t)]\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)1</p>
 
 <h3 id="example-455-reflectionless-vs-non-reflectionless">Example 4.5.5: Reflectionless vs Non-Reflectionless</h3>
 
@@ -1076,18 +1061,18 @@ Initial condition: $\eta(x,0) = \text{sech}^2(x/2)$</p>
 Solve Volterra equations numerically:</li>
 </ol>
 
-\[\phi(x,k) = e^{-ikx} + \int_{-\infty}^x G(x,y;k) u(y) \phi(y,k) dy\]
+<p>\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)2</p>
 
 <p>where $G(x,y;k) = \frac{i}{2k} [e^{-ik(x-y)} - e^{ik(x+y)}]$</p>
 
 <ol>
   <li>
     <p><strong>Reflection Coefficient:</strong>
-\(r(k) = \frac{b(k)}{a(k)} \approx 0.05 e^{-k^2/4} \quad \text{(small but nonzero)}\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)3</p>
   </li>
   <li>
     <p><strong>Time Evolution:</strong>
-\(r(k,t) = r(k,0) e^{8i k^3 t}\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)4</p>
   </li>
 </ol>
 
@@ -1095,7 +1080,7 @@ Solve Volterra equations numerically:</li>
 
 <ol>
   <li><strong>GLM Solution:</strong>
-\(F(x,t) = \frac{1}{2\pi} \int r(k,0) e^{8i k^3 t + 2i k x} dk + \sum e^{2i k_j x - 8 \kappa_j^3 t}\)</li>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)5</li>
 </ol>
 
 <p>The integral term $\to$ radiation that disperses.</p>
@@ -1107,35 +1092,33 @@ Solve Volterra equations numerically:</li>
 <p><strong>Problem:</strong> Complete 2-soliton calculation.</p>
 
 <p><strong>Scattering Data:</strong>
-\(k_1 = i\kappa_1 = i/2, \quad k_2 = i\kappa_2 = i\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)6</p>
 
 <p><strong>$\tau$-Function:</strong>
-\(\tau(x,t) = 1 + e^{\eta_1} + e^{\eta_2} + \Gamma_{12} e^{\eta_1+\eta_2}\)</p>
+\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)7</p>
 
-\[\eta_1 = i x - 4 t + \eta_1^0, \quad \eta_2 = 2i x - 32 t + \eta_2^0\]
+<p>\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)8</p>
 
-\[\Gamma_{12} = \left|\frac{k_1 - k_2}{k_1 + k_2}\right|^2 = \left|\frac{i/2 - i}{i/2 + i}\right|^2 = (1/3)^2 = 1/9\]
+<p>\(\psi(x,k) = a(k)\phi(x,-k) + b(k)\phi(x,k)\)9</p>
 
 <p><strong>Potential:</strong>
-\(u(x,t) = 2 \frac{\partial^2}{\partial x^2} \log \tau = 2 \frac{\tau_{xx} \tau - \tau_x^2}{\tau^2}\)</p>
+\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)0</p>
 
-<p><strong>Phase Shift Calculation:</strong></p>
-<ul>
-  <li>Soliton 1 alone: $\eta_1 = i(x - 4t)$</li>
-  <li>Soliton 2 alone: $\eta_2 = 2i(x - 32t)$</li>
-  <li>During collision: effective positions shifted</li>
-</ul>
+<p><strong>Phase Shift Calculation:</strong>
+- Soliton 1 alone: $\eta_1 = i(x - 4t)$
+- Soliton 2 alone: $\eta_2 = 2i(x - 32t)$
+- During collision: effective positions shifted</p>
 
-\[\Delta x_1 = \frac{1}{2i} \log(1 + \Gamma_{12} e^{\eta_2}) \approx \frac{1}{2i} \log(1 + 1/9) = 0.105\]
+<p>\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)1</p>
 
-\[\Delta x_2 = \frac{1}{2i} \log(1 + e^{\eta_1}/\Gamma_{12}) \approx 0.525\]
+<p>\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)2</p>
 
 <p><strong>Verification:</strong>
 Exact phase shifts match interaction coefficient:</p>
 
-\[\Delta x_1^2 = \log\left|\frac{k_1 + k_2}{k_1 - k_2}\right|^2 = \log 9 = 2.197\]
+<p>\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)3</p>
 
-\[\Delta x_2^1 = \log\left|\frac{k_2 + k_1}{k_2 - k_1}\right|^2 = \text{same}\]
+<p>\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)4</p>
 
 <h3 id="example-457-finite-gap-integration-1-gap">Example 4.5.7: Finite-Gap Integration (1-Gap)</h3>
 
@@ -1144,45 +1127,40 @@ Exact phase shifts match interaction coefficient:</p>
 <p><strong>Periodic Potential:</strong> $u(x) = 2 \omega^2 \text{sn}^2(\omega x, k)$ (Jacobi elliptic)</p>
 
 <p><strong>Spectral Curve:</strong>
-\(y^2 = (E - E_1)(E - E_2)(E - E_3)(E - E_4)\)</p>
+\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)5</p>
 
 <p>Genus $g = 1$ (hyperelliptic torus)</p>
 
 <p><strong>Baker-Akhiezer Function:</strong>
-\(\psi(x,P) = e^{i k x} [1 + O(e^{-|\text{Im } z|})]\)</p>
+\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)6</p>
 
 <p>$P = (E(k), y(k)) \in$ Riemann surface</p>
 
 <p><strong>Theta Function Representation:</strong>
-\(u(x,t) = 2 \frac{\partial^2}{\partial x^2} \log \theta[U(x,t) | \Omega]\)</p>
+\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)7</p>
 
-\[U(x,t) = x \Omega_1 + t \Omega_2 + U_0\]
+<p>\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)8</p>
 
 <p>$\theta =$ Jacobi theta function on Jacobian</p>
 
-<p><strong>Verification for Lamé Potential:</strong></p>
-<ul>
-  <li>When $k \to 1$: elliptic $\to$ $\text{sech}^2$ (soliton limit)</li>
-  <li>When $k \to 0$: constant potential</li>
-</ul>
+<p><strong>Verification for Lamé Potential:</strong>
+- When $k \to 1$: elliptic $\to$ $\text{sech}^2$ (soliton limit)
+- When $k \to 0$: constant potential</p>
 
 <h3 id="example-458-riemann-hilbert-formulation-explicit">Example 4.5.8: Riemann-Hilbert Formulation (Explicit)</h3>
 
 <p><strong>Problem:</strong> Matrix RH problem for 1-soliton.</p>
 
 <p><strong>Jump Matrix:</strong>
-\(V(k) = \begin{pmatrix}
-1 - |r(k)|^2 &amp; -\bar{r}(k) e^{-2ikx} \\
-r(k) e^{2ikx} &amp; 1
-\end{pmatrix}\)</p>
+\(a(k,t) = a(k,0), \quad b(k,t) = b(k,0)e^{8ik^3t}\)9</p>
 
 <p>For pure soliton: $r(k) = 0$ except poles</p>
 
 <p><strong>Sectionally Analytic Functions:</strong>
-\(M^+(x,k) = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1/a(k) \end{pmatrix}, \quad M^-(x,k) = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\)</p>
+\(M_+(x,k) = M_-(x,k) V(x,k), \quad k \in \mathbb{R}\)0</p>
 
 <p><strong>Potential Recovery:</strong>
-\(q(x) = 2i \lim_{k \to 0} \frac{\partial}{\partial k} \log m_{12}(x,k)\)</p>
+\(M_+(x,k) = M_-(x,k) V(x,k), \quad k \in \mathbb{R}\)1</p>
 
 <p>For KdV: $u(x) = -2 \frac{\partial}{\partial x} K(x,x)$</p>
 

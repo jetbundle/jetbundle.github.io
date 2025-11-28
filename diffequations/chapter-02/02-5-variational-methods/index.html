@@ -838,14 +838,14 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We reframe PDE solving as energy minimization. The <strong>Lax-Milgram Theorem</strong> provides a robust “existence machine” for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove <strong>Weyl’s Lemma</strong>, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.</p>
-<h2 id="mathematical-content">Mathematical Content</h2>
+<p>We reframe PDE solving as energy minimization. The <strong>Lax-Milgram Theorem</strong> provides a robust “existence machine” for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove <strong>Weyl’s Lemma</strong>, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.
+## Mathematical Content</p>
 
 <h3 id="variational-formulation">Variational Formulation</h3>
 
 <p>For the Poisson problem
 \(\begin{cases}
--\Delta u = f &amp; \text{in }\Omega,\\
+-\Delta u = f &amp; \text{in }\Omega,\
 u=0 &amp; \text{on }\partial\Omega,
 \end{cases}\)
 multiply by a test function $v\in C_{c}^{\infty}(\Omega)$ and integrate:
@@ -856,15 +856,7 @@ The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ f
 
 <h3 id="laxmilgram-theorem">Lax–Milgram Theorem</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($</td>
-      <td>a(u,v)</td>
-      <td>\le \beta|u|<em>{H}|v|</em>{H}$) and coercive ($a(u,u)\ge \alpha |u|_{H}^{2}$) for some $\alpha,\beta&gt;0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($|a(u,v)|\le \beta\|u\|<em>{H}\|v\|</em>{H}$) and coercive ($a(u,u)\ge \alpha \|u\|_{H}^{2}$) for some $\alpha,\beta&gt;0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.</p>
 
 <p>In the Poisson case, boundedness follows from Cauchy–Schwarz, and coercivity from Poincaré’s inequality on $H_{0}^{1}(\Omega)$, ensuring a unique weak solution.</p>
 
@@ -877,19 +869,7 @@ The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ f
 <ol>
   <li><strong>Linear elasticity:</strong> The displacement $\mathbf{u}$ minimizes elastic energy. The bilinear form involves the strain tensor $\varepsilon(\mathbf{u})$; Korn’s inequality provides coercivity.</li>
   <li><strong>Reaction-diffusion:</strong> Bilinear forms of the type $\int (\nabla u\cdot \nabla v + c uv)$ remain coercive if $c\ge 0$; negative lower-order terms require spectral analysis.</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Eigenvalue problems:</strong> Minimizing the Rayleigh quotient $\dfrac{\int</td>
-          <td>\nabla u</td>
-          <td>^{2}}{\int</td>
-          <td>u</td>
-          <td>^{2}}$ yields eigenpairs of $-\Delta$.</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><strong>Eigenvalue problems:</strong> Minimizing the Rayleigh quotient $\dfrac{\int |\nabla u|^{2}}{\int |u|^{2}}$ yields eigenpairs of $-\Delta$.</li>
 </ol>
 
 <p>These examples illustrate how variational methods provide existence, uniqueness, and qualitative properties of solutions.</p>
@@ -900,15 +880,7 @@ The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ f
 
 <p><strong>Problem:</strong> Solve $-u’‘=2$ with $u(0)=u(1)=0$.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u’v’=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int</td>
-      <td>u’</td>
-      <td>^{2}-\int 2u$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u’v’=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int |u’|^{2}-\int 2u$.</p>
 
 <h3 id="example-252-galerkin-approximation">Example 2.5.2: Galerkin Approximation</h3>
 
@@ -920,19 +892,7 @@ The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ f
 
 <h3 id="example-254-reactiondiffusion">Example 2.5.4: Reaction–Diffusion</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int</td>
-      <td>\nabla u</td>
-      <td>^{2}+c</td>
-      <td>u</td>
-      <td>^{2}\ge \int</td>
-      <td>\nabla u</td>
-      <td>^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int |\nabla u|^{2}+c|u|^{2}\ge \int |\nabla u|^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.</p>
 
 <h3 id="example-255-weyls-lemma-via-difference-quotients">Example 2.5.5: Weyl’s Lemma via Difference Quotients</h3>
 
@@ -942,21 +902,11 @@ The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ f
 
 <p>For $\mathbf{u}\in [H_{0}^{1}(\Omega)]^{2}$, the Lamé system has variational form
 \(a(\mathbf{u},\mathbf{v})=\int_{\Omega}\left(2\mu\,\varepsilon(\mathbf{u}):\varepsilon(\mathbf{v})+\lambda (\nabla\cdot\mathbf{u})(\nabla\cdot\mathbf{v})\right)dx.\)
-Korn’s inequality provides $a(\mathbf{u},\mathbf{u})\ge C|\mathbf{u}|_{H^{1}}^{2}$, leading to existence and uniqueness.</p>
+Korn’s inequality provides $a(\mathbf{u},\mathbf{u})\ge C\|\mathbf{u}\|_{H^{1}}^{2}$, leading to existence and uniqueness.</p>
 
 <h3 id="example-257-eigenvalue-problem">Example 2.5.7: Eigenvalue Problem</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Minimize $R[u]=\dfrac{\int</td>
-      <td>\nabla u</td>
-      <td>^{2}}{\int</td>
-      <td>u</td>
-      <td>^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Minimize $R[u]=\dfrac{\int |\nabla u|^{2}}{\int |u|^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.</p>
 
 <h3 id="example-258-mixed-boundary-problem">Example 2.5.8: Mixed Boundary Problem</h3>
 

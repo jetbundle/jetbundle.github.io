@@ -838,24 +838,16 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of <strong>Hilbert Space</strong> (orthogonality, projection). The central result is the <strong>Spectral Theorem for Compact Self-Adjoint Operators</strong>, which provides the rigorous justification for the “separation of variables” and series expansions employed heuristically in Chapter 1.4.</p>
-<h2 id="mathematical-content">Mathematical Content</h2>
+<p>We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of <strong>Hilbert Space</strong> (orthogonality, projection). The central result is the <strong>Spectral Theorem for Compact Self-Adjoint Operators</strong>, which provides the rigorous justification for the “separation of variables” and series expansions employed heuristically in Chapter 1.4.
+## Mathematical Content</p>
 
 <h3 id="hilbert-space-geometry">Hilbert Space Geometry</h3>
 
-<p>A Hilbert space $H$ is a complete inner-product space. The inner product induces the norm $|u|=\sqrt{\langle u,u\rangle}$ and the notion of orthogonality. The canonical example is $L^{2}(\Omega)$ with $\langle f,g\rangle = \int_{\Omega} f \overline{g}\,dx$.</p>
+<p>A Hilbert space $H$ is a complete inner-product space. The inner product induces the norm $\|u\|=\sqrt{\langle u,u\rangle}$ and the notion of orthogonality. The canonical example is $L^{2}(\Omega)$ with $\langle f,g\rangle = \int_{\Omega} f \overline{g}\,dx$.</p>
 
 <p>The <strong>Riesz Representation Theorem</strong> states that every continuous linear functional $\phi\in H^{*}$ is uniquely represented by an element $f\in H$ such that $\phi(u)=\langle u,f\rangle$ for all $u\in H$. This self-duality underpins variational methods.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>An <strong>orthonormal basis</strong> ${e_{n}}$ satisfies $\langle e_{n},e_{m}\rangle=\delta_{nm}$ and spans $H$ densely. Every $f\in H$ admits the Fourier expansion $f=\sum \langle f,e_{n}\rangle e_{n}$, and <strong>Parseval’s identity</strong> preserves the norm: $|f|^{2}=\sum</td>
-      <td>\langle f,e_{n}\rangle</td>
-      <td>^{2}$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>An <strong>orthonormal basis</strong> ${e_{n}}$ satisfies $\langle e_{n},e_{m}\rangle=\delta_{nm}$ and spans $H$ densely. Every $f\in H$ admits the Fourier expansion $f=\sum \langle f,e_{n}\rangle e_{n}$, and <strong>Parseval’s identity</strong> preserves the norm: $\|f\|^{2}=\sum |\langle f,e_{n}\rangle|^{2}$.</p>
 
 <h3 id="compact-operators">Compact Operators</h3>
 
@@ -902,15 +894,7 @@ uniformly on $\Omega\times \Omega$.</p>
 
 <p><strong>Problem:</strong> Verify Parseval for $f(x)=\operatorname{sgn}(\sin x)$ on $[0,2\pi]$.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Fourier coefficients: $b_{n}=\frac{4}{\pi n}$ for odd $n$, zero otherwise. Then $|f|^{2}=1$ and $\sum</td>
-      <td>b_{n}</td>
-      <td>^{2}=\frac{16}{\pi^{2}}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^{2}}=\frac{16}{\pi^{2}}\cdot\frac{\pi^{2}}{8}=1$, confirming Parseval.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Fourier coefficients: $b_{n}=\frac{4}{\pi n}$ for odd $n$, zero otherwise. Then $\|f\|^{2}=1$ and $\sum |b_{n}|^{2}=\frac{16}{\pi^{2}}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^{2}}=\frac{16}{\pi^{2}}\cdot\frac{\pi^{2}}{8}=1$, confirming Parseval.</p>
 
 <h3 id="example-233-hilbert-schmidt-operator">Example 2.3.3: Hilbert-Schmidt Operator</h3>
 
@@ -940,7 +924,7 @@ uniformly on $\Omega\times \Omega$.</p>
 
 <h3 id="example-238-heat-equation-convergence">Example 2.3.8: Heat Equation Convergence</h3>
 
-<p>For $u_{t}=u_{xx}$ on $(0,\pi)$ with Dirichlet data, the solution $u(x,t)=\sum c_{n}e^{-n^{2}t}\sin(nx)$ converges in $L^{2}$. Error estimates show $|u-u_{N}|\le C N^{-3}e^{-N^{2}t}$ for smooth initial data, illustrating spectral convergence.</p>
+<p>For $u_{t}=u_{xx}$ on $(0,\pi)$ with Dirichlet data, the solution $u(x,t)=\sum c_{n}e^{-n^{2}t}\sin(nx)$ converges in $L^{2}$. Error estimates show $\|u-u_{N}\|\le C N^{-3}e^{-N^{2}t}$ for smooth initial data, illustrating spectral convergence.</p>
 
 <h3 id="example-239-semiclassical-asymptotics">Example 2.3.9: Semiclassical Asymptotics</h3>
 

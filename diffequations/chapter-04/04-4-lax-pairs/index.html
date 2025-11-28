@@ -902,29 +902,29 @@
 
 <p>Let $\Psi$ be a vector-valued function (a section). We write the linear problems as:</p>
 
-\[\partial_x \Psi = U(x,t, \lambda) \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)0</p>
 
-\[\partial_t \Psi = V(x,t, \lambda) \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)1</p>
 
 <p>Here, $U$ and $V$ are matrix-valued functions belonging to a Lie algebra $\mathfrak{g}$ (typically $\mathfrak{sl}(2, \mathbb{C})$), and $\lambda$ is the spectral parameter. The compatibility condition for this system is the equality of mixed partial derivatives $\Psi_{xt} = \Psi_{tx}$.</p>
 
 <p>Computing the derivatives:</p>
 
-\[\partial_t (U \Psi) = U_t \Psi + U V \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)2</p>
 
-\[\partial_x (V \Psi) = V_x \Psi + V U \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)3</p>
 
 <p>Equating these gives the <strong>Zero-Curvature Condition</strong>:</p>
 
-\[U_t - V_x + [U, V] = 0\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)4</p>
 
 <p>Geometrically, we define a Lie-algebra-valued connection 1-form $\Omega$ on the spacetime manifold:</p>
 
-\[\Omega = U dx + V dt\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)5</p>
 
 <p>The curvature 2-form $\Theta$ is defined by the structure equation:</p>
 
-\[\Theta = d\Omega - \Omega \wedge \Omega\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)6</p>
 
 <p>In components, $\Theta = (V_x - U_t + [V, U]) dx \wedge dt$. The condition that the nonlinear PDE is satisfied is equivalent to the vanishing of the curvature, $\Theta = 0$. This implies that the parallel transport of the section $\Psi$ is path-independent.</p>
 
@@ -936,11 +936,11 @@
 
 <p>We consider the eigenvalue problem for a $2 \times 2$ matrix system ($U \in \mathfrak{sl}(2, \mathbb{C})$):</p>
 
-\[\partial_x \Psi = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix} \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)7</p>
 
 <p>Here $\zeta$ serves as the spectral parameter. The time evolution is governed by:</p>
 
-\[\partial_t \Psi = \begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix} \Psi\]
+<p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)8</p>
 
 <p>where $A, B, C$ are functions of $u, v, \zeta$ and their derivatives. The zero-curvature condition $U_t - V_x + [U, V] = 0$ yields recursion relations for the coefficients. By expanding $A, B, C$ as finite polynomials in $\zeta$, we generate different nonlinear PDEs:</p>
 
@@ -950,7 +950,7 @@
 
     <p>By choosing appropriate polynomial orders and setting $r = \mp q^*$, we derive:</p>
 
-\[i q_t + q_{xx} \pm 2|q|^2 q = 0\]
+    <p>\(L_t \psi + L \psi_t = \lambda_t \psi + \lambda \psi_t\)9</p>
 
     <p>This equation governs the evolution of wave envelopes in nonlinear media.</p>
   </li>
@@ -959,14 +959,14 @@
 
     <p>Realized by a different reduction within the same hierarchy:</p>
 
-\[q_t + 6q^2 q_x + q_{xxx} = 0\]
+    <p>\(\psi_t = M \psi\)0</p>
   </li>
   <li>
     <p><strong>Sine-Gordon Equation:</strong></p>
 
     <p>Associated with an expansion in inverse powers of $\zeta$, yielding:</p>
 
-\[u_{xt} = \sin u\]
+    <p>\(\psi_t = M \psi\)1</p>
   </li>
 </ol>
 
@@ -998,7 +998,7 @@
 
 <p><strong>Lax Pair:</strong></p>
 
-\[L = -\partial_x^2 + u(x,t), \quad M = -4\partial_x^3 + 3(u \partial_x + \partial_x u)\]
+<p>\(\psi_t = M \psi\)2</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1007,11 +1007,11 @@
 The commutator requires careful handling of differential operators. We compute term by term:</li>
 </ol>
 
-\[[M, L] = M L - L M\]
+<p>\(\psi_t = M \psi\)3</p>
 
 <p><strong>Compute $ML$:</strong></p>
 
-\[M L = [-4\partial_x^3 + 3(u\partial_x + \partial_x u)] [- \partial_x^2 + u]\]
+<p>\(\psi_t = M \psi\)4</p>
 
 <p>First term: $-4\partial_x^3(-\partial_x^2 + u)$</p>
 
@@ -1043,14 +1043,14 @@ After expanding ALL terms (12 total differential operators), the higher-order te
 
 <p><strong>Final result (after meticulous cancellation):</strong></p>
 
-\[[M, L] = -(u_{xxx} + 6uu_x)\]
+<p>\(\psi_t = M \psi\)5</p>
 
 <ol>
   <li><strong>Verification:</strong>
 Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 </ol>
 
-\[u_t = -(u_{xxx} + 6uu_x) = -u_{xxx} - 6uu_x\]
+<p>\(\psi_t = M \psi\)6</p>
 
 <p>✓ KdV equation recovered exactly.</p>
 
@@ -1060,11 +1060,11 @@ Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 
 <p><strong>Spatial operator ($U \in \mathfrak{sl}(2,\mathbb{C})$):</strong></p>
 
-\[U = \begin{pmatrix} -i\zeta &amp; q(x,t) \\ r(x,t) &amp; i\zeta \end{pmatrix}\]
+<p>\(\psi_t = M \psi\)7</p>
 
 <p><strong>Time evolution (cubic in $\zeta$):</strong></p>
 
-\[V = \begin{pmatrix} -i2\zeta^3 + i\zeta|q|^2 &amp; 2i\zeta^2 q + iq_x \\ -2i\zeta^2 r - ir_x &amp; i2\zeta^3 - i\zeta|q|^2 \end{pmatrix}\]
+<p>\(\psi_t = M \psi\)8</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1074,27 +1074,25 @@ Since $L_t = u_t$, the Lax equation $L_t = [M, L]$ gives:</li>
 
 <p><strong>Compute $U_t$:</strong></p>
 
-\[U_t = \begin{pmatrix} 0 &amp; q_t \\ r_t &amp; 0 \end{pmatrix}\]
+<p>\(\psi_t = M \psi\)9</p>
 
 <p><strong>Compute $V_x$ (most tedious calculation):</strong></p>
 
-\[\partial_x(|q|^2) = 2 \text{Re}(q^* q_x)\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)0</p>
 
-\[\partial_x(2i\zeta^2 q + iq_x) = 2i\zeta^2 q_x + iq_{xx} + i(q_x)\zeta^2 \text{ term structure}\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)1</p>
 
 <p><strong>Compute $[U, V]$ (matrix commutator):</strong></p>
 
-\[[U, V] = UV - VU\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)2</p>
 
 <p>$UV$ calculation:</p>
 
-\[\begin{pmatrix} -i\zeta &amp; q \\ r &amp; i\zeta \end{pmatrix}
-\begin{pmatrix} A &amp; B \\ C &amp; -A \end{pmatrix}
-= \begin{pmatrix} -i\zeta A + qC &amp; -i\zeta B + q(-A) \\ rA + i\zeta C &amp; rB + i\zeta(-A) \end{pmatrix}\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)3</p>
 
 <p>The $(1,2)$ entry (crucial for $q_t$):</p>
 
-\[[-i\zeta B + q(-A)]_x + [\text{other terms}] = iq_t\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)4</p>
 
 <ol>
   <li><strong>Extract $q$-equation:</strong>
@@ -1103,15 +1101,15 @@ After computing all 4 matrix entries and equating coefficients of $\zeta^k$, we 
 
 <p>$\zeta^2$ coefficient:</p>
 
-\[2i q_x = iq_t + [\text{complex cancellation terms}]\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)5</p>
 
 <p><strong>Final result after collecting terms:</strong></p>
 
-\[iq_t + q_{xx} - 2|q|^2 q = 0\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)6</p>
 
 <p>or equivalently:</p>
 
-\[i q_t + q_{xx} + 2|q|^2 q = 0\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)7</p>
 
 <p>✓ Nonlinear Schrödinger equation (focusing case)</p>
 
@@ -1123,11 +1121,11 @@ After computing all 4 matrix entries and equating coefficients of $\zeta^k$, we 
 
 <p><strong>Alternative AKNS choice ($1/\zeta$ expansion):</strong></p>
 
-\[U = \begin{pmatrix} 0 &amp; (1/2)e^{i\phi} \\ -(1/2)e^{-i\phi} &amp; 0 \end{pmatrix}\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)8</p>
 
 <p><strong>Time evolution:</strong></p>
 
-\[V = \begin{pmatrix} -1/2 \sin \phi &amp; (1/2)\phi_x e^{i\phi} \\ -(1/2)\phi_x e^{-i\phi} &amp; 1/2 \sin \phi \end{pmatrix}\]
+<p>\(L_t \psi + L M \psi = \lambda M \psi\)9</p>
 
 <p><strong>Zero-Curvature Computation:</strong></p>
 
@@ -1137,18 +1135,16 @@ After computing all 4 matrix entries and equating coefficients of $\zeta^k$, we 
 
 <p><strong>The key $(1,2)$ entry calculation:</strong></p>
 
-\[\partial_t[(1/2)e^{i\phi}] - \partial_x[(1/2)\phi_x e^{i\phi}] + \text{commutator terms}\]
+<p>\((L_t + L M - M L) \psi = 0\)0</p>
 
 <p>After expansion and trigonometric identities:</p>
 
-\[\phi_{xt} = \sin \phi\]
+<p>\((L_t + L M - M L) \psi = 0\)1</p>
 
-<p><strong>Physical interpretation:</strong></p>
-<ul>
-  <li>$\phi = 2\gamma$: Junction between superconducting phases</li>
-  <li>$\phi = 2\theta$: Pendulum motion</li>
-  <li>$\phi = 4\arctan(u)$: KdV via Miura transformation</li>
-</ul>
+<p><strong>Physical interpretation:</strong>
+- $\phi = 2\gamma$: Junction between superconducting phases
+- $\phi = 2\theta$: Pendulum motion
+- $\phi = 4\arctan(u)$: KdV via Miura transformation</p>
 
 <h3 id="example-444-explicit-soliton-solutions-via-lax-pairs">Example 4.4.4: Explicit Soliton Solutions via Lax Pairs</h3>
 
@@ -1182,7 +1178,7 @@ Scattering data:</li>
   <li><strong>Explicit solution:</strong></li>
 </ol>
 
-\[u(x,t) = -2\kappa^2 \text{sech}^2(\kappa(x - x_0 - 4\kappa^2 t))\]
+<p>\((L_t + L M - M L) \psi = 0\)2</p>
 
 <ol>
   <li><strong>Verification:</strong>
@@ -1203,7 +1199,7 @@ Substitute into KdV equation:</li>
 
 <p><strong>Two-soliton initial data:</strong></p>
 
-\[u(x,0) = -2\kappa_1^2 \text{sech}^2(\kappa_1 x) - 2\kappa_2^2 \text{sech}^2(\kappa_2(x - \Delta))\]
+<p>\((L_t + L M - M L) \psi = 0\)3</p>
 
 <p><strong>Scattering data:</strong></p>
 
@@ -1211,9 +1207,9 @@ Substitute into KdV equation:</li>
 
 <p><strong>Time evolution of spectral data:</strong></p>
 
-\[a(k,t) = a(k,0) \quad \text{(invariant)}\]
+<p>\((L_t + L M - M L) \psi = 0\)4</p>
 
-\[b(k,t) = b(k,0) e^{-4i k^3 t}\]
+<p>\((L_t + L M - M L) \psi = 0\)5</p>
 
 <p><strong>Phase shift computation:</strong></p>
 
@@ -1221,9 +1217,9 @@ Substitute into KdV equation:</li>
 
 <p><strong>Post-collision positions:</strong></p>
 
-\[x_1(t \to \infty) = x_1(t \to -\infty) + 4\kappa_1^2 t + \delta_{12}\]
+<p>\((L_t + L M - M L) \psi = 0\)6</p>
 
-\[x_2(t \to \infty) = x_2(t \to -\infty) + 4\kappa_2^2 t - \delta_{12}\]
+<p>\((L_t + L M - M L) \psi = 0\)7</p>
 
 <p><strong>Key insight:</strong> Solitons emerge unchanged but with position shift determined by Lax pair structure.</p>
 
@@ -1233,23 +1229,23 @@ Substitute into KdV equation:</li>
 
 <p><strong>KdV Hamiltonians:</strong></p>
 
-\[H_1 = \int u^2 dx, \quad H_2 = \int (u^3 - \tfrac{1}{2}u_x^2) dx, \quad H_3 = \int (u^4 - 2uu_x^2 - \tfrac{1}{2}u_{xx}^2) dx\]
+<p>\((L_t + L M - M L) \psi = 0\)8</p>
 
 <p><strong>Lax pair generates Hamiltonian densities:</strong></p>
 
-\[\text{Tr}(L^{2n+1}) = \int H_{n+1} dx\]
+<p>\((L_t + L M - M L) \psi = 0\)9</p>
 
 <p><strong>Explicit computation for $n=1$:</strong></p>
 
-\[L^3 = (-\partial_x^2 + u)^3 = -\partial_x^6 + 3u\partial_x^4 - 3u_x\partial_x^3 + \ldots\]
+<p>\(L_t = [M, L]\)0</p>
 
 <p><strong>Trace formula:</strong></p>
 
-\[\text{Tr}(L^3) = \int [\text{terms involving } u^3, u_x^2, \ldots] dx = 4H_2\]
+<p>\(L_t = [M, L]\)1</p>
 
 <p><strong>Hamiltonian operators:</strong></p>
 
-\[\mathcal{J}_0 = \partial_x, \quad \mathcal{J}_1 = \partial_x^3 + 4u\partial_x + 2u_x\]
+<p>\(L_t = [M, L]\)2</p>
 
 <p><strong>Verification:</strong> $\mathcal{J}_1 H_1 = \mathcal{J}_0 H_2$ yields KdV equation.</p>
 
@@ -1265,7 +1261,7 @@ Substitute into KdV equation:</li>
 
 <p><strong>Shared Lax pair:</strong></p>
 
-\[L = -\partial_x^2 + u = -\partial_x^2 + v_x + 6v^2\]
+<p>\(L_t = [M, L]\)3</p>
 
 <p><strong>Verification:</strong></p>
 
@@ -1273,7 +1269,7 @@ Substitute into KdV equation:</li>
 
 <p><strong>Explicit computation:</strong></p>
 
-\[u_t = (v_x + 6v^2)_t = v_{xt} + 12vv_t = v_{xxx} + 12v(-6v^2 v_x - v_{xxx}) + 6v_x^2 + 12vv_x^2\]
+<p>\(L_t = [M, L]\)4</p>
 
 <p>After cancellation: $u_t + 6uu_x + u_{xxx} = 0$ ✓</p>
 

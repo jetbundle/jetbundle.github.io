@@ -918,7 +918,7 @@
 
 <p>Substituting the prolongation formulae for $\phi^t$ and $\phi^{xx}$ and separating monomials in $u_x, u_{xx}$, etc., yields the defining relations for the symmetry group. For the heat equation, this reveals not only the obvious time and space translations but also the <strong>Galilean boost</strong>:</p>
 
-\[\mathbf{v} = 2t \partial_x - x u \partial_u\]
+<p>\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)0</p>
 
 <p>and the projective transformation, recovering the fundamental solution derived in Chapter 1.3.</p>
 
@@ -928,7 +928,7 @@
 
 <p>We seek <strong>canonical coordinates</strong> $(r, s)$ such that the vector field becomes a pure translation:</p>
 
-\[\mathbf{v} = \frac{\partial}{\partial s}\]
+<p>\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)1</p>
 
 <p>The remaining variables $r$ (the <strong>invariants</strong>) are the coordinates of the quotient manifold $M/G$. In these coordinates, the differential equation cannot depend on $s$.</p>
 
@@ -954,46 +954,47 @@
 <ol>
   <li>
     <p><strong>Setup the Generator:</strong>
-\(\mathbf{v} = \xi(x,y) \frac{\partial}{\partial x} + \phi(x,y) \frac{\partial}{\partial y}\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)2</p>
   </li>
   <li>
     <p><strong>First Prolongation:</strong>
 The first prolongation coefficient is:
-\(\phi^x = D_x(\phi) - y_x D_x(\xi)\)
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)3
 where $D_x = \partial_x + y’ \partial_y = \partial_x + \frac{y}{x} \partial_y$.</p>
   </li>
   <li>
     <p><strong>Invariance Condition:</strong>
 The ODE is $F(x,y,y’) = y’ - \frac{y}{x} = 0$. The invariance condition requires:
-\(\text{pr}^{(1)}\mathbf{v}[F] \bigg|_{F=0} = 0\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)4</p>
   </li>
   <li>
     <p><strong>Detailed Prolongation Computation:</strong>
-\(D_x(\phi) = \phi_x + \frac{y}{x} \phi_y, \quad D_x(\xi) = \xi_x + \frac{y}{x} \xi_y\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)5</p>
   </li>
 </ol>
 
-\[\phi^x = \phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right)\]
+<p>\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)6</p>
 
 <p>Now compute the action on $\frac{y}{x}$:
-\(\text{pr}^{(1)}\mathbf{v}\left[\frac{y}{x}\right] = \frac{\phi}{x} - \frac{y \xi}{x^2}\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)7</p>
 
 <ol>
   <li>
     <p><strong>Determining Equations:</strong>
 The invariance condition becomes:
-\(\phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right) - \frac{\phi}{x} + \frac{y \xi}{x^2} = 0\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)8</p>
   </li>
-  <li><strong>Coefficient Separation:</strong>
+  <li>
+    <p><strong>Coefficient Separation:</strong>
 Collect terms by powers of $y$:
-    <ul>
-      <li>$y^0$ terms: $\phi_x - \frac{\phi}{x} = 0$</li>
-      <li>$y^1$ terms: $\frac{1}{x} \phi_y - \frac{1}{x} \xi_x = 0$</li>
-      <li>$y^2$ terms: $-\frac{1}{x^2} \xi_y = 0$</li>
-    </ul>
+- $y^0$ terms: $\phi_x - \frac{\phi}{x} = 0$
+- $y^1$ terms: $\frac{1}{x} \phi_y - \frac{1}{x} \xi_x = 0$
+- $y^2$ terms: $-\frac{1}{x^2} \xi_y = 0$</p>
   </li>
-  <li><strong>Solve the System:</strong>
-From $y^2$: $\xi_y = 0 \implies \xi = \xi(x)$</li>
+  <li>
+    <p><strong>Solve the System:</strong>
+From $y^2$: $\xi_y = 0 \implies \xi = \xi(x)$</p>
+  </li>
 </ol>
 
 <p>From $y^1$: $\phi_y = \xi_x$</p>
@@ -1003,20 +1004,18 @@ From $y^2$: $\xi_y = 0 \implies \xi = \xi(x)$</li>
 <p>Solving: $\xi = c_1$ (constant), $\phi = c_2 x$</p>
 
 <p><strong>Complete Symmetry Algebra:</strong>
-\(\mathbf{v} = c_1 \frac{\partial}{\partial x} + c_2 x \frac{\partial}{\partial y}\)</p>
+\(\mathbf{v} = \sum_{i=1}^n \xi^i(x,u) \frac{\partial}{\partial x^i} + \sum_{\alpha=1}^m \phi^\alpha(x,u) \frac{\partial}{\partial u^\alpha}\)9</p>
 
-<p><strong>Verification and Interpretation:</strong></p>
-<ul>
-  <li>$c_1$: Translation $x \to x + \epsilon$</li>
-  <li>$c_2$: Scaling $x \to e^\epsilon x$, $y \to e^\epsilon y$</li>
-</ul>
+<p><strong>Verification and Interpretation:</strong>
+- $c_1$: Translation $x \to x + \epsilon$
+- $c_2$: Scaling $x \to e^\epsilon x$, $y \to e^\epsilon y$</p>
 
 <p><strong>Reduction:</strong> Use invariants $z = \frac{y}{x}$. Then $z’ = 0$, so $y = kx$.</p>
 
 <h3 id="example-412-physical-applicationemden-fowler-equation">Example 4.1.2: Physical Application—Emden-Fowler Equation</h3>
 
 <p><strong>Problem:</strong> Find symmetries of the Emden-Fowler equation:
-\(y'' + \frac{2}{x} y' + x^\alpha y^\beta = 0\)</p>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)0</p>
 
 <p>This models polytropic stars in astrophysics. We compute for the critical case $\alpha = -2$, $\beta = 5$.</p>
 
@@ -1024,39 +1023,39 @@ From $y^2$: $\xi_y = 0 \implies \xi = \xi(x)$</li>
 
 <ol>
   <li><strong>Second Prolongation Required:</strong>
-\(\mathbf{v} = \xi(x,y) \partial_x + \phi(x,y) \partial_y\)</li>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)1</li>
 </ol>
 
-\[\text{pr}^{(2)}\mathbf{v} = \mathbf{v} + \phi^x \partial_{y'} + \phi^{xx} \partial_{y''}\]
+<p>\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)2</p>
 
 <ol>
   <li>
     <p><strong>Prolongation Formulae:</strong>
-\(\phi^x = D_x(\phi) - y' D_x(\xi), \quad \phi^{xx} = D_x(\phi^x) - y'' D_x(\xi)\)</p>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)3</p>
   </li>
   <li>
     <p><strong>Invariance Condition:</strong>
 For $F = y’’ + \frac{2}{x} y’ + x^{-2} y^5 = 0$:
-\(\text{pr}^{(2)}\mathbf{v}[F] = \phi^{xx} + \frac{2}{x} \phi^x - \frac{2}{x^2} y' \xi - \frac{5}{x^2} y^4 \phi = 0\)</p>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)4</p>
   </li>
-  <li><strong>Case Analysis:</strong>
+  <li>
+    <p><strong>Case Analysis:</strong>
 After extensive algebraic manipulation, the determining equations yield:
-    <ul>
-      <li><strong>Translation:</strong> $\xi = c_1$, $\phi = 0$</li>
-      <li><strong>Scaling:</strong> $\xi = c_2 x$, $\phi = -\frac{1}{3} c_2 y$</li>
-      <li><strong>Special:</strong> $\xi = c_3 x^3$, $\phi = -c_3 x^2 y$</li>
-    </ul>
+- <strong>Translation:</strong> $\xi = c_1$, $\phi = 0$
+- <strong>Scaling:</strong> $\xi = c_2 x$, $\phi = -\frac{1}{3} c_2 y$
+- <strong>Special:</strong> $\xi = c_3 x^3$, $\phi = -c_3 x^2 y$</p>
   </li>
-  <li><strong>Physical Interpretation:</strong>
-    <ul>
-      <li>Scaling symmetry explains self-similar collapse</li>
-      <li>Special symmetry $x^3 \partial_x - x^2 y \partial_y$ gives exact solutions</li>
-      <li>Lie algebra structure: $[V_1,V_2] = V_2$, $[V_2,V_3] = 2V_3$</li>
-    </ul>
+  <li>
+    <p><strong>Physical Interpretation:</strong>
+- Scaling symmetry explains self-similar collapse
+- Special symmetry $x^3 \partial_x - x^2 y \partial_y$ gives exact solutions
+- Lie algebra structure: $[V_1,V_2] = V_2$, $[V_2,V_3] = 2V_3$</p>
   </li>
-  <li><strong>Reduction Using Special Symmetry:</strong>
+  <li>
+    <p><strong>Reduction Using Special Symmetry:</strong>
 Canonical coordinates for $V_3$:
-\(r = \frac{1}{x^2}, \quad s = \frac{y}{x}\)</li>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)5</p>
+  </li>
 </ol>
 
 <p>The reduced equation becomes first-order in $(r, s’)$.</p>
@@ -1071,31 +1070,32 @@ Canonical coordinates for $V_3$:
 
 <ol>
   <li><strong>Generator and Prolongations:</strong>
-\(\mathbf{v} = \xi(x,t,u) \partial_x + \tau(x,t,u) \partial_t + \phi(x,t,u) \partial_u\)</li>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)6</li>
 </ol>
 
 <p>First Prolongation:
-\(\phi^t = D_t(\phi) - u_t D_t(\tau) - u_x D_t(\xi)\)</p>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)7</p>
 
-\[\phi^x = D_x(\phi) - u_x D_x(\tau) - u_x D_x(\xi)\]
+<p>\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)8</p>
 
 <ol>
   <li>
     <p><strong>Invariance Condition:</strong>
 For $F = u_t + u u_x = 0$:
-\(\text{pr}^{(1)}\mathbf{v}[F] = \phi^t + u \phi^x + u_x \phi = 0\)</p>
+\(\frac{d\tilde{z}}{d\epsilon} = \mathbf{v}(\tilde{z}), \quad \tilde{z}(0) = z\)9</p>
   </li>
-  <li><strong>Systematic Expansion:</strong>
+  <li>
+    <p><strong>Systematic Expansion:</strong>
 After collecting 27 independent monomials in derivatives, we get the determining equations:
-    <ul>
-      <li>$\phi_{uu} = 0$ (from $u_{tt}$, $u_{tx}$, $u_{xx}$ terms)</li>
-      <li>$\phi_u = 2\tau_t + \xi_x$ (from $u_t$ term)</li>
-      <li>$\phi_u = \tau_x + \xi_t$ (from $u_x$ term)</li>
-      <li>$\phi_t + u \phi_x = 0$ (constant term)</li>
-    </ul>
+- $\phi_{uu} = 0$ (from $u_{tt}$, $u_{tx}$, $u_{xx}$ terms)
+- $\phi_u = 2\tau_t + \xi_x$ (from $u_t$ term)
+- $\phi_u = \tau_x + \xi_t$ (from $u_x$ term)
+- $\phi_t + u \phi_x = 0$ (constant term)</p>
   </li>
-  <li><strong>Solve the Overdetermined System:</strong>
-From $\phi_{uu} = 0$: $\phi = A(x,t) u + B(x,t)$</li>
+  <li>
+    <p><strong>Solve the Overdetermined System:</strong>
+From $\phi_{uu} = 0$: $\phi = A(x,t) u + B(x,t)$</p>
+  </li>
 </ol>
 
 <p>From consistency: $\tau_x + \xi_t = 2\tau_t + \xi_x$</p>
@@ -1103,25 +1103,26 @@ From $\phi_{uu} = 0$: $\phi = A(x,t) u + B(x,t)$</li>
 <p>From constant term: $A_t + u A_x = 0 \implies A = c_1$ (constant)</p>
 
 <ol>
-  <li><strong>Complete Solution:</strong>
-    <ul>
-      <li><strong>Translations:</strong> $\partial_t$, $\partial_x$</li>
-      <li><strong>Galilean boost:</strong> $t \partial_x$</li>
-      <li><strong>Scaling:</strong> $2t \partial_t + x \partial_x$</li>
-      <li><strong>Projective:</strong> $t^2 \partial_t + t x \partial_x - t u \partial_u$</li>
-      <li><strong>Infinite-dimensional:</strong> $\phi = f(t-x) \partial_u$</li>
-    </ul>
+  <li>
+    <p><strong>Complete Solution:</strong>
+- <strong>Translations:</strong> $\partial_t$, $\partial_x$
+- <strong>Galilean boost:</strong> $t \partial_x$
+- <strong>Scaling:</strong> $2t \partial_t + x \partial_x$
+- <strong>Projective:</strong> $t^2 \partial_t + t x \partial_x - t u \partial_u$
+- <strong>Infinite-dimensional:</strong> $\phi = f(t-x) \partial_u$</p>
   </li>
-  <li><strong>Lie Algebra Structure:</strong>
-\([\partial_x, t \partial_x] = \partial_x\)</li>
+  <li>
+    <p><strong>Lie Algebra Structure:</strong>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)0</p>
+  </li>
 </ol>
 
-\[[2t \partial_t + x \partial_x, t^2 \partial_t + t x \partial_x] = 2(t^2 \partial_t + t x \partial_x)\]
+<p>\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)1</p>
 
 <ol>
   <li><strong>Reduction Example:</strong>
 Use Galilean boost $V = t \partial_x$. Canonical coordinates:
-\(r = x - u t, \quad s = t\)</li>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)2</li>
 </ol>
 
 <p>Reduced equation: $u_r = 0 \implies u = f(x - ut)$</p>
@@ -1132,25 +1133,22 @@ Use Galilean boost $V = t \partial_x$. Canonical coordinates:
 
 <p><strong>Problem:</strong> Classify all first-order ODEs admitting a 3-dimensional symmetry algebra.</p>
 
-<p><strong>Theorem:</strong> An ODE $F(x,y,y’) = 0$ admits a 3-dimensional Lie algebra iff it is equivalent to one of:</p>
-<ul>
-  <li><strong>Linear:</strong> $y’ = f(x)y + g(x)$</li>
-  <li><strong>Homogeneous:</strong> $y’ = f\left(\frac{y}{x}\right)$</li>
-</ul>
+<p><strong>Theorem:</strong> An ODE $F(x,y,y’) = 0$ admits a 3-dimensional Lie algebra iff it is equivalent to one of:
+- <strong>Linear:</strong> $y’ = f(x)y + g(x)$
+- <strong>Homogeneous:</strong> $y’ = f\left(\frac{y}{x}\right)$</p>
 
 <p><strong>Proof via Example:</strong></p>
 
 <p>Consider $y’ = P(x) + Q(x)y + R(x)y^2$.</p>
 
 <ol>
-  <li><strong>Assume Full Algebra:</strong>
+  <li>
+    <p><strong>Assume Full Algebra:</strong>
 Suppose $\dim \mathfrak{g} = 3$. The possible non-isomorphic 3D Lie algebras are:
-    <ul>
-      <li>$A_{3,1}$: Heisenberg</li>
-      <li>$A_{3,2}$: Euclidean</li>
-      <li>$A_{3,3}$: Lorentz</li>
-      <li>$A_{3,4}$: $\mathfrak{sl}(2,\mathbb{R})$</li>
-    </ul>
+- $A_{3,1}$: Heisenberg
+- $A_{3,2}$: Euclidean
+- $A_{3,3}$: Lorentz
+- $A_{3,4}$: $\mathfrak{sl}(2,\mathbb{R})$</p>
   </li>
   <li>
     <p><strong>Test $A_{3,4}$ (most interesting):</strong>
@@ -1160,8 +1158,10 @@ Basis ${V_1, V_2, V_3}$ with $[V_1,V_2] = V_2$, $[V_1,V_3] = 2V_3$, $[V_2,V_3] =
     <p><strong>Solve Determining Equations Simultaneously:</strong>
 This requires solving 27 coupled PDEs for each generator. The result: Only linear equations $y’ = a(x)y + b(x)$ admit $\mathfrak{sl}(2,\mathbb{R})$ symmetry.</p>
   </li>
-  <li><strong>Explicit Computation for $y’ = k y$:</strong>
-\(V_1 = \partial_x, \quad V_2 = x \partial_x + y \partial_y, \quad V_3 = x^2 \partial_x + x y \partial_y\)</li>
+  <li>
+    <p><strong>Explicit Computation for $y’ = k y$:</strong>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)3</p>
+  </li>
 </ol>
 
 <p><strong>Verification:</strong> Each satisfies the prolongation condition independently.</p>
@@ -1184,10 +1184,10 @@ $V_1$: $y = z(x)$, reduces to $z’ = k z$</li>
 <ol>
   <li><strong>Heat Equation Symmetries:</strong>
 Core generators:
-\(V_1 = \partial_t, \quad V_2 = \partial_x, \quad V_3 = 2t \partial_x - x u \partial_u\)</li>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)4</li>
 </ol>
 
-\[V_4 = t \partial_t + \frac{x}{2} \partial_x - \frac{u}{2} \partial_u\]
+<p>\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)5</p>
 
 <ol>
   <li>
@@ -1197,27 +1197,27 @@ To find distinct similarity solutions, compute the optimal system. The Lie algeb
   <li>
     <p><strong>Two-Dimensional Subalgebras:</strong>
 Consider $V_4 + V_3$:
-\(\mathbf{v} = t \partial_t + \frac{x}{2} \partial_x + \left( -\frac{1}{2} - 2t \right) u \partial_u\)</p>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)6</p>
   </li>
   <li>
     <p><strong>Canonical Coordinates:</strong>
 Solve $\mathbf{v}[r] = 0$, $\mathbf{v}[s] = 1$:
-\(r = \frac{x}{\sqrt{t}}, \quad s = \log t\)</p>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)7</p>
   </li>
   <li>
     <p><strong>Reduction:</strong>
 In $(r,s)$ coordinates, the heat equation becomes an ODE in $r$:
-\(u_{ss} + \frac{1}{2} r u_{sr} - \frac{1}{4} u_{rr} - \frac{1}{2r} u_r - \frac{1}{2} u = 0\)</p>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)8</p>
   </li>
   <li>
     <p><strong>Similarity Solution:</strong>
 Ansatz $u = t^{-\frac{1}{2}} f(r)$ yields:
-\(f'' + \frac{1}{r} f' + \frac{1}{4} r^2 f = 0\)</p>
+\(\text{pr}^{(1)}\mathbf{v} = \mathbf{v} + \sum_{\alpha, i} \phi^\alpha_i \frac{\partial}{\partial u^\alpha_i}\)9</p>
   </li>
   <li>
     <p><strong>Exact Solution:</strong>
 This is the parabolic cylinder equation. The fundamental solution is:
-\(u(x,t) = \frac{1}{\sqrt{4\pi t}} \exp\left( -\frac{x^2}{4t} \right)\)</p>
+\(D_i = \frac{\partial}{\partial x^i} + \sum_\alpha u^\alpha_i \frac{\partial}{\partial u^\alpha} + \sum_{\alpha,j} u^\alpha_{ij} \frac{\partial}{\partial u^\alpha_j} + \dots\)0</p>
   </li>
 </ol>
 

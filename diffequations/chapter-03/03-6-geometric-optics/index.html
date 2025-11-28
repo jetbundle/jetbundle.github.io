@@ -860,27 +860,11 @@
 
 \[2\nabla S \cdot \nabla a + (\Delta S)a = 0\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>This linear hyperbolic equation governs the evolution of the amplitude $a(x)$ along the flow determined by $\nabla S$. As discussed in Evans (2010), this equation implies the conservation of energy flux along the rays. Specifically, the quantity $a^2</td>
-      <td>\nabla S</td>
-      <td>$ is conserved along the characteristics of the Eikonal equation.</td>
-    </tr>
-  </tbody>
-</table>
+<p>This linear hyperbolic equation governs the evolution of the amplitude $a(x)$ along the flow determined by $\nabla S$. As discussed in Evans (2010), this equation implies the conservation of energy flux along the rays. Specifically, the quantity $a^2 |\nabla S|$ is conserved along the characteristics of the Eikonal equation.</p>
 
 <h3 id="hamilton-jacobi-theory">Hamilton-Jacobi Theory</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>To solve the Eikonal equation $</td>
-      <td>\nabla S</td>
-      <td>^2 = n^2(x)$, we employ the method of characteristics, framing the problem within Hamilton-Jacobi mechanics. We define the Hamiltonian $H(x,p)$ on the cotangent bundle $T^*\Omega$ (phase space):</td>
-    </tr>
-  </tbody>
-</table>
+<p>To solve the Eikonal equation $|\nabla S|^2 = n^2(x)$, we employ the method of characteristics, framing the problem within Hamilton-Jacobi mechanics. We define the Hamiltonian $H(x,p)$ on the cotangent bundle $T^*\Omega$ (phase space):</p>
 
 \[H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\]
 
@@ -920,11 +904,11 @@
 
 <p>A continuous function $u$ is a viscosity subsolution of $H(x, \nabla u) = 0$ if for every test function $\phi \in C^\infty(\Omega)$ such that $u - \phi$ has a local maximum at $x_0$:</p>
 
-\[H(x_0, \nabla \phi(x_0)) \le 0\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)0</p>
 
 <p>Conversely, $u$ is a viscosity supersolution if for every test function $\psi$ such that $u - \psi$ has a local minimum at $x_0$:</p>
 
-\[H(x_0, \nabla \psi(x_0)) \ge 0\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)1</p>
 
 <p>As proven in Evans (2010), the viscosity solution is unique and corresponds physically to the distance function defined by the minimal optical path length. This framework allows us to define the “wavefront” globally, even after rays have crossed and the classical function $S(x)$ has become multi-valued. The viscosity solution automatically selects the “first arrival” branch of the wavefront, discarding the self-intersecting characteristic tails that lack physical meaning in the zero-wavelength limit.</p>
 
@@ -934,50 +918,50 @@
 
 <p><strong>Problem:</strong> Consider the Helmholtz equation in a stratified medium:</p>
 
-\[\Delta u + k^2 n^2(z) u = 0, \quad n(z) = 1 + \frac{1}{2}z^2\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)2</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>WKB Ansatz:</strong>
-\(u(x,z) \sim a(x,z) e^{ik S(x,z)}\)</p>
+\(u(x) \sim a(x) e^{ik S(x)}\)3</p>
   </li>
   <li>
     <p><strong>Eikonal Equation ($O(k^2)$):</strong>
-\(|\nabla S|^2 = n^2(z) = \left(1 + \frac{1}{2}z^2\right)^2\)</p>
+\(u(x) \sim a(x) e^{ik S(x)}\)4</p>
   </li>
 </ol>
 
-\[S_z^2 + S_x^2 = 1 + z^2 + \frac{1}{4}z^4\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)5</p>
 
 <p>Assume plane wave in $x$: $S(x,z) = x + T(z)$</p>
 
-\[T'(z)^2 = 1 + z^2 + \frac{1}{4}z^4 - 1 = z^2 + \frac{1}{4}z^4\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)6</p>
 
-\[T'(z) = z \sqrt{1 + \frac{1}{4}z^2}\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)7</p>
 
 <ol>
   <li><strong>Exact Integration:</strong>
 Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 </ol>
 
-\[T(z) = 4\int_1^{1 + \frac{1}{4}z^2} \sqrt{w} \, dw = \frac{8}{3} \left[ \left(1 + \frac{z^2}{4}\right)^{3/2} - 1 \right]\]
+<p>\(u(x) \sim a(x) e^{ik S(x)}\)8</p>
 
 <ol>
   <li><strong>Transport Equation ($O(k)$):</strong>
-\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)</li>
+\(u(x) \sim a(x) e^{ik S(x)}\)9</li>
 </ol>
 
 <p>With $\nabla S = (1, T’(z))$ and $\Delta S = T’‘(z)$, assuming $a(x,z) = A(z)$:</p>
 
-\[2T'(z)A'(z) + T''(z)A(z) = 0\]
+<p>\(|\nabla S(x)|^2 = n^2(x)\)0</p>
 
-\[A(z) = C \exp\left(-\frac{1}{2}\int_0^z \frac{T''(t)}{T'(t)} \, dt\right)\]
+<p>\(|\nabla S(x)|^2 = n^2(x)\)1</p>
 
 <ol>
   <li><strong>Complete Solution:</strong>
-\(u(x,z) \sim C \exp\left(-\frac{1}{2}\int_0^z \frac{T''(t)}{T'(t)} \, dt\right) \exp\left(ik\left[x + \frac{8}{3}\left(\left(1 + \frac{z^2}{4}\right)^{3/2} - 1\right)\right]\right)\)</li>
+\(|\nabla S(x)|^2 = n^2(x)\)2</li>
 </ol>
 
 <h3 id="example-362-physical-applicationatmospheric-wave-propagation">Example 3.6.2: Physical Application—Atmospheric Wave Propagation</h3>
@@ -989,7 +973,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Eikonal:</strong>
-\(|\nabla S|^2 = 1 - \frac{z^2}{h^2}\)</p>
+\(|\nabla S(x)|^2 = n^2(x)\)3</p>
   </li>
   <li>
     <p><strong>Turning Point:</strong> $z = h$ where $\nabla S = 0$</p>
@@ -999,7 +983,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
   </li>
   <li>
     <p><strong>Phase Computation:</strong>
-\(S(x,z) = \int_0^z \sqrt{1 - \frac{t^2}{h^2}} \, dt = \frac{h}{2}\left[z\sqrt{1 - \frac{z^2}{h^2}} + \arcsin\left(\frac{z}{h}\right)\right]\)</p>
+\(|\nabla S(x)|^2 = n^2(x)\)4</p>
   </li>
 </ol>
 
@@ -1014,36 +998,33 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Hamiltonian:</strong>
-\(H(x,y,p_x,p_y) = \frac{1}{2}(p_x^2 + p_y^2 - (1 - x^2))\)</p>
+\(|\nabla S(x)|^2 = n^2(x)\)5</p>
   </li>
   <li>
     <p><strong>Hamilton’s Equations:</strong>
-\(\dot{x} = p_x, \quad \dot{p}_x = x\)</p>
+\(|\nabla S(x)|^2 = n^2(x)\)6</p>
   </li>
 </ol>
 
-\[\dot{y} = p_y, \quad \dot{p}_y = 0\]
+<p>\(|\nabla S(x)|^2 = n^2(x)\)7</p>
 
 <ol>
   <li><strong>Solutions:</strong>
-    <ul>
-      <li>$y$-motion: $p_y(t) = \text{constant}$, $y(t) = y_0 + p_y t$</li>
-      <li>$x$-motion: Harmonic oscillator $\ddot{x} + x = 0$</li>
-    </ul>
-  </li>
+- $y$-motion: $p_y(t) = \text{constant}$, $y(t) = y_0 + p_y t$
+- $x$-motion: Harmonic oscillator $\ddot{x} + x = 0$</li>
 </ol>
 
-\[x(t) = A\cos t + B\sin t, \quad p_x(t) = -A\sin t + B\cos t\]
+<p>\(|\nabla S(x)|^2 = n^2(x)\)8</p>
 
 <ol>
   <li><strong>Initial Conditions:</strong> $x(0)=0$, $p_x(0)=p_0$:</li>
 </ol>
 
-\[x(t) = p_0 \sin t, \quad p_x(t) = p_0 \cos t\]
+<p>\(|\nabla S(x)|^2 = n^2(x)\)9</p>
 
 <ol>
   <li><strong>Complete Ray:</strong>
-\((x(t),y(t)) = (p_0 \sin t, p_y t)\)</li>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)0</li>
 </ol>
 
 <p><strong>Geometric Interpretation:</strong> Rays are cycloids in the $(x,y)$-plane, periodic in $x$-direction.</p>
@@ -1054,13 +1035,13 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 
 <p><strong>Solution:</strong></p>
 
-\[S(x,y) = \int_0^{t(x,y)} n^2(\gamma(\tau)) \, d\tau\]
+<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)1</p>
 
 <p>Compute:</p>
 
-\[n^2(\gamma(t)) = 1 - x^2(t) = 1 - p_0^2 \sin^2 t\]
+<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)2</p>
 
-\[S(x,y) = \int_0^t (1 - p_0^2 \sin^2 \tau) \, d\tau = t - p_0^2 \left(\frac{t}{2} - \frac{\sin 2t}{4}\right)\]
+<p>\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)3</p>
 
 <p>Inverse: $t = \arcsin(x/p_0)$, substitute to get explicit $S(x,y)$.</p>
 
@@ -1075,7 +1056,7 @@ Let $w = 1 + \frac{1}{4}t^2$, $dw = \frac{1}{2}t dt$:</li>
 <ol>
   <li>
     <p><strong>Ray Family:</strong> Lines from $(c,0)$ with slope $m$:
-\(y = m(x - c)\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)4</p>
   </li>
   <li>
     <p><strong>Envelope Computation (Caustic):</strong>
@@ -1084,7 +1065,7 @@ Family: $F(x,y,m) = y - m(x - c) = 0$</p>
 </ol>
 
 <p>Envelope condition: $\frac{\partial F}{\partial m} = 0$:
-\(-(x - c) = 0 \implies x = c\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)5</p>
 
 <p>Substitute: $y = m(0) = 0$</p>
 
@@ -1092,12 +1073,9 @@ Family: $F(x,y,m) = y - m(x - c) = 0$</p>
 
 <ol>
   <li><strong>Amplitude Analysis:</strong>
-    <ul>
-      <li>Before focus: Jacobian $J(t) \propto t$</li>
-      <li>At focus: $J(t) = 0$</li>
-      <li>Amplitude: $a(x) \propto J^{-1/2} \to \infty$</li>
-    </ul>
-  </li>
+- Before focus: Jacobian $J(t) \propto t$
+- At focus: $J(t) = 0$
+- Amplitude: $a(x) \propto J^{-1/2} \to \infty$</li>
 </ol>
 
 <h3 id="example-366-parabolic-mirror-caustic">Example 3.6.6: Parabolic Mirror Caustic</h3>
@@ -1117,14 +1095,14 @@ Incident $\vec{i} = (0,1)$, normal $\vec{n} = \frac{(-x,2f)}{\sqrt{x^2 + 4f^2}}$
 </ol>
 
 <p>Reflected ray:
-\(\vec{r} = \vec{i} - 2(\vec{i} \cdot \vec{n})\vec{n}\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)6</p>
 
 <p>At $x=x_0$: $\vec{r} = \left(\frac{x_0}{f}, -1\right)$</p>
 
 <ol>
   <li>
     <p><strong>Parametric Equation:</strong>
-\(x(t) = x_0 + \frac{x_0}{f}t, \quad y(t) = f - t\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)7</p>
   </li>
   <li>
     <p><strong>Caustic (Envelope):</strong>
@@ -1149,21 +1127,16 @@ Family: $F(x,y,x_0) = y + t - f = 0$, $x = x_0(1 + t/f)$</p>
     <p><strong>Exponential Map:</strong> $\gamma(t,v) = \text{Exp}_0(tv)$</p>
   </li>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Jacobi Field:</strong> $J(t) = \frac{d}{ds}\gamma(t,su)</td>
-          <td>_{s=0}$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p><strong>Jacobi Field:</strong> $J(t) = \frac{d}{ds}\gamma(t,su)|_{s=0}$</p>
   </li>
   <li>
     <p><strong>Conjugate Condition:</strong>
-\(\det\left(\frac{\partial(x_1,...,x_n)}{\partial(v_1,...,v_n)}\right) = 0\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)8</p>
   </li>
-  <li><strong>For Harmonic Oscillator</strong> ($n(x) = \sqrt{1-x^2}$):
-Ray: $x(t) = A\sin t$</li>
+  <li>
+    <p><strong>For Harmonic Oscillator</strong> ($n(x) = \sqrt{1-x^2}$):
+Ray: $x(t) = A\sin t$</p>
+  </li>
 </ol>
 
 <p>Jacobi: $J’’ + J = 0$, $J(0)=1$, $J’(0)=0$</p>
@@ -1176,15 +1149,7 @@ Ray: $x(t) = A\sin t$</li>
 
 <h3 id="example-368-explicit-viscosity-solutiondistance-function">Example 3.6.8: Explicit Viscosity Solution—Distance Function</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Problem:</strong> $</td>
-      <td>\nabla u</td>
-      <td>= 1$ in unit disk, $u=0$ on boundary.</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Problem:</strong> $|\nabla u| = 1$ in unit disk, $u=0$ on boundary.</p>
 
 <p><strong>Solution:</strong></p>
 
@@ -1197,59 +1162,24 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
   <li>
     <p><strong>Viscosity Solution:</strong>
-\(u(x) = \min_{y\in\partial B} |x-y| = 1 - |x|\)</p>
+\(2\nabla S \cdot \nabla a + (\Delta S)a = 0\)9</p>
   </li>
-  <li><strong>Verification:</strong>
-    <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Subsolutions test</strong> ($\phi$ touches from above): $</td>
-              <td>\nabla\phi(x_0)</td>
-              <td>\leq 1$ ✓</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Supersolutions test</strong> ($\psi$ touches from below): $</td>
-              <td>\nabla\psi(x_0)</td>
-              <td>\geq 1$ ✓</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
+  <li>
+    <p><strong>Verification:</strong>
+- <strong>Subsolutions test</strong> ($\phi$ touches from above): $|\nabla\phi(x_0)| \leq 1$ ✓
+- <strong>Supersolutions test</strong> ($\psi$ touches from below): $|\nabla\psi(x_0)| \geq 1$ ✓</p>
   </li>
-  <li><strong>Viscous Approximation:</strong>
-\(-\epsilon\Delta u^\epsilon + |\nabla u^\epsilon| = 1\)</li>
+  <li>
+    <p><strong>Viscous Approximation:</strong>
+\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)0</p>
+  </li>
 </ol>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Convergence: $u^\epsilon \to 1-</td>
-      <td>x</td>
-      <td>$ uniformly</td>
-    </tr>
-  </tbody>
-</table>
+<p>Convergence: $u^\epsilon \to 1-|x|$ uniformly</p>
 
 <h3 id="example-369-refractive-index-with-caustic">Example 3.6.9: Refractive Index with Caustic</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Problem:</strong> $</td>
-      <td>\nabla u</td>
-      <td>= n(x)$ where $n(x,y) = \sqrt{1-x^2}$.</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Problem:</strong> $|\nabla u| = n(x)$ where $n(x,y) = \sqrt{1-x^2}$.</p>
 
 <p><strong>Solution:</strong></p>
 
@@ -1259,7 +1189,7 @@ $S(x)$: Distance to boundary becomes negative after crossing</p>
   </li>
   <li>
     <p><strong>First Arrival Time:</strong>
-\(T(x,y) = \inf\{t: \exists p_0, p_y \text{ s.t. }(x,y) = (p_0\sin t, p_y t)\}\)</p>
+\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)1</p>
   </li>
   <li>
     <p><strong>Solution:</strong> $u(x,y) = \min{T(x,y)}$</p>
@@ -1288,38 +1218,28 @@ Solve: $x = p_0\sin t$, $y = p_y t$</p>
       <th>Hyperbolic Conservation</th>
       <th>Geometric Optics</th>
       <th>Viscosity Solution</th>
-      <th> </th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>$u_t + u u_x = 0$</td>
-      <td>$</td>
-      <td>\nabla S</td>
-      <td>^2 = n^2$</td>
+      <td>$|\nabla S|^2 = n^2$</td>
       <td>First arrival time</td>
     </tr>
     <tr>
       <td>Characteristics cross</td>
       <td>Rays focus</td>
       <td>Distance function</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>Weak solution multi-valued</td>
       <td>Phase multi-valued</td>
       <td>Minimum principle</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>Lax entropy</td>
       <td>Vanishing viscosity</td>
       <td>Selection principle</td>
-      <td> </td>
-      <td> </td>
     </tr>
   </tbody>
 </table>
@@ -1333,30 +1253,26 @@ Solve: $x = p_0\sin t$, $y = p_y t$</p>
 <p><strong>Solution:</strong></p>
 
 <ol>
-  <li><strong>Ray Coordinates Near Caustic:</strong>
-    <ul>
-      <li>Before: Single ray, $u \sim a_1 e^{ikS_1}$</li>
-      <li>After: Two rays, $u \sim a_2 e^{ikS_2} + a_3 e^{ikS_3}$</li>
-    </ul>
+  <li>
+    <p><strong>Ray Coordinates Near Caustic:</strong>
+- Before: Single ray, $u \sim a_1 e^{ikS_1}$
+- After: Two rays, $u \sim a_2 e^{ikS_2} + a_3 e^{ikS_3}$</p>
   </li>
-  <li><strong>Uniform Ansatz:</strong>
-\(u \sim \text{Ai}\left(k^{2/3}\xi\right) e^{ik\phi_0}\)</li>
+  <li>
+    <p><strong>Uniform Ansatz:</strong>
+\(H(x,p) = \frac{1}{2} \left( |p|^2 - n^2(x) \right)\)2</p>
+  </li>
 </ol>
 
-<p>Where:</p>
-<ul>
-  <li>$\xi = (S_1 - S_2)/k^{1/3}$ (caustic coordinate)</li>
-  <li>$\phi_0$ = common phase</li>
-  <li>$\text{Ai}(z)$ = Airy function</li>
-</ul>
+<p>Where:
+- $\xi = (S_1 - S_2)/k^{1/3}$ (caustic coordinate)
+- $\phi_0$ = common phase
+- $\text{Ai}(z)$ = Airy function</p>
 
 <ol>
   <li><strong>Matching:</strong>
-    <ul>
-      <li>$\xi \to -\infty$: $\text{Ai}(\xi) \sim \frac{1}{\sqrt{\pi}(-\xi)^{1/4}} \cos\left(\frac{2}{3}(-\xi)^{3/2} - \frac{\pi}{4}\right)$</li>
-      <li>$\xi \to +\infty$: $\text{Ai}(\xi) \sim \frac{1}{2\sqrt{\pi}\xi^{1/4}} e^{-\frac{2}{3}\xi^{3/2}}$</li>
-    </ul>
-  </li>
+- $\xi \to -\infty$: $\text{Ai}(\xi) \sim \frac{1}{\sqrt{\pi}(-\xi)^{1/4}} \cos\left(\frac{2}{3}(-\xi)^{3/2} - \frac{\pi}{4}\right)$
+- $\xi \to +\infty$: $\text{Ai}(\xi) \sim \frac{1}{2\sqrt{\pi}\xi^{1/4}} e^{-\frac{2}{3}\xi^{3/2}}$</li>
 </ol>
 
 <p><strong>Result:</strong> Smooth transition through caustic, finite amplitude!</p>

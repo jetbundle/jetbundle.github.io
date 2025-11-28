@@ -945,13 +945,13 @@ $T_g \text{Met}(S^2) \cong \Gamma(S^2 T^*S^2)$ consists of all symmetric $(0,2)$
   <li>
     <p><strong>Explicit Representation:</strong>
 A general element $h \in T_g \text{Met}(S^2)$ can be written as:
-\(h = h_{\theta\theta} d\theta^2 + 2h_{\theta\phi} d\theta d\phi + h_{\phi\phi} d\phi^2\)
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)0
 where $h_{\theta\theta}$, $h_{\theta\phi}$, $h_{\phi\phi}$ are smooth functions on $S^2$.</p>
   </li>
   <li>
     <p><strong>Variation Example:</strong>
 Consider the variation $h = \epsilon \sin^2\theta \, d\phi^2$ for small $\epsilon$. This represents a metric:
-\(g_\epsilon = d\theta^2 + (1+\epsilon)\sin^2\theta \, d\phi^2\)
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)1
 which is an ellipsoidal deformation of the sphere.</p>
   </li>
   <li>
@@ -970,18 +970,18 @@ This variation changes the geometry (not just coordinates) since it alters the c
   <li>
     <p><strong>Flat Torus Metric:</strong>
 On $T^2 = S^1 \times S^1$ with coordinates $(x,y) \in [0,2\pi)^2$:
-\(g = dx^2 + dy^2\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)2</p>
   </li>
   <li>
     <p><strong>Two Variations:</strong>
-\(h = \cos x \, dx^2, \quad k = \sin y \, dy^2\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)3</p>
   </li>
   <li>
     <p><strong>$L^2$ Inner Product:</strong>
-\(\langle h, k \rangle_{L^2(g)} = \int_{T^2} \text{tr}_g(h \otimes k) \, d\text{vol}_g\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)4</p>
 
     <p>Compute:
-\(\text{tr}_g(h \otimes k) = g^{xx} g^{xx} h_{xx} k_{xx} + g^{yy} g^{yy} h_{yy} k_{yy} = \cos x \cdot 0 + 0 \cdot \sin y = 0\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)5</p>
 
     <p>Since $h$ has only $xx$ component and $k$ has only $yy$ component, they are orthogonal.</p>
   </li>
@@ -991,7 +991,7 @@ $d\text{vol}_g = dx \wedge dy$</p>
   </li>
   <li>
     <p><strong>Result:</strong>
-\(\langle h, k \rangle_{L^2(g)} = \int_0^{2\pi} \int_0^{2\pi} 0 \, dx \, dy = 0\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)6</p>
 
     <p><strong>Key Insight:</strong> Variations in orthogonal directions are $L^2$-orthogonal.</p>
   </li>
@@ -1010,25 +1010,25 @@ $g = dx^2 + dy^2$ on $\mathbb{R}^2$</p>
   </li>
   <li>
     <p><strong>Given Variation:</strong>
-\(h = x \, dx^2 + y \, dy^2\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)7</p>
   </li>
   <li>
     <p><strong>Longitudinal Part:</strong>
 We seek a vector field $X = X^x \partial_x + X^y \partial_y$ such that:
-\(\mathcal{L}_X g = \nabla_i X_j + \nabla_j X_i\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)8</p>
 
     <p>In flat coordinates:
-\((\mathcal{L}_X g)_{ij} = \partial_i X_j + \partial_j X_i\)</p>
+\(\langle h, k \rangle_{L^2(g)} = \int_M \text{tr}_g(h \otimes k) \, d\text{vol}_g = \int_M g^{ik} g^{jl} h_{ij} k_{kl} \sqrt{\det g} \, dx\)9</p>
 
     <p>So:
-\((\mathcal{L}_X g)_{xx} = 2\partial_x X^x, \quad (\mathcal{L}_X g)_{yy} = 2\partial_y X^y, \quad (\mathcal{L}_X g)_{xy} = \partial_x X^y + \partial_y X^x\)</p>
+\(\varphi \cdot g = \varphi^* g\)0</p>
   </li>
   <li>
     <p><strong>Decomposition:</strong>
 We want $h = h^{\perp} + \mathcal{L}_X g$ with $\text{div}_g h^{\perp} = 0$.</p>
 
     <p>The divergence condition:
-\((\text{div}_g h^{\perp})_j = -g^{ik} \partial_i h^{\perp}_{kj} = 0\)</p>
+\(\varphi \cdot g = \varphi^* g\)1</p>
 
     <p>For $j=x$: $-\partial_x h^{\perp}<em>{xx} - \partial_y h^{\perp}</em>{yx} = 0$</p>
 
@@ -1037,10 +1037,10 @@ We want $h = h^{\perp} + \mathcal{L}_X g$ with $\text{div}_g h^{\perp} = 0$.</p>
   <li>
     <p><strong>Solution:</strong>
 Choose $X^x = \frac{x^2}{4}$, $X^y = \frac{y^2}{4}$ so that:
-\(\mathcal{L}_X g = \frac{x}{2} dx^2 + \frac{y}{2} dy^2\)</p>
+\(\varphi \cdot g = \varphi^* g\)2</p>
 
     <p>Then:
-\(h^{\perp} = h - \mathcal{L}_X g = \frac{x}{2} dx^2 + \frac{y}{2} dy^2\)</p>
+\(\varphi \cdot g = \varphi^* g\)3</p>
   </li>
   <li>
     <p><strong>Verification:</strong>
@@ -1063,7 +1063,7 @@ $g = dx^2 + dy^2$</p>
   </li>
   <li>
     <p><strong>Pullback:</strong>
-\(\varphi^* g = d(2x)^2 + d(2y)^2 = 4dx^2 + 4dy^2 = 4g\)</p>
+\(\varphi \cdot g = \varphi^* g\)4</p>
   </li>
   <li>
     <p><strong>Geometric Interpretation:</strong>
@@ -1093,22 +1093,22 @@ For a 2D metric, $R = 2K$ where $K$ is the Gaussian curvature.</p>
   <li>
     <p><strong>Variation Formula:</strong>
 The first variation of the scalar curvature is:
-\(\delta R = -\Delta_g \text{tr}_g h + \text{div}_g(\text{div}_g h) - \langle \text{Ric}, h \rangle\)</p>
+\(\varphi \cdot g = \varphi^* g\)5</p>
   </li>
   <li>
     <p><strong>Volume Form Variation:</strong>
-\(\delta(d\text{vol}_g) = \frac{1}{2} \text{tr}_g h \, d\text{vol}_g\)</p>
+\(\varphi \cdot g = \varphi^* g\)6</p>
   </li>
   <li>
     <p><strong>Combined Variation:</strong>
-\(\delta \mathcal{E}(h) = \int_M \left[ \delta R \, d\text{vol}_g + R \, \delta(d\text{vol}_g) \right]\)</p>
+\(\varphi \cdot g = \varphi^* g\)7</p>
 
-\[= \int_M \left[ (-\Delta_g \text{tr}_g h + \text{div}_g(\text{div}_g h) - \langle \text{Ric}, h \rangle) + \frac{R}{2} \text{tr}_g h \right] d\text{vol}_g\]
+    <p>\(\varphi \cdot g = \varphi^* g\)8</p>
   </li>
   <li>
     <p><strong>Integration by Parts:</strong>
 The divergence terms integrate to zero (assuming compact $M$ or appropriate boundary conditions), leaving:
-\(\delta \mathcal{E}(h) = \int_M \left\langle \frac{R}{2} g - \text{Ric}, h \right\rangle d\text{vol}_g\)</p>
+\(\varphi \cdot g = \varphi^* g\)9</p>
   </li>
   <li>
     <p><strong>2D Simplification:</strong>
@@ -1141,7 +1141,7 @@ The slice $\mathcal{S}_g$ consists of metrics $\tilde{g}$ such that:
   <li>
     <p><strong>Explicit Form:</strong>
 A metric in the slice can be written as:
-\(\tilde{g} = g + h^{\perp}\)
+\(\mathcal{M} = \text{Met}(M) / \text{Diff}(M)\)0
 where $h^{\perp}$ satisfies $\text{div}_g h^{\perp} = 0$.</p>
   </li>
   <li><strong>Local Chart:</strong>
@@ -1187,18 +1187,18 @@ The moduli space is stratified by the dimension of the isometry group. Metrics w
 <ol>
   <li>
     <p><strong>Perelman’s $\mathcal{F}$-Functional:</strong>
-\(\mathcal{F}(g,f) = \int_M (R + |\nabla f|^2) e^{-f} \, d\text{vol}_g\)
+\(\mathcal{M} = \text{Met}(M) / \text{Diff}(M)\)1
 where $f$ is a function on $M$.</p>
   </li>
   <li>
     <p><strong>Gradient Computation:</strong>
 The $L^2$ gradient of $\mathcal{F}$ with respect to $g$ (fixing $f$) is:
-\(\nabla_{L^2} \mathcal{F} = \text{Ric} + \nabla^2 f\)</p>
+\(\mathcal{M} = \text{Met}(M) / \text{Diff}(M)\)2</p>
   </li>
   <li>
     <p><strong>Normalized Flow:</strong>
 The normalized Ricci flow is:
-\(\frac{\partial g}{\partial t} = -2(\text{Ric} - \lambda g)\)
+\(\mathcal{M} = \text{Met}(M) / \text{Diff}(M)\)3
 where $\lambda$ is chosen to preserve volume.</p>
   </li>
   <li>

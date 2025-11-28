@@ -922,11 +922,9 @@
 
 <p><strong>Classical Approach (Singular):</strong></p>
 
-<p>The space of solutions $\mathcal{M}_{\text{harm}} = {u: \Delta_g u = 0}$ is singular at points where:</p>
-<ul>
-  <li>$u$ has critical points (index &gt; 0)</li>
-  <li>Non-minimal harmonic maps exist</li>
-</ul>
+<p>The space of solutions $\mathcal{M}_{\text{harm}} = {u: \Delta_g u = 0}$ is singular at points where:
+- $u$ has critical points (index &gt; 0)
+- Non-minimal harmonic maps exist</p>
 
 <p><strong>Derived Resolution:</strong></p>
 
@@ -991,14 +989,14 @@
   <li>
     <p><strong>Step 2: Compute Virtual Dimension</strong></p>
 
-\[\text{vdim} = (-K_{\mathbb{CP}^2} \cdot d) + (1-g)n = 3d + 5 = 8 \quad (g=0)\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)0</p>
   </li>
   <li>
     <p><strong>Step 3: Construct Virtual Fundamental Class</strong></p>
 
     <p>The virtual fundamental class is:</p>
 
-\[[\mathcal{M}_{0,5}(\mathbb{CP}^2, d)]^{\text{vir}} \in H_0(\mathcal{M}_{0,5}(\mathbb{CP}^2, d), \mathbb{Q})\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)1</p>
   </li>
   <li>
     <p><strong>Step 4: Explicit Calculation for $d=1$</strong></p>
@@ -1021,7 +1019,7 @@
 
 <p><strong>Classical Computation (Yang-Mills):</strong></p>
 
-\[\mathcal{M}_k(\mathbb{R}^4) = \{ \text{SU}(2)\text{-connections with } c_2 = k \}/\text{Gauge}\]
+<p>\(Z: \text{Bord}_n \to \text{Vect}\)2</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1029,26 +1027,26 @@
   <li>
     <p><strong>Step 1: Define the Derived Stack</strong></p>
 
-\[\mathcal{M}_k^{\text{der}} = \left\{ A \;\middle|\; F_A^+ = 0 \right\} \Big/ \text{Derived Gauge Group}\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)3</p>
   </li>
   <li>
     <p><strong>Step 2: Compute Deformation Complex</strong></p>
 
     <p>At an instanton $A_0$:</p>
 
-\[\mathbb{L}_{A_0} = \left[ \Omega^0(\text{ad}P) \xrightarrow{D_{A_0}^+} \Omega^{2,+}(\text{ad}P) \right]\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)4</p>
   </li>
   <li>
     <p><strong>Step 3: Index Computation</strong></p>
 
-\[\text{index}(D_{A_0}^+) = 8k - 3(1 - b_2^+) = 8k - 3\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)5</p>
   </li>
   <li>
     <p><strong>Step 4: Explicit Example—BPST Instanton ($k=1$)</strong></p>
 
     <p><strong>Self-dual connection:</strong></p>
 
-\[A = \frac{\eta_{\mu\nu}^a x^\nu}{x^2 + \rho^2} \sigma^a\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)6</p>
 
     <p><strong>Deformation complex cohomology:</strong></p>
 
@@ -1062,7 +1060,7 @@
 
     <p><strong>Virtual Fundamental Class:</strong></p>
 
-\[[\mathcal{M}_1^{\text{der}}]^{\text{vir}} = [\mathbb{R}^5] \in H_5(\mathcal{M}_1^{\text{der}})\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)7</p>
 
     <p><strong>Physical Interpretation:</strong> The 5 parameters correspond to collective coordinates of the instanton.</p>
   </li>
@@ -1078,24 +1076,24 @@
   <li>
     <p><strong>Step 1: Define the Functor</strong></p>
 
-\[Z: \text{Bord}_2 \to \text{Vect}_k\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)8</p>
 
     <p><strong>Objects ($1$-manifolds):</strong></p>
 
-\[Z(\Sigma) = H^\bullet(\Sigma, k)\]
+    <p>\(Z: \text{Bord}_n \to \text{Vect}\)9</p>
 
     <p><strong>Morphisms ($2$-cobordisms $M: \Sigma_1 \to \Sigma_2$):</strong></p>
 
-\[Z(M): H^\bullet(\Sigma_1) \to H^\bullet(\Sigma_2)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)0</p>
 
-\[Z(M)(\alpha) = M_* \alpha\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)1</p>
   </li>
   <li>
     <p><strong>Step 2: Verify Axioms</strong></p>
 
     <p><strong>Monoidality:</strong></p>
 
-\[Z(\Sigma_1 \sqcup \Sigma_2) = H^\bullet(\Sigma_1) \otimes H^\bullet(\Sigma_2)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)2</p>
 
     <p>$\because H^\bullet(\Sigma_1 \sqcup \Sigma_2) \cong H^\bullet(\Sigma_1) \otimes H^\bullet(\Sigma_2)$</p>
 
@@ -1103,7 +1101,7 @@
 
     <p>For $M_1: \Sigma \to S$, $M_2: S \to T$:</p>
 
-\[Z(M_2 \circ M_1) = Z(M_2) \circ Z(M_1)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)3</p>
 
     <p>$\because$ Künneth + Mayer-Vietoris</p>
   </li>
@@ -1151,11 +1149,11 @@
 
     <p>For closed surface $\Sigma_{g,n}$:</p>
 
-\[Z(\Sigma_{g,n}) = \dim H^\bullet(\Sigma_{g,n}) = 1 + (-1)^n b_1(\Sigma_{g,n})\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)4</p>
 
     <p><strong>Connection to Index Theorem (Ch 7.6):</strong></p>
 
-\[Z(\Sigma) = \text{Atiyah-Singer index of } \bar{\partial} \text{ on } \Sigma\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)5</p>
   </li>
 </ol>
 
@@ -1163,7 +1161,7 @@
 
 <p><strong>Problem:</strong> Construct factorization algebra for 2D scalar field $\phi$ with action:</p>
 
-\[S[\phi] = \int \frac{1}{2} (\partial \phi)^2\]
+<p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)6</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1173,7 +1171,7 @@
 
     <p>For open set $U$:</p>
 
-\[\mathcal{F}(U) = \text{Sym}^* \left( \Omega^\bullet(U)[1] \right)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)7</p>
 
     <p><strong>Generators:</strong></p>
 
@@ -1187,39 +1185,31 @@
 
     <p>For disjoint $U_1, U_2 \subset V$:</p>
 
-\[\mathcal{F}(U_1) \otimes \mathcal{F}(U_2) \to \mathcal{F}(V)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)8</p>
 
     <p><strong>Explicit computation:</strong></p>
 
-\[(\phi(U_1) \star \phi(U_2)) = \phi(U_1 \cup U_2)\]
+    <p>\(\mathcal{F}(U_1) \otimes \cdots \otimes \mathcal{F}(U_n) \to \mathcal{F}(V)\)9</p>
 
-\[(\star \phi(U_1)) \star (\star \phi(U_2)) = \langle \phi(U_1), \phi(U_2) \rangle = -\log |x-y|\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)0</p>
   </li>
   <li>
     <p><strong>Step 3: OPE Computation</strong></p>
 
     <p>Near $x \sim y$:</p>
 
-\[\phi(x) \star \phi(y) \sim -\log |x-y| + \text{regular}\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)1</p>
   </li>
   <li>
     <p><strong>Step 4: Renormalization Connection (Ch 5.6)</strong></p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log</td>
-          <td>x-y</td>
-          <td>$ is exactly the factorization structure map!</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log |x-y|$ is exactly the factorization structure map!</p>
 
     <p><strong>Verification:</strong></p>
 
     <p>For test functions $\psi_1, \psi_2$:</p>
 
-\[\int :\phi\psi_1: \cdot :\phi\psi_2: = \int \phi\psi_1 \phi\psi_2 - \langle \psi_1, G \psi_2 \rangle\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)2</p>
 
     <p>Where $G$ is the Green function, matching Hairer’s renormalization.</p>
   </li>
@@ -1235,12 +1225,12 @@
   <li>
     <p><strong>Step 1: Derived Moduli Stack</strong></p>
 
-\[\mathcal{M}_k^{\text{der}}(X, G) = \left\{ A \;\middle|\; F_A^+ = 0 \right\} \Big/ \mathcal{G}^{\text{der}}\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)3</p>
   </li>
   <li>
     <p><strong>Step 2: Virtual Fundamental Class</strong></p>
 
-\[[\mathcal{M}_k^{\text{der}}]^{\text{vir}} = c_{\text{top}}(R^1 \pi_* \text{ad}P) \cap [\mathcal{M}_k]\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)4</p>
   </li>
   <li>
     <p><strong>Step 3: TQFT Construction</strong></p>
@@ -1249,18 +1239,18 @@
 
     <p><strong>Morphisms:</strong> Cobordisms with connections</p>
 
-\[Z(M) = \int_{[\mathcal{M}^{\text{der}}(M)]^{\text{vir}}} e^{\omega}\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)5</p>
   </li>
   <li>
     <p><strong>Step 4: Explicit Computation for $X = \mathbb{CP}^2$</strong></p>
 
     <p><strong>Donaldson polynomial:</strong></p>
 
-\[D_k = \int_{[\mathcal{M}_k^{\text{der}}]^{\text{vir}}} c_2(\text{ad}P)^2\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)6</p>
 
     <p><strong>Result (via virtual localization):</strong></p>
 
-\[D_1(\mathbb{CP}^2) = 1, \quad D_2(\mathbb{CP}^2) = 9\]
+    <p>\(\Delta_g u = 0 \quad \text{where} \quad u: (M, g) \to (N, h)\)7</p>
 
     <p><strong>Connection to Chapter 6.6:</strong> These are exactly the instanton numbers computed via Uhlenbeck compactness!</p>
   </li>
@@ -1277,8 +1267,6 @@
       <th>Example</th>
       <th>Computational Result</th>
       <th>Physical Meaning</th>
-      <th> </th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -1287,39 +1275,29 @@
       <td>Harmonic maps</td>
       <td>$H^0 = 4$, $H^1 = 0$</td>
       <td>Smooth derived structure</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>Virtual Class</td>
       <td>GW invariants</td>
       <td>$\langle \text{pt}^5 \rangle_1 = 1$</td>
       <td>Exact curve counting</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>Derived Stack</td>
       <td>Instanton moduli</td>
       <td>$\dim = 8k-3$</td>
       <td>Gauge theory resolution</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>TQFT Functor</td>
       <td>de Rham cohomology</td>
       <td>Pair of pants matrices</td>
       <td>Topological invariance</td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>Factorization</td>
       <td>Free field</td>
-      <td>OPE: $-\log</td>
-      <td>x-y</td>
-      <td>$</td>
+      <td>OPE: $-\log |x-y|$</td>
       <td>QFT observables</td>
     </tr>
   </tbody>
@@ -1327,14 +1305,12 @@
 
 <p><strong>Complete Analytical Toolkit Delivered:</strong></p>
 
-<p>These examples provide:</p>
-<ul>
-  <li>Complete mathematical derivation with all homological computations</li>
-  <li>Explicit cohomology calculations using spectral sequences</li>
-  <li>Connection to previous chapters (instantons → Ch 6.6, renormalization → Ch 5.6)</li>
-  <li>Physical interpretation linking back to differential equations</li>
-  <li>Verification of axioms with concrete matrix computations</li>
-</ul>
+<p>These examples provide:
+- Complete mathematical derivation with all homological computations
+- Explicit cohomology calculations using spectral sequences
+- Connection to previous chapters (instantons → Ch 6.6, renormalization → Ch 5.6)
+- Physical interpretation linking back to differential equations
+- Verification of axioms with concrete matrix computations</p>
 
 <p><strong>Key Takeaway:</strong> The differential equation has dissolved into categorical structure. Geometry, analysis, and physics are unified through derived algebraic geometry, TQFT, and factorization algebras.</p>
 

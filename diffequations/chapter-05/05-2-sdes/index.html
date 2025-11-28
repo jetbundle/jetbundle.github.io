@@ -873,15 +873,7 @@
 
 <h4 id="picard-iteration-in-l2">Picard Iteration in $L^2$</h4>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}<em>t$ in the Banach space of square-integrable adapted processes equipped with the norm $|X| = \mathbb{E}[\sup</em>{0 \leq t \leq T}</td>
-      <td>X_t</td>
-      <td>^2]^{1/2}$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}<em>t$ in the Banach space of square-integrable adapted processes equipped with the norm $\|X\| = \mathbb{E}[\sup</em>{0 \leq t \leq T} |X_t|^2]^{1/2}$.</p>
 
 <p>Let $X^{(0)}_t = X_0$. The recurrence is defined by:</p>
 
@@ -960,18 +952,11 @@
 
 <h4 id="the-backward-equation">The Backward Equation</h4>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Let $u(t, x) = \mathbb{E}[f(X_T)</td>
-      <td>X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:</td>
-    </tr>
-  </tbody>
-</table>
+<p>Let $u(t, x) = \mathbb{E}[f(X_T) | X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:</p>
 
-\[\frac{\partial u}{\partial t} + \mathcal{L}u = 0, \quad t &lt; T\]
+<p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)0</p>
 
-\[u(T, x) = f(x)\]
+<p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)1</p>
 
 <p>This is a parabolic PDE where the operator $\mathcal{L}$ acts on the spatial variable $x$. It describes how the expected value depends on the starting position.</p>
 
@@ -979,7 +964,7 @@
 
 <p>Let $p(t, x)$ be the probability density function of the process $X_t$, assuming $X_0$ is distributed according to $p_0(x)$. The density evolves according to the adjoint operator $\mathcal{L}^*$:</p>
 
-\[\frac{\partial p}{\partial t} = \mathcal{L}^* p = -\sum_{i} \frac{\partial}{\partial x_i} (b_i(x)p) + \frac{1}{2} \sum_{i,j} \frac{\partial^2}{\partial x_i \partial x_j} ((\sigma\sigma^T)_{ij} p)\]
+<p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)2</p>
 
 <p>This equation conserves total probability ($\int p dx = 1$). The first term represents advection by the drift $b$, while the second represents diffusion by $\sigma$.</p>
 
@@ -993,98 +978,40 @@
 
 <p><strong>Problem:</strong> Solve the SDE</p>
 
-\[dX_t = \mu X_t dt + \sigma X_t dB_t, \quad X_0 = x_0 &gt; 0\]
+<p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)3</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li><strong>Verify Lipschitz Conditions:</strong>
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Drift: $b(t,x) = \mu x$, $</td>
-              <td>b(t,x) - b(t,y)</td>
-              <td>=</td>
-              <td>\mu</td>
-              <td> </td>
-              <td>x-y</td>
-              <td>$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Diffusion: $\sigma(t,x) = \sigma x$, $</td>
-              <td>\sigma(t,x) - \sigma(t,y)</td>
-              <td>=</td>
-              <td>\sigma</td>
-              <td> </td>
-              <td>x-y</td>
-              <td>$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Linear growth: $</td>
-              <td>b(t,x)</td>
-              <td>+</td>
-              <td>\sigma(t,x)</td>
-              <td>= (</td>
-              <td>\mu</td>
-              <td>+</td>
-              <td>\sigma</td>
-              <td>)</td>
-              <td>x</td>
-              <td>\leq K(1+</td>
-              <td>x</td>
-              <td>)$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>Drift: $b(t,x) = \mu x$, $|b(t,x) - b(t,y)| = |\mu||x-y|$</li>
+      <li>Diffusion: $\sigma(t,x) = \sigma x$, $|\sigma(t,x) - \sigma(t,y)| = |\sigma||x-y|$</li>
+      <li>Linear growth: $|b(t,x)| + |\sigma(t,x)| = (|\mu| + |\sigma|)|x| \leq K(1+|x|)$</li>
     </ul>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Conditions satisfied with $K = \max(</td>
-          <td>\mu</td>
-          <td>,</td>
-          <td>\sigma</td>
-          <td>)$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Conditions satisfied with $K = \max(|\mu|, |\sigma|)$</p>
   </li>
   <li>
     <p><strong>Exact Solution via Itô’s Formula:</strong>
 Consider $Y_t = \log X_t$. Apply Itô’s formula:</p>
 
-\[dY_t = \frac{1}{X_t} dX_t - \frac{1}{2} \frac{1}{X_t^2} d\langle X \rangle_t\]
+    <p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)4</p>
 
-\[d\langle X \rangle_t = (\sigma X_t)^2 dt = \sigma^2 X_t^2 dt\]
+    <p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)5</p>
 
-\[dY_t = \frac{\mu X_t dt + \sigma X_t dB_t}{X_t} - \frac{1}{2X_t^2} \cdot \sigma^2 X_t^2 dt = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma dB_t\]
+    <p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)6</p>
   </li>
   <li>
     <p><strong>Integration:</strong>
-\(Y_t = Y_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t\)</p>
+\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)7</p>
 
-\[\log X_t = \log x_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t\]
+    <p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)8</p>
 
-\[X_t = x_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t\right]\]
+    <p>\(X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s\)9</p>
   </li>
   <li><strong>Moments:</strong>
-\(\mathbb{E}[X_t] = x_0 e^{\mu t}, \quad \text{Var}(X_t) = x_0^2 e^{2\mu t} (e^{\sigma^2 t} - 1)\)</li>
+\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)0</li>
 </ol>
 
 <p><strong>Key Insight:</strong> The explicit solution confirms the Picard iteration converges to this lognormal distribution.</p>
@@ -1106,21 +1033,21 @@ Consider $Y_t = \log X_t$. Apply Itô’s formula:</p>
     <p><strong>Variation of Parameters:</strong>
 The homogeneous solution is $e^{-\gamma t}$. Let $X_t = e^{-\gamma t} Y_t$:</p>
 
-\[dX_t = -\gamma e^{-\gamma t} Y_t dt + e^{-\gamma t} dY_t\]
+    <p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)1</p>
 
     <p>Equate coefficients:</p>
 
-\[e^{-\gamma t} dY_t = \sigma dB_t \implies dY_t = \sigma e^{\gamma t} dB_t\]
+    <p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)2</p>
   </li>
   <li>
     <p><strong>Integration:</strong>
-\(Y_t = Y_0 + \sigma \int_0^t e^{\gamma s} dB_s\)</p>
+\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)3</p>
 
-\[X_t = e^{-\gamma t} x_0 + \sigma e^{-\gamma t} \int_0^t e^{\gamma s} dB_s\]
+    <p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)4</p>
   </li>
   <li>
     <p><strong>Stationary Distribution:</strong>
-\(\text{Cov}(X_t, X_s) = \frac{\sigma^2}{2\gamma} e^{-\gamma|t-s|}\)</p>
+\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)5</p>
 
     <p>As $t \to \infty$, $X_t \xrightarrow{d} \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)$</p>
   </li>
@@ -1135,7 +1062,7 @@ The homogeneous solution is $e^{-\gamma t}$. Let $X_t = e^{-\gamma t} Y_t$:</p>
 <ol>
   <li>
     <p><strong>Lipschitz Failure:</strong>
-\(|\sigma(t,x) - \sigma(t,y)| = \sigma |\sqrt{x} - \sqrt{y}| \not\leq K|x-y|\)</p>
+\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)6</p>
   </li>
   <li>
     <p><strong>Pathwise Uniqueness:</strong>
@@ -1159,35 +1086,35 @@ Pathwise uniqueness $\Rightarrow$ strong existence</p>
 
 <p><strong>Feynman-Kac Solution:</strong></p>
 
-\[u(t,x) = \mathbb{E}^{t,x}[\psi(B_T)] = \int_{\mathbb{R}} \psi(y) \cdot \frac{1}{\sqrt{2\pi(T-t)}} \exp\left(-\frac{(y-x)^2}{2(T-t)}\right) dy\]
+<p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)7</p>
 
 <p><strong>Verification via Itô:</strong></p>
 
 <p>Let $M_s = u(s, B_s)$. Then:</p>
 
-\[dM_s = \partial_t u ds + \partial_x u dB_s + \frac{1}{2} \partial_{xx} u ds = 0\]
+<p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)8</p>
 
-\[M_t = u(t,x) = \mathbb{E}[M_T] = \mathbb{E}[\psi(B_T)]\]
+<p>\(|b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|\)9</p>
 
 <h3 id="example-525-black-scholes-pde">Example 5.2.5: Black-Scholes PDE</h3>
 
 <p><strong>Problem:</strong> Price European call option $V(t,S)$ satisfying:</p>
 
-\[\partial_t V + rS \partial_S V + \frac{1}{2} \sigma^2 S^2 \partial_{SS} V - rV = 0\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)0</p>
 
-\[V(T,S) = \max(S-K, 0)\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)1</p>
 
 <p><strong>Stochastic Representation:</strong></p>
 
-\[V(t,S) = e^{-r(T-t)} \mathbb{E}^{t,S} \left[ \max(S_T - K, 0) \right]\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)2</p>
 
 <p>where $dS_u = r S_u du + \sigma S_u d\tilde{B}_u$ (risk-neutral measure).</p>
 
 <p><strong>Analytical Solution:</strong></p>
 
-\[V(t,S) = S N(d_1) - K e^{-r(T-t)} N(d_2)\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)3</p>
 
-\[d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma \sqrt{T-t}}, \quad d_2 = d_1 - \sigma \sqrt{T-t}\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)4</p>
 
 <p><strong>Complete Derivation:</strong></p>
 
@@ -1206,13 +1133,13 @@ Pathwise uniqueness $\Rightarrow$ strong existence</p>
 
 <p><strong>Feynman-Kac:</strong></p>
 
-\[u(t,x) = \mathbb{E}^{t,x} \left[ e^{-\lambda (T-t)} \psi(X_T) \right]\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)5</p>
 
 <p>where $dX_s = -\gamma X_s ds + \sigma dB_s$.</p>
 
 <p><strong>Exact Solution (when $\psi(x) = e^{kx}$):</strong></p>
 
-\[u(t,x) = e^{k x - \frac{\sigma^2 k^2}{4\gamma}(1-e^{-2\gamma(T-t)}) - \lambda(T-t)}\]
+<p>\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)6</p>
 
 <h3 id="example-527-drift-removalbrownian-bridge">Example 5.2.7: Drift Removal—Brownian Bridge</h3>
 
@@ -1226,11 +1153,11 @@ Pathwise uniqueness $\Rightarrow$ strong existence</p>
   </li>
   <li>
     <p><strong>Radon-Nikodym Derivative:</strong>
-\(Z_t = \exp\left( -\int_0^t (-\mu) dB_s - \frac{1}{2} \int_0^t \mu^2 ds \right) = \exp\left( \mu B_t - \frac{\mu^2 t}{2} \right)\)</p>
+\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)7</p>
   </li>
   <li>
     <p><strong>Novikov Condition:</strong>
-\(\mathbb{E}[\exp(\frac{1}{2} \mu^2 T)] &lt; \infty \quad ✓\)</p>
+\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)8</p>
   </li>
   <li>
     <p><strong>Under $\mathbb{Q}$:</strong>
@@ -1240,7 +1167,7 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
   </li>
   <li>
     <p><strong>Verification:</strong>
-\(\mathbb{E}^\mathbb{Q}[X_t] = \mathbb{E}^\mathbb{P}[X_t Z_t] = \mathbb{E}^\mathbb{P}[(B_t + \mu t) \exp(\mu B_t - \frac{\mu^2 t}{2})] = 0\)</p>
+\(|b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)\)9</p>
 
     <p>The exponential martingale property yields $\mathbb{E}^\mathbb{Q}[X_t] = 0$.</p>
   </li>
@@ -1258,17 +1185,17 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
   </li>
   <li>
     <p><strong>Girsanov Transformation:</strong>
-\(\theta_t = \frac{\mu - r}{\sigma}\)</p>
+\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)0</p>
 
-\[\frac{d\mathbb{Q}}{d\mathbb{P}} = \exp\left( -\frac{\mu-r}{\sigma} B_T - \frac{(\mu-r)^2 T}{2\sigma^2} \right)\]
+    <p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)1</p>
   </li>
   <li>
     <p><strong>Under $\mathbb{Q}$:</strong>
-\(dS_t = r S_t dt + \sigma S_t d\tilde{B}_t\)</p>
+\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)2</p>
   </li>
   <li>
     <p><strong>Option Price:</strong>
-\(V_0 = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]\)</p>
+\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)3</p>
   </li>
 </ol>
 
@@ -1280,9 +1207,9 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 
 <p><strong>Girsanov Transformation:</strong></p>
 
-\[\theta_t = -\frac{1}{R_t}\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)4</p>
 
-\[Z_t = \exp\left( -\int_0^t \frac{1}{R_s} dB_s - \frac{1}{2} \int_0^t \frac{1}{R_s^2} ds \right)\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)5</p>
 
 <p>Under new measure $\mathbb{Q}$, $dR_t = d\tilde{B}_t$.</p>
 
@@ -1294,21 +1221,21 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 
 <p><strong>Fokker-Planck Equation:</strong></p>
 
-\[\partial_t p = \gamma \partial_x (x p) + \frac{\sigma^2}{2} \partial_{xx} p\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)6</p>
 
 <p><strong>Exact Solution:</strong></p>
 
-\[p(t,x) = \frac{1}{\sqrt{2\pi v(t)}} \exp\left( -\frac{(x - m(t))^2}{2v(t)} \right)\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)7</p>
 
 <p>where $m(t) = x_0 e^{-\gamma t}$, $v(t) = \frac{\sigma^2}{2\gamma} (1 - e^{-2\gamma t})$.</p>
 
 <p><strong>Verification:</strong></p>
 
-\[\partial_t p = \gamma x_0 e^{-\gamma t} \cdot \frac{x-m}{v} p + \frac{1}{2v} p\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)8</p>
 
-\[\gamma \partial_x (x p) = \gamma p + \gamma x \partial_x p\]
+<p>\(X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) dB_s\)9</p>
 
-\[\frac{\sigma^2}{2} \partial_{xx} p = \frac{\sigma^2}{2v} p - \frac{\sigma^2}{2v^2} (x-m) \partial_x p\]
+<p>\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)0</p>
 
 <p>All terms balance to yield $\partial_t p$.</p>
 
@@ -1349,7 +1276,7 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 
 <p>For $dX_t = b(X_t) dt + \sigma(X_t) dB_t$, solve:</p>
 
-\[-\partial_x (b(x)\pi(x)) + \frac{1}{2} \partial_{xx} (\sigma^2(x)\pi(x)) = 0\]
+<p>\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)1</p>
 
 <h3 id="example-5212-cir-process-forward-equation">Example 5.2.12: CIR Process Forward Equation</h3>
 
@@ -1357,30 +1284,20 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 
 <p><strong>Fokker-Planck:</strong></p>
 
-\[\partial_t p = \partial_x [(\kappa(\theta - x))p] + \frac{1}{2} \partial_{xx} (\sigma^2 x p)\]
+<p>\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)2</p>
 
 <p><strong>Stationary Distribution (when $2\kappa\theta &gt; \sigma^2$):</strong></p>
 
-\[\pi(x) = C x^{\alpha-1} e^{-\beta x}, \quad \alpha = \frac{2\kappa\theta}{\sigma^2}, \quad \beta = \frac{2\kappa}{\sigma^2}\]
+<p>\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)3</p>
 
-<p><strong>Verification:</strong></p>
-<ul>
-  <li>Compute $\mathcal{L}^*\pi$ term by term</li>
-  <li>Parameter conditions ensure positivity and integrability</li>
-  <li>Connects to non-central chi-squared distribution</li>
-</ul>
+<p><strong>Verification:</strong>
+- Compute $\mathcal{L}^*\pi$ term by term
+- Parameter conditions ensure positivity and integrability
+- Connects to non-central chi-squared distribution</p>
 
 <h3 id="example-5213-advanced-demonstrationnon-uniqueness-without-lipschitz">Example 5.2.13: Advanced Demonstration—Non-Uniqueness Without Lipschitz</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Problem:</strong> $dX_t =</td>
-      <td>X_t</td>
-      <td>^\alpha dB_t$, $\alpha \in (0,1)$.</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Problem:</strong> $dX_t = |X_t|^\alpha dB_t$, $\alpha \in (0,1)$.</p>
 
 <p><strong>Analysis:</strong></p>
 
@@ -1388,17 +1305,7 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
   <li><strong>No Pathwise Uniqueness:</strong> Multiple solutions from $X_0 = 0$
     <ul>
       <li>Solution 1: $X_t \equiv 0$</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Solution 2: $X_t = \left( \int_0^t</td>
-              <td>B_s</td>
-              <td>^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>Solution 2: $X_t = \left( \int_0^t |B_s|^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$</li>
     </ul>
   </li>
   <li><strong>Weak Uniqueness:</strong> Holds but strong solutions don’t</li>
@@ -1415,19 +1322,19 @@ Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian mot
 <ol>
   <li>
     <p><strong>Linear Growth Fails:</strong>
-\(|b(t,x)| = x^2 \not\leq K(1+|x|)\)</p>
+\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)4</p>
   </li>
   <li>
     <p><strong>Exact Solution:</strong>
-\(X_t = \frac{x_0 + B_t}{1 - x_0 t - \int_0^t B_s ds}\)</p>
+\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)5</p>
   </li>
   <li>
     <p><strong>Explosion Time:</strong>
-\(\tau = \frac{1}{x_0 + \sup_{s\leq t} B_s}\)</p>
+\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)6</p>
   </li>
   <li>
     <p><strong>Probability:</strong>
-\(\mathbb{P}(\tau &lt; T) &gt; 0 \quad \text{for any } T &gt; 0\)</p>
+\(\frac{\partial u}{\partial t} + \mathcal{L}u - V(x)u = 0, \quad u(T, x) = \psi(x)\)7</p>
   </li>
 </ol>
 

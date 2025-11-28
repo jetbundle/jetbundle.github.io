@@ -838,8 +838,8 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>Acknowledging that exact solutions are rare, we turn to approximation in limits. <strong>Laplace’s Method</strong> and <strong>Stationary Phase</strong> reveal that integrals are dominated by critical points. The <strong>WKB Approximation</strong> connects wave mechanics to classical ray trajectories. This module emphasizes “local truth”—accurate behavior at $\infty$ or $0$—while exposing the lack of global connection formulas, necessitating a topological understanding of the Stokes phenomenon.</p>
-<h2 id="mathematical-content">Mathematical Content</h2>
+<p>Acknowledging that exact solutions are rare, we turn to approximation in limits. <strong>Laplace’s Method</strong> and <strong>Stationary Phase</strong> reveal that integrals are dominated by critical points. The <strong>WKB Approximation</strong> connects wave mechanics to classical ray trajectories. This module emphasizes “local truth”—accurate behavior at $\infty$ or $0$—while exposing the lack of global connection formulas, necessitating a topological understanding of the Stokes phenomenon.
+## Mathematical Content</p>
 
 <h3 id="laplaces-method-dominance-of-critical-points">Laplace’s Method: Dominance of Critical Points</h3>
 
@@ -927,7 +927,7 @@
 
 <p>The stationary point at $x=0$ (an endpoint) yields</p>
 
-\[I(M)\sim \tfrac{1}{2}\sqrt{\frac{\pi}{M}}e^{i\pi/4},\]
+<p>\(I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\)0</p>
 
 <p>matching the exact Fresnel integral and exhibiting the $\pi/4$ phase.</p>
 
@@ -947,35 +947,15 @@
 
 <p><strong>Problem:</strong> Solve $\epsilon^{2}y’’+(1-x^{2})y=0$ via WKB.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $</td>
-      <td>x</td>
-      <td>&lt;1$ is</td>
-    </tr>
-  </tbody>
-</table>
+<p>The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $|x|&lt;1$ is</p>
 
-\[y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos\left(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}\right).\]
+<p>\(I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\)1</p>
 
 <h3 id="example-158-quantum-tunneling-via-wkb">Example 1.5.8: Quantum Tunneling via WKB</h3>
 
 <p><strong>Problem:</strong> Estimate tunneling in $V(x)=x^{4}-2x^{2}$.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>In the forbidden region $</td>
-      <td>x</td>
-      <td>&gt;1$, the WKB solution is $y\sim</td>
-      <td>Q</td>
-      <td>^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{</td>
-      <td>Q</td>
-      <td>}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>In the forbidden region $|x|&gt;1$, the WKB solution is $y\sim |Q|^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{|Q|}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.</p>
 
 <h3 id="example-159-airy-turning-point-matching">Example 1.5.9: Airy Turning-Point Matching</h3>
 
@@ -983,11 +963,11 @@
 
 <p>The Airy equation $y’‘-xy=0$ has asymptotics</p>
 
-\[\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi}x^{1/4}}e^{-\frac{2}{3}x^{3/2}},\quad x\to+\infty,\]
+<p>\(I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\)2</p>
 
 <p>and</p>
 
-\[\operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}|x|^{1/4}}\sin\left(\frac{2}{3}|x|^{3/2}+\frac{\pi}{4}\right),\quad x\to -\infty.\]
+<p>\(I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\)3</p>
 
 <p>Matching these yields the $\pi/4$ phase shift in the oscillatory region.</p>
 
@@ -1009,7 +989,7 @@
 
 <p>The Borel transform $B(t)=\sum (-1)^{n}t^{n}/(n!)^{2}=I_{0}(2\sqrt{t})$. The Laplace integral</p>
 
-\[S(z)=\int_{0}^{\infty}e^{-t}I_{0}(2\sqrt{t})e^{\lambda t/z}\,dt\]
+<p>\(I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\left|h''(x_{0})\right|}}.\)4</p>
 
 <p>defines analytic continuations in different sectors. Choosing integration contours above or below the positive axis reproduces the Stokes jumps.</p>
 

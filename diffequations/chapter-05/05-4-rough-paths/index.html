@@ -913,7 +913,7 @@
 <p>Consider the path $X: [0,1] \to \mathbb{R}$ defined piecewise:</p>
 
 \[X(t) = \begin{cases}
-t^{3/4} &amp; \text{if } 0 \leq t \leq 1/2 \\
+t^{3/4} &amp; \text{if } 0 \leq t \leq 1/2 \
 1/2 + (t-1/2)^{3/4} &amp; \text{if } 1/2 &lt; t \leq 1
 \end{cases}\]
 
@@ -926,19 +926,7 @@ t^{3/4} &amp; \text{if } 0 \leq t \leq 1/2 \\
     <p><strong>Verify Hölder Regularity:</strong>
 \(|X(t) - X(s)| \leq C|t-s|^{3/4} \quad \text{for all } s,t \in [0,1]\)</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Proof:</strong> For $t,s \in [0,1/2]$, $</td>
-          <td>X(t)-X(s)</td>
-          <td>=</td>
-          <td>t^{3/4} - s^{3/4}</td>
-          <td>\leq</td>
-          <td>t-s</td>
-          <td>^{3/4}$ by mean value theorem.</td>
-        </tr>
-      </tbody>
-    </table>
+    <p><strong>Proof:</strong> For $t,s \in [0,1/2]$, $|X(t)-X(s)| = |t^{3/4} - s^{3/4}| \leq |t-s|^{3/4}$ by mean value theorem.</p>
 
     <p>Similar for $[1/2,1]$. Across the kink at $t=1/2$:</p>
 
@@ -952,13 +940,13 @@ For smooth paths: $\mathbb{X}</em>{s,t} = \int_s^t (X_r - X_s) dX_r$</p>
 
     <p>Let $s &lt; t \leq 1/2$, then $X_r = r^{3/4}$</p>
 
-\[X_r - X_s = r^{3/4} - s^{3/4}, \quad dX_r = \frac{3}{4} r^{-1/4} dr\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)0</p>
 
-\[\mathbb{X}_{s,t} = \int_s^t (r^{3/4} - s^{3/4}) \cdot \frac{3}{4} r^{-1/4} dr\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)1</p>
 
-\[= \frac{3}{4} \int_s^t [r^{1/2} - s^{3/4} r^{-1/4}] dr\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)2</p>
 
-\[= \frac{3}{4} \left[ \frac{2}{3}t^{3/2} - \frac{2}{3}s^{3/2} - 4 s^{3/4} (t^{3/4} - s^{3/4}) \right]\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)3</p>
   </li>
   <li>
     <p><strong>Verify Chen’s Relation:</strong>
@@ -970,13 +958,13 @@ Test: $s=0$, $u=1/4$, $t=1/2$</p>
 
     <p>Direct computation:</p>
 
-\[X_{0,1/4} = (1/4)^{3/4} = 4^{-3/4}\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)4</p>
 
-\[X_{1/4,1/2} = (1/2)^{3/4} - (1/4)^{3/4}\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)5</p>
 
-\[\mathbb{X}_{0,1/4} = \frac{3}{4}\left[\frac{2}{3}(1/4)^{3/2} - 4(0)(1/4)^{3/4}\right] = \frac{1}{2}(1/4)^{3/2}\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)6</p>
 
-\[\mathbb{X}_{1/4,1/2} = \frac{3}{4} \int_{1/4}^{1/2} [r^{1/2} - (1/4)^{3/4} r^{-1/4}] dr\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)7</p>
 
     <p><strong>Result:</strong> Chen’s relation holds exactly, confirming $(X, \mathbb{X})$ forms a geometric rough path.</p>
   </li>
@@ -999,29 +987,29 @@ Hypothesis: $Y_t = Y_0 + Y’<em>0 (X_t - X_0) + R</em>{0,t}$ where $|R_{0,t}| \
     <p><strong>Compute Gubinelli Derivative:</strong>
 The Gubinelli derivative $Y’$ satisfies:</p>
 
-\[Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)8</p>
 
     <p>For our quadratic $f$, assume $Y’_s \approx 2Y_s$ (formal linearization):</p>
 
-\[Y'_s = 2Y_s\]
+    <p>\(\mathbb{X}_{s,t} = \mathbb{X}_{s,u} + \mathbb{X}_{u,t} + (X_{s,u} \otimes X_{u,t})\)9</p>
   </li>
   <li>
     <p><strong>Verify Remainder Regularity:</strong>
 Compute the actual integral using Picard iteration:</p>
 
-\[Y^{(0)}_t = Y_0\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)0</p>
 
-\[Y^{(1)}_t = Y_0 + \int_0^t (Y^{(0)}_r)^2 dX_r = Y_0 + Y_0^2 X_t\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)1</p>
 
-\[Y^{(2)}_t = Y_0 + \int_0^t (Y^{(1)}_r)^2 dX_r\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)2</p>
 
     <p>Second iteration:</p>
 
-\[Y^{(1)}_r = Y_0 + Y_0^2 X_r\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)3</p>
 
-\[(Y^{(1)}_r)^2 = Y_0^2 + 2 Y_0^3 X_r + Y_0^4 X_r^2\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)4</p>
 
-\[\int (Y^{(1)}_r)^2 dX_r = Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t} + Y_0^4 \int X_r^2 dX_r\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)5</p>
   </li>
   <li>
     <p><strong>Remainder Analysis:</strong>
@@ -1031,19 +1019,7 @@ Actual $Y_t \approx Y_0 + Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t}$</p>
 
     <p>Remainder $R_{0,t} = Y_t - Y’<em>0 X_t \approx 2 Y_0^3 \mathbb{X}</em>{0,t} - 2 Y_0^3 X_t^2$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Regularity check:</strong> Since $</td>
-          <td>\mathbb{X}_{0,t}</td>
-          <td>\lesssim t^{3/2}$ and $</td>
-          <td>X_t^2</td>
-          <td>\lesssim t^{3/2}$, we have $</td>
-          <td>R_{0,t}</td>
-          <td>\lesssim t^{3/2} = O(t^{2\alpha})$ with $\alpha=3/4$.</td>
-        </tr>
-      </tbody>
-    </table>
+    <p><strong>Regularity check:</strong> Since $|\mathbb{X}<em>{0,t}| \lesssim t^{3/2}$ and $|X_t^2| \lesssim t^{3/2}$, we have $|R</em>{0,t}| \lesssim t^{3/2} = O(t^{2\alpha})$ with $\alpha=3/4$.</p>
   </li>
 </ol>
 
@@ -1066,11 +1042,11 @@ The Stieltjes integral $\int_0^1 t^2 dt^{3/4}$ doesn’t exist in Riemann sense 
     <p><strong>Rough Path Integration:</strong>
 For $\alpha$-Hölder rough path with $p = 1/\alpha = 4/3$:</p>
 
-\[\int_s^t Y_r dX_r \approx Y_s X_{s,t} + Y'_s \mathbb{X}_{s,t}\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)6</p>
 
     <p>Compute for $Y_t = t^2$:</p>
 
-\[Y'_s = \lim_{t \to s} \frac{Y_t - Y_s}{X_t - X_s} = \lim \frac{t^2 - s^2}{t^{3/4} - s^{3/4}}\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)7</p>
 
     <p>L’Hôpital: $\lim \frac{2t}{(3/4) t^{-1/4}} = \frac{8}{3} s^{9/4}$</p>
   </li>
@@ -1078,31 +1054,21 @@ For $\alpha$-Hölder rough path with $p = 1/\alpha = 4/3$:</p>
     <p><strong>Sewing Lemma Convergence:</strong>
 Consider partition $0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = 1$:</p>
 
-\[I^{[n]} = \sum_{i=0}^{n-1} [Y_{t_i} X_{t_i,t_{i+1}} + Y'_{t_i} \mathbb{X}_{t_i,t_{i+1}}]\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)8</p>
 
     <p>Error analysis:</p>
 
-\[|I^{[n]} - I^{[m]}| \leq \sum |R_{t_i,t_{i+1}}| + \sum |\text{remainder terms}|\]
+    <p>\(|X_{s,t}| \lesssim |t-s|^\alpha, \quad |\mathbb{X}_{s,t}| \lesssim |t-s|^{2\alpha}\)9</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Since $</td>
-          <td>R_{s,t}</td>
-          <td>\lesssim</td>
-          <td>t-s</td>
-          <td>^{3/2}$, and $3/2 &gt; 1$, the mesh $\to 0$ implies Cauchy criterion satisfied.</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Since $|R_{s,t}| \lesssim |t-s|^{3/2}$, and $3/2 &gt; 1$, the mesh $\to 0$ implies Cauchy criterion satisfied.</p>
   </li>
   <li>
     <p><strong>Exact Computation:</strong>
-\(\int_0^1 t^2 dt^{3/4} = \lim_{n \to \infty} \sum \left[t_i^2 (t_{i+1}^{3/4} - t_i^{3/4}) + \frac{8}{3}t_i^{9/4} \mathbb{X}_{t_i,t_{i+1}}\right]\)</p>
+\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)0</p>
 
     <p>Analytical result (after tedious computation):</p>
 
-\[\int_0^1 t^2 dt^{3/4} = \frac{16}{21}\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)1</p>
 
     <p>This matches the result obtained by regularizing $X$ with smooth approximations.</p>
   </li>
@@ -1121,21 +1087,20 @@ Consider partition $0 = t_0 &lt; t_1 &lt; \dots &lt; t_n = 1$:</p>
     <p><strong>Construct Smooth Rough Paths:</strong>
 For each $\varepsilon &gt; 0$, define:</p>
 
-\[X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds \quad \text{(smooth, $C^\infty$)}\]
-
-\[\mathbb{X}^\varepsilon_{s,t} = \int_s^t \int_s^r \varphi_\varepsilon(u) \varphi_\varepsilon(v) dv du \quad \text{(canonical lift)}\]
+    <p>\(X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds \quad \text{(smooth, $C^\infty$)}\)
+S(X)<em>{s,t} = 1 + \sum</em>{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}
+\(2
+\mathbb{X}^\varepsilon_{s,t} = \int_s^t \int_s^r \varphi_\varepsilon(u) \varphi_\varepsilon(v) dv du \quad \text{(canonical lift)}\)</p>
   </li>
   <li>
     <p><strong>Convergence in Rough Path Topology:</strong>
 $p$-Variation distance with $p = 4/3$:</p>
 
-\[d_p((X^\varepsilon, \mathbb{X}^\varepsilon), (X, \mathbb{X})) = \|X^\varepsilon - X\|_{\alpha} + \|\mathbb{X}^\varepsilon - \mathbb{X}\|_{2\alpha}\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)3</p>
 
-    <p>As $\varepsilon \to 0$:</p>
-    <ul>
-      <li>$X^\varepsilon \to X$ uniformly (by mollification)</li>
-      <li>$\mathbb{X}^\varepsilon \to \mathbb{X}$ in $2\alpha$-Hölder norm (by Itô isometry convergence)</li>
-    </ul>
+    <p>As $\varepsilon \to 0$:
+- $X^\varepsilon \to X$ uniformly (by mollification)
+- $\mathbb{X}^\varepsilon \to \mathbb{X}$ in $2\alpha$-Hölder norm (by Itô isometry convergence)</p>
   </li>
   <li>
     <p><strong>Solution Convergence:</strong>
@@ -1143,29 +1108,29 @@ Consider RDE: $dY = Y dX$ (geometric Brownian motion)</p>
 
     <p>Smooth solutions:</p>
 
-\[Y^\varepsilon_t = Y_0 \exp(X^\varepsilon_t + \frac{1}{2} \mathbb{X}^\varepsilon_{0,t})\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)4</p>
 
     <p>Rough path solution:</p>
 
-\[Y_t = Y_0 \exp(X_t + \mathbb{X}_{0,t}) \quad \text{(Stratonovich lift)}\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)5</p>
   </li>
   <li>
     <p><strong>Explicit Error Computation:</strong>
 For deterministic $X_t = t^{3/4}$ mollified:</p>
 
-\[X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) s^{3/4} ds \approx t^{3/4} + \frac{\varepsilon^2}{2} \cdot \frac{3}{4}\left(\frac{3}{4}-1\right)t^{3/4-2}\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)6</p>
 
-\[\mathbb{X}^\varepsilon_{0,t} \approx \int_0^t (r^{3/4})^2 \frac{3}{4}r^{-1/4} dr + O(\varepsilon^2)\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)7</p>
 
     <p>Error:</p>
 
-\[|Y^\varepsilon_t - Y_t| \leq C \|X^\varepsilon - X\|_\infty + C \|\mathbb{X}^\varepsilon - \mathbb{X}\|_{2\alpha} \to 0 \text{ as } \varepsilon \to 0\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)8</p>
   </li>
   <li>
     <p><strong>The Itô-Stratonovich Correction:</strong>
 <strong>Key Insight:</strong> If we used Itô lift $\mathbb{X}^{\text{Itô}}<em>{s,t} = \int_s^t \int_s^r dX_u dX_v - \frac{1}{2}(X</em>{s,t} \otimes X_{s,t})$:</p>
 
-\[Y^{\text{Itô}}_t = Y_0 \exp(X_t - \frac{1}{2}t)\]
+    <p>\(S(X)_{s,t} = 1 + \sum_{k=1}^\infty \int_{s &lt; t_1 &lt; \dots &lt; t_k &lt; t} dX_{t_1} \otimes \dots \otimes dX_{t_k}\)9</p>
 
     <p>The difference $\mathbb{X} - \mathbb{X}^{\text{Itô}} = \frac{1}{2}X \otimes X$ exactly accounts for the Itô correction!</p>
   </li>
@@ -1177,38 +1142,38 @@ For deterministic $X_t = t^{3/4}$ mollified:</p>
 
 <p>Two paths:</p>
 
-\[X^1_t = t^2, \quad X^2_t = t^3 \quad \text{on } [0,1]\]
+<p>\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)0</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Level 1 Signature:</strong>
-\(S^1_1 = \int_0^1 dX^1_t = X^1_1 = 1\)</p>
+\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)1</p>
 
-\[S^2_1 = \int_0^1 dX^2_t = X^2_1 = 1\]
+    <p>\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)2</p>
 
     <p>Indistinguishable at level 1.</p>
   </li>
   <li>
     <p><strong>Level 2 Signature:</strong>
-\(S^1_2 = \int_0^1 \int_0^t dX^1_s dX^1_t = \int_0^1 2s ds = 1\)</p>
+\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)3</p>
 
-\[S^2_2 = \int_0^1 \int_0^t 3s^2 \cdot 3t^2 dt ds = 9 \int_0^1 s^2 ds = 3\]
+    <p>\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)4</p>
 
     <p>Different!</p>
   </li>
   <li>
     <p><strong>Full Signature:</strong>
-\(S(X^1) = 1 + t^2 + \frac{1}{3}t^3 + \frac{1}{12}t^4 + \cdots\)</p>
+\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)5</p>
 
-\[S(X^2) = 1 + t^3 + t^6 + \cdots\]
+    <p>\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)6</p>
   </li>
   <li>
     <p><strong>Logarithmic Signature:</strong>
 The log signature uniquely determines the path:</p>
 
-\[\log S(X) = \sum_{k \geq 1} \frac{(-1)^{k+1}}{k} (S_k - 1)\]
+    <p>\(Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}\)7</p>
 
     <p><strong>Chen’s theorem:</strong> Two paths with equal signatures are equal almost everywhere.</p>
   </li>
@@ -1225,19 +1190,16 @@ The log signature uniquely determines the path:</p>
 <ol>
   <li>
     <p><strong>Construct Rough Path from Discrete Data:</strong>
-\(X^\Delta_t = \sum_{i \leq t/\Delta} r_i \Delta^{1/2} \quad \text{(scaled to have variance $t$)}\)</p>
-
-    <p>Discrete iterated integrals:</p>
-
-\[\mathbb{X}^\Delta_{i,j} = \sum_{i \leq k &lt; l \leq j} r_k r_l \Delta\]
-  </li>
-  <li>
-    <p><strong>Rough Path Metric:</strong>
-\(d_p(X^\Delta, X^\varepsilon) = \sup_{|i-j| \geq 1} \frac{|\mathbb{X}^\Delta_{i,j} - \mathbb{X}^\varepsilon_{i,j}|}{|j-i|^{2/3}}\)</p>
-  </li>
-  <li>
-    <p><strong>RDE for Portfolio Optimization:</strong>
-\(dY_t = \sigma(Y_t) dX_t \quad \text{($Y$ = portfolio value)}\)</p>
+\(X^\Delta_t = \sum_{i \leq t/\Delta} r_i \Delta^{1/2} \quad \text{(scaled to have variance $t$)}\)
+Y_t - Y_s = Y’<em>s (X_t - X_s) + R</em>{s,t}
+\(8
+\mathbb{X}^\Delta_{i,j} = \sum_{i \leq k &lt; l \leq j} r_k r_l \Delta\)
+Y_t - Y_s = Y’<em>s (X_t - X_s) + R</em>{s,t}
+\(9
+d_p(X^\Delta, X^\varepsilon) = \sup_{|i-j| \geq 1} \frac{|\mathbb{X}^\Delta_{i,j} - \mathbb{X}^\varepsilon_{i,j}|}{|j-i|^{2/3}}\)
+\int_s^t Y_r \, d\mathbf{X}<em>r \approx Y_s X</em>{s,t} + Y’<em>s \mathbb{X}</em>{s,t}
+\(0
+dY_t = \sigma(Y_t) dX_t \quad \text{($Y$ = portfolio value)}\)</p>
 
     <p><strong>Stability:</strong> Small changes in observed returns $\to$ controlled changes in optimal portfolio.</p>
   </li>
@@ -1245,7 +1207,7 @@ The log signature uniquely determines the path:</p>
     <p><strong>Leverage Effect Modeling:</strong>
 Empirical observation: Volatility depends on returns</p>
 
-\[\sigma(Y_t) = a + b \text{sign}(dX_t)\]
+    <p>\(\int_s^t Y_r \, d\mathbf{X}_r \approx Y_s X_{s,t} + Y'_s \mathbb{X}_{s,t}\)1</p>
 
     <p>The rough path structure ensures continuous dependence on the observed Lévy area $\mathbb{X}_{s,t}$.</p>
   </li>

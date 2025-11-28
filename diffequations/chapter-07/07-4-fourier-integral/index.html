@@ -844,15 +844,7 @@
 
 <h3 id="pseudodifferential-operators">Pseudodifferential Operators</h3>
 
-<table>
-  <tbody>
-    <tr>
-      <td>We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{</td>
-      <td>\alpha</td>
-      <td>\le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:</td>
-    </tr>
-  </tbody>
-</table>
+<p>We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{|\alpha| \le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:</p>
 
 \[P(x, D)u(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{ix\cdot\xi} p(x, \xi) \hat{u}(\xi) \, d\xi\]
 
@@ -862,19 +854,7 @@
 
 \[|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $</td>
-      <td>a(x,\xi)</td>
-      <td>\ge c</td>
-      <td>\xi</td>
-      <td>^m$ for large $</td>
-      <td>\xi</td>
-      <td>$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.</td>
-    </tr>
-  </tbody>
-</table>
+<p>The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $|a(x,\xi)| \ge c|\xi|^m$ for large $|\xi|$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.</p>
 
 <h3 id="fourier-integral-operators">Fourier Integral Operators</h3>
 
@@ -922,15 +902,7 @@
 
 \[\text{WF}(u(t)) \subset \chi_t(\text{WF}(f)) \cup \chi_{-t}(\text{WF}(f))\]
 
-<table>
-  <tbody>
-    <tr>
-      <td>where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $</td>
-      <td>\xi</td>
-      <td>$. This serves as the rigorous proof of Huygens’ principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$. This serves as the rigorous proof of Huygens’ principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
@@ -951,13 +923,25 @@
   </li>
   <li>
     <p><strong>Parametrix Symbol:</strong>
-\(q(x, \xi) = \frac{1}{|\xi|^2}\) for $|\xi| \geq 1$</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)0 for $|\xi| \geq 1$</p>
   </li>
   <li>
     <p><strong>Symbol Class Verification:</strong>
 For $q(x, \xi) = |\xi|^{-2} \in S^{-2}_{1,0}$:</p>
 
-\[|\partial_\xi^\alpha q| \leq C_\alpha |\xi|^{-2-|\alpha|}\]
+    <table>
+      <tbody>
+        <tr>
+          <td>$$</td>
+          <td>\partial_\xi^\alpha \partial_x^\beta a(x, \xi)</td>
+          <td>\le C_{\alpha\beta} (1 +</td>
+          <td>\xi</td>
+          <td>)^{m -</td>
+          <td>\alpha</td>
+          <td>}$$1</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Microlocal Elliptic Regularity:</strong>
@@ -967,11 +951,35 @@ If $\text{WF}(u) \cap {\xi_1 = \xi_2 = 0} = \emptyset$, then $\Delta u \in C^\in
   </li>
   <li>
     <p><strong>Explicit Computation:</strong>
-\(P = \Delta, \quad Q = \frac{1}{4\pi} \log(|x|^2) * \text{(fundamental solution)}\)</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)2</p>
 
-\[\sigma(Q) = \int e^{ix\cdot\xi} \frac{1}{|\xi|^2} \frac{d\xi}{(2\pi)^2} = |\xi|^{-2}\]
+    <table>
+      <tbody>
+        <tr>
+          <td>$$</td>
+          <td>\partial_\xi^\alpha \partial_x^\beta a(x, \xi)</td>
+          <td>\le C_{\alpha\beta} (1 +</td>
+          <td>\xi</td>
+          <td>)^{m -</td>
+          <td>\alpha</td>
+          <td>}$$3</td>
+        </tr>
+      </tbody>
+    </table>
 
-\[\Delta Q = \delta_0 + R, \quad R \in C^\infty \text{ (smoothing operator)}\]
+    <table>
+      <tbody>
+        <tr>
+          <td>$$</td>
+          <td>\partial_\xi^\alpha \partial_x^\beta a(x, \xi)</td>
+          <td>\le C_{\alpha\beta} (1 +</td>
+          <td>\xi</td>
+          <td>)^{m -</td>
+          <td>\alpha</td>
+          <td>}$$4</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
 </ol>
 
@@ -984,37 +992,49 @@ If $\text{WF}(u) \cap {\xi_1 = \xi_2 = 0} = \emptyset$, then $\Delta u \in C^\in
 <ol>
   <li>
     <p><strong>Phase Function:</strong>
-\(\phi(t, x, y, \theta) = \theta(t - (x - y))\)</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)5</p>
   </li>
   <li>
     <p><strong>Canonical Relation:</strong>
-\(\Lambda_\phi = \{(t, x, \tau, \xi); (0, y, 0, \eta) : \tau = 1, \xi = \eta, x = y \pm t\}\)</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)6</p>
   </li>
   <li>
     <p><strong>Eikonal Equation:</strong>
-\(|\nabla_x \phi| = 1\)</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)7</p>
 
-\[\nabla_x \phi = -\theta = \xi \Rightarrow |\xi| = 1\]
+    <table>
+      <tbody>
+        <tr>
+          <td>$$</td>
+          <td>\partial_\xi^\alpha \partial_x^\beta a(x, \xi)</td>
+          <td>\le C_{\alpha\beta} (1 +</td>
+          <td>\xi</td>
+          <td>)^{m -</td>
+          <td>\alpha</td>
+          <td>}$$8</td>
+        </tr>
+      </tbody>
+    </table>
   </li>
   <li>
     <p><strong>Transport Equation:</strong>
-\(2\nabla_x \phi \cdot \nabla_\theta a + \Delta_x \phi \cdot a = 0\)</p>
+\(|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}\)9</p>
 
-\[-2\theta \nabla_\theta a - a = 0 \Rightarrow a(t, x, y, \theta) = c(\theta)\]
+    <p>\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)0</p>
   </li>
   <li>
     <p><strong>FIO Representation:</strong>
-\(U(t)f(x) = \int\int e^{i\theta(t - |x-y|)} a(t, x, y, \theta) f(y) \, d\theta \, dy\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)1</p>
   </li>
   <li>
     <p><strong>Stationary Phase:</strong>
 $\theta = \text{sign}(x-y)$</p>
 
-\[U(t)f(x) = \int \frac{[f(x-t) + f(x+t)]}{2} \, dy\]
+    <p>\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)2</p>
   </li>
   <li>
     <p><strong>Wavefront Propagation:</strong>
-\(\text{WF}(U(t)f) = \chi_t(\text{WF}(f)) = \{(x, \xi) : (x-t\xi, \xi) \in \text{WF}(f)\} \cup \{(x, \xi) : (x+t\xi, \xi) \in \text{WF}(f)\}\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)3</p>
   </li>
 </ol>
 
@@ -1027,25 +1047,25 @@ $\theta = \text{sign}(x-y)$</p>
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(p(t, x, \tau, \xi) = \tau^2 - \xi_1^2 - \frac{\xi_2^2}{1 + x^2}\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)4</p>
   </li>
   <li>
     <p><strong>Hamiltonian Flow:</strong>
-\(\dot{x}_1 = 2\tau, \quad \dot{x}_2 = \frac{2\xi_2}{1 + x^2}\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)5</p>
 
-\[\dot{\xi}_1 = 0, \quad \dot{\xi}_2 = -\frac{4x \xi_2^2}{(1 + x^2)^2}\]
+    <p>\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)6</p>
   </li>
   <li>
     <p><strong>Canonical Transformation:</strong>
-\(\chi_t: (x_1, x_2, \xi_1, \xi_2) \mapsto \left(x_1 + 2t\tau, x_2 + \int_0^t \frac{2\xi_2(s)}{1 + x_2(s)^2} ds, \xi_1, \xi_2(t)\right)\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)7</p>
   </li>
   <li>
     <p><strong>FIO Construction:</strong>
-\(\phi(t, x_1, x_2, y_1, y_2, \theta_1, \theta_2) = \theta_1(t - (x_1 - y_1)/2) + \theta_2 \psi(x_2, y_2, t)\)</p>
+\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)8</p>
 
     <p>where $\psi$ solves the Hamilton-Jacobi equation:</p>
 
-\[\partial_t \psi + \sqrt{1 + \frac{(\partial_{x_2} \psi)^2}{1 + x_2^2}} = 0\]
+    <p>\(d_{(x,y,\theta)} \frac{\partial \phi}{\partial \theta_j} \neq 0 \quad \text{for all } j=1,\dots,N\)9</p>
   </li>
   <li>
     <p><strong>Physical Interpretation:</strong>
@@ -1062,27 +1082,27 @@ Light rays bend according to Fermat’s principle, with singularities propagatin
 <ol>
   <li>
     <p><strong>Phase Function:</strong>
-\(\phi(t, x, y, \theta) = (x - y)\cdot\theta - t|\theta|^2\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)0</p>
   </li>
   <li>
     <p><strong>Stationary Phase Conditions:</strong>
-\(\nabla_\theta \phi = x - y - 2t\theta = 0 \Rightarrow \theta = \frac{x - y}{2t}\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)1</p>
 
-\[\nabla_x \phi = \theta = \xi, \quad \nabla_y \phi = -\theta = \eta\]
+    <p>\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)2</p>
   </li>
   <li>
     <p><strong>Amplitude:</strong>
-\(a(t, x, y, \theta) = (2\pi it)^{-n/2} e^{i\pi/4 \text{ sign}}\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)3</p>
   </li>
   <li>
     <p><strong>Canonical Relation:</strong>
-\(\Lambda_\phi = \left\{\left(x, \frac{x-y}{2t}\right); \left(y, \frac{y-x}{2t}\right) : |x-y| = 2\sqrt{t}\right\}\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)4</p>
   </li>
   <li>
     <p><strong>Egorov’s Theorem Verification:</strong>
-\(P = -i\partial_t - \Delta, \quad Q = U(-t) P U(t)\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)5</p>
 
-\[\sigma(Q)(y, \eta) = |\eta|^2 = \sigma(P)(\chi_t(y, \eta))\]
+    <p>\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)6</p>
   </li>
 </ol>
 
@@ -1090,34 +1110,32 @@ Light rays bend according to Fermat’s principle, with singularities propagatin
 
 <p><strong>Problem:</strong> Verify Egorov’s theorem for the harmonic oscillator.</p>
 
-<p><strong>Setup:</strong></p>
-<ul>
-  <li><strong>Classical flow:</strong> $H = (p^2 + x^2)/2$</li>
-  <li><strong>Quantum operator:</strong> $P = -\partial_x^2 + x^2$</li>
-  <li><strong>FIO:</strong> $U(t) = e^{-itP}$</li>
-</ul>
+<p><strong>Setup:</strong>
+- <strong>Classical flow:</strong> $H = (p^2 + x^2)/2$
+- <strong>Quantum operator:</strong> $P = -\partial_x^2 + x^2$
+- <strong>FIO:</strong> $U(t) = e^{-itP}$</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Canonical Transformation:</strong>
-\(\chi_t: (x, p) \mapsto (x \cos t + p \sin t, -x \sin t + p \cos t)\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)7</p>
   </li>
   <li>
     <p><strong>Composition Computation:</strong>
 <strong>Symbol transport:</strong>
-\(\sigma(U(-t) P U(t))(x, p) = \sigma(P)(\chi_t(x, p)) = p^2 + x^2\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)8</p>
   </li>
   <li>
     <p><strong>Operator Verification:</strong>
-\(U(-t) P U(t) = P\)</p>
+\(Au(x) = \int_Y \int_{\mathbb{R}^N} e^{i\phi(x,y,\theta)} a(x,y,\theta) u(y) \, d\theta \, dy\)9</p>
 
     <p>(time-independent due to symmetry)</p>
   </li>
   <li>
     <p><strong>Microlocal Verification:</strong>
-\(\text{WF}(U(t)f) = \chi_t(\text{WF}(f))\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)0</p>
   </li>
   <li>
     <p><strong>Complete Proof:</strong>
@@ -1131,38 +1149,36 @@ Let $A \in \Psi^m$, $\sigma(A) = a(x, \xi)$.</p>
 
 <p><strong>Problem:</strong> Compute $\text{FIO}_2 \circ \text{FIO}_1$ where canonical relations intersect cleanly.</p>
 
-<p><strong>Setup:</strong></p>
-<ul>
-  <li><strong>FIO$_1$:</strong> $\phi_1(x, y, \theta) = (x - y)\cdot\theta$</li>
-  <li><strong>FIO$_2$:</strong> $\phi_2(z, x, \eta) = (z - x)\cdot\eta$</li>
-</ul>
+<p><strong>Setup:</strong>
+- <strong>FIO$_1$:</strong> $\phi_1(x, y, \theta) = (x - y)\cdot\theta$
+- <strong>FIO$_2$:</strong> $\phi_2(z, x, \eta) = (z - x)\cdot\eta$</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Canonical Relations:</strong>
-\(\Lambda_1 = \{(x, \xi); (y, -\xi) : \xi = \nabla_\theta \phi_1\}\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)1</p>
 
-\[\Lambda_2 = \{(z, \zeta); (x, -\zeta) : \zeta = \nabla_\eta \phi_2\}\]
+    <p>\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)2</p>
   </li>
   <li>
     <p><strong>Composition Geometry:</strong>
-\(\Lambda_2 \circ \Lambda_1 = \{(z, \zeta); (y, -\xi) : \exists x, \xi = \zeta, z = x + t\zeta, x = y + s\xi\}\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)3</p>
   </li>
   <li>
     <p><strong>Clean Intersection Condition:</strong>
-\(T_{(z,x; y,x)}(\Lambda_2 \times \Lambda_1) \cap T^*\{(z,x; y,x)\} = T^*\{(z; y)\}\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)4</p>
   </li>
   <li>
     <p><strong>Resulting Phase Function:</strong>
-\(\phi_{2\circ 1}(z, y, \theta, \eta) = \phi_2(z, x(z, y, \theta, \eta), \eta) + \phi_1(x(z, y, \theta, \eta), y, \theta)\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)5</p>
   </li>
   <li>
     <p><strong>Stationary Phase:</strong>
-\(\nabla_{(\theta,\eta)} \phi_{2\circ 1} = 0 \Rightarrow (z - y)\cdot(\theta + \eta) = 0, \quad \theta = \eta\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)6</p>
 
-\[\phi_{2\circ 1} = (z - y)\cdot\theta\]
+    <p>\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)7</p>
   </li>
   <li>
     <p><strong>Composition:</strong>
@@ -1189,17 +1205,17 @@ $\text{FIO}_2 \circ \text{FIO}_1$ corresponds to translation by fixed distance.<
     <p><strong>Transition Function:</strong>
 On overlap $[\pi - \varepsilon, \pi + \varepsilon]$:</p>
 
-\[\phi_2 = \phi_1 + \pi(x^2 + y^2)^{1/2}\]
+    <p>\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)8</p>
   </li>
   <li>
     <p><strong>Maslov Correction:</strong>
-\(\det(\text{Hess}_\theta \phi_1) = -1, \quad \det(\text{Hess}_\theta \phi_2) = -1\)</p>
+\(\Lambda_\phi = \left\{ \left(x, \nabla_x \phi(x,y,\theta); y, -\nabla_y \phi(x,y,\theta)\right) : (x,y,\theta) \in C_\phi \right\}\)9</p>
 
     <p><strong>Transition:</strong> $e^{i\pi/2} = i$ (phase shift)</p>
   </li>
   <li>
     <p><strong>Global Maslov Index:</strong>
-\(m(S^1 \times S^1) = 2 \text{ (Euler characteristic)}\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)0</p>
   </li>
 </ol>
 
@@ -1212,31 +1228,31 @@ On overlap $[\pi - \varepsilon, \pi + \varepsilon]$:</p>
 <ol>
   <li>
     <p><strong>Geodesic Distance:</strong>
-\(d(x, y) = \arccos(x\cdot y)\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)1</p>
   </li>
   <li>
     <p><strong>Phase Function:</strong>
-\(\phi(t, x, y, \theta) = \theta(t^2 - d(x, y)^2)\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)2</p>
   </li>
   <li>
     <p><strong>Eikonal Verification:</strong>
-\(|\nabla_x \phi|^2 = 4\theta^2 = \tau^2 \text{ (principal symbol)}\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)3</p>
   </li>
   <li>
     <p><strong>Transport Equation (order 0 amplitude):</strong>
-\(2\nabla_x \phi \cdot \nabla_\theta a_0 + (\Delta_x \phi)a_0 = 0\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)4</p>
   </li>
   <li>
     <p><strong>Amplitude Solution:</strong>
-\(a_0(t, x, y, \theta) = (2\pi t)^{-1} \delta(\theta - 1/2)\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)5</p>
   </li>
   <li>
     <p><strong>Full Parametrix:</strong>
-\(U(t)f(x) = \int\int e^{i(t^2 - d(x,y)^2)/2} (2\pi t)^{-1} f(y) \, dy\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)6</p>
   </li>
   <li>
     <p><strong>Singularity Propagation:</strong>
-\(\text{WF}(U(t)f) = \{(x, \nabla_x d(x,y)); (y, -\nabla_y d(x,y)) : d(x,y) = t\}\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)7</p>
   </li>
 </ol>
 
@@ -1249,19 +1265,19 @@ On overlap $[\pi - \varepsilon, \pi + \varepsilon]$:</p>
 <ol>
   <li>
     <p><strong>Parametrix Construction:</strong>
-\(Q \in \Psi^{-2}, \quad \Delta Q = I + R, \quad R \text{ smoothing}\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)8</p>
   </li>
   <li>
     <p><strong>Wavefront Set Propagation:</strong>
-\(\text{WF}(Q(\Delta u)) \subset \text{WF}(u) \cup \text{WF}(QR(u))\)</p>
+\(\sigma(Q)(y, \eta) = (p \circ \chi)(y, \eta)\)9</p>
   </li>
   <li>
     <p><strong>Smoothing Property:</strong>
-\(\text{WF}(QR(u)) = \emptyset \text{ (R smoothing)}\)</p>
+\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)0</p>
   </li>
   <li>
     <p><strong>Principal Symbol Calculation:</strong>
-\(\sigma(\Delta Q) = |\xi|^2 \cdot |\xi|^{-2} = 1\)</p>
+\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)1</p>
   </li>
   <li>
     <p><strong>Elliptic Regularity:</strong>
@@ -1271,17 +1287,9 @@ $(x_0, \xi_0) \in \text{WF}(u) \setminus \text{char}(\Delta) \Rightarrow (x_0, \
     <p><strong>Complete Proof:</strong>
 Let $(x_0, \xi_0) \in \text{WF}(\Delta u)$, $\xi_0 \neq 0$.</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset {\xi :</td>
-          <td>\xi - \xi_0</td>
-          <td>&lt; \delta}$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset {\xi : |\xi - \xi_0| &lt; \delta}$</p>
 
-\[\sigma(\psi\Delta\hat{\psi}) = \hat{\psi}(x_0) \hat{\psi}(\xi_0) |\xi_0|^2 \neq 0\]
+    <p>\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)2</p>
 
     <p>Thus $(x_0, \xi_0) \in \text{WF}(\Delta u)$ only if $\xi_0 \neq 0$.</p>
   </li>
@@ -1296,11 +1304,11 @@ Let $(x_0, \xi_0) \in \text{WF}(\Delta u)$, $\xi_0 \neq 0$.</p>
 <ol>
   <li>
     <p><strong>Phase Function:</strong>
-\(\phi(x, y, \theta) = (x - y)\cdot\theta\)</p>
+\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)3</p>
   </li>
   <li>
     <p><strong>Canonical Relation:</strong>
-\(\Lambda_\phi = \{(x, \xi); (y, -\xi) : x = y, \xi \text{ arbitrary}\}\)</p>
+\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)4</p>
   </li>
   <li>
     <p><strong>Ellipticity Condition:</strong>
@@ -1308,7 +1316,7 @@ FIO elliptic if $|a(x, y, \theta)| \geq c|\theta|^m$ on $C_\phi$.</p>
   </li>
   <li>
     <p><strong>Amplitude Analysis:</strong>
-\(C_\phi = \{(x, x, \theta) : \nabla_\theta \phi = 0\} = \{(x, x, 0)\}\)</p>
+\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)5</p>
 
     <p>But $\theta \neq 0$, so check projection.</p>
   </li>
@@ -1318,23 +1326,13 @@ For each $(x_0, \xi_0) \in T^*X$, $\exists$ chart where</p>
 
     <p>$\Lambda_\phi$ projects cleanly onto neighborhood</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$</td>
-          <td>a(x, x, \theta)</td>
-          <td>\geq c</td>
-          <td>\theta</td>
-          <td>^m$ near $\theta = \xi_0$.</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>$|a(x, x, \theta)| \geq c|\theta|^m$ near $\theta = \xi_0$.</p>
   </li>
   <li>
     <p><strong>Invertibility:</strong>
 $F^{-1}$ has phase $\psi(y, x, \eta) = (y - x)\cdot\eta$</p>
 
-\[F^{-1} F = \text{Id} + \text{smoothing}\]
+    <p>\(u(t, x) = \frac{1}{2i\sqrt{-\Delta}} \left( e^{it\sqrt{-\Delta}} - e^{-it\sqrt{-\Delta}} \right) f(x)\)6</p>
   </li>
 </ol>
 

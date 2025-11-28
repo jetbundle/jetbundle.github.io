@@ -934,13 +934,13 @@ Noether identity:
 <p>Since $E(L) = 0$ on solutions and symmetry holds, $\text{Div}(P) = 0$</p>
 
 <p>Explicit Current:
-\(P = A - B = \dot{q} \frac{\partial L}{\partial \dot{q}} - L = \dot{q}(m \dot{q}) - \left(\frac{1}{2}m\dot{q}^2 - \frac{1}{2}kq^2\right)\)</p>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)0</p>
 
-\[P = \frac{1}{2} m \dot{q}^2 + \frac{1}{2} k q^2 = E \quad (\text{Total Energy})\]
+<p>\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)1</p>
 
 <ol>
   <li><strong>Verification:</strong>
-\(\frac{dE}{dt} = m \dot{q} \ddot{q} + k q \dot{q} = \dot{q} (m \ddot{q} + k q) = 0\)</li>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)2</li>
 </ol>
 
 <h3 id="example-422-physical-applicationkepler-problem--angular-momentum">Example 4.2.2: Physical Application—Kepler Problem &amp; Angular Momentum</h3>
@@ -949,16 +949,16 @@ Noether identity:
 
 <p>Lagrangian in polar coordinates:</p>
 
-\[L(r, \dot{r}, \dot{\theta}) = \frac{1}{2} m (\dot{r}^2 + r^2 \dot{\theta}^2) - V(r)\]
+<p>\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)3</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li><strong>Euler-Lagrange Equations:</strong>
-\(\frac{d}{dt}(m \dot{r}) - m r \dot{\theta}^2 + V'(r) = 0\)</li>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)4</li>
 </ol>
 
-\[\frac{d}{dt}(m r^2 \dot{\theta}) = 0\]
+<p>\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)5</p>
 
 <ol>
   <li><strong>Rotational Symmetry:</strong>
@@ -973,7 +973,7 @@ Generator: $\mathbf{v} = \partial_\theta$</li>
   <li>
     <p><strong>Noether Current:</strong>
 The conserved quantity is:
-\(P^r = \frac{\partial L}{\partial \dot{\theta}} = m r^2 \dot{\theta} = \ell \quad (\text{Angular Momentum})\)</p>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)6</p>
   </li>
   <li>
     <p><strong>Complete Conservation Laws:</strong></p>
@@ -1005,11 +1005,11 @@ The conserved quantity is:
 <ol>
   <li><strong>Orbit Equation Derivation:</strong>
 From $\ell = \text{constant}$:
-\(\dot{\theta} = \frac{\ell}{m r^2}\)</li>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)7</li>
 </ol>
 
 <p>Substitute into energy:
-\(E = \frac{1}{2} m \dot{r}^2 + \frac{\ell^2}{2 m r^2} + V(r)\)</p>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)8</p>
 
 <p>This reduces the 2D problem to 1D effective potential motion.</p>
 
@@ -1022,7 +1022,7 @@ From $\ell = \text{constant}$:
 <ol>
   <li>
     <p><strong>Original Problem:</strong>
-\(\Delta u = \frac{\partial^2 u}{\partial r^2} + \frac{2}{r} \frac{\partial u}{\partial r} + \frac{1}{r^2} \Delta_{S^2} u = 0\)</p>
+\(E_\alpha(L) = \sum_{J} (-D)_J \frac{\partial L}{\partial u^\alpha_J} = 0, \quad \alpha = 1, \dots, m,\)9</p>
   </li>
   <li>
     <p><strong>Symmetry Group:</strong>
@@ -1035,27 +1035,27 @@ Let $u(r, \theta, \phi) = v(r)$. The symmetry-reduced function depends only on $
   <li>
     <p><strong>Reduced Lagrangian:</strong>
 Original variational problem:
-\(\mathcal{S}[u] = \int_{\mathbb{R}^3} |\nabla u|^2 dV\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)0</p>
   </li>
 </ol>
 
 <p>In spherical coordinates with $u = v(r)$:
-\(\mathcal{S}[v] = \int_0^\infty \int_0^\pi \int_0^{2\pi} v'^2 r^2 \sin\theta \, d\phi d\theta dr = 4\pi \int_0^\infty (v')^2 r^2 dr\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)1</p>
 
 <ol>
   <li><strong>Reduced Euler-Lagrange:</strong>
 Lagrangian density: $L(r, v, v’) = (v’)^2 r^2$</li>
 </ol>
 
-\[\frac{d}{dr}\left(\frac{\partial L}{\partial v'}\right) - \frac{\partial L}{\partial v} = 0\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)2</p>
 
-\[\frac{d}{dr}(2 r^2 v') = 0 \quad \Rightarrow \quad r^2 v' = C\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)3</p>
 
-\[v(r) = C \int \frac{dr}{r^2} = -\frac{C}{r} + D\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)4</p>
 
 <ol>
   <li><strong>Verification:</strong>
-\(\Delta\left(\frac{1}{r}\right) = 0 \quad \text{for} \quad r &gt; 0\)</li>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)5</li>
 </ol>
 
 <h3 id="example-424-advanced-casekdv-infinite-symmetries">Example 4.2.4: Advanced Case—KdV Infinite Symmetries</h3>
@@ -1071,11 +1071,7 @@ Lagrangian density: $L(r, v, v’) = (v’)^2 r^2$</li>
 <ol>
   <li>
     <p><strong>First Three Hamiltonians:</strong>
-\(\begin{align*}
-H_0 &amp;= \int u \, dx &amp; &amp;(\text{Mass}) \\
-H_1 &amp;= \int \frac{1}{2} u^2 \, dx &amp; &amp;(\text{Momentum}) \\
-H_2 &amp;= \int \left( \frac{1}{2} u_x^2 - u^3 \right) \, dx &amp; &amp;(\text{Energy})
-\end{align*}\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)6</p>
   </li>
   <li>
     <p><strong>Corresponding Symmetries:</strong>
@@ -1083,22 +1079,18 @@ The recursion operator $R = \partial_x^2 + 4u + 2 u_x \partial_x^{-1}$ generates
   </li>
 </ol>
 
-\[\begin{align*}
-Q_0 &amp;= u &amp; &amp;(\text{Translation}) \\
-Q_1 &amp;= u_x &amp; &amp;(\text{Galilean boost}) \\
-Q_2 &amp;= u_{xx} - 6 u u_x &amp; &amp;(\text{Scaling})
-\end{align*}\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)7</p>
 
 <ol>
   <li><strong>Noether Currents:</strong>
 For each $Q_n$, the conserved current is:
-\(P_n = Q_n \frac{\delta H_2}{\delta u} - H_n\)</li>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)8</li>
 </ol>
 
 <p>Explicit Calculation for $n=1$:
-\(\frac{\delta H_2}{\delta u} = -u_{xx} - 3 u^2\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \text{Div}(B),\)9</p>
 
-\[P_1 = u_x (-u_{xx} - 3 u^2) - \frac{1}{2} u^2\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)0</p>
 
 <p>On solutions: $D_x P_1 = 0$</p>
 
@@ -1147,7 +1139,7 @@ For each $Q_n$, the conserved current is:
 
 <p><strong>Problem:</strong> Lagrangian with explicit time dependence</p>
 
-\[L(t, q, \dot{q}) = \frac{1}{2} m(t) \dot{q}^2 - V(q, t)\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)1</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1158,14 +1150,14 @@ Consider $\mathbf{v} = \tau(t) \partial_t + \eta(t, q) \partial_q$</p>
   </li>
   <li>
     <p><strong>Variational Symmetry Condition:</strong>
-\(\text{pr}^{(1)}\mathbf{v}(L) + L (D_t \tau) = D_t B\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)2</p>
   </li>
 </ol>
 
 <p>Explicit Calculation:
-\(\text{pr}^{(1)}\mathbf{v}(L) = \dot{\eta} \frac{\partial L}{\partial \dot{q}} + \eta \frac{\partial L}{\partial q} + \dot{\tau} \frac{\partial L}{\partial t} + \tau \frac{\partial L}{\partial t}\)</p>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)3</p>
 
-\[= m(t) \dot{q} \ddot{\eta} + \dot{\eta} \dot{m}(t) \dot{q} - \eta \frac{\partial V}{\partial q} + \tau \frac{\partial L}{\partial t}\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)4</p>
 
 <ol>
   <li><strong>Specific Case—Linear Time Dependence:</strong>
@@ -1178,10 +1170,10 @@ Let $m(t) = m_0 (1 + \alpha t)$, $V(q,t) = \frac{1}{2} k q^2$</li>
 
 <ol>
   <li><strong>Noether Current for Scaling Symmetry:</strong>
-\(Q = \frac{1}{2} q - t \dot{q}\)</li>
+\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)5</li>
 </ol>
 
-\[P = Q \frac{\partial L}{\partial \dot{q}} - t L = \left(\frac{1}{2} q - t \dot{q}\right) m \dot{q} - t L\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)6</p>
 
 <p><strong>Verification:</strong> This gives a conserved “virial” quantity.</p>
 
@@ -1217,14 +1209,14 @@ $u_t = -v_s$, $u_{tt} = v_{ss}$</p>
 
 <p>$u_x = v_s$, $u_{xx} = v_{ss}$</p>
 
-\[v_{ss} = c^2 v_{ss} \quad \Rightarrow \quad (1 - c^2) v_{ss} = 0\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)7</p>
 
 <ol>
   <li><strong>General Solution:</strong>
 For $c \neq 1$: $v_{ss} = 0 \quad \Rightarrow \quad v(s) = A + B s$</li>
 </ol>
 
-\[u(x,t) = A + B(x - t)\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)8</p>
 
 <p>For $c = 1$: Trivial equation, all functions $v(s)$ work.</p>
 
@@ -1232,7 +1224,7 @@ For $c \neq 1$: $v_{ss} = 0 \quad \Rightarrow \quad v(s) = A + B s$</li>
 
 <p><strong>Problem:</strong> Lagrangian with divergence symmetry</p>
 
-\[L = \frac{1}{2} (\nabla u)^2 + f(t) u\]
+<p>\(\text{pr}^{(k)}\mathbf{v}(L) + L \text{Div}(\xi) = \sum_{\alpha} Q^\alpha E_\alpha(L) + \text{Div}(A),\)9</p>
 
 <p>Standard Noether: Only gives $\int u_t$ conservation</p>
 
@@ -1241,18 +1233,18 @@ For $c \neq 1$: $v_{ss} = 0 \quad \Rightarrow \quad v(s) = A + B s$</li>
 <p>Consider $\mathbf{v} = \partial_t$ with $B \neq 0$</p>
 
 <p>Symmetry condition requires:
-\(\text{pr}^{(1)}\mathbf{v}(L) + L = D_t B\)</p>
+\(\text{Div}(P) = D_i P^i = 0\)0</p>
 
 <p>Calculation:
-\(\text{pr}^{(1)}\mathbf{v}(L) = u_t u_{tt} + f'(t) u\)</p>
+\(\text{Div}(P) = D_i P^i = 0\)1</p>
 
-\[B = u u_t + F(t)\]
+<p>\(\text{Div}(P) = D_i P^i = 0\)2</p>
 
 <p>Conserved Current:
-\(P = u u_t + F(t) - u u_t - F(t) = 0 \text{ (on solutions)}\)</p>
+\(\text{Div}(P) = D_i P^i = 0\)3</p>
 
 <p>But the true conservation is:
-\(\frac{d}{dt} \int \left( \frac{1}{2} u_t^2 - \frac{1}{2} |\nabla u|^2 - f(t) u \right) dx = 0\)</p>
+\(\text{Div}(P) = D_i P^i = 0\)4</p>
 
 <h2 id="references">References</h2>
 

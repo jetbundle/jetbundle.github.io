@@ -886,15 +886,15 @@
 
 <p>This structure represents the simplest realization of a supersymmetry algebra. We can form a matrix Hamiltonian $\mathcal{H}$ acting on a two-component spinor space:</p>
 
-\[\mathcal{H} = \begin{pmatrix} H_1 &amp; 0 \\ 0 &amp; H_2 \end{pmatrix} = \begin{pmatrix} A^\dagger A &amp; 0 \\ 0 &amp; A A^\dagger \end{pmatrix}.\]
+\[\mathcal{H} = \begin{pmatrix} H_1 &amp; 0 \ 0 &amp; H_2 \end{pmatrix} = \begin{pmatrix} A^\dagger A &amp; 0 \ 0 &amp; A A^\dagger \end{pmatrix}.\]
 
 <p>We define the supercharges $Q$ and $Q^\dagger$:</p>
 
-\[Q = \begin{pmatrix} 0 &amp; 0 \\ A &amp; 0 \end{pmatrix}, \quad Q^\dagger = \begin{pmatrix} 0 &amp; A^\dagger \\ 0 &amp; 0 \end{pmatrix}.\]
+\[Q = \begin{pmatrix} 0 &amp; 0 \ A &amp; 0 \end{pmatrix}, \quad Q^\dagger = \begin{pmatrix} 0 &amp; A^\dagger \ 0 &amp; 0 \end{pmatrix}.\]
 
 <p>These operators satisfy the graded Lie algebra characteristic of supersymmetry:</p>
 
-\[\{Q, Q^\dagger\} = \mathcal{H}, \quad Q^2 = (Q^\dagger)^2 = 0, \quad [Q, \mathcal{H}] = [Q^\dagger, \mathcal{H}] = 0.\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)0</p>
 
 <p>The vanishing of the commutator $[Q, \mathcal{H}]$ confirms that the supercharges generate a symmetry of the Hamiltonian, transforming bosonic states (upper component) into fermionic states (lower component) while preserving energy.</p>
 
@@ -902,11 +902,11 @@
 
 <p>The factorization method links two Hamiltonians, but it does not inherently solve the spectral problem. The condition for exact solvability is <strong>shape invariance</strong>. A potential is shape invariant if the partner potential $\tilde{V}(x; a_1)$ (where $a_1$ is a set of parameters) has the same functional form as the original potential $V(x; a_2)$ with shifted parameters, up to an additive constant $R(a_1)$:</p>
 
-\[\tilde{V}(x; a_1) = V(x; a_2) + R(a_1), \quad \text{where } a_2 = f(a_1).\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)1</p>
 
 <p>Under this condition, the entire sequence of partner Hamiltonians $H_1, H_2, H_3, \dots$ maintains the same “shape.” This allows us to determine the eigenvalues algebraically without solving differential equations. The $n$-th eigenvalue is simply the sum of the remainder terms accumulated through the parameter shifts:</p>
 
-\[E_n = \sum_{k=1}^n R(a_k) + E_0(a_n).\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)2</p>
 
 <p>For example, the Harmonic Oscillator possesses a linear superpotential $W(x) = \frac{1}{2} \omega x$. The partner potential corresponds to the same oscillator shifted by a constant, leading immediately to the linear spectrum $E_n = n\omega$. Similarly, the Coulomb, Morse, Pöschl-Teller, and Rosen-Morse potentials are all shape invariant. This concept unifies the special functions of Chapter 1.2; Hermite, Laguerre, and Legendre polynomials are the wavefunctions of shape-invariant potentials derived from this algebraic hierarchy.</p>
 
@@ -914,7 +914,7 @@
 
 <p>The intertwining operators $A$ and $A^\dagger$ provide a method to construct new solutions from old ones, known as the <strong>Darboux transformation</strong>. If we possess a general solution $\phi(x)$ to the Schrödinger equation with energy $\lambda$ (not necessarily an eigenvalue):</p>
 
-\[-\phi'' + V\phi = \lambda \phi,\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)3</p>
 
 <p>we can use $\phi$ to construct a new potential $V[1] = V - 2\frac{d^2}{dx^2} \ln \phi$ that is strictly isospectral to $V$ (excluding the state corresponding to $\phi$ if it is square-integrable).</p>
 
@@ -928,7 +928,7 @@
 
 <p><strong>Problem:</strong> Consider the quantum harmonic oscillator Hamiltonian:</p>
 
-\[H = -\frac{d^2}{dx^2} + x^2\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)4</p>
 
 <p>Factorize using SUSY QM and derive the spectrum algebraically.</p>
 
@@ -939,20 +939,20 @@
 Assume ground state energy $E_0 = 1$ (first excited state of standard oscillator). The ground state wavefunction is:</li>
 </ol>
 
-\[\psi_0(x) = e^{-x^2/2}\]
+<p>\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)5</p>
 
 <ol>
   <li>
     <p><strong>Compute Superpotential:</strong>
-\(W(x) = -\frac{\psi_0'}{\psi_0} = -\frac{(-x e^{-x^2/2})}{e^{-x^2/2}} = x\)</p>
+\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)6</p>
   </li>
   <li>
     <p><strong>Construct Factorization Operators:</strong>
-\(A = \frac{d}{dx} + x, \quad A^\dagger = -\frac{d}{dx} + x\)</p>
+\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)7</p>
   </li>
   <li>
     <p><strong>Verify $H_1 = A^\dagger A$:</strong>
-\(H_1 = A^\dagger A = \left(-\frac{d}{dx} + x\right)\left(\frac{d}{dx} + x\right) = -\frac{d^2}{dx^2} + x^2 - 1\)</p>
+\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)8</p>
   </li>
 </ol>
 
@@ -961,7 +961,7 @@ Assume ground state energy $E_0 = 1$ (first excited state of standard oscillator
 <ol>
   <li>
     <p><strong>Partner Hamiltonian $H_2 = AA^\dagger$:</strong>
-\(H_2 = AA^\dagger = \left(\frac{d}{dx} + x\right)\left(-\frac{d}{dx} + x\right) = -\frac{d^2}{dx^2} + x^2 + 1\)</p>
+\(A = \frac{d}{dx} + W(x), \quad A^\dagger = -\frac{d}{dx} + W(x).\)9</p>
   </li>
   <li>
     <p><strong>Spectral Mapping:</strong>
@@ -969,17 +969,14 @@ Apply $A$ to first excited state $\psi_1(x) = x e^{-x^2/2}$:</p>
   </li>
 </ol>
 
-\[A\psi_1 = \left(\frac{d}{dx} + x\right)(x e^{-x^2/2}) = e^{-x^2/2} = \psi_0(x)\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)0</p>
 
 <p><strong>Key Insight:</strong> $A$ maps excited states of $H_1$ to ground state of $H_2$!</p>
 
 <ol>
   <li><strong>Algebraic Spectrum:</strong>
-    <ul>
-      <li>$H_1$ spectrum: ${1, 3, 5, 7, \dots}$</li>
-      <li>$H_2$ spectrum: ${3, 5, 7, \dots}$ (missing ground state)</li>
-    </ul>
-  </li>
+- $H_1$ spectrum: ${1, 3, 5, 7, \dots}$
+- $H_2$ spectrum: ${3, 5, 7, \dots}$ (missing ground state)</li>
 </ol>
 
 <h3 id="example-472-shape-invariancepöschl-teller-potential">Example 4.7.2: Shape Invariance—Pöschl-Teller Potential</h3>
@@ -990,49 +987,46 @@ Apply $A$ to first excited state $\psi_1(x) = x e^{-x^2/2}$:</p>
 
 <p>Original Potential (parameterized by $\alpha$):</p>
 
-\[V(x; \alpha) = \alpha(\alpha-1) \text{sech}^2(x)\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)1</p>
 
 <ol>
   <li>
     <p><strong>Superpotential:</strong>
-\(W(x; \alpha) = \alpha \tanh(x)\)</p>
+\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)2</p>
   </li>
   <li>
     <p><strong>Partner Potential:</strong>
-\(\tilde{V}(x; \alpha) = W^2(x; \alpha) + W'(x; \alpha) = \alpha^2 \tanh^2(x) + \alpha \text{sech}^2(x) = \alpha(\alpha+1) \text{sech}^2(x)\)</p>
+\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)3</p>
   </li>
   <li>
     <p><strong>Shape Invariance Verification:</strong>
-\(\tilde{V}(x; \alpha) = V(x; \alpha+1) + R(\alpha)\)</p>
+\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)4</p>
   </li>
 </ol>
 
 <p>where remainder term:</p>
 
-\[R(\alpha) = 2\alpha\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)5</p>
 
 <ol>
   <li><strong>Algebraic Energy Levels:</strong>
-\(E_0^{(0)} = 0\)</li>
+\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)6</li>
 </ol>
 
-\[E_1^{(0)} = R(\alpha_0) = 2\alpha_0\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)7</p>
 
-\[E_2^{(0)} = R(\alpha_0) + R(\alpha_1) = 2\alpha_0 + 2(\alpha_0+1) = 4\alpha_0 + 2\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)8</p>
 
-\[E_3^{(0)} = 6\alpha_0 + 6\]
+<p>\(H_1 = \left(-\frac{d}{dx} + W(x)\right)\left(\frac{d}{dx} + W(x)\right) = -\frac{d^2}{dx^2} + W^2(x) - W'(x).\)9</p>
 
-\[\vdots\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)0</p>
 
-\[E_n^{(0)} = n(n + 2\alpha_0 - 1)\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)1</p>
 
 <ol>
   <li><strong>Explicit Wavefunctions:</strong>
-    <ul>
-      <li>Ground state: $\psi_0^{(0)}(x) = \text{sech}^{\alpha_0}(x)$</li>
-      <li>First excited: $\psi_1^{(0)}(x) \propto A \psi_0^{(1)}(x) = \left(\frac{d}{dx} + \alpha_0 \tanh(x)\right) \text{sech}^{\alpha_0+1}(x)$</li>
-    </ul>
-  </li>
+- Ground state: $\psi_0^{(0)}(x) = \text{sech}^{\alpha_0}(x)$
+- First excited: $\psi_1^{(0)}(x) \propto A \psi_0^{(1)}(x) = \left(\frac{d}{dx} + \alpha_0 \tanh(x)\right) \text{sech}^{\alpha_0+1}(x)$</li>
 </ol>
 
 <h3 id="example-473-darboux-transformation-chain">Example 4.7.3: Darboux Transformation Chain</h3>
@@ -1044,7 +1038,7 @@ Apply $A$ to first excited state $\psi_1(x) = x e^{-x^2/2}$:</p>
 <ol>
   <li>
     <p><strong>Start with Free Particle:</strong>
-\(H^{(0)} = -\frac{d^2}{dx^2}, \quad V^{(0)}(x) = 0\)</p>
+\(V(x) = W^2(x) - W'(x) + E_0.\)2</p>
   </li>
   <li>
     <p><strong>First Darboux Transformation:</strong>
@@ -1052,34 +1046,34 @@ Choose $\phi_1(x) = e^{ikx}$ (scattering state, $k=1$):</p>
   </li>
 </ol>
 
-\[V^{(1)}(x) = -2 \frac{d^2}{dx^2} \ln \phi_1(x) = -2 \text{sech}^2(x)\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)3</p>
 
 <ol>
   <li><strong>Second Transformation:</strong>
 Choose $\phi_2(x)$ = solution to $H^{(1)}\phi_2 = E_2\phi_2$ with $E_2 = 4$:</li>
 </ol>
 
-\[\phi_2(x) = (\tanh(x) - 1) \text{sech}(x)\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)4</p>
 
-\[V^{(2)}(x) = V^{(1)}(x) - 2 \frac{d^2}{dx^2} \ln \phi_2(x) = -6 \text{sech}^2(x)\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)5</p>
 
 <ol>
   <li><strong>General Formula:</strong>
 After $N$ transformations:</li>
 </ol>
 
-\[V^{(N)}(x) = -N(N+1) \text{sech}^2(x)\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)6</p>
 
 <p><strong>Spectra:</strong> All $V^{(N)}$ share excited states ${1^2, 2^2, 3^2, \dots, \infty}$</p>
 
 <ol>
   <li><strong>Verification for $N=3$:</strong>
-\(V^{(3)}(x) = -12 \text{sech}^2(x)\)</li>
+\(V(x) = W^2(x) - W'(x) + E_0.\)7</li>
 </ol>
 
 <p>Superpotential: $W_3(x) = 3 \tanh(x)$</p>
 
-\[H_3 = A_3^\dagger A_3 = -\frac{d^2}{dx^2} - 12 \text{sech}^2(x) + 3\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)8</p>
 
 <h3 id="example-474-connection-to-kdv-solitons">Example 4.7.4: Connection to KdV Solitons</h3>
 
@@ -1089,7 +1083,7 @@ After $N$ transformations:</li>
 
 <p><strong>KdV Equation:</strong></p>
 
-\[u_t + 6u u_x + u_{xxx} = 0\]
+<p>\(V(x) = W^2(x) - W'(x) + E_0.\)9</p>
 
 <ol>
   <li><strong>Lax Pair Connection:</strong>
@@ -1103,7 +1097,7 @@ Spatial operator: $L = -\partial_{xx} + u(x,t)$</li>
 Darboux transformation on $L$:</li>
 </ol>
 
-\[L^{(1)} = A^\dagger A = -\partial_{xx} + u^{(1)}(x)\]
+<p>\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)0</p>
 
 <p>where $A = \partial_x + W(x)$, $u^{(1)}(x) = u^{(0)}(x) - 2 W’(x)$</p>
 
@@ -1112,20 +1106,20 @@ Darboux transformation on $L$:</li>
 Start with $u^{(0)}(x) = 0$ (free particle):</li>
 </ol>
 
-\[W(x) = \tanh(x/2)\]
+<p>\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)1</p>
 
-\[u^{(1)}(x) = -2 \frac{\partial}{\partial x} \tanh(x/2) = \text{sech}^2(x/2)\]
+<p>\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)2</p>
 
 <ol>
   <li><strong>Time Evolution:</strong>
 The one-soliton solution:</li>
 </ol>
 
-\[u(x,t) = 2 \frac{\partial^2}{\partial x^2} \ln(1 + e^{x - 4t}) = \text{sech}^2((x - 4t)/2)\]
+<p>\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)3</p>
 
 <ol>
   <li><strong>Two-Soliton via Double Darboux:</strong>
-\(W_1(x) = \tanh(x/2), \quad W_2(x) = \tanh((x - x_0)/2)\)</li>
+\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)4</li>
 </ol>
 
 <p>Resulting potential: $u^{(2)}(x) = 2 \frac{\partial}{\partial x} [\ln(\cosh(x/2)\cosh((x-x_0)/2))]$</p>
@@ -1138,24 +1132,24 @@ The one-soliton solution:</li>
 
 <p><strong>Scarf II Potential:</strong></p>
 
-\[V(x; \alpha) = [\alpha(\alpha-1) + 1/4] \text{sech}^2(x) - [\alpha(\alpha-1)] \text{sech}^2(x) \tanh^2(x)\]
+<p>\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)5</p>
 
 <ol>
   <li>
     <p><strong>Superpotential:</strong>
-\(W(x; \alpha) = (\alpha - 1/2) \tanh(x)\)</p>
+\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)6</p>
   </li>
   <li>
     <p><strong>Partner Potential:</strong>
-\(\tilde{V}(x; \alpha) = W^2 + W' = (\alpha + 1/2)(\alpha - 3/2) \text{sech}^2(x) = V(x; \alpha+1) + 2\alpha\)</p>
+\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)7</p>
   </li>
   <li>
     <p><strong>Energy Levels:</strong>
-\(E_n = n(n + 2\alpha - 1), \quad n = 0,1,2,\dots\)</p>
+\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)8</p>
   </li>
   <li>
     <p><strong>Explicit Wavefunctions:</strong>
-\(\psi_n^{(\alpha)}(x) = (\text{sech } x)^\alpha P_n^{(\alpha-1/2,\alpha-1/2)}(i \tanh x)\)</p>
+\(\psi_0(x) = N \exp\left(-\int^x W(y) \, dy\right).\)9</p>
   </li>
 </ol>
 
@@ -1166,7 +1160,7 @@ The one-soliton solution:</li>
 For $\alpha = 3/2$:</li>
 </ol>
 
-\[E_0 = 0, \quad E_1 = 3, \quad E_2 = 8, \quad E_3 = 15\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)0</p>
 
 <p>Wavefunctions: Associated Legendre functions.</p>
 
@@ -1178,27 +1172,28 @@ For $\alpha = 3/2$:</li>
 
 <p><strong>Potential with Broken SUSY:</strong></p>
 
-\[V(x) = x^4 - \frac{3}{2}x^2\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)1</p>
 
 <ol>
   <li><strong>Attempt Factorization:</strong>
 Assume $W(x) = ax^3 + bx$:</li>
 </ol>
 
-\[V(x) = W^2 - W' = a^2x^6 + 2ab x^4 + b^2x^2 - 3a x^2 - b\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)2</p>
 
 <p>No real solution exists matching $x^4 - \frac{3}{2}x^2$.</p>
 
 <ol>
-  <li><strong>Numerical Evidence:</strong>
+  <li>
+    <p><strong>Numerical Evidence:</strong>
 Solve $H\psi = E\psi$ numerically:
-    <ul>
-      <li>Ground state energy $E_0 \approx 0.409 &gt; 0$</li>
-      <li>No state satisfies $A\psi_0 = 0$</li>
-    </ul>
+- Ground state energy $E_0 \approx 0.409 &gt; 0$
+- No state satisfies $A\psi_0 = 0$</p>
   </li>
-  <li><strong>Partner Construction:</strong>
-Force factorization with $E_0 = 0.409$:</li>
+  <li>
+    <p><strong>Partner Construction:</strong>
+Force factorization with $E_0 = 0.409$:</p>
+  </li>
 </ol>
 
 \[W(x) = -\frac{\psi_0'}{\psi_0} \quad \text{(numerical $\psi_0$)}\]
@@ -1207,7 +1202,7 @@ Force factorization with $E_0 = 0.409$:</li>
 
 <ol>
   <li><strong>Witten Index:</strong>
-\(\text{Index} = n_b^{(0)} - n_f^{(0)} = 1 - 1 = 0\)</li>
+\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)3</li>
 </ol>
 
 <p><strong>Physical Interpretation:</strong> SUSY spontaneously broken.</p>
@@ -1303,37 +1298,37 @@ Force factorization with $E_0 = 0.409$:</li>
 
 <ol>
   <li><strong>Harmonic Oscillator:</strong>
-\(H = -\frac{d^2}{dx^2} + x^2\)</li>
+\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)4</li>
 </ol>
 
-\[W_0(x) = x\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)5</p>
 
-\[\psi_n^H(x) = H_n(x) e^{-x^2/2}\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)6</p>
 
 <ol>
   <li><strong>Radial Reduction:</strong>
 3D oscillator → radial equation:</li>
 </ol>
 
-\[R'' + \frac{2}{r}R' + \left[2E - \frac{l(l+1)}{r^2} - r^2\right]R = 0\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)7</p>
 
 <ol>
   <li><strong>SUSY Transformation:</strong>
-\(W_r(r) = \frac{l}{r} + r\)</li>
+\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)8</li>
 </ol>
 
-\[V_r(r) = \frac{(l+1)(l+2)}{r^2} + r^2 - 2\]
+<p>\(H_2 = A A^\dagger = -\frac{d^2}{dx^2} + W^2(x) + W'(x).\)9</p>
 
 <ol>
   <li><strong>Shape Invariance:</strong>
-\(\tilde{V}_r(r; l) = V_r(r; l+1) + 2\)</li>
+\(H_2 A = (A A^\dagger) A = A (A^\dagger A) = A H_1.\)0</li>
 </ol>
 
-\[E_n^l = 2n + l + \frac{3}{2}\]
+<p>\(H_2 A = (A A^\dagger) A = A (A^\dagger A) = A H_1.\)1</p>
 
 <ol>
   <li><strong>Wavefunctions:</strong>
-\(\psi_n^l(r) = r^l e^{-r^2/2} L_n^l(r^2)\)</li>
+\(H_2 A = (A A^\dagger) A = A (A^\dagger A) = A H_1.\)2</li>
 </ol>
 
 <p><strong>Connection:</strong> Laguerre polynomials from Hermite via SUSY!</p>

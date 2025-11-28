@@ -902,11 +902,11 @@
 
 \[D_x^2 (f \cdot g) = f_{xx} g - 2f_x g_x + f g_{xx}\]
 
-\[D_x^m e^{k_1 x} \cdot e^{k_2 x} = (k_1 - k_2)^m e^{(k_1 + k_2)x}\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)0</p>
 
 <p>Applying the logarithmic transformation to the KdV equation $u_t + 6uu_x + u_{xxx} = 0$, the nonlinear term $6uu_x$ and the dispersive term $u_{xxx}$ combine to satisfy the bilinear identity:</p>
 
-\[(D_x D_t + D_x^4) \tau \cdot \tau = 0\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)1</p>
 
 <p>This equation is remarkable because it is quadratic in $\tau$. The severe nonlinearity of KdV has been “resolved” into a bilinear form.</p>
 
@@ -914,7 +914,7 @@
 
 <p>The bilinear form allows for a direct iterative construction of $N$-soliton solutions. We expand $\tau$ in a formal power series parameter $\epsilon$:</p>
 
-\[\tau = 1 + \epsilon f_1 + \epsilon^2 f_2 + \epsilon^3 f_3 + \dots\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)2</p>
 
 <p>Substituting this into the bilinear equation and collecting powers of $\epsilon$ yields a system of linear equations.</p>
 
@@ -926,7 +926,7 @@
 
 <p>A two-soliton solution arises from $f_1 = e^{\theta_1} + e^{\theta_2}$. The series terminates at the $\epsilon^2$ term if we include the interaction factor:</p>
 
-\[\tau = 1 + e^{\theta_1} + e^{\theta_2} + A_{12} e^{\theta_1 + \theta_2}, \quad A_{12} = \left( \frac{k_1 - k_2}{k_1 + k_2} \right)^2\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)3</p>
 
 <p>The factor $A_{12}$ represents the phase shift resulting from the nonlinear interaction of the solitons. The $N$-soliton solution appears as a polynomial in exponentials, where the termination of the series is the defining algebraic characteristic of integrability.</p>
 
@@ -934,7 +934,7 @@
 
 <p>The success of the Hirota method suggests that $\tau$-functions are not arbitrary scalar fields but possess specific algebraic structures. In the context of the Kadomtsev-Petviashvili (KP) hierarchy (a 2D generalization of KdV), Sato proved that the $\tau$-function can be represented as a Wronskian determinant of linear eigenfunctions:</p>
 
-\[\tau(x,t) = \det \begin{pmatrix} \phi_1 &amp; \phi_1' &amp; \dots &amp; \phi_1^{(N-1)} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \phi_N &amp; \phi_N' &amp; \dots &amp; \phi_N^{(N-1)} \end{pmatrix}\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)4</p>
 
 <p>where the $\phi_i$ satisfy the linear flow equations.</p>
 
@@ -955,55 +955,51 @@
 The spatial translation symmetry is $Q_0 = u_x$. Verify it commutes with KdV flow $K = u_{xxx} + 6uu_x$:</li>
 </ol>
 
-\[[K, Q_0] = D_K Q_0 - D_{Q_0} K = 0\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)5</p>
 
 <p>Fréchet derivative computation:</p>
 
-\[D_K v = v_{xxx} + 6u v_x + 6u_x v, \quad D_{Q_0} w = w_x\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)6</p>
 
-\[[K, Q_0]u = (u_{xxx} + 6uu_x)_x - (u_{xxx} + 6uu_x)_x = 0 \quad ✓\]
+<p>\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)7</p>
 
 <ol>
   <li><strong>First Application—Recover KdV Flow:</strong>
-\(Q_1 = \mathcal{R} Q_0 = \left( \partial_x^2 + 4u + 2u_x \partial_x^{-1} \right) u_x\)</li>
+\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)8</li>
 </ol>
 
-<p>Component-wise calculation:</p>
-<ul>
-  <li>$\partial_x^2 u_x = u_{xxx}$</li>
-  <li>$4u \cdot u_x = 4uu_x$</li>
-  <li>$2u_x \partial_x^{-1} u_x = 2u_x u$ (for rapidly decaying $u$)</li>
-</ul>
+<p>Component-wise calculation:
+- $\partial_x^2 u_x = u_{xxx}$
+- $4u \cdot u_x = 4uu_x$
+- $2u_x \partial_x^{-1} u_x = 2u_x u$ (for rapidly decaying $u$)</p>
 
 <p><strong>Total:</strong>
-\(Q_1 = u_{xxx} + 4uu_x + 2u_x u = u_{xxx} + 6uu_x \quad ✓\)</p>
+\(\frac{\partial \mathcal{R}}{\partial t} + [\mathcal{R}, D_K] = 0\)9</p>
 
 <ol>
   <li><strong>Second Application—Fifth-Order KdV:</strong>
-\(Q_2 = \mathcal{R} Q_1 = \mathcal{R} (u_{xxx} + 6uu_x)\)</li>
+\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)0</li>
 </ol>
 
 <p>Systematic computation:</p>
 
-\[Q_2 = \partial_x^2 (u_{xxx} + 6uu_x) + 4u (u_{xxx} + 6uu_x) + 2u_x \partial_x^{-1} (u_{xxx} + 6uu_x)\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)1</p>
 
-<p>Detailed derivatives:</p>
-<ul>
-  <li>$\partial_x^2 u_{xxx} = u_{xxxxx}$</li>
-  <li>$\partial_x^2 (6uu_x) = 6(u_{xx}^2 + 2u u_{xxx} + u_x^2)$</li>
-  <li>$4u(u_{xxx} + 6uu_x) = 4u u_{xxx} + 24u^2 u_x$</li>
-  <li>Nonlocal term: $\partial_x^{-1}(u_{xxx} + 6uu_x) = u_{xx} + 3u^2$</li>
-</ul>
+<p>Detailed derivatives:
+- $\partial_x^2 u_{xxx} = u_{xxxxx}$
+- $\partial_x^2 (6uu_x) = 6(u_{xx}^2 + 2u u_{xxx} + u_x^2)$
+- $4u(u_{xxx} + 6uu_x) = 4u u_{xxx} + 24u^2 u_x$
+- Nonlocal term: $\partial_x^{-1}(u_{xxx} + 6uu_x) = u_{xx} + 3u^2$</p>
 
 <p><strong>Final result after collecting terms:</strong>
-\(Q_2 = u_{xxxxx} + 10u u_{xxx} + 20 u_x u_{xx} + 30 u^2 u_x\)</p>
+\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)2</p>
 
 <ol>
   <li><strong>Verify Commutativity:</strong>
 Demonstration: Show $[Q_1, Q_2] = 0$ by explicit computation on test function $v$:</li>
 </ol>
 
-\[[Q_1, Q_2]v = D_{Q_1} Q_2 v - D_{Q_2} Q_1 v\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)3</p>
 
 <p>This 50-term calculation confirms the Lie bracket vanishes, establishing the integrability structure.</p>
 
@@ -1015,7 +1011,7 @@ Demonstration: Show $[Q_1, Q_2] = 0$ by explicit computation on test function $v
 
 <p>Recursion operator:</p>
 
-\[\mathcal{R}_{mKdV} = \partial_x^2 + 4v^2 + \frac{4}{3} v_x \partial_x^{-1}\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)4</p>
 
 <p>Generate first three symmetries:</p>
 
@@ -1035,25 +1031,25 @@ Demonstration: Show $[Q_1, Q_2] = 0$ by explicit computation on test function $v
 
 <ol>
   <li><strong>Logarithmic Derivative:</strong>
-\(u = 2 \frac{\partial^2}{\partial x^2} \log \tau\)</li>
+\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)5</li>
 </ol>
 
 <p>Compute derivatives:</p>
 
-\[u_x = 2 \left( \frac{\tau_{xx}}{\tau} - \left(\frac{\tau_x}{\tau}\right)^2 \right)\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)6</p>
 
-\[u_{xx} = 2 \left( \frac{\tau_{xxx}}{\tau} - 3 \frac{\tau_{xx} \tau_x}{\tau^2} + 2 \left(\frac{\tau_x}{\tau}\right)^3 \right)\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)7</p>
 
-\[u_{xxx} = 2 \left( \frac{\tau_{xxxx}}{\tau} - 4 \frac{\tau_{xxx} \tau_x}{\tau^2} - 3 \frac{\tau_{xx}^2}{\tau^2} + 12 \frac{\tau_{xx} \tau_x^2}{\tau^3} - 6 \left(\frac{\tau_x}{\tau}\right)^4 \right)\]
+<p>\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)8</p>
 
 <ol>
   <li>
     <p><strong>Time Derivative:</strong>
-\(u_t = 2 \left( \frac{\tau_{xxt}}{\tau} - 2 \frac{\tau_{xx} \tau_t}{\tau^2} + \left(\frac{\tau_x}{\tau}\right)^2 \frac{\tau_t}{\tau} \right)\)</p>
+\(u_t = J_1 \frac{\delta H_1}{\delta u} = J_0 \frac{\delta H_2}{\delta u}\)9</p>
   </li>
   <li>
     <p><strong>Nonlinear Term:</strong>
-\(6uu_x = 12 \left( \frac{\tau_{xx}}{\tau} - \left(\frac{\tau_x}{\tau}\right)^2 \right)^2\)</p>
+\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)0</p>
   </li>
   <li>
     <p><strong>Substitute into KdV:</strong>
@@ -1061,16 +1057,16 @@ The KdV equation becomes a complex expression in $\tau$ and its derivatives. Aft
   </li>
 </ol>
 
-\[(D_x D_t + D_x^4) \tau \cdot \tau = 0\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)1</p>
 
 <ol>
   <li><strong>Verification:</strong>
 Expand both operators:</li>
 </ol>
 
-\[D_x D_t \tau \cdot \tau = \tau_{xt} \tau - \tau_x \tau_t\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)2</p>
 
-\[D_x^4 \tau \cdot \tau = \tau_{xxxx} \tau - 4 \tau_{xxx} \tau_x + 6 \tau_{xx} \tau_x^2 - 3 \tau_x^4\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)3</p>
 
 <h3 id="example-464-2-soliton-solutiondetailed-derivation">Example 4.6.4: 2-Soliton Solution—Detailed Derivation</h3>
 
@@ -1080,43 +1076,43 @@ Expand both operators:</li>
 
 <ol>
   <li><strong>Single Soliton:</strong>
-\(\tau_1 = 1 + e^{\theta_1}, \quad \theta_1 = k_1 x - k_1^3 t + \delta_1\)</li>
+\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)4</li>
 </ol>
 
-\[u_1 = 2 \frac{\partial^2}{\partial x^2} \log(1 + e^{\theta_1}) = 2 k_1^2 \text{sech}^2 \left( \frac{\theta_1}{2} \right)\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)5</p>
 
 <ol>
   <li>
     <p><strong>Perturbative Ansatz:</strong>
-\(\tau = 1 + \epsilon (e^{\theta_1} + e^{\theta_2}) + \epsilon^2 f_2 + O(\epsilon^3)\)</p>
+\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)6</p>
   </li>
   <li>
     <p><strong>$O(\epsilon^2)$ Equation:</strong>
-\((D_x D_t + D_x^4) [f_2 \cdot 1 + e^{\theta_1} \cdot e^{\theta_1} + e^{\theta_2} \cdot e^{\theta_2}] = 0\)</p>
+\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)7</p>
   </li>
 </ol>
 
 <p>Compute interaction terms:</p>
 
-\[D_x^4 e^{\theta_1} \cdot e^{\theta_1} = (k_1 - k_1)^4 e^{2\theta_1} = 0\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)8</p>
 
 <p>The driving term becomes:</p>
 
-\[(D_x D_t + D_x^4) (e^{\theta_1 + \theta_2}) = (k_1 + k_2)(k_1^3 + k_2^3) e^{\theta_1 + \theta_2}\]
+<p>\(\mathcal{R} = J_1 J_0^{-1} = (\partial_x^3 + 4u\partial_x + 2u_x)\partial_x^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}\)9</p>
 
 <ol>
   <li><strong>Solve for Interaction Coefficient:</strong>
-\(f_2 = A_{12} e^{\theta_1 + \theta_2}\)</li>
+\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)0</li>
 </ol>
 
 <p><strong>Correct calculation:</strong></p>
 
-\[A_{12} = \left( \frac{k_1 - k_2}{k_1 + k_2} \right)^2\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)1</p>
 
 <ol>
   <li>
     <p><strong>Complete 2-Soliton $\tau$-Function:</strong>
-\(\tau = 1 + e^{\theta_1} + e^{\theta_2} + \left( \frac{k_1 - k_2}{k_1 + k_2} \right)^2 e^{\theta_1 + \theta_2}\)</p>
+\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)2</p>
   </li>
   <li>
     <p><strong>Explicit Solution:</strong>
@@ -1124,14 +1120,12 @@ For $k_1 = 2$, $k_2 = 1$:</p>
   </li>
 </ol>
 
-\[u(x,t) = 2 \frac{\partial^2}{\partial x^2} \log \left[ 1 + e^{2x - 8t} + e^{x - t} + \frac{1}{9} e^{3x - 9t} \right]\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)3</p>
 
-<p><strong>Asymptotic analysis:</strong></p>
-<ul>
-  <li>$t \to -\infty$: Two separate solitons</li>
-  <li>$t = 0$: Maximum interaction</li>
-  <li>$t \to +\infty$: Solitons separate with phase shifts</li>
-</ul>
+<p><strong>Asymptotic analysis:</strong>
+- $t \to -\infty$: Two separate solitons
+- $t = 0$: Maximum interaction
+- $t \to +\infty$: Solitons separate with phase shifts</p>
 
 <h3 id="example-465-3-soliton-solution">Example 4.6.5: 3-Soliton Solution</h3>
 
@@ -1141,11 +1135,11 @@ For $k_1 = 2$, $k_2 = 1$:</p>
 
 <p>General form:</p>
 
-\[\tau = 1 + \sum_i e^{\theta_i} + \sum_{i&lt;j} A_{ij} e^{\theta_i + \theta_j} + A_{123} e^{\theta_1 + \theta_2 + \theta_3}\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)4</p>
 
 <p>Interaction coefficients:</p>
 
-\[A_{ij} = \left( \frac{k_i - k_j}{k_i + k_j} \right)^2, \quad A_{123} = \frac{(k_1 - k_2)(k_1 - k_3)(k_2 - k_3)}{(k_1 + k_2)(k_1 + k_3)(k_2 + k_3)}\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)5</p>
 
 <p><strong>Verification:</strong> Substitute into bilinear equation and confirm all higher-order terms vanish.</p>
 
@@ -1157,17 +1151,17 @@ For $k_1 = 2$, $k_2 = 1$:</p>
 
 <p><strong>Bilinear form:</strong></p>
 
-\[(D_x D_t - 1) f \cdot g = 0\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)6</p>
 
 <p><strong>2-soliton solution:</strong></p>
 
-\[f = 1 + e^{\theta_1} + e^{\theta_2} + A_{12} e^{\theta_1 + \theta_2}\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)7</p>
 
 <p>With:</p>
 
-\[\theta_i = \frac{k_i}{2} (x + t) + \frac{\omega_i}{2} (x - t) + \delta_i, \quad \omega_i^2 = k_i^2 + 1\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)8</p>
 
-\[A_{12} = \frac{(k_1 - k_2)^2 + (\omega_1 - \omega_2)^2}{(k_1 + k_2)^2 + (\omega_1 + \omega_2)^2}\]
+<p>\(Q_1 = \mathcal{R} Q_0 = (\partial_x^2 + 4u + 2u_x \partial_x^{-1}) u_x = u_{xxx} + 6uu_x\)9</p>
 
 <p><strong>Physical interpretation:</strong> Breathers and kink-antikink scattering with exact phase shifts.</p>
 
@@ -1179,20 +1173,15 @@ For $k_1 = 2$, $k_2 = 1$:</p>
 
 <p>Take linear system:</p>
 
-\[L \phi = \lambda \phi, \quad L = \partial_x^2 + u\]
+<p>\(Q_2 = \mathcal{R} Q_1 = u_{xxxxx} + 10uu_{xxx} + 20u_x u_{xx} + 30u^2 u_x\)0</p>
 
 <p><strong>Wronskian:</strong></p>
 
-\[\tau_N = \det \begin{pmatrix}
-\phi_1 &amp; \phi_1' &amp; \cdots &amp; \phi_1^{(N-1)} \\
-\phi_2 &amp; \phi_2' &amp; \cdots &amp; \phi_2^{(N-1)} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-\phi_N &amp; \phi_N' &amp; \cdots &amp; \phi_N^{(N-1)}
-\end{pmatrix}\]
+<p>\(Q_2 = \mathcal{R} Q_1 = u_{xxxxx} + 10uu_{xxx} + 20u_x u_{xx} + 30u^2 u_x\)1</p>
 
 <p><strong>Verification for $N=2$:</strong></p>
 
-\[\tau_2 = \phi_1 \phi_2' - \phi_1' \phi_2 = W(\phi_1, \phi_2)\]
+<p>\(Q_2 = \mathcal{R} Q_1 = u_{xxxxx} + 10uu_{xxx} + 20u_x u_{xx} + 30u^2 u_x\)2</p>
 
 <p>Show that $u = 2 \frac{\partial^2}{\partial x^2} \log \tau_2$ satisfies KdV through direct substitution and use of the linear system.</p>
 
@@ -1291,7 +1280,7 @@ For $k_1 = 2$, $k_2 = 1$:</p>
 
 <p><strong>Explicit computation for $H_2$:</strong></p>
 
-\[\frac{d}{dt} \int \left( u^3 - \frac{1}{2} u_x^2 \right) dx = \int \left( 3u^2 u_t - u_x u_{xt} \right) dx\]
+<p>\(Q_2 = \mathcal{R} Q_1 = u_{xxxxx} + 10uu_{xxx} + 20u_x u_{xx} + 30u^2 u_x\)3</p>
 
 <p>Substitute $u_t = Q_1 = u_{xxx} + 6uu_x$ and integrate by parts $\to$ total divergence = 0.</p>
 

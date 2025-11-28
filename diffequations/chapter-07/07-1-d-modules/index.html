@@ -938,39 +938,32 @@
     <p><strong>Weyl Algebra Construction:</strong>
 Let $\mathcal{D} = \mathbb{C}[t,x][\partial_t, \partial_x]$ with relations:</p>
 
-\[[\partial_t, t] = 1, \quad [\partial_x, x] = 1, \quad [\partial_t, x] = 0, \quad [\partial_x, t] = 0\]
+    <p>\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)0</p>
 
     <p>The defining operator is:</p>
 
-\[P = \partial_t - \partial_x^2 \in \mathcal{D}\]
+    <p>\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)1</p>
   </li>
   <li>
     <p><strong>Order Filtration:</strong>
-\(\begin{align*}
-F_0\mathcal{D} &amp;= \mathbb{C}[t,x] \\
-F_1\mathcal{D} &amp;= F_0 + \mathbb{C}[t,x]\partial_t + \mathbb{C}[t,x]\partial_x \\
-F_2\mathcal{D} &amp;= F_1 + \mathbb{C}[t,x]\partial_x^2 + \text{mixed terms} \\
-&amp;\vdots
-\end{align*}\)</p>
+\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)2</p>
 
     <p><strong>Principal Symbol:</strong> $\sigma_2(P) = \tau - \xi^2$ where $(\tau, \xi)$ are dual coordinates to $(t,x)$.</p>
   </li>
   <li>
     <p><strong>Associated Graded Ring:</strong>
-\(\text{gr}_2(\mathcal{D}) = \mathbb{C}[t,x,\tau,\xi]\)</p>
+\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)3</p>
 
-\[\text{gr}(\mathcal{M}) = \mathbb{C}[t,x,\tau,\xi] / (\tau - \xi^2)\]
+    <p>\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)4</p>
   </li>
   <li>
     <p><strong>Characteristic Variety:</strong>
-\(\text{Ch}(\mathcal{M}) = \{(t,x,\tau,\xi) \mid \tau = \xi^2\} \subset T^*(\mathbb{C}^2)\)</p>
+\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)5</p>
 
-    <p><strong>Geometric Interpretation:</strong></p>
-    <ul>
-      <li>$T^*(\mathbb{C}^2)$ has dimension $4$</li>
-      <li>$\text{Ch}(\mathcal{M})$ is the graph of $\tau = \xi^2$</li>
-      <li><strong>Dimension calculation:</strong> $\dim \text{Ch}(\mathcal{M}) = \dim{(t,x,\xi)} + \dim{\tau = \xi^2} = 2 + 1 = 3$</li>
-    </ul>
+    <p><strong>Geometric Interpretation:</strong>
+- $T^*(\mathbb{C}^2)$ has dimension $4$
+- $\text{Ch}(\mathcal{M})$ is the graph of $\tau = \xi^2$
+- <strong>Dimension calculation:</strong> $\dim \text{Ch}(\mathcal{M}) = \dim{(t,x,\xi)} + \dim{\tau = \xi^2} = 2 + 1 = 3$</p>
   </li>
   <li>
     <p><strong>Bernstein’s Inequality Test:</strong>
@@ -999,7 +992,7 @@ $n = \dim(\mathbb{C}^2) = 2$</p>
 <ol>
   <li>
     <p><strong>D-Module Construction:</strong>
-\(\mathcal{M} = \mathcal{D}_{\mathbb{C}_x} / \mathcal{D}_{\mathbb{C}_x} \cdot (\partial_x^2 + x)\)</p>
+\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)6</p>
   </li>
   <li>
     <p><strong>Filtration and Symbols:</strong>
@@ -1007,7 +1000,7 @@ $n = \dim(\mathbb{C}^2) = 2$</p>
 
     <p><strong>Characteristic variety:</strong></p>
 
-\[\text{Ch}(\mathcal{M}) = \{(x,\xi) \in T^*\mathbb{C}_x \mid \xi^2 = 0\} = \{(x,0) \mid x \in \mathbb{C}\}\]
+    <p>\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)7</p>
   </li>
   <li><strong>Dimension Analysis:</strong>
     <ul>
@@ -1032,16 +1025,7 @@ The characteristic variety ${(x,0)}$ is Lagrangian in $T^*\mathbb{C}_x$:
     <ul>
       <li>$\omega = dx \wedge d\xi$ is the symplectic form</li>
       <li>$\text{Ch}(\mathcal{M})$ is 1-dimensional in 2-dimensional symplectic space</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Maximal isotropy:</strong> $\omega</td>
-              <td>_{\text{Ch}(\mathcal{M})} = 0$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li><strong>Maximal isotropy:</strong> $\omega|_{\text{Ch}(\mathcal{M})} = 0$</li>
     </ul>
   </li>
 </ol>
@@ -1057,27 +1041,19 @@ The characteristic variety ${(x,0)}$ is Lagrangian in $T^*\mathbb{C}_x$:
     <p><strong>Parameter-dependent D-Module:</strong>
 For each $E \in \mathbb{C}$:</p>
 
-\[\mathcal{M}_E = \mathcal{D} / \mathcal{D} \cdot (-\partial_x^2 + x^2 - E)\]
+    <p>\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)8</p>
   </li>
   <li>
     <p><strong>Characteristic Variety:</strong>
-\(\sigma_2(P_E) = -\xi^2 + x^2 - E\)</p>
+\([\partial_i, x_j] = \partial_i x_j - x_j \partial_i = \delta_{ij}\)9</p>
 
-\[\text{Ch}(\mathcal{M}_E) = \{(x,\xi) \mid \xi^2 = x^2 - E\}\]
+    <p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)0</p>
   </li>
   <li>
     <p><strong>Geometric Analysis:</strong>
 <strong>Case 1:</strong> $E &lt; 0$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>$\xi^2 = x^2 +</td>
-          <td>E</td>
-          <td>$ (hyperbola)</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>$\xi^2 = x^2 + |E|$ (hyperbola)</p>
 
     <p>$\dim \text{Ch}(\mathcal{M}_E) = 1 = n$</p>
 
@@ -1109,7 +1085,7 @@ Holonomicity for all $E$ explains:
     <p><strong>Connection to SUSY QM (Chapter 4.7):</strong>
 The harmonic oscillator D-modules are holonomic due to their factorization:</p>
 
-\[H = A^\dagger A + 1, \quad A = \partial_x + x\]
+    <p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)1</p>
 
     <p>This algebraic structure is preserved in the D-module category.</p>
   </li>
@@ -1126,19 +1102,19 @@ The harmonic oscillator D-modules are holonomic due to their factorization:</p>
     <p><strong>D-Module Construction:</strong>
 <strong>Key Observation:</strong> Multiplication by $x$ is a differential operator of order 0:</p>
 
-\[P = x \in F_0\mathcal{D}\]
+    <p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)2</p>
 
-\[\mathcal{M}_\delta = \mathcal{D}_{\mathbb{C}_x} / \mathcal{D}_{\mathbb{C}_x} \cdot x\]
+    <p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)3</p>
   </li>
   <li>
     <p><strong>Filtration Analysis:</strong>
-\(F_k\mathcal{M}_\delta = F_k\mathcal{D} / (F_k\mathcal{D} \cap \mathcal{D} \cdot x)\)</p>
+\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)4</p>
 
     <p><strong>Principal symbol:</strong> $\sigma_0(x) = x$ (order 0 operator)</p>
   </li>
   <li>
     <p><strong>Characteristic Variety:</strong>
-\(\text{Ch}(\mathcal{M}_\delta) = \{(x,\xi) \in T^*\mathbb{C}_x \mid x = 0\}\)</p>
+\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)5</p>
 
     <p><strong>Geometric description:</strong> ${x = 0} \times \mathbb{C}_\xi =$ entire cotangent fiber over point $0$</p>
 
@@ -1148,22 +1124,15 @@ The harmonic oscillator D-modules are holonomic due to their factorization:</p>
     <p><strong>Lagrangian Verification:</strong>
 <strong>Symplectic form:</strong> $\omega = dx \wedge d\xi$</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Restricted to $x=0$:</strong> $\omega</td>
-          <td>_{x=0} = 0$ (since $dx = 0$)</td>
-        </tr>
-      </tbody>
-    </table>
+    <p><strong>Restricted to $x=0$:</strong> $\omega|_{x=0} = 0$ (since $dx = 0$)</p>
 
     <p><strong>Conclusion:</strong> The Dirac delta module is <strong>HOLONOMIC</strong>!</p>
   </li>
   <li>
     <p><strong>Solution Interpretation:</strong>
-\(\text{Hom}_{\mathcal{D}}(\mathcal{M}_\delta, \mathcal{O}_x) = \{0\}\)</p>
+\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)6</p>
 
-\[\text{Hom}_{\mathcal{D}}(\mathcal{M}_\delta, \mathcal{D}_x') = \mathbb{C} \cdot \delta\]
+    <p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)7</p>
 
     <p><strong>Key Insight:</strong> Holonomicity captures the point-like support algebraically.</p>
   </li>
@@ -1226,11 +1195,11 @@ The D-module structure explains why $\delta$ is “infinitely differentiable” 
 
 <p><strong>Detailed Computation: Wave Equation</strong></p>
 
-\[P = \partial_t^2 - \partial_x^2\]
+<p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)8</p>
 
-\[\sigma_2(P) = \tau^2 - \xi^2\]
+<p>\(\text{gr}(\mathcal{D}_X) = \bigoplus_{k \geq 0} F_k \mathcal{D}_X / F_{k-1} \mathcal{D}_X\)9</p>
 
-\[\text{Ch}(\mathcal{M}) = \{(t,x,\tau,\xi) \mid \tau^2 = \xi^2\}\]
+<p>\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)0</p>
 
 <p><strong>Geometry:</strong> Light cone in phase space</p>
 
@@ -1238,11 +1207,9 @@ The D-module structure explains why $\delta$ is “infinitely differentiable” 
 
 <p><strong>Solution space:</strong> Infinite-dimensional (d’Alembert formula)</p>
 
-<p><strong>Key Contrast:</strong></p>
-<ul>
-  <li><strong>Holonomic (ODE, Laplace)</strong> → Finite solution space</li>
-  <li><strong>Non-holonomic (Wave, Heat)</strong> → Infinite solution space</li>
-</ul>
+<p><strong>Key Contrast:</strong>
+- <strong>Holonomic (ODE, Laplace)</strong> → Finite solution space
+- <strong>Non-holonomic (Wave, Heat)</strong> → Infinite solution space</p>
 
 <h3 id="example-716-functorial-operations-demonstration">Example 7.1.6: Functorial Operations Demonstration</h3>
 
@@ -1257,7 +1224,7 @@ The D-module structure explains why $\delta$ is “infinitely differentiable” 
 <ol>
   <li>
     <p><strong>Inverse Image:</strong>
-\(i^+\mathcal{M} = \mathcal{D}_{\mathbb{C}_x} \otimes_{\mathcal{D}_{\mathbb{C}^2}} \mathcal{M}\)</p>
+\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)1</p>
   </li>
   <li>
     <p><strong>Characteristic Variety Computation:</strong>
@@ -1282,20 +1249,20 @@ Initial data $u(0,x)$ for heat equation can be arbitrary smooth function → Cor
 
 <p><strong>Problem:</strong> Consider the D-module for Bessel functions</p>
 
-\[\mathcal{M} = \mathcal{D}_{\mathbb{C}_z^*} / \mathcal{D} \cdot (z^2 \partial_z^2 + z \partial_z - (z^2 + \nu^2))\]
+<p>\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)2</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
 <ol>
   <li>
     <p><strong>Principal Symbol:</strong>
-\(P = z^2 \partial_z^2 + z \partial_z - z^2 - \nu^2\)</p>
+\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)3</p>
 
-\[\sigma_2(P) = z^2 \xi^2 + z \xi - z^2 - \nu^2\]
+    <p>\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)4</p>
   </li>
   <li>
     <p><strong>Characteristic Variety:</strong>
-\(\text{Ch}(\mathcal{M}) = \{(z,\xi) \in T^*\mathbb{C}_z^* \mid z^2 \xi^2 + z \xi - z^2 = \nu^2\}\)</p>
+\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)5</p>
   </li>
   <li>
     <p><strong>Dimension Analysis:</strong>
@@ -1373,7 +1340,7 @@ The equation $z^2 \xi^2 + z \xi - z^2 = \nu^2$ defines a curve in $T^<em>\mathbb
   </li>
   <li>
     <p><strong>Solution Space Theorem:</strong>
-\(\dim \text{Sol}(\mathcal{M}) &lt; \infty \iff \mathcal{M} \text{ is holonomic}\)</p>
+\(\text{gr}(\mathcal{D}_X) \cong \mathcal{O}_{T^*X}\)6</p>
   </li>
   <li><strong>Physical Dictionary:</strong>
     <ul>

@@ -944,7 +944,7 @@ Introduce potential $v(x,t)$:</li>
 </ol>
 
 \[\begin{cases}
-v_x = u \\
+v_x = u \
 v_t = -(-u^m u_x) = u^m u_x
 \end{cases}\]
 
@@ -953,21 +953,21 @@ v_t = -(-u^m u_x) = u^m u_x
 Seek infinitesimal generator:</li>
 </ol>
 
-\[\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)0</p>
 
 <p>Prolongation to first order:</p>
 
-\[\text{pr}^{(1)}\mathbf{V} = \mathbf{V} + \phi^x \partial_{u_x} + \phi^t \partial_{u_t} + \psi^x \partial_{v_x} + \psi^t \partial_{v_t}\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)1</p>
 
 <p>Prolongation formulas:</p>
 
-\[\phi^x = D_x \phi - u_x D_x \xi - u_t D_x \tau\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)2</p>
 
-\[\phi^t = D_t \phi - u_x D_t \xi - u_t D_t \tau\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)3</p>
 
-\[\psi^x = D_x \psi - v_x D_x \xi - v_t D_x \tau = D_x \psi - u D_x \xi - u_x D_x \tau\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)4</p>
 
-\[\psi^t = D_t \psi - v_x D_t \xi - v_t D_t \tau\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)5</p>
 
 <ol>
   <li><strong>Determining Equations:</strong>
@@ -976,11 +976,11 @@ Apply prolongation to potential system equations:</li>
 
 <p>For $v_x = u$:</p>
 
-\[\text{pr}^{(1)}\mathbf{V}(v_x - u) = \psi^x - \phi = 0 \quad \text{on} \quad v_x = u\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)6</p>
 
 <p>For $v_t = u^m u_x$:</p>
 
-\[\text{pr}^{(1)}\mathbf{V}(v_t - u^m u_x) = \psi^t - m u^{m-1} u_x \phi - u^m \phi^x = 0 \quad \text{on} \quad v_t = u^m u_x\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)7</p>
 
 <ol>
   <li><strong>Solve Determining System:</strong>
@@ -989,7 +989,7 @@ After extensive algebraic manipulation, we obtain:</li>
 
 <p><strong>Case 1: Classical scaling symmetries</strong> ($\xi, \tau, \phi$ independent of $v$):</p>
 
-\[\xi = a x + b, \quad \tau = c t + d, \quad \phi = k u\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)8</p>
 
 <p><strong>Case 2: Nonlocal symmetries</strong> (depending on $v$):</p>
 
@@ -997,23 +997,23 @@ After extensive algebraic manipulation, we obtain:</li>
 
 <p>For $m=2$ (fast diffusion):</p>
 
-\[\mathbf{V}_5 = v \partial_u, \quad \mathbf{V}_6 = v u \partial_u + \frac{1}{2} v^2 \partial_v\]
+<p>\(D_t T(x, t, u, \dots) + D_x X(x, t, u, \dots) = 0\)9</p>
 
 <p><strong>Verification (explicit computation for $\mathbf{V}_5 = v \partial_u$):</strong></p>
 
 <p>Check $v_x = u$:</p>
 
-\[\text{pr}^{(1)}\mathbf{V}_5(v_x - u) = \psi^x - \phi = D_x(v) - v = u_x - v = 0\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)0</p>
 
 <p>Check $v_t = u^2 u_x$:</p>
 
-\[\text{pr}^{(1)}\mathbf{V}_5(v_t - u^2 u_x) = \psi^t - 2u u_x v - u^2 \phi^x\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)1</p>
 
-\[\psi^t = D_t(v) = v_t = u^2 u_x\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)2</p>
 
-\[\phi^x = D_x(v) - u_x D_x(0) - u_t D_x(0) = u_x\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)3</p>
 
-\[u^2 u_x - 2u u_x v - u^2 u_x = -2u u_x v = 0 \quad \text{(on solutions where } u \neq 0\text{)}\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)4</p>
 
 <p>Success! $\mathbf{V}_5$ is a genuine nonlocal symmetry.</p>
 
@@ -1022,17 +1022,17 @@ After extensive algebraic manipulation, we obtain:</li>
 Use $\mathbf{V}_5 = v \partial_u$ for reduction. Invariant solution ansatz:</li>
 </ol>
 
-\[u = f(\eta), \quad v = g(\eta), \quad \eta = x - c t\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)5</p>
 
 <p><strong>Exact solution via hodograph transformation:</strong></p>
 
-\[u = \frac{1}{v}, \quad \text{linear heat equation for } v\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)6</p>
 
 <h3 id="example-482-black-scholes-equationfinancial-application">Example 4.8.2: Black-Scholes Equation—Financial Application</h3>
 
 <p><strong>Problem:</strong> The Black-Scholes PDE for European call option pricing:</p>
 
-\[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)7</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1041,17 +1041,14 @@ Use $\mathbf{V}_5 = v \partial_u$ for reduction. Invariant solution ansatz:</li>
 Local conservation law (energy-type):</li>
 </ol>
 
-\[D_t(T) + D_S(X) = 0\]
+<p>\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)8</p>
 
 <p>where $T = V_S$, $X = -\frac{1}{2}\sigma^2 S^2 V_{SS} - r S V_S + r V$</p>
 
 <ol>
   <li>
     <p><strong>Potential System:</strong>
-\(\begin{cases}
-v_S = V_S \\
-v_t = -\left(-\frac{1}{2}\sigma^2 S^2 V_{SS} - r S V_S + r V\right)
-\end{cases}\)</p>
+\(v_x = T(x, t, u, \dots), \quad v_t = -X(x, t, u, \dots)\)9</p>
   </li>
   <li>
     <p><strong>Nonlocal Symmetries:</strong>
@@ -1059,7 +1056,7 @@ The potential system admits 17 symmetries (vs 6 for original PDE), including:</p
   </li>
 </ol>
 
-\[\mathbf{V}_7 = S v \partial_V, \quad \mathbf{V}_8 = t v \partial_V, \quad \mathbf{V}_9 = v \partial_V\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)0</p>
 
 <ol>
   <li><strong>Exact Solution Construction:</strong>
@@ -1068,23 +1065,21 @@ Hodograph transformation using $\mathbf{V}_9 = v \partial_V$:</li>
 
 <p>Set $V = f(v)$. Substitute into Black-Scholes:</p>
 
-\[f''(v) v_S v_S + f'(v) v_{SS} + \frac{1}{2}\sigma^2 S^2 f''(v) v_S^2 + r S f'(v) v_S - r f(v) = 0\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)1</p>
 
 <p>Since $v_S = V_S$, this linearizes to the heat equation:</p>
 
-\[v_t = \frac{1}{2}\sigma^2 S^2 v_{SS}\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)2</p>
 
-<p><strong>Complete analytical solution:</strong></p>
-<ul>
-  <li>Solve heat equation for $v(S,t)$</li>
-  <li>Invert $V = f(v)$ to obtain option price</li>
-</ul>
+<p><strong>Complete analytical solution:</strong>
+- Solve heat equation for $v(S,t)$
+- Invert $V = f(v)$ to obtain option price</p>
 
 <h3 id="example-483-porous-medium-equationphysical-breakthrough">Example 4.8.3: Porous Medium Equation—Physical Breakthrough</h3>
 
 <p><strong>Problem:</strong> Porous medium equation:</p>
 
-\[u_t = (u^n u_x)_x, \quad n &gt; 1\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)3</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1099,55 +1094,47 @@ Mass: $D_t u + D_x (-u^n u_x) = 0$</li>
 
 <p>Seek multiplier $\Lambda(u,u_x,u_t)$ such that:</p>
 
-\[\Lambda u_t = D_t T + D_x X\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)4</p>
 
 <p>For $n=2$, find:</p>
 
-\[\Lambda = u_x, \quad T = \frac{1}{2} u u_x, \quad X = -\frac{1}{3} u^2 u_{xx} - \frac{1}{2} u u_x^2\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)5</p>
 
 <ol>
   <li><strong>Double Potential System:</strong>
 Introduce potentials:</li>
 </ol>
 
-\[\begin{cases}
-v_x = u \\
-v_t = u^2 u_x
-\end{cases}\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)6</p>
 
-\[\begin{cases}
-w_x = \frac{1}{2} u u_x \\
-w_t = -\left(-\frac{1}{3} u^2 u_{xx} - \frac{1}{2} u u_x^2\right)
-\end{cases}\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)7</p>
 
 <ol>
   <li><strong>Lie Analysis of $(u,v,w)$-system:</strong>
 Remarkable result: The triple system admits infinite-dimensional Lie algebra:</li>
 </ol>
 
-\[\mathbf{V}_k = v^k \partial_u + k v^{k-1} w \partial_v, \quad k = 1, 2, 3, \dots\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)8</p>
 
 <ol>
   <li><strong>Infinite Hierarchy of Exact Solutions:</strong>
 Barenblatt solution via symmetry reduction:</li>
 </ol>
 
-\[u(x,t) = t^{-\alpha} f\left(\frac{x}{t^\beta}\right)\]
+<p>\(\mathbf{V} = \xi(x,t,u,v)\partial_x + \tau(x,t,u,v)\partial_t + \phi(x,t,u,v)\partial_u + \psi(x,t,u,v)\partial_v\)9</p>
 
-<p>Using nonlocal symmetries, obtain complete classification:</p>
-<ul>
-  <li>Self-similar solutions of first kind</li>
-  <li>Instantaneous point source solutions</li>
-  <li>Waiting time solutions</li>
-</ul>
+<p>Using nonlocal symmetries, obtain complete classification:
+- Self-similar solutions of first kind
+- Instantaneous point source solutions
+- Waiting time solutions</p>
 
 <p><strong>Explicit computation for $k=2$:</strong></p>
 
-\[\mathbf{V}_2 = v^2 \partial_u + 2 v w \partial_v\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)0</p>
 
 <p>Invariant surface condition:</p>
 
-\[v^2 u_\eta + 2 v w v_\eta = 0 \implies \frac{du}{dv} = -\frac{2w}{v}\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)1</p>
 
 <p>Solve ODE system to obtain exact similarity solutions.</p>
 
@@ -1155,7 +1142,7 @@ Barenblatt solution via symmetry reduction:</li>
 
 <p><strong>Problem:</strong> First Painlevé equation:</p>
 
-\[u u_{tt} = 6 u_t^2 + u u_{xx} + 3(u_x)^2 - \frac{u_{xxxx}}{u}\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)2</p>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1164,15 +1151,12 @@ Barenblatt solution via symmetry reduction:</li>
 Known conservation law:</li>
 </ol>
 
-\[D_t\left(\frac{u_{xx}}{u}\right) + D_x\left(-\frac{u_{xxx}}{u} + \frac{u_x u_{xx}}{u^2}\right) = 0\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)3</p>
 
 <ol>
   <li>
     <p><strong>Potential System:</strong>
-\(\begin{cases}
-v_x = \frac{u_{xx}}{u} \\
-v_t = -\left(-\frac{u_{xxx}}{u} + \frac{u_x u_{xx}}{u^2}\right)
-\end{cases}\)</p>
+\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)4</p>
   </li>
   <li>
     <p><strong>Nonlocal Symmetries:</strong>
@@ -1180,14 +1164,14 @@ Key discovery: Potential system admits Möbius symmetries:</p>
   </li>
 </ol>
 
-\[\mathbf{V} = \frac{a(t) v + b(t)}{c(t) v + d(t)} \partial_u\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)5</p>
 
 <ol>
   <li><strong>Bäcklund Transformations:</strong>
 These nonlocal symmetries generate auto-Bäcklund transformations:</li>
 </ol>
 
-\[u \mapsto \tilde{u} = u + \frac{2}{\ln v + c}\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)6</p>
 
 <p><strong>Verification (complete calculation):</strong>
 Substitute into Painlevé I and verify both satisfy original equation.</p>
@@ -1211,19 +1195,17 @@ Substitute into Painlevé I and verify both satisfy original equation.</p>
 
 <p><strong>Theorem (Olver, 1995):</strong> For integrable systems, this process yields:</p>
 
-\[\dim \text{Lie}(S_n) = n + \dim \text{Lie}(\Delta)\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)7</p>
 
-<p><strong>Explicit computation for KdV:</strong></p>
-<ul>
-  <li>Scalar KdV: 1 Lie symmetry (time translation)</li>
-  <li>Potential KdV: 3 symmetries</li>
-  <li>Double potential: 5 symmetries</li>
-  <li>Continues indefinitely</li>
-</ul>
+<p><strong>Explicit computation for KdV:</strong>
+- Scalar KdV: 1 Lie symmetry (time translation)
+- Potential KdV: 3 symmetries
+- Double potential: 5 symmetries
+- Continues indefinitely</p>
 
 <p><strong>Final analytical result:</strong></p>
 
-\[\text{Lie algebra dimension} = \infty\]
+<p>\(v(x,t) = \int_{(x_0, t_0)}^{(x,t)} (T dx - X dt)\)8</p>
 
 <p>This precisely connects to the infinite hierarchies of Sections 4.3–4.6.</p>
 
