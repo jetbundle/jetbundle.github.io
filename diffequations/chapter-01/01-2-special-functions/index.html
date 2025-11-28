@@ -701,27 +701,205 @@
 
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<p>The exact integration methods of Section 1.1 assume coefficients that are constant or transformable to constants. Physical boundary conditions and symmetries often give rise to variable-coefficient equations whose qualitative behavior is dictated by the geometry of their singularities in the complex plane. Special functions therefore form a hierarchy organized by this singular structure.</p>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<h3 id="hypergeometric-master-equation">Hypergeometric Master Equation</h3>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+<p>The Gauss hypergeometric equation is the canonical linear equation with three regular singular points (at $z=0,1,\infty$):</p>
 
-<h3 id="core-results">Core Results</h3>
+\[z(1-z)rac{d^2y}{dz^2} + ig[c - (a+b+1)zig]rac{dy}{dz} - ab\,y = 0.\]
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+<p>Inside $\lvert z
+vert &lt; 1$, the solution is the Gauss series</p>
 
-<h3 id="applications">Applications</h3>
+\[{}_2F_1(a,b;c;z) = \sum_{n=0}^{\infty} rac{(a)_n (b)_n}{(c)_n}rac{z^n}{n!},\]
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<p>with $(a)_n = \Gamma(a+n)/\Gamma(a)$. When $a$ or $b$ is a non-positive integer, the series terminates and produces polynomial solutions. Analytic continuation (with branch cut $[1,\infty)$) follows from Euler integrals, and the fifteen contiguous relations summarized in <strong>Andrews, Askey &amp; Roy (1999)</strong> show that the topology of the Riemann sphere governs all transformations among these solutions.</p>
+
+<h3 id="confluence-and-singular-limits">Confluence and Singular Limits</h3>
+
+<p>Most named functions arise as confluent limits of ${}_2F_1$, where regular singularities merge into irregular ones:</p>
+
+<ol>
+  <li><strong>Bessel functions.</strong> Rescaling $z\mapsto z/b$ and letting $b	o\infty$ merges the singularity at $z=1$ with $\infty$, yielding the Bessel equation with solutions $J_
+u$.</li>
+  <li><strong>Kummer/Whittaker functions.</strong> When two singularities coalesce, the confluent hypergeometric function ${}_1F_1(a;c;z)$ emerges, featuring one regular and one irregular singular point.</li>
+  <li><strong>Legendre polynomials.</strong> Integer parameter choices in ${}_2F_1$ recover $P_n(x)$, representing spherical symmetry.</li>
+</ol>
+
+<p>Because confluence is performed at the level of singular geometry, recurrence relations, integral representations, and asymptotic behavior flow from the hypergeometric master to its descendants (<strong>Whittaker &amp; Watson, 1927</strong>).</p>
+
+<h3 id="frobenius-method-and-riemann-p-symbols">Frobenius Method and Riemann $P$-Symbols</h3>
+
+<p>For a linear equation $y’’ + P(z) y’ + Q(z)y = 0$, a point $z_0$ is a <strong>regular singular point</strong> if $(z-z_0)P(z)$ and $(z-z_0)^2 Q(z)$ are analytic at $z_0$. The Frobenius ansatz</p>
+
+\[y(z) = (z-z_0)^r \sum_{n=0}^{\infty} a_n (z-z_0)^n, \qquad a_0 
+eq 0,\]
+
+<p>leads to the indicial equation</p>
+
+\[r(r-1) + p_0 r + q_0 = 0,\]
+
+<p>where $p_0 = \lim_{z	o z_0} (z-z_0)P(z)$ and $q_0 = \lim_{z	o z_0} (z-z_0)^2 Q(z)$. Differences of the roots determine whether logarithmic terms are required for linear independence. The Riemann $P$-symbol records these exponents, and any equation with three regular singularities is equivalent (via Möbius transformations) to ${}_2F_1$.</p>
+
+<h3 id="irregular-singularities-and-asymptotic-analysis">Irregular Singularities and Asymptotic Analysis</h3>
+
+<p>When singularities merge, an <strong>irregular singular point</strong> forms, typically at infinity for physical problems. Frobenius series fail and solutions develop essential singularities with divergent asymptotic expansions</p>
+
+\[y(z) \sim e^{S(z)} z^{
+ho} \sum_{n=0}^{\infty} a_n z^{-n}.\]
+
+<p>The divergence records the <strong>Stokes phenomenon</strong>: as $rg z$ crosses certain rays, the coefficients of exponentially suppressed terms jump discontinuously. Controlling these jumps via connection formulae or Borel summation provides the analytic continuation machinery used later in the text (<strong>Olver et al., 2010</strong>).</p>
+
+<h3 id="sturmliouville-orthogonality">Sturm–Liouville Orthogonality</h3>
+
+<p>Many special functions are eigenfunctions of self-adjoint Sturm–Liouville operators</p>
+
+\[-rac{d}{dx}\left[p(x)rac{dy}{dx}
+ight] + q(x) y = \lambda w(x) y.\]
+
+<p>Under suitable boundary conditions, the eigenvalues are real and discrete and the eigenfunctions form an orthogonal basis of $L^2_w([a,b])$:</p>
+
+\[\int_a^b \phi_n(x)\phi_m(x) w(x)\,dx = \delta_{nm} N_n.\]
+
+<p>This Hilbert-space perspective explains why Bessel, Legendre, and Hermite functions provide complete expansions for cylindrical, spherical, and oscillator problems.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-121-legendre-polynomials-from-_2f_1">Example 1.2.1: Legendre Polynomials from ${}_2F_1$</h3>
+
+<p><strong>Problem:</strong> Show that the Legendre polynomials can be written as truncated hypergeometric series.</p>
+
+<p>Mapping $x$ to $z = (1-x)/2$ and taking $a=-n$, $b=n+1$, $c=1$ gives</p>
+
+\[P_n(x) = {}_2F_1\left(-n,n+1;1;rac{1-x}{2}
+ight) = \sum_{k=0}^{n} rac{(-n)_k (n+1)_k}{k!}\left(rac{1-x}{2}
+ight)^k.\]
+
+<p>For $n=2$,</p>
+
+\[P_2(x) = 1 - 6\left(rac{1-x}{2}
+ight) + 3\left(rac{1-x}{2}
+ight)^2 = rac{3x^2 - 1}{2},\]
+
+<p>which satisfies $(1-x^2)P_2’’ - 2x P_2’ + 6P_2 = 0$, verifying the connection to the Gauss equation.</p>
+
+<h3 id="example-122-hydrogenic-2s-radial-mode">Example 1.2.2: Hydrogenic $2s$ Radial Mode</h3>
+
+<p><strong>Problem:</strong> Derive the $2s$ radial solution of the hydrogen atom using ${}_1F_1$.</p>
+
+<p>The radial Schrödinger equation</p>
+
+\[-u''(r) + \left[rac{\ell(\ell+1)}{r^2} - rac{2}{r}
+ight]u(r) = 2E\,u(r)\]
+
+<p>is simplified by $u(r) = e^{-
+ho/2} 
+ho^{\ell} v(
+ho)$ with $
+ho = 2\sqrt{-2E}\,r$. The transformed equation reads</p>
+
+\[ho v'' + [2(\ell+1) - 
+ho] v' + (n-\ell-1) v = 0,\]
+
+<p>so $v(
+ho) = {}_1F_1(n-\ell-1; 2\ell+2; 
+ho)$. For $n=2$, $\ell=0$,</p>
+
+\[v(
+ho) = {}_1F_1(1;2;
+ho) = 1 + rac{
+ho}{2},\]
+
+<p>and</p>
+
+\[u_{2s}(r) = e^{-
+ho/2}\left(1 + rac{
+ho}{2}
+ight), \qquad 
+ho = rac{r}{a_0},\]
+
+<p>which matches the textbook hydrogenic state up to normalization.</p>
+
+<h3 id="example-123-confluence-to-bessel-functions">Example 1.2.3: Confluence to Bessel Functions</h3>
+
+<p><strong>Problem:</strong> Obtain $J_
+u$ as a confluent limit of ${}_2F_1$.</p>
+
+<p>Consider ${}_2F_1(a,b;c;2z/b)$ with $b	o\infty$. Since $(b)_n = b^n \left[1 + O!\left(rac{1}{b}
+ight)
+ight]$, the series approaches</p>
+
+\[{}_0F_1(c; z) = \sum_{n=0}^{\infty} rac{1}{(c)_n}rac{z^n}{n!}.\]
+
+<p>Choosing $c = 
+u+1$ and $z = -	frac{x^2}{4}$ yields</p>
+
+\[J_
+u(x) = rac{(x/2)^
+u}{\Gamma(
+u+1)}\, {}_0F_1\left(
+u+1; -rac{x^2}{4}
+ight),\]
+
+<p>showing that the entire Bessel hierarchy inherits its analytic structure from the hypergeometric parent.</p>
+
+<h3 id="example-124-frobenius-analysis-of-the-bessel-equation">Example 1.2.4: Frobenius Analysis of the Bessel Equation</h3>
+
+<p><strong>Problem:</strong> Apply the Frobenius method at $x=0$ to $x^2 y’’ + x y’ + (x^2 - 
+u^2)y = 0$.</p>
+
+<p>Because $xP(x)=1$ and $x^2 Q(x)=x^2 - 
+u^2$ are analytic at $x=0$, we expand $y = x^r \sum_{n=0}^{\infty} a_n x^n$. The indicial equation is</p>
+
+\[r(r-1) + r - 
+u^2 = 0 \quad \Longrightarrow \quad r = \pm 
+u.\]
+
+<p>The $r=+
+u$ branch yields</p>
+
+\[J_
+u(x) = \sum_{k=0}^{\infty} rac{(-1)^k}{k!\,\Gamma(k+
+u+1)}\left(rac{x}{2}
+ight)^{2k+
+u},\]
+
+<p>while the $r=-
+u$ branch produces $J_{-
+u}$ (and, when $
+u\in\mathbb{Z}$, the logarithmic partner $Y_
+u$), clarifying how exponent differences govern logarithmic corrections.</p>
+
+<h3 id="example-125-fourierbessel-orthogonality">Example 1.2.5: Fourier–Bessel Orthogonality</h3>
+
+<p><strong>Problem:</strong> Prove the orthogonality of radial Bessel modes on $[0,a]$ with Dirichlet boundary conditions.</p>
+
+<p>Expanding $f(r)$ as</p>
+
+\[f(r) = \sum_{n=1}^{\infty} c_n J_0\left(rac{\lambda_n r}{a}
+ight), \qquad \lambda_n = 	ext{nth zero of }J_0,\]
+
+<p>and using the weight $w(r)=r$ gives</p>
+
+\[\int_{0}^{a} r\, J_0\left(rac{\lambda_m r}{a}
+ight) J_0\left(rac{\lambda_n r}{a}
+ight) dr = rac{a^2}{2} J_1^2(\lambda_n)\,\delta_{mn}.\]
+
+<p>Hence</p>
+
+\[c_n = rac{2}{a^2 J_1^2(\lambda_n)} \int_{0}^{a} r\, f(r)\, J_0\left(rac{\lambda_n r}{a}
+ight) dr,\]
+
+<p>demonstrating the Sturm–Liouville origin of Fourier–Bessel series for cylindrical heat or wave propagation.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li><strong>Andrews, G. E., Askey, R., &amp; Roy, R. (1999).</strong> <em>Special Functions</em>. Cambridge University Press.</li>
+  <li><strong>Olver, F. W. J., et al. (2010).</strong> <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
+  <li><strong>Whittaker, E. T., &amp; Watson, G. N. (1927).</strong> <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
