@@ -53,8 +53,14 @@ class WidgetEngine {
   injectParameters(code, params) {
     let modifiedCode = code;
     Object.entries(params).forEach(([key, value]) => {
-      const regex = new RegExp(`\\{\\{\\s*${key}[^}]*\\}\\}`, 'g');
-      modifiedCode = modifiedCode.replace(regex, String(value));
+      // Handle {{ param }} and {{ param | default: x }} patterns
+      const patterns = [
+        new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g'),
+        new RegExp(`\\{\\{\\s*${key}\\s*\\|\\s*[^}]*\\}\\}`, 'g'),
+      ];
+      patterns.forEach(regex => {
+        modifiedCode = modifiedCode.replace(regex, String(value));
+      });
     });
     return modifiedCode;
   }
