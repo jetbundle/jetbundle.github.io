@@ -697,30 +697,128 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>We enable integration without coordinates. <strong>Differential Forms</strong> and the <strong>Exterior Derivative</strong> ($d$) unify gradient, curl, and divergence. <strong>Stokes’ Theorem</strong> is presented in its generalized form. The <strong>Hodge Laplacian</strong> reveals that the wave operator depends intimately on the curvature of the underlying space.</p>
+<p>Section 3.1 introduced manifolds and covariant derivatives, but classical vector calculus still relied on the Euclidean structure of $\mathbb{R}^{3}$. To formulate PDEs intrinsically we need a calculus that performs integration and differentiation without coordinates. <strong>Exterior Calculus</strong> provides precisely this machinery: differential forms are the natural objects of integration, the <strong>exterior derivative</strong> $d$ unifies gradient, curl, and divergence, and the <strong>Hodge star</strong> reintroduces the metric to build the Laplace–Beltrami operator. The resulting <strong>Hodge decomposition</strong> generalizes the Helmholtz decomposition of fluid mechanics to arbitrary geometries, giving solvability criteria for elliptic PDEs. References include Lee (2012), Spivak (1979), Nakahara (2003), and Frankel (2011).</p>
+
 <h2 id="mathematical-content">Mathematical Content</h2>
 
-<p>[PLACEHOLDER: Main mathematical content will be added in Phase 2]</p>
+<h3 id="differential-forms-and-the-wedge-product">Differential Forms and the Wedge Product</h3>
 
-<h3 id="mathematical-foundations">Mathematical Foundations</h3>
+<p>A $k$-form is a smooth section of the bundle $\Lambda^{k} T^{*}M$. At each point $p$, a $k$-form $\omega_{p}$ is an alternating $k$-linear map $T_{p}M^{\times k}\to \mathbb{R}$. Locally we write</p>
 
-<p>[PLACEHOLDER: Definitions, key concepts]</p>
+\[\omega = \sum_{I} f_{I}(x)\, dx^{i_{1}} \wedge \cdots \wedge dx^{i_{k}},\]
 
-<h3 id="core-results">Core Results</h3>
+<p>where $I=(i_{1}&lt;\cdots&lt;i_{k})$ is a multi-index. The wedge product equips forms with a graded-commutative algebra:</p>
 
-<p>[PLACEHOLDER: Theorems, propositions, lemmas]</p>
+\[\alpha \wedge \beta = (-1)^{kl}\, \beta \wedge \alpha, \qquad \alpha\in \Omega^{k}, \beta\in \Omega^{\ell}.\]
 
-<h3 id="applications">Applications</h3>
+<p>Given a smooth map $\phi:M\to N$, the pullback $\phi^{<em>}:\Omega^{k}(N)\to \Omega^{k}(M)$ satisfies $\phi^{</em>}(\alpha\wedge\beta)=\phi^{<em>}\alpha\wedge\phi^{</em>}\beta$ and allows change of variables in integrals.</p>
 
-<p>[PLACEHOLDER: Examples, connections]</p>
+<h3 id="exterior-derivative-and-de-rham-cohomology">Exterior Derivative and De Rham Cohomology</h3>
+
+<p>The exterior derivative $d: \Omega^{k}(M)\to \Omega^{k+1}(M)$ is defined locally by</p>
+
+\[d\left( \sum_{I} f_{I} dx^{I} \right) = \sum_{I,j} \partial_{x^{j}} f_{I}\, dx^{j} \wedge dx^{I},\]
+
+<p>and is characterized by linearity, the graded Leibniz rule, and $d^{2}=0$. Forms with $d\omega=0$ are <strong>closed</strong>; those with $\omega=d\eta$ are <strong>exact</strong>. Because $d^{2}=0$, every exact form is closed and the quotient $H^{k}_{\mathrm{dR}}(M)=\ker d / \operatorname{im} d$ measures the topological obstruction to solving $d\eta=\omega$. The generalized Stokes theorem states</p>
+
+\[\int_{M} d\omega = \int_{\partial M} \omega,\]
+
+<p>unifying the classical integral theorems.</p>
+
+<h3 id="hodge-star-and-codifferential">Hodge Star and Codifferential</h3>
+
+<p>A Riemannian metric $g$ induces an inner product on forms via the <strong>Hodge star</strong> $*: \Omega^{k}(M)\to \Omega^{n-k}(M)$ defined through</p>
+
+\[\alpha \wedge *\beta = \langle \alpha,\beta \rangle_{g}\, \operatorname{vol}_{g}.\]
+
+<p>With this inner product we define the global $L^{2}$ pairing $(\alpha,\beta)=\int_{M} \alpha\wedge *\beta$ and the <strong>codifferential</strong> $\delta = (-1)^{nk+n+1} * d *$, the formal adjoint of $d$. The operator $\delta$ generalizes divergence, lowering degree by one.</p>
+
+<h3 id="laplacebeltrami-operator-and-hodge-decomposition">Laplace–Beltrami Operator and Hodge Decomposition</h3>
+
+<p>Combining $d$ and $\delta$ yields the Hodge Laplacian</p>
+
+\[\Delta = d\,\delta + \delta\, d : \Omega^{k}(M) \to \Omega^{k}(M).\]
+
+<p>On functions $f$, $\Delta f = \delta df$ corresponds to the negative divergence of the gradient. A form is <strong>harmonic</strong> if $\Delta \omega=0$; on compact manifolds this is equivalent to $d\omega=0$ and $\delta\omega=0$. The Hodge Decomposition Theorem states that for compact $M$,</p>
+
+\[\Omega^{k}(M) = \mathcal{H}^{k} \oplus d\Omega^{k-1}(M) \oplus \delta\Omega^{k+1}(M),\]
+
+<p>where $\mathcal{H}^{k}$ is the finite-dimensional space of harmonic $k$-forms, canonically isomorphic to $H^{k}_{\mathrm{dR}}(M)$. Consequently $\Delta \eta = \omega$ is solvable iff $\omega$ is orthogonal to $\mathcal{H}^{k}$, generalizing the Helmholtz decomposition of vector fields into gradient, curl, and harmonic components.</p>
 
 <h2 id="complete-examples">Complete Examples</h2>
 
-<p>[PLACEHOLDER: Fully worked examples with complete solutions]</p>
+<h3 id="example-341-wedge-products-and-pullbacks-on-mathbbr2">Example 3.4.1: Wedge Products and Pullbacks on $\mathbb{R}^{2}$</h3>
+
+<p><strong>Problem:</strong> Let $\alpha = x \, dy$ and $\beta = y \, dx + (x^{2}+y^{2}) dy$ on $\mathbb{R}^{2}$. Compute $\alpha\wedge\beta$ and the pullback under $\phi(u,v)=(u^{2}-v^{2},2uv)$.</p>
+
+<p>Expanding,</p>
+
+\[\alpha\wedge\beta = x \, dy \wedge (y \, dx + (x^{2}+y^{2})dy) = -xy \, dx \wedge dy.\]
+
+<p>For the pullback,</p>
+
+\[\phi^{*}\alpha = (u^{2}-v^{2}) d(2uv) = 2v(u^{2}-v^{2}) du + 2u(u^{2}-v^{2}) dv,\]
+
+<p>and similarly $\phi^{<em>}\beta$; direct computation shows $\phi^{</em>}(\alpha\wedge\beta)=\phi^{<em>}\alpha\wedge\phi^{</em>}\beta$, illustrating functoriality.</p>
+
+<h3 id="example-342-maxwells-equations-via-differential-forms">Example 3.4.2: Maxwell’s Equations via Differential Forms</h3>
+
+<p><strong>Problem:</strong> Express the vacuum Maxwell equations on Minkowski space using the electromagnetic 2-form $F$.</p>
+
+<p>Setting</p>
+
+\[F = E_{i} \, dx^{0} \wedge dx^{i} + \tfrac{1}{2} \epsilon_{ijk} B^{k} \, dx^{i} \wedge dx^{j},\]
+
+<p>the equations $dF=0$ encode $\nabla\cdot B=0$ and $\partial_{t}B+\nabla\times E=0$, while $\delta F=0$ (with respect to the Minkowski metric) yields $\nabla\cdot E=0$ and $\nabla\times B - \partial_{t}E=0$. Thus the four Maxwell equations collapse into $dF=0$, $\delta F=0$.</p>
+
+<h3 id="example-343-de-rham-cohomology-of-the-torus">Example 3.4.3: de Rham Cohomology of the Torus</h3>
+
+<p><strong>Problem:</strong> Compute $H^{1}(T^{3})$ using explicit closed forms.</p>
+
+<p>On $T^{3}=S^{1}<em>{\theta</em>{1}}\times S^{1}<em>{\theta</em>{2}}\times S^{1}<em>{\theta</em>{3}}$, the 1-forms $d\theta_{i}$ are closed. If $d\theta_{1}=d f$, periodicity forces $f$ to be globally defined with derivative 1 along $\theta_{1}$—impossible—so $d\theta_{i}$ are non-exact. Therefore $H^{1}(T^{3})\cong \mathbb{R}^{3}$ with basis $[d\theta_{1}], [d\theta_{2}], [d\theta_{3}]$.</p>
+
+<h3 id="example-344-exterior-derivative-recovers-curl-and-divergence">Example 3.4.4: Exterior Derivative Recovers Curl and Divergence</h3>
+
+<p><strong>Problem:</strong> Show that $d$ reproduces the classical operators on $\mathbb{R}^{3}$.</p>
+
+<p>For a function $f$, $df = \nabla f^{\flat}$. For a 1-form $\alpha = V^{i} dx^{i}$,</p>
+
+\[d\alpha = (\partial_{2}V^{3}-\partial_{3}V^{2}) dy\wedge dz + \cdots,\]
+
+<p>the coefficients of which are the components of $\nabla \times V$. For a 2-form $\beta = P dy\wedge dz + Q dz\wedge dx + R dx\wedge dy$, $d\beta = (\partial_{x}P+\partial_{y}Q+\partial_{z}R) dx\wedge dy\wedge dz$, i.e. the divergence of the vector field $(P,Q,R)$.</p>
+
+<h3 id="example-345-hodge-star-on-mathbbr3">Example 3.4.5: Hodge Star on $\mathbb{R}^{3}$</h3>
+
+<p><strong>Problem:</strong> Compute $*\alpha$ for the standard basis.</p>
+
+<p>With $\operatorname{vol}=dx\wedge dy\wedge dz$, $<em>dx = dy\wedge dz$, $</em>dy = dz\wedge dx$, $<em>dz = dx\wedge dy$, and $</em>(dx\wedge dy) = dz$. These relations verify $\alpha\wedge *\beta = \langle \alpha, \beta \rangle \, \operatorname{vol}$.</p>
+
+<h3 id="example-346-potential-flow-on-the-torus">Example 3.4.6: Potential Flow on the Torus</h3>
+
+<p><strong>Problem:</strong> Analyze the 1-form $\alpha = -\sin(2\pi x) dy + \cos(2\pi y) dx$ on $T^{2}$.</p>
+
+<p>Compute $d\alpha = 0$, so $\alpha$ is closed. Integrating $\alpha$ along the fundamental cycles shows nonzero circulation, hence $\alpha$ is not exact and represents a nontrivial cohomology class. Physically, this is an incompressible flow with topological circulation.</p>
+
+<h3 id="example-347-hodge-decomposition-on-t2">Example 3.4.7: Hodge Decomposition on $T^{2}$</h3>
+
+<p><strong>Problem:</strong> Decompose $\omega = (\sin 2\pi x + \cos 2\pi y) dx + (\cos 2\pi x - \sin 2\pi y) dy$.</p>
+
+<p>On $T^{2}$, harmonic 1-forms are constant multiples of $dx$ and $dy$. Because $\omega$ has zero average, its harmonic part vanishes. Solving $d\alpha = d\omega$ determines the exact part; computing $\delta\beta = \delta\omega$ yields the co-exact part. Thus $\omega = d\alpha + \delta\beta$ is purely analytic, illustrating the Hodge decomposition algorithmically.</p>
+
+<h3 id="example-348-laplacebeltrami-on-s2">Example 3.4.8: Laplace–Beltrami on $S^{2}$</h3>
+
+<p><strong>Problem:</strong> Determine the harmonic 0-forms on the sphere.</p>
+
+<p>On $S^{2}$ with Laplacian $\Delta f = \delta df$, separation of variables gives eigenfunctions $Y_{\ell}^{m}$ with eigenvalues $\ell(\ell+1)$. Only $\ell=0$ (constant functions) satisfy $\Delta f=0$, in agreement with the fact that $H^{0}(S^{2}) \cong \mathbb{R}$. Higher-degree harmonics correspond to exact/co-exact components of forms.</p>
 
 <h2 id="references">References</h2>
 
-<p>[PLACEHOLDER: Formatted bibliography]</p>
+<ul>
+  <li>Frankel, T. (2011). <em>The Geometry of Physics</em>. Cambridge University Press.</li>
+  <li>Lee, J. M. (2012). <em>Introduction to Smooth Manifolds</em>. Springer.</li>
+  <li>Nakahara, M. (2003). <em>Geometry, Topology and Physics</em>. CRC Press.</li>
+  <li>Spivak, M. (1979). <em>A Comprehensive Introduction to Differential Geometry</em>. Publish or Perish.</li>
+</ul>
 
 <h2 id="navigation">Navigation</h2>
 
