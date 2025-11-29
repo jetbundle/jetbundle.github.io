@@ -45,8 +45,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-remote-theme
   # Server-side LaTeX rendering (solves all client-side issues)
-  # Processes LaTeX during build, outputs pre-rendered HTML - works exactly like IDE!
-  - jektex
+  # NOTE: Jektex disabled - GitHub Pages blocks custom plugins
+  # Using client-side rendering (KaTeX) instead - works reliably
+  # - jektex
   # Math protection plugin (optional - uncomment if math rendering issues persist)
   # - math_protection  # Custom plugin to protect math from Kramdown processing
 
@@ -69,21 +70,22 @@ kramdown:
   # Tables will still work but won't conflict with $...$ math
   gfm_quirks: []
 
-# Math rendering engine - NOW USING SERVER-SIDE RENDERING
-# Jektex processes LaTeX during build, outputs pre-rendered HTML
-# This eliminates all client-side issues and works exactly like IDE preview
-math_engine_client: 'jektex'  # Server-side rendering with Jektex
+# Math rendering engine - CLIENT-SIDE RENDERING
+# Using KaTeX for reliable client-side rendering (works on GitHub Pages)
+# Jektex would be ideal but GitHub Pages blocks custom plugins
+math_engine_client: 'katex'  # Client-side rendering with KaTeX (reliable and fast)
 
-# Jektex configuration (server-side LaTeX rendering)
-jektex:
-  cache_dir: ".jektex-cache"
-  silent: false
-  macros:
-    - ["\\RR", "\\mathbb{R}"]
-    - ["\\NN", "\\mathbb{N}"]
-    - ["\\ZZ", "\\mathbb{Z}"]
-    - ["\\QQ", "\\mathbb{Q}"]
-    - ["\\CC", "\\mathbb{C}"]
+# Jektex configuration (disabled - GitHub Pages blocks custom plugins)
+# Uncomment only if using GitHub Actions or local builds
+# jektex:
+#   cache_dir: ".jektex-cache"
+#   silent: false
+#   macros:
+#     - ["\\RR", "\\mathbb{R}"]
+#     - ["\\NN", "\\mathbb{N}"]
+#     - ["\\ZZ", "\\mathbb{Z}"]
+#     - ["\\QQ", "\\mathbb{Q}"]
+#     - ["\\CC", "\\mathbb{C}"]
 
 # Math protection plugin settings
 # Set to false to disable the math protection plugin (relies on JavaScript fallback)
