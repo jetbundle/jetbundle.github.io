@@ -14,12 +14,13 @@ parent_section: null
 
 # Section 2.7: Fredholm Theory & Index
 
+> Non-invertible operators are almost invertible: Fredholm operators have finite-dimensional obstructions to solvability, and the index (dimension of kernel minus cokernel) is a stable topological invariant that survives compact perturbations.
+
 ## Introduction
 
 We confront the failure of uniqueness. **Fredholm Theory** classifies operators that are "almost" invertible, introducing the **Index** (dimension of kernel minus dimension of cokernel). We prove the stability of the Index under compact perturbations.
-## Mathematical Content
 
-### Fredholm Operators and the Alternative
+## Fredholm Operators and the Alternative
 
 Let $F:H_{1}\to H_{2}$ be bounded between Hilbert spaces. The operator is **Fredholm** if $\ker F$ and the cokernel $H_{2}/\operatorname{ran}F$ are finite dimensional and $\operatorname{ran}F$ is closed. When $K:H\to H$ is compact, the perturbation $I+K$ is Fredholm. The **Fredholm Alternative** for $(I+K)u=f$ states:
 
@@ -28,7 +29,21 @@ Let $F:H_{1}\to H_{2}$ be bounded between Hilbert spaces. The operator is **Fred
 
 This dichotomy quantifies the precise obstruction to solvability and explains resonance phenomena in boundary-value and integral equations.
 
-### Analytical Index and Stability
+> **Integral Equation and the Fredholm Alternative**
+
+> Solve $(I+\lambda K)u=f$ on $L^{2}[0,1]$ with $(Ku)(x)=\int_{0}^{1}\min(x,y)u(y)\,dy$, and determine when solutions fail to exist.
+
+> The kernel $K(x,y)=\min(x,y)$ is square integrable, so $K$ is Hilbert–Schmidt with $\|K\|_{HS}^{2}=\tfrac{1}{4}$ and hence compact. Differentiating the homogeneous equation $(I+\lambda K)u=0$ twice yields $u''(x)=-\lambda^{-1}u(x)$ together with $u(0)=u(1)=0$, producing eigenpairs $\lambda_{n}=-1/(n\pi)^{2}$ with $u_{n}(x)=\sin(n\pi x)$. If $\lambda\neq \lambda_{n}$ for all $n$, then
+
+> $$
+> u(x)=\sum_{n=1}^{\infty}\frac{\langle f,\phi_{n}\rangle}{1+\lambda\lambda_{n}}\phi_{n}(x), \quad \phi_{n}(x)=\sqrt{2}\sin(n\pi x).
+> $$
+
+> When $\lambda=\lambda_{k}$, solvability requires $\langle f,\phi_{k}\rangle=0$. For $\lambda=-1/\pi^{2}$ the datum $f(x)=x(1-x)$ violates this condition and no solution exists, whereas $f(x)=\sin(2\pi x)$ satisfies it and yields $u(x)=c\sin(\pi x)+u_{p}(x)$ with $u_{p}\perp \sin(\pi x)$.
+
+The Fredholm alternative provides a complete characterization of solvability: when the parameter $\lambda$ is not an eigenvalue, the equation is uniquely solvable for any right-hand side. When $\lambda$ hits an eigenvalue, the homogeneous equation has nontrivial solutions, and the inhomogeneous equation is solvable only when the right-hand side is orthogonal to these solutions. This alternative explains resonance phenomena: at eigenvalues, the system can resonate, and forcing at the resonant frequency requires special conditions (orthogonality to eigenmodes) for a response to exist. The compactness of $K$ ensures that these obstructions are finite-dimensional: only finitely many eigenmodes can cause resonance, and the solution space has finite codimension.
+
+## Analytical Index and Stability
 
 For a Fredholm operator $F$, the **index** is
 
@@ -38,76 +53,203 @@ $$
 
 In self-adjoint settings the index often vanishes, but for general maps it may be non-zero. The index is stable under compact perturbations: if $K$ is compact, then $F+K$ is Fredholm with $\operatorname{ind}(F+K)=\operatorname{ind}(F)$. More generally, any norm-continuous family $F(t)$ of Fredholm operators has constant index. Hence the index is a homotopy invariant—an inherently topological datum attached to the operator rather than to local coefficients.
 
-### Elliptic PDEs and Topological Data
+> **Annulus Transmission Problem and Index Zero**
+
+> Show that the Laplace transmission problem on the annulus $\{1<r<2\}$ with $u|_{r=1}=0$ and $\partial_{r}u|_{r=2}=g$ defines a Fredholm operator of index $0$ and remains so under compact perturbations.
+
+> Expanding $u(r,\theta)=\sum_{n=0}^{\infty}(A_{n}r^{n}+B_{n}r^{-n})\cos(n\theta)$ enforces $A_{n}+B_{n}=0$ at $r=1$ and $n(2^{n-1}A_{n}-2^{-n-1}B_{n})=g_{n}$ at $r=2$. The matrix
+
+> $$
+> \begin{pmatrix}
+> 1 & 1\\
+> n2^{n-1} & -n2^{-n-1}
+> \end{pmatrix}
+> $$
+
+> has determinant $n2^{-n-1}(2^{2n}+1)\neq 0$, so each Fourier mode is uniquely determined. Thus $T:H^{2}(\Omega)\to H^{1/2}(\partial\Omega_{r=2})$ is bijective, giving $\operatorname{ind}(T)=0$. Adding a compact perturbation $(Ku)(x)=\epsilon\int_{\Omega}G(x,y)u(y)\,dy$ shifts eigenvalues continuously but leaves the index unchanged, so $\operatorname{ind}(T+K)=0$.
+
+Index stability is a remarkable property: the difference between the dimensions of the kernel and cokernel remains constant under compact perturbations, even though these dimensions individually may change. This stability reflects the topological nature of the index: it depends only on the "homotopy class" of the operator, not on fine details of its coefficients. For self-adjoint operators, the index is always zero (since the kernel and cokernel have the same dimension), but for non-self-adjoint operators, the index can be nonzero and encodes important topological information about the problem.
+
+## Elliptic PDEs and Topological Data
 
 Elliptic boundary value problems naturally produce Fredholm operators. If $L$ is uniformly elliptic of order $2m$ on a bounded domain $\Omega$, then $L:H^{s+2m}(\Omega)\to H^{s}(\Omega)$ is Fredholm: the kernel (harmonic functions) is finite dimensional, and $Lu=f$ is solvable precisely when $f$ is orthogonal to the adjoint kernel. On compact manifolds the index of elliptic complexes links analysis to topology; for instance, the Euler characteristic $\chi(M)$ equals the index of $d+d^{\ast}$ acting on differential forms. Fredholm theory therefore shows how global topology dictates solution counts even when local Sobolev analysis governs regularity.
 
-## Connections to Chapter Narrative
+> **Dolbeault Operator on a Riemann Surface**
 
-Sections 2.5–2.6 relied on coercivity to ensure uniqueness and convergence. Fredholm theory now addresses the non-coercive regime, where compactness yields only finite-dimensional deviations from invertibility. The resulting index invariant ties back to the spectral structure of Sections 2.3–2.4 and prepares the transition to Chapter 3’s manifold-based perspective and the full index theorems of Chapter 7.
+> Compute the index of $\bar{\partial}:\Omega^{0,0}(M)\to\Omega^{0,1}(M)$ on a compact Riemann surface $M$ of genus $g$ and show that it remains constant under deformations.
+
+> Ellipticity furnishes a Fredholm map $\bar{\partial}:L^{2}_{0,0}\to L^{2}_{0,1}$. Hodge theory identifies $\ker \bar{\partial}$ with harmonic $(0,0)$-forms, so $\dim \ker \bar{\partial}=1$. The cokernel equals $H^{0,1}(M)$ with dimension $g$, giving $\operatorname{ind}(\bar{\partial})=1-g$. For a family of complex structures $J_{t}$, harmonic representatives vary smoothly, so both kernel and cokernel dimensions remain fixed and the index stays $1-g$. On the torus ($g=1$) the index vanishes, whereas for higher genus the negative index counts the obstructions to solving $\bar{\partial}u=\eta$ for arbitrary $\eta$.
+
+The index of the Dolbeault operator connects complex analysis to topology: the genus of a Riemann surface determines how many independent holomorphic $(0,1)$-forms exist, and this number is encoded in the index. The stability of the index under deformations shows that this topological information is robust: small changes in the complex structure do not change the index, revealing that the index captures global geometric invariants. This example illustrates the Atiyah–Singer index theorem in a simple case: the analytical index (dimension difference) equals a topological index (Euler characteristic), connecting analysis and topology in a deep way.
+
+> **Periodic Schrödinger Operator and Band Crossings**
+
+> Analyze $H=-\Delta+V(x)$ on $L^{2}(\mathbb{T}^{n})$ with smooth periodic $V$ and relate band crossings to index stability.
+
+> Floquet–Bloch theory decomposes states into $u_{k,j}(x)=e^{ik\cdot x}w_{k,j}(x)$ with $w_{k,j}$ periodic. For each quasimomentum $k$, the shifted operator $H_{k}=(-i\nabla+k)^{2}+V$ has compact resolvent, so $H_{k}-z$ is Fredholm whenever $\operatorname{Im}z\neq 0$. At degeneracies where $E_{j}(k_{0})=E_{j+1}(k_{0})$, the kernel dimension becomes $2$, but self-adjointness ensures the cokernel also has dimension $2$, yielding $\operatorname{ind}(H_{k_{0}}-E)=0$. Gap labels given by Chern numbers
+
+> $$
+> C_{n}=\frac{1}{2\pi i}\int_{\text{BZ}}F_{n}(k)\,dk,\qquad F_{n}(k)=\nabla_{k}\times A_{n}(k),
+> $$
+
+> remain invariant under continuous deformations of $V$, illustrating topological protection of the spectrum.
+
+Periodic Schrödinger operators demonstrate index stability in a physical context: band crossings (where energy bands touch) are points where the kernel dimension jumps, but the index remains zero due to self-adjointness. The Chern numbers provide topological invariants that protect the spectrum: small perturbations cannot close gaps or change these numbers, revealing topological phases in condensed matter physics. This connection between index theory and topology explains phenomena like the quantum Hall effect: the Hall conductance is given by a Chern number, which is topologically protected and robust against disorder.
+
+> **Robin Boundary Conditions and Index Jumps**
+
+> Consider $\Delta_{g}u=0$ on a compact manifold $(M,\partial M)$ with Robin boundary conditions $\partial_{\nu}u+\alpha u=0$ on $\partial M$, and track how the index behaves as $\alpha$ varies.
+
+> For $\alpha>0$, the maximum principle forces $u=0$, so $\ker(\Delta_{g,\alpha})=\{0\}$ and $\operatorname{ind}(\Delta_{g,\alpha})=0$. At $\alpha=0$ (Neumann case) constants lie in both kernel and cokernel, keeping the index zero. When $\alpha<0$, eigenvalues of the Dirichlet-to-Neumann map cross zero; on the disk the critical values occur at $\alpha=-j_{0,n}^{2}$ where $j_{0,n}$ are Bessel zeros. Each crossing simultaneously creates kernel and cokernel vectors of equal multiplicity, so the index remains constant even though solvability now requires additional orthogonality conditions. This demonstrates how boundary parameter changes trigger resonance without altering the topological invariant.
+
+Robin boundary conditions illustrate how index stability works in practice: as the boundary parameter $\alpha$ varies, eigenvalues cross zero, creating or destroying kernel and cokernel vectors. However, these changes occur in pairs (due to self-adjointness or symmetry), so the index remains constant. This stability is crucial for perturbation theory: we can deform boundary conditions continuously without changing the topological structure of the problem, even though the specific solution structure may change dramatically. The index provides a robust invariant that survives these deformations, making it useful for classifying problems and understanding their qualitative behavior.
+
+## Challenge Problems
+
+The following problems synthesize concepts from Fredholm operators, index theory, stability, and their applications to PDEs and topology.
+
+### Challenge 1: Fredholm Alternative and Resonance
+
+Prove the Fredholm alternative for the operator $I+K$ where $K$ is compact: either $(I+K)$ is invertible, or $\ker(I+K)$ is finite-dimensional and $(I+K)u=f$ is solvable if and only if $f$ is orthogonal to $\ker(I+K^{\ast})$. Show that this alternative explains resonance phenomena in forced oscillations.
+
+*(Hint: Use the spectral theorem for compact operators. The key is that $I+K$ has closed range and finite-dimensional kernel/cokernel when $K$ is compact.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Since $K$ is compact, by the spectral theorem for compact operators, $K$ has at most countably many eigenvalues $\{\lambda_{n}\}$ accumulating only at zero, with finite-dimensional eigenspaces. The operator $I+K$ is Fredholm because:
+
+1. $\ker(I+K)$ is finite-dimensional: it consists of eigenvectors of $K$ with eigenvalue $-1$, and there are only finitely many such (or the eigenspace is finite-dimensional).
+
+2. The range is closed: if $(I+K)u_{n}\to f$, then using the compactness of $K$ and the fact that $I+K$ is injective on the complement of the kernel, we can extract a convergent subsequence.
+
+3. The cokernel is finite-dimensional: it is isomorphic to $\ker(I+K^{\ast})=\ker(I+K^{*})$, which is also finite-dimensional.
+
+Now, if $\ker(I+K)=\{0\}$, then $I+K$ is injective. Since it's Fredholm with zero kernel, it must be surjective (otherwise the cokernel would be infinite-dimensional), so it's invertible.
+
+If $\ker(I+K)\neq\{0\}$, then by the closed range theorem, $\operatorname{ran}(I+K)=(\ker(I+K^{\ast}))^{\perp}$. Therefore, $(I+K)u=f$ is solvable if and only if $f\in(\ker(I+K^{\ast}))^{\perp}$.
+
+For resonance phenomena, consider the forced oscillator $\ddot{x}+\omega^{2}x=\cos(\omega t)$. The homogeneous equation has solutions $x_{h}(t)=A\cos(\omega t)+B\sin(\omega t)$, and the forcing is at the resonant frequency. The operator $(d^{2}/dt^{2}+\omega^{2}I)$ acting on periodic functions is not invertible (it has a two-dimensional kernel), and the forcing $\cos(\omega t)$ is not orthogonal to the kernel (it's actually in the kernel!), so no bounded periodic solution exists—the response grows linearly in time. This is the resonance phenomenon: forcing at the natural frequency leads to unbounded response because the forcing is not orthogonal to the kernel.
+
+The Fredholm alternative provides a complete framework for understanding resonance: when the forcing frequency matches an eigenvalue, the system resonates, and bounded solutions exist only when the forcing is orthogonal to the eigenmodes. This explains why tuning musical instruments works: by adjusting parameters, we move eigenvalues, and resonance occurs when forcing frequencies align with eigenvalues.
+
+</details>
+
+### Challenge 2: Index Stability Under Compact Perturbations
+
+Prove that if $F$ is Fredholm and $K$ is compact, then $F+K$ is Fredholm and $\operatorname{ind}(F+K)=\operatorname{ind}(F)$. Use this to show that the index is a homotopy invariant: if $F(t)$ is a norm-continuous family of Fredholm operators, then $\operatorname{ind}(F(t))$ is constant.
+
+*(Hint: Use the fact that compact operators are limits of finite-rank operators. Show that adding a finite-rank operator changes kernel and cokernel dimensions by the same amount, preserving the index. Extend to compact operators by approximation.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+First, consider the case when $K$ is finite-rank. Write $K=\sum_{i=1}^{n}\langle \cdot, v_{i}\rangle w_{i}$ for some finite collection of vectors. Then $F+K$ is Fredholm because:
+
+- The kernel dimension can increase by at most $n$ (since $Ku$ lies in a finite-dimensional space).
+- The range is still closed (since adding a finite-rank operator to a Fredholm operator preserves closedness).
+- The cokernel dimension can change, but by a similar finite amount.
+
+More precisely, using the exact sequence
+
+$$
+0\to \ker F \to \ker(F+K) \to \text{finite} \to \operatorname{coker} F \to \operatorname{coker}(F+K) \to \text{finite} \to 0,
+$$
+
+we see that $\dim\ker(F+K)-\dim\operatorname{coker}(F+K)=\dim\ker F-\dim\operatorname{coker} F$, so the index is preserved.
+
+For general compact $K$, approximate $K$ by finite-rank operators $K_{n}$ with $\|K-K_{n}\|\to 0$. For sufficiently large $n$, we have $\|K-K_{n}\|<\delta$ where $\delta$ is small enough that $F+K_{n}$ remains Fredholm (Fredholm operators form an open set in the operator norm topology). Then:
+
+$$
+\operatorname{ind}(F+K)=\lim_{n\to\infty}\operatorname{ind}(F+K_{n})=\operatorname{ind}(F),
+$$
+
+since the index is continuous on the set of Fredholm operators.
+
+For homotopy invariance, let $F(t)$ be a norm-continuous family of Fredholm operators. The index is locally constant (since Fredholm operators form an open set and the index is continuous), so it's constant on connected components. Since $[0,1]$ is connected, $\operatorname{ind}(F(t))$ is constant.
+
+This stability property is fundamental: the index depends only on the "topology" of the operator, not on fine analytical details. This makes it useful for classifying operators and understanding their qualitative properties. In PDEs, this means that small perturbations (like adding lower-order terms or changing boundary conditions slightly) don't change the index, so the solvability structure (how many conditions are needed for solutions to exist) remains stable.
+
+</details>
+
+### Challenge 3: Atiyah–Singer Index Theorem (Simplified Case)
+
+For the de Rham complex on a compact oriented manifold $M$, show that the index of $d+d^{\ast}$ acting on even-degree forms equals the Euler characteristic $\chi(M)$. Relate this to the Hodge decomposition and the connection between analysis and topology.
+
+*(Hint: Use Hodge theory to identify the kernel with harmonic forms. The index is the alternating sum of Betti numbers, which equals the Euler characteristic by definition.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The de Rham complex is
+
+$$
+0\to \Omega^{0}(M)\xrightarrow{d}\Omega^{1}(M)\xrightarrow{d}\cdots\xrightarrow{d}\Omega^{n}(M)\to 0.
+$$
+
+The operator $d+d^{\ast}$ acts on $\bigoplus_{k\text{ even}}\Omega^{k}(M)$ (even forms). By Hodge theory, we have the Hodge decomposition:
+
+$$
+\Omega^{k}(M)=\mathcal{H}^{k}(M)\oplus d\Omega^{k-1}(M)\oplus d^{\ast}\Omega^{k+1}(M),
+$$
+
+where $\mathcal{H}^{k}(M)$ is the space of harmonic $k$-forms (kernel of $\Delta=dd^{\ast}+d^{\ast}d$).
+
+The kernel of $d+d^{\ast}$ on even forms consists of even harmonic forms. Since $\Delta$ commutes with $d$ and $d^{\ast}$, harmonic forms are both closed and coclosed. The dimension of $\mathcal{H}^{k}(M)$ equals the $k$-th Betti number $b_{k}(M)$ by de Rham's theorem.
+
+The cokernel of $d+d^{\ast}$ on even forms is isomorphic to the kernel of $(d+d^{\ast})^{\ast}=d^{\ast}+d$ on odd forms, which consists of odd harmonic forms.
+
+Therefore:
+
+$$
+\operatorname{ind}(d+d^{\ast})=\sum_{k\text{ even}}b_{k}(M)-\sum_{k\text{ odd}}b_{k}(M)=\chi(M),
+$$
+
+which is the Euler characteristic.
+
+This result connects analysis and topology: the analytical index (computed from the operator) equals the topological index (computed from the manifold's topology). The Atiyah–Singer index theorem generalizes this to arbitrary elliptic operators: the analytical index always equals a topological index computed from characteristic classes. This connection is profound because it shows that certain analytical quantities (like solution counts) are determined by global topological invariants, not local analytical properties.
+
+The proof uses Hodge theory to identify kernel and cokernel with cohomology groups, then applies de Rham's theorem to relate these to Betti numbers. This demonstrates how elliptic operators encode topological information: the kernel and cokernel of elliptic operators on manifolds are isomorphic to cohomology groups, making the index a topological invariant.
+
+</details>
+
+### Challenge 4: Fredholm Index and Boundary Value Problems
+
+Consider the operator $L=-\Delta$ on a bounded domain $\Omega$ with boundary conditions $Bu=0$ on $\partial\Omega$, where $B$ is a boundary operator. Show that $L$ is Fredholm from $H^{2}(\Omega)\cap\{u:Bu=0\}$ to $L^{2}(\Omega)$ and compute its index. Discuss how the index depends on the type of boundary conditions (Dirichlet, Neumann, Robin).
+
+*(Hint: Use elliptic regularity to show that the kernel is finite-dimensional (harmonic functions satisfying boundary conditions). For the cokernel, use the adjoint boundary value problem. The index depends on whether the boundary conditions are self-adjoint.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The operator $L=-\Delta$ with domain $D(L)=\{u\in H^{2}(\Omega):Bu=0\}$ is Fredholm because:
+
+1. **Kernel is finite-dimensional**: If $Lu=0$ with $Bu=0$, then $u$ is harmonic and satisfies the boundary conditions. By the maximum principle and uniqueness theory, the space of such functions is finite-dimensional (typically 0 for Dirichlet, 1 for Neumann, and depends on parameters for Robin).
+
+2. **Range is closed**: This follows from elliptic regularity: if $Lu_{n}\to f$ in $L^{2}$, then by elliptic estimates, $u_{n}$ is bounded in $H^{2}$, so a subsequence converges weakly to some $u\in H^{2}$ with $Bu=0$, and $Lu=f$.
+
+3. **Cokernel is finite-dimensional**: The cokernel is isomorphic to the kernel of the adjoint operator $L^{\ast}$ with adjoint boundary conditions $B^{\ast}v=0$.
+
+For **Dirichlet boundary conditions** ($u=0$ on $\partial\Omega$), the operator is self-adjoint, so the index is 0. The kernel consists only of the zero function (by uniqueness for harmonic functions with zero boundary data).
+
+For **Neumann boundary conditions** ($\partial_{\nu}u=0$ on $\partial\Omega$), the operator is also self-adjoint, so the index is 0. However, constants lie in the kernel (harmonic functions with zero normal derivative), so $\dim\ker L=1$. Since the operator is self-adjoint, $\dim\operatorname{coker} L=1$ as well, preserving the index.
+
+For **Robin boundary conditions** ($\partial_{\nu}u+\alpha u=0$ on $\partial\Omega$), the operator is self-adjoint when the boundary conditions are symmetric, so the index is 0. The kernel dimension depends on $\alpha$: for $\alpha>0$, it's typically 0; for $\alpha=0$, it's 1 (constants); for $\alpha<0$, it may be larger depending on eigenvalues of the Dirichlet-to-Neumann map.
+
+For **mixed boundary conditions** or **non-self-adjoint boundary conditions**, the index may be nonzero. For example, if we impose Dirichlet conditions on part of the boundary and Neumann on another part, the operator may not be self-adjoint, and the index reflects the mismatch between the number of boundary conditions and the dimension of the kernel.
+
+The index of boundary value problems provides a measure of how "balanced" the problem is: an index of 0 means the number of conditions matches the dimension of the kernel (modulo the cokernel), which is typical for well-posed problems. Nonzero index indicates that the problem is either overdetermined (negative index) or underdetermined (positive index), requiring additional conditions or having extra degrees of freedom.
+
+</details>
+
+Fredholm theory completes the functional-analytic framework for PDEs: while Lax-Milgram handles coercive problems and guarantees unique solutions, Fredholm theory handles non-coercive problems where uniqueness may fail. The index provides a topological invariant that classifies these problems: it measures the "imbalance" between the number of conditions and the dimension of solutions. However, Fredholm theory is limited to problems with compact resolvents or compact perturbations: fully non-compact operators (like the Laplacian on unbounded domains) require more sophisticated spectral theory. The connection between index and topology reveals that global geometric properties determine local analytical behavior, preparing the transition to manifold-based analysis where topology and analysis are inextricably linked. This foundational work sets the stage for the geometric and topological methods that will dominate subsequent chapters.
 
 ## References
 
-* Brezis, H. (2011). *Functional Analysis, Sobolev Spaces and Partial Differential Equations*. Springer.
-* Evans, L. C. (2010). *Partial Differential Equations* (2nd ed.). American Mathematical Society.
-* Gilbarg, D., & Trudinger, N. S. (2001). *Elliptic Partial Differential Equations of Second Order* (3rd ed.). Springer.
-* Reed, M., & Simon, B. (1980). *Methods of Modern Mathematical Physics I: Functional Analysis*. Academic Press.
-
-## Complete Examples
-
-### Example 2.7.1: Integral Equation and the Fredholm Alternative
-
-**Problem:** Solve $(I+\lambda K)u=f$ on $L^{2}[0,1]$ with $(Ku)(x)=\int_{0}^{1}\min(x,y)u(y)\,dy$, and determine when solutions fail to exist.
-
-The kernel $K(x,y)=\min(x,y)$ is square integrable, so $K$ is Hilbert–Schmidt with $\left\|K\right\|_{HS}^{2}=\tfrac{1}{4}$ and hence compact. Differentiating the homogeneous equation $(I+\lambda K)u=0$ twice yields $u''(x)=-\lambda^{-1}u(x)$ together with $u(0)=u(1)=0$, producing eigenpairs $\lambda_{n}=-1/(n\pi)^{2}$ with $u_{n}(x)=\sin(n\pi x)$. If $\lambda\neq \lambda_{n}$ for all $n$, then
-
-$$
-\begin{aligned}
- u(x)&=\sum_{n=1}^{\infty}\frac{\langle f,\phi_{n}\rangle}{1+\lambda\lambda_{n}}\phi_{n}(x),\\
- \phi_{n}(x)&=\sqrt{2}\sin(n\pi x).
-\end{aligned}
-$$
-
-When $\lambda=\lambda_{k}$, solvability requires $\langle f,\phi_{k}\rangle=0$. For $\lambda=-1/\pi^{2}$ the datum $f(x)=x(1-x)$ violates this condition and no solution exists, whereas $f(x)=\sin(2\pi x)$ satisfies it and yields $u(x)=c\sin(\pi x)+u_{p}(x)$ with $u_{p}\perp \sin(\pi x)$.
-
-### Example 2.7.2: Annulus Transmission Problem and Index Zero
-
-**Problem:** Show that the Laplace transmission problem on the annulus $\{1<r<2\}$ with $u|_{r=1}=0$ and $\partial_{r}u|_{r=2}=g$ defines a Fredholm operator of index $0$ and remains so under compact perturbations.
-
-Expanding $u(r,\theta)=\sum_{n=0}^{\infty}(A_{n}r^{n}+B_{n}r^{-n})\cos(n\theta)$ enforces $A_{n}+B_{n}=0$ at $r=1$ and $n(2^{n-1}A_{n}-2^{-n-1}B_{n})=g_{n}$ at $r=2$. The matrix
-
-$$
-\begin{pmatrix}
-1 & 1\\
-n2^{\,n-1} & -n2^{-n-1}
-\end{pmatrix}
-$$
-
-has determinant $n2^{-n-1}(2^{2n}+1)\neq 0$, so each Fourier mode is uniquely determined. Thus $T:H^{2}(\Omega)\to H^{1/2}(\partial\Omega_{r=2})$ is bijective, giving $\operatorname{ind}(T)=0$. Adding a compact perturbation $(Ku)(x)=\epsilon\int_{\Omega}G(x,y)u(y)\,dy$ shifts eigenvalues continuously but leaves the index unchanged, so $\operatorname{ind}(T+K)=0$.
-
-### Example 2.7.3: Dolbeault Operator on a Riemann Surface
-
-**Problem:** Compute the index of $\bar{\partial}:\Omega^{0,0}(M)\to\Omega^{0,1}(M)$ on a compact Riemann surface $M$ of genus $g$ and show that it remains constant under deformations.
-
-Ellipticity furnishes a Fredholm map $\bar{\partial}:L^{2}_{0,0}\to L^{2}_{0,1}$. Hodge theory identifies $\ker \bar{\partial}$ with harmonic $(0,0)$-forms, so $\dim \ker \bar{\partial}=1$. The cokernel equals $H^{0,1}(M)$ with dimension $g$, giving $\operatorname{ind}(\bar{\partial})=1-g$. For a family of complex structures $J_{t}$, harmonic representatives vary smoothly, so both kernel and cokernel dimensions remain fixed and the index stays $1-g$. On the torus ($g=1$) the index vanishes, whereas for higher genus the negative index counts the obstructions to solving $\bar{\partial}u=\eta$ for arbitrary $\eta$.
-
-### Example 2.7.4: Periodic Schrödinger Operator and Band Crossings
-
-**Problem:** Analyze $H=-\Delta+V(x)$ on $L^{2}(\mathbb{T}^{n})$ with smooth periodic $V$ and relate band crossings to index stability.
-
-Floquet–Bloch theory decomposes states into $u_{k,j}(x)=e^{ik\cdot x}w_{k,j}(x)$ with $w_{k,j}$ periodic. For each quasimomentum $k$, the shifted operator $H_{k}=(-i\nabla+k)^{2}+V$ has compact resolvent, so $H_{k}-z$ is Fredholm whenever $\operatorname{Im}z\neq 0$. At degeneracies where $E_{j}(k_{0})=E_{j+1}(k_{0})$, the kernel dimension becomes $2$, but self-adjointness ensures the cokernel also has dimension $2$, yielding $\operatorname{ind}(H_{k_{0}}-E)=0$. Gap labels given by Chern numbers
-
-$$
-C_{n}=\frac{1}{2\pi i}\int_{\text{BZ}}F_{n}(k)\,dk,\qquad F_{n}(k)=\nabla_{k}\times A_{n}(k),
-$$
-
-remain invariant under continuous deformations of $V$, illustrating topological protection of the spectrum.
-
-### Example 2.7.5: Robin Boundary Conditions and Index Jumps
-
-**Problem:** Consider $\Delta_{g}u=0$ on a compact manifold $(M,\partial M)$ with Robin boundary conditions $\partial_{\nu}u+\alpha u=0$ on $\partial M$, and track how the index behaves as $\alpha$ varies.
-
-For $\alpha>0$, the maximum principle forces $u=0$, so $\ker(\Delta_{g,\alpha})=\{0\}$ and $\operatorname{ind}(\Delta_{g,\alpha})=0$. At $\alpha=0$ (Neumann case) constants lie in both kernel and cokernel, keeping the index zero. When $\alpha<0$, eigenvalues of the Dirichlet-to-Neumann map cross zero; on the disk the critical values occur at $\alpha=-j_{0,n}^{2}$ where $j_{0,n}$ are Bessel zeros. Each crossing simultaneously creates kernel and cokernel vectors of equal multiplicity, so the index remains constant even though solvability now requires additional orthogonality conditions. This demonstrates how boundary parameter changes trigger resonance without altering the topological invariant.
+* **Brezis, H. (2011).** *Functional Analysis, Sobolev Spaces and Partial Differential Equations*. Springer.
+* **Evans, L. C. (2010).** *Partial Differential Equations* (2nd ed.). American Mathematical Society.
+* **Gilbarg, D., & Trudinger, N. S. (2001).** *Elliptic Partial Differential Equations of Second Order* (3rd ed.). Springer.
+* **Reed, M., & Simon, B. (1980).** *Methods of Modern Mathematical Physics I: Functional Analysis*. Academic Press.
 
 ## Navigation
 
