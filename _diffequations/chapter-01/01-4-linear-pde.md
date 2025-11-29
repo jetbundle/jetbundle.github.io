@@ -234,12 +234,7 @@ The $X$ equation $X'' + \lambda X = 0$ has solutions $X(x) = A \cos(\sqrt{\lambd
 
 The $Y$ equation becomes $Y'' - \lambda y Y = 0$. Making the substitution $\eta = (4\lambda/9)^{1/3} y$, this becomes Airy's equation, with solutions $Y(y) = C \operatorname{Ai}(\eta) + D \operatorname{Bi}(\eta)$.
 
-As $y \to 0^+$, the elliptic character degenerates and the equation becomes parabolic. The solution develops singular behavior, reflecting the physical fact that transonic flows exhibit fundamentally different dynamics in subsonic (elliptic) and supersonic (hyperbolic) regions.
-
-**Key Insights:**
-- Mixed-type equations model physical transitions between different regimes.
-- The classification changes continuously with the coefficients.
-- Solutions must be constructed piecewise in regions of constant type.
+As $y \to 0^+$, the elliptic character degenerates and the equation becomes parabolic. The solution develops singular behavior, reflecting the physical fact that transonic flows exhibit fundamentally different dynamics in subsonic (elliptic) and supersonic (hyperbolic) regions. Mixed-type equations model physical transitions between different regimes, where the governing PDE changes type depending on the local flow conditions. The classification changes continuously with the coefficients, creating regions of different character that require piecewise solution construction. Solutions must therefore be built separately in regions of constant type, with matching conditions at the boundaries where the type changes, revealing the intricate structure of mixed-type problems.
 
 </details>
 
@@ -274,10 +269,7 @@ $$
 
 which can be verified numerically.
 
-**Key Insights:**
-- Completeness is an $L^2$ property, not pointwise.
-- Boundary conditions affect the rate of convergence.
-- Parseval's identity provides a convergence test independent of pointwise behavior.
+This analysis reveals that completeness is fundamentally an $L^2$ property rather than a pointwise convergence result: the series converges in the $L^2$ norm even when pointwise convergence fails. The boundary conditions significantly affect the rate of convergence: the mixed boundary condition $u'(\pi) = 0$ creates a mismatch that slows the decay of coefficients to $O(n^{-2})$ compared to the $O(n^{-1})$ rate for standard Fourier series. Parseval's identity provides a convergence test independent of pointwise behavior, allowing one to verify completeness and compute norms using only the spectral coefficients, demonstrating the power of Hilbert-space methods for understanding eigenfunction expansions.
 
 </details>
 
@@ -312,12 +304,7 @@ The solution depends on which characteristics $x \pm ct = \pm a$ intersect the p
 
 - **Region IV:** $-a < x - ct < a$ and $-a < x + ct < a$: Both $f(x \pm ct) = 1$, so $u(x,t) = 1$ (fully excited region).
 
-At the wave fronts $x \pm ct = \pm a$, the solution is discontinuous, reflecting the discontinuous initial data. The solution propagates along characteristics, with the disturbance spreading at speed $c$ in both directions.
-
-**Key Insights:**
-- The solution propagates along characteristics at speed $c$.
-- Discontinuous initial data produce discontinuous solutions.
-- The wave equation preserves the structure of the initial data as it propagates.
+At the wave fronts $x \pm ct = \pm a$, the solution is discontinuous, reflecting the discontinuous initial data. The solution propagates along characteristics at speed $c$, with the disturbance spreading in both directions and creating distinct regions separated by the characteristic lines. This demonstrates a fundamental property of the wave equation: discontinuous initial data produce discontinuous solutions that travel along characteristics, in contrast to parabolic equations which smooth singularities. The wave equation preserves the structure of the initial data as it propagates, with each point of discontinuity traveling along its characteristic curves and maintaining its amplitude until it encounters boundaries or other waves.
 
 </details>
 
@@ -350,12 +337,7 @@ $$
 
 This shows that $G(x,t) \to \delta(x)$ as $t \to 0^+$ in the sense of distributions.
 
-For initial data $u(x,0) = \delta(x - x_0)$, the solution is $u(x,t) = G(x - x_0, t)$ by translation invariance. This satisfies the heat equation (verified by direct differentiation) and approaches $\delta(x - x_0)$ as $t \to 0^+$.
-
-**Key Insights:**
-- The heat kernel provides a smooth approximation to the delta function.
-- The smoothing property of the heat equation regularizes singular initial data.
-- This construction extends to arbitrary initial data via convolution.
+For initial data $u(x,0) = \delta(x - x_0)$, the solution is $u(x,t) = G(x - x_0, t)$ by translation invariance. This satisfies the heat equation (verified by direct differentiation) and approaches $\delta(x - x_0)$ as $t \to 0^+$. The heat kernel provides a smooth approximation to the delta function, with the width of the Gaussian growing as $\sqrt{t}$ and the amplitude decreasing to maintain unit mass. This smoothing property of the heat equation regularizes singular initial data: even when starting from a distribution like the delta function, the solution immediately becomes smooth for $t > 0$. This construction extends to arbitrary initial data via convolution, demonstrating that the heat kernel serves as the fundamental solution from which all solutions can be constructed, showcasing the regularization power of parabolic equations.
 
 </details>
 

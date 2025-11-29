@@ -319,10 +319,7 @@ $$x_1 = \int_{0}^{y(x_1)} \frac{dy}{\phi(y)}$$
 
 If the integral on the right diverges to $\infty$, this implies $x_1 = \infty$. This contradicts the assumption that the particle moved away from 0 in finite time. Thus, no such trajectory exists, and $y(x)=0$ is unique.
 
-**Key Insights:**
-- For $\phi(y) = y$, the integral is $\ln y$ (diverges $\to$ unique).
-- For $\phi(y) = \sqrt{y}$, the integral is $2\sqrt{y}$ (converges $\to$ non-unique).
-- Osgood's condition generalizes the Lipschitz criterion to handle singular behavior at isolated points.
+This criterion provides a precise test for uniqueness: when $\phi(y) = y$, the integral $\ln y$ diverges, ensuring uniqueness. However, when $\phi(y) = \sqrt{y}$, the integral $2\sqrt{y}$ converges, allowing non-unique solutions. Osgood's condition thus generalizes the Lipschitz criterion to handle singular behavior at isolated points, revealing that the divergence of this integral controls whether the origin can serve as a branching point for multiple trajectories.
 
 </details>
 
@@ -351,10 +348,7 @@ For this to be consistent, the Right Hand Side must be a function of $z=xy$ only
 
 $$\mu(xy) = \exp \left( \int \frac{N_x - M_y}{xM - yN} \, dz \right)$$
 
-**Key Insights:**
-- The condition $(N_x - M_y)/(xM - yN) = f(xy)$ is both necessary and sufficient.
-- This generalizes the standard integrating factor methods to cases with product symmetry.
-- The method fails when $xM = yN$, indicating a different symmetry structure.
+The condition that $(N_x - M_y)/(xM - yN)$ be a function of $z=xy$ alone is both necessary and sufficient for the existence of such an integrating factor. This result generalizes the standard integrating factor methods to cases with product symmetry, where the differential form exhibits invariance under simultaneous scaling of $x$ and $y$. When $xM = yN$, the method fails, indicating that the equation possesses a different symmetry structure that requires alternative techniques.
 
 </details>
 
@@ -381,10 +375,7 @@ The $(u')^2/u$ terms cancel, leaving:
 
 $$u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0$$
 
-**Key Insights:**
-- The Riccati equation is a projection of a linear system in a higher-dimensional space.
-- The singularity $y \to \infty$ corresponds to $u = 0$ in the linear system.
-- This transformation reveals the deep connection between nonlinear first-order and linear second-order equations.
+This transformation reveals that the Riccati equation is fundamentally a projection of a linear system in a higher-dimensional space. The singularity $y \to \infty$ in the Riccati equation corresponds to $u = 0$ in the linear system, demonstrating that the nonlinear behavior of the Riccati equation arises from this projective relationship. The deep connection between nonlinear first-order and linear second-order equations is thus exposed: what appears as a quadratic nonlinearity in $y$ is actually a linear problem in the projective coordinate $u$.
 
 </details>
 

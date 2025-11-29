@@ -249,10 +249,7 @@ $$
 J_\nu(x) = \left(\frac{x}{2}\right)^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n}.
 $$
 
-**Key Insights:**
-- Confluence reduces the number of regular singular points from three to one, creating Bessel's equation.
-- The normalization ensures $J_0(0) = 1$ while other orders vanish at the origin.
-- This demonstrates that Bessel functions are not isolated special functions but limits of a unified hypergeometric family.
+This derivation reveals how confluence transforms the hypergeometric equation: the process of merging singular points reduces the number of regular singular points from three to one, creating Bessel's equation in the limit. The normalization factor ensures that $J_0(0) = 1$ while other orders vanish at the origin, establishing the correct boundary behavior. This demonstrates that Bessel functions are not isolated special functions but rather limits of a unified hypergeometric family, with their properties emerging naturally from the confluent limit process.
 
 </details>
 
@@ -283,10 +280,7 @@ $$
 
 where $\psi$ is the digamma function.
 
-**Key Insights:**
-- The logarithmic terms arise from the fact that the Frobenius ansatz fails when roots differ by an integer.
-- These solutions are essential for constructing complete bases in boundary-value problems.
-- The logarithmic behavior near the origin reflects the irregular nature of the second solution's branch structure.
+The appearance of logarithmic terms in these solutions stems from the failure of the Frobenius ansatz when the indicial roots differ by an integer. These logarithmic solutions are essential for constructing complete bases in boundary-value problems, as they provide the second linearly independent solution that the standard power series method cannot produce. The logarithmic behavior near the origin reflects the irregular nature of the second solution's branch structure, revealing that while the first solution $J_m(x)$ is entire, the second solution $Y_m(x)$ possesses a branch point at the origin that cannot be captured by ordinary power series methods.
 
 </details>
 
@@ -339,10 +333,7 @@ $$
 \int_{S^2} \mid f(\theta, \phi) \mid^2 \, d\Omega = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} \mid c_{\ell m} \mid^2.
 $$
 
-**Key Insights:**
-- Completeness is a Hilbert-space property, not a pointwise convergence result.
-- This expansion is fundamental for solving Laplace's equation in spherical domains.
-- The structure reflects the rotational symmetry of the sphere, with each $\ell$ corresponding to an irreducible representation of $SO(3)$.
+This completeness result is fundamentally a Hilbert-space property, meaning convergence occurs in the $L^2$ norm rather than pointwise. This expansion is central to solving Laplace's equation in spherical domains, where the angular dependence must be decomposed into spherical harmonics. The structure reflects the rotational symmetry of the sphere: each $\ell$ corresponds to an irreducible representation of $SO(3)$, the rotation group in three dimensions, and the $2\ell+1$ functions $Y_\ell^m$ for fixed $\ell$ span the representation space of dimension $2\ell+1$.
 
 </details>
 
@@ -377,12 +368,7 @@ $$
 \operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \left[ \exp\left(-\frac{2}{3} z^{3/2}\right) + i \exp\left(+\frac{2}{3} z^{3/2}\right) \right], \quad \frac{2\pi}{3} < \arg z < \frac{4\pi}{3}.
 $$
 
-The multiplier $i$ encodes the Stokes constant, which cannot be determined from local analysis alone but reflects global monodromy data.
-
-**Key Insights:**
-- The Stokes phenomenon reveals that asymptotic expansions are sectorial, not global.
-- The discontinuity encodes topological information about the Riemann surface structure.
-- This phenomenon is generic for solutions of differential equations with irregular singular points.
+The multiplier $i$ encodes the Stokes constant, which cannot be determined from local analysis alone but reflects global monodromy data. The Stokes phenomenon reveals that asymptotic expansions are sectorial rather than global: the form of the expansion changes discontinuously as one crosses Stokes lines in the complex plane. This discontinuity encodes topological information about the Riemann surface structure of the solution, revealing connections between different sheets that cannot be detected through local power series methods. This phenomenon is generic for solutions of differential equations with irregular singular points, where the analytic continuation of solutions involves intricate monodromy behavior that manifests as Stokes jumps in asymptotic representations.
 
 </details>
 

@@ -375,10 +375,7 @@ $$
 
 Using partial fractions or convolution, we recover the same result.
 
-**Key Insights:**
-- The convolution representation separates the system dynamics (impulse response) from the input.
-- This form is fundamental to linear system theory and signal processing.
-- The convolution theorem provides an efficient computational method.
+The convolution representation elegantly separates the system dynamics—encoded in the impulse response $h(t)$—from the specific input $f(t)$. This form is fundamental to linear system theory and signal processing, where the response to any input can be constructed by convolving with the system's characteristic impulse response. The convolution theorem provides an efficient computational method by converting the convolution operation into simple multiplication in the Laplace domain, demonstrating the power of integral transforms for solving linear systems.
 
 </details>
 
@@ -439,10 +436,7 @@ $$
 
 with Fourier transform $\hat{f}(\xi) = \left(\frac{\pi}{2\alpha}\right)^{1/4} e^{-\pi^2 \xi^2 / \alpha}$. The uncertainty product is exactly $\frac{1}{4\pi}$.
 
-**Key Insights:**
-- The uncertainty principle is a fundamental limitation on simultaneous localization in space and frequency.
-- Gaussians are optimal in the sense of minimizing the uncertainty product.
-- This principle underlies quantum mechanics and information theory.
+The uncertainty principle establishes a fundamental limitation on simultaneous localization in space and frequency: one cannot make both $\Delta x$ and $\Delta \xi$ arbitrarily small simultaneously. Gaussians achieve the optimal balance, minimizing the uncertainty product and saturating the inequality. This principle underlies both quantum mechanics, where it manifests as the Heisenberg uncertainty relation between position and momentum, and information theory, where it constrains the simultaneous localization of signals in time and frequency domains.
 
 </details>
 
@@ -486,12 +480,7 @@ $$
 u(x, t) = \int_{-\infty}^{\infty} G(x - y, t) f(y) \, dy = \frac{1}{\sqrt{4\pi t}} \int_{-\infty}^{\infty} e^{-(x-y)^2/(4t)} f(y) \, dy.
 $$
 
-This convolution represents the superposition of fundamental solutions, each corresponding to an initial point source.
-
-**Key Insights:**
-- The heat kernel $G(x, t)$ is the Green's function for the initial-value problem.
-- The convolution formula is a manifestation of linearity and translation invariance.
-- The Gaussian form reflects the diffusive nature of the heat equation.
+This convolution represents the superposition of fundamental solutions, each corresponding to an initial point source. The heat kernel $G(x, t)$ serves as the Green's function for the initial-value problem, providing the fundamental building block from which all solutions can be constructed. The convolution formula is a manifestation of both linearity and translation invariance of the heat equation: the response to an arbitrary initial distribution is simply the superposition of responses to point sources. The Gaussian form of the kernel reflects the diffusive nature of the heat equation, with the width growing as $\sqrt{t}$ as information spreads from the initial location.
 
 </details>
 
@@ -550,10 +539,7 @@ $$
 
 Evaluating the integral yields the explicit solution in terms of elementary functions.
 
-**Key Insights:**
-- Volterra equations always have convergent Neumann series due to the causal structure.
-- The resolvent kernel provides a closed-form representation of the solution.
-- This method extends to systems and higher-dimensional problems.
+Volterra equations always have convergent Neumann series due to their causal structure: the integration range $[0,x]$ prevents the accumulation of divergences that plague Fredholm equations. The resolvent kernel provides a closed-form representation of the solution, encoding all orders of the perturbation series in a single kernel function. This method extends naturally to systems and higher-dimensional problems, where the resolvent kernel generalizes to matrix-valued kernels or kernels depending on multiple variables, maintaining the same convergent structure provided the causal ordering is preserved.
 
 </details>
 
