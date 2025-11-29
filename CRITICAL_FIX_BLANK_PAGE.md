@@ -41,4 +41,3 @@ bundle exec jekyll serve
 2. Check GitHub Actions logs
 3. Verify site builds locally
 4. Check if `_site/` directory contains files after build
-

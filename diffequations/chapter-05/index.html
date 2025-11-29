@@ -6,45 +6,85 @@
   <title>Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics</title>
   <meta name="description" content="Regularity is an Exception; Roughness is the Rule">
 
+  <!-- KaTeX Math Rendering - Always use client-side (works reliably on GitHub Pages) -->
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<!-- Load CSS immediately -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- Load KaTeX scripts synchronously for reliable rendering -->
+<script>
+(function() {
+  // Load KaTeX core library
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
   
-  <!-- KaTeX Client-Side: Load immediately for fast math rendering -->
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script>
-    (function() {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMath);
+  katexScript.onload = function() {
+    // After KaTeX core loads, load auto-render
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    
+    renderScript.onload = function() {
+      // Define render function
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') {
+          console.error('KaTeX auto-render not loaded');
+          return;
+        }
+        
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+          console.log('KaTeX math rendered successfully');
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      
+      // Render immediately if body exists, otherwise wait for DOM
+      if (document.body) {
+        renderMath();
       } else {
-        initMath();
+        document.addEventListener('DOMContentLoaded', renderMath);
       }
-      function initMath() {
-        var script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
-        script.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
-        script.crossOrigin = 'anonymous';
-        script.onload = function() {
-          if (window.renderMathInElement) {
-            window.renderMathInElement(document.body, {
-              delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\\[', right: '\\]', display: true},
-                {left: '\\(', right: '\\)', display: false}
-              ],
-              throwOnError: false,
-              strict: false,
-              trust: true,
-              ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-              ignoredClasses: ['no-math']
-            });
-          }
-        };
-        document.head.appendChild(script);
-      }
-    })();
-  </script>
+      
+      // Also render after full page load (for dynamically added content)
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    
+    renderScript.onerror = function() {
+      console.error('Failed to load KaTeX auto-render script');
+    };
+    
+    document.head.appendChild(renderScript);
+  };
   
+  katexScript.onerror = function() {
+    console.error('Failed to load KaTeX core library');
+  };
+  
+  document.head.appendChild(katexScript);
+})();
+</script>
+
 
   <!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
