@@ -7,7 +7,35 @@ class TextbookEngine {
     this.pyodide = null;
     this.isLoaded = false;
     this.isLoading = false;
-    this.init();
+    this.pyodideScriptLoaded = false;
+    // Don't auto-init - load Pyodide only when needed (lazy loading)
+    // This prioritizes math rendering and content display
+    this.attachEventListeners();
+  }
+
+  async loadPyodideScript() {
+    if (this.pyodideScriptLoaded) {
+      return Promise.resolve();
+    }
+    
+    if (typeof loadPyodide !== 'undefined') {
+      this.pyodideScriptLoaded = true;
+      return Promise.resolve();
+    }
+    
+    return new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+      script.async = true;
+      script.onload = () => {
+        this.pyodideScriptLoaded = true;
+        resolve();
+      };
+      script.onerror = () => {
+        reject(new Error('Failed to load Pyodide script'));
+      };
+      document.head.appendChild(script);
+    });
   }
 
   async init() {
@@ -18,8 +46,22 @@ class TextbookEngine {
     this.isLoading = true;
 
     try {
-      console.log('Loading Pyodide...');
+      // Load Pyodide script on-demand
+      console.log('Loading Pyodide script...');
+      await this.loadPyodideScript();
+      
+      // Wait for loadPyodide to be available
+      let retries = 0;
+      while (typeof loadPyodide === 'undefined' && retries < 50) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        retries++;
+      }
+      
+      if (typeof loadPyodide === 'undefined') {
+        throw new Error('loadPyodide function not available after script load');
+      }
 
+      console.log('Initializing Pyodide...');
       this.pyodide = await loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
       });
@@ -39,6 +81,7 @@ class TextbookEngine {
       this.isLoading = false;
       console.log('Pyodide loaded successfully');
 
+      // Re-attach listeners now that Pyodide is ready
       this.attachEventListeners();
     } catch (error) {
       console.error('Pyodide initialization failed:', error);
