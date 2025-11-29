@@ -1176,10 +1176,7 @@ $$
 
 The contribution from $x = 0$ is subdominant by a factor of $e^{-\lambda/4}$.
 
-**Key Insights:**
-- The method of steepest descent generalizes Laplace's method to complex integrals.
-- Contour deformation is essential for capturing all relevant contributions.
-- The leading contribution comes from the global minima of the phase function.
+The method of steepest descent generalizes Laplace's method to complex integrals, allowing one to handle oscillatory integrands by deforming the integration contour through saddle points. Contour deformation is essential for capturing all relevant contributions: by choosing paths along which the phase varies slowly (steepest descent paths), one can extract the dominant asymptotic behavior while suppressing oscillatory contributions. The leading contribution comes from the global minima of the phase function, with each such minimum producing its own asymptotic contribution, and subdominant contributions being exponentially suppressed relative to the dominant ones.
 
 </details>
 
@@ -1205,12 +1202,7 @@ Using the Airy function asymptotics:
 - For $z \to +\infty$: $\operatorname{Ai}(z) \sim (2\sqrt{\pi} z^{1/4})^{-1} e^{-2z^{3/2}/3}$
 - For $z \to -\infty$: $\operatorname{Ai}(z) \sim (\sqrt{\pi} \mid z \mid^{1/4})^{-1} \sin(2\mid z \mid^{3/2}/3 + \pi/4)$
 
-Matching through the turning point introduces the $\pi/4$ phase shift, connecting the oscillatory solution on one side to the appropriate linear combination on the other.
-
-**Key Insights:**
-- Turning points require local analysis beyond WKB.
-- Airy functions provide the universal transition functions near simple turning points.
-- The $\pi/4$ phase is a topological invariant of the turning point structure.
+Matching through the turning point introduces the $\pi/4$ phase shift, connecting the oscillatory solution on one side to the appropriate linear combination on the other. Turning points require local analysis beyond WKB because the WKB ansatz breaks down where $Q(x) = 0$, necessitating a separate treatment of the transition region. Airy functions provide the universal transition functions near simple turning points: when $Q(x)$ has a simple zero, the local behavior is always described by Airy's equation after appropriate scaling. The $\pi/4$ phase shift is a topological invariant of the turning point structure, appearing universally whenever one connects oscillatory and exponential regions through a simple turning point, reflecting the geometric structure of the solution space near these critical points.
 
 </details>
 
@@ -1239,12 +1231,7 @@ $$
 h(\pi/2 + \delta) \approx h(\pi/2) + \frac{1}{24} h^{(4)}(\pi/2) \delta^4.
 $$
 
-This gives scaling $I(\lambda) \sim \lambda^{-1/4}$ instead of $\lambda^{-1/2}$, with the constant determined by the quartic coefficient.
-
-**Key Insights:**
-- Degenerate stationary points produce different power-law scalings.
-- The asymptotic order depends on the first non-vanishing derivative.
-- Multiple degenerate points may contribute at the same order, requiring careful analysis.
+This gives scaling $I(\lambda) \sim \lambda^{-1/4}$ instead of $\lambda^{-1/2}$, with the constant determined by the quartic coefficient. Degenerate stationary points produce different power-law scalings because the quadratic approximation fails, requiring expansion to higher order. The asymptotic order depends on the first non-vanishing derivative: if $h''(\theta_0) = 0$ but $h^{(k)}(\theta_0) \neq 0$ for some $k &gt; 2$, the scaling becomes $\lambda^{-1/k}$ rather than $\lambda^{-1/2}$. Multiple degenerate points may contribute at the same order, requiring careful analysis to combine their contributions correctly, as the relative phases determine whether they interfere constructively or destructively.
 
 </details>
 
@@ -1277,12 +1264,7 @@ $$
 \mathcal{S}^+(z) - \mathcal{S}^-(z) = \frac{2\pi i}{z} \operatorname{Res}_{t=1} \left( \mathcal{B}(t) e^{-t/z} \right) = \frac{2\pi i e^{-1}}{z} e^{-1/z}.
 $$
 
-This exponentially small difference is the Stokes jump. The Stokes multiplier is $2\pi i e^{-1}$, encoding how the subdominant exponential is activated when crossing the Stokes line.
-
-**Key Insights:**
-- Borel summation provides a rigorous interpretation of divergent series.
-- Stokes jumps are encoded in the analytic continuation of the Borel transform.
-- The multiplier is determined by the singularity structure in the Borel plane.
+This exponentially small difference is the Stokes jump. The Stokes multiplier is $2\pi i e^{-1}$, encoding how the subdominant exponential is activated when crossing the Stokes line. Borel summation provides a rigorous interpretation of divergent series by transforming factorial divergence into a convergent integral representation, making sense of series that fail to converge in the traditional sense. Stokes jumps are encoded in the analytic continuation of the Borel transform: when the integration contour must pass above or below a singularity, the two choices produce different results that differ by exponentially small amounts. The multiplier is determined by the singularity structure in the Borel plane, with each singularity corresponding to a non-perturbative effect and its position determining the magnitude of the associated Stokes jump.
 
 </details>
 

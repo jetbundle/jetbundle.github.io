@@ -1070,12 +1070,7 @@ $$
 
 which is exponentially small—smaller than any power of $x$.
 
-This demonstrates that non-perturbative effects of order $e^{-1/x}$ cannot be captured by any finite power series expansion, as they are transcendentally small compared to any $x^k$.
-
-**Key Insights:**
-- Optimal truncation achieves exponential accuracy despite divergence.
-- The remainder is exponentially small and represents non-perturbative physics.
-- Power series fundamentally miss exponentially small effects.
+This demonstrates that non-perturbative effects of order $e^{-1/x}$ cannot be captured by any finite power series expansion, as they are transcendentally small compared to any $x^k$. Optimal truncation achieves exponential accuracy despite divergence by stopping at the term of smallest magnitude, before the series begins to diverge. The remainder after optimal truncation is exponentially small and represents non-perturbative physics: effects that are invisible to power series but dominate the error. Power series fundamentally miss exponentially small effects because any function of the form $e^{-1/x}$ has all Taylor coefficients vanishing, yet contributes significantly to the optimal truncation error, revealing the intrinsic limitations of perturbation expansions.
 
 </details>
 
@@ -1112,12 +1107,7 @@ $$
 \mathcal{S}^+(x) - \mathcal{S}^-(x) = \frac{2\pi i}{x} \operatorname{Res}_{t=1} \left( \frac{1}{1-t} e^{-t/x} \right) = \frac{2\pi i}{x} e^{-1/x}.
 $$
 
-This exponentially small difference is the Stokes jump. As $x$ crosses a Stokes line, the subdominant contribution is activated with this multiplier.
-
-**Key Insights:**
-- Borel summation provides a rigorous interpretation of divergent series.
-- Singularities in the Borel plane correspond to non-perturbative effects.
-- Lateral sums differ by exponentially small amounts encoding Stokes jumps.
+This exponentially small difference is the Stokes jump. As $x$ crosses a Stokes line, the subdominant contribution is activated with this multiplier. Borel summation provides a rigorous interpretation of divergent series by transforming factorial divergence into a convergent integral representation, making sense of series that fail to converge in the traditional sense. Singularities in the Borel plane correspond to non-perturbative effects: each pole or branch point in the Borel transform marks the presence of exponentially small contributions that cannot be captured by power series. Lateral sums differ by exponentially small amounts encoding Stokes jumps: when the integration contour must pass above or below a singularity, the two choices produce different results, with their difference precisely matching the Stokes jump observed in asymptotic expansions.
 
 </details>
 
@@ -1156,12 +1146,7 @@ $$
 y(t) = e^{-\epsilon t/2} \cos t,
 $$
 
-which matches the exact solution's envelope. The RG method automatically resums secular terms by requiring scale invariance.
-
-**Key Insights:**
-- RG methods resum secular terms systematically.
-- The RG condition enforces physical scale independence.
-- This recovers exact results without ad hoc multiple-scale assumptions.
+which matches the exact solution's envelope. The RG method automatically resums secular terms by requiring scale invariance. RG methods resum secular terms systematically by introducing an arbitrary renormalization scale and demanding that physical results are independent of this scale, which forces the integration constants to evolve in precisely the way needed to cancel secular growth. The RG condition enforces physical scale independence: since the renormalization scale is arbitrary, the solution must be invariant under changes in this scale, leading to flow equations that capture the slow evolution. This recovers exact results without ad hoc multiple-scale assumptions: the RG method naturally generates the envelope equations that multiple-scale analysis postulates, revealing that scale independence is the fundamental principle underlying both approaches.
 
 </details>
 
@@ -1196,12 +1181,7 @@ $$
 a_n \sim (-1)^n n! S^{-n} = (-1)^n n! \left(\frac{3}{8\sqrt{2}}\right)^n.
 $$
 
-This factorial growth matches the observed divergence, demonstrating that the instanton action controls the divergence rate.
-
-**Key Insights:**
-- Instanton actions determine Borel plane singularities.
-- Large-order perturbative coefficients encode non-perturbative physics.
-- Divergence rates reveal the structure of non-perturbative effects.
+This factorial growth matches the observed divergence, demonstrating that the instanton action controls the divergence rate. Instanton actions determine Borel plane singularities: each classical trajectory connecting distinct vacua produces a singularity in the Borel transform at a position given by its action, revealing how non-perturbative effects are encoded in the analytic structure. Large-order perturbative coefficients encode non-perturbative physics: the factorial growth rate is determined by the closest singularity in the Borel plane, which in turn is controlled by instanton actions, establishing a deep connection between perturbation theory and non-perturbative effects. Divergence rates reveal the structure of non-perturbative effects: by analyzing how fast the perturbative series diverges, one can extract information about instanton actions, level splittings, and other exponentially small phenomena that are invisible to any finite order of perturbation theory.
 
 </details>
 

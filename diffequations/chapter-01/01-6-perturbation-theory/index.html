@@ -1076,12 +1076,7 @@ Using Poincaré–Lindstedt with $\tau = \omega t$, $\omega = 1 + \epsilon \omeg
 
 To remove secular terms, we set the coefficient of $\cos \tau$ to zero: $-2\omega_1 = 0$, so $\omega_1 = 0$.
 
-Continuing to $O(\epsilon^2)$ reveals that $\omega_2 \neq 0$, so the frequency shift appears at second order. The quadratic nonlinearity creates a DC shift but no first-order frequency shift, unlike cubic nonlinearity which shifts frequency at first order.
-
-**Key Insights:**
-- Quadratic nonlinearities shift equilibrium positions but don't affect frequency at first order.
-- Secular terms must be removed systematically at each order.
-- The order at which frequency shifts appear depends on the symmetry of the nonlinearity.
+Continuing to $O(\epsilon^2)$ reveals that $\omega_2 \neq 0$, so the frequency shift appears at second order. The quadratic nonlinearity creates a DC shift but no first-order frequency shift, unlike cubic nonlinearity which shifts frequency at first order. This asymmetry reflects a fundamental difference: quadratic nonlinearities shift equilibrium positions but don't affect frequency at first order, while the symmetry of cubic nonlinearities allows them to modify the frequency directly. Secular terms must be removed systematically at each order of the expansion, with the frequency correction chosen precisely to cancel resonant forcing terms. The order at which frequency shifts appear depends critically on the symmetry of the nonlinearity, revealing how the algebraic structure of the perturbation determines the nature of the response.
 
 </details>
 
@@ -1112,12 +1107,7 @@ $$
 y(x) = y_0(x) + Y(x/\epsilon) - (\text{matching limit}) = \frac{2}{1+x} + 2(1 - e^{-x/\epsilon}) - 2 = \frac{2}{1+x} - 2e^{-x/\epsilon}.
 $$
 
-This satisfies both boundary conditions and is uniformly valid.
-
-**Key Insights:**
-- Boundary layers form where the outer solution cannot satisfy boundary conditions.
-- Matching connects the outer and inner solutions in their overlap region.
-- The composite solution is constructed by subtracting the common limit to avoid double-counting.
+This satisfies both boundary conditions and is uniformly valid. Boundary layers form precisely where the outer solution cannot satisfy boundary conditions: in this case, the reduced equation loses the boundary condition at $x=0$, forcing the solution to adjust rapidly in a thin region near that boundary. Matching connects the outer and inner solutions in their overlap region, where both expansions are valid and must agree. The composite solution is constructed by subtracting the common limit to avoid double-counting: the outer and inner solutions both approach the same value in the matching region, so we add them together and subtract this common value once to obtain a uniformly valid approximation that correctly represents the solution in both regions.
 
 </details>
 
@@ -1147,12 +1137,7 @@ $$
 a' = \frac{a}{2} \left(1 - \frac{a^2}{4}\right).
 $$
 
-Fixed points occur at $a = 0$ (unstable) and $a = 2$ (stable). The limit cycle amplitude is $A = 2$, matching the exact result.
-
-**Key Insights:**
-- Multiple scales reveal the slow evolution of the amplitude envelope.
-- Limit cycles correspond to stable fixed points of the amplitude equation.
-- The method captures the transition from initial conditions to the attractor.
+Fixed points occur at $a = 0$ (unstable) and $a = 2$ (stable). The limit cycle amplitude is $A = 2$, matching the exact result. Multiple scales reveal the slow evolution of the amplitude envelope: while the system oscillates rapidly at frequency $\omega \approx 1$, the amplitude evolves on the slow timescale $\epsilon t$, gradually approaching its asymptotic value. Limit cycles correspond to stable fixed points of the amplitude equation, where the slow-time derivative vanishes and the system settles into periodic motion. The method captures the transition from initial conditions to the attractor, showing how the system evolves from an arbitrary starting point toward the limit cycle, with the amplitude equation describing this transient behavior that single-scale perturbation cannot capture.
 
 </details>
 
@@ -1179,12 +1164,7 @@ The Airy function $\operatorname{Ai}(\xi)$ has the asymptotics:
 - For $\xi \to +\infty$: $\operatorname{Ai}(\xi) \sim (2\sqrt{\pi} \xi^{1/4})^{-1} \exp(-2\xi^{3/2}/3)$ (exponentially decaying)
 - For $\xi \to -\infty$: $\operatorname{Ai}(\xi) \sim (\sqrt{\pi} \mid \xi \mid^{1/4})^{-1} \sin(2\mid \xi \mid^{3/2}/3 + \pi/4)$ (oscillatory)
 
-Matching these to the WKB solutions on either side provides the connection formulas, including the $\pi/4$ phase shift.
-
-**Key Insights:**
-- Turning points are where the WKB approximation becomes singular.
-- Local analysis near turning points reveals the global connection formulas.
-- The method of matched asymptotic expansions unifies WKB and singular perturbation theory.
+Matching these to the WKB solutions on either side provides the connection formulas, including the $\pi/4$ phase shift. Turning points are where the WKB approximation becomes singular: at these locations, $Q(x) = 0$ causes the phase integral $\int \sqrt{Q} \, dx$ to become undefined, breaking down the WKB ansatz. Local analysis near turning points reveals the global connection formulas: by solving the equation exactly in a small neighborhood and matching to WKB solutions on both sides, one obtains relations that connect solutions across the turning point, determining how oscillatory and exponential behaviors are linked. The method of matched asymptotic expansions unifies WKB and singular perturbation theory: both rely on constructing separate approximations in different regions and connecting them through matching, with the turning point serving as the boundary between regions where different asymptotic forms are valid.
 
 </details>
 
