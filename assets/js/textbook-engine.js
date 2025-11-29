@@ -223,7 +223,7 @@ if 'plot_data' in globals() and plot_data is not None:
  */
 function renderMathInElementHelper(element) {
   if (!element) return;
-  
+
   // Try KaTeX first (faster, preferred if available)
   if (typeof window.renderMathInElement !== 'undefined' && window.renderMathInElement) {
     try {
@@ -243,7 +243,7 @@ function renderMathInElementHelper(element) {
       console.log('KaTeX rendering issue:', err);
     }
   }
-  
+
   // Fall back to MathJax
   if (window.MathJax && window.MathJax.typesetPromise) {
     window.MathJax.typesetPromise([element]).catch((err) => {
