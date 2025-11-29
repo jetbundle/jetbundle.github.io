@@ -7,658 +7,693 @@
   <meta name="description" content="Stochastic parallel transport, Malliavin calculus">
 
   
-  <!-- Jektex: Server-side LaTeX rendering - Math is pre-rendered during build -->
-  <!-- Only need KaTeX CSS for styling the pre-rendered HTML -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <!-- No JavaScript needed - math is already rendered as HTML! -->
+  <!-- KaTeX Client-Side: Load immediately for fast math rendering -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script>
+    (function() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMath);
+      } else {
+        initMath();
+      }
+      function initMath() {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+        script.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+        script.crossOrigin = 'anonymous';
+        script.onload = function() {
+          if (window.renderMathInElement) {
+            window.renderMathInElement(document.body, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 31: …, display: true}̲,
+             …" style="color:#cc0000">&#x27;, right: &#x27;\\]&#x27;, display: true},
+                {left: &#x27;\&lt;span class=&quot;katex-error&quot; title=&quot;ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 32: … display: false}̲
+              …&quot; style=&quot;color:#cc0000&quot;&gt;&#x27;, right: &#x27;\\)&#x27;, display: false}
+              ],
+              throwOnError: false,
+              strict: false,
+              trust: true,
+              ignoredTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;],
+              ignoredClasses: [&#x27;no-math&#x27;]
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    })();
+  &lt;/script&gt;
   
 
-  <!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  &lt;!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering --&gt;
+  &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js&quot;&gt;&lt;/script&gt;
 
-  <!-- Textbook CSS -->
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-</head>
-<body class="textbook-body theme-dark">
-  <div class="theme-toggle-container">
-  <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
-    <span class="theme-icon-sun">☀</span>
-    <span class="theme-icon-moon">🌙</span>
-  </button>
-</div>
+  &lt;!-- Textbook CSS --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/textbook.css&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;textbook-body theme-dark&quot;&gt;
+  &lt;div class=&quot;theme-toggle-container&quot;&gt;
+  &lt;button class=&quot;theme-toggle-btn&quot; id=&quot;theme-toggle&quot; title=&quot;Toggle Theme&quot; aria-label=&quot;Toggle dark/light theme&quot;&gt;
+    &lt;span class=&quot;theme-icon-sun&quot;&gt;☀&lt;/span&gt;
+    &lt;span class=&quot;theme-icon-moon&quot;&gt;🌙&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
 
 
-  <div class="textbook-container">
-    <!-- Sidebar Navigation -->
-    <nav class="textbook-sidebar">
-      <div class="nav-header">
-  <h3>Differential Equations</h3>
-  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">2025 Edition</p>
-</div>
+  &lt;div class=&quot;textbook-container&quot;&gt;
+    &lt;!-- Sidebar Navigation --&gt;
+    &lt;nav class=&quot;textbook-sidebar&quot;&gt;
+      &lt;div class=&quot;nav-header&quot;&gt;
+  &lt;h3&gt;Differential Equations&lt;/h3&gt;
+  &lt;p style=&quot;margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;&quot;&gt;2025 Edition&lt;/p&gt;
+&lt;/div&gt;
 
-<nav class="nav-content">
-  <ul>
+&lt;nav class=&quot;nav-content&quot;&gt;
+  &lt;ul&gt;
     
     
 
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/&quot; &gt;
               0. A Survey of Differential Equations and their Algebraic Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-01/" >
-            Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-01/&quot; &gt;
+            Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-1-exact-methods/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-1-exact-methods/&quot; &gt;
               1.1 Exact Methods for Ordinary Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-2-special-functions/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-2-special-functions/&quot; &gt;
               1.2 Special Functions of Mathematical Physics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-3-integral-transforms/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-3-integral-transforms/&quot; &gt;
               1.3 Integral Transforms
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-4-linear-pde/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-4-linear-pde/&quot; &gt;
               1.4 Classical Linear Partial Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-5-asymptotic-analysis/&quot; &gt;
               1.5 Asymptotic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-6-perturbation-theory/&quot; &gt;
               1.6 Classical Perturbation Theory
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-7-renormalization/" >
-              1.7 Classical Renormalization & Non-Perturbative Methods
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-7-renormalization/&quot; &gt;
+              1.7 Classical Renormalization &amp; Non-Perturbative Methods
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-02/" >
-            Chapter 2: Functional Analysis, Distributions & Weak Solutions
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-02/&quot; &gt;
+            Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-1-distributions/" >
-              2.1 Distributions & Test Functions
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-2-sobolev-spaces/" >
-              2.2 Sobolev Spaces & Weak Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-1-distributions/&quot; &gt;
+              2.1 Distributions &amp; Test Functions
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-3-hilbert-spaces/" >
-              2.3 Hilbert Space Theory & Spectral Theorem
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-2-sobolev-spaces/&quot; &gt;
+              2.2 Sobolev Spaces &amp; Weak Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-4-unbounded-operators/" >
-              2.4 Unbounded Operators, Resolvents & Semigroups
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-3-hilbert-spaces/&quot; &gt;
+              2.3 Hilbert Space Theory &amp; Spectral Theorem
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-5-variational-methods/" >
-              2.5 Variational Methods & Lax-Milgram
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-4-unbounded-operators/&quot; &gt;
+              2.4 Unbounded Operators, Resolvents &amp; Semigroups
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-6-galerkin-methods/" >
-              2.6 Galerkin Methods & Finite Elements
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-5-variational-methods/&quot; &gt;
+              2.5 Variational Methods &amp; Lax-Milgram
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-7-fredholm-theory/" >
-              2.7 Fredholm Theory & Index
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-6-galerkin-methods/&quot; &gt;
+              2.6 Galerkin Methods &amp; Finite Elements
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-03/" >
-            Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-1-manifolds-tensors/" >
-              3.1 Manifolds, Tensors & Covariant Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-7-fredholm-theory/&quot; &gt;
+              2.7 Fredholm Theory &amp; Index
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-2-conservation-laws/" >
-              3.2 Systems of Conservation Laws & Hyperbolicity
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-03/&quot; &gt;
+            Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-1-manifolds-tensors/&quot; &gt;
+              3.1 Manifolds, Tensors &amp; Covariant Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-3-entropy-solutions/" >
-              3.3 Entropy Solutions & Shock Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-2-conservation-laws/&quot; &gt;
+              3.2 Systems of Conservation Laws &amp; Hyperbolicity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-4-exterior-calculus/" >
-              3.4 Exterior Calculus & Hodge Decomposition
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-3-entropy-solutions/&quot; &gt;
+              3.3 Entropy Solutions &amp; Shock Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-5-continuum-mechanics/" >
-              3.5 Continuum Mechanics & Elasticity
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-4-exterior-calculus/&quot; &gt;
+              3.4 Exterior Calculus &amp; Hodge Decomposition
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-6-geometric-optics/" >
-              3.6 Geometric Optics, Rays & Caustics
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-5-continuum-mechanics/&quot; &gt;
+              3.5 Continuum Mechanics &amp; Elasticity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-04/" >
-            Chapter 4: Symmetry, Lie Theory & Classical Integrability
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-1-lie-symmetries/" >
-              4.1 Lie Symmetries & Prolongation
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-6-geometric-optics/&quot; &gt;
+              3.6 Geometric Optics, Rays &amp; Caustics
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-2-noether-theorem/" >
-              4.2 Noether's Theorem & Invariant Reduction
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-04/&quot; &gt;
+            Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-1-lie-symmetries/&quot; &gt;
+              4.1 Lie Symmetries &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-3-integrable-systems/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-2-noether-theorem/&quot; &gt;
+              4.2 Noether&#x27;s Theorem &amp; Invariant Reduction
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-3-integrable-systems/&quot; &gt;
               4.3 Completely Integrable Systems
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-4-lax-pairs/" >
-              4.4 Lax Pairs & Zero-Curvature Representations
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-4-lax-pairs/&quot; &gt;
+              4.4 Lax Pairs &amp; Zero-Curvature Representations
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-5-riemann-hilbert/" >
-              4.5 Riemann-Hilbert & Inverse Scattering
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-5-riemann-hilbert/&quot; &gt;
+              4.5 Riemann-Hilbert &amp; Inverse Scattering
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-6-recursion-operators/" >
-              4.6 Recursion Operators & Hirota Bilinearization
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-6-recursion-operators/&quot; &gt;
+              4.6 Recursion Operators &amp; Hirota Bilinearization
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-7-susy-qm/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-7-susy-qm/&quot; &gt;
               4.7 Supersymmetric Quantum Mechanics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-8-nonlocal-symmetries/" >
-              4.8 Nonlocal Symmetries & Potential Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-8-nonlocal-symmetries/&quot; &gt;
+              4.8 Nonlocal Symmetries &amp; Potential Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-05/" >
-            Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-05/&quot; &gt;
+            Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-1-stochastic-calculus/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-1-stochastic-calculus/&quot; &gt;
               5.1 Stochastic Calculus Foundations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-2-sdes/" >
-              5.2 SDEs & Diffusion Processes
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-2-sdes/&quot; &gt;
+              5.2 SDEs &amp; Diffusion Processes
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-3-geometric-stochastic/" class="active">
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-3-geometric-stochastic/&quot; class=&quot;active&quot;&gt;
               5.3 Geometric Stochastic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-4-rough-paths/" >
-              5.4 Rough Paths & Controlled Rough Paths
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-4-rough-paths/&quot; &gt;
+              5.4 Rough Paths &amp; Controlled Rough Paths
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-5-fractional-calculus/" >
-              5.5 Fractional Calculus & Nonlocal Operators
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-5-fractional-calculus/&quot; &gt;
+              5.5 Fractional Calculus &amp; Nonlocal Operators
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-6-spdes/" >
-              5.6 SPDEs & Regularity Structures
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-6-spdes/&quot; &gt;
+              5.6 SPDEs &amp; Regularity Structures
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-7-kinetic-theory/" >
-              5.7 Kinetic Theory & Mean-Field Games
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-7-kinetic-theory/&quot; &gt;
+              5.7 Kinetic Theory &amp; Mean-Field Games
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-8-fractal-geometry/" >
-              5.8 Fractal Geometry & Dirichlet Forms
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-8-fractal-geometry/&quot; &gt;
+              5.8 Fractal Geometry &amp; Dirichlet Forms
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-9-susy-stochastics/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-9-susy-stochastics/&quot; &gt;
               5.9 Supersymmetric Theory of Stochastics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-06/" >
-            Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-06/&quot; &gt;
+            Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-1-jet-bundles/" >
-              6.1 Jet Bundles & Prolongation
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-2-formal-integrability/" >
-              6.2 Formal Integrability & Spencer Cohomology
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-1-jet-bundles/&quot; &gt;
+              6.1 Jet Bundles &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-3-exterior-systems/" >
-              6.3 Exterior Differential Systems & Cartan-Kähler
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-2-formal-integrability/&quot; &gt;
+              6.2 Formal Integrability &amp; Spencer Cohomology
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-4-metric-space/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-3-exterior-systems/&quot; &gt;
+              6.3 Exterior Differential Systems &amp; Cartan-Kähler
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-4-metric-space/&quot; &gt;
               6.4 The Space of Riemannian Metrics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-5-geometric-evolution/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-5-geometric-evolution/&quot; &gt;
               6.5 Geometric Evolution Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-6-gauge-theories/" >
-              6.6 Gauge Theories & Instanton Moduli
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-6-gauge-theories/&quot; &gt;
+              6.6 Gauge Theories &amp; Instanton Moduli
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-7-nonlinear-systems/" >
-              6.7 Fully Nonlinear & Overdetermined Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-7-nonlinear-systems/&quot; &gt;
+              6.7 Fully Nonlinear &amp; Overdetermined Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-07/" >
-            Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-07/&quot; &gt;
+            Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-1-d-modules/" >
-              7.1 D-Modules & Holonomic Systems
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-2-microlocal-analysis/" >
-              7.2 Microlocal Analysis & Wave Front Sets
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-1-d-modules/&quot; &gt;
+              7.1 D-Modules &amp; Holonomic Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-3-riemann-hilbert/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-2-microlocal-analysis/&quot; &gt;
+              7.2 Microlocal Analysis &amp; Wave Front Sets
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-3-riemann-hilbert/&quot; &gt;
               7.3 Riemann-Hilbert Correspondence
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-4-fourier-integral/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-4-fourier-integral/&quot; &gt;
               7.4 Fourier Integral Operators
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-5-resurgence/" >
-              7.5 Resurgence, Borel Summation & Alien Calculus
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-5-resurgence/&quot; &gt;
+              7.5 Resurgence, Borel Summation &amp; Alien Calculus
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-6-index-theorems/" >
-              7.6 Index Theorems & K-Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-6-index-theorems/&quot; &gt;
+              7.6 Index Theorems &amp; K-Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-7-noncommutative/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-7-noncommutative/&quot; &gt;
               7.7 Noncommutative Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-8-higher-categories/" >
-              7.8 Higher Categories, Derived Stacks & TQFT
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-8-higher-categories/&quot; &gt;
+              7.8 Higher Categories, Derived Stacks &amp; TQFT
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
@@ -668,8 +703,8 @@
     
 
     
-      </ul>
-    </li>
+      &lt;/ul&gt;
+    &lt;/li&gt;
     
 
     
@@ -799,222 +834,222 @@
       
         
           
-          <li class="chapter-item">
-            <a href="/diffequations/epilogue/" >
+          &lt;li class=&quot;chapter-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/epilogue/&quot; &gt;
               Epilogue: The Eternal Structure
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
-  </ul>
-</nav>
+  &lt;/ul&gt;
+&lt;/nav&gt;
 
-    </nav>
+    &lt;/nav&gt;
 
-    <!-- Main Content -->
-    <main class="textbook-main">
-      <header class="textbook-header">
-        <h1>Section 5.3: Geometric Stochastic Analysis</h1>
-        <p class="description">Stochastic parallel transport, Malliavin calculus</p>
-      </header>
+    &lt;!-- Main Content --&gt;
+    &lt;main class=&quot;textbook-main&quot;&gt;
+      &lt;header class=&quot;textbook-header&quot;&gt;
+        &lt;h1&gt;Section 5.3: Geometric Stochastic Analysis&lt;/h1&gt;
+        &lt;p class=&quot;description&quot;&gt;Stochastic parallel transport, Malliavin calculus&lt;/p&gt;
+      &lt;/header&gt;
 
-      <article class="textbook-content">
-        <h1 id="section-53-geometric-stochastic-analysis">Section 5.3: Geometric Stochastic Analysis</h1>
+      &lt;article class=&quot;textbook-content&quot;&gt;
+        &lt;h1 id=&quot;section-53-geometric-stochastic-analysis&quot;&gt;Section 5.3: Geometric Stochastic Analysis&lt;/h1&gt;
 
-<h2 id="introduction">Introduction</h2>
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-<p>Standard stochastic calculus, as developed in the previous modules, relies heavily on the linear vector space structure of $\mathbb{R}^n$. The ability to define increments $\Delta B_t = B_{t+\Delta t} - B_t$ implies the existence of a global coordinate system where vector addition is meaningful. However, physical configuration spaces—such as the configuration space of a rigid body or the phase space of a Hamiltonian system—are often curved manifolds where no such global linearity exists.</p>
+&lt;p&gt;Standard stochastic calculus, as developed in the previous modules, relies heavily on the linear vector space structure of $\mathbb{R}^n$. The ability to define increments $\Delta B_t = B_{t+\Delta t} - B_t$ implies the existence of a global coordinate system where vector addition is meaningful. However, physical configuration spaces—such as the configuration space of a rigid body or the phase space of a Hamiltonian system—are often curved manifolds where no such global linearity exists.&lt;/p&gt;
 
-<p>This module lifts the theory of stochastic differential equations from flat space to differentiable manifolds. We discover that the geometric nature of the Stratonovich integral makes it the natural choice for coordinate invariance. Furthermore, we introduce the Malliavin calculus, an infinite-dimensional differential calculus on the Wiener space itself, which provides the rigorous link between the algebraic structure of vector fields (Lie brackets) and the analytic regularity of solution densities (Hörmander’s theorem).</p>
+&lt;p&gt;This module lifts the theory of stochastic differential equations from flat space to differentiable manifolds. We discover that the geometric nature of the Stratonovich integral makes it the natural choice for coordinate invariance. Furthermore, we introduce the Malliavin calculus, an infinite-dimensional differential calculus on the Wiener space itself, which provides the rigorous link between the algebraic structure of vector fields (Lie brackets) and the analytic regularity of solution densities (Hörmander’s theorem).&lt;/p&gt;
 
-<h2 id="mathematical-content">Mathematical Content</h2>
+&lt;h2 id=&quot;mathematical-content&quot;&gt;Mathematical Content&lt;/h2&gt;
 
-<h3 id="stochastic-differential-geometry">Stochastic Differential Geometry</h3>
+&lt;h3 id=&quot;stochastic-differential-geometry&quot;&gt;Stochastic Differential Geometry&lt;/h3&gt;
 
-<p>To formulate a stochastic differential equation on a smooth manifold $M$ of dimension $d$, we must address the transformation properties of stochastic integrals. Recall from Section 5.1 that the Itô chain rule involves a second-order term involving the Hessian. On a manifold, the Hessian is not a tensorial object unless one specifies a connection (e.g., the Levi-Civita connection). Consequently, Itô equations are not invariant under coordinate transformations unless the stochastic term is coupled intrinsically to the geometry.</p>
+&lt;p&gt;To formulate a stochastic differential equation on a smooth manifold $M$ of dimension $d$, we must address the transformation properties of stochastic integrals. Recall from Section 5.1 that the Itô chain rule involves a second-order term involving the Hessian. On a manifold, the Hessian is not a tensorial object unless one specifies a connection (e.g., the Levi-Civita connection). Consequently, Itô equations are not invariant under coordinate transformations unless the stochastic term is coupled intrinsically to the geometry.&lt;/p&gt;
 
-<p>Conversely, the Stratonovich chain rule satisfies the classical Leibniz rule of ordinary calculus:</p>
+&lt;p&gt;Conversely, the Stratonovich chain rule satisfies the classical Leibniz rule of ordinary calculus:&lt;/p&gt;
 
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∘</mo><mi>d</mi><msub><mi>X</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">d(f(X_t)) = f&#x27;(X_t) \circ dX_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">))</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
+\[d(f(X_t)) = f&#x27;(X_t) \circ dX_t</span>
 
-<p>This invariance suggests that stochastic differential geometry is best formulated using Stratonovich integration. We consider an SDE on $M$ driven by an $m$-dimensional Brownian motion $B_t = (B^1_t, \dots, B^m_t)$ in $\mathbb{R}^m$. Let $V_0$ be a vector field representing the drift, and let $V_1, \dots, V_m$ be vector fields representing the diffusion coefficients. In local coordinates, the intrinsic equation is written as:</p>
+&lt;p&gt;This invariance suggests that stochastic differential geometry is best formulated using Stratonovich integration. We consider an SDE on $M$ driven by an $m$-dimensional Brownian motion $B_t = (B^1_t, \dots, B^m_t)$ in $\mathbb{R}^m$. Let $V_0$ be a vector field representing the drift, and let $V_1, \dots, V_m$ be vector fields representing the diffusion coefficients. In local coordinates, the intrinsic equation is written as:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>X</mi><mi>t</mi></msub><mo>=</mo><msub><mi>V</mi><mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mi>d</mi><mi>t</mi><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>V</mi><mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∘</mo><mi>d</mi><msubsup><mi>B</mi><mi>t</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">dX_t = V_0(X_t) dt + \sum_{k=1}^m V_k(X_t) \circ dB^k_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.9535em;vertical-align:-1.3021em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>This formulation ensures that the solution $X_t$ is independent of the chart used to describe it.</p>
+&lt;p&gt;This formulation ensures that the solution $X_t$ is independent of the chart used to describe it.&lt;/p&gt;
 
-<h4 id="stochastic-parallel-transport-and-development">Stochastic Parallel Transport and Development</h4>
+&lt;h4 id=&quot;stochastic-parallel-transport-and-development&quot;&gt;Stochastic Parallel Transport and Development&lt;/h4&gt;
 
-<p>To analyze these processes without relying on local charts, we utilize the frame bundle $OM$ (the bundle of orthonormal bases of the tangent spaces). We lift the Brownian motion from the flat tangent space $T_{x_0}M \cong \mathbb{R}^d$ to a path on the manifold via the <strong>Eells-Elworthy-Malliavin construction</strong>.</p>
+&lt;p&gt;To analyze these processes without relying on local charts, we utilize the frame bundle $OM$ (the bundle of orthonormal bases of the tangent spaces). We lift the Brownian motion from the flat tangent space $T_{x_0}M \cong \mathbb{R}^d$ to a path on the manifold via the &lt;strong&gt;Eells-Elworthy-Malliavin construction&lt;/strong&gt;.&lt;/p&gt;
 
-<p>This is conceptualized as “rolling without slipping.” We define the <strong>stochastic development</strong> map, which transforms a Brownian motion in $\mathbb{R}^d$ into a diffusion on $M$. Let $u_t \in O_{X_t}M$ be an orthonormal frame at $X_t$. The horizontal lift of the process is defined by solving a differential equation on the frame bundle using the canonical horizontal vector fields $H_i$:</p>
+&lt;p&gt;This is conceptualized as “rolling without slipping.” We define the &lt;strong&gt;stochastic development&lt;/strong&gt; map, which transforms a Brownian motion in $\mathbb{R}^d$ into a diffusion on $M$. Let $u_t \in O_{X_t}M$ be an orthonormal frame at $X_t$. The horizontal lift of the process is defined by solving a differential equation on the frame bundle using the canonical horizontal vector fields $H_i$:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>u</mi><mi>t</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>d</mi></munderover><msub><mi>H</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∘</mo><mi>d</mi><msubsup><mi>B</mi><mi>t</mi><mi>i</mi></msubsup></mrow><annotation encoding="application/x-tex">du_t = \sum_{i=1}^d H_i(u_t) \circ dB^i_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.1138em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1217em;vertical-align:-0.247em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8747em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>The projection $\pi(u_t) = X_t$ defines Brownian motion on the manifold (specifically, the diffusion generated by the Laplace-Beltrami operator $\Delta_M$). Simultaneously, $u_t$ defines <strong>stochastic parallel transport</strong> along the rough path $X_t$. This construction allows us to compare tangent vectors at different times $t$ and $s$ along a non-differentiable trajectory, extending the Levi-Civita connection to the stochastic setting.</p>
+&lt;p&gt;The projection $\pi(u_t) = X_t$ defines Brownian motion on the manifold (specifically, the diffusion generated by the Laplace-Beltrami operator $\Delta_M$). Simultaneously, $u_t$ defines &lt;strong&gt;stochastic parallel transport&lt;/strong&gt; along the rough path $X_t$. This construction allows us to compare tangent vectors at different times $t$ and $s$ along a non-differentiable trajectory, extending the Levi-Civita connection to the stochastic setting.&lt;/p&gt;
 
-<h3 id="malliavin-calculus-variations-on-wiener-space">Malliavin Calculus: Variations on Wiener Space</h3>
+&lt;h3 id=&quot;malliavin-calculus-variations-on-wiener-space&quot;&gt;Malliavin Calculus: Variations on Wiener Space&lt;/h3&gt;
 
-<p>While stochastic geometry handles the curvature of the state space, Malliavin calculus addresses the geometry of the probability space itself. It can be viewed as an infinite-dimensional calculus of variations where the “variable” is the Brownian path $\omega \in \Omega = C_0([0,T]; \mathbb{R}^m)$.</p>
+&lt;p&gt;While stochastic geometry handles the curvature of the state space, Malliavin calculus addresses the geometry of the probability space itself. It can be viewed as an infinite-dimensional calculus of variations where the “variable” is the Brownian path $\omega \in \Omega = C_0([0,T]; \mathbb{R}^m)$.&lt;/p&gt;
 
-<h4 id="the-malliavin-derivative">The Malliavin Derivative</h4>
+&lt;h4 id=&quot;the-malliavin-derivative&quot;&gt;The Malliavin Derivative&lt;/h4&gt;
 
-<p>We seek to differentiate a random variable $F(\omega)$ with respect to variations in the path $\omega$. Let $H = L^2([0,T]; \mathbb{R}^m)$ be the Cameron-Martin space. For a “cylindrical” functional of the form $F = f(B(t_1), \dots, B(t_n))$ with $f \in C_p^\infty(\mathbb{R}^{n \times m})$, the Malliavin derivative $DF$ is the $H$-valued random variable defined by:</p>
+&lt;p&gt;We seek to differentiate a random variable $F(\omega)$ with respect to variations in the path $\omega$. Let $H = L^2([0,T]; \mathbb{R}^m)$ be the Cameron-Martin space. For a “cylindrical” functional of the form $F = f(B(t_1), \dots, B(t_n))$ with $f \in C_p^\infty(\mathbb{R}^{n \times m})$, the Malliavin derivative $DF$ is the $H$-valued random variable defined by:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub><mi>F</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi mathvariant="normal">∂</mi><mi>i</mi></msub><mi>f</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">(</mo><msub><mi>t</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msub><mn mathvariant="bold">1</mn><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_t F = \sum_{i=1}^n \partial_i f(B(t_1), \dots, B(t_n)) \mathbf{1}_{[0, t_i]}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">))</span><span class="mord"><span class="mord mathbf">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">[</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mclose mtight">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span>
 
-<p>Here, $D_t F$ represents the gradient of the functional in the direction of the noise at time $t$. We define the Sobolev space $\mathbb{D}^{1,p}$ as the completion of cylindrical functionals under the norm:</p>
+&lt;p&gt;Here, $D_t F$ represents the gradient of the functional in the direction of the noise at time $t$. We define the Sobolev space $\mathbb{D}^{1,p}$ as the completion of cylindrical functionals under the norm:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∥</mi><mi>F</mi><msub><mi mathvariant="normal">∥</mi><mrow><mn>1</mn><mo separator="true">,</mo><mi>p</mi></mrow></msub><mo>=</mo><msup><mrow><mo fence="true">(</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi mathvariant="normal">∣</mi><mi>F</mi><msup><mi mathvariant="normal">∣</mi><mi>p</mi></msup><mo stretchy="false">]</mo><mo>+</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi mathvariant="normal">∥</mi><mi>D</mi><mi>F</mi><msubsup><mi mathvariant="normal">∥</mi><mi>H</mi><mi>p</mi></msubsup><mo stretchy="false">]</mo><mo fence="true">)</mo></mrow><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\|F\|_{1,p} = \left( \mathbb{E}[|F|^p] + \mathbb{E}[\|DF\|_H^p] \right)^{1/p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord">∥</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3537em;vertical-align:-0.2935em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord">∥</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7823em;"><span style="top:-2.4065em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2935em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0602em;"><span style="top:-3.2352em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/</span><span class="mord mathnormal mtight">p</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-<h4 id="integration-by-parts-and-the-skorokhod-integral">Integration by Parts and the Skorokhod Integral</h4>
+&lt;h4 id=&quot;integration-by-parts-and-the-skorokhod-integral&quot;&gt;Integration by Parts and the Skorokhod Integral&lt;/h4&gt;
 
-<p>The operator $D: \mathbb{D}^{1,2} \to L^2(\Omega; H)$ is unbounded but closable. Its adjoint, denoted by $\delta$, is called the divergence operator or the <strong>Skorokhod integral</strong>. It generalizes the Itô integral to integrands that are not adapted to the filtration. The fundamental integration by parts formula on Wiener space relates these operators:</p>
+&lt;p&gt;The operator $D: \mathbb{D}^{1,2} \to L^2(\Omega; H)$ is unbounded but closable. Its adjoint, denoted by $\delta$, is called the divergence operator or the &lt;strong&gt;Skorokhod integral&lt;/strong&gt;. It generalizes the Itô integral to integrands that are not adapted to the filtration. The fundamental integration by parts formula on Wiener space relates these operators:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mo stretchy="false">⟨</mo><mi>D</mi><mi>F</mi><mo separator="true">,</mo><mi>u</mi><msub><mo stretchy="false">⟩</mo><mi>H</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>F</mi><mi>δ</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathbb{E}[\langle DF, u \rangle_H] = \mathbb{E}[F \delta(u)]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">E</span><span class="mopen">[⟨</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">u</span><span class="mclose"><span class="mclose">⟩</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mclose">)]</span></span></span></span></span>
 
-<p>for any $F \in \mathbb{D}^{1,2}$ and any process $u$ in the domain of $\delta$. This formula is the stochastic analog of the divergence theorem and is the engine driving the regularity results of the theory.</p>
+&lt;p&gt;for any $F \in \mathbb{D}^{1,2}$ and any process $u$ in the domain of $\delta$. This formula is the stochastic analog of the divergence theorem and is the engine driving the regularity results of the theory.&lt;/p&gt;
 
-<h4 id="the-clark-ocone-formula">The Clark-Ocone Formula</h4>
+&lt;h4 id=&quot;the-clark-ocone-formula&quot;&gt;The Clark-Ocone Formula&lt;/h4&gt;
 
-<p>A pivotal result in this calculus is the explicit representation of the martingale in the Itô representation theorem. For any $F \in \mathbb{D}^{1,2}$, we have:</p>
+&lt;p&gt;A pivotal result in this calculus is the explicit representation of the martingale in the Itô representation theorem. For any $F \in \mathbb{D}^{1,2}$, we have:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>F</mi><mo stretchy="false">]</mo><mo>+</mo><msubsup><mo>∫</mo><mn>0</mn><mi>T</mi></msubsup><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><msub><mi>D</mi><mi>t</mi></msub><mi>F</mi><mo>∣</mo><msub><mi mathvariant="script">F</mi><mi>t</mi></msub><mo stretchy="false">]</mo><mi>d</mi><msub><mi>B</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">F = \mathbb{E}[F] + \int_0^T \mathbb{E}[D_t F \mid \mathcal{F}_t] dB_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.5032em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5912em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0993em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>This links the derivative of a functional to the integrand required to replicate it, a result with profound implications for hedging in mathematical finance.</p>
+&lt;p&gt;This links the derivative of a functional to the integrand required to replicate it, a result with profound implications for hedging in mathematical finance.&lt;/p&gt;
 
-<h3 id="hörmanders-theorem-and-hypoellipticity">Hörmander’s Theorem and Hypoellipticity</h3>
+&lt;h3 id=&quot;hörmanders-theorem-and-hypoellipticity&quot;&gt;Hörmander’s Theorem and Hypoellipticity&lt;/h3&gt;
 
-<p>The crowning achievement of geometric stochastic analysis is the probabilistic proof of Hörmander’s theorem. Consider the SDE on $\mathbb{R}^d$ (or a manifold):</p>
+&lt;p&gt;The crowning achievement of geometric stochastic analysis is the probabilistic proof of Hörmander’s theorem. Consider the SDE on $\mathbb{R}^d$ (or a manifold):&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>X</mi><mi>t</mi></msub><mo>=</mo><msub><mi>V</mi><mn>0</mn></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mi>d</mi><mi>t</mi><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>V</mi><mi>k</mi></msub><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>∘</mo><mi>d</mi><msubsup><mi>B</mi><mi>t</mi><mi>k</mi></msubsup></mrow><annotation encoding="application/x-tex">dX_t = V_0(X_t) dt + \sum_{k=1}^m V_k(X_t) \circ dB^k_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.9535em;vertical-align:-1.3021em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1461em;vertical-align:-0.247em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>The generator of this diffusion is the second-order partial differential operator $\mathcal{L} = V_0 + \frac{1}{2}\sum_{k=1}^m V_k^2$. If the diffusion coefficients are non-degenerate (elliptic case), classical theory ensures the transition density $p_t(x, y)$ is smooth. However, if the noise acts only on a subspace, ellipticity fails.</p>
+&lt;p&gt;The generator of this diffusion is the second-order partial differential operator $\mathcal{L} = V_0 + \frac{1}{2}\sum_{k=1}^m V_k^2$. If the diffusion coefficients are non-degenerate (elliptic case), classical theory ensures the transition density $p_t(x, y)$ is smooth. However, if the noise acts only on a subspace, ellipticity fails.&lt;/p&gt;
 
-<h4 id="the-lie-algebra-condition">The Lie Algebra Condition</h4>
+&lt;h4 id=&quot;the-lie-algebra-condition&quot;&gt;The Lie Algebra Condition&lt;/h4&gt;
 
-<p>The operator $\mathcal{L}$ is <strong>hypoelliptic</strong> if the vector fields ${V_0, V_1, \dots, V_m}$ and their iterated Lie brackets $[V_i, V_j], [V_i, [V_j, V_k]], \dots$ span the tangent space $\mathbb{R}^d$ at every point. Geometrically, this means that while the noise does not push in every direction directly, it can reach any direction through the non-commutativity of the flows.</p>
+&lt;p&gt;The operator $\mathcal{L}$ is &lt;strong&gt;hypoelliptic&lt;/strong&gt; if the vector fields ${V_0, V_1, \dots, V_m}$ and their iterated Lie brackets $[V_i, V_j], [V_i, [V_j, V_k]], \dots$ span the tangent space $\mathbb{R}^d$ at every point. Geometrically, this means that while the noise does not push in every direction directly, it can reach any direction through the non-commutativity of the flows.&lt;/p&gt;
 
-<h4 id="the-malliavin-covariance-matrix">The Malliavin Covariance Matrix</h4>
+&lt;h4 id=&quot;the-malliavin-covariance-matrix&quot;&gt;The Malliavin Covariance Matrix&lt;/h4&gt;
 
-<p>To prove that the law of $X_t$ admits a smooth density, we analyze the Malliavin covariance matrix $\sigma_{X_t} \in \mathbb{R}^{d \times d}$, defined by:</p>
+&lt;p&gt;To prove that the law of $X_t$ admits a smooth density, we analyze the Malliavin covariance matrix $\sigma_{X_t} \in \mathbb{R}^{d \times d}$, defined by:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>σ</mi><msub><mi>X</mi><mi>t</mi></msub><mrow><mi>i</mi><mi>j</mi></mrow></msubsup><mo>=</mo><mo stretchy="false">⟨</mo><mi>D</mi><msubsup><mi>X</mi><mi>t</mi><mi>i</mi></msubsup><mo separator="true">,</mo><mi>D</mi><msubsup><mi>X</mi><mi>t</mi><mi>j</mi></msubsup><msub><mo stretchy="false">⟩</mo><mi>H</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_{X_t}^{ij} = \langle D X_t^i, D X_t^j \rangle_H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3362em;vertical-align:-0.3936em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9426em;"><span style="top:-2.4065em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2963em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3936em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1926em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8747em;"><span style="top:-2.453em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9426em;"><span style="top:-2.4542em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.1809em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2458em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">⟩</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>The non-degeneracy of this matrix implies the smoothness of the density. Using the integration by parts formula on Wiener space, one can show that if the Lie algebra condition holds, the matrix $\sigma_{X_t}$ is invertible almost surely, and the inverse has finite moments of all orders. This guarantees that $X_t$ has a density $p_t(x, \cdot) \in C^\infty$, bridging the algebraic geometry of vector fields with the functional analysis of partial differential equations.</p>
+&lt;p&gt;The non-degeneracy of this matrix implies the smoothness of the density. Using the integration by parts formula on Wiener space, one can show that if the Lie algebra condition holds, the matrix $\sigma_{X_t}$ is invertible almost surely, and the inverse has finite moments of all orders. This guarantees that $X_t$ has a density $p_t(x, \cdot) \in C^\infty$, bridging the algebraic geometry of vector fields with the functional analysis of partial differential equations.&lt;/p&gt;
 
-<h2 id="complete-examples">Complete Examples</h2>
+&lt;h2 id=&quot;complete-examples&quot;&gt;Complete Examples&lt;/h2&gt;
 
-<h3 id="example-531-canonical-casebrownian-motion-on-the-circle-s1">Example 5.3.1: Canonical Case—Brownian Motion on the Circle ($S^1$)</h3>
+&lt;h3 id=&quot;example-531-canonical-casebrownian-motion-on-the-circle-s1&quot;&gt;Example 5.3.1: Canonical Case—Brownian Motion on the Circle ($S^1$)&lt;/h3&gt;
 
-<p><strong>Problem:</strong> Consider Brownian motion on the circle $S^1 = \mathbb{R}/2\pi\mathbb{Z}$ driven by a single Brownian motion:</p>
+&lt;p&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Consider Brownian motion on the circle $S^1 = \mathbb{R}/2\pi\mathbb{Z}$ driven by a single Brownian motion:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>θ</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mo>∘</mo><mi>d</mi><msub><mi>B</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">d\theta_t = \sigma \circ dB_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p><strong>Step-by-Step Solution:</strong></p>
+&lt;p&gt;&lt;strong&gt;Step-by-Step Solution:&lt;/strong&gt;&lt;/p&gt;
 
-<ol>
-  <li><strong>Local Coordinate Representation:</strong>
-In local coordinates $\theta \in [-\pi, \pi)$, the Stratonovich SDE is:</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Local Coordinate Representation:&lt;/strong&gt;
+In local coordinates $\theta \in [-\pi, \pi)$, the Stratonovich SDE is:&lt;/li&gt;
+&lt;/ol&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>θ</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mi>d</mi><msub><mi>B</mi><mi>t</mi></msub><mspace width="1em"/><mo stretchy="false">(</mo><mtext>Stratonovich</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">d\theta_t = \sigma dB_t \quad (\text{Stratonovich})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">Stratonovich</span></span><span class="mclose">)</span></span></span></span></span>
 
-<ol>
-  <li><strong>Verify Coordinate Invariance:</strong>
-Consider coordinate change $\phi = 2\theta$. Then $d\phi_t = 2 d\theta_t = 2\sigma dB_t$.</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Verify Coordinate Invariance:&lt;/strong&gt;
+Consider coordinate change $\phi = 2\theta$. Then $d\phi_t = 2 d\theta_t = 2\sigma dB_t$.&lt;/li&gt;
+&lt;/ol&gt;
 
-<p>The generator in $\theta$-coordinates:</p>
+&lt;p&gt;The generator in $\theta$-coordinates:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mi>θ</mi></msub><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mn>2</mn></mfrac><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>θ</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{L}_\theta = \frac{\sigma^2}{2} \frac{\partial^2}{\partial \theta^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p>In $\phi$-coordinates:</p>
+&lt;p&gt;In $\phi$-coordinates:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mi>ϕ</mi></msub><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mn>2</mn><mi>σ</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mn>2</mn></mfrac><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>ϕ</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>ϕ</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{L}_\phi = \frac{(2\sigma)^2}{2} \frac{\partial^2}{\partial \phi^2} = 2\sigma^2 \frac{\partial^2}{\partial \phi^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">ϕ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3715em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3715em;vertical-align:-0.8804em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p>Chain rule verification: $\frac{\partial}{\partial \phi} = \frac{1}{2} \frac{\partial}{\partial \theta}$, so:</p>
+&lt;p&gt;Chain rule verification: $\frac{\partial}{\partial \phi} = \frac{1}{2} \frac{\partial}{\partial \theta}$, so:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mi>ϕ</mi></msub><mo>=</mo><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup><msup><mrow><mo fence="true">(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo fence="true">)</mo></mrow><mn>2</mn></msup><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>θ</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mn>2</mn></mfrac><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>θ</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{L}_\phi = 2\sigma^2 \left(\frac{1}{2}\right)^2 \frac{\partial^2}{\partial \theta^2} = \frac{\sigma^2}{2} \frac{\partial^2}{\partial \theta^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">ϕ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.604em;vertical-align:-0.95em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.654em;"><span style="top:-3.9029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p>The generator transforms correctly, confirming coordinate invariance.</p>
+&lt;p&gt;The generator transforms correctly, confirming coordinate invariance.&lt;/p&gt;
 
-<ol>
-  <li><strong>Stochastic Development (Frame Bundle):</strong>
-The frame bundle $OS^1$ at point $\theta$ consists of orthonormal bases ${e_1(\theta)}$. The horizontal lift is:</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Stochastic Development (Frame Bundle):&lt;/strong&gt;
+The frame bundle $OS^1$ at point $\theta$ consists of orthonormal bases ${e_1(\theta)}$. The horizontal lift is:&lt;/li&gt;
+&lt;/ol&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>H</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∘</mo><mi>d</mi><msub><mi>B</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">de_1(\theta_t) = H_1(e_1) \circ dB_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>where $H_1$ is the horizontal vector field. For $S^1$ with metric $ds^2 = d\theta^2$:</p>
+&lt;p&gt;where $H_1$ is the horizontal vector field. For $S^1$ with metric $ds^2 = d\theta^2$:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>H</mi><mn>1</mn></msub><mo>=</mo><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><mi>θ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">H_1 = \frac{\partial}{\partial \theta}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p>The parallel transport satisfies:</p>
+&lt;p&gt;The parallel transport satisfies:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∇</mi><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><mi>θ</mi></mrow></mfrac></msub><msub><mi>e</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\nabla_{\frac{\partial}{\partial \theta}} e_1 = 0 \implies e_1(\theta_t) = e_1(0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1953em;vertical-align:-0.512em;"></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.7288em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.88em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.512em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6684em;vertical-align:-0.024em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span>
 
-<p><strong>Result:</strong> Parallel transport on $S^1$ is path-independent (flat connection).</p>
+&lt;p&gt;&lt;strong&gt;Result:&lt;/strong&gt; Parallel transport on $S^1$ is path-independent (flat connection).&lt;/p&gt;
 
-<ol>
-  <li><strong>Transition Density:</strong>
-The heat kernel on $S^1$ is:</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Transition Density:&lt;/strong&gt;
+The heat kernel on $S^1$ is:&lt;/li&gt;
+&lt;/ol&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>θ</mi><mo separator="true">,</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mi>π</mi></mfrac><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">(</mo><mi>θ</mi><mo>−</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msup><mi>e</mi><mrow><mo>−</mo><msup><mi>k</mi><mn>2</mn></msup><msup><mi>σ</mi><mn>2</mn></msup><mi>t</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">p_t(\theta, \phi) = \frac{1}{2\pi} + \frac{1}{\pi} \sum_{k=1}^\infty \cos(k(\theta-\phi)) e^{-k^2 \sigma^2 t/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ϕ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.9535em;vertical-align:-1.3021em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2869em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ϕ</span><span class="mclose">))</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0369em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">t</span><span class="mord mtight">/2</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-<h3 id="example-532-physical-applicationfoucault-pendulum">Example 5.3.2: Physical Application—Foucault Pendulum</h3>
+&lt;h3 id=&quot;example-532-physical-applicationfoucault-pendulum&quot;&gt;Example 5.3.2: Physical Application—Foucault Pendulum&lt;/h3&gt;
 
-<p><strong>Problem:</strong> Model the stochastic Foucault pendulum on $S^2$. The configuration space is the sphere with coordinates $(\theta, \phi)$ where $\theta \in [0,\pi]$ (colatitude) and $\phi \in [0, 2\pi)$ (longitude).</p>
+&lt;p&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Model the stochastic Foucault pendulum on $S^2$. The configuration space is the sphere with coordinates $(\theta, \phi)$ where $\theta \in [0,\pi]$ (colatitude) and $\phi \in [0, 2\pi)$ (longitude).&lt;/p&gt;
 
-<p><strong>SDE on $S^2$:</strong></p>
+&lt;p&gt;&lt;strong&gt;SDE on $S^2$:&lt;/strong&gt;&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><msub><mi>θ</mi><mi>t</mi></msub><mo>=</mo><msub><mi>σ</mi><mn>1</mn></msub><mo>∘</mo><mi>d</mi><msubsup><mi>B</mi><mi>t</mi><mn>1</mn></msubsup></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><msub><mi>ϕ</mi><mi>t</mi></msub><mo>=</mo><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><msub><mi>σ</mi><mn>2</mn></msub><mo>∘</mo><mi>d</mi><msubsup><mi>B</mi><mi>t</mi><mn>2</mn></msubsup></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
 d\theta_t = \sigma_1 \circ dB^1_t \\
 d\phi_t = \sin^{-1}(\theta_t) \sigma_2 \circ dB^2_t
 \end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8719em;"><span style="top:-3.1208em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p><strong>Step-by-Step Solution:</strong></p>
+&lt;p&gt;&lt;strong&gt;Step-by-Step Solution:&lt;/strong&gt;&lt;/p&gt;
 
-<ol>
-  <li><strong>Metric and Volume Form:</strong>
-Riemannian metric: $ds^2 = d\theta^2 + \sin^2\theta d\phi^2$</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Metric and Volume Form:&lt;/strong&gt;
+Riemannian metric: $ds^2 = d\theta^2 + \sin^2\theta d\phi^2$&lt;/li&gt;
+&lt;/ol&gt;
 
-<p>Volume form: $dV = \sin\theta d\theta d\phi$</p>
+&lt;p&gt;Volume form: $dV = \sin\theta d\theta d\phi$&lt;/p&gt;
 
-<ol>
-  <li><strong>Generator Computation:</strong>
-The diffusion vector fields are:</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Generator Computation:&lt;/strong&gt;
+The diffusion vector fields are:&lt;/li&gt;
+&lt;/ol&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><mi>θ</mi></mrow></mfrac><mo separator="true">,</mo><mspace width="1em"/><msub><mi>V</mi><mn>2</mn></msub><mo>=</mo><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><mi>ϕ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_1 = \frac{\partial}{\partial \theta}, \quad V_2 = \sin^{-1}(\theta) \frac{\partial}{\partial \phi}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0574em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mop"><span class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8719em;"><span style="top:-3.1208em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal">ϕ</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p>The generator is:</p>
+&lt;p&gt;The generator is:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">L</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo fence="true">(</mo><msubsup><mi>V</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>V</mi><mn>2</mn><mn>2</mn></msubsup><mo fence="true">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>θ</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mfrac><msup><mi mathvariant="normal">∂</mi><mn>2</mn></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>ϕ</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{L} = \frac{1}{2} \left( V_1^2 + V_2^2 \right) = \frac{1}{2} \frac{\partial^2}{\partial \theta^2} + \frac{1}{2} \frac{\partial^2}{\partial \phi^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.3715em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
-<p><strong>Remark:</strong> The generator is exactly the Laplace-Beltrami operator $\Delta_{S^2}$!</p>
+&lt;p&gt;&lt;strong&gt;Remark:&lt;/strong&gt; The generator is exactly the Laplace-Beltrami operator $\Delta_{S^2}$!&lt;/p&gt;
 
-<ol>
-  <li><strong>Malliavin Derivative Computation:</strong>
-Consider $F = \cos\theta_T$. Compute $D_t F$:</li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Malliavin Derivative Computation:&lt;/strong&gt;
+Consider $F = \cos\theta_T$. Compute $D_t F$:&lt;/li&gt;
+&lt;/ol&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub><mi>cos</mi><mo>⁡</mo><msub><mi>θ</mi><mi>T</mi></msub><mo>=</mo><mo>−</mo><mi>sin</mi><mo>⁡</mo><msub><mi>θ</mi><mi>T</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>t</mi></msub><msub><mi>θ</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">D_t \cos\theta_T = -\sin\theta_T \cdot D_t \theta_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-<p>The process $Y_t = D_t \theta_s$ for $s \geq t$ satisfies:</p>
+&lt;p&gt;The process $Y_t = D_t \theta_s$ for $s \geq t$ satisfies:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msub><mi>Y</mi><mi>u</mi></msub><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>Y</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>Y</mi><mi>u</mi></msub><mo>=</mo><mn>1</mn><mspace width="1em"/><mo stretchy="false">(</mo><mi>u</mi><mo>≥</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dY_u = 0, \quad Y_t = 1 \implies Y_u = 1 \quad (u \geq t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6684em;vertical-align:-0.024em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span>
 
-<p>Thus:</p>
+&lt;p&gt;Thus:&lt;/p&gt;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub><mi>F</mi><mo>=</mo><mo>−</mo><mi>sin</mi><mo>⁡</mo><msub><mi>θ</mi><mi>T</mi></msub><mo>⋅</mo><msub><mn mathvariant="bold">1</mn><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mi>T</mi><mo stretchy="false">]</mo></mrow></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_t F = -\sin\theta_T \cdot \mathbf{1}_{[0,T]}(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathbf">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">[</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mclose mtight">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span>
 
-<ol>
-  <li><strong>Malliavin Covariance Matrix:</strong>
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>F</mi></msub><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>T</mi></msubsup><mi mathvariant="normal">∣</mi><msub><mi>D</mi><mi>t</mi></msub><mi>F</mi><msubsup><mi mathvariant="normal">∣</mi><mi>H</mi><mn>2</mn></msubsup><mi>d</mi><mi>t</mi><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi>T</mi></msubsup><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><msub><mi>θ</mi><mi>T</mi></msub><mi>d</mi><mi>t</mi><mo>=</mo><mi>T</mi><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><msub><mi>θ</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">\sigma_F = \int_0^T |D_t F|_H^2 dt = \int_0^T \sin^2\theta_T dt = T \sin^2\theta_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3921em;vertical-align:-0.3558em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0006em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0362em;"><span style="top:-2.3442em;margin-left:-0.1945em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2579em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3558em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4247em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2753em;"><span></span></span></span></span></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3921em;vertical-align:-0.3558em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0006em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0362em;"><span style="top:-2.3442em;margin-left:-0.1945em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2579em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3558em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8719em;"><span style="top:-3.1208em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0219em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">sin</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8719em;"><span style="top:-3.1208em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Malliavin Covariance Matrix:&lt;/strong&gt;
+\(\sigma_F = \int_0^T |D_t F|_H^2 dt = \int_0^T \sin^2\theta_T dt = T \sin^2\theta_T</span></li>
 </ol>
 
 <p>The density exists since $\mathbb{E}[\sigma_F^{-1}] &lt; \infty$ almost surely.</p>

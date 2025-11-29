@@ -7,658 +7,692 @@
   <meta name="description" content="Laplace and Fourier transforms, Green's functions">
 
   
-  <!-- Jektex: Server-side LaTeX rendering - Math is pre-rendered during build -->
-  <!-- Only need KaTeX CSS for styling the pre-rendered HTML -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-  <!-- No JavaScript needed - math is already rendered as HTML! -->
+  <!-- KaTeX Client-Side: Load immediately for fast math rendering -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script>
+    (function() {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMath);
+      } else {
+        initMath();
+      }
+      function initMath() {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+        script.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+        script.crossOrigin = 'anonymous';
+        script.onload = function() {
+          if (window.renderMathInElement) {
+            window.renderMathInElement(document.body, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 31: …, display: true}̲,
+             …" style="color:#cc0000">&#x27;, right: &#x27;\\]&#x27;, display: true},
+                {left: &#x27;\\(&#x27;, right: &#x27;\\)&#x27;, display: false}
+              ],
+              throwOnError: false,
+              strict: false,
+              trust: true,
+              ignoredTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;],
+              ignoredClasses: [&#x27;no-math&#x27;]
+            });
+          }
+        };
+        document.head.appendChild(script);
+      }
+    })();
+  &lt;/script&gt;
   
 
-  <!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  &lt;!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering --&gt;
+  &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js&quot;&gt;&lt;/script&gt;
 
-  <!-- Textbook CSS -->
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-</head>
-<body class="textbook-body theme-dark">
-  <div class="theme-toggle-container">
-  <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
-    <span class="theme-icon-sun">☀</span>
-    <span class="theme-icon-moon">🌙</span>
-  </button>
-</div>
+  &lt;!-- Textbook CSS --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/textbook.css&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;textbook-body theme-dark&quot;&gt;
+  &lt;div class=&quot;theme-toggle-container&quot;&gt;
+  &lt;button class=&quot;theme-toggle-btn&quot; id=&quot;theme-toggle&quot; title=&quot;Toggle Theme&quot; aria-label=&quot;Toggle dark/light theme&quot;&gt;
+    &lt;span class=&quot;theme-icon-sun&quot;&gt;☀&lt;/span&gt;
+    &lt;span class=&quot;theme-icon-moon&quot;&gt;🌙&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
 
 
-  <div class="textbook-container">
-    <!-- Sidebar Navigation -->
-    <nav class="textbook-sidebar">
-      <div class="nav-header">
-  <h3>Differential Equations</h3>
-  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">2025 Edition</p>
-</div>
+  &lt;div class=&quot;textbook-container&quot;&gt;
+    &lt;!-- Sidebar Navigation --&gt;
+    &lt;nav class=&quot;textbook-sidebar&quot;&gt;
+      &lt;div class=&quot;nav-header&quot;&gt;
+  &lt;h3&gt;Differential Equations&lt;/h3&gt;
+  &lt;p style=&quot;margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;&quot;&gt;2025 Edition&lt;/p&gt;
+&lt;/div&gt;
 
-<nav class="nav-content">
-  <ul>
+&lt;nav class=&quot;nav-content&quot;&gt;
+  &lt;ul&gt;
     
     
 
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/&quot; &gt;
               0. A Survey of Differential Equations and their Algebraic Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-01/" >
-            Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-01/&quot; &gt;
+            Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-1-exact-methods/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-1-exact-methods/&quot; &gt;
               1.1 Exact Methods for Ordinary Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-2-special-functions/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-2-special-functions/&quot; &gt;
               1.2 Special Functions of Mathematical Physics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-3-integral-transforms/" class="active">
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-3-integral-transforms/&quot; class=&quot;active&quot;&gt;
               1.3 Integral Transforms
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-4-linear-pde/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-4-linear-pde/&quot; &gt;
               1.4 Classical Linear Partial Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-5-asymptotic-analysis/&quot; &gt;
               1.5 Asymptotic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-6-perturbation-theory/&quot; &gt;
               1.6 Classical Perturbation Theory
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-7-renormalization/" >
-              1.7 Classical Renormalization & Non-Perturbative Methods
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-7-renormalization/&quot; &gt;
+              1.7 Classical Renormalization &amp; Non-Perturbative Methods
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-02/" >
-            Chapter 2: Functional Analysis, Distributions & Weak Solutions
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-02/&quot; &gt;
+            Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-1-distributions/" >
-              2.1 Distributions & Test Functions
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-2-sobolev-spaces/" >
-              2.2 Sobolev Spaces & Weak Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-1-distributions/&quot; &gt;
+              2.1 Distributions &amp; Test Functions
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-3-hilbert-spaces/" >
-              2.3 Hilbert Space Theory & Spectral Theorem
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-2-sobolev-spaces/&quot; &gt;
+              2.2 Sobolev Spaces &amp; Weak Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-4-unbounded-operators/" >
-              2.4 Unbounded Operators, Resolvents & Semigroups
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-3-hilbert-spaces/&quot; &gt;
+              2.3 Hilbert Space Theory &amp; Spectral Theorem
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-5-variational-methods/" >
-              2.5 Variational Methods & Lax-Milgram
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-4-unbounded-operators/&quot; &gt;
+              2.4 Unbounded Operators, Resolvents &amp; Semigroups
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-6-galerkin-methods/" >
-              2.6 Galerkin Methods & Finite Elements
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-5-variational-methods/&quot; &gt;
+              2.5 Variational Methods &amp; Lax-Milgram
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-7-fredholm-theory/" >
-              2.7 Fredholm Theory & Index
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-6-galerkin-methods/&quot; &gt;
+              2.6 Galerkin Methods &amp; Finite Elements
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-03/" >
-            Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-1-manifolds-tensors/" >
-              3.1 Manifolds, Tensors & Covariant Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-7-fredholm-theory/&quot; &gt;
+              2.7 Fredholm Theory &amp; Index
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-2-conservation-laws/" >
-              3.2 Systems of Conservation Laws & Hyperbolicity
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-03/&quot; &gt;
+            Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-1-manifolds-tensors/&quot; &gt;
+              3.1 Manifolds, Tensors &amp; Covariant Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-3-entropy-solutions/" >
-              3.3 Entropy Solutions & Shock Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-2-conservation-laws/&quot; &gt;
+              3.2 Systems of Conservation Laws &amp; Hyperbolicity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-4-exterior-calculus/" >
-              3.4 Exterior Calculus & Hodge Decomposition
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-3-entropy-solutions/&quot; &gt;
+              3.3 Entropy Solutions &amp; Shock Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-5-continuum-mechanics/" >
-              3.5 Continuum Mechanics & Elasticity
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-4-exterior-calculus/&quot; &gt;
+              3.4 Exterior Calculus &amp; Hodge Decomposition
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-6-geometric-optics/" >
-              3.6 Geometric Optics, Rays & Caustics
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-5-continuum-mechanics/&quot; &gt;
+              3.5 Continuum Mechanics &amp; Elasticity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-04/" >
-            Chapter 4: Symmetry, Lie Theory & Classical Integrability
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-1-lie-symmetries/" >
-              4.1 Lie Symmetries & Prolongation
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-6-geometric-optics/&quot; &gt;
+              3.6 Geometric Optics, Rays &amp; Caustics
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-2-noether-theorem/" >
-              4.2 Noether's Theorem & Invariant Reduction
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-04/&quot; &gt;
+            Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-1-lie-symmetries/&quot; &gt;
+              4.1 Lie Symmetries &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-3-integrable-systems/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-2-noether-theorem/&quot; &gt;
+              4.2 Noether&#x27;s Theorem &amp; Invariant Reduction
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-3-integrable-systems/&quot; &gt;
               4.3 Completely Integrable Systems
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-4-lax-pairs/" >
-              4.4 Lax Pairs & Zero-Curvature Representations
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-4-lax-pairs/&quot; &gt;
+              4.4 Lax Pairs &amp; Zero-Curvature Representations
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-5-riemann-hilbert/" >
-              4.5 Riemann-Hilbert & Inverse Scattering
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-5-riemann-hilbert/&quot; &gt;
+              4.5 Riemann-Hilbert &amp; Inverse Scattering
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-6-recursion-operators/" >
-              4.6 Recursion Operators & Hirota Bilinearization
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-6-recursion-operators/&quot; &gt;
+              4.6 Recursion Operators &amp; Hirota Bilinearization
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-7-susy-qm/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-7-susy-qm/&quot; &gt;
               4.7 Supersymmetric Quantum Mechanics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-8-nonlocal-symmetries/" >
-              4.8 Nonlocal Symmetries & Potential Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-8-nonlocal-symmetries/&quot; &gt;
+              4.8 Nonlocal Symmetries &amp; Potential Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-05/" >
-            Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-05/&quot; &gt;
+            Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-1-stochastic-calculus/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-1-stochastic-calculus/&quot; &gt;
               5.1 Stochastic Calculus Foundations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-2-sdes/" >
-              5.2 SDEs & Diffusion Processes
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-2-sdes/&quot; &gt;
+              5.2 SDEs &amp; Diffusion Processes
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-3-geometric-stochastic/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-3-geometric-stochastic/&quot; &gt;
               5.3 Geometric Stochastic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-4-rough-paths/" >
-              5.4 Rough Paths & Controlled Rough Paths
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-4-rough-paths/&quot; &gt;
+              5.4 Rough Paths &amp; Controlled Rough Paths
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-5-fractional-calculus/" >
-              5.5 Fractional Calculus & Nonlocal Operators
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-5-fractional-calculus/&quot; &gt;
+              5.5 Fractional Calculus &amp; Nonlocal Operators
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-6-spdes/" >
-              5.6 SPDEs & Regularity Structures
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-6-spdes/&quot; &gt;
+              5.6 SPDEs &amp; Regularity Structures
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-7-kinetic-theory/" >
-              5.7 Kinetic Theory & Mean-Field Games
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-7-kinetic-theory/&quot; &gt;
+              5.7 Kinetic Theory &amp; Mean-Field Games
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-8-fractal-geometry/" >
-              5.8 Fractal Geometry & Dirichlet Forms
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-8-fractal-geometry/&quot; &gt;
+              5.8 Fractal Geometry &amp; Dirichlet Forms
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-9-susy-stochastics/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-9-susy-stochastics/&quot; &gt;
               5.9 Supersymmetric Theory of Stochastics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-06/" >
-            Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-06/&quot; &gt;
+            Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-1-jet-bundles/" >
-              6.1 Jet Bundles & Prolongation
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-2-formal-integrability/" >
-              6.2 Formal Integrability & Spencer Cohomology
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-1-jet-bundles/&quot; &gt;
+              6.1 Jet Bundles &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-3-exterior-systems/" >
-              6.3 Exterior Differential Systems & Cartan-Kähler
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-2-formal-integrability/&quot; &gt;
+              6.2 Formal Integrability &amp; Spencer Cohomology
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-4-metric-space/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-3-exterior-systems/&quot; &gt;
+              6.3 Exterior Differential Systems &amp; Cartan-Kähler
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-4-metric-space/&quot; &gt;
               6.4 The Space of Riemannian Metrics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-5-geometric-evolution/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-5-geometric-evolution/&quot; &gt;
               6.5 Geometric Evolution Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-6-gauge-theories/" >
-              6.6 Gauge Theories & Instanton Moduli
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-6-gauge-theories/&quot; &gt;
+              6.6 Gauge Theories &amp; Instanton Moduli
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-7-nonlinear-systems/" >
-              6.7 Fully Nonlinear & Overdetermined Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-7-nonlinear-systems/&quot; &gt;
+              6.7 Fully Nonlinear &amp; Overdetermined Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-07/" >
-            Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-07/&quot; &gt;
+            Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-1-d-modules/" >
-              7.1 D-Modules & Holonomic Systems
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-2-microlocal-analysis/" >
-              7.2 Microlocal Analysis & Wave Front Sets
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-1-d-modules/&quot; &gt;
+              7.1 D-Modules &amp; Holonomic Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-3-riemann-hilbert/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-2-microlocal-analysis/&quot; &gt;
+              7.2 Microlocal Analysis &amp; Wave Front Sets
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-3-riemann-hilbert/&quot; &gt;
               7.3 Riemann-Hilbert Correspondence
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-4-fourier-integral/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-4-fourier-integral/&quot; &gt;
               7.4 Fourier Integral Operators
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-5-resurgence/" >
-              7.5 Resurgence, Borel Summation & Alien Calculus
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-5-resurgence/&quot; &gt;
+              7.5 Resurgence, Borel Summation &amp; Alien Calculus
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-6-index-theorems/" >
-              7.6 Index Theorems & K-Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-6-index-theorems/&quot; &gt;
+              7.6 Index Theorems &amp; K-Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-7-noncommutative/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-7-noncommutative/&quot; &gt;
               7.7 Noncommutative Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-8-higher-categories/" >
-              7.8 Higher Categories, Derived Stacks & TQFT
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-8-higher-categories/&quot; &gt;
+              7.8 Higher Categories, Derived Stacks &amp; TQFT
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
@@ -668,8 +702,8 @@
     
 
     
-      </ul>
-    </li>
+      &lt;/ul&gt;
+    &lt;/li&gt;
     
 
     
@@ -799,42 +833,42 @@
       
         
           
-          <li class="chapter-item">
-            <a href="/diffequations/epilogue/" >
+          &lt;li class=&quot;chapter-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/epilogue/&quot; &gt;
               Epilogue: The Eternal Structure
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
-  </ul>
-</nav>
+  &lt;/ul&gt;
+&lt;/nav&gt;
 
-    </nav>
+    &lt;/nav&gt;
 
-    <!-- Main Content -->
-    <main class="textbook-main">
-      <header class="textbook-header">
-        <h1>Section 1.3: Integral Transforms</h1>
-        <p class="description">Laplace and Fourier transforms, Green's functions</p>
-      </header>
+    &lt;!-- Main Content --&gt;
+    &lt;main class=&quot;textbook-main&quot;&gt;
+      &lt;header class=&quot;textbook-header&quot;&gt;
+        &lt;h1&gt;Section 1.3: Integral Transforms&lt;/h1&gt;
+        &lt;p class=&quot;description&quot;&gt;Laplace and Fourier transforms, Green&#x27;s functions&lt;/p&gt;
+      &lt;/header&gt;
 
-      <article class="textbook-content">
-        <h1 id="section-13-integral-transforms">Section 1.3: Integral Transforms</h1>
+      &lt;article class=&quot;textbook-content&quot;&gt;
+        &lt;h1 id=&quot;section-13-integral-transforms&quot;&gt;Section 1.3: Integral Transforms&lt;/h1&gt;
 
-<blockquote>
-  <p>We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation, converting calculus into algebra.</p>
-</blockquote>
+&lt;blockquote&gt;
+  &lt;p&gt;We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation, converting calculus into algebra.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-<h2 id="introduction">Introduction</h2>
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-<p>We trade differential complexity for algebraic simplicity. The <strong>Laplace</strong> and <strong>Fourier Transforms</strong> are presented as diagonalizing operators. We construct <strong>Green’s Functions</strong> to solve inhomogeneous linear problems, introducing the Dirac delta as a heuristic tool. The limitation exposed here is convergence: for general initial data, the inverse transform integrals may not converge in any classical sense, hinting at the need for a generalized calculus.</p>
+&lt;p&gt;We trade differential complexity for algebraic simplicity. The &lt;strong&gt;Laplace&lt;/strong&gt; and &lt;strong&gt;Fourier Transforms&lt;/strong&gt; are presented as diagonalizing operators. We construct &lt;strong&gt;Green’s Functions&lt;/strong&gt; to solve inhomogeneous linear problems, introducing the Dirac delta as a heuristic tool. The limitation exposed here is convergence: for general initial data, the inverse transform integrals may not converge in any classical sense, hinting at the need for a generalized calculus.&lt;/p&gt;
 
-<h2 id="the-laplace-transform">The Laplace Transform</h2>
+&lt;h2 id=&quot;the-laplace-transform&quot;&gt;The Laplace Transform&lt;/h2&gt;
 
-<p>For initial value problems constrained by causality ($f(t)=0$ for $t&lt;0$) the Laplace transform maps real time to complex frequency:</p>
+&lt;p&gt;For initial value problems constrained by causality ($f(t)=0$ for $t&lt;0$) the Laplace transform maps real time to complex frequency:&lt;/p&gt;
 
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">L</mi><mo stretchy="false">{</mo><mi>f</mi><mo stretchy="false">}</mo><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi mathvariant="normal">∞</mi></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>s</mi><mi>t</mi></mrow></msup><mtext> </mtext><mi>d</mi><mi>t</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal">L</span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">}</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3262em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4143em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8436em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mord">.</span></span></span></span></span>
+\[\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.</span>
 
 <p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\mid f(t) \mid \leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)&gt;\sigma$. Integration by parts algebraizes differentiation:</p>
 
