@@ -920,20 +920,67 @@
       <article class="textbook-content">
         <h1 id="section-16-classical-perturbation-theory">Section 1.6: Classical Perturbation Theory</h1>
 
+<blockquote>
+  <p>Secular terms expose the failure of naive perturbation; removing them reveals hidden time scales and the true structure of the solution.</p>
+</blockquote>
+
 <h2 id="introduction">Introduction</h2>
 
-<p>We attempt to solve nonlinear problems by expanding around a linear limit. <strong>Regular Perturbation</strong> works for finite time, but <strong>Secular Terms</strong> (like $t \sin t$) destroy validity as $t \to \infty$. We introduce <strong>Poincaré-Lindstedt</strong> and <strong>Multiple Scale Analysis</strong> to remove these resonances. We encounter <strong>Singular Perturbation</strong> problems where the highest derivative is small, creating boundary layers that defy uniform convergence.
-## Mathematical Content</p>
+<p>We attempt to solve nonlinear problems by expanding around a linear limit. <strong>Regular Perturbation</strong> works for finite time, but <strong>Secular Terms</strong> (like $t \sin t$) destroy validity as $t \to \infty$. We introduce <strong>Poincaré-Lindstedt</strong> and <strong>Multiple Scale Analysis</strong> to remove these resonances. We encounter <strong>Singular Perturbation</strong> problems where the highest derivative is small, creating boundary layers that defy uniform convergence.</p>
 
-<h3 id="regular-perturbation">Regular Perturbation</h3>
+<h2 id="regular-perturbation">Regular Perturbation</h2>
 
 <p>For $y’=f(x,y,\epsilon)$ with $y(0)=\alpha$, assume</p>
 
 \[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\epsilon^{n}y_{n}(x).\]
 
-<p>Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system $y_{0}’=f(x,y_{0},0)$ followed by linear inhomogeneous equations for $y_{n}$ driven by $y_{0},\dots,y_{n-1}$. Analyticity of $f$ in $y$ and $\epsilon$ guarantees convergence for $\lvert\epsilon\rvert&lt;R$ on finite intervals (Coddington &amp; Levinson, 1955). The series fails when $\epsilon$ multiplies the highest derivative or when secular terms accumulate over long times, motivating singular and multiscale techniques.</p>
+<p>Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system $y_{0}’=f(x,y_{0},0)$ followed by linear inhomogeneous equations for $y_{n}$ driven by $y_{0},\dots,y_{n-1}$. Analyticity of $f$ in $y$ and $\epsilon$ guarantees convergence for $\mid \epsilon\mid&lt;R$ on finite intervals (Coddington &amp; Levinson, 1955). The series fails when $\epsilon$ multiplies the highest derivative or when secular terms accumulate over long times, motivating singular and multiscale techniques.</p>
 
-<h3 id="singular-perturbations-and-boundary-layers">Singular Perturbations and Boundary Layers</h3>
+<blockquote>
+  <p><strong>Regular Perturbation of a Linear ODE</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $y’+y=\epsilon\sin x$, $y(0)=1$ to $O(\epsilon)$.</p>
+</blockquote>
+
+<blockquote>
+  <p>Let $y=y_{0}+\epsilon y_{1}+\cdots$. The $O(1)$ equation $y_{0}’+y_{0}=0$ gives $y_{0}=e^{-x}$. At $O(\epsilon)$, $y_{1}’+y_{1}=\sin x$ with $y_{1}(0)=0$ yields</p>
+</blockquote>
+
+<blockquote>
+\[y_{1}(x)=\frac{1}{2}(\sin x-\cos x+e^{-x}).\]
+</blockquote>
+
+<blockquote>
+  <p>Thus $y\approx e^{-x}+\frac{\epsilon}{2}(\sin x-\cos x+e^{-x})$, matching the Taylor expansion of the exact solution.</p>
+</blockquote>
+
+<p>When the perturbation is non-resonant (does not excite natural frequencies of the unperturbed system), regular perturbation works well. The solution is an analytic function of $\epsilon$, allowing term-by-term expansion.</p>
+
+<blockquote>
+  <p><strong>Divergence in Regular Perturbation</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>For $y’=-y+\epsilon y^{2}$, $y(0)=1$, find the perturbation series.</p>
+</blockquote>
+
+<blockquote>
+  <p>Solutions satisfy $y_{n}(x)=3^{-n}(n+1)^{-1}e^{-(n+1)x}$. The series</p>
+</blockquote>
+
+<blockquote>
+\[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}\]
+</blockquote>
+
+<blockquote>
+  <p>has radius $\mid \epsilon\mid&lt;3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.</p>
+</blockquote>
+
+<p>Even when regular perturbation appears to work, the radius of convergence can be finite, with poles in the complex $\epsilon$-plane controlling the asymptotic behavior. The singularity moves with $x$, causing the series to diverge for certain parameter values.</p>
+
+<h2 id="singular-perturbations-and-boundary-layers">Singular Perturbations and Boundary Layers</h2>
 
 <p>When $\epsilon$ multiplies the highest derivative, e.g.</p>
 
@@ -941,79 +988,315 @@
 
 <p>setting $\epsilon=0$ reduces the order and loses boundary conditions. The solution adjusts rapidly inside a boundary layer of thickness $\delta(\epsilon)$ near the affected boundary. Matched asymptotic expansions build an outer series (solving the reduced equation) and an inner series using a stretched coordinate $\tau=(x-x_{0})/\epsilon^{\alpha}$. Matching their overlap (Van Dyke, 1964) determines integration constants and produces a uniformly valid composite approximation (Bender &amp; Orszag, 1978).</p>
 
-<h3 id="poincarélindstedt-method">Poincaré–Lindstedt Method</h3>
+<blockquote>
+  <p><strong>Linear Boundary Layer</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $\epsilon y’‘+2y’+y=0$ with $y(0)=0$, $y(1)=1$.</p>
+</blockquote>
+
+<blockquote>
+  <p>The outer solution $y_{0}=C e^{-x/2}$ fails to satisfy both boundaries. Introducing $\tau=(1-x)/\epsilon$, the inner equation becomes $Y’‘-2Y’=0$ with $Y=A+B e^{2\tau}$. Matching and applying $y(1)=1$ yield the composite approximation</p>
+</blockquote>
+
+<blockquote>
+\[y(x;\epsilon)\approx e^{-x/2}+(1-e^{-1/2})e^{-2(1-x)/\epsilon},\]
+</blockquote>
+
+<blockquote>
+  <p>capturing the boundary layer near $x=1$.</p>
+</blockquote>
+
+<p>The boundary layer forms where the highest derivative becomes important, allowing the solution to adjust rapidly to satisfy boundary conditions. The composite solution combines the outer (smooth) and inner (rapidly varying) approximations.</p>
+
+<blockquote>
+  <p><strong>Nonlinear Boundary Layer</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $\epsilon y’‘=y^{2}-1$, $y(0)=0$, $y(1)=2$.</p>
+</blockquote>
+
+<blockquote>
+  <p>The outer solution is $y_{0}=1$. Near $x=0$, $\tau=x/\sqrt{\epsilon}$ leads to $Y’‘=Y^{2}-1$ with heteroclinic solution $Y(\tau)=\tanh(\tau/\sqrt{2})$. Matching with $y_{0}$ produces the composite $y\approx \tanh(x/\sqrt{2\epsilon})$, which coincides with the exact solution.</p>
+</blockquote>
+
+<p>Nonlinear boundary layers can have different thickness scaling than linear ones. Here, the boundary layer thickness is $O(\sqrt{\epsilon})$ rather than $O(\epsilon)$, reflecting the nonlinear structure of the inner equation. The heteroclinic solution connects the boundary value to the outer solution.</p>
+
+<h2 id="poincarélindstedt-method">Poincaré–Lindstedt Method</h2>
 
 <p>For weakly nonlinear oscillators, naïve perturbation introduces resonant forcing that generates secular terms (e.g., $t\sin t$). The Poincaré–Lindstedt method rescales time by $\tau=\omega t$, expanding $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$ and $y(\tau)=\sum \epsilon^{n}y_{n}(\tau)$. Choosing $\omega_{n}$ to cancel resonant terms at each order yields uniformly periodic approximations and exposes frequency shifts induced by nonlinearity (Nayfeh, 1973).</p>
 
-<h3 id="method-of-multiple-scales">Method of Multiple Scales</h3>
+<blockquote>
+  <p><strong>Duffing Oscillator via Poincaré–Lindstedt</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Solve $y’‘+y+\epsilon y^{3}=0$, $y(0)=1$, $y’(0)=0$.</p>
+</blockquote>
+
+<blockquote>
+  <p>With $\tau=\omega t$, $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$, and $y=\cos\tau+\epsilon y_{1}+\cdots$, the $O(\epsilon)$ equation produces resonance unless $\omega_{1}=3/8$. At $O(\epsilon^{2})$, eliminating resonance gives $\omega_{2}=-21/256$. Thus</p>
+</blockquote>
+
+<blockquote>
+\[\omega=1+\frac{3}{8}\epsilon-\frac{21}{256}\epsilon^{2}+O(\epsilon^{3}),\]
+</blockquote>
+
+<blockquote>
+  <p>ensuring bounded periodic motion without secular growth.</p>
+</blockquote>
+
+<p>The Poincaré–Lindstedt method reveals that nonlinearity shifts the frequency, with the shift determined by eliminating secular terms. The method produces uniformly valid approximations for all time, in contrast to regular perturbation which breaks down as $t\to\infty$.</p>
+
+<h2 id="method-of-multiple-scales">Method of Multiple Scales</h2>
 
 <p>Systems with slow modulation require independent times $t_{0}=t$, $t_{1}=\epsilon t$, etc., with $y(t;\epsilon)=Y(t_{0},t_{1},\dots;\epsilon)$. The derivative transforms as $d/dt=\partial_{t_{0}}+\epsilon\partial_{t_{1}}+\cdots$. At $O(1)$, $Y_{0}$ depends on $t_{1}$ only parametrically. The $O(\epsilon)$ equation introduces terms resonant with the homogeneous solution; enforcing solvability (orthogonality to the adjoint nullspace) yields amplitude equations governing slow evolution. This captures damping, detuning, and envelope dynamics missed by single-scale perturbation (Kevorkian &amp; Cole, 1981).</p>
 
-<h2 id="complete-examples">Complete Examples</h2>
+<blockquote>
+  <p><strong>Multiple Scales for a Damped Nonlinear Oscillator</strong></p>
+</blockquote>
 
-<h3 id="example-161-regular-perturbation-of-a-linear-ode">Example 1.6.1: Regular Perturbation of a Linear ODE</h3>
+<blockquote>
+  <p>Solve $y’‘+y+\epsilon y^{3}+\epsilon y’=0$.</p>
+</blockquote>
 
-<p><strong>Problem:</strong> Solve $y’+y=\epsilon\sin x$, $y(0)=1$ to $O(\epsilon)$.</p>
+<blockquote>
+  <p>Introduce $t_{0}=t$, $t_{1}=\epsilon t$, and expand $y=Y_{0}(t_{0},t_{1})+\epsilon Y_{1}+\cdots$. The $O(1)$ solution is $Y_{0}=A(t_{1})e^{i t_{0}}+\bar{A}(t_{1})e^{-i t_{0}}$. The $O(\epsilon)$ equation yields the solvability condition</p>
+</blockquote>
 
-<p>Let $y=y_{0}+\epsilon y_{1}+\cdots$. The $O(1)$ equation $y_{0}’+y_{0}=0$ gives $y_{0}=e^{-x}$. At $O(\epsilon)$, $y_{1}’+y_{1}=\sin x$ with $y_{1}(0)=0$ yields</p>
-
-\[y_{1}(x)=\frac{1}{2}(\sin x-\cos x+e^{-x}).\]
-
-<p>Thus $y\approx e^{-x}+\frac{\epsilon}{2}(\sin x-\cos x+e^{-x})$, matching the Taylor expansion of the exact solution.</p>
-
-<h3 id="example-162-divergence-in-regular-perturbation">Example 1.6.2: Divergence in Regular Perturbation</h3>
-
-<p><strong>Problem:</strong> For $y’=-y+\epsilon y^{2}$, $y(0)=1$, find the perturbation series.</p>
-
-<p>Solutions satisfy $y_{n}(x)=3^{-n}(n+1)^{-1}e^{-(n+1)x}$. The series</p>
-
-\[y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}\]
-
-<table>
-  <tbody>
-    <tr>
-      <td>has radius $</td>
-      <td>\epsilon</td>
-      <td>&lt;3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="example-163-linear-boundary-layer">Example 1.6.3: Linear Boundary Layer</h3>
-
-<p><strong>Problem:</strong> Solve $\epsilon y’‘+2y’+y=0$ with $y(0)=0$, $y(1)=1$.</p>
-
-<p>The outer solution $y_{0}=C e^{-x/2}$ fails to satisfy both boundaries. Introducing $\tau=(1-x)/\epsilon$, the inner equation becomes $Y’‘-2Y’=0$ with $Y=A+B e^{2\tau}$. Matching and applying $y(1)=1$ yield the composite approximation</p>
-
-\[y(x;\epsilon)\approx e^{-x/2}+(1-e^{-1/2})e^{-2(1-x)/\epsilon},\]
-
-<p>capturing the boundary layer near $x=1$.</p>
-
-<h3 id="example-164-nonlinear-boundary-layer">Example 1.6.4: Nonlinear Boundary Layer</h3>
-
-<p><strong>Problem:</strong> Solve $\epsilon y’‘=y^{2}-1$, $y(0)=0$, $y(1)=2$.</p>
-
-<p>The outer solution is $y_{0}=1$. Near $x=0$, $\tau=x/\sqrt{\epsilon}$ leads to $Y’‘=Y^{2}-1$ with heteroclinic solution $Y(\tau)=\tanh(\tau/\sqrt{2})$. Matching with $y_{0}$ produces the composite $y\approx \tanh(x/\sqrt{2\epsilon})$, which coincides with the exact solution.</p>
-
-<h3 id="example-165-duffing-oscillator-via-poincarélindstedt">Example 1.6.5: Duffing Oscillator via Poincaré–Lindstedt</h3>
-
-<p><strong>Problem:</strong> Solve $y’‘+y+\epsilon y^{3}=0$, $y(0)=1$, $y’(0)=0$.</p>
-
-<p>With $\tau=\omega t$, $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$, and $y=\cos\tau+\epsilon y_{1}+\cdots$, the $O(\epsilon)$ equation produces resonance unless $\omega_{1}=3/8$. At $O(\epsilon^{2})$, eliminating resonance gives $\omega_{2}=-21/256$. Thus</p>
-
-\[\omega=1+\frac{3}{8}\epsilon-\frac{21}{256}\epsilon^{2}+O(\epsilon^{3}),\]
-
-<p>ensuring bounded periodic motion without secular growth.</p>
-
-<h3 id="example-166-multiple-scales-for-a-damped-nonlinear-oscillator">Example 1.6.6: Multiple Scales for a Damped Nonlinear Oscillator</h3>
-
-<p><strong>Problem:</strong> Solve $y’‘+y+\epsilon y^{3}+\epsilon y’=0$.</p>
-
-<p>Introduce $t_{0}=t$, $t_{1}=\epsilon t$, and expand $y=Y_{0}(t_{0},t_{1})+\epsilon Y_{1}+\cdots$. The $O(1)$ solution is $Y_{0}=A(t_{1})e^{i t_{0}}+\bar{A}(t_{1})e^{-i t_{0}}$. The $O(\epsilon)$ equation yields the solvability condition</p>
-
+<blockquote>
 \[2A'(t_{1})+(4|A|^{2}+1)A=0,\]
+</blockquote>
 
-<p>showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.</p>
+<blockquote>
+  <p>showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.</p>
+</blockquote>
+
+<p>Multiple scales naturally separate fast oscillations from slow modulations. The solvability condition (requiring that resonant terms vanish) produces the amplitude equation, which governs the slow evolution of the envelope. This captures effects like damping and frequency detuning that emerge on long time scales.</p>
+
+<h2 id="challenge-problems">Challenge Problems</h2>
+
+<p>The following problems synthesize concepts from regular and singular perturbation, the Poincaré–Lindstedt method, and multiple scale analysis.</p>
+
+<h3 id="challenge-1-secular-terms-and-resonance">Challenge 1: Secular Terms and Resonance</h3>
+
+<p>For the weakly nonlinear oscillator</p>
+
+\[y'' + y + \epsilon y^2 = 0, \quad y(0) = 1, \quad y'(0) = 0,\]
+
+<p>show that naïve perturbation produces secular terms. Use the Poincaré–Lindstedt method to eliminate them and find the frequency shift to $O(\epsilon^2)$.</p>
+
+<p>Explain why quadratic nonlinearity produces resonance even though it doesn’t directly excite the fundamental frequency.</p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Expand $y = y_0 + \epsilon y_1 + \epsilon^2 y_2 + \cdots$. At $O(1)$:
+
+$$
+y_0'' + y_0 = 0, \quad y_0(0) = 1, \quad y_0'(0) = 0,
+$$
+
+giving $y_0(t) = \cos t$.
+
+At $O(\epsilon)$:
+
+$$
+y_1'' + y_1 = -y_0^2 = -\cos^2 t = -\frac{1}{2}(1 + \cos 2t).
+$$
+
+The particular solution includes a term proportional to $t \sin t$ (secular term) from the constant forcing, plus a $\cos 2t$ term. The secular term grows linearly, breaking down the approximation.
+
+Using Poincaré–Lindstedt: let $\tau = \omega t$ with $\omega = 1 + \epsilon \omega_1 + \epsilon^2 \omega_2 + \cdots$ and expand $y(\tau) = y_0(\tau) + \epsilon y_1(\tau) + \cdots$.
+
+At $O(1)$: $y_0 = \cos \tau$.
+
+At $O(\epsilon)$: the equation becomes
+
+$$
+y_1'' + y_1 = -y_0^2 - 2\omega_1 y_0'' = -\frac{1}{2}(1 + \cos 2\tau) + 2\omega_1 \cos \tau.
+$$
+
+To eliminate the secular term (the term resonant with $\cos \tau$), we need $2\omega_1 = 0$, so $\omega_1 = 0$.
+
+The remaining equation gives $y_1 = -\frac{1}{2} + \frac{1}{6}\cos 2\tau$.
+
+At $O(\epsilon^2)$, we get $\omega_2 \neq 0$, providing the first non-zero frequency shift.
+
+The quadratic nonlinearity produces resonance because $y_0^2 = \cos^2 t = \frac{1}{2}(1 + \cos 2t)$ contains a constant term, which acts as a DC shift. In the transformed equation, this constant term produces a term proportional to $\cos \tau$ after integration, which is resonant.
+
+**Key Insights:**
+- Quadratic nonlinearity produces DC components that lead to resonance.
+- Poincaré–Lindstedt eliminates secular terms by adjusting the frequency.
+- The first frequency shift may occur at $O(\epsilon^2)$ rather than $O(\epsilon)$.
+
+</details>
+
+<h3 id="challenge-2-boundary-layer-analysis-for-a-turning-point-problem">Challenge 2: Boundary Layer Analysis for a Turning Point Problem</h3>
+
+<p>Consider the singular perturbation problem</p>
+
+\[\epsilon y'' + x y' + y = 0, \quad y(-1) = 1, \quad y(1) = 2,\]
+
+<p>where the coefficient of $y’$ changes sign at $x = 0$ (a turning point).</p>
+
+<p>Show that the outer solution breaks down at $x = 0$. Construct boundary layers at both boundaries and match them through the turning point region. Derive the composite approximation valid for all $x \in [-1,1]$.</p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The reduced equation ($\epsilon = 0$) is $x y_0' + y_0 = 0$, giving $y_0 = C/x$ for $x \neq 0$. This solution is singular at $x = 0$, indicating a turning point.
+
+For $x &lt; 0$, the outer solution satisfies the left boundary: $y_0 = -1/x$ (since $y(-1) = 1$).
+
+For $x &gt; 0$, the outer solution satisfies the right boundary: $y_0 = 2/x$ (since $y(1) = 2$).
+
+These don't match at $x = 0$, and both are singular there.
+
+Near $x = -1$, introduce $\tau = (x+1)/\epsilon$. The inner equation becomes $Y'' - Y' = 0$ (to leading order), giving boundary layer behavior.
+
+Near $x = 1$, introduce $\sigma = (1-x)/\epsilon$. Similar analysis gives another boundary layer.
+
+At the turning point $x = 0$, the appropriate scaling is $\xi = x/\epsilon^{1/2}$. The equation becomes:
+
+$$
+Y'' + \xi Y' + Y = 0.
+$$
+
+This is related to the parabolic cylinder equation. The solution in this region must match with both outer regions.
+
+The composite solution involves:
+1. Left outer: $y \sim -1/x$ for $x &lt; 0$, $|x| \gg \epsilon^{1/2}$
+2. Turning point region: Airy-like behavior for $|x| \sim \epsilon^{1/2}$
+3. Right outer: $y \sim 2/x$ for $x &gt; 0$, $|x| \gg \epsilon^{1/2}$
+4. Boundary layers at $x = \pm 1$ to satisfy boundary conditions
+
+The matching is complex because the turning point region connects the two outer regions with different asymptotic behaviors.
+
+**Key Insights:**
+- Turning points require special scaling and connection formulas.
+- The solution structure is more complex than simple boundary layers.
+- Airy functions or parabolic cylinder functions are needed for the turning point region.
+
+</details>
+
+<h3 id="challenge-3-multiple-scales-for-a-parametrically-driven-oscillator">Challenge 3: Multiple Scales for a Parametrically Driven Oscillator</h3>
+
+<p>Consider the Mathieu equation</p>
+
+\[y'' + (1 + \epsilon \cos t) y = 0.\]
+
+<p>Use the method of multiple scales with $t_0 = t$ and $t_1 = \epsilon t$ to derive the stability conditions for the trivial solution $y = 0$.</p>
+
+<p>Show that instability occurs when the driving frequency is near $2/n$ (parametric resonance), and derive the width of the instability bands.</p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Expand $y(t_0, t_1) = Y_0(t_0, t_1) + \epsilon Y_1(t_0, t_1) + \cdots$ with $d/dt = \partial_{t_0} + \epsilon \partial_{t_1}$.
+
+At $O(1)$:
+
+$$
+\frac{\partial^2 Y_0}{\partial t_0^2} + Y_0 = 0,
+$$
+
+giving $Y_0 = A(t_1) e^{i t_0} + \bar{A}(t_1) e^{-i t_0}$.
+
+At $O(\epsilon)$:
+
+$$
+\frac{\partial^2 Y_1}{\partial t_0^2} + Y_1 = -2 \frac{\partial^2 Y_0}{\partial t_0 \partial t_1} - \cos t_0 \cdot Y_0.
+$$
+
+Substituting $Y_0$:
+
+$$
+= -2i A' e^{i t_0} + 2i \bar{A}' e^{-i t_0} - \frac{1}{2} A(e^{2i t_0} + 1) - \frac{1}{2} \bar{A}(e^{-2i t_0} + 1).
+$$
+
+Resonant terms are those proportional to $e^{\pm i t_0}$. Setting coefficients to zero:
+
+$$
+-2i A' - \frac{1}{2} \bar{A} = 0, \quad 2i \bar{A}' - \frac{1}{2} A = 0.
+$$
+
+This is a linear system. Taking $A = a e^{\lambda t_1}$, we get:
+
+$$
+-2i \lambda a - \frac{1}{2} \bar{a} = 0, \quad 2i \lambda \bar{a} - \frac{1}{2} a = 0.
+$$
+
+The characteristic equation is $4\lambda^2 = 1/4$, so $\lambda = \pm 1/4$. When $\lambda &gt; 0$, we have instability.
+
+For parametric resonance near frequency $2$, the instability occurs when the detuning is small. The width of the instability band scales as $\epsilon$.
+
+**Key Insights:**
+- Parametric driving produces instability through resonance.
+- Multiple scales naturally captures the slow modulation of the amplitude.
+- Instability bands occur at specific frequency ratios.
+
+</details>
+
+<h3 id="challenge-4-composite-asymptotic-expansions">Challenge 4: Composite Asymptotic Expansions</h3>
+
+<p>For the boundary value problem</p>
+
+\[\epsilon y'' + (1 + x) y' + y = 0, \quad y(0) = 0, \quad y(1) = 1,\]
+
+<p>construct a composite asymptotic expansion that is uniformly valid on $[0,1]$ to $O(\epsilon)$.</p>
+
+<p>Show that the boundary layer forms at $x = 0$ (where the coefficient of $y’$ is smallest), and derive the matching conditions between inner and outer solutions.</p>
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The reduced equation is $(1+x) y_0' + y_0 = 0$, giving $y_0 = C/(1+x)$.
+
+Applying the right boundary condition $y_0(1) = 1$ gives $C = 2$, so $y_0 = 2/(1+x)$.
+
+This satisfies $y_0(0) = 2$, but we need $y(0) = 0$, so a boundary layer is needed at $x = 0$.
+
+Near $x = 0$, let $\tau = x/\epsilon$. The inner equation becomes (to leading order):
+
+$$
+Y'' + Y' = 0,
+$$
+
+with solution $Y = A + B e^{-\tau}$.
+
+Matching: As $\tau \to \infty$ (i.e., $x \to 0^+$ but $x \gg \epsilon$), the inner solution should approach the outer solution's limit:
+
+$$
+\lim_{\tau \to \infty} Y(\tau) = A = y_0(0) = 2.
+$$
+
+The boundary condition $Y(0) = 0$ gives $A + B = 0$, so $B = -2$.
+
+Thus the inner solution is $Y(\tau) = 2(1 - e^{-\tau})$.
+
+The composite solution is:
+
+$$
+y_{\text{comp}} = y_0(x) + Y(x/\epsilon) - y_0(0) = \frac{2}{1+x} + 2(1 - e^{-x/\epsilon}) - 2 = \frac{2}{1+x} - 2e^{-x/\epsilon}.
+$$
+
+This satisfies both boundary conditions to leading order and is uniformly valid.
+
+At $O(\epsilon)$, we need to add corrections to both inner and outer solutions and match them.
+
+**Key Insights:**
+- The boundary layer forms where the coefficient is smallest (allowing rapid variation).
+- Composite expansions combine inner and outer solutions, subtracting the common part.
+- Matching ensures smooth transition between inner and outer regions.
+
+</details>
+
+<p>We attempt to solve nonlinear problems by expanding around a linear limit, but regular perturbation fails when secular terms appear or when the perturbation multiplies the highest derivative. The Poincaré–Lindstedt method and multiple scales remove secular terms by recognizing hidden time scales, while matched asymptotic expansions handle boundary layers through careful scaling and matching.</p>
+
+<p>However, these perturbation methods have fundamental limitations: they require small parameters, they break down at turning points and resonances, and they cannot capture non-perturbative effects like instantons or solitons. When perturbation series diverge or when no small parameter exists, we must turn to renormalization group methods, Borel summation, and non-perturbative techniques—the subject of Section 1.7 and the bridge to the functional-analytic and geometric methods of later chapters.</p>
 
 <h2 id="references">References</h2>
 
