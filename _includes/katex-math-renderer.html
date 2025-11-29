@@ -11,7 +11,7 @@
   katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
   katexScript.crossOrigin = 'anonymous';
   katexScript.async = false;
-  
+
   katexScript.onload = function() {
     // After KaTeX core loads, load auto-render
     var renderScript = document.createElement('script');
@@ -19,7 +19,7 @@
     renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
     renderScript.crossOrigin = 'anonymous';
     renderScript.async = false;
-    
+
     renderScript.onload = function() {
       // Define render function
       function renderMath() {
@@ -27,7 +27,7 @@
           console.error('KaTeX auto-render not loaded');
           return;
         }
-        
+
         try {
           renderMathInElement(document.body, {
             delimiters: [
@@ -47,31 +47,31 @@
           console.error('KaTeX rendering error:', error);
         }
       }
-      
+
       // Render immediately if body exists, otherwise wait for DOM
       if (document.body) {
         renderMath();
       } else {
         document.addEventListener('DOMContentLoaded', renderMath);
       }
-      
+
       // Also render after full page load (for dynamically added content)
       window.addEventListener('load', function() {
         setTimeout(renderMath, 100);
       });
     };
-    
+
     renderScript.onerror = function() {
       console.error('Failed to load KaTeX auto-render script');
     };
-    
+
     document.head.appendChild(renderScript);
   };
-  
+
   katexScript.onerror = function() {
     console.error('Failed to load KaTeX core library');
   };
-  
+
   document.head.appendChild(katexScript);
 })();
 </script>
