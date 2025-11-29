@@ -201,12 +201,8 @@ if 'plot_data' in globals() and plot_data is not None:
         outputContainer.innerHTML = '';
 
         Plotly.newPlot(outputContainer, plotData.data || [], plotData.layout || {}, plotConfig).then(() => {
-          // Trigger MathJax rendering after plot is rendered
-          if (window.MathJax && window.MathJax.typesetPromise) {
-            window.MathJax.typesetPromise([outputContainer]).catch((err) => {
-              console.log('MathJax rendering issue:', err);
-            });
-          }
+          // Trigger math rendering after plot is rendered (supports both KaTeX and MathJax)
+          renderMathInElementHelper(outputContainer);
         });
       } else {
         outputContainer.innerHTML = '<div class="computing">Execution complete (no plot output generated)</div>';
@@ -218,6 +214,41 @@ if 'plot_data' in globals() and plot_data is not None:
       button.disabled = false;
       button.textContent = originalText;
     }
+  }
+}
+
+/**
+ * Universal math rendering function that works with both KaTeX and MathJax
+ * @param {Element} element - DOM element to render math in
+ */
+function renderMathInElementHelper(element) {
+  if (!element) return;
+  
+  // Try KaTeX first (faster, preferred if available)
+  if (typeof window.renderMathInElement !== 'undefined' && window.renderMathInElement) {
+    try {
+      window.renderMathInElement(element, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ],
+        throwOnError: false,
+        strict: false,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      });
+      return;
+    } catch (err) {
+      console.log('KaTeX rendering issue:', err);
+    }
+  }
+  
+  // Fall back to MathJax
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([element]).catch((err) => {
+      console.log('MathJax rendering issue:', err);
+    });
   }
 }
 
@@ -316,12 +347,8 @@ function fixMathTables() {
 
   if (fixedCount > 0) {
     console.log(`Fixed ${fixedCount} incorrectly parsed math table(s)`);
-    // Re-run MathJax on the fixed content
-    if (window.MathJax && window.MathJax.typesetPromise) {
-      window.MathJax.typesetPromise([content]).catch(err => {
-        console.log('MathJax re-render after fix:', err);
-      });
-    }
+    // Re-run math rendering on the fixed content (supports both KaTeX and MathJax)
+    renderMathInElementHelper(content);
   }
 }
 
@@ -337,10 +364,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fix incorrectly parsed math tables
   fixMathTables();
 
-  // Also run after MathJax processes (if available)
-  if (window.MathJax && window.MathJax.startup) {
+  // Also run after math engine is ready (supports both KaTeX and MathJax)
+  if (window.MathJax && window.MathJax.startup && window.MathJax.startup.promise) {
+    // MathJax startup promise
     window.MathJax.startup.promise.then(() => {
       fixMathTables();
     });
+  } else if (typeof renderMathInElement !== 'undefined' || window.katex) {
+    // KaTeX is loaded synchronously, so we can run immediately
+    // Wait a bit to ensure KaTeX auto-render has processed initial content
+    setTimeout(() => {
+      fixMathTables();
+    }, 100);
   }
 });

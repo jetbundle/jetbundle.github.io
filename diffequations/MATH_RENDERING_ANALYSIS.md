@@ -194,11 +194,11 @@ function ensureMathJaxReady(callback) {
 
 ## Current Best Practices (Already Implemented)
 
-✅ Using `\mid` instead of `|` for separators  
-✅ Using `$...$` for inline and `$$...$$` for display  
-✅ Proper async loading  
-✅ Skipping math processing in code blocks  
-✅ Configuring delimiters correctly  
+✅ Using `\mid` instead of `|` for separators
+✅ Using `$...$` for inline and `$$...$$` for display
+✅ Proper async loading
+✅ Skipping math processing in code blocks
+✅ Configuring delimiters correctly
 
 ## Testing Checklist
 
@@ -227,4 +227,3 @@ After implementing fixes, verify:
 **Recommended Action:** Standardize on MathJax 3 across all pages for consistency, performance, and future-proofing.
 
 **Timeline:** Can be done immediately with minimal risk.
-
