@@ -921,12 +921,12 @@
         <h1 id="section-12-special-functions-of-mathematical-physics">Section 1.2: Special Functions of Mathematical Physics</h1>
 
 <blockquote>
-  <p>The placement of singularities on the Riemann sphere determines all classical special functions; they are not isolated curiosities but a unified family emerging from confluence.</p>
+  <p>The hypergeometric equation is the master key: all classical special functions emerge as confluent limits dictated by the placement of singularities on the Riemann sphere.</p>
 </blockquote>
 
 <h2 id="introduction">Introduction</h2>
 
-<p>When elementary functions fail, we define new ones via differential equations. We present the <strong>Hypergeometric Master Equation</strong> to unify the “zoo” of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the <strong>Frobenius Method</strong> to classify these singularities (regular vs. irregular). The narrative tension arises from the <strong>Stokes Phenomenon</strong>: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.</p>
+<p>When elementary functions fail, we define new ones via differential equations. The <strong>Hypergeometric Master Equation</strong> unifies the “zoo” of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the <strong>Frobenius Method</strong> to classify these singularities (regular vs. irregular). The narrative tension arises from the <strong>Stokes Phenomenon</strong>: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.</p>
 
 <h2 id="the-hypergeometric-master-equation">The Hypergeometric Master Equation</h2>
 
@@ -938,7 +938,7 @@
 
 \[{}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.\]
 
-<p>The series converges for $\mid x\mid&lt;1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer’s 24 solutions, highlighting the group structure of the solution space.</p>
+<p>The series converges for $\mid x \mid &lt; 1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer’s 24 solutions, highlighting the group structure of the solution space.</p>
 
 <blockquote>
   <p><strong>Hypergeometric Series Solution</strong></p>
@@ -968,17 +968,21 @@
   <p>which matches ${}<em>2F</em>{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.</p>
 </blockquote>
 
-<p>This example reveals that even logarithmic solutions emerge naturally from hypergeometric series when parameters are chosen appropriately. The connection to elementary functions is not accidental but reflects the universality of the hypergeometric structure.</p>
+<p>This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\mid x \mid &lt; 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.</p>
 
 <h2 id="confluent-limits-and-classical-descendants">Confluent Limits and Classical Descendants</h2>
 
 <p>Merging singularities (confluence) produces equations with fewer regular singular points but introduces irregular ones, creating the classical special functions.</p>
 
-<p>The <strong>Bessel equation</strong> emerges by letting $c\to \infty$ while scaling $x$ appropriately, degenerating the hypergeometric equation into</p>
+<ul>
+  <li>
+    <p><strong>Bessel equation</strong>: letting $c\to \infty$ while scaling $x$ appropriately degenerates the hypergeometric equation into</p>
 
 \[x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,\]
 
-<p>whose solutions $J_{\nu}$ arise as confluent limits of ${}<em>2F</em>{1}$.</p>
+    <p>whose solutions $J_{\nu}$ arise as confluent limits of ${}<em>2F</em>{1}$.</p>
+  </li>
+</ul>
 
 <blockquote>
   <p><strong>Bessel Functions as Confluent Limits</strong></p>
@@ -1000,13 +1004,15 @@
   <p>For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{z}{2}\right)^{2k}$, recovering the Bessel series and illustrating confluence.</p>
 </blockquote>
 
-<p>The confluent limit process shows how merging two singular points at infinity transforms the hypergeometric equation into Bessel’s equation, with the irregular singularity at infinity governing the asymptotic behavior.</p>
-
-<p><strong>Legendre polynomials</strong> emerge when integer parameters terminate the series, giving</p>
+<ul>
+  <li>
+    <p><strong>Legendre polynomials</strong>: integer parameters terminate the series, giving</p>
 
 \[P_{n}(x)={}_2F_{1}\left(-n,n+1;1;\frac{1-x}{2}\right),\]
 
-<p>central to spherical harmonics.</p>
+    <p>central to spherical harmonics.</p>
+  </li>
+</ul>
 
 <blockquote>
   <p><strong>Legendre Polynomials from Separation of Variables</strong></p>
@@ -1036,17 +1042,21 @@
   <p>Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.</p>
 </blockquote>
 
-<p>This demonstrates that special functions are not abstract constructs but necessary solutions to physically motivated boundary-value problems. The geometry of the domain (here, spherical symmetry) dictates the choice of special function.</p>
-
-<p><strong>Kummer/Whittaker functions</strong> arise when merging two singular points yields the confluent hypergeometric equation</p>
+<ul>
+  <li>
+    <p><strong>Kummer/Whittaker functions</strong>: merging two singular points yields the confluent hypergeometric equation</p>
 
 \[xy''+(c-x)y'-ay=0,\]
 
-<p>with solution ${}<em>1F</em>{1}(a;c;x)$, encompassing Hermite polynomials, error functions, and exponential integrals.</p>
+    <p>with solution ${}<em>1F</em>{1}(a;c;x)$, encompassing Hermite polynomials, error functions, and exponential integrals.</p>
+  </li>
+</ul>
+
+<p>Confluence reveals that the diversity of special functions is not arbitrary—it reflects the geometric structure of singular point configurations on the Riemann sphere. This unification is profound: what appears as a “zoo” is actually a single family with different limiting behavior.</p>
 
 <h2 id="frobenius-method-and-regular-singularities">Frobenius Method and Regular Singularities</h2>
 
-<p>For $y’‘+P(x)y’+Q(x)y=0$, a point $x_{0}$ is <strong>regular singular</strong> if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic. Frobenius proposes</p>
+<p>For $y’‘+P(x)y’+Q(x)y=0$, a point $x_{0}$ is <strong>regular singular</strong> if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic. The Frobenius method proposes</p>
 
 \[y(x)=(x-x_{0})^{r}\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}, \qquad a_{0}\neq 0,\]
 
@@ -1061,10 +1071,10 @@
 </blockquote>
 
 <blockquote>
-  <p>This is Bessel’s equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}=0$, so $r=0$ is a double root. The first solution is $y_{1}(x)=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(n!)^{2}}x^{2n}$; the second involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{0}$ and $Y_{0}$, showing how Frobenius captures both series and logarithmic structures.</p>
+  <p>This is Bessel’s equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}\left(\frac{x}{2}\right)^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.</p>
 </blockquote>
 
-<p>When the indicial roots coincide, the Frobenius method produces a logarithmic solution as the second linearly independent function. This logarithmic structure is fundamental to understanding the monodromy around regular singular points and connects to the theory of Fuchsian differential equations.</p>
+<p>The Frobenius method provides a systematic way to extract the local behavior near singularities. However, when singularities coalesce or move to infinity, this method breaks down, necessitating asymptotic analysis.</p>
 
 <h2 id="irregular-singularities-and-stokes-phenomenon">Irregular Singularities and Stokes Phenomenon</h2>
 
@@ -1091,10 +1101,10 @@
 </blockquote>
 
 <blockquote>
-  <p>valid for $\mid \arg x\mid&lt;\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.</p>
+  <p>valid for $\mid \arg x \mid &lt;\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.</p>
 </blockquote>
 
-<p>The Stokes phenomenon reveals that asymptotic expansions are not global but sectorial. The discontinuous jumps across Stokes lines encode non-perturbative information invisible to power series, foreshadowing resurgence theory and the need for Borel summation.</p>
+<p>The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The solution’s analytic form jumps discontinuously across certain rays, encoding topological information about the Riemann surface structure that cannot be captured by local series expansions alone.</p>
 
 <h2 id="orthogonality-and-completeness">Orthogonality and Completeness</h2>
 
@@ -1128,14 +1138,12 @@
   <p>integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.</p>
 </blockquote>
 
-<p>The orthogonality relations are not mere algebraic facts but reflect the self-adjoint structure of the Sturm–Liouville operator. This geometric perspective connects special functions to spectral theory and prepares for the functional-analytic framework of Chapter 2.</p>
-
 <blockquote>
-  <p><strong>Fourier–Legendre Series for $\mid x\mid$</strong></p>
+  <p><strong>Fourier–Legendre Series for $\mid x \mid$</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>Expand $f(x)=\mid x\mid$ on $[-1,1]$.</p>
+  <p>Expand $f(x)=\mid x \mid$ on $[-1,1]$.</p>
 </blockquote>
 
 <blockquote>
@@ -1143,14 +1151,12 @@
 </blockquote>
 
 <blockquote>
-\[c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\mid x\mid P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,\]
+\[c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\mid x \mid P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,\]
 </blockquote>
 
 <blockquote>
   <p>yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.</p>
 </blockquote>
-
-<p>Despite $L^{2}$ completeness, pointwise convergence fails at discontinuities, manifesting as Gibbs oscillations. This phenomenon reveals that $L^{2}$ convergence and pointwise convergence are distinct concepts, motivating the need for stronger norms and Sobolev spaces.</p>
 
 <blockquote>
   <p><strong>Sturm–Liouville Completeness for Bessel Functions</strong></p>
@@ -1180,147 +1186,177 @@
   <p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.</p>
 </blockquote>
 
-<p>Bessel functions arise naturally in radial geometries, just as Legendre polynomials arise in spherical geometries. The completeness of these function systems is not assumed but proved through the general theory of Sturm–Liouville problems, revealing a unified framework for spectral expansions.</p>
+<p>Orthogonality and completeness transform special functions from isolated solutions into complete bases. However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the functional-analytic framework of Chapter 2.</p>
 
 <h2 id="challenge-problems">Challenge Problems</h2>
 
-<p>The following problems synthesize concepts from hypergeometric functions, confluence, Frobenius theory, and orthogonality.</p>
+<p>The following problems synthesize the concepts of hypergeometric functions, confluence, Frobenius analysis, and orthogonality.</p>
 
-<h3 id="challenge-1-kummers-24-solutions-and-the-monodromy-group">Challenge 1: Kummer’s 24 Solutions and the Monodromy Group</h3>
+<h3 id="challenge-1-hypergeometric-to-bessel-connection">Challenge 1: Hypergeometric to Bessel Connection</h3>
 
-<p>The hypergeometric equation has three regular singular points at $0$, $1$, and $\infty$. Kummer’s 24 solutions arise from permuting these singularities through Möbius transformations.</p>
+<p>Starting from the hypergeometric function ${}<em>2F</em>{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.</p>
 
-<p>Show that the monodromy group (generated by loops around the three singular points) is isomorphic to a discrete subgroup of $\mathrm{SL}(2,\mathbb{C})$, and explain how the 24 solutions are related by this group action.</p>
-
-<p><em>(Hint: Consider how analytic continuation around a singular point transforms one solution into another. The Wronskian provides a conserved quantity under monodromy.)</em></p>
+<p><em>(Hint: Use the limit representation of the Pochhammer symbol and Stirling’s approximation for the Gamma function. Consider the scaling $z = -x^2/c$ as $c \to \infty$.)</em></p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The hypergeometric equation $x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0$ has singular points at $0$, $1$, and $\infty$. Near each point, there are two linearly independent solutions determined by the indicial exponents.
+Starting with ${}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, we have
 
-Around $x=0$, the solutions behave as $x^{0}$ and $x^{1-c}$. A loop around $0$ multiplies the second solution by $e^{2\pi i(1-c)}$, representing a monodromy transformation. Similar transformations exist around $1$ and $\infty$.
+$$
+{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.
+$$
 
-These three monodromy transformations generate a subgroup of $\mathrm{SL}(2,\mathbb{C})$ because they preserve the Wronskian (the 2-by-2 determinant of the solution basis). The 24 solutions of Kummer correspond to different choices of fundamental solution near each singular point, permuted by the Möbius group that preserves the set $\{0,1,\infty\}$.
+Substitute $z = -x^2/c$ and take $c \to \infty$. Using $\lim_{c \to \infty} (\nu+1)_n / c^n = 1$ and the identity $(\nu/2)_n(-\nu/2)_n = (-1)^n (\nu/2)_n^2$, we obtain
+
+$$
+\lim_{c \to \infty} {}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{x^2}{c}\right) = \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n+\nu}.
+$$
+
+Multiplying by the normalization factor $(x/2)^\nu / \Gamma(\nu+1)$ yields
+
+$$
+J_\nu(x) = \left(\frac{x}{2}\right)^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n}.
+$$
 
 **Key Insights:**
-- The monodromy group encodes how solutions transform under analytic continuation.
-- The 24 solutions are not all independent but form different representations of the same solution space.
-- This group-theoretic perspective unifies seemingly disparate special functions.
+- Confluence reduces the number of regular singular points from three to one, creating Bessel's equation.
+- The normalization ensures $J_0(0) = 1$ while other orders vanish at the origin.
+- This demonstrates that Bessel functions are not isolated special functions but limits of a unified hypergeometric family.
 
 </details>
 
-<h3 id="challenge-2-confluence-and-the-asymptotic-structure-of-bessel-functions">Challenge 2: Confluence and the Asymptotic Structure of Bessel Functions</h3>
+<h3 id="challenge-2-frobenius-method-with-logarithmic-branch">Challenge 2: Frobenius Method with Logarithmic Branch</h3>
 
-<p>Starting from the hypergeometric representation</p>
+<p>For the equation $x^2 y’’ + x y’ + (x^2 - \nu^2) y = 0$ (Bessel’s equation), when $\nu$ is a non-negative integer, show that the Frobenius method produces a logarithmic solution for the second linearly independent function. Derive the explicit form of this logarithmic solution.</p>
 
-\[J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right),\]
-
-<p>derive the asymptotic expansion</p>
-
-\[J_{\nu}(z)\sim \sqrt{\frac{2}{\pi z}}\cos\left(z-\frac{\nu\pi}{2}-\frac{\pi}{4}\right), \qquad z\to\infty.\]
-
-<p>Explain how the confluence limit transforms the regular singular point at infinity into an irregular one, and relate this to the Stokes structure of Bessel functions.</p>
+<p><em>(Hint: When the indicial roots differ by an integer, the second solution involves a logarithmic term. Use reduction of order or the Wronskian method to construct it.)</em></p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-In the hypergeometric equation, the point at infinity is a regular singular point with indicial exponents determined by the parameters. As $c\to\infty$, the confluent limit merges two singular points, transforming infinity into an irregular singular point.
+For Bessel's equation with $\nu = m$ a non-negative integer, the indicial equation gives roots $r = \pm m$. When $m = 0$, both roots coincide; when $m &gt; 0$, they differ by $2m$, an integer.
 
-For the Bessel equation $x^{2}y''+xy'+(x^{2}-\nu^{2})y=0$, the irregular singularity at infinity admits an asymptotic expansion of the form
+For the case $m = 0$, the first solution is $J_0(x)$. The second solution $Y_0(x)$ (the Bessel function of the second kind) takes the form
 
 $$
-y(z)\sim z^{-1/2}e^{iz}\sum_{n=0}^{\infty}\frac{a_{n}}{z^{n}} + z^{-1/2}e^{-iz}\sum_{n=0}^{\infty}\frac{b_{n}}{z^{n}}.
+Y_0(x) = \frac{2}{\pi} \left[\ln\left(\frac{x}{2}\right) + \gamma\right] J_0(x) + \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2} \left(\frac{x}{2}\right)^{2n},
 $$
 
-Matching with the known hypergeometric series and applying the method of steepest descent to the integral representation yields the asymptotic form. The cosine structure arises from the superposition of the two exponentials, with the phase shift $-\nu\pi/2-\pi/4$ determined by the connection formulas.
+where $\gamma$ is Euler's constant.
 
-The Stokes lines occur where $\Re(iz)$ is constant, i.e., along rays at angles $\pm\pi/2$ from the real axis. Crossing these lines causes the subdominant exponential to turn on, but for $J_{\nu}$ on the positive real axis, only the dominant term contributes, giving the cosine asymptotics.
+For $m &gt; 0$, the second solution is
+
+$$
+Y_m(x) = \frac{2}{\pi} \left[\ln\left(\frac{x}{2}\right) + \gamma\right] J_m(x) - \frac{1}{\pi} \sum_{k=0}^{m-1} \frac{(m-k-1)!}{k!} \left(\frac{x}{2}\right)^{2k-m} - \frac{1}{\pi} \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(n+m)!} [\psi(n+1) + \psi(n+m+1)] \left(\frac{x}{2}\right)^{2n+m},
+$$
+
+where $\psi$ is the digamma function.
 
 **Key Insights:**
-- Confluence transforms regular singularities into irregular ones, fundamentally changing the asymptotic structure.
-- The asymptotic expansion reveals the connection to oscillatory behavior for large arguments.
-- The Stokes structure governs how the asymptotics change in different sectors of the complex plane.
+- The logarithmic terms arise from the fact that the Frobenius ansatz fails when roots differ by an integer.
+- These solutions are essential for constructing complete bases in boundary-value problems.
+- The logarithmic behavior near the origin reflects the irregular nature of the second solution's branch structure.
 
 </details>
 
-<h3 id="challenge-3-frobenius-method-and-logarithmic-solutions">Challenge 3: Frobenius Method and Logarithmic Solutions</h3>
+<h3 id="challenge-3-completeness-of-spherical-harmonics">Challenge 3: Completeness of Spherical Harmonics</h3>
 
-<p>For the differential equation</p>
+<p>Show that the spherical harmonics $Y_\ell^m(\theta, \phi)$ form a complete orthonormal basis for $L^2(S^2)$, where $S^2$ is the unit sphere. Use this to prove that any square-integrable function on the sphere can be expanded as</p>
 
-\[x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,\]
+\[f(\theta, \phi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} c_{\ell m} Y_\ell^m(\theta, \phi),\]
 
-<p>show that when $\nu$ is an integer, the Frobenius method produces a logarithmic solution as the second linearly independent function. Derive the explicit form of this logarithmic solution and explain why it cannot be expressed as a pure power series.</p>
+<p>with coefficients $c_{\ell m} = \int_{S^2} f(\theta, \phi) \overline{Y_\ell^m(\theta, \phi)} \, d\Omega$.</p>
+
+<p><em>(Hint: Use the fact that spherical harmonics are eigenfunctions of the angular part of the Laplacian on $S^2$. Apply the Sturm–Liouville completeness theorem for compact manifolds.)</em></p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The Frobenius ansatz $y(x)=x^{r}\sum_{n=0}^{\infty}a_{n}x^{n}$ with $a_{0}\neq 0$ leads to the indicial equation $r^{2}-\nu^{2}=0$, giving $r=\pm\nu$.
-
-When $\nu$ is not an integer, the two roots differ by a non-integer, and we obtain two independent power series solutions $J_{\nu}$ and $J_{-\nu}$.
-
-When $\nu$ is an integer (say $\nu=m$), the roots differ by $2m$, an even integer. In this case, the recurrence relation for the second solution becomes degenerate. We must modify the ansatz to
+The spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the angular Laplacian on the unit sphere:
 
 $$
-y_{2}(x)=J_{m}(x)\ln x + x^{-m}\sum_{n=0}^{\infty}b_{n}x^{n}.
+-\Delta_{S^2} Y_\ell^m = \ell(\ell+1) Y_\ell^m,
 $$
 
-Substituting into the differential equation, the logarithmic term generates additional contributions that cancel the degeneracy. The coefficient $b_{0}$ is arbitrary, but all subsequent coefficients are determined recursively. The resulting function $Y_{m}(x)$ (the Bessel function of the second kind) contains the logarithmic singularity.
+subject to the orthonormality condition
 
-The logarithmic term is necessary because the Wronskian of $J_{m}$ and any power series would vanish at $x=0$, violating linear independence. The logarithm ensures the Wronskian has the correct behavior $W(x)\sim x^{-1}$ near the origin.
+$$
+\int_{S^2} Y_\ell^m(\theta, \phi) \overline{Y_{\ell'}^{m'}(\theta, \phi)} \, d\Omega = \delta_{\ell \ell'} \delta_{mm'},
+$$
+
+where $d\Omega = \sin\theta \, d\theta \, d\phi$ is the surface measure.
+
+The completeness follows from the general theory of Sturm–Liouville operators on compact manifolds. The angular Laplacian $-\Delta_{S^2}$ is self-adjoint with respect to the $L^2(S^2)$ inner product, has a discrete spectrum $\{\ell(\ell+1) : \ell = 0, 1, 2, \ldots\}$, and each eigenspace has dimension $2\ell+1$.
+
+For any $f \in L^2(S^2)$, the expansion
+
+$$
+f(\theta, \phi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} c_{\ell m} Y_\ell^m(\theta, \phi)
+$$
+
+converges in $L^2$, with coefficients given by the orthogonal projection:
+
+$$
+c_{\ell m} = \int_{S^2} f(\theta, \phi) \overline{Y_\ell^m(\theta, \phi)} \, d\Omega.
+$$
+
+Parseval's identity holds:
+
+$$
+\int_{S^2} \mid f(\theta, \phi) \mid^2 \, d\Omega = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} \mid c_{\ell m} \mid^2.
+$$
 
 **Key Insights:**
-- When indicial roots differ by an integer, logarithmic solutions appear to maintain linear independence.
-- The logarithmic structure reflects the monodromy around the regular singular point.
-- This phenomenon is generic for Fuchsian equations with repeated indicial exponents.
+- Completeness is a Hilbert-space property, not a pointwise convergence result.
+- This expansion is fundamental for solving Laplace's equation in spherical domains.
+- The structure reflects the rotational symmetry of the sphere, with each $\ell$ corresponding to an irreducible representation of $SO(3)$.
 
 </details>
 
-<h3 id="challenge-4-orthogonality-and-spectral-completeness">Challenge 4: Orthogonality and Spectral Completeness</h3>
+<h3 id="challenge-4-stokes-phenomenon-for-the-airy-function">Challenge 4: Stokes Phenomenon for the Airy Function</h3>
 
-<p>Prove that the eigenfunctions of the Sturm–Liouville problem</p>
+<p>For the Airy function $\operatorname{Ai}(z)$ defined as a solution to $y’’ - z y = 0$, trace the asymptotic behavior as $z \to \infty$ along different rays in the complex plane. Show explicitly how the Stokes phenomenon manifests: identify the Stokes lines and compute the jump in the asymptotic expansion coefficient when crossing them.</p>
 
-\[-(x y')'=\lambda x y, \qquad y(1)=0, \quad y \text{ bounded as } x\to 0,\]
-
-<p>on $[0,1]$ with weight $w(x)=x$ form a complete orthonormal basis for $L^{2}([0,1],x\,dx)$.</p>
-
-<p>Use this to show that for any $f\in L^{2}([0,1],x\,dx)$, the Fourier–Bessel expansion converges in the $L^{2}$ norm, and derive Parseval’s identity.</p>
+<p><em>(Hint: Use the WKB method to construct asymptotic solutions. The Stokes lines are where the two exponential terms have equal real parts. The jump occurs because the “small” exponential becomes comparable in certain sectors.)</em></p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The Sturm–Liouville operator $L[y]=-(x y')'$ with weight $w(x)=x$ is self-adjoint on the space of functions satisfying the boundary conditions. The eigenfunctions are $J_{0}(\lambda_{n} x)$ where $\lambda_{n}$ are the positive zeros of $J_{0}$.
-
-Self-adjointness implies that eigenfunctions with distinct eigenvalues are orthogonal:
+The Airy equation $y'' - z y = 0$ has asymptotic solutions of the form
 
 $$
-\int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=0, \qquad m\neq n.
+y(z) \sim z^{-1/4} \exp\left(\pm \frac{2}{3} z^{3/2}\right) \sum_{n=0}^{\infty} a_n z^{-3n/2},
 $$
 
-For $m=n$, normalization gives $\int_{0}^{1}x J_{0}^{2}(\lambda_{n} x)\,dx=\frac{1}{2}J_{1}^{2}(\lambda_{n})$.
+where $z^{3/2}$ is defined with a branch cut along the negative real axis.
 
-Completeness follows from the general theory of Sturm–Liouville operators with regular boundary conditions. The key steps are:
-
-1. The eigenvalues are real, simple, and accumulate only at infinity.
-2. The eigenfunctions span a dense subspace of $L^{2}([0,1],x\,dx)$.
-3. For any $f\in L^{2}$, the expansion $f(x)=\sum_{n=1}^{\infty}c_{n}J_{0}(\lambda_{n} x)$ with $c_{n}=\frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx$ converges in $L^{2}$.
-
-Parseval's identity follows from completeness and orthogonality:
+For $\operatorname{Ai}(z)$, the dominant asymptotic in the sector $\mid \arg z \mid &lt; \pi/3$ is
 
 $$
-\int_{0}^{1}x\mid f(x)\mid^{2}\,dx=\sum_{n=1}^{\infty}\mid c_{n}\mid^{2}\int_{0}^{1}x J_{0}^{2}(\lambda_{n} x)\,dx=\sum_{n=1}^{\infty}\frac{\mid c_{n}\mid^{2}}{2}J_{1}^{2}(\lambda_{n}).
+\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp\left(-\frac{2}{3} z^{3/2}\right), \quad z \to \infty, \quad \mid \arg z \mid &lt; \pi/3.
 $$
+
+The Stokes lines occur where $\Re(z^{3/2}) = 0$, which gives $\arg z = \pm \pi/3, \pm \pi$.
+
+Crossing the Stokes line at $\arg z = 2\pi/3$, the subdominant exponential $\exp(+\frac{2}{3} z^{3/2})$ is "turned on" with a multiplier. The asymptotic expansion jumps to include both terms:
+
+$$
+\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \left[ \exp\left(-\frac{2}{3} z^{3/2}\right) + i \exp\left(+\frac{2}{3} z^{3/2}\right) \right], \quad \frac{2\pi}{3} &lt; \arg z &lt; \frac{4\pi}{3}.
+$$
+
+The multiplier $i$ encodes the Stokes constant, which cannot be determined from local analysis alone but reflects global monodromy data.
 
 **Key Insights:**
-- Self-adjointness of the Sturm–Liouville operator guarantees orthogonality and completeness.
-- $L^{2}$ convergence is weaker than pointwise convergence but sufficient for many applications.
-- The spectral theory of Sturm–Liouville problems provides a unified framework for special function expansions.
+- The Stokes phenomenon reveals that asymptotic expansions are sectorial, not global.
+- The discontinuity encodes topological information about the Riemann surface structure.
+- This phenomenon is generic for solutions of differential equations with irregular singular points.
 
 </details>
 
 <p>Special functions extend the explicit arsenal by defining solutions as canonical responses to singular geometries. Hypergeometric unification and Sturm–Liouville completeness reveal that structure arises from singular-point placement. Their asymptotics and Stokes data lead directly to the analytic continuation, spectral theory, and microlocal analysis developed in later chapters.</p>
 
-<p>However, the methods developed here—power series, Frobenius expansions, and eigenfunction decompositions—require explicit knowledge of the singular point structure and fail for irregular boundaries or non-self-adjoint operators. The fragility of these explicit methods, particularly their sensitivity to domain geometry and the global nature of the Stokes phenomenon, necessitates the functional-analytic and geometric frameworks introduced in Chapter 2 and beyond.</p>
+<p>However, the limitations are profound: convergence is typically in $L^2$ rather than pointwise, Stokes phenomena prevent global asymptotic representations, and the completeness theorems require compact domains with smooth coefficients. These restrictions motivate the distributional framework, Sobolev spaces, and functional-analytic machinery of Chapter 2, which provides a rigorous foundation for the formal manipulations encountered here.</p>
 
 <h2 id="references">References</h2>
 

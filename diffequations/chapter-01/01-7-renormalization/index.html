@@ -921,7 +921,7 @@
         <h1 id="section-17-classical-renormalization--non-perturbative-methods">Section 1.7: Classical Renormalization &amp; Non-Perturbative Methods</h1>
 
 <blockquote>
-  <p>Divergent series encode non-perturbative physics; Borel summation and renormalization reveal the hidden structure obscured by perturbation theory’s failures.</p>
+  <p>Divergent perturbation series encode non-perturbative physics in their Borel singularities—the factorial growth of coefficients is not a failure but a signal pointing to exponentially small effects invisible to power series.</p>
 </blockquote>
 
 <h2 id="introduction">Introduction</h2>
@@ -930,7 +930,7 @@
 
 <h2 id="divergent-series-and-gevrey-classes">Divergent Series and Gevrey Classes</h2>
 
-<p>Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\mid f(x)-\sum_{n=0}^{N}a_{n}x^{n}\mid=O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\mid a_{n}\mid\le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\mid x\mid)$, producing an exponentially small remainder $\sim \exp\left(-1/(K\mid x\mid)\right)$ that encodes non-perturbative effects invisible to any Taylor series.</p>
+<p>Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\mid f(x)-\sum_{n=0}^{N}a_{n}x^{n}\mid =O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\mid a_{n}\mid \le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\mid x\mid)$, producing an exponentially small remainder $\sim \exp\left(-1/(K\mid x\mid)\right)$ that encodes non-perturbative effects invisible to any Taylor series.</p>
 
 <blockquote>
   <p><strong>Gevrey-1 Series and Optimal Truncation</strong></p>
@@ -941,10 +941,10 @@
 </blockquote>
 
 <blockquote>
-  <p>The ratio $\mid a_{n+1}x^{n+1}/(a_{n}x^{n})\mid=(n+1)\mid x\mid$ implies the least term occurs near $N_{\text{opt}}\approx 1/\mid x\mid$. Truncating at this index yields an error $O(e^{-1/\mid x\mid})$, the same order as the non-perturbative contribution absent from the series.</p>
+  <p>The ratio $\mid a_{n+1}x^{n+1}/(a_{n}x^{n})\mid =(n+1)\mid x\mid$ implies the least term occurs near $N_{\text{opt}}\approx 1/\mid x\mid$. Truncating at this index yields an error $O(e^{-1/\mid x\mid})$, the same order as the non-perturbative contribution absent from the series. The optimal truncation captures the best possible approximation from a divergent series.</p>
 </blockquote>
 
-<p>Optimal truncation of divergent series produces exponentially small errors, revealing that the best approximation is not obtained by summing all terms but by stopping at the term of minimum magnitude. This exponentially small remainder is precisely the scale of non-perturbative effects.</p>
+<p>Optimal truncation provides a systematic way to extract useful information from divergent series. The truncation error is exponentially small, matching the scale of non-perturbative effects.</p>
 
 <blockquote>
   <p><strong>Asymptotic Expansion of $\operatorname{erfc}(x)$</strong></p>
@@ -959,20 +959,20 @@
 </blockquote>
 
 <blockquote>
-  <p>Coefficients grow factorially, $a_{n}\sim (-1)^{n}(2n)!/(2^{2n}n!)$, exhibiting Gevrey-1 behavior and necessitating optimal truncation at $n\approx 2x^{2}$.</p>
+  <p>Coefficients grow factorially, $a_{n}\sim (-1)^{n}(2n)!/(2^{2n}n!)$, exhibiting Gevrey-1 behavior and necessitating optimal truncation at $n\approx 2x^{2}$. The series diverges for any fixed $x$, but optimal truncation provides an excellent approximation.</p>
 </blockquote>
 
-<p>The complementary error function’s asymptotic expansion demonstrates typical factorial growth. Even though the series diverges for all $x$, optimal truncation provides excellent approximations for large $x$, with the error exponentially small in $x$.</p>
+<p>Even simple functions produce divergent asymptotic series. The factorial growth is generic for asymptotic expansions, reflecting the essential singularity structure in the complex plane.</p>
 
 <blockquote>
   <p><strong>WKB Divergence</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>For $\epsilon^{2}y’‘+Q(x)y=0$, the WKB series $y\sim Q^{-1/4}\exp\left(\pm \epsilon^{-1}\int\sqrt{Q}\right)\sum_{n\ge 0}\epsilon^{n}S_{n}(x)$ has $S_{n}\sim n!$, driven by repeated differentiation. Optimal truncation yields errors $\sim e^{-1/\epsilon}$ corresponding to Stokes transitions (Section 1.5).</p>
+  <p>For $\epsilon^{2}y’‘+Q(x)y=0$, the WKB series $y\sim Q^{-1/4}\exp\left(\pm \epsilon^{-1}\int\sqrt{Q}\right)\sum_{n\ge 0}\epsilon^{n}S_{n}(x)$ has $S_{n}\sim n!$, driven by repeated differentiation. Optimal truncation yields errors $\sim e^{-1/\epsilon}$ corresponding to Stokes transitions. The divergence reflects the breakdown of the asymptotic expansion at turning points.</p>
 </blockquote>
 
-<p>WKB expansions are also divergent, with the divergence driven by the proliferation of terms from repeated differentiation. The optimal truncation error is exponentially small, matching the scale of Stokes transitions and non-perturbative effects.</p>
+<p>The WKB expansion diverges because it cannot capture the transition behavior near turning points. The exponentially small error matches the scale of tunneling effects that connect different regions.</p>
 
 <h2 id="borel-summation">Borel Summation</h2>
 
@@ -999,10 +999,10 @@
 </blockquote>
 
 <blockquote>
-  <p>showing that a divergent series can be resummed to an elementary function.</p>
+  <p>showing that a divergent series can be resummed to an elementary function. Borel summation assigns a unique value to the series, recovering the function it was trying to represent.</p>
 </blockquote>
 
-<p>Borel summation converts a divergent series into a convergent integral representation. Even though the original series diverges for all $x$, the Borel sum provides an analytic function that has the series as its asymptotic expansion.</p>
+<p>Borel summation provides a rigorous interpretation of divergent series. The Borel transform has better convergence properties, and its Laplace transform recovers the original function.</p>
 
 <blockquote>
   <p><strong>Airy Function and Stokes Jump</strong></p>
@@ -1012,31 +1012,31 @@
   <p>The Airy asymptotic series has a Borel transform with singularities on the positive axis. Lateral Borel sums differ by $\Delta \operatorname{Ai}(x)=\frac{i}{2\sqrt{\pi}x^{1/4}}e^{+\zeta}$, precisely the subdominant exponential that turns on across $\arg x=2\pi/3$, matching the Stokes phenomenon described in Section 1.5.</p>
 </blockquote>
 
-<p>The Stokes phenomenon has a natural interpretation in the Borel plane: singularities of the Borel transform correspond to Stokes lines. The lateral Borel sums differ by exponentially small amounts, precisely the subdominant exponentials that switch on across Stokes lines.</p>
+<p>The Stokes jumps are encoded in the Borel plane singularities. Different lateral sums (integrating above or below the branch cut) produce different asymptotic representations, corresponding to different sectors in the complex plane.</p>
 
 <h2 id="renormalization-group-for-odes">Renormalization Group for ODEs</h2>
 
-<p>Secular terms in perturbation theory reflect sensitivity to the initial time. Introducing an arbitrary renormalization scale $\tau$ and allowing integration constants to depend on $\tau$ yields $y(t,\tau)$ with the requirement $\partial y/\partial \tau=0$. This Renormalization Group (RG) equation produces flow equations for amplitudes and phases, summing secular terms to all orders and recovering multiple-scales envelopes without ad hoc assumptions (Olver, 1995).</p>
+<p>Secular terms in perturbation theory reflect sensitivity to the initial time. Introducing an arbitrary renormalization scale $\tau$ and allowing integration constants to depend on $\tau$ yields $y(t,\tau)$ with the requirement $\partial y/\partial \tau=0$. This Renormalization Group (RG) equation produces flow equations for amplitudes and phases, summing secular terms to all orders and recovering multiple-scales envelopes without ad hoc assumptions.</p>
 
 <blockquote>
   <p><strong>RG Treatment of the Rayleigh Oscillator</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>For $y’’+\epsilon \left(\frac{y’^2}{3}-1\right)y’+y=0$, naïve perturbation produces secular terms. Introducing a renormalization time $\tau$ and demanding $\partial y/\partial \tau=0$ yields amplitude and phase flows $dA/d\tau=-A^{2}/8$, $d\phi/d\tau=1/8$. Solving gives $A(t)=8/(t+8/A_{0})$, identical to the amplitude envelope obtained via multiple scales.</p>
+  <p>For $y’’+\epsilon \left(\frac{y’^2}{3}-1\right)y’+y=0$, naïve perturbation produces secular terms. Introducing a renormalization time $\tau$ and demanding $\partial y/\partial \tau=0$ yields amplitude and phase flows $dA/d\tau=-A^{2}/8$, $d\phi/d\tau=1/8$. Solving gives $A(t)=8/(t+8/A_{0})$, identical to the amplitude envelope obtained via multiple scales. The RG method automatically sums all secular terms.</p>
 </blockquote>
 
-<p>The renormalization group method eliminates secular terms by recognizing that the solution should be independent of the arbitrary renormalization scale. This produces flow equations for the slow variables (amplitude, phase) that automatically resum the secular terms.</p>
+<p>The RG method provides a systematic way to remove secular terms by renormalizing the integration constants. The flow equations capture the slow evolution of amplitudes and phases.</p>
 
 <blockquote>
   <p><strong>Van der Pol Oscillator via RG</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>Applying RG to $y’’-\epsilon(1-y^{2})y’+y=0$ produces $dA/dt=\tfrac{\epsilon}{2}(1-A^{2}/4)A$, showing convergence to the limit-cycle amplitude $A\to 2$ without assuming slow times a priori.</p>
+  <p>Applying RG to $y’’-\epsilon(1-y^{2})y’+y=0$ produces $dA/dt=\tfrac{\epsilon}{2}(1-A^{2}/4)A$, showing convergence to the limit-cycle amplitude $A\to 2$ without assuming slow times a priori. The RG equations automatically capture the long-time attractor.</p>
 </blockquote>
 
-<p>The RG method naturally produces the amplitude equation governing the slow evolution toward the limit cycle. Unlike multiple scales, no ad hoc separation of time scales is needed; it emerges from the RG condition.</p>
+<p>The RG flow equations reveal the asymptotic behavior: the limit cycle emerges as a fixed point of the amplitude flow. This provides a natural explanation for the approach to periodic motion.</p>
 
 <h2 id="instantons-and-non-perturbative-effects">Instantons and Non-Perturbative Effects</h2>
 
@@ -1047,283 +1047,122 @@
 </blockquote>
 
 <blockquote>
-  <p>For $H=-\epsilon^{2}d^{2}/dx^{2}+(x^{2}-1)^{2}$, expanding about $x=-1$ yields a divergent series for the ground-state energy. The instanton trajectory $x(\tau)=\tanh(2\tau)$ has action $S=8\sqrt{2}/3$, producing a level splitting $\Delta E\sim e^{-S/\epsilon}$. Large-order perturbative coefficients grow as $(-1)^{n}n! (6)^{n/2}$, consistent with a Borel singularity at $t=S$.</p>
+  <p>For $H=-\epsilon^{2}d^{2}/dx^{2}+(x^{2}-1)^{2}$, expanding about $x=-1$ yields a divergent series for the ground-state energy. The instanton trajectory $x(\tau)=\tanh(2\tau)$ has action $S=8\sqrt{2}/3$, producing a level splitting $\Delta E\sim e^{-S/\epsilon}$. Large-order perturbative coefficients grow as $(-1)^{n}n! (6)^{n/2}$, consistent with a Borel singularity at $t=S$. The instanton action determines the divergence rate.</p>
 </blockquote>
 
-<p>Instantons are classical solutions in Euclidean time that connect different vacua. Their action determines the exponential suppression of tunneling effects. The large-order behavior of perturbation theory is controlled by the instanton action through the Borel plane singularity structure.</p>
+<p>Instantons are classical solutions in imaginary time that connect different vacua. Their action determines exponentially small effects like level splitting, which are invisible to perturbation theory.</p>
 
 <blockquote>
   <p><strong>Flat Function</strong></p>
 </blockquote>
 
 <blockquote>
-  <p>The function $f(x)=e^{-1/x^{2}}$ for $x&gt;0$ (and $0$ otherwise) has all derivatives zero at $x=0$, yet $f(x)$ is nonzero for $x&gt;0$. No power series captures $f$; it represents a purely non-perturbative contribution comparable to instanton effects.</p>
+  <p>The function $f(x)=e^{-1/x^{2}}$ for $x&gt;0$ (and $0$ otherwise) has all derivatives zero at $x=0$, yet $f(x)$ is nonzero for $x&gt;0$. No power series captures $f$; it represents a purely non-perturbative contribution comparable to instanton effects. This function is “invisible” to Taylor series but dominates asymptotically.</p>
 </blockquote>
 
-<p>Flat functions demonstrate that some effects are completely invisible to perturbation theory—their Taylor series vanish identically, yet the function is nonzero. Such functions are the extreme case of non-perturbative effects and highlight the limitations of power series expansions.</p>
+<p>Flat functions demonstrate that non-perturbative effects can be completely invisible to power series. They represent a fundamental limitation of perturbative methods.</p>
 
 <h2 id="challenge-problems">Challenge Problems</h2>
 
-<p>The following problems synthesize concepts from divergent series, Borel summation, renormalization group methods, and instantons.</p>
+<p>The following problems synthesize concepts of Borel summation, renormalization group, and non-perturbative effects.</p>
 
 <h3 id="challenge-1-borel-summation-and-stokes-phenomenon">Challenge 1: Borel Summation and Stokes Phenomenon</h3>
 
-<p>For the divergent series</p>
+<p>For the divergent series $A(x)=\sum_{n=0}^{\infty}(-1)^{n}n!x^{n}$, compute the Borel transform and show it has a pole at $t=1$. Demonstrate that the lateral Borel sums (integrating above and below the pole) differ by an exponentially small amount. Interpret this difference as a Stokes jump and relate it to the non-perturbative contribution.</p>
 
-\[A(x) = \sum_{n=0}^{\infty} (-1)^n n! x^{n+1},\]
-
-<p>show that the Borel transform converges to</p>
-
-\[\mathcal{B}A(t) = \frac{t}{1+t}, \quad |t| &lt; 1.\]
-
-<p>The Borel sum is</p>
-
-\[\mathcal{S}A(x) = \int_0^{\infty} \frac{t e^{-t/x}}{1+t} \, dt.\]
-
-<p>Show that this integral defines different functions in different sectors of the complex $x$-plane, and compute the Stokes jump across the negative real axis. Relate this to the asymptotic behavior of the series.</p>
+<p><em>(Hint: The Borel transform is $\mathcal{B}(t)=1/(1+t)$, which has a pole at $t=-1$ when analytically continued. For $x&gt;0$, the integration path passes through this pole.)</em></p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The Borel transform is:
+Actually, for $A(x)=\sum(-1)^{n}n!x^{n}$, the Borel transform is:
 
-$$
-\mathcal{B}A(t) = \sum_{n=0}^{\infty} \frac{(-1)^n n!}{n!} t^n = \sum_{n=0}^{\infty} (-1)^n t^n = \frac{1}{1+t}, \quad |t| &lt; 1.
-$$
+$$\mathcal{B}(t)=\sum_{n=0}^{\infty}\frac{(-1)^{n}n!}{n!}t^{n}=\sum_{n=0}^{\infty}(-t)^{n}=\frac{1}{1+t},$$
 
-Wait, the series is $\sum (-1)^n n! x^{n+1}$, so:
+which has a pole at $t=-1$. For $x&gt;0$, we integrate along the positive real axis, so we don't encounter this pole directly. However, when analytically continuing, the pole structure determines the different lateral sums.
 
-$$
-\mathcal{B}A(t) = \sum_{n=0}^{\infty} \frac{(-1)^n n!}{n!} \frac{t^{n+1}}{x} \cdot x = \sum_{n=0}^{\infty} (-1)^n t^{n+1} = \frac{t}{1+t}, \quad |t| &lt; 1.
-$$
-
-The Borel sum is:
-
-$$
-\mathcal{S}A(x) = \frac{1}{x} \int_0^{\infty} \frac{t e^{-t/x}}{1+t} \, dt.
-$$
-
-For $\operatorname{Re}(x) &gt; 0$, we can evaluate this directly. The integrand has a pole at $t = -1$, which is not on the positive real axis, so the integral is well-defined.
-
-For $\operatorname{Re}(x) &lt; 0$, the integration path may pass near or through the pole. The Stokes line is along the negative real axis $\arg x = \pi$.
-
-To compute the Stokes jump, we need to compare the integrals above and below the pole. The difference is given by the residue:
-
-$$
-\Delta \mathcal{S}A(x) = \frac{2\pi i}{x} \operatorname{Res}_{t=-1} \left(\frac{t e^{-t/x}}{1+t}\right) = \frac{2\pi i}{x} (-1) e^{1/x} = -\frac{2\pi i}{x} e^{1/x}.
-$$
-
-This exponentially small jump (since $\operatorname{Re}(1/x) &lt; 0$ for $\operatorname{Re}(x) &lt; 0$) is the Stokes discontinuity.
+The lateral sums differ by the residue contribution when the integration contour is deformed around the pole. This difference is exponentially small (of order $e^{-1/x}$) and represents the Stokes jump.
 
 **Key Insights:**
-- Borel summation provides a rigorous way to sum divergent series.
-- Stokes jumps arise from singularities of the Borel transform.
-- The jump is exponentially small, matching the scale of non-perturbative effects.
+- Borel singularities encode non-perturbative effects.
+- Lateral sums differ by exponentially small amounts.
+- The difference is the Stokes jump connecting different sectors.
 
 </details>
 
-<h3 id="challenge-2-renormalization-group-for-the-duffing-oscillator">Challenge 2: Renormalization Group for the Duffing Oscillator</h3>
+<h3 id="challenge-2-rg-flow-and-fixed-points">Challenge 2: RG Flow and Fixed Points</h3>
 
-<p>Apply the renormalization group method to the Duffing oscillator</p>
-
-\[y'' + y + \epsilon y^3 = 0, \quad y(0) = 1, \quad y'(0) = 0.\]
-
-<p>Introduce a renormalization time $\tau$ and allow the integration constants (amplitude and phase) to depend on $\tau$ such that $\partial y/\partial \tau = 0$. Derive the RG flow equations and show that they recover the frequency shift obtained via Poincaré–Lindstedt method.</p>
+<p>For a general weakly nonlinear oscillator $y’‘+y+\epsilon f(y,y’)=0$, derive the RG equations for the amplitude and phase. Show that fixed points of the amplitude flow correspond to limit cycles, and analyze their stability. Apply this to the Van der Pol oscillator and recover the limit cycle amplitude.</p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The naïve perturbation expansion gives:
+The unperturbed solution is $y=A\cos(t+\phi)$. Introducing a renormalization time and requiring $\partial y/\partial\tau=0$ produces flow equations:
 
-$$
-y(t) = \cos t + \epsilon y_1(t) + \epsilon^2 y_2(t) + \cdots,
-$$
+$$\frac{dA}{d\tau}=F(A), \quad \frac{d\phi}{d\tau}=G(A),$$
 
-where $y_1$ contains secular terms like $t \sin t$.
+where $F$ and $G$ are determined by the nonlinearity $f$. Fixed points of the amplitude flow ($F(A^{*})=0$) correspond to limit cycles.
 
-The RG method introduces a renormalization time $\tau$ and writes the solution as:
-
-$$
-y(t, \tau) = A(\tau) \cos(t + \phi(\tau)) + \epsilon y_1(t, \tau) + \cdots,
-$$
-
-with the condition that the full solution $y(t) = y(t, t)$ (setting $\tau = t$) is independent of the arbitrary scale $\tau$:
-
-$$
-\frac{\partial y}{\partial \tau}\bigg|_{\tau=t} = 0.
-$$
-
-At $O(1)$, we have $y_0 = A(\tau) \cos(t + \phi(\tau))$.
-
-At $O(\epsilon)$, the equation for $y_1$ is:
-
-$$
-y_1'' + y_1 = -y_0^3 = -A^3 \cos^3(t + \phi) = -\frac{A^3}{4}[3\cos(t+\phi) + \cos(3(t+\phi))].
-$$
-
-The resonant term $3\cos(t+\phi)$ produces secular growth. The RG condition requires that this secular term be canceled by the $\tau$-dependence of $A$ and $\phi$:
-
-$$
-\frac{\partial y_0}{\partial \tau} = A' \cos(t+\phi) - A\phi' \sin(t+\phi).
-$$
-
-Matching the secular terms gives:
-
-$$
-A' = -\frac{3\epsilon A^3}{8}, \quad \phi' = 0 \quad \text{(at this order)}.
-$$
-
-At $O(\epsilon^2)$, we get $\phi' \neq 0$, producing the frequency shift.
-
-Setting $\tau = t$ and solving gives the amplitude evolution and frequency correction, matching the Poincaré–Lindstedt result.
+For Van der Pol, $F(A)=\frac{\epsilon}{2}(1-A^{2}/4)A$, so fixed points are $A=0$ (unstable) and $A=2$ (stable). The limit cycle has amplitude 2, as found by other methods.
 
 **Key Insights:**
-- The RG method automatically eliminates secular terms without ad hoc assumptions.
-- The flow equations for $A$ and $\phi$ emerge from the RG condition.
-- This recovers multiple scales results in a systematic way.
+- RG flow equations capture slow amplitude evolution.
+- Fixed points correspond to attractors (limit cycles).
+- Stability is determined by linearization around fixed points.
 
 </details>
 
-<h3 id="challenge-3-instanton-action-and-large-order-behavior">Challenge 3: Instanton Action and Large-Order Behavior</h3>
+<h3 id="challenge-3-instanton-calculus-and-level-splitting">Challenge 3: Instanton Calculus and Level Splitting</h3>
 
-<p>For the anharmonic oscillator with Hamiltonian</p>
-
-\[H = -\frac{\epsilon^2}{2} \frac{d^2}{dx^2} + \frac{1}{2}x^2 + \frac{\lambda}{4}x^4,\]
-
-<p>show that the instanton solution connecting $x = 0$ to itself (a bounce) has action</p>
-
-\[S = \frac{4\sqrt{2}}{3\lambda}.\]
-
-<p>Prove that the large-order behavior of the perturbation series for the ground-state energy is</p>
-
-\[E_n^{(0)} \sim -\frac{\Gamma(n+1/2)}{\pi} \left(\frac{6}{\lambda}\right)^n,\]
-
-<p>and show that this is consistent with a Borel singularity at $t = S$.</p>
+<p>For the double-well potential $V(x)=(x^{2}-1)^{2}$, compute the instanton trajectory connecting $x=-1$ to $x=1$. Show that the instanton action is $S=\int_{-1}^{1}\sqrt{2V(x)}\,dx$, and demonstrate that the level splitting is $\Delta E\sim e^{-S/\epsilon}$. Compute the prefactor using the instanton determinant.</p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The instanton is a solution of the Euclidean equation of motion:
+The instanton satisfies the Euclidean equation of motion: $\epsilon^{2}\frac{d^{2}x}{d\tau^{2}}=V'(x)$. The solution connecting $x=-1$ to $x=1$ is $x(\tau)=\tanh(\tau/\sqrt{2})$ (up to scaling).
 
-$$
-\epsilon^2 \frac{d^2 x}{d\tau^2} = V'(x) = x + \lambda x^3.
-$$
+The action is:
 
-For a bounce solution that starts and ends at $x = 0$, we need to solve this with boundary conditions $x(\pm\infty) = 0$.
+$$S=\int_{-\infty}^{\infty}\left[\frac{1}{2}\left(\frac{dx}{d\tau}\right)^{2}+V(x)\right]d\tau=\int_{-1}^{1}\sqrt{2V(x)}\,dx=\frac{8\sqrt{2}}{3}.$$
 
-Multiplying by $dx/d\tau$ and integrating:
-
-$$
-\frac{\epsilon^2}{2}\left(\frac{dx}{d\tau}\right)^2 = V(x) = \frac{1}{2}x^2 + \frac{\lambda}{4}x^4.
-$$
-
-Solving for $dx/d\tau$:
-
-$$
-\frac{dx}{d\tau} = \pm \frac{\sqrt{2V(x)}}{\epsilon} = \pm \frac{x\sqrt{1 + \lambda x^2/2}}{\epsilon}.
-$$
-
-Integrating gives the instanton trajectory. The action is:
-
-$$
-S = \int_{-\infty}^{\infty} \left[\frac{\epsilon^2}{2}\left(\frac{dx}{d\tau}\right)^2 + V(x)\right] d\tau = 2\int_{-\infty}^{\infty} V(x) d\tau = 2\int_0^{x_{\max}} \sqrt{2V(x)} dx.
-$$
-
-Evaluating this integral gives $S = 4\sqrt{2}/(3\lambda)$.
-
-The large-order behavior is determined by the closest singularity in the Borel plane, which is at $t = S$. Using Dingle's theory, the coefficients behave as:
-
-$$
-E_n^{(0)} \sim \frac{\Gamma(n+\beta)}{S^{n+\beta}} \times \text{(subdominant factors)}.
-$$
-
-For the quartic oscillator, detailed calculation gives the stated form, with the singularity location $S$ controlling the growth rate.
+The level splitting is determined by instanton effects: $\Delta E\sim e^{-S/\epsilon}$. Computing the prefactor requires evaluating the determinant of fluctuations around the instanton, which gives an additional factor of $\epsilon^{-1/2}$.
 
 **Key Insights:**
-- Instantons determine the large-order behavior of perturbation theory.
-- The Borel singularity location equals the instanton action.
-- This connects non-perturbative physics to the divergence of perturbation series.
+- Instantons connect distinct classical minima.
+- Their action determines exponentially small effects.
+- The prefactor requires computation of fluctuation determinants.
 
 </details>
 
-<h3 id="challenge-4-optimal-truncation-and-transseries">Challenge 4: Optimal Truncation and Transseries</h3>
+<h3 id="challenge-4-optimal-truncation-and-beyond-all-orders-effects">Challenge 4: Optimal Truncation and Beyond-All-Orders Effects</h3>
 
-<p>For the series</p>
-
-\[y(x) \sim \sum_{n=0}^{\infty} \frac{(-1)^n n!}{x^{n+1}}, \quad x \to \infty,\]
-
-<table>
-  <tbody>
-    <tr>
-      <td>show that the optimal truncation is at $N_{\text{opt}} \approx</td>
-      <td>x</td>
-      <td>$, and the error is $O(e^{-</td>
-      <td>x</td>
-      <td>})$.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Now consider the full transseries expansion:</p>
-
-\[y(x) = \sum_{n=0}^{\infty} \frac{(-1)^n n!}{x^{n+1}} + C e^{-x} \sum_{n=0}^{\infty} \frac{b_n}{x^{n+1}},\]
-
-<p>where the second series represents non-perturbative corrections. Show that the coefficient $C$ can be determined by matching the Stokes jump of the Borel-resummed perturbative series, and derive the connection between $C$ and the lateral Borel sums.</p>
+<p>For the asymptotic series $\sum_{n=0}^{\infty}(-1)^{n}n!x^{n}$, show that optimal truncation at $N\approx 1/x$ gives an error of order $e^{-1/x}$. Demonstrate that this error is the same order as a non-perturbative contribution of the form $Ce^{-1/x}$ that is invisible to the power series. Compute the constant $C$ using Borel summation.</p>
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The optimal truncation occurs when the terms are smallest. The $n$-th term is:
+Truncating at $N=\lfloor 1/x\rfloor$, the remainder is dominated by the next term, which is approximately $N!x^{N}\sim (1/x)!x^{1/x}$. Using Stirling's formula and optimizing gives an error $\sim e^{-1/x}$.
 
-$$
-a_n = \frac{(-1)^n n!}{x^{n+1}}.
-$$
-
-The ratio of successive terms is:
-
-$$
-\left|\frac{a_{n+1}}{a_n}\right| = \frac{(n+1)!}{|x|^{n+2}} \cdot \frac{|x|^{n+1}}{n!} = \frac{n+1}{|x|}.
-$$
-
-Terms decrease until $n+1 \approx |x|$, so $N_{\text{opt}} \approx |x|$. The error is approximately the first omitted term:
-
-$$
-\text{Error} \sim |a_{N_{\text{opt}}}| \sim \frac{|x|!}{|x|^{|x|+1}} \sim \sqrt{2\pi |x|} e^{-|x|},
-$$
-
-using Stirling's approximation.
-
-The full transseries includes non-perturbative terms $e^{-x} \sum b_n/x^{n+1}$ that are invisible to the perturbative series but become important when $x$ is not extremely large.
-
-The coefficient $C$ in the transseries is related to the Stokes constant. When crossing a Stokes line, the lateral Borel sums differ by an amount that must be matched by turning on the non-perturbative series. This determines $C$.
-
-Specifically, if $\mathcal{S}^+$ and $\mathcal{S}^-$ are the lateral Borel sums above and below a Stokes line, then:
-
-$$
-\mathcal{S}^+ - \mathcal{S}^- = C e^{-x} \times \text{(series)}.
-$$
-
-This connection formula determines $C$ from the discontinuity of the Borel sum.
+This error matches a non-perturbative contribution that is invisible to power series. Using Borel summation, we can compute the full function and extract this contribution. For the series $\sum(-1)^{n}n!x^{n}$, Borel summation gives a result that differs from the truncated series by an exponentially small amount, which is the non-perturbative contribution.
 
 **Key Insights:**
-- Optimal truncation gives exponentially small errors.
-- Transseries include both perturbative and non-perturbative sectors.
-- Stokes jumps determine the coefficients of non-perturbative terms.
-- This provides a complete asymptotic description beyond perturbation theory.
+- Optimal truncation error matches non-perturbative effects.
+- Borel summation reveals the full function structure.
+- Exponentially small effects are encoded in the divergence.
 
 </details>
 
-<p>The chapter concludes with a crisis: perturbation series often diverge factorially, and regular perturbation methods fail when secular terms appear or when no small parameter exists. Borel summation provides a rigorous way to sum divergent series, revealing that the divergence encodes non-perturbative information through the Borel plane structure. The renormalization group method eliminates secular terms systematically, while instantons reveal exponentially small effects invisible to perturbation theory.</p>
+<p>The chapter concludes by confronting the fundamental limitations of perturbation theory: series diverge factorially, secular terms accumulate over long times, and exponentially small effects are invisible to all orders. However, these “failures” are not bugs but features—they encode non-perturbative physics in their divergence structure. Borel summation and renormalization group methods provide systematic ways to extract this information, but they require understanding the analytic structure in the complex plane.</p>
 
-<p>However, even these advanced methods have limitations: Borel summation requires analytic continuation of the Borel transform, RG methods work best for problems with clear scale separation, and instanton calculations become intractable for complex potentials. When these classical methods fail, we must turn to the functional-analytic framework of distributions, Sobolev spaces, and spectral theory (Chapter 2), the geometric methods of manifolds and jet bundles (Chapters 3 and 6), and the algebraic structures of D-modules and resurgence theory (Chapter 7). These provide the rigorous foundations and computational tools needed to handle general nonlinear PDEs, irregular domains, and non-perturbative phenomena beyond the reach of classical asymptotic and perturbation methods.</p>
+<p>The divergence of perturbation series and the existence of non-perturbative effects demonstrate that nonlinear problems cannot be solved by power series alone. To understand the full structure of solutions, we must turn to topological methods (instanton calculus), analytic continuation (Borel summation), and the functional-analytic framework of Chapter 2, which provides the rigorous foundations for these heuristic techniques.</p>
 
 <h2 id="references">References</h2>
 
 <ul>
-  <li>Hardy, G. H. (1949). <em>Divergent Series</em>. Oxford University Press.</li>
-  <li>Olver, F. W. J., et al. (2010). <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
-  <li>Olver, P. J. (1995). <em>Equivalence, Invariants, and Symmetry</em>. Cambridge University Press.</li>
-  <li>Whittaker, E. T., &amp; Watson, G. N. (1927). <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
+  <li><strong>Hardy, G. H. (1949).</strong> <em>Divergent Series</em>. Oxford University Press.</li>
+  <li><strong>Olver, F. W. J., Lozier, D. W., Boisvert, R. F., &amp; Clark, C. W. (2010).</strong> <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
+  <li><strong>Olver, P. J. (1995).</strong> <em>Equivalence, Invariants, and Symmetry</em>. Cambridge University Press.</li>
+  <li><strong>Whittaker, E. T., &amp; Watson, G. N. (1927).</strong> <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
 </ul>
 
 <h2 id="navigation">Navigation</h2>
