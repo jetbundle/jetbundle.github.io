@@ -17,12 +17,12 @@ class TextbookEngine {
     if (this.pyodideScriptLoaded) {
       return Promise.resolve();
     }
-    
+
     if (typeof loadPyodide !== 'undefined') {
       this.pyodideScriptLoaded = true;
       return Promise.resolve();
     }
-    
+
     return new Promise((resolve, reject) => {
       var script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
@@ -49,14 +49,14 @@ class TextbookEngine {
       // Load Pyodide script on-demand
       console.log('Loading Pyodide script...');
       await this.loadPyodideScript();
-      
+
       // Wait for loadPyodide to be available
       let retries = 0;
       while (typeof loadPyodide === 'undefined' && retries < 50) {
         await new Promise(resolve => setTimeout(resolve, 100));
         retries++;
       }
-      
+
       if (typeof loadPyodide === 'undefined') {
         throw new Error('loadPyodide function not available after script load');
       }

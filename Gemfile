@@ -6,6 +6,11 @@ gem "jekyll-seo-tag", "~> 2.8"
 gem "jekyll-remote-theme", "~> 0.4"
 gem "kramdown-parser-gfm"
 
+# Server-side LaTeX rendering (solves client-side issues)
+group :jekyll_plugins do
+  gem "jektex"
+end
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do

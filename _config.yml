@@ -44,6 +44,9 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-remote-theme
+  # Server-side LaTeX rendering (solves all client-side issues)
+  # NOTE: Uncomment after running 'bundle install' to install jektex gem
+  # - jektex
   # Math protection plugin (optional - uncomment if math rendering issues persist)
   # - math_protection  # Custom plugin to protect math from Kramdown processing
 
@@ -67,10 +70,29 @@ kramdown:
   gfm_quirks: []
 
 # Math rendering engine selection
-# Options: 'mathjax' or 'katex'
-# KaTeX is faster but has fewer LaTeX features
-# MathJax 3 is slower but has broader LaTeX support
-math_engine_client: 'katex'  # Testing KaTeX for better performance
+# Options: 'mathjax' or 'katex' (client-side) OR 'jektex' (server-side)
+# 
+# Client-side (current):
+#   - 'katex' - Fast, efficient (currently active)
+#   - 'mathjax' - Comprehensive LaTeX support
+# 
+# Server-side (recommended for reliability):
+#   - 'jektex' - Processes LaTeX during build, eliminates all client-side issues
+#                 Matches IDE preview exactly. Enable by uncommenting jektex plugin above.
+#
+math_engine_client: 'katex'  # Client-side rendering (use 'jektex' for server-side)
+
+# Jektex configuration (server-side LaTeX rendering)
+# Uncomment when jektex plugin is enabled
+# jektex:
+#   cache_dir: ".jektex-cache"
+#   silent: false
+#   macros:
+#     - ["\\RR", "\\mathbb{R}"]
+#     - ["\\NN", "\\mathbb{N}"]
+#     - ["\\ZZ", "\\mathbb{Z}"]
+#     - ["\\QQ", "\\mathbb{Q}"]
+#     - ["\\CC", "\\mathbb{C}"]
 
 # Math protection plugin settings
 # Set to false to disable the math protection plugin (relies on JavaScript fallback)
