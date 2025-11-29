@@ -44,7 +44,8 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-remote-theme
-  # Math protection plugin (if using custom plugins)
+  # Math protection plugin (optional - uncomment if math rendering issues persist)
+  # - math_protection  # Custom plugin to protect math from Kramdown processing
 
 # Markdown
 markdown: kramdown

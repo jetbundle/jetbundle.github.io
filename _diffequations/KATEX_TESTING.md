@@ -2,7 +2,7 @@
 
 ## Current Setup
 
-**Math Engine:** KaTeX (0.16.9) - Currently Active  
+**Math Engine:** KaTeX (0.16.9) - Currently Active
 **Configuration:** Set in `_config.yml` as `math_engine_client: 'katex'`
 
 ## Switching Between Engines
@@ -136,7 +136,6 @@ If you encounter rendering issues with KaTeX:
 
 ## Current Status
 
-**Active:** KaTeX (for testing)  
-**Fallback:** Easy switch to MathJax available  
+**Active:** KaTeX (for testing)
+**Fallback:** Easy switch to MathJax available
 **Compatibility:** All current content should work with KaTeX
-
