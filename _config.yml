@@ -50,6 +50,8 @@ plugins:
 markdown: kramdown
 kramdown:
   input: GFM
+  # NOTE: math_engine setting is for server-side kramdown processing (not currently used)
+  # Actual math rendering is done client-side via MathJax 3 loaded in layouts
   math_engine: mathjax
   math_engine_opts:
     preview: AsciiMath
