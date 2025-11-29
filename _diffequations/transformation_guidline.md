@@ -179,6 +179,7 @@ To proceed, we need the **Concept A**: [definition]. This allows us to...
 3. Replace `\left|` and `\right|` with `\mid` (even for absolute values)
 4. Verify no numbered steps in examples (remove "1.", "2.", etc.)
 5. Check all math renders correctly
+6. The only Latex envirometns that are allowed to be used are $...$ and $$...$$ .... You need to ensure that you are cosntantly chekcing to maek sure that there are no formatting errors, and that all LaTeX is corrected formatted. Correct all mistakes that might be in the files.
 
 **Output:** Properly formatted mathematical expressions
 

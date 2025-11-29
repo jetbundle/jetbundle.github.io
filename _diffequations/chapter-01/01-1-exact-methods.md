@@ -388,8 +388,6 @@ $$u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0$$
 
 </details>
 
-## Connections to Chapter Narrative
-
 Exact methods comprise the opening tier of the "explicit arsenal." They succeed when symmetry or coordinate choice flattens the vector field, but their fragility—non-Lipschitz behavior, elusive integrating factors, scarce Riccati solutions—necessitates the special functions, integral transforms, and spectral frameworks developed later in Chapter 1 and beyond.
 
 The failure of explicit methods for non-integrable systems introduces the concept of **Chaos** as the generic state of dynamical systems. When exact solutions are unavailable, we must turn to approximation, special functions, and ultimately the functional-analytic framework of Chapter 2.
