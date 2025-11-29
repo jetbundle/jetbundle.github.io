@@ -7,699 +7,658 @@
   <meta name="description" content="Divergence as information carrier">
 
   
-  <!-- KaTeX - PRIORITY: Load immediately for fast math rendering -->
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
-
-  <!-- Load KaTeX scripts with high priority, no defer -->
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-  <script>
-    // Render math immediately when page loads, before heavy scripts
-    (function() {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMath);
-      } else {
-        initMath();
-      }
-
-      function initMath() {
-        // Load auto-render script
-        var script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
-        script.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
-        script.crossOrigin = 'anonymous';
-        script.onload = function() {
-          if (window.renderMathInElement) {
-            window.renderMathInElement(document.body, {
-              delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 31: …, display: true}̲,
-             …" style="color:#cc0000">&#x27;, right: &#x27;\\]&#x27;, display: true},
-                {left: &#x27;\&lt;span class=&quot;katex-error&quot; title=&quot;ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 32: … display: false}̲
-              …&quot; style=&quot;color:#cc0000&quot;&gt;&#x27;, right: &#x27;\\)&#x27;, display: false}
-              ],
-              throwOnError: false,
-              strict: false,
-              trust: true,
-              ignoredTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;],
-              ignoredClasses: [&#x27;no-math&#x27;]
-            });
-            console.log(&#x27;KaTeX math rendered (priority load)&#x27;);
-          }
-        };
-        document.head.appendChild(script);
-      }
-    })();
-  &lt;/script&gt;
+  <!-- Jektex: Server-side LaTeX rendering - Math is pre-rendered during build -->
+  <!-- Only need KaTeX CSS for styling the pre-rendered HTML -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <!-- No JavaScript needed - math is already rendered as HTML! -->
   
 
-  &lt;!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering --&gt;
-  &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
-  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js&quot;&gt;&lt;/script&gt;
-  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js&quot;&gt;&lt;/script&gt;
+  <!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-  &lt;!-- Textbook CSS --&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/textbook.css&quot;&gt;
-&lt;/head&gt;
-&lt;body class=&quot;textbook-body theme-dark&quot;&gt;
-  &lt;div class=&quot;theme-toggle-container&quot;&gt;
-  &lt;button class=&quot;theme-toggle-btn&quot; id=&quot;theme-toggle&quot; title=&quot;Toggle Theme&quot; aria-label=&quot;Toggle dark/light theme&quot;&gt;
-    &lt;span class=&quot;theme-icon-sun&quot;&gt;☀&lt;/span&gt;
-    &lt;span class=&quot;theme-icon-moon&quot;&gt;🌙&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
+  <!-- Textbook CSS -->
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+</head>
+<body class="textbook-body theme-dark">
+  <div class="theme-toggle-container">
+  <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
+    <span class="theme-icon-sun">☀</span>
+    <span class="theme-icon-moon">🌙</span>
+  </button>
+</div>
 
 
-  &lt;div class=&quot;textbook-container&quot;&gt;
-    &lt;!-- Sidebar Navigation --&gt;
-    &lt;nav class=&quot;textbook-sidebar&quot;&gt;
-      &lt;div class=&quot;nav-header&quot;&gt;
-  &lt;h3&gt;Differential Equations&lt;/h3&gt;
-  &lt;p style=&quot;margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;&quot;&gt;2025 Edition&lt;/p&gt;
-&lt;/div&gt;
+  <div class="textbook-container">
+    <!-- Sidebar Navigation -->
+    <nav class="textbook-sidebar">
+      <div class="nav-header">
+  <h3>Differential Equations</h3>
+  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">2025 Edition</p>
+</div>
 
-&lt;nav class=&quot;nav-content&quot;&gt;
-  &lt;ul&gt;
+<nav class="nav-content">
+  <ul>
     
     
 
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/" >
               0. A Survey of Differential Equations and their Algebraic Geometry
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
         
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-01/&quot; &gt;
-            Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal
-          &lt;/a&gt;
-          &lt;ul&gt;
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-01/" >
+            Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
+          </a>
+          <ul>
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-1-exact-methods/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-1-exact-methods/" >
               1.1 Exact Methods for Ordinary Differential Equations
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-2-special-functions/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-2-special-functions/" >
               1.2 Special Functions of Mathematical Physics
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-3-integral-transforms/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-3-integral-transforms/" >
               1.3 Integral Transforms
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-4-linear-pde/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-4-linear-pde/" >
               1.4 Classical Linear Partial Differential Equations
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-5-asymptotic-analysis/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" >
               1.5 Asymptotic Analysis
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-6-perturbation-theory/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
               1.6 Classical Perturbation Theory
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-01/01-7-renormalization/&quot; &gt;
-              1.7 Classical Renormalization &amp; Non-Perturbative Methods
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-01/01-7-renormalization/" >
+              1.7 Classical Renormalization & Non-Perturbative Methods
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
+          </ul>
+        </li>
         
         
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-02/&quot; &gt;
-            Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions
-          &lt;/a&gt;
-          &lt;ul&gt;
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-02/" >
+            Chapter 2: Functional Analysis, Distributions & Weak Solutions
+          </a>
+          <ul>
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-1-distributions/&quot; &gt;
-              2.1 Distributions &amp; Test Functions
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-      
-    
-      
-        
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-2-sobolev-spaces/&quot; &gt;
-              2.2 Sobolev Spaces &amp; Weak Derivatives
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-1-distributions/" >
+              2.1 Distributions & Test Functions
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-3-hilbert-spaces/&quot; &gt;
-              2.3 Hilbert Space Theory &amp; Spectral Theorem
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-2-sobolev-spaces/" >
+              2.2 Sobolev Spaces & Weak Derivatives
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-4-unbounded-operators/&quot; &gt;
-              2.4 Unbounded Operators, Resolvents &amp; Semigroups
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-3-hilbert-spaces/" >
+              2.3 Hilbert Space Theory & Spectral Theorem
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-5-variational-methods/&quot; &gt;
-              2.5 Variational Methods &amp; Lax-Milgram
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-4-unbounded-operators/" >
+              2.4 Unbounded Operators, Resolvents & Semigroups
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-6-galerkin-methods/&quot; &gt;
-              2.6 Galerkin Methods &amp; Finite Elements
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-5-variational-methods/" >
+              2.5 Variational Methods & Lax-Milgram
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-02/02-7-fredholm-theory/&quot; &gt;
-              2.7 Fredholm Theory &amp; Index
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-6-galerkin-methods/" >
+              2.6 Galerkin Methods & Finite Elements
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
-        
-        
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-03/&quot; &gt;
-            Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation
-          &lt;/a&gt;
-          &lt;ul&gt;
-      
-    
-      
-        
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-1-manifolds-tensors/&quot; &gt;
-              3.1 Manifolds, Tensors &amp; Covariant Derivatives
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-02/02-7-fredholm-theory/" >
+              2.7 Fredholm Theory & Index
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-2-conservation-laws/&quot; &gt;
-              3.2 Systems of Conservation Laws &amp; Hyperbolicity
-            &lt;/a&gt;
-          &lt;/li&gt;
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-03/" >
+            Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-1-manifolds-tensors/" >
+              3.1 Manifolds, Tensors & Covariant Derivatives
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-3-entropy-solutions/&quot; &gt;
-              3.3 Entropy Solutions &amp; Shock Theory
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-2-conservation-laws/" >
+              3.2 Systems of Conservation Laws & Hyperbolicity
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-4-exterior-calculus/&quot; &gt;
-              3.4 Exterior Calculus &amp; Hodge Decomposition
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-3-entropy-solutions/" >
+              3.3 Entropy Solutions & Shock Theory
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-5-continuum-mechanics/&quot; &gt;
-              3.5 Continuum Mechanics &amp; Elasticity
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-4-exterior-calculus/" >
+              3.4 Exterior Calculus & Hodge Decomposition
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-03/03-6-geometric-optics/&quot; &gt;
-              3.6 Geometric Optics, Rays &amp; Caustics
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-5-continuum-mechanics/" >
+              3.5 Continuum Mechanics & Elasticity
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
-        
-        
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-04/&quot; &gt;
-            Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability
-          &lt;/a&gt;
-          &lt;ul&gt;
-      
-    
-      
-        
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-1-lie-symmetries/&quot; &gt;
-              4.1 Lie Symmetries &amp; Prolongation
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-03/03-6-geometric-optics/" >
+              3.6 Geometric Optics, Rays & Caustics
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-2-noether-theorem/&quot; &gt;
-              4.2 Noether&#x27;s Theorem &amp; Invariant Reduction
-            &lt;/a&gt;
-          &lt;/li&gt;
+          </ul>
+        </li>
+        
+        
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-04/" >
+            Chapter 4: Symmetry, Lie Theory & Classical Integrability
+          </a>
+          <ul>
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-1-lie-symmetries/" >
+              4.1 Lie Symmetries & Prolongation
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-3-integrable-systems/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-2-noether-theorem/" >
+              4.2 Noether's Theorem & Invariant Reduction
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-3-integrable-systems/" >
               4.3 Completely Integrable Systems
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-4-lax-pairs/&quot; &gt;
-              4.4 Lax Pairs &amp; Zero-Curvature Representations
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-4-lax-pairs/" >
+              4.4 Lax Pairs & Zero-Curvature Representations
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-5-riemann-hilbert/&quot; &gt;
-              4.5 Riemann-Hilbert &amp; Inverse Scattering
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-5-riemann-hilbert/" >
+              4.5 Riemann-Hilbert & Inverse Scattering
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-6-recursion-operators/&quot; &gt;
-              4.6 Recursion Operators &amp; Hirota Bilinearization
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-6-recursion-operators/" >
+              4.6 Recursion Operators & Hirota Bilinearization
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-7-susy-qm/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-7-susy-qm/" >
               4.7 Supersymmetric Quantum Mechanics
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-04/04-8-nonlocal-symmetries/&quot; &gt;
-              4.8 Nonlocal Symmetries &amp; Potential Systems
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-04/04-8-nonlocal-symmetries/" >
+              4.8 Nonlocal Symmetries & Potential Systems
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
+          </ul>
+        </li>
         
         
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-05/&quot; &gt;
-            Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics
-          &lt;/a&gt;
-          &lt;ul&gt;
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-05/" >
+            Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
+          </a>
+          <ul>
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-1-stochastic-calculus/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-1-stochastic-calculus/" >
               5.1 Stochastic Calculus Foundations
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-2-sdes/&quot; &gt;
-              5.2 SDEs &amp; Diffusion Processes
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-2-sdes/" >
+              5.2 SDEs & Diffusion Processes
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-3-geometric-stochastic/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-3-geometric-stochastic/" >
               5.3 Geometric Stochastic Analysis
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-4-rough-paths/&quot; &gt;
-              5.4 Rough Paths &amp; Controlled Rough Paths
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-4-rough-paths/" >
+              5.4 Rough Paths & Controlled Rough Paths
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-5-fractional-calculus/&quot; &gt;
-              5.5 Fractional Calculus &amp; Nonlocal Operators
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-5-fractional-calculus/" >
+              5.5 Fractional Calculus & Nonlocal Operators
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-6-spdes/&quot; &gt;
-              5.6 SPDEs &amp; Regularity Structures
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-6-spdes/" >
+              5.6 SPDEs & Regularity Structures
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-7-kinetic-theory/&quot; &gt;
-              5.7 Kinetic Theory &amp; Mean-Field Games
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-7-kinetic-theory/" >
+              5.7 Kinetic Theory & Mean-Field Games
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-8-fractal-geometry/&quot; &gt;
-              5.8 Fractal Geometry &amp; Dirichlet Forms
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-8-fractal-geometry/" >
+              5.8 Fractal Geometry & Dirichlet Forms
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-05/05-9-susy-stochastics/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-05/05-9-susy-stochastics/" >
               5.9 Supersymmetric Theory of Stochastics
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
+          </ul>
+        </li>
         
         
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-06/&quot; &gt;
-            Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs
-          &lt;/a&gt;
-          &lt;ul&gt;
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-06/" >
+            Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
+          </a>
+          <ul>
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-1-jet-bundles/&quot; &gt;
-              6.1 Jet Bundles &amp; Prolongation
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-      
-    
-      
-        
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-2-formal-integrability/&quot; &gt;
-              6.2 Formal Integrability &amp; Spencer Cohomology
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-1-jet-bundles/" >
+              6.1 Jet Bundles & Prolongation
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-3-exterior-systems/&quot; &gt;
-              6.3 Exterior Differential Systems &amp; Cartan-Kähler
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-2-formal-integrability/" >
+              6.2 Formal Integrability & Spencer Cohomology
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-4-metric-space/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-3-exterior-systems/" >
+              6.3 Exterior Differential Systems & Cartan-Kähler
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-4-metric-space/" >
               6.4 The Space of Riemannian Metrics
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-5-geometric-evolution/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-5-geometric-evolution/" >
               6.5 Geometric Evolution Equations
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-6-gauge-theories/&quot; &gt;
-              6.6 Gauge Theories &amp; Instanton Moduli
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-6-gauge-theories/" >
+              6.6 Gauge Theories & Instanton Moduli
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-06/06-7-nonlinear-systems/&quot; &gt;
-              6.7 Fully Nonlinear &amp; Overdetermined Systems
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-06/06-7-nonlinear-systems/" >
+              6.7 Fully Nonlinear & Overdetermined Systems
+            </a>
+          </li>
         
       
     
       
         
-          &lt;/ul&gt;
-        &lt;/li&gt;
+          </ul>
+        </li>
         
         
-        &lt;li class=&quot;chapter-item&quot;&gt;
-          &lt;a href=&quot;/diffequations/chapter-07/&quot; &gt;
-            Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution
-          &lt;/a&gt;
-          &lt;ul&gt;
+        <li class="chapter-item">
+          <a href="/diffequations/chapter-07/" >
+            Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
+          </a>
+          <ul>
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-1-d-modules/&quot; &gt;
-              7.1 D-Modules &amp; Holonomic Systems
-            &lt;/a&gt;
-          &lt;/li&gt;
-        
-      
-    
-      
-        
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-2-microlocal-analysis/&quot; &gt;
-              7.2 Microlocal Analysis &amp; Wave Front Sets
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-1-d-modules/" >
+              7.1 D-Modules & Holonomic Systems
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-3-riemann-hilbert/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-2-microlocal-analysis/" >
+              7.2 Microlocal Analysis & Wave Front Sets
+            </a>
+          </li>
+        
+      
+    
+      
+        
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-3-riemann-hilbert/" >
               7.3 Riemann-Hilbert Correspondence
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-4-fourier-integral/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-4-fourier-integral/" >
               7.4 Fourier Integral Operators
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-5-resurgence/&quot; class=&quot;active&quot;&gt;
-              7.5 Resurgence, Borel Summation &amp; Alien Calculus
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-5-resurgence/" class="active">
+              7.5 Resurgence, Borel Summation & Alien Calculus
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-6-index-theorems/&quot; &gt;
-              7.6 Index Theorems &amp; K-Theory
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-6-index-theorems/" >
+              7.6 Index Theorems & K-Theory
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-7-noncommutative/&quot; &gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-7-noncommutative/" >
               7.7 Noncommutative Geometry
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
       
         
-          &lt;li class=&quot;section-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/chapter-07/07-8-higher-categories/&quot; &gt;
-              7.8 Higher Categories, Derived Stacks &amp; TQFT
-            &lt;/a&gt;
-          &lt;/li&gt;
+          <li class="section-item">
+            <a href="/diffequations/chapter-07/07-8-higher-categories/" >
+              7.8 Higher Categories, Derived Stacks & TQFT
+            </a>
+          </li>
         
       
     
@@ -709,8 +668,8 @@
     
 
     
-      &lt;/ul&gt;
-    &lt;/li&gt;
+      </ul>
+    </li>
     
 
     
@@ -840,116 +799,116 @@
       
         
           
-          &lt;li class=&quot;chapter-item&quot;&gt;
-            &lt;a href=&quot;/diffequations/epilogue/&quot; &gt;
+          <li class="chapter-item">
+            <a href="/diffequations/epilogue/" >
               Epilogue: The Eternal Structure
-            &lt;/a&gt;
-          &lt;/li&gt;
+            </a>
+          </li>
         
       
     
-  &lt;/ul&gt;
-&lt;/nav&gt;
+  </ul>
+</nav>
 
-    &lt;/nav&gt;
+    </nav>
 
-    &lt;!-- Main Content --&gt;
-    &lt;main class=&quot;textbook-main&quot;&gt;
-      &lt;header class=&quot;textbook-header&quot;&gt;
-        &lt;h1&gt;Section 7.5: Resurgence, Borel Summation &amp; Alien Calculus&lt;/h1&gt;
-        &lt;p class=&quot;description&quot;&gt;Divergence as information carrier&lt;/p&gt;
-      &lt;/header&gt;
+    <!-- Main Content -->
+    <main class="textbook-main">
+      <header class="textbook-header">
+        <h1>Section 7.5: Resurgence, Borel Summation & Alien Calculus</h1>
+        <p class="description">Divergence as information carrier</p>
+      </header>
 
-      &lt;article class=&quot;textbook-content&quot;&gt;
-        &lt;h1 id=&quot;section-75-resurgence-borel-summation--alien-calculus&quot;&gt;Section 7.5: Resurgence, Borel Summation &amp; Alien Calculus&lt;/h1&gt;
+      <article class="textbook-content">
+        <h1 id="section-75-resurgence-borel-summation--alien-calculus">Section 7.5: Resurgence, Borel Summation &amp; Alien Calculus</h1>
 
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<h2 id="introduction">Introduction</h2>
 
-&lt;p&gt;The overarching narrative of this survey has repeatedly encountered the phenomenon of divergence. In Chapter 1.7, we observed that asymptotic expansions for nonlinear differential equations often diverge factorially. In Chapter 5.6, we saw that stochastic regularity structures require the subtraction of infinite counterterms to yield finite physical predictions. Until now, these divergences were treated as pathologies—obstacles to be managed or removed.&lt;/p&gt;
+<p>The overarching narrative of this survey has repeatedly encountered the phenomenon of divergence. In Chapter 1.7, we observed that asymptotic expansions for nonlinear differential equations often diverge factorially. In Chapter 5.6, we saw that stochastic regularity structures require the subtraction of infinite counterterms to yield finite physical predictions. Until now, these divergences were treated as pathologies—obstacles to be managed or removed.</p>
 
-&lt;p&gt;In this section, we effect a fundamental paradigm shift. We demonstrate that the divergence of a formal power series is not a failure of analysis, but a carrier of precise, non-perturbative information. By analyzing the analytic continuation of the Borel transform, we uncover a hidden algebraic structure governing these singularities. This structure, formalized by Jean Écalle as &lt;strong&gt;Alien Calculus&lt;/strong&gt;, provides the rigorous resolution to the renormalization problems encountered in stochastic dynamics and quantum field theory.&lt;/p&gt;
+<p>In this section, we effect a fundamental paradigm shift. We demonstrate that the divergence of a formal power series is not a failure of analysis, but a carrier of precise, non-perturbative information. By analyzing the analytic continuation of the Borel transform, we uncover a hidden algebraic structure governing these singularities. This structure, formalized by Jean Écalle as <strong>Alien Calculus</strong>, provides the rigorous resolution to the renormalization problems encountered in stochastic dynamics and quantum field theory.</p>
 
-&lt;h2 id=&quot;mathematical-content&quot;&gt;Mathematical Content&lt;/h2&gt;
+<h2 id="mathematical-content">Mathematical Content</h2>
 
-&lt;h3 id=&quot;resurgent-functions-and-the-borel-transform&quot;&gt;Resurgent Functions and the Borel Transform&lt;/h3&gt;
+<h3 id="resurgent-functions-and-the-borel-transform">Resurgent Functions and the Borel Transform</h3>
 
-&lt;p&gt;We begin by formalizing the relationship between divergent formal power series and analytic functions. Consider a formal power series solution to a nonlinear differential equation, typically taking the form:&lt;/p&gt;
+<p>We begin by formalizing the relationship between divergent formal power series and analytic functions. Consider a formal power series solution to a nonlinear differential equation, typically taking the form:</p>
 
-\[\tilde{u}(z) = \sum_{n=0}^\infty a_n z^{-n}</span>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msub><mi>a</mi><mi>n</mi></msub><msup><mi>z</mi><mrow><mo>−</mo><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\tilde{u}(z) = \sum_{n=0}^\infty a_n z^{-n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8213em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;In physical contexts, the coefficients $a_n$ often exhibit &lt;strong&gt;Gevrey-1 growth&lt;/strong&gt;, satisfying bounds of the form $&lt;/td&gt;
-      &lt;td&gt;a_n&lt;/td&gt;
-      &lt;td&gt;\leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the &lt;strong&gt;Borel Transform&lt;/strong&gt; $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>In physical contexts, the coefficients $a_n$ often exhibit <strong>Gevrey-1 growth</strong>, satisfying bounds of the form $</td>
+      <td>a_n</td>
+      <td>\leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the <strong>Borel Transform</strong> $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:</td>
+    </tr>
+  </tbody>
+</table>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">B</mi><mo stretchy="false">[</mo><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>ζ</mi><mo stretchy="false">)</mo><mo>=</mo><mover accent="true"><mi>u</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>ζ</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mfrac><msub><mi>a</mi><mi>n</mi></msub><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><msup><mi>ζ</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.03041em;">B</span><span class="mopen">[</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;p&gt;Due to the factorial division, the series $\hat{u}(\zeta)$ possesses a finite radius of convergence near the origin of the complex $\zeta$-plane (the Borel plane).&lt;/p&gt;
+<p>Due to the factorial division, the series $\hat{u}(\zeta)$ possesses a finite radius of convergence near the origin of the complex $\zeta$-plane (the Borel plane).</p>
 
-&lt;p&gt;A function is termed &lt;strong&gt;resurgent&lt;/strong&gt; if its Borel transform $\hat{u}(\zeta)$ extends analytically along all paths in the complex plane, avoiding a discrete set of singular points $\Omega = {\omega_1, \omega_2, \dots}$. These singularities are not random; their locations correspond to the actions of “instantons” or other non-perturbative sectors of the underlying physical theory.&lt;/p&gt;
+<p>A function is termed <strong>resurgent</strong> if its Borel transform $\hat{u}(\zeta)$ extends analytically along all paths in the complex plane, avoiding a discrete set of singular points $\Omega = {\omega_1, \omega_2, \dots}$. These singularities are not random; their locations correspond to the actions of “instantons” or other non-perturbative sectors of the underlying physical theory.</p>
 
-&lt;p&gt;To recover a solution in the physical $z$-plane, we apply the &lt;strong&gt;Laplace Transform&lt;/strong&gt;, the formal inverse of the Borel transform:&lt;/p&gt;
+<p>To recover a solution in the physical $z$-plane, we apply the <strong>Laplace Transform</strong>, the formal inverse of the Borel transform:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>S</mi><mi>θ</mi></msub><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>θ</mi></mrow></msup><mi mathvariant="normal">∞</mi></mrow></msubsup><msup><mi>e</mi><mrow><mo>−</mo><mi>z</mi><mi>ζ</mi></mrow></msup><mover accent="true"><mi>u</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>ζ</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>d</mi><mi>ζ</mi></mrow><annotation encoding="application/x-tex">S_\theta \tilde{u}(z) = \int_0^{e^{i\theta}\infty} e^{-z\zeta} \hat{u}(\zeta) \, d\zeta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6738em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7618em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.927em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span></span></span></span></span><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mord mathnormal mtight" style="margin-right:0.07378em;">ζ</span></span></span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span></span></span></span></span>
 
-&lt;p&gt;Here, the integration is performed along a ray from the origin at angle $\theta$. If this ray avoids all singularities in $\Omega$, the integral converges for sufficiently large $\text{Re}(z)$, defining a unique analytic function $S_\theta \tilde{u}(z)$. This process, &lt;strong&gt;Borel Summation&lt;/strong&gt;, assigns a unique analytic meaning to the divergent series.&lt;/p&gt;
+<p>Here, the integration is performed along a ray from the origin at angle $\theta$. If this ray avoids all singularities in $\Omega$, the integral converges for sufficiently large $\text{Re}(z)$, defining a unique analytic function $S_\theta \tilde{u}(z)$. This process, <strong>Borel Summation</strong>, assigns a unique analytic meaning to the divergent series.</p>
 
-&lt;h3 id=&quot;the-stokes-phenomenon-and-lateral-resummation&quot;&gt;The Stokes Phenomenon and Lateral Resummation&lt;/h3&gt;
+<h3 id="the-stokes-phenomenon-and-lateral-resummation">The Stokes Phenomenon and Lateral Resummation</h3>
 
-&lt;p&gt;The definition of the Borel sum $S_\theta$ depends on the direction $\theta$. A crisis arises when the integration path crosses a singularity $\omega \in \Omega$. Such a direction is termed a &lt;strong&gt;Stokes line&lt;/strong&gt; (or singular ray).&lt;/p&gt;
+<p>The definition of the Borel sum $S_\theta$ depends on the direction $\theta$. A crisis arises when the integration path crosses a singularity $\omega \in \Omega$. Such a direction is termed a <strong>Stokes line</strong> (or singular ray).</p>
 
-&lt;p&gt;As the integration path rotates across a Stokes line, the resulting function $S_\theta \tilde{u}(z)$ undergoes a discontinuous jump. This is the &lt;strong&gt;Stokes Phenomenon&lt;/strong&gt;, previously described asymptotically in Chapter 1.5, now understood rigorously as an obstruction to analytic continuation. If $\theta^-$ and $\theta^+$ are directions immediately flanking a singular ray containing $\omega$, the difference between the two summations is exponentially small in $z$:&lt;/p&gt;
+<p>As the integration path rotates across a Stokes line, the resulting function $S_\theta \tilde{u}(z)$ undergoes a discontinuous jump. This is the <strong>Stokes Phenomenon</strong>, previously described asymptotically in Chapter 1.5, now understood rigorously as an obstruction to analytic continuation. If $\theta^-$ and $\theta^+$ are directions immediately flanking a singular ray containing $\omega$, the difference between the two summations is exponentially small in $z$:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>S</mi><msup><mi>θ</mi><mo>+</mo></msup></msub><mo>−</mo><msub><mi>S</mi><msup><mi>θ</mi><mo>−</mo></msup></msub><mo stretchy="false">)</mo><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∼</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>ω</mi><mi>z</mi></mrow></msup></mrow><annotation encoding="application/x-tex">(S_{\theta^+} - S_{\theta^-}) \tilde{u}(z) \sim e^{-\omega z}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3419em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3419em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8213em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8213em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;p&gt;This exponential factor $e^{-\omega z}$ corresponds to non-perturbative corrections (instantons) that are invisible to the original power series expansion. The ambiguity of the summation is precisely the magnitude of the non-perturbative effect.&lt;/p&gt;
+<p>This exponential factor $e^{-\omega z}$ corresponds to non-perturbative corrections (instantons) that are invisible to the original power series expansion. The ambiguity of the summation is precisely the magnitude of the non-perturbative effect.</p>
 
-&lt;p&gt;To formalize this jump, we introduce the &lt;strong&gt;Alien Derivative&lt;/strong&gt; (or Alien Derivation), denoted $\Delta_\omega$. This operator acts on the algebra of resurgent functions and measures the singularity at $\omega$. Specifically, for a singularity at $\omega$, the alien derivative is defined via the comparison of lateral resummations:&lt;/p&gt;
+<p>To formalize this jump, we introduce the <strong>Alien Derivative</strong> (or Alien Derivation), denoted $\Delta_\omega$. This operator acts on the algebra of resurgent functions and measures the singularity at $\omega$. Specifically, for a singularity at $\omega$, the alien derivative is defined via the comparison of lateral resummations:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>S</mi><msup><mi>θ</mi><mo>+</mo></msup></msub><mo>−</mo><msub><mi>S</mi><msup><mi>θ</mi><mo>−</mo></msup></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>ω</mi><mo>∈</mo><msub><mi mathvariant="normal">Ω</mi><mi>θ</mi></msub></mrow></munder><msup><mi>e</mi><mrow><mo>−</mo><mi>ω</mi><mi>z</mi></mrow></msup><msub><mi>S</mi><msup><mi>θ</mi><mo>−</mo></msup></msub><mo>∘</mo><msub><mi mathvariant="normal">Δ</mi><mi>ω</mi></msub></mrow><annotation encoding="application/x-tex">S_{\theta^+} - S_{\theta^-} = \sum_{\omega \in \Omega_\theta} e^{-\omega z} S_{\theta^-} \circ \Delta_\omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3419em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3419em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4502em;vertical-align:-1.4002em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8557em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mtight">Ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4002em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8213em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3419em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7027em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mbin mtight">−</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;p&gt;Crucially, $\Delta_\omega$ satisfies the Leibniz rule ($\Delta_\omega(fg) = f \Delta_\omega g + g \Delta_\omega f$) and commutes with the standard derivative $\partial_z$, but effectively “extracts” the singular behavior near $\omega$ in the Borel plane. This operator allows us to translate analytic singularities in the Borel plane into algebraic operations in the space of formal series.&lt;/p&gt;
+<p>Crucially, $\Delta_\omega$ satisfies the Leibniz rule ($\Delta_\omega(fg) = f \Delta_\omega g + g \Delta_\omega f$) and commutes with the standard derivative $\partial_z$, but effectively “extracts” the singular behavior near $\omega$ in the Borel plane. This operator allows us to translate analytic singularities in the Borel plane into algebraic operations in the space of formal series.</p>
 
-&lt;h3 id=&quot;the-bridge-equation-and-hyperasymptotics&quot;&gt;The Bridge Equation and Hyperasymptotics&lt;/h3&gt;
+<h3 id="the-bridge-equation-and-hyperasymptotics">The Bridge Equation and Hyperasymptotics</h3>
 
-&lt;p&gt;The unifying power of this framework culminates in Écalle’s &lt;strong&gt;Bridge Equation&lt;/strong&gt;. This equation establishes a connection between the “natural” calculus of differential equations (involving $\partial_z$) and the “alien” calculus of singularities (involving $\Delta_\omega$).&lt;/p&gt;
+<p>The unifying power of this framework culminates in Écalle’s <strong>Bridge Equation</strong>. This equation establishes a connection between the “natural” calculus of differential equations (involving $\partial_z$) and the “alien” calculus of singularities (involving $\Delta_\omega$).</p>
 
-&lt;p&gt;For a large class of nonlinear systems, the alien derivative of the formal solution $\tilde{u}$ is proportional to the solution itself (or related terms), satisfying a relation of the form:&lt;/p&gt;
+<p>For a large class of nonlinear systems, the alien derivative of the formal solution $\tilde{u}$ is proportional to the solution itself (or related terms), satisfying a relation of the form:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Δ</mi><mi>ω</mi></msub><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo>=</mo><msub><mi>A</mi><mi>ω</mi></msub><mover accent="true"><mi>u</mi><mo>~</mo></mover></mrow><annotation encoding="application/x-tex">\Delta_\omega \tilde{u} = A_\omega \tilde{u}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;p&gt;or more generally, a differential equation in the alien variable:&lt;/p&gt;
+<p>or more generally, a differential equation in the alien variable:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo>˙</mo></mover><mo>=</mo><mo stretchy="false">[</mo><msub><mi mathvariant="normal">Δ</mi><mi>ω</mi></msub><mo separator="true">,</mo><mover accent="true"><mi>u</mi><mo>~</mo></mover><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\dot{\tilde{u}} = [\Delta_\omega, \tilde{u}]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9047em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9047em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span></span><span style="top:-3.2369em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1389em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord">Δ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">u</span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span>
 
-&lt;p&gt;where $A_\omega$ are transcendental constants (Stokes constants).&lt;/p&gt;
+<p>where $A_\omega$ are transcendental constants (Stokes constants).</p>
 
-&lt;p&gt;The Bridge Equation asserts that the divergence of the perturbative series contains complete information about the non-perturbative sectors. By computing the alien derivatives $\Delta_\omega \tilde{u}$, one can reconstruct the trans-series expansion—a generalized expansion involving terms like $e^{-\omega z}$, $\log z$, and $z^{-n}$—which captures the full analytic behavior of the solution globally.&lt;/p&gt;
+<p>The Bridge Equation asserts that the divergence of the perturbative series contains complete information about the non-perturbative sectors. By computing the alien derivatives $\Delta_\omega \tilde{u}$, one can reconstruct the trans-series expansion—a generalized expansion involving terms like $e^{-\omega z}$, $\log z$, and $z^{-n}$—which captures the full analytic behavior of the solution globally.</p>
 
-&lt;p&gt;This resolves the renormalization problem encountered in Chapter 5.6. The infinite counterterms required to define singular stochastic PDEs (such as the KPZ equation or $\Phi^4_3$) are not arbitrary subtractions. They are precisely the terms required to cancel the poles generated by the alien derivatives, ensuring that the physical observables remain single-valued and independent of the regularization scheme. The renormalization group flow is, in this light, a flow in the space of resurgent functions governed by the algebra of alien derivatives.&lt;/p&gt;
+<p>This resolves the renormalization problem encountered in Chapter 5.6. The infinite counterterms required to define singular stochastic PDEs (such as the KPZ equation or $\Phi^4_3$) are not arbitrary subtractions. They are precisely the terms required to cancel the poles generated by the alien derivatives, ensuring that the physical observables remain single-valued and independent of the regularization scheme. The renormalization group flow is, in this light, a flow in the space of resurgent functions governed by the algebra of alien derivatives.</p>
 
-&lt;h3 id=&quot;multisummability&quot;&gt;Multisummability&lt;/h3&gt;
+<h3 id="multisummability">Multisummability</h3>
 
-&lt;p&gt;In systems with multiple timescales or distinct levels of divergence (e.g., $n!$ vs $(2n)!$ growth), a single Borel transform is insufficient. We employ &lt;strong&gt;Multisummability&lt;/strong&gt;, a sequential process of Borel transforms, accelerations (integral transforms changing the kernel), and Laplace transforms. This ensures that even for complex dynamical systems, there exists a unique, constructive procedure to map formal solutions to actual trajectories. This generalizes the concept of a solution from a function to a &lt;strong&gt;cochain&lt;/strong&gt; in the complex plane, subject to the cohomological constraints of the Stokes phenomenon.&lt;/p&gt;
+<p>In systems with multiple timescales or distinct levels of divergence (e.g., $n!$ vs $(2n)!$ growth), a single Borel transform is insufficient. We employ <strong>Multisummability</strong>, a sequential process of Borel transforms, accelerations (integral transforms changing the kernel), and Laplace transforms. This ensures that even for complex dynamical systems, there exists a unique, constructive procedure to map formal solutions to actual trajectories. This generalizes the concept of a solution from a function to a <strong>cochain</strong> in the complex plane, subject to the cohomological constraints of the Stokes phenomenon.</p>
 
-&lt;h2 id=&quot;complete-examples&quot;&gt;Complete Examples&lt;/h2&gt;
+<h2 id="complete-examples">Complete Examples</h2>
 
-&lt;h3 id=&quot;example-751-canonical-resurgent-functionthe-airy-function&quot;&gt;Example 7.5.1: Canonical Resurgent Function—The Airy Function&lt;/h3&gt;
+<h3 id="example-751-canonical-resurgent-functionthe-airy-function">Example 7.5.1: Canonical Resurgent Function—The Airy Function</h3>
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $&lt;/td&gt;
-      &lt;td&gt;\arg z&lt;/td&gt;
-      &lt;td&gt;&lt; \pi/3$:&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Problem:</strong> Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $</td>
+      <td>\arg z</td>
+      <td>&lt; \pi/3$:</td>
+    </tr>
+  </tbody>
+</table>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Ai</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∼</mo><mfrac><mn>1</mn><mrow><mn>2</mn><msqrt><mi>π</mi></msqrt></mrow></mfrac><msup><mi>z</mi><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></msup><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><msup><mi>z</mi><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mo fence="true">)</mo></mrow><mo>×</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msub><mi>c</mi><mi>n</mi></msub><msup><mi>z</mi><mrow><mo>−</mo><mn>3</mn><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\text{Ai}(z) \sim \frac{1}{2\sqrt{\pi}} z^{-1/4} \exp\left(-\frac{2}{3} z^{3/2}\right) \times \sum_{n=0}^\infty c_n z^{-3n/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Ai</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.3097em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
@@ -964,24 +923,24 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1/4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3/2</span></span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span><span class="mord mathnormal mtight">n</span><span class="mord mtight">/2</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-&lt;p&gt;where $c_0 = 1$, $c_1 = 1/6$, $c_2 = 13/72$, etc.&lt;/p&gt;
+<p>where $c_0 = 1$, $c_1 = 1/6$, $c_2 = 13/72$, etc.</p>
 
-&lt;p&gt;&lt;strong&gt;Step-by-Step Solution:&lt;/strong&gt;&lt;/p&gt;
+<p><strong>Step-by-Step Solution:</strong></p>
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Formal Asymptotic Series:&lt;/strong&gt;
-The formal series is:&lt;/p&gt;
+<ol>
+  <li>
+    <p><strong>Formal Asymptotic Series:</strong>
+The formal series is:</p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>U</mi><mo>~</mo></mover><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><msub><mi>c</mi><mi>n</mi></msub><msup><mi>z</mi><mrow><mo>−</mo><mn>3</mn><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\tilde{U}(z) = \sum_{n=0}^\infty c_n z^{-3n/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1702em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9202em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span></span><span style="top:-3.6023em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9185em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span><span class="mord mathnormal mtight">n</span><span class="mord mtight">/2</span></span></span></span></span></span></span></span></span></span></span></span></span>
 
-    &lt;p&gt;&lt;strong&gt;Compute first few coefficients:&lt;/strong&gt;&lt;/p&gt;
+    <p><strong>Compute first few coefficients:</strong></p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo separator="true">,</mo><mspace width="1em"/><msub><mi>c</mi><mn>2</mn></msub><mo>=</mo><mfrac><mn>13</mn><mn>72</mn></mfrac><mo separator="true">,</mo><mspace width="1em"/><msub><mi>c</mi><mn>3</mn></msub><mo>=</mo><mfrac><mn>533</mn><mn>5184</mn></mfrac><mo separator="true">,</mo><mspace width="1em"/><msub><mi>c</mi><mn>4</mn></msub><mo>=</mo><mfrac><mn>38053</mn><mn>460800</mn></mfrac></mrow><annotation encoding="application/x-tex">c_0 = 1, \quad c_1 = \frac{1}{6}, \quad c_2 = \frac{13}{72}, \quad c_3 = \frac{533}{5184}, \quad c_4 = \frac{38053}{460800}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">72</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">13</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5184</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">533</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">460800</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">38053</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Borel Transform:&lt;/strong&gt;
-\(\mathcal{B}[\tilde{U}](\zeta) = \sum_{n=0}^\infty \frac{c_n}{n!} \zeta^n</span></p>
+  </li>
+  <li>
+    <p><strong>Borel Transform:</strong>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">B</mi><mo stretchy="false">[</mo><mover accent="true"><mi>U</mi><mo>~</mo></mover><mo stretchy="false">]</mo><mo stretchy="false">(</mo><mi>ζ</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mfrac><msub><mi>c</mi><mi>n</mi></msub><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><msup><mi>ζ</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">\mathcal{B}[\tilde{U}](\zeta) = \sum_{n=0}^\infty \frac{c_n}{n!} \zeta^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1702em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.03041em;">B</span><span class="mopen">[</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9202em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span></span><span style="top:-3.6023em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="mclose">]</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1493em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7115em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mclose mtight">!</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07378em;">ζ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></p>
 
     <p><strong>Explicit computation:</strong></p>
 

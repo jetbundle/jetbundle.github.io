@@ -7,7 +7,7 @@
 Markdown → Simple Parser → HTML → Math Renderer
 ```
 - ✅ No Liquid processing
-- ✅ No Kramdown quirks  
+- ✅ No Kramdown quirks
 - ✅ Clean LaTeX preserved
 - ✅ Works perfectly
 
@@ -22,7 +22,7 @@ Markdown → Liquid → Kramdown → HTML → Client Math JS
 
 ## The Real Problem
 
-**IDE:** Math renderer sees clean LaTeX from simple markdown  
+**IDE:** Math renderer sees clean LaTeX from simple markdown
 **Website:** Math renderer sees corrupted LaTeX after Liquid + Kramdown
 
 ## Solution: Server-Side Rendering
@@ -168,4 +168,3 @@ After Jektex:
 4. **Monitor build times** - Should be fast
 
 The key insight: **Server-side rendering eliminates ALL client-side issues** because the math is already HTML when it reaches the browser!
-

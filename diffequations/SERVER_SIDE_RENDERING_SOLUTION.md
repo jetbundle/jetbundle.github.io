@@ -2,7 +2,7 @@
 
 ## The Core Problem
 
-**IDE Markdown Preview:** Simple markdown → HTML → Math ✅ (Works perfectly)  
+**IDE Markdown Preview:** Simple markdown → HTML → Math ✅ (Works perfectly)
 **Jekyll Website:** Markdown → Liquid → Kramdown → HTML → Client Math ❌ (Fails)
 
 **Why IDE Works:**
@@ -254,4 +254,3 @@ After implementing Jektex:
 - Works exactly like IDE ✅
 
 **Jektex is the recommended solution** - it's the closest to "full HTML" while keeping markdown editing workflow.
-
