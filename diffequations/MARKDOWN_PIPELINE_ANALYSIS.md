@@ -31,7 +31,7 @@
    $\{x \mid x > 0\}$  ❌ May fail
    ```
    **Problem:** `\{` and `\}` might get processed by Liquid
-   
+
    **Solution:** Use `{% raw %}` tags OR double escape:
    ```markdown
    {% raw %}$\{x \mid x > 0\}${% endraw %}
@@ -48,7 +48,7 @@
    ```
    ```
    **Problem:** `$` might be interpreted as math delimiter
-   
+
    **Solution:** Jekyll should handle this, but sometimes needs explicit wrapping:
    ```markdown
    {% raw %}
@@ -72,7 +72,7 @@
    $a_{n}$  ❌ May become italic "a" followed by "{n}"
    ```
    **Problem:** Kramdown sees `_` as emphasis marker
-   
+
    **Solution:** Use `{::nomarkdown}` OR escape:
    ```markdown
    {::nomarkdown}$a_{n}${:/nomarkdown}
@@ -99,7 +99,7 @@
    $\{x\}$  ❌ Backslash might be removed
    ```
    **Problem:** Jekyll/Kramdown removes single backslashes before special chars
-   
+
    **Solution:** Double escape OR use `{% raw %}`:
    ```markdown
    $\\{x\\}$
@@ -110,7 +110,7 @@
    The price is $50.  ❌ "$50" might be treated as inline math
    ```
    **Problem:** Kramdown sees `$` and thinks it's math
-   
+
    **Solution:** Escape: `\$50` OR use `{::nomarkdown}`
 
 ### Stage 3: HTML Generation
@@ -129,7 +129,7 @@
    $$
    ```
    **Problem:** Multiple spaces might collapse
-   
+
    **Solution:** Usually fine, but can cause issues with spacing-sensitive LaTeX
 
 2. **HTML Entity Encoding**
@@ -152,7 +152,7 @@
    <p>$a_{n}$</p>  ❌ Underscore already converted to HTML
    ```
    **Problem:** By the time math renderer sees it, markdown has already processed it
-   
+
    **Solution:** Prevent markdown processing with `{::nomarkdown}`
 
 2. **Conflicting Delimiters**
@@ -378,4 +378,3 @@ $$\int_0^1 \frac{x}{1+x} dx$$
 2. **Inspect HTML source** - see what Kramdown outputs
 3. **Apply targeted fixes** - use appropriate solution for each issue
 4. **Consider automated solution** - plugin to preprocess math blocks
-

@@ -3,7 +3,7 @@
 ## Quick Diagnostic: Why Math Works in IDE But Fails on Website
 
 ### The Problem
-**IDE Markdown Preview:** Simple markdown → HTML → math renderer (works!)  
+**IDE Markdown Preview:** Simple markdown → HTML → math renderer (works!)
 **Jekyll Website:** Markdown → **Liquid** → **Kramdown** → HTML → math renderer (fails!)
 
 ### Common Failure Points
@@ -111,7 +111,7 @@ Given your content uses:
    ```markdown
    # Change this:
    $\{x \mid x > 0\}$
-   
+
    # To this:
    $\left\{x \mid x > 0\right\}$
    ```
@@ -120,7 +120,7 @@ Given your content uses:
    ```markdown
    # Change this:
    $a_{n}$
-   
+
    # To this:
    {::nomarkdown}$a_{n}${:/nomarkdown}
    ```
@@ -162,7 +162,7 @@ Test these specific cases on your website:
 # Test 1: Curly braces
 $\{x\}$
 
-# Test 2: Subscripts  
+# Test 2: Subscripts
 $a_{n}$
 
 # Test 3: Superscripts
@@ -224,4 +224,3 @@ $       →  \$ (only in regular text)
 3. **Apply targeted fixes** using this guide
 4. **If many issues**, enable the math protection plugin
 5. **Test thoroughly** after changes
-
