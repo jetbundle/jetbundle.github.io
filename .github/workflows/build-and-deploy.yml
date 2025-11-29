@@ -33,13 +33,32 @@ jobs:
           bundler-cache: true
       
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle install || exit 1
+          bundle list
       
       - name: Build Jekyll site
-        run: bundle exec jekyll build
+        run: |
+          bundle exec jekyll build --trace 2>&1 || {
+            echo "Build failed! Error details:"
+            exit 1
+          }
         env:
           JEKYLL_ENV: production
-          PAGES_REPO_NWO: ${{ github.repository }}
+      
+      - name: Verify build output
+        run: |
+          if [ ! -d "_site" ]; then
+            echo "ERROR: _site directory not found!"
+            ls -la
+            exit 1
+          fi
+          if [ ! -f "_site/index.html" ]; then
+            echo "WARNING: index.html not found in _site!"
+            echo "Files in _site:"
+            find _site -type f -name "*.html" | head -10
+          fi
+          echo "Build successful! Found $(find _site -name '*.html' | wc -l) HTML files"
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
