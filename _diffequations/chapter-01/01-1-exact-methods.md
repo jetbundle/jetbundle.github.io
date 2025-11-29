@@ -94,11 +94,11 @@ Geometrically, this states that the vector field $(M, N)$ is irrotational (has z
 
 > Solve the equation $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.
 
-> 1. **Check Exactness:** $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) = 2x + 2y$. They match.
+> **Check Exactness:** $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) = 2x + 2y$. They match.
 
-> 2. **Integrate:** Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 + h(y)$.
+> **Integrate:** Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 + h(y)$.
 
-> 3. **Consistency:** Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy + h'(y)$. Matching this with $N$, we find $h'(y) = 0$.
+> **Consistency:** Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy + h'(y)$. Matching this with $N$, we find $h'(y) = 0$.
 
 > The general solution is the implicit curve $x^2y + xy^2 = C$.
 
