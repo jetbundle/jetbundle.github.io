@@ -14,7 +14,7 @@ parent_section: null
 
 # Section 1.6: Classical Perturbation Theory
 
-> Perturbation theory reveals that nonlinear problems are "almost linear"—but secular terms and boundary layers expose the fragile nature of this approximation, requiring sophisticated resummation techniques.
+> Perturbation theory trades exact solvability for approximate validity: we expand around what we can solve, but secular terms expose the fragility of this approach over long times.
 
 ## Introduction
 
@@ -40,9 +40,9 @@ Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system 
 > y_{1}(x)=\frac{1}{2}(\sin x-\cos x+e^{-x}).
 > $$
 
-> Thus $y\approx e^{-x}+\frac{\epsilon}{2}(\sin x-\cos x+e^{-x})$, matching the Taylor expansion of the exact solution. Regular perturbation succeeds when the perturbation is non-resonant and the time interval is finite.
+> Thus $y\approx e^{-x}+\frac{\epsilon}{2}(\sin x-\cos x+e^{-x})$, matching the Taylor expansion of the exact solution.
 
-This demonstrates that regular perturbation works well when the perturbation introduces no resonant forcing. The solution remains bounded and the expansion converges uniformly on compact time intervals.
+Regular perturbation works beautifully when the perturbation is truly small and the unperturbed solution is stable. However, this success is deceptive—the series may diverge even when the exact solution is perfectly well-behaved.
 
 > **Divergence in Regular Perturbation**
 
@@ -54,9 +54,9 @@ This demonstrates that regular perturbation works well when the perturbation int
 > y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}
 > $$
 
-> has radius $\mid \epsilon\mid <3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating that even when the series converges, it may have a finite radius of convergence determined by singularities in the complex plane.
+> has radius $\mid \epsilon \mid <3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.
 
-This example shows that convergence is not guaranteed, even for simple nonlinear perturbations. The radius of convergence is determined by the location of singularities in the complex $\epsilon$-plane, which may depend on $x$.
+The radius of convergence is controlled by the nearest singularity in the complex $\epsilon$-plane. Even when the exact solution exists for all time, the perturbation series may diverge, revealing that convergence is a delicate property.
 
 ## Singular Perturbations and Boundary Layers
 
@@ -78,17 +78,17 @@ setting $\epsilon=0$ reduces the order and loses boundary conditions. The soluti
 > y(x;\epsilon)\approx e^{-x/2}+(1-e^{-1/2})e^{-2(1-x)/\epsilon},
 > $$
 
-> capturing the boundary layer near $x=1$. The solution jumps from the outer behavior to satisfy the boundary condition over a distance of order $\epsilon$.
+> capturing the boundary layer near $x=1$.
 
-The boundary layer arises because setting $\epsilon=0$ loses one boundary condition. The solution must adjust rapidly near the boundary to recover this condition, creating a thin layer where derivatives are large.
+Boundary layers arise when the highest derivative is small but cannot be ignored near boundaries. The solution transitions rapidly in a thin region to satisfy the boundary condition that would otherwise be lost in the reduced equation.
 
 > **Nonlinear Boundary Layer**
 
 > Solve $\epsilon y''=y^{2}-1$, $y(0)=0$, $y(1)=2$.
 
-> The outer solution is $y_{0}=1$. Near $x=0$, $\tau=x/\sqrt{\epsilon}$ leads to $Y''=Y^{2}-1$ with heteroclinic solution $Y(\tau)=\tanh(\tau/\sqrt{2})$. Matching with $y_{0}$ produces the composite $y\approx \tanh(x/\sqrt{2\epsilon})$, which coincides with the exact solution. The boundary layer thickness is $\sqrt{\epsilon}$ rather than $\epsilon$ because the nonlinearity changes the scaling.
+> The outer solution is $y_{0}=1$. Near $x=0$, $\tau=x/\sqrt{\epsilon}$ leads to $Y''=Y^{2}-1$ with heteroclinic solution $Y(\tau)=\tanh(\tau/\sqrt{2})$. Matching with $y_{0}$ produces the composite $y\approx \tanh(x/\sqrt{2\epsilon})$, which coincides with the exact solution.
 
-Nonlinear boundary layers can have different thickness scales than linear ones. The scaling is determined by balancing the small parameter with the nonlinear terms in the inner equation.
+Nonlinear boundary layers can be solved exactly in some cases, providing exact solutions that exhibit the characteristic rapid transition. The boundary layer thickness $\delta(\epsilon) = \sqrt{\epsilon}$ reflects the nonlinear structure of the equation.
 
 ## Poincaré–Lindstedt Method
 
@@ -104,9 +104,9 @@ For weakly nonlinear oscillators, naïve perturbation introduces resonant forcin
 > \omega=1+\frac{3}{8}\epsilon-\frac{21}{256}\epsilon^{2}+O(\epsilon^{3}),
 > $$
 
-> ensuring bounded periodic motion without secular growth. The frequency shifts with amplitude, a hallmark of nonlinear oscillations.
+> ensuring bounded periodic motion without secular growth.
 
-The Poincaré–Lindstedt method removes secular terms by adjusting the frequency. The frequency shift reflects the nonlinearity: larger amplitudes lead to different oscillation frequencies.
+The Poincaré–Lindstedt method reveals that nonlinearity shifts the frequency—the oscillator is no longer exactly periodic at the linear frequency. This frequency shift is a fundamental characteristic of nonlinear oscillators, observable in many physical systems.
 
 ## Method of Multiple Scales
 
@@ -119,100 +119,153 @@ Systems with slow modulation require independent times $t_{0}=t$, $t_{1}=\epsilo
 > Introduce $t_{0}=t$, $t_{1}=\epsilon t$, and expand $y=Y_{0}(t_{0},t_{1})+\epsilon Y_{1}+\cdots$. The $O(1)$ solution is $Y_{0}=A(t_{1})e^{i t_{0}}+\bar{A}(t_{1})e^{-i t_{0}}$. The $O(\epsilon)$ equation yields the solvability condition
 
 > $$
-> 2A'(t_{1})+(4\mid A\mid^{2}+1)A=0,
+> 2A'(t_{1})+(4\mid A \mid^{2}+1)A=0,
 > $$
 
-> showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation. The amplitude decays on the slow time scale $t_{1}=\epsilon t$, while oscillating on the fast time scale $t_{0}=t$.
+> showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.
 
-Multiple scales capture dynamics on different time scales simultaneously. The fast oscillations are modulated by slow amplitude variations, which are determined by the solvability conditions.
+Multiple scales reveal that the amplitude and phase evolve on a slow timescale, separate from the rapid oscillations. The solvability condition (removing resonant terms) produces evolution equations for these slow variables, capturing phenomena like amplitude decay and frequency modulation that single-scale perturbation cannot see.
 
 ## Challenge Problems
 
-The following problems synthesize concepts of regular and singular perturbation, secular terms, and multiple scales.
+The following problems synthesize concepts from regular perturbation, singular perturbations, Poincaré–Lindstedt method, and multiple scales.
 
-### Challenge 1: Secular Terms and Resonance
+### Challenge 1: Secular Terms and Poincaré–Lindstedt
 
-For the equation $y''+y=\epsilon y^{2}$ with $y(0)=1$, $y'(0)=0$, show that naïve perturbation produces secular terms. Apply the Poincaré–Lindstedt method to remove these terms and determine the frequency shift to $O(\epsilon^{2})$. Compare with the exact solution when available.
+Consider the weakly nonlinear oscillator $y'' + y + \epsilon y^2 = 0$ with $y(0) = 1$, $y'(0) = 0$. Show that naïve perturbation produces secular terms, then use the Poincaré–Lindstedt method to remove them. Compute the frequency shift to $O(\epsilon^2)$ and explain why the quadratic nonlinearity creates different behavior than the cubic nonlinearity in the Duffing oscillator.
 
-*(Hint: The unperturbed solution is $y_{0}=\cos t$. At $O(\epsilon)$, the forcing term $y_{0}^{2}=\cos^{2}t$ contains a constant term that resonates with the homogeneous solution.)*
-
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The unperturbed solution is $y_{0}=\cos t$. At $O(\epsilon)$, we have $y_{1}''+y_{1}=\cos^{2}t=\frac{1}{2}(1+\cos 2t)$. The constant term $\frac{1}{2}$ produces a secular term $\frac{1}{2}t\sin t$ because it resonates with the homogeneous solution.
-
-Using Poincaré–Lindstedt with $\tau=\omega t$ and $\omega=1+\epsilon\omega_{1}+\epsilon^{2}\omega_{2}+\cdots$, the frequency shift removes the resonance. At $O(\epsilon)$, we find $\omega_{1}=0$ (no first-order shift), but at $O(\epsilon^{2})$, we get $\omega_{2}=-\frac{5}{48}$ to cancel secular terms.
-
-**Key Insights:**
-- Secular terms arise from resonant forcing at the natural frequency.
-- Poincaré–Lindstedt removes them by adjusting the frequency.
-- The frequency shift is determined order-by-order to cancel resonances.
-
-</details>
-
-### Challenge 2: Boundary Layer Matching
-
-For $\epsilon y''+y'+y=0$ with $y(0)=0$, $y(1)=1$, construct the matched asymptotic expansion. Determine the boundary layer location and thickness, and derive the composite solution valid to $O(\epsilon)$.
+*(Hint: The quadratic term creates a non-zero average forcing that shifts the equilibrium position. Use $\tau = \omega t$ with $\omega = 1 + \epsilon \omega_1 + \epsilon^2 \omega_2 + \cdots$ and expand $y(\tau) = y_0(\tau) + \epsilon y_1(\tau) + \cdots$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The outer solution (setting $\epsilon=0$) is $y_{0}=C e^{-x}$, but this cannot satisfy both boundary conditions. Since $y(1)=1$, we take $C=e$, giving $y_{0}=e^{1-x}$.
+Naïve perturbation with $y(t) = y_0(t) + \epsilon y_1(t) + \cdots$ gives:
 
-A boundary layer is needed at $x=0$ to satisfy $y(0)=0$. Introduce $\tau=x/\epsilon$ and $Y(\tau)=y(\epsilon\tau)$. The inner equation is $Y''+Y'+O(\epsilon)=0$, so $Y=A+B e^{-\tau}$. Matching: $\lim_{\tau\to\infty}Y(\tau)=\lim_{x\to 0}y_{0}(x)=e$, so $A=e$. The boundary condition $Y(0)=0$ gives $B=-e$. The composite solution is:
+- $O(1)$: $y_0'' + y_0 = 0$ with $y_0(0) = 1$, $y_0'(0) = 0$, so $y_0(t) = \cos t$.
+- $O(\epsilon)$: $y_1'' + y_1 = -y_0^2 = -\cos^2 t = -\frac{1}{2}(1 + \cos 2t)$.
 
-$$y(x;\epsilon)\approx e^{1-x}-e e^{-x/\epsilon}.$$
+The particular solution contains a constant term $-\frac{1}{2}$ (shifting the equilibrium) and a resonant term proportional to $t \sin t$ (secular growth).
+
+Using Poincaré–Lindstedt with $\tau = \omega t$, $\omega = 1 + \epsilon \omega_1 + \cdots$, we have:
+
+- $O(1)$: $y_0'' + y_0 = 0$, so $y_0(\tau) = \cos \tau$.
+- $O(\epsilon)$: $y_1'' + y_1 = -y_0^2 + 2\omega_1 y_0'' = -\frac{1}{2}(1 + \cos 2\tau) - 2\omega_1 \cos \tau$.
+
+To remove secular terms, we set the coefficient of $\cos \tau$ to zero: $-2\omega_1 = 0$, so $\omega_1 = 0$.
+
+Continuing to $O(\epsilon^2)$ reveals that $\omega_2 \neq 0$, so the frequency shift appears at second order. The quadratic nonlinearity creates a DC shift but no first-order frequency shift, unlike cubic nonlinearity which shifts frequency at first order.
 
 **Key Insights:**
-- Boundary layers arise when setting $\epsilon=0$ loses a boundary condition.
-- Matching connects inner and outer solutions in the overlap region.
-- The composite solution is valid uniformly across the domain.
+- Quadratic nonlinearities shift equilibrium positions but don't affect frequency at first order.
+- Secular terms must be removed systematically at each order.
+- The order at which frequency shifts appear depends on the symmetry of the nonlinearity.
 
 </details>
 
-### Challenge 3: Multiple Scales for a Parametrically Driven Oscillator
+### Challenge 2: Matched Asymptotic Expansions
 
-For $y''+y+\epsilon\cos(2t)y=0$ (Mathieu equation), use multiple scales to determine the stability boundaries. Show that near resonance, slow amplitude modulation occurs, and derive the amplitude equations that determine stability.
+Solve the singular perturbation problem $\epsilon y'' + (1 + x) y' + y = 0$ on $[0,1]$ with $y(0) = 0$ and $y(1) = 1$ using matched asymptotic expansions. Identify the boundary layer location, determine its thickness, construct both the outer and inner solutions, and match them to obtain a uniformly valid composite solution.
+
+*(Hint: The reduced equation $(1+x)y' + y = 0$ loses one boundary condition. Determine which boundary cannot be satisfied by the outer solution, indicating where the boundary layer forms. Use a stretched coordinate to resolve the layer.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Introduce $t_{0}=t$ and $t_{1}=\epsilon t$. The unperturbed solution is $Y_{0}=A(t_{1})e^{it_{0}}+\bar{A}(t_{1})e^{-it_{0}}$. The perturbation $\cos(2t)=\frac{1}{2}(e^{2it_{0}}+e^{-2it_{0}})$ produces terms like $A e^{3it_{0}}$ and $\bar{A} e^{-it_{0}}$. The term $\bar{A} e^{-it_{0}}$ resonates.
+The outer solution solves $(1+x)y' + y = 0$, giving $y_0(x) = C/(1+x)$. Applying $y(1) = 1$ gives $C = 2$, so $y_0(x) = 2/(1+x)$. This satisfies the right boundary but gives $y_0(0) = 2 \neq 0$, so a boundary layer forms at $x = 0$.
 
-The solvability condition gives:
+Using the stretched coordinate $\tau = x/\epsilon$, the inner equation becomes:
 
-$$2i A'(t_{1})+\frac{1}{2}\bar{A}(t_{1})=0.$$
+$$
+Y'' + (1 + \epsilon \tau) Y' + \epsilon Y = 0.
+$$
 
-Writing $A=a e^{i\phi}$, we find exponential growth when the real part of the eigenvalues is positive, corresponding to parametric resonance. The stability boundaries occur when the eigenvalues are purely imaginary.
+To leading order: $Y'' + Y' = 0$, with solution $Y(\tau) = A + B e^{-\tau}$. Applying $Y(0) = 0$ gives $A + B = 0$, so $Y(\tau) = A(1 - e^{-\tau})$.
+
+Matching: as $\tau \to \infty$, $Y(\tau) \to A$. As $x \to 0$, $y_0(x) \to 2$. Therefore $A = 2$, and the inner solution is $Y(\tau) = 2(1 - e^{-\tau})$.
+
+The composite solution is:
+
+$$
+y(x) = y_0(x) + Y(x/\epsilon) - (\text{matching limit}) = \frac{2}{1+x} + 2(1 - e^{-x/\epsilon}) - 2 = \frac{2}{1+x} - 2e^{-x/\epsilon}.
+$$
+
+This satisfies both boundary conditions and is uniformly valid.
 
 **Key Insights:**
-- Parametric driving can destabilize the trivial solution.
-- Multiple scales capture the slow amplitude evolution.
-- Stability is determined by the eigenvalues of the amplitude equation.
+- Boundary layers form where the outer solution cannot satisfy boundary conditions.
+- Matching connects the outer and inner solutions in their overlap region.
+- The composite solution is constructed by subtracting the common limit to avoid double-counting.
 
 </details>
 
-### Challenge 4: WKB as a Singular Perturbation
+### Challenge 3: Multiple Scales for Van der Pol Oscillator
 
-Show that the WKB approximation for $\epsilon^{2}y''+Q(x)y=0$ can be viewed as a singular perturbation problem. Derive the WKB solution using matched asymptotics by treating the turning point as a boundary layer. Match the exponential solution (in the classically forbidden region) to the oscillatory solution (in the classically allowed region) using the Airy function as the transition solution.
+Apply the method of multiple scales to the Van der Pol oscillator $y'' - \epsilon(1 - y^2) y' + y = 0$ with initial conditions $y(0) = 1$, $y'(0) = 0$. Derive the slow-time evolution equation for the amplitude and show that the system evolves to a limit cycle. Compute the limit cycle amplitude and compare with the exact value $A = 2$.
+
+*(Hint: Use $t_0 = t$, $t_1 = \epsilon t$ and expand $y = Y_0(t_0, t_1) + \epsilon Y_1 + \cdots$. The solvability condition at $O(\epsilon)$ gives the amplitude equation. Look for fixed points where $A' = 0$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Near a turning point $x_{0}$ where $Q(x_{0})=0$, set $\xi=(x-x_{0})/\epsilon^{2/3}$. The equation becomes $Y''+\epsilon^{2/3}Q'(\xi)Y=0$, which to leading order is the Airy equation $Y''-\xi Y=0$ (after appropriate scaling).
+Using multiple scales with $y(t) = Y_0(t_0, t_1) + \epsilon Y_1(t_0, t_1) + \cdots$ and $d/dt = \partial_{t_0} + \epsilon \partial_{t_1}$:
 
-In the forbidden region ($x<x_{0}$), the WKB solution is exponential. In the allowed region ($x>x_{0}$), it is oscillatory. The Airy function provides the transition between these regions. Matching gives the connection formula with the $\pi/4$ phase shift.
+- $O(1)$: $\partial_{t_0}^2 Y_0 + Y_0 = 0$, so $Y_0 = A(t_1) e^{i t_0} + \bar{A}(t_1) e^{-i t_0}$.
+- $O(\epsilon)$: $\partial_{t_0}^2 Y_1 + Y_1 = (1 - Y_0^2) \partial_{t_0} Y_0 - 2 \partial_{t_0} \partial_{t_1} Y_0$.
+
+Substituting $Y_0$ and removing secular terms (coefficients of $e^{\pm i t_0}$) gives:
+
+$$
+2 A'(t_1) = A(t_1) \left(1 - \mid A(t_1) \mid^2\right).
+$$
+
+Writing $A(t_1) = \frac{1}{2} a(t_1) e^{i \phi(t_1)}$, the amplitude equation is:
+
+$$
+a' = \frac{a}{2} \left(1 - \frac{a^2}{4}\right).
+$$
+
+Fixed points occur at $a = 0$ (unstable) and $a = 2$ (stable). The limit cycle amplitude is $A = 2$, matching the exact result.
 
 **Key Insights:**
-- WKB can be derived via singular perturbation methods.
-- Turning points act as boundary layers connecting different regions.
-- The Airy function is the universal transition solution for linear turning points.
+- Multiple scales reveal the slow evolution of the amplitude envelope.
+- Limit cycles correspond to stable fixed points of the amplitude equation.
+- The method captures the transition from initial conditions to the attractor.
 
 </details>
 
-Regular perturbation works for finite time intervals when perturbations are non-resonant, but its limitations are severe: secular terms destroy validity for long times, boundary layers appear when the small parameter multiplies the highest derivative, and convergence is not guaranteed even for simple nonlinearities. Singular perturbation and multiple scales address these issues but require ad-hoc assumptions about boundary layer locations and time scales.
+### Challenge 4: WKB as Singular Perturbation
 
-The failure of naïve perturbation—secular growth, boundary layer formation, and convergence breakdown—demonstrates that nonlinear problems cannot be solved by simple power series expansions. To handle these issues systematically, we must turn to renormalization group methods and Borel summation, which provide principled resummation techniques that recover the correct long-time and global behavior.
+Show that the WKB approximation for $\epsilon^2 y'' + Q(x) y = 0$ can be viewed as a singular perturbation problem. Identify the turning points (where $Q(x) = 0$) as locations where the perturbation becomes singular. Use matched asymptotic expansions near a turning point to recover the Airy function connection formulas.
+
+*(Hint: Near a turning point $x_0$ where $Q(x_0) = 0$, expand $Q(x) \approx Q'(x_0)(x - x_0)$. Use the stretched coordinate $\xi = (x - x_0)/\epsilon^{2/3}$ to obtain the Airy equation. Match WKB solutions on both sides to the Airy solution.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The WKB ansatz $y = A(x) \exp(i S(x)/\epsilon)$ with $S' = \pm \sqrt{Q(x)}$ breaks down where $Q(x) = 0$ (turning points), making this a singular perturbation problem.
+
+Near a turning point at $x_0$ with $Q'(x_0) > 0$, expand $Q(x) \approx Q'(x_0)(x - x_0)$. Using the stretched coordinate $\xi = (x - x_0)/\epsilon^{2/3}$, the equation becomes:
+
+$$
+\frac{d^2 y}{d\xi^2} - Q'(x_0) \xi y = 0,
+$$
+
+which is the Airy equation (after rescaling).
+
+The Airy function $\operatorname{Ai}(\xi)$ has the asymptotics:
+- For $\xi \to +\infty$: $\operatorname{Ai}(\xi) \sim (2\sqrt{\pi} \xi^{1/4})^{-1} \exp(-2\xi^{3/2}/3)$ (exponentially decaying)
+- For $\xi \to -\infty$: $\operatorname{Ai}(\xi) \sim (\sqrt{\pi} \mid \xi \mid^{1/4})^{-1} \sin(2\mid \xi \mid^{3/2}/3 + \pi/4)$ (oscillatory)
+
+Matching these to the WKB solutions on either side provides the connection formulas, including the $\pi/4$ phase shift.
+
+**Key Insights:**
+- Turning points are where the WKB approximation becomes singular.
+- Local analysis near turning points reveals the global connection formulas.
+- The method of matched asymptotic expansions unifies WKB and singular perturbation theory.
+
+</details>
+
+Perturbation theory extends the explicit arsenal by allowing systematic expansion around solvable limits. However, its limitations are profound: regular perturbation diverges due to secular terms or finite convergence radii, singular perturbations require sophisticated matching techniques that break down for complex geometries, and multiple scales methods become intractable for systems with many interacting timescales. These restrictions motivate the renormalization group methods, Borel summation, and non-perturbative techniques of the next section, which provide frameworks for resumming divergent series and capturing exponentially small effects invisible to power series.
 
 ## References
 
