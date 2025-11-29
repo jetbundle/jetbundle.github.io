@@ -65,6 +65,12 @@ kramdown:
   # Tables will still work but won't conflict with $...$ math
   gfm_quirks: []
 
+# Math rendering engine selection
+# Options: 'mathjax' or 'katex'
+# KaTeX is faster but has fewer LaTeX features
+# MathJax 3 is slower but has broader LaTeX support
+math_engine_client: 'katex'  # Testing KaTeX for better performance
+
 # Math protection plugin settings
 # Set to false to disable the math protection plugin (relies on JavaScript fallback)
 # NOTE: We now use \mid instead of | for separators, so this plugin is less critical

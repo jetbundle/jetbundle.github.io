@@ -50,4 +50,3 @@ After any changes, verify:
 3. Pipes work: `$\{x \mid x > 0\}$`
 4. Complex equations work
 5. Math doesn't render in code blocks
-

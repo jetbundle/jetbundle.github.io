@@ -6,7 +6,26 @@
   <title>{% if page.title %}{{ page.title }}{% else %}Differential Equations Laboratory{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Interactive computational textbook for differential equations{% endif %}">
 
-  <!-- MathJax - Configured to avoid conflicts with markdown tables -->
+  {% if site.math_engine_client == 'katex' %}
+  <!-- KaTeX - Fast, efficient LaTeX rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ],
+      throwOnError: false,
+      strict: false,
+      trust: true,
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      ignoredClasses: ['no-math']
+    });"></script>
+  {% else %}
+  <!-- MathJax 3 - Comprehensive LaTeX rendering -->
   <script>
     window.MathJax = {
       tex: {
@@ -14,7 +33,6 @@
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true,
         processEnvironments: true,
-        // Configure delimiters to handle \left| and \right| properly
         tags: 'ams',
         autoload: {
           color: [],
@@ -33,18 +51,14 @@
         ready: () => {
           MathJax.startup.defaultReady();
           console.log('MathJax is ready');
-          // Fix any remaining placeholder issues
           fixMathPlaceholders();
         }
       }
     };
 
-    // Function to fix any remaining placeholders in math
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
-
-      // Find any remaining placeholders and restore them
       const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
       let node;
       while (node = walker.nextNode()) {
@@ -52,8 +66,6 @@
           node.textContent = node.textContent.replace(/MATH_PIPE_PLACEHOLDER_XYZ123/g, '|');
         }
       }
-
-      // Re-run MathJax if we made changes
       if (window.MathJax && window.MathJax.typesetPromise) {
         window.MathJax.typesetPromise([content]).catch(err => {
           console.log('MathJax re-render after placeholder fix:', err);
@@ -62,6 +74,7 @@
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  {% endif %}
 
   <!-- Prism.js Syntax Highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
