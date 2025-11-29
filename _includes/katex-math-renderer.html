@@ -1,0 +1,49 @@
+<!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+(function() {
+  function renderMath() {
+    if (typeof renderMathInElement === 'undefined') {
+      console.error('KaTeX auto-render not loaded');
+      return;
+    }
+    
+    try {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ],
+        throwOnError: false,
+        strict: false,
+        trust: true,
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        ignoredClasses: ['no-math']
+      });
+      console.log('KaTeX math rendered successfully');
+    } catch (error) {
+      console.error('KaTeX rendering error:', error);
+    }
+  }
+  
+  // Render when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Wait for KaTeX to be fully loaded
+      setTimeout(renderMath, 100);
+    });
+  } else {
+    setTimeout(renderMath, 100);
+  }
+  
+  // Also render after page fully loads (for dynamic content)
+  window.addEventListener('load', function() {
+    setTimeout(renderMath, 200);
+  });
+})();
+</script>
+
