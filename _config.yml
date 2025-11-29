@@ -45,8 +45,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-remote-theme
   # Server-side LaTeX rendering (solves all client-side issues)
-  # NOTE: Uncomment after running 'bundle install' to install jektex gem
-  # - jektex
+  # Processes LaTeX during build, outputs pre-rendered HTML - works exactly like IDE!
+  - jektex
   # Math protection plugin (optional - uncomment if math rendering issues persist)
   # - math_protection  # Custom plugin to protect math from Kramdown processing
 
@@ -54,8 +54,8 @@ plugins:
 markdown: kramdown
 kramdown:
   input: GFM
-  # NOTE: math_engine setting is for server-side kramdown processing (not currently used)
-  # Actual math rendering is done client-side via MathJax 3 loaded in layouts
+  # NOTE: With Jektex, LaTeX is processed server-side during build
+  # Kramdown just processes markdown, Jektex handles all math rendering
   math_engine: mathjax
   math_engine_opts:
     preview: AsciiMath
@@ -69,30 +69,21 @@ kramdown:
   # Tables will still work but won't conflict with $...$ math
   gfm_quirks: []
 
-# Math rendering engine selection
-# Options: 'mathjax' or 'katex' (client-side) OR 'jektex' (server-side)
-# 
-# Client-side (current):
-#   - 'katex' - Fast, efficient (currently active)
-#   - 'mathjax' - Comprehensive LaTeX support
-# 
-# Server-side (recommended for reliability):
-#   - 'jektex' - Processes LaTeX during build, eliminates all client-side issues
-#                 Matches IDE preview exactly. Enable by uncommenting jektex plugin above.
-#
-math_engine_client: 'katex'  # Client-side rendering (use 'jektex' for server-side)
+# Math rendering engine - NOW USING SERVER-SIDE RENDERING
+# Jektex processes LaTeX during build, outputs pre-rendered HTML
+# This eliminates all client-side issues and works exactly like IDE preview
+math_engine_client: 'jektex'  # Server-side rendering with Jektex
 
 # Jektex configuration (server-side LaTeX rendering)
-# Uncomment when jektex plugin is enabled
-# jektex:
-#   cache_dir: ".jektex-cache"
-#   silent: false
-#   macros:
-#     - ["\\RR", "\\mathbb{R}"]
-#     - ["\\NN", "\\mathbb{N}"]
-#     - ["\\ZZ", "\\mathbb{Z}"]
-#     - ["\\QQ", "\\mathbb{Q}"]
-#     - ["\\CC", "\\mathbb{C}"]
+jektex:
+  cache_dir: ".jektex-cache"
+  silent: false
+  macros:
+    - ["\\RR", "\\mathbb{R}"]
+    - ["\\NN", "\\mathbb{N}"]
+    - ["\\ZZ", "\\mathbb{Z}"]
+    - ["\\QQ", "\\mathbb{Q}"]
+    - ["\\CC", "\\mathbb{C}"]
 
 # Math protection plugin settings
 # Set to false to disable the math protection plugin (relies on JavaScript fallback)

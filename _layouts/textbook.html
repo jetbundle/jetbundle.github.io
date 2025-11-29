@@ -6,24 +6,24 @@
   <title>{% if page.title %}{{ page.title }}{% else %}Differential Equations Laboratory{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Interactive computational textbook for differential equations{% endif %}">
 
-  {% if site.math_engine_client == 'katex' %}
-  <!-- KaTeX - PRIORITY: Load immediately for fast math rendering -->
+  {% if site.math_engine_client == 'jektex' %}
+  <!-- Jektex: Server-side LaTeX rendering - Math is pre-rendered during build -->
+  <!-- Only need KaTeX CSS for styling the pre-rendered HTML -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <!-- No JavaScript needed - math is already rendered as HTML! -->
+  {% elsif site.math_engine_client == 'katex' %}
+  <!-- KaTeX Client-Side: Load immediately for fast math rendering -->
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
-
-  <!-- Load KaTeX scripts with high priority, no defer -->
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
   <script>
-    // Render math immediately when page loads, before heavy scripts
     (function() {
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initMath);
       } else {
         initMath();
       }
-
       function initMath() {
-        // Load auto-render script
         var script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
         script.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
@@ -43,7 +43,6 @@
               ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
               ignoredClasses: ['no-math']
             });
-            console.log('KaTeX math rendered (priority load)');
           }
         };
         document.head.appendChild(script);
@@ -51,7 +50,7 @@
     })();
   </script>
   {% else %}
-  <!-- MathJax 3 - PRIORITY: Load immediately for fast math rendering -->
+  <!-- MathJax 3 Client-Side: Comprehensive LaTeX rendering -->
   <script>
     window.MathJax = {
       tex: {
@@ -61,8 +60,7 @@
         processEnvironments: true,
         tags: 'ams',
         autoload: {
-          color: [],
-          colorv2: ['color'],
+          color: [], colorv2: ['color'],
           bbox: ['bbox'],
           cancel: ['cancel', 'bcancel', 'xcancel', 'cancelto'],
           enclose: ['enclose', 'cancel', 'color']
@@ -76,12 +74,10 @@
       startup: {
         ready: () => {
           MathJax.startup.defaultReady();
-          console.log('MathJax is ready (priority load)');
           fixMathPlaceholders();
         }
       }
     };
-
     function fixMathPlaceholders() {
       const content = document.querySelector('.textbook-content');
       if (!content) return;
@@ -98,12 +94,10 @@
         });
       }
     }
-
-    // Load MathJax immediately (no async/defer) for priority rendering
     (function() {
       var script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.async = false; // Load synchronously to prioritize math rendering
+      script.async = false;
       document.head.appendChild(script);
     })();
   </script>

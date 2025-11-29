@@ -187,4 +187,3 @@ If issues occur:
 - Check jektex GitHub: https://github.com/yagarea/jektex
 - Verify Node.js installed: `node --version`
 - Check Jekyll build logs for errors
-
