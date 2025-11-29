@@ -108,37 +108,6 @@
 
   <!-- KaTeX Math Rendering - Always use client-side (works reliably on GitHub Pages) -->
   {% include katex-math-renderer.html %}
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        tags: 'ams',
-        autoload: {
-          color: [],
-          colorv2: ['color'],
-          bbox: ['bbox'],
-          cancel: ['cancel', 'bcancel', 'xcancel', 'cancelto'],
-          enclose: ['enclose', 'cancel', 'color']
-        }
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'table', 'thead', 'tbody', 'tr', 'td', 'th'],
-        ignoreHtmlClass: 'no-math',
-        processHtmlClass: 'math'
-      },
-      startup: {
-        ready: () => {
-          MathJax.startup.defaultReady();
-          console.log('MathJax 3 is ready');
-        }
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-  {% endif %}
 
   <!-- JavaScript: Load with defer to not block math rendering -->
   <!-- jQuery must load first, then Bootstrap (depends on jQuery), then D3, then theme JS -->
