@@ -14,7 +14,7 @@ parent_section: null
 
 # Section 1.4: Classical Linear Partial Differential Equations
 
-> The geometry of the domain selects the coordinate system, and the coordinate system selects the special functions—explicit solutions exist only when symmetries align.
+> The geometry of the domain dictates the mathematics: separation of variables succeeds when symmetry allows simultaneous diagonalization of commuting operators.
 
 ## Introduction
 
@@ -28,13 +28,13 @@ $$
 A u_{xx}+2B u_{xy}+C u_{yy}+D u_{x}+E u_{y}+F u=G,
 $$
 
-with discriminant $\Delta=B^{2}-AC$. The sign of $\Delta$ distinguishes physical regimes (John, 1982):
+with discriminant $\Delta=B^{2}-AC$. The sign of $\Delta$ distinguishes physical regimes:
 
 - **Elliptic ($\Delta<0$)** – e.g., Laplace's equation $\Delta u=0$, modeling equilibrium and instantaneous smoothing.
 - **Parabolic ($\Delta=0$)** – e.g., Heat equation $u_{t}-\Delta u=0$, capturing diffusive dynamics with a causal time arrow.
 - **Hyperbolic ($\Delta>0$)** – e.g., Wave equation $u_{tt}-c^{2}\Delta u=0$, describing finite-speed propagation along characteristics.
 
-Characteristic curves satisfy $A(dy)^{2}-2B dx\,dy+C(dx)^{2}=0$. Transforming to characteristic coordinates $(\xi,\eta)$ diagonalizes the principal part, yielding canonical forms such as $u_{\xi\eta}=0$ in the hyperbolic case (Evans, 2010).
+Characteristic curves satisfy $A(dy)^{2}-2B dx\,dy+C(dx)^{2}=0$. Transforming to characteristic coordinates $(\xi,\eta)$ diagonalizes the principal part, yielding canonical forms such as $u_{\xi\eta}=0$ in the hyperbolic case.
 
 > **Discriminant Classification**
 
@@ -42,15 +42,13 @@ Characteristic curves satisfy $A(dy)^{2}-2B dx\,dy+C(dx)^{2}=0$. Transforming to
 
 > The discriminant $\Delta=4^{2}-3\cdot 5=1>0$, so the PDE is hyperbolic. Characteristics solve $3(dy)^{2}-4 dx\,dy+5(dx)^{2}=0$, yielding complex slopes $(2\pm i\sqrt{11})/3$. Real canonical coordinates $\xi=x$, $\eta=y-\tfrac{2}{3}x$ reduce the equation to $u_{\xi\xi}-u_{\eta\eta}=0$, revealing wave-like behavior.
 
-This classification is fundamental: it determines the nature of the initial-value problem, the domain of dependence, and the appropriate solution methods. Hyperbolic equations propagate information along characteristics, while elliptic equations spread information instantaneously.
-
 > **Variable-Coefficient Classification**
 
 > Determine the type of $x u_{xx}+2u_{xy}+y u_{yy}=0$.
 
 > Here $\Delta(x,y)=4-xy$. The equation is elliptic where $xy<4$, parabolic on $xy=4$, and hyperbolic when $xy>4$. The curve $xy=4$ resembles the Tricomi equation, modeling mixed-type phenomena such as transonic flow.
 
-When coefficients are not constant, the equation type can vary across the domain. This mixed-type behavior appears in applications like transonic flow, where the equation changes from elliptic to hyperbolic depending on the Mach number.
+Classification determines the fundamental character of the PDE: elliptic equations smooth data instantaneously, parabolic equations diffuse over time, and hyperbolic equations propagate along characteristics. However, variable coefficients can create mixed-type regions, revealing the limitations of this classification.
 
 > **Canonical Hyperbolic Reduction**
 
@@ -58,7 +56,7 @@ When coefficients are not constant, the equation type can vary across the domain
 
 > The discriminant is $\Delta=(-3)^{2}-4\cdot 1\cdot 2=1>0$. Characteristics satisfy $dy/dx=r$ with $r_{1,2}=\{2,1\}$. Coordinates $\xi=y-2x$ and $\eta=y-x$ transform the PDE to $u_{\xi\eta}=0$, leading to $u(x,y)=f(y-2x)+g(y-x)$.
 
-The general solution of $u_{\xi\eta}=0$ is $u(\xi,\eta)=f(\xi)+g(\eta)$, representing the superposition of two waves propagating along the characteristic directions. This form reveals the wave-like nature of hyperbolic equations.
+The general solution is a superposition of arbitrary functions of the characteristic coordinates. This d'Alembert representation is fundamental to understanding wave propagation.
 
 ## Separation of Variables and Spectral Theory
 
@@ -71,18 +69,16 @@ $$
 subject to homogeneous boundary conditions. The Rayleigh quotient
 
 $$
-\lambda_{1}=\min_{u\neq 0}\frac{\int_{\Omega}\mid \nabla u\mid^{2}dx}{\int_{\Omega}u^{2}dx}
+\lambda_{1}=\min_{u\neq 0}\frac{\int_{\Omega}\mid \nabla u \mid^{2}dx}{\int_{\Omega}u^{2}dx}
 $$
 
-characterizes the principal eigenvalue (Gilbarg & Trudinger, 2001). Maximum principles imply interior extrema occur on $\partial\Omega$, providing uniqueness and a priori bounds without explicit solutions.
+characterizes the principal eigenvalue. Maximum principles imply interior extrema occur on $\partial\Omega$, providing uniqueness and a priori bounds without explicit solutions.
 
 > **Heat Equation with Dirichlet Data**
 
 > Solve $u_{t}=u_{xx}$ on $0<x<\pi$ with $u(0,t)=u(\pi,t)=0$, $u(x,0)=\sin(3x)$.
 
 > Separation $u=XT$ gives $X''+\lambda X=0$ with eigenvalues $\lambda_{n}=n^{2}$ and eigenfunctions $\sin(nx)$. The temporal factors are $T_{n}=e^{-n^{2}t}$. Expanding the initial data reveals only $n=3$ is present, so $u(x,t)=e^{-9t}\sin(3x)$.
-
-Separation of variables succeeds when the domain and boundary conditions match the symmetry of the eigenfunctions. Here, the sinusoidal initial data is already an eigenfunction, so no expansion is needed.
 
 > **Rayleigh Quotient Verification**
 
@@ -96,13 +92,13 @@ Separation of variables succeeds when the domain and boundary conditions match t
 
 > is minimized by $u=\sin x$, giving $R[\sin x]=1$. Alternative test functions yield $R[u]>1$, confirming the principal eigenvalue.
 
-The Rayleigh quotient provides a variational characterization of eigenvalues without explicitly solving the eigenvalue problem. This principle underlies many numerical methods and theoretical estimates.
+Separation of variables reduces the PDE to an eigenvalue problem, with each eigenmode evolving independently. The Rayleigh quotient provides a variational characterization of eigenvalues without solving the differential equation explicitly.
 
 > **Wave Equation with Mixed Boundaries**
 
 > Solve $u_{tt}=u_{xx}$ on $0<x<\pi$, with $u(0,t)=0$ and $u_{x}(\pi,t)=0$.
 
-> Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin\big((2n-1)x/2\big)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
+> Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin\left((2n-1)x/2\right)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
 
 > $$
 > u(x,t)=\sum_{n=1}^{\infty}\left(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2}\right)\sin\frac{(2n-1)x}{2},
@@ -110,14 +106,14 @@ The Rayleigh quotient provides a variational characterization of eigenvalues wit
 
 > with coefficients fixed by initial data.
 
-Mixed boundary conditions (Dirichlet on one side, Neumann on the other) produce eigenfunctions with different frequencies than the pure Dirichlet case. The solution still decomposes into eigenmodes, each oscillating at its characteristic frequency.
+Mixed boundary conditions produce different eigenfunctions and eigenvalues. The solution is a superposition of standing waves, each oscillating at its characteristic frequency.
 
 ## Fourier Series and Eigenfunction Expansions
 
 Eigenfunctions $\{\phi_{n}\}$ yield superpositions $u(x,t)=\sum_{n}a_{n}(t)\phi_{n}(x)$. Convergence issues arise when reconstructing initial data $f(x)$ from the series $\sum c_{n}\phi_{n}(x)$:
 
 - **Dirichlet's theorem** gives pointwise convergence for piecewise $C^{1}$ data to $\tfrac{1}{2}(f(x^{+})+f(x^{-}))$.
-- **Divergence examples** show continuous functions whose Fourier series diverge at points (Stein & Shakarchi, 2003).
+- **Divergence examples** show continuous functions whose Fourier series diverge at points.
 - **Gibbs phenomenon** exhibits persistent overshoot near jumps.
 
 Cesàro summation via the Fejér kernel $F_{N}$ restores uniform convergence for continuous data, foreshadowing mollification and Sobolev-space regularization.
@@ -128,15 +124,13 @@ Cesàro summation via the Fejér kernel $F_{N}$ restores uniform convergence for
 
 > Only sine terms appear: $f(x)\sim \frac{4}{\pi}\sum_{k=1,3,5,\dots}\frac{\sin(kx)}{k}$. Partial sums overshoot near $x=0$ by approximately $0.08949$ (17.9% of the jump) regardless of how many terms are added—the Gibbs phenomenon—illustrating the limitations of pointwise convergence.
 
-The Gibbs phenomenon reveals that Fourier series cannot uniformly approximate discontinuous functions. The overshoot persists even as more terms are added, demonstrating that pointwise convergence and uniform convergence are distinct concepts.
-
 > **Cesàro Summability via Fejér Kernel**
 
 > Show Fejér means converge uniformly for continuous $f$.
 
 > Define $\sigma_{N}(f)=\frac{1}{N+1}\sum_{k=0}^{N}S_{k}(f)=f*F_{N}$, where $F_{N}$ is the Fejér kernel. Since $F_{N}\ge 0$, $\int F_{N}=2\pi$, and $F_{N}$ concentrates at $0$, convolution with $F_{N}$ approximates $f$ uniformly by continuity, demonstrating a summability method that bypasses Gibbs oscillations.
 
-Cesàro summation averages the partial sums, effectively smoothing out the oscillations. This demonstrates that different summation methods can recover convergence where the original series fails, foreshadowing the need for generalized convergence concepts in functional analysis.
+Pointwise convergence is fragile: even continuous functions can have divergent Fourier series. Cesàro summation provides a more robust convergence method, but it requires modifying the partial sums, revealing that the standard Fourier expansion is fundamentally a limit in $L^2$, not pointwise.
 
 ## Method of Characteristics
 
@@ -154,23 +148,21 @@ characteristics satisfy $\frac{dx}{dt}=a$ and $\frac{du}{dt}=0$, yielding $u(x,t
 
 > Characteristics satisfy $x=x_{0}+3t$. Along each, $u$ is constant, so $u(x,t)=\sin(x-3t)$, confirming the transport of initial data without distortion.
 
-The method of characteristics reduces a PDE to ODEs along curves. For linear transport, the solution simply translates the initial data along the characteristic direction.
-
 > **Variable-Coefficient Transport**
 
 > Solve $u_{t}+(x+t)u_{x}=0$ with $u(x,0)=e^{x}$.
 
 > Characteristics solve $\frac{dx}{dt}=x+t$, giving $x+t=Ce^{t}$ and $C=x_{0}$. Along the curve, $u$ remains $e^{x_{0}}$, yielding $u(x,t)=\exp(x e^{-t}+t e^{-t})$ after eliminating $x_{0}$.
 
-When the velocity depends on both space and time, characteristics are curved rather than straight lines. The solution remains constant along these curves, but the deformation of the characteristics causes the solution to evolve.
+Characteristics represent paths along which information propagates. For constant coefficients, the solution is simply the initial data translated. Variable coefficients create more complex trajectories, but the solution remains constant along each characteristic curve.
 
 > **Burgers' Equation Shock**
 
 > For $u_{t}+u u_{x}=0$ with $u(x,0)=1-x$, find shock time.
 
-> Characteristics satisfy $dx/dt=u=1-x_{0}$, so $x=x_{0}+(1-x_{0})t$. Inverting gives $x_{0}=(x-t)/(1+t)$ and $u=(1+x)/(1+t)$. Since $\partial x/\partial x_{0}=1-(1)t=1-t$ vanishes at $t=1$, characteristics intersect and a shock forms for $t>1$.
+> Characteristics satisfy $dx/dt=u=1-x_{0}$, so $x=x_{0}+(1-x_{0})t$. Inverting gives $x_{0}=(x-t)/(1+t)$ and $u=(1+x)/(1+t)$. Since $\partial x/\partial x_{0}=1-t$ vanishes at $t=1$, characteristics intersect and a shock forms for $t>1$.
 
-Nonlinear transport equations exhibit characteristic intersection, where the solution becomes multivalued. This signals the breakdown of classical solutions and the need for weak solutions, entropy conditions, and shock waves—topics developed in Chapter 3.
+Nonlinearity causes characteristics to intersect, creating shocks where the classical solution breaks down. This fundamental limitation motivates the weak solution framework of Chapter 3.
 
 ## Spherical Harmonics and Special Coordinates
 
@@ -183,7 +175,7 @@ Solving $\Delta u=0$ in curvilinear coordinates separates the Laplacian into ort
   P_{\ell}(\cos\gamma)=\frac{4\pi}{2\ell+1}\sum_{m=-\ell}^{\ell}Y_{\ell}^{m}(\Omega_{1})\overline{Y_{\ell}^{m}(\Omega_{2})}
   $$
 
-  enables expansions of rotationally invariant potentials (Andrews, Askey, & Roy, 1999).
+  enables expansions of rotationally invariant potentials.
 
 Spherical and cylindrical coordinates align with domain symmetries, dictating the special functions encountered in separation of variables.
 
@@ -193,8 +185,6 @@ Spherical and cylindrical coordinates align with domain symmetries, dictating th
 
 > Separation yields radial factors $r^{\ell}$ and angular spherical harmonics $Y_{\ell}^{m}$. The boundary data correspond to $\ell=1$, $m=0$, so $u(r,\theta,\phi)=r Y_{1}^{0}(\theta,\phi)=r\cos\theta$.
 
-Spherical harmonics arise naturally when solving Laplace's equation in spherical coordinates. The boundary data selects the appropriate harmonic modes, with the radial dependence determined by whether we solve in the interior or exterior.
-
 > **Addition Theorem Check**
 
 > Verify the addition theorem for $\ell=1$.
@@ -202,12 +192,10 @@ Spherical harmonics arise naturally when solving Laplace's equation in spherical
 > Using explicit forms of $Y_{1}^{m}$, one obtains
 
 > $$
-> \cos\gamma=\frac{4\pi}{3}\sum_{m=-1}^{1}Y_{1}^{m}(\Omega_{1})\overline{Y_{\ell}^{m}(\Omega_{2})},
+> \cos\gamma=\frac{4\pi}{3}\sum_{m=-1}^{1}Y_{1}^{m}(\Omega_{1})\overline{Y_{1}^{m}(\Omega_{2})},
 > $$
 
 > where $\gamma$ is the angle between $\Omega_{1}$ and $\Omega_{2}$. This identity underpins expansions of rotationally symmetric kernels.
-
-The addition theorem allows us to expand rotationally symmetric functions in terms of spherical harmonics. This is crucial for problems with rotational symmetry, such as the expansion of the Green's function for Laplace's equation.
 
 > **Exterior Harmonic Potential via Spherical Harmonics**
 
@@ -221,264 +209,167 @@ The addition theorem allows us to expand rotationally symmetric functions in ter
 
 > illustrating how spherical harmonics encode boundary data.
 
-For exterior problems, the radial dependence is $r^{-(\ell+1)}$ to ensure decay at infinity. The boundary data determines the coefficients through an expansion in spherical harmonics, demonstrating how special functions provide a natural basis for problems with geometric symmetry.
+Spherical harmonics provide a complete basis for functions on the sphere, just as Fourier series do for functions on the circle. The addition theorem reveals the deep connection between spherical harmonics and Legendre polynomials, enabling efficient computation of rotationally symmetric potentials.
 
 ## Challenge Problems
 
-The following problems synthesize concepts from PDE classification, separation of variables, eigenfunction expansions, characteristics, and special coordinates.
+The following problems synthesize concepts from classification, separation of variables, characteristics, and special coordinate systems.
 
-### Challenge 1: Classification and Canonical Forms for Variable-Coefficient Equations
+### Challenge 1: Mixed-Type PDE and Transonic Flow
 
-For the equation
+Consider the Tricomi equation $y u_{xx} + u_{yy} = 0$ on the domain $\Omega = \{(x,y) : y > 0\}$. Classify the equation and show that it is elliptic for $y > 0$ but becomes parabolic on the boundary $y = 0$. Construct a solution using separation of variables in the elliptic region and analyze the behavior as $y \to 0^+$.
 
-$$
-x u_{xx} + 2u_{xy} + y u_{yy} + u_x + u_y = 0,
-$$
-
-determine the regions where it is elliptic, parabolic, and hyperbolic. Find the canonical forms in each region and construct a coordinate transformation that reduces the equation to its canonical form in the hyperbolic region.
-
-Show that the curve separating different types (the parabolic set) is given by $xy=1$, and explain how this relates to the Tricomi equation for transonic flow.
+*(Hint: Use the substitution $u(x,y) = X(x)Y(y)$ and consider power series solutions. The boundary $y=0$ is a characteristic line.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The discriminant is $\Delta(x,y) = 4 - xy$. The equation type depends on the sign:
-- Elliptic: $xy > 4$
-- Parabolic: $xy = 4$
-- Hyperbolic: $xy < 4$
-
-For the hyperbolic region, we need to find characteristic coordinates. The characteristic equation is:
+For $y > 0$, the discriminant is $\Delta = -4y < 0$, so the equation is elliptic. Separating variables with $u(x,y) = X(x)Y(y)$ gives
 
 $$
-x(dy)^2 - 2dx\,dy + y(dx)^2 = 0.
+y X'' Y + X Y'' = 0 \implies \frac{X''}{X} = -\frac{Y''}{y Y} = -\lambda.
 $$
 
-Dividing by $(dx)^2$ (assuming $dx \neq 0$):
+The $X$ equation $X'' + \lambda X = 0$ has solutions $X(x) = A \cos(\sqrt{\lambda} x) + B \sin(\sqrt{\lambda} x)$ for $\lambda > 0$.
 
-$$
-x\left(\frac{dy}{dx}\right)^2 - 2\frac{dy}{dx} + y = 0.
-$$
+The $Y$ equation becomes $Y'' - \lambda y Y = 0$. Making the substitution $\eta = (4\lambda/9)^{1/3} y$, this becomes Airy's equation, with solutions $Y(y) = C \operatorname{Ai}(\eta) + D \operatorname{Bi}(\eta)$.
 
-Solving for $\frac{dy}{dx}$:
-
-$$
-\frac{dy}{dx} = \frac{2 \pm \sqrt{4-4xy}}{2x} = \frac{1 \pm \sqrt{1-xy}}{x}.
-$$
-
-The characteristic curves satisfy these ODEs. In the hyperbolic region where $xy < 4$ (and in particular $xy < 1$ for real characteristics), we can integrate to find:
-
-$$
-\xi = y - \frac{x}{1+\sqrt{1-xy}}, \quad \eta = y - \frac{x}{1-\sqrt{1-xy}}.
-$$
-
-In these coordinates, the principal part reduces to $u_{\xi\eta}$ plus lower-order terms.
-
-The parabolic curve $xy=4$ is where the discriminant vanishes. This is analogous to the Tricomi equation $y u_{xx} + u_{yy} = 0$, where the type changes across the line $y=0$. In transonic flow, the equation is elliptic in the subsonic region and hyperbolic in the supersonic region, with the transition occurring at the sonic line.
+As $y \to 0^+$, the elliptic character degenerates and the equation becomes parabolic. The solution develops singular behavior, reflecting the physical fact that transonic flows exhibit fundamentally different dynamics in subsonic (elliptic) and supersonic (hyperbolic) regions.
 
 **Key Insights:**
-- Variable-coefficient equations can change type across the domain.
-- The parabolic set (where $\Delta=0$) is where characteristics merge.
-- Transonic flow is a physical example where mixed-type equations appear naturally.
+- Mixed-type equations model physical transitions between different regimes.
+- The classification changes continuously with the coefficients.
+- Solutions must be constructed piecewise in regions of constant type.
 
 </details>
 
-### Challenge 2: Separation of Variables and the Completeness of Eigenfunctions
+### Challenge 2: Completeness of Eigenfunction Expansions
 
-For the Sturm–Liouville problem
+For the Sturm–Liouville problem $-u'' = \lambda u$ on $[0,\pi]$ with boundary conditions $u(0) = u'(\pi) = 0$, show that the eigenfunctions form a complete orthonormal basis for $L^2[0,\pi]$. Use this to expand the function $f(x) = x$ and analyze the convergence properties of the series. Compare the rate of convergence to that of the standard Fourier sine series.
 
-$$
--u'' = \lambda u, \quad u(0) = 0, \quad u'(\pi) + u(\pi) = 0,
-$$
-
-find all eigenvalues and eigenfunctions. Prove that these eigenfunctions form a complete orthogonal set in $L^2([0,\pi])$, and use this to solve the heat equation
-
-$$
-u_t = u_{xx}, \quad u(0,t) = 0, \quad u_x(\pi,t) + u(\pi,t) = 0, \quad u(x,0) = f(x).
-$$
-
-*(Hint: The boundary condition at $x=\pi$ is a Robin condition. The eigenvalues satisfy a transcendental equation.)*
+*(Hint: Use the orthogonality relation and Parseval's identity. The eigenfunctions are $\phi_n(x) = \sin((2n-1)x/2)$ with eigenvalues $\lambda_n = ((2n-1)/2)^2$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The general solution of $-u'' = \lambda u$ is:
+The eigenfunctions are $\phi_n(x) = \sqrt{2/\pi} \sin((2n-1)x/2)$ with eigenvalues $\lambda_n = ((2n-1)/2)^2$ for $n = 1, 2, 3, \ldots$. Orthogonality follows from integration:
 
 $$
-u(x) = A \sin(\sqrt{\lambda} x) + B \cos(\sqrt{\lambda} x).
+\int_0^{\pi} \phi_m(x) \phi_n(x) \, dx = \delta_{mn}.
 $$
 
-Applying $u(0) = 0$ gives $B = 0$, so $u(x) = A \sin(\sqrt{\lambda} x)$.
-
-The boundary condition at $x=\pi$ gives:
+Completeness in $L^2[0,\pi]$ follows from the general theory of Sturm–Liouville operators on compact intervals. For $f(x) = x$, the expansion coefficients are
 
 $$
-u'(\pi) + u(\pi) = A\sqrt{\lambda} \cos(\sqrt{\lambda}\pi) + A \sin(\sqrt{\lambda}\pi) = 0.
+c_n = \int_0^{\pi} x \phi_n(x) \, dx = \sqrt{\frac{2}{\pi}} \int_0^{\pi} x \sin\left(\frac{(2n-1)x}{2}\right) \, dx = \sqrt{\frac{2}{\pi}} \frac{8(-1)^{n+1}}{(2n-1)^2}.
 $$
 
-This implies:
+The series converges pointwise to $f(x)$ on $(0,\pi)$ by Dirichlet's theorem, and uniformly on any compact subset. The rate of convergence is $O(n^{-2})$, slower than the $O(n^{-1})$ rate for the standard Fourier sine series because the boundary condition mismatch creates slower decay.
+
+Parseval's identity gives
 
 $$
-\sqrt{\lambda} \cos(\sqrt{\lambda}\pi) + \sin(\sqrt{\lambda}\pi) = 0, \quad \text{or} \quad \tan(\sqrt{\lambda}\pi) = -\sqrt{\lambda}.
+\int_0^{\pi} x^2 \, dx = \frac{\pi^3}{3} = \sum_{n=1}^{\infty} \frac{128}{\pi(2n-1)^4},
 $$
 
-This transcendental equation determines the eigenvalues. For $\lambda > 0$, there are infinitely many positive solutions $\lambda_n$ with $\lambda_n \sim (n-1/2)^2$ as $n \to \infty$.
-
-For the heat equation, we expand the initial data in the eigenfunctions:
-
-$$
-f(x) = \sum_{n=1}^{\infty} c_n \sin(\sqrt{\lambda_n} x),
-$$
-
-where
-
-$$
-c_n = \frac{\int_0^{\pi} f(x) \sin(\sqrt{\lambda_n} x) \, dx}{\int_0^{\pi} \sin^2(\sqrt{\lambda_n} x) \, dx}.
-$$
-
-The solution is:
-
-$$
-u(x,t) = \sum_{n=1}^{\infty} c_n e^{-\lambda_n t} \sin(\sqrt{\lambda_n} x).
-$$
-
-Completeness follows from the general theory of Sturm–Liouville problems. The eigenfunctions are orthogonal because they are eigenfunctions of a self-adjoint operator, and completeness is guaranteed by the spectral theorem for Sturm–Liouville operators.
+which can be verified numerically.
 
 **Key Insights:**
-- Robin boundary conditions lead to transcendental equations for eigenvalues.
-- The eigenfunctions remain orthogonal and complete even with mixed boundary conditions.
-- Separation of variables works whenever we have a complete set of eigenfunctions.
+- Completeness is an $L^2$ property, not pointwise.
+- Boundary conditions affect the rate of convergence.
+- Parseval's identity provides a convergence test independent of pointwise behavior.
 
 </details>
 
-### Challenge 3: Method of Characteristics and Shock Formation
+### Challenge 3: Riemann Problem for the Wave Equation
 
-Consider the nonlinear wave equation
+Solve the one-dimensional wave equation $u_{tt} - c^2 u_{xx} = 0$ on $\mathbb{R} \times (0,\infty)$ with initial data
 
 $$
-u_t + u u_x = 0, \quad u(x,0) = \begin{cases} 1 & x < 0 \\ 1-x & 0 \leq x \leq 1 \\ 0 & x > 1 \end{cases}.
+u(x,0) = \begin{cases} 1 & \text{if } \mid x \mid < a, \\ 0 & \text{if } \mid x \mid > a, \end{cases} \qquad u_t(x,0) = 0.
 $$
 
-Find the time and location of shock formation. Construct the weak solution using the Rankine–Hugoniot condition, and verify that it satisfies the entropy condition.
+Use d'Alembert's formula to construct the solution and identify the regions in the $(x,t)$ plane where the solution takes different forms. Analyze the behavior at the wave fronts $x \pm ct = \pm a$.
+
+*(Hint: d'Alembert's formula is $u(x,t) = \frac{1}{2}[f(x+ct) + f(x-ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) \, ds$ for initial data $u(x,0) = f(x)$, $u_t(x,0) = g(x)$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Characteristics satisfy $dx/dt = u(x_0)$, where $x_0$ is the point where the characteristic originates. Along each characteristic, $u$ remains constant:
+Using d'Alembert's formula with $f(x)$ as given and $g(x) = 0$:
 
 $$
-u(x,t) = u_0(x_0), \quad x = x_0 + u_0(x_0) t.
+u(x,t) = \frac{1}{2}[f(x+ct) + f(x-ct)].
 $$
 
-For the given initial data:
-- For $x_0 < 0$: $u = 1$, so $x = x_0 + t$
-- For $0 \leq x_0 \leq 1$: $u = 1-x_0$, so $x = x_0 + (1-x_0)t = x_0(1-t) + t$
-- For $x_0 > 1$: $u = 0$, so $x = x_0$
+The solution depends on which characteristics $x \pm ct = \pm a$ intersect the point $(x,t)$:
 
-The characteristics from the region $0 \leq x_0 \leq 1$ will intersect. The condition for intersection is $\partial x/\partial x_0 = 0$, which gives $1-t = 0$, so $t = 1$.
+- **Region I:** $x + ct < -a$ or $x - ct > a$: Both $f(x \pm ct) = 0$, so $u(x,t) = 0$ (undisturbed region).
 
-At $t = 1$, characteristics from different regions intersect. For $t > 1$, a shock forms. The shock speed $s$ is given by the Rankine–Hugoniot condition:
+- **Region II:** $-a < x - ct < a$ and $x + ct > a$: Only $f(x-ct) = 1$, so $u(x,t) = 1/2$ (half-amplitude region).
 
-$$
-s = \frac{[u^2/2]}{[u]} = \frac{u_l^2/2 - u_r^2/2}{u_l - u_r} = \frac{u_l + u_r}{2},
-$$
+- **Region III:** $-a < x + ct < a$ and $x - ct < -a$: Only $f(x+ct) = 1$, so $u(x,t) = 1/2$.
 
-where $u_l$ and $u_r$ are the values on the left and right of the shock.
+- **Region IV:** $-a < x - ct < a$ and $-a < x + ct < a$: Both $f(x \pm ct) = 1$, so $u(x,t) = 1$ (fully excited region).
 
-For $t > 1$, the shock connects $u = 1$ (from $x_0 < 0$) to $u = 0$ (from $x_0 > 1$), so $s = 1/2$. The shock path is $x = t/2$ for $t \geq 1$.
-
-The entropy condition requires that characteristics enter the shock from both sides, which is satisfied here. The weak solution is:
-
-$$
-u(x,t) = \begin{cases}
-1 & x < t/2, \, t \geq 1 \\
-0 & x > t/2, \, t \geq 1
-\end{cases}
-$$
+At the wave fronts $x \pm ct = \pm a$, the solution is discontinuous, reflecting the discontinuous initial data. The solution propagates along characteristics, with the disturbance spreading at speed $c$ in both directions.
 
 **Key Insights:**
-- Characteristics intersect when $\partial x/\partial x_0 = 0$, signaling shock formation.
-- The Rankine–Hugoniot condition determines shock speed from conservation laws.
-- The entropy condition selects the physically correct weak solution.
+- The solution propagates along characteristics at speed $c$.
+- Discontinuous initial data produce discontinuous solutions.
+- The wave equation preserves the structure of the initial data as it propagates.
 
 </details>
 
-### Challenge 4: Spherical Harmonics and the Poisson Kernel
+### Challenge 4: Heat Kernel and Regularization
 
-Prove that the Poisson kernel for the unit ball in $\mathbb{R}^3$ is
+Show that the heat kernel $G(x,t) = (4\pi t)^{-1/2} e^{-x^2/(4t)}$ for $t > 0$ (and $0$ for $t < 0$) provides a regularization of the Dirac delta: $\lim_{t \to 0^+} G(x,t) = \delta(x)$ in the sense of distributions. Use this to solve the heat equation $u_t = u_{xx}$ on $\mathbb{R} \times (0,\infty)$ with initial data $u(x,0) = \delta(x - x_0)$ and show that the solution is $u(x,t) = G(x - x_0, t)$.
 
-$$
-P(\mathbf{x}, \boldsymbol{\xi}) = \frac{1 - |\mathbf{x}|^2}{|\mathbf{x} - \boldsymbol{\xi}|^3}, \quad |\boldsymbol{\xi}| = 1.
-$$
-
-Show that this kernel reproduces harmonic functions: if $u$ is harmonic in the ball and continuous on the boundary, then
-
-$$
-u(\mathbf{x}) = \int_{|\boldsymbol{\xi}|=1} P(\mathbf{x}, \boldsymbol{\xi}) u(\boldsymbol{\xi}) \, dS(\boldsymbol{\xi}).
-$$
-
-Use the addition theorem for spherical harmonics to expand the Poisson kernel and connect it to the eigenfunction expansion method.
+*(Hint: Show that $\int_{-\infty}^{\infty} G(x,t) \, dx = 1$ for all $t > 0$, and that for any smooth test function $\phi$, $\lim_{t \to 0^+} \int G(x,t) \phi(x) \, dx = \phi(0)$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The Poisson kernel can be derived using the method of images. For the unit ball, the Green's function is:
+The heat kernel is $G(x,t) = (4\pi t)^{-1/2} e^{-x^2/(4t)}$ for $t > 0$. Direct integration shows
 
 $$
-G(\mathbf{x}, \boldsymbol{\xi}) = \frac{1}{4\pi|\mathbf{x} - \boldsymbol{\xi}|} - \frac{1}{4\pi|\mathbf{x} - \boldsymbol{\xi}^*|},
+\int_{-\infty}^{\infty} G(x,t) \, dx = \frac{1}{\sqrt{4\pi t}} \int_{-\infty}^{\infty} e^{-x^2/(4t)} \, dx = 1.
 $$
 
-where $\boldsymbol{\xi}^* = \boldsymbol{\xi}/|\boldsymbol{\xi}|^2$ is the reflection of $\boldsymbol{\xi}$ across the unit sphere. The Poisson kernel is:
+For any smooth test function $\phi$ with compact support, making the substitution $y = x/\sqrt{4t}$:
 
 $$
-P(\mathbf{x}, \boldsymbol{\xi}) = \frac{\partial G}{\partial n}(\mathbf{x}, \boldsymbol{\xi}), \quad |\boldsymbol{\xi}| = 1.
+\int_{-\infty}^{\infty} G(x,t) \phi(x) \, dx = \frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-y^2} \phi(\sqrt{4t} y) \, dy.
 $$
 
-A direct calculation yields:
+As $t \to 0^+$, $\phi(\sqrt{4t} y) \to \phi(0)$ uniformly on compact sets, so
 
 $$
-P(\mathbf{x}, \boldsymbol{\xi}) = \frac{1 - |\mathbf{x}|^2}{|\mathbf{x} - \boldsymbol{\xi}|^3}.
+\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(x,t) \phi(x) \, dx = \frac{\phi(0)}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-y^2} \, dy = \phi(0).
 $$
 
-To show that it reproduces harmonic functions, we use Green's identity. If $u$ is harmonic in the ball and $v$ is the fundamental solution, then:
+This shows that $G(x,t) \to \delta(x)$ as $t \to 0^+$ in the sense of distributions.
 
-$$
-u(\mathbf{x}) = \int_{\partial B} \left[u(\boldsymbol{\xi}) \frac{\partial G}{\partial n}(\mathbf{x}, \boldsymbol{\xi}) - G(\mathbf{x}, \boldsymbol{\xi}) \frac{\partial u}{\partial n}(\boldsymbol{\xi})\right] dS(\boldsymbol{\xi}).
-$$
-
-For the Dirichlet problem, we want $G = 0$ on the boundary, which our Green's function satisfies. This gives the Poisson integral formula.
-
-To expand the Poisson kernel in spherical harmonics, we use the addition theorem. Setting $|\mathbf{x}| = r$ and $|\boldsymbol{\xi}| = 1$:
-
-$$
-\frac{1}{|\mathbf{x} - \boldsymbol{\xi}|} = \sum_{\ell=0}^{\infty} \frac{4\pi}{2\ell+1} \frac{r^{\ell}}{r_>^{\ell+1}} \sum_{m=-\ell}^{\ell} Y_\ell^m(\hat{\mathbf{x}}) \overline{Y_\ell^m(\hat{\boldsymbol{\xi}})},
-$$
-
-where $r_> = \max(r, 1)$. For $r < 1$:
-
-$$
-\frac{1 - r^2}{|\mathbf{x} - \boldsymbol{\xi}|^3} = \sum_{\ell=0}^{\infty} (2\ell+1) r^{\ell} \sum_{m=-\ell}^{\ell} Y_\ell^m(\hat{\mathbf{x}}) \overline{Y_\ell^m(\hat{\boldsymbol{\xi}})}.
-$$
-
-This expansion connects the Poisson kernel to the eigenfunction method: the interior harmonic function is expanded in powers of $r$, with coefficients determined by the boundary data through the spherical harmonic expansion.
+For initial data $u(x,0) = \delta(x - x_0)$, the solution is $u(x,t) = G(x - x_0, t)$ by translation invariance. This satisfies the heat equation (verified by direct differentiation) and approaches $\delta(x - x_0)$ as $t \to 0^+$.
 
 **Key Insights:**
-- The Poisson kernel provides an explicit formula for harmonic functions in terms of boundary values.
-- The expansion in spherical harmonics connects the Poisson kernel to separation of variables.
-- This demonstrates the equivalence of different solution methods for the Dirichlet problem.
+- The heat kernel provides a smooth approximation to the delta function.
+- The smoothing property of the heat equation regularizes singular initial data.
+- This construction extends to arbitrary initial data via convolution.
 
 </details>
 
 Classical PDE methods expose the dependence of explicit solutions on domain geometry and spectral data. Their limitations—convergence failures, shocks, and irregular boundaries—motivate the functional analysis, distribution theory, and geometric frameworks introduced in Chapter 2 and beyond.
 
-The explicit methods developed here—separation of variables, eigenfunction expansions, and the method of characteristics—succeed only when the domain has sufficient symmetry and the boundary conditions are regular. When characteristics intersect (shocks), when boundaries are irregular, or when the domain lacks symmetry, these methods fail. This fragility necessitates the weak solution theory, distribution methods, and geometric frameworks that provide existence and uniqueness for general problems, developed in Chapters 2 and 3.
+However, these methods fail catastrophically when: (1) boundaries are irregular (no separation of variables), (2) coefficients are discontinuous (no smooth eigenfunctions), (3) initial data are singular (no pointwise convergence), and (4) nonlinearities create shocks (classical solutions break down). These fundamental limitations necessitate the weak solution framework, distribution theory, and functional-analytic machinery of subsequent chapters, which provide rigorous foundations for problems that classical methods cannot handle.
 
 ## References
 
-* Andrews, G. E., Askey, R., & Roy, R. (1999). *Special Functions*. Cambridge University Press.
-* Evans, L. C. (2010). *Partial Differential Equations*. American Mathematical Society.
-* Gilbarg, D., & Trudinger, N. S. (2001). *Elliptic Partial Differential Equations of Second Order*. Springer.
-* John, F. (1982). *Partial Differential Equations*. Springer-Verlag.
-* Stein, E. M., & Shakarchi, R. (2003). *Fourier Analysis: An Introduction*. Princeton University Press.
+* **Andrews, G. E., Askey, R., & Roy, R. (1999).** *Special Functions*. Cambridge University Press.
+* **Evans, L. C. (2010).** *Partial Differential Equations*. American Mathematical Society.
+* **Gilbarg, D., & Trudinger, N. S. (2001).** *Elliptic Partial Differential Equations of Second Order*. Springer.
+* **John, F. (1982).** *Partial Differential Equations*. Springer-Verlag.
+* **Stein, E. M., & Shakarchi, R. (2003).** *Fourier Analysis: An Introduction*. Princeton University Press.
 
 ## Navigation
 
