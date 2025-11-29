@@ -10,7 +10,7 @@
   <!-- KaTeX - PRIORITY: Load immediately for fast math rendering -->
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
-  
+
   <!-- Load KaTeX scripts with high priority, no defer -->
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
   <script>
@@ -21,7 +21,7 @@
       } else {
         initMath();
       }
-      
+
       function initMath() {
         // Load auto-render script
         var script = document.createElement('script');
@@ -991,14 +991,14 @@
     window.addEventListener('load', function() {
       // Load Pyodide and Plotly after page is fully loaded
       // They will be loaded on-demand when code execution buttons are clicked
-      
+
       // Load Plotly (smaller, can load earlier)
       var plotlyScript = document.createElement('script');
       plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
       plotlyScript.charset = 'utf-8';
       plotlyScript.async = true;
       document.body.appendChild(plotlyScript);
-      
+
       // Pyodide is loaded on-demand by textbook-engine.js when first code block is executed
       // This saves ~10MB on initial page load
     });

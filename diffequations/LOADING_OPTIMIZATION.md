@@ -2,7 +2,7 @@
 
 ## Problem Solved
 
-**Before:** Heavy scripts (Pyodide ~10MB, Plotly) blocked page rendering, delaying math display  
+**Before:** Heavy scripts (Pyodide ~10MB, Plotly) blocked page rendering, delaying math display
 **After:** Content → Math → Interactive elements (lazy loaded)
 
 ## New Loading Order
@@ -91,7 +91,7 @@ All non-critical JavaScript uses `defer`:
 1000ms:  Heavy scripts load (background)
 ```
 
-**Before:** Math appeared at ~2000ms  
+**Before:** Math appeared at ~2000ms
 **After:** Math appears at ~200ms
 
 ## Browser Behavior
@@ -123,7 +123,7 @@ When user clicks "Run Code":
 6. Execute code
 7. Display results
 
-**First click:** Takes ~2-3 seconds (loading Pyodide)  
+**First click:** Takes ~2-3 seconds (loading Pyodide)
 **Subsequent clicks:** Instant (Pyodide already loaded)
 
 ## Compatibility
@@ -165,4 +165,3 @@ If issues occur, revert changes:
 ## Conclusion
 
 Math and content now render **immediately** while heavy interactive features load in the background. Users see readable content right away, with interactivity becoming available shortly after.
-

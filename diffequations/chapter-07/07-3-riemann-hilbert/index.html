@@ -10,7 +10,7 @@
   <!-- KaTeX - PRIORITY: Load immediately for fast math rendering -->
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"></noscript>
-  
+
   <!-- Load KaTeX scripts with high priority, no defer -->
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
   <script>
@@ -21,7 +21,7 @@
       } else {
         initMath();
       }
-      
+
       function initMath() {
         // Load auto-render script
         var script = document.createElement('script');
@@ -34,670 +34,672 @@
               delimiters: [
                 {left: '$$', right: '$$', display: true},
                 {left: '$', right: '$', display: false},
-                {left: '\\[', right: '\\]', display: true},
-                {left: '\\(', right: '\\)', display: false}
+                {left: '\<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 31: …, display: true}̲,
+             …" style="color:#cc0000">&#x27;, right: &#x27;\\]&#x27;, display: true},
+                {left: &#x27;\&lt;span class=&quot;katex-error&quot; title=&quot;ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;}&#x27; at position 32: … display: false}̲
+              …&quot; style=&quot;color:#cc0000&quot;&gt;&#x27;, right: &#x27;\\)&#x27;, display: false}
               ],
               throwOnError: false,
               strict: false,
               trust: true,
-              ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-              ignoredClasses: ['no-math']
+              ignoredTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;],
+              ignoredClasses: [&#x27;no-math&#x27;]
             });
-            console.log('KaTeX math rendered (priority load)');
+            console.log(&#x27;KaTeX math rendered (priority load)&#x27;);
           }
         };
         document.head.appendChild(script);
       }
     })();
-  </script>
+  &lt;/script&gt;
   
 
-  <!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  &lt;!-- Prism.js Syntax Highlighting - Load with defer to not block math rendering --&gt;
+  &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js&quot;&gt;&lt;/script&gt;
 
-  <!-- Textbook CSS -->
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-</head>
-<body class="textbook-body theme-dark">
-  <div class="theme-toggle-container">
-  <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">
-    <span class="theme-icon-sun">☀</span>
-    <span class="theme-icon-moon">🌙</span>
-  </button>
-</div>
+  &lt;!-- Textbook CSS --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/textbook.css&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;textbook-body theme-dark&quot;&gt;
+  &lt;div class=&quot;theme-toggle-container&quot;&gt;
+  &lt;button class=&quot;theme-toggle-btn&quot; id=&quot;theme-toggle&quot; title=&quot;Toggle Theme&quot; aria-label=&quot;Toggle dark/light theme&quot;&gt;
+    &lt;span class=&quot;theme-icon-sun&quot;&gt;☀&lt;/span&gt;
+    &lt;span class=&quot;theme-icon-moon&quot;&gt;🌙&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
 
 
-  <div class="textbook-container">
-    <!-- Sidebar Navigation -->
-    <nav class="textbook-sidebar">
-      <div class="nav-header">
-  <h3>Differential Equations</h3>
-  <p style="margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">2025 Edition</p>
-</div>
+  &lt;div class=&quot;textbook-container&quot;&gt;
+    &lt;!-- Sidebar Navigation --&gt;
+    &lt;nav class=&quot;textbook-sidebar&quot;&gt;
+      &lt;div class=&quot;nav-header&quot;&gt;
+  &lt;h3&gt;Differential Equations&lt;/h3&gt;
+  &lt;p style=&quot;margin: 0 1.5rem 1.5rem; color: var(--text-secondary); font-size: 0.9rem;&quot;&gt;2025 Edition&lt;/p&gt;
+&lt;/div&gt;
 
-<nav class="nav-content">
-  <ul>
+&lt;nav class=&quot;nav-content&quot;&gt;
+  &lt;ul&gt;
     
     
 
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/&quot; &gt;
               0. A Survey of Differential Equations and their Algebraic Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-01/" >
-            Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-01/&quot; &gt;
+            Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-1-exact-methods/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-1-exact-methods/&quot; &gt;
               1.1 Exact Methods for Ordinary Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-2-special-functions/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-2-special-functions/&quot; &gt;
               1.2 Special Functions of Mathematical Physics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-3-integral-transforms/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-3-integral-transforms/&quot; &gt;
               1.3 Integral Transforms
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-4-linear-pde/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-4-linear-pde/&quot; &gt;
               1.4 Classical Linear Partial Differential Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-5-asymptotic-analysis/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-5-asymptotic-analysis/&quot; &gt;
               1.5 Asymptotic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-6-perturbation-theory/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-6-perturbation-theory/&quot; &gt;
               1.6 Classical Perturbation Theory
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-01/01-7-renormalization/" >
-              1.7 Classical Renormalization & Non-Perturbative Methods
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-01/01-7-renormalization/&quot; &gt;
+              1.7 Classical Renormalization &amp; Non-Perturbative Methods
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-02/" >
-            Chapter 2: Functional Analysis, Distributions & Weak Solutions
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-02/&quot; &gt;
+            Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-1-distributions/" >
-              2.1 Distributions & Test Functions
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-2-sobolev-spaces/" >
-              2.2 Sobolev Spaces & Weak Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-1-distributions/&quot; &gt;
+              2.1 Distributions &amp; Test Functions
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-3-hilbert-spaces/" >
-              2.3 Hilbert Space Theory & Spectral Theorem
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-2-sobolev-spaces/&quot; &gt;
+              2.2 Sobolev Spaces &amp; Weak Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-4-unbounded-operators/" >
-              2.4 Unbounded Operators, Resolvents & Semigroups
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-3-hilbert-spaces/&quot; &gt;
+              2.3 Hilbert Space Theory &amp; Spectral Theorem
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-5-variational-methods/" >
-              2.5 Variational Methods & Lax-Milgram
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-4-unbounded-operators/&quot; &gt;
+              2.4 Unbounded Operators, Resolvents &amp; Semigroups
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-6-galerkin-methods/" >
-              2.6 Galerkin Methods & Finite Elements
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-5-variational-methods/&quot; &gt;
+              2.5 Variational Methods &amp; Lax-Milgram
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-02/02-7-fredholm-theory/" >
-              2.7 Fredholm Theory & Index
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-6-galerkin-methods/&quot; &gt;
+              2.6 Galerkin Methods &amp; Finite Elements
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-03/" >
-            Chapter 3: Tensor Fields, Conservation Laws & Geometric Formulation
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-1-manifolds-tensors/" >
-              3.1 Manifolds, Tensors & Covariant Derivatives
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-02/02-7-fredholm-theory/&quot; &gt;
+              2.7 Fredholm Theory &amp; Index
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-2-conservation-laws/" >
-              3.2 Systems of Conservation Laws & Hyperbolicity
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-03/&quot; &gt;
+            Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-1-manifolds-tensors/&quot; &gt;
+              3.1 Manifolds, Tensors &amp; Covariant Derivatives
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-3-entropy-solutions/" >
-              3.3 Entropy Solutions & Shock Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-2-conservation-laws/&quot; &gt;
+              3.2 Systems of Conservation Laws &amp; Hyperbolicity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-4-exterior-calculus/" >
-              3.4 Exterior Calculus & Hodge Decomposition
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-3-entropy-solutions/&quot; &gt;
+              3.3 Entropy Solutions &amp; Shock Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-5-continuum-mechanics/" >
-              3.5 Continuum Mechanics & Elasticity
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-4-exterior-calculus/&quot; &gt;
+              3.4 Exterior Calculus &amp; Hodge Decomposition
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-03/03-6-geometric-optics/" >
-              3.6 Geometric Optics, Rays & Caustics
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-5-continuum-mechanics/&quot; &gt;
+              3.5 Continuum Mechanics &amp; Elasticity
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
-        
-        
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-04/" >
-            Chapter 4: Symmetry, Lie Theory & Classical Integrability
-          </a>
-          <ul>
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-1-lie-symmetries/" >
-              4.1 Lie Symmetries & Prolongation
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-03/03-6-geometric-optics/&quot; &gt;
+              3.6 Geometric Optics, Rays &amp; Caustics
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-2-noether-theorem/" >
-              4.2 Noether's Theorem & Invariant Reduction
-            </a>
-          </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-04/&quot; &gt;
+            Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability
+          &lt;/a&gt;
+          &lt;ul&gt;
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-1-lie-symmetries/&quot; &gt;
+              4.1 Lie Symmetries &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-3-integrable-systems/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-2-noether-theorem/&quot; &gt;
+              4.2 Noether&#x27;s Theorem &amp; Invariant Reduction
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-3-integrable-systems/&quot; &gt;
               4.3 Completely Integrable Systems
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-4-lax-pairs/" >
-              4.4 Lax Pairs & Zero-Curvature Representations
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-4-lax-pairs/&quot; &gt;
+              4.4 Lax Pairs &amp; Zero-Curvature Representations
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-5-riemann-hilbert/" >
-              4.5 Riemann-Hilbert & Inverse Scattering
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-5-riemann-hilbert/&quot; &gt;
+              4.5 Riemann-Hilbert &amp; Inverse Scattering
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-6-recursion-operators/" >
-              4.6 Recursion Operators & Hirota Bilinearization
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-6-recursion-operators/&quot; &gt;
+              4.6 Recursion Operators &amp; Hirota Bilinearization
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-7-susy-qm/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-7-susy-qm/&quot; &gt;
               4.7 Supersymmetric Quantum Mechanics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-04/04-8-nonlocal-symmetries/" >
-              4.8 Nonlocal Symmetries & Potential Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-04/04-8-nonlocal-symmetries/&quot; &gt;
+              4.8 Nonlocal Symmetries &amp; Potential Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-05/" >
-            Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-05/&quot; &gt;
+            Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-1-stochastic-calculus/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-1-stochastic-calculus/&quot; &gt;
               5.1 Stochastic Calculus Foundations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-2-sdes/" >
-              5.2 SDEs & Diffusion Processes
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-2-sdes/&quot; &gt;
+              5.2 SDEs &amp; Diffusion Processes
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-3-geometric-stochastic/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-3-geometric-stochastic/&quot; &gt;
               5.3 Geometric Stochastic Analysis
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-4-rough-paths/" >
-              5.4 Rough Paths & Controlled Rough Paths
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-4-rough-paths/&quot; &gt;
+              5.4 Rough Paths &amp; Controlled Rough Paths
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-5-fractional-calculus/" >
-              5.5 Fractional Calculus & Nonlocal Operators
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-5-fractional-calculus/&quot; &gt;
+              5.5 Fractional Calculus &amp; Nonlocal Operators
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-6-spdes/" >
-              5.6 SPDEs & Regularity Structures
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-6-spdes/&quot; &gt;
+              5.6 SPDEs &amp; Regularity Structures
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-7-kinetic-theory/" >
-              5.7 Kinetic Theory & Mean-Field Games
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-7-kinetic-theory/&quot; &gt;
+              5.7 Kinetic Theory &amp; Mean-Field Games
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-8-fractal-geometry/" >
-              5.8 Fractal Geometry & Dirichlet Forms
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-8-fractal-geometry/&quot; &gt;
+              5.8 Fractal Geometry &amp; Dirichlet Forms
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-05/05-9-susy-stochastics/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-05/05-9-susy-stochastics/&quot; &gt;
               5.9 Supersymmetric Theory of Stochastics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-06/" >
-            Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-06/&quot; &gt;
+            Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-1-jet-bundles/" >
-              6.1 Jet Bundles & Prolongation
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-2-formal-integrability/" >
-              6.2 Formal Integrability & Spencer Cohomology
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-1-jet-bundles/&quot; &gt;
+              6.1 Jet Bundles &amp; Prolongation
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-3-exterior-systems/" >
-              6.3 Exterior Differential Systems & Cartan-Kähler
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-2-formal-integrability/&quot; &gt;
+              6.2 Formal Integrability &amp; Spencer Cohomology
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-4-metric-space/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-3-exterior-systems/&quot; &gt;
+              6.3 Exterior Differential Systems &amp; Cartan-Kähler
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-4-metric-space/&quot; &gt;
               6.4 The Space of Riemannian Metrics
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-5-geometric-evolution/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-5-geometric-evolution/&quot; &gt;
               6.5 Geometric Evolution Equations
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-6-gauge-theories/" >
-              6.6 Gauge Theories & Instanton Moduli
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-6-gauge-theories/&quot; &gt;
+              6.6 Gauge Theories &amp; Instanton Moduli
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-06/06-7-nonlinear-systems/" >
-              6.7 Fully Nonlinear & Overdetermined Systems
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-06/06-7-nonlinear-systems/&quot; &gt;
+              6.7 Fully Nonlinear &amp; Overdetermined Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          </ul>
-        </li>
+          &lt;/ul&gt;
+        &lt;/li&gt;
         
         
-        <li class="chapter-item">
-          <a href="/diffequations/chapter-07/" >
-            Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution
-          </a>
-          <ul>
+        &lt;li class=&quot;chapter-item&quot;&gt;
+          &lt;a href=&quot;/diffequations/chapter-07/&quot; &gt;
+            Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution
+          &lt;/a&gt;
+          &lt;ul&gt;
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-1-d-modules/" >
-              7.1 D-Modules & Holonomic Systems
-            </a>
-          </li>
-        
-      
-    
-      
-        
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-2-microlocal-analysis/" >
-              7.2 Microlocal Analysis & Wave Front Sets
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-1-d-modules/&quot; &gt;
+              7.1 D-Modules &amp; Holonomic Systems
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-3-riemann-hilbert/" class="active">
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-2-microlocal-analysis/&quot; &gt;
+              7.2 Microlocal Analysis &amp; Wave Front Sets
+            &lt;/a&gt;
+          &lt;/li&gt;
+        
+      
+    
+      
+        
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-3-riemann-hilbert/&quot; class=&quot;active&quot;&gt;
               7.3 Riemann-Hilbert Correspondence
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-4-fourier-integral/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-4-fourier-integral/&quot; &gt;
               7.4 Fourier Integral Operators
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-5-resurgence/" >
-              7.5 Resurgence, Borel Summation & Alien Calculus
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-5-resurgence/&quot; &gt;
+              7.5 Resurgence, Borel Summation &amp; Alien Calculus
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-6-index-theorems/" >
-              7.6 Index Theorems & K-Theory
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-6-index-theorems/&quot; &gt;
+              7.6 Index Theorems &amp; K-Theory
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-7-noncommutative/" >
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-7-noncommutative/&quot; &gt;
               7.7 Noncommutative Geometry
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
       
         
-          <li class="section-item">
-            <a href="/diffequations/chapter-07/07-8-higher-categories/" >
-              7.8 Higher Categories, Derived Stacks & TQFT
-            </a>
-          </li>
+          &lt;li class=&quot;section-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/chapter-07/07-8-higher-categories/&quot; &gt;
+              7.8 Higher Categories, Derived Stacks &amp; TQFT
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
@@ -707,8 +709,8 @@
     
 
     
-      </ul>
-    </li>
+      &lt;/ul&gt;
+    &lt;/li&gt;
     
 
     
@@ -838,125 +840,125 @@
       
         
           
-          <li class="chapter-item">
-            <a href="/diffequations/epilogue/" >
+          &lt;li class=&quot;chapter-item&quot;&gt;
+            &lt;a href=&quot;/diffequations/epilogue/&quot; &gt;
               Epilogue: The Eternal Structure
-            </a>
-          </li>
+            &lt;/a&gt;
+          &lt;/li&gt;
         
       
     
-  </ul>
-</nav>
+  &lt;/ul&gt;
+&lt;/nav&gt;
 
-    </nav>
+    &lt;/nav&gt;
 
-    <!-- Main Content -->
-    <main class="textbook-main">
-      <header class="textbook-header">
-        <h1>Section 7.3: Riemann-Hilbert Correspondence</h1>
-        <p class="description">D-modules and perverse sheaves</p>
-      </header>
+    &lt;!-- Main Content --&gt;
+    &lt;main class=&quot;textbook-main&quot;&gt;
+      &lt;header class=&quot;textbook-header&quot;&gt;
+        &lt;h1&gt;Section 7.3: Riemann-Hilbert Correspondence&lt;/h1&gt;
+        &lt;p class=&quot;description&quot;&gt;D-modules and perverse sheaves&lt;/p&gt;
+      &lt;/header&gt;
 
-      <article class="textbook-content">
-        <h1 id="section-73-riemann-hilbert-correspondence">Section 7.3: Riemann-Hilbert Correspondence</h1>
+      &lt;article class=&quot;textbook-content&quot;&gt;
+        &lt;h1 id=&quot;section-73-riemann-hilbert-correspondence&quot;&gt;Section 7.3: Riemann-Hilbert Correspondence&lt;/h1&gt;
 
-<h2 id="introduction">Introduction</h2>
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-<p>In Chapter 1, we encountered the Frobenius method for regular singular points of ordinary differential equations. We observed that the behavior of solutions near a singularity—specifically their growth rates and monodromy—was entirely determined by the algebraic coefficients of the equation. In Chapter 7.3, we elevate this local observation to a global equivalence between analysis and topology.</p>
+&lt;p&gt;In Chapter 1, we encountered the Frobenius method for regular singular points of ordinary differential equations. We observed that the behavior of solutions near a singularity—specifically their growth rates and monodromy—was entirely determined by the algebraic coefficients of the equation. In Chapter 7.3, we elevate this local observation to a global equivalence between analysis and topology.&lt;/p&gt;
 
-<p>The Riemann-Hilbert Correspondence represents the summit of linear differential equation theory. It establishes that the category of systems of linear partial differential equations with regular singularities (Regular Holonomic D-modules) is equivalent to the category of topological constructs encoding the solution data (Perverse Sheaves). This correspondence resolves the inverse problem posed by Hilbert: it allows us to reconstruct a differential equation solely from the topological behavior of its solutions.</p>
+&lt;p&gt;The Riemann-Hilbert Correspondence represents the summit of linear differential equation theory. It establishes that the category of systems of linear partial differential equations with regular singularities (Regular Holonomic D-modules) is equivalent to the category of topological constructs encoding the solution data (Perverse Sheaves). This correspondence resolves the inverse problem posed by Hilbert: it allows us to reconstruct a differential equation solely from the topological behavior of its solutions.&lt;/p&gt;
 
-<h2 id="mathematical-content">Mathematical Content</h2>
+&lt;h2 id=&quot;mathematical-content&quot;&gt;Mathematical Content&lt;/h2&gt;
 
-<h3 id="regular-holonomic-d-modules">Regular Holonomic D-Modules</h3>
+&lt;h3 id=&quot;regular-holonomic-d-modules&quot;&gt;Regular Holonomic D-Modules&lt;/h3&gt;
 
-<p>We begin by formalizing the notion of a “regular singularity” in the context of D-modules. Let $X$ be a complex manifold and $\mathcal{D}_X$ the sheaf of differential operators. A holonomic $\mathcal{D}_X$-module $\mathcal{M}$ (introduced in Section 7.1) describes a maximally determined system of linear PDEs. However, holonomicity alone allows for essential singularities (irregular growth), similar to $e^{1/z}$ at the origin. We must restrict our attention to modules whose solutions exhibit moderate growth (polynomial bounds) near singularities.</p>
+&lt;p&gt;We begin by formalizing the notion of a “regular singularity” in the context of D-modules. Let $X$ be a complex manifold and $\mathcal{D}_X$ the sheaf of differential operators. A holonomic $\mathcal{D}_X$-module $\mathcal{M}$ (introduced in Section 7.1) describes a maximally determined system of linear PDEs. However, holonomicity alone allows for essential singularities (irregular growth), similar to $e^{1/z}$ at the origin. We must restrict our attention to modules whose solutions exhibit moderate growth (polynomial bounds) near singularities.&lt;/p&gt;
 
-<p>A holonomic module $\mathcal{M}$ is <strong>regular</strong> if it admits a good filtration compatible with the order of differential operators such that the annihilator ideal in the associated graded ring corresponds to a regular geometric structure. More precisely, we utilize the criterion of Kashiwara and Kawai: $\mathcal{M}$ is regular holonomic if, for any smooth curve embedding $i: C \hookrightarrow X$, the restriction (inverse image) $i^! \mathcal{M}$ is a regular holonomic $\mathcal{D}_C$-module in the classical ODE sense.</p>
+&lt;p&gt;A holonomic module $\mathcal{M}$ is &lt;strong&gt;regular&lt;/strong&gt; if it admits a good filtration compatible with the order of differential operators such that the annihilator ideal in the associated graded ring corresponds to a regular geometric structure. More precisely, we utilize the criterion of Kashiwara and Kawai: $\mathcal{M}$ is regular holonomic if, for any smooth curve embedding $i: C \hookrightarrow X$, the restriction (inverse image) $i^! \mathcal{M}$ is a regular holonomic $\mathcal{D}_C$-module in the classical ODE sense.&lt;/p&gt;
 
-<p>This definition ensures that the solutions to the system have no essential singularities. The analytic behavior is entirely “tame,” governed by the monodromy of the solutions as they traverse paths around the singular strata.</p>
+&lt;p&gt;This definition ensures that the solutions to the system have no essential singularities. The analytic behavior is entirely “tame,” governed by the monodromy of the solutions as they traverse paths around the singular strata.&lt;/p&gt;
 
-<h3 id="the-solution-complex-and-de-rham-functor">The Solution Complex and De Rham Functor</h3>
+&lt;h3 id=&quot;the-solution-complex-and-de-rham-functor&quot;&gt;The Solution Complex and De Rham Functor&lt;/h3&gt;
 
-<p>To connect the algebraic module $\mathcal{M}$ to its topological solutions, we construct the De Rham functor. Classically, a solution to a system $P u = 0$ is a function $f$ such that $P f = 0$. In the language of homological algebra, this is equivalent to finding the kernel of the operator $P$.</p>
+&lt;p&gt;To connect the algebraic module $\mathcal{M}$ to its topological solutions, we construct the De Rham functor. Classically, a solution to a system $P u = 0$ is a function $f$ such that $P f = 0$. In the language of homological algebra, this is equivalent to finding the kernel of the operator $P$.&lt;/p&gt;
 
-<p>We define the solution functor, or the <strong>De Rham functor</strong>, $\text{DR}(\mathcal{M})$, as the complex of holomorphic forms with coefficients in $\mathcal{M}$. Formally, this is the derived functor of homomorphisms from the sheaf of holomorphic functions $\mathcal{O}_X$:</p>
+&lt;p&gt;We define the solution functor, or the &lt;strong&gt;De Rham functor&lt;/strong&gt;, $\text{DR}(\mathcal{M})$, as the complex of holomorphic forms with coefficients in $\mathcal{M}$. Formally, this is the derived functor of homomorphisms from the sheaf of holomorphic functions $\mathcal{O}_X$:&lt;/p&gt;
 
-\[\text{DR}(\mathcal{M}) := \text{RHom}_{\mathcal{D}_X}(\mathcal{O}_X, \mathcal{M})\]
+\[\text{DR}(\mathcal{M}) := \text{RHom}_{\mathcal{D}_X}(\mathcal{O}_X, \mathcal{M})</span>
 
-<p>For a single ODE on a curve, this complex computes the kernel and cokernel of the differential operator. On a higher-dimensional manifold, $\text{DR}(\mathcal{M})$ is not a single sheaf, but a complex of sheaves. If $\mathcal{M}$ is regular holonomic, a pivotal result by Kashiwara proves that $\text{DR}(\mathcal{M})$ is a <strong>constructible sheaf</strong> (specifically, an object in the derived category of constructible sheaves). This means the space $X$ can be stratified into a disjoint union of locally closed sets $X = \bigsqcup X_\alpha$ such that the cohomology sheaves of $\text{DR}(\mathcal{M})$ are locally constant (topological local systems) on each stratum $X_\alpha$.</p>
+&lt;p&gt;For a single ODE on a curve, this complex computes the kernel and cokernel of the differential operator. On a higher-dimensional manifold, $\text{DR}(\mathcal{M})$ is not a single sheaf, but a complex of sheaves. If $\mathcal{M}$ is regular holonomic, a pivotal result by Kashiwara proves that $\text{DR}(\mathcal{M})$ is a &lt;strong&gt;constructible sheaf&lt;/strong&gt; (specifically, an object in the derived category of constructible sheaves). This means the space $X$ can be stratified into a disjoint union of locally closed sets $X = \bigsqcup X_\alpha$ such that the cohomology sheaves of $\text{DR}(\mathcal{M})$ are locally constant (topological local systems) on each stratum $X_\alpha$.&lt;/p&gt;
 
-<h3 id="perverse-sheaves">Perverse Sheaves</h3>
+&lt;h3 id=&quot;perverse-sheaves&quot;&gt;Perverse Sheaves&lt;/h3&gt;
 
-<p>The image of the De Rham functor is not an arbitrary complex of sheaves. It lands in a specific abelian subcategory of the derived category known as <strong>Perverse Sheaves</strong>.</p>
+&lt;p&gt;The image of the De Rham functor is not an arbitrary complex of sheaves. It lands in a specific abelian subcategory of the derived category known as &lt;strong&gt;Perverse Sheaves&lt;/strong&gt;.&lt;/p&gt;
 
-<p>Despite the name, perverse sheaves are the “correct” topological objects corresponding to systems of PDEs. They arise from the intersection cohomology theory of Goresky and MacPherson. A complex of sheaves $\mathcal{F}^\bullet$ is a perverse sheaf if it satisfies stringent vanishing conditions on its cohomology stalks. For a stratification $X_\alpha$ of dimension $d_\alpha$, the perversity conditions require:</p>
+&lt;p&gt;Despite the name, perverse sheaves are the “correct” topological objects corresponding to systems of PDEs. They arise from the intersection cohomology theory of Goresky and MacPherson. A complex of sheaves $\mathcal{F}^\bullet$ is a perverse sheaf if it satisfies stringent vanishing conditions on its cohomology stalks. For a stratification $X_\alpha$ of dimension $d_\alpha$, the perversity conditions require:&lt;/p&gt;
 
-<ol>
-  <li>
-    <p><strong>Support condition:</strong> The cohomology $H^k(\mathcal{F}^\bullet)$ vanishes on strata where $k &gt; -d_\alpha$.</p>
-  </li>
-  <li>
-    <p><strong>Co-support condition:</strong> The cohomology of the Verdier dual vanishes under symmetric conditions.</p>
-  </li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Support condition:&lt;/strong&gt; The cohomology $H^k(\mathcal{F}^\bullet)$ vanishes on strata where $k &gt; -d_\alpha$.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Co-support condition:&lt;/strong&gt; The cohomology of the Verdier dual vanishes under symmetric conditions.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-<p>These conditions force the singularities of the sheaf complex to align with the codimension of the strata, mirroring the way differential operators impose constraints on solutions based on the codimension of the characteristic variety.</p>
+&lt;p&gt;These conditions force the singularities of the sheaf complex to align with the codimension of the strata, mirroring the way differential operators impose constraints on solutions based on the codimension of the characteristic variety.&lt;/p&gt;
 
-<h3 id="the-correspondence-theorem">The Correspondence Theorem</h3>
+&lt;h3 id=&quot;the-correspondence-theorem&quot;&gt;The Correspondence Theorem&lt;/h3&gt;
 
-<p>The central theorem of this section, proved independently by Kashiwara and Mebkhout, establishes the equivalence of categories.</p>
+&lt;p&gt;The central theorem of this section, proved independently by Kashiwara and Mebkhout, establishes the equivalence of categories.&lt;/p&gt;
 
-<p><strong>Theorem (Riemann-Hilbert Correspondence):</strong></p>
+&lt;p&gt;&lt;strong&gt;Theorem (Riemann-Hilbert Correspondence):&lt;/strong&gt;&lt;/p&gt;
 
-<p>Let $X$ be a complex manifold. The De Rham functor $\text{DR}$ induces an equivalence of categories between:</p>
+&lt;p&gt;Let $X$ be a complex manifold. The De Rham functor $\text{DR}$ induces an equivalence of categories between:&lt;/p&gt;
 
-<ol>
-  <li>
-    <p>The bounded derived category of regular holonomic $\mathcal{D}<em>X$-modules, $D^b</em>{rh}(\mathcal{D}_X)$.</p>
-  </li>
-  <li>
-    <p>The bounded derived category of constructible sheaves of $\mathbb{C}$-vector spaces, $D^b_c(X)$.</p>
-  </li>
-</ol>
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The bounded derived category of regular holonomic $\mathcal{D}&lt;em&gt;X$-modules, $D^b&lt;/em&gt;{rh}(\mathcal{D}_X)$.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The bounded derived category of constructible sheaves of $\mathbb{C}$-vector spaces, $D^b_c(X)$.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-<p>Restricting to the abelian hearts of these categories, we obtain an equivalence between <strong>Regular Holonomic Modules</strong> and <strong>Perverse Sheaves</strong>.</p>
+&lt;p&gt;Restricting to the abelian hearts of these categories, we obtain an equivalence between &lt;strong&gt;Regular Holonomic Modules&lt;/strong&gt; and &lt;strong&gt;Perverse Sheaves&lt;/strong&gt;.&lt;/p&gt;
 
-<p>This theorem is the grand unification of linear PDE theory. It implies that every regular system of differential equations is completely characterized by the topology of its solution sheaves (monodromy and intersection data). Conversely, every perverse sheaf (topological data) allows for the canonical construction of a differential equation that solves it.</p>
+&lt;p&gt;This theorem is the grand unification of linear PDE theory. It implies that every regular system of differential equations is completely characterized by the topology of its solution sheaves (monodromy and intersection data). Conversely, every perverse sheaf (topological data) allows for the canonical construction of a differential equation that solves it.&lt;/p&gt;
 
-<h3 id="implications-for-differential-equations">Implications for Differential Equations</h3>
+&lt;h3 id=&quot;implications-for-differential-equations&quot;&gt;Implications for Differential Equations&lt;/h3&gt;
 
-<p>This correspondence allows us to resolve analytical problems using topological tools:</p>
+&lt;p&gt;This correspondence allows us to resolve analytical problems using topological tools:&lt;/p&gt;
 
-<ul>
-  <li>
-    <p><strong>Monodromy Representation:</strong> For a system on $X \setminus \Sigma$, the fundamental group $\pi_1(X \setminus \Sigma)$ acts on the solution space. The correspondence guarantees that any such representation arises from a unique regular singular differential equation (resolving Hilbert’s 21st problem).</p>
-  </li>
-  <li>
-    <p><strong>Fourier Transform:</strong> The Fourier transform of a D-module corresponds to the geometric Fourier-Sato transform of the associated perverse sheaf, converting analytical bounds into geometric operations.</p>
-  </li>
-  <li>
-    <p><strong>Intersection Cohomology:</strong> The local $L^2$ cohomology of singular algebraic varieties can be computed using the D-module of distributions supported on the variety.</p>
-  </li>
-</ul>
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Monodromy Representation:&lt;/strong&gt; For a system on $X \setminus \Sigma$, the fundamental group $\pi_1(X \setminus \Sigma)$ acts on the solution space. The correspondence guarantees that any such representation arises from a unique regular singular differential equation (resolving Hilbert’s 21st problem).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Fourier Transform:&lt;/strong&gt; The Fourier transform of a D-module corresponds to the geometric Fourier-Sato transform of the associated perverse sheaf, converting analytical bounds into geometric operations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Intersection Cohomology:&lt;/strong&gt; The local $L^2$ cohomology of singular algebraic varieties can be computed using the D-module of distributions supported on the variety.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-<p>By establishing this correspondence, we demonstrate that the “solution” to a differential equation is effectively a topological invariant. The analysis of growth rates and convergence is fully encoded in the algebraic structure of the module and the geometric structure of the sheaf.</p>
+&lt;p&gt;By establishing this correspondence, we demonstrate that the “solution” to a differential equation is effectively a topological invariant. The analysis of growth rates and convergence is fully encoded in the algebraic structure of the module and the geometric structure of the sheaf.&lt;/p&gt;
 
-<h2 id="complete-examples">Complete Examples</h2>
+&lt;h2 id=&quot;complete-examples&quot;&gt;Complete Examples&lt;/h2&gt;
 
-<h3 id="example-731-canonical-exampleclassical-riemann-hilbert-problem-fuchsian-ode">Example 7.3.1: Canonical Example—Classical Riemann-Hilbert Problem (Fuchsian ODE)</h3>
+&lt;h3 id=&quot;example-731-canonical-exampleclassical-riemann-hilbert-problem-fuchsian-ode&quot;&gt;Example 7.3.1: Canonical Example—Classical Riemann-Hilbert Problem (Fuchsian ODE)&lt;/h3&gt;
 
-<p><strong>Problem:</strong> Consider the Gauss hypergeometric equation on $\mathbb{P}^1$:</p>
+&lt;p&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Consider the Gauss hypergeometric equation on $\mathbb{P}^1$:&lt;/p&gt;
 
-\[\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><mi>z</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>z</mi><mo stretchy="false">)</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>+</mo><mo stretchy="false">[</mo><mi>c</mi><mo>−</mo><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>z</mi><mo stretchy="false">]</mo><msub><mi mathvariant="normal">∂</mi><mi>z</mi></msub><mo>−</mo><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">\mathcal{D} = z(1-z)\partial_z^2 + [c-(a+b+1)z]\partial_z - ab</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">]</span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">ab</span></span></span></span></span>
 
-<p><strong>Step-by-Step Solution:</strong></p>
+&lt;p&gt;&lt;strong&gt;Step-by-Step Solution:&lt;/strong&gt;&lt;/p&gt;
 
-<ol>
-  <li>
-    <p><strong>Regular Holonomic D-Module:</strong>
-\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}\)</p>
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Regular Holonomic D-Module:&lt;/strong&gt;
+\(\mathcal{M} = \mathcal{D}_{\mathbb{P}^1}/\mathcal{D}_{\mathbb{P}^1}\cdot\mathcal{D}</span></p>
 
     <p><strong>Characteristic variety:</strong> $\text{Ch}(\mathcal{M}) = {(z,\zeta) \in T^*\mathbb{P}^1 : \zeta(z(z-1)) = 0}$</p>
 
@@ -968,11 +970,11 @@
     <p><strong>Local Monodromy Computation:</strong>
 Around $z=0$ (local coordinate), solutions are:</p>
 
-\[\phi_1(z) = {}_2F_1(a,b;c;z), \quad \phi_2(z) = z^{1-c}{}_2F_1(a-c+1,b-c+1;2-c;z)\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>ϕ</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mrow></mrow><mn>2</mn></msub><msub><mi>F</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">;</mo><mi>c</mi><mo separator="true">;</mo><mi>z</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="1em"/><msub><mi>ϕ</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>z</mi><mrow><mn>1</mn><mo>−</mo><mi>c</mi></mrow></msup><msub><mrow></mrow><mn>2</mn></msub><msub><mi>F</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>a</mi><mo>−</mo><mi>c</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>−</mo><mi>c</mi><mo>+</mo><mn>1</mn><mo separator="true">;</mo><mn>2</mn><mo>−</mo><mi>c</mi><mo separator="true">;</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\phi_1(z) = {}_2F_1(a,b;c;z), \quad \phi_2(z) = z^{1-c}{}_2F_1(a-c+1,b-c+1;2-c;z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span>
 
     <p><strong>Monodromy matrix $M_0$</strong> (counterclockwise around $z=0$):</p>
 
-\[\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i(1-c)} \end{pmatrix}\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><msup><mi>e</mi><mrow><mn>2</mn><mi>π</mi><mi>i</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></msup></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><annotation encoding="application/x-tex">\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i(1-c)} \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.448em;vertical-align:-0.974em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.474em;"><span style="top:-3.634em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.386em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.974em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.474em;"><span style="top:-3.634em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.386em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">πi</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">c</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.974em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span>
   </li>
   <li>
     <p><strong>Complete Monodromy Data:</strong></p>
@@ -1015,7 +1017,7 @@ Around $z=0$ (local coordinate), solutions are:</p>
 
     <p><strong>Explicit construction for parameters $a=1/2, b=1/3, c=1$:</strong></p>
 
-\[\mathcal{D} = z(1-z)\partial_z^2 + \left[\partial_z - \frac{1/2 + 1/3 + 1}{z}z\right]\partial_z + \frac{1/2 \cdot 1/3}{z(1-z)}\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><mi>z</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>z</mi><mo stretchy="false">)</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>+</mo><mrow><mo fence="true">[</mo><msub><mi mathvariant="normal">∂</mi><mi>z</mi></msub><mo>−</mo><mfrac><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn><mo>+</mo><mn>1</mn></mrow><mi>z</mi></mfrac><mi>z</mi><mo fence="true">]</mo></mrow><msub><mi mathvariant="normal">∂</mi><mi>z</mi></msub><mo>+</mo><mfrac><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>⋅</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><mrow><mi>z</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathcal{D} = z(1-z)\partial_z^2 + \left[\partial_z - \frac{1/2 + 1/3 + 1}{z}z\right]\partial_z + \frac{1/2 \cdot 1/3}{z(1-z)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1/2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1/3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">]</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1/2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1/3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
     <p><strong>Verification:</strong> Solutions have exact monodromy matching specification.</p>
   </li>
@@ -1025,7 +1027,7 @@ Around $z=0$ (local coordinate), solutions are:</p>
 
 <p><strong>Problem:</strong> Lamé equation (separation of variables in elliptic coordinates):</p>
 
-\[y'' + [h - n(n+1)k^2 \text{sn}^2(z,k)]y = 0\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>y</mi><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msup><mo>+</mo><mo stretchy="false">[</mo><mi>h</mi><mo>−</mo><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>k</mi><mn>2</mn></msup><msup><mtext>sn</mtext><mn>2</mn></msup><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#x27;&#x27; + [h - n(n+1)k^2 \text{sn}^2(z,k)]y = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9963em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">sn</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)]</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>
 
 <p><strong>Parameters:</strong> $n=2$, $k=0.9$ (elliptic modulus)</p>
 
@@ -1034,7 +1036,7 @@ Around $z=0$ (local coordinate), solutions are:</p>
 <ol>
   <li>
     <p><strong>D-Module Structure:</strong>
-\(\mathcal{D} = \partial_z^2 + [h - 6k^2 \text{sn}^2(z,k)]\)</p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>+</mo><mo stretchy="false">[</mo><mi>h</mi><mo>−</mo><mn>6</mn><msup><mi>k</mi><mn>2</mn></msup><msup><mtext>sn</mtext><mn>2</mn></msup><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\mathcal{D} = \partial_z^2 + [h - 6k^2 \text{sn}^2(z,k)]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0611em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord text"><span class="mord">sn</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)]</span></span></span></span></p>
 
     <p><strong>Regular singular points:</strong> Period lattice $\Lambda = 2K\omega_1 + 2K\omega_2$</p>
   </li>
@@ -1068,11 +1070,21 @@ Around $z=0$ (local coordinate), solutions are:</p>
     <p><strong>Band Structure:</strong>
 Eigenvalues $h_{n,m}$ satisfy:</p>
 
-\[\text{tr}(M_1M_2) = 2\cos(2\pi\sqrt{h_{n,m}})\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>tr</mtext><mo stretchy="false">(</mo><msub><mi>M</mi><mn>1</mn></msub><msub><mi>M</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mn>2</mn><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><msqrt><msub><mi>h</mi><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi></mrow></msub></msqrt><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{tr}(M_1M_2) = 2\cos(2\pi\sqrt{h_{n,m}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">tr</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.302em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.898em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.302em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
 
     <p><strong>Analytical solution for $n=1$:</strong></p>
 
-\[h_{1,0} = k^2 + 1, \quad y_1(z) = \text{dn}(z,k)\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mrow><mn>1</mn><mo separator="true">,</mo><mn>0</mn></mrow></msub><mo>=</mo><msup><mi>k</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>y</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>dn</mtext><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_{1,0} = k^2 + 1, \quad y_1(z) = \text{dn}(z,k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">dn</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span></span>
 
     <p><strong>RH Reconstruction:</strong> Given band edges, recover Lamé operator exactly.</p>
   </li>
@@ -1087,7 +1099,7 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
 <ol>
   <li>
     <p><strong>Why NOT Regular Holonomic?</strong>
-\(\mathcal{D} = \partial_z^2 - z\)</p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>−</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">\mathcal{D} = \partial_z^2 - z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0611em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span></p>
 
     <p><strong>Characteristic variety:</strong> $\zeta^2 - z = 0$ (2-sheeted cover)</p>
 
@@ -1095,7 +1107,29 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
 
     <p><strong>Asymptotic solutions:</strong></p>
 
-\[\text{Ai}(z) \sim \frac{e^{-\frac{2}{3}z^{3/2}}}{2\sqrt{\pi}z^{1/4}}, \quad \text{Bi}(z) \sim \frac{e^{+\frac{2}{3}z^{3/2}}}{\sqrt{\pi}z^{1/4}}\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Ai</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∼</mo><mfrac><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><msup><mi>z</mi><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow></msup><mrow><mn>2</mn><msqrt><mi>π</mi></msqrt><msup><mi>z</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></msup></mrow></mfrac><mo separator="true">,</mo><mspace width="1em"/><mtext>Bi</mtext><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>∼</mo><mfrac><msup><mi>e</mi><mrow><mo>+</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><msup><mi>z</mi><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow></msup><mrow><msqrt><mi>π</mi></msqrt><msup><mi>z</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\text{Ai}(z) \sim \frac{e^{-\frac{2}{3}z^{3/2}}}{2\sqrt{\pi}z^{1/4}}, \quad \text{Bi}(z) \sim \frac{e^{+\frac{2}{3}z^{3/2}}}{\sqrt{\pi}z^{1/4}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Ai</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6604em;vertical-align:-0.9437em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7167em;"><span style="top:-2.3357em;"><span class="pstrut" style="height:3.0397em;"></span><span class="mord"><span class="mord">2</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.814em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/4</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.2697em;"><span class="pstrut" style="height:3.0397em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7167em;"><span class="pstrut" style="height:3.0397em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0397em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9667em;"><span style="top:-2.9667em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5357em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3/2</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9437em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">Bi</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6604em;vertical-align:-0.9437em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7167em;"><span style="top:-2.3357em;"><span class="pstrut" style="height:3.0397em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.814em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/4</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.2697em;"><span class="pstrut" style="height:3.0397em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7167em;"><span class="pstrut" style="height:3.0397em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0397em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">+</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9667em;"><span style="top:-2.9667em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5357em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3/2</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9437em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
     <p><strong>Stokes phenomenon:</strong> Solutions have exponential growth, violating regularity.</p>
   </li>
@@ -1103,11 +1137,11 @@ Eigenvalues $h_{n,m}$ satisfy:</p>
     <p><strong>Regularization via Confluence:</strong>
 Transform to regular singular form:</p>
 
-\[w(t) = e^{t^3/3}y(e^{-t})\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>w</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>e</mi><mrow><msup><mi>t</mi><mn>3</mn></msup><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup><mi>y</mi><mo stretchy="false">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">w(t) = e^{t^3/3}y(e^{-t})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2869em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.0369em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mtight">/3</span></span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8436em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
 
     <p><strong>Resulting equation:</strong></p>
 
-\[\frac{d^2w}{dt^2} + \left(t - \frac{1}{t}\right)\frac{dw}{dt} + \frac{1}{3t^2}w = 0\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>w</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><mrow><mo fence="true">(</mo><mi>t</mi><mo>−</mo><mfrac><mn>1</mn><mi>t</mi></mfrac><mo fence="true">)</mo></mrow><mfrac><mrow><mi>d</mi><mi>w</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>+</mo><mfrac><mn>1</mn><mrow><mn>3</mn><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mi>w</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{d^2w}{dt^2} + \left(t - \frac{1}{t}\right)\frac{dw}{dt} + \frac{1}{3t^2}w = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>
 
     <p><strong>Now regular at $t=0,\infty$!</strong> Monodromy computable.</p>
   </li>
@@ -1124,7 +1158,7 @@ Transform to regular singular form:</p>
 
 <p><strong>Problem:</strong> Find $M(z)$ analytic in $\mathbb{C} \setminus [-1,1]$ such that:</p>
 
-\[M_+(z) = M_-(z) \begin{pmatrix} 1 + i\rho(z) &amp; \rho(z) \\ -\rho(z) &amp; 1 - i\rho(z) \end{pmatrix}, \quad z \in [-1,1]\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mo>+</mo></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>M</mi><mo>−</mo></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo>+</mo><mi>i</mi><mi>ρ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>ρ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>ρ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo>−</mo><mi>i</mi><mi>ρ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><mo separator="true">,</mo><mspace width="1em"/><mi>z</mi><mo>∈</mo><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">M_+(z) = M_-(z) \begin{pmatrix} 1 + i\rho(z) &amp; \rho(z) \\ -\rho(z) &amp; 1 - i\rho(z) \end{pmatrix}, \quad z \in [-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2583em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">−</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></span>
 
 <p>where $\rho(z) = e^{i k \phi(z)}$, $\phi(z) = \log\frac{1+z}{1-z}$.</p>
 
@@ -1135,7 +1169,7 @@ Transform to regular singular form:</p>
     <p><strong>Sectionally Analytic Solution:</strong>
 <strong>Ansatz:</strong></p>
 
-\[M(z) = I + \frac{1}{2\pi i} \int_{-1}^1 \frac{G(t)}{t-z} dt\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mi>I</mi><mo>+</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>π</mi><mi>i</mi></mrow></mfrac><msubsup><mo>∫</mo><mrow><mo>−</mo><mn>1</mn></mrow><mn>1</mn></msubsup><mfrac><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mi>t</mi><mo>−</mo><mi>z</mi></mrow></mfrac><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">M(z) = I + \frac{1}{2\pi i} \int_{-1}^1 \frac{G(t)}{t-z} dt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.5343em;vertical-align:-0.9703em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">πi</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span></span></span>
   </li>
   <li>
     <p><strong>Plemelj Formula Application:</strong>
@@ -1143,21 +1177,31 @@ Transform to regular singular form:</p>
 
     <p><strong>Solution:</strong></p>
 
-\[M(z) = \frac{1}{2\pi i} \int_{-1}^1 \frac{\log\det J(t)}{t-z} \frac{dt}{\sqrt{(t+1)(1-t)}}\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>π</mi><mi>i</mi></mrow></mfrac><msubsup><mo>∫</mo><mrow><mo>−</mo><mn>1</mn></mrow><mn>1</mn></msubsup><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>det</mi><mo>⁡</mo><mi>J</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mi>t</mi><mo>−</mo><mi>z</mi></mrow></mfrac><mfrac><mrow><mi>d</mi><mi>t</mi></mrow><msqrt><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">M(z) = \frac{1}{2\pi i} \int_{-1}^1 \frac{\log\det J(t)}{t-z} \frac{dt}{\sqrt{(t+1)(1-t)}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.694em;vertical-align:-1.13em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">πi</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.564em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9703em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.175em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-2.895em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.13em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
   </li>
   <li>
     <p><strong>D-Module Reconstruction:</strong>
 <strong>Associated operator (from scattering data):</strong></p>
 
-\[\mathcal{D} = \partial_z^2 + q(z)\partial_z + r(z)\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>+</mo><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><msub><mi mathvariant="normal">∂</mi><mi>z</mi></msub><mo>+</mo><mi>r</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{D} = \partial_z^2 + q(z)\partial_z + r(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1111em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span>
 
     <p>where:</p>
 
-\[q(z) = \frac{M_{12}'(z)}{M_{11}(z)}, \quad r(z) = \frac{\det M'(z)}{\det M(z)}\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msubsup><mi>M</mi><mn>12</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mrow><msub><mi>M</mi><mn>11</mn></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mfrac><mo separator="true">,</mo><mspace width="1em"/><mi>r</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>det</mi><mo>⁡</mo><msup><mi>M</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mrow><mi>det</mi><mo>⁡</mo><mi>M</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">q(z) = \frac{M_{12}&#x27;(z)}{M_{11}(z)}, \quad r(z) = \frac{\det M&#x27;(z)}{\det M(z)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3649em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4289em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-2.4519em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2481em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3649em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4289em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">det</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop">det</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
     <p><strong>Explicit computation for $\rho(z) = e^{ikz}$:</strong></p>
 
-\[q(z) = \frac{i k}{2} \cot\left(\frac{k}{2}\log\frac{z-1}{z+1}\right)\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>i</mi><mi>k</mi></mrow><mn>2</mn></mfrac><mi>cot</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mi>k</mi><mn>2</mn></mfrac><mi>log</mi><mo>⁡</mo><mfrac><mrow><mi>z</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>z</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">q(z) = \frac{i k}{2} \cot\left(\frac{k}{2}\log\frac{z-1}{z+1}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">ik</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cot</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span>
   </li>
 </ol>
 
@@ -1165,7 +1209,7 @@ Transform to regular singular form:</p>
 
 <p><strong>Problem:</strong> KZ equation (correlation functions in WZW model):</p>
 
-\[\partial_{z_i} \Psi = \frac{\kappa}{z_i - z_j} t^a_j \Psi, \quad i \neq j\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∂</mi><msub><mi>z</mi><mi>i</mi></msub></msub><mi mathvariant="normal">Ψ</mi><mo>=</mo><mfrac><mi>κ</mi><mrow><msub><mi>z</mi><mi>i</mi></msub><mo>−</mo><msub><mi>z</mi><mi>j</mi></msub></mrow></mfrac><msubsup><mi>t</mi><mi>j</mi><mi>a</mi></msubsup><mi mathvariant="normal">Ψ</mi><mo separator="true">,</mo><mspace width="1em"/><mi>i</mi><mo mathvariant="normal">≠</mo><mi>j</mi></mrow><annotation encoding="application/x-tex">\partial_{z_i} \Psi = \frac{\kappa}{z_i - z_j} t^a_j \Psi, \quad i \neq j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9445em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.044em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mord">Ψ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0797em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">κ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span><span class="mord">Ψ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span></span></span></span></span>
 
 <p><strong>Step-by-Step Solution:</strong></p>
 
@@ -1174,13 +1218,13 @@ Transform to regular singular form:</p>
     <p><strong>D-Module Structure:</strong>
 $\mathcal{D}_{z_1,\dots,z_n}$-module with relations:</p>
 
-\[\partial_{z_i} - \sum_{j \neq i} \frac{\kappa t^a_j}{z_i - z_j} = 0\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∂</mi><msub><mi>z</mi><mi>i</mi></msub></msub><mo>−</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo mathvariant="normal">≠</mo><mi>i</mi></mrow></munder><mfrac><mrow><mi>κ</mi><msubsup><mi>t</mi><mi>j</mi><mi>a</mi></msubsup></mrow><mrow><msub><mi>z</mi><mi>i</mi></msub><mo>−</mo><msub><mi>z</mi><mi>j</mi></msub></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\partial_{z_i} - \sum_{j \neq i} \frac{\kappa t^a_j}{z_i - z_j} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9445em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.044em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.8874em;vertical-align:-1.4382em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight"><span class="mrel mtight"><span class="mord vbox mtight"><span class="thinbox mtight"><span class="rlap mtight"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord mtight"><span class="mrel mtight"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel mtight">=</span></span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4382em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4492em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.7848em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">κ</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.4413em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3948em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>
   </li>
   <li>
     <p><strong>Monodromy Representation:</strong>
 Around $z_i = z_j$:</p>
 
-\[M_{ij} = \exp\left(2\pi i \kappa t^a_j\right)\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>exp</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mn>2</mn><mi>π</mi><mi>i</mi><mi>κ</mi><msubsup><mi>t</mi><mi>j</mi><mi>a</mi></msubsup><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">M_{ij} = \exp\left(2\pi i \kappa t^a_j\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2331em;vertical-align:-0.3831em;"></span><span class="mop">exp</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord">2</span><span class="mord mathnormal">πiκ</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-2.453em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3831em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span></span>
   </li>
   <li>
     <p><strong>Perverse Sheaf:</strong>
@@ -1249,7 +1293,7 @@ Classification by monodromy data $(M_0,M_1,M_\infty) \in \text{SL}(2,\mathbb{C})
 
     <p><strong>Explicit computation for rigid case:</strong></p>
 
-\[\mathcal{D} = \partial_z^2 + \frac{1}{z(z-1)}\partial_z\]
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">D</mi><mo>=</mo><msubsup><mi mathvariant="normal">∂</mi><mi>z</mi><mn>2</mn></msubsup><mo>+</mo><mfrac><mn>1</mn><mrow><mi>z</mi><mo stretchy="false">(</mo><mi>z</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mfrac><msub><mi mathvariant="normal">∂</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{D} = \partial_z^2 + \frac{1}{z(z-1)}\partial_z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1111em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.2574em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>
 
     <p><strong>Monodromy:</strong> Unipotent at 0,1</p>
 
@@ -1266,7 +1310,7 @@ Classification by monodromy data $(M_0,M_1,M_\infty) \in \text{SL}(2,\mathbb{C})
 <ol>
   <li>
     <p><strong>Case 1: Bessel Equation (Irregular at $\infty$):</strong>
-\(y'' + \frac{1}{z}y' + \left(1 - \frac{\nu^2}{z^2}\right)y = 0\)</p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>y</mi><mrow><mo mathvariant="normal">′</mo><mo mathvariant="normal">′</mo></mrow></msup><mo>+</mo><mfrac><mn>1</mn><mi>z</mi></mfrac><msup><mi>y</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mfrac><msup><mi>ν</mi><mn>2</mn></msup><msup><mi>z</mi><mn>2</mn></msup></mfrac><mo fence="true">)</mo></mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y&#x27;&#x27; + \frac{1}{z}y&#x27; + \left(1 - \frac{\nu^2}{z^2}\right)y = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0179em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.06366em;">ν</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></p>
 
     <p><strong>Stokes multipliers:</strong> Non-trivial, indicating essential singularity</p>
 
@@ -1454,14 +1498,14 @@ Classification by monodromy data $(M_0,M_1,M_\infty) \in \text{SL}(2,\mathbb{C})
     window.addEventListener('load', function() {
       // Load Pyodide and Plotly after page is fully loaded
       // They will be loaded on-demand when code execution buttons are clicked
-      
+
       // Load Plotly (smaller, can load earlier)
       var plotlyScript = document.createElement('script');
       plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
       plotlyScript.charset = 'utf-8';
       plotlyScript.async = true;
       document.body.appendChild(plotlyScript);
-      
+
       // Pyodide is loaded on-demand by textbook-engine.js when first code block is executed
       // This saves ~10MB on initial page load
     });
