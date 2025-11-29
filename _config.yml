@@ -86,6 +86,14 @@ exclude:
   - _pages/archive.md
   - _dropdown
   - archive
+  # Exclude internal documentation files from being published
+  - _diffequations/CONTENT_STRUCTURE_GUIDE.md
+  - _diffequations/IMPLEMENTATION_PLAN.md
+  - _diffequations/MATH_FORMATTING_GUIDE.md
+  - _diffequations/PHASE_1_2_EXECUTION_PLAN.md
+  - _diffequations/README.md
+  - _diffequations/section-1-3-update-report.md
+  - _diffequations/transformation_guidline.md
 
 # PDF Settings
 pdf_height: 900px

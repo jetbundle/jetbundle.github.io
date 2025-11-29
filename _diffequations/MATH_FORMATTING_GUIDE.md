@@ -1,15 +1,3 @@
----
-layout: textbook
-title: "Math Formatting Guide: Using \mid Instead of |"
-description: "Guidelines for writing LaTeX math expressions in markdown"
-permalink: /diffequations/math-formatting-guide/
-order: 0.5
-chapter: 0
-nav_order: 0.5
-is_chapter_index: false
-parent_chapter: null
----
-
 # Math Formatting Guide: Using `\mid` Instead of `|`
 
 ## Critical Rule: Use `\mid` for Mathematical Separators
