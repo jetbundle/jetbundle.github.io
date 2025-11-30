@@ -14,6 +14,8 @@ parent_section: null
 
 # Section 5.2: SDEs & Diffusion Processes
 
+> Stochastic differential equations redefine dynamics as the evolution of probability measures on path space, connecting deterministic trajectories to the geometry of diffusion processes.
+
 ## Introduction
 
 Having established the definition of the stochastic integral in the previous section, we now address the inverse problem: the construction of stochastic processes that satisfy differential constraints. In the classical setting of Chapter 1, a differential equation $x'(t) = f(x(t))$ defines a trajectory tangent to a vector field. In the stochastic regime, the non-differentiability of Brownian motion forces us to interpret such equations in integral form.
@@ -38,23 +40,23 @@ $$
 
 #### Lipschitz and Growth Conditions
 
-The classical Picard-Lindelöf theorem requires Lipschitz continuity of the vector field. The stochastic analogue imposes similar constraints to control the variance of the Itô integral. We require two main conditions for the existence of a unique solution:
+The classical Picard-Lindelöf theorem requires Lipschitz continuity of the vector field. The stochastic analogue imposes similar constraints to control the variance of the Itô integral. We require two main conditions for the existence of a unique solution.
 
-1. **Lipschitz Condition:** There exists a constant $K$ such that for all $x, y \in \mathbb{R}^n$ and $t \in [0, T]$:
+**Lipschitz Condition:** There exists a constant $K$ such that for all $x, y \in \mathbb{R}^n$ and $t \in [0, T]$:
 
-   $$
-   |b(t, x) - b(t, y)| + |\sigma(t, x) - \sigma(t, y)| \leq K|x - y|
-   $$
+$$
+\mid b(t, x) - b(t, y) \mid + \mid \sigma(t, x) - \sigma(t, y) \mid \leq K \mid x - y \mid
+$$
 
-2. **Linear Growth Condition:** To prevent the solution from exploding to infinity in finite time:
+**Linear Growth Condition:** To prevent the solution from exploding to infinity in finite time:
 
-   $$
-   |b(t, x)| + |\sigma(t, x)| \leq K(1 + |x|)
-   $$
+$$
+\mid b(t, x) \mid + \mid \sigma(t, x) \mid \leq K(1 + \mid x \mid)
+$$
 
 #### Picard Iteration in $L^2$
 
-Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}_t$ in the Banach space of square-integrable adapted processes equipped with the norm $\|X\| = \mathbb{E}[\sup_{0 \leq t \leq T} |X_t|^2]^{1/2}$.
+Under these conditions, we construct the solution iteratively. We define a sequence of processes $X^{(k)}_t$ in the Banach space of square-integrable adapted processes equipped with the norm $\mid\mid X \mid\mid = \mathbb{E}[\sup_{0 \leq t \leq T} \mid X_t \mid^2]^{1/2}$.
 
 Let $X^{(0)}_t = X_0$. The recurrence is defined by:
 
@@ -63,6 +65,46 @@ X^{(k+1)}_t = X_0 + \int_0^t b(s, X^{(k)}_s) ds + \int_0^t \sigma(s, X^{(k)}_s) 
 $$
 
 Using the Itô isometry and the Lipschitz bounds, one demonstrates that the sequence is Cauchy in $L^2$. The limit $X_t$ is the unique strong solution.
+
+> **Geometric Brownian Motion**
+
+> To solve the SDE $dX_t = \mu X_t dt + \sigma X_t dB_t$ with $X_0 = x_0 > 0$, we first verify the Lipschitz conditions. For the drift $b(t,x) = \mu x$, we have $\mid b(t,x) - b(t,y) \mid = \mid \mu \mid \mid x-y \mid$. For the diffusion $\sigma(t,x) = \sigma x$, we have $\mid \sigma(t,x) - \sigma(t,y) \mid = \mid \sigma \mid \mid x-y \mid$. The linear growth condition is satisfied: $\mid b(t,x) \mid + \mid \sigma(t,x) \mid = (\mid \mu \mid + \mid \sigma \mid) \mid x \mid \leq K(1+\mid x \mid)$ with $K = \max(\mid \mu \mid, \mid \sigma \mid)$.
+
+> The exact solution is obtained via Itô's formula. Consider $Y_t = \log X_t$. Applying Itô's formula:
+
+> $$
+> dY_t = \frac{1}{X_t} dX_t - \frac{1}{2} \frac{1}{X_t^2} d\langle X \rangle_t
+> $$
+
+> Since $d\langle X \rangle_t = (\sigma X_t)^2 dt = \sigma^2 X_t^2 dt$:
+
+> $$
+> dY_t = \frac{\mu X_t dt + \sigma X_t dB_t}{X_t} - \frac{1}{2X_t^2} \cdot \sigma^2 X_t^2 dt = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma dB_t
+> $$
+
+> Integrating:
+
+> $$
+> Y_t = Y_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t
+> $$
+
+> $$
+> \log X_t = \log x_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t
+> $$
+
+> Exponentiating:
+
+> $$
+> X_t = x_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t\right]
+> $$
+
+> The moments are:
+
+> $$
+> \mathbb{E}[X_t] = x_0 e^{\mu t}, \quad \text{Var}(X_t) = x_0^2 e^{2\mu t} (e^{\sigma^2 t} - 1)
+> $$
+
+> This explicit solution confirms that the Picard iteration converges to this lognormal distribution. The geometric structure ensures that the process remains positive, making it a natural model for stock prices and other positive-valued quantities.
 
 #### Strong vs. Weak Solutions
 
@@ -75,6 +117,16 @@ A critical distinction in stochastic analysis, absent in deterministic theory, i
 #### The Yamada-Watanabe Theorem
 
 This theorem provides the fundamental link between these concepts. It states that if pathwise uniqueness holds (i.e., any two strong solutions starting at the same point are indistinguishable), then weak existence implies strong existence. Furthermore, pathwise uniqueness implies uniqueness in law.
+
+> **Square Root Process and Non-Lipschitz Diffusion**
+
+> Consider the Cox-Ingersoll-Ross model $dX_t = \mu X_t dt + \sigma \sqrt{X_t} dB_t$. The diffusion coefficient fails the Lipschitz condition:
+
+> $$
+> \mid \sigma(t,x) - \sigma(t,y) \mid = \sigma \mid \sqrt{x} - \sqrt{y} \mid \not\leq K \mid x-y \mid
+> $$
+
+> However, pathwise uniqueness can be established via Tanaka's lemma and local time arguments. Weak existence follows from truncation and tightness arguments. The Yamada-Watanabe theorem then implies that despite the non-Lipschitz diffusion, a unique strong solution exists for $\mu, \sigma > 0$. This demonstrates that Lipschitz conditions are sufficient but not necessary for well-posedness.
 
 ### The Feynman-Kac Formula
 
@@ -108,6 +160,56 @@ The proof relies on applying Itô's formula to the process $M_s = u(s, X_s) \exp
 
 This result interprets the solution $u(t, x)$ as an average over all possible future paths of the particle, weighted by the decay potential $V$. This validates the intuition that diffusion PDEs describe the macroscopic statistics of microscopic stochastic motion.
 
+> **Heat Equation via Feynman-Kac**
+
+> For the heat equation $\partial_t u = \frac{1}{2} \partial_{xx} u$ with terminal condition $u(T,x) = \psi(x)$, the Feynman-Kac representation is:
+
+> $$
+> u(t,x) = \mathbb{E}^{t,x}[\psi(B_T)] = \int_{\mathbb{R}} \psi(y) \cdot \frac{1}{\sqrt{2\pi(T-t)}} \exp\left(-\frac{(y-x)^2}{2(T-t)}\right) dy
+> $$
+
+> Verification via Itô's formula: let $M_s = u(s, B_s)$. Then:
+
+> $$
+> dM_s = \partial_t u ds + \partial_x u dB_s + \frac{1}{2} \partial_{xx} u ds = 0
+> $$
+
+> Since $M_s$ is a martingale:
+
+> $$
+> M_t = u(t,x) = \mathbb{E}[M_T] = \mathbb{E}[\psi(B_T)]
+> $$
+
+> This demonstrates that the solution to the heat equation is the expected value of the terminal condition evaluated along Brownian paths, providing a probabilistic interpretation of diffusion.
+
+> **Black-Scholes PDE**
+
+> For a European call option $V(t,S)$ satisfying:
+
+> $$
+> \partial_t V + rS \partial_S V + \frac{1}{2} \sigma^2 S^2 \partial_{SS} V - rV = 0, \quad V(T,S) = \max(S-K, 0)
+> $$
+
+> the stochastic representation is:
+
+> $$
+> V(t,S) = e^{-r(T-t)} \mathbb{E}^{t,S} \left[ \max(S_T - K, 0) \right]
+> $$
+
+> where $dS_u = r S_u du + \sigma S_u d\tilde{B}_u$ under the risk-neutral measure. The analytical solution is:
+
+> $$
+> V(t,S) = S N(d_1) - K e^{-r(T-t)} N(d_2)
+> $$
+
+> where:
+
+> $$
+> d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma \sqrt{T-t}}, \quad d_2 = d_1 - \sigma \sqrt{T-t}
+> $$
+
+> Under the risk-neutral measure, $S_T = S \exp[(r - \sigma^2/2)(T-t) + \sigma \tilde{B}_{T-t}]$. The probabilities are $\mathbb{P}(S_T > K) = N(d_2)$ and $\mathbb{E}[S_T 1_{S_T>K}] = S e^{r(T-t)} N(d_1)$. Discounting yields the Black-Scholes formula, demonstrating how the Feynman-Kac formula connects stochastic processes to option pricing.
+
 ### The Girsanov Theorem
 
 In classical ODEs, changing the drift term $b(x)$ fundamentally alters the trajectory. In SDEs, we can interpret a change in drift as a change in the *probability measure* of the path space. The Girsanov theorem allows us to remove drift from an SDE, transforming it into a martingale under a new measure.
@@ -119,7 +221,7 @@ Let $B_t$ be a Brownian motion under measure $\mathbb{P}$. We wish to construct 
 We define the Radon-Nikodym derivative (likelihood ratio) process $Z_t$:
 
 $$
-Z_t = \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \exp\left( -\int_0^t \theta_s dB_s - \frac{1}{2} \int_0^t |\theta_s|^2 ds \right)
+Z_t = \frac{d\mathbb{Q}}{d\mathbb{P}}\bigg\mid_{\mathcal{F}_t} = \exp\left( -\int_0^t \theta_s dB_s - \frac{1}{2} \int_0^t \mid \theta_s \mid^2 ds \right)
 $$
 
 #### The Novikov Condition
@@ -127,12 +229,56 @@ $$
 For $\mathbb{Q}$ to be a valid probability measure, we require $\mathbb{E}^\mathbb{P}[Z_T] = 1$, which implies $Z_t$ must be a true martingale, not just a local one. The Novikov condition provides a sufficient criterion:
 
 $$
-\mathbb{E}^\mathbb{P} \left[ \exp\left( \frac{1}{2} \int_0^T |\theta_s|^2 ds \right) \right] < \infty
+\mathbb{E}^\mathbb{P} \left[ \exp\left( \frac{1}{2} \int_0^T \mid \theta_s \mid^2 ds \right) \right] < \infty
 $$
 
 #### Application to Drift Removal
 
 Consider the SDE $dX_t = b(X_t)dt + dB_t$. By choosing $\theta_t = -b(X_t)$, Girsanov's theorem implies that under the measure $\mathbb{Q}$ defined by $Z_T$, the process satisfies $dX_t = d\tilde{B}_t$. Thus, a diffusion with drift can be viewed as a Brownian motion viewed through a distorted probabilistic lens. This technique is central to the pricing of financial derivatives (risk-neutral pricing) and the study of weak solutions.
+
+> **Drift Removal via Girsanov**
+
+> To transform $dX_t = \mu dt + dB_t$ into standard Brownian motion, set $\theta_t = -\mu$ (constant). The Radon-Nikodym derivative is:
+
+> $$
+> Z_t = \exp\left( -\int_0^t (-\mu) dB_s - \frac{1}{2} \int_0^t \mu^2 ds \right) = \exp\left( \mu B_t - \frac{\mu^2 t}{2} \right)
+> $$
+
+> The Novikov condition is satisfied: $\mathbb{E}[\exp(\frac{1}{2} \mu^2 T)] < \infty$. Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian motion. Thus $X_t = \tilde{B}_t + \mu t$ becomes $X_t = \tilde{B}_t$ under $\mathbb{Q}$.
+
+> Verification:
+
+> $$
+> \mathbb{E}^\mathbb{Q}[X_t] = \mathbb{E}^\mathbb{P}[X_t Z_t] = \mathbb{E}^\mathbb{P}[(B_t + \mu t) \exp(\mu B_t - \frac{\mu^2 t}{2})] = 0
+> $$
+
+> The exponential martingale property yields $\mathbb{E}^\mathbb{Q}[X_t] = 0$, confirming that the drift has been removed under the new measure.
+
+> **Risk-Neutral Pricing**
+
+> For a stock price $S_t$ with $dS_t = \mu S_t dt + \sigma S_t dB_t^\mathbb{P}$ under the physical measure, we transform to the risk-neutral measure. The risk-neutral drift is $r$ (risk-free rate). The Girsanov transformation uses:
+
+> $$
+> \theta_t = \frac{\mu - r}{\sigma}
+> $$
+
+> $$
+> \frac{d\mathbb{Q}}{d\mathbb{P}} = \exp\left( -\frac{\mu-r}{\sigma} B_T - \frac{(\mu-r)^2 T}{2\sigma^2} \right)
+> $$
+
+> Under $\mathbb{Q}$:
+
+> $$
+> dS_t = r S_t dt + \sigma S_t d\tilde{B}_t
+> $$
+
+> The option price is:
+
+> $$
+> V_0 = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]
+> $$
+
+> This transformation removes the market risk premium from the drift, allowing option pricing based solely on the risk-free rate and volatility.
 
 ### Kolmogorov Equations
 
@@ -140,7 +286,7 @@ While the Feynman-Kac formula relates functional expectations to PDEs, the Kolmo
 
 #### The Backward Equation
 
-Let $u(t, x) = \mathbb{E}[f(X_T) | X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:
+Let $u(t, x) = \mathbb{E}[f(X_T) \mid X_t = x]$. This function represents an observable of the system evolving backward from a final condition. It satisfies:
 
 $$
 \frac{\partial u}{\partial t} + \mathcal{L}u = 0, \quad t < T
@@ -162,395 +308,117 @@ $$
 
 This equation conserves total probability ($\int p dx = 1$). The first term represents advection by the drift $b$, while the second represents diffusion by $\sigma$.
 
+> **Ornstein-Uhlenbeck Process**
+
+> For the SDE $dX_t = -\gamma X_t dt + \sigma dB_t$ with $X_0 = x_0$, the Lipschitz conditions are satisfied globally since $b(t,x) = -\gamma x$ and $\sigma(t,x) = \sigma$ is constant. Using variation of parameters, the homogeneous solution is $e^{-\gamma t}$. Setting $X_t = e^{-\gamma t} Y_t$:
+
+> $$
+> dX_t = -\gamma e^{-\gamma t} Y_t dt + e^{-\gamma t} dY_t
+> $$
+
+> Equating coefficients:
+
+> $$
+> e^{-\gamma t} dY_t = \sigma dB_t \implies dY_t = \sigma e^{\gamma t} dB_t
+> $$
+
+> Integrating:
+
+> $$
+> Y_t = Y_0 + \sigma \int_0^t e^{\gamma s} dB_s
+> $$
+
+> $$
+> X_t = e^{-\gamma t} x_0 + \sigma e^{-\gamma t} \int_0^t e^{\gamma s} dB_s
+> $$
+
+> The covariance is:
+
+> $$
+> \text{Cov}(X_t, X_s) = \frac{\sigma^2}{2\gamma} e^{-\gamma \mid t-s \mid}
+> $$
+
+> As $t \to \infty$, $X_t \xrightarrow{d} \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)$, demonstrating convergence to a stationary Gaussian distribution. This mean-reverting process models systems that return to equilibrium, such as interest rates or particle velocities in a heat bath.
+
+> **Fokker-Planck Equation for Ornstein-Uhlenbeck**
+
+> The probability density $p(t,x)$ for $dX_t = -\gamma X_t dt + \sigma dB_t$ satisfies:
+
+> $$
+> \partial_t p = \gamma \partial_x (x p) + \frac{\sigma^2}{2} \partial_{xx} p
+> $$
+
+> The exact solution is:
+
+> $$
+> p(t,x) = \frac{1}{\sqrt{2\pi v(t)}} \exp\left( -\frac{(x - m(t))^2}{2v(t)} \right)
+> $$
+
+> where $m(t) = x_0 e^{-\gamma t}$ and $v(t) = \frac{\sigma^2}{2\gamma} (1 - e^{-2\gamma t})$. Verification shows that all terms balance to yield $\partial_t p$, confirming that the density evolves as a Gaussian with time-dependent mean and variance converging to the stationary distribution.
+
 #### Stationary Distributions
 
 A stationary distribution $\pi(x)$ is an invariant measure for the process, satisfying $\mathcal{L}^* \pi = 0$. The existence of such a distribution is linked to the recurrence properties of the diffusion and the stability of the zero solution. In the context of Chapter 2, finding the stationary distribution is equivalent to finding the null space of the adjoint elliptic operator.
 
-## Complete Examples
+> **Stationary Distributions for Various Diffusions**
 
-### Example 5.2.1: Canonical Lipschitz Case—Geometric Brownian Motion
+> For different SDEs, the stationary densities are:
 
-**Problem:** Solve the SDE
+> | SDE | Stationary Density | Verification |
+> |-----|-------------------|--------------|
+> | $dX_t = -X_t dt + dB_t$ | $\pi(x) = \sqrt{\frac{2}{\pi}} e^{-x^2}$ | $\mathcal{L}^*\pi = 0$ |
+> | $dX_t = -X_t^3 dt + dB_t$ | $\pi(x) = C e^{-x^2/2}$ | Double-well potential |
+> | $dX_t = \mu(\theta - X_t) dt + \sigma dB_t$ | $\pi(x) = \sqrt{\frac{2\mu}{\pi\sigma^2}} e^{-2\mu(x-\theta)^2/\sigma^2}$ | Mean-reverting |
 
-$$
-dX_t = \mu X_t dt + \sigma X_t dB_t, \quad X_0 = x_0 > 0
-$$
+> The general method for $dX_t = b(X_t) dt + \sigma(X_t) dB_t$ is to solve:
 
-**Step-by-Step Solution:**
+> $$
+> -\partial_x (b(x)\pi(x)) + \frac{1}{2} \partial_{xx} (\sigma^2(x)\pi(x)) = 0
+> $$
 
-1. **Verify Lipschitz Conditions:**
-   - Drift: $b(t,x) = \mu x$, $|b(t,x) - b(t,y)| = |\mu||x-y|$
-   - Diffusion: $\sigma(t,x) = \sigma x$, $|\sigma(t,x) - \sigma(t,y)| = |\sigma||x-y|$
-   - Linear growth: $|b(t,x)| + |\sigma(t,x)| = (|\mu| + |\sigma|)|x| \leq K(1+|x|)$
+> These stationary distributions represent the long-term equilibrium states of the diffusion processes, providing insight into the asymptotic behavior of stochastic systems.
 
-   Conditions satisfied with $K = \max(|\mu|, |\sigma|)$
+> **CIR Process Forward Equation**
 
-2. **Exact Solution via Itô's Formula:**
-   Consider $Y_t = \log X_t$. Apply Itô's formula:
+> For the Cox-Ingersoll-Ross process $dX_t = \kappa(\theta - X_t) dt + \sigma \sqrt{X_t} dB_t$, the Fokker-Planck equation is:
 
-   $$
-   dY_t = \frac{1}{X_t} dX_t - \frac{1}{2} \frac{1}{X_t^2} d\langle X \rangle_t
-   $$
+> $$
+> \partial_t p = \partial_x [(\kappa(\theta - x))p] + \frac{1}{2} \partial_{xx} (\sigma^2 x p)
+> $$
 
-   $$
-   d\langle X \rangle_t = (\sigma X_t)^2 dt = \sigma^2 X_t^2 dt
-   $$
+> When $2\kappa\theta > \sigma^2$, the stationary distribution is:
 
-   $$
-   dY_t = \frac{\mu X_t dt + \sigma X_t dB_t}{X_t} - \frac{1}{2X_t^2} \cdot \sigma^2 X_t^2 dt = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma dB_t
-   $$
+> $$
+> \pi(x) = C x^{\alpha-1} e^{-\beta x}, \quad \alpha = \frac{2\kappa\theta}{\sigma^2}, \quad \beta = \frac{2\kappa}{\sigma^2}
+> $$
 
-3. **Integration:**
-   $$
-   Y_t = Y_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t
-   $$
+> Computing $\mathcal{L}^*\pi$ term by term verifies the stationary condition. The parameter conditions ensure positivity and integrability, connecting this distribution to the non-central chi-squared distribution. This process is fundamental in finance for modeling interest rates and volatility.
 
-   $$
-   \log X_t = \log x_0 + \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t
-   $$
+> **Non-Uniqueness Without Lipschitz Conditions**
 
-   $$
-   X_t = x_0 \exp\left[\left(\mu - \frac{\sigma^2}{2}\right) t + \sigma B_t\right]
-   $$
+> For the SDE $dX_t = \mid X_t \mid^\alpha dB_t$ with $\alpha \in (0,1)$, pathwise uniqueness fails. Multiple solutions exist from $X_0 = 0$: the trivial solution $X_t \equiv 0$ and the non-trivial solution $X_t = \left( \int_0^t \mid B_s \mid^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$. Weak uniqueness holds, but strong solutions do not. This demonstrates that Lipschitz conditions are essential for pathwise uniqueness, as guaranteed by the Yamada-Watanabe theorem.
 
-4. **Moments:**
-   $$
-   \mathbb{E}[X_t] = x_0 e^{\mu t}, \quad \text{Var}(X_t) = x_0^2 e^{2\mu t} (e^{\sigma^2 t} - 1)
-   $$
+> **Explosion in Finite Time**
 
-**Key Insight:** The explicit solution confirms the Picard iteration converges to this lognormal distribution.
+> For the SDE $dX_t = X_t^2 dt + dB_t$, the linear growth condition fails:
 
-### Example 5.2.2: Ornstein-Uhlenbeck Process
+> $$
+> \mid b(t,x) \mid = x^2 \not\leq K(1+\mid x \mid)
+> $$
 
-**Problem:** Solve $dX_t = -\gamma X_t dt + \sigma dB_t$, $X_0 = x_0$.
+> The exact solution is:
 
-**Step-by-Step Solution:**
+> $$
+> X_t = \frac{x_0 + B_t}{1 - x_0 t - \int_0^t B_s ds}
+> $$
 
-1. **Lipschitz Verification:**
-   - $b(t,x) = -\gamma x$, $\sigma(t,x) = \sigma$ (constant)
-   - Both conditions satisfied globally
+> The explosion time is:
 
-2. **Variation of Parameters:**
-   The homogeneous solution is $e^{-\gamma t}$. Let $X_t = e^{-\gamma t} Y_t$:
+> $$
+> \tau = \frac{1}{x_0 + \sup_{s\leq t} B_s}
+> $$
 
-   $$
-   dX_t = -\gamma e^{-\gamma t} Y_t dt + e^{-\gamma t} dY_t
-   $$
-
-   Equate coefficients:
-
-   $$
-   e^{-\gamma t} dY_t = \sigma dB_t \implies dY_t = \sigma e^{\gamma t} dB_t
-   $$
-
-3. **Integration:**
-   $$
-   Y_t = Y_0 + \sigma \int_0^t e^{\gamma s} dB_s
-   $$
-
-   $$
-   X_t = e^{-\gamma t} x_0 + \sigma e^{-\gamma t} \int_0^t e^{\gamma s} dB_s
-   $$
-
-4. **Stationary Distribution:**
-   $$
-   \text{Cov}(X_t, X_s) = \frac{\sigma^2}{2\gamma} e^{-\gamma|t-s|}
-   $$
-
-   As $t \to \infty$, $X_t \xrightarrow{d} \mathcal{N}\left(0, \frac{\sigma^2}{2\gamma}\right)$
-
-### Example 5.2.3: Yamada-Watanabe Application—Square Root Process
-
-**Problem:** Consider $dX_t = \mu X_t dt + \sigma \sqrt{X_t} dB_t$ (Cox-Ingersoll-Ross model).
-
-**Analysis:**
-
-1. **Lipschitz Failure:**
-   $$
-   |\sigma(t,x) - \sigma(t,y)| = \sigma |\sqrt{x} - \sqrt{y}| \not\leq K|x-y|
-   $$
-
-2. **Pathwise Uniqueness:**
-   Via Tanaka's lemma and local time arguments
-
-3. **Weak Existence:**
-   Via truncation and tightness
-
-4. **Yamada-Watanabe:**
-   Pathwise uniqueness $\Rightarrow$ strong existence
-
-**Key Result:** Despite non-Lipschitz diffusion, unique strong solution exists for $\mu, \sigma > 0$.
-
-### Example 5.2.4: Heat Equation Representation
-
-**Problem:** Solve $\partial_t u = \frac{1}{2} \partial_{xx} u$, $u(T,x) = \psi(x)$.
-
-**Feynman-Kac Solution:**
-
-$$
-u(t,x) = \mathbb{E}^{t,x}[\psi(B_T)] = \int_{\mathbb{R}} \psi(y) \cdot \frac{1}{\sqrt{2\pi(T-t)}} \exp\left(-\frac{(y-x)^2}{2(T-t)}\right) dy
-$$
-
-**Verification via Itô:**
-
-Let $M_s = u(s, B_s)$. Then:
-
-$$
-dM_s = \partial_t u ds + \partial_x u dB_s + \frac{1}{2} \partial_{xx} u ds = 0
-$$
-
-$$
-M_t = u(t,x) = \mathbb{E}[M_T] = \mathbb{E}[\psi(B_T)]
-$$
-
-### Example 5.2.5: Black-Scholes PDE
-
-**Problem:** Price European call option $V(t,S)$ satisfying:
-
-$$
-\partial_t V + rS \partial_S V + \frac{1}{2} \sigma^2 S^2 \partial_{SS} V - rV = 0
-$$
-
-$$
-V(T,S) = \max(S-K, 0)
-$$
-
-**Stochastic Representation:**
-
-$$
-V(t,S) = e^{-r(T-t)} \mathbb{E}^{t,S} \left[ \max(S_T - K, 0) \right]
-$$
-
-where $dS_u = r S_u du + \sigma S_u d\tilde{B}_u$ (risk-neutral measure).
-
-**Analytical Solution:**
-
-$$
-V(t,S) = S N(d_1) - K e^{-r(T-t)} N(d_2)
-$$
-
-$$
-d_1 = \frac{\log(S/K) + (r + \sigma^2/2)(T-t)}{\sigma \sqrt{T-t}}, \quad d_2 = d_1 - \sigma \sqrt{T-t}
-$$
-
-**Complete Derivation:**
-
-Under risk-neutral measure, $S_T = S \exp[(r - \sigma^2/2)(T-t) + \sigma \tilde{B}_{T-t}]$
-
-- $\mathbb{P}(S_T > K) = N(d_2)$
-- $\mathbb{E}[S_T 1_{S_T>K}] = S e^{r(T-t)} N(d_1)$
-
-Discounting yields Black-Scholes formula.
-
-### Example 5.2.6: Discounted Ornstein-Uhlenbeck
-
-**Problem:** Solve $\partial_t u + (-\gamma x \partial_x + \frac{1}{2} \sigma^2 \partial_{xx})u - \lambda u = 0$.
-
-**Feynman-Kac:**
-
-$$
-u(t,x) = \mathbb{E}^{t,x} \left[ e^{-\lambda (T-t)} \psi(X_T) \right]
-$$
-
-where $dX_s = -\gamma X_s ds + \sigma dB_s$.
-
-**Exact Solution (when $\psi(x) = e^{kx}$):**
-
-$$
-u(t,x) = e^{k x - \frac{\sigma^2 k^2}{4\gamma}(1-e^{-2\gamma(T-t)}) - \lambda(T-t)}
-$$
-
-### Example 5.2.7: Drift Removal—Brownian Bridge
-
-**Problem:** Transform $dX_t = \mu dt + dB_t$ into standard Brownian motion.
-
-**Solution:**
-
-1. **Set $\theta_t = -\mu$ (constant):**
-
-2. **Radon-Nikodym Derivative:**
-   $$
-   Z_t = \exp\left( -\int_0^t (-\mu) dB_s - \frac{1}{2} \int_0^t \mu^2 ds \right) = \exp\left( \mu B_t - \frac{\mu^2 t}{2} \right)
-   $$
-
-3. **Novikov Condition:**
-   $$
-   \mathbb{E}[\exp(\frac{1}{2} \mu^2 T)] < \infty \quad ✓
-   $$
-
-4. **Under $\mathbb{Q}$:**
-   Under $\mathbb{Q}$ defined by $Z_T$, $\tilde{B}_t = B_t - \mu t$ is Brownian motion.
-
-   Thus $X_t = \tilde{B}_t + \mu t$ becomes $X_t = \tilde{B}_t$ under $\mathbb{Q}$.
-
-5. **Verification:**
-   $$
-   \mathbb{E}^\mathbb{Q}[X_t] = \mathbb{E}^\mathbb{P}[X_t Z_t] = \mathbb{E}^\mathbb{P}[(B_t + \mu t) \exp(\mu B_t - \frac{\mu^2 t}{2})] = 0
-   $$
-
-   The exponential martingale property yields $\mathbb{E}^\mathbb{Q}[X_t] = 0$.
-
-### Example 5.2.8: Risk-Neutral Pricing
-
-**Problem:** Price stock $S_t$ with $dS_t = \mu S_t dt + \sigma S_t dB_t^\mathbb{P}$ under risk-neutral measure.
-
-**Solution:**
-
-1. **Risk-Neutral Drift:** $r$ (risk-free rate)
-
-2. **Girsanov Transformation:**
-   $$
-   \theta_t = \frac{\mu - r}{\sigma}
-   $$
-
-   $$
-   \frac{d\mathbb{Q}}{d\mathbb{P}} = \exp\left( -\frac{\mu-r}{\sigma} B_T - \frac{(\mu-r)^2 T}{2\sigma^2} \right)
-   $$
-
-3. **Under $\mathbb{Q}$:**
-   $$
-   dS_t = r S_t dt + \sigma S_t d\tilde{B}_t
-   $$
-
-4. **Option Price:**
-   $$
-   V_0 = e^{-rT} \mathbb{E}^\mathbb{Q}[\max(S_T - K, 0)]
-   $$
-
-### Example 5.2.9: Bessel Process Measure Change
-
-**Problem:** Transform 3D Bessel process to Brownian motion.
-
-**3D Bessel:** $dR_t = \frac{1}{R_t} dt + dB_t$, $R_0 > 0$
-
-**Girsanov Transformation:**
-
-$$
-\theta_t = -\frac{1}{R_t}
-$$
-
-$$
-Z_t = \exp\left( -\int_0^t \frac{1}{R_s} dB_s - \frac{1}{2} \int_0^t \frac{1}{R_s^2} ds \right)
-$$
-
-Under new measure $\mathbb{Q}$, $dR_t = d\tilde{B}_t$.
-
-**Interpretation:** Bessel process is Brownian motion with radial drift.
-
-### Example 5.2.10: Ornstein-Uhlenbeck Forward Equation
-
-**Problem:** Find probability density $p(t,x)$ for $dX_t = -\gamma X_t dt + \sigma dB_t$.
-
-**Fokker-Planck Equation:**
-
-$$
-\partial_t p = \gamma \partial_x (x p) + \frac{\sigma^2}{2} \partial_{xx} p
-$$
-
-**Exact Solution:**
-
-$$
-p(t,x) = \frac{1}{\sqrt{2\pi v(t)}} \exp\left( -\frac{(x - m(t))^2}{2v(t)} \right)
-$$
-
-where $m(t) = x_0 e^{-\gamma t}$, $v(t) = \frac{\sigma^2}{2\gamma} (1 - e^{-2\gamma t})$.
-
-**Verification:**
-
-$$
-\partial_t p = \gamma x_0 e^{-\gamma t} \cdot \frac{x-m}{v} p + \frac{1}{2v} p
-$$
-
-$$
-\gamma \partial_x (x p) = \gamma p + \gamma x \partial_x p
-$$
-
-$$
-\frac{\sigma^2}{2} \partial_{xx} p = \frac{\sigma^2}{2v} p - \frac{\sigma^2}{2v^2} (x-m) \partial_x p
-$$
-
-All terms balance to yield $\partial_t p$.
-
-### Example 5.2.11: Stationary Distributions
-
-**Problem:** Find stationary distributions for various diffusions.
-
-**Solution:**
-
-| SDE | Stationary Density | Verification |
-|-----|-------------------|--------------|
-| $dX_t = -X_t dt + dB_t$ | $\pi(x) = \sqrt{\frac{2}{\pi}} e^{-x^2}$ | $\mathcal{L}^*\pi = 0$ |
-| $dX_t = -X_t^3 dt + dB_t$ | $\pi(x) = C e^{-x^2/2}$ | Double-well potential |
-| $dX_t = \mu(\theta - X_t) dt + \sigma dB_t$ | $\pi(x) = \sqrt{\frac{2\mu}{\pi\sigma^2}} e^{-2\mu(x-\theta)^2/\sigma^2}$ | Mean-reverting |
-
-**General Method:**
-
-For $dX_t = b(X_t) dt + \sigma(X_t) dB_t$, solve:
-
-$$
--\partial_x (b(x)\pi(x)) + \frac{1}{2} \partial_{xx} (\sigma^2(x)\pi(x)) = 0
-$$
-
-### Example 5.2.12: CIR Process Forward Equation
-
-**Problem:** $dX_t = \kappa(\theta - X_t) dt + \sigma \sqrt{X_t} dB_t$.
-
-**Fokker-Planck:**
-
-$$
-\partial_t p = \partial_x [(\kappa(\theta - x))p] + \frac{1}{2} \partial_{xx} (\sigma^2 x p)
-$$
-
-**Stationary Distribution (when $2\kappa\theta > \sigma^2$):**
-
-$$
-\pi(x) = C x^{\alpha-1} e^{-\beta x}, \quad \alpha = \frac{2\kappa\theta}{\sigma^2}, \quad \beta = \frac{2\kappa}{\sigma^2}
-$$
-
-**Verification:**
-- Compute $\mathcal{L}^*\pi$ term by term
-- Parameter conditions ensure positivity and integrability
-- Connects to non-central chi-squared distribution
-
-### Example 5.2.13: Advanced Demonstration—Non-Uniqueness Without Lipschitz
-
-**Problem:** $dX_t = |X_t|^\alpha dB_t$, $\alpha \in (0,1)$.
-
-**Analysis:**
-
-1. **No Pathwise Uniqueness:** Multiple solutions from $X_0 = 0$
-   - Solution 1: $X_t \equiv 0$
-   - Solution 2: $X_t = \left( \int_0^t |B_s|^{2\alpha/(1-\alpha)} ds \right)^{(1-\alpha)/2}$
-
-2. **Weak Uniqueness:** Holds but strong solutions don't
-
-**Connection to Yamada-Watanabe:** Lipschitz $\Rightarrow$ uniqueness
-
-### Example 5.2.14: Explosion in Finite Time
-
-**Problem:** $dX_t = X_t^2 dt + dB_t$.
-
-**Analysis:**
-
-1. **Linear Growth Fails:**
-   $$
-   |b(t,x)| = x^2 \not\leq K(1+|x|)
-   $$
-
-2. **Exact Solution:**
-   $$
-   X_t = \frac{x_0 + B_t}{1 - x_0 t - \int_0^t B_s ds}
-   $$
-
-3. **Explosion Time:**
-   $$
-   \tau = \frac{1}{x_0 + \sup_{s\leq t} B_s}
-   $$
-
-4. **Probability:**
-   $$
-   \mathbb{P}(\tau < T) > 0 \quad \text{for any } T > 0
-   $$
+> The probability of explosion is $\mathbb{P}(\tau < T) > 0$ for any $T > 0$, demonstrating that solutions can reach infinity in finite time when the growth condition is violated. This highlights the importance of the linear growth condition in ensuring global existence of solutions.
 
 ## References
 

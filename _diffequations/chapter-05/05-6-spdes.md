@@ -14,6 +14,8 @@ parent_section: null
 
 # Section 5.6: SPDEs & Regularity Structures
 
+> Regularity structures replace classical Taylor expansions with expansions in "noise monomials," transforming the analytic impossibility of singular products into a geometric study of decorated trees and structure groups.
+
 ## Introduction
 
 We now address the most profound analytical crisis in modern probability theory: the ill-posedness of nonlinear stochastic partial differential equations (SPDEs). In the previous sections, we established that stochastic trajectories are inherently rough, requiring the machinery of rough paths to define integration. However, when noise depends on both space and time—spacetime white noise—the singularity of the driving signal exceeds the capacity of classical distribution theory.
@@ -46,11 +48,11 @@ For SPDEs, the polynomial basis is insufficient because the solution locally loo
 
 A **Regularity Structure** is a triple $\mathscr{T} = (A, T, G)$ consisting of:
 
-1. **An Index Set** $A \subset \mathbb{R}$: A set of homogeneities (degrees) bounded from below, describing the scaling behavior of the basis elements.
+**An Index Set** $A \subset \mathbb{R}$: A set of homogeneities (degrees) bounded from below, describing the scaling behavior of the basis elements.
 
-2. **The Model Space** $T = \bigoplus_{\alpha \in A} T_\alpha$: A Banach space containing the abstract symbols representing the noise and its integrals. For the PAM, $T$ contains symbols $\Xi$ (representing $\xi$), $\mathcal{I}(\Xi)$ (representing the convolution with the heat kernel), and higher-order trees like $\Xi \mathcal{I}(\Xi)$.
+**The Model Space** $T = \bigoplus_{\alpha \in A} T_\alpha$: A Banach space containing the abstract symbols representing the noise and its integrals. For the PAM, $T$ contains symbols $\Xi$ (representing $\xi$), $\mathcal{I}(\Xi)$ (representing the convolution with the heat kernel), and higher-order trees like $\Xi \mathcal{I}(\Xi)$.
 
-3. **The Structure Group** $G$: A group of linear transformations acting on $T$, which encodes the "re-centering" of expansions. This generalizes the translation of Taylor polynomials from one base point to another.
+**The Structure Group** $G$: A group of linear transformations acting on $T$, which encodes the "re-centering" of expansions. This generalizes the translation of Taylor polynomials from one base point to another.
 
 This algebraic framework is covered extensively in Hairer (2014).
 
@@ -62,13 +64,13 @@ The map $\Pi_x: T \to \mathcal{D}'(\mathbb{R}^{d+1})$ assigns to each abstract t
 
 Crucially, the Model must satisfy analytical bounds analogous to Hölder conditions. For a basis vector $\tau \in T_\alpha$, the concrete distribution $\Pi_x \tau$ must satisfy:
 
-$$|(\Pi_x \tau)(\varphi_x^\lambda)| \lesssim \lambda^\alpha$$
+$$\mid (\Pi_x \tau)(\varphi_x^\lambda) \mid \lesssim \lambda^\alpha$$
 
 where $\varphi_x^\lambda$ is a test function scaled by $\lambda$ and centered at $x$. This formalizes the idea that the "degree" $\alpha$ represents the local roughness of the fluctuation.
 
 The **Reconstruction Theorem** is the fundamental result of the theory. It states that given a coherent family of local expansions satisfying the proper analytical bounds, there exists a unique global distribution $U$ that matches these local descriptions "to the order of the expansion." This generalizes the Whitney Extension Theorem to the setting of distributions and allows us to glue local noise approximations into a global solution.
 
-$$|(U - \Pi_x U(x))(\varphi_x^\lambda)| \lesssim \lambda^\gamma$$
+$$\mid (U - \Pi_x U(x))(\varphi_x^\lambda) \mid \lesssim \lambda^\gamma$$
 
 where $\gamma$ is the order of the expansion. This theorem allows us to define the "solution" map $\mathcal{S}$ which takes a Model and produces the solution to the fixed-point equation.
 
@@ -98,175 +100,107 @@ $$\partial_t u = \partial_{xx} u + u \xi, \quad u(0,x) = 1$$
 
 where $\xi(t,x)$ is spacetime white noise with $\mathbb{E}[\xi(t,x)\xi(s,y)] = \delta(t-s)\delta(x-y)$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Regularized Solution via Picard Iteration:**
-   Approximate $\xi$ by mollified noise $\xi_\varepsilon(t,x) = \xi * \rho_\varepsilon$, where $\rho_\varepsilon(z) = \varepsilon^{-2} \rho(z/\varepsilon)$ and $\int \rho = 1$.
+Approximate $\xi$ by mollified noise $\xi_\varepsilon(t,x) = \xi * \rho_\varepsilon$, where $\rho_\varepsilon(z) = \varepsilon^{-2} \rho(z/\varepsilon)$ and $\int \rho = 1$. The mild solution satisfies the fixed-point equation:
 
-   The mild solution satisfies the fixed-point equation:
+$$
+u_\varepsilon(t,x) = 1 + \int_0^t \int_{\mathbb{T}} p_{t-s}(x-y) u_\varepsilon(s,y) \xi_\varepsilon(s,y) \, dy \, ds
+$$
 
-   $$
-   u_\varepsilon(t,x) = 1 + \int_0^t \int_{\mathbb{T}} p_{t-s}(x-y) u_\varepsilon(s,y) \xi_\varepsilon(s,y) \, dy \, ds
-   $$
+where $p_t(x) = \frac{1}{\sqrt{4\pi t}} e^{-x^2/(4t)}$ is the heat kernel.
 
-   where $p_t(x) = \frac{1}{\sqrt{4\pi t}} e^{-x^2/(4t)}$ is the heat kernel.
+Picard iteration begins with $u_\varepsilon^{(0)}(t,x) = 1$:
 
-2. **Picard Iteration:**
-   $$
-   u_\varepsilon^{(0)}(t,x) = 1
-   $$
+$$
+u_\varepsilon^{(1)}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) \xi_\varepsilon(s,y) \, dy \, ds
+$$
 
-   $$
-   u_\varepsilon^{(1)}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) \xi_\varepsilon(s,y) \, dy \, ds
-   $$
+$$
+u_\varepsilon^{(2)}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) u_\varepsilon^{(1)}(s,y) \xi_\varepsilon(s,y) \, dy \, ds
+$$
 
-   $$
-   u_\varepsilon^{(2)}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) u_\varepsilon^{(1)}(s,y) \xi_\varepsilon(s,y) \, dy \, ds
-   $$
+The first iterate (linear response) is:
 
-3. **Explicit Computation of First Few Iterates:**
-   First iterate (linear response):
+$$
+u_\varepsilon^{(1)}(t,x) = 1 + \mathcal{I}(\xi_\varepsilon)(t,x)
+$$
 
-   $$
-   u_\varepsilon^{(1)}(t,x) = 1 + \mathcal{I}(\xi_\varepsilon)(t,x)
-   $$
+where $\mathcal{I}(f)(t,x) = \int_0^t \int p_{t-s}(x-y) f(s,y) \, dy \, ds$. The second iterate is:
 
-   where $\mathcal{I}(f)(t,x) = \int_0^t \int p_{t-s}(x-y) f(s,y) \, dy \, ds$.
+$$
+u_\varepsilon^{(2)}(t,x) = 1 + \mathcal{I}(\xi_\varepsilon) + \mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))
+$$
 
-   Second iterate:
+Computing the variance $\mathbb{E}[u_\varepsilon^{(2)}(t,x)^2]$:
 
-   $$
-   u_\varepsilon^{(2)}(t,x) = 1 + \mathcal{I}(\xi_\varepsilon) + \mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))
-   $$
+$$
+\mathbb{E}[u_\varepsilon^{(2)}]^2 = 1 + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon)] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))^2]
+$$
 
-4. **Variance Computation Reveals Divergence:**
-   Compute $\mathbb{E}[u_\varepsilon^{(2)}(t,x)^2]$:
+The critical term is $\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2]$:
 
-   $$
-   \mathbb{E}[u_\varepsilon^{(2)}]^2 = 1 + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon)] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] + 2\mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))] + \mathbb{E}[\mathcal{I}(\xi_\varepsilon \cdot \mathcal{I}(\xi_\varepsilon))^2]
-   $$
+$$
+\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \mathbb{E}\left[\int_0^t \int_0^t \int_{\mathbb{T}^2} p_{t-s}(x-y) p_{t-r}(x-z) \xi_\varepsilon(s,y) \xi_\varepsilon(r,z) \, dy \, dz \, ds \, dr\right]
+$$
 
-   The critical term is $\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2]$:
+Using the white noise covariance:
 
-   $$
-   \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \mathbb{E}\left[\int_0^t \int_0^t \int_{\mathbb{T}^2} p_{t-s}(x-y) p_{t-r}(x-z) \xi_\varepsilon(s,y) \xi_\varepsilon(r,z) \, dy \, dz \, ds \, dr\right]
-   $$
+$$
+\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \int_0^t \int_{\mathbb{T}} p_{t-s}(x-y)^2 * \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, ds
+$$
 
-   Using the white noise covariance:
+As $\varepsilon \to 0$, $\rho_\varepsilon * \rho_\varepsilon(0) \sim \varepsilon^{-2}$, yielding:
 
-   $$
-   \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] = \int_0^t \int_{\mathbb{T}} p_{t-s}(x-y)^2 * \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, ds
-   $$
+$$
+\mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] \sim \frac{C}{\varepsilon}
+$$
 
-   As $\varepsilon \to 0$, $\rho_\varepsilon * \rho_\varepsilon(0) \sim \varepsilon^{-2}$, and:
+The variance diverges as $\varepsilon^{-1}$, revealing the fundamental singularity that requires renormalization.
 
-   $$
-   \mathbb{E}[\mathcal{I}(\xi_\varepsilon)^2] \sim \frac{C}{\varepsilon}
-   $$
+Wick renormalization defines the renormalized noise:
 
-   **Key Observation:** The variance diverges as $\varepsilon^{-1}$!
+$$
+\xi_\varepsilon^\text{ren}(t,x) = \xi_\varepsilon(t,x) - \mathbb{E}[\xi_\varepsilon(t,x)^2] = \xi_\varepsilon(t,x) - \frac{C}{\varepsilon}
+$$
 
-5. **Wick Renormalization:**
-   Define the renormalized noise:
+The renormalized solution is:
 
-   $$
-   \xi_\varepsilon^\text{ren}(t,x) = \xi_\varepsilon(t,x) - \mathbb{E}[\xi_\varepsilon(t,x)^2] = \xi_\varepsilon(t,x) - \frac{C}{\varepsilon}
-   $$
+$$
+u_\varepsilon^\text{ren}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) u_\varepsilon^\text{ren}(s,y) \xi_\varepsilon^\text{ren}(s,y) \, dy \, ds
+$$
 
-   The renormalized solution:
-
-   $$
-   u_\varepsilon^\text{ren}(t,x) = 1 + \int_0^t \int p_{t-s}(x-y) u_\varepsilon^\text{ren}(s,y) \xi_\varepsilon^\text{ren}(s,y) \, dy \, ds
-   $$
-
-   **Result:** $\mathbb{E}[u_\varepsilon^\text{ren}(t,x)] \to 1$ and $\text{Var}(u_\varepsilon^\text{ren}) \to \text{finite limit}$.
+This yields $\mathbb{E}[u_\varepsilon^\text{ren}(t,x)] \to 1$ and $\text{Var}(u_\varepsilon^\text{ren}) \to \text{finite limit}$, demonstrating that subtracting the divergent mean restores well-posedness.
 
 ### Example 5.6.2: Regularity Structure for PAM—Tree Construction
 
 **Goal:** Construct the regularity structure for PAM and solve the fixed-point equation symbolically.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Define the Index Set and Generators:**
-   Index set $A = \{0, -1/2 - \kappa, 1/2 - \kappa\} \cup \{|\tau| : \tau \in T\}$ where $\kappa > 0$ small.
+Define the index set and generators. The index set is $A = \{0, -1/2 - \kappa, 1/2 - \kappa\} \cup \{\mid \tau \mid : \tau \in T\}$ where $\kappa > 0$ is small.
 
-   Abstract symbols:
-   - $\mathbf{1} \in T_0$: constant function
-   - $\Xi \in T_{-1/2-\kappa}$: white noise
-   - $\mathcal{I}(\tau) \in T_{|\tau| + 2}$: integration against heat kernel
+   Abstract symbols: $\mathbf{1} \in T_0$ (constant function), $\Xi \in T_{-1/2-\kappa}$ (white noise), and $\mathcal{I}(\tau) \in T_{\mid \tau \mid + 2}$ (integration against heat kernel).
 
-2. **Generate Trees Up to Order 3:**
-   **Level 1:**
-   $$
-   \Xi \quad \in \quad T_{-1/2-\kappa}
-   $$
+   Generate trees up to order 3. Level 1: $\Xi \in T_{-1/2-\kappa}$. Level 2: $\mathcal{I}(\Xi) \in T_{3/2-\kappa}$. Level 3: $\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) \in T_{5/2-2\kappa}$ and $\mathcal{I}(\Xi)^2 \in T_{3-\kappa}$. Level 4 (relevant for nonlinearity): $\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))) \in T_{7/2-3\kappa}$.
 
-   **Level 2:**
-   $$
-   \mathcal{I}(\Xi) \quad \in \quad T_{3/2-\kappa}
-   $$
+   The structure group $G$ acts by "re-centering." For a tree $\tau$, the action is $(\Pi_x \tau)(z) = \Pi_x \tau(z-x) + \text{polynomial correction}$. Explicit computation for $\mathcal{I}(\Xi)$: $[\Gamma_x \mathcal{I}(\Xi)]_z = \Pi_z \mathcal{I}(\Xi) - \Pi_x \mathcal{I}(\Xi)$.
 
-   **Level 3:**
-   $$
-   \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) \quad \in \quad T_{5/2-2\kappa}
-   $$
-
-   $$
-   \mathcal{I}(\Xi)^2 \quad \in \quad T_{3-\kappa}
-   $$
-
-   **Level 4 (relevant for nonlinearity):**
-   $$
-   \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))) \quad \in \quad T_{7/2-3\kappa}
-   $$
-
-3. **Structure Group Action:**
-   The structure group $G$ acts by "re-centering." For a tree $\tau$, the action is:
-
-   $$
-   (\Pi_x \tau)(z) = \Pi_x \tau(z-x) + \text{polynomial correction}
-   $$
-
-   Explicit computation for $\mathcal{I}(\Xi)$:
-
-   $$
-   [\Gamma_x \mathcal{I}(\Xi)]_z = \Pi_z \mathcal{I}(\Xi) - \Pi_x \mathcal{I}(\Xi)
-   $$
-
-4. **Fixed-Point Equation in Regularity Structure:**
-   The PAM equation becomes:
-
-   $$
-   U = \mathcal{I}(\Xi U) + \mathbf{1}
-   $$
-
-   Expand in regularity structure:
+   The fixed-point equation in the regularity structure is $U = \mathcal{I}(\Xi U) + \mathbf{1}$. Expanding in the regularity structure:
 
    $$
    U = u_{-1/2-\kappa} \Xi + u_{3/2-\kappa} \mathcal{I}(\Xi) + u_{5/2-2\kappa} \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) + \cdots
    $$
 
-   Substitute and collect terms:
-   - **Order $-1/2-\kappa$:** $u_{-1/2-\kappa} = 0$ (no noise in solution)
-   - **Order $3/2-\kappa$:** $u_{3/2-\kappa} \mathcal{I}(\Xi) = \mathcal{I}(\Xi)$
-   - **Order $5/2-2\kappa$:** $u_{5/2-2\kappa} \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))$
+   Substituting and collecting terms: at order $-1/2-\kappa$, $u_{-1/2-\kappa} = 0$ (no noise in solution); at order $3/2-\kappa$, $u_{3/2-\kappa} \mathcal{I}(\Xi) = \mathcal{I}(\Xi)$; at order $5/2-2\kappa$, $u_{5/2-2\kappa} \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))$. Remarkably, $u_\alpha = 1$ for all trees appearing in the expansion, demonstrating the universality of the tree structure.
 
-   **Result:** $u_\alpha = 1$ for all trees appearing in the expansion!
-
-5. **Renormalization of Quadratic Term:**
-   The problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity:
-
-   $$
-   |\Xi \cdot \mathcal{I}(\Xi)| = -1/2-\kappa + 3/2-\kappa = 1-2\kappa > 0
-   $$
-
-   But $\mathbb{E}[\Xi \cdot \mathcal{I}(\Xi)] = \infty$. Define:
+   For the renormalization of the quadratic term, the problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity $\mid \Xi \cdot \mathcal{I}(\Xi) \mid = -1/2-\kappa + 3/2-\kappa = 1-2\kappa > 0$. However, $\mathbb{E}[\Xi \cdot \mathcal{I}(\Xi)] = \infty$. Define the renormalized version:
 
    $$
    \Xi \cdot \mathcal{I}(\Xi) \mapsto \Xi \cdot \mathcal{I}(\Xi) - C
    $$
 
-   where $C = \lim_{\varepsilon \to 0} \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)]$.
+   where $C = \lim_{\varepsilon \to 0} \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)]$. This subtraction removes the infinite mean, making the product well-defined in the limit.
 
 ### Example 5.6.3: KPZ Equation—Universality and Subcriticality
 
@@ -274,208 +208,148 @@ where $\xi(t,x)$ is spacetime white noise with $\mathbb{E}[\xi(t,x)\xi(s,y)] = \
 
 $$\partial_t h = \frac{1}{2} \partial_{xx} h + \frac{1}{2} (\partial_x h)^2 + \xi$$
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Cole-Hopf Transformation:**
-   Let $Z = e^h$. Then:
+The Cole-Hopf transformation sets $Z = e^h$. Then:
 
-   $$
-   \partial_t Z = \frac{1}{2} \partial_{xx} Z + Z \xi
-   $$
+$$
+\partial_t Z = \frac{1}{2} \partial_{xx} Z + Z \xi
+$$
 
-   This is exactly PAM! The solution is:
+This is exactly the PAM equation. The solution is $h(t,x) = \log Z(t,x)$.
 
-   $$
-   h(t,x) = \log Z(t,x)
-   $$
+For the regularity structure construction, KPZ has parabolic scaling $[t] = 2$, $[x] = 1$, $[\xi] = -3/2-\kappa$, $[h] = -1/2-\kappa$. The trees are: $\Xi \in T_{-3/2-\kappa}$, $\mathcal{I}(\Xi) \in T_{1/2-\kappa}$, $\mathcal{I}(\Xi^2) \in T_{2-2\kappa}$, and $\mathcal{I}(\partial_x \mathcal{I}(\Xi) \cdot \partial_x \mathcal{I}(\Xi)) \in T_{1/2-2\kappa}$.
 
-2. **Regularity Structure Construction:**
-   Scaling: KPZ has parabolic scaling $[t] = 2$, $[x] = 1$, $[\xi] = -3/2-\kappa$, $[h] = -1/2-\kappa$.
+For the subcriticality check, consider the fixed-point equation $H = \mathcal{I}(\Xi + \frac{1}{2} (\partial_x H)^2)$:
 
-   Trees:
-   - $\Xi \in T_{-3/2-\kappa}$
-   - $\mathcal{I}(\Xi) \in T_{1/2-\kappa}$
-   - $\mathcal{I}(\Xi^2) \in T_{2-2\kappa}$
-   - $\mathcal{I}(\partial_x \mathcal{I}(\Xi) \cdot \partial_x \mathcal{I}(\Xi)) \in T_{1/2-2\kappa}$
+| Term | Regularity | Subcritical? |
+|------|------------|--------------|
+| $\Xi$ | $-3/2-\kappa$ | Base case |
+| $\partial_x H$ | $-3/2-\kappa$ | Derivative |
+| $(\partial_x H)^2$ | $-3-\kappa$ | Quadratic |
+| $\mathcal{I}((\partial_x H)^2)$ | $1-\kappa$ | Integration |
 
-3. **Subcriticality Check:**
-   For fixed-point equation $H = \mathcal{I}(\Xi + \frac{1}{2} (\partial_x H)^2)$:
+Since $1-\kappa > -3/2-\kappa$, each iteration improves regularity, ensuring convergence of the fixed-point iteration.
 
-   | Term | Regularity | Subcritical? |
-   |------|------------|--------------|
-   | $\Xi$ | $-3/2-\kappa$ | Base case |
-   | $\partial_x H$ | $-3/2-\kappa$ | Derivative |
-   | $(\partial_x H)^2$ | $-3-\kappa$ | Quadratic |
-   | $\mathcal{I}((\partial_x H)^2)$ | $1-\kappa$ | Integration |
+Renormalization constants are computed from divergent expectations:
 
-   **Key:** $1-\kappa > -3/2-\kappa$, so each iteration improves regularity!
+$$
+\mathbb{E}[\Xi^2] = \infty \quad \Rightarrow \quad \Xi^2 \mapsto \Xi^2 - C_0
+$$
 
-4. **Renormalization Constants:**
-   Compute divergent expectations:
+$$
+\mathbb{E}[\partial_x \mathcal{I}(\Xi) \cdot \partial_x \mathcal{I}(\Xi)] = \infty \quad \Rightarrow \quad \text{requires } C_1
+$$
 
-   $$
-   \mathbb{E}[\Xi^2] = \infty \quad \Rightarrow \quad \Xi^2 \mapsto \Xi^2 - C_0
-   $$
+For universality, consider the Edwards-Wilkinson equation with nonlinearities:
 
-   $$
-   \mathbb{E}[\partial_x \mathcal{I}(\Xi) \cdot \partial_x \mathcal{I}(\Xi)] = \infty \quad \Rightarrow \quad \text{requires } C_1
-   $$
+$$
+\partial_t h^\lambda = \Delta h^\lambda + \lambda \mathcal{N}(h^\lambda) + \xi
+$$
 
-5. **Universality Demonstration:**
-   Consider the Edwards-Wilkinson equation with nonlinearities:
-
-   $$
-   \partial_t h^\lambda = \Delta h^\lambda + \lambda \mathcal{N}(h^\lambda) + \xi
-   $$
-
-   **Theorem:** For $\mathcal{N}(h) = (\partial_x h)^2$, the scaling limit as mesh $\to 0$ converges to KPZ.
-
-   **Proof sketch:**
-   - Rescale: $h^\lambda(t,x) = \varepsilon^{-1/2} h(\varepsilon^{-2}t, \varepsilon^{-1}x)$
-   - Nonlinear term scales as $\varepsilon^{-1/2}$
-   - Regularity structure absorbs all $\lambda$-dependence into renormalization constants
-   - Fixed point is universal!
+For $\mathcal{N}(h) = (\partial_x h)^2$, the scaling limit as mesh $\to 0$ converges to KPZ. The proof sketch: rescale $h^\lambda(t,x) = \varepsilon^{-1/2} h(\varepsilon^{-2}t, \varepsilon^{-1}x)$; the nonlinear term scales as $\varepsilon^{-1/2}$; the regularity structure absorbs all $\lambda$-dependence into renormalization constants; the fixed point is universal. This demonstrates that KPZ emerges as the universal scaling limit of a wide class of stochastic growth models, independent of the specific nonlinearity chosen.
 
 ### Example 5.6.4: Explicit Tree Expansion—2D PAM Failure and Rescue
 
 **Problem:** Why does 2D PAM require more sophisticated renormalization?
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Regularity Computation in 2D:**
-   Scaling: $[t] = 2$, $[x] = 1$, $\xi \in C^{-2-\kappa}$.
+For regularity computation in 2D, the scaling is $[t] = 2$, $[x] = 1$, $\xi \in C^{-2-\kappa}$. The critical product is:
 
-   Critical product:
+$$
+\mid \Xi \cdot \mathcal{I}(\Xi) \mid = -2-\kappa + 2-\kappa = -2\kappa \approx 0
+$$
 
-   $$
-   |\Xi \cdot \mathcal{I}(\Xi)| = -2-\kappa + 2-\kappa = -2\kappa \approx 0
-   $$
+The product is at the regularity threshold, making the situation critical.
 
-   **Danger:** Product is at the regularity threshold!
+For explicit divergence computation, the mollified expectation is:
 
-2. **Explicit Divergence Computation:**
-   Mollified expectation:
+$$
+\mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)(0,0)] = \int_0^T \int_{\mathbb{T}^2} p_t(y)^2 \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, dt
+$$
 
-   $$
-   \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)(0,0)] = \int_0^T \int_{\mathbb{T}^2} p_t(y)^2 \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, dt
-   $$
+where $p_t(y) = \frac{1}{4\pi t} e^{-\mid y \mid^2/(4t)}$. The asymptotic is:
 
-   $$
-   p_t(y) = \frac{1}{4\pi t} e^{-|y|^2/(4t)}
-   $$
+$$
+\int_{\mathbb{T}^2} p_t(y)^2 \, dy \sim \frac{1}{4\pi t}
+$$
 
-   Asymptotic:
+Thus:
 
-   $$
-   \int_{\mathbb{T}^2} p_t(y)^2 \, dy \sim \frac{1}{4\pi t}
-   $$
+$$
+\mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)] \sim \frac{\log(1/\varepsilon)}{4\pi}
+$$
 
-   Thus:
+The divergence is logarithmic, not a power law, reflecting the marginal nature of the 2D case.
 
-   $$
-   \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)] \sim \frac{\log(1/\varepsilon)}{4\pi}
-   $$
+The regularity structure rescue introduces auxiliary trees:
 
-   **Result:** Logarithmic divergence, not power law!
+$$
+\tau_1 = \Xi, \quad \tau_2 = \mathcal{I}(\tau_1), \quad \tau_3 = \mathcal{I}(\tau_1 \tau_2)
+$$
 
-3. **Regularity Structure Rescue:**
-   Introduce auxiliary trees:
+The renormalized structure is:
 
-   $$
-   \tau_1 = \Xi, \quad \tau_2 = \mathcal{I}(\tau_1), \quad \tau_3 = \mathcal{I}(\tau_1 \tau_2)
-   $$
+$$
+\tau_3 \mapsto \mathcal{I}(\tau_1 \tau_2 - C \log(1/\varepsilon) \mathbf{1})
+$$
 
-   Renormalized structure:
+For fixed-point iteration with renormalization: $U^{(1)} = \mathcal{I}(\Xi)$, $U^{(2)} = \mathcal{I}(\Xi U^{(1)}) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))$, and $U^{(3)} = \mathcal{I}(\Xi U^{(2)}) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)))$. The renormalized version is:
 
-   $$
-   \tau_3 \mapsto \mathcal{I}(\tau_1 \tau_2 - C \log(1/\varepsilon) \mathbf{1})
-   $$
+$$
+U^{(3)\text{ren}} = \mathcal{I}\Big(\Xi \cdot \big(\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) - C_1 \log(1/\varepsilon)\big)\Big)
+$$
 
-4. **Fixed-Point Iteration with Renormalization:**
-   **Iteration 1:** $U^{(1)} = \mathcal{I}(\Xi)$
+For the convergence proof in the modeled distribution space $\mathcal{D}^\gamma$ with $\gamma = -1/2-\kappa$:
 
-   **Iteration 2:** $U^{(2)} = \mathcal{I}(\Xi U^{(1)}) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))$
+| Iteration | Regularity Gain | Renormalized Term |
+|-----------|----------------|-------------------|
+| $U^{(1)}$ | $1/2-\kappa$ | None |
+| $U^{(2)}$ | $3/2-2\kappa$ | $C_0$ |
+| $U^{(3)}$ | $5/2-3\kappa$ | $C_1 \log(1/\varepsilon)$ |
 
-   **Iteration 3:** $U^{(3)} = \mathcal{I}(\Xi U^{(2)}) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)))$
-
-   Renormalized:
-
-   $$
-   U^{(3)\text{ren}} = \mathcal{I}\Big(\Xi \cdot \big(\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) - C_1 \log(1/\varepsilon)\big)\Big)
-   $$
-
-5. **Convergence Proof:**
-   Modeled distribution space $\mathcal{D}^\gamma$, $\gamma = -1/2-\kappa$:
-
-   | Iteration | Regularity Gain | Renormalized Term |
-   |-----------|----------------|-------------------|
-   | $U^{(1)}$ | $1/2-\kappa$ | None |
-   | $U^{(2)}$ | $3/2-2\kappa$ | $C_0$ |
-   | $U^{(3)}$ | $5/2-3\kappa$ | $C_1 \log(1/\varepsilon)$ |
-
-   **Contraction mapping:** Each iteration improves regularity by $2$, while renormalization subtracts exactly the divergent part.
+Each iteration improves regularity by $2$, while renormalization subtracts exactly the divergent part, ensuring convergence via a contraction mapping argument.
 
 ### Example 5.6.5: Structure Group Computation—Explicit Model Construction
 
 **Goal:** Construct the explicit model $(\Pi, \Gamma)$ for PAM.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Define the Realization $\Pi$:**
-   For a fixed noise realization $\xi$:
+Define the realization $\Pi$ for a fixed noise realization $\xi$:
 
-   $$
-   \Pi(\mathbf{1}) = 1
-   $$
+$$
+\Pi(\mathbf{1}) = 1, \quad \Pi(\Xi) = \xi, \quad \Pi(\mathcal{I}(\tau))(t,x) = \int_0^t \int p_{t-s}(x-y) \Pi(\tau)(s,y) \, dy \, ds
+$$
 
-   $$
-   \Pi(\Xi) = \xi
-   $$
+For the structure group element, translation by $z = (t_0,x_0)$:
 
-   $$
-   \Pi(\mathcal{I}(\tau))(t,x) = \int_0^t \int p_{t-s}(x-y) \Pi(\tau)(s,y) \, dy \, ds
-   $$
+$$
+\Gamma_z \tau = \sum_{\sigma \preceq \tau} \Pi_z(\sigma) \cdot R_{z,\tau/\sigma}
+$$
 
-2. **Structure Group Element:**
-   For translation by $z = (t_0,x_0)$:
+where $R_{z,\tau}$ is the "remainder" term. Explicit computation for $\mathcal{I}(\Xi)$:
 
-   $$
-   \Gamma_z \tau = \sum_{\sigma \preceq \tau} \Pi_z(\sigma) \cdot R_{z,\tau/\sigma}
-   $$
+$$
+\Gamma_{(t_0,x_0)} \mathcal{I}(\Xi) = \Pi_{(t_0,x_0)}(\mathcal{I}(\Xi)) - \Pi_{(0,0)}(\mathcal{I}(\Xi))
+$$
 
-   where $R_{z,\tau}$ is the "remainder" term.
+The model property requires $\Pi_z \Gamma_z \tau = \Pi_z \tau$ for all $z$. Verification for $\mathcal{I}(\Xi^2)$: compute $\Pi_z(\mathcal{I}(\Xi^2))$, apply $\Gamma_z$ subtracting local expectations, and verify translation invariance.
 
-   Explicit computation for $\mathcal{I}(\Xi)$:
+For the reconstruction theorem application, given local expansions:
 
-   $$
-   \Gamma_{(t_0,x_0)} \mathcal{I}(\Xi) = \Pi_{(t_0,x_0)}(\mathcal{I}(\Xi)) - \Pi_{(0,0)}(\mathcal{I}(\Xi))
-   $$
+$$
+U(z) = \sum_{\mid \tau \mid < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau) + R_z
+$$
 
-3. **Verify Model Property:**
-   **Property:** $\Pi_z \Gamma_z \tau = \Pi_z \tau$ for all $z$.
+The theorem states that there exists a unique $U \in \mathcal{D}'$ such that:
 
-   **Verification for $\mathcal{I}(\Xi^2)$:**
-   - Compute $\Pi_z(\mathcal{I}(\Xi^2))$
-   - Apply $\Gamma_z$ subtracting local expectations
-   - Verify translation invariance
+$$
+\mid U(\phi_z^\lambda) - \sum_{\mid \tau \mid < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau)(\phi_z^\lambda) \mid \lesssim \lambda^\gamma
+$$
 
-4. **Reconstruction Theorem Application:**
-   Given local expansions:
-
-   $$
-   U(z) = \sum_{|\tau| < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau) + R_z
-   $$
-
-   **Theorem:** $\exists! U \in \mathcal{D}'$ such that:
-
-   $$
-   |U(\phi_z^\lambda) - \sum_{|\tau| < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau)(\phi_z^\lambda)| \lesssim \lambda^\gamma
-   $$
-
-   **Proof sketch:**
-   - Local Whitney-type estimates
-   - Gluing via partition of unity
-   - Consistency via structure group action
+The proof sketch involves local Whitney-type estimates, gluing via partition of unity, and consistency via structure group action. This theorem provides the rigorous foundation for reconstructing global distributions from local tree expansions.
 
 ## References
 

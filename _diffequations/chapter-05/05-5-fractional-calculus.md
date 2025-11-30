@@ -14,6 +14,8 @@ parent_section: null
 
 # Section 5.5: Fractional Calculus & Nonlocal Operators
 
+> Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously, bridging local differential operators and global integral transforms.
+
 ## Introduction
 
 The trajectory of this text has thus far assumed locality: the behavior of a function or a physical field at a point depends only on its values in an infinitesimal neighborhood of that point. However, both mathematical completeness and physical reality compel us to abandon this constraint. Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously. In this section, we rigorously construct the calculus of non-integer order, bridging the gap between local differential operators and global integral transforms.
@@ -54,16 +56,16 @@ The Caputo derivative serves as the foundational operator for time-fractional di
 
 ### The Fractional Laplacian
 
-Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-|\xi|^2$ in frequency space, the **Fractional Laplacian** $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:
+Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-\mid \xi \mid^2$ in frequency space, the **Fractional Laplacian** $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:
 
 $$
-\mathcal{F}((-\Delta)^s u)(\xi) = |\xi|^{2s} \hat{u}(\xi).
+\mathcal{F}((-\Delta)^s u)(\xi) = \mid \xi \mid^{2s} \hat{u}(\xi).
 $$
 
-While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $|\xi|^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:
+While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $\mid \xi \mid^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:
 
 $$
-(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{|x-y|^{n+2s}} \, dy,
+(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{\mid x-y \mid^{n+2s}} \, dy,
 $$
 
 where $C_{n,s}$ is a normalization constant involving Gamma functions, and P.V. denotes the Cauchy principal value.
@@ -73,7 +75,7 @@ This integral representation reveals the operator's global character: the value 
 The inverse of this operator is the **Riesz Potential** $(-\Delta)^{-s}$, which is realized as a convolution with the fundamental solution of the fractional Laplacian:
 
 $$
-(-\Delta)^{-s} f(x) = \int_{\mathbb{R}^n} \frac{f(y)}{|x-y|^{n-2s}} \, dy.
+(-\Delta)^{-s} f(x) = \int_{\mathbb{R}^n} \frac{f(y)}{\mid x-y \mid^{n-2s}} \, dy.
 $$
 
 The mapping properties of these potentials on $L^p$ spaces are governed by the Hardy-Littlewood-Sobolev inequality, extending the Sobolev embedding theorems of Chapter 2 to the fractional setting.
@@ -104,109 +106,121 @@ This extension theorem transforms nonlocal problems involving $(-\Delta)^s$ into
 
 **Problem:** Compute the Riemann-Liouville fractional integral and derivatives of $f(t) = t^\beta$ for $\beta > -1$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Riemann-Liouville Integral $I^\alpha f(t)$:**
-   $$
-   I^\alpha(t^\beta) = \frac{1}{\Gamma(\alpha)} \int_0^t (t-\tau)^{\alpha-1} \tau^\beta \, d\tau
-   $$
+For the Riemann-Liouville integral $I^\alpha f(t)$:
 
-   **Substitution:** Let $\tau = t u$, $d\tau = t du$:
+$$
+I^\alpha(t^\beta) = \frac{1}{\Gamma(\alpha)} \int_0^t (t-\tau)^{\alpha-1} \tau^\beta \, d\tau
+$$
 
-   $$
-   I^\alpha(t^\beta) = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} \int_0^1 (1-u)^{\alpha-1} u^\beta \, du = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} B(\alpha, \beta+1)
-   $$
+Using the substitution $\tau = t u$, $d\tau = t du$:
 
-2. **Beta Function Identity:**
-   $$
-   B(\alpha, \beta+1) = \frac{\Gamma(\alpha) \Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)}
-   $$
+$$
+I^\alpha(t^\beta) = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} \int_0^1 (1-u)^{\alpha-1} u^\beta \, du = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} B(\alpha, \beta+1)
+$$
 
-   $$
-   I^\alpha(t^\beta) = \frac{\Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)} t^{\alpha+\beta}
-   $$
+Applying the Beta function identity $B(\alpha, \beta+1) = \frac{\Gamma(\alpha) \Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)}$:
 
-3. **Verification of Semigroup Property:**
-   $$
-   I^\alpha I^\beta(t^\gamma) = I^\alpha\left( \frac{\Gamma(\gamma+1)}{\Gamma(\beta+\gamma+1)} t^{\beta+\gamma} \right) = \frac{\Gamma(\gamma+1)}{\Gamma(\alpha+\beta+\gamma+1)} t^{\alpha+\beta+\gamma} = I^{\alpha+\beta}(t^\gamma)
-   $$
+$$
+I^\alpha(t^\beta) = \frac{\Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)} t^{\alpha+\beta}
+$$
 
-4. **Riemann-Liouville Derivative $D^\alpha_{RL} f(t)$ for $0 < \alpha < 1$:**
-   $$
-   D^\alpha_{RL}(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \frac{d}{dt} \int_0^t (t-\tau)^{-\alpha} \tau^\beta \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
-   $$
+The semigroup property is verified:
 
-5. **Caputo Derivative $D^\alpha_C f(t)$:**
-   $$
-   D^\alpha_C(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \int_0^t (t-\tau)^{-\alpha} \beta \tau^{\beta-1} \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
-   $$
+$$
+I^\alpha I^\beta(t^\gamma) = I^\alpha\left( \frac{\Gamma(\gamma+1)}{\Gamma(\beta+\gamma+1)} t^{\beta+\gamma} \right) = \frac{\Gamma(\gamma+1)}{\Gamma(\alpha+\beta+\gamma+1)} t^{\alpha+\beta+\gamma} = I^{\alpha+\beta}(t^\gamma)
+$$
 
-**Key Observation:** For power functions, $D^\alpha_{RL} = D^\alpha_C$, but this equality fails for general functions.
+For the Riemann-Liouville derivative $D^\alpha_{RL} f(t)$ with $0 < \alpha < 1$:
+
+$$
+D^\alpha_{RL}(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \frac{d}{dt} \int_0^t (t-\tau)^{-\alpha} \tau^\beta \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
+$$
+
+For the Caputo derivative $D^\alpha_C f(t)$:
+
+$$
+D^\alpha_C(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \int_0^t (t-\tau)^{-\alpha} \beta \tau^{\beta-1} \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
+$$
+
+For power functions, the Riemann-Liouville and Caputo derivatives coincide: $D^\alpha_{RL} = D^\alpha_C$. However, this equality fails for general functions, highlighting the importance of choosing the appropriate definition based on the physical interpretation of initial conditions.
 
 ### Example 5.5.2: Physical Application—Viscoelasticity
 
 **Problem:** Solve the fractional relaxation equation $D^\alpha_C u(t) = -\lambda u(t)$, $u(0) = u_0$, modeling viscoelastic materials.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Laplace Transform Approach:**
-   $$
-   \mathcal{L}\{D^\alpha_C u\}(s) = s^\alpha \hat{u}(s) - s^{\alpha-1} u(0)
-   $$
+Using the Laplace transform approach, the transform of the Caputo derivative is:
 
-   $$
-   s^\alpha \hat{u}(s) - s^{\alpha-1} u_0 = -\lambda \hat{u}(s)
-   $$
+$$
+\mathcal{L}\{D^\alpha_C u\}(s) = s^\alpha \hat{u}(s) - s^{\alpha-1} u(0)
+$$
 
-   $$
-   \hat{u}(s) = \frac{u_0}{s^\alpha + \lambda}
-   $$
+Applying to the equation $D^\alpha_C u(t) = -\lambda u(t)$:
 
-2. **Mittag-Leffler Function Solution:**
-   $$
-   u(t) = u_0 E_\alpha(-\lambda t^\alpha)
-   $$
+$$
+s^\alpha \hat{u}(s) - s^{\alpha-1} u_0 = -\lambda \hat{u}(s)
+$$
 
-   where $E_\alpha(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + 1)}$.
+Solving for $\hat{u}(s)$:
 
-3. **Complete Computation for $\alpha = 1/2$:**
-   $$
-   E_{1/2}(-t^{1/2}) = e^{t} \text{erfc}(\sqrt{t})
-   $$
+$$
+\hat{u}(s) = \frac{u_0}{s^\alpha + \lambda}
+$$
 
-4. **Verification:**
-   $$
-   D^{1/2}_C[e^t \text{erfc}(\sqrt{t})] = -\text{erfc}(\sqrt{t}) + \frac{e^{-t}}{\sqrt{\pi t}}
-   $$
+The solution is given by the Mittag-Leffler function:
 
-   This confirms the solution satisfies the fractional relaxation equation.
+$$
+u(t) = u_0 E_\alpha(-\lambda t^\alpha)
+$$
+
+where $E_\alpha(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + 1)}$.
+
+For $\alpha = 1/2$, the complete computation yields:
+
+$$
+E_{1/2}(-t^{1/2}) = e^{t} \text{erfc}(\sqrt{t})
+$$
+
+Verification confirms:
+
+$$
+D^{1/2}_C[e^t \text{erfc}(\sqrt{t})] = -\text{erfc}(\sqrt{t}) + \frac{e^{-t}}{\sqrt{\pi t}}
+$$
+
+This demonstrates that the solution satisfies the fractional relaxation equation, providing a rigorous model for viscoelastic materials with power-law memory.
 
 ### Example 5.5.3: Advanced Demonstration—Fractional Harmonic Oscillator
 
 **Problem:** Solve $D^{2\alpha}_C u(t) + \omega^2 u(t) = 0$, $u(0) = u_0$, $D^\alpha_C u(0) = v_0$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Laplace Transform:**
-   $$
-   s^{2\alpha} \hat{u}(s) - s^{2\alpha-1} u_0 - s^\alpha v_0 + \omega^2 \hat{u}(s) = 0
-   $$
+Taking the Laplace transform:
 
-   $$
-   \hat{u}(s) = \frac{s^{2\alpha-1} u_0 + s^\alpha v_0}{s^{2\alpha} + \omega^2}
-   $$
+$$
+s^{2\alpha} \hat{u}(s) - s^{2\alpha-1} u_0 - s^\alpha v_0 + \omega^2 \hat{u}(s) = 0
+$$
 
-2. **Inverse Transform using Mittag-Leffler:**
-   $$
-   u(t) = u_0 t^{\alpha-1} E_{\alpha, \alpha}(\omega^2 t^{2\alpha}) + v_0 t^\alpha E_{\alpha, \alpha+1}(\omega^2 t^{2\alpha})
-   $$
+$$
+\hat{u}(s) = \frac{s^{2\alpha-1} u_0 + s^\alpha v_0}{s^{2\alpha} + \omega^2}
+$$
 
-3. **Asymptotic Analysis ($\alpha \to 1^-$):**
-   $$
-   E_{1,1}(\omega^2 t^2) = \cos(\omega t), \quad t E_{1,2}(\omega^2 t^2) = \frac{\sin(\omega t)}{\omega}
-   $$
+The inverse transform using the Mittag-Leffler function yields:
 
-   **Recovery of Classical Solution:** $u(t) = u_0 \cos(\omega t) + \frac{v_0}{\omega} \sin(\omega t)$.
+$$
+u(t) = u_0 t^{\alpha-1} E_{\alpha, \alpha}(\omega^2 t^{2\alpha}) + v_0 t^\alpha E_{\alpha, \alpha+1}(\omega^2 t^{2\alpha})
+$$
+
+Asymptotic analysis as $\alpha \to 1^-$ shows:
+
+$$
+E_{1,1}(\omega^2 t^2) = \cos(\omega t), \quad t E_{1,2}(\omega^2 t^2) = \frac{\sin(\omega t)}{\omega}
+$$
+
+This recovers the classical solution: $u(t) = u_0 \cos(\omega t) + \frac{v_0}{\omega} \sin(\omega t)$.
 
 **Failure Mode:** For $\alpha < 1/2$, the solution exhibits anomalous dispersion where high frequencies decay slower than low frequencies, connecting to Chapter 5.6 (regularity structures).
 
@@ -214,72 +228,71 @@ This extension theorem transforms nonlocal problems involving $(-\Delta)^s$ into
 
 **Problem:** Find the fundamental solution of $(-\Delta)^s u = \delta$ in $\mathbb{R}^n$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Fourier Transform Method:**
-   $$
-   \mathcal{F}((-\Delta)^s u)(\xi) = |\xi|^{2s} \hat{u}(\xi) = 1
-   $$
+Using the Fourier transform method:
 
    $$
-   \hat{u}(\xi) = |\xi|^{-2s}
+   \hat{u}(\xi) = \mid \xi \mid^{-2s}
    $$
 
-2. **Inverse Fourier Transform:**
-   $$
-   u(x) = c_{n,s} \int_{\mathbb{R}^n} |\xi|^{-2s} e^{2\pi i x \cdot \xi} \, d\xi
-   $$
-
-3. **Radial Symmetry:**
-   Use spherical coordinates in frequency space:
+   The inverse Fourier transform is:
 
    $$
-   u(x) = c_{n,s} \int_0^\infty \rho^{n-1-2s} \int_{S^{n-1}} e^{2\pi i |x| \rho \omega \cdot e_1} \, d\omega \, d\rho
+   u(x) = c_{n,s} \int_{\mathbb{R}^n} \mid \xi \mid^{-2s} e^{2\pi i x \cdot \xi} \, d\xi
    $$
 
-4. **Known Result:**
+   Using spherical coordinates in frequency space:
+
    $$
-   u(x) = C_{n,s} |x|^{2s-n}, \quad C_{n,s} = \frac{\Gamma\left(\frac{n-2s}{2}\right)}{2^{2s} \pi^{n/2} \Gamma(s)}
+   u(x) = c_{n,s} \int_0^\infty \rho^{n-1-2s} \int_{S^{n-1}} e^{2\pi i \mid x \mid \rho \omega \cdot e_1} \, d\omega \, d\rho
    $$
 
-5. **Verification via Direct Computation ($n=1$, $s=1/2$):**
+   The known result is:
+
    $$
-   (-\Delta)^{1/2} |x|^{-1/2} = c \text{P.V.} \int_{-\infty}^\infty \frac{|x|^{-1/2} - |y|^{-1/2}}{|x-y|^{2}} \, dy
+   u(x) = C_{n,s} \mid x \mid^{2s-n}, \quad C_{n,s} = \frac{\Gamma\left(\frac{n-2s}{2}\right)}{2^{2s} \pi^{n/2} \Gamma(s)}
    $$
 
-   The principal value integral converges and equals $\delta(x)$.
+   Verification via direct computation for $n=1$, $s=1/2$:
+
+   $$
+   (-\Delta)^{1/2} \mid x \mid^{-1/2} = c \text{P.V.} \int_{-\infty}^\infty \frac{\mid x \mid^{-1/2} - \mid y \mid^{-1/2}}{\mid x-y \mid^{2}} \, dy
+   $$
+
+   The principal value integral converges and equals $\delta(x)$, confirming that the fundamental solution has the correct singularity structure.
 
 ### Example 5.5.5: Physical Application—Anomalous Diffusion
 
 **Problem:** Solve the fractional diffusion equation $\partial_t u = -(-\Delta)^s u$ in $\mathbb{R}^n$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Fourier Transform:**
-   $$
-   \partial_t \hat{u}(\xi,t) = -|\xi|^{2s} \hat{u}(\xi,t)
-   $$
+Taking the Fourier transform:
 
    $$
-   \hat{u}(\xi,t) = \hat{u}_0(\xi) e^{-t |\xi|^{2s}}
+   \hat{u}(\xi,t) = \hat{u}_0(\xi) e^{-t \mid \xi \mid^{2s}}
    $$
 
-2. **Self-Similar Solution for $\delta$-initial data:**
+   The self-similar solution for $\delta$-initial data is:
+
    $$
-   u(x,t) = t^{-n/(2s)} K\left(\frac{|x|}{t^{1/(2s)}}\right)
+   u(x,t) = t^{-n/(2s)} K\left(\frac{\mid x \mid}{t^{1/(2s)}}\right)
    $$
 
-3. **Complete Computation of $K(\eta)$ ($n=1$, $s=1/2$):**
+   For $n=1$, $s=1/2$, the complete computation of $K(\eta)$ yields:
+
    $$
    K(\eta) = \frac{1}{2\sqrt{\pi}} \eta^{-1/2} e^{-\eta^2/4}
    $$
 
-4. **Moments Analysis:**
+   Moments analysis shows:
+
    $$
-   \langle |x|^q \rangle_t = \int |x|^q u(x,t) \, dx \sim t^{q/(2s)}
+   \langle \mid x \mid^q \rangle_t = \int \mid x \mid^q u(x,t) \, dx \sim t^{q/(2s)}
    $$
 
-   **Super-diffusion:** For $s > 1/2$, moments grow faster than classical diffusion ($s=1/2$).
+   For $s > 1/2$, moments grow faster than classical diffusion ($s=1/2$), demonstrating super-diffusion behavior. This anomalous scaling reflects the nonlocal nature of the fractional Laplacian, where long-range interactions accelerate the spread of probability mass.
 
 ### Example 5.5.6: Advanced Demonstration—Fractional Yamabe Problem
 
@@ -291,34 +304,31 @@ This extension theorem transforms nonlocal problems involving $(-\Delta)^s$ into
    Map to $\mathbb{R}^n$:
 
    $$
-   (-\Delta)^s u = |x|^{-2s} u^{\frac{n+2s}{n-2s}}
+   (-\Delta)^s u = \mid x \mid^{-2s} u^{\frac{n+2s}{n-2s}}
    $$
 
-2. **Ansatz:**
-   $$
-   u(x) = |x|^{-\frac{n-2s}{2}} v(|x|)
-   $$
+   Using the ansatz $u(x) = \mid x \mid^{-\frac{n-2s}{2}} v(\mid x \mid)$, the radial ODE is:
 
-3. **Radial ODE:**
    $$
    v'' + \frac{n-1+2s}{r} v' + v^{\frac{n+2s}{n-2s}} = 0
    $$
 
-4. **Emden-Fowler Transformation:**
-   $v(r) = r^{-\frac{n-2s}{2}} w(z)$, $z = \log r$:
+   Applying the Emden-Fowler transformation $v(r) = r^{-\frac{n-2s}{2}} w(z)$ with $z = \log r$:
 
    $$
    w'' + \left(1 - \frac{n-2s}{2}\right) w' + w^{\frac{n+2s}{n-2s}} = 0
    $$
 
-5. **Exact Solution:**
+   The exact solution is:
+
    $$
    w(z) = \left[ \frac{\sqrt{n-2s}}{2} \text{sech}\left(\frac{\sqrt{n-2s}}{2} z\right) \right]^{\frac{n-2s}{2}}
    $$
 
-6. **Global Solution:**
+   The global solution is:
+
    $$
-   u(x) = c_n (1 + |x|^2)^{-s}
+   u(x) = c_n (1 + \mid x \mid^2)^{-s}
    $$
 
 **Connection to Chapter 6.7:** This is a fully nonlinear fractional PDE solved via geometric methods.
@@ -327,109 +337,103 @@ This extension theorem transforms nonlocal problems involving $(-\Delta)^s$ into
 
 **Problem:** Find the extension $v(x,y)$ for $u(x) = e^{-|x|^2}$ with $s=1/2$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Extension Equation:**
-   $\nabla \cdot (y \nabla v) = 0$ in $\mathbb{R}^{n+1}_+$, $v(x,0) = e^{-|x|^2}$.
+The extension equation is $\nabla \cdot (y \nabla v) = 0$ in $\mathbb{R}^{n+1}_+$ with $v(x,0) = e^{-\mid x \mid^2}$. Using the ansatz $v(x,y) = e^{-(\mid x \mid^2 + y^2)}$ (for $s=1/4$), verification shows:
 
-2. **Ansatz:**
-   $v(x,y) = e^{-(|x|^2 + y^2)}$ (for $s=1/4$).
+$$
+\nabla \cdot (y \nabla v) = y \Delta v + \nabla v \cdot \nabla y = y \Delta v + \partial_y v
+$$
 
-3. **Verification:**
-   $$
-   \nabla \cdot (y \nabla v) = y \Delta v + \nabla v \cdot \nabla y = y \Delta v + \partial_y v
-   $$
+With $\Delta v = -(n+1) v$ and $\partial_y v = -y v$:
 
-   $$
-   \Delta v = -(n+1) v, \quad \partial_y v = -y v
-   $$
+$$
+y \Delta v + \partial_y v = -y(n+1)v - y v = -y(n+2)v \neq 0
+$$
 
-   $$
-   y \Delta v + \partial_y v = -y(n+1)v - y v = -y(n+2)v \neq 0
-   $$
+The boundary operator is:
 
-4. **Boundary Operator:**
-   $$
-   \lim_{y \to 0^+} y^{1-2s} \partial_y v = \lim_{y \to 0^+} y^{1/2} (-2y) e^{-(|x|^2 + y^2)} = -\sqrt{y} e^{-|x|^2} \to 0
-   $$
+$$
+\lim_{y \to 0^+} y^{1-2s} \partial_y v = \lim_{y \to 0^+} y^{1/2} (-2y) e^{-(\mid x \mid^2 + y^2)} = -\sqrt{y} e^{-\mid x \mid^2} \to 0
+$$
 
 ### Example 5.5.8: Physical Application—Fractional Heat Equation
 
 **Problem:** Solve $\partial_t u + (-\Delta)^s u = 0$ via extension.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Extension Formulation:**
-   $$
-   \partial_t v + \nabla \cdot (y^a \nabla v) = 0, \quad v(x,0,t) = u(x,t)
-   $$
+The extension formulation is:
 
-2. **Separation of Variables:**
-   $v(x,y,t) = T(t) Y(y) e^{-i\xi \cdot x}$
+$$
+\partial_t v + \nabla \cdot (y^a \nabla v) = 0, \quad v(x,0,t) = u(x,t)
+$$
 
-3. **Spatial ODE:**
-   $$
-   y^a (Y'' + |\xi|^2 Y) + a y^{a-1} Y' = 0
-   $$
+Using separation of variables $v(x,y,t) = T(t) Y(y) e^{-i\xi \cdot x}$, the spatial ODE is:
 
-4. **Change of Variables:**
-   $y = |\xi|^{-2/(1-a)} w$:
+$$
+y^a (Y'' + \mid \xi \mid^2 Y) + a y^{a-1} Y' = 0
+$$
 
-   $$
-   (1-w^2) W'' - \frac{1+a}{1-a} w W' + \frac{2s}{1-a} W = 0
-   $$
+With the change of variables $y = \mid \xi \mid^{-2/(1-a)} w$:
 
-5. **Hypergeometric Solution:**
-   $$
-   W(w) = {}_2F_1\left(s, 1-s; \frac{1}{2}; w^2\right)
-   $$
+$$
+(1-w^2) W'' - \frac{1+a}{1-a} w W' + \frac{2s}{1-a} W = 0
+$$
 
-6. **Time Evolution:**
-   $$
-   T(t) = e^{-|\xi|^{2s} t}
-   $$
+The hypergeometric solution is:
 
-7. **Boundary Recovery:**
-   $$
-   (-\Delta)^s u = -c_s \lim_{y \to 0^+} y^a \partial_y v
-   $$
+$$
+W(w) = {}_2F_1\left(s, 1-s; \frac{1}{2}; w^2\right)
+$$
+
+Time evolution follows:
+
+$$
+T(t) = e^{-\mid \xi \mid^{2s} t}
+$$
+
+Boundary recovery yields:
+
+$$
+(-\Delta)^s u = -c_s \lim_{y \to 0^+} y^a \partial_y v
+$$
 
 ### Example 5.5.9: Advanced Demonstration—Hardy-Littlewood-Sobolev Inequality
 
 **Problem:** Prove $\|(-\Delta)^{-s} f\|_{L^q} \leq C \|f\|_{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Riesz Potential:**
-   $(-\Delta)^{-s} f = I_{2s} * f$, $I_{2s}(x) = c |x|^{2s-n}$
+The Riesz potential is $(-\Delta)^{-s} f = I_{2s} * f$ where $I_{2s}(x) = c \mid x \mid^{2s-n}$. Applying Young's inequality:
 
-2. **Young's Inequality Application:**
-   $$
-   \|I_{2s} * f\|_q \leq \|I_{2s}\|_r \|f\|_p, \quad \frac{1}{p} + \frac{1}{r} = 1 + \frac{1}{q}
-   $$
+$$
+\mid\mid I_{2s} * f \mid\mid_q \leq \mid\mid I_{2s} \mid\mid_r \mid\mid f \mid\mid_p, \quad \frac{1}{p} + \frac{1}{r} = 1 + \frac{1}{q}
+$$
 
-3. **Compute $r$:**
-   $I_{2s} \in L^r_{\text{weak}}$ with $\frac{1}{r} = 1 - \frac{2s}{n}$
+Since $I_{2s} \in L^r_{\text{weak}}$ with $\frac{1}{r} = 1 - \frac{2s}{n}$, verification shows:
 
-4. **Verification:**
-   $$
-   \frac{1}{p} + 1 - \frac{2s}{n} = 1 + \frac{1}{q} \implies \frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}
-   $$
+$$
+\frac{1}{p} + 1 - \frac{2s}{n} = 1 + \frac{1}{q} \implies \frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}
+$$
 
-5. **Sharp Constant via Gamma Functions:**
-   $$
-   C_{n,s} = \pi^{s} \frac{\Gamma\left(\frac{n}{2} - s\right)}{\Gamma(s) \Gamma\left(\frac{n}{2}\right)}
-   $$
+The sharp constant via Gamma functions is:
 
-6. **Sobolev Embedding Connection (Chapter 2.2.3):**
-   $$
-   W^{s,p}(\mathbb{R}^n) \hookrightarrow L^{p^*}, \quad \frac{1}{p^*} = \frac{1}{p} - \frac{s}{n}
-   $$
+$$
+C_{n,s} = \pi^{s} \frac{\Gamma\left(\frac{n}{2} - s\right)}{\Gamma(s) \Gamma\left(\frac{n}{2}\right)}
+$$
 
-7. **Extension Proof via Weighted Spaces:**
-   $$
-   \|u\|_{L^q(\mathbb{R}^n)} \leq C \|\nabla v\|_{L^2(\mathbb{R}^{n+1}_+, y^a)} \leq C \|v(x,0)\|_{W^{s,2}}
-   $$
+This connects to Sobolev embeddings (Chapter 2.2.3):
+
+$$
+W^{s,p}(\mathbb{R}^n) \hookrightarrow L^{p^*}, \quad \frac{1}{p^*} = \frac{1}{p} - \frac{s}{n}
+$$
+
+The extension proof via weighted spaces yields:
+
+$$
+\mid\mid u \mid\mid_{L^q(\mathbb{R}^n)} \leq C \mid\mid \nabla v \mid\mid_{L^2(\mathbb{R}^{n+1}_+, y^a)} \leq C \mid\mid v(x,0) \mid\mid_{W^{s,2}}
+$$
 
 ## References
 

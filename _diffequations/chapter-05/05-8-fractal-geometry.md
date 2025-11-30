@@ -14,6 +14,8 @@ parent_section: null
 
 # Section 5.8: Fractal Geometry & Dirichlet Forms
 
+> On fractals, we invert classical analysis by defining energy as the primary object, from which we reconstruct the Laplacian and heat flow, revealing that diffusion is fundamentally anomalous, governed by the spectral dimension rather than the Hausdorff dimension.
+
 ## Introduction
 
 In the preceding sections of this chapter, we addressed the failure of classical calculus due to the roughness of trajectories. We demonstrated that even when the domain is a smooth manifold, the paths of physical interest—such as Brownian motion—are nowhere differentiable. We resolved this by introducing stochastic calculus and rough path theory, effectively renormalizing the path while retaining the geometry of the underlying space.
@@ -80,7 +82,7 @@ For the Sierpinski gasket, the Hausdorff dimension is $d_H = \frac{\log 3}{\log 
 
 #### Anomalous Diffusion and Walk Dimension
 
-The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[|X_t|^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:
+The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[\mid X_t \mid^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:
 
 $$
 \mathbb{E}[|X_t|^2] \sim t^{2/d_w}
@@ -104,74 +106,39 @@ The renormalization factor $r$ used in constructing the form defines an intrinsi
 
 **Objective:** Construct the Dirichlet form step-by-step for the Sierpinski Gasket through 3 iterations, revealing the renormalization mechanism.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Stage 0: Initial Triangle ($m=0$):**
-   Vertices: $V_0 = \{A, B, C\}$
+**Stage 0: Initial Triangle ($m=0$).** Vertices: $V_0 = \{A, B, C\}$. Edges: $E_0 = \{(A,B), (B,C), (C,A)\}$. Harmonic function $u^{(0)}$: linear interpolation from boundary values with $u(A) = 0$, $u(B) = 1$, $u(C) = 0$. Discrete energy:
 
-   Edges: $E_0 = \{(A,B), (B,C), (C,A)\}$
+$$
+\mathcal{E}_0(u^{(0)}) = (u(B)-u(A))^2 + (u(C)-u(B))^2 + (u(A)-u(C))^2 = 1^2 + (-1)^2 + 0^2 = 2
+$$
 
-   Harmonic function $u^{(0)}$: Linear interpolation from boundary values
+**Stage 1: First Iteration ($m=1$).** New vertices: $M_{AB}$, $M_{BC}$, $M_{CA}$ (midpoints). $V_1 = \{A, B, C, M_{AB}, M_{BC}, M_{CA}\}$. Edges: 3 triangles × 3 edges = 9 edges. Harmonic extension $u^{(1)}$ satisfies Laplace equation at new vertices:
 
-   $u(A) = 0$, $u(B) = 1$, $u(C) = 0$
+$$
+\Delta u(M_{AB}) = 0 \implies \frac{u(A) + u(B) + u(M_{BC}) + u(M_{CA}) - 4u(M_{AB})}{4} = 0
+$$
 
-   Discrete energy:
+Solution by symmetry: $u(M_{AB}) = \frac{u(A) + u(B)}{2} = \frac{0+1}{2} = \frac{1}{2}$, and $u(M_{BC}) = u(M_{CA}) = \frac{1}{2}$. Discrete energy:
 
-   $$
-   \mathcal{E}_0(u^{(0)}) = (u(B)-u(A))^2 + (u(C)-u(B))^2 + (u(A)-u(C))^2 = 1^2 + (-1)^2 + 0^2 = 2
-   $$
+$$
+\mathcal{E}_1(u^{(1)}) = 3 \times \left[ (1-0.5)^2 + (0-0.5)^2 + (0.5-0.5)^2 \right] = 3 \times 0.75 = 2.25
+$$
 
-2. **Stage 1: First Iteration ($m=1$):**
-   New vertices: $M_{AB}$, $M_{BC}$, $M_{CA}$ (midpoints)
+**Stage 2: Second Iteration ($m=2$).** Each triangle → 4 smaller triangles. Total edges: 27 edges. Harmonic values at new vertices (computed systematically): at each midpoint of smallest triangles, average of 4 neighboring values. Key computation for one representative vertex $P$ in smallest triangle:
 
-   $V_1 = \{A, B, C, M_{AB}, M_{BC}, M_{CA}\}$
+$$
+u(P) = \frac{1}{4} \left[ u(M_{AB}) + u(M_{BC}) + u(Q_1) + u(Q_2) \right]
+$$
 
-   Edges: 3 triangles × 3 edges = 9 edges
+where $Q_1, Q_2$ are other new vertices. Complete energy calculation:
 
-   Harmonic extension $u^{(1)}$ satisfies Laplace equation at new vertices:
+$$
+\mathcal{E}_2(u^{(2)}) = 9 \times \left[ 3 \times (0.25)^2 + 6 \times (0.5-0.25)^2 \right] = 9 \times 1.125 = 10.125
+$$
 
-   $$
-   \Delta u(M_{AB}) = 0 \implies \frac{u(A) + u(B) + u(M_{BC}) + u(M_{CA}) - 4u(M_{AB})}{4} = 0
-   $$
-
-   Solution by symmetry:
-
-   $$
-   u(M_{AB}) = \frac{u(A) + u(B)}{2} = \frac{0+1}{2} = \frac{1}{2}
-   $$
-
-   $u(M_{BC}) = u(M_{CA}) = \frac{1}{2}$
-
-   Discrete energy:
-
-   $$
-   \mathcal{E}_1(u^{(1)}) = 3 \times \left[ (1-0.5)^2 + (0-0.5)^2 + (0.5-0.5)^2 \right] = 3 \times 0.75 = 2.25
-   $$
-
-3. **Stage 2: Second Iteration ($m=2$):**
-   Each triangle → 4 smaller triangles
-
-   Total edges: 27 edges
-
-   Harmonic values at new vertices (computed systematically):
-
-   At each midpoint of smallest triangles: average of 4 neighboring values
-
-   Key computation for one representative vertex $P$ in smallest triangle:
-
-   $$
-   u(P) = \frac{1}{4} \left[ u(M_{AB}) + u(M_{BC}) + u(Q_1) + u(Q_2) \right]
-   $$
-
-   where $Q_1, Q_2$ are other new vertices.
-
-   Complete energy calculation:
-
-   $$
-   \mathcal{E}_2(u^{(2)}) = 9 \times \left[ 3 \times (0.25)^2 + 6 \times (0.5-0.25)^2 \right] = 9 \times 1.125 = 10.125
-   $$
-
-4. **Renormalization Analysis:**
+**Renormalization Analysis:**
 
    | Level $m$ | $\mathcal{E}_m(u^{(m)})$ | $r^{-m} \mathcal{E}_m(u^{(m)})$ ($r=3/5$) |
    |-----------|---------------------------|-------------------------------------------|
@@ -185,7 +152,7 @@ The renormalization factor $r$ used in constructing the form defines an intrinsi
    \mathcal{E}(u,u) = \lim_{m\to\infty} \left(\frac{5}{3}\right)^m \mathcal{E}_m(u^{(m)}) < \infty
    $$
 
-   **Key Insight:** The factor $r = 3/5 < 1$ ensures the limit exists, defining $u \in \mathcal{D}(\mathcal{E})$.
+   The factor $r = 3/5 < 1$ ensures the limit exists, defining $u \in \mathcal{D}(\mathcal{E})$. This renormalization mechanism is essential for constructing well-defined energy functionals on fractals, where the discrete approximations must be rescaled to converge to a finite continuum limit.
 
 ### Example 5.8.2: Explicit Fractal Laplacian Computation
 
@@ -197,9 +164,9 @@ Vertices: $\{A, B, C, M_{AB}, M_{BC}, M_{CA}\}$
 
 $u(A) = 0$, $u(B) = 1$, $u(C) = 0$, $u(M_{AB}) = u(M_{BC}) = u(M_{CA}) = 1/2$
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Discrete Laplacian at $M_{AB}$:**
+**Discrete Laplacian at $M_{AB}$:**
    $$
    \Delta u(M_{AB}) = \frac{1}{\deg(M_{AB})} \sum_{y \sim M_{AB}} (u(y) - u(M_{AB}))
    $$
@@ -210,28 +177,29 @@ $u(A) = 0$, $u(B) = 1$, $u(C) = 0$, $u(M_{AB}) = u(M_{BC}) = u(M_{CA}) = 1/2$
    \Delta u(M_{AB}) = \frac{1}{4} \left[ (0 - 0.5) + (1 - 0.5) + (0.5 - 0.5) + (0.5 - 0.5) \right] = 0
    $$
 
-2. **Renormalized Laplacian:**
-   The fractal Laplacian is obtained by:
+**Renormalized Laplacian:** The fractal Laplacian is obtained by:
 
-   $$
-   \Delta_\mu u(x) = \lim_{m\to\infty} r^{-m} \Delta_m u(x)
-   $$
+$$
+\Delta_\mu u(x) = \lim_{m\to\infty} r^{-m} \Delta_m u(x)
+$$
 
-3. **Verification of Dirichlet Identity:**
-   $$
-   \mathcal{E}(u,v) = -\int_K (\Delta_\mu u) v \, d\mu
-   $$
+**Verification of Dirichlet Identity:**
 
-   For our harmonic function, $\Delta_\mu u \equiv 0$ at interior points, so:
+$$
+\mathcal{E}(u,v) = -\int_K (\Delta_\mu u) v \, d\mu
+$$
 
-   $$
-   \mathcal{E}(u,u) = \int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma
-   $$
+For our harmonic function, $\Delta_\mu u \equiv 0$ at interior points, so:
 
-4. **Boundary computation:**
-   $$
-   \int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma = u(B) \cdot 1 + u(A) \cdot 0 + u(C) \cdot 0 = 1
-   $$
+$$
+\mathcal{E}(u,u) = \int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma
+$$
+
+**Boundary computation:**
+
+$$
+\int_{\partial K} u \frac{\partial u}{\partial n} \, d\sigma = u(B) \cdot 1 + u(A) \cdot 0 + u(C) \cdot 0 = 1
+$$
 
    This matches our earlier energy calculation after proper normalization!
 
@@ -239,9 +207,9 @@ $u(A) = 0$, $u(B) = 1$, $u(C) = 0$, $u(M_{AB}) = u(M_{BC}) = u(M_{CA}) = 1/2$
 
 **Objective:** Explicitly compute the first few eigenvalues and verify $d_s = \frac{2\log 3}{\log 5}$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Level 1 Eigenvalue Problem:**
+**Level 1 Eigenvalue Problem:**
    Solve $-\Delta_m u = \lambda u$ on $V_1$ with Dirichlet boundary conditions $u(A)=u(B)=u(C)=0$.
 
    Matrix formulation:
@@ -263,8 +231,7 @@ $u(A) = 0$, $u(B) = 1$, $u(C) = 0$, $u(M_{AB}) = u(M_{BC}) = u(M_{CA}) = 1/2$
    \lambda_1^{(1)} = 2, \quad \lambda_2^{(1)} = 3, \quad \lambda_3^{(1)} = 4
    $$
 
-2. **Level 2 Eigenvalue Problem:**
-   At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the renormalization factor.
+**Level 2 Eigenvalue Problem:** At level 2, we have 9 interior vertices. The eigenvalue spectrum scales by the renormalization factor.
 
    Scaling relation:
 
@@ -278,83 +245,68 @@ $u(A) = 0$, $u(B) = 1$, $u(C) = 0$, $u(M_{AB}) = u(M_{BC}) = u(M_{CA}) = 1/2$
    \lambda_k^{(2)} = \frac{3}{5} \cdot \{\text{spectrum at level 1 with multiplicity}\}
    $$
 
-3. **Eigenvalue counting:**
+**Eigenvalue counting:**
 
-   | Level $m$ | \# Eigenvalues | $N(\lambda)$ for $\lambda < 2$ |
-   |-----------|----------------|--------------------------------|
-   | 1         | 3              | 0                              |
-   | 2         | 9              | 0                              |
-   | 3         | 27             | 3                              |
+| Level $m$ | \# Eigenvalues | $N(\lambda)$ for $\lambda < 2$ |
+|-----------|----------------|--------------------------------|
+| 1         | 3              | 0                              |
+| 2         | 9              | 0                              |
+| 3         | 27             | 3                              |
 
-4. **Asymptotic analysis:**
-   $$
-   N(\lambda) \sim c \lambda^{d_s/2}, \quad d_s = \frac{2\log 3}{\log 5} \approx 1.365
-   $$
+**Asymptotic analysis:**
 
-   **Verification:**
+$$
+N(\lambda) \sim c \lambda^{d_s/2}, \quad d_s = \frac{2\log 3}{\log 5} \approx 1.365
+$$
 
-   $$
-   \lambda^{d_s/2} = \lambda^{0.6825} \quad \text{matches numerical counting}
-   $$
+Verification: $\lambda^{d_s/2} = \lambda^{0.6825}$ matches numerical counting, confirming that the spectral dimension governs the eigenvalue distribution and heat kernel decay on fractals.
 
 ### Example 5.8.4: Anomalous Diffusion—Mean Square Displacement
 
 **Objective:** Compute explicit random walk probabilities and verify $\mathbb{E}[|X_t|^2] \sim t^{2/d_w}$.
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Level 1 Random Walk:**
-   Transition matrix $P$ on $V_1$:
+**Level 1 Random Walk:** Transition matrix $P$ on $V_1$:
 
-   $$
-   P = \frac{1}{4} \begin{pmatrix}
-   0 & 1 & 1 & 1 & 0 & 0 \\
-   1 & 0 & 0 & 0 & 1 & 1 \\
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   1 & 0 & 1 & 0 & 0 & 1 \\
-   0 & 1 & 1 & 0 & 0 & 1 \\
-   0 & 0 & 0 & 1 & 1 & 0
-   \end{pmatrix}
-   $$
+$$
+P = \frac{1}{4} \begin{pmatrix}
+0 & 1 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0
+\end{pmatrix}
+$$
 
-2. **Starting at $M_{AB}$, compute 2-step probabilities:**
-   $$
-   P^2(M_{AB}, M_{AB}) = \frac{1}{16} (1 + 1 + 1 + 1) = \frac{1}{4}
-   $$
+**Starting at $M_{AB}$, compute 2-step probabilities:**
 
-3. **Resistance Distance Computation:**
-   Effective resistance between $A$ and $B$:
+$$
+P^2(M_{AB}, M_{AB}) = \frac{1}{16} (1 + 1 + 1 + 1) = \frac{1}{4}
+$$
 
-   - **Level 0:** Single edge, $R_0 = 1$
-   - **Level 1:** Three paths in parallel
-     - Direct path: $R = 1$
-     - Via $M_{BC}, M_{CA}$: $R = 2 + 2 = 4$
-     - Total: $\frac{1}{1/\text{path1} + 1/\text{path2}} = \frac{5}{3}$
+**Resistance Distance Computation:** Effective resistance between $A$ and $B$: at level 0, single edge with $R_0 = 1$; at level 1, three paths in parallel—direct path $R = 1$, via $M_{BC}, M_{CA}$: $R = 2 + 2 = 4$, total: $\frac{1}{1/\text{path1} + 1/\text{path2}} = \frac{5}{3}$. Recurrence: $R_{m+1} = \frac{5}{3} R_m$. Solution: $R_m = \left(\frac{5}{3}\right)^m$.
 
-   Recurrence: $R_{m+1} = \frac{5}{3} R_m$
+**Walk Dimension Calculation:** Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$:
 
-   Solution: $R_m = \left(\frac{5}{3}\right)^m$
+$$
+d_w = \frac{\log(5/3)}{\log 2} \approx 2.322
+$$
 
-4. **Walk Dimension Calculation:**
-   Time to travel distance $\ell$: $t \sim R(\ell) \sim \ell^{d_w}$
+Mean square displacement:
 
-   $$
-   d_w = \frac{\log(5/3)}{\log 2} \approx 2.322
-   $$
+$$
+\mathbb{E}[\mid X_t \mid^2] \sim t^{2/d_w} \approx t^{0.861}
+$$
 
-   Mean square displacement:
+**Verification with explicit computation:**
 
-   $$
-   \mathbb{E}[|X_t|^2] \sim t^{2/d_w} \approx t^{0.861}
-   $$
-
-5. **Verification with explicit computation:**
-
-   | Time $t$ | Exact $\mathbb{E}[|X_t|^2]$ | $t^{0.861}$ |
-   |----------|------------------------------|-------------|
-   | 1        | 0.75                         | 0.75        |
-   | 2        | 1.12                         | 1.15        |
-   | 4        | 1.58                         | 1.62        |
+| Time $t$ | Exact $\mathbb{E}[\mid X_t \mid^2]$ | $t^{0.861}$ |
+|----------|------------------------------|-------------|
+| 1        | 0.75                         | 0.75        |
+| 2        | 1.12                         | 1.15        |
+| 4        | 1.58                         | 1.62        |
 
    Perfect agreement!
 
@@ -399,38 +351,37 @@ Asymptotic: dominated by smallest $\lambda_1$
 
 $$-\Delta_\mu u = \delta_{M_{AB}}, \quad u|_{\partial K} = 0$$
 
-**Step-by-Step Solution:**
+**Solution:**
 
-1. **Level 1 Solution:**
-   Discrete system at interior vertices:
+**Level 1 Solution:** Discrete system at interior vertices:
 
-   $$
-   \begin{cases}
-   4u(M_{AB}) - u(M_{BC}) - u(M_{CA}) = 4 \quad \text{(at } M_{AB}) \\
-   u(M_{AB}) + 4u(M_{BC}) - u(M_{CA}) = 0 \quad \text{(at } M_{BC}) \\
-   u(M_{AB}) - u(M_{BC}) + 4u(M_{CA}) = 0 \quad \text{(at } M_{CA})
-   \end{cases}
-   $$
+$$
+\begin{cases}
+4u(M_{AB}) - u(M_{BC}) - u(M_{CA}) = 4 \quad \text{(at } M_{AB}) \\
+u(M_{AB}) + 4u(M_{BC}) - u(M_{CA}) = 0 \quad \text{(at } M_{BC}) \\
+u(M_{AB}) - u(M_{BC}) + 4u(M_{CA}) = 0 \quad \text{(at } M_{CA})
+\end{cases}
+$$
 
-2. **Solution:**
-   $$
-   u(M_{AB}) = \frac{4}{10} = 0.4, \quad u(M_{BC}) = u(M_{CA}) = 0.2
-   $$
+**Solution:**
 
-3. **Energy computation:**
-   $$
-   \mathcal{E}(u,u) = \sum_{\text{edges}} (u(x) - u(y))^2 = 0.96
-   $$
+$$
+u(M_{AB}) = \frac{4}{10} = 0.4, \quad u(M_{BC}) = u(M_{CA}) = 0.2
+$$
 
-4. **Level 2 Refinement:**
-   Apply same procedure to 9 interior vertices. The solution converges in the Dirichlet form norm:
+**Energy computation:**
 
-   $$
-   \|u^{(m)} - u^{(m+1)}\|_{\mathcal{D}(\mathcal{E})} \to 0
-   $$
+$$
+\mathcal{E}(u,u) = \sum_{\text{edges}} (u(x) - u(y))^2 = 0.96
+$$
 
-5. **Green's function property:**
-   $u(x) = G(x, M_{AB})$ where $G$ is the fractal Green's function.
+**Level 2 Refinement:** Apply same procedure to 9 interior vertices. The solution converges in the Dirichlet form norm:
+
+$$
+\mid\mid u^{(m)} - u^{(m+1)} \mid\mid_{\mathcal{D}(\mathcal{E})} \to 0
+$$
+
+**Green's function property:** $u(x) = G(x, M_{AB})$ where $G$ is the fractal Green's function. This demonstrates that the Dirichlet problem on fractals can be solved through discrete approximation and renormalization, with the solution converging to the continuum limit in the energy norm.
 
 ## References
 
