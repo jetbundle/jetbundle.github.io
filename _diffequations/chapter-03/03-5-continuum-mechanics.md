@@ -12,8 +12,6 @@ parent_chapter: 3
 parent_section: null
 ---
 
-# Section 3.5: Continuum Mechanics & Elasticity
-
 > The material body itself is the manifold: deformation is geometry, and frame indifference is the symmetry that selects physically meaningful energy functions.
 
 ## Introduction
@@ -46,23 +44,23 @@ $$
 
 This measure is non-linear in $\varphi$. In the regime of small deformations, where $\varphi(X) = X + u(X)$ for a small displacement field $u$, one linearizes this tensor to obtain the infinitesimal strain tensor $\varepsilon = \frac{1}{2}(\nabla u + (\nabla u)^T)$, which forms the basis of linear elasticity covered in Evans (2010). However, large-deformation theory requires the full geometric nonlinearity of $E$.
 
-> **Canonical Neo-Hookean Material**
+**Canonical Neo-Hookean Material**
 
-> Consider a neo-Hookean hyperelastic material undergoing uniaxial extension. The reference configuration is a unit cube $\Omega_0 = [0,1]^3$. The deformation is:
+Consider a neo-Hookean hyperelastic material undergoing uniaxial extension. The reference configuration is a unit cube $\Omega_0 = [0,1]^3$. The deformation is:
 
-> $$
-> \varphi(X_1, X_2, X_3, t) = \left(\lambda(t) X_1, \frac{1}{\sqrt{\lambda(t)}} X_2, \frac{1}{\sqrt{\lambda(t)}} X_3\right),
-> $$
+$$
+\varphi(X_1, X_2, X_3, t) = \left(\lambda(t) X_1, \frac{1}{\sqrt{\lambda(t)}} X_2, \frac{1}{\sqrt{\lambda(t)}} X_3\right),
+$$
 
-> where $\lambda(t) > 0$ is the stretch ratio in the $X_1$-direction.
+where $\lambda(t) > 0$ is the stretch ratio in the $X_1$-direction.
 
-> The deformation gradient is $F = D_X \varphi = \text{diag}(\lambda, \lambda^{-1/2}, \lambda^{-1/2})$. The Jacobian is $J = \det F = \lambda \cdot \lambda^{-1/2} \cdot \lambda^{-1/2} = 1$, confirming volume preservation for this incompressible material.
+The deformation gradient is $F = D_X \varphi = \text{diag}(\lambda, \lambda^{-1/2}, \lambda^{-1/2})$. The Jacobian is $J = \det F = \lambda \cdot \lambda^{-1/2} \cdot \lambda^{-1/2} = 1$, confirming volume preservation for this incompressible material.
 
-> The Right Cauchy-Green tensor is $C = F^T F = \text{diag}(\lambda^2, \lambda^{-1}, \lambda^{-1})$, and the Green-Lagrange strain is $E = \frac{1}{2}(C - I) = \frac{1}{2}\text{diag}(\lambda^2 - 1, \lambda^{-1} - 1, \lambda^{-1} - 1)$.
+The Right Cauchy-Green tensor is $C = F^T F = \text{diag}(\lambda^2, \lambda^{-1}, \lambda^{-1})$, and the Green-Lagrange strain is $E = \frac{1}{2}(C - I) = \frac{1}{2}\text{diag}(\lambda^2 - 1, \lambda^{-1} - 1, \lambda^{-1} - 1)$.
 
-> For the neo-Hookean energy $W(F) = \frac{\mu}{2}(I_1 - 3) - \mu \ln J + \frac{\kappa}{2}(J - 1)^2$ with $I_1 = \text{tr}(C) = \lambda^2 + 2\lambda^{-1}$, the incompressible case ($J=1$) gives $W(\lambda) = \frac{\mu}{2}(\lambda^2 + 2\lambda^{-1} - 3)$.
+For the neo-Hookean energy $W(F) = \frac{\mu}{2}(I_1 - 3) - \mu \ln J + \frac{\kappa}{2}(J - 1)^2$ with $I_1 = \text{tr}(C) = \lambda^2 + 2\lambda^{-1}$, the incompressible case ($J=1$) gives $W(\lambda) = \frac{\mu}{2}(\lambda^2 + 2\lambda^{-1} - 3)$.
 
-> The First Piola-Kirchhoff stress is $P_{11} = \frac{\partial W}{\partial \lambda} = \mu(\lambda - \lambda^{-2})$, and the Cauchy stress is $\sigma_{11} = P_{11} \lambda = \mu(\lambda^2 - \lambda^{-1})$. The stress-strain curve shows cubic growth for large $\lambda$, characteristic of nonlinear elasticity.
+The First Piola-Kirchhoff stress is $P_{11} = \frac{\partial W}{\partial \lambda} = \mu(\lambda - \lambda^{-2})$, and the Cauchy stress is $\sigma_{11} = P_{11} \lambda = \mu(\lambda^2 - \lambda^{-1})$. The stress-strain curve shows cubic growth for large $\lambda$, characteristic of nonlinear elasticity.
 
 This example demonstrates the geometric structure of finite deformation: the deformation gradient encodes the local geometry, the Cauchy-Green tensor measures strain invariantly under rotations, and the energy function determines the stress response through differentiation.
 
@@ -96,15 +94,15 @@ $$
 
 $S$ is symmetric and fully defined on the reference configuration, making it the conjugate variable to the Green-Lagrange strain $E$ in variational formulations.
 
-> **Saint-Venant-Kirchhoff Material**
+**Saint-Venant-Kirchhoff Material**
 
-> Solve the static equilibrium of a Saint-Venant-Kirchhoff material under uniaxial tension. The energy density is $W(F) = \frac{\lambda}{2}(\text{tr} E)^2 + \mu \mid \mid E \mid \mid^2$.
+Solve the static equilibrium of a Saint-Venant-Kirchhoff material under uniaxial tension. The energy density is $W(F) = \frac{\lambda}{2}(\text{tr} E)^2 + \mu \| E \|^2$.
 
-> The Second Piola-Kirchhoff stress is $S = \frac{\partial W}{\partial E} = \lambda(\text{tr} E) I + 2\mu E$. For uniaxial extension $F = \text{diag}(\lambda, \lambda^{-1/2}, \lambda^{-1/2})$ with incompressibility, the Green-Lagrange strain components are $E_{11} = \frac{1}{2}(\lambda^2 - 1)$ and $E_{22} = E_{33} = \frac{1}{2}(\lambda^{-1} - 1)$.
+The Second Piola-Kirchhoff stress is $S = \frac{\partial W}{\partial E} = \lambda(\text{tr} E) I + 2\mu E$. For uniaxial extension $F = \text{diag}(\lambda, \lambda^{-1/2}, \lambda^{-1/2})$ with incompressibility, the Green-Lagrange strain components are $E_{11} = \frac{1}{2}(\lambda^2 - 1)$ and $E_{22} = E_{33} = \frac{1}{2}(\lambda^{-1} - 1)$.
 
-> The trace is $\text{tr} E = \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3)$, so $S_{11} = \lambda \cdot \text{tr} E + 2\mu E_{11} = \lambda \cdot \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu(\lambda^2 - 1)$.
+The trace is $\text{tr} E = \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3)$, so $S_{11} = \lambda \cdot \text{tr} E + 2\mu E_{11} = \lambda \cdot \frac{1}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu(\lambda^2 - 1)$.
 
-> The First Piola-Kirchhoff stress is $P_{11} = F_{11} S_{11} = \lambda[\frac{\lambda}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu(\lambda^2 - 1)]$. Linearizing with $\lambda = 1 + \varepsilon$ for small strains gives $P_{11} \approx (\lambda + 2\mu)\varepsilon$, matching linear elasticity with Young's modulus $E = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu}$.
+The First Piola-Kirchhoff stress is $P_{11} = F_{11} S_{11} = \lambda[\frac{\lambda}{2}(\lambda^2 + 2\lambda^{-1} - 3) + \mu(\lambda^2 - 1)]$. Linearizing with $\lambda = 1 + \varepsilon$ for small strains gives $P_{11} \approx (\lambda + 2\mu)\varepsilon$, matching linear elasticity with Young's modulus $E = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu}$.
 
 The Saint-Venant-Kirchhoff model provides a bridge between linear and nonlinear elasticity: it uses the Green-Lagrange strain (nonlinear in displacement) but a quadratic energy (linear stress-strain relation in strain). This model is useful for moderate deformations but fails for large strains where material nonlinearity becomes important.
 
@@ -124,67 +122,67 @@ $$
 
 This symmetry implies that $W$ cannot depend arbitrarily on $F$; it must depend only on the invariants of $U = \sqrt{F^T F}$, or equivalently, on the Right Cauchy-Green tensor $C = F^T F$. Thus, we may write $W(F) = \hat{W}(C)$.
 
-> **Simple Shear—Frame Indifference Verification**
+**Simple Shear—Frame Indifference Verification**
 
-> Verify frame indifference for simple shear deformation $\varphi(X_1, X_2, X_3) = (X_1 + \gamma X_2, X_2, X_3)$.
+Verify frame indifference for simple shear deformation $\varphi(X_1, X_2, X_3) = (X_1 + \gamma X_2, X_2, X_3)$.
 
-> The deformation gradient is $F = \begin{pmatrix} 1 & \gamma & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, and the Right Cauchy-Green tensor is $C = F^T F = \begin{pmatrix} 1 & \gamma & 0 \\ \gamma & 1 + \gamma^2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
+The deformation gradient is $F = \begin{pmatrix} 1 & \gamma & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, and the Right Cauchy-Green tensor is $C = F^T F = \begin{pmatrix} 1 & \gamma & 0 \\ \gamma & 1 + \gamma^2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
 
-> The principal invariants are $I_1 = \text{tr} C = 3 + \gamma^2$, $I_2 = 2 + \gamma^2$, and $I_3 = \det C = 1$.
+The principal invariants are $I_1 = \text{tr} C = 3 + \gamma^2$, $I_2 = 2 + \gamma^2$, and $I_3 = \det C = 1$.
 
-> Applying a rotation $Q$ to the current configuration gives $F' = QF$. The new Right Cauchy-Green tensor is $C' = F'^T F' = F^T Q^T Q F = F^T F = C$, so $W(F') = \hat{W}(C') = \hat{W}(C) = W(F)$, confirming frame indifference.
+Applying a rotation $Q$ to the current configuration gives $F' = QF$. The new Right Cauchy-Green tensor is $C' = F'^T F' = F^T Q^T Q F = F^T F = C$, so $W(F') = \hat{W}(C') = \hat{W}(C) = W(F)$, confirming frame indifference.
 
-> For a neo-Hookean material, $W = \frac{\mu}{2}(I_1 - 3) = \frac{\mu}{2}\gamma^2$, and the shear stress is $\sigma_{12} = \mu\gamma^3$, showing cubic growth with shear amount.
+For a neo-Hookean material, $W = \frac{\mu}{2}(I_1 - 3) = \frac{\mu}{2}\gamma^2$, and the shear stress is $\sigma_{12} = \mu\gamma^3$, showing cubic growth with shear amount.
 
 Frame indifference is a fundamental physical principle: the energy stored in a material should not depend on how we choose to orient our coordinate system. This symmetry reduces the functional form of $W$ from depending on the full deformation gradient to depending only on its invariants, dramatically simplifying the theory.
 
-> **Anti-Plane Shear—Exact Nonlinear Solution**
+**Anti-Plane Shear—Exact Nonlinear Solution**
 
-> Solve the anti-plane shear problem for a neo-Hookean material with deformation $\varphi(X_1, X_2, X_3) = (X_1, X_2, w(X_1, X_2))$.
+Solve the anti-plane shear problem for a neo-Hookean material with deformation $\varphi(X_1, X_2, X_3) = (X_1, X_2, w(X_1, X_2))$.
 
-> The deformation gradient is $F = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ w_1 & w_2 & 1 \end{pmatrix}$, and the Cauchy-Green tensor has components $C_{11} = 1 + w_1^2$, $C_{22} = 1 + w_2^2$, $C_{12} = w_1 w_2$, etc.
+The deformation gradient is $F = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ w_1 & w_2 & 1 \end{pmatrix}$, and the Cauchy-Green tensor has components $C_{11} = 1 + w_1^2$, $C_{22} = 1 + w_2^2$, $C_{12} = w_1 w_2$, etc.
 
-> The first invariant is $I_1 = 3 + \mid \nabla w \mid^2$ and $I_3 = 1$. For static equilibrium with no body forces, $\text{Div} P = 0$ reduces to $\Delta w = 0$. The nonlinear problem reduces to Laplace's equation!
+The first invariant is $I_1 = 3 + \vert \nabla w \vert^2$ and $I_3 = 1$. For static equilibrium with no body forces, $\text{Div} P = 0$ reduces to $\Delta w = 0$. The nonlinear problem reduces to Laplace's equation!
 
-> For a circular hole in an infinite plate, the solution is $w(r, \theta) = A\theta$ for $r > a$, giving pure azimuthal shear around the hole with $w_r = 0$ and $w_\theta = A/r$.
+For a circular hole in an infinite plate, the solution is $w(r, \theta) = A\theta$ for $r > a$, giving pure azimuthal shear around the hole with $w_r = 0$ and $w_\theta = A/r$.
 
 This remarkable result shows that for anti-plane shear, the geometric nonlinearity of finite deformation does not affect the equilibrium equation: it remains Laplace's equation, just as in linear elasticity. This is a special case where the nonlinearity cancels out, providing an exact solution to a fully nonlinear problem.
 
-> **Mooney-Rivlin Material—Complete Stress Analysis**
+**Mooney-Rivlin Material—Complete Stress Analysis**
 
-> Compute the complete stress state for equibiaxial stretching of a Mooney-Rivlin material with energy $W(F) = C_1(I_1 - 3) + C_2(I_2 - 3)$.
+Compute the complete stress state for equibiaxial stretching of a Mooney-Rivlin material with energy $W(F) = C_1(I_1 - 3) + C_2(I_2 - 3)$.
 
-> For deformation $F = \text{diag}(\lambda, \lambda, \lambda^{-2})$, the invariants are $I_1 = 2\lambda^2 + \lambda^{-4}$ and $I_2 = 2\lambda^{-2} + \lambda^4$.
+For deformation $F = \text{diag}(\lambda, \lambda, \lambda^{-2})$, the invariants are $I_1 = 2\lambda^2 + \lambda^{-4}$ and $I_2 = 2\lambda^{-2} + \lambda^4$.
 
-> The Second Piola-Kirchhoff stress is $S = 2[\frac{\partial W}{\partial I_1} + I_1 \frac{\partial W}{\partial I_2}] I - 2\frac{\partial W}{\partial I_2} C$ with $\frac{\partial W}{\partial I_1} = C_1$ and $\frac{\partial W}{\partial I_2} = C_2$.
+The Second Piola-Kirchhoff stress is $S = 2[\frac{\partial W}{\partial I_1} + I_1 \frac{\partial W}{\partial I_2}] I - 2\frac{\partial W}{\partial I_2} C$ with $\frac{\partial W}{\partial I_1} = C_1$ and $\frac{\partial W}{\partial I_2} = C_2$.
 
-> The diagonal stress components are $S_{11} = S_{22} = 2(C_1 + C_2)(\lambda^2 - \lambda^{-4})$, and the Cauchy stress is $\sigma_{11} = \lambda^2 S_{11} = 2\lambda^2(C_1 + C_2)(\lambda^2 - \lambda^{-4})$.
+The diagonal stress components are $S_{11} = S_{22} = 2(C_1 + C_2)(\lambda^2 - \lambda^{-4})$, and the Cauchy stress is $\sigma_{11} = \lambda^2 S_{11} = 2\lambda^2(C_1 + C_2)(\lambda^2 - \lambda^{-4})$.
 
-> With $C_1 = 0.3$ and $C_2 = 0.12$ MPa, the stress values are: $\sigma_{11}(1.0) = 0$, $\sigma_{11}(1.2) = 0.374$ MPa, $\sigma_{11}(1.5) = 1.134$ MPa, and $\sigma_{11}(2.0) = 3.456$ MPa.
+With $C_1 = 0.3$ and $C_2 = 0.12$ MPa, the stress values are: $\sigma_{11}(1.0) = 0$, $\sigma_{11}(1.2) = 0.374$ MPa, $\sigma_{11}(1.5) = 1.134$ MPa, and $\sigma_{11}(2.0) = 3.456$ MPa.
 
 The Mooney-Rivlin model is widely used for rubber-like materials because it captures both the first and second invariants of the deformation, providing better agreement with experimental data than the neo-Hookean model for biaxial loading.
 
-> **Thick-Walled Tube Under Pressure**
+**Thick-Walled Tube Under Pressure**
 
-> Solve the thick-walled tube problem for a neo-Hookean material with geometry $a \leq R \leq b$, internal pressure $P_i$, and external pressure $P_o = 0$.
+Solve the thick-walled tube problem for a neo-Hookean material with geometry $a \leq R \leq b$, internal pressure $P_i$, and external pressure $P_o = 0$.
 
-> For radial deformation $\varphi(R) = r(R)$ with $F = \frac{dr}{dR}$ and $\lambda_\theta = \frac{r}{R}$, incompressibility gives $r^2 - a^2 = R^2 - a^2$, so $r = \sqrt{R^2 + c}$.
+For radial deformation $\varphi(R) = r(R)$ with $F = \frac{dr}{dR}$ and $\lambda_\theta = \frac{r}{R}$, incompressibility gives $r^2 - a^2 = R^2 - a^2$, so $r = \sqrt{R^2 + c}$.
 
-> The equilibrium equation is $\frac{d}{dR}(r\sigma_{rr}) = \sigma_{\theta\theta}\frac{dr}{dR}$, and the stress components are $\sigma_{rr} = \mu(1 - (R/r)^2)$ and $\sigma_{\theta\theta} = \mu(1 + (R/r)^2)$.
+The equilibrium equation is $\frac{d}{dR}(r\sigma_{rr}) = \sigma_{\theta\theta}\frac{dr}{dR}$, and the stress components are $\sigma_{rr} = \mu(1 - (R/r)^2)$ and $\sigma_{\theta\theta} = \mu(1 + (R/r)^2)$.
 
-> Applying boundary conditions $\sigma_{rr}(a) = -P_i$ and $\sigma_{rr}(b) = 0$ gives the pressure relation $P_i = \mu[1 - (a/b)^2 + \ln(b^2/a^2)]$.
+Applying boundary conditions $\sigma_{rr}(a) = -P_i$ and $\sigma_{rr}(b) = 0$ gives the pressure relation $P_i = \mu[1 - (a/b)^2 + \ln(b^2/a^2)]$.
 
 This example demonstrates how geometric constraints (incompressibility) and boundary conditions determine the deformation and stress fields in a fully nonlinear setting. The logarithmic term in the pressure relation is a signature of finite deformation, absent in linear elasticity.
 
 The mathematical well-posedness of these equations relies on convexity. However, strict convexity of $W$ in the variable $F$ is physically unacceptable because it prohibits buckling and is incompatible with frame indifference. As discussed extensively in Evans (2010), the appropriate condition for existence of minimizers is **polyconvexity**. A function $W(F)$ is polyconvex if it can be written as a convex function of the minors of $F$. For $n=3$, this requires $W(F) = g(F, \text{cof } F, \det F)$ where $g$ is convex. This formulation reconciles the geometric requirements of frame indifference with the analytic requirements of the direct method in the calculus of variations, providing a rigorous existence theory for nonlinear elastostatics.
 
-> **Polyconvexity Verification for Ogden Material**
+**Polyconvexity Verification for Ogden Material**
 
-> Verify polyconvexity for the Ogden material model $W(F) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2}(\lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3)$ where $\lambda_1, \lambda_2, \lambda_3$ are the principal stretches (eigenvalues of $U = \sqrt{C}$).
+Verify polyconvexity for the Ogden material model $W(F) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2}(\lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3)$ where $\lambda_1, \lambda_2, \lambda_3$ are the principal stretches (eigenvalues of $U = \sqrt{C}$).
 
-> Each term $\lambda_k^{\alpha_i}$ is a convex function of $(\lambda_1, \lambda_2, \lambda_3)$ when $\alpha_i > 1$. The polyconvex representation is $\phi(F, \text{cof } F, J) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2}(\lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3)$.
+Each term $\lambda_k^{\alpha_i}$ is a convex function of $(\lambda_1, \lambda_2, \lambda_3)$ when $\alpha_i > 1$. The polyconvex representation is $\phi(F, \text{cof } F, J) = \sum_{i=1}^N \frac{2\mu_i}{\alpha_i^2}(\lambda_1^{\alpha_i} + \lambda_2^{\alpha_i} + \lambda_3^{\alpha_i} - 3)$.
 
-> Hessian computation for each term shows positive definiteness, confirming that $W$ is polyconvex. This guarantees existence of minimizers by the direct method of the calculus of variations.
+Hessian computation for each term shows positive definiteness, confirming that $W$ is polyconvex. This guarantees existence of minimizers by the direct method of the calculus of variations.
 
 Polyconvexity is the mathematical condition that bridges geometry and analysis: it respects frame indifference (through dependence on invariants) while providing the convexity needed for existence theory. This is essential for proving that boundary value problems in nonlinear elasticity have solutions.
 

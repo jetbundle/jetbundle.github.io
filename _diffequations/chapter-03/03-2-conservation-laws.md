@@ -12,8 +12,6 @@ parent_chapter: 3
 parent_section: null
 ---
 
-# Section 3.2: Systems of Conservation Laws & Hyperbolicity
-
 > Nonlinear hyperbolic systems enforce finite propagation speeds, but this causality comes at a price: smooth solutions inevitably develop discontinuities in finite time.
 
 ## Introduction
@@ -54,25 +52,25 @@ $$
 
 revealing **Riemann invariants** that propagate along characteristic curves. Hyperbolicity therefore enforces finite signal speeds and prevents the instantaneous communication inherent to elliptic/parabolic flows.
 
-> **Linear Acoustics System**
+**Linear Acoustics System**
 
-> Diagonalize the linear system $\partial_{t}\rho + \partial_{x}u = 0$, $\partial_{t}u + c^{2}\partial_{x}\rho = 0$.
+Diagonalize the linear system $\partial_{t}\rho + \partial_{x}u = 0$, $\partial_{t}u + c^{2}\partial_{x}\rho = 0$.
 
-> The Jacobian $A = \begin{pmatrix} 0 & 1 \\ c^{2} & 0 \end{pmatrix}$ has eigenvalues $\lambda_{\pm} = \pm c$ with eigenvectors $r_{\pm} = (1, \pm c)^{T}$. Defining Riemann invariants $w_{\pm} = u \pm c\rho$ yields advection equations $\partial_{t} w_{\pm} \pm c \, \partial_{x} w_{\pm} = 0$, so $w_{\pm}(x,t)=w_{\pm}(x \mp ct,0)$. The solution is recovered via $u = (w_{+}+w_{-})/2$ and $\rho = (w_{+}-w_{-})/(2c)$, demonstrating strict hyperbolicity and finite propagation at speeds $\pm c$.
+The Jacobian $A = \begin{pmatrix} 0 & 1 \\ c^{2} & 0 \end{pmatrix}$ has eigenvalues $\lambda_{\pm} = \pm c$ with eigenvectors $r_{\pm} = (1, \pm c)^{T}$. Defining Riemann invariants $w_{\pm} = u \pm c\rho$ yields advection equations $\partial_{t} w_{\pm} \pm c \, \partial_{x} w_{\pm} = 0$, so $w_{\pm}(x,t)=w_{\pm}(x \mp ct,0)$. The solution is recovered via $u = (w_{+}+w_{-})/2$ and $\rho = (w_{+}-w_{-})/(2c)$, demonstrating strict hyperbolicity and finite propagation at speeds $\pm c$.
 
 This example illustrates the fundamental structure of hyperbolic systems: information propagates along characteristic curves at finite speeds determined by the eigenvalues. The Riemann invariants $w_{\pm}$ are quantities that remain constant along their respective characteristics, providing a complete description of the solution.
 
-> **Isentropic Euler Eigenstructure**
+**Isentropic Euler Eigenstructure**
 
-> For the isentropic Euler system
+For the isentropic Euler system
 
-> $$
-> \partial_{t} \begin{pmatrix} \rho \\ \rho u \end{pmatrix} + \partial_{x} \begin{pmatrix} \rho u \\ \rho u^{2} + p(\rho) \end{pmatrix} = 0, \quad p(\rho)=K\rho^{\gamma},
-> $$
+$$
+\partial_{t} \begin{pmatrix} \rho \\ \rho u \end{pmatrix} + \partial_{x} \begin{pmatrix} \rho u \\ \rho u^{2} + p(\rho) \end{pmatrix} = 0, \quad p(\rho)=K\rho^{\gamma},
+$$
 
-> find eigenvalues and Riemann invariants.
+find eigenvalues and Riemann invariants.
 
-> The Jacobian is $A(U)=\begin{pmatrix} u & \rho \\ c^{2}/\rho & u \end{pmatrix}$ with $c^{2}=\gamma K \rho^{\gamma-1}$. Eigenvalues are $\lambda_{\pm}=u\pm c$. Left eigenvectors $l_{\pm} \propto (\mp c/\rho, 1)$ yield invariants $w_{\pm}=u \pm \frac{2c}{\gamma-1}$. These invariants propagate along $dx/dt = u \pm c$, generalizing the acoustic case to nonlinear gas dynamics and revealing the characteristic families used in Riemann problems.
+The Jacobian is $A(U)=\begin{pmatrix} u & \rho \\ c^{2}/\rho & u \end{pmatrix}$ with $c^{2}=\gamma K \rho^{\gamma-1}$. Eigenvalues are $\lambda_{\pm}=u\pm c$. Left eigenvectors $l_{\pm} \propto (\mp c/\rho, 1)$ yield invariants $w_{\pm}=u \pm \frac{2c}{\gamma-1}$. These invariants propagate along $dx/dt = u \pm c$, generalizing the acoustic case to nonlinear gas dynamics and revealing the characteristic families used in Riemann problems.
 
 The nonlinear Euler system exhibits the same characteristic structure as the linear acoustic system, but with speeds that depend on the solution itself. This dependence is the source of the nonlinear effects that lead to shock formation: regions of higher density move faster, causing compression and eventual intersection of characteristics.
 
@@ -92,40 +90,40 @@ $$
 
 Hence $u$ remains constant along characteristics, producing the implicit solution formula $u(x,t)=g(\xi)$ with $\xi = x - F'(g(\xi))t$ determined by the initial profile $u(x,0)=g(x)$. The slope of each characteristic depends on the solution itself, unlike linear transport where all characteristics are parallel. This dependence causes neighboring characteristics to converge or diverge depending on $g'(x)$.
 
-> **Burgers Equation Before Breaking**
+**Burgers Equation Before Breaking**
 
-> Solve $\partial_{t}u + u \partial_{x}u = 0$ with
+Solve $\partial_{t}u + u \partial_{x}u = 0$ with
 
-> $$
-> u(x,0) = \begin{cases} 1 - \frac{\mid x \mid}{2}, & \mid x \mid \le 2, \\ 0, & \mid x \mid > 2. \end{cases}
-> $$
+$$
+u(x,0) = \begin{cases} 1 - \frac{\vert x \vert}{2}, & \vert x \vert \le 2, \\ 0, & \vert x \vert > 2. \end{cases}
+$$
 
-> Characteristics through $(\xi,0)$ satisfy $x(t)=\xi+u(\xi,0)t$, yielding $u(x,t)=u(\xi,0)$ with $\xi = x - u(\xi,0)t$. For $\mid \xi \mid >2$, $u \equiv 0$ and $x=\xi$. For $\mid \xi \mid <2$ we solve $\xi = x - (1-\mid \xi \mid /2)t$, leading to three regions: (i) $\mid x \mid >2+t$ with $u=0$, (ii) $\mid x \mid <2-t$ with $u=1-\mid x \mid /2$, and (iii) an intermediate region where $\xi$ solves a quadratic. The gradient evolves as
+Characteristics through $(\xi,0)$ satisfy $x(t)=\xi+u(\xi,0)t$, yielding $u(x,t)=u(\xi,0)$ with $\xi = x - u(\xi,0)t$. For $\vert \xi \vert >2$, $u \equiv 0$ and $x=\xi$. For $\vert \xi \vert <2$ we solve $\xi = x - (1-\vert \xi \vert /2)t$, leading to three regions: (i) $\vert x \vert >2+t$ with $u=0$, (ii) $\vert x \vert <2-t$ with $u=1-\vert x \vert /2$, and (iii) an intermediate region where $\xi$ solves a quadratic. The gradient evolves as
 
-> $$
-> \partial_{x}u = \frac{-1/2}{1 - t/2} = \frac{-1}{2 - t},
-> $$
+$$
+\partial_{x}u = \frac{-1/2}{1 - t/2} = \frac{-1}{2 - t},
+$$
 
-> blowing up at $t_{\mathrm{b}}=2$. Thus the explicit piecewise solution is valid only for $0<t<2$, after which characteristics intersect and shocks must form.
+blowing up at $t_{\mathrm{b}}=2$. Thus the explicit piecewise solution is valid only for $0<t<2$, after which characteristics intersect and shocks must form.
 
 The method of characteristics provides an explicit solution formula, but only until characteristics intersect. The gradient blowup at $t=2$ signals the breakdown of the classical solution, necessitating the introduction of weak solutions in Section 3.3.
 
-> **Traffic Flow Rarefaction**
+**Traffic Flow Rarefaction**
 
-> Model traffic density $\rho$ using $\partial_{t}\rho + \partial_{x}(\rho v(\rho)) = 0$ with $v(\rho)=1-\rho$ and initial data $\rho(x,0)=0.8$ for $x<0$, $0.2$ for $x>0$.
+Model traffic density $\rho$ using $\partial_{t}\rho + \partial_{x}(\rho v(\rho)) = 0$ with $v(\rho)=1-\rho$ and initial data $\rho(x,0)=0.8$ for $x<0$, $0.2$ for $x>0$.
 
-> The flux $F(\rho)=\rho(1-\rho)$ has derivative $F'(\rho)=1-2\rho$. Left/right characteristic speeds are $-0.6$ and $0.6$, so the Riemann problem generates a centered rarefaction. The self-similar solution $\rho(x,t)=\frac{1 - x/t}{2}$ for $-0.6t < x < 0.6t$, matched to constant states outside, gives
+The flux $F(\rho)=\rho(1-\rho)$ has derivative $F'(\rho)=1-2\rho$. Left/right characteristic speeds are $-0.6$ and $0.6$, so the Riemann problem generates a centered rarefaction. The self-similar solution $\rho(x,t)=\frac{1 - x/t}{2}$ for $-0.6t < x < 0.6t$, matched to constant states outside, gives
 
-> $$
-> \rho(x,t)=
-> \begin{cases}
-> 0.8, & x < -0.6t, \\
-> \frac{1 - x/t}{2}, & -0.6t < x < 0.6t, \\
-> 0.2, & x > 0.6t.
-> \end{cases}
-> $$
+$$
+\rho(x,t)=
+\begin{cases}
+0.8, & x < -0.6t, \\
+\frac{1 - x/t}{2}, & -0.6t < x < 0.6t, \\
+0.2, & x > 0.6t.
+\end{cases}
+$$
 
-> Fluxes on both sides equal $0.16$, so no shock is required; the rarefaction satisfies the Rankine–Hugoniot condition automatically.
+Fluxes on both sides equal $0.16$, so no shock is required; the rarefaction satisfies the Rankine–Hugoniot condition automatically.
 
 Rarefaction waves occur when characteristics diverge, creating a smooth transition between different constant states. Unlike shocks, rarefactions preserve smoothness and can be described by the method of characteristics throughout their evolution.
 
@@ -145,63 +143,63 @@ $$
 
 marks the **breaking time**, beyond which the classical solution ceases to exist. The multi-valued profile must be replaced by a weak (distributional) solution satisfying the integral conservation law together with additional admissibility criteria—entropy conditions—that select the physically correct shock. This necessity motivates Section 3.3.
 
-> **Simultaneous Shock Formation**
+**Simultaneous Shock Formation**
 
-> For Burgers' equation with
+For Burgers' equation with
 
-> $$
-> u(x,0) = \begin{cases} 1, & x < 0, \\ 1 - x, & 0 \le x \le 1, \\ 0, & x > 1, \end{cases}
-> $$
+$$
+u(x,0) = \begin{cases} 1, & x < 0, \\ 1 - x, & 0 \le x \le 1, \\ 0, & x > 1, \end{cases}
+$$
 
-> compute the breaking time.
+compute the breaking time.
 
-> Characteristics emanating from $\xi \in (0,1)$ have slopes $1-\xi$ and gradients $\partial_{x}u = \frac{-1}{1+t}$, so all compression points experience infinite slope at $t=1$. The solution before breaking is
+Characteristics emanating from $\xi \in (0,1)$ have slopes $1-\xi$ and gradients $\partial_{x}u = \frac{-1}{1+t}$, so all compression points experience infinite slope at $t=1$. The solution before breaking is
 
-> $$
-> u(x,t)=
-> \begin{cases}
-> 1, & x < t, \\
-> \frac{x}{t}, & t < x < 1, \\
-> 1 - x, & 1 < x < 2 - t, \\
-> 0, & x > 2 - t,
-> \end{cases}
-> $$
+$$
+u(x,t)=
+\begin{cases}
+1, & x < t, \\
+\frac{x}{t}, & t < x < 1, \\
+1 - x, & 1 < x < 2 - t, \\
+0, & x > 2 - t,
+\end{cases}
+$$
 
-> with gradients $\partial_{x}u = 1/t$ in the expanding fan and $-1/(1+t)$ in the compression region. At $t=1$ all compression characteristics collide simultaneously, producing an instantaneous shock—a vivid illustration of how nonlinear hyperbolic equations destroy smoothness.
+with gradients $\partial_{x}u = 1/t$ in the expanding fan and $-1/(1+t)$ in the compression region. At $t=1$ all compression characteristics collide simultaneously, producing an instantaneous shock—a vivid illustration of how nonlinear hyperbolic equations destroy smoothness.
 
 This example demonstrates that shock formation is not merely a mathematical curiosity but a generic feature of nonlinear hyperbolic systems. The simultaneous collision of characteristics at $t=1$ shows how the geometric structure of the characteristic field determines the breakdown of smooth solutions.
 
-> **Shallow-Water (p-System) Characteristics**
+**Shallow-Water (p-System) Characteristics**
 
-> Analyze the shallow-water system
+Analyze the shallow-water system
 
-> $$
-> \partial_{t} h + \partial_{x}(h u) = 0, \qquad \partial_{t}(h u) + \partial_{x}\left(h u^{2} + \tfrac{1}{2} g h^{2}\right) = 0.
-> $$
+$$
+\partial_{t} h + \partial_{x}(h u) = 0, \qquad \partial_{t}(h u) + \partial_{x}\left(h u^{2} + \tfrac{1}{2} g h^{2}\right) = 0.
+$$
 
-> Quasilinearization gives $A(U)=\begin{pmatrix} u & h \\ g & u \end{pmatrix}$ with eigenvalues $u \pm \sqrt{gh}$. The Riemann invariants $r_{\pm}=u \pm 2\sqrt{gh}$ remain constant along characteristics $dx/dt = u \pm \sqrt{gh}$. Because $\nabla \lambda_{\pm} \cdot r_{\pm} \neq 0$, both characteristic fields are genuinely nonlinear, implying that shocks generically form from smooth initial perturbations—exactly as in the scalar Burgers setting.
+Quasilinearization gives $A(U)=\begin{pmatrix} u & h \\ g & u \end{pmatrix}$ with eigenvalues $u \pm \sqrt{gh}$. The Riemann invariants $r_{\pm}=u \pm 2\sqrt{gh}$ remain constant along characteristics $dx/dt = u \pm \sqrt{gh}$. Because $\nabla \lambda_{\pm} \cdot r_{\pm} \neq 0$, both characteristic fields are genuinely nonlinear, implying that shocks generically form from smooth initial perturbations—exactly as in the scalar Burgers setting.
 
 The shallow-water system exhibits the same generic shock formation mechanism as scalar equations: genuine nonlinearity ensures that compression waves steepen into shocks. This universality reflects the fundamental structure of hyperbolic conservation laws.
 
-> **Genuine Nonlinearity Test**
+**Genuine Nonlinearity Test**
 
-> Verify genuine nonlinearity for the $+$ characteristic field of the Euler system.
+Verify genuine nonlinearity for the $+$ characteristic field of the Euler system.
 
-> With $\lambda_{+}=u+c$, $r_{+}=(1, u+c)^{T}$, and $\nabla \lambda_{+}=(1, c/\rho)$, the dot product is
+With $\lambda_{+}=u+c$, $r_{+}=(1, u+c)^{T}$, and $\nabla \lambda_{+}=(1, c/\rho)$, the dot product is
 
-> $$
-> \nabla \lambda_{+} \cdot r_{+} = 1 + \frac{c}{\rho}(u+c) > 0
-> $$
+$$
+\nabla \lambda_{+} \cdot r_{+} = 1 + \frac{c}{\rho}(u+c) > 0
+$$
 
-> for all physically relevant states. Thus the $+$ field is genuinely nonlinear, ensuring that compression waves steepen into shocks unless moderated by dispersion or viscosity. This computation also confirms that entropy conditions will later be required to select admissible discontinuities.
+for all physically relevant states. Thus the $+$ field is genuinely nonlinear, ensuring that compression waves steepen into shocks unless moderated by dispersion or viscosity. This computation also confirms that entropy conditions will later be required to select admissible discontinuities.
 
 Genuine nonlinearity is the mathematical condition that ensures shock formation is generic, not exceptional. When this condition holds, almost any smooth initial data will develop shocks in finite time, making weak solutions and entropy conditions essential for a complete theory.
 
-> **Riemann Problem Wave Pattern Selection**
+**Riemann Problem Wave Pattern Selection**
 
-> Solve the Riemann problem for the isentropic Euler system with left state $U_{L}=(1,0)$ and right state $U_{R}=(0.125,0)$ when $\gamma=1.4$.
+Solve the Riemann problem for the isentropic Euler system with left state $U_{L}=(1,0)$ and right state $U_{R}=(0.125,0)$ when $\gamma=1.4$.
 
-> Evaluating the Hugoniot and rarefaction curves shows that a 1-shock followed by a 2-rarefaction satisfies both Rankine–Hugoniot and entropy conditions. Solving the matching equations yields middle velocity $u^{\ast}\approx 0.92757$, shock speed $s\approx 1.75279$, and a rarefaction fan connecting $U^{\ast}$ to $U_{R}$ along $x/t = u^{\ast} + c^{\ast}$. Any other wave pattern violates the Lax entropy inequalities, highlighting how hyperbolicity guides the admissible combination of shocks and rarefactions.
+Evaluating the Hugoniot and rarefaction curves shows that a 1-shock followed by a 2-rarefaction satisfies both Rankine–Hugoniot and entropy conditions. Solving the matching equations yields middle velocity $u^{\ast}\approx 0.92757$, shock speed $s\approx 1.75279$, and a rarefaction fan connecting $U^{\ast}$ to $U_{R}$ along $x/t = u^{\ast} + c^{\ast}$. Any other wave pattern violates the Lax entropy inequalities, highlighting how hyperbolicity guides the admissible combination of shocks and rarefactions.
 
 The Riemann problem—the solution of a conservation law with piecewise constant initial data—is fundamental to understanding hyperbolic systems. The admissible wave patterns are determined by the characteristic structure and entropy conditions, providing a complete description of how discontinuities interact.
 
@@ -263,7 +261,7 @@ $$\partial_t \begin{pmatrix} u_1 \\ u_2 \end{pmatrix} + \begin{pmatrix} 1 & \eps
 
 with $\epsilon \ll 1$. The eigenvalues are $1$ and $2$ (strictly hyperbolic), but the eigenvectors are $(1, 0)^T$ and $(1, \epsilon)^T$, which become nearly parallel as $\epsilon \to 0$. The transformation matrix $R = \begin{pmatrix} 1 & 1 \\ 0 & \epsilon \end{pmatrix}$ has condition number $\sim 1/\epsilon$, causing numerical instability.
 
-The additional condition for well-posedness is that the eigenvectors must be uniformly linearly independent: there exists a constant $C > 0$ such that $\mid \det R(u) \mid \geq C$ for all relevant states $u$. This ensures that the decoupling transformation remains bounded, preventing the growth of high-frequency modes.
+The additional condition for well-posedness is that the eigenvectors must be uniformly linearly independent: there exists a constant $C > 0$ such that $\vert \det R(u) \vert \geq C$ for all relevant states $u$. This ensures that the decoupling transformation remains bounded, preventing the growth of high-frequency modes.
 
 This condition is automatically satisfied for systems with smooth, strictly hyperbolic flux functions on compact state spaces, but becomes critical for systems with large state variations or near-sonic conditions.
 

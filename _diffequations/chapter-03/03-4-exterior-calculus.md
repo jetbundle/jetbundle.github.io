@@ -12,8 +12,6 @@ parent_chapter: 3
 parent_section: null
 ---
 
-# Section 3.4: Exterior Calculus & Hodge Decomposition
-
 > Differential forms are the natural language of integration on manifolds, unifying vector calculus into a coordinate-free framework that reveals the topological structure of PDEs.
 
 ## Introduction
@@ -36,17 +34,17 @@ $$
 
 Given a smooth map $\phi:M\to N$, the **pullback** $\phi^{*}:\Omega^{k}(N)\to \Omega^{k}(M)$ satisfies $\phi^{*}(\alpha\wedge\beta)=\phi^{*}\alpha\wedge\phi^{*}\beta$ and allows change of variables in integrals.
 
-> **Wedge Products and Pullbacks on $\mathbb{R}^{2}$**
+**Wedge Products and Pullbacks on $\mathbb{R}^{2}$**
 
-> Let $\alpha = x \, dy$ and $\beta = y \, dx + (x^{2}+y^{2}) dy$ on $\mathbb{R}^{2}$. Compute $\alpha\wedge\beta$ and the pullback under $\phi(u,v)=(u^{2}-v^{2},2uv)$.
+Let $\alpha = x \, dy$ and $\beta = y \, dx + (x^{2}+y^{2}) dy$ on $\mathbb{R}^{2}$. Compute $\alpha\wedge\beta$ and the pullback under $\phi(u,v)=(u^{2}-v^{2},2uv)$.
 
-> Expanding the wedge product:
+Expanding the wedge product:
 
-> $$
-> \alpha\wedge\beta = x \, dy \wedge (y \, dx + (x^{2}+y^{2})dy) = -xy \, dx \wedge dy.
-> $$
+$$
+\alpha\wedge\beta = x \, dy \wedge (y \, dx + (x^{2}+y^{2})dy) = -xy \, dx \wedge dy.
+$$
 
-> For the pullback, we compute $\phi^{*}\alpha = (u^{2}-v^{2}) d(2uv) = 2v(u^{2}-v^{2}) du + 2u(u^{2}-v^{2}) dv$, and similarly for $\phi^{*}\beta$. Direct computation shows $\phi^{*}(\alpha\wedge\beta)=\phi^{*}\alpha\wedge\phi^{*}\beta$, illustrating the functoriality of the pullback operation.
+For the pullback, we compute $\phi^{*}\alpha = (u^{2}-v^{2}) d(2uv) = 2v(u^{2}-v^{2}) du + 2u(u^{2}-v^{2}) dv$, and similarly for $\phi^{*}\beta$. Direct computation shows $\phi^{*}(\alpha\wedge\beta)=\phi^{*}\alpha\wedge\phi^{*}\beta$, illustrating the functoriality of the pullback operation.
 
 The wedge product encodes the orientation of integration: $dx \wedge dy = -dy \wedge dx$ reflects the fact that reversing the order of integration changes the sign. The pullback allows us to change variables in integrals naturally, without explicit Jacobian determinants.
 
@@ -66,47 +64,47 @@ $$
 
 unifying the classical integral theorems.
 
-> **Exterior Derivative Recovers Curl and Divergence**
+**Exterior Derivative Recovers Curl and Divergence**
 
-> Show that $d$ reproduces the classical operators on $\mathbb{R}^{3}$.
+Show that $d$ reproduces the classical operators on $\mathbb{R}^{3}$.
 
-> For a function $f$, $df = \nabla f^{\flat}$ gives the gradient. For a 1-form $\alpha = V^{i} dx^{i}$,
+For a function $f$, $df = \nabla f^{\flat}$ gives the gradient. For a 1-form $\alpha = V^{i} dx^{i}$,
 
-> $$
-> d\alpha = (\partial_{2}V^{3}-\partial_{3}V^{2}) dy\wedge dz + (\partial_{3}V^{1}-\partial_{1}V^{3}) dz\wedge dx + (\partial_{1}V^{2}-\partial_{2}V^{1}) dx\wedge dy,
-> $$
+$$
+d\alpha = (\partial_{2}V^{3}-\partial_{3}V^{2}) dy\wedge dz + (\partial_{3}V^{1}-\partial_{1}V^{3}) dz\wedge dx + (\partial_{1}V^{2}-\partial_{2}V^{1}) dx\wedge dy,
+$$
 
-> the coefficients of which are the components of $\nabla \times V$. For a 2-form $\beta = P dy\wedge dz + Q dz\wedge dx + R dx\wedge dy$, $d\beta = (\partial_{x}P+\partial_{y}Q+\partial_{z}R) dx\wedge dy\wedge dz$, which is the divergence of the vector field $(P,Q,R)$.
+the coefficients of which are the components of $\nabla \times V$. For a 2-form $\beta = P dy\wedge dz + Q dz\wedge dx + R dx\wedge dy$, $d\beta = (\partial_{x}P+\partial_{y}Q+\partial_{z}R) dx\wedge dy\wedge dz$, which is the divergence of the vector field $(P,Q,R)$.
 
 The exterior derivative unifies gradient, curl, and divergence into a single operator that makes sense on any manifold. The property $d^{2}=0$ encodes the classical identities $\nabla \times \nabla f = 0$ and $\nabla \cdot (\nabla \times V) = 0$ in a coordinate-free way.
 
-> **Maxwell's Equations via Differential Forms**
+**Maxwell's Equations via Differential Forms**
 
-> Express the vacuum Maxwell equations on Minkowski space using the electromagnetic 2-form $F$.
+Express the vacuum Maxwell equations on Minkowski space using the electromagnetic 2-form $F$.
 
-> Setting
+Setting
 
-> $$
-> F = E_{i} \, dx^{0} \wedge dx^{i} + \tfrac{1}{2} \epsilon_{ijk} B^{k} \, dx^{i} \wedge dx^{j},
-> $$
+$$
+F = E_{i} \, dx^{0} \wedge dx^{i} + \tfrac{1}{2} \epsilon_{ijk} B^{k} \, dx^{i} \wedge dx^{j},
+$$
 
-> the equations $dF=0$ encode $\nabla\cdot B=0$ and $\partial_{t}B+\nabla\times E=0$, while $\delta F=0$ (with respect to the Minkowski metric) yields $\nabla\cdot E=0$ and $\nabla\times B - \partial_{t}E=0$. Thus the four Maxwell equations collapse into $dF=0$, $\delta F=0$.
+the equations $dF=0$ encode $\nabla\cdot B=0$ and $\partial_{t}B+\nabla\times E=0$, while $\delta F=0$ (with respect to the Minkowski metric) yields $\nabla\cdot E=0$ and $\nabla\times B - \partial_{t}E=0$. Thus the four Maxwell equations collapse into $dF=0$, $\delta F=0$.
 
 This elegant formulation reveals the geometric structure of electromagnetism: the field $F$ is a 2-form, and Maxwell's equations are simply the conditions that $F$ is closed and co-closed. This coordinate-free description is essential for generalizing electromagnetism to curved spacetimes in general relativity.
 
-> **de Rham Cohomology of the Torus**
+**de Rham Cohomology of the Torus**
 
-> Compute $H^{1}(T^{3})$ using explicit closed forms.
+Compute $H^{1}(T^{3})$ using explicit closed forms.
 
-> On $T^{3}=S^{1}_{\theta_{1}}\times S^{1}_{\theta_{2}}\times S^{1}_{\theta_{3}}$, the 1-forms $d\theta_{i}$ are closed. If $d\theta_{1}=d f$, periodicity forces $f$ to be globally defined with derivative 1 along $\theta_{1}$—impossible—so $d\theta_{i}$ are non-exact. Therefore $H^{1}(T^{3})\cong \mathbb{R}^{3}$ with basis $[d\theta_{1}], [d\theta_{2}], [d\theta_{3}]$.
+On $T^{3}=S^{1}_{\theta_{1}}\times S^{1}_{\theta_{2}}\times S^{1}_{\theta_{3}}$, the 1-forms $d\theta_{i}$ are closed. If $d\theta_{1}=d f$, periodicity forces $f$ to be globally defined with derivative 1 along $\theta_{1}$—impossible—so $d\theta_{i}$ are non-exact. Therefore $H^{1}(T^{3})\cong \mathbb{R}^{3}$ with basis $[d\theta_{1}], [d\theta_{2}], [d\theta_{3}]$.
 
 De Rham cohomology measures the failure of the Poincaré lemma: on a contractible space, every closed form is exact, but on spaces with holes, there exist closed forms that are not exact. These non-exact closed forms represent topological obstructions to solving $d\eta = \omega$.
 
-> **Potential Flow on the Torus**
+**Potential Flow on the Torus**
 
-> Analyze the 1-form $\alpha = -\sin(2\pi x) dy + \cos(2\pi y) dx$ on $T^{2}$.
+Analyze the 1-form $\alpha = -\sin(2\pi x) dy + \cos(2\pi y) dx$ on $T^{2}$.
 
-> Computing $d\alpha = 0$, so $\alpha$ is closed. Integrating $\alpha$ along the fundamental cycles shows nonzero circulation, hence $\alpha$ is not exact and represents a nontrivial cohomology class. Physically, this is an incompressible flow with topological circulation.
+Computing $d\alpha = 0$, so $\alpha$ is closed. Integrating $\alpha$ along the fundamental cycles shows nonzero circulation, hence $\alpha$ is not exact and represents a nontrivial cohomology class. Physically, this is an incompressible flow with topological circulation.
 
 This example demonstrates that cohomology classes have physical meaning: they represent conserved quantities (like circulation) that are topological rather than geometric. The Hodge decomposition will separate these topological contributions from the geometric ones.
 
@@ -120,11 +118,11 @@ $$
 
 With this inner product we define the global $L^{2}$ pairing $(\alpha,\beta)=\int_{M} \alpha\wedge *\beta$ and the **codifferential** $\delta = (-1)^{nk+n+1} * d *$, the formal adjoint of $d$. The operator $\delta$ generalizes divergence, lowering degree by one.
 
-> **Hodge Star on $\mathbb{R}^{3}$**
+**Hodge Star on $\mathbb{R}^{3}$**
 
-> Compute $*\alpha$ for the standard basis.
+Compute $*\alpha$ for the standard basis.
 
-> With $\operatorname{vol}=dx\wedge dy\wedge dz$, we have $*dx = dy\wedge dz$, $*dy = dz\wedge dx$, $*dz = dx\wedge dy$, and $*(dx\wedge dy) = dz$. These relations verify $\alpha\wedge *\beta = \langle \alpha, \beta \rangle \, \operatorname{vol}$.
+With $\operatorname{vol}=dx\wedge dy\wedge dz$, we have $*dx = dy\wedge dz$, $*dy = dz\wedge dx$, $*dz = dx\wedge dy$, and $*(dx\wedge dy) = dz$. These relations verify $\alpha\wedge *\beta = \langle \alpha, \beta \rangle \, \operatorname{vol}$.
 
 The Hodge star provides the metric structure needed to define inner products and adjoints. It converts $k$-forms to $(n-k)$-forms, reflecting the duality between forms of complementary degrees.
 
@@ -144,19 +142,19 @@ $$
 
 where $\mathcal{H}^{k}$ is the finite-dimensional space of harmonic $k$-forms, canonically isomorphic to $H^{k}_{\mathrm{dR}}(M)$. Consequently $\Delta \eta = \omega$ is solvable iff $\omega$ is orthogonal to $\mathcal{H}^{k}$, generalizing the Helmholtz decomposition of vector fields into gradient, curl, and harmonic components.
 
-> **Hodge Decomposition on $T^{2}$**
+**Hodge Decomposition on $T^{2}$**
 
-> Decompose $\omega = (\sin 2\pi x + \cos 2\pi y) dx + (\cos 2\pi x - \sin 2\pi y) dy$.
+Decompose $\omega = (\sin 2\pi x + \cos 2\pi y) dx + (\cos 2\pi x - \sin 2\pi y) dy$.
 
-> On $T^{2}$, harmonic 1-forms are constant multiples of $dx$ and $dy$. Because $\omega$ has zero average, its harmonic part vanishes. Solving $d\alpha = d\omega$ determines the exact part; computing $\delta\beta = \delta\omega$ yields the co-exact part. Thus $\omega = d\alpha + \delta\beta$ is purely analytic, illustrating the Hodge decomposition algorithmically.
+On $T^{2}$, harmonic 1-forms are constant multiples of $dx$ and $dy$. Because $\omega$ has zero average, its harmonic part vanishes. Solving $d\alpha = d\omega$ determines the exact part; computing $\delta\beta = \delta\omega$ yields the co-exact part. Thus $\omega = d\alpha + \delta\beta$ is purely analytic, illustrating the Hodge decomposition algorithmically.
 
 The Hodge decomposition separates forms into three orthogonal components: harmonic (topological), exact (geometric), and co-exact (also geometric). This decomposition is fundamental for solving elliptic PDEs: the harmonic part represents the kernel of the Laplacian, while the exact and co-exact parts can be computed by solving Poisson equations.
 
-> **Laplace–Beltrami on $S^{2}$**
+**Laplace–Beltrami on $S^{2}$**
 
-> Determine the harmonic 0-forms on the sphere.
+Determine the harmonic 0-forms on the sphere.
 
-> On $S^{2}$ with Laplacian $\Delta f = \delta df$, separation of variables gives eigenfunctions $Y_{\ell}^{m}$ with eigenvalues $\ell(\ell+1)$. Only $\ell=0$ (constant functions) satisfy $\Delta f=0$, in agreement with the fact that $H^{0}(S^{2}) \cong \mathbb{R}$. Higher-degree harmonics correspond to exact/co-exact components of forms.
+On $S^{2}$ with Laplacian $\Delta f = \delta df$, separation of variables gives eigenfunctions $Y_{\ell}^{m}$ with eigenvalues $\ell(\ell+1)$. Only $\ell=0$ (constant functions) satisfy $\Delta f=0$, in agreement with the fact that $H^{0}(S^{2}) \cong \mathbb{R}$. Higher-degree harmonics correspond to exact/co-exact components of forms.
 
 The harmonic functions on a compact manifold are exactly the constants, reflecting the fact that $H^{0}(M) \cong \mathbb{R}$ for connected manifolds. This is a special case of the Hodge theorem: the dimension of the space of harmonic $k$-forms equals the $k$-th Betti number.
 
