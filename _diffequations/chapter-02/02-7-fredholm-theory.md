@@ -22,10 +22,7 @@ We confront the failure of uniqueness. **Fredholm Theory** classifies operators 
 
 ## Fredholm Operators and the Alternative
 
-Let $F:H_{1}\to H_{2}$ be bounded between Hilbert spaces. The operator is **Fredholm** if $\ker F$ and the cokernel $H_{2}/\operatorname{ran}F$ are finite dimensional and $\operatorname{ran}F$ is closed. When $K:H\to H$ is compact, the perturbation $I+K$ is Fredholm. The **Fredholm Alternative** for $(I+K)u=f$ states:
-
-1. Either $\ker(I+K)=\{0\}$, so $(I+K)$ is invertible and every $f\in H$ admits a unique solution.
-2. Or $\ker(I+K)$ is a non-trivial finite-dimensional space, in which case $(I+K)u=f$ is solvable only when $f\in (\ker(I+K)^{\ast})^{\perp}$.
+Let $F:H_{1}\to H_{2}$ be bounded between Hilbert spaces. The operator is **Fredholm** if $\ker F$ and the cokernel $H_{2}/\operatorname{ran}F$ are finite dimensional and $\operatorname{ran}F$ is closed. When $K:H\to H$ is compact, the perturbation $I+K$ is Fredholm. The **Fredholm Alternative** for $(I+K)u=f$ states: either $\ker(I+K)=\{0\}$, so $(I+K)$ is invertible and every $f\in H$ admits a unique solution; or $\ker(I+K)$ is a non-trivial finite-dimensional space, in which case $(I+K)u=f$ is solvable only when $f\in (\ker(I+K)^{\ast})^{\perp}$.
 
 This dichotomy quantifies the precise obstruction to solvability and explains resonance phenomena in boundary-value and integral equations.
 
@@ -117,13 +114,7 @@ Prove the Fredholm alternative for the operator $I+K$ where $K$ is compact: eith
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Since $K$ is compact, by the spectral theorem for compact operators, $K$ has at most countably many eigenvalues $\{\lambda_{n}\}$ accumulating only at zero, with finite-dimensional eigenspaces. The operator $I+K$ is Fredholm because:
-
-1. $\ker(I+K)$ is finite-dimensional: it consists of eigenvectors of $K$ with eigenvalue $-1$, and there are only finitely many such (or the eigenspace is finite-dimensional).
-
-2. The range is closed: if $(I+K)u_{n}\to f$, then using the compactness of $K$ and the fact that $I+K$ is injective on the complement of the kernel, we can extract a convergent subsequence.
-
-3. The cokernel is finite-dimensional: it is isomorphic to $\ker(I+K^{\ast})=\ker(I+K^{*})$, which is also finite-dimensional.
+Since $K$ is compact, by the spectral theorem for compact operators, $K$ has at most countably many eigenvalues $\{\lambda_{n}\}$ accumulating only at zero, with finite-dimensional eigenspaces. The operator $I+K$ is Fredholm because: $\ker(I+K)$ is finite-dimensional (it consists of eigenvectors of $K$ with eigenvalue $-1$, and there are only finitely many such); the range is closed (if $(I+K)u_{n}\to f$, then using the compactness of $K$ and the fact that $I+K$ is injective on the complement of the kernel, we can extract a convergent subsequence); and the cokernel is finite-dimensional (it is isomorphic to $\ker(I+K^{\ast})=\ker(I+K^{*})$, which is also finite-dimensional).
 
 Now, if $\ker(I+K)=\{0\}$, then $I+K$ is injective. Since it's Fredholm with zero kernel, it must be surjective (otherwise the cokernel would be infinite-dimensional), so it's invertible.
 
@@ -222,13 +213,7 @@ Consider the operator $L=-\Delta$ on a bounded domain $\Omega$ with boundary con
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-The operator $L=-\Delta$ with domain $D(L)=\{u\in H^{2}(\Omega):Bu=0\}$ is Fredholm because:
-
-1. **Kernel is finite-dimensional**: If $Lu=0$ with $Bu=0$, then $u$ is harmonic and satisfies the boundary conditions. By the maximum principle and uniqueness theory, the space of such functions is finite-dimensional (typically 0 for Dirichlet, 1 for Neumann, and depends on parameters for Robin).
-
-2. **Range is closed**: This follows from elliptic regularity: if $Lu_{n}\to f$ in $L^{2}$, then by elliptic estimates, $u_{n}$ is bounded in $H^{2}$, so a subsequence converges weakly to some $u\in H^{2}$ with $Bu=0$, and $Lu=f$.
-
-3. **Cokernel is finite-dimensional**: The cokernel is isomorphic to the kernel of the adjoint operator $L^{\ast}$ with adjoint boundary conditions $B^{\ast}v=0$.
+The operator $L=-\Delta$ with domain $D(L)=\{u\in H^{2}(\Omega):Bu=0\}$ is Fredholm because: the kernel is finite-dimensional (if $Lu=0$ with $Bu=0$, then $u$ is harmonic and satisfies the boundary conditions; by the maximum principle and uniqueness theory, the space of such functions is finite-dimensional, typically 0 for Dirichlet, 1 for Neumann, and depends on parameters for Robin); the range is closed (this follows from elliptic regularity: if $Lu_{n}\to f$ in $L^{2}$, then by elliptic estimates, $u_{n}$ is bounded in $H^{2}$, so a subsequence converges weakly to some $u\in H^{2}$ with $Bu=0$, and $Lu=f$); and the cokernel is finite-dimensional (it is isomorphic to the kernel of the adjoint operator $L^{\ast}$ with adjoint boundary conditions $B^{\ast}v=0$).
 
 For **Dirichlet boundary conditions** ($u=0$ on $\partial\Omega$), the operator is self-adjoint, so the index is 0. The kernel consists only of the zero function (by uniqueness for harmonic functions with zero boundary data).
 

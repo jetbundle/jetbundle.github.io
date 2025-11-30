@@ -469,10 +469,7 @@ $$
 
 for $t > 0$, and $G(x, t) = 0$ for $t < 0$.
 
-This is the fundamental solution (heat kernel). It satisfies:
-1. $G_t = G_{xx}$ for $t > 0$
-2. $\lim_{t \to 0^+} G(x, t) = \delta(x)$ (in the sense of distributions)
-3. $\int_{-\infty}^{\infty} G(x, t) \, dx = 1$ for all $t > 0$
+This is the fundamental solution (heat kernel). It satisfies: $G_t = G_{xx}$ for $t > 0$; $\lim_{t \to 0^+} G(x, t) = \delta(x)$ (in the sense of distributions); and $\int_{-\infty}^{\infty} G(x, t) \, dx = 1$ for all $t > 0$.
 
 For arbitrary initial data $u(x,0) = f(x)$, the solution is
 

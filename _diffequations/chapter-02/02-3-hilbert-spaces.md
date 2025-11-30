@@ -62,12 +62,7 @@ The Hilbert-Schmidt norm provides a concrete criterion for compactness: integral
 
 ## Spectral Theorem for Compact Self-Adjoint Operators
 
-If $T:H\to H$ is compact and self-adjoint ($T=T^{*}$), then:
-
-1. The spectrum $\sigma(T)$ consists of real eigenvalues $\{\lambda_{n}\}$ with $\lambda_{n}\to 0$.
-2. Nonzero eigenvalues have finite multiplicity and accumulate only at $0$.
-3. There exists an orthonormal basis $\{\phi_{n}\}$ of eigenvectors.
-4. $Tu=\sum \lambda_{n} \langle u,\phi_{n}\rangle \phi_{n}$.
+If $T:H\to H$ is compact and self-adjoint ($T=T^{*}$), then: the spectrum $\sigma(T)$ consists of real eigenvalues $\{\lambda_{n}\}$ with $\lambda_{n}\to 0$; nonzero eigenvalues have finite multiplicity and accumulate only at $0$; there exists an orthonormal basis $\{\phi_{n}\}$ of eigenvectors; and $Tu=\sum \lambda_{n} \langle u,\phi_{n}\rangle \phi_{n}$.
 
 This diagonalization extends finite-dimensional intuition to infinite dimensions and yields the Fredholm alternative for $(I-\lambda K)u=f$.
 
@@ -93,11 +88,7 @@ The spectral decomposition of a compact self-adjoint operator reveals its struct
 
 ## Applications to PDEs
 
-For elliptic operators such as $-\Delta$ with homogeneous Dirichlet boundary conditions, the inverse (solution operator) $S:f\mapsto u$ is compact from $L^{2}(\Omega)$ to $H^{1}_{0}(\Omega)$ (Rellich-Kondrachov). Hence $S$ is compact self-adjoint, and the spectral theorem provides:
-
-1. A discrete sequence of eigenvalues $0<\lambda_{1}\le\lambda_{2}\le\dots\to\infty$.
-2. An orthonormal basis of eigenfunctions in $L^{2}(\Omega)$.
-3. Rigorous justification for eigenfunction expansions used in separation of variables.
+For elliptic operators such as $-\Delta$ with homogeneous Dirichlet boundary conditions, the inverse (solution operator) $S:f\mapsto u$ is compact from $L^{2}(\Omega)$ to $H^{1}_{0}(\Omega)$ (Rellich-Kondrachov). Hence $S$ is compact self-adjoint, and the spectral theorem provides: a discrete sequence of eigenvalues $0<\lambda_{1}\le\lambda_{2}\le\dots\to\infty$; an orthonormal basis of eigenfunctions in $L^{2}(\Omega)$; and rigorous justification for eigenfunction expansions used in separation of variables.
 
 Weyl's law describes the asymptotic distribution of eigenvalues, connecting spectrum to geometry: $N(\lambda)\sim \frac{\omega_{n}}{(2\pi)^{n}}\operatorname{vol}(\Omega)\lambda^{n/2}$.
 
