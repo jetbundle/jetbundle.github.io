@@ -12,15 +12,14 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.7: Kinetic Theory & Mean-Field Games
 
-> The transition from microscopic stochastic trajectories to macroscopic densities reveals a geometric structure based on optimal transport, where diffusion becomes steepest descent in the entropy landscape.
+The transition from microscopic stochastic trajectories to macroscopic densities reveals a geometric structure based on optimal transport, where diffusion becomes steepest descent in the entropy landscape.
 
 ## Introduction
 
 In previous sections, we established the analytic and geometric properties of stochastic processes for single paths or fields. However, physical reality and complex systems often consist of vast ensembles of interacting entities. In this section, we transition from the microscopic description of individual stochastic trajectories to the macroscopic description of densities. We rigorously derive the evolution equations for the probability distribution of large systems as the number of particles $N$ approaches infinity. This limit connects the stochastic dynamics of Chapter 5 back to the continuum mechanics of Chapter 3, but with a new geometric structure based on optimal transport and game theory.
 
-## Mathematical Content
+
 
 ### The Boltzmann Equation and Collisional Dynamics
 
@@ -32,7 +31,7 @@ $$\partial_t f + v \cdot \nabla_x f + F \cdot \nabla_v f = Q(f, f)$$
 
 where $F$ is an external force field. The collision operator $Q(f, f)$ captures the instantaneous binary interactions between particles. For hard spheres or potentials with finite range, the operator is bilinear and local in time and space but non-local in velocity. It is defined by:
 
-$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(\mid v - v_* \mid, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*$$
+$$Q(f, f)(v) = \int_{\mathbb{R}^3} \int_{S^2} B(\vert v - v_* \vert, \omega) \left[ f(v')f(v_*') - f(v)f(v_*) \right] \, d\omega \, dv_*$$
 
 Here, $(v, v_*)$ are the pre-collision velocities, and $(v', v_*')$ are the post-collision velocities determined by elastic scattering laws conserving momentum and energy. The kernel $B$ encapsulates the scattering cross-section.
 
@@ -42,7 +41,7 @@ $$\frac{d}{dt} \int H[f] \, dx \leq 0$$
 
 This inequality provides the selection principle for the arrow of time, mathematically distinct from but conceptually related to the Entropy Solutions of conservation laws discussed in Section 3.3. The equilibrium states where $Q(f, f) = 0$ are Maxwellian distributions:
 
-$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{\mid v-u \mid^2}{2T}}$$
+$$M(v) = \frac{\rho}{(2\pi T)^{3/2}} e^{-\frac{\vert v-u \vert^2}{2T}}$$
 
 Rigorous derivation of the Boltzmann equation from Newtonian dynamics relies on the **Boltzmann-Grad limit**, where $N \to \infty$ and the particle radius $r \to 0$ such that $N r^2$ remains finite. This subject is covered extensively in Cercignani (1988) and Saint-Raymond (2009).
 
@@ -70,7 +69,7 @@ The evolution of densities, particularly in diffusive systems, possesses a rich 
 
 For two probability measures $\mu, \nu$ on $\mathbb{R}^d$ with finite second moments, the $W_2$ distance is defined by the Monge-Kantorovich problem:
 
-$$W_2^2(\mu, \nu) = \inf_{\gamma \in \Pi(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} \mid x - y \mid^2 \, d\gamma(x, y)$$
+$$W_2^2(\mu, \nu) = \inf_{\gamma \in \Pi(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} \vert x - y \vert^2 \, d\gamma(x, y)$$
 
 where $\Pi(\mu, \nu)$ is the set of transport plans (couplings) with marginals $\mu$ and $\nu$.
 
@@ -102,11 +101,11 @@ The **Master Equation** lifts this system to a single PDE on the space of probab
 
 ### Example 5.7.1: Maxwell Molecules—Exact Collision Operator Computation
 
-**Problem:** Consider Maxwell molecules where the collision kernel is constant: $B(\mid v-v_* \mid, \omega) = 1$. Compute the collision operator for a specific velocity distribution.
+**Problem:** Consider Maxwell molecules where the collision kernel is constant: $B(\vert v-v_* \vert, \omega) = 1$. Compute the collision operator for a specific velocity distribution.
 
 **Setup:** Let $f(v) = M(v)$ be the Maxwellian:
 
-$$M(v) = (2\pi)^{-3/2} \exp(-\mid v \mid^2/2)$$
+$$M(v) = (2\pi)^{-3/2} \exp(-\vert v \vert^2/2)$$
 
 Compute $Q(M,M)(v)$ at $v = (1,0,0)$.
 
@@ -143,13 +142,13 @@ by antisymmetry and conservation laws. This demonstrates that Maxwellians are ex
 For the collision operator in 1D (simplified):
 
 $$
-Q(f,f)(v) = \int B(\mid v-v_* \mid)[f(v')f(v_*') - f(v)f(v_*)] \, dv_*
+Q(f,f)(v) = \int B(\vert v-v_* \vert)[f(v')f(v_*') - f(v)f(v_*)] \, dv_*
 $$
 
 The entropy evolution is:
 
 $$
-\frac{d}{dt} H[f] = \int Q(f,f) \log f \, dv = -\int\int\int B f f_* \mid \log(f/f_*) - \log(f_*/f_*) \mid^2 \, d\omega \, dv \, dv_* \leq 0
+\frac{d}{dt} H[f] = \int Q(f,f) \log f \, dv = -\int\int\int B f f_* \vert \log(f/f_*) - \log(f_*/f_*) \vert^2 \, d\omega \, dv \, dv_* \leq 0
 $$
 
 For explicit computation with small perturbations, let $f(v,t) = M(v)[1 + \varepsilon(t) \cos(\pi v)]$. Then:
@@ -216,7 +215,7 @@ where $\xi = v - u(x)$ and $u(x) = \sqrt{2A k \sin(kx)}$. This yields a periodic
 
 **Setup:**
 $$
-dX_i = V_i \, dt, \quad dV_i = \frac{1}{N} \sum_{j \neq i} \frac{1}{|X_i-X_j|} \partial_{X_i} \log|X_i-X_j| \, dt
+dX_i = V_i \, dt, \quad dV_i = \frac{1}{N} \sum_{j \neq i} \frac{1}{\vert X_i-X_j\vert} \partial_{X_i} \log\vert X_i-X_j\vert \, dt
 $$
 
 **Solution:**
@@ -232,7 +231,7 @@ For explicit computation with Gaussian initial data, let $X_i(0) \sim N(0,1)$ an
 The correlation decay is:
 
 $$
-\mid \text{Corr}(X_1(t),X_2(t)) \mid \leq \frac{C}{N \log N}
+\vert \text{Corr}(X_1(t),X_2(t)) \vert \leq \frac{C}{N \log N}
 $$
 
 This provides an explicit error bound showing propagation of chaos with rate $O(1/N)$, demonstrating that particles become statistically independent in the large-$N$ limit.
@@ -256,7 +255,7 @@ The optimal transport map is $T: \rho_0 \to \rho_1$ with $T(x) = x + \tau \nabla
 For the first iteration with $\tau = 0.1$:
 
 $$
-W_2^2(\rho,\rho_0) = \int \mid x - T(x) \mid^2 \rho_0(x) \, dx
+W_2^2(\rho,\rho_0) = \int \vert x - T(x) \vert^2 \rho_0(x) \, dx
 $$
 
 The entropy is $S(\rho) = \int \rho \log \rho \, dx$.
@@ -264,7 +263,7 @@ The entropy is $S(\rho) = \int \rho \log \rho \, dx$.
 For explicit solution via the Brenier map, with Gaussians $\rho_0 = N(0,1)$ and optimal $\rho_1 = N(0,1+2\tau)$:
 
 $$
-W_2^2(\rho_1,\rho_0) = \mid \mu_1-\mu_0 \mid^2 + \text{Tr}(\Sigma_1 + \Sigma_0 - 2(\Sigma_1\Sigma_0)^{1/2})
+W_2^2(\rho_1,\rho_0) = \vert \mu_1-\mu_0 \vert^2 + \text{Tr}(\Sigma_1 + \Sigma_0 - 2(\Sigma_1\Sigma_0)^{1/2})
 $$
 
 With $\Sigma_0 = 1$ and $\Sigma_1 = 1 + 2\tau = 1.2$:
@@ -287,18 +286,18 @@ Verification: the exact solution at $t=\tau$ is $\rho(t,x) = (2\pi(1+2t))^{-1/2}
 
 **Solution:**
 
-**Case 1: Two Diracs.** For $\mu = \delta_0$ and $\nu = \delta_1$, $W_2(\mu,\nu) = \mid 0-1 \mid = 1$. The optimal plan is $\gamma = \delta_0 \times \delta_1$.
+**Case 1: Two Diracs.** For $\mu = \delta_0$ and $\nu = \delta_1$, $W_2(\mu,\nu) = \vert 0-1 \vert = 1$. The optimal plan is $\gamma = \delta_0 \times \delta_1$.
 
 **Case 2: Uniform to Uniform.** For $\mu = \frac{1}{2} \mathbf{1}_{[0,1]}$ and $\nu = \frac{1}{2} \mathbf{1}_{[2,3]}$, the optimal map is $T(x) = x + 2$:
 
 $$
-W_2^2 = \int_0^1 \mid x+2-x \mid^2 \frac{1}{2} \, dx = \int_0^1 4 \, dx = 4
+W_2^2 = \int_0^1 \vert x+2-x \vert^2 \frac{1}{2} \, dx = \int_0^1 4 \, dx = 4
 $$
 
 **Case 3: Gaussian to Gaussian.** For $\mu = N(0,\sigma_1^2)$ and $\nu = N(m,\sigma_2^2)$:
 
 $$
-W_2^2 = \mid m \mid^2 + (\sigma_1 - \sigma_2)^2
+W_2^2 = \vert m \vert^2 + (\sigma_1 - \sigma_2)^2
 $$
 
 **Case 4: Uniform to Gaussian.** For $\mu = \frac{1}{2} \mathbf{1}_{[0,1]}$ and $\nu = (2\pi)^{-1/2} \exp(-x^2/2)$, the optimal map requires solving the Monge-Ampère equation:
@@ -313,7 +312,7 @@ Numerical verification shows $W_2 \approx 0.867$, demonstrating the complexity o
 
 **Problem:** Solve the deterministic ($\nu=0$) MFG system:
 
-$$-\partial_t u + \frac{1}{2}\mid \nabla u \mid^2 = V(x)m$$
+$$-\partial_t u + \frac{1}{2}\vert \nabla u \vert^2 = V(x)m$$
 
 $$\partial_t m - \text{div}(m \nabla u) = 0$$
 
@@ -326,7 +325,7 @@ $m(0) = m_0$, $u(T) = G(x)$
 The Hamilton-Jacobi-Bellman equation is:
 
 $$
--\partial_t u + \frac{1}{2}\mid \nabla u \mid^2 = x m(t,x)
+-\partial_t u + \frac{1}{2}\vert \nabla u \vert^2 = x m(t,x)
 $$
 
 The Fokker-Planck equation is:
@@ -342,7 +341,7 @@ $$
 $$
 
 $$
-\frac{1}{2}\mid \nabla u \mid^2 = \frac{1}{2}(2a x + b)^2 = 2a^2 x^2 + 2ab x + \frac{b^2}{2}
+\frac{1}{2}\vert \nabla u \vert^2 = \frac{1}{2}(2a x + b)^2 = 2a^2 x^2 + 2ab x + \frac{b^2}{2}
 $$
 
 The right-hand side is $x m(t,x)$.
@@ -401,7 +400,7 @@ Cost: $J_i = \int_0^1 L(X_i) + V(X_i,m^N) \, dt + G(X_1(1))$
 In Nash equilibrium, each player assumes others follow the mean-field $m$. The HJB for player 1 is:
 
 $$
--\partial_t u^1 - \nu \Delta u^1 + \frac{1}{2}\mid \nabla u^1 \mid^2 = V(x,m) + \frac{1}{2}\nu
+-\partial_t u^1 - \nu \Delta u^1 + \frac{1}{2}\vert \nabla u^1 \vert^2 = V(x,m) + \frac{1}{2}\nu
 $$
 
 The 3-player coupling is:
@@ -421,7 +420,7 @@ $$
 Convergence as $N \to \infty$ shows:
 
 $$
-\text{Var}(m^N) = O(1/N), \quad \mid\mid u^1 - u^{\text{MF}} \mid\mid_{L^2} = O(1/\sqrt{N})
+\text{Var}(m^N) = O(1/N), \quad \| u^1 - u^{\text{MF}} \|_{L^2} = O(1/\sqrt{N})
 $$
 
 These explicit error estimates demonstrate mean-field limit convergence, showing that finite-player games approximate the infinite-player MFG system with controlled error rates.
@@ -445,7 +444,7 @@ These explicit error estimates demonstrate mean-field limit convergence, showing
 
 ## Related Sections
 
-- [Previous Section: 5.6 SPDEs & Regularity Structures]({{ '/diffequations/chapter-05/05-6-spdes/' | relative_url }})
-- [Next Section: 5.8 Fractal Geometry & Dirichlet Forms]({{ '/diffequations/chapter-05/05-8-fractal-geometry/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.6 SPDEs & Regularity Structures]({{ '/diffequations/chapter-05/05-6-spdes/' \vert relative_url }})
+- [Next Section: 5.8 Fractal Geometry & Dirichlet Forms]({{ '/diffequations/chapter-05/05-8-fractal-geometry/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})

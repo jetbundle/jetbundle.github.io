@@ -12,9 +12,8 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.8: Fractal Geometry & Dirichlet Forms
 
-> On fractals, we invert classical analysis by defining energy as the primary object, from which we reconstruct the Laplacian and heat flow, revealing that diffusion is fundamentally anomalous, governed by the spectral dimension rather than the Hausdorff dimension.
+On fractals, we invert classical analysis by defining energy as the primary object, from which we reconstruct the Laplacian and heat flow, revealing that diffusion is fundamentally anomalous, governed by the spectral dimension rather than the Hausdorff dimension.
 
 ## Introduction
 
@@ -24,7 +23,7 @@ However, a more fundamental geometric crisis remains. In many physical contexts,
 
 To formulate differential equations on such spaces, we must invert the classical priority of analysis. Instead of defining the energy of a system as the integral of a derivative, we define the energy (the Dirichlet form) as the primary object. From this intrinsic energy functional, we reconstruct the Laplacian and the heat flow. This approach reveals that diffusion on fractals is fundamentally "anomalous," governed not by the Hausdorff dimension of the space, but by a distinct invariant known as the spectral dimension.
 
-## Mathematical Content
+
 
 ### Dirichlet Forms on Fractals
 
@@ -82,10 +81,10 @@ For the Sierpinski gasket, the Hausdorff dimension is $d_H = \frac{\log 3}{\log 
 
 #### Anomalous Diffusion and Walk Dimension
 
-The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[\mid X_t \mid^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:
+The breakdown of the manifold structure is most evident in the mean-square displacement of the associated stochastic process. For standard Brownian motion in $\mathbb{R}^n$, $\mathbb{E}[\vert X_t \vert^2] \sim t$. On a fractal, the diffusion is sub-diffusive (anomalous). We define the walk dimension $d_w$ such that:
 
 $$
-\mathbb{E}[|X_t|^2] \sim t^{2/d_w}
+\mathbb{E}[\vert X_t\vert^2] \sim t^{2/d_w}
 $$
 
 where $d_w > 2$. This implies that the diffusion process is slower than in Euclidean space; the particle spends significant time trapped in local substructures before escaping. The relationship between these dimensions is given by the Einstein-Alexander relation:
@@ -140,11 +139,11 @@ $$
 
 **Renormalization Analysis:**
 
-   | Level $m$ | $\mathcal{E}_m(u^{(m)})$ | $r^{-m} \mathcal{E}_m(u^{(m)})$ ($r=3/5$) |
-   |-----------|---------------------------|-------------------------------------------|
-   | 0         | 2.0                       | 2.0                                        |
-   | 1         | 2.25                      | $2.25 \times \frac{5}{3} = 3.75$          |
-   | 2         | 10.125                    | $10.125 \times \left(\frac{5}{3}\right)^2 = 14.0625$ |
+   \vert Level $m$ \vert $\mathcal{E}_m(u^{(m)})$ \vert $r^{-m} \mathcal{E}_m(u^{(m)})$ ($r=3/5$) |
+   \vert-----------\vert---------------------------\vert-------------------------------------------|
+   \vert 0         \vert 2.0                       \vert 2.0                                        |
+   \vert 1         \vert 2.25                      \vert $2.25 \times \frac{5}{3} = 3.75$          |
+   \vert 2         \vert 10.125                    \vert $10.125 \times \left(\frac{5}{3}\right)^2 = 14.0625$ |
 
    **Convergence:** The renormalized energies increase but stabilize. The limit exists:
 
@@ -247,11 +246,11 @@ $$
 
 **Eigenvalue counting:**
 
-| Level $m$ | \# Eigenvalues | $N(\lambda)$ for $\lambda < 2$ |
-|-----------|----------------|--------------------------------|
-| 1         | 3              | 0                              |
-| 2         | 9              | 0                              |
-| 3         | 27             | 3                              |
+| Level $m$ \vert \# Eigenvalues \vert $N(\lambda)$ for $\lambda < 2$ |
+|-----------\vert----------------\vert--------------------------------|
+| 1         \vert 3              \vert 0                              |
+| 2         \vert 9              \vert 0                              |
+| 3         \vert 27             \vert 3                              |
 
 **Asymptotic analysis:**
 
@@ -263,7 +262,7 @@ Verification: $\lambda^{d_s/2} = \lambda^{0.6825}$ matches numerical counting, c
 
 ### Example 5.8.4: Anomalous Diffusion—Mean Square Displacement
 
-**Objective:** Compute explicit random walk probabilities and verify $\mathbb{E}[|X_t|^2] \sim t^{2/d_w}$.
+**Objective:** Compute explicit random walk probabilities and verify $\mathbb{E}[\vert X_t\vert^2] \sim t^{2/d_w}$.
 
 **Solution:**
 
@@ -297,16 +296,16 @@ $$
 Mean square displacement:
 
 $$
-\mathbb{E}[\mid X_t \mid^2] \sim t^{2/d_w} \approx t^{0.861}
+\mathbb{E}[\vert X_t \vert^2] \sim t^{2/d_w} \approx t^{0.861}
 $$
 
 **Verification with explicit computation:**
 
-| Time $t$ | Exact $\mathbb{E}[\mid X_t \mid^2]$ | $t^{0.861}$ |
-|----------|------------------------------|-------------|
-| 1        | 0.75                         | 0.75        |
-| 2        | 1.12                         | 1.15        |
-| 4        | 1.58                         | 1.62        |
+| Time $t$ \vert Exact $\mathbb{E}[\vert X_t \vert^2]$ \vert $t^{0.861}$ |
+|----------\vert------------------------------\vert-------------|
+| 1        \vert 0.75                         \vert 0.75        |
+| 2        \vert 1.12                         \vert 1.15        |
+| 4        \vert 1.58                         \vert 1.62        |
 
    Perfect agreement!
 
@@ -314,11 +313,11 @@ $$
 
 **Complete parameter computation for Sierpinski Gasket:**
 
-| Dimension | Value | Computation |
-|-----------|-------|-------------|
-| $d_H$ | $\frac{\log 3}{\log 2}$ | $\approx 1.585$ |
-| $d_w$ | $\frac{\log 5}{\log 3}$ | $\approx 2.322$ |
-| $d_s$ | $\frac{2 d_H}{d_w}$ | $\approx 1.365$ |
+| Dimension \vert Value \vert Computation |
+|-----------\vert-------\vert-------------|
+| $d_H$ \vert $\frac{\log 3}{\log 2}$ \vert $\approx 1.585$ |
+| $d_w$ \vert $\frac{\log 5}{\log 3}$ \vert $\approx 2.322$ |
+| $d_s$ \vert $\frac{2 d_H}{d_w}$ \vert $\approx 1.365$ |
 
 **Heat kernel verification:**
 
@@ -336,10 +335,10 @@ Asymptotic: dominated by smallest $\lambda_1$
 
 **Numerical check:**
 
-| $t$ | Exact $\text{Tr}(e^{t\Delta_\mu})$ | $c t^{-0.6825}$ |
-|-----|-----------------------------------|------------------|
-| 0.1 | 8.42                              | 8.39             |
-| 0.01 | 26.8                             | 26.7             |
+| $t$ \vert Exact $\text{Tr}(e^{t\Delta_\mu})$ \vert $c t^{-0.6825}$ |
+|-----\vert-----------------------------------\vert------------------|
+| 0.1 \vert 8.42                              \vert 8.39             |
+| 0.01 \vert 26.8                             \vert 26.7             |
 
 **Conclusion:** The relation $d_s = \frac{2 d_H}{d_w}$ is exactly verified!
 
@@ -349,7 +348,7 @@ Asymptotic: dominated by smallest $\lambda_1$
 
 **Problem:**
 
-$$-\Delta_\mu u = \delta_{M_{AB}}, \quad u|_{\partial K} = 0$$
+$$-\Delta_\mu u = \delta_{M_{AB}}, \quad u\vert_{\partial K} = 0$$
 
 **Solution:**
 
@@ -378,7 +377,7 @@ $$
 **Level 2 Refinement:** Apply same procedure to 9 interior vertices. The solution converges in the Dirichlet form norm:
 
 $$
-\mid\mid u^{(m)} - u^{(m+1)} \mid\mid_{\mathcal{D}(\mathcal{E})} \to 0
+\| u^{(m)} - u^{(m+1)} \|_{\mathcal{D}(\mathcal{E})} \to 0
 $$
 
 **Green's function property:** $u(x) = G(x, M_{AB})$ where $G$ is the fractal Green's function. This demonstrates that the Dirichlet problem on fractals can be solved through discrete approximation and renormalization, with the solution converging to the continuum limit in the energy norm.
@@ -396,7 +395,7 @@ $$
 
 ## Related Sections
 
-- [Previous Section: 5.7 Kinetic Theory & Mean-Field Games]({{ '/diffequations/chapter-05/05-7-kinetic-theory/' | relative_url }})
-- [Next Section: 5.9 Supersymmetric Theory of Stochastics]({{ '/diffequations/chapter-05/05-9-susy-stochastics/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.7 Kinetic Theory & Mean-Field Games]({{ '/diffequations/chapter-05/05-7-kinetic-theory/' \vert relative_url }})
+- [Next Section: 5.9 Supersymmetric Theory of Stochastics]({{ '/diffequations/chapter-05/05-9-susy-stochastics/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})

@@ -12,9 +12,8 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.9: Supersymmetric Theory of Stochastics
 
-> The noise in stochastic differential equations introduces a topological supersymmetry, preserving topological invariants and revealing that the long-term solvability of stochastic systems is determined by the topology of the underlying manifold.
+The noise in stochastic differential equations introduces a topological supersymmetry, preserving topological invariants and revealing that the long-term solvability of stochastic systems is determined by the topology of the underlying manifold.
 
 ## Introduction
 
@@ -22,7 +21,7 @@ We conclude our exploration of stochastic dynamics by uncovering a profound alge
 
 This symmetry explains why certain topological features of a system—such as the number of stable equilibrium states—remain robust even when the system is subjected to violent thermal fluctuations. It provides the rigorous link between the stochastic dynamics of this chapter and the algebraic topology of the solution spaces we will encounter in Chapter 6.
 
-## Mathematical Content
+
 
 ### The Stochastic Evolution Operator and the Witten Laplacian
 
@@ -36,7 +35,7 @@ $$\frac{\partial \rho}{\partial t} = \nabla \cdot (\nabla V \rho) + \Delta \rho.
 
 While this operator is not self-adjoint, it can be transformed into a Hermitian operator via a similarity transformation involving the equilibrium distribution $P_{\text{eq}}(x) \propto e^{-V(x)/2}$. This yields a Schrödinger-type operator acting on the Hilbert space $L^2(M)$:
 
-$$H_0 = -\Delta + \frac{1}{4} \mid \nabla V \mid^2 - \frac{1}{2} \Delta V.$$
+$$H_0 = -\Delta + \frac{1}{4} \vert \nabla V \vert^2 - \frac{1}{2} \Delta V.$$
 
 However, restricting our attention to scalar functions misses the geometry of the noise. The full stochastic dynamics naturally lifts to the exterior algebra of differential forms, $\Omega^*(M)$. We introduce fermionic variables (Grassmann numbers) $\psi^i$ and $\bar{\psi}^i$ to represent the differentials $dx^i$ and the contraction operators $\iota_{\partial_i}$.
 
@@ -104,7 +103,7 @@ $$
 H = \{Q, Q^\dagger\} = Q Q^\dagger + Q^\dagger Q
 $$
 
-On 0-forms (functions): $H_0 = -\frac{d^2}{dx^2} + \frac{1}{4}\mid V' \mid^2 - \frac{1}{2}V''$. On 1-forms: $H_1 = -\frac{d^2}{dx^2} + \frac{1}{4}\mid V' \mid^2 + \frac{1}{2}V''$. Explicitly:
+On 0-forms (functions): $H_0 = -\frac{d^2}{dx^2} + \frac{1}{4}\vert V' \vert^2 - \frac{1}{2}V''$. On 1-forms: $H_1 = -\frac{d^2}{dx^2} + \frac{1}{4}\vert V' \vert^2 + \frac{1}{2}V''$. Explicitly:
 
 $$
 H_0 = -\partial^2 + \frac{1}{4}(x^3-x)^2 - \frac{1}{2}(3x^2-1), \quad H_1 = -\partial^2 + \frac{1}{4}(x^3-x)^2 + \frac{1}{2}(3x^2-1)
@@ -250,7 +249,7 @@ $$
 \text{Witten Index } \Delta\chi = \# \text{ stable} - \# \text{ unstable fixed points}
 $$
 
-When $|\Delta\chi| \to 0$: supersymmetry breaking
+When $\vert\Delta\chi\vert \to 0$: supersymmetry breaking
 
 Manifests as: $1/f$ noise, intermittency
 
@@ -282,7 +281,7 @@ Manifests as: $1/f$ noise, intermittency
 
 ## Related Sections
 
-- [Previous Section: 5.8 Fractal Geometry & Dirichlet Forms]({{ '/diffequations/chapter-05/05-8-fractal-geometry/' | relative_url }})
-- [Next Section: 6.1 Jet Bundles & Prolongation]({{ '/diffequations/chapter-06/06-1-jet-bundles/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.8 Fractal Geometry & Dirichlet Forms]({{ '/diffequations/chapter-05/05-8-fractal-geometry/' \vert relative_url }})
+- [Next Section: 6.1 Jet Bundles & Prolongation]({{ '/diffequations/chapter-06/06-1-jet-bundles/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})

@@ -12,9 +12,8 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.4: Rough Paths & Controlled Rough Paths
 
-> Rough path theory treats the "roughness" of a path as a geometric structure that must be explicitly augmented, restoring continuity to the solution map by tracking iterated integrals alongside the path itself.
+Rough path theory treats the "roughness" of a path as a geometric structure that must be explicitly augmented, restoring continuity to the solution map by tracking iterated integrals alongside the path itself.
 
 ## Introduction
 
@@ -22,7 +21,7 @@ The construction of a calculus for non-differentiable trajectories in the previo
 
 Rough path theory, initiated by Terry Lyons and refined by Massimiliano Gubinelli, resolves this by treating the "roughness" of a path not as a nuisance, but as a geometric structure that must be explicitly augmented. To solve differential equations driven by signals $X$ with Hölder regularity $\alpha < 1/2$ (such as Brownian motion), one must track not only the path $X_t$ but also its iterated integrals $\mathbb{X}_{s,t}$. This yields a purely deterministic calculus that restores the continuity of the solution map, interpreting stochastic differential equations as integral equations driven by geometric rough paths.
 
-## Mathematical Content
+
 
 ### Iterated Integrals and the Rough Path Space
 
@@ -51,49 +50,49 @@ where $X_{s,u} = X_u - X_s$. This identity, derived from elementary calculus for
 For a path with Hölder regularity $\alpha \in (1/3, 1/2]$, we require the appropriate decay of increments. Using the $p$-variation or Hölder norms, we impose:
 
 $$
-\mid X_{s,t} \mid \lesssim \mid t-s \mid^\alpha, \quad \mid \mathbb{X}_{s,t} \mid \lesssim \mid t-s \mid^{2\alpha}
+\vert X_{s,t} \vert \lesssim \vert t-s \vert^\alpha, \quad \vert \mathbb{X}_{s,t} \vert \lesssim \vert t-s \vert^{2\alpha}
 $$
 
 A **Geometric Rough Path** is a pair $\mathbf{X} = (X, \mathbb{X})$ that satisfies Chen's relation and can be approximated in the $p$-variation metric by smooth paths and their canonical iterated integrals. This is covered extensively in Lyons & Qian (2002) and Friz & Hairer (2014).
 
-> **Basic Rough Path Construction**
+**Basic Rough Path Construction**
 
-> Consider the path $X: [0,1] \to \mathbb{R}$ defined piecewise:
+Consider the path $X: [0,1] \to \mathbb{R}$ defined piecewise:
 
-> $$
-> X(t) = \begin{cases}
-> t^{3/4} & \text{if } 0 \leq t \leq 1/2 \\
-> 1/2 + (t-1/2)^{3/4} & \text{if } 1/2 < t \leq 1
-> \end{cases}
-> $$
+$$
+X(t) = \begin{cases}
+t^{3/4} & \text{if } 0 \leq t \leq 1/2 \\
+1/2 + (t-1/2)^{3/4} & \text{if } 1/2 < t \leq 1
+\end{cases}
+$$
 
-> This path has Hölder regularity $\alpha = 3/4 \in (1/2, 1)$, but we demonstrate the rough path construction as if $\alpha < 1/2$. The Hölder regularity is verified: $\mid X(t) - X(s) \mid \leq C \mid t-s \mid^{3/4}$ for all $s,t \in [0,1]$. For $t,s \in [0,1/2]$, we have $\mid X(t)-X(s) \mid = \mid t^{3/4} - s^{3/4} \mid \leq \mid t-s \mid^{3/4}$ by the mean value theorem. Similar bounds hold for $[1/2,1]$, and across the kink at $t=1/2$: $\mid X(1/2 + h) - X(1/2) \mid = h^{3/4} \to \mid h \mid^{3/4}$ as $h \to 0$.
+This path has Hölder regularity $\alpha = 3/4 \in (1/2, 1)$, but we demonstrate the rough path construction as if $\alpha < 1/2$. The Hölder regularity is verified: $\vert X(t) - X(s) \vert \leq C \vert t-s \vert^{3/4}$ for all $s,t \in [0,1]$. For $t,s \in [0,1/2]$, we have $\vert X(t)-X(s) \vert = \vert t^{3/4} - s^{3/4} \vert \leq \vert t-s \vert^{3/4}$ by the mean value theorem. Similar bounds hold for $[1/2,1]$, and across the kink at $t=1/2$: $\vert X(1/2 + h) - X(1/2) \vert = h^{3/4} \to \vert h \vert^{3/4}$ as $h \to 0$.
 
-> For the iterated integral $\mathbb{X}_{s,t}$, on smooth paths we have $\mathbb{X}_{s,t} = \int_s^t (X_r - X_s) dX_r$. For analytical computation on $[0,1/2]$, let $s < t \leq 1/2$ so that $X_r = r^{3/4}$. Then $X_r - X_s = r^{3/4} - s^{3/4}$ and $dX_r = \frac{3}{4} r^{-1/4} dr$. The iterated integral becomes:
+For the iterated integral $\mathbb{X}_{s,t}$, on smooth paths we have $\mathbb{X}_{s,t} = \int_s^t (X_r - X_s) dX_r$. For analytical computation on $[0,1/2]$, let $s < t \leq 1/2$ so that $X_r = r^{3/4}$. Then $X_r - X_s = r^{3/4} - s^{3/4}$ and $dX_r = \frac{3}{4} r^{-1/4} dr$. The iterated integral becomes:
 
-> $$
-> \mathbb{X}_{s,t} = \int_s^t (r^{3/4} - s^{3/4}) \cdot \frac{3}{4} r^{-1/4} dr = \frac{3}{4} \int_s^t [r^{1/2} - s^{3/4} r^{-1/4}] dr
-> $$
+$$
+\mathbb{X}_{s,t} = \int_s^t (r^{3/4} - s^{3/4}) \cdot \frac{3}{4} r^{-1/4} dr = \frac{3}{4} \int_s^t [r^{1/2} - s^{3/4} r^{-1/4}] dr
+$$
 
-> $$
-> = \frac{3}{4} \left[ \frac{2}{3}t^{3/2} - \frac{2}{3}s^{3/2} - 4 s^{3/4} (t^{3/4} - s^{3/4}) \right]
-> $$
+$$
+= \frac{3}{4} \left[ \frac{2}{3}t^{3/2} - \frac{2}{3}s^{3/2} - 4 s^{3/4} (t^{3/4} - s^{3/4}) \right]
+$$
 
-> To verify Chen's relation, test with $s=0$, $u=1/4$, $t=1/2$. Computing $\mathbb{X}_{0,1/2}$, $\mathbb{X}_{0,1/4}$, and $\mathbb{X}_{1/4,1/2}$:
+To verify Chen's relation, test with $s=0$, $u=1/4$, $t=1/2$. Computing $\mathbb{X}_{0,1/2}$, $\mathbb{X}_{0,1/4}$, and $\mathbb{X}_{1/4,1/2}$:
 
-> $$
-> X_{0,1/4} = (1/4)^{3/4} = 4^{-3/4}, \quad X_{1/4,1/2} = (1/2)^{3/4} - (1/4)^{3/4}
-> $$
+$$
+X_{0,1/4} = (1/4)^{3/4} = 4^{-3/4}, \quad X_{1/4,1/2} = (1/2)^{3/4} - (1/4)^{3/4}
+$$
 
-> $$
-> \mathbb{X}_{0,1/4} = \frac{3}{4}\left[\frac{2}{3}(1/4)^{3/2} - 4(0)(1/4)^{3/4}\right] = \frac{1}{2}(1/4)^{3/2}
-> $$
+$$
+\mathbb{X}_{0,1/4} = \frac{3}{4}\left[\frac{2}{3}(1/4)^{3/2} - 4(0)(1/4)^{3/4}\right] = \frac{1}{2}(1/4)^{3/2}
+$$
 
-> $$
-> \mathbb{X}_{1/4,1/2} = \frac{3}{4} \int_{1/4}^{1/2} [r^{1/2} - (1/4)^{3/4} r^{-1/4}] dr
-> $$
+$$
+\mathbb{X}_{1/4,1/2} = \frac{3}{4} \int_{1/4}^{1/2} [r^{1/2} - (1/4)^{3/4} r^{-1/4}] dr
+$$
 
-> Chen's relation holds exactly: $\mathbb{X}_{0,1/2} = \mathbb{X}_{0,1/4} + \mathbb{X}_{1/4,1/2} + X_{0,1/4} X_{1/4,1/2}$, confirming that $(X, \mathbb{X})$ forms a geometric rough path. This algebraic structure ensures consistency of the iterated integrals across different partition choices.
+Chen's relation holds exactly: $\mathbb{X}_{0,1/2} = \mathbb{X}_{0,1/4} + \mathbb{X}_{1/4,1/2} + X_{0,1/4} X_{1/4,1/2}$, confirming that $(X, \mathbb{X})$ forms a geometric rough path. This algebraic structure ensures consistency of the iterated integrals across different partition choices.
 
 ### The Signature
 
@@ -105,37 +104,37 @@ $$
 
 The signature encodes the path completely up to "tree-like" equivalence (backtracking). Analytically, the signature serves as the non-commutative analogue of the exponential map. Just as the polynomials form a basis for functions on a compact interval (Stone-Weierstrass), linear functionals on the signature form a basis for functions on the space of paths. This allows one to view the solution of a differential equation not as a function of time, but as a linear map acting on the signature of the driving signal.
 
-> **Signature Computation and Path Encoding**
+**Signature Computation and Path Encoding**
 
-> To demonstrate that the signature determines a path uniquely, consider two paths $X^1_t = t^2$ and $X^2_t = t^3$ on $[0,1]$. The level 1 signatures are:
+To demonstrate that the signature determines a path uniquely, consider two paths $X^1_t = t^2$ and $X^2_t = t^3$ on $[0,1]$. The level 1 signatures are:
 
-> $$
-> S^1_1 = \int_0^1 dX^1_t = X^1_1 = 1, \quad S^2_1 = \int_0^1 dX^2_t = X^2_1 = 1
-> $$
+$$
+S^1_1 = \int_0^1 dX^1_t = X^1_1 = 1, \quad S^2_1 = \int_0^1 dX^2_t = X^2_1 = 1
+$$
 
-> These are indistinguishable at level 1. However, the level 2 signatures differ:
+These are indistinguishable at level 1. However, the level 2 signatures differ:
 
-> $$
-> S^1_2 = \int_0^1 \int_0^t dX^1_s dX^1_t = \int_0^1 2s ds = 1
-> $$
+$$
+S^1_2 = \int_0^1 \int_0^t dX^1_s dX^1_t = \int_0^1 2s ds = 1
+$$
 
-> $$
-> S^2_2 = \int_0^1 \int_0^t 3s^2 \cdot 3t^2 dt ds = 9 \int_0^1 s^2 ds = 3
-> $$
+$$
+S^2_2 = \int_0^1 \int_0^t 3s^2 \cdot 3t^2 dt ds = 9 \int_0^1 s^2 ds = 3
+$$
 
-> The full signatures are:
+The full signatures are:
 
-> $$
-> S(X^1) = 1 + t^2 + \frac{1}{3}t^3 + \frac{1}{12}t^4 + \cdots, \quad S(X^2) = 1 + t^3 + t^6 + \cdots
-> $$
+$$
+S(X^1) = 1 + t^2 + \frac{1}{3}t^3 + \frac{1}{12}t^4 + \cdots, \quad S(X^2) = 1 + t^3 + t^6 + \cdots
+$$
 
-> The logarithmic signature uniquely determines the path:
+The logarithmic signature uniquely determines the path:
 
-> $$
-> \log S(X) = \sum_{k \geq 1} \frac{(-1)^{k+1}}{k} (S_k - 1)
-> $$
+$$
+\log S(X) = \sum_{k \geq 1} \frac{(-1)^{k+1}}{k} (S_k - 1)
+$$
 
-> Chen's theorem states that two paths with equal signatures are equal almost everywhere. This demonstrates that the signature captures all geometric information about the path, making it a complete invariant for path classification.
+Chen's theorem states that two paths with equal signatures are equal almost everywhere. This demonstrates that the signature captures all geometric information about the path, making it a complete invariant for path classification.
 
 ### Controlled Rough Paths
 
@@ -155,61 +154,61 @@ $$
 
 Because $\mathbb{X}$ is of order $2\alpha$ and $R$ is of order $2\alpha$, the error terms in the Riemann sums are of order $3\alpha$. Since $3\alpha > 1$, the sum converges.
 
-> **Controlled Rough Path Verification**
+**Controlled Rough Path Verification**
 
-> For the RDE $dY = f(Y) dX$ where $f(y) = y^2$ and $X$ is the Hölder path above, assume $Y$ is controlled with hypothesis $Y_t = Y_0 + Y'_0 (X_t - X_0) + R_{0,t}$ where $\mid R_{0,t} \mid \lesssim t^{3/2}$. The Gubinelli derivative $Y'$ satisfies $Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}$. For the quadratic $f$, formal linearization suggests $Y'_s \approx 2Y_s$, so $Y'_s = 2Y_s$.
+For the RDE $dY = f(Y) dX$ where $f(y) = y^2$ and $X$ is the Hölder path above, assume $Y$ is controlled with hypothesis $Y_t = Y_0 + Y'_0 (X_t - X_0) + R_{0,t}$ where $\vert R_{0,t} \vert \lesssim t^{3/2}$. The Gubinelli derivative $Y'$ satisfies $Y_t - Y_s = Y'_s (X_t - X_s) + R_{s,t}$. For the quadratic $f$, formal linearization suggests $Y'_s \approx 2Y_s$, so $Y'_s = 2Y_s$.
 
-> To verify remainder regularity, compute the actual integral using Picard iteration. Starting with $Y^{(0)}_t = Y_0$:
+To verify remainder regularity, compute the actual integral using Picard iteration. Starting with $Y^{(0)}_t = Y_0$:
 
-> $$
-> Y^{(1)}_t = Y_0 + \int_0^t (Y^{(0)}_r)^2 dX_r = Y_0 + Y_0^2 X_t
-> $$
+$$
+Y^{(1)}_t = Y_0 + \int_0^t (Y^{(0)}_r)^2 dX_r = Y_0 + Y_0^2 X_t
+$$
 
-> $$
-> Y^{(2)}_t = Y_0 + \int_0^t (Y^{(1)}_r)^2 dX_r
-> $$
+$$
+Y^{(2)}_t = Y_0 + \int_0^t (Y^{(1)}_r)^2 dX_r
+$$
 
-> Since $Y^{(1)}_r = Y_0 + Y_0^2 X_r$, we have $(Y^{(1)}_r)^2 = Y_0^2 + 2 Y_0^3 X_r + Y_0^4 X_r^2$, so:
+Since $Y^{(1)}_r = Y_0 + Y_0^2 X_r$, we have $(Y^{(1)}_r)^2 = Y_0^2 + 2 Y_0^3 X_r + Y_0^4 X_r^2$, so:
 
-> $$
-> \int (Y^{(1)}_r)^2 dX_r = Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t} + Y_0^4 \int X_r^2 dX_r
-> $$
+$$
+\int (Y^{(1)}_r)^2 dX_r = Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t} + Y_0^4 \int X_r^2 dX_r
+$$
 
-> The actual solution is approximately $Y_t \approx Y_0 + Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t}$. The predicted value from the Gubinelli derivative is $Y'_0 X_t = 2 Y_0 (Y_0 + Y_0^2 X_t) X_t = 2 Y_0^2 X_t + 2 Y_0^3 X_t^2$. The remainder is $R_{0,t} = Y_t - Y'_0 X_t \approx 2 Y_0^3 \mathbb{X}_{0,t} - 2 Y_0^3 X_t^2$. Since $\mid \mathbb{X}_{0,t} \mid \lesssim t^{3/2}$ and $\mid X_t^2 \mid \lesssim t^{3/2}$, we have $\mid R_{0,t} \mid \lesssim t^{3/2} = O(t^{2\alpha})$ with $\alpha=3/4$. This confirms that $Y$ is genuinely controlled by $X$ with Gubinelli derivative $Y' \approx 2Y$.
+The actual solution is approximately $Y_t \approx Y_0 + Y_0^2 X_t + 2 Y_0^3 \mathbb{X}_{0,t}$. The predicted value from the Gubinelli derivative is $Y'_0 X_t = 2 Y_0 (Y_0 + Y_0^2 X_t) X_t = 2 Y_0^2 X_t + 2 Y_0^3 X_t^2$. The remainder is $R_{0,t} = Y_t - Y'_0 X_t \approx 2 Y_0^3 \mathbb{X}_{0,t} - 2 Y_0^3 X_t^2$. Since $\vert \mathbb{X}_{0,t} \vert \lesssim t^{3/2}$ and $\vert X_t^2 \vert \lesssim t^{3/2}$, we have $\vert R_{0,t} \vert \lesssim t^{3/2} = O(t^{2\alpha})$ with $\alpha=3/4$. This confirms that $Y$ is genuinely controlled by $X$ with Gubinelli derivative $Y' \approx 2Y$.
 
-> **Rough Integration via Sewing Lemma**
+**Rough Integration via Sewing Lemma**
 
-> To compute $\int Y dX$ explicitly for controlled $Y$, consider $Y_t = t^2$ (smooth) and $X_t = t^{3/4}$ on $[0,1]$. The classical Stieltjes integral $\int_0^1 t^2 dt^{3/4}$ doesn't exist in the Riemann sense because $X$ is not of bounded variation.
+To compute $\int Y dX$ explicitly for controlled $Y$, consider $Y_t = t^2$ (smooth) and $X_t = t^{3/4}$ on $[0,1]$. The classical Stieltjes integral $\int_0^1 t^2 dt^{3/4}$ doesn't exist in the Riemann sense because $X$ is not of bounded variation.
 
-> For the $\alpha$-Hölder rough path with $p = 1/\alpha = 4/3$, the rough path integration formula is:
+For the $\alpha$-Hölder rough path with $p = 1/\alpha = 4/3$, the rough path integration formula is:
 
-> $$
-> \int_s^t Y_r dX_r \approx Y_s X_{s,t} + Y'_s \mathbb{X}_{s,t}
-> $$
+$$
+\int_s^t Y_r dX_r \approx Y_s X_{s,t} + Y'_s \mathbb{X}_{s,t}
+$$
 
-> For $Y_t = t^2$, the Gubinelli derivative is:
+For $Y_t = t^2$, the Gubinelli derivative is:
 
-> $$
-> Y'_s = \lim_{t \to s} \frac{Y_t - Y_s}{X_t - X_s} = \lim \frac{t^2 - s^2}{t^{3/4} - s^{3/4}}
-> $$
+$$
+Y'_s = \lim_{t \to s} \frac{Y_t - Y_s}{X_t - X_s} = \lim \frac{t^2 - s^2}{t^{3/4} - s^{3/4}}
+$$
 
-> By L'Hôpital's rule: $\lim \frac{2t}{(3/4) t^{-1/4}} = \frac{8}{3} s^{9/4}$.
+By L'Hôpital's rule: $\lim \frac{2t}{(3/4) t^{-1/4}} = \frac{8}{3} s^{9/4}$.
 
-> For the Sewing Lemma convergence, consider partition $0 = t_0 < t_1 < \dots < t_n = 1$:
+For the Sewing Lemma convergence, consider partition $0 = t_0 < t_1 < \dots < t_n = 1$:
 
-> $$
-> I^{[n]} = \sum_{i=0}^{n-1} [Y_{t_i} X_{t_i,t_{i+1}} + Y'_{t_i} \mathbb{X}_{t_i,t_{i+1}}]
-> $$
+$$
+I^{[n]} = \sum_{i=0}^{n-1} [Y_{t_i} X_{t_i,t_{i+1}} + Y'_{t_i} \mathbb{X}_{t_i,t_{i+1}}]
+$$
 
-> The error analysis shows $\mid I^{[n]} - I^{[m]} \mid \leq \sum \mid R_{t_i,t_{i+1}} \mid + \sum \mid \text{remainder terms} \mid$. Since $\mid R_{s,t} \mid \lesssim \mid t-s \mid^{3/2}$ and $3/2 > 1$, the mesh going to zero implies the Cauchy criterion is satisfied.
+The error analysis shows $\vert I^{[n]} - I^{[m]} \vert \leq \sum \vert R_{t_i,t_{i+1}} \vert + \sum \vert \text{remainder terms} \vert$. Since $\vert R_{s,t} \vert \lesssim \vert t-s \vert^{3/2}$ and $3/2 > 1$, the mesh going to zero implies the Cauchy criterion is satisfied.
 
-> The exact computation yields:
+The exact computation yields:
 
-> $$
-> \int_0^1 t^2 dt^{3/4} = \lim_{n \to \infty} \sum \left[t_i^2 (t_{i+1}^{3/4} - t_i^{3/4}) + \frac{8}{3}t_i^{9/4} \mathbb{X}_{t_i,t_{i+1}}\right] = \frac{16}{21}
-> $$
+$$
+\int_0^1 t^2 dt^{3/4} = \lim_{n \to \infty} \sum \left[t_i^2 (t_{i+1}^{3/4} - t_i^{3/4}) + \frac{8}{3}t_i^{9/4} \mathbb{X}_{t_i,t_{i+1}}\right] = \frac{16}{21}
+$$
 
-> This matches the result obtained by regularizing $X$ with smooth approximations, demonstrating that rough path integration provides a well-defined extension of the classical integral to non-smooth paths.
+This matches the result obtained by regularizing $X$ with smooth approximations, demonstrating that rough path integration provides a well-defined extension of the classical integral to non-smooth paths.
 
 ### Rough Differential Equations (RDEs)
 
@@ -225,85 +224,85 @@ The power of this deterministic formulation culminates in **Lyons' Universal Lim
 
 This result resolves the stability paradoxes of classical stochastic analysis. The Wong-Zakai theorem, which describes the convergence of smooth approximations of white noise to Stratonovich solutions, becomes a simple corollary of the continuity of the RDE solution map. If a sequence of smooth paths $X^n$ converges to $X$ uniformly, and their lifted iterated integrals $\mathbb{X}^n$ converge to $\mathbb{X}$ in the $2\alpha$-Hölder metric, then the solutions $Y^n$ converge to the RDE solution $Y$. The "Itô correction" term arises precisely from the difference between the canonical lift of the smooth approximations and the specific choice of the iterated integral $\mathbb{X}$ in the limit.
 
-> **Lyons' Universal Limit Theorem and Wong-Zakai Convergence**
+**Lyons' Universal Limit Theorem and Wong-Zakai Convergence**
 
-> To demonstrate convergence of smooth approximations, let $X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds$ where $\varphi_\varepsilon$ is mollified white noise. For each $\varepsilon > 0$, define the smooth rough path:
+To demonstrate convergence of smooth approximations, let $X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds$ where $\varphi_\varepsilon$ is mollified white noise. For each $\varepsilon > 0$, define the smooth rough path:
 
-> $$
-> X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds \quad \text{(smooth, $C^\infty$)}
-> $$
+$$
+X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) ds \quad \text{(smooth, $C^\infty$)}
+$$
 
-> $$
-> \mathbb{X}^\varepsilon_{s,t} = \int_s^t \int_s^r \varphi_\varepsilon(u) \varphi_\varepsilon(v) dv du \quad \text{(canonical lift)}
-> $$
+$$
+\mathbb{X}^\varepsilon_{s,t} = \int_s^t \int_s^r \varphi_\varepsilon(u) \varphi_\varepsilon(v) dv du \quad \text{(canonical lift)}
+$$
 
-> The $p$-variation distance with $p = 4/3$ is:
+The $p$-variation distance with $p = 4/3$ is:
 
-> $$
-> d_p((X^\varepsilon, \mathbb{X}^\varepsilon), (X, \mathbb{X})) = \mid\mid X^\varepsilon - X \mid\mid_{\alpha} + \mid\mid \mathbb{X}^\varepsilon - \mathbb{X} \mid\mid_{2\alpha}
-> $$
+$$
+d_p((X^\varepsilon, \mathbb{X}^\varepsilon), (X, \mathbb{X})) = \| X^\varepsilon - X \|_{\alpha} + \| \mathbb{X}^\varepsilon - \mathbb{X} \|_{2\alpha}
+$$
 
-> As $\varepsilon \to 0$: $X^\varepsilon \to X$ uniformly (by mollification) and $\mathbb{X}^\varepsilon \to \mathbb{X}$ in $2\alpha$-Hölder norm (by Itô isometry convergence).
+As $\varepsilon \to 0$: $X^\varepsilon \to X$ uniformly (by mollification) and $\mathbb{X}^\varepsilon \to \mathbb{X}$ in $2\alpha$-Hölder norm (by Itô isometry convergence).
 
-> For the RDE $dY = Y dX$ (geometric Brownian motion), the smooth solutions are:
+For the RDE $dY = Y dX$ (geometric Brownian motion), the smooth solutions are:
 
-> $$
-> Y^\varepsilon_t = Y_0 \exp(X^\varepsilon_t + \frac{1}{2} \mathbb{X}^\varepsilon_{0,t})
-> $$
+$$
+Y^\varepsilon_t = Y_0 \exp(X^\varepsilon_t + \frac{1}{2} \mathbb{X}^\varepsilon_{0,t})
+$$
 
-> The rough path solution is:
+The rough path solution is:
 
-> $$
-> Y_t = Y_0 \exp(X_t + \mathbb{X}_{0,t}) \quad \text{(Stratonovich lift)}
-> $$
+$$
+Y_t = Y_0 \exp(X_t + \mathbb{X}_{0,t}) \quad \text{(Stratonovich lift)}
+$$
 
-> For deterministic $X_t = t^{3/4}$ mollified:
+For deterministic $X_t = t^{3/4}$ mollified:
 
-> $$
-> X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) s^{3/4} ds \approx t^{3/4} + \frac{\varepsilon^2}{2} \cdot \frac{3}{4}\left(\frac{3}{4}-1\right)t^{3/4-2}
-> $$
+$$
+X^\varepsilon_t = \int_0^t \varphi_\varepsilon(s) s^{3/4} ds \approx t^{3/4} + \frac{\varepsilon^2}{2} \cdot \frac{3}{4}\left(\frac{3}{4}-1\right)t^{3/4-2}
+$$
 
-> $$
-> \mathbb{X}^\varepsilon_{0,t} \approx \int_0^t (r^{3/4})^2 \frac{3}{4}r^{-1/4} dr + O(\varepsilon^2)
-> $$
+$$
+\mathbb{X}^\varepsilon_{0,t} \approx \int_0^t (r^{3/4})^2 \frac{3}{4}r^{-1/4} dr + O(\varepsilon^2)
+$$
 
-> The error satisfies:
+The error satisfies:
 
-> $$
-> \mid Y^\varepsilon_t - Y_t \mid \leq C \mid\mid X^\varepsilon - X \mid\mid_\infty + C \mid\mid \mathbb{X}^\varepsilon - \mathbb{X} \mid\mid_{2\alpha} \to 0 \text{ as } \varepsilon \to 0
-> $$
+$$
+\vert Y^\varepsilon_t - Y_t \vert \leq C \| X^\varepsilon - X \|_\infty + C \| \mathbb{X}^\varepsilon - \mathbb{X} \|_{2\alpha} \to 0 \text{ as } \varepsilon \to 0
+$$
 
-> If we used the Itô lift $\mathbb{X}^{\text{Itô}}_{s,t} = \int_s^t \int_s^r dX_u dX_v - \frac{1}{2}(X_{s,t} \otimes X_{s,t})$, we would obtain $Y^{\text{Itô}}_t = Y_0 \exp(X_t - \frac{1}{2}t)$. The difference $\mathbb{X} - \mathbb{X}^{\text{Itô}} = \frac{1}{2}X \otimes X$ exactly accounts for the Itô correction. This demonstrates that the choice of lift (canonical vs. Itô) determines which stochastic calculus emerges in the limit, with the Stratonovich lift corresponding to the canonical smooth approximation.
+If we used the Itô lift $\mathbb{X}^{\text{Itô}}_{s,t} = \int_s^t \int_s^r dX_u dX_v - \frac{1}{2}(X_{s,t} \otimes X_{s,t})$, we would obtain $Y^{\text{Itô}}_t = Y_0 \exp(X_t - \frac{1}{2}t)$. The difference $\mathbb{X} - \mathbb{X}^{\text{Itô}} = \frac{1}{2}X \otimes X$ exactly accounts for the Itô correction. This demonstrates that the choice of lift (canonical vs. Itô) determines which stochastic calculus emerges in the limit, with the Stratonovich lift corresponding to the canonical smooth approximation.
 
-> **Rough Path Analysis of Financial Time Series**
+**Rough Path Analysis of Financial Time Series**
 
-> For daily log-returns of stock price $\{r_1, r_2, \dots, r_n\}$, construct the rough path from discrete data:
+For daily log-returns of stock price $\{r_1, r_2, \dots, r_n\}$, construct the rough path from discrete data:
 
-> $$
-> X^\Delta_t = \sum_{i \leq t/\Delta} r_i \Delta^{1/2} \quad \text{(scaled to have variance $t$)}
-> $$
+$$
+X^\Delta_t = \sum_{i \leq t/\Delta} r_i \Delta^{1/2} \quad \text{(scaled to have variance $t$)}
+$$
 
-> The discrete iterated integrals are:
+The discrete iterated integrals are:
 
-> $$
-> \mathbb{X}^\Delta_{i,j} = \sum_{i \leq k < l \leq j} r_k r_l \Delta
-> $$
+$$
+\mathbb{X}^\Delta_{i,j} = \sum_{i \leq k < l \leq j} r_k r_l \Delta
+$$
 
-> The rough path metric is:
+The rough path metric is:
 
-> $$
-> d_p(X^\Delta, X^\varepsilon) = \sup_{\mid i-j \mid \geq 1} \frac{\mid \mathbb{X}^\Delta_{i,j} - \mathbb{X}^\varepsilon_{i,j} \mid}{\mid j-i \mid^{2/3}}
-> $$
+$$
+d_p(X^\Delta, X^\varepsilon) = \sup_{\vert i-j \vert \geq 1} \frac{\vert \mathbb{X}^\Delta_{i,j} - \mathbb{X}^\varepsilon_{i,j} \vert}{\vert j-i \vert^{2/3}}
+$$
 
-> For portfolio optimization via the RDE $dY_t = \sigma(Y_t) dX_t$ where $Y$ is the portfolio value, small changes in observed returns lead to controlled changes in the optimal portfolio. This stability property is crucial for practical applications.
+For portfolio optimization via the RDE $dY_t = \sigma(Y_t) dX_t$ where $Y$ is the portfolio value, small changes in observed returns lead to controlled changes in the optimal portfolio. This stability property is crucial for practical applications.
 
-> To model the leverage effect where volatility depends on returns:
+To model the leverage effect where volatility depends on returns:
 
-> $$
-> \sigma(Y_t) = a + b \text{sign}(dX_t)
-> $$
+$$
+\sigma(Y_t) = a + b \text{sign}(dX_t)
+$$
 
-> The rough path structure ensures continuous dependence on the observed Lévy area $\mathbb{X}_{s,t}$, providing a robust framework for modeling path-dependent volatility in financial markets.
+The rough path structure ensures continuous dependence on the observed Lévy area $\mathbb{X}_{s,t}$, providing a robust framework for modeling path-dependent volatility in financial markets.
 
 ## References
 
@@ -321,7 +320,7 @@ This result resolves the stability paradoxes of classical stochastic analysis. T
 
 ## Related Sections
 
-- [Previous Section: 5.3 Geometric Stochastic Analysis]({{ '/diffequations/chapter-05/05-3-geometric-stochastic/' | relative_url }})
-- [Next Section: 5.5 Fractional Calculus & Nonlocal Operators]({{ '/diffequations/chapter-05/05-5-fractional-calculus/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.3 Geometric Stochastic Analysis]({{ '/diffequations/chapter-05/05-3-geometric-stochastic/' \vert relative_url }})
+- [Next Section: 5.5 Fractional Calculus & Nonlocal Operators]({{ '/diffequations/chapter-05/05-5-fractional-calculus/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})

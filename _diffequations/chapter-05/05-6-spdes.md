@@ -12,9 +12,8 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.6: SPDEs & Regularity Structures
 
-> Regularity structures replace classical Taylor expansions with expansions in "noise monomials," transforming the analytic impossibility of singular products into a geometric study of decorated trees and structure groups.
+Regularity structures replace classical Taylor expansions with expansions in "noise monomials," transforming the analytic impossibility of singular products into a geometric study of decorated trees and structure groups.
 
 ## Introduction
 
@@ -24,7 +23,7 @@ Standard analytical methods fail because the solution $u$ to a stochastic PDE is
 
 This section constructs the Theory of Regularity Structures, a framework that replaces the classical Taylor expansion with an expansion in terms of "noise monomials." This resolves the renormalization problem algebraically, transforming the analytic impossibility of singular products into a geometric study of decorated trees and structure groups.
 
-## Mathematical Content
+
 
 ### The Parabolic Anderson Model and the Product Problem
 
@@ -64,13 +63,13 @@ The map $\Pi_x: T \to \mathcal{D}'(\mathbb{R}^{d+1})$ assigns to each abstract t
 
 Crucially, the Model must satisfy analytical bounds analogous to Hölder conditions. For a basis vector $\tau \in T_\alpha$, the concrete distribution $\Pi_x \tau$ must satisfy:
 
-$$\mid (\Pi_x \tau)(\varphi_x^\lambda) \mid \lesssim \lambda^\alpha$$
+$$\vert (\Pi_x \tau)(\varphi_x^\lambda) \vert \lesssim \lambda^\alpha$$
 
 where $\varphi_x^\lambda$ is a test function scaled by $\lambda$ and centered at $x$. This formalizes the idea that the "degree" $\alpha$ represents the local roughness of the fluctuation.
 
 The **Reconstruction Theorem** is the fundamental result of the theory. It states that given a coherent family of local expansions satisfying the proper analytical bounds, there exists a unique global distribution $U$ that matches these local descriptions "to the order of the expansion." This generalizes the Whitney Extension Theorem to the setting of distributions and allows us to glue local noise approximations into a global solution.
 
-$$\mid (U - \Pi_x U(x))(\varphi_x^\lambda) \mid \lesssim \lambda^\gamma$$
+$$\vert (U - \Pi_x U(x))(\varphi_x^\lambda) \vert \lesssim \lambda^\gamma$$
 
 where $\gamma$ is the order of the expansion. This theorem allows us to define the "solution" map $\mathcal{S}$ which takes a Model and produces the solution to the fixed-point equation.
 
@@ -178,9 +177,9 @@ This yields $\mathbb{E}[u_\varepsilon^\text{ren}(t,x)] \to 1$ and $\text{Var}(u_
 
 **Solution:**
 
-Define the index set and generators. The index set is $A = \{0, -1/2 - \kappa, 1/2 - \kappa\} \cup \{\mid \tau \mid : \tau \in T\}$ where $\kappa > 0$ is small.
+Define the index set and generators. The index set is $A = \{0, -1/2 - \kappa, 1/2 - \kappa\} \cup \{\vert \tau \vert : \tau \in T\}$ where $\kappa > 0$ is small.
 
-   Abstract symbols: $\mathbf{1} \in T_0$ (constant function), $\Xi \in T_{-1/2-\kappa}$ (white noise), and $\mathcal{I}(\tau) \in T_{\mid \tau \mid + 2}$ (integration against heat kernel).
+   Abstract symbols: $\mathbf{1} \in T_0$ (constant function), $\Xi \in T_{-1/2-\kappa}$ (white noise), and $\mathcal{I}(\tau) \in T_{\vert \tau \vert + 2}$ (integration against heat kernel).
 
    Generate trees up to order 3. Level 1: $\Xi \in T_{-1/2-\kappa}$. Level 2: $\mathcal{I}(\Xi) \in T_{3/2-\kappa}$. Level 3: $\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) \in T_{5/2-2\kappa}$ and $\mathcal{I}(\Xi)^2 \in T_{3-\kappa}$. Level 4 (relevant for nonlinearity): $\mathcal{I}(\Xi \cdot \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))) \in T_{7/2-3\kappa}$.
 
@@ -194,7 +193,7 @@ Define the index set and generators. The index set is $A = \{0, -1/2 - \kappa, 1
 
    Substituting and collecting terms: at order $-1/2-\kappa$, $u_{-1/2-\kappa} = 0$ (no noise in solution); at order $3/2-\kappa$, $u_{3/2-\kappa} \mathcal{I}(\Xi) = \mathcal{I}(\Xi)$; at order $5/2-2\kappa$, $u_{5/2-2\kappa} \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi)) = \mathcal{I}(\Xi \cdot \mathcal{I}(\Xi))$. Remarkably, $u_\alpha = 1$ for all trees appearing in the expansion, demonstrating the universality of the tree structure.
 
-   For the renormalization of the quadratic term, the problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity $\mid \Xi \cdot \mathcal{I}(\Xi) \mid = -1/2-\kappa + 3/2-\kappa = 1-2\kappa > 0$. However, $\mathbb{E}[\Xi \cdot \mathcal{I}(\Xi)] = \infty$. Define the renormalized version:
+   For the renormalization of the quadratic term, the problematic term $\Xi \cdot \mathcal{I}(\Xi)$ has regularity $\vert \Xi \cdot \mathcal{I}(\Xi) \vert = -1/2-\kappa + 3/2-\kappa = 1-2\kappa > 0$. However, $\mathbb{E}[\Xi \cdot \mathcal{I}(\Xi)] = \infty$. Define the renormalized version:
 
    $$
    \Xi \cdot \mathcal{I}(\Xi) \mapsto \Xi \cdot \mathcal{I}(\Xi) - C
@@ -222,12 +221,12 @@ For the regularity structure construction, KPZ has parabolic scaling $[t] = 2$, 
 
 For the subcriticality check, consider the fixed-point equation $H = \mathcal{I}(\Xi + \frac{1}{2} (\partial_x H)^2)$:
 
-| Term | Regularity | Subcritical? |
-|------|------------|--------------|
-| $\Xi$ | $-3/2-\kappa$ | Base case |
-| $\partial_x H$ | $-3/2-\kappa$ | Derivative |
-| $(\partial_x H)^2$ | $-3-\kappa$ | Quadratic |
-| $\mathcal{I}((\partial_x H)^2)$ | $1-\kappa$ | Integration |
+| Term \vert Regularity \vert Subcritical? |
+|------\vert------------\vert--------------|
+| $\Xi$ \vert $-3/2-\kappa$ \vert Base case |
+| $\partial_x H$ \vert $-3/2-\kappa$ \vert Derivative |
+| $(\partial_x H)^2$ \vert $-3-\kappa$ \vert Quadratic |
+| $\mathcal{I}((\partial_x H)^2)$ \vert $1-\kappa$ \vert Integration |
 
 Since $1-\kappa > -3/2-\kappa$, each iteration improves regularity, ensuring convergence of the fixed-point iteration.
 
@@ -258,7 +257,7 @@ For $\mathcal{N}(h) = (\partial_x h)^2$, the scaling limit as mesh $\to 0$ conve
 For regularity computation in 2D, the scaling is $[t] = 2$, $[x] = 1$, $\xi \in C^{-2-\kappa}$. The critical product is:
 
 $$
-\mid \Xi \cdot \mathcal{I}(\Xi) \mid = -2-\kappa + 2-\kappa = -2\kappa \approx 0
+\vert \Xi \cdot \mathcal{I}(\Xi) \vert = -2-\kappa + 2-\kappa = -2\kappa \approx 0
 $$
 
 The product is at the regularity threshold, making the situation critical.
@@ -269,7 +268,7 @@ $$
 \mathbb{E}[\Xi_\varepsilon \cdot \mathcal{I}(\Xi_\varepsilon)(0,0)] = \int_0^T \int_{\mathbb{T}^2} p_t(y)^2 \rho_\varepsilon * \rho_\varepsilon(0) \, dy \, dt
 $$
 
-where $p_t(y) = \frac{1}{4\pi t} e^{-\mid y \mid^2/(4t)}$. The asymptotic is:
+where $p_t(y) = \frac{1}{4\pi t} e^{-\vert y \vert^2/(4t)}$. The asymptotic is:
 
 $$
 \int_{\mathbb{T}^2} p_t(y)^2 \, dy \sim \frac{1}{4\pi t}
@@ -303,11 +302,11 @@ $$
 
 For the convergence proof in the modeled distribution space $\mathcal{D}^\gamma$ with $\gamma = -1/2-\kappa$:
 
-| Iteration | Regularity Gain | Renormalized Term |
-|-----------|----------------|-------------------|
-| $U^{(1)}$ | $1/2-\kappa$ | None |
-| $U^{(2)}$ | $3/2-2\kappa$ | $C_0$ |
-| $U^{(3)}$ | $5/2-3\kappa$ | $C_1 \log(1/\varepsilon)$ |
+| Iteration \vert Regularity Gain \vert Renormalized Term |
+|-----------\vert----------------\vert-------------------|
+| $U^{(1)}$ \vert $1/2-\kappa$ \vert None |
+| $U^{(2)}$ \vert $3/2-2\kappa$ \vert $C_0$ |
+| $U^{(3)}$ \vert $5/2-3\kappa$ \vert $C_1 \log(1/\varepsilon)$ |
 
 Each iteration improves regularity by $2$, while renormalization subtracts exactly the divergent part, ensuring convergence via a contraction mapping argument.
 
@@ -340,13 +339,13 @@ The model property requires $\Pi_z \Gamma_z \tau = \Pi_z \tau$ for all $z$. Veri
 For the reconstruction theorem application, given local expansions:
 
 $$
-U(z) = \sum_{\mid \tau \mid < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau) + R_z
+U(z) = \sum_{\vert \tau \vert < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau) + R_z
 $$
 
 The theorem states that there exists a unique $U \in \mathcal{D}'$ such that:
 
 $$
-\mid U(\phi_z^\lambda) - \sum_{\mid \tau \mid < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau)(\phi_z^\lambda) \mid \lesssim \lambda^\gamma
+\vert U(\phi_z^\lambda) - \sum_{\vert \tau \vert < \gamma} \langle U \rangle_z(\tau) \Pi_z(\tau)(\phi_z^\lambda) \vert \lesssim \lambda^\gamma
 $$
 
 The proof sketch involves local Whitney-type estimates, gluing via partition of unity, and consistency via structure group action. This theorem provides the rigorous foundation for reconstructing global distributions from local tree expansions.
@@ -365,7 +364,7 @@ The proof sketch involves local Whitney-type estimates, gluing via partition of 
 
 ## Related Sections
 
-- [Previous Section: 5.5 Fractional Calculus & Nonlocal Operators]({{ '/diffequations/chapter-05/05-5-fractional-calculus/' | relative_url }})
-- [Next Section: 5.7 Kinetic Theory & Mean-Field Games]({{ '/diffequations/chapter-05/05-7-kinetic-theory/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.5 Fractional Calculus & Nonlocal Operators]({{ '/diffequations/chapter-05/05-5-fractional-calculus/' \vert relative_url }})
+- [Next Section: 5.7 Kinetic Theory & Mean-Field Games]({{ '/diffequations/chapter-05/05-7-kinetic-theory/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})

@@ -12,15 +12,14 @@ parent_chapter: 5
 parent_section: null
 ---
 
-# Section 5.5: Fractional Calculus & Nonlocal Operators
 
-> Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously, bridging local differential operators and global integral transforms.
+Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously, bridging local differential operators and global integral transforms.
 
 ## Introduction
 
 The trajectory of this text has thus far assumed locality: the behavior of a function or a physical field at a point depends only on its values in an infinitesimal neighborhood of that point. However, both mathematical completeness and physical reality compel us to abandon this constraint. Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously. In this section, we rigorously construct the calculus of non-integer order, bridging the gap between local differential operators and global integral transforms.
 
-## Mathematical Content
+
 
 ### Fractional Integrals and Derivatives
 
@@ -56,16 +55,16 @@ The Caputo derivative serves as the foundational operator for time-fractional di
 
 ### The Fractional Laplacian
 
-Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-\mid \xi \mid^2$ in frequency space, the **Fractional Laplacian** $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:
+Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-\vert \xi \vert^2$ in frequency space, the **Fractional Laplacian** $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:
 
 $$
-\mathcal{F}((-\Delta)^s u)(\xi) = \mid \xi \mid^{2s} \hat{u}(\xi).
+\mathcal{F}((-\Delta)^s u)(\xi) = \vert \xi \vert^{2s} \hat{u}(\xi).
 $$
 
-While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $\mid \xi \mid^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:
+While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $\vert \xi \vert^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:
 
 $$
-(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{\mid x-y \mid^{n+2s}} \, dy,
+(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{\vert x-y \vert^{n+2s}} \, dy,
 $$
 
 where $C_{n,s}$ is a normalization constant involving Gamma functions, and P.V. denotes the Cauchy principal value.
@@ -75,7 +74,7 @@ This integral representation reveals the operator's global character: the value 
 The inverse of this operator is the **Riesz Potential** $(-\Delta)^{-s}$, which is realized as a convolution with the fundamental solution of the fractional Laplacian:
 
 $$
-(-\Delta)^{-s} f(x) = \int_{\mathbb{R}^n} \frac{f(y)}{\mid x-y \mid^{n-2s}} \, dy.
+(-\Delta)^{-s} f(x) = \int_{\mathbb{R}^n} \frac{f(y)}{\vert x-y \vert^{n-2s}} \, dy.
 $$
 
 The mapping properties of these potentials on $L^p$ spaces are governed by the Hardy-Littlewood-Sobolev inequality, extending the Sobolev embedding theorems of Chapter 2 to the fractional setting.
@@ -233,31 +232,31 @@ This recovers the classical solution: $u(t) = u_0 \cos(\omega t) + \frac{v_0}{\o
 Using the Fourier transform method:
 
    $$
-   \hat{u}(\xi) = \mid \xi \mid^{-2s}
+   \hat{u}(\xi) = \vert \xi \vert^{-2s}
    $$
 
    The inverse Fourier transform is:
 
    $$
-   u(x) = c_{n,s} \int_{\mathbb{R}^n} \mid \xi \mid^{-2s} e^{2\pi i x \cdot \xi} \, d\xi
+   u(x) = c_{n,s} \int_{\mathbb{R}^n} \vert \xi \vert^{-2s} e^{2\pi i x \cdot \xi} \, d\xi
    $$
 
    Using spherical coordinates in frequency space:
 
    $$
-   u(x) = c_{n,s} \int_0^\infty \rho^{n-1-2s} \int_{S^{n-1}} e^{2\pi i \mid x \mid \rho \omega \cdot e_1} \, d\omega \, d\rho
+   u(x) = c_{n,s} \int_0^\infty \rho^{n-1-2s} \int_{S^{n-1}} e^{2\pi i \vert x \vert \rho \omega \cdot e_1} \, d\omega \, d\rho
    $$
 
    The known result is:
 
    $$
-   u(x) = C_{n,s} \mid x \mid^{2s-n}, \quad C_{n,s} = \frac{\Gamma\left(\frac{n-2s}{2}\right)}{2^{2s} \pi^{n/2} \Gamma(s)}
+   u(x) = C_{n,s} \vert x \vert^{2s-n}, \quad C_{n,s} = \frac{\Gamma\left(\frac{n-2s}{2}\right)}{2^{2s} \pi^{n/2} \Gamma(s)}
    $$
 
    Verification via direct computation for $n=1$, $s=1/2$:
 
    $$
-   (-\Delta)^{1/2} \mid x \mid^{-1/2} = c \text{P.V.} \int_{-\infty}^\infty \frac{\mid x \mid^{-1/2} - \mid y \mid^{-1/2}}{\mid x-y \mid^{2}} \, dy
+   (-\Delta)^{1/2} \vert x \vert^{-1/2} = c \text{P.V.} \int_{-\infty}^\infty \frac{\vert x \vert^{-1/2} - \vert y \vert^{-1/2}}{\vert x-y \vert^{2}} \, dy
    $$
 
    The principal value integral converges and equals $\delta(x)$, confirming that the fundamental solution has the correct singularity structure.
@@ -271,13 +270,13 @@ Using the Fourier transform method:
 Taking the Fourier transform:
 
    $$
-   \hat{u}(\xi,t) = \hat{u}_0(\xi) e^{-t \mid \xi \mid^{2s}}
+   \hat{u}(\xi,t) = \hat{u}_0(\xi) e^{-t \vert \xi \vert^{2s}}
    $$
 
    The self-similar solution for $\delta$-initial data is:
 
    $$
-   u(x,t) = t^{-n/(2s)} K\left(\frac{\mid x \mid}{t^{1/(2s)}}\right)
+   u(x,t) = t^{-n/(2s)} K\left(\frac{\vert x \vert}{t^{1/(2s)}}\right)
    $$
 
    For $n=1$, $s=1/2$, the complete computation of $K(\eta)$ yields:
@@ -289,7 +288,7 @@ Taking the Fourier transform:
    Moments analysis shows:
 
    $$
-   \langle \mid x \mid^q \rangle_t = \int \mid x \mid^q u(x,t) \, dx \sim t^{q/(2s)}
+   \langle \vert x \vert^q \rangle_t = \int \vert x \vert^q u(x,t) \, dx \sim t^{q/(2s)}
    $$
 
    For $s > 1/2$, moments grow faster than classical diffusion ($s=1/2$), demonstrating super-diffusion behavior. This anomalous scaling reflects the nonlocal nature of the fractional Laplacian, where long-range interactions accelerate the spread of probability mass.
@@ -304,10 +303,10 @@ Taking the Fourier transform:
    Map to $\mathbb{R}^n$:
 
    $$
-   (-\Delta)^s u = \mid x \mid^{-2s} u^{\frac{n+2s}{n-2s}}
+   (-\Delta)^s u = \vert x \vert^{-2s} u^{\frac{n+2s}{n-2s}}
    $$
 
-   Using the ansatz $u(x) = \mid x \mid^{-\frac{n-2s}{2}} v(\mid x \mid)$, the radial ODE is:
+   Using the ansatz $u(x) = \vert x \vert^{-\frac{n-2s}{2}} v(\vert x \vert)$, the radial ODE is:
 
    $$
    v'' + \frac{n-1+2s}{r} v' + v^{\frac{n+2s}{n-2s}} = 0
@@ -328,18 +327,18 @@ Taking the Fourier transform:
    The global solution is:
 
    $$
-   u(x) = c_n (1 + \mid x \mid^2)^{-s}
+   u(x) = c_n (1 + \vert x \vert^2)^{-s}
    $$
 
 **Connection to Chapter 6.7:** This is a fully nonlinear fractional PDE solved via geometric methods.
 
 ### Example 5.5.7: Canonical Computation—Explicit Extension
 
-**Problem:** Find the extension $v(x,y)$ for $u(x) = e^{-|x|^2}$ with $s=1/2$.
+**Problem:** Find the extension $v(x,y)$ for $u(x) = e^{-\vert x\vert^2}$ with $s=1/2$.
 
 **Solution:**
 
-The extension equation is $\nabla \cdot (y \nabla v) = 0$ in $\mathbb{R}^{n+1}_+$ with $v(x,0) = e^{-\mid x \mid^2}$. Using the ansatz $v(x,y) = e^{-(\mid x \mid^2 + y^2)}$ (for $s=1/4$), verification shows:
+The extension equation is $\nabla \cdot (y \nabla v) = 0$ in $\mathbb{R}^{n+1}_+$ with $v(x,0) = e^{-\vert x \vert^2}$. Using the ansatz $v(x,y) = e^{-(\vert x \vert^2 + y^2)}$ (for $s=1/4$), verification shows:
 
 $$
 \nabla \cdot (y \nabla v) = y \Delta v + \nabla v \cdot \nabla y = y \Delta v + \partial_y v
@@ -354,7 +353,7 @@ $$
 The boundary operator is:
 
 $$
-\lim_{y \to 0^+} y^{1-2s} \partial_y v = \lim_{y \to 0^+} y^{1/2} (-2y) e^{-(\mid x \mid^2 + y^2)} = -\sqrt{y} e^{-\mid x \mid^2} \to 0
+\lim_{y \to 0^+} y^{1-2s} \partial_y v = \lim_{y \to 0^+} y^{1/2} (-2y) e^{-(\vert x \vert^2 + y^2)} = -\sqrt{y} e^{-\vert x \vert^2} \to 0
 $$
 
 ### Example 5.5.8: Physical Application—Fractional Heat Equation
@@ -372,10 +371,10 @@ $$
 Using separation of variables $v(x,y,t) = T(t) Y(y) e^{-i\xi \cdot x}$, the spatial ODE is:
 
 $$
-y^a (Y'' + \mid \xi \mid^2 Y) + a y^{a-1} Y' = 0
+y^a (Y'' + \vert \xi \vert^2 Y) + a y^{a-1} Y' = 0
 $$
 
-With the change of variables $y = \mid \xi \mid^{-2/(1-a)} w$:
+With the change of variables $y = \vert \xi \vert^{-2/(1-a)} w$:
 
 $$
 (1-w^2) W'' - \frac{1+a}{1-a} w W' + \frac{2s}{1-a} W = 0
@@ -390,7 +389,7 @@ $$
 Time evolution follows:
 
 $$
-T(t) = e^{-\mid \xi \mid^{2s} t}
+T(t) = e^{-\vert \xi \vert^{2s} t}
 $$
 
 Boundary recovery yields:
@@ -401,14 +400,14 @@ $$
 
 ### Example 5.5.9: Advanced Demonstration—Hardy-Littlewood-Sobolev Inequality
 
-**Problem:** Prove $\|(-\Delta)^{-s} f\|_{L^q} \leq C \|f\|_{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.
+**Problem:** Prove $\|(-\Delta)^{-s} f\|_{L^q} \leq C \|f\\vert_{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.
 
 **Solution:**
 
-The Riesz potential is $(-\Delta)^{-s} f = I_{2s} * f$ where $I_{2s}(x) = c \mid x \mid^{2s-n}$. Applying Young's inequality:
+The Riesz potential is $(-\Delta)^{-s} f = I_{2s} * f$ where $I_{2s}(x) = c \vert x \vert^{2s-n}$. Applying Young's inequality:
 
 $$
-\mid\mid I_{2s} * f \mid\mid_q \leq \mid\mid I_{2s} \mid\mid_r \mid\mid f \mid\mid_p, \quad \frac{1}{p} + \frac{1}{r} = 1 + \frac{1}{q}
+\| I_{2s} * f \|_q \leq \| I_{2s} \|_r \| f \|_p, \quad \frac{1}{p} + \frac{1}{r} = 1 + \frac{1}{q}
 $$
 
 Since $I_{2s} \in L^r_{\text{weak}}$ with $\frac{1}{r} = 1 - \frac{2s}{n}$, verification shows:
@@ -432,7 +431,7 @@ $$
 The extension proof via weighted spaces yields:
 
 $$
-\mid\mid u \mid\mid_{L^q(\mathbb{R}^n)} \leq C \mid\mid \nabla v \mid\mid_{L^2(\mathbb{R}^{n+1}_+, y^a)} \leq C \mid\mid v(x,0) \mid\mid_{W^{s,2}}
+\| u \|_{L^q(\mathbb{R}^n)} \leq C \| \nabla v \|_{L^2(\mathbb{R}^{n+1}_+, y^a)} \leq C \| v(x,0) \|_{W^{s,2}}
 $$
 
 ## References
@@ -449,7 +448,7 @@ $$
 
 ## Related Sections
 
-- [Previous Section: 5.4 Rough Paths & Controlled Rough Paths]({{ '/diffequations/chapter-05/05-4-rough-paths/' | relative_url }})
-- [Next Section: 5.6 SPDEs & Regularity Structures]({{ '/diffequations/chapter-05/05-6-spdes/' | relative_url }})
-- [Chapter Index]({{ '/diffequations/chapter-05/' | relative_url }})
-- [Full Table of Contents]({{ '/diffequations/' | relative_url }})
+- [Previous Section: 5.4 Rough Paths & Controlled Rough Paths]({{ '/diffequations/chapter-05/05-4-rough-paths/' \vert relative_url }})
+- [Next Section: 5.6 SPDEs & Regularity Structures]({{ '/diffequations/chapter-05/05-6-spdes/' \vert relative_url }})
+- [Chapter Index]({{ '/diffequations/chapter-05/' \vert relative_url }})
+- [Full Table of Contents]({{ '/diffequations/' \vert relative_url }})
