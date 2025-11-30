@@ -14,17 +14,33 @@ parent_section: null
 
 # Section 3.1: Manifolds, Tensors & Covariant Derivatives
 
+> Curved spaces demand that we abandon global coordinates and define derivatives through the intrinsic comparison of nearby tangent spaces.
+
 ## Introduction
 
 The rigorous functional analysis developed in Chapter 2 provided a robust framework for solving differential equations on Hilbert spaces. That framework relied implicitly on a global affine structure: in $\mathbb{R}^{n}$ we can subtract points, define global derivatives, and integrate along straight lines. Physical theories on curved spaces—general relativity, fluid flow on spheres, gauge theories—violate this assumption. Their configuration spaces possess only local linear structure, so derivatives must be defined via coordinate-free comparisons of nearby tangent spaces. In this section we introduce **smooth manifolds**, **tensors**, and **covariant derivatives**, establishing the geometric toolkit required to write PDEs invariantly. The presentation follows Lee (2012) and Spivak (1979).
 
-## Mathematical Content
+## Smooth Manifolds and Tangent Bundles
 
-### Smooth Manifolds and Tangent Bundles
+A topological space $M$ is an $n$-dimensional **smooth manifold** if it is Hausdorff, second-countable, and covered by charts $\{(U_{\alpha},\phi_{\alpha})\}$ whose transition maps $\phi_{\beta}\circ\phi_{\alpha}^{-1}$ are $C^{\infty}$. The atlas endows $M$ with local Euclidean structure but does not supply a global vector space. Tangent vectors are therefore defined intrinsically: a vector $v\in T_{p}M$ is a **derivation** $v:C^{\infty}(M)\to \mathbb{R}$ satisfying $v(fg)=f(p)v(g)+g(p)v(f)$. The vector space $T_{p}M$ has dimension $n$, and the disjoint union $TM=\bigsqcup_{p\in M}T_{p}M$ carries a smooth structure of dimension $2n$. Smooth sections $X\in\Gamma(TM)$ are **vector fields**.
 
-A topological space $M$ is an $n$-dimensional smooth manifold if it is Hausdorff, second-countable, and covered by charts $\{(U_{\alpha},\phi_{\alpha})\}$ whose transition maps $\phi_{\beta}\circ\phi_{\alpha}^{-1}$ are $C^{\infty}$. The atlas endows $M$ with local Euclidean structure but does not supply a global vector space. Tangent vectors are therefore defined intrinsically: a vector $v\in T_{p}M$ is a derivation $v:C^{\infty}(M)\to \mathbb{R}$ satisfying $v(fg)=f(p)v(g)+g(p)v(f)$. The vector space $T_{p}M$ has dimension $n$, and the disjoint union $TM=\bigsqcup_{p\in M}T_{p}M$ carries a smooth structure of dimension $2n$. Smooth sections $X\in\Gamma(TM)$ are vector fields.
+> **Atlas Compatibility on $S^{2}$**
 
-### Tensor Fields and Transformation Laws
+> Verify that the standard northern and southern stereographic charts on $S^{2}$ define a smooth atlas.
+
+> Let $U_{N}=\{z>0\}$ with $\phi_{N}(x,y,z)=(x/(1+z),y/(1+z))$ and $U_{S}=\{z<0\}$ with $\phi_{S}(x,y,z)=(x/(1-z),y/(1-z))$. On $U_{N}\cap U_{S}$ a point $p$ has coordinates $(u,v)=\phi_{N}(p)$. Solving for $(x,y,z)$ gives $x=2u/(1+u^{2}+v^{2})$, $y=2v/(1+u^{2}+v^{2})$, and $z=(1-u^{2}-v^{2})/(1+u^{2}+v^{2})$. Substituting into $\phi_{S}$ yields $\phi_{S}\circ\phi_{N}^{-1}(u,v)=(u,v)$, a $C^{\infty}$ transition map, proving compatibility.
+
+This construction demonstrates that the sphere, despite its curved geometry, admits a smooth structure through overlapping coordinate patches. The transition maps being smooth ensures that any smooth function defined in one chart remains smooth when expressed in another, establishing the foundation for calculus on manifolds.
+
+> **Tangent Space via Derivations**
+
+> Construct a basis of derivations for $T_{(0,0,1)}S^{2}$ and verify the Leibniz rule.
+
+> Using spherical coordinates $(\theta,\varphi)$, define $X_{\theta}=\partial/\partial \theta$ and $X_{\varphi}=\partial/\partial \varphi$. At the north pole, $X_{\theta}=(0,1,0)$ and $X_{\varphi}=(-1,0,0)$ when viewed in $\mathbb{R}^{3}$. For $f,g\in C^{\infty}(S^{2})$, the product rule in $\mathbb{R}^{3}$ implies $X_{\theta}(fg)=fX_{\theta}(g)+gX_{\theta}(f)$, so $\{X_{\theta},X_{\varphi}\}$ forms a derivation basis for $T_{(0,0,1)}S^{2}$.
+
+The derivation approach to tangent vectors is coordinate-free: we define vectors by their action on functions, not by their components in some embedding. This intrinsic definition ensures that geometric objects defined on the manifold are independent of how we choose to represent them, a crucial property for writing invariant differential equations.
+
+## Tensor Fields and Transformation Laws
 
 A $(k,\ell)$-tensor at $p$ is a multilinear map $T:(T_{p}^{\ast}M)^{\otimes k}\times (T_{p}M)^{\otimes \ell}\to \mathbb{R}$. If $(x^{i})$ and $(y^{i})$ are overlapping charts, tensor components transform via
 
@@ -37,17 +53,23 @@ $$
 
 This Jacobian law ensures coordinate invariance: tensor equations valid in one chart hold in all others. Algebraic operations include tensor products and contractions that raise or lower the total rank.
 
-### Covariant Derivatives and Geodesics
+The transformation law is the mathematical expression of the physical principle that physical quantities should not depend on our choice of coordinates. A tensor field assigns a tensor to each point, and the transformation law ensures that the geometric object is well-defined across coordinate patches.
 
-Because $T_{p}M$ and $T_{q}M$ are unrelated for $p\neq q$, partial derivatives cannot compare vectors at different points. An affine connection $\nabla:\Gamma(TM)\times\Gamma(TM)\to\Gamma(TM)$ assigns to $(X,Y)$ the derivative $\nabla_{X}Y$ and satisfies tensorial linearity in $X$, $\mathbb{R}$-linearity in $Y$, and the Leibniz rule $\nabla_{X}(fY)=(Xf)Y+f\nabla_{X}Y$. A curve $\gamma$ is a **geodesic** if its velocity is parallel transported along itself: $\nabla_{\dot{\gamma}}\dot{\gamma}=0$. The exponential map $\exp_{p}:T_{p}M\to M$ sends $v$ to $\gamma(1)$, where $\gamma$ is the unique geodesic with $\gamma(0)=p$ and $\dot{\gamma}(0)=v$.
+## Covariant Derivatives and Geodesics
 
-### Metric Compatibility and the Levi-Civita Connection
+Because $T_{p}M$ and $T_{q}M$ are unrelated for $p\neq q$, partial derivatives cannot compare vectors at different points. An **affine connection** $\nabla:\Gamma(TM)\times\Gamma(TM)\to\Gamma(TM)$ assigns to $(X,Y)$ the derivative $\nabla_{X}Y$ and satisfies tensorial linearity in $X$, $\mathbb{R}$-linearity in $Y$, and the Leibniz rule $\nabla_{X}(fY)=(Xf)Y+f\nabla_{X}Y$. A curve $\gamma$ is a **geodesic** if its velocity is parallel transported along itself: $\nabla_{\dot{\gamma}}\dot{\gamma}=0$. The **exponential map** $\exp_{p}:T_{p}M\to M$ sends $v$ to $\gamma(1)$, where $\gamma$ is the unique geodesic with $\gamma(0)=p$ and $\dot{\gamma}(0)=v$.
 
-On a Riemannian manifold $(M,g)$ the metric provides inner products $\langle\cdot,\cdot\rangle_{p}$ on each $T_{p}M$. A connection is **metric compatible** if $X\langle Y,Z\rangle=\langle\nabla_{X}Y,Z\rangle+\langle Y,\nabla_{X}Z\rangle$, and it is **torsion-free** if $\nabla_{X}Y-\nabla_{Y}X=[X,Y]$. The Fundamental Theorem of Riemannian Geometry (do Carmo, 1992) states that there exists a unique torsion-free, metric-compatible connection: the **Levi-Civita connection**.
+The connection provides a rule for comparing vectors at different points by "parallel transporting" one vector along a curve to the other point. This is the geometric generalization of the directional derivative in Euclidean space, and it is essential for defining differential operators on curved spaces.
 
-### Christoffel Symbols and Laplace–Beltrami Operator
+## Metric Compatibility and the Levi-Civita Connection
 
-In local coordinates $\{x^{i}\}$, the connection is encoded by Christoffel symbols $\Gamma^{k}_{ij}$ defined through $\nabla_{\partial_{i}}\partial_{j}=\Gamma^{k}_{ij}\partial_{k}$. For the Levi-Civita connection,
+On a **Riemannian manifold** $(M,g)$ the metric provides inner products $\langle\cdot,\cdot\rangle_{p}$ on each $T_{p}M$. A connection is **metric compatible** if $X\langle Y,Z\rangle=\langle\nabla_{X}Y,Z\rangle+\langle Y,\nabla_{X}Z\rangle$, and it is **torsion-free** if $\nabla_{X}Y-\nabla_{Y}X=[X,Y]$. The Fundamental Theorem of Riemannian Geometry (do Carmo, 1992) states that there exists a unique torsion-free, metric-compatible connection: the **Levi-Civita connection**.
+
+This theorem is fundamental: among all possible ways to define parallel transport, there is exactly one that preserves lengths and angles (metric compatibility) and respects the commutator of vector fields (torsion-free). This connection is the natural generalization of the Euclidean derivative to curved spaces.
+
+## Christoffel Symbols and Laplace–Beltrami Operator
+
+In local coordinates $\{x^{i}\}$, the connection is encoded by **Christoffel symbols** $\Gamma^{k}_{ij}$ defined through $\nabla_{\partial_{i}}\partial_{j}=\Gamma^{k}_{ij}\partial_{k}$. For the Levi-Civita connection,
 
 $$
 \Gamma^{k}_{ij}=\frac{1}{2}g^{k\ell}\left(\partial_{i}g_{j\ell}+\partial_{j}g_{i\ell}-\partial_{\ell}g_{ij}\right).
@@ -59,17 +81,157 @@ $$
 \frac{d^{2}x^{k}}{dt^{2}}+\Gamma^{k}_{ij}\frac{dx^{i}}{dt}\frac{dx^{j}}{dt}=0,
 $$
 
-linking geometry to the nonlinear ODE theory of Chapter 1. The metric also determines the Laplace–Beltrami operator on functions,
+linking geometry to the nonlinear ODE theory of Chapter 1. The metric also determines the **Laplace–Beltrami operator** on functions,
 
 $$
-\Delta f=\frac{1}{\sqrt{|g|}}\partial_{i}\big(\sqrt{|g|}\,g^{ij}\partial_{j}f\big),
+\Delta f=\frac{1}{\sqrt{\mid g \mid}}\partial_{i}\big(\sqrt{\mid g \mid}\,g^{ij}\partial_{j}f\big),
 $$
 
 which reduces to the Euclidean Laplacian when $g_{ij}=\delta_{ij}$ and encodes curvature corrections otherwise.
 
-## Connections to Chapter Narrative
+> **Metric Components on $S^{2}$**
 
-Chapter 2 analyzed PDEs on linear spaces using spectral theory and variational methods. Chapter 3 replaces the global vector space with local charts, demanding intrinsic differential operators. Manifolds and covariant derivatives let us rewrite conservation laws (Section 3.2), Hodge decompositions (Section 3.4), and gauge theories (Chapter 6) in invariant language. Christoffel symbols and the Laplace–Beltrami operator connect the new geometric formalism back to the operator-theoretic tools already developed, ensuring continuity of the narrative.
+> Compute the metric matrix, its determinant, and its inverse for the round metric $ds^{2}=d\theta^{2}+\sin^{2}\theta\,d\varphi^{2}$.
+
+> In $(\theta,\varphi)$ coordinates the non-zero components are $g_{\theta\theta}=1$ and $g_{\varphi\varphi}=\sin^{2}\theta$. Thus
+
+> $$
+> g=\begin{pmatrix}1&0\\0&\sin^{2}\theta\end{pmatrix},\qquad g^{-1}=\begin{pmatrix}1&0\\0&\csc^{2}\theta\end{pmatrix},\qquad \mid g \mid=\sin^{2}\theta.
+> $$
+
+> These ingredients feed directly into the Laplace–Beltrami formula and into the computation of Christoffel symbols.
+
+The metric tensor encodes the geometry of the manifold: distances, angles, and volumes. On the sphere, the $\sin^{2}\theta$ factor reflects the fact that circles of constant latitude shrink as we approach the poles, a geometric fact that must be incorporated into any differential operator.
+
+> **Levi-Civita Symbols on the Sphere**
+
+> Compute the non-zero Christoffel symbols of the Levi-Civita connection for the round metric on $S^{2}$ and verify metric compatibility.
+
+> Applying $\Gamma^{k}_{ij}=\tfrac{1}{2}g^{k\ell}(\partial_{i}g_{j\ell}+\partial_{j}g_{i\ell}-\partial_{\ell}g_{ij})$ yields $\Gamma^{\theta}_{\varphi\varphi}=-\sin\theta\cos\theta$ and $\Gamma^{\varphi}_{\theta\varphi}=\Gamma^{\varphi}_{\varphi\theta}=\cot\theta$. Metric compatibility demands $\partial_{\theta}g_{\varphi\varphi}=2\langle\nabla_{\partial_{\theta}}\partial_{\varphi},\partial_{\varphi}\rangle$, which holds because $\nabla_{\partial_{\theta}}\partial_{\varphi}=\cot\theta\,\partial_{\varphi}$ and $2\cot\theta\,g_{\varphi\varphi}=2\sin\theta\cos\theta$.
+
+The Christoffel symbols quantify how the coordinate basis vectors change as we move across the manifold. The non-zero symbols $\Gamma^{\theta}_{\varphi\varphi}$ and $\Gamma^{\varphi}_{\theta\varphi}$ reflect the curvature of the sphere: parallel transport around a closed loop does not return a vector to its original orientation.
+
+> **Great-Circle Geodesics**
+
+> Derive the geodesic equations on $S^{2}$ and show that great circles solve them.
+
+> Using the symbols computed above, the equations become
+
+> $$
+> \theta''-\sin\theta\cos\theta\,(\varphi')^{2}=0,\qquad
+> \varphi''+2\cot\theta\,\theta'\varphi'=0.
+> $$
+
+> The second equation integrates to $\sin^{2}\theta\,\varphi'=L$ (conservation of angular momentum). Substituting into the first equation yields $\theta''-L^{2}\cos\theta/\sin^{3}\theta=0$. Solutions with $\theta'(0)=0$ and $\varphi'(0)\neq 0$ satisfy $\sin\theta(t)=\sin\theta_{0}/\cos(t/L)$, describing the intersections of $S^{2}$ with planes through the origin—great circles.
+
+Geodesics are the "straight lines" of curved space: paths of minimal length between nearby points. On the sphere, these are great circles, the natural generalization of lines in the plane. The geodesic equations are second-order nonlinear ODEs, connecting the geometric structure to the analytical methods of Chapter 1.
+
+> **Spherical Pendulum Dynamics**
+
+> Model a pendulum constrained to $S^{2}$ of radius $L$ using spherical coordinates and derive the equations of motion.
+
+> The Lagrangian is $\mathcal{L}=\tfrac{1}{2}mL^{2}(\theta'^{2}+\sin^{2}\theta\,\varphi'^{2})+mgL\cos\theta$. Euler–Lagrange equations give $mL^{2}\theta''=mL^{2}\sin\theta\cos\theta\,\varphi'^{2}-mgL\sin\theta$ and $\tfrac{d}{dt}(mL^{2}\sin^{2}\theta\,\varphi')=0$. These coincide with the geodesic equations perturbed by the gravitational term $-(g/L)\sin\theta$, illustrating how curvature and external forces combine in mechanical systems.
+
+This example demonstrates that physical systems on curved spaces naturally incorporate the geometric structure through the connection. The gravitational force appears as a perturbation to the geodesic equations, showing how geometry and dynamics intertwine in mechanical systems.
+
+> **Laplace–Beltrami Invariance**
+
+> Verify that $f(\theta,\varphi)=\cos\theta$ is an eigenfunction of the Laplace–Beltrami operator on $S^{2}$ in both spherical and stereographic coordinates.
+
+> In spherical coordinates, $\Delta f=\tfrac{1}{\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}\cos\theta)=-2\cos\theta$. In stereographic coordinates $(r,\varphi)$ where $ds^{2}=\tfrac{4}{(1+r^{2})^{2}}(dr^{2}+r^{2}d\varphi^{2})$, the operator becomes $\Delta f=\tfrac{(1+r^{2})^{2}}{4}(\partial_{rr}f+\tfrac{1}{r}\partial_{r}f+\tfrac{1}{r^{2}}\partial_{\varphi\varphi}f)$. Writing $f=(1-r^{2})/(1+r^{2})$ leads to the same value $\Delta f=-2\cos\theta$, confirming coordinate invariance.
+
+The Laplace–Beltrami operator is the natural generalization of the Laplacian to curved spaces. Its coordinate invariance ensures that physical laws expressed in terms of this operator are independent of our choice of coordinates, a fundamental requirement for geometric physics.
+
+> **Holonomy on the Sphere**
+
+> Compute the parallel transport of a tangent vector around a spherical triangle with vertices at the north pole and two points on the latitude $\theta=\pi/3$ separated by $2\pi/3$ in longitude.
+
+> Start with $v=\partial_{\varphi}$ at the pole. Transport along a meridian leaves $v$ unchanged because $\nabla_{\partial_{\theta}}\partial_{\varphi}=0$ there. Along the latitude segment, $\nabla_{\partial_{\varphi}}\partial_{\varphi}=-\sin\theta\cos\theta\,\partial_{\theta}$ rotates $v$ toward $-\partial_{\theta}$. Completing the loop produces $v_{\text{final}}=\cos(2\pi/3)\,\partial_{\varphi}+\sin(2\pi/3)\,\partial_{\theta}$, evidencing a $2\pi/3$ rotation equal to the enclosed solid angle. This holonomy calculation shows how curvature obstructs global parallelism and motivates the curvature tensors studied later.
+
+Holonomy—the failure of parallel transport to return a vector to itself around a closed loop—is a direct measure of curvature. On a flat space, parallel transport around any closed loop returns the vector unchanged. On the sphere, the rotation angle equals the enclosed solid angle, revealing the geometric content of the curvature tensor.
+
+## Challenge Problems
+
+The following problems synthesize the concepts of manifolds, connections, and geometric operators.
+
+### Challenge 1: The Exponential Map and Conjugate Points
+
+On a Riemannian manifold $(M,g)$, the exponential map $\exp_p: T_p M \to M$ sends a tangent vector $v$ to the point reached by following the unique geodesic with initial velocity $v$ for unit time. A point $q = \exp_p(v)$ is a **conjugate point** to $p$ if the differential $d(\exp_p)_v$ is singular.
+
+Show that on the sphere $S^2$ with the round metric, the point antipodal to $p$ is a conjugate point. Compute the Jacobian determinant of the exponential map along a geodesic and identify where it vanishes.
+
+*(Hint: Use geodesic coordinates and compute the Jacobi fields along a great circle.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+On $S^2$ with the round metric, geodesics are great circles. Consider a geodesic $\gamma(t)$ starting at the north pole $p$ with initial velocity $v$. In spherical coordinates, this is a meridian: $\theta(t) = t$, $\varphi(t) = 0$.
+
+A Jacobi field $J(t)$ along $\gamma$ satisfies the Jacobi equation $\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}} J + R(\dot{\gamma}, J)\dot{\gamma} = 0$, where $R$ is the curvature tensor. For the sphere, the sectional curvature is constant $K = 1$, so the equation becomes $J'' + J = 0$.
+
+The exponential map sends a vector $w \in T_p M$ to $\exp_p(w) = \gamma_w(1)$, where $\gamma_w$ is the geodesic with $\dot{\gamma}_w(0) = w$. The differential $d(\exp_p)_v$ maps a variation vector $w$ to the corresponding Jacobi field $J(1)$.
+
+For a great circle on $S^2$, the Jacobi fields are $J(t) = A \cos t + B \sin t$. At $t = \pi$, we have $J(\pi) = -A$, showing that the differential is singular: vectors pointing in opposite directions at $p$ map to the same point at the antipode.
+
+The Jacobian determinant $\det(d(\exp_p)_v)$ measures the expansion of an infinitesimal area element. For the sphere, this is $\sin t$ along a geodesic, which vanishes at $t = \pi$. This demonstrates that the antipodal point is indeed a conjugate point, where the exponential map fails to be a local diffeomorphism.
+
+This result connects to the geometric optics of Section 3.6: conjugate points are precisely where caustics form, where the geometric approximation breaks down and wave effects become important.
+
+</details>
+
+### Challenge 2: Coordinate Invariance of the Laplace–Beltrami Operator
+
+The Laplace–Beltrami operator is defined in coordinates as $\Delta f = \frac{1}{\sqrt{\mid g \mid}}\partial_i(\sqrt{\mid g \mid} g^{ij} \partial_j f)$. Show that this expression is coordinate-invariant: if we transform to new coordinates $y^i = y^i(x^1, \ldots, x^n)$, the operator takes the same form with the transformed metric components.
+
+Prove this by showing that $\Delta f$ transforms as a scalar function, and verify explicitly for the transformation from spherical to stereographic coordinates on $S^2$.
+
+*(Hint: Use the transformation law for the metric tensor and the chain rule for partial derivatives.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Under a coordinate transformation $y^i = y^i(x^j)$, the metric components transform as $g'_{ij} = \frac{\partial x^k}{\partial y^i} \frac{\partial x^\ell}{\partial y^j} g_{k\ell}$ and $g'^{ij} = \frac{\partial y^i}{\partial x^k} \frac{\partial y^j}{\partial x^\ell} g^{k\ell}$. The volume form transforms as $\sqrt{\mid g' \mid} = \mid \det(\partial x/\partial y) \mid \sqrt{\mid g \mid}$.
+
+The partial derivatives transform as $\frac{\partial}{\partial y^i} = \frac{\partial x^j}{\partial y^i} \frac{\partial}{\partial x^j}$. Applying these transformations to the Laplace–Beltrami operator:
+
+$$\Delta' f = \frac{1}{\sqrt{\mid g' \mid}} \frac{\partial}{\partial y^i}\left(\sqrt{\mid g' \mid} g'^{ij} \frac{\partial f}{\partial y^j}\right)$$
+
+Substituting the transformation laws and using the chain rule, all Jacobian factors cancel, leaving the original expression in $x$-coordinates. This cancellation is not accidental: it reflects the fact that $\Delta$ is defined intrinsically through the metric, not through coordinates.
+
+For the explicit verification on $S^2$, the spherical metric $ds^2 = d\theta^2 + \sin^2\theta d\varphi^2$ transforms to the stereographic metric $ds^2 = \frac{4}{(1+r^2)^2}(dr^2 + r^2 d\varphi^2)$ via $r = \cot(\theta/2)$. Computing $\Delta f$ in both coordinate systems for $f = \cos\theta = (1-r^2)/(1+r^2)$ yields the same result $-2\cos\theta$, confirming coordinate invariance.
+
+This invariance is fundamental: physical laws expressed in terms of $\Delta$ are independent of coordinate choices, ensuring that the geometry, not the coordinates, determines the physics.
+
+</details>
+
+### Challenge 3: Geodesic Deviation and Curvature
+
+On a Riemannian manifold, consider a one-parameter family of geodesics $\gamma_s(t)$ with $\gamma_0(t) = \gamma(t)$. The **geodesic deviation vector** is $J(t) = \frac{\partial \gamma_s}{\partial s}\mid_{s=0}$, measuring how nearby geodesics separate.
+
+Derive the **Jacobi equation** $\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}} J + R(\dot{\gamma}, J)\dot{\gamma} = 0$, where $R$ is the Riemann curvature tensor. Show that on a sphere, initially parallel geodesics (great circles through the north pole) converge and meet at the south pole, demonstrating positive curvature.
+
+*(Hint: Use the fact that $\nabla_{\dot{\gamma}}\dot{\gamma} = 0$ for geodesics and commute covariant derivatives using the curvature tensor.)*
+
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+For a family of geodesics $\gamma_s(t)$ with $\gamma_0(t) = \gamma(t)$, we have $\nabla_{\partial/\partial t}\nabla_{\partial/\partial t} \frac{\partial \gamma_s}{\partial s} = 0$ since each $\gamma_s$ is a geodesic. Commuting the covariant derivatives using the definition of the curvature tensor:
+
+$$\nabla_{\partial/\partial t}\nabla_{\partial/\partial s} \frac{\partial \gamma_s}{\partial t} - \nabla_{\partial/\partial s}\nabla_{\partial/\partial t} \frac{\partial \gamma_s}{\partial t} = R\left(\frac{\partial \gamma_s}{\partial t}, \frac{\partial \gamma_s}{\partial s}\right)\frac{\partial \gamma_s}{\partial t}$$
+
+Since $\nabla_{\partial/\partial t} \frac{\partial \gamma_s}{\partial t} = 0$ (geodesic equation) and the connection is torsion-free, this simplifies to the Jacobi equation for $J(t) = \frac{\partial \gamma_s}{\partial s}\mid_{s=0}$:
+
+$$\nabla_{\dot{\gamma}}\nabla_{\dot{\gamma}} J + R(\dot{\gamma}, J)\dot{\gamma} = 0$$
+
+On the sphere $S^2$ with constant curvature $K = 1$, consider geodesics (great circles) through the north pole. In spherical coordinates, these are meridians: $\theta(t) = t$, $\varphi(t) = \varphi_0 + s$, where $s$ parameterizes the family. The deviation vector is $J = \sin\theta \frac{\partial}{\partial \varphi}$.
+
+The Jacobi equation becomes $J'' + J = 0$ with $J(0) = 0$ and $J'(0) = 1$. The solution is $J(t) = \sin t$, which vanishes at $t = \pi$, showing that initially parallel geodesics converge and meet at the antipodal point.
+
+This demonstrates positive curvature: on a positively curved space, initially parallel geodesics converge, while on a negatively curved space they diverge. The rate of convergence is directly related to the sectional curvature, providing a geometric interpretation of the curvature tensor.
+
+</details>
+
+The geometric framework developed here—manifolds, connections, and covariant derivatives—provides the language for writing differential equations on curved spaces. However, this framework alone does not determine which equations are physically meaningful. The conservation laws of Section 3.2, the exterior calculus of Section 3.4, and the gauge theories of later chapters impose additional constraints that select the physically relevant equations from the infinite space of possible geometric PDEs.
 
 ## References
 
@@ -77,69 +239,6 @@ Chapter 2 analyzed PDEs on linear spaces using spectral theory and variational m
 * Lee, J. M. (1997). *Riemannian Manifolds: An Introduction to Curvature*. Springer.
 * Lee, J. M. (2012). *Introduction to Smooth Manifolds* (2nd ed.). Springer.
 * Spivak, M. (1979). *A Comprehensive Introduction to Differential Geometry* (Vol. 1). Publish or Perish.
-
-## Complete Examples
-
-### Example 3.1.1: Atlas Compatibility on $S^{2}$
-
-**Problem:** Verify that the standard northern and southern stereographic charts on $S^{2}$ define a smooth atlas.
-
-Let $U_{N}=\{z>0\}$ with $\phi_{N}(x,y,z)=(x/(1+z),y/(1+z))$ and $U_{S}=\{z<0\}$ with $\phi_{S}(x,y,z)=(x/(1-z),y/(1-z))$. On $U_{N}\cap U_{S}$ a point $p$ has coordinates $(u,v)=\phi_{N}(p)$. Solving for $(x,y,z)$ gives $x=2u/(1+u^{2}+v^{2})$, $y=2v/(1+u^{2}+v^{2})$, and $z=(1-u^{2}-v^{2})/(1+u^{2}+v^{2})$. Substituting into $\phi_{S}$ yields $\phi_{S}\circ\phi_{N}^{-1}(u,v)=(u,v)$, a $C^{\infty}$ transition map, proving compatibility.
-
-### Example 3.1.2: Tangent Space via Derivations
-
-**Problem:** Construct a basis of derivations for $T_{(0,0,1)}S^{2}$ and verify the Leibniz rule.
-
-Using spherical coordinates $(\theta,\varphi)$, define $X_{\theta}=\partial/\partial \theta$ and $X_{\varphi}=\partial/\partial \varphi$. At the north pole, $X_{\theta}=(0,1,0)$ and $X_{\varphi}=(-1,0,0)$ when viewed in $\mathbb{R}^{3}$. For $f,g\in C^{\infty}(S^{2})$, the product rule in $\mathbb{R}^{3}$ implies $X_{\theta}(fg)=fX_{\theta}(g)+gX_{\theta}(f)$, so $\{X_{\theta},X_{\varphi}\}$ forms a derivation basis for $T_{(0,0,1)}S^{2}$.
-
-### Example 3.1.3: Metric Components on $S^{2}$
-
-**Problem:** Compute the metric matrix, its determinant, and its inverse for the round metric $ds^{2}=d\theta^{2}+\sin^{2}\theta\,d\varphi^{2}$.
-
-In $(\theta,\varphi)$ coordinates the non-zero components are $g_{\theta\theta}=1$ and $g_{\varphi\varphi}=\sin^{2}\theta$. Thus
-
-$$
-g=\begin{pmatrix}1&0\\0&\sin^{2}\theta\end{pmatrix},\qquad g^{-1}=\begin{pmatrix}1&0\\0&\csc^{2}\theta\end{pmatrix},\qquad |g|=\sin^{2}\theta.
-$$
-
-These ingredients feed directly into the Laplace–Beltrami formula and into the computation of Christoffel symbols.
-
-### Example 3.1.4: Levi-Civita Symbols on the Sphere
-
-**Problem:** Compute the non-zero Christoffel symbols of the Levi-Civita connection for the round metric on $S^{2}$ and verify metric compatibility.
-
-Applying $\Gamma^{k}_{ij}=\tfrac{1}{2}g^{k\ell}(\partial_{i}g_{j\ell}+\partial_{j}g_{i\ell}-\partial_{\ell}g_{ij})$ yields $\Gamma^{\theta}_{\varphi\varphi}=-\sin\theta\cos\theta$ and $\Gamma^{\varphi}_{\theta\varphi}=\Gamma^{\varphi}_{\varphi\theta}=\cot\theta$. Metric compatibility demands $\partial_{\theta}g_{\varphi\varphi}=2\langle\nabla_{\partial_{\theta}}\partial_{\varphi},\partial_{\varphi}\rangle$, which holds because $\nabla_{\partial_{\theta}}\partial_{\varphi}=\cot\theta\,\partial_{\varphi}$ and $2\cot\theta\,g_{\varphi\varphi}=2\sin\theta\cos\theta$.
-
-### Example 3.1.5: Great-Circle Geodesics
-
-**Problem:** Derive the geodesic equations on $S^{2}$ and show that great circles solve them.
-
-Using the symbols from Example 3.1.4, the equations become
-
-$$
-\theta''-\sin\theta\cos\theta\,(\varphi')^{2}=0,\qquad
-\varphi''+2\cot\theta\,\theta'\varphi'=0.
-$$
-
-Equation two integrates to $\sin^{2}\theta\,\varphi'=L$ (conservation of angular momentum). Substituting into the first equation yields $\theta''-L^{2}\cos\theta/\sin^{3}\theta=0$. Solutions with $\theta'(0)=0$ and $\varphi'(0)\neq 0$ satisfy $\sin\theta(t)=\sin\theta_{0}/\cos(t/L)$, describing the intersections of $S^{2}$ with planes through the origin—great circles.
-
-### Example 3.1.6: Spherical Pendulum Dynamics
-
-**Problem:** Model a pendulum constrained to $S^{2}$ of radius $L$ using spherical coordinates and derive the equations of motion.
-
-The Lagrangian is $\mathcal{L}=\tfrac{1}{2}mL^{2}(\theta'^{2}+\sin^{2}\theta\,\varphi'^{2})+mgL\cos\theta$. Euler–Lagrange equations give $mL^{2}\theta''=mL^{2}\sin\theta\cos\theta\,\varphi'^{2}-mgL\sin\theta$ and $\tfrac{d}{dt}(mL^{2}\sin^{2}\theta\,\varphi')=0$. These coincide with the geodesic equations perturbed by the gravitational term $-(g/L)\sin\theta$, illustrating how curvature and external forces combine in mechanical systems.
-
-### Example 3.1.7: Laplace–Beltrami Invariance
-
-**Problem:** Verify that $f(\theta,\varphi)=\cos\theta$ is an eigenfunction of the Laplace–Beltrami operator on $S^{2}$ in both spherical and stereographic coordinates.
-
-In spherical coordinates, $\Delta f=\tfrac{1}{\sin\theta}\partial_{\theta}(\sin\theta\,\partial_{\theta}\cos\theta)=-2\cos\theta$. In stereographic coordinates $(r,\varphi)$ where $ds^{2}=\tfrac{4}{(1+r^{2})^{2}}(dr^{2}+r^{2}d\varphi^{2})$, the operator becomes $\Delta f=\tfrac{(1+r^{2})^{2}}{4}(\partial_{rr}f+\tfrac{1}{r}\partial_{r}f+\tfrac{1}{r^{2}}\partial_{\varphi\varphi}f)$. Writing $f=(1-r^{2})/(1+r^{2})$ leads to the same value $\Delta f=-2\cos\theta$, confirming coordinate invariance.
-
-### Example 3.1.8: Holonomy on the Sphere
-
-**Problem:** Compute the parallel transport of a tangent vector around a spherical triangle with vertices at the north pole and two points on the latitude $\theta=\pi/3$ separated by $2\pi/3$ in longitude.
-
-Start with $v=\partial_{\varphi}$ at the pole. Transport along a meridian leaves $v$ unchanged because $\nabla_{\partial_{\theta}}\partial_{\varphi}=0$ there. Along the latitude segment, $\nabla_{\partial_{\varphi}}\partial_{\varphi}=-\sin\theta\cos\theta\,\partial_{\theta}$ rotates $v$ toward $-\partial_{\theta}$. Completing the loop produces $v_{\text{final}}=\cos(2\pi/3)\,\partial_{\varphi}+\sin(2\pi/3)\,\partial_{\theta}$, evidencing a $2\pi/3$ rotation equal to the enclosed solid angle. This holonomy calculation shows how curvature obstructs global parallelism and motivates the curvature tensors studied later.
 
 ## Navigation
 
