@@ -98,313 +98,65 @@ The proof of Serrin's theorem utilizes the Method of Moving Planes, a technique 
 
 This method illustrates "rigidity": local enforcement of the PDE and boundary data constrains the global topology of the manifold.
 
-## Complete Examples
+> **Monge-Ampère Dirichlet Problem in 2D**
 
-### Example 6.7.1: Canonical Example—The Dirichlet Problem in 2D
+> To solve the Monge-Ampère equation $\det(D^2 u) = 1$ in $B(0,1)$ with $u \mid_{\partial B} = 0$ where $B(0,1)$ is the unit ball in $\mathbb{R}^2$, we assume radial symmetry: $u(r)$. The Hessian in polar coordinates is $D^2 u = \begin{pmatrix} u'' & \frac{u'}{r} \\ \frac{u'}{r} & \frac{u'}{r} \end{pmatrix}$.
 
-**Problem:** Solve the Monge-Ampère equation
+> Computing the determinant gives $\det(D^2 u) = u'' \cdot \frac{u'}{r} - \left(\frac{u'}{r}\right)^2 = \frac{u'' u'}{r} - \frac{(u')^2}{r^2}$. Setting this equal to 1 gives $\frac{u'' u'}{r} - \frac{(u')^2}{r^2} = 1$. Substituting $v = u'$ (so $v' = u''$) gives $v \frac{dv}{dr} \frac{1}{r} - \frac{v^2}{r^2} = 1$. Multiplying through by $r^2$ yields $r v \frac{dv}{dr} - v^2 = r^2$.
 
-$$
-\det(D^2 u) = 1 \quad \text{in } B(0,1), \quad u \mid_{\partial B} = 0
-$$
+> Letting $w = v^2$ gives the Bernoulli equation $\frac{1}{2} r \frac{dw}{dr} - w = r^2$ with integrating factor $\mu(r) = \frac{1}{r}$. Solving gives $\frac{d}{dr} \left( \frac{w}{r} \right) = r$, so $\frac{w}{r} = \frac{r^2}{2} + C$ and $w = \frac{r^3}{2} + C r$. Thus $v = u' = \sqrt{\frac{r^3}{2} + C r}$. The boundary condition $u(1) = 0$ and symmetry at $r=0$ give $C = -\frac{1}{2}$.
 
-where $B(0,1)$ is the unit ball in $\mathbb{R}^2$.
+> The final solution is $u(r) = \int_r^1 \sqrt{\frac{t^3}{2} - \frac{t}{2}} \, dt = \frac{1}{6} (1 - r^3)$. Verification shows $D^2 u = \begin{pmatrix} -r & -\frac{1}{2r} \\ -\frac{1}{2r} & -\frac{1}{2r^2} \end{pmatrix}$ and $\det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1$, confirming the solution.
 
-**Step-by-Step Solution:**
+> **Monge-Ampère in Optimal Transport**
 
-1. **Radial Symmetry:**
-   Assume radial symmetry: $u(r)$. The Hessian in polar coordinates is:
+> For optimal transport, we transport density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}\mid x-y \mid^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves $\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}$.
 
-   $$
-   D^2 u = \begin{pmatrix} u'' & \frac{u'}{r} \\ \frac{u'}{r} & \frac{u'}{r} \end{pmatrix}
-   $$
+> For uniform densities $\rho_0 = \rho_1 = 1$ on the unit ball, the solution is $\phi(x) = \frac{1}{6}(\mid x \mid^3 - 1)$, giving $T(x) = x$ (identity map). For the general case with $\rho_0, \rho_1$ having the same mass, linearization at $\phi_0$ gives $L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)$. Ellipticity holds since $\text{adj}(D^2 \phi_0) \succ 0$ when $\phi_0$ is strictly convex. The Implicit Function Theorem gives local uniqueness, demonstrating how the Monge-Ampère equation encodes optimal transport problems.
 
-2. **Determinant Computation:**
-   $$
-   \det(D^2 u) = u'' \cdot \frac{u'}{r} - \left(\frac{u'}{r}\right)^2 = \frac{u'' u'}{r} - \frac{(u')^2}{r^2}
-   $$
+> **Pogorelov's $C^2$ Estimates**
 
-3. **Differential Equation:**
-   Set equal to 1:
+> For the Monge-Ampère equation $\det(D^2 u) = 1$ in $B(0,1)$ with $u|_{\partial B} = 0$ and $u$ convex, Pogorelov's auxiliary function is $w(x) = e^{\alpha \mid x \mid^2} \mid D^2 u(x) \mid^2$.
 
-   $$
-   \frac{u'' u'}{r} - \frac{(u')^2}{r^2} = 1
-   $$
+> The key computation gives $\Delta w = e^{\alpha \mid x \mid^2} \left[ \alpha n \mid D^2 u \mid^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + \mid D^3 u \mid^2 \right]$. From differentiating $\det(D^2 u) = 1$, the crucial inequality is $\text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C \mid D^2 u \mid^{3/2}$.
 
-4. **Substitution:**
-   Let $v = u'$. Then $v' = u''$, so:
+> At the maximum point of $w$, the maximum principle gives $\Delta w \leq 0$, so $\mid D^2 u \mid^2 \leq C \alpha^{-n/2}$. The result is $\|D^2 u\|_{L^\infty(B_{1/2})} \leq C$, demonstrating how Pogorelov's estimates provide crucial second derivative bounds for fully nonlinear equations.
 
-   $$
-   v \frac{dv}{dr} \frac{1}{r} - \frac{v^2}{r^2} = 1
-   $$
+> **Evans-Krylov $C^{2,\alpha}$ Theory**
 
-   Multiply through by $r^2$:
+> To establish Hölder continuity of second derivatives, the theorem states that if $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $\|D^2 u\|_\infty \leq \Lambda$, then $u \in C^{2,\alpha}$.
 
-   $$
-   r v \frac{dv}{dr} - v^2 = r^2
-   $$
+> For the detailed proof sketch for Monge-Ampère, we use difference quotients: $[D^2 u(x+h) - D^2 u(x)]_{ij} = \int_0^1 \frac{\partial}{\partial t} D^2 u(x + t h)_{ij} dt$. The linearized operator is $L v = \text{tr}(\text{adj}(D^2 u) D^2 v)$.
 
-5. **Bernoulli Equation:**
-   Let $w = v^2$:
+> Since $\text{adj}(D^2 u) \succ 0$, the Harnack inequality for $L$ gives $\sup_{B_r} v \leq C \inf_{B_r} v + C r^2 \|f\|_{L^\infty}$. Campanato estimates give $[v]_{C^{0,\alpha}(B_r)} \leq C r^{2-\alpha} (\text{osc}_{B_r} v)^{1/2}$. Bootstrapping yields $C^{2,\alpha} \to C^{2,\alpha+\beta} \to C^\infty$, demonstrating how the Evans-Krylov theory bridges the gap from $C^2$ to smooth solutions.
 
-   $$
-   \frac{1}{2} r \frac{dw}{dr} - w = r^2
-   $$
+> **Continuity Method for Minkowski Problem**
 
-   Integrating factor: $\mu(r) = e^{-\int \frac{1}{r} dr} = \frac{1}{r}$
+> To find a convex body with given surface area measure, we solve $\det(D^2 u + u_{ij} \delta_{ij}) = f(x)$ on $S^{n-1}$ using the continuity method: $G_t(u) = \det(D^2 u + u_{ij} \delta_{ij}) - [(1-t) + t f(x)] = 0$.
 
-6. **Solution:**
-   $$
-   \frac{d}{dr} \left( \frac{w}{r} \right) = r \implies \frac{w}{r} = \frac{r^2}{2} + C \implies w = \frac{r^3}{2} + C r
-   $$
+> For the openness proof, linearization gives $L v = \text{tr}\left( \text{adj}(D^2 u_0 + u_0 \delta) D^2 v \right)$. Ellipticity holds since eigenvalues of $\text{adj}(D^2 u_0 + u_0 \delta)$ are positive when $D^2 u_0 + u_0 \delta \succ 0$ (strictly convex) and $\text{adj}(M) \succ 0$ when $M \succ 0$. Invertibility follows since $L: C^{2,\alpha}(S^{n-1}) \to C^\alpha(S^{n-1})$ is Fredholm index 0 and injective (by maximum principle), hence surjective.
 
-   Thus $v = u' = \sqrt{\frac{r^3}{2} + C r}$. Boundary condition $u(1) = 0$ and symmetry at $r=0$ give $C = -\frac{1}{2}$.
+> For the closedness argument, consider a sequence $u_k$ solving $G_{t_k}(u_k) = 0$ with $t_k \to t^*$. $C^0$ bounds (Krylov) give $\sup \mid u \mid \leq C(\sup f, \text{diam } \Omega)$ using the maximum principle. $C^1$ bounds (Calabi) use $w = e^{\alpha \mid x \mid^2} \mid \nabla u \mid^2$ with $\Delta w + c(x) \mid \nabla w \mid \leq C w$. $C^2$ bounds follow from Pogorelov's estimates, and higher regularity from Evans-Krylov and Schauder. Convergence via Arzelà-Ascoli and regularity gives $u_k \to u^*$ in $C^{2,\alpha}$, demonstrating how the continuity method systematically constructs solutions.
 
-7. **Final Solution:**
-   $$
-   u(r) = \int_r^1 \sqrt{\frac{t^3}{2} - \frac{t}{2}} \, dt = \frac{1}{6} (1 - r^3)
-   $$
+> **Serrin's Problem in 2D**
 
-8. **Verification:**
-   $$
-   D^2 u = \begin{pmatrix} -r & -\frac{1}{2r} \\ -\frac{1}{2r} & -\frac{1}{2r^2} \end{pmatrix}, \quad \det(D^2 u) = r \cdot \frac{1}{2r^2} - \frac{1}{4r^2} = \frac{1}{2r} - \frac{1}{4r} = \frac{1}{4r} \cdot 2 = 1
-   $$
+> For Serrin's problem $-\Delta u = 1$ in $\Omega \subset \mathbb{R}^2$ with $u = 0$ and $\partial_\nu u = c$ on $\partial \Omega$, we use the method of moving planes. In the $x_1$-direction, for $\lambda < \lambda_1 = \inf \{x_1 : x \in \Omega\}$, we define $w_\lambda(x) = u(x^\lambda) - u(x)$ where $x^\lambda = (2\lambda - x_1, x_2)$.
 
-   ✓ Verified
+> In $\Sigma_\lambda = \{x \in \Omega: x_1 < \lambda\}$, the equation for $w_\lambda$ is $-\Delta w_\lambda = 0$. Boundary conditions give $w_\lambda = 0$ on $\{x_1 = \lambda\} \cap \Omega$, and on the reflected boundary $\partial_\nu u(x^\lambda) = c = \partial_\nu u(x)$.
 
-### Example 6.7.2: Physical Application—Optimal Transport
+> Applying the Hopf lemma, at boundary points $\partial_\nu w_\lambda \geq 0$ (strict unless $w_\lambda \equiv 0$). Continuation shows $w_\lambda \geq 0$ in $\Sigma_\lambda$. As $\lambda$ increases, either $w_\lambda \equiv 0$ (symmetry) or $\partial_\nu w_\lambda > 0$ somewhere. The stopping plane $\lambda^*$ gives reflection symmetry. Rotating the direction $\gamma$ and repeating gives full rotational symmetry. The final result is $\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, and $c = R$, demonstrating how overdetermined boundary conditions force domain symmetry.
 
-**Problem:** Monge-Ampère in Optimal Transport
+> **Moving Planes for Monge-Ampère**
 
-Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}\mid x-y \mid^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:
+> For the Monge-Ampère equation $\det(D^2 u) = 1$ with $u|_{\partial \Omega} = 0$ and $\mid \nabla u \mid_{\partial \Omega} = c$, the reflection function is $w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(\mid x^\lambda \mid^2 - \mid x \mid^2)$.
 
-$$
-\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}
-$$
+> The key computation gives $\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) & * \\ * & D^2 u(x) \end{pmatrix} + \text{lower order}$. Block determinant analysis shows $w_\lambda \geq 0$ by convexity, demonstrating how the method of moving planes extends to fully nonlinear equations.
 
-**Step-by-Step Solution:**
+> **Real Monge-Ampère in Kähler Geometry**
 
-1. **Uniform Densities:**
-   Example: $\rho_0 = \rho_1 = 1$ on unit ball (uniform densities).
+> For the real Monge-Ampère equation $\det\begin{pmatrix} u_{xx} & u_{xy} \\ u_{yx} & u_{yy} \end{pmatrix} = e^u$ (arising in complex geometry), linearization gives $L v = u_{xx} v_{yy} + u_{yy} v_{xx} - 2 u_{xy} v_{xy} + e^u v$.
 
-2. **Solution:**
-   $\phi(x) = \frac{1}{6}(\mid x \mid^3 - 1)$ gives $T(x) = x$ (identity map).
-
-3. **General Case:**
-   For $\rho_0, \rho_1$ with same mass:
-
-   **Linearization at $\phi_0$:**
-   $$
-   L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)
-   $$
-
-   **Ellipticity:** $\text{adj}(D^2 \phi_0) \succ 0$ since $\phi_0$ is strictly convex
-
-   **Solvability:** Implicit Function Theorem gives local uniqueness
-
-### Example 6.7.3: Pogorelov's $C^2$ Estimates
-
-**Problem:** $\det(D^2 u) = 1$ in $B(0,1)$, $u|_{\partial B} = 0$, $u$ convex.
-
-**Step-by-Step Solution:**
-
-1. **Pogorelov's Auxiliary Function:**
-   $$
-   w(x) = e^{\alpha |x|^2} |D^2 u(x)|^2
-   $$
-
-2. **Key Computation:**
-   $$
-   \Delta w = e^{\alpha |x|^2} \left[ \alpha n |D^2 u|^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + |D^3 u|^2 \right]
-   $$
-
-3. **Crucial Inequality:**
-   From differentiating $\det(D^2 u) = 1$:
-
-   $$
-   \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C |D^2 u|^{3/2}
-   $$
-
-4. **Maximum Principle:**
-   At maximum point of $w$, $\Delta w \leq 0$, so:
-
-   $$
-   |D^2 u|^2 \leq C \alpha^{-n/2}
-   $$
-
-5. **Result:**
-   $$
-   \|D^2 u\|_{L^\infty(B_{1/2})} \leq C
-   $$
-
-### Example 6.7.4: Evans-Krylov $C^{2,\alpha}$ Theory
-
-**Problem:** Establish Hölder continuity of second derivatives.
-
-**Step-by-Step Solution:**
-
-1. **Theorem Statement:**
-   If $F(M) = 0$ is uniformly elliptic and concave, and $u \in C^2$ with $\|D^2 u\|_\infty \leq \Lambda$, then $u \in C^{2,\alpha}$.
-
-2. **Detailed Proof Sketch for Monge-Ampère:**
-   **Difference Quotients:**
-   $$
-   [D^2 u(x+h) - D^2 u(x)]_{ij} = \int_0^1 \frac{\partial}{\partial t} D^2 u(x + t h)_{ij} dt
-   $$
-
-3. **Linearized Operator:**
-   $$
-   L v = \text{tr}(\text{adj}(D^2 u) D^2 v)
-   $$
-
-4. **Harnack Inequality for $L$:**
-   Since $\text{adj}(D^2 u) \succ 0$, we get:
-
-   $$
-   \sup_{B_r} v \leq C \inf_{B_r} v + C r^2 \|f\|_{L^\infty}
-   $$
-
-5. **Campanato Estimates:**
-   $$
-   [v]_{C^{0,\alpha}(B_r)} \leq C r^{2-\alpha} (\text{osc}_{B_r} v)^{1/2}
-   $$
-
-6. **Bootstrap:**
-   $C^{2,\alpha} \to C^{2,\alpha+\beta} \to C^\infty$
-
-### Example 6.7.5: Continuity Method—Minkowski Problem
-
-**Problem:** Find convex body with given surface area measure:
-
-$$
-\det(D^2 u + u_{ij} \delta_{ij}) = f(x) \quad \text{on } S^{n-1}
-$$
-
-**Step-by-Step Solution:**
-
-1. **Continuity Method:**
-   $$
-   G_t(u) = \det(D^2 u + u_{ij} \delta_{ij}) - [(1-t) + t f(x)] = 0
-   $$
-
-2. **Openness Proof:**
-   **Linearization:**
-   $$
-   L v = \text{tr}\left( \text{adj}(D^2 u_0 + u_0 \delta) D^2 v \right)
-   $$
-
-   **Ellipticity:** Eigenvalues of $\text{adj}(D^2 u_0 + u_0 \delta)$ are positive since:
-   - $D^2 u_0 + u_0 \delta \succ 0$ (strictly convex)
-   - $\text{adj}(M) \succ 0$ when $M \succ 0$
-
-   **Invertibility:** $L: C^{2,\alpha}(S^{n-1}) \to C^\alpha(S^{n-1})$ is Fredholm index 0 and injective (by maximum principle), hence surjective.
-
-3. **Closedness Argument:**
-   Sequence: $u_k$ solves $G_{t_k}(u_k) = 0$, $t_k \to t^*$
-
-   **Step 1: $C^0$ bounds (Krylov):**
-   Consider $v = e^{\alpha |x|^2} u$. Maximum principle gives:
-
-   $$
-   \sup |u| \leq C(\sup f, \text{diam } \Omega)
-   $$
-
-   **Step 2: $C^1$ bounds (Calabi):**
-   $w = e^{\alpha |x|^2} |\nabla u|^2$
-
-   $$
-   \Delta w + c(x) |\nabla w| \leq C w
-   $$
-
-   **Step 3: $C^2$ bounds (Pogorelov, as above)**
-
-   **Step 4: Higher regularity (Evans-Krylov + Schauder)**
-
-   **Convergence:** Arzelà-Ascoli + regularity gives $u_k \to u^*$ in $C^{2,\alpha}$
-
-### Example 6.7.6: Serrin's Problem—Complete Proof in 2D
-
-**Problem:**
-$$
-\begin{cases}
--\Delta u = 1 & \text{in } \Omega \subset \mathbb{R}^2 \\
-u = 0 & \text{on } \partial \Omega \\
-\partial_\nu u = c & \text{on } \partial \Omega
-\end{cases}
-$$
-
-**Step-by-Step Solution:**
-
-1. **Moving Planes in $x_1$-direction:**
-   For $\lambda < \lambda_1 = \inf \{x_1 : x \in \Omega\}$ define:
-
-   $$
-   w_\lambda(x) = u(x^\lambda) - u(x)
-   $$
-
-   where $x^\lambda = (2\lambda - x_1, x_2)$.
-
-2. **Equation for $w_\lambda$:**
-   In $\Sigma_\lambda = \{x \in \Omega: x_1 < \lambda\}$:
-
-   $$
-   -\Delta w_\lambda = 0
-   $$
-
-3. **Boundary Conditions:**
-   $w_\lambda = 0$ on $\{x_1 = \lambda\} \cap \Omega$
-
-   On reflected boundary: $\partial_\nu u(x^\lambda) = c = \partial_\nu u(x)$
-
-4. **Hopf Lemma Application:**
-   At boundary points, $\partial_\nu w_\lambda \geq 0$ (strict unless $w_\lambda \equiv 0$).
-
-5. **Continuation:**
-   $w_\lambda \geq 0$ in $\Sigma_\lambda$. As $\lambda$ increases, either:
-   - $w_\lambda \equiv 0$ (symmetry), or
-   - $\partial_\nu w_\lambda > 0$ somewhere
-
-6. **Global Symmetry:**
-   The stopping plane $\lambda^*$ gives reflection symmetry. Rotating direction $\gamma$ and repeating gives full rotational symmetry.
-
-7. **Final Result:**
-   $\Omega = B_R(0)$, $u(r) = \frac{1}{4}(R^2 - r^2)$, $c = R$
-
-### Example 6.7.7: Moving Planes for Monge-Ampère
-
-**Problem:** $\det(D^2 u) = 1$, $u|_{\partial \Omega} = 0$, $|\nabla u|_{\partial \Omega} = c$
-
-**Step-by-Step Solution:**
-
-1. **Reflection Function:**
-   $$
-   w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(|x^\lambda|^2 - |x|^2)
-   $$
-
-2. **Key Computation:**
-   $$
-   \det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) & * \\ * & D^2 u(x) \end{pmatrix} + \text{lower order}
-   $$
-
-3. **Block Determinant Analysis:**
-   Shows $w_\lambda \geq 0$ by convexity.
-
-### Example 6.7.8: Real Monge-Ampère Equation
-
-**Problem:** $\det\begin{pmatrix} u_{xx} & u_{xy} \\ u_{yx} & u_{yy} \end{pmatrix} = e^u$ (complex geometry)
-
-**Step-by-Step Solution:**
-
-1. **Linearization:**
-   $$
-   L v = u_{xx} v_{yy} + u_{yy} v_{xx} - 2 u_{xy} v_{xy} + e^u v
-   $$
-
-2. **Eigenvalue Analysis:**
-   The symbol $p(\xi) = u_{xx} \xi_2^2 + u_{yy} \xi_1^2 - 2 u_{xy} \xi_1 \xi_2$ is elliptic iff $D^2 u \succ 0$.
-
-3. **Geometric Interpretation:**
-   This equation arises in Kähler geometry, where $u$ represents a Kähler potential and the equation prescribes the Ricci curvature.
+> Eigenvalue analysis shows the symbol $p(\xi) = u_{xx} \xi_2^2 + u_{yy} \xi_1^2 - 2 u_{xy} \xi_1 \xi_2$ is elliptic if and only if $D^2 u \succ 0$. This equation arises in Kähler geometry, where $u$ represents a Kähler potential and the equation prescribes the Ricci curvature, demonstrating how fully nonlinear equations encode geometric structures.
 
 ## References
 

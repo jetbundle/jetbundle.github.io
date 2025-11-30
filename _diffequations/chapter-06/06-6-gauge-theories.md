@@ -116,245 +116,49 @@ This completes the geometric program of Chapter 6: we have moved from local solu
 
 > The Yang-Mills functional is $\mathcal{YM}(A) = \int_{\mathbb{R}^4} \mid F \mid^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2$, and the topological charge is $k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1$. Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space. The global gauge transformation $A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}$ with $g(x) = \frac{x^4 + i x^a \sigma^a}{\mid x \mid}$ preserves self-duality since $F^{g} = g F g^{-1}$, demonstrating how instantons encode topological information through their moduli spaces.
 
-### Example 6.6.2: Index Theorem Computation on $S^4$
+> **Index Theorem Computation on $S^4$**
 
-**Problem:** Compute the dimension of the moduli space of instantons on $S^4$.
+> To compute the dimension of the moduli space of instantons on $S^4$, we consider $S^4$ with standard metric and an $SU(2)$-bundle with $c_2 = 1$. The deformation complex is $0 \to \Omega^0(\mathfrak{su}(2)) \xrightarrow{d_A} \Omega^1(\mathfrak{su}(2)) \xrightarrow{d_A^+} \Omega^{2+}(\mathfrak{su}(2)) \to 0$.
 
-**Step-by-Step Solution:**
+> The dimension formula gives $\dim \mathcal{M}_1 = 8 \cdot 1 - 3(1 - b_1 + b_2^+) = 8 - 3(1 - 0 + 0) = 5$. For explicit cohomology computation, harmonic forms on $S^4$ have $\dim H^0 = 1$, $\dim H^1 = 0$, $\dim H^2 = 0$, $\dim H^3 = 0$, and $\dim H^4 = 1$. By Atiyah-Hitchin-Singer, the bundle cohomology gives $\dim \ker d_A^+ = h^0 + h^2_+ = 1 + 3 = 4$ and $\dim \coker d_A = h^1 + h^3 = 0 + 0 = 0$, so the index is $4 - 0 + \dim \ker d_A = 5$.
 
-1. **Manifold:** $S^4$ with standard metric
+> For explicit kernel computation, we solve $d_A^+ \phi = 0$ where $\phi \in \Omega^1(\mathfrak{su}(2))$. Using the ansatz $\phi_\mu = f(r) \eta_{\mu\nu} x^\nu \sigma^3$, the solution $f(r) = \frac{\rho^2}{(r^2 + \rho^2)^2}$ gives 5 independent solutions: 3 translations $\partial_{x^i} A$, 1 dilation $\partial_\rho A$, and 1 global gauge $d_A \alpha$ with $\alpha = \sigma^3$, demonstrating how the index theorem systematically counts moduli.
 
-2. **Bundle:** $SU(2)$-bundle with $c_2 = 1$
+> **2-Instanton Moduli Space Geometry**
 
-3. **Deformation Complex:**
-   $$
-   0 \to \Omega^0(\mathfrak{su}(2)) \xrightarrow{d_A} \Omega^1(\mathfrak{su}(2)) \xrightarrow{d_A^+} \Omega^{2+}(\mathfrak{su}(2)) \to 0
-   $$
+> To construct an explicit 2-instanton and compute the moduli space metric, we use the ADHM construction. For $k=2$, the ADHM data consists of $B_1, B_2 \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^2)$, $I \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^4)$, and $J \in \text{Hom}(\mathbb{C}^4, \mathbb{C}^2)$.
 
-4. **Index Computation:**
-   Dimension formula:
+> The moment map equations are $[B_1, B_1^\dagger] + [B_2, B_2^\dagger] + I I^\dagger = 0$ and $[B_1, B_2^\dagger] - [B_2, B_1^\dagger] + I J^\dagger - J I^\dagger = 0$. The explicit solution (Atiyah-Drinfeld-Hitchin-Manin) is $B_1 = \begin{pmatrix} z_1 & 0 \\ 0 & z_2 \end{pmatrix}$ and $B_2 = \begin{pmatrix} 0 & -w_2 \\ w_1 & 0 \end{pmatrix}$ where $z_1, z_2 \in \mathbb{C}^2$ provide 8 real parameters (positions).
 
-   $$
-   \dim \mathcal{M}_1 = 8 \cdot 1 - 3(1 - b_1 + b_2^+) = 8 - 3(1 - 0 + 0) = 5
-   $$
+> The moduli space metric (Atiyah-Hitchin metric) is $ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2$ where $r = \mid z_1 - z_2 \mid$ is the separation distance. For small $r$, the explicit computation gives $h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)$. As $r \to 0$, the metric degenerates at the bubbling point, demonstrating how the moduli space geometry encodes the interaction between instantons.
 
-5. **Explicit Cohomology Computation:**
-   Harmonic forms on $S^4$: $\dim H^0 = 1$, $\dim H^1 = 0$, $\dim H^2 = 0$, $\dim H^3 = 0$, $\dim H^4 = 1$
+> **Uhlenbeck Compactification and Bubbling**
 
-   Bundle cohomology (by Atiyah-Hitchin-Singer):
+> To construct an explicit sequence exhibiting bubbling, we consider a sequence $A_n$ on $S^4$ given by $A_n = A_1 + \frac{1}{n} A_2 \circ \phi_n$ where $\phi_n: S^4 \to S^4$ is stereographic projection concentrating at the north pole.
 
-   $$
-   \dim \ker d_A^+ = h^0 + h^2_+ = 1 + 3 = 4
-   $$
+> The energy decomposition shows $\mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)$. Curvature concentration occurs as $\int_{B(p,1/n)} \mid F_{A_n} \mid^2 \to 8\pi^2$ when $n \to \infty$.
 
-   $$
-   \dim \coker d_A = h^1 + h^3 = 0 + 0 = 0
-   $$
+> For weak convergence analysis, we extract the bubble by rescaling: define $\tilde{A}_n(x) = n A_n\left( \frac{x}{n} \right)$ with domain $B\left(p, \frac{1}{n}\right) \to \mathbb{R}^4$. The limit is $\tilde{A}_n \rightharpoonup A_{\text{BPST}}$ in $L^{3/2}_{\text{loc}}$. Verification shows $\int_{\mathbb{R}^4} \mid F_{\tilde{A}_n} \mid^2 \to 8\pi^2$ with boundary behavior $\tilde{A}_n \to 0$ weakly at infinity, demonstrating how energy concentrates at points in the Uhlenbeck compactification.
 
-   Index $= 4 - 0 + \dim \ker d_A = 5$ ✓
+> **Donaldson Invariant Computation**
 
-6. **Explicit Kernel Computation:**
-   Infinitesimal deformations: Solve $d_A^+ \phi = 0$ where $\phi \in \Omega^1(\mathfrak{su}(2))$
+> To compute the 4th Donaldson invariant for $\mathbb{CP}^2$, we consider $\mathbb{CP}^2$ with Fubini-Study metric and instanton number $k=1$. The 4th Donaldson invariant is $D_4([\mathbb{CP}^2], k=1) = \int_{\mathcal{M}_1} \omega_2^2$ where $\omega_2 \in H^2(\mathcal{M}_1)$ is the universal cohomology class.
 
-   Ansatz: $\phi_\mu = f(r) \eta_{\mu\nu} x^\nu \sigma^3$
+> The geometric computation shows the moduli space is $\mathcal{M}_1(\mathbb{CP}^2) \cong \mathbb{CP}^3$ with dimension $\dim = 8 - 3(1-0+1) = 5$. The Kähler form is $\omega_{\mathcal{M}} =$ pullback of Fubini-Study. The integral evaluation gives $\int_{\mathbb{CP}^3} \omega_{\mathcal{M}}^2 = \int_{\mathbb{CP}^3} c_1^2(\mathcal{O}(1)) = 1$, so $D_4(\mathbb{CP}^2, 1) = 1$.
 
-   Solution: $f(r) = \frac{\rho^2}{(r^2 + \rho^2)^2}$ gives 5 independent solutions:
-   - 3 translations: $\partial_{x^i} A$
-   - 1 dilation: $\partial_\rho A$
-   - 1 global gauge: $d_A \alpha$, $\alpha = \sigma^3$
+> The exotic 4-manifold distinction shows that Donaldson invariants distinguish smooth structures: $\mathbb{CP}^2$ has $D_4(1) = 1$, $K3$ has $D_4(1) = 0$, and $S^2 \times S^2$ has $D_4(1) = -1$, demonstrating how these invariants encode topological information that distinguishes manifolds that are homeomorphic but not diffeomorphic.
 
-### Example 6.6.3: 2-Instanton Moduli Space Geometry
+> **Supersymmetry Connection**
 
-**Problem:** Construct explicit 2-instanton and compute moduli space metric.
+> To show instantons as supersymmetric vacua, we begin with the supersymmetry algebra $\{Q_\alpha, \bar{Q}_{\dot{\beta}}\} = \delta_{\alpha\dot{\beta}} H$. The instanton equation $F^+ = 0$ is equivalent to $[Q, \bar{Q}] A = 0$.
 
-**Step-by-Step Solution:**
+> Applying the Witten index, we have $\text{Witten Index} = \dim \ker D^+ - \dim \ker D^-$. For the BPST instanton, $\text{Index}(D^+) = 5$ and $\text{Index}(D^-) = 0$. The physical interpretation shows 5 bosonic zero modes and no fermionic zero modes. Instantons are the supersymmetric vacua connecting geometric analysis to quantum field theory, demonstrating how gauge theory solutions encode both geometric and physical structure.
 
-1. **ADHM Construction:**
-   ADHM data for $k=2$:
+> **Kuranishi Resolution of Singular Moduli**
 
-   $B_1, B_2 \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^2)$, $I \in \text{Hom}(\mathbb{C}^2, \mathbb{C}^4)$, $J \in \text{Hom}(\mathbb{C}^4, \mathbb{C}^2)$
+> To resolve a singular moduli point using the Kuranishi method, we consider an $SU(2)$-bundle over $T^4$ with torsion. The deformation complex cohomology shows $H^1(\text{ad} P) \neq 0$ and $H^2_+(\text{ad} P) \neq 0$, with obstruction space $H^2_+(\text{ad} P)$.
 
-2. **Moment Map Equations:**
-   $$
-   [B_1, B_1^\dagger] + [B_2, B_2^\dagger] + I I^\dagger = 0
-   $$
-
-   $$
-   [B_1, B_2^\dagger] - [B_2, B_1^\dagger] + I J^\dagger - J I^\dagger = 0
-   $$
-
-3. **Explicit Solution (Atiyah-Drinfeld-Hitchin-Manin):**
-   $$
-   B_1 = \begin{pmatrix} z_1 & 0 \\ 0 & z_2 \end{pmatrix}, \quad B_2 = \begin{pmatrix} 0 & -w_2 \\ w_1 & 0 \end{pmatrix}
-   $$
-
-   Positions: $z_1, z_2 \in \mathbb{C}^2$ (8 real parameters)
-
-4. **Moduli Space Metric (Atiyah-Hitchin metric):**
-   $$
-   ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2
-   $$
-
-   where $r = |z_1 - z_2|$ is separation distance.
-
-5. **Explicit Computation for Small $r$:**
-   $$
-   h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)
-   $$
-
-6. **Verification:**
-   As $r \to 0$, metric degenerates (bubbling point).
-
-### Example 6.6.4: Uhlenbeck Compactification Analysis
-
-**Problem:** Construct explicit sequence exhibiting bubbling.
-
-**Step-by-Step Solution:**
-
-1. **Bubbling Sequence Construction:**
-   Construct sequence $A_n$ on $S^4$:
-
-   $$
-   A_n = A_1 + \frac{1}{n} A_2 \circ \phi_n
-   $$
-
-   where $\phi_n: S^4 \to S^4$ is stereographic projection concentrating at north pole.
-
-2. **Energy Decomposition:**
-   $$
-   \mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)
-   $$
-
-3. **Curvature Concentration:**
-   $$
-   \int_{B(p,1/n)} |F_{A_n}|^2 \to 8\pi^2 \quad \text{as} \quad n \to \infty
-   $$
-
-4. **Weak Convergence Analysis:**
-   Extract bubble:
-
-   Rescale: Define $\tilde{A}_n(x) = n A_n\left( \frac{x}{n} \right)$
-
-   Domain: $B\left(p, \frac{1}{n}\right) \to \mathbb{R}^4$
-
-   Limit: $\tilde{A}_n \rightharpoonup A_{\text{BPST}}$ in $L^{3/2}_{\text{loc}}$
-
-5. **Verification:**
-   $$
-   \int_{\mathbb{R}^4} |F_{\tilde{A}_n}|^2 \to 8\pi^2
-   $$
-
-   Boundary behavior: $\tilde{A}_n \to 0$ weakly at infinity.
-
-### Example 6.6.5: Donaldson Invariant Computation
-
-**Problem:** Compute the 4th Donaldson invariant for $\mathbb{CP}^2$.
-
-**Step-by-Step Solution:**
-
-1. **Manifold:** $\mathbb{CP}^2$ with Fubini-Study metric
-
-2. **Instanton Number:** $k=1$
-
-3. **4th Donaldson Invariant:**
-   $$
-   D_4([\mathbb{CP}^2], k=1) = \int_{\mathcal{M}_1} \omega_2^2
-   $$
-
-   where $\omega_2 \in H^2(\mathcal{M}_1)$ is universal cohomology class.
-
-4. **Geometric Computation:**
-   Moduli space: $\mathcal{M}_1(\mathbb{CP}^2) \cong \mathbb{CP}^3$
-
-   Dimension: $\dim = 8 - 3(1-0+1) = 5$
-
-   Kähler form: $\omega_{\mathcal{M}} =$ pullback of Fubini-Study
-
-5. **Integral Evaluation:**
-   $$
-   \int_{\mathbb{CP}^3} \omega_{\mathcal{M}}^2 = \int_{\mathbb{CP}^3} c_1^2(\mathcal{O}(1)) = 1
-   $$
-
-6. **Result:** $D_4(\mathbb{CP}^2, 1) = 1$
-
-7. **Exotic 4-Manifold Distinction:**
-
-| Manifold | $b_2^+$ | $\dim \mathcal{M}_1$ | $D_4(1)$ |
-|----------|---------|---------------------|----------|
-| $\mathbb{CP}^2$ | 1 | 5 | 1 |
-| $K3$ | 3 | 1 | 0 |
-| $S^2 \times S^2$ | 2 | 3 | -1 |
-
-   **Conclusion:** Donaldson invariants distinguish smooth structures.
-
-### Example 6.6.6: Supersymmetry Connection (Chapter 5.9 Link)
-
-**Problem:** Show instantons as supersymmetric vacua.
-
-**Step-by-Step Solution:**
-
-1. **Supersymmetry Algebra:**
-   $$
-   \{Q_\alpha, \bar{Q}_{\dot{\beta}}\} = \delta_{\alpha\dot{\beta}} H
-   $$
-
-2. **Instanton Equation:**
-   $F^+ = 0 \iff [Q, \bar{Q}] A = 0$
-
-3. **Witten Index Application:**
-   $$
-   \text{Witten Index} = \dim \ker D^+ - \dim \ker D^-
-   $$
-
-   For BPST instanton:
-
-   $$
-   \text{Index}(D^+) = 5, \quad \text{Index}(D^-) = 0
-   $$
-
-4. **Physical Interpretation:**
-   5 bosonic zero modes, no fermionic zero modes.
-
-   **Key Insight:** Instantons are the supersymmetric vacua connecting geometric analysis to quantum field theory.
-
-### Example 6.6.7: Explicit Kuranishi Resolution
-
-**Problem:** Resolve a singular moduli point using Kuranishi method.
-
-**Step-by-Step Solution:**
-
-1. **Setup:** $SU(2)$-bundle over $T^4$ with torsion
-
-2. **Deformation Complex Cohomology:**
-   $$
-   H^1(\text{ad} P) \neq 0, \quad H^2_+(\text{ad} P) \neq 0
-   $$
-
-3. **Obstruction Space:** $H^2_+(\text{ad} P)$
-
-4. **Kuranishi Map:**
-   $$
-   \Phi: \ker d_A \to H^2_+(\text{ad} P)
-   $$
-
-5. **Explicit Computation for Torsion Bundle:**
-   $$
-   \Phi(\phi) = \int_M \phi \wedge \omega_2
-   $$
-
-6. **Resolution:**
-   Moduli space near singularity:
-
-   $$
-   \mathcal{M} \cong \{ \phi \in \ker d_A : \Phi(\phi) = 0 \}
-   $$
-
-7. **Dimension:**
-   $$
-   \dim \ker d_A - \dim H^2_+ = 8k - 3(1-b_1+b_2^+) - \text{obstructions}
-   $$
-
-   **Key Insight:** The Kuranishi method provides a systematic way to resolve singularities in moduli spaces, connecting to the obstruction theory of Chapter 6.2.
+> The Kuranishi map is $\Phi: \ker d_A \to H^2_+(\text{ad} P)$. For the torsion bundle, the explicit computation gives $\Phi(\phi) = \int_M \phi \wedge \omega_2$. The resolution shows the moduli space near the singularity is $\mathcal{M} \cong \{ \phi \in \ker d_A : \Phi(\phi) = 0 \}$. The dimension is $\dim \ker d_A - \dim H^2_+ = 8k - 3(1-b_1+b_2^+) - \text{obstructions}$. The Kuranishi method provides a systematic way to resolve singularities in moduli spaces, connecting to the obstruction theory of Chapter 6.2 and demonstrating how algebraic methods resolve geometric singularities.
 
 ## References
 
