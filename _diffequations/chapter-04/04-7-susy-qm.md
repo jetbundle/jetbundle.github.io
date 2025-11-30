@@ -12,9 +12,8 @@ parent_chapter: 4
 parent_section: null
 ---
 
-# Section 4.7: Supersymmetric Quantum Mechanics
 
-> The solvability of quantum mechanical potentials is not accidental—it emerges from a hidden algebraic structure that pairs Hamiltonians and transforms spectral problems into algebraic ones.
+The solvability of quantum mechanical potentials is not accidental—it emerges from a hidden algebraic structure that pairs Hamiltonians and transforms spectral problems into algebraic ones.
 
 ## Introduction
 

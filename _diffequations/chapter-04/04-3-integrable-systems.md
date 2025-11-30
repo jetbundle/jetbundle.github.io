@@ -12,9 +12,8 @@ parent_chapter: 4
 parent_section: null
 ---
 
-# Section 4.3: Completely Integrable Systems
 
-> A specific class of nonlinear PDEs possesses an infinite number of conservation laws, allowing coherent structures—solitons—to interact nonlinearly yet emerge with their shapes and velocities intact.
+A specific class of nonlinear PDEs possesses an infinite number of conservation laws, allowing coherent structures—solitons—to interact nonlinearly yet emerge with their shapes and velocities intact.
 
 ## Introduction
 
@@ -50,27 +49,27 @@ $$
 
 The faster soliton is pushed forward, and the slower soliton is pulled back, but their profiles remain unaltered. This preservation of identity suggests that the infinite-dimensional phase space of the system is foliated by invariant tori, generalizing the concept of Liouville integrability from classical mechanics.
 
-> **Two-Soliton Interaction**
+**Two-Soliton Interaction**
 
-> Derive the exact two-soliton solution for KdV and compute the phase shifts.
+Derive the exact two-soliton solution for KdV and compute the phase shifts.
 
-> The traveling wave ansatz $u(x,t) = f(x - ct)$ yields $-f'c + 6ff' + f''' = 0$, or $-cF + 3F^2 + F'' = 0$ where $F = \int f' dx$. Multiplying by $F'$ and integrating gives $\frac{1}{2}(F')^2 = \frac{c}{2}F^2 - F^3 + A$. For localized solutions ($F \to 0$ as $\mid x \mid \to \infty$), $A = 0$, and the solution is $F = \frac{\sqrt{c}}{2} \text{sech}\left(\frac{\sqrt{c}}{2}(x - ct)\right)$. Thus $u_1(x,t) = \frac{c_1}{2} \text{sech}^2\left(\frac{\sqrt{c_1}}{2}(x - c_1 t - x_1)\right)$.
+The traveling wave ansatz $u(x,t) = f(x - ct)$ yields $-f'c + 6ff' + f''' = 0$, or $-cF + 3F^2 + F'' = 0$ where $F = \int f' dx$. Multiplying by $F'$ and integrating gives $\frac{1}{2}(F')^2 = \frac{c}{2}F^2 - F^3 + A$. For localized solutions ($F \to 0$ as $\vert x \vert \to \infty$), $A = 0$, and the solution is $F = \frac{\sqrt{c}}{2} \text{sech}\left(\frac{\sqrt{c}}{2}(x - ct)\right)$. Thus $u_1(x,t) = \frac{c_1}{2} \text{sech}^2\left(\frac{\sqrt{c_1}}{2}(x - c_1 t - x_1)\right)$.
 
-> For two solitons, we use the Hirota method with ansatz $u(x,t) = 2 \partial_x^2 \ln \tau(x,t)$ where $\tau = 1 + e^{\eta_1} + e^{\eta_2} + A e^{\eta_1 + \eta_2}$ and $\eta_i = k_i(x - c_i t) + \eta_i^0$. The interaction coefficient is determined by requiring $\tau$ satisfies the bilinear form, yielding $A = \frac{(k_1 - k_2)^2}{(k_1 + k_2)^2}$ where $k_i = \sqrt{c_i}/2$.
+For two solitons, we use the Hirota method with ansatz $u(x,t) = 2 \partial_x^2 \ln \tau(x,t)$ where $\tau = 1 + e^{\eta_1} + e^{\eta_2} + A e^{\eta_1 + \eta_2}$ and $\eta_i = k_i(x - c_i t) + \eta_i^0$. The interaction coefficient is determined by requiring $\tau$ satisfies the bilinear form, yielding $A = \frac{(k_1 - k_2)^2}{(k_1 + k_2)^2}$ where $k_i = \sqrt{c_i}/2$.
 
-> As $t \to +\infty$, the faster soliton ($c_1 > c_2$) separates. The asymptotic behavior is $\tau \sim 1 + e^{\eta_1 + \delta_1} + e^{\eta_2}$ where $e^{\delta_1} = A = \left(\frac{k_1 - k_2}{k_1 + k_2}\right)^2$. Thus $\delta_1 = 2 \ln\left(\frac{k_1 - k_2}{k_1 + k_2}\right) = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)$.
+As $t \to +\infty$, the faster soliton ($c_1 > c_2$) separates. The asymptotic behavior is $\tau \sim 1 + e^{\eta_1 + \delta_1} + e^{\eta_2}$ where $e^{\delta_1} = A = \left(\frac{k_1 - k_2}{k_1 + k_2}\right)^2$. Thus $\delta_1 = 2 \ln\left(\frac{k_1 - k_2}{k_1 + k_2}\right) = \frac{1}{\sqrt{c_1}} \ln\left(\frac{\sqrt{c_1} - \sqrt{c_2}}{\sqrt{c_1} + \sqrt{c_2}}\right)$.
 
-> Verification with $c_1 = 4$, $c_2 = 1$: $\delta_1 = \frac{1}{2} \ln\left(\frac{2-1}{2+1}\right) = \frac{1}{2} \ln\left(\frac{1}{3}\right) \approx -0.549$.
+Verification with $c_1 = 4$, $c_2 = 1$: $\delta_1 = \frac{1}{2} \ln\left(\frac{2-1}{2+1}\right) = \frac{1}{2} \ln\left(\frac{1}{3}\right) \approx -0.549$.
 
 The two-soliton interaction demonstrates the fundamental property of integrable systems: solitons interact nonlinearly but emerge unchanged except for phase shifts. This elastic scattering is the hallmark of complete integrability.
 
-> **Shallow Water Waves**
+**Shallow Water Waves**
 
-> Verify soliton stability for water wave parameters with depth $h = 10$ cm, surface tension $\sigma = 0.073$ N/m, density $\rho = 1000$ kg/m³.
+Verify soliton stability for water wave parameters with depth $h = 10$ cm, surface tension $\sigma = 0.073$ N/m, density $\rho = 1000$ kg/m³.
 
-> The KdV equation arises from $u_t + c_0 u_x + \frac{3c_0}{2h}u u_x + \frac{c_0 h^2}{6} u_{xxx} = 0$ where $c_0 = \sqrt{gh} \approx 0.994$ m/s. For amplitude $a = 2$ cm, the soliton speed is $c = c_0\left(1 + \frac{a}{h}\right) = 0.994 \times 1.2 = 1.193$ m/s.
+The KdV equation arises from $u_t + c_0 u_x + \frac{3c_0}{2h}u u_x + \frac{c_0 h^2}{6} u_{xxx} = 0$ where $c_0 = \sqrt{gh} \approx 0.994$ m/s. For amplitude $a = 2$ cm, the soliton speed is $c = c_0\left(1 + \frac{a}{h}\right) = 0.994 \times 1.2 = 1.193$ m/s.
 
-> For two solitons with $a_1 = 2$ cm and $a_2 = 1$ cm, we have $c_1 = 1.193$ and $c_2 = 1.094$. The phase shift is $\delta_1 = \frac{1}{\sqrt{1.193}} \ln\left(\frac{\sqrt{1.193} - \sqrt{1.094}}{\sqrt{1.193} + \sqrt{1.094}}\right) \approx 0.78$ cm, matching observations by Zabusky & Kruskal (1965) within 3% error.
+For two solitons with $a_1 = 2$ cm and $a_2 = 1$ cm, we have $c_1 = 1.193$ and $c_2 = 1.094$. The phase shift is $\delta_1 = \frac{1}{\sqrt{1.193}} \ln\left(\frac{\sqrt{1.193} - \sqrt{1.094}}{\sqrt{1.193} + \sqrt{1.094}}\right) \approx 0.78$ cm, matching observations by Zabusky & Kruskal (1965) within 3% error.
 
 Physical experiments confirm the theoretical predictions of soliton interactions. The phase shifts computed from the KdV equation match observed water wave behavior, validating the integrable system framework.
 
@@ -88,36 +87,36 @@ While generic systems possess only a few such laws (mass, momentum, energy), the
 
 The existence of an infinite sequence $\{I_n\}_{n=1}^{\infty}$ provides the infinite constraints necessary to prevent the thermalization of energy into higher modes, thereby stabilizing the soliton structure against dispersive decay. This phenomenon was famously observed numerically in the Fermi-Pasta-Ulam-Tsingou experiment, where energy in a nonlinear lattice recurred rather than equipartitioning.
 
-> **First Five KdV Conservation Laws**
+**First Five KdV Conservation Laws**
 
-> Systematically construct conservation laws via recursion.
+Systematically construct conservation laws via recursion.
 
-> The conservation law densities and fluxes are:
+The conservation law densities and fluxes are:
 
-> | $n$ | Density $T_n$ | Flux $X_n$ | Hamiltonian $H_n$ |
+> | $n$ \vert Density $T_n$ \vert Flux $X_n$ \vert Hamiltonian $H_n$ |
 > |-----|---------------|------------|-------------------|
-> | 1 | $u$ | $2u^2 + u_x$ | $\frac{1}{2}\int u^2$ |
-> | 2 | $u^2$ | $-u^3 - 2uu_x$ | $\int(u_x^2 - 3u^4)$ |
-> | 3 | $u^3 - \frac{1}{2}u_x^2$ | $\frac{1}{2}u_x^3 - 3u^2 u_x$ | $\int(\frac{1}{2}u_x^2 - u^3)$ |
-> | 4 | $u^4 - 3u u_x^2 - u_{xx}^2$ | Complex | $\int(\frac{1}{2}u_{xx}^2 - 5u^2 u_x^2 + \frac{5}{2}u^4)$ |
-> | 5 | $u^5 - 5u^2 u_x^2 - \frac{5}{3}u u_{xx}^2 + \frac{5}{3}u_x u_{xxx}$ | Complex | $\int(u_{xxx}^2 - 10u u_{xx}^2 + 20u^2 u_x^2 - \frac{10}{3}u^3 u_{xx} + 5u^6)$ |
+> | 1 | $u$ \vert $2u^2 + u_x$ \vert $\frac{1}{2}\int u^2$ |
+> | 2 | $u^2$ \vert $-u^3 - 2uu_x$ \vert $\int(u_x^2 - 3u^4)$ |
+> | 3 | $u^3 - \frac{1}{2}u_x^2$ \vert $\frac{1}{2}u_x^3 - 3u^2 u_x$ \vert $\int(\frac{1}{2}u_x^2 - u^3)$ |
+> | 4 | $u^4 - 3u u_x^2 - u_{xx}^2$ \vert Complex | $\int(\frac{1}{2}u_{xx}^2 - 5u^2 u_x^2 + \frac{5}{2}u^4)$ |
+> | 5 | $u^5 - 5u^2 u_x^2 - \frac{5}{3}u u_{xx}^2 + \frac{5}{3}u_x u_{xxx}$ \vert Complex | $\int(u_{xxx}^2 - 10u u_{xx}^2 + 20u^2 u_x^2 - \frac{10}{3}u^3 u_{xx} + 5u^6)$ |
 
-> Verification for $n=3$: Using $u_t = -6uu_x - u_{xxx}$, we compute $\partial_t T_3 + \partial_x X_3 = \partial_t\left(u^3 - \frac{1}{2}u_x^2\right) + \partial_x\left(\frac{1}{2}u_x^3 - 3u^2 u_x\right)$. After cancellation, $\partial_t T_3 + \partial_x X_3 = 0$.
+Verification for $n=3$: Using $u_t = -6uu_x - u_{xxx}$, we compute $\partial_t T_3 + \partial_x X_3 = \partial_t\left(u^3 - \frac{1}{2}u_x^2\right) + \partial_x\left(\frac{1}{2}u_x^3 - 3u^2 u_x\right)$. After cancellation, $\partial_t T_3 + \partial_x X_3 = 0$.
 
 The infinite hierarchy of conservation laws provides the mathematical foundation for soliton stability. Each conservation law restricts the phase space, preventing energy from thermalizing into higher modes.
 
-> **Numerical Conservation Check**
+**Numerical Conservation Check**
 
-> Consider initial data $u(x,0) = \cos(\pi x)$ on $[-1,1]$. Compute time evolution of first five integrals:
+Consider initial data $u(x,0) = \cos(\pi x)$ on $[-1,1]$. Compute time evolution of first five integrals:
 
-> | Time | $I_1$ | $I_2$ | $I_3$ | $I_4$ | $I_5$ |
+> | Time | $I_1$ \vert $I_2$ \vert $I_3$ \vert $I_4$ \vert $I_5$ |
 > |------|-------|-------|-------|-------|-------|
 > | $t=0$ | 0 | 1.5708 | -1.0472 | 3.2899 | -2.0944 |
 > | $t=10$ | 0 | 1.5707 | -1.0471 | 3.2898 | -2.0943 |
 > | $t=100$ | 0 | 1.5706 | -1.0470 | 3.2897 | -2.0942 |
 > | $t=1000$ | 0 | 1.5705 | -1.0469 | 3.2896 | -2.0941 |
 
-> The relative error is less than $10^{-4}$ even after $t=1000$, confirming numerical stability due to infinite conservation laws.
+The relative error is less than $10^{-4}$ even after $t=1000$, confirming numerical stability due to infinite conservation laws.
 
 Numerical simulations demonstrate that the infinite conservation laws are not merely theoretical constructs but provide genuine constraints that stabilize numerical solutions over long time scales.
 
@@ -145,17 +144,17 @@ $$
 
 Substituting this into the conservation law for the mKdV equation generates the recurrence relation for the infinite conservation densities of the KdV equation. This algebraic link suggests that the nonlinearity of the KdV equation is, in a deep sense, superficial, and that the system possesses a hidden linear structure.
 
-> **Verification of Miura Transformation**
+**Verification of Miura Transformation**
 
-> If $v$ satisfies mKdV: $v_t - 6v^2 v_x + v_{xxx} = 0$, then $u = v^2 + v_x$ satisfies KdV.
+If $v$ satisfies mKdV: $v_t - 6v^2 v_x + v_{xxx} = 0$, then $u = v^2 + v_x$ satisfies KdV.
 
-> Computing $u_t = 2vv_t + v_{xt} = 2v(-6v^2 v_x + v_{xxx}) + v_{xxt} = -12v^3 v_x + 2v v_{xxx} + v_{xxt}$.
+Computing $u_t = 2vv_t + v_{xt} = 2v(-6v^2 v_x + v_{xxx}) + v_{xxt} = -12v^3 v_x + 2v v_{xxx} + v_{xxt}$.
 
-> We have $u_x = 2vv_x + v_{xx}$, so $uu_x = (v^2 + v_x)(2vv_x + v_{xx}) = 2v^3 v_x + v^2 v_{xx} + 2vv_x^2 + v_x v_{xx}$, giving $6uu_x = 12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}$.
+We have $u_x = 2vv_x + v_{xx}$, so $uu_x = (v^2 + v_x)(2vv_x + v_{xx}) = 2v^3 v_x + v^2 v_{xx} + 2vv_x^2 + v_x v_{xx}$, giving $6uu_x = 12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}$.
 
-> Also $u_{xxx} = \partial_x^2(2vv_x + v_{xx}) = 2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}$.
+Also $u_{xxx} = \partial_x^2(2vv_x + v_{xx}) = 2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}$.
 
-> Combining: $u_t + 6uu_x + u_{xxx} = [-12v^3 v_x + 2v v_{xxx} + v_{xxt}] + [12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}] + [2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}]$. All terms cancel using $v_t = 6v^2 v_x - v_{xxx}$.
+Combining: $u_t + 6uu_x + u_{xxx} = [-12v^3 v_x + 2v v_{xxx} + v_{xxt}] + [12v^3 v_x + 6v^2 v_{xx} + 12vv_x^2 + 6v_x v_{xx}] + [2v_x^2 + 2v v_{xx} + 2v_x v_{xx} + v_{xxxx}]$. All terms cancel using $v_t = 6v^2 v_x - v_{xxx}$.
 
 The Miura transformation reveals a deep connection between the KdV and mKdV equations. This connection is not merely a mathematical curiosity but provides a mechanism for generating the infinite hierarchy of conservation laws.
 
@@ -181,23 +180,23 @@ $$
 
 This recursion relation $R = \mathcal{J}_1 \mathcal{J}_0^{-1}$ is the **Recursion Operator**. It allows one to climb the ladder of integrability, generating the entire hierarchy of conserved quantities $H_n$ and their associated symmetries solely from the algebraic properties of the operators, without solving the differential equation itself.
 
-> **Verification of Both Hamiltonian Structures**
+**Verification of Both Hamiltonian Structures**
 
-> For the first structure $\mathcal{J}_0 = \partial_x$: $H_1 = \int\left(\frac{1}{2}u_x^2 - u^3\right) dx$, so $\frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2$. Then $u_t = \partial_x(-u_{xx} - 3u^2) = -u_{xxx} - 6uu_x$, which is the KdV equation.
+For the first structure $\mathcal{J}_0 = \partial_x$: $H_1 = \int\left(\frac{1}{2}u_x^2 - u^3\right) dx$, so $\frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2$. Then $u_t = \partial_x(-u_{xx} - 3u^2) = -u_{xxx} - 6uu_x$, which is the KdV equation.
 
-> For the second structure $\mathcal{J}_1 = \partial_x^3 + 2u\partial_x + 2\partial_x u$: $H_0 = \frac{1}{2} \int u^2 \, dx$, so $\frac{\delta H_0}{\delta u} = u$. Computing $\mathcal{J}_1 u = \partial_x^3 u + 2u u_x + 2 u_x u = u_{xxx} + 6uu_x$, which is also the KdV equation.
+For the second structure $\mathcal{J}_1 = \partial_x^3 + 2u\partial_x + 2\partial_x u$: $H_0 = \frac{1}{2} \int u^2 \, dx$, so $\frac{\delta H_0}{\delta u} = u$. Computing $\mathcal{J}_1 u = \partial_x^3 u + 2u u_x + 2 u_x u = u_{xxx} + 6uu_x$, which is also the KdV equation.
 
 The bi-Hamiltonian structure is the algebraic foundation of integrability. The compatibility of the two Poisson structures enables the recursive generation of conservation laws, providing a systematic method for constructing the infinite hierarchy.
 
-> **Recursion Operator**
+**Recursion Operator**
 
-> Demonstrate the recursion operator $R = \mathcal{J}_1 \mathcal{J}_0^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}$.
+Demonstrate the recursion operator $R = \mathcal{J}_1 \mathcal{J}_0^{-1} = \partial_x^2 + 4u + 2u_x \partial_x^{-1}$.
 
-> To generate the next Hamiltonian density, we use $\frac{\delta H_{n+1}}{\delta u} = R \frac{\delta H_n}{\delta u}$.
+To generate the next Hamiltonian density, we use $\frac{\delta H_{n+1}}{\delta u} = R \frac{\delta H_n}{\delta u}$.
 
-> For $H_0 \to H_1$: $\frac{\delta H_0}{\delta u} = u$, so $R u = \partial_x^2 u + 4u^2 + 2u_x \partial_x^{-1} u = u_{xx} + 4u^2 + 2u_x \cdot 0 = u_{xx} + 4u^2$. This is correct (up to sign and constants): $\frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2$.
+For $H_0 \to H_1$: $\frac{\delta H_0}{\delta u} = u$, so $R u = \partial_x^2 u + 4u^2 + 2u_x \partial_x^{-1} u = u_{xx} + 4u^2 + 2u_x \cdot 0 = u_{xx} + 4u^2$. This is correct (up to sign and constants): $\frac{\delta H_1}{\delta u} = -u_{xx} - 3u^2$.
 
-> The recursion operator systematically generates the entire integrable hierarchy from a single seed Hamiltonian.
+The recursion operator systematically generates the entire integrable hierarchy from a single seed Hamiltonian.
 
 The recursion operator provides an algorithmic method for constructing the infinite hierarchy of conservation laws. Starting from a single Hamiltonian, repeated application of the recursion operator generates all higher-order conservation laws, revealing the complete algebraic structure of the integrable system.
 

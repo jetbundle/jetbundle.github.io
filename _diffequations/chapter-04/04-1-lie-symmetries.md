@@ -12,9 +12,7 @@ parent_chapter: 4
 parent_section: null
 ---
 
-# Section 4.1: Lie Symmetries & Prolongation
-
-> The disparate "tricks" of integration—separation of variables, integrating factors, homogeneous substitutions—are all manifestations of a single unifying principle: invariance under continuous groups of transformations.
+The disparate "tricks" of integration—separation of variables, integrating factors, homogeneous substitutions—are all manifestations of a single unifying principle: invariance under continuous groups of transformations.
 
 ## Introduction
 
@@ -35,7 +33,7 @@ The computational power of Lie theory stems from **linearization**. Rather than 
 An element of the Lie algebra corresponds to a **vector field** on $M$. If $\Phi_\epsilon: M \to M$ is a one-parameter subgroup of transformations parameterized by $\epsilon$, the infinitesimal generator $\mathbf{v}$ is defined as:
 
 $$
-\mathbf{v}\mid_z = \frac{d}{d\epsilon}\mid_{\epsilon=0} \Phi_\epsilon(z)
+\mathbf{v}\vert_z = \frac{d}{d\epsilon}\vert_{\epsilon=0} \Phi_\epsilon(z)
 $$
 
 For a system with independent variables $x = (x^1, \dots, x^n)$ and dependent variables $u = (u^1, \dots, u^m)$, the vector field takes the local form:
@@ -97,54 +95,54 @@ $$
 The infinitesimal criterion for invariance requires that the prolonged vector field vanishes on the solution manifold:
 
 $$
-\text{pr}^{(n)}\mathbf{v} [\Delta_\nu] \mid_{\Delta=0} = 0
+\text{pr}^{(n)}\mathbf{v} [\Delta_\nu] \vert_{\Delta=0} = 0
 $$
 
 When we expand this condition, we obtain an expression involving $x$, $u$, and derivatives $u^{(n)}$. However, the coefficients $\xi$ and $\phi$ depend *only* on $x$ and $u$. Since the condition must hold for *all* solutions, the terms involving independent derivatives must vanish separately.
 
 This allows us to split the invariance condition into a system of linear, overdetermined partial differential equations for $\xi$ and $\phi$, known as the **determining equations**.
 
-> **The Heat Equation**
+**The Heat Equation**
 
-> Consider the linear heat equation $u_t = u_{xx}$. We seek a generator $\mathbf{v} = \xi \partial_x + \tau \partial_t + \phi \partial_u$.
+Consider the linear heat equation $u_t = u_{xx}$. We seek a generator $\mathbf{v} = \xi \partial_x + \tau \partial_t + \phi \partial_u$.
 
-> The invariance condition is:
+The invariance condition is:
 
-> $$
-> \phi^{t} - \phi^{xx} = 0
-> $$
+$$
+\phi^{t} - \phi^{xx} = 0
+$$
 
-> Substituting the prolongation formulae for $\phi^t$ and $\phi^{xx}$ and separating monomials in $u_x, u_{xx}$, etc., yields the defining relations for the symmetry group. For the heat equation, this reveals not only the obvious time and space translations but also the **Galilean boost**:
+Substituting the prolongation formulae for $\phi^t$ and $\phi^{xx}$ and separating monomials in $u_x, u_{xx}$, etc., yields the defining relations for the symmetry group. For the heat equation, this reveals not only the obvious time and space translations but also the **Galilean boost**:
 
-> $$
-> \mathbf{v} = 2t \partial_x - x u \partial_u
-> $$
+$$
+\mathbf{v} = 2t \partial_x - x u \partial_u
+$$
 
-> and the projective transformation, recovering the fundamental solution derived in Chapter 1.3.
+and the projective transformation, recovering the fundamental solution derived in Chapter 1.3.
 
 The determining equations transform the nonlinear problem of finding symmetries into a linear system of partial differential equations. This linearization is the key algorithmic advantage of Lie's method: we can systematically compute all symmetries by solving an overdetermined system, rather than guessing transformations.
 
-> **First-Order ODE Symmetries**
+**First-Order ODE Symmetries**
 
-> Find all Lie point symmetries of the ODE $y' = \frac{y}{x}$.
+Find all Lie point symmetries of the ODE $y' = \frac{y}{x}$.
 
-> We set up the generator $\mathbf{v} = \xi(x,y) \frac{\partial}{\partial x} + \phi(x,y) \frac{\partial}{\partial y}$. The first prolongation coefficient is $\phi^x = D_x(\phi) - y_x D_x(\xi)$ where $D_x = \partial_x + y' \partial_y = \partial_x + \frac{y}{x} \partial_y$.
+We set up the generator $\mathbf{v} = \xi(x,y) \frac{\partial}{\partial x} + \phi(x,y) \frac{\partial}{\partial y}$. The first prolongation coefficient is $\phi^x = D_x(\phi) - y_x D_x(\xi)$ where $D_x = \partial_x + y' \partial_y = \partial_x + \frac{y}{x} \partial_y$.
 
-> Computing $D_x(\phi) = \phi_x + \frac{y}{x} \phi_y$ and $D_x(\xi) = \xi_x + \frac{y}{x} \xi_y$, we obtain:
+Computing $D_x(\phi) = \phi_x + \frac{y}{x} \phi_y$ and $D_x(\xi) = \xi_x + \frac{y}{x} \xi_y$, we obtain:
 
-> $$
-> \phi^x = \phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right)
-> $$
+$$
+\phi^x = \phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right)
+$$
 
-> The action on $\frac{y}{x}$ gives $\text{pr}^{(1)}\mathbf{v}\left[\frac{y}{x}\right] = \frac{\phi}{x} - \frac{y \xi}{x^2}$. The invariance condition $\text{pr}^{(1)}\mathbf{v}[F] \mid_{F=0} = 0$ for $F(x,y,y') = y' - \frac{y}{x} = 0$ becomes:
+The action on $\frac{y}{x}$ gives $\text{pr}^{(1)}\mathbf{v}\left[\frac{y}{x}\right] = \frac{\phi}{x} - \frac{y \xi}{x^2}$. The invariance condition $\text{pr}^{(1)}\mathbf{v}[F] \vert_{F=0} = 0$ for $F(x,y,y') = y' - \frac{y}{x} = 0$ becomes:
 
-> $$
-> \phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right) - \frac{\phi}{x} + \frac{y \xi}{x^2} = 0
-> $$
+$$
+\phi_x + \frac{y}{x} \phi_y - \frac{y}{x} \left( \xi_x + \frac{y}{x} \xi_y \right) - \frac{\phi}{x} + \frac{y \xi}{x^2} = 0
+$$
 
-> Collecting terms by powers of $y$: $y^0$ terms give $\phi_x - \frac{\phi}{x} = 0$, $y^1$ terms give $\frac{1}{x} \phi_y - \frac{1}{x} \xi_x = 0$, and $y^2$ terms give $-\frac{1}{x^2} \xi_y = 0$. From the $y^2$ condition, $\xi_y = 0$ implies $\xi = \xi(x)$. From $y^1$, $\phi_y = \xi_x$, and from $y^0$, $\phi_x = \frac{\phi}{x}$. Solving this system yields $\xi = c_1$ (constant) and $\phi = c_2 x$.
+Collecting terms by powers of $y$: $y^0$ terms give $\phi_x - \frac{\phi}{x} = 0$, $y^1$ terms give $\frac{1}{x} \phi_y - \frac{1}{x} \xi_x = 0$, and $y^2$ terms give $-\frac{1}{x^2} \xi_y = 0$. From the $y^2$ condition, $\xi_y = 0$ implies $\xi = \xi(x)$. From $y^1$, $\phi_y = \xi_x$, and from $y^0$, $\phi_x = \frac{\phi}{x}$. Solving this system yields $\xi = c_1$ (constant) and $\phi = c_2 x$.
 
-> The complete symmetry algebra is $\mathbf{v} = c_1 \frac{\partial}{\partial x} + c_2 x \frac{\partial}{\partial y}$, where $c_1$ generates translation $x \to x + \epsilon$ and $c_2$ generates scaling $x \to e^\epsilon x$, $y \to e^\epsilon y$. Using the invariants $z = \frac{y}{x}$, we reduce the equation to $z' = 0$, so $y = kx$.
+The complete symmetry algebra is $\mathbf{v} = c_1 \frac{\partial}{\partial x} + c_2 x \frac{\partial}{\partial y}$, where $c_1$ generates translation $x \to x + \epsilon$ and $c_2$ generates scaling $x \to e^\epsilon x$, $y \to e^\epsilon y$. Using the invariants $z = \frac{y}{x}$, we reduce the equation to $z' = 0$, so $y = kx$.
 
 This example demonstrates the systematic nature of the determining equations: by separating coefficients of independent monomials, we obtain a finite system of linear PDEs that can be solved exactly. The resulting symmetries immediately provide a reduction method.
 
@@ -164,81 +162,81 @@ For ODEs, this reduces the order by one. If an $n$-th order ODE admits an $n$-di
 
 This systematic reduction explains the success of the ansatz methods in Chapter 1. The "similarity variable" $x/\sqrt{t}$ used to solve the heat equation is not a guess; it is an invariant of the scaling symmetry group.
 
-> **Heat Equation Similarity Solutions**
+**Heat Equation Similarity Solutions**
 
-> Derive the fundamental solution using Lie symmetries.
+Derive the fundamental solution using Lie symmetries.
 
-> The heat equation admits core generators $V_1 = \partial_t$, $V_2 = \partial_x$, $V_3 = 2t \partial_x - x u \partial_u$, and $V_4 = t \partial_t + \frac{x}{2} \partial_x - \frac{u}{2} \partial_u$. To find distinct similarity solutions, we compute the optimal system. The Lie algebra is 6-dimensional with specific commutation relations.
+The heat equation admits core generators $V_1 = \partial_t$, $V_2 = \partial_x$, $V_3 = 2t \partial_x - x u \partial_u$, and $V_4 = t \partial_t + \frac{x}{2} \partial_x - \frac{u}{2} \partial_u$. To find distinct similarity solutions, we compute the optimal system. The Lie algebra is 6-dimensional with specific commutation relations.
 
-> Considering the two-dimensional subalgebra generated by $V_4 + V_3$:
+Considering the two-dimensional subalgebra generated by $V_4 + V_3$:
 
-> $$
-> \mathbf{v} = t \partial_t + \frac{x}{2} \partial_x + \left( -\frac{1}{2} - 2t \right) u \partial_u
-> $$
+$$
+\mathbf{v} = t \partial_t + \frac{x}{2} \partial_x + \left( -\frac{1}{2} - 2t \right) u \partial_u
+$$
 
-> We solve $\mathbf{v}[r] = 0$ and $\mathbf{v}[s] = 1$ to find canonical coordinates $r = \frac{x}{\sqrt{t}}$ and $s = \log t$. In $(r,s)$ coordinates, the heat equation becomes an ODE in $r$:
+We solve $\mathbf{v}[r] = 0$ and $\mathbf{v}[s] = 1$ to find canonical coordinates $r = \frac{x}{\sqrt{t}}$ and $s = \log t$. In $(r,s)$ coordinates, the heat equation becomes an ODE in $r$:
 
-> $$
-> u_{ss} + \frac{1}{2} r u_{sr} - \frac{1}{4} u_{rr} - \frac{1}{2r} u_r - \frac{1}{2} u = 0
-> $$
+$$
+u_{ss} + \frac{1}{2} r u_{sr} - \frac{1}{4} u_{rr} - \frac{1}{2r} u_r - \frac{1}{2} u = 0
+$$
 
-> Using the ansatz $u = t^{-\frac{1}{2}} f(r)$ yields:
+Using the ansatz $u = t^{-\frac{1}{2}} f(r)$ yields:
 
-> $$
-> f'' + \frac{1}{r} f' + \frac{1}{4} r^2 f = 0
-> $$
+$$
+f'' + \frac{1}{r} f' + \frac{1}{4} r^2 f = 0
+$$
 
-> This is the parabolic cylinder equation. The fundamental solution is:
+This is the parabolic cylinder equation. The fundamental solution is:
 
-> $$
-> u(x,t) = \frac{1}{\sqrt{4\pi t}} \exp\left( -\frac{x^2}{4t} \right)
-> $$
+$$
+u(x,t) = \frac{1}{\sqrt{4\pi t}} \exp\left( -\frac{x^2}{4t} \right)
+$$
 
-> This precisely matches the Green's function from Chapter 1.3.
+This precisely matches the Green's function from Chapter 1.3.
 
 The reduction to canonical coordinates transforms the PDE into an ODE, making the solution accessible through standard methods. The similarity variable $r = x/\sqrt{t}$ emerges naturally from the symmetry structure, not from ad-hoc guessing.
 
-> **Emden-Fowler Equation**
+**Emden-Fowler Equation**
 
-> Find symmetries of the Emden-Fowler equation $y'' + \frac{2}{x} y' + x^\alpha y^\beta = 0$, which models polytropic stars in astrophysics. We compute for the critical case $\alpha = -2$, $\beta = 5$.
+Find symmetries of the Emden-Fowler equation $y'' + \frac{2}{x} y' + x^\alpha y^\beta = 0$, which models polytropic stars in astrophysics. We compute for the critical case $\alpha = -2$, $\beta = 5$.
 
-> The second prolongation is required: $\text{pr}^{(2)}\mathbf{v} = \mathbf{v} + \phi^x \partial_{y'} + \phi^{xx} \partial_{y''}$ with $\phi^x = D_x(\phi) - y' D_x(\xi)$ and $\phi^{xx} = D_x(\phi^x) - y'' D_x(\xi)$.
+The second prolongation is required: $\text{pr}^{(2)}\mathbf{v} = \mathbf{v} + \phi^x \partial_{y'} + \phi^{xx} \partial_{y''}$ with $\phi^x = D_x(\phi) - y' D_x(\xi)$ and $\phi^{xx} = D_x(\phi^x) - y'' D_x(\xi)$.
 
-> For $F = y'' + \frac{2}{x} y' + x^{-2} y^5 = 0$, the invariance condition is:
+For $F = y'' + \frac{2}{x} y' + x^{-2} y^5 = 0$, the invariance condition is:
 
-> $$
-> \text{pr}^{(2)}\mathbf{v}[F] = \phi^{xx} + \frac{2}{x} \phi^x - \frac{2}{x^2} y' \xi - \frac{5}{x^2} y^4 \phi = 0
-> $$
+$$
+\text{pr}^{(2)}\mathbf{v}[F] = \phi^{xx} + \frac{2}{x} \phi^x - \frac{2}{x^2} y' \xi - \frac{5}{x^2} y^4 \phi = 0
+$$
 
-> After extensive algebraic manipulation, the determining equations yield three types of symmetries: translation $\xi = c_1$, $\phi = 0$; scaling $\xi = c_2 x$, $\phi = -\frac{1}{3} c_2 y$; and a special symmetry $\xi = c_3 x^3$, $\phi = -c_3 x^2 y$.
+After extensive algebraic manipulation, the determining equations yield three types of symmetries: translation $\xi = c_1$, $\phi = 0$; scaling $\xi = c_2 x$, $\phi = -\frac{1}{3} c_2 y$; and a special symmetry $\xi = c_3 x^3$, $\phi = -c_3 x^2 y$.
 
-> The scaling symmetry explains self-similar collapse in stellar dynamics. The special symmetry $x^3 \partial_x - x^2 y \partial_y$ gives exact solutions. The Lie algebra structure is $[V_1,V_2] = V_2$, $[V_2,V_3] = 2V_3$.
+The scaling symmetry explains self-similar collapse in stellar dynamics. The special symmetry $x^3 \partial_x - x^2 y \partial_y$ gives exact solutions. The Lie algebra structure is $[V_1,V_2] = V_2$, $[V_2,V_3] = 2V_3$.
 
-> Using canonical coordinates for $V_3$: $r = \frac{1}{x^2}$ and $s = \frac{y}{x}$, the reduced equation becomes first-order in $(r, s')$, revealing exact solutions matching numerical simulations of stellar collapse.
+Using canonical coordinates for $V_3$: $r = \frac{1}{x^2}$ and $s = \frac{y}{x}$, the reduced equation becomes first-order in $(r, s')$, revealing exact solutions matching numerical simulations of stellar collapse.
 
 Physical applications demonstrate that symmetries are not merely mathematical curiosities but reflect deep physical principles. The self-similar collapse of polytropic stars is encoded in the scaling symmetry of the Emden-Fowler equation.
 
-> **Burgers' Equation Symmetry Analysis**
+**Burgers' Equation Symmetry Analysis**
 
-> Complete symmetry analysis of the inviscid Burgers' equation $u_t + u u_x = 0$.
+Complete symmetry analysis of the inviscid Burgers' equation $u_t + u u_x = 0$.
 
-> The generator is $\mathbf{v} = \xi(x,t,u) \partial_x + \tau(x,t,u) \partial_t + \phi(x,t,u) \partial_u$ with first prolongation:
+The generator is $\mathbf{v} = \xi(x,t,u) \partial_x + \tau(x,t,u) \partial_t + \phi(x,t,u) \partial_u$ with first prolongation:
 
-> $$
-> \phi^t = D_t(\phi) - u_t D_t(\tau) - u_x D_t(\xi), \quad \phi^x = D_x(\phi) - u_x D_x(\tau) - u_x D_x(\xi)
-> $$
+$$
+\phi^t = D_t(\phi) - u_t D_t(\tau) - u_x D_t(\xi), \quad \phi^x = D_x(\phi) - u_x D_x(\tau) - u_x D_x(\xi)
+$$
 
-> For $F = u_t + u u_x = 0$, the invariance condition is $\text{pr}^{(1)}\mathbf{v}[F] = \phi^t + u \phi^x + u_x \phi = 0$.
+For $F = u_t + u u_x = 0$, the invariance condition is $\text{pr}^{(1)}\mathbf{v}[F] = \phi^t + u \phi^x + u_x \phi = 0$.
 
-> After collecting 27 independent monomials in derivatives, we obtain the determining equations: $\phi_{uu} = 0$ (from $u_{tt}$, $u_{tx}$, $u_{xx}$ terms), $\phi_u = 2\tau_t + \xi_x$ (from $u_t$ term), $\phi_u = \tau_x + \xi_t$ (from $u_x$ term), and $\phi_t + u \phi_x = 0$ (constant term).
+After collecting 27 independent monomials in derivatives, we obtain the determining equations: $\phi_{uu} = 0$ (from $u_{tt}$, $u_{tx}$, $u_{xx}$ terms), $\phi_u = 2\tau_t + \xi_x$ (from $u_t$ term), $\phi_u = \tau_x + \xi_t$ (from $u_x$ term), and $\phi_t + u \phi_x = 0$ (constant term).
 
-> From $\phi_{uu} = 0$, we have $\phi = A(x,t) u + B(x,t)$. Consistency requires $\tau_x + \xi_t = 2\tau_t + \xi_x$, and from the constant term $A_t + u A_x = 0$, which implies $A = c_1$ (constant).
+From $\phi_{uu} = 0$, we have $\phi = A(x,t) u + B(x,t)$. Consistency requires $\tau_x + \xi_t = 2\tau_t + \xi_x$, and from the constant term $A_t + u A_x = 0$, which implies $A = c_1$ (constant).
 
-> The complete solution yields translations $\partial_t$, $\partial_x$; Galilean boost $t \partial_x$; scaling $2t \partial_t + x \partial_x$; projective transformation $t^2 \partial_t + t x \partial_x - t u \partial_u$; and an infinite-dimensional symmetry $\phi = f(t-x) \partial_u$.
+The complete solution yields translations $\partial_t$, $\partial_x$; Galilean boost $t \partial_x$; scaling $2t \partial_t + x \partial_x$; projective transformation $t^2 \partial_t + t x \partial_x - t u \partial_u$; and an infinite-dimensional symmetry $\phi = f(t-x) \partial_u$.
 
-> The Lie algebra structure includes $[\partial_x, t \partial_x] = \partial_x$ and $[2t \partial_t + x \partial_x, t^2 \partial_t + t x \partial_x] = 2(t^2 \partial_t + t x \partial_x)$.
+The Lie algebra structure includes $[\partial_x, t \partial_x] = \partial_x$ and $[2t \partial_t + x \partial_x, t^2 \partial_t + t x \partial_x] = 2(t^2 \partial_t + t x \partial_x)$.
 
-> Using the Galilean boost $V = t \partial_x$ with canonical coordinates $r = x - u t$ and $s = t$, the reduced equation is $u_r = 0$, so $u = f(x - ut)$, explaining shock formation via the method of characteristics.
+Using the Galilean boost $V = t \partial_x$ with canonical coordinates $r = x - u t$ and $s = t$, the reduced equation is $u_r = 0$, so $u = f(x - ut)$, explaining shock formation via the method of characteristics.
 
 The infinite-dimensional symmetry of Burgers' equation reveals its connection to completely integrable systems. The presence of such rich symmetry structure is a hallmark of equations that admit exact solutions through transformation methods.
 

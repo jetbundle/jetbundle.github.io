@@ -12,9 +12,8 @@ parent_chapter: 4
 parent_section: null
 ---
 
-# Section 4.8: Nonlocal Symmetries & Potential Systems
 
-> Hidden symmetries emerge when we lift differential equations to covering spaces, revealing that integrability is a property of the algebraic structure rather than the local expression.
+Hidden symmetries emerge when we lift differential equations to covering spaces, revealing that integrability is a property of the algebraic structure rather than the local expression.
 
 ## Introduction
 

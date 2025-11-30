@@ -12,9 +12,7 @@ parent_chapter: 4
 parent_section: null
 ---
 
-# Section 4.2: Noether's Theorem & Invariant Reduction
-
-> Every differentiable symmetry of the action integral corresponds to a local conservation law, transforming the search for conserved quantities from ad hoc analysis into geometric classification.
+Every differentiable symmetry of the action integral corresponds to a local conservation law, transforming the search for conserved quantities from ad hoc analysis into geometric classification.
 
 ## Introduction
 
@@ -62,39 +60,39 @@ $$
 
 holds for all solutions $u(x)$. The components $P^i$ are the conserved fluxes. In the case of time-translation symmetry ($\mathbf{v} = \partial_t$), the associated conserved quantity corresponds to energy; for spatial translations ($\mathbf{v} = \partial_{x^i}$), it corresponds to momentum. This theorem transforms the search for conservation laws from an ad hoc analytic procedure into a geometric classification problem of the symmetry group of the action.
 
-> **Simple Harmonic Oscillator**
+**Simple Harmonic Oscillator**
 
-> Consider the Lagrangian for a harmonic oscillator: $L(q,\dot{q},t) = \frac{1}{2} m \dot{q}^2 - \frac{1}{2} k q^2$.
+Consider the Lagrangian for a harmonic oscillator: $L(q,\dot{q},t) = \frac{1}{2} m \dot{q}^2 - \frac{1}{2} k q^2$.
 
-> The Euler-Lagrange equation is $\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$, which gives $\frac{d}{dt}(m \dot{q}) + k q = 0$, or $m \ddot{q} + k q = 0$.
+The Euler-Lagrange equation is $\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$, which gives $\frac{d}{dt}(m \dot{q}) + k q = 0$, or $m \ddot{q} + k q = 0$.
 
-> The time-translation symmetry has generator $\mathbf{v} = \partial_t$ with $\xi = 1$ and $\phi = 0$ (no change in $q$). The characteristic is $Q = \phi - \xi \dot{q} = - \dot{q}$.
+The time-translation symmetry has generator $\mathbf{v} = \partial_t$ with $\xi = 1$ and $\phi = 0$ (no change in $q$). The characteristic is $Q = \phi - \xi \dot{q} = - \dot{q}$.
 
-> To verify this is a variational symmetry, we compute the prolongation: $\text{pr}^{(1)}\mathbf{v}(L) = 0$ since $L$ is independent of $t$. The divergence is $\text{Div}(\xi) = \frac{\partial \xi}{\partial t} = 0$. The symmetry condition $0 + L \cdot 0 = \text{Div}(B)$ implies $B = 0$.
+To verify this is a variational symmetry, we compute the prolongation: $\text{pr}^{(1)}\mathbf{v}(L) = 0$ since $L$ is independent of $t$. The divergence is $\text{Div}(\xi) = \frac{\partial \xi}{\partial t} = 0$. The symmetry condition $0 + L \cdot 0 = \text{Div}(B)$ implies $B = 0$.
 
-> Using the Noether identity $\text{pr}^{(1)}\mathbf{v}(L) + L \text{Div}(\xi) = Q E(L) + \text{Div}(A)$, and noting that $E(L) = 0$ on solutions, we find $\text{Div}(P) = 0$ where $P = A - B$. The explicit current is:
+Using the Noether identity $\text{pr}^{(1)}\mathbf{v}(L) + L \text{Div}(\xi) = Q E(L) + \text{Div}(A)$, and noting that $E(L) = 0$ on solutions, we find $\text{Div}(P) = 0$ where $P = A - B$. The explicit current is:
 
-> $$
-> P = \dot{q} \frac{\partial L}{\partial \dot{q}} - L = \dot{q}(m \dot{q}) - \left(\frac{1}{2}m\dot{q}^2 - \frac{1}{2}kq^2\right) = \frac{1}{2} m \dot{q}^2 + \frac{1}{2} k q^2 = E
-> $$
+$$
+P = \dot{q} \frac{\partial L}{\partial \dot{q}} - L = \dot{q}(m \dot{q}) - \left(\frac{1}{2}m\dot{q}^2 - \frac{1}{2}kq^2\right) = \frac{1}{2} m \dot{q}^2 + \frac{1}{2} k q^2 = E
+$$
 
-> This is the total energy. Verification: $\frac{dE}{dt} = m \dot{q} \ddot{q} + k q \dot{q} = \dot{q} (m \ddot{q} + k q) = 0$ on solutions.
+This is the total energy. Verification: $\frac{dE}{dt} = m \dot{q} \ddot{q} + k q \dot{q} = \dot{q} (m \ddot{q} + k q) = 0$ on solutions.
 
 The harmonic oscillator demonstrates the fundamental connection between time-translation symmetry and energy conservation. This is not a coincidence but a universal principle: whenever the Lagrangian is independent of time, the system possesses time-translation symmetry, and Noether's theorem guarantees energy conservation.
 
-> **Kepler Problem and Angular Momentum**
+**Kepler Problem and Angular Momentum**
 
-> Consider central force motion with Lagrangian in polar coordinates: $L(r, \dot{r}, \dot{\theta}) = \frac{1}{2} m (\dot{r}^2 + r^2 \dot{\theta}^2) - V(r)$.
+Consider central force motion with Lagrangian in polar coordinates: $L(r, \dot{r}, \dot{\theta}) = \frac{1}{2} m (\dot{r}^2 + r^2 \dot{\theta}^2) - V(r)$.
 
-> The Euler-Lagrange equations are $\frac{d}{dt}(m \dot{r}) - m r \dot{\theta}^2 + V'(r) = 0$ and $\frac{d}{dt}(m r^2 \dot{\theta}) = 0$.
+The Euler-Lagrange equations are $\frac{d}{dt}(m \dot{r}) - m r \dot{\theta}^2 + V'(r) = 0$ and $\frac{d}{dt}(m r^2 \dot{\theta}) = 0$.
 
-> The rotational symmetry has generator $\mathbf{v} = \partial_\theta$ with $\xi^r = 0$, $\xi^\theta = 1$, $\phi^r = 0$, and $\phi^\theta = 0$. The characteristics are $Q^r = 0$ and $Q^\theta = -\dot{\theta}$.
+The rotational symmetry has generator $\mathbf{v} = \partial_\theta$ with $\xi^r = 0$, $\xi^\theta = 1$, $\phi^r = 0$, and $\phi^\theta = 0$. The characteristics are $Q^r = 0$ and $Q^\theta = -\dot{\theta}$.
 
-> The Noether current is $P^r = \frac{\partial L}{\partial \dot{\theta}} = m r^2 \dot{\theta} = \ell$, which is the angular momentum.
+The Noether current is $P^r = \frac{\partial L}{\partial \dot{\theta}} = m r^2 \dot{\theta} = \ell$, which is the angular momentum.
 
-> The complete conservation laws are: time translation $\partial_t$ gives energy $E = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) + V(r)$, and rotation $\partial_\theta$ gives angular momentum $\ell = m r^2 \dot{\theta}$.
+The complete conservation laws are: time translation $\partial_t$ gives energy $E = \frac{1}{2}m(\dot{r}^2 + r^2\dot{\theta}^2) + V(r)$, and rotation $\partial_\theta$ gives angular momentum $\ell = m r^2 \dot{\theta}$.
 
-> From $\ell = \text{constant}$, we have $\dot{\theta} = \frac{\ell}{m r^2}$. Substituting into the energy gives $E = \frac{1}{2} m \dot{r}^2 + \frac{\ell^2}{2 m r^2} + V(r)$, reducing the 2D problem to 1D effective potential motion.
+From $\ell = \text{constant}$, we have $\dot{\theta} = \frac{\ell}{m r^2}$. Substituting into the energy gives $E = \frac{1}{2} m \dot{r}^2 + \frac{\ell^2}{2 m r^2} + V(r)$, reducing the 2D problem to 1D effective potential motion.
 
 Rotational symmetry in the Kepler problem leads directly to angular momentum conservation, which enables the reduction from two-dimensional motion to one-dimensional radial motion. This reduction is the foundation of the classical solution of planetary orbits.
 
@@ -104,39 +102,39 @@ Beyond generating conservation laws, symmetries allow for the reduction of the v
 
 This leads to the principle of symmetric criticality, which states that under certain topological conditions on the group action (specifically regarding compactness or properness), critical points of the symmetry-reduced action functional correspond to symmetric critical points of the original action. This allows one to solve the Euler-Lagrange equations on the quotient space $\Omega / G$, effectively reducing the dimension of the partial differential equation.
 
-> **Spherically Symmetric Laplace Equation**
+**Spherically Symmetric Laplace Equation**
 
-> Solve $\Delta u = 0$ in $\mathbb{R}^3$ with radial symmetry.
+Solve $\Delta u = 0$ in $\mathbb{R}^3$ with radial symmetry.
 
-> The original problem is $\Delta u = \frac{\partial^2 u}{\partial r^2} + \frac{2}{r} \frac{\partial u}{\partial r} + \frac{1}{r^2} \Delta_{S^2} u = 0$. The $SO(3)$ rotation group acts on $\mathbb{R}^3$ with invariants $r = \mid \mathbf{x} \mid$.
+The original problem is $\Delta u = \frac{\partial^2 u}{\partial r^2} + \frac{2}{r} \frac{\partial u}{\partial r} + \frac{1}{r^2} \Delta_{S^2} u = 0$. The $SO(3)$ rotation group acts on $\mathbb{R}^3$ with invariants $r = \vert \mathbf{x} \vert$.
 
-> Let $u(r, \theta, \phi) = v(r)$, so the symmetry-reduced function depends only on $r$. The original variational problem is $\mathcal{S}[u] = \int_{\mathbb{R}^3} \mid \nabla u \mid^2 dV$. In spherical coordinates with $u = v(r)$:
+Let $u(r, \theta, \phi) = v(r)$, so the symmetry-reduced function depends only on $r$. The original variational problem is $\mathcal{S}[u] = \int_{\mathbb{R}^3} \vert \nabla u \vert^2 dV$. In spherical coordinates with $u = v(r)$:
 
-> $$
-> \mathcal{S}[v] = \int_0^\infty \int_0^\pi \int_0^{2\pi} v'^2 r^2 \sin\theta \, d\phi d\theta dr = 4\pi \int_0^\infty (v')^2 r^2 dr
-> $$
+$$
+\mathcal{S}[v] = \int_0^\infty \int_0^\pi \int_0^{2\pi} v'^2 r^2 \sin\theta \, d\phi d\theta dr = 4\pi \int_0^\infty (v')^2 r^2 dr
+$$
 
-> The Lagrangian density is $L(r, v, v') = (v')^2 r^2$. The reduced Euler-Lagrange equation is:
+The Lagrangian density is $L(r, v, v') = (v')^2 r^2$. The reduced Euler-Lagrange equation is:
 
-> $$
-> \frac{d}{dr}\left(\frac{\partial L}{\partial v'}\right) - \frac{\partial L}{\partial v} = 0
-> $$
+$$
+\frac{d}{dr}\left(\frac{\partial L}{\partial v'}\right) - \frac{\partial L}{\partial v} = 0
+$$
 
-> which gives $\frac{d}{dr}(2 r^2 v') = 0$, so $r^2 v' = C$. Integrating yields $v(r) = C \int \frac{dr}{r^2} = -\frac{C}{r} + D$.
+which gives $\frac{d}{dr}(2 r^2 v') = 0$, so $r^2 v' = C$. Integrating yields $v(r) = C \int \frac{dr}{r^2} = -\frac{C}{r} + D$.
 
-> Verification: $\Delta\left(\frac{1}{r}\right) = 0$ for $r > 0$.
+Verification: $\Delta\left(\frac{1}{r}\right) = 0$ for $r > 0$.
 
 Symmetry reduction transforms the three-dimensional Laplace equation into a one-dimensional ODE. The radial solution $v(r) = C/r + D$ emerges naturally from the reduced variational problem, demonstrating how symmetry simplifies the analysis.
 
-> **Wave Equation Reduction**
+**Wave Equation Reduction**
 
-> Reduce $u_{tt} = c^2 u_{xx}$ with $x$-translation symmetry.
+Reduce $u_{tt} = c^2 u_{xx}$ with $x$-translation symmetry.
 
-> The symmetry generator is $\mathbf{v} = \partial_x$ with characteristic $Q = -u_x$. Solving the characteristic equation $\frac{dx}{1} = \frac{du}{0}$ gives invariants $s = x - t$ and $r = u$.
+The symmetry generator is $\mathbf{v} = \partial_x$ with characteristic $Q = -u_x$. Solving the characteristic equation $\frac{dx}{1} = \frac{du}{0}$ gives invariants $s = x - t$ and $r = u$.
 
-> With coordinate transformation $u(x,t) = v(s)$ where $s = x - t$, we have $u_t = -v_s$, $u_{tt} = v_{ss}$, $u_x = v_s$, and $u_{xx} = v_{ss}$. The transformed equation is $v_{ss} = c^2 v_{ss}$, or $(1 - c^2) v_{ss} = 0$.
+With coordinate transformation $u(x,t) = v(s)$ where $s = x - t$, we have $u_t = -v_s$, $u_{tt} = v_{ss}$, $u_x = v_s$, and $u_{xx} = v_{ss}$. The transformed equation is $v_{ss} = c^2 v_{ss}$, or $(1 - c^2) v_{ss} = 0$.
 
-> For $c \neq 1$: $v_{ss} = 0$ implies $v(s) = A + B s$, so $u(x,t) = A + B(x - t)$. For $c = 1$, the equation is trivial and all functions $v(s)$ work.
+For $c \neq 1$: $v_{ss} = 0$ implies $v(s) = A + B s$, so $u(x,t) = A + B(x - t)$. For $c = 1$, the equation is trivial and all functions $v(s)$ work.
 
 Translation symmetry reduces the wave equation to an ODE in the characteristic variable $s = x - t$. This reduction reveals the fundamental structure of wave propagation: solutions depend only on the combination $x - ct$.
 
@@ -150,35 +148,35 @@ $$
 
 The KdV equation can be formulated as a Hamiltonian system $u_t = \mathcal{D} \frac{\delta H}{\delta u}$, where $\mathcal{D} = \partial_x$ is a Hamiltonian operator and $H$ is a functional. The existence of recursion operators allows for the generation of an infinite hierarchy of symmetries. By an extension of Noether's theorem to generalized symmetries (where $\xi$ and $\phi$ depend on derivatives of $u$), each of these infinite symmetries corresponds to a conservation law. Thus, the integrability of the system—its ability to support soliton solutions that interact elastically—is algebraically encoded in the infinite sequence of conservation laws generated by its symmetry structure.
 
-> **KdV Infinite Conservation Laws**
+**KdV Infinite Conservation Laws**
 
-> Demonstrate the first three conservation laws of the KdV equation $u_t + 6 u u_x + u_{xxx} = 0$ with Hamiltonian structure $u_t = \partial_x \frac{\delta H_n}{\delta u}$.
+Demonstrate the first three conservation laws of the KdV equation $u_t + 6 u u_x + u_{xxx} = 0$ with Hamiltonian structure $u_t = \partial_x \frac{\delta H_n}{\delta u}$.
 
-> The first three Hamiltonians are: $H_0 = \int u \, dx$ (mass), $H_1 = \int \frac{1}{2} u^2 \, dx$ (momentum), and $H_2 = \int \left( \frac{1}{2} u_x^2 - u^3 \right) \, dx$ (energy).
+The first three Hamiltonians are: $H_0 = \int u \, dx$ (mass), $H_1 = \int \frac{1}{2} u^2 \, dx$ (momentum), and $H_2 = \int \left( \frac{1}{2} u_x^2 - u^3 \right) \, dx$ (energy).
 
-> The recursion operator $R = \partial_x^2 + 4u + 2 u_x \partial_x^{-1}$ generates the symmetries: $Q_0 = u$ (translation), $Q_1 = u_x$ (Galilean boost), and $Q_2 = u_{xx} - 6 u u_x$ (scaling).
+The recursion operator $R = \partial_x^2 + 4u + 2 u_x \partial_x^{-1}$ generates the symmetries: $Q_0 = u$ (translation), $Q_1 = u_x$ (Galilean boost), and $Q_2 = u_{xx} - 6 u u_x$ (scaling).
 
-> For each $Q_n$, the conserved current is $P_n = Q_n \frac{\delta H_2}{\delta u} - H_n$. For $n=1$, we have $\frac{\delta H_2}{\delta u} = -u_{xx} - 3 u^2$, so $P_1 = u_x (-u_{xx} - 3 u^2) - \frac{1}{2} u^2$. On solutions, $D_x P_1 = 0$.
+For each $Q_n$, the conserved current is $P_n = Q_n \frac{\delta H_2}{\delta u} - H_n$. For $n=1$, we have $\frac{\delta H_2}{\delta u} = -u_{xx} - 3 u^2$, so $P_1 = u_x (-u_{xx} - 3 u^2) - \frac{1}{2} u^2$. On solutions, $D_x P_1 = 0$.
 
-> The hierarchy pattern continues: $n=0$ gives mass, $n=1$ gives momentum, $n=2$ gives energy, and $n=3$ gives higher moments. Each symmetry in the infinite hierarchy corresponds to a conservation law, encoding the complete integrability of the system.
+The hierarchy pattern continues: $n=0$ gives mass, $n=1$ gives momentum, $n=2$ gives energy, and $n=3$ gives higher moments. Each symmetry in the infinite hierarchy corresponds to a conservation law, encoding the complete integrability of the system.
 
 The infinite hierarchy of conservation laws for the KdV equation demonstrates that integrability is not a property of isolated equations but a feature of the algebraic structure. Each conservation law restricts the phase space, preventing the thermalization of energy and allowing soliton solutions to persist.
 
-> **Variable Coefficient Lagrangian**
+**Variable Coefficient Lagrangian**
 
-> Consider a Lagrangian with explicit time dependence: $L(t, q, \dot{q}) = \frac{1}{2} m(t) \dot{q}^2 - V(q, t)$.
+Consider a Lagrangian with explicit time dependence: $L(t, q, \dot{q}) = \frac{1}{2} m(t) \dot{q}^2 - V(q, t)$.
 
-> For the symmetry analysis, consider $\mathbf{v} = \tau(t) \partial_t + \eta(t, q) \partial_q$. The variational symmetry condition is:
+For the symmetry analysis, consider $\mathbf{v} = \tau(t) \partial_t + \eta(t, q) \partial_q$. The variational symmetry condition is:
 
-> $$
-> \text{pr}^{(1)}\mathbf{v}(L) + L (D_t \tau) = D_t B
-> $$
+$$
+\text{pr}^{(1)}\mathbf{v}(L) + L (D_t \tau) = D_t B
+$$
 
-> Explicit calculation gives $\text{pr}^{(1)}\mathbf{v}(L) = m(t) \dot{q} \ddot{\eta} + \dot{\eta} \dot{m}(t) \dot{q} - \eta \frac{\partial V}{\partial q} + \tau \frac{\partial L}{\partial t}$.
+Explicit calculation gives $\text{pr}^{(1)}\mathbf{v}(L) = m(t) \dot{q} \ddot{\eta} + \dot{\eta} \dot{m}(t) \dot{q} - \eta \frac{\partial V}{\partial q} + \tau \frac{\partial L}{\partial t}$.
 
-> For the specific case with linear time dependence $m(t) = m_0 (1 + \alpha t)$ and $V(q,t) = \frac{1}{2} k q^2$, the symmetry $\mathbf{v} = \partial_t$ works if $\alpha = 0$. A new symmetry is $\mathbf{v} = t \partial_t + \frac{1}{2} q \partial_q$ (scaling).
+For the specific case with linear time dependence $m(t) = m_0 (1 + \alpha t)$ and $V(q,t) = \frac{1}{2} k q^2$, the symmetry $\mathbf{v} = \partial_t$ works if $\alpha = 0$. A new symmetry is $\mathbf{v} = t \partial_t + \frac{1}{2} q \partial_q$ (scaling).
 
-> The Noether current for the scaling symmetry is $P = Q \frac{\partial L}{\partial \dot{q}} - t L$ where $Q = \frac{1}{2} q - t \dot{q}$. This gives a conserved "virial" quantity, demonstrating how time-dependent systems can still possess nontrivial symmetries.
+The Noether current for the scaling symmetry is $P = Q \frac{\partial L}{\partial \dot{q}} - t L$ where $Q = \frac{1}{2} q - t \dot{q}$. This gives a conserved "virial" quantity, demonstrating how time-dependent systems can still possess nontrivial symmetries.
 
 Time-dependent systems require careful analysis of variational symmetries. The scaling symmetry in this example provides a conserved quantity that generalizes the virial theorem to time-dependent mass systems.
 
@@ -210,7 +208,7 @@ The conserved current is $P = A - B$. However, direct computation shows $P = u u
 The true conservation law is more subtle. The conserved quantity is actually:
 
 $$
-\frac{d}{dt} \int \left( \frac{1}{2} u_t^2 - \frac{1}{2} \mid \nabla u \mid^2 - f(t) u \right) dx = 0
+\frac{d}{dt} \int \left( \frac{1}{2} u_t^2 - \frac{1}{2} \vert \nabla u \vert^2 - f(t) u \right) dx = 0
 $$
 
 This demonstrates that Bessel-Hagen symmetries can reveal conservation laws that are not immediately apparent from the standard Noether procedure. The divergence term $B$ encodes additional structure that becomes visible only when considering the full symmetry group of the system.
