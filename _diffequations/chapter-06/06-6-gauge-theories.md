@@ -108,71 +108,13 @@ If the cohomology $H^2$ of the deformation complex is non-vanishing, the moduli 
 
 This completes the geometric program of Chapter 6: we have moved from local solutions of PDEs to global solutions, and finally to the geometry of the space of solutions itself. The singularity of the moduli space encountered here—the bubbling phenomenon—necessitates the sophisticated algebraic machinery of Chapter 7 to resolve.
 
-## Complete Examples
+> **BPST Instanton on $\mathbb{R}^4$**
 
-### Example 6.6.1: Canonical SU(2) Instanton on $\mathbb{R}^4$ (BPST Instanton)
+> To construct the explicit 1-instanton solution and verify self-duality, we consider a principal $SU(2)$-bundle over $\mathbb{R}^4$ with $k=1$. The connection (BPST ansatz) is $A_\mu = \frac{\eta_{\mu\nu}^a x^\nu}{x^2 + \rho^2} \sigma^a$ where $\sigma^a$ are Pauli matrices and $\eta_{\mu\nu}^a$ are 't Hooft symbols: $\eta_{ij}^a = \epsilon_{aij}$, $\eta_{4j}^a = \delta_{aj}$, and $\eta_{i4}^a = -\delta_{aj}$.
 
-**Problem:** Construct the explicit 1-instanton solution and verify self-duality.
+> Computing the curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$, for $\mu=i$ and $\nu=j$ we find $F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^a \sigma^a$. To verify self-duality, we compute $*F_{ij} = \frac{1}{2} \epsilon_{ijkl} F_{kl} = \frac{1}{2} \epsilon_{ijkl} \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{kl}^b \sigma^b$. Using $\epsilon_{ijkl} \eta_{kl}^b = 2 \eta_{ij}^b$, we find $*F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^b \sigma^b = F_{ij}$, confirming $F = *F$ and verifying the self-dual instanton.
 
-**Step-by-Step Solution:**
-
-1. **Bundle:** Principal $SU(2)$-bundle over $\mathbb{R}^4$ with $k=1$
-
-2. **Connection (BPST ansatz):**
-   $$
-   A_\mu = \frac{\eta_{\mu\nu}^a x^\nu}{x^2 + \rho^2} \sigma^a, \quad \sigma^a = \text{Pauli matrices}
-   $$
-
-   where $\eta_{\mu\nu}^a$ are 't Hooft symbols:
-
-   $$
-   \eta_{ij}^a = \epsilon_{aij}, \quad \eta_{4j}^a = \delta_{aj}, \quad \eta_{i4}^a = -\delta_{aj}
-   $$
-
-3. **Curvature Computation:**
-   Compute $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$
-
-   For $\mu=i$, $\nu=j$:
-
-   $$
-   F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^a \sigma^a
-   $$
-
-4. **Self-Duality Verification:**
-   Compute $*F_{ij} = \frac{1}{2} \epsilon_{ijkl} F_{kl}$:
-
-   $$
-   *F_{ij} = \frac{1}{2} \epsilon_{ijkl} \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{kl}^b \sigma^b
-   $$
-
-   Using $\epsilon_{ijkl} \eta_{kl}^b = 2 \eta_{ij}^b$:
-
-   $$
-   *F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^b \sigma^b = F_{ij}
-   $$
-
-   **Result:** $F = *F$ ✓ Self-dual instanton verified
-
-5. **Yang-Mills Functional:**
-   $$
-   \mathcal{YM}(A) = \int_{\mathbb{R}^4} |F|^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2
-   $$
-
-6. **Topological Charge:**
-   $$
-   k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1
-   $$
-
-7. **Gauge Transformation & Moduli:**
-   Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space.
-
-   Global gauge transformation:
-
-   $$
-   A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}, \quad g(x) = \frac{x^4 + i x^a \sigma^a}{|x|}
-   $$
-
-   Verification: $F^{g} = g F g^{-1}$ preserves self-duality.
+> The Yang-Mills functional is $\mathcal{YM}(A) = \int_{\mathbb{R}^4} \mid F \mid^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2$, and the topological charge is $k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1$. Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space. The global gauge transformation $A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}$ with $g(x) = \frac{x^4 + i x^a \sigma^a}{\mid x \mid}$ preserves self-duality since $F^{g} = g F g^{-1}$, demonstrating how instantons encode topological information through their moduli spaces.
 
 ### Example 6.6.2: Index Theorem Computation on $S^4$
 
