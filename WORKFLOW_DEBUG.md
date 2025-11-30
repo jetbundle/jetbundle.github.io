@@ -42,4 +42,3 @@ Once you share the error:
 - **Plugins**: jekyll-feed, jekyll-seo-tag, jekyll-remote-theme
 - **Theme**: luxedo/jekyll-theme-potato-hacker
 - **Math**: KaTeX (client-side)
-
