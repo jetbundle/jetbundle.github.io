@@ -72,18 +72,18 @@ Merging singularities (confluence) produces equations with fewer regular singula
 
 > Derive $J_{0}$ as a limit of ${}_2F_{1}$.
 
-> Start from ${}_2F_{1}\left(a,b;c;z\right)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
+> Start from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
 
 > $$
-> J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_1\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).
+> J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
 > $$
 
-> For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{z}{2}\right)^{2k}$, recovering the Bessel series and illustrating confluence.
+> For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}(\frac{z}{2})^{2k}$, recovering the Bessel series and illustrating confluence.
 
 - **Legendre polynomials**: integer parameters terminate the series, giving
 
   $$
-  P_{n}(x)={}_2F_{1}\left(-n,n+1;1;\frac{1-x}{2}\right),
+  P_{n}(x)={}_2F_{1}(-n,n+1;1;\frac{1-x}{2}),
   $$
 
   central to spherical harmonics.
@@ -95,7 +95,7 @@ Merging singularities (confluence) produces equations with fewer regular singula
 > Separation yields the angular ODE
 
 > $$
-> \frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda \Theta=0.
+> \frac{1}{\sin\theta}\frac{d}{d\theta}(\sin\theta\,\frac{d\Theta}{d\theta})+\lambda \Theta=0.
 > $$
 
 > Setting $x=\cos\theta$ produces the Legendre equation
@@ -130,7 +130,7 @@ producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$. The Riemann $P$-symbol 
 
 > Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.
 
-> This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}\left(\frac{x}{2}\right)^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.
+> This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}(\frac{x}{2})^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.
 
 The Frobenius method provides a systematic way to extract the local behavior near singularities. However, when singularities coalesce or move to infinity, this method breaks down, necessitating asymptotic analysis.
 
@@ -151,7 +151,7 @@ valid only within sectors bounded by Stokes lines, where the subdominant exponen
 > WKB analysis gives asymptotics
 
 > $$
-> \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp\left(-\frac{2}{3}x^{3/2}\right),
+> \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
 > $$
 
 > valid for $\mid \arg x \mid <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
@@ -163,7 +163,7 @@ The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions ar
 Special functions serve as orthogonal bases for Sturm–Liouville problems written in self-adjoint form
 
 $$
--\frac{d}{dx}\left(p(x)\frac{dy}{dx}\right)+q(x)y=\lambda w(x)y.
+-\frac{d}{dx}(p(x)\frac{dy}{dx})+q(x)y=\lambda w(x)y.
 $$
 
 On compact domains with regular coefficients, eigenfunctions $\phi_{n}$ satisfy
@@ -224,29 +224,29 @@ The following problems synthesize the concepts of hypergeometric functions, conf
 
 ### Challenge 1: Hypergeometric to Bessel Connection
 
-Starting from the hypergeometric function ${}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
+Starting from the hypergeometric function ${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
 
 *(Hint: Use the limit representation of the Pochhammer symbol and Stirling's approximation for the Gamma function. Consider the scaling $z = -x^2/c$ as $c \to \infty$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Starting with ${}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, we have
+Starting with ${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z)$, we have
 
 $$
-{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.
+{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.
 $$
 
 Substitute $z = -x^2/c$ and take $c \to \infty$. Using $\lim_{c \to \infty} (\nu+1)_n / c^n = 1$ and the identity $(\nu/2)_n(-\nu/2)_n = (-1)^n (\nu/2)_n^2$, we obtain
 
 $$
-\lim_{c \to \infty} {}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{x^2}{c}\right) = \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n+\nu}.
+\lim_{c \to \infty} {}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{x^2}{c}) = \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} (\frac{x}{2})^{2n+\nu}.
 $$
 
 Multiplying by the normalization factor $(x/2)^\nu / \Gamma(\nu+1)$ yields
 
 $$
-J_\nu(x) = \left(\frac{x}{2}\right)^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n}.
+J_\nu(x) = (\frac{x}{2})^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} (\frac{x}{2})^{2n}.
 $$
 
 This derivation reveals how confluence transforms the hypergeometric equation: the process of merging singular points reduces the number of regular singular points from three to one, creating Bessel's equation in the limit. The normalization factor ensures that $J_0(0) = 1$ while other orders vanish at the origin, establishing the correct boundary behavior. This demonstrates that Bessel functions are not isolated special functions but rather limits of a unified hypergeometric family, with their properties emerging naturally from the confluent limit process.
@@ -267,7 +267,7 @@ For Bessel's equation with $\nu = m$ a non-negative integer, the indicial equati
 For the case $m = 0$, the first solution is $J_0(x)$. The second solution $Y_0(x)$ (the Bessel function of the second kind) takes the form
 
 $$
-Y_0(x) = \frac{2}{\pi} \left[\ln\left(\frac{x}{2}\right) + \gamma\right] J_0(x) + \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2} \left(\frac{x}{2}\right)^{2n},
+Y_0(x) = \frac{2}{\pi} [\ln(\frac{x}{2}) + \gamma] J_0(x) + \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2} (\frac{x}{2})^{2n},
 $$
 
 where $\gamma$ is Euler's constant.
@@ -275,7 +275,7 @@ where $\gamma$ is Euler's constant.
 For $m > 0$, the second solution is
 
 $$
-Y_m(x) = \frac{2}{\pi} \left[\ln\left(\frac{x}{2}\right) + \gamma\right] J_m(x) - \frac{1}{\pi} \sum_{k=0}^{m-1} \frac{(m-k-1)!}{k!} \left(\frac{x}{2}\right)^{2k-m} - \frac{1}{\pi} \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(n+m)!} [\psi(n+1) + \psi(n+m+1)] \left(\frac{x}{2}\right)^{2n+m},
+Y_m(x) = \frac{2}{\pi} [\ln(\frac{x}{2}) + \gamma] J_m(x) - \frac{1}{\pi} \sum_{k=0}^{m-1} \frac{(m-k-1)!}{k!} (\frac{x}{2})^{2k-m} - \frac{1}{\pi} \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(n+m)!} [\psi(n+1) + \psi(n+m+1)] (\frac{x}{2})^{2n+m},
 $$
 
 where $\psi$ is the digamma function.
@@ -349,7 +349,7 @@ For the Airy function $\operatorname{Ai}(z)$ defined as a solution to $y'' - z y
 The Airy equation $y'' - z y = 0$ has asymptotic solutions of the form
 
 $$
-y(z) \sim z^{-1/4} \exp\left(\pm \frac{2}{3} z^{3/2}\right) \sum_{n=0}^{\infty} a_n z^{-3n/2},
+y(z) \sim z^{-1/4} \exp(\pm \frac{2}{3} z^{3/2}) \sum_{n=0}^{\infty} a_n z^{-3n/2},
 $$
 
 where $z^{3/2}$ is defined with a branch cut along the negative real axis.
@@ -357,7 +357,7 @@ where $z^{3/2}$ is defined with a branch cut along the negative real axis.
 For $\operatorname{Ai}(z)$, the dominant asymptotic in the sector $\mid \arg z \mid < \pi/3$ is
 
 $$
-\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp\left(-\frac{2}{3} z^{3/2}\right), \quad z \to \infty, \quad \mid \arg z \mid < \pi/3.
+\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp(-\frac{2}{3} z^{3/2}), \quad z \to \infty, \quad \mid \arg z \mid < \pi/3.
 $$
 
 The Stokes lines occur where $\Re(z^{3/2}) = 0$, which gives $\arg z = \pm \pi/3, \pm \pi$.
@@ -365,7 +365,7 @@ The Stokes lines occur where $\Re(z^{3/2}) = 0$, which gives $\arg z = \pm \pi/3
 Crossing the Stokes line at $\arg z = 2\pi/3$, the subdominant exponential $\exp(+\frac{2}{3} z^{3/2})$ is "turned on" with a multiplier. The asymptotic expansion jumps to include both terms:
 
 $$
-\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \left[ \exp\left(-\frac{2}{3} z^{3/2}\right) + i \exp\left(+\frac{2}{3} z^{3/2}\right) \right], \quad \frac{2\pi}{3} < \arg z < \frac{4\pi}{3}.
+\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} [ \exp(-\frac{2}{3} z^{3/2}) + i \exp(+\frac{2}{3} z^{3/2}) ], \quad \frac{2\pi}{3} < \arg z < \frac{4\pi}{3}.
 $$
 
 The multiplier $i$ encodes the Stokes constant, which cannot be determined from local analysis alone but reflects global monodromy data. The Stokes phenomenon reveals that asymptotic expansions are sectorial rather than global: the form of the expansion changes discontinuously as one crosses Stokes lines in the complex plane. This discontinuity encodes topological information about the Riemann surface structure of the solution, revealing connections between different sheets that cannot be detected through local power series methods. This phenomenon is generic for solutions of differential equations with irregular singular points, where the analytic continuation of solutions involves intricate monodromy behavior that manifests as Stokes jumps in asymptotic representations.

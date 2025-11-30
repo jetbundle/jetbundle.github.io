@@ -98,10 +98,10 @@ Separation of variables reduces the PDE to an eigenvalue problem, with each eige
 
 > Solve $u_{tt}=u_{xx}$ on $0<x<\pi$, with $u(0,t)=0$ and $u_{x}(\pi,t)=0$.
 
-> Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin\left((2n-1)x/2\right)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
+> Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin((2n-1)x/2)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
 
 > $$
-> u(x,t)=\sum_{n=1}^{\infty}\left(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2}\right)\sin\frac{(2n-1)x}{2},
+> u(x,t)=\sum_{n=1}^{\infty}(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2})\sin\frac{(2n-1)x}{2},
 > $$
 
 > with coefficients fixed by initial data.
@@ -256,7 +256,7 @@ $$
 Completeness in $L^2[0,\pi]$ follows from the general theory of Sturm–Liouville operators on compact intervals. For $f(x) = x$, the expansion coefficients are
 
 $$
-c_n = \int_0^{\pi} x \phi_n(x) \, dx = \sqrt{\frac{2}{\pi}} \int_0^{\pi} x \sin\left(\frac{(2n-1)x}{2}\right) \, dx = \sqrt{\frac{2}{\pi}} \frac{8(-1)^{n+1}}{(2n-1)^2}.
+c_n = \int_0^{\pi} x \phi_n(x) \, dx = \sqrt{\frac{2}{\pi}} \int_0^{\pi} x \sin(\frac{(2n-1)x}{2}) \, dx = \sqrt{\frac{2}{\pi}} \frac{8(-1)^{n+1}}{(2n-1)^2}.
 $$
 
 The series converges pointwise to $f(x)$ on $(0,\pi)$ by Dirichlet's theorem, and uniformly on any compact subset. The rate of convergence is $O(n^{-2})$, slower than the $O(n^{-1})$ rate for the standard Fourier sine series because the boundary condition mismatch creates slower decay.

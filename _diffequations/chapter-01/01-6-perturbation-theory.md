@@ -205,13 +205,13 @@ Using multiple scales with $y(t) = Y_0(t_0, t_1) + \epsilon Y_1(t_0, t_1) + \cdo
 Substituting $Y_0$ and removing secular terms (coefficients of $e^{\pm i t_0}$) gives:
 
 $$
-2 A'(t_1) = A(t_1) \left(1 - \mid A(t_1) \mid^2\right).
+2 A'(t_1) = A(t_1) (1 - \mid A(t_1) \mid^2).
 $$
 
 Writing $A(t_1) = \frac{1}{2} a(t_1) e^{i \phi(t_1)}$, the amplitude equation is:
 
 $$
-a' = \frac{a}{2} \left(1 - \frac{a^2}{4}\right).
+a' = \frac{a}{2} (1 - \frac{a^2}{4}).
 $$
 
 Fixed points occur at $a = 0$ (unstable) and $a = 2$ (stable). The limit cycle amplitude is $A = 2$, matching the exact result. Multiple scales reveal the slow evolution of the amplitude envelope: while the system oscillates rapidly at frequency $\omega \approx 1$, the amplitude evolves on the slow timescale $\epsilon t$, gradually approaching its asymptotic value. Limit cycles correspond to stable fixed points of the amplitude equation, where the slow-time derivative vanishes and the system settles into periodic motion. The method captures the transition from initial conditions to the attractor, showing how the system evolves from an arbitrary starting point toward the limit cycle, with the amplitude equation describing this transient behavior that single-scale perturbation cannot capture.

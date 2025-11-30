@@ -126,7 +126,7 @@ $$\frac{d}{dx}(\mu y) = \mu Q$$
 
 > Integrating and applying the initial condition:
 
-> $$y(x) = \left(y_{0} - \frac{P}{k}\right) e^{-kx} + \frac{P}{k}$$
+> $$y(x) = (y_{0} - \frac{P}{k}) e^{-kx} + \frac{P}{k}$$
 
 > Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution exhibits exponential decay to the equilibrium $P/k$.
 
@@ -137,7 +137,7 @@ $$\frac{d}{dx}(\mu y) = \mu Q$$
 > Using $\mu = e^{x^{2}}$,
 
 > $$
-> \frac{d}{dx}\left(y e^{x^{2}}\right) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}\left(1 - e^{-x^{2}}\right).
+> \frac{d}{dx}(y e^{x^{2}}) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}(1 - e^{-x^{2}}).
 > $$
 
 > The integrating factor method transforms the non-homogeneous equation into a total derivative, revealing the structure of the solution.
@@ -185,7 +185,7 @@ $$y' = P(x) + Q(x)y + R(x)y^{2}$$
 This equation possesses a remarkable property: it is a "projection" of a higher-dimensional linear system. If $y_{1}$ is a particular solution, substituting $y = y_{1} + 1/v$ produces a linear first-order equation for $v$. Alternatively, $y = -u'/(R u)$ converts the Riccati equation into
 
 $$
-u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0,
+u'' + (Q + \frac{R'}{R})u' + PR\,u = 0,
 $$
 
 showing how nonlinearity can arise from projecting higher-dimensional linear flow.
@@ -227,7 +227,7 @@ Equations like $y'' + p(x) y' + q(x) y = 0$ underpin classical physics. Constant
 When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving
 
 $$
-y_{2}(x) = y_{1}(x) \int \frac{\exp\left(-\int p(s)\,ds\right)}{y_{1}(t)^{2}}\,dt.
+y_{2}(x) = y_{1}(x) \int \frac{\exp(-\int p(s)\,ds)}{y_{1}(t)^{2}}\,dt.
 $$
 
 > **Reduction of Order**
@@ -245,7 +245,7 @@ The Wronskian $W = y_{1} y_{2}' - y_{1}' y_{2}$ satisfies Abel's identity $W' = 
 Systems $\mathbf{y}' = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional vector space with fundamental matrix $\Phi$ satisfying $\Phi' = A\Phi$. The general solution is $\mathbf{y} = \Phi \mathbf{c}$. Abel's formula extends via
 
 $$
-\det \Phi(x) = \det \Phi(x_{0}) \exp\left( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt \right),
+\det \Phi(x) = \det \Phi(x_{0}) \exp( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt ),
 $$
 
 tying phase-space volume change to $\operatorname{tr} A$.
@@ -346,7 +346,7 @@ $$\frac{\mu'(z)}{\mu(z)} = \frac{N_x - M_y}{xM - yN}$$
 
 For this to be consistent, the Right Hand Side must be a function of $z=xy$ only (not independent $x$ or $y$). If that condition holds, we can integrate with respect to $z$:
 
-$$\mu(xy) = \exp \left( \int \frac{N_x - M_y}{xM - yN} \, dz \right)$$
+$$\mu(xy) = \exp( \int \frac{N_x - M_y}{xM - yN} \, dz )$$
 
 The condition that $(N_x - M_y)/(xM - yN)$ be a function of $z=xy$ alone is both necessary and sufficient for the existence of such an integrating factor. This result generalizes the standard integrating factor methods to cases with product symmetry, where the differential form exhibits invariance under simultaneous scaling of $x$ and $y$. When $xM = yN$, the method fails, indicating that the equation possesses a different symmetry structure that requires alternative techniques.
 
@@ -365,7 +365,7 @@ $$y' = -\frac{u''}{R u} + \frac{u' R'}{(R u)^2} + \frac{(u')^2}{R u^2}$$
 
 Substituting into the Riccati equation:
 
-$$-\frac{u''}{R u} + \frac{u' R'}{(R u)^2} + \frac{(u')^2}{R u^2} = P(x) + Q(x)\left(-\frac{u'}{R u}\right) + R(x)\left(-\frac{u'}{R u}\right)^2$$
+$$-\frac{u''}{R u} + \frac{u' R'}{(R u)^2} + \frac{(u')^2}{R u^2} = P(x) + Q(x)(-\frac{u'}{R u}) + R(x)(-\frac{u'}{R u})^2$$
 
 Multiplying through by $R u$ and simplifying:
 
@@ -373,7 +373,7 @@ $$-u'' + \frac{R'}{R} u' + \frac{(u')^2}{u} = P R u - Q u' + \frac{(u')^2}{u}$$
 
 The $(u')^2/u$ terms cancel, leaving:
 
-$$u'' + \left(Q + \frac{R'}{R}\right)u' + PR\,u = 0$$
+$$u'' + (Q + \frac{R'}{R})u' + PR\,u = 0$$
 
 This transformation reveals that the Riccati equation is fundamentally a projection of a linear system in a higher-dimensional space. The singularity $y \to \infty$ in the Riccati equation corresponds to $u = 0$ in the linear system, demonstrating that the nonlinear behavior of the Riccati equation arises from this projective relationship. The deep connection between nonlinear first-order and linear second-order equations is thus exposed: what appears as a quadratic nonlinearity in $y$ is actually a linear problem in the projective coordinate $u$.
 

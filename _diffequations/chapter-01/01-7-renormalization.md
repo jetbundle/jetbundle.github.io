@@ -22,7 +22,7 @@ The chapter concludes with a crisis: perturbation series often diverge factorial
 
 ## Divergent Series and Gevrey Classes
 
-Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\mid f(x)-\sum_{n=0}^{N}a_{n}x^{n} \mid =O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\mid a_{n} \mid \le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\mid x \mid)$, producing an exponentially small remainder $\sim \exp\left(-1/(K\mid x \mid)\right)$ that encodes non-perturbative effects invisible to any Taylor series.
+Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\mid f(x)-\sum_{n=0}^{N}a_{n}x^{n} \mid =O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\mid a_{n} \mid \le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\mid x \mid)$, producing an exponentially small remainder $\sim \exp(-1/(K\mid x \mid))$ that encodes non-perturbative effects invisible to any Taylor series.
 
 > **Gevrey-1 Series and Optimal Truncation**
 
@@ -37,7 +37,7 @@ Optimal truncation achieves exponential accuracy despite divergence. The truncat
 > Using repeated integration by parts,
 
 > $$
-> \operatorname{erfc}(x)\sim \frac{e^{-x^{2}}}{x\sqrt{\pi}}\left(1-\frac{1}{2x^{2}}+\frac{3}{4x^{4}}-\frac{15}{8x^{6}}+\cdots\right),\qquad x\to\infty.
+> \operatorname{erfc}(x)\sim \frac{e^{-x^{2}}}{x\sqrt{\pi}}(1-\frac{1}{2x^{2}}+\frac{3}{4x^{4}}-\frac{15}{8x^{6}}+\cdots),\qquad x\to\infty.
 > $$
 
 > Coefficients grow factorially, $a_{n}\sim (-1)^{n}(2n)!/(2^{2n}n!)$, exhibiting Gevrey-1 behavior and necessitating optimal truncation at $n\approx 2x^{2}$.
@@ -46,7 +46,7 @@ Factorial growth in asymptotic series is generic for functions with essential si
 
 > **WKB Divergence**
 
-> For $\epsilon^{2}y''+Q(x)y=0$, the WKB series $y\sim Q^{-1/4}\exp\left(\pm \epsilon^{-1}\int\sqrt{Q}\right)\sum_{n\ge 0}\epsilon^{n}S_{n}(x)$ has $S_{n}\sim n!$, driven by repeated differentiation. Optimal truncation yields errors $\sim e^{-1/\epsilon}$ corresponding to Stokes transitions.
+> For $\epsilon^{2}y''+Q(x)y=0$, the WKB series $y\sim Q^{-1/4}\exp(\pm \epsilon^{-1}\int\sqrt{Q})\sum_{n\ge 0}\epsilon^{n}S_{n}(x)$ has $S_{n}\sim n!$, driven by repeated differentiation. Optimal truncation yields errors $\sim e^{-1/\epsilon}$ corresponding to Stokes transitions.
 
 The WKB expansion diverges factorially, yet optimal truncation captures the solution to exponential accuracy. The remainder encodes Stokes jumps that connect different sectors of the solution, revealing the deep connection between divergence and non-perturbative effects.
 
@@ -90,7 +90,7 @@ Secular terms in perturbation theory reflect sensitivity to the initial time. In
 
 > **RG Treatment of the Rayleigh Oscillator**
 
-> For $y''+\epsilon \left(\frac{y'^2}{3}-1\right)y'+y=0$, naïve perturbation produces secular terms. Introducing a renormalization time $\tau$ and demanding $\partial y/\partial \tau=0$ yields amplitude and phase flows $dA/d\tau=-A^{2}/8$, $d\phi/d\tau=1/8$. Solving gives $A(t)=8/(t+8/A_{0})$, identical to the amplitude envelope obtained via multiple scales.
+> For $y''+\epsilon (\frac{y'^2}{3}-1)y'+y=0$, naïve perturbation produces secular terms. Introducing a renormalization time $\tau$ and demanding $\partial y/\partial \tau=0$ yields amplitude and phase flows $dA/d\tau=-A^{2}/8$, $d\phi/d\tau=1/8$. Solving gives $A(t)=8/(t+8/A_{0})$, identical to the amplitude envelope obtained via multiple scales.
 
 The renormalization group automatically resums secular terms by requiring that physical results are independent of the arbitrary renormalization scale. This elegant approach eliminates the need for ad hoc multiple-time-scale assumptions, revealing that RG flow equations are the natural framework for understanding long-time behavior.
 
@@ -185,7 +185,7 @@ To avoid the pole at $t = 1$, we choose contours:
 The difference is given by the residue:
 
 $$
-\mathcal{S}^+(x) - \mathcal{S}^-(x) = \frac{2\pi i}{x} \operatorname{Res}_{t=1} \left( \frac{1}{1-t} e^{-t/x} \right) = \frac{2\pi i}{x} e^{-1/x}.
+\mathcal{S}^+(x) - \mathcal{S}^-(x) = \frac{2\pi i}{x} \operatorname{Res}_{t=1}( \frac{1}{1-t} e^{-t/x} ) = \frac{2\pi i}{x} e^{-1/x}.
 $$
 
 This exponentially small difference is the Stokes jump. As $x$ crosses a Stokes line, the subdominant contribution is activated with this multiplier. Borel summation provides a rigorous interpretation of divergent series by transforming factorial divergence into a convergent integral representation, making sense of series that fail to converge in the traditional sense. Singularities in the Borel plane correspond to non-perturbative effects: each pole or branch point in the Borel transform marks the presence of exponentially small contributions that cannot be captured by power series. Lateral sums differ by exponentially small amounts encoding Stokes jumps: when the integration contour must pass above or below a singularity, the two choices produce different results, with their difference precisely matching the Stokes jump observed in asymptotic expansions.
@@ -204,13 +204,13 @@ For the equation $y'' + \epsilon y' + y = 0$ with $y(0) = 1$, $y'(0) = 0$, apply
 The perturbation expansion gives:
 
 $$
-y(t) = C_1 \cos t + C_2 \sin t + \epsilon \left[ -\frac{C_1 t}{2} \cos t - \frac{C_2 t}{2} \sin t + \cdots \right] + O(\epsilon^2).
+y(t) = C_1 \cos t + C_2 \sin t + \epsilon [ -\frac{C_1 t}{2} \cos t - \frac{C_2 t}{2} \sin t + \cdots ] + O(\epsilon^2).
 $$
 
 Introducing a renormalization scale $\tau$ and allowing $C_1 = C_1(\tau)$, $C_2 = C_2(\tau)$, the RG condition $\partial y/\partial \tau = 0$ gives:
 
 $$
-C_1'(\tau) \cos \tau + C_2'(\tau) \sin \tau - \frac{\epsilon}{2} \left[ C_1(\tau) \cos \tau + C_2(\tau) \sin \tau \right] = 0.
+C_1'(\tau) \cos \tau + C_2'(\tau) \sin \tau - \frac{\epsilon}{2} [ C_1(\tau) \cos \tau + C_2(\tau) \sin \tau ] = 0.
 $$
 
 This yields:
@@ -253,13 +253,13 @@ which interpolates between $-1$ at $\tau \to -\infty$ and $+1$ at $\tau \to +\in
 The action is:
 
 $$
-S = \int_{-\infty}^{\infty} \left[ \frac{\epsilon^2}{2} \dot{x}^2 + V(x) \right] d\tau = \int_{-1}^{1} \sqrt{2V(x)} \, dx = \int_{-1}^{1} \sqrt{2}(1-x^2) \, dx = \frac{8\sqrt{2}}{3}.
+S = \int_{-\infty}^{\infty} [ \frac{\epsilon^2}{2} \dot{x}^2 + V(x) ] d\tau = \int_{-1}^{1} \sqrt{2V(x)} \, dx = \int_{-1}^{1} \sqrt{2}(1-x^2) \, dx = \frac{8\sqrt{2}}{3}.
 $$
 
 The large-order behavior of perturbation theory is determined by the closest singularity in the Borel plane. For instanton effects, this singularity occurs at $t = S$, leading to coefficients:
 
 $$
-a_n \sim (-1)^n n! S^{-n} = (-1)^n n! \left(\frac{3}{8\sqrt{2}}\right)^n.
+a_n \sim (-1)^n n! S^{-n} = (-1)^n n! (\frac{3}{8\sqrt{2}})^n.
 $$
 
 This factorial growth matches the observed divergence, demonstrating that the instanton action controls the divergence rate. Instanton actions determine Borel plane singularities: each classical trajectory connecting distinct vacua produces a singularity in the Borel transform at a position given by its action, revealing how non-perturbative effects are encoded in the analytic structure. Large-order perturbative coefficients encode non-perturbative physics: the factorial growth rate is determined by the closest singularity in the Borel plane, which in turn is controlled by instanton actions, establishing a deep connection between perturbation theory and non-perturbative effects. Divergence rates reveal the structure of non-perturbative effects: by analyzing how fast the perturbative series diverges, one can extract information about instanton actions, level splittings, and other exponentially small phenomena that are invisible to any finite order of perturbation theory.

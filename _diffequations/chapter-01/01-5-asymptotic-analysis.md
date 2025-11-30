@@ -126,7 +126,7 @@ When multiple stationary points contribute, interference effects depend on the p
 
 ## WKB Approximation
 
-For $\epsilon^{2}y''+Q(x)y=0$ with $\epsilon\to 0$, seek $y=\exp\left(\epsilon^{-1}\sum_{n=0}^{\infty}\epsilon^{n}S_{n}(x)\right)$. The leading terms satisfy
+For $\epsilon^{2}y''+Q(x)y=0$ with $\epsilon\to 0$, seek $y=\exp(\epsilon^{-1}\sum_{n=0}^{\infty}\epsilon^{n}S_{n}(x))$. The leading terms satisfy
 
 $$
 (S_{0}')^{2}+Q(x)=0,\qquad 2S_{0}'S_{1}'+S_{0}''=0,
@@ -135,7 +135,7 @@ $$
 giving
 
 $$
-y(x)\sim \frac{A}{Q(x)^{1/4}}\exp\left(\pm\frac{i}{\epsilon}\int^{x}\sqrt{Q(t)}\,dt\right).
+y(x)\sim \frac{A}{Q(x)^{1/4}}\exp(\pm\frac{i}{\epsilon}\int^{x}\sqrt{Q(t)}\,dt).
 $$
 
 Oscillatory behavior occurs where $Q>0$, exponential where $Q<0$. Near turning points $Q(x_{0})=0$, WKB fails and must be matched to Airy-function solutions to obtain connection formulas.
@@ -147,14 +147,14 @@ Oscillatory behavior occurs where $Q>0$, exponential where $Q<0$. Near turning p
 > The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $\mid x \mid <1$ is
 
 > $$
-> y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos\left(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}\right).
+> y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}).
 > $$
 
 > **Quantum Tunneling via WKB**
 
 > Estimate tunneling in $V(x)=x^{4}-2x^{2}$.
 
-> In the forbidden region $\mid x \mid >1$, the WKB solution is $y\sim \mid Q \mid^{-1/4}\exp\left(-\epsilon^{-1}\int_{1}^{x}\sqrt{\mid Q \mid}\,dt\right)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
+> In the forbidden region $\mid x \mid >1$, the WKB solution is $y\sim \mid Q \mid^{-1/4}\exp(-\epsilon^{-1}\int_{1}^{x}\sqrt{\mid Q \mid}\,dt)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
 
 WKB connects quantum mechanics to classical mechanics: the phase $\int \sqrt{Q} \, dx$ is the classical action, and the amplitude $Q^{-1/4}$ reflects the classical density of trajectories. Tunneling probabilities are exponentially suppressed by the action barrier.
 
@@ -171,7 +171,7 @@ WKB connects quantum mechanics to classical mechanics: the phase $\int \sqrt{Q} 
 > and
 
 > $$
-> \operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\mid x \mid^{1/4}}\sin\left(\frac{2}{3}\mid x \mid^{3/2}+\frac{\pi}{4}\right),\quad x\to -\infty.
+> \operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\mid x \mid^{1/4}}\sin(\frac{2}{3}\mid x \mid^{3/2}+\frac{\pi}{4}),\quad x\to -\infty.
 > $$
 
 > Matching these yields the $\pi/4$ phase shift in the oscillatory region.
@@ -247,7 +247,7 @@ For the equation $\epsilon^2 y'' + (x - 1)^2 y = 0$ with a turning point at $x =
 For $x < 1$, we have $Q(x) > 0$, so the WKB solution is oscillatory:
 
 $$
-y(x) \sim \frac{A}{(1-x)^{1/2}} \cos\left(\frac{1}{\epsilon} \int_x^1 (1-t) \, dt - \frac{\pi}{4}\right) = \frac{A}{(1-x)^{1/2}} \cos\left(\frac{(1-x)^2}{2\epsilon} - \frac{\pi}{4}\right).
+y(x) \sim \frac{A}{(1-x)^{1/2}} \cos(\frac{1}{\epsilon} \int_x^1 (1-t) \, dt - \frac{\pi}{4}) = \frac{A}{(1-x)^{1/2}} \cos(\frac{(1-x)^2}{2\epsilon} - \frac{\pi}{4}).
 $$
 
 For $x > 1$, we have $Q(x) > 0$ as well, but we need to match through the turning point. Near $x = 1$, we linearize: $Q(x) \approx (x-1)^2$. Setting $z = (x-1)/\epsilon^{2/3}$, the equation becomes approximately $d^2y/dz^2 - z^2 y = 0$, which matches the Airy equation after appropriate scaling.
@@ -316,7 +316,7 @@ However, this is only valid for $\Re(z) > 0$. For $\arg z = 0^+$ and $\arg z = 0
 The difference between lateral sums is:
 
 $$
-\mathcal{S}^+(z) - \mathcal{S}^-(z) = \frac{2\pi i}{z} \operatorname{Res}_{t=1} \left( \mathcal{B}(t) e^{-t/z} \right) = \frac{2\pi i e^{-1}}{z} e^{-1/z}.
+\mathcal{S}^+(z) - \mathcal{S}^-(z) = \frac{2\pi i}{z} \operatorname{Res}_{t=1}( \mathcal{B}(t) e^{-t/z} ) = \frac{2\pi i e^{-1}}{z} e^{-1/z}.
 $$
 
 This exponentially small difference is the Stokes jump. The Stokes multiplier is $2\pi i e^{-1}$, encoding how the subdominant exponential is activated when crossing the Stokes line. Borel summation provides a rigorous interpretation of divergent series by transforming factorial divergence into a convergent integral representation, making sense of series that fail to converge in the traditional sense. Stokes jumps are encoded in the analytic continuation of the Borel transform: when the integration contour must pass above or below a singularity, the two choices produce different results that differ by exponentially small amounts. The multiplier is determined by the singularity structure in the Borel plane, with each singularity corresponding to a non-perturbative effect and its position determining the magnitude of the associated Stokes jump.

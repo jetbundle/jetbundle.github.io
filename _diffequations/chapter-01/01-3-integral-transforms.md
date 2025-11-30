@@ -61,7 +61,7 @@ which ties the exponential growth of $f$ to the pole structure of $F$. Poles wit
 > and the differentiation rules insert the initial data:
 
 > $$
-> \left[s^{2}Y(s)-sy(0)-y'(0)\right]+4\left[sY(s)-y(0)\right]+5Y(s)=0.
+> [s^{2}Y(s)-sy(0)-y'(0)]+4[sY(s)-y(0)]+5Y(s)=0.
 > $$
 
 > Substituting $y(0)=1$ and $y'(0)=0$ yields $(s^{2}+4s+5)Y(s)=s+4$, so
@@ -87,10 +87,10 @@ The Laplace transform automatically incorporates initial conditions into the alg
 > so $Y(s)=\dfrac{s+1}{s^{2}+1}+\dfrac{2}{(s^{2}+1)(s^{2}+4)}$. The first term inverts to the homogeneous response $\cos t$, while the second term becomes a convolution:
 
 > $$
-> y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin\left(2(t-\tau)\right)\,d\tau.
+> y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin(2(t-\tau))\,d\tau.
 > $$
 
-> Using $\sin A \sin B=\tfrac{1}{2}\left[\cos(A-B)-\cos(A+B)\right]$ reduces the integral to elementary sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution
+> Using $\sin A \sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ reduces the integral to elementary sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution
 
 > $$
 > y(t)=\cos t+\frac{2}{3}\sin t
@@ -107,13 +107,13 @@ Convolution represents the system's response to external forcing. The Laplace tr
 > The quadratic denominator has poles at $s=-1\pm 2i$. Choose a Bromwich line $\operatorname{Re}(s)=\gamma>0$ and close the contour in the left half-plane for $t>3$, where the exponential factor enforces a unit-step delay. The residues are
 
 > $$
-> \operatorname{Res}_{-1\pm 2i}\left(Y(s)e^{st}\right)=\frac{e^{-3(-1\pm 2i)}e^{t(-1\pm 2i)}}{4i}.
+> \operatorname{Res}_{-1\pm 2i}(Y(s)e^{st})=\frac{e^{-3(-1\pm 2i)}e^{t(-1\pm 2i)}}{4i}.
 > $$
 
 > Summing the residues yields
 
 > $$
-> f(t)=e^{3-t}\sin\left(2(t-3)\right)H(t-3),
+> f(t)=e^{3-t}\sin(2(t-3))H(t-3),
 > $$
 
 > where $H$ is the Heaviside step function. The solution activates exactly three time units after $t=0$, mirroring the exponential shift $e^{-3s}$ in the Laplace domain.
@@ -161,7 +161,7 @@ where the variances are defined using $\mid f \mid^{2}$ and $\mid \hat{f} \mid^{
 > Completing the square in the exponent,
 
 > $$
-> -\pi x^{2}-2\pi i x\xi=-\pi\left[(x+i\xi)^{2}+\xi^{2}\right],
+> -\pi x^{2}-2\pi i x\xi=-\pi[(x+i\xi)^{2}+\xi^{2}],
 > $$
 
 > so
@@ -207,7 +207,7 @@ The uncertainty principle is not merely a quantum mechanical curiosity—it refl
 > Inverting the transform yields
 
 > $$
-> u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp\left(-\frac{x^{2}}{1+4t}\right),
+> u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp(-\frac{x^{2}}{1+4t}),
 > $$
 
 > showing Gaussian spreading with conserved total mass.
@@ -364,7 +364,7 @@ $$
 Using the identity $\sin A \sin B = \frac{1}{2}[\cos(A-B) - \cos(A+B)]$, we get
 
 $$
-y(t) = \frac{e^{-t}}{2} \int_0^t [\cos(2\tau - t) - \cos t] \, d\tau = \frac{e^{-t}}{2} \left[ \frac{\sin(2\tau - t)}{2} - \tau \cos t \right]_0^t = \frac{e^{-t}}{4} [\sin t - 2t \cos t].
+y(t) = \frac{e^{-t}}{2} \int_0^t [\cos(2\tau - t) - \cos t] \, d\tau = \frac{e^{-t}}{2} [ \frac{\sin(2\tau - t)}{2} - \tau \cos t ]_0^t = \frac{e^{-t}}{4} [\sin t - 2t \cos t].
 $$
 
 Alternatively, taking the Laplace transform directly: $F(s) = \frac{1}{(s+1)^2 + 1}$, so
@@ -431,10 +431,10 @@ Equality holds when $xf(x)$ is proportional to $f'(x)$, leading to $f(x) = Ce^{-
 The optimal wave packet is the normalized Gaussian
 
 $$
-f(x) = \left(\frac{2\alpha}{\pi}\right)^{1/4} e^{-\alpha x^2},
+f(x) = (\frac{2\alpha}{\pi})^{1/4} e^{-\alpha x^2},
 $$
 
-with Fourier transform $\hat{f}(\xi) = \left(\frac{\pi}{2\alpha}\right)^{1/4} e^{-\pi^2 \xi^2 / \alpha}$. The uncertainty product is exactly $\frac{1}{4\pi}$.
+with Fourier transform $\hat{f}(\xi) = (\frac{\pi}{2\alpha})^{1/4} e^{-\pi^2 \xi^2 / \alpha}$. The uncertainty product is exactly $\frac{1}{4\pi}$.
 
 The uncertainty principle establishes a fundamental limitation on simultaneous localization in space and frequency: one cannot make both $\Delta x$ and $\Delta \xi$ arbitrarily small simultaneously. Gaussians achieve the optimal balance, minimizing the uncertainty product and saturating the inequality. This principle underlies both quantum mechanics, where it manifests as the Heisenberg uncertainty relation between position and momentum, and information theory, where it constrains the simultaneous localization of signals in time and frequency domains.
 
