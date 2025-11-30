@@ -114,375 +114,65 @@ $$
 
 where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the Einstein-Hilbert action, the deterministic drift term $-\frac{\delta S}{\delta g}$ corresponds to the Ricci tensor (in harmonic gauge). Thus, the Ricci flow $\partial_t g = -2 \text{Ric}$ can be viewed as the zero-noise limit of the stochastic evolution of spacetime geometry. The "singularities" encountered in the deterministic flow—such as topology-changing neck pinches—correspond to phase transitions in the underlying quantum field theory, where the system tunnels between different topological sectors of the moduli space.
 
-## Complete Examples
+> **Normalized Ricci Flow on $S^2$**
 
-### Example 6.5.1: Normalized Ricci Flow on $S^2$
+> For the 2-sphere $S^2$ with the standard round metric $g_0 = d\theta^2 + \sin^2\theta d\phi^2$, the normalized Ricci flow admits an exact solution. For the round metric $g(t) = f(t)^2 (d\theta^2 + \sin^2\theta d\phi^2)$, the Ricci tensor is $R_{ij} = (1/f(t)^2 - 1) g_{ij}$ and the scalar curvature is $R = 2/f(t)^2$.
 
-**Problem:** Consider the 2-sphere $S^2$ with the standard round metric $g_0 = d\theta^2 + \sin^2\theta d\phi^2$. Show that the normalized Ricci flow admits an exact solution.
+> The normalized flow is $\frac{\partial}{\partial t} g_{ij} = -2 \text{Ric}_{ij} + \frac{r}{n} g_{ij}$ where $r = \text{tr}_g \text{Ric} = R$. For $n=2$, this gives $\frac{\partial f^2}{\partial t} = -2(1 - f^2) + f^2 = 2(f^2 - 1)$. Solving $\frac{df^2}{dt} = 2(f^2 - 1)$ gives $\frac{df^2}{f^2 - 1} = 2\, dt$. Integrating yields $\int \frac{df^2}{f^2 - 1} = 2t + C$, so $\tanh^{-1}f = t + C$. With initial condition $f(0) = f_0$, the solution is $f(t) = \tanh(t + \tanh^{-1}f_0)$.
 
-**Step-by-Step Solution:**
+> As $t \to \infty$, $f(t) \to 1$, converging to the standard round metric. The curvature evolution gives $R(t) = 2/f(t)^2 \to 2$ (constant), and volume is preserved: $\text{Vol}(S^2, g(t)) = 4\pi$ (normalized). The Ricci flow acts as a nonlinear heat equation that homogenizes curvature while preserving topology, demonstrating how geometric evolution equations systematically evolve metrics toward canonical forms.
 
-1. **Ricci Curvature Computation:**
-   For the round metric $g(t) = f(t)^2 (d\theta^2 + \sin^2\theta d\phi^2)$:
+> **De Turck Trick for Strict Parabolicity**
 
-   Ricci tensor: $R_{ij} = (1/f(t)^2 - 1) g_{ij}$
+> For the flat torus $T^2 = S^1 \times S^1$ with metric $g_{ij}(t)$, the De Turck trick demonstrates strict parabolicity. The Ricci flow $\partial_t g = -2\text{Ric}(g)$ has linearization $\mathcal{L} h_{ij} = -\Delta_L h_{ij} + \text{lower order terms}$ where $\Delta_L$ is the Lichnerowicz Laplacian: $\Delta_L h_{ij} = \Delta h_{ij} + 2 R_{ikjl} h^{kl} - 2 R_{ik} h_j^k - 2 R_{jk} h_i^k + 2 R_{ij} \text{tr}_h g$.
 
-   Scalar curvature: $R = 2/f(t)^2$
+> The symbol of $\Delta_L$ is degenerate due to diffeomorphism invariance: $\sigma(\Delta_L)(\xi) h_{ij} = -\mid \xi \mid^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i$. The De Turck modification introduces a vector field $W$ solving $\Delta_L W_i + \nabla_j \nabla_i W^j = \Gamma_k(g, \partial_t g)$, giving the modified flow $\partial_t g_{ij} = -2\text{Ric}_{ij} + \mathcal{L}_W g_{ij}$ where $\mathcal{L}_W g_{ij} = \nabla_i W_j + \nabla_j W_i$.
 
-2. **Normalized Ricci Flow Equation:**
-   The normalized flow is:
+> For the flat torus with initial metric $g_0 = dx^2 + dy^2$ and perturbation $h_{ij} = \begin{pmatrix} h_{11} & h_{12} \\ h_{12} & h_{22} \end{pmatrix}$, the De Turck vector $W = (w_1, w_2)$ satisfies $\Delta w_1 = \partial_x h_{11} + \partial_y h_{12}$ and $\Delta w_2 = 2\partial_x h_{12} + \partial_y h_{22}$. The modified symbol is $\sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = \mid \xi \mid^2 g_{ij}$, giving strict parabolicity with principal symbol $\mid \xi \mid^2 > 0$. The De Turck trick transforms a weakly parabolic system into a strictly parabolic one while preserving the geometric content, enabling rigorous existence and uniqueness results.
 
-   $$
-   \frac{\partial}{\partial t} g_{ij} = -2 \text{Ric}_{ij} + \frac{r}{n} g_{ij}
-   $$
+> **Tensor Maximum Principle for Sectional Curvature**
 
-   where $r = \text{tr}_g \text{Ric} = R$. For $n=2$:
+> To show that positive sectional curvature is preserved under Ricci flow on $S^2$, we consider the metric $g(t) = f(t)^2 g_{\text{round}}$ with sectional curvature $K = 1/f(t)^2$. The evolution is $\partial_t K = \Delta K + 2K(R - 2K)$.
 
-   $$
-   \frac{\partial f^2}{\partial t} = -2(1 - f^2) + f^2 = 2(f^2 - 1)
-   $$
+> The tensor maximum principle states that for a tensor $T$ satisfying $\partial_t T \ge \Delta T + Q(T)$ where $Q$ is quadratic, if $T \ge 0$ initially and $Q(T) \ge 0$ when $T \ge 0$, then $T(t) \ge 0$. For sectional curvature, the Lichnerowicz Laplacian is $\Delta K = f^{-4} \partial_\theta (\sin\theta \partial_\theta K)/\sin\theta$ and the reaction term is $Q(K) = 2K(2/f^2 - 2K)$. Positivity preservation holds: if $K \ge 0$, then $Q(K) \ge 0$ when $K \le 1/f^2$.
 
-3. **Exact Solution:**
-   $$
-   \frac{df^2}{dt} = 2(f^2 - 1) \implies \frac{df^2}{f^2 - 1} = 2\, dt
-   $$
+> From the normalized Ricci flow solution, $f(t) = \tanh(t + C)$, giving $K(t) = \frac{1}{f(t)^2} = \frac{1}{\tanh^2(t + C)} = \coth^2(t + C)$. Checking $\partial_t K = -2\coth^2(t + C) \tanh(t + C) \ge 0$ for $t \ge 0$ confirms positivity preservation. Geometric inequalities are preserved through the tensor maximum principle, ensuring controlled evolution and preventing curvature from becoming negative.
 
-   Integration:
+> **Perelman's $\mathcal{F}$-Functional Monotonicity**
 
-   $$
-   \int \frac{df^2}{f^2 - 1} = 2t + C \implies \tanh^{-1}f = t + C
-   $$
+> To verify Perelman's monotonicity formula for Ricci flow on $S^1$, we consider the metric $g(t) = u(x,t) dx^2$ with $x \in [0,2\pi]$ and the $\mathcal{F}$-functional $\mathcal{F}(u, f) = \int_0^{2\pi} \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) e^{-f} \sqrt{u}\, dx$.
 
-   Initial condition $f(0) = f_0$:
+> The Ricci curvature is $\text{Ric} = -\frac{1}{2} \frac{u_{xx}}{u^2}$, giving the flow $\partial_t u = u_{xx}$. Perelman's system couples this with $\partial_t f = -\log u + \text{constant}$.
 
-   $$
-   f(t) = \tanh(t + \tanh^{-1}f_0)
-   $$
+> Computing the first variation, we find $\frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx$. After integration by parts and substitution, this gives $\frac{d}{dt} \mathcal{F} = 2 \int \left| \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \right|^2 e^{-f} \sqrt{u}\, dx \ge 0$.
 
-4. **Geometric Interpretation:**
-   As $t \to \infty$: $f(t) \to 1$, converging to standard round metric
+> The equality case occurs when $\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} = 1$. The gradient flow structure shows that Ricci flow equals the gradient flow of $\mathcal{F}$, and monotonicity prevents periodic solutions (no breathers). The $\mathcal{F}$-monotonicity provides a Lyapunov functional controlling the entire flow, demonstrating how entropy functionals govern geometric evolution.
 
-   Curvature evolution: $R(t) = 2/f(t)^2 \to 2$ (constant)
+> **Neck Pinch Singularity**
 
-   Volume preservation: $\text{Vol}(S^2, g(t)) = 4\pi$ (normalized)
+> To construct an explicit solution exhibiting neck pinch singularity in finite time, we consider the domain $S^1 \times \mathbb{R}$ with metric $g(t) = dr^2 + \alpha(r,t)^2 d\theta^2$.
 
-   **Key Insight:** The Ricci flow acts as a nonlinear heat equation that homogenizes curvature while preserving topology.
+> The Ricci tensor is $\text{Ric} = -\partial_{rr} \log \alpha \cdot g_{\theta\theta}$, giving the evolution $\partial_t \alpha = \alpha_{rr}$. Assuming a self-similar solution $\alpha(r,t) = \frac{1}{\sqrt{T-t}} \beta\left(\frac{r}{\sqrt{T-t}}\right)$, the reduced equation is $\beta'' + \frac{1}{2} \beta' + \frac{1}{2} \frac{\beta'^2}{\beta} = 0$.
 
-### Example 6.5.2: De Turck Trick—Making Ricci Flow Strictly Parabolic
+> Letting $\gamma = \log \beta$ gives $\gamma'' + \frac{1}{2} (\gamma')^2 + \frac{1}{2} \gamma' = 0$, with solution $\gamma' = -\frac{1}{1 + e^{r/\sqrt{2}}}$, so $\beta(r) = \sqrt{2} \tanh\left(\frac{r}{2\sqrt{2}}\right)$.
 
-**Problem:** Consider the flat torus $T^2 = S^1 \times S^1$ with metric $g_{ij}(t)$. Apply the De Turck trick to demonstrate strict parabolicity.
+> The singularity analysis shows the neck radius $\alpha(0,t) \sim \sqrt{T-t}$, curvature $R \sim \frac{1}{T-t}$, and singularity time $t = T$ (diameter $\to 0$). The high curvature region $r \lesssim \sqrt{T-t}$ resembles a shrinking cylinder. Surgery removes $\mid r \mid < \epsilon \sqrt{T-t}$ and caps with standard spheres. Neck pinches are universal and admit explicit self-similar models, demonstrating how geometric evolution equations develop controlled singularities.
 
-**Step-by-Step Solution:**
+> **Huisken's Monotonicity for Mean Curvature Flow**
 
-1. **Ricci Flow Linearization:**
-   The Ricci flow $\partial_t g = -2\text{Ric}(g)$ has linearization:
+> To verify Huisken's monotonicity for a shrinking $S^{n-1} \subset \mathbb{R}^n$, we consider the embedding $F(x,t): S^{n-1} \to \mathbb{R}^n$ with evolution $\partial_t F = \vec{H} = -(n-1) F/\mid F \mid^2$.
 
-   $$
-   \mathcal{L} h_{ij} = -\Delta_L h_{ij} + \text{lower order terms}
-   $$
+> The self-similar solution ansatz $F(x,t) = \sqrt{T-t} \cdot \phi(x)$ gives the reduced MCF $\Delta \phi + \frac{1}{2} \phi = 0$. Huisken's functional is the Gaussian density $\Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-\mid x-p \mid^2/4(T-t_0)} d\mathcal{H}^{n-1}$.
 
-   where $\Delta_L$ is the Lichnerowicz Laplacian:
+> Computing the evolution gives $\frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int \mid \vec{H} + \frac{x-p}{2(T-t_0)} \mid^2 e^{-\mid x-p \mid^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0$. As $t \to T^-$, the asymptotic analysis shows $\lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}$ where $\omega_{n-1}$ is the solid angle of $S^{n-1}$. Monotonicity classifies singularities by their asymptotic density, providing a geometric characterization of singularity types in mean curvature flow.
 
-   $$
-   \Delta_L h_{ij} = \Delta h_{ij} + 2 R_{ikjl} h^{kl} - 2 R_{ik} h_j^k - 2 R_{jk} h_i^k + 2 R_{ij} \text{tr}_h g
-   $$
+> **Stochastic Quantization and Ricci Flow**
 
-2. **Gauge Degeneracy:**
-   The symbol of $\Delta_L$ is degenerate due to diffeomorphism invariance:
+> To derive Ricci flow as the mean-field limit of stochastic quantization, we begin with the Einstein-Hilbert action $S[g] = \int_M R[g] dV_g$.
 
-   $$
-   \sigma(\Delta_L)(\xi) h_{ij} = -\mid \xi \mid^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i
-   $$
+> The stochastic quantization Langevin equation is $\partial_t g_{ij} = -2\text{Ric}_{ij} + \xi_{ij}$ where $\xi_{ij}$ is space-time white noise with $\mathbb{E}[\xi_{ij}(x,t) \xi_{kl}(x',t')] = \delta_{ik}\delta_{jl} \delta(x-x')\delta(t-t')$. The Fokker-Planck equation for the probability density $P[g,t]$ is $\partial_t P = \int \frac{\delta}{\delta g_{ij}} \left[ \frac{\delta}{\delta g_{ij}} + 2\text{Ric}_{ij} \right] P\, dV_g$.
 
-3. **De Turck Modification:**
-   Introduce vector field $W$ solving:
-
-   $$
-   \Delta_L W_i + \nabla_j \nabla_i W^j = \Gamma_k(g, \partial_t g)
-   $$
-
-   Modified flow:
-
-   $$
-   \partial_t g_{ij} = -2\text{Ric}_{ij} + \mathcal{L}_W g_{ij}
-   $$
-
-   where $\mathcal{L}_W g_{ij} = \nabla_i W_j + \nabla_j W_i$
-
-4. **Explicit Calculation for Flat Torus:**
-   Initial metric: $g_0 = dx^2 + dy^2$
-
-   Perturbation: $h_{ij} = \begin{pmatrix} h_{11} & h_{12} \\ h_{12} & h_{22} \end{pmatrix}$
-
-   De Turck vector: $W = (w_1, w_2)$ where:
-
-   $$
-   \Delta w_1 = \partial_x h_{11} + \partial_y h_{12}
-   $$
-
-   $$
-   \Delta w_2 = 2\partial_x h_{12} + \partial_y h_{22}
-   $$
-
-5. **Symbol Analysis:**
-   Modified symbol:
-
-   $$
-   \sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = \mid \xi \mid^2 g_{ij}
-   $$
-
-   **Result:** Strictly parabolic with principal symbol $\mid \xi \mid^2 > 0$
-
-   **Key Insight:** The De Turck trick transforms a weakly parabolic system into a strictly parabolic one while preserving the geometric content.
-
-### Example 6.5.3: Tensor Maximum Principle—Preservation of Positive Sectional Curvature
-
-**Problem:** Show that positive sectional curvature is preserved under Ricci flow on $S^2$.
-
-**Step-by-Step Solution:**
-
-1. **Curvature Evolution on $S^2$:**
-   For metric $g(t) = f(t)^2 g_{\text{round}}$, sectional curvature $K = 1/f(t)^2$. Evolution:
-
-   $$
-   \partial_t K = \Delta K + 2K(R - 2K)
-   $$
-
-2. **Tensor Maximum Principle Application:**
-   General form: For tensor $T$ satisfying:
-
-   $$
-   \partial_t T \ge \Delta T + Q(T)
-   $$
-
-   where $Q$ is quadratic. If $T \ge 0$ initially and $Q(T) \ge 0$ when $T \ge 0$, then $T(t) \ge 0$.
-
-3. **Verification for Sectional Curvature:**
-   Lichnerowicz Laplacian: $\Delta K = f^{-4} \partial_\theta (\sin\theta \partial_\theta K)/\sin\theta$
-
-   Reaction term: $Q(K) = 2K(2/f^2 - 2K)$
-
-   Positivity preservation: If $K \ge 0$, then $Q(K) \ge 0$ when $K \le 1/f^2$
-
-4. **Explicit Verification:**
-   From Example 6.5.1: $f(t) = \tanh(t + C)$. Then:
-
-   $$
-   K(t) = \frac{1}{f(t)^2} = \frac{1}{\tanh^2(t + C)} = \coth^2(t + C)
-   $$
-
-   Check: $\partial_t K = -2\coth^2(t + C) \tanh(t + C) \ge 0$ for $t \ge 0$
-
-   **Key Insight:** Geometric inequalities are preserved through the tensor maximum principle, ensuring controlled evolution.
-
-### Example 6.5.4: Perelman's $\mathcal{F}$-Functional—Monotonicity Proof
-
-**Problem:** Verify Perelman's monotonicity formula for Ricci flow on $S^1$.
-
-**Step-by-Step Solution:**
-
-1. **Setup:**
-   Metric: $g(t) = u(x,t) dx^2$, $x \in [0,2\pi]$
-
-   $\mathcal{F}$-functional:
-
-   $$
-   \mathcal{F}(u, f) = \int_0^{2\pi} \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) e^{-f} \sqrt{u}\, dx
-   $$
-
-2. **Ricci Flow Evolution:**
-   Ricci curvature: $\text{Ric} = -\frac{1}{2} \frac{u_{xx}}{u^2}$
-
-   Flow: $\partial_t u = u_{xx}$
-
-3. **Coupled Evolution:**
-   Perelman's system:
-
-   $$
-   \partial_t u = u_{xx}
-   $$
-
-   $$
-   \partial_t f = -\log u + \text{constant}
-   $$
-
-4. **Monotonicity Computation:**
-   First variation:
-
-   $$
-   \frac{d}{dt} \mathcal{F} = \int \left[ 2\left|\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1\right|^2 + \text{boundary terms} \right] e^{-f} \sqrt{u}\, dx
-   $$
-
-   Detailed calculation:
-
-   $$
-   \frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx
-   $$
-
-   After integration by parts and substitution:
-
-   $$
-   \frac{d}{dt} \mathcal{F} = 2 \int \left| \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \right|^2 e^{-f} \sqrt{u}\, dx \ge 0
-   $$
-
-5. **Geometric Interpretation:**
-   Equality case: $\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} = 1$
-
-   Gradient flow structure: Ricci flow = gradient flow of $\mathcal{F}$
-
-   No breathers: Monotonicity prevents periodic solutions
-
-   **Key Insight:** $\mathcal{F}$-monotonicity provides a Lyapunov functional controlling the entire flow.
-
-### Example 6.5.5: Singularity Analysis—Neck Pinch
-
-**Problem:** Construct an explicit solution exhibiting neck pinch singularity in finite time.
-
-**Step-by-Step Solution:**
-
-1. **Ansatz for Cylinder:**
-   Domain: $S^1 \times \mathbb{R}$ with metric:
-
-   $$
-   g(t) = dr^2 + \alpha(r,t)^2 d\theta^2
-   $$
-
-2. **Ricci Flow Evolution:**
-   Ricci tensor: $\text{Ric} = -\partial_{rr} \log \alpha \cdot g_{\theta\theta}$
-
-   Evolution:
-
-   $$
-   \partial_t \alpha = \alpha_{rr}
-   $$
-
-3. **Self-Similar Solution:**
-   Assume $\alpha(r,t) = \frac{1}{\sqrt{T-t}} \beta\left(\frac{r}{\sqrt{T-t}}\right)$
-
-   Reduced equation:
-
-   $$
-   \beta'' + \frac{1}{2} \beta' + \frac{1}{2} \frac{\beta'^2}{\beta} = 0
-   $$
-
-4. **Exact Solution:**
-   Let $\gamma = \log \beta$. Then:
-
-   $$
-   \gamma'' + \frac{1}{2} (\gamma')^2 + \frac{1}{2} \gamma' = 0
-   $$
-
-   Solution: $\gamma' = -\frac{1}{1 + e^{r/\sqrt{2}}}$
-
-   $$
-   \beta(r) = \sqrt{2} \tanh\left(\frac{r}{2\sqrt{2}}\right)
-   $$
-
-5. **Singularity Analysis:**
-   Neck radius: $\alpha(0,t) \sim \sqrt{T-t}$
-
-   Curvature: $R \sim \frac{1}{T-t}$
-
-   Singularity time: $t = T$ (diameter $\to 0$)
-
-6. **Canonical Neighborhood:**
-   High curvature region $r \lesssim \sqrt{T-t}$ resembles shrinking cylinder.
-
-   Surgery: Remove $|r| < \epsilon \sqrt{T-t}$, cap with standard spheres.
-
-   **Key Insight:** Neck pinches are universal and admit explicit self-similar models.
-
-### Example 6.5.6: Mean Curvature Flow—Huisken's Monotonicity
-
-**Problem:** Verify Huisken's monotonicity for a shrinking $S^{n-1} \subset \mathbb{R}^n$.
-
-**Step-by-Step Solution:**
-
-1. **MCF Equation:**
-   Embedding: $F(x,t): S^{n-1} \to \mathbb{R}^n$
-
-   Evolution: $\partial_t F = \vec{H} = -(n-1) F/|F|^2$
-
-2. **Self-Similar Solution:**
-   Ansatz: $F(x,t) = \sqrt{T-t} \cdot \phi(x)$
-
-   Reduced MCF:
-
-   $$
-   \Delta \phi + \frac{1}{2} \phi = 0
-   $$
-
-3. **Huisken Functional:**
-   Gaussian density:
-
-   $$
-   \Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-|x-p|^2/4(T-t_0)} d\mathcal{H}^{n-1}
-   $$
-
-4. **Monotonicity Computation:**
-   Evolution:
-
-   $$
-   \frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int |\vec{H} + \frac{x-p}{2(T-t_0)}|^2 e^{-|x-p|^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0
-   $$
-
-5. **Asymptotic Analysis:**
-   As $t \to T^-$:
-
-   $$
-   \lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}
-   $$
-
-   where $\omega_{n-1}$ is the solid angle of $S^{n-1}$.
-
-   **Key Insight:** Monotonicity classifies singularities by their asymptotic density.
-
-### Example 6.5.7: Stochastic Quantization Connection
-
-**Problem:** Derive Ricci flow as the mean-field limit of stochastic quantization.
-
-**Step-by-Step Solution:**
-
-1. **Einstein-Hilbert Action:**
-   $$
-   S[g] = \int_M R[g] dV_g
-   $$
-
-2. **Stochastic Quantization:**
-   Langevin equation:
-
-   $$
-   \partial_t g_{ij} = -2\text{Ric}_{ij} + \xi_{ij}
-   $$
-
-   where $\xi_{ij}$ is space-time white noise:
-
-   $$
-   \mathbb{E}[\xi_{ij}(x,t) \xi_{kl}(x',t')] = \delta_{ik}\delta_{jl} \delta(x-x')\delta(t-t')
-   $$
-
-3. **Fokker-Planck Equation:**
-   Probability density $P[g,t]$:
-
-   $$
-   \partial_t P = \int \frac{\delta}{\delta g_{ij}} \left[ \frac{\delta}{\delta g_{ij}} + 2\text{Ric}_{ij} \right] P\, dV_g
-   $$
-
-4. **Mean-Field Limit:**
-   Averaged evolution:
-
-   $$
-   \partial_t \langle g_{ij} \rangle = -2 \langle \text{Ric}_{ij} \rangle
-   $$
-
-   Fluctuation-dissipation: Higher moments controlled by Perelman's $\mathcal{W}$-entropy.
-
-5. **Singularity Interpretation:**
-   Neck pinch $\leftrightarrow$ Quantum tunneling between topology classes
-
-   Surgery $\leftrightarrow$ Phase transition in path integral measure
-
-   **Key Insight:** Ricci flow emerges as deterministic limit of quantum gravity path integral.
+> In the mean-field limit, the averaged evolution is $\partial_t \langle g_{ij} \rangle = -2 \langle \text{Ric}_{ij} \rangle$. Fluctuation-dissipation shows that higher moments are controlled by Perelman's $\mathcal{W}$-entropy. The singularity interpretation connects neck pinches to quantum tunneling between topology classes, and surgery to phase transitions in the path integral measure. Ricci flow emerges as the deterministic limit of the quantum gravity path integral, demonstrating how geometric evolution equations arise from stochastic field theory.
 
 ## References
 

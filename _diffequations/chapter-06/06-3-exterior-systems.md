@@ -118,217 +118,39 @@ This theorem represents the pinnacle of local existence theory for geometric PDE
 
 > Setting $P(x,y) = \int_0^y f(x,t) dt + g(x)$ gives $Q_x = P_y = f(x,y)$, so $Q(x,y) = \int_0^x f(s,y) ds + h(y)$. The general solution is $\mathbf{v} = \nabla^\perp \psi$ for some stream function $\psi$, demonstrating how the exterior differential system encodes the divergence-free condition as a geometric constraint.
 
-### Example 6.3.3: Advanced Demonstration—Surface of Revolution PDE
+> **Surface of Revolution PDE**
 
-**Problem:** Solve $z_{xy} = F(x,y,z,z_x,z_y)$ for a surface $z = z(x,y)$.
+> To solve $z_{xy} = F(x,y,z,z_x,z_y)$ for a surface $z = z(x,y)$, we construct an exterior differential system on $M = J^1(\mathbb{R}^2,\mathbb{R})$ with coordinates $(x,y,z,p,q)$. The ideal is $\mathcal{I} = \left\{ \theta = dz - p dx - q dy, \quad \omega = dp \wedge dx + dq \wedge dy - F dx \wedge dy \right\}$.
 
-**Step-by-Step Solution:**
+> The contact structure $\theta = 0$ enforces $(p,q) = (z_x,z_y)$. To find integral elements, we seek 2-planes $E \subset T_{(x,y,z,p,q)}M$ such that $\theta \mid_E = 0$ and $\omega \mid_E = 0$. An integral element must lie in $\ker \theta$, spanned by $v_1 = \partial_x + p \partial_z$, $v_2 = \partial_y + q \partial_z$, $v_3 = \partial_p$, and $v_4 = \partial_q$. Evaluating $\omega$ on this distribution gives $\omega(v_1,v_2) = \omega(\partial_x + p\partial_z, \partial_y + q\partial_z) = -F \neq 0$ unless $F = 0$.
 
-1. **EDS Construction:**
-   $M = J^1(\mathbb{R}^2,\mathbb{R})$ with coordinates $(x,y,z,p,q)$. The ideal is:
+> The corrected integral elements are $E = \text{span}\{v_1,v_2\}$ where $v_1 = \partial_x + p \partial_z + a \partial_p + b \partial_q$ and $v_2 = \partial_y + q \partial_z + c \partial_p + d \partial_q$. The polar space $H(E)$ consists of vectors $w$ such that $\text{span}(E \cup \{w\})$ remains integral. Computing $\omega(v_1,v_2) = 0$, $\omega(v_1,w) = 0$, and $\omega(v_2,w) = 0$ gives a $2 \times 4$ matrix whose rank determines involutivity. The Cartan characters are $s_0 = 1$ (freedom in $z$ direction) and $s_1 = 1$ (freedom in $(p,q)$ plane). The involutivity condition is $\dim V_2(E) = 2s_1 + 1s_2 = 3$. If the rank condition holds, the system is involutive.
 
-   $$
-   \mathcal{I} = \left\{ \theta = dz - p dx - q dy, \quad \omega = dp \wedge dx + dq \wedge dy - F dx \wedge dy \right\}
-   $$
+> **Monge-Ampère Equation**
 
-2. **Contact Structure:**
-   $\theta = 0$ enforces $(p,q) = (z_x,z_y)$.
+> For the Monge-Ampère equation $z_{xx}z_{yy} - z_{xy}^2 = 1$, the exterior differential system is $\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy, \omega_2 = dq - s dx - t dy, \omega_3 = r t - s^2 - 1 \}$.
 
-3. **Integral Elements:**
-   Find 2-planes $E \subset T_{(x,y,z,p,q)}M$ such that:
-   - $E$ annihilates $\theta$: $\theta \mid_E = 0$
-   - $E$ annihilates $\omega$: $\omega \mid_E = 0$
+> At a generic point, the integral element is $E_2 = \text{span}\{\partial_x + p\partial_z + r\partial_p + s\partial_q, \partial_y + q\partial_z + s\partial_p + t\partial_q\}$. Solving $\omega_i(E_2,v) = 0$ for $i=1,2,3$ determines the polar vectors. The freedom count gives $s_0 = 1$ (initial $z$), $s_1 = 2$ (initial $(p,q)$), and $s_2 = 0$ (second derivatives determined). Verification shows $\dim V_2 = 1 \cdot 2 + 2 \cdot 0 = 2$, confirming the system is involutive.
 
-   Basis for $T M$: $\partial_x, \partial_y, \partial_z, \partial_p, \partial_q$
+> **Goursat Problem for Nonlinear Wave Equation**
 
-   **Condition 1:** $\theta(\partial_x) = -p$, $\theta(\partial_y) = -q$, $\theta(\partial_z) = 1$
+> To solve $u_{xy} = f(x,y,u,u_x,u_y)$ with initial data $u(x,0) = \phi(x)$ and $u(0,y) = \psi(y)$, we construct an exterior differential system on $M = J^1(\mathbb{R}^2,\mathbb{R})$ with coordinates $(x,y,u,p,q)$. The ideal is $\mathcal{I} = \{ \theta = du - p dx - q dy, \omega = dp \wedge dy - f dx \wedge dy \}$.
 
-   An integral element must lie in $\ker \theta$, spanned by:
+> Verifying involutivity, integral elements at $(x_0,y_0,u_0,p_0,q_0)$ are $E = \text{span}\{v_1 = \partial_x + p_0 \partial_u + a \partial_p + b \partial_q, v_2 = \partial_y + q_0 \partial_u + c \partial_p + d \partial_q\}$. The conditions $\theta(v_1) = \theta(v_2) = 0$ are automatic, and $\omega(v_1,v_2) = 0$ gives $\omega(v_1,v_2) = -f + (d - b) = 0$, so $d = b$. The polar space has dimension 3 parameters $(a,b,c)$. The Cartan characters are $s_0 = 1$ and $s_1 = 1$, and involutivity is satisfied since $\dim V_2 = 1 \cdot 1 = 1$.
 
-   $$
-   v_1 = \partial_x + p \partial_z, \quad v_2 = \partial_y + q \partial_z, \quad v_3 = \partial_p, \quad v_4 = \partial_q
-   $$
+> Applying Cartan-Kähler, the initial manifold $P_1$ along $y=0$ has $u = \phi(x)$, $p = \phi'(x)$, and $q$ free. Extending to $P_2$, we solve for $q(x,0)$ using $\omega \mid_P = 0$, giving $dp \wedge dy = f dx \wedge dy$, which implies $\frac{\partial p}{\partial y} \bigg\mid_{y=0} = f(x,0,\phi(x),\phi'(x),q)$. This yields an ODE for $q(x,0)$: $\frac{dq}{dx} = \frac{\partial f}{\partial p} \phi''(x) + \frac{\partial f}{\partial q}$. Assuming $f$ is analytic, Cauchy-Kovalevskaya guarantees a local solution, and Cartan-Kähler ensures a unique analytic extension to the $(x,y)$-plane with dimension increasing from $P_1 \to P_2$.
 
-   **Condition 2:** Evaluate $\omega$ on this distribution:
+> **Overdetermined System Failure**
 
-   $$
-   \omega(v_1,v_2) = \omega(\partial_x + p\partial_z, \partial_y + q\partial_z) = -F
-   $$
+> For the system $u_{xx} = 0$ and $u_{xy} = 0$ (incompatible unless $u_{yy} = 0$), the exterior differential system is $\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp, \omega_2 = dp \wedge dy \}$.
 
-   Thus $\omega(v_1,v_2) = -F \neq 0$ unless $F = 0$.
+> The Cartan test gives $E_2 = \text{span}\{\partial_x + p\partial_z, \partial_y + q\partial_z\}$. The condition $\omega_1(\partial_x + p\partial_z, v) = 0$ for all $v$ requires $dp = 0$ on the entire $T M$. The obstruction is $\dim V_2 = 0 < 1$, so the system is not involutive. Prolongation adds $d\omega_2 = 0$, which implies $d^2p = 0$, revealing the full Laplace equation.
 
-4. **Corrected Integral Elements:**
-   We need $E = \text{span}\{v_1,v_2\}$ where:
+> **Surfaces with Constant Gaussian Curvature**
 
-   $$
-   v_1 = \partial_x + p \partial_z + a \partial_p + b \partial_q
-   $$
+> To find all surfaces with Gaussian curvature $K = 1$, we construct an exterior differential system in $J^2$: $\mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy, \omega_2 = dq - s dx - t dy, \omega_3 = (r t - s^2) - 1 \}$.
 
-   $$
-   v_2 = \partial_y + q \partial_z + c \partial_p + d \partial_q
-   $$
-
-5. **Cartan Test Application:**
-   The polar space $H(E)$ consists of vectors $w$ such that $\text{span}(E \cup \{w\})$ remains integral. Compute:
-
-   $$
-   \omega(v_1,v_2) = 0, \quad \omega(v_1,w) = 0, \quad \omega(v_2,w) = 0
-   $$
-
-   This gives a $2 \times 4$ matrix whose rank determines involutivity.
-
-   **Cartan characters:** $s_0 = 1$ (freedom in $z$ direction), $s_1 = 1$ (freedom in $(p,q)$ plane)
-
-   **Involutivity Condition:**
-
-   $$
-   \dim V_2(E) = 2s_1 + 1s_2 = 2 + 1 = 3
-   $$
-
-   If the rank condition holds, the system is involutive.
-
-### Example 6.3.4: Monge-Ampère Equation
-
-**Problem:** $z_{xx}z_{yy} - z_{xy}^2 = 1$ (special case).
-
-**Step-by-Step Solution:**
-
-1. **EDS:**
-   $$
-   \mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy,
-   $$
-
-   $$
-   \omega_2 = dq - s dx - t dy, \omega_3 = r t - s^2 - 1 \}
-   $$
-
-2. **Cartan Test Computation (at generic point):**
-   **Integral element:** $E_2 = \text{span}\{\partial_x + p\partial_z + r\partial_p + s\partial_q, \partial_y + q\partial_z + s\partial_p + t\partial_q\}$
-
-   **Polar vectors:** Solve $\omega_i(E_2,v) = 0$ for $i=1,2,3$
-
-   **Freedom count:** $s_0 = 1$ (initial $z$), $s_1 = 2$ (initial $(p,q)$), $s_2 = 0$ (second derivatives determined)
-
-3. **Verification:**
-   $\dim V_2 = 1 \cdot 2 + 2 \cdot 0 = 2$, involutive.
-
-### Example 6.3.5: Complete Local Existence—Goursat Problem
-
-**Problem:** Solve the nonlinear wave equation:
-
-$$
-u_{xy} = f(x,y,u,u_x,u_y)
-$$
-
-**Initial Data:** $u(x,0) = \phi(x)$, $u(0,y) = \psi(y)$
-
-**Step-by-Step Solution:**
-
-1. **EDS Construction:**
-   $M = J^1(\mathbb{R}^2,\mathbb{R})$, coordinates $(x,y,u,p,q)$
-
-   $$
-   \mathcal{I} = \{ \theta = du - p dx - q dy, \omega = dp \wedge dy - f dx \wedge dy \}
-   $$
-
-2. **Verify Involutivity:**
-   Integral elements at $(x_0,y_0,u_0,p_0,q_0)$:
-
-   $E = \text{span}\{v_1 = \partial_x + p_0 \partial_u + a \partial_p + b \partial_q,$
-
-   $v_2 = \partial_y + q_0 \partial_u + c \partial_p + d \partial_q\}$
-
-   **Conditions:** $\theta(v_1) = \theta(v_2) = 0$ (automatic), $\omega(v_1,v_2) = 0$
-
-   Compute:
-
-   $$
-   \omega(v_1,v_2) = \omega(\partial_x,\partial_y) + \text{terms involving } a,b,c,d = -f + (d - b)
-   $$
-
-   Set $d = b$. Polar space dimension: 3 parameters $(a,b,c)$.
-
-   **Cartan characters:** $s_0 = 1$, $s_1 = 1$
-
-   **Involutivity:** $\dim V_2 = 1 \cdot 1 = 1$, satisfied.
-
-3. **Cartan-Kähler Application:**
-   **Initial manifold $P_1$:** Along $y=0$, $u = \phi(x)$, $p = \phi'(x)$, $q$ free.
-
-   **Extension to $P_2$:** Solve for $q(x,0)$ using $\omega \mid_P = 0$:
-
-   $$
-   dp \wedge dy = f dx \wedge dy \implies \frac{\partial p}{\partial y} \bigg\mid_{y=0} = f(x,0,\phi(x),\phi'(x),q)
-   $$
-
-   This is an ODE for $q(x,0)$:
-
-   $$
-   \frac{dq}{dx} = \frac{\partial f}{\partial p} \phi''(x) + \frac{\partial f}{\partial q}
-   $$
-
-4. **Analytic Solution (assuming $f$ analytic):**
-   By Cauchy-Kovalevskaya, local solution exists. Cartan-Kähler guarantees:
-   - Unique analytic extension to $(x,y)$-plane
-   - Dimension increases: $P_1 \to P_2$ (full solution)
-
-5. **Explicit Verification for $f = u u_x u_y$:**
-   Initial data: $\phi(x) = x^2$, $\psi(y) = y^2$
-
-   Along $y=0$: $p = 2x$, solve $q_x = 2x \cdot q$
-
-   $q(x,0) = c e^{x^2}$
-
-   Full solution constructed iteratively.
-
-### Example 6.3.6: Overdetermined System—Failure Case
-
-**Problem:** $u_{xx} = 0$, $u_{xy} = 0$ (incompatible unless $u_{yy} = 0$).
-
-**Step-by-Step Solution:**
-
-1. **EDS:**
-   $$
-   \mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp, \omega_2 = dp \wedge dy \}
-   $$
-
-2. **Cartan Test:**
-   $E_2 = \text{span}\{\partial_x + p\partial_z, \partial_y + q\partial_z\}$
-
-   $\omega_1(E_2, \cdot)$: $\omega_1(\partial_x + p\partial_z, v) = 0$ for all $v$
-
-   **Polar space:** Requires $dp = 0$ on entire $T M$
-
-3. **Obstruction:**
-   $\dim V_2 = 0 < 1$ (not involutive).
-
-4. **Prolongation:**
-   Add $d\omega_2 = 0 \implies d^2p = 0$, revealing full Laplace equation.
-
-### Example 6.3.7: Sophus Lie's Contact System
-
-**Problem:** Find all surfaces with Gaussian curvature $K = 1$.
-
-**Step-by-Step Solution:**
-
-1. **EDS (in $J^2$):**
-   $$
-   \mathcal{I} = \{ \theta = dz - p dx - q dy, \omega_1 = dp - r dx - s dy,
-   $$
-
-   $$
-   \omega_2 = dq - s dx - t dy, \omega_3 = (r t - s^2) - 1 \}
-   $$
-
-2. **Complete Cartan Analysis:**
-   **Characters:** $s_0 = 1$, $s_1 = 1$, $s_2 = 0$
-
-   **Involutive:** Yes (standard result)
-
-3. **Solutions:**
-   Spheres $x^2 + y^2 + (z-a)^2 = R^2$
-
-   **Geometric Insight:** Cartan-Kähler constructs spheres from initial curves with correct first/second fundamental forms.
+> The complete Cartan analysis gives characters $s_0 = 1$, $s_1 = 1$, and $s_2 = 0$. The system is involutive (standard result). The solutions are spheres $x^2 + y^2 + (z-a)^2 = R^2$. Cartan-Kähler constructs these spheres from initial curves with correct first and second fundamental forms, demonstrating how the exterior differential system framework systematically generates geometric solutions.
 
 ## References
 
