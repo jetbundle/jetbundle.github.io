@@ -14,13 +14,15 @@ parent_section: null
 
 # Section 6.5: Geometric Evolution Equations
 
+> Geometry flows toward canonical forms, revealing topology through dynamics.
+
 ## Introduction
 
 The construction of the infinite-dimensional manifold of metrics, $\text{Met}(M)$, in the previous section provides the kinematic arena for geometric analysis. However, the study of static metrics is insufficient for understanding the topological classification of manifolds. To resolve the topological obstructions presented by the Poincaré and Geometrization conjectures, we must introduce dynamics. We seek a canonical deformation of the Riemannian structure—a differential equation where the metric itself is the time-dependent variable, evolving toward a state of constant curvature or high symmetry.
 
 This section covers the parabolic systems governing these deformations, specifically the Ricci flow and the Mean Curvature flow. These are gradient flows of geometric functionals on $\text{Met}(M)$, establishing a rigorous connection between the variational methods of Chapter 2, the entropy principles of Chapter 3, and the stochastic analysis of Chapter 5.
 
-## Mathematical Content
+
 
 ### The Ricci Flow and Parabolicity
 
@@ -63,7 +65,7 @@ While Hamilton established the analytic foundations, the Ricci flow program face
 Perelman defined the $\mathcal{F}$-functional for a metric $g$ and a scalar function $f$ (often interpreted as a dilaton or probability density potential):
 
 $$
-\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} dV_g
+\mathcal{F}(g, f) = \int_M (R + \mid \nabla f \mid^2) e^{-f} dV_g
 $$
 
 subject to the constraint $\int_M e^{-f} dV_g = 1$. The gradient flow of this functional, coupled with the backward heat equation for $f$, yields the Ricci flow for $g$.
@@ -189,7 +191,7 @@ where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the 
    The symbol of $\Delta_L$ is degenerate due to diffeomorphism invariance:
 
    $$
-   \sigma(\Delta_L)(\xi) h_{ij} = -|\xi|^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i
+   \sigma(\Delta_L)(\xi) h_{ij} = -\mid \xi \mid^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i
    $$
 
 3. **De Turck Modification:**
@@ -226,10 +228,10 @@ where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the 
    Modified symbol:
 
    $$
-   \sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = |\xi|^2 g_{ij}
+   \sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = \mid \xi \mid^2 g_{ij}
    $$
 
-   **Result:** Strictly parabolic with principal symbol $|\xi|^2 > 0$
+   **Result:** Strictly parabolic with principal symbol $\mid \xi \mid^2 > 0$
 
    **Key Insight:** The De Turck trick transforms a weakly parabolic system into a strictly parabolic one while preserving the geometric content.
 

@@ -14,13 +14,15 @@ parent_section: null
 
 # Section 6.6: Gauge Theories & Instanton Moduli
 
+> Connections encode topology, and instantons reveal smooth structure.
+
 ## Introduction
 
 In the preceding modules, we explored the geometry of metrics, treating the Riemannian metric $g$ as a dynamical variable evolving under Ricci flow. We now shift our perspective to the geometry of fiber bundles. Here, the fundamental variable is the **connection** (or gauge potential), and the differential equations governing it—the Yang-Mills equations—arise from a variational principle on the space of connections.
 
 This module represents a crucial unification of the themes developed in this survey. The analysis of elliptic operators (Chapter 2) and the topology of manifolds (Chapter 3) converge here. However, unlike the linear elliptic operators of early chapters, the equations of gauge theory are nonlinear and geometrically intrinsic. Furthermore, we encounter a profound phenomenon: for specific dimensions (dimension 4), the second-order Euler-Lagrange equations admit a first-order reduction to the **Self-Dual Yang-Mills equations**. The solutions to these equations, known as **instantons**, form a moduli space whose geometry encodes the smooth topology of the underlying manifold. This realization—that the solution space of a PDE can serve as a topological invariant—is the central insight of Donaldson theory.
 
-## Mathematical Content
+
 
 ### Yang-Mills Theory
 
@@ -35,7 +37,7 @@ $$
 The **Yang-Mills functional** serves as the energy of the connection, analogous to the Dirichlet energy for harmonic maps:
 
 $$
-\mathcal{YM}(A) = \int_M |F_A|^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)
+\mathcal{YM}(A) = \int_M \mid F_A \mid^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)
 $$
 
 where $*$ is the Hodge star operator and the norm is defined via the Killing form on the Lie algebra $\mathfrak{g}$.
@@ -63,13 +65,13 @@ corresponding to eigenvalues $+1$ (self-dual) and $-1$ (anti-self-dual). The cur
 The Yang-Mills functional can be rewritten using the Chern-Weil topological invariant. The second Chern number (or topological charge) $k$ is given by:
 
 $$
-8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (|F_A^+|^2 - |F_A^-|^2) \, d\text{vol}
+8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (\mid F_A^+ \mid^2 - \mid F_A^- \mid^2) \, d\text{vol}
 $$
 
-Since $\mathcal{YM}(A) = \int_M (|F_A^+|^2 + |F_A^-|^2) \, d\text{vol}$, we obtain the topological bound:
+Since $\mathcal{YM}(A) = \int_M (\mid F_A^+ \mid^2 + \mid F_A^- \mid^2) \, d\text{vol}$, we obtain the topological bound:
 
 $$
-\mathcal{YM}(A) \ge 8\pi^2 |k|
+\mathcal{YM}(A) \ge 8\pi^2 \mid k \mid
 $$
 
 Equality holds if and only if $F_A^- = 0$ (if $k \ge 0$) or $F_A^+ = 0$ (if $k \le 0$). Connections satisfying $F_A = *F_A$ are called **instantons** (or anti-instantons for $F_A = -*F_A$).

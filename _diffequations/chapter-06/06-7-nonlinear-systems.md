@@ -14,13 +14,15 @@ parent_section: null
 
 # Section 6.7: Fully Nonlinear & Overdetermined Systems
 
+> Convexity becomes ellipticity, and overdetermination reveals symmetry.
+
 ## Introduction
 
 In the preceding sections of this chapter, we formulated partial differential equations as geometric objects within jet bundles and studied flows on the space of metrics. In those contexts, the nonlinearity typically arose from the geometry of the target manifold or the metric tensor, yet the differential operators often retained a quasilinear structure—linear in the highest order derivatives.
 
 We now confront the "convexity barrier": fully nonlinear equations where the highest order derivatives interact nonlinearly. The archetype of this class is the Monge-Ampère equation, which governs problems of prescribed curvature and optimal transport. Here, the distinction between geometry and analysis vanishes completely; the convexity of the solution *is* the condition for ellipticity. We conclude the geometric formulation of PDEs by examining overdetermined systems, where an excess of boundary conditions imposes rigid symmetry constraints on the domain itself, a phenomenon captured by the method of moving planes.
 
-## Mathematical Content
+
 
 ### The Monge-Ampère Equation
 
@@ -80,7 +82,7 @@ u = 0 & \text{on } \partial \Omega \\
 \end{cases}
 $$
 
-The Dirichlet problem $-\Delta u = 1, u|_{\partial \Omega} = 0$ admits a unique solution for any smooth domain. The additional Neumann condition $\partial_\nu u = c$ is generally impossible to satisfy. Serrin's theorem states that if a solution exists, $\Omega$ must be a ball and $u$ must be radially symmetric. This result implies that the differential equation acts as a detector of domain symmetry.
+The Dirichlet problem $-\Delta u = 1, u \mid_{\partial \Omega} = 0$ admits a unique solution for any smooth domain. The additional Neumann condition $\partial_\nu u = c$ is generally impossible to satisfy. Serrin's theorem states that if a solution exists, $\Omega$ must be a ball and $u$ must be radially symmetric. This result implies that the differential equation acts as a detector of domain symmetry.
 
 #### The Method of Moving Planes (Alexandrov Reflection)
 
@@ -103,7 +105,7 @@ This method illustrates "rigidity": local enforcement of the PDE and boundary da
 **Problem:** Solve the Monge-Ampère equation
 
 $$
-\det(D^2 u) = 1 \quad \text{in } B(0,1), \quad u|_{\partial B} = 0
+\det(D^2 u) = 1 \quad \text{in } B(0,1), \quad u \mid_{\partial B} = 0
 $$
 
 where $B(0,1)$ is the unit ball in $\mathbb{R}^2$.
@@ -174,7 +176,7 @@ where $B(0,1)$ is the unit ball in $\mathbb{R}^2$.
 
 **Problem:** Monge-Ampère in Optimal Transport
 
-Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}|x-y|^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:
+Consider transporting density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}\mid x-y \mid^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves:
 
 $$
 \det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}
@@ -186,7 +188,7 @@ $$
    Example: $\rho_0 = \rho_1 = 1$ on unit ball (uniform densities).
 
 2. **Solution:**
-   $\phi(x) = \frac{1}{6}(|x|^3 - 1)$ gives $T(x) = x$ (identity map).
+   $\phi(x) = \frac{1}{6}(\mid x \mid^3 - 1)$ gives $T(x) = x$ (identity map).
 
 3. **General Case:**
    For $\rho_0, \rho_1$ with same mass:

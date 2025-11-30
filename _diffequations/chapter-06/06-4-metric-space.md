@@ -14,11 +14,13 @@ parent_section: null
 
 # Section 6.4: The Space of Riemannian Metrics
 
+> Metrics become points, and geometries become orbits.
+
 ## Introduction
 
 In the preceding sections of this chapter, we established that a differential equation is properly understood as a submanifold of a jet bundle. However, in the context of geometric analysis and general relativity, the unknown variable is often not a section of a fixed bundle, but the geometry of the manifold itself. To rigorously analyze equations such as the Einstein field equations or the Ricci flow, we must elevate our perspective. We no longer solve for a function $u(x)$ on a fixed manifold $M$; rather, we study dynamical systems where the "points" of our configuration space are entire Riemannian manifolds. This necessitates the construction of the infinite-dimensional manifold of all possible metrics, $\text{Met}(M)$, and the rigorous treatment of its quotient by the group of coordinate transformations.
 
-## Mathematical Content
+
 
 ### The Manifold Structure of $\text{Met}(M)$
 
@@ -364,7 +366,7 @@ This sets the stage for geometric evolution equations. Just as the heat equation
 
 1. **Perelman's $\mathcal{F}$-Functional:**
    $$
-   \mathcal{F}(g,f) = \int_M (R + |\nabla f|^2) e^{-f} \, d\text{vol}_g
+   \mathcal{F}(g,f) = \int_M (R + \mid \nabla f \mid^2) e^{-f} \, d\text{vol}_g
    $$
    where $f$ is a function on $M$.
 
