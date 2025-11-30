@@ -11,10 +11,7 @@ is_chapter_index: false
 parent_chapter: 1
 parent_section: null
 ---
-
-# Section 1.2: Special Functions of Mathematical Physics
-
-> The hypergeometric equation is the master key: all classical special functions emerge as confluent limits dictated by the placement of singularities on the Riemann sphere.
+The hypergeometric equation is the master key: all classical special functions emerge as confluent limits dictated by the placement of singularities on the Riemann sphere.
 
 ## Introduction
 
@@ -36,23 +33,23 @@ $$
 
 The series converges for $\mid x \mid < 1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer's 24 solutions, highlighting the group structure of the solution space.
 
-> **Hypergeometric Series Solution**
+**Hypergeometric Series Solution**
 
-> Solve $x(1-x)y''+(2-3x)y'-y=0$.
+Solve $x(1-x)y''+(2-3x)y'-y=0$.
 
-> We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence
+We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence
 
-> $$
-> a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
-> $$
+$$
+a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
+$$
 
-> so
+so
 
-> $$
-> y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
-> $$
+$$
+y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
+$$
 
-> which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
+which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
 
 This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\mid x \mid < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.
 
@@ -68,17 +65,17 @@ Merging singularities (confluence) produces equations with fewer regular singula
 
   whose solutions $J_{\nu}$ arise as confluent limits of ${}_2F_{1}$.
 
-> **Bessel Functions as Confluent Limits**
+**Bessel Functions as Confluent Limits**
 
-> Derive $J_{0}$ as a limit of ${}_2F_{1}$.
+Derive $J_{0}$ as a limit of ${}_2F_{1}$.
 
-> Start from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
+Start from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
 
-> $$
-> J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
-> $$
+$$
+J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
+$$
 
-> For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}(\frac{z}{2})^{2k}$, recovering the Bessel series and illustrating confluence.
+For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}(\frac{z}{2})^{2k}$, recovering the Bessel series and illustrating confluence.
 
 - **Legendre polynomials**: integer parameters terminate the series, giving
 
@@ -88,23 +85,23 @@ Merging singularities (confluence) produces equations with fewer regular singula
 
   central to spherical harmonics.
 
-> **Legendre Polynomials from Separation of Variables**
+**Legendre Polynomials from Separation of Variables**
 
-> Solve Laplace's equation in spherical coordinates with $u(1,\theta)=\cos\theta$.
+Solve Laplace's equation in spherical coordinates with $u(1,\theta)=\cos\theta$.
 
-> Separation yields the angular ODE
+Separation yields the angular ODE
 
-> $$
-> \frac{1}{\sin\theta}\frac{d}{d\theta}(\sin\theta\,\frac{d\Theta}{d\theta})+\lambda \Theta=0.
-> $$
+$$
+\frac{1}{\sin\theta}\frac{d}{d\theta}(\sin\theta\,\frac{d\Theta}{d\theta})+\lambda \Theta=0.
+$$
 
-> Setting $x=\cos\theta$ produces the Legendre equation
+Setting $x=\cos\theta$ produces the Legendre equation
 
-> $$
-> (1-x^{2})\Theta''-2x\Theta'+\lambda \Theta=0.
-> $$
+$$
+(1-x^{2})\Theta''-2x\Theta'+\lambda \Theta=0.
+$$
 
-> Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.
+Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.
 
 - **Kummer/Whittaker functions**: merging two singular points yields the confluent hypergeometric equation
 
@@ -126,11 +123,11 @@ $$
 
 producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$. The Riemann $P$-symbol lists all singularities and their exponents, fully encoding the local monodromy.
 
-> **Frobenius Analysis at a Regular Singular Point**
+**Frobenius Analysis at a Regular Singular Point**
 
-> Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.
+Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.
 
-> This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}(\frac{x}{2})^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.
+This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}(\frac{x}{2})^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.
 
 The Frobenius method provides a systematic way to extract the local behavior near singularities. However, when singularities coalesce or move to infinity, this method breaks down, necessitating asymptotic analysis.
 
@@ -144,17 +141,17 @@ $$
 
 valid only within sectors bounded by Stokes lines, where the subdominant exponentials switch on or off. Crossing a Stokes line causes discontinuous jumps (Stokes phenomenon), encoding global analytic data beyond perturbation theory.
 
-> **Airy Equation and Stokes Phenomenon**
+**Airy Equation and Stokes Phenomenon**
 
-> Analyze $y''-xy=0$ (Airy equation) near $x\to +\infty$.
+Analyze $y''-xy=0$ (Airy equation) near $x\to +\infty$.
 
-> WKB analysis gives asymptotics
+WKB analysis gives asymptotics
 
-> $$
-> \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
-> $$
+$$
+\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
+$$
 
-> valid for $\mid \arg x \mid <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
+valid for $\mid \arg x \mid <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
 
 The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The solution's analytic form jumps discontinuously across certain rays, encoding topological information about the Riemann surface structure that cannot be captured by local series expansions alone.
 
@@ -174,47 +171,47 @@ $$
 
 and any $f\in L^{2}_{w}$ admits an expansion $f(x)\sim \sum_{n} c_{n}\phi_{n}(x)$ with spectral coefficients $c_{n}=\int f \phi_{n}w$. This spectral completeness generalizes Fourier analysis and foreshadows the Hilbert-space machinery of Chapter 2.
 
-> **Orthogonality of Legendre Polynomials**
+**Orthogonality of Legendre Polynomials**
 
-> Prove $\int_{-1}^{1}P_{m}(x)P_{n}(x)\,dx=\frac{2}{2n+1}\delta_{mn}$.
+Prove $\int_{-1}^{1}P_{m}(x)P_{n}(x)\,dx=\frac{2}{2n+1}\delta_{mn}$.
 
-> Using Rodrigues' formula
+Using Rodrigues' formula
 
-> $$
-> P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},
-> $$
+$$
+P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},
+$$
 
-> integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.
+integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.
 
-> **Fourier–Legendre Series for $\mid x \mid$**
+**Fourier–Legendre Series for $\mid x \mid$**
 
-> Expand $f(x)=\mid x \mid$ on $[-1,1]$.
+Expand $f(x)=\mid x \mid$ on $[-1,1]$.
 
-> Coefficients are
+Coefficients are
 
-> $$
-> c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\mid x \mid P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
-> $$
+$$
+c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\mid x \mid P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
+$$
 
-> yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.
+yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.
 
-> **Sturm–Liouville Completeness for Bessel Functions**
+**Sturm–Liouville Completeness for Bessel Functions**
 
-> Show $\{J_{0}(\lambda_{n} x)\}$ forms a complete set on $[0,1]$ with weight $x$, where $\lambda_{n}$ are zeros of $J_{0}$.
+Show $\{J_{0}(\lambda_{n} x)\}$ forms a complete set on $[0,1]$ with weight $x$, where $\lambda_{n}$ are zeros of $J_{0}$.
 
-> Writing $-(x y')'=\lambda x y$ yields orthogonality
+Writing $-(x y')'=\lambda x y$ yields orthogonality
 
-> $$
-> \int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
-> $$
+$$
+\int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
+$$
 
-> and Parseval's identity
+and Parseval's identity
 
-> $$
-> \int_{0}^{1}x\mid f(x) \mid^{2}\,dx=\sum_{n=1}^{\infty}\mid \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \mid^{2}.
-> $$
+$$
+\int_{0}^{1}x\mid f(x) \mid^{2}\,dx=\sum_{n=1}^{\infty}\mid \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \mid^{2}.
+$$
 
-> This shows how Bessel functions provide a Fourier-like expansion for radial problems.
+This shows how Bessel functions provide a Fourier-like expansion for radial problems.
 
 Orthogonality and completeness transform special functions from isolated solutions into complete bases. However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the functional-analytic framework of Chapter 2.
 

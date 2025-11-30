@@ -11,10 +11,7 @@ is_chapter_index: false
 parent_chapter: 1
 parent_section: null
 ---
-
-# Section 1.3: Integral Transforms
-
-> We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation, converting calculus into algebra.
+We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation, converting calculus into algebra.
 
 ## Introduction
 
@@ -48,75 +45,75 @@ $$
 
 which ties the exponential growth of $f$ to the pole structure of $F$. Poles with $\operatorname{Re}(s)<0$ yield decaying modes, so stability is a spectral placement question.
 
-> **Laplace Transform of a Damped Oscillator**
+**Laplace Transform of a Damped Oscillator**
 
-> Solve $y''+4y'+5y=0$ with $y(0)=1$ and $y'(0)=0$.
+Solve $y''+4y'+5y=0$ with $y(0)=1$ and $y'(0)=0$.
 
-> Taking Laplace transforms produces
+Taking Laplace transforms produces
 
-> $$
-> \mathcal{L}\{y''\}+4\mathcal{L}\{y'\}+5\mathcal{L}\{y\}=0,
-> $$
+$$
+\mathcal{L}\{y''\}+4\mathcal{L}\{y'\}+5\mathcal{L}\{y\}=0,
+$$
 
-> and the differentiation rules insert the initial data:
+and the differentiation rules insert the initial data:
 
-> $$
-> [s^{2}Y(s)-sy(0)-y'(0)]+4[sY(s)-y(0)]+5Y(s)=0.
-> $$
+$$
+[s^{2}Y(s)-sy(0)-y'(0)]+4[sY(s)-y(0)]+5Y(s)=0.
+$$
 
-> Substituting $y(0)=1$ and $y'(0)=0$ yields $(s^{2}+4s+5)Y(s)=s+4$, so
+Substituting $y(0)=1$ and $y'(0)=0$ yields $(s^{2}+4s+5)Y(s)=s+4$, so
 
-> $$
-> Y(s)=\frac{s+4}{(s+2)^{2}+1}=\frac{s+2}{(s+2)^{2}+1}+\frac{2}{(s+2)^{2}+1}.
-> $$
+$$
+Y(s)=\frac{s+4}{(s+2)^{2}+1}=\frac{s+2}{(s+2)^{2}+1}+\frac{2}{(s+2)^{2}+1}.
+$$
 
-> Inverting term by term gives $y(t)=e^{-2t}\cos t+2e^{-2t}\sin t$. Evaluating at $t=0$ reproduces $y(0)=1$ and $y'(0)=0$, so the transformed solution matches the initial data.
+Inverting term by term gives $y(t)=e^{-2t}\cos t+2e^{-2t}\sin t$. Evaluating at $t=0$ reproduces $y(0)=1$ and $y'(0)=0$, so the transformed solution matches the initial data.
 
 The Laplace transform automatically incorporates initial conditions into the algebraic problem, eliminating the need for separate constant determination. The pole locations at $s=-2\pm i$ directly encode the frequency and damping rate of the oscillator.
 
-> **Convolution Solution of an Inhomogeneous Oscillator**
+**Convolution Solution of an Inhomogeneous Oscillator**
 
-> Solve $y''+y=\sin(2t)$ with $y(0)=0$ and $y'(0)=1$.
+Solve $y''+y=\sin(2t)$ with $y(0)=0$ and $y'(0)=1$.
 
-> Laplace transforming leads to
+Laplace transforming leads to
 
-> $$
-> (s^{2}+1)Y(s)-s y(0)-y'(0)=\frac{2}{s^{2}+4},
-> $$
+$$
+(s^{2}+1)Y(s)-s y(0)-y'(0)=\frac{2}{s^{2}+4},
+$$
 
-> so $Y(s)=\dfrac{s+1}{s^{2}+1}+\dfrac{2}{(s^{2}+1)(s^{2}+4)}$. The first term inverts to the homogeneous response $\cos t$, while the second term becomes a convolution:
+so $Y(s)=\dfrac{s+1}{s^{2}+1}+\dfrac{2}{(s^{2}+1)(s^{2}+4)}$. The first term inverts to the homogeneous response $\cos t$, while the second term becomes a convolution:
 
-> $$
-> y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin(2(t-\tau))\,d\tau.
-> $$
+$$
+y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin(2(t-\tau))\,d\tau.
+$$
 
-> Using $\sin A \sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ reduces the integral to elementary sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution
+Using $\sin A \sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ reduces the integral to elementary sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution
 
-> $$
-> y(t)=\cos t+\frac{2}{3}\sin t
-> $$
+$$
+y(t)=\cos t+\frac{2}{3}\sin t
+$$
 
-> satisfies both the differential equation and the initial conditions.
+satisfies both the differential equation and the initial conditions.
 
 Convolution represents the system's response to external forcing. The Laplace transform converts this integral into a simple product, making the solution structure transparent.
 
-> **Bromwich Inversion by Residues**
+**Bromwich Inversion by Residues**
 
-> Invert $Y(s)=\dfrac{e^{-3s}}{s^{2}+2s+5}$.
+Invert $Y(s)=\dfrac{e^{-3s}}{s^{2}+2s+5}$.
 
-> The quadratic denominator has poles at $s=-1\pm 2i$. Choose a Bromwich line $\operatorname{Re}(s)=\gamma>0$ and close the contour in the left half-plane for $t>3$, where the exponential factor enforces a unit-step delay. The residues are
+The quadratic denominator has poles at $s=-1\pm 2i$. Choose a Bromwich line $\operatorname{Re}(s)=\gamma>0$ and close the contour in the left half-plane for $t>3$, where the exponential factor enforces a unit-step delay. The residues are
 
-> $$
-> \operatorname{Res}_{-1\pm 2i}(Y(s)e^{st})=\frac{e^{-3(-1\pm 2i)}e^{t(-1\pm 2i)}}{4i}.
-> $$
+$$
+\operatorname{Res}_{-1\pm 2i}(Y(s)e^{st})=\frac{e^{-3(-1\pm 2i)}e^{t(-1\pm 2i)}}{4i}.
+$$
 
-> Summing the residues yields
+Summing the residues yields
 
-> $$
-> f(t)=e^{3-t}\sin(2(t-3))H(t-3),
-> $$
+$$
+f(t)=e^{3-t}\sin(2(t-3))H(t-3),
+$$
 
-> where $H$ is the Heaviside step function. The solution activates exactly three time units after $t=0$, mirroring the exponential shift $e^{-3s}$ in the Laplace domain.
+where $H$ is the Heaviside step function. The solution activates exactly three time units after $t=0$, mirroring the exponential shift $e^{-3s}$ in the Laplace domain.
 
 The Bromwich integral reveals that inversion is fundamentally a contour integration problem. The exponential shift $e^{-3s}$ produces a time delay, demonstrating how Laplace transforms encode causality.
 
@@ -154,63 +151,63 @@ $$
 
 where the variances are defined using $\mid f \mid^{2}$ and $\mid \hat{f} \mid^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.
 
-> **Gaussian Fourier Transform and Plancherel**
+**Gaussian Fourier Transform and Plancherel**
 
-> Compute $\mathcal{F}\{e^{-\pi x^{2}}\}(\xi)$.
+Compute $\mathcal{F}\{e^{-\pi x^{2}}\}(\xi)$.
 
-> Completing the square in the exponent,
+Completing the square in the exponent,
 
-> $$
-> -\pi x^{2}-2\pi i x\xi=-\pi[(x+i\xi)^{2}+\xi^{2}],
-> $$
+$$
+-\pi x^{2}-2\pi i x\xi=-\pi[(x+i\xi)^{2}+\xi^{2}],
+$$
 
-> so
+so
 
-> $$
-> \hat{f}(\xi)=e^{-\pi \xi^{2}}\int_{-\infty}^{\infty}e^{-\pi (x+i\xi)^{2}}\,dx=e^{-\pi \xi^{2}}.
-> $$
+$$
+\hat{f}(\xi)=e^{-\pi \xi^{2}}\int_{-\infty}^{\infty}e^{-\pi (x+i\xi)^{2}}\,dx=e^{-\pi \xi^{2}}.
+$$
 
-> The Gaussian is self-reciprocal under the Fourier transform. Moreover,
+The Gaussian is self-reciprocal under the Fourier transform. Moreover,
 
-> $$
-> \int_{-\infty}^{\infty}\mid e^{-\pi x^{2}} \mid^{2}\,dx=\int_{-\infty}^{\infty}\mid e^{-\pi \xi^{2}} \mid^{2}\,d\xi=\frac{1}{\sqrt{2}},
-> $$
+$$
+\int_{-\infty}^{\infty}\mid e^{-\pi x^{2}} \mid^{2}\,dx=\int_{-\infty}^{\infty}\mid e^{-\pi \xi^{2}} \mid^{2}\,d\xi=\frac{1}{\sqrt{2}},
+$$
 
-> confirming Plancherel's theorem for this prototype.
+confirming Plancherel's theorem for this prototype.
 
 The Gaussian is the fixed point of the Fourier transform, representing perfect balance between localization in space and frequency. This property makes it fundamental in both quantum mechanics and signal processing.
 
-> **Rectangular Pulse and the Uncertainty Principle**
+**Rectangular Pulse and the Uncertainty Principle**
 
-> Let $f(x)=\mathbf{1}_{[-1,1]}(x)$. Compute its Fourier transform and verify the uncertainty inequality.
+Let $f(x)=\mathbf{1}_{[-1,1]}(x)$. Compute its Fourier transform and verify the uncertainty inequality.
 
-> Integrating directly gives
+Integrating directly gives
 
-> $$
-> \hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi \xi}=\operatorname{sinc}(2\xi).
-> $$
+$$
+\hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi \xi}=\operatorname{sinc}(2\xi).
+$$
 
-> The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\mid \hat{f}(\xi) \mid^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.
+The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\mid \hat{f}(\xi) \mid^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.
 
 The uncertainty principle is not merely a quantum mechanical curiosity—it reflects the fundamental trade-off between localization in space and frequency. Compact support necessarily creates slow decay in the frequency domain.
 
-> **Heat Equation via Fourier Transform**
+**Heat Equation via Fourier Transform**
 
-> Solve $u_{t}=u_{xx}$ with $u(x,0)=e^{-x^{2}/4}$.
+Solve $u_{t}=u_{xx}$ with $u(x,0)=e^{-x^{2}/4}$.
 
-> Fourier transforming in $x$ provides $\partial_{t}\hat{u}(\xi,t)=-4\pi^{2}\xi^{2}\hat{u}(\xi,t)$ and the initial data $\hat{u}(\xi,0)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}}$. The transformed ODE integrates to
+Fourier transforming in $x$ provides $\partial_{t}\hat{u}(\xi,t)=-4\pi^{2}\xi^{2}\hat{u}(\xi,t)$ and the initial data $\hat{u}(\xi,0)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}}$. The transformed ODE integrates to
 
-> $$
-> \hat{u}(\xi,t)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}(1+t)}.
-> $$
+$$
+\hat{u}(\xi,t)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}(1+t)}.
+$$
 
-> Inverting the transform yields
+Inverting the transform yields
 
-> $$
-> u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp(-\frac{x^{2}}{1+4t}),
-> $$
+$$
+u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp(-\frac{x^{2}}{1+4t}),
+$$
 
-> showing Gaussian spreading with conserved total mass.
+showing Gaussian spreading with conserved total mass.
 
 The Fourier transform diagonalizes the Laplacian, converting the heat equation into a family of decoupled ODEs. Each frequency mode decays independently, with higher frequencies decaying faster—the physical basis of diffusion.
 
@@ -236,35 +233,35 @@ $$
 
 mirroring geometric series convergence when the spectral radius of $\lambda K$ is below one.
 
-> **Sturm–Liouville Green's Function**
+**Sturm–Liouville Green's Function**
 
-> Construct the Green's function for $-y''+x^{2}y=f(x)$ on $[-1,1]$ with $y(\pm 1)=0$.
+Construct the Green's function for $-y''+x^{2}y=f(x)$ on $[-1,1]$ with $y(\pm 1)=0$.
 
-> Let $\phi_{1}(x)=\int_{-1}^{x}e^{-t^{3}/3}\,dt$ enforce the left boundary and $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so
+Let $\phi_{1}(x)=\int_{-1}^{x}e^{-t^{3}/3}\,dt$ enforce the left boundary and $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so
 
-> $$
-> G(x,\xi)=
-> \begin{cases}
-> \phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\
-> \phi_{1}(\xi)\phi_{2}(x), & x>\xi,
-> \end{cases}
-> $$
+$$
+G(x,\xi)=
+\begin{cases}
+\phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\
+\phi_{1}(\xi)\phi_{2}(x), & x>\xi,
+\end{cases}
+$$
 
-> satisfies the boundary conditions and reproduces the delta source through the jump in $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$.
+satisfies the boundary conditions and reproduces the delta source through the jump in $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$.
 
 Green's functions encode both the differential operator and the boundary conditions into a single kernel. The discontinuity in the derivative at $x=\xi$ creates the delta function source, while the boundary conditions are built into the construction of $\phi_1$ and $\phi_2$.
 
-> **Method of Images for Dirichlet Data**
+**Method of Images for Dirichlet Data**
 
-> Solve $\Delta u=0$ in the unit disk with $u(1,\theta)=\cos(3\theta)$.
+Solve $\Delta u=0$ in the unit disk with $u(1,\theta)=\cos(3\theta)$.
 
-> The Poisson kernel
+The Poisson kernel
 
-> $$
-> P(r,\theta-\phi)=\frac{1-r^{2}}{1-2r\cos(\theta-\phi)+r^{2}}
-> $$
+$$
+P(r,\theta-\phi)=\frac{1-r^{2}}{1-2r\cos(\theta-\phi)+r^{2}}
+$$
 
-> expands boundary data into harmonic modes. Since $\cos(3\theta)$ selects the $n=3$ Fourier mode, the interior solution is $u(r,\theta)=r^{3}\cos(3\theta)$. This matches the method-of-images viewpoint: the image charges outside the disk cancel the boundary data, and the resulting harmonic function satisfies both the Laplace equation and the boundary values.
+expands boundary data into harmonic modes. Since $\cos(3\theta)$ selects the $n=3$ Fourier mode, the interior solution is $u(r,\theta)=r^{3}\cos(3\theta)$. This matches the method-of-images viewpoint: the image charges outside the disk cancel the boundary data, and the resulting harmonic function satisfies both the Laplace equation and the boundary values.
 
 The method of images provides a geometric interpretation of Green's functions: boundary data is replaced by equivalent sources outside the domain. This elegant technique works only for symmetric domains, limiting its applicability.
 
@@ -284,41 +281,41 @@ $$
 
 which diagonalizes the radial Laplacian and produces exact solutions for cylindrically symmetric PDEs.
 
-> **Mellin Transform of an Euler–Cauchy Equation**
+**Mellin Transform of an Euler–Cauchy Equation**
 
-> Solve $x^{2}y''+3xy'-3y=0$ using the Mellin transform.
+Solve $x^{2}y''+3xy'-3y=0$ using the Mellin transform.
 
-> Applying $\mathcal{M}$ gives
+Applying $\mathcal{M}$ gives
 
-> $$
-> s(s-1)Y(s)+3sY(s)-3Y(s)=0,
-> $$
+$$
+s(s-1)Y(s)+3sY(s)-3Y(s)=0,
+$$
 
-> so $(s^{2}+2s-3)Y(s)=0$ with roots $s=1$ and $s=-3$. Inverting via residues on vertical lines produces
+so $(s^{2}+2s-3)Y(s)=0$ with roots $s=1$ and $s=-3$. Inverting via residues on vertical lines produces
 
-> $$
-> y(x)=Ax+Bx^{-3},
-> $$
+$$
+y(x)=Ax+Bx^{-3},
+$$
 
-> which indeed satisfies the differential equation, showcasing how Mellin transforms diagonalize dilation operators.
+which indeed satisfies the differential equation, showcasing how Mellin transforms diagonalize dilation operators.
 
-> **Radial Helmholtz Equation via Hankel Transform**
+**Radial Helmholtz Equation via Hankel Transform**
 
-> Solve $\Delta u+k^{2}u=0$ in $\mathbb{R}^{2}$ under radial symmetry.
+Solve $\Delta u+k^{2}u=0$ in $\mathbb{R}^{2}$ under radial symmetry.
 
-> The order-zero Hankel transform
+The order-zero Hankel transform
 
-> $$
-> \tilde{u}(\kappa)=\int_{0}^{\infty}r J_{0}(\kappa r)u(r)\,dr
-> $$
+$$
+\tilde{u}(\kappa)=\int_{0}^{\infty}r J_{0}(\kappa r)u(r)\,dr
+$$
 
-> maps the radial Laplacian to multiplication by $-\kappa^{2}$, so the transformed equation is $(-\kappa^{2}+k^{2})\tilde{u}(\kappa)=0$. The only distributional solutions are multiples of $\delta(\kappa-k)$, hence
+maps the radial Laplacian to multiplication by $-\kappa^{2}$, so the transformed equation is $(-\kappa^{2}+k^{2})\tilde{u}(\kappa)=0$. The only distributional solutions are multiples of $\delta(\kappa-k)$, hence
 
-> $$
-> u(r)=A k J_{0}(kr),
-> $$
+$$
+u(r)=A k J_{0}(kr),
+$$
 
-> which represents a cylindrical wave satisfying the Helmholtz equation.
+which represents a cylindrical wave satisfying the Helmholtz equation.
 
 Each transform is tailored to a specific symmetry: Fourier for translations, Mellin for dilations, Hankel for radial symmetry. The choice of transform reflects the underlying geometric structure of the problem.
 

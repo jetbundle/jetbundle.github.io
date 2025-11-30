@@ -11,10 +11,7 @@ is_chapter_index: false
 parent_chapter: 1
 parent_section: null
 ---
-
-# Section 1.5: Asymptotic Analysis
-
-> Asymptotic analysis reveals that integrals and differential equations are dominated by critical points—local geometry determines global behavior in the limit.
+Asymptotic analysis reveals that integrals and differential equations are dominated by critical points—local geometry determines global behavior in the limit.
 
 ## Introduction
 
@@ -36,45 +33,45 @@ $$
 
 When the maximum occurs at an endpoint with $h'(a)\neq 0$, the scaling changes to $I(M)\sim g(a)e^{M h(a)}/(M\mid h'(a) \mid)$, illustrating the discontinuous dependence on critical-point geometry.
 
-> **Endpoint Laplace Method**
+**Endpoint Laplace Method**
 
-> Estimate $I(M)=\int_{0}^{1}e^{M(\ln x - x)}\,dx$ as $M\to\infty$.
+Estimate $I(M)=\int_{0}^{1}e^{M(\ln x - x)}\,dx$ as $M\to\infty$.
 
-> The phase $h(x)=\ln x - x$ attains its maximum at $x=1$, an endpoint with $h'(1)=0$ and $h''(1)=-1$. Setting $x=1-t$ yields $h(1-t)\approx -t-\tfrac{t^{2}}{2}$, so
+The phase $h(x)=\ln x - x$ attains its maximum at $x=1$, an endpoint with $h'(1)=0$ and $h''(1)=-1$. Setting $x=1-t$ yields $h(1-t)\approx -t-\tfrac{t^{2}}{2}$, so
 
-> $$
-> I(M)\approx \int_{0}^{\infty}e^{-M t-M t^{2}/2}\,dt\sim \frac{1}{M}.
-> $$
+$$
+I(M)\approx \int_{0}^{\infty}e^{-M t-M t^{2}/2}\,dt\sim \frac{1}{M}.
+$$
 
-> This matches the asymptotic of the exponential integral $E_{1}(M)$.
+This matches the asymptotic of the exponential integral $E_{1}(M)$.
 
 Endpoint maxima create different scaling laws than interior maxima, reflecting the geometric constraint that the integration domain terminates at the critical point.
 
-> **Partition Function via Laplace Method**
+**Partition Function via Laplace Method**
 
-> Evaluate $Z(\beta)=\int_{-\infty}^{\infty}e^{-\beta (x^{4}-2x^{2})}\,dx$ for $\beta\to\infty$.
+Evaluate $Z(\beta)=\int_{-\infty}^{\infty}e^{-\beta (x^{4}-2x^{2})}\,dx$ for $\beta\to\infty$.
 
-> The potential $V(x)=x^{4}-2x^{2}$ has minima at $x=\pm 1$ with $V''(\pm 1)=8$. Each contributes
+The potential $V(x)=x^{4}-2x^{2}$ has minima at $x=\pm 1$ with $V''(\pm 1)=8$. Each contributes
 
-> $$
-> Z(\beta)\sim 2 e^{\beta}\sqrt{\frac{2\pi}{\beta \cdot 8}}=e^{\beta}\sqrt{\frac{\pi}{2\beta}}.
-> $$
+$$
+Z(\beta)\sim 2 e^{\beta}\sqrt{\frac{2\pi}{\beta \cdot 8}}=e^{\beta}\sqrt{\frac{\pi}{2\beta}}.
+$$
 
-> The free energy $F=-(1/\beta)\ln Z$ approaches $-1+\tfrac{1}{2\beta}\ln(\pi/2\beta)$, revealing the ground-state energy plus thermal corrections.
+The free energy $F=-(1/\beta)\ln Z$ approaches $-1+\tfrac{1}{2\beta}\ln(\pi/2\beta)$, revealing the ground-state energy plus thermal corrections.
 
 Multiple critical points contribute independently in the limit, with each creating its own Gaussian peak. The partition function becomes a sum over these localized contributions, revealing the connection between statistical mechanics and critical-point analysis.
 
-> **Multiple Critical Points**
+**Multiple Critical Points**
 
-> Analyze $I(M)=\int_{0}^{2\pi}e^{M\cos^{3}\theta}\,d\theta$.
+Analyze $I(M)=\int_{0}^{2\pi}e^{M\cos^{3}\theta}\,d\theta$.
 
-> Critical points at $\theta=0,\pi$ give quadratic contributions $\sim e^{M}\sqrt{2\pi/(3M)}$ and $e^{-M}\sqrt{2\pi/(3M)}$ (negligible). Degenerate points at $\theta=\pi/2,3\pi/2$ produce cubic scaling $\sim 0.838\,M^{-1/3}$. Thus
+Critical points at $\theta=0,\pi$ give quadratic contributions $\sim e^{M}\sqrt{2\pi/(3M)}$ and $e^{-M}\sqrt{2\pi/(3M)}$ (negligible). Degenerate points at $\theta=\pi/2,3\pi/2$ produce cubic scaling $\sim 0.838\,M^{-1/3}$. Thus
 
-> $$
-> I(M)\sim e^{M}\sqrt{\frac{2\pi}{3M}}+0.838\,M^{-1/3}+\cdots,
-> $$
+$$
+I(M)\sim e^{M}\sqrt{\frac{2\pi}{3M}}+0.838\,M^{-1/3}+\cdots,
+$$
 
-> illustrating how different critical-point types set distinct powers of $M$.
+illustrating how different critical-point types set distinct powers of $M$.
 
 Degenerate critical points (where $h''(x_0) = 0$) produce different asymptotic scaling than non-degenerate ones. The geometry of the phase function near the critical point determines the power law in the asymptotic expansion.
 
@@ -94,33 +91,33 @@ $$
 
 introducing the Maslov phase shift $\pi/4$ that later reappears in semiclassical quantization.
 
-> **Stationary Phase Fresnel Integral**
+**Stationary Phase Fresnel Integral**
 
-> Estimate $I(M)=\int_{0}^{\infty}e^{i M x^{2}}\,dx$.
+Estimate $I(M)=\int_{0}^{\infty}e^{i M x^{2}}\,dx$.
 
-> The stationary point at $x=0$ (an endpoint) yields
+The stationary point at $x=0$ (an endpoint) yields
 
-> $$
-> I(M)\sim \tfrac{1}{2}\sqrt{\frac{\pi}{M}}e^{i\pi/4},
-> $$
+$$
+I(M)\sim \tfrac{1}{2}\sqrt{\frac{\pi}{M}}e^{i\pi/4},
+$$
 
-> matching the exact Fresnel integral and exhibiting the $\pi/4$ phase.
+matching the exact Fresnel integral and exhibiting the $\pi/4$ phase.
 
 The $\pi/4$ phase shift is fundamental to semiclassical mechanics, appearing whenever a classical trajectory passes through a turning point. This geometric phase encodes topological information about the path in phase space.
 
-> **Wave Diffraction**
+**Wave Diffraction**
 
-> In Kirchhoff diffraction, $U(P)=\frac{1}{i\lambda}\iint_{S}\frac{e^{ik r}}{r}\cos\theta\,dS$ with $k\to\infty$.
+In Kirchhoff diffraction, $U(P)=\frac{1}{i\lambda}\iint_{S}\frac{e^{ik r}}{r}\cos\theta\,dS$ with $k\to\infty$.
 
-> Stationary phase at the specular point $(r=r_{0})$ gives $U(P)\sim \frac{A}{\sqrt{k}}e^{ik r_{0}}e^{i\pi/4}$, explaining the $k^{-1/2}$ decay and phase shift of Fresnel diffraction fringes.
+Stationary phase at the specular point $(r=r_{0})$ gives $U(P)\sim \frac{A}{\sqrt{k}}e^{ik r_{0}}e^{i\pi/4}$, explaining the $k^{-1/2}$ decay and phase shift of Fresnel diffraction fringes.
 
 Stationary phase provides the foundation for geometric optics: only rays from stationary points contribute in the high-frequency limit. The $k^{-1/2}$ decay reflects the two-dimensional nature of the diffraction surface.
 
-> **Coherent vs. Incoherent Stationary Points**
+**Coherent vs. Incoherent Stationary Points**
 
-> Evaluate $I(M)=\int_{0}^{2\pi}e^{iM(\cos\theta +0.1\sin 2\theta)}\,d\theta$.
+Evaluate $I(M)=\int_{0}^{2\pi}e^{iM(\cos\theta +0.1\sin 2\theta)}\,d\theta$.
 
-> Two stationary points contribute amplitudes $I_{1,2}\sim (2\pi/M)^{1/2}e^{iM h(\theta_{1,2})\pm i\pi/4}$. The relative phase $\Delta\phi=M(h(\theta_{1})-h(\theta_{2}))$ determines interference: if $\Delta\phi\ll 2\pi$, the contributions add coherently; if $\Delta\phi\gg 2\pi$, intensities add incoherently.
+Two stationary points contribute amplitudes $I_{1,2}\sim (2\pi/M)^{1/2}e^{iM h(\theta_{1,2})\pm i\pi/4}$. The relative phase $\Delta\phi=M(h(\theta_{1})-h(\theta_{2}))$ determines interference: if $\Delta\phi\ll 2\pi$, the contributions add coherently; if $\Delta\phi\gg 2\pi$, intensities add incoherently.
 
 When multiple stationary points contribute, interference effects depend on the phase relationships. Coherent addition occurs when phases are correlated; incoherent addition (intensity superposition) occurs when phases decorrelate through the large parameter $M$.
 
@@ -140,41 +137,41 @@ $$
 
 Oscillatory behavior occurs where $Q>0$, exponential where $Q<0$. Near turning points $Q(x_{0})=0$, WKB fails and must be matched to Airy-function solutions to obtain connection formulas.
 
-> **WKB for the Harmonic Oscillator**
+**WKB for the Harmonic Oscillator**
 
-> Solve $\epsilon^{2}y''+(1-x^{2})y=0$ via WKB.
+Solve $\epsilon^{2}y''+(1-x^{2})y=0$ via WKB.
 
-> The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $\mid x \mid <1$ is
+The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $\mid x \mid <1$ is
 
-> $$
-> y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}).
-> $$
+$$
+y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}).
+$$
 
-> **Quantum Tunneling via WKB**
+**Quantum Tunneling via WKB**
 
-> Estimate tunneling in $V(x)=x^{4}-2x^{2}$.
+Estimate tunneling in $V(x)=x^{4}-2x^{2}$.
 
-> In the forbidden region $\mid x \mid >1$, the WKB solution is $y\sim \mid Q \mid^{-1/4}\exp(-\epsilon^{-1}\int_{1}^{x}\sqrt{\mid Q \mid}\,dt)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
+In the forbidden region $\mid x \mid >1$, the WKB solution is $y\sim \mid Q \mid^{-1/4}\exp(-\epsilon^{-1}\int_{1}^{x}\sqrt{\mid Q \mid}\,dt)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
 
 WKB connects quantum mechanics to classical mechanics: the phase $\int \sqrt{Q} \, dx$ is the classical action, and the amplitude $Q^{-1/4}$ reflects the classical density of trajectories. Tunneling probabilities are exponentially suppressed by the action barrier.
 
-> **Airy Turning-Point Matching**
+**Airy Turning-Point Matching**
 
-> For $Q(x)=x$, match WKB solutions across $x=0$.
+For $Q(x)=x$, match WKB solutions across $x=0$.
 
-> The Airy equation $y''-xy=0$ has asymptotics
+The Airy equation $y''-xy=0$ has asymptotics
 
-> $$
-> \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi}x^{1/4}}e^{-\frac{2}{3}x^{3/2}},\quad x\to+\infty,
-> $$
+$$
+\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi}x^{1/4}}e^{-\frac{2}{3}x^{3/2}},\quad x\to+\infty,
+$$
 
-> and
+and
 
-> $$
-> \operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\mid x \mid^{1/4}}\sin(\frac{2}{3}\mid x \mid^{3/2}+\frac{\pi}{4}),\quad x\to -\infty.
-> $$
+$$
+\operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\mid x \mid^{1/4}}\sin(\frac{2}{3}\mid x \mid^{3/2}+\frac{\pi}{4}),\quad x\to -\infty.
+$$
 
-> Matching these yields the $\pi/4$ phase shift in the oscillatory region.
+Matching these yields the $\pi/4$ phase shift in the oscillatory region.
 
 Turning points are where WKB breaks down: the classical trajectory reverses direction, creating a caustic. Matching to Airy functions provides connection formulas that link the exponential and oscillatory regions, introducing the $\pi/4$ phase shift characteristic of such transitions.
 
@@ -188,19 +185,19 @@ $$
 
 are sectorial: they hold only within wedges bounded by Stokes lines where $\Re(\lambda z)$ is constant. Crossing a Stokes line activates subdominant exponentials with discontinuous multipliers (often $\pm i$). Borel summation interprets the divergent series in each sector and glues them using these jumps, foreshadowing resurgence theory.
 
-> **Stokes Lines for Airy Function**
+**Stokes Lines for Airy Function**
 
-> Track $\operatorname{Ai}(z)$ across the complex plane.
+Track $\operatorname{Ai}(z)$ across the complex plane.
 
-> Stokes lines occur at $\arg z=\pm\pi/3,\pi$. On $0<\arg z<2\pi/3$, only $e^{-\zeta}$ appears; crossing $\arg z=2\pi/3$ activates the subdominant $e^{+\zeta}$ with multiplier $i$. This discontinuity encodes the global analytic structure.
+Stokes lines occur at $\arg z=\pm\pi/3,\pi$. On $0<\arg z<2\pi/3$, only $e^{-\zeta}$ appears; crossing $\arg z=2\pi/3$ activates the subdominant $e^{+\zeta}$ with multiplier $i$. This discontinuity encodes the global analytic structure.
 
 The Stokes phenomenon reveals that asymptotic expansions are not global: the form of the expansion jumps discontinuously across certain rays in the complex plane. These jumps encode topological information about the Riemann surface structure that cannot be captured by local series expansions.
 
-> **Quantum Barrier Penetration and Stokes Jumps**
+**Quantum Barrier Penetration and Stokes Jumps**
 
-> In alpha decay, analytic continuation around a turning point causes the transmission coefficient to jump discretely.
+In alpha decay, analytic continuation around a turning point causes the transmission coefficient to jump discretely.
 
-> WKB solutions in the complex $r$-plane pick up Stokes multipliers when circling the barrier, quantizing decay rates and connecting asymptotic analysis to observable half-lives.
+WKB solutions in the complex $r$-plane pick up Stokes multipliers when circling the barrier, quantizing decay rates and connecting asymptotic analysis to observable half-lives.
 
 The Stokes phenomenon is not merely a mathematical curiosity—it has physical consequences. Quantum tunneling rates depend on these discontinuous jumps, connecting the abstract geometry of asymptotic analysis to measurable decay processes.
 

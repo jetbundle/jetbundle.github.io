@@ -12,9 +12,7 @@ parent_chapter: 1
 parent_section: null
 ---
 
-# Section 1.1: Exact Methods for Ordinary Differential Equations
-
-> Exactness is the first algebraic structure that renders a differential equation integrable by quadrature.
+Exactness is the first algebraic structure that renders a differential equation integrable by quadrature.
 
 ## Introduction
 
@@ -42,37 +40,37 @@ $$
 
 On a sufficiently small interval, the Lipschitz condition ensures $\mathcal{T}$ is a contraction. Banach's fixed-point theorem furnishes a unique fixed point, which is the solution.
 
-> **Picard Iteration: Exponential Growth**
+**Picard Iteration: Exponential Growth**
 
-> Solve $y' = y$ with $y(0) = 1$ and demonstrate convergence of Picard iteration.
+Solve $y' = y$ with $y(0) = 1$ and demonstrate convergence of Picard iteration.
 
-> The exact solution is $y = e^{x}$. Picard iteration starts with $y_{0} = 1$ and applies $y_{n+1}(x) = 1 + \int_{0}^{x} y_{n}(t)\,dt$, giving
+The exact solution is $y = e^{x}$. Picard iteration starts with $y_{0} = 1$ and applies $y_{n+1}(x) = 1 + \int_{0}^{x} y_{n}(t)\,dt$, giving
 
-> $$
-> y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6},
-> $$
+$$
+y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6},
+$$
 
-> so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\mid x \mid < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.
+so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\mid x \mid < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.
 
-> This demonstrates that the abstract fixed-point argument yields a constructive algorithm. The iteration converges geometrically, with error bounded by $K^n \mid x \mid^n / n!$.
+This demonstrates that the abstract fixed-point argument yields a constructive algorithm. The iteration converges geometrically, with error bounded by $K^n \mid x \mid^n / n!$.
 
 However, when the Lipschitz condition fails, determinism breaks down. This is our first encounter with the limitations of classical analysis.
 
-> **Failure of Determinism: Non-Uniqueness**
+**Failure of Determinism: Non-Uniqueness**
 
-> Consider the initial value problem $y' = \sqrt{\mid y \mid}$ with $y(0) = 0$.
+Consider the initial value problem $y' = \sqrt{\mid y \mid}$ with $y(0) = 0$.
 
-> The function $f(y) = \sqrt{\mid y \mid}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:
+The function $f(y) = \sqrt{\mid y \mid}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:
 
-> $$\int y^{-1/2} dy = \int dx \implies 2\sqrt{y} = x \implies y = \frac{x^2}{4} \quad (x \geq 0)$$
+$$\int y^{-1/2} dy = \int dx \implies 2\sqrt{y} = x \implies y = \frac{x^2}{4} \quad (x \geq 0)$$
 
-> Since
+Since
 
-> $$
-> \frac{\mid \sqrt{\mid y_{1} \mid} - \sqrt{\mid y_{2} \mid} \mid}{\mid y_{1} - y_{2} \mid} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
-> $$
+$$
+\frac{\mid \sqrt{\mid y_{1} \mid} - \sqrt{\mid y_{2} \mid} \mid}{\mid y_{1} - y_{2} \mid} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
+$$
 
-> the Lipschitz condition fails and uniqueness is lost. A particle at the origin can wait for an arbitrary time before spontaneously moving along the parabola. The physical history is erased at the singularity.
+the Lipschitz condition fails and uniqueness is lost. A particle at the origin can wait for an arbitrary time before spontaneously moving along the parabola. The physical history is erased at the singularity.
 
 This failure motivates the need for more sophisticated existence and uniqueness criteria, such as Osgood's condition, which we explore in the challenge problems.
 
@@ -90,17 +88,17 @@ $$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$
 
 Geometrically, this states that the vector field $(M, N)$ is irrotational (has zero curl) in the plane.
 
-> **Exact Construction**
+**Exact Construction**
 
-> Solve the equation $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.
+Solve the equation $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.
 
-> **Check Exactness:** $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) = 2x + 2y$. They match.
+**Check Exactness:** $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) = 2x + 2y$. They match.
 
-> **Integrate:** Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 + h(y)$.
+**Integrate:** Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 + h(y)$.
 
-> **Consistency:** Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy + h'(y)$. Matching this with $N$, we find $h'(y) = 0$.
+**Consistency:** Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy + h'(y)$. Matching this with $N$, we find $h'(y) = 0$.
 
-> The general solution is the implicit curve $x^2y + xy^2 = C$.
+The general solution is the implicit curve $x^2y + xy^2 = C$.
 
 This demonstrates that exactness is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The level sets of $\psi$ are the integral curves.
 
@@ -116,31 +114,31 @@ The classical **Linear First-Order Equation** $y' + P(x)y = Q(x)$ is the archety
 
 $$\frac{d}{dx}(\mu y) = \mu Q$$
 
-> **Linear First-Order: Radioactive Decay with Production**
+**Linear First-Order: Radioactive Decay with Production**
 
-> Solve $y' = -ky + P$ with $y(0) = y_{0}$.
+Solve $y' = -ky + P$ with $y(0) = y_{0}$.
 
-> The integrating factor is $\mu(x) = e^{kx}$. Multiplying both sides:
+The integrating factor is $\mu(x) = e^{kx}$. Multiplying both sides:
 
-> $$\frac{d}{dx}(y e^{kx}) = P e^{kx}$$
+$$\frac{d}{dx}(y e^{kx}) = P e^{kx}$$
 
-> Integrating and applying the initial condition:
+Integrating and applying the initial condition:
 
-> $$y(x) = (y_{0} - \frac{P}{k}) e^{-kx} + \frac{P}{k}$$
+$$y(x) = (y_{0} - \frac{P}{k}) e^{-kx} + \frac{P}{k}$$
 
-> Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution exhibits exponential decay to the equilibrium $P/k$.
+Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution exhibits exponential decay to the equilibrium $P/k$.
 
-> **Linear First-Order: Exponential Growth with Forcing**
+**Linear First-Order: Exponential Growth with Forcing**
 
-> Solve $y' + 2xy = x$ with $y(0) = 0$.
+Solve $y' + 2xy = x$ with $y(0) = 0$.
 
-> Using $\mu = e^{x^{2}}$,
+Using $\mu = e^{x^{2}}$,
 
-> $$
-> \frac{d}{dx}(y e^{x^{2}}) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}(1 - e^{-x^{2}}).
-> $$
+$$
+\frac{d}{dx}(y e^{x^{2}}) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}(1 - e^{-x^{2}}).
+$$
 
-> The integrating factor method transforms the non-homogeneous equation into a total derivative, revealing the structure of the solution.
+The integrating factor method transforms the non-homogeneous equation into a total derivative, revealing the structure of the solution.
 
 ## Separation of Variables: The Simplest Case
 
@@ -152,29 +150,29 @@ $$
 
 reducing the problem to quadrature.
 
-> **Exponential Growth**
+**Exponential Growth**
 
-> Solve $y' = xy$ with $y(0) = 1$.
+Solve $y' = xy$ with $y(0) = 1$.
 
-> We have $dy/y = x\,dx$, leading to $\ln \mid y \mid = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.
+We have $dy/y = x\,dx$, leading to $\ln \mid y \mid = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.
 
-> This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The solution grows super-exponentially, faster than any polynomial.
+This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The solution grows super-exponentially, faster than any polynomial.
 
-> **Newton's Law of Cooling**
+**Newton's Law of Cooling**
 
-> Solve $T' = -k(T - T_{a})$.
+Solve $T' = -k(T - T_{a})$.
 
-> Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.
+Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.
 
-> The temperature approaches the ambient temperature exponentially, with rate constant $k$. This is a fundamental model of heat transfer.
+The temperature approaches the ambient temperature exponentially, with rate constant $k$. This is a fundamental model of heat transfer.
 
-> **Logistic Growth**
+**Logistic Growth**
 
-> Solve $y' = ry(1 - y/K)$.
+Solve $y' = ry(1 - y/K)$.
 
-> Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \mid \frac{y}{K - y} \mid = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.
+Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \mid \frac{y}{K - y} \mid = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.
 
-> The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and many other bounded growth phenomena.
+The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and many other bounded growth phenomena.
 
 ## Linearization and the Riccati Link
 
@@ -190,39 +188,39 @@ $$
 
 showing how nonlinearity can arise from projecting higher-dimensional linear flow.
 
-> **Reducing Riccati to Linear Form**
+**Reducing Riccati to Linear Form**
 
-> Solve the nonlinear equation $y' = y^{2} - 2xy + x^{2} + 1$.
+Solve the nonlinear equation $y' = y^{2} - 2xy + x^{2} + 1$.
 
-> By inspection, $y_1 = x$ is a particular solution. We use the substitution $y = y_1 + 1/v$ to linearize the deviation from the known solution.
+By inspection, $y_1 = x$ is a particular solution. We use the substitution $y = y_1 + 1/v$ to linearize the deviation from the known solution.
 
-> $$(x + 1/v)' = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$$
+$$(x + 1/v)' = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$$
 
-> Expanding terms leads to $v' = -1$. Integrating gives $v(x) = -x + C$.
+Expanding terms leads to $v' = -1$. Integrating gives $v(x) = -x + C$.
 
-> The general solution is $y(x) = x + \frac{1}{C - x}$.
+The general solution is $y(x) = x + \frac{1}{C - x}$.
 
-> Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear equations often exhibit **finite-time blowup**. This singularity represents a fundamental difference between linear and nonlinear dynamics.
+Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear equations often exhibit **finite-time blowup**. This singularity represents a fundamental difference between linear and nonlinear dynamics.
 
 ## Second-Order Linear Homogeneous Equations
 
 Equations like $y'' + p(x) y' + q(x) y = 0$ underpin classical physics. Constant coefficients yield the characteristic polynomial $r^{2} + pr + q = 0$ with exponential solutions.
 
-> **Constant-Coefficient Second Order**
+**Constant-Coefficient Second Order**
 
-> Solve $y'' - 3y' + 2y = 0$.
+Solve $y'' - 3y' + 2y = 0$.
 
-> The characteristic polynomial $(r - 1)(r - 2) = 0$ produces $y = C_{1} e^{x} + C_{2} e^{2x}$.
+The characteristic polynomial $(r - 1)(r - 2) = 0$ produces $y = C_{1} e^{x} + C_{2} e^{2x}$.
 
-> The general solution is a linear combination of exponentials, with coefficients determined by initial conditions.
+The general solution is a linear combination of exponentials, with coefficients determined by initial conditions.
 
-> **Cauchy–Euler Equation**
+**Cauchy–Euler Equation**
 
-> Solve $x^{2} y'' - 3x y' + 4y = 0$.
+Solve $x^{2} y'' - 3x y' + 4y = 0$.
 
-> Substituting $y = x^{r}$ yields $(r - 2)^{2} = 0$, so $y = C_{1} x^{2} + C_{2} x^{2} \ln x$.
+Substituting $y = x^{r}$ yields $(r - 2)^{2} = 0$, so $y = C_{1} x^{2} + C_{2} x^{2} \ln x$.
 
-> The repeated root produces a logarithmic term, demonstrating that the solution space structure depends on the algebraic multiplicity of eigenvalues.
+The repeated root produces a logarithmic term, demonstrating that the solution space structure depends on the algebraic multiplicity of eigenvalues.
 
 When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving
 
@@ -230,13 +228,13 @@ $$
 y_{2}(x) = y_{1}(x) \int \frac{\exp(-\int p(s)\,ds)}{y_{1}(t)^{2}}\,dt.
 $$
 
-> **Reduction of Order**
+**Reduction of Order**
 
-> Given $y_{1} = e^{x^{2}/2}$ solves $x y'' + y' - xy = 0$, find $y_{2}$.
+Given $y_{1} = e^{x^{2}/2}$ solves $x y'' + y' - xy = 0$, find $y_{2}$.
 
-> Let $y_{2} = v y_{1}$. Substituting leads to $v'' + (2x + 1/x) v' = 0$. Setting $w = v'$ gives $w = C/(x e^{x^{2}})$, and integrating yields $y_{2} = -\operatorname{Ei}(-x^{2}) e^{x^{2}/2}$.
+Let $y_{2} = v y_{1}$. Substituting leads to $v'' + (2x + 1/x) v' = 0$. Setting $w = v'$ gives $w = C/(x e^{x^{2}})$, and integrating yields $y_{2} = -\operatorname{Ei}(-x^{2}) e^{x^{2}/2}$.
 
-> The second solution involves the exponential integral, a special function that cannot be expressed in elementary terms. This foreshadows the need for special functions developed in later sections.
+The second solution involves the exponential integral, a special function that cannot be expressed in elementary terms. This foreshadows the need for special functions developed in later sections.
 
 The Wronskian $W = y_{1} y_{2}' - y_{1}' y_{2}$ satisfies Abel's identity $W' = -p(x) W$, so $W \neq 0$ at one point implies linear independence everywhere.
 
@@ -250,17 +248,17 @@ $$
 
 tying phase-space volume change to $\operatorname{tr} A$.
 
-> **Linear System via Eigen-Decomposition**
+**Linear System via Eigen-Decomposition**
 
-> Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.
+Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.
 
-> With $A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$, eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield
+With $A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$, eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield
 
-> $$
-> \mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1 \\ -2 \end{pmatrix}.
-> $$
+$$
+\mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1 \\ -2 \end{pmatrix}.
+$$
 
-> The solution is a linear combination of eigenmodes, each growing or decaying according to its eigenvalue. The unstable mode ($\lambda = 3$) dominates for large $x$, while the stable mode ($\lambda = -1$) dominates for large negative $x$.
+The solution is a linear combination of eigenmodes, each growing or decaying according to its eigenvalue. The unstable mode ($\lambda = 3$) dominates for large $x$, while the stable mode ($\lambda = -1$) dominates for large negative $x$.
 
 ## First Integrals and Level Sets
 
@@ -272,25 +270,25 @@ $$
 
 encodes conservation: if $\{F, H\} = 0$, then $F$ is invariant. This foreshadows the symplectic viewpoint of later sections.
 
-> **First Integrals of the Harmonic Oscillator**
+**First Integrals of the Harmonic Oscillator**
 
-> Show $H(x,y) = \tfrac{1}{2}(x^{2} + y^{2})$ is conserved for $x' = y$, $y' = -x$.
+Show $H(x,y) = \tfrac{1}{2}(x^{2} + y^{2})$ is conserved for $x' = y$, $y' = -x$.
 
-> Compute $dH/dt = x y + y(-x) = 0$, so trajectories lie on circles $x^{2} + y^{2} = C$. The Poisson bracket with $H$ vanishes for any function of $x^{2} + y^{2}$, illustrating conserved quantities.
+Compute $dH/dt = x y + y(-x) = 0$, so trajectories lie on circles $x^{2} + y^{2} = C$. The Poisson bracket with $H$ vanishes for any function of $x^{2} + y^{2}$, illustrating conserved quantities.
 
-> The phase space is foliated by level sets of $H$, each representing a different energy. This geometric structure is fundamental to Hamiltonian mechanics and will be developed extensively in later chapters.
+The phase space is foliated by level sets of $H$, each representing a different energy. This geometric structure is fundamental to Hamiltonian mechanics and will be developed extensively in later chapters.
 
 ## Bernoulli Equations and Power-Law Nonlinearity
 
 Bernoulli equations $y' + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v = y^{1-n}$.
 
-> **Bernoulli Transformation**
+**Bernoulli Transformation**
 
-> Solve $y' + y = x y^{3}$.
+Solve $y' + y = x y^{3}$.
 
-> Set $v = y^{-2}$ to obtain $v' - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.
+Set $v = y^{-2}$ to obtain $v' - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.
 
-> The substitution transforms the nonlinear equation into a linear one, demonstrating that certain nonlinearities are merely coordinate artifacts.
+The substitution transforms the nonlinear equation into a linear one, demonstrating that certain nonlinearities are merely coordinate artifacts.
 
 ## Challenge Problems
 

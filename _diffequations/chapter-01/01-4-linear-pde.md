@@ -11,10 +11,7 @@ is_chapter_index: false
 parent_chapter: 1
 parent_section: null
 ---
-
-# Section 1.4: Classical Linear Partial Differential Equations
-
-> The geometry of the domain dictates the mathematics: separation of variables succeeds when symmetry allows simultaneous diagonalization of commuting operators.
+The geometry of the domain dictates the mathematics: separation of variables succeeds when symmetry allows simultaneous diagonalization of commuting operators.
 
 ## Introduction
 
@@ -36,25 +33,25 @@ with discriminant $\Delta=B^{2}-AC$. The sign of $\Delta$ distinguishes physical
 
 Characteristic curves satisfy $A(dy)^{2}-2B dx\,dy+C(dx)^{2}=0$. Transforming to characteristic coordinates $(\xi,\eta)$ diagonalizes the principal part, yielding canonical forms such as $u_{\xi\eta}=0$ in the hyperbolic case.
 
-> **Discriminant Classification**
+**Discriminant Classification**
 
-> Classify $3u_{xx}+4u_{xy}+5u_{yy}=0$.
+Classify $3u_{xx}+4u_{xy}+5u_{yy}=0$.
 
-> The discriminant $\Delta=4^{2}-3\cdot 5=1>0$, so the PDE is hyperbolic. Characteristics solve $3(dy)^{2}-4 dx\,dy+5(dx)^{2}=0$, yielding complex slopes $(2\pm i\sqrt{11})/3$. Real canonical coordinates $\xi=x$, $\eta=y-\tfrac{2}{3}x$ reduce the equation to $u_{\xi\xi}-u_{\eta\eta}=0$, revealing wave-like behavior.
+The discriminant $\Delta=4^{2}-3\cdot 5=1>0$, so the PDE is hyperbolic. Characteristics solve $3(dy)^{2}-4 dx\,dy+5(dx)^{2}=0$, yielding complex slopes $(2\pm i\sqrt{11})/3$. Real canonical coordinates $\xi=x$, $\eta=y-\tfrac{2}{3}x$ reduce the equation to $u_{\xi\xi}-u_{\eta\eta}=0$, revealing wave-like behavior.
 
-> **Variable-Coefficient Classification**
+**Variable-Coefficient Classification**
 
-> Determine the type of $x u_{xx}+2u_{xy}+y u_{yy}=0$.
+Determine the type of $x u_{xx}+2u_{xy}+y u_{yy}=0$.
 
-> Here $\Delta(x,y)=4-xy$. The equation is elliptic where $xy<4$, parabolic on $xy=4$, and hyperbolic when $xy>4$. The curve $xy=4$ resembles the Tricomi equation, modeling mixed-type phenomena such as transonic flow.
+Here $\Delta(x,y)=4-xy$. The equation is elliptic where $xy<4$, parabolic on $xy=4$, and hyperbolic when $xy>4$. The curve $xy=4$ resembles the Tricomi equation, modeling mixed-type phenomena such as transonic flow.
 
 Classification determines the fundamental character of the PDE: elliptic equations smooth data instantaneously, parabolic equations diffuse over time, and hyperbolic equations propagate along characteristics. However, variable coefficients can create mixed-type regions, revealing the limitations of this classification.
 
-> **Canonical Hyperbolic Reduction**
+**Canonical Hyperbolic Reduction**
 
-> Reduce $u_{xx}-3u_{xy}+2u_{yy}=0$.
+Reduce $u_{xx}-3u_{xy}+2u_{yy}=0$.
 
-> The discriminant is $\Delta=(-3)^{2}-4\cdot 1\cdot 2=1>0$. Characteristics satisfy $dy/dx=r$ with $r_{1,2}=\{2,1\}$. Coordinates $\xi=y-2x$ and $\eta=y-x$ transform the PDE to $u_{\xi\eta}=0$, leading to $u(x,y)=f(y-2x)+g(y-x)$.
+The discriminant is $\Delta=(-3)^{2}-4\cdot 1\cdot 2=1>0$. Characteristics satisfy $dy/dx=r$ with $r_{1,2}=\{2,1\}$. Coordinates $\xi=y-2x$ and $\eta=y-x$ transform the PDE to $u_{\xi\eta}=0$, leading to $u(x,y)=f(y-2x)+g(y-x)$.
 
 The general solution is a superposition of arbitrary functions of the characteristic coordinates. This d'Alembert representation is fundamental to understanding wave propagation.
 
@@ -74,37 +71,37 @@ $$
 
 characterizes the principal eigenvalue. Maximum principles imply interior extrema occur on $\partial\Omega$, providing uniqueness and a priori bounds without explicit solutions.
 
-> **Heat Equation with Dirichlet Data**
+**Heat Equation with Dirichlet Data**
 
-> Solve $u_{t}=u_{xx}$ on $0<x<\pi$ with $u(0,t)=u(\pi,t)=0$, $u(x,0)=\sin(3x)$.
+Solve $u_{t}=u_{xx}$ on $0<x<\pi$ with $u(0,t)=u(\pi,t)=0$, $u(x,0)=\sin(3x)$.
 
-> Separation $u=XT$ gives $X''+\lambda X=0$ with eigenvalues $\lambda_{n}=n^{2}$ and eigenfunctions $\sin(nx)$. The temporal factors are $T_{n}=e^{-n^{2}t}$. Expanding the initial data reveals only $n=3$ is present, so $u(x,t)=e^{-9t}\sin(3x)$.
+Separation $u=XT$ gives $X''+\lambda X=0$ with eigenvalues $\lambda_{n}=n^{2}$ and eigenfunctions $\sin(nx)$. The temporal factors are $T_{n}=e^{-n^{2}t}$. Expanding the initial data reveals only $n=3$ is present, so $u(x,t)=e^{-9t}\sin(3x)$.
 
-> **Rayleigh Quotient Verification**
+**Rayleigh Quotient Verification**
 
-> Verify $\lambda_{1}=1$ for $-u''=\lambda u$ with $u(0)=u(\pi)=0$.
+Verify $\lambda_{1}=1$ for $-u''=\lambda u$ with $u(0)=u(\pi)=0$.
 
-> The Rayleigh quotient
+The Rayleigh quotient
 
-> $$
-> R[u]=\frac{\int_{0}^{\pi}(u')^{2}dx}{\int_{0}^{\pi}u^{2}dx}
-> $$
+$$
+R[u]=\frac{\int_{0}^{\pi}(u')^{2}dx}{\int_{0}^{\pi}u^{2}dx}
+$$
 
-> is minimized by $u=\sin x$, giving $R[\sin x]=1$. Alternative test functions yield $R[u]>1$, confirming the principal eigenvalue.
+is minimized by $u=\sin x$, giving $R[\sin x]=1$. Alternative test functions yield $R[u]>1$, confirming the principal eigenvalue.
 
 Separation of variables reduces the PDE to an eigenvalue problem, with each eigenmode evolving independently. The Rayleigh quotient provides a variational characterization of eigenvalues without solving the differential equation explicitly.
 
-> **Wave Equation with Mixed Boundaries**
+**Wave Equation with Mixed Boundaries**
 
-> Solve $u_{tt}=u_{xx}$ on $0<x<\pi$, with $u(0,t)=0$ and $u_{x}(\pi,t)=0$.
+Solve $u_{tt}=u_{xx}$ on $0<x<\pi$, with $u(0,t)=0$ and $u_{x}(\pi,t)=0$.
 
-> Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin((2n-1)x/2)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
+Separation imposes $X(0)=0$ and $X'(\pi)=0$, leading to eigenfunctions $\sin((2n-1)x/2)$ with $\lambda_{n}=\tfrac{(2n-1)^{2}}{4}$. The solution is
 
-> $$
-> u(x,t)=\sum_{n=1}^{\infty}(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2})\sin\frac{(2n-1)x}{2},
-> $$
+$$
+u(x,t)=\sum_{n=1}^{\infty}(a_{n}\cos\frac{(2n-1)t}{2}+b_{n}\sin\frac{(2n-1)t}{2})\sin\frac{(2n-1)x}{2},
+$$
 
-> with coefficients fixed by initial data.
+with coefficients fixed by initial data.
 
 Mixed boundary conditions produce different eigenfunctions and eigenvalues. The solution is a superposition of standing waves, each oscillating at its characteristic frequency.
 
@@ -118,17 +115,17 @@ Eigenfunctions $\{\phi_{n}\}$ yield superpositions $u(x,t)=\sum_{n}a_{n}(t)\phi_
 
 Cesàro summation via the Fejér kernel $F_{N}$ restores uniform convergence for continuous data, foreshadowing mollification and Sobolev-space regularization.
 
-> **Fourier Series and Gibbs Phenomenon**
+**Fourier Series and Gibbs Phenomenon**
 
-> Expand $f(x)=\operatorname{sgn}(x)$ on $(-\pi,\pi)$.
+Expand $f(x)=\operatorname{sgn}(x)$ on $(-\pi,\pi)$.
 
-> Only sine terms appear: $f(x)\sim \frac{4}{\pi}\sum_{k=1,3,5,\dots}\frac{\sin(kx)}{k}$. Partial sums overshoot near $x=0$ by approximately $0.08949$ (17.9% of the jump) regardless of how many terms are added—the Gibbs phenomenon—illustrating the limitations of pointwise convergence.
+Only sine terms appear: $f(x)\sim \frac{4}{\pi}\sum_{k=1,3,5,\dots}\frac{\sin(kx)}{k}$. Partial sums overshoot near $x=0$ by approximately $0.08949$ (17.9% of the jump) regardless of how many terms are added—the Gibbs phenomenon—illustrating the limitations of pointwise convergence.
 
-> **Cesàro Summability via Fejér Kernel**
+**Cesàro Summability via Fejér Kernel**
 
-> Show Fejér means converge uniformly for continuous $f$.
+Show Fejér means converge uniformly for continuous $f$.
 
-> Define $\sigma_{N}(f)=\frac{1}{N+1}\sum_{k=0}^{N}S_{k}(f)=f*F_{N}$, where $F_{N}$ is the Fejér kernel. Since $F_{N}\ge 0$, $\int F_{N}=2\pi$, and $F_{N}$ concentrates at $0$, convolution with $F_{N}$ approximates $f$ uniformly by continuity, demonstrating a summability method that bypasses Gibbs oscillations.
+Define $\sigma_{N}(f)=\frac{1}{N+1}\sum_{k=0}^{N}S_{k}(f)=f*F_{N}$, where $F_{N}$ is the Fejér kernel. Since $F_{N}\ge 0$, $\int F_{N}=2\pi$, and $F_{N}$ concentrates at $0$, convolution with $F_{N}$ approximates $f$ uniformly by continuity, demonstrating a summability method that bypasses Gibbs oscillations.
 
 Pointwise convergence is fragile: even continuous functions can have divergent Fourier series. Cesàro summation provides a more robust convergence method, but it requires modifying the partial sums, revealing that the standard Fourier expansion is fundamentally a limit in $L^2$, not pointwise.
 
@@ -142,25 +139,25 @@ $$
 
 characteristics satisfy $\frac{dx}{dt}=a$ and $\frac{du}{dt}=0$, yielding $u(x,t)=u_{0}(x-at)$ for constant $a$. Nonlinear velocities $a(u)$ cause characteristic intersection, signaling shock formation and motivating weak/entropy solutions in Chapter 3.
 
-> **Transport Equation**
+**Transport Equation**
 
-> Solve $u_{t}+3u_{x}=0$ with $u(x,0)=\sin x$.
+Solve $u_{t}+3u_{x}=0$ with $u(x,0)=\sin x$.
 
-> Characteristics satisfy $x=x_{0}+3t$. Along each, $u$ is constant, so $u(x,t)=\sin(x-3t)$, confirming the transport of initial data without distortion.
+Characteristics satisfy $x=x_{0}+3t$. Along each, $u$ is constant, so $u(x,t)=\sin(x-3t)$, confirming the transport of initial data without distortion.
 
-> **Variable-Coefficient Transport**
+**Variable-Coefficient Transport**
 
-> Solve $u_{t}+(x+t)u_{x}=0$ with $u(x,0)=e^{x}$.
+Solve $u_{t}+(x+t)u_{x}=0$ with $u(x,0)=e^{x}$.
 
-> Characteristics solve $\frac{dx}{dt}=x+t$, giving $x+t=Ce^{t}$ and $C=x_{0}$. Along the curve, $u$ remains $e^{x_{0}}$, yielding $u(x,t)=\exp(x e^{-t}+t e^{-t})$ after eliminating $x_{0}$.
+Characteristics solve $\frac{dx}{dt}=x+t$, giving $x+t=Ce^{t}$ and $C=x_{0}$. Along the curve, $u$ remains $e^{x_{0}}$, yielding $u(x,t)=\exp(x e^{-t}+t e^{-t})$ after eliminating $x_{0}$.
 
 Characteristics represent paths along which information propagates. For constant coefficients, the solution is simply the initial data translated. Variable coefficients create more complex trajectories, but the solution remains constant along each characteristic curve.
 
-> **Burgers' Equation Shock**
+**Burgers' Equation Shock**
 
-> For $u_{t}+u u_{x}=0$ with $u(x,0)=1-x$, find shock time.
+For $u_{t}+u u_{x}=0$ with $u(x,0)=1-x$, find shock time.
 
-> Characteristics satisfy $dx/dt=u=1-x_{0}$, so $x=x_{0}+(1-x_{0})t$. Inverting gives $x_{0}=(x-t)/(1+t)$ and $u=(1+x)/(1+t)$. Since $\partial x/\partial x_{0}=1-t$ vanishes at $t=1$, characteristics intersect and a shock forms for $t>1$.
+Characteristics satisfy $dx/dt=u=1-x_{0}$, so $x=x_{0}+(1-x_{0})t$. Inverting gives $x_{0}=(x-t)/(1+t)$ and $u=(1+x)/(1+t)$. Since $\partial x/\partial x_{0}=1-t$ vanishes at $t=1$, characteristics intersect and a shock forms for $t>1$.
 
 Nonlinearity causes characteristics to intersect, creating shocks where the classical solution breaks down. This fundamental limitation motivates the weak solution framework of Chapter 3.
 
@@ -179,35 +176,35 @@ Solving $\Delta u=0$ in curvilinear coordinates separates the Laplacian into ort
 
 Spherical and cylindrical coordinates align with domain symmetries, dictating the special functions encountered in separation of variables.
 
-> **Spherical Harmonics for Laplace's Equation**
+**Spherical Harmonics for Laplace's Equation**
 
-> Solve $\Delta u=0$ in the unit ball with $u(1,\theta,\phi)=\cos\theta$.
+Solve $\Delta u=0$ in the unit ball with $u(1,\theta,\phi)=\cos\theta$.
 
-> Separation yields radial factors $r^{\ell}$ and angular spherical harmonics $Y_{\ell}^{m}$. The boundary data correspond to $\ell=1$, $m=0$, so $u(r,\theta,\phi)=r Y_{1}^{0}(\theta,\phi)=r\cos\theta$.
+Separation yields radial factors $r^{\ell}$ and angular spherical harmonics $Y_{\ell}^{m}$. The boundary data correspond to $\ell=1$, $m=0$, so $u(r,\theta,\phi)=r Y_{1}^{0}(\theta,\phi)=r\cos\theta$.
 
-> **Addition Theorem Check**
+**Addition Theorem Check**
 
-> Verify the addition theorem for $\ell=1$.
+Verify the addition theorem for $\ell=1$.
 
-> Using explicit forms of $Y_{1}^{m}$, one obtains
+Using explicit forms of $Y_{1}^{m}$, one obtains
 
-> $$
-> \cos\gamma=\frac{4\pi}{3}\sum_{m=-1}^{1}Y_{1}^{m}(\Omega_{1})\overline{Y_{1}^{m}(\Omega_{2})},
-> $$
+$$
+\cos\gamma=\frac{4\pi}{3}\sum_{m=-1}^{1}Y_{1}^{m}(\Omega_{1})\overline{Y_{1}^{m}(\Omega_{2})},
+$$
 
-> where $\gamma$ is the angle between $\Omega_{1}$ and $\Omega_{2}$. This identity underpins expansions of rotationally symmetric kernels.
+where $\gamma$ is the angle between $\Omega_{1}$ and $\Omega_{2}$. This identity underpins expansions of rotationally symmetric kernels.
 
-> **Exterior Harmonic Potential via Spherical Harmonics**
+**Exterior Harmonic Potential via Spherical Harmonics**
 
-> Solve $\Delta u=0$ for $r>1$ with $u(1,\theta,\phi)=\cos^{3}\theta$.
+Solve $\Delta u=0$ for $r>1$ with $u(1,\theta,\phi)=\cos^{3}\theta$.
 
-> Using $\cos^{3}\theta=\tfrac{3}{4}\cos\theta+\tfrac{1}{4}\cos 3\theta$ and expanding in $Y_{\ell}^{0}$, the exterior solution becomes
+Using $\cos^{3}\theta=\tfrac{3}{4}\cos\theta+\tfrac{1}{4}\cos 3\theta$ and expanding in $Y_{\ell}^{0}$, the exterior solution becomes
 
-> $$
-> u(r,\theta,\phi)=\frac{1}{3}r^{-2}Y_{1}^{0}(\theta,\phi)+\frac{1}{15}r^{-4}Y_{3}^{0}(\theta,\phi),
-> $$
+$$
+u(r,\theta,\phi)=\frac{1}{3}r^{-2}Y_{1}^{0}(\theta,\phi)+\frac{1}{15}r^{-4}Y_{3}^{0}(\theta,\phi),
+$$
 
-> illustrating how spherical harmonics encode boundary data.
+illustrating how spherical harmonics encode boundary data.
 
 Spherical harmonics provide a complete basis for functions on the sphere, just as Fourier series do for functions on the circle. The addition theorem reveals the deep connection between spherical harmonics and Legendre polynomials, enabling efficient computation of rotationally symmetric potentials.
 
