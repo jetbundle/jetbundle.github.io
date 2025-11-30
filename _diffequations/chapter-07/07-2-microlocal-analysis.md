@@ -24,13 +24,13 @@ Microlocal analysis resolves this by lifting the analysis from the base manifold
 
 ### The Wave Front Set
 
-The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}'(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $|\xi| \to \infty$.
+The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}'(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $\mid \xi \mid \to \infty$.
 
 A singularity occurs when this rapid decay fails. The wave front set identifies precisely *in which directions* the decay fails.
 
 **Definition 7.2.1 (Wave Front Set).** Let $X$ be a smooth manifold and $u \in \mathcal{D}'(X)$. A point $(x_0, \xi_0) \in T^*X \setminus \{0\}$ is **not** in the wave front set $WF(u)$ if there exists a neighborhood $U$ of $x_0$, a conic neighborhood $\Gamma$ of $\xi_0$, and a test function $\phi \in C_c^\infty(U)$ with $\phi(x_0) = 1$ such that for all $N \in \mathbb{N}$, there exists a constant $C_N$ satisfying:
 
-$$|\widehat{\phi u}(\xi)| \leq C_N (1 + |\xi|)^{-N}$$
+$$\mid \widehat{\phi u}(\xi) \mid \leq C_N (1 + \mid \xi \mid)^{-N}$$
 
 for all $\xi \in \Gamma$.
 
@@ -48,7 +48,7 @@ To manipulate wave front sets, we must generalize differential operators. A line
 
 **Definition 7.2.2 (Symbol Classes).** The symbol class $S^m_{1,0}(X)$, denoted $S^m$, consists of smooth functions $a(x, \xi)$ on $T^*X$ satisfying the estimates:
 
-$$|D_\xi^\alpha D_x^\beta a(x, \xi)| \leq C_{\alpha, \beta} (1 + |\xi|)^{m - |\alpha|}$$
+$$\mid D_\xi^\alpha D_x^\beta a(x, \xi) \mid \leq C_{\alpha, \beta} (1 + \mid \xi \mid)^{m - \mid \alpha \mid}$$
 
 for all multi-indices $\alpha, \beta$. The index $m$ is the order of the operator.
 
@@ -60,7 +60,7 @@ This class includes all differential operators, parametrices of elliptic operato
 
 The algebraic power of $\Psi$DOs lies in their closure under composition. If $A = \text{Op}(a)$ and $B = \text{Op}(b)$, their composition $A \circ B$ is a pseudodifferential operator with symbol $a \# b$. The **composition formula** provides an asymptotic expansion for this new symbol:
 
-$$(a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).$$
+$$(a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-\mid \alpha \mid}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).$$
 
 This non-commutative product on the algebra of symbols corresponds to the quantization of the phase space. The leading term is the pointwise product $a(x, \xi)b(x, \xi)$, implying that to leading order, operators commute. The lower-order terms encode the non-commutativity arising from the Heisenberg uncertainty principle ($[x, \xi] \neq 0$).
 
@@ -111,7 +111,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$\widehat{\phi \delta}(\xi_1,\xi_2) = \int \phi(x_1,x_2) \delta(x_1) e^{-i(x_1\xi_1 + x_2\xi_2)} dx = \psi(0)\chi(0) = 1$$
 
 3. **Decay Analysis:**
-   $|\widehat{\phi \delta}(\xi)| = 1$ for all $(\xi_1,\xi_2) \neq (0,0)$.
+   $\mid \widehat{\phi \delta}(\xi) \mid = 1$ for all $(\xi_1,\xi_2) \neq (0,0)$.
 
 4. **Conclusion:**
    No conic neighborhood $\Gamma$ exists where rapid decay occurs.
@@ -119,7 +119,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 5. **Wave Front Set:**
    $$WF(\delta) = \{(0,\xi_1,\xi_2) \in T^*\mathbb{R}^2 : (\xi_1,\xi_2) \neq (0,0)\}$$
 
-**Key Insight:** The Dirac delta is singular at $x=0$ in all frequency directions.
+The Dirac delta function exhibits a unique wave front structure: it is singular at the single point $x=0$, but this singularity manifests in all frequency directions simultaneously. Unlike smooth functions whose wave front sets are empty, or functions with directional singularities that have wave front sets concentrated along specific directions, the delta function's wave front set spans the entire cotangent fiber above the origin. This reflects the fact that the delta function contains all frequencies equally, as its Fourier transform is constant. The wave front set thus captures both the spatial location of the singularity (at $x=0$) and its complete lack of frequency localization (all $\xi \neq 0$).
 
 ### Example 7.2.2: Physical Application—Plane Wave
 
@@ -134,14 +134,14 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$\widehat{\phi_0 u}(\xi) = \int \phi_0(x) e^{i(\xi_0 - \xi) \cdot x} dx = \widehat{\phi_0}(\xi - \xi_0)$$
 
 3. **Decay Analysis:**
-   **Around $\xi = \xi_0$:** $|\widehat{\phi_0 u}(\xi_0 + \eta)| = |\widehat{\phi_0}(\eta)| \leq C_N (1+|\eta|)^{-N}$.
+   **Around $\xi = \xi_0$:** $\mid \widehat{\phi_0 u}(\xi_0 + \eta) \mid = \mid \widehat{\phi_0}(\eta) \mid \leq C_N (1+\mid \eta \mid)^{-N}$.
 
-   **Away from $\xi_0$:** $|\widehat{\phi_0 u}(\xi)| = |\widehat{\phi_0}(\xi - \xi_0)|$ decays rapidly.
+   **Away from $\xi_0$:** $\mid \widehat{\phi_0 u}(\xi) \mid = \mid \widehat{\phi_0}(\xi - \xi_0) \mid$ decays rapidly.
 
 4. **Wave Front Set:**
    $$WF(u) = \{(x_0, \xi_0) : x_0 \in \mathbb{R}^n\}$$
 
-**Key Insight:** Oscillations in direction $\xi_0$ create singularities everywhere but only in direction $\xi_0$.
+Plane waves demonstrate how oscillations in a specific direction create a wave front set that is distributed throughout space but concentrated in that single frequency direction. The function $e^{i\xi_0 \cdot x}$ oscillates with frequency $\xi_0$ at every point in space, making it singular in the sense that it does not decay in any direction. However, the singularity is highly directional: the wave front set consists of all points $(x, \xi_0)$ where $x$ is arbitrary but $\xi$ is fixed at $\xi_0$. This structure reflects the fact that plane waves are eigenfunctions of translation, with the wave front set encoding both the global nature of the oscillation (present everywhere) and its specific frequency content (only direction $\xi_0$). This example illustrates how the wave front set provides a refined description of singularities that distinguishes between spatial and frequency localization.
 
 ### Example 7.2.3: Advanced Demonstration—Characteristic Function
 
@@ -161,14 +161,14 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$\widehat{\phi H}(\xi_1,\xi_2) \sim \int_{-\infty}^0 \psi(x_1) e^{-ix_1\xi_1} dx_1$$
 
 4. **Decay Analysis:**
-   **For $\xi_1 > 0$ large:** Boundary term dominates, decay like $1/|\xi_1|$.
+   **For $\xi_1 > 0$ large:** Boundary term dominates, decay like $1/\mid \xi_1 \mid$.
 
    **For $\xi_1 < 0$ large:** Rapid decay.
 
 5. **Wave Front Set:**
    $$WF(H) = \{(0,\xi_1,0) : \xi_1 > 0\}$$
 
-**Key Insight:** Jump discontinuities propagate only forward in the normal direction to the discontinuity surface.
+The Heaviside function reveals a fundamental asymmetry in how jump discontinuities propagate: the wave front set is concentrated only on the forward-facing side of the discontinuity. When a function has a jump at a surface, the Fourier transform exhibits slow decay in directions normal to that surface. However, the direction matters: for the Heaviside function $H(x_1)$, the wave front set contains only points with $\xi_1 > 0$, corresponding to the direction in which the jump occurs (from 0 to 1 as $x_1$ increases). This directional selectivity reflects the causal structure of the discontinuity: information about the jump propagates forward along the normal direction, not backward. This phenomenon is fundamental to understanding how singularities in hyperbolic equations propagate along characteristics, with the wave front set encoding both the location of the discontinuity and its direction of propagation.
 
 ### Example 7.2.4: Canonical $\Psi$DO—Hilbert Transform
 
@@ -185,15 +185,15 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$a(x,\xi) = -i \text{sgn}(\xi)$$
 
 3. **Symbol Class Verification:**
-   $$|D_\xi^\alpha a(x,\xi)| = \begin{cases} 0 & \text{if } |\alpha| \geq 1 \\ 1 & \text{if } |\alpha| = 0 \end{cases}$$
+   $$\mid D_\xi^\alpha a(x,\xi) \mid = \begin{cases} 0 & \text{if } \mid \alpha \mid \geq 1 \\ 1 & \text{if } \mid \alpha \mid = 0 \end{cases}$$
 
 4. **Order:**
-   $m = 0$ since $|a(x,\xi)| \leq C$.
+   $m = 0$ since $\mid a(x,\xi) \mid \leq C$.
 
 5. **Microlocal Property:**
    $WF(Hf) \subseteq WF(f)$
 
-**Key Insight:** The Hilbert transform preserves singularities but rotates their phase.
+The Hilbert transform exemplifies how pseudodifferential operators can modify singularities without eliminating them. As a $\Psi$DO of order 0, the Hilbert transform preserves the wave front set: $WF(Hf) \subseteq WF(f)$. However, the symbol $a(x,\xi) = -i \text{sgn}(\xi)$ introduces a phase rotation that depends on the sign of the frequency. This phase shift is crucial in signal processing, where the Hilbert transform is used to create analytic signals and extract instantaneous phase information. The microlocal property ensures that singularities are not smoothed away, but the phase rotation reflects the non-local nature of the operator: it acts differently on positive and negative frequencies, encoding the causal structure of the underlying physical system.
 
 ### Example 7.2.5: Composition Formula Demonstration
 
@@ -206,7 +206,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    - $b(x,\xi) = x$ (order 0)
 
 2. **Composition Formula:**
-   $$(a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-|\alpha|}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b$$
+   $$(a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-\mid \alpha \mid}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b$$
 
 3. **Compute Terms:**
    **$|\alpha| = 0$:** $ab = i\xi \cdot x$
@@ -223,7 +223,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 5. **Verification:**
    $A \circ B = \partial_x (x \cdot) = 1 + x \partial_x$
 
-**Key Insight:** The $+1$ term is the Heisenberg correction $[x,\partial_x] = 1$.
+The composition formula reveals the fundamental non-commutativity of quantum mechanics encoded in the algebra of pseudodifferential operators. When composing $\partial_x$ with $x$, the leading term $i\xi \cdot x$ represents the classical (commutative) product, but the correction term $+1$ arises from the commutator $[x, \partial_x] = 1$. This Heisenberg correction is not a small perturbation but a fundamental feature of the operator algebra: the composition symbol $(a \# b)$ includes not just the pointwise product $ab$, but also terms involving derivatives of $a$ and $b$ that capture the non-commutative structure. The $+1$ term in this example is precisely the commutator, demonstrating how the composition formula systematically accounts for the quantum mechanical uncertainty principle in the symbol calculus.
 
 ### Example 7.2.6: Parametrix Construction
 
@@ -232,13 +232,13 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 **Step-by-Step Solution:**
 
 1. **Principal Symbol:**
-   $$p(x,\xi) = |\xi|^2 + 1$$
+   $$p(x,\xi) = \mid \xi \mid^2 + 1$$
 
 2. **Parametrix Symbol:**
-   $$a(x,\xi) = \frac{1}{|\xi|^2 + 1}$$
+   $$a(x,\xi) = \frac{1}{\mid \xi \mid^2 + 1}$$
 
 3. **Verify $\Psi$DO Class:**
-   $$|D_\xi^\alpha a| \leq C_\alpha (1+|\xi|^2)^{-1 + |\alpha|/2} \in S^{-2}$$
+   $$\mid D_\xi^\alpha a \mid \leq C_\alpha (1+\mid \xi \mid^2)^{-1 + \mid \alpha \mid/2} \in S^{-2}$$
 
 4. **Regularity:**
    For $f \in H^s$, $u \in H^{s+2}$.
@@ -246,7 +246,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 5. **Wave Front Set:**
    $$WF(u) \subseteq WF(f) \cup \text{Char}(-\Delta + 1) = WF(f)$$
 
-**Key Insight:** Elliptic operators smooth solutions microlocally away from characteristics.
+Elliptic operators possess a remarkable microlocal smoothing property: they eliminate singularities everywhere except on their characteristic set, which is empty for strictly elliptic operators. The parametrix construction shows that if $P$ is elliptic, then $WF(u) \subseteq WF(Pu)$, meaning that singularities in the solution can only come from singularities in the forcing term. Since the characteristic set of an elliptic operator is empty (the principal symbol never vanishes), there are no directions in phase space where the operator fails to be invertible. This microlocal invertibility ensures that elliptic operators smooth all singularities, providing a rigorous foundation for the classical regularity theory that states elliptic equations have smooth solutions when given smooth data.
 
 ### Example 7.2.7: Canonical Propagation—Wave Equation
 
@@ -258,7 +258,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$p(t,x;\tau,\xi) = \tau^2 - \xi^2$$
 
 2. **Characteristic Set:**
-   $\tau^2 = \xi^2$ or $|\tau| = |\xi|$.
+   $\tau^2 = \xi^2$ or $\mid \tau \mid = \mid \xi \mid$.
 
 3. **Initial Wave Front:**
    $$WF(u(0,\cdot)) = \{(0,\xi,0) : \xi > 0\}$$
@@ -274,7 +274,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 6. **Physical Interpretation:**
    Singularity propagates along light cone $x = t$.
 
-**Key Insight:** The jump discontinuity travels at speed of light.
+The wave equation propagates singularities along light cones at the speed of light, as encoded in the bicharacteristic flow. When initial data contains a jump discontinuity, the wave front set evolves according to the Hamiltonian flow of the symbol $|\xi|$, which generates straight-line trajectories in phase space. The spatial projection of these bicharacteristics gives the light cone $x = x_0 \pm ct$, showing that the discontinuity travels at speed $c$ in both directions. This geometric description provides a rigorous foundation for Huygens' principle: singularities in the initial data propagate along characteristics, creating a wave front that expands at the speed of light. The wave front set thus encodes both the location of the singularity and its direction of propagation, providing a complete microlocal description of how discontinuities evolve under the wave equation.
 
 ### Example 7.2.8: Transport Equation
 
@@ -319,12 +319,12 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$v = \frac{dx}{dt} = \frac{c^2\xi}{\tau} = c(x)$$
 
 5. **Initial Condition:**
-   At $t=0$, $(0,0,\tau_0,\xi_0)$ with $\tau_0 = c(0)|\xi_0|$.
+   At $t=0$, $(0,0,\tau_0,\xi_0)$ with $\tau_0 = c(0)\mid \xi_0 \mid$.
 
 6. **Solution Path:**
    Rays follow optical paths $\frac{dx}{ds} = c(x)$.
 
-**Key Insight:** Geometric optics rays are bicharacteristic projections.
+The connection between geometric optics and microlocal analysis is complete: light rays in geometric optics are precisely the spatial projections of bicharacteristic curves in phase space. When the wave speed $c(x)$ varies with position, the bicharacteristics follow curved paths determined by the Hamiltonian flow of the symbol. The spatial projection of these phase space trajectories gives the optical ray paths, which satisfy Fermat's principle of least time. This correspondence reveals that geometric optics is not merely an approximation to wave optics, but rather the leading-order description of how the wave front set evolves: singularities (wave fronts) propagate along bicharacteristics, and their spatial projections are the rays of geometric optics. The variable coefficient case demonstrates that this geometric structure persists even when the medium is inhomogeneous, with the bicharacteristic flow encoding both the ray paths and the evolution of frequency along those paths.
 
 ### Example 7.2.10: Failure Mode—Elliptic Regularity
 
@@ -333,13 +333,13 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 **Step-by-Step Solution:**
 
 1. **Principal Symbol:**
-   $$p = |\xi|^2 + 1 > 0$$ everywhere.
+   $$p = \mid \xi \mid^2 + 1 > 0$$ everywhere.
 
 2. **Characteristic Set:**
    $\emptyset$.
 
 3. **Parametrix:**
-   $$E(x) = \frac{e^{-|x|}}{4\pi |x|}$$
+   $$E(x) = \frac{e^{-\mid x \mid}}{4\pi \mid x \mid}$$
 
 4. **Solution:**
    $u = E * H(x_1)$.
@@ -351,7 +351,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
 6. **Result:**
    $WF(u) = \emptyset$ (u is smooth!)
 
-**Key Insight:** Elliptic operators smooth all singularities.
+Elliptic operators provide the ultimate smoothing mechanism: they eliminate all singularities, regardless of their structure. When an elliptic operator acts on a distribution with a non-empty wave front set, the resulting distribution has an empty wave front set, meaning it is smooth. This is a much stronger statement than mere regularity: it says that elliptic operators not only preserve smoothness but actively create it, removing all directional singularities. The fundamental solution $E(x) = e^{-|x|}/(4\pi |x|)$ for $-\Delta + 1$ is itself smooth away from the origin, and when convolved with the Heaviside function (which has wave front set $\{(0,\xi_1,0) : \xi_1 > 0\}$), the result has empty wave front set. This demonstrates the power of elliptic regularity: even when starting with discontinuous or singular data, elliptic equations produce smooth solutions, making them ideal for modeling equilibrium phenomena where all disturbances are instantaneously smoothed.
 
 ### Example 7.2.11: Comprehensive Demonstration—Schrödinger Evolution
 
@@ -363,7 +363,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$WF(u(0)) = \{(0,k_1,k_2) : k_1 > 0\}$$
 
 2. **Principal Symbol:**
-   $$p = \tau + |\xi|^2$$
+   $$p = \tau + \mid \xi \mid^2$$
 
 3. **Bicharacteristic Flow:**
    $$H_p = \partial_t + 2\xi \cdot \nabla_x - 2\xi \cdot \nabla_\xi$$
@@ -375,7 +375,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    | $t(s)$ | $\dot{t} = 1$ | $t = s$ |
    | $x(s)$ | $\dot{x} = 2\xi$ | $x = x_0 + 2 s \xi$ |
    | $\xi(s)$ | $\dot{\xi} = 0$ | $\xi = \text{constant}$ |
-   | $\tau(s)$ | $\dot{\tau} = 0$ | $\tau = -|\xi|^2$ |
+   | $\tau(s)$ | $\dot{\tau} = 0$ | $\tau = -\mid \xi \mid^2$ |
 
 5. **Evolved WF:**
    $$WF(u(t)) = \{(x_0 + 2tk_1, k_1, k_2) : k_1 > 0\}$$

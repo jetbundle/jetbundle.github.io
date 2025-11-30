@@ -52,7 +52,7 @@ The **topological index** is constructed by combining these classes. It represen
 
 The Atiyah-Singer Index Theorem (1963) unifies these domains by equating the analytical index (the dimension of solution spaces) with the topological index (integral of curvature forms). For a generic elliptic operator $P$ associated with the vector bundles $E$ and $F$, the theorem states:
 
-$$\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big|_n$$
+$$\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big\mid_n$$
 
 where the integration selects the component of the cohomology class of degree $n$ (the volume form).
 

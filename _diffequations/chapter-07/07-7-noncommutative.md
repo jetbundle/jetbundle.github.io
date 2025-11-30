@@ -46,7 +46,7 @@ The condition that $[D, a]$ is bounded is the operator-theoretic equivalent of t
 
 **The Dimension:**
 
-The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $|D|^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl's Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.
+The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $\mid D \mid^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl's Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.
 
 ### Connes Distance Formula
 
@@ -60,7 +60,7 @@ This definition fails in disconnected spaces, discrete sets, or noncommutative a
 
 Given a spectral triple $(\mathcal{A}, \mathcal{H}, D)$, the distance between two states $\phi, \psi$ of the algebra $\mathcal{A}$ is given by:
 
-$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ |\phi(a) - \psi(a)| : \| [D, a] \| \le 1 \}$$
+$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ \mid \phi(a) - \psi(a) \mid : \| [D, a] \| \le 1 \}$$
 
 In the classical case where $\mathcal{A} = C^\infty(M)$ and $D$ is the Dirac operator, the condition $\| [D, a] \| \le 1$ is equivalent to $\| \nabla a \|_\infty \le 1$ (the function is 1-Lipschitz). The supremum of the difference between values of 1-Lipschitz functions recovers the geodesic distance exactly.
 
@@ -114,7 +114,7 @@ For a Cantor set or Sierpinski gasket, one constructs a spectral triple where th
 
 * The **Connes distance** recovers the metric on the fractal.
 
-* The **Dixmier trace** $\text{Tr}_\omega(|D|^{-d})$ recovers the Hausdorff measure (volume) of the fractal.
+* The **Dixmier trace** $\text{Tr}_\omega(\mid D \mid^{-d})$ recovers the Hausdorff measure (volume) of the fractal.
 
 * The value $d$ for which the trace is finite and non-zero is the Hausdorff dimension.
 
@@ -186,16 +186,16 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 
    $$[D, a] = \begin{pmatrix} 0 & 0 \\ 0 & (a_1-a_2) \end{pmatrix}$$
 
-   $$\|[D, a]\| = |a_1 - a_2|$$
+   $$\|[D, a]\| = \mid a_1 - a_2 \mid$$
 
 4. **Compute Connes Distance:**
    **States:** $\phi_1(a) = a_1$, $\phi_2(a) = a_2$ (evaluation at points)
 
-   $$d(\phi_1, \phi_2) = \sup\{|a_1 - a_2| : \|[D, a]\| \leq 1\}$$
+   $$d(\phi_1, \phi_2) = \sup\{\mid a_1 - a_2 \mid : \|[D, a]\| \leq 1\}$$
 
-   $$= \sup\{|a_1 - a_2| : |a_1 - a_2| \leq 1\} = 1$$ ✓
+   $$= \sup\{\mid a_1 - a_2 \mid : \mid a_1 - a_2 \mid \leq 1\} = 1$$ ✓
 
-   **Key Insight:** Distance emerges from operator algebra without coordinate geometry!
+   This computation demonstrates a fundamental principle of noncommutative geometry: distance is not a primitive geometric concept but emerges from the algebraic structure of operators. The Connes distance formula shows that the metric is encoded in the commutator $[D, a]$, which measures how much a function can vary relative to its "gradient" as defined by the Dirac operator. For the two-point space, the distance of 1 emerges naturally from the constraint that the commutator norm be bounded by 1, without any reference to coordinates or embedding in Euclidean space. This algebraic definition of distance works equally well for discrete spaces, fractals, and noncommutative algebras where classical geometric notions break down, revealing that geometry is fundamentally a property of the algebra of observables rather than an underlying space.
 
 ### Example 7.7.3: Physical Application—Circle $S^1$ (Recover Classical Geometry)
 
@@ -223,13 +223,13 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 3. **Distance Calculation:**
    $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$
 
-   $$d(\theta, \phi) = \sup\{|f(\theta) - f(\phi)| : \|f'\|_\infty \leq 1\}$$
+   $$d(\theta, \phi) = \sup\{\mid f(\theta) - f(\phi) \mid : \|f'\|_\infty \leq 1\}$$
 
    **Test with $f(\theta) = \theta$:**
 
-   $$|f(\theta) - f(\phi)| = |\theta - \phi|$$
+   $$\mid f(\theta) - f(\phi) \mid = \mid \theta - \phi \mid$$
 
-   This achieves the supremum → $d(\theta, \phi) = \min(|\theta - \phi|, 2\pi - |\theta - \phi|)$
+   This achieves the supremum → $d(\theta, \phi) = \min(\mid \theta - \phi \mid, 2\pi - \mid \theta - \phi \mid)$
 
    **Result:** Connes distance = arc length metric ✓
 
@@ -251,7 +251,7 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 2. **Distance between vertices 1 and 2:**
    $\phi_1(a) = a_1$, $\phi_2(a) = a_2$
 
-   $$d(1,2) = \sup\{|a_1 - a_2| : \|[D, a]\| \leq 1\}$$
+   $$d(1,2) = \sup\{\mid a_1 - a_2 \mid : \|[D, a]\| \leq 1\}$$
 
 3. **Compute $[D, a]$:**
    $$[D, a] = D \text{diag}(a_1, a_2, a_3) - \text{diag}(a_1, a_2, a_3) D$$
@@ -266,13 +266,13 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
    After computation: $\rho([D, a]) = \sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]}/\sqrt{2}$
 
 5. **Optimization:**
-   Maximize $|a_1 - a_2|$ subject to $\sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]} \leq \sqrt{2}$
+   Maximize $\mid a_1 - a_2 \mid$ subject to $\sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]} \leq \sqrt{2}$
 
    **Optimal:** $a_1 = 1$, $a_2 = 0$, $a_3 = 0$
 
    $$\|[D, a]\| = \sqrt{[(1-0)^2 + (0-0)^2 + (0-1)^2]}/\sqrt{2} = 1$$
 
-   $$|a_1 - a_2| = 1$$
+   $$\mid a_1 - a_2 \mid = 1$$
 
    **Result:** $d(1,2) = 1$ ✓ (graph distance recovered)
 
@@ -296,10 +296,10 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 2. **Reconstruction Step 2: Recover Differential Structure**
    $$\nabla f \leftrightarrow [D, f] = -i f' \otimes \sigma_3$$
 
-   **Metric:** $ds^2 = g([D, f], [D, f]) = |f'|^2 d\theta^2$
+   **Metric:** $ds^2 = g([D, f], [D, f]) = \mid f' \mid^2 d\theta^2$
 
 3. **Reconstruction Step 3: Recover Volume Form**
-   Dixmier trace $\text{Tr}_\omega(|D|^{-1}) = \int_{S^1} d\theta = 2\pi$
+   Dixmier trace $\text{Tr}_\omega(\mid D \mid^{-1}) = \int_{S^1} d\theta = 2\pi$
 
    Recovers total volume ✓
 
@@ -332,7 +332,7 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 5. **Distance Function (between states):**
    For pure states $\phi, \psi \in \text{Spec}(\mathcal{A}_\theta)$
 
-   $$d(\phi, \psi) = \sup\{ |\phi(a) - \psi(a)| : \|[D, a]\| \leq 1 \}$$
+   $$d(\phi, \psi) = \sup\{ \mid \phi(a) - \psi(a) \mid : \|[D, a]\| \leq 1 \}$$
 
    **Key Property:** When $\theta \to 0$, $\mathcal{A}_\theta \to C^\infty(T^2)$, $D \to$ classical Dirac operator
 
@@ -359,7 +359,7 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 
    $$\dim_H = \log_2 3 \approx 1.58496$$
 
-   $\text{Tr}_\omega(|D|^{-d})$ finite iff $d = \log_2 3$ ✓
+   $\text{Tr}_\omega(\mid D \mid^{-d})$ finite iff $d = \log_2 3$ ✓
 
 ### Example 7.7.8: Theoretical Extensions—Moduli Space Geometry
 
@@ -390,10 +390,10 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 | Classical | Spectral Triple | Example Computation |
 |-----------|----------------|---------------------|
 | Points $p \in M$ | Pure states $\phi \in \text{Spec}(\mathcal{A})$ | $\phi_f(p) = f(p)$ |
-| Distance $d(p,q)$ | Connes distance | $\sup\{ |\phi-\psi| : |[D,a]| \leq 1\}$ |
+| Distance $d(p,q)$ | Connes distance | $\sup\{ \mid \phi-\psi \mid : \mid [D,a] \mid \leq 1\}$ |
 | $\nabla f$ | $[D, f]$ | $\begin{pmatrix} -i f' & 0 \\ 0 & i f' \end{pmatrix}$ |
-| Volume form | Dixmier trace | $\text{Tr}_\omega(|D|^{-d})$ |
-| Riemannian metric | $| [D,f] |^2$ | $|f'|^2$ |
+| Volume form | Dixmier trace | $\text{Tr}_\omega(\mid D \mid^{-d})$ |
+| Riemannian metric | $\mid [D,f] \mid^2$ | $\mid f' \mid^2$ |
 
 **Verification Table: Example Completions:**
 
@@ -401,9 +401,9 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 |---------|--------------|-----------------|--------|
 | 1: Interval | Basic triple | $[D,f] = -i f'$ | All conditions ✓ |
 | 2: 2-points | Discrete geometry | $d(\phi_1,\phi_2) = 1$ | Graph distance ✓ |
-| 3: Circle | Distance recovery | $d(\theta,\phi) = |\theta-\phi|$ | Arc length ✓ |
-| 4: Graph | Network distance | Optimization $|a_1-a_2|$ | Edge length = 1 ✓ |
-| 5: Reconstruction | Manifold recovery | $\text{Tr}_\omega(|D|^{-1}) = 2\pi$ | Volume recovered ✓ |
+| 3: Circle | Distance recovery | $d(\theta,\phi) = \mid \theta-\phi \mid$ | Arc length ✓ |
+| 4: Graph | Network distance | Optimization $\mid a_1-a_2 \mid$ | Edge length = 1 ✓ |
+| 5: Reconstruction | Manifold recovery | $\text{Tr}_\omega(\mid D \mid^{-1}) = 2\pi$ | Volume recovered ✓ |
 | 6: Noncomm. torus | Quantum geometry | $[D,U^m V^n] = 2\pi i(m\sigma_1+n\sigma_2)$ | Noncommutative derivs ✓ |
 | 7: Fractal | Hausdorff dim | $\lambda_k \sim k^{2/\log_2 3}$ | $\dim_H = \log_2 3$ ✓ |
 | 8: Moduli | Deformation theory | $d([A_1],[A_2])$ | Moduli distance ✓ |

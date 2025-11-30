@@ -152,7 +152,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 
    **D-module solutions:** $\text{Hom}_{\mathcal{D}}(\mathcal{M}, \mathcal{O}) \cong$ entire functions of infinite rank
 
-   **Key Insight:** The characteristic variety dimension $3 > 2$ corresponds to infinite-dimensional solution space.
+   The characteristic variety dimension $3 > 2$ directly corresponds to the infinite-dimensional nature of the solution space. This geometric observation reveals that non-holonomic systems, while still possessing solutions, cannot be constrained to finite-dimensional function spaces. The extra dimension in phase space reflects the freedom of the system to evolve along multiple independent directions, in contrast to holonomic systems which are maximally constrained.
 
 ### Example 7.1.2: Holonomic Example—Ordinary Differential Equation
 
@@ -183,13 +183,13 @@ $$\partial_t u - \partial_{xx} u = 0$$
 
    **D-module perspective:** $\dim \text{Hom}_{\mathcal{D}}(\mathcal{M}, \mathcal{O}_x) = 2$
 
-   **Key Insight:** Holonomicity $\iff$ finite-dimensional solution space locally.
+   This demonstrates the fundamental equivalence between holonomicity and finite-dimensional solution spaces. When the characteristic variety achieves the minimal dimension $n$, the system is maximally overdetermined while still admitting solutions, resulting in a finite-dimensional solution space at generic points. This algebraic characterization provides a precise criterion for when a differential equation system can be solved in terms of a finite basis of functions, generalizing the familiar fact that linear ODEs have solution spaces of dimension equal to the order of the equation.
 
 5. **Lagrangian Structure:**
    The characteristic variety $\{(x,0)\}$ is Lagrangian in $T^*\mathbb{C}_x$:
    - $\omega = dx \wedge d\xi$ is the symplectic form
    - $\text{Ch}(\mathcal{M})$ is 1-dimensional in 2-dimensional symplectic space
-   - **Maximal isotropy:** $\omega|_{\text{Ch}(\mathcal{M})} = 0$
+   - **Maximal isotropy:** $\omega \mid_{\text{Ch}(\mathcal{M})} = 0$
 
 ### Example 7.1.3: Physical Application—Schrödinger Operator
 
@@ -210,7 +210,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 3. **Geometric Analysis:**
    **Case 1:** $E < 0$
 
-   $\xi^2 = x^2 + |E|$ (hyperbola)
+   $\xi^2 = x^2 + \mid E \mid$ (hyperbola)
 
    $\dim \text{Ch}(\mathcal{M}_E) = 1 = n$
 
@@ -271,7 +271,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 4. **Lagrangian Verification:**
    **Symplectic form:** $\omega = dx \wedge d\xi$
 
-   **Restricted to $x=0$:** $\omega|_{x=0} = 0$ (since $dx = 0$)
+   **Restricted to $x=0$:** $\omega \mid_{x=0} = 0$ (since $dx = 0$)
 
    **Conclusion:** The Dirac delta module is **HOLONOMIC**!
 
@@ -280,7 +280,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 
    $$\text{Hom}_{\mathcal{D}}(\mathcal{M}_\delta, \mathcal{D}_x') = \mathbb{C} \cdot \delta$$
 
-   **Key Insight:** Holonomicity captures the point-like support algebraically.
+   The holonomicity of the Dirac delta module reveals how the D-module framework captures point-like support through algebraic structure. While the delta function is maximally singular as a distribution, its D-module representation is holonomic, meaning it possesses the algebraic finiteness properties of a well-behaved system. This apparent paradox is resolved by recognizing that holonomicity measures the complexity of the system's phase space structure, not the smoothness of its solutions. The point-like support of $\delta$ corresponds to a Lagrangian submanifold in phase space, making it holonomic despite its distributional nature.
 
 6. **Connection to Distributions (Chapter 2.1):**
    The D-module structure explains why $\delta$ is "infinitely differentiable" in the distributional sense while being maximally singular.
@@ -310,9 +310,7 @@ $$\text{Ch}(\mathcal{M}) = \{(t,x,\tau,\xi) \mid \tau^2 = \xi^2\}$$
 
 **Solution space:** Infinite-dimensional (d'Alembert formula)
 
-**Key Contrast:**
-- **Holonomic (ODE, Laplace)** → Finite solution space
-- **Non-holonomic (Wave, Heat)** → Infinite solution space
+The contrast between holonomic and non-holonomic systems reveals a fundamental dichotomy in the structure of differential equations. Holonomic systems such as ODEs and elliptic PDEs like Laplace's equation possess finite-dimensional solution spaces, reflecting their maximal determinacy. The characteristic variety achieves the minimal dimension $n$, constraining the system to a Lagrangian submanifold in phase space. In contrast, non-holonomic systems like the wave and heat equations have characteristic varieties of dimension $2n-1$, one less than the full phase space dimension. This extra dimension allows for infinite-dimensional solution spaces, as seen in the d'Alembert formula for the wave equation, where arbitrary functions of $x \pm ct$ provide solutions. The evolution equations break the holonomic constraint by introducing time as an independent evolution parameter, creating the additional phase space dimension that permits continuous families of solutions.
 
 ### Example 7.1.6: Functorial Operations Demonstration
 
@@ -379,22 +377,13 @@ $$\mathcal{M} = \mathcal{D}_{\mathbb{C}_z^*} / \mathcal{D} \cdot (z^2 \partial_z
 | Dirac $\delta$ | Cotangent fiber | $n$ | ✓ | Finite-dim |
 | Bessel | Lagrangian curve | $n$ | ✓ | Finite-dim |
 
-**Key Conceptual Insights from Examples:**
+The examples collectively demonstrate that holonomicity represents maximal determinacy: when $\dim \text{Ch}(\mathcal{M}) = n$, the system has precisely the right number of constraints to determine a finite-dimensional solution space without overconstraining to the point of inconsistency. Geometrically, holonomic characteristic varieties are Lagrangian submanifolds—maximal isotropic submanifolds of the symplectic phase space $T^*X$. This symplectic structure is not accidental: it reflects the fundamental connection between the algebraic structure of differential operators and the geometric structure of phase space.
 
-1. **Holonomicity = Maximal Determinacy:** $\dim \text{Ch}(\mathcal{M}) = n$ means the system has "just enough" equations.
+The solution space theorem establishes the equivalence $\dim \text{Sol}(\mathcal{M}) < \infty \iff \mathcal{M} \text{ is holonomic}$, providing a complete algebraic characterization of when a differential equation system admits a finite basis of solutions. This theorem bridges the gap between the abstract D-module structure and the concrete solution spaces encountered in applications.
 
-2. **Lagrangian Geometry:** Holonomic characteristic varieties are symplectic leaves.
+The physical dictionary reveals a pattern: ordinary differential equations are holonomic, as are elliptic PDEs and the special functions that arise from them. Evolution equations like the heat and wave equations break holonomicity by introducing time as an independent parameter, creating the additional phase space dimension that permits infinite-dimensional solution spaces. Remarkably, even singular objects like distributions can be holonomic when their support structure corresponds to a Lagrangian submanifold, as demonstrated by the Dirac delta module.
 
-3. **Solution Space Theorem:**
-   $$\dim \text{Sol}(\mathcal{M}) < \infty \iff \mathcal{M} \text{ is holonomic}$$
-
-4. **Physical Dictionary:**
-   - ODEs → Holonomic
-   - Evolution PDEs → Non-holonomic
-   - Distributions → Holonomic
-   - Special Functions → Holonomic
-
-5. **Functoriality:** Operations like restriction preserve the holonomic/non-holonomic dichotomy.
+The functorial operations of restriction, pullback, and pushforward preserve the holonomic/non-holonomic dichotomy, ensuring that the algebraic structure of D-modules is stable under geometric transformations. This stability is crucial for applications where one must track how solution spaces evolve under coordinate changes or restrictions to submanifolds, providing a robust framework for analyzing differential equations across different geometric contexts.
 
 ## References
 

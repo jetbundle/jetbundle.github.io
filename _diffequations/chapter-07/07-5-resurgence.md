@@ -28,7 +28,7 @@ We begin by formalizing the relationship between divergent formal power series a
 
 $$\tilde{u}(z) = \sum_{n=0}^\infty a_n z^{-n}$$
 
-In physical contexts, the coefficients $a_n$ often exhibit **Gevrey-1 growth**, satisfying bounds of the form $|a_n| \leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the **Borel Transform** $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:
+In physical contexts, the coefficients $a_n$ often exhibit **Gevrey-1 growth**, satisfying bounds of the form $\mid a_n \mid \leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the **Borel Transform** $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:
 
 $$\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}$$
 
@@ -84,7 +84,7 @@ In systems with multiple timescales or distinct levels of divergence (e.g., $n!$
 
 ### Example 7.5.1: Canonical Resurgent Function—The Airy Function
 
-**Problem:** Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $|\arg z| < \pi/3$:
+**Problem:** Consider the divergent asymptotic series for the Airy function $\text{Ai}(z)$ as $z \to \infty$ in the sector $\mid \arg z \mid < \pi/3$:
 
 $$\text{Ai}(z) \sim \frac{1}{2\sqrt{\pi}} z^{-1/4} \exp\left(-\frac{2}{3} z^{3/2}\right) \times \sum_{n=0}^\infty c_n z^{-3n/2}$$
 
@@ -334,24 +334,17 @@ $$f(z) = \sum_{n=0}^\infty n!^2 z^n$$
 
 **Result:** Multisummability systematically resolves arbitrarily rapid divergence!
 
-### Example 7.5.7: Theoretical Extensions—Summary of Key Insights
+### Example 7.5.7: Theoretical Extensions—Synthesis of Resurgent Methods
 
-**Key Pedagogical Insights from Examples:**
+The examples throughout this section demonstrate how the abstract theory of resurgence transforms into concrete, computable mathematics that directly connects all the divergent phenomena encountered throughout the textbook. The Airy function example establishes the basic framework of Borel summation, connecting to the Stokes phenomenon discussed in Chapter 1.5 and revealing how wave function matching in quantum mechanics is encoded in the Borel plane structure. The Painlevé I equation demonstrates the power of transseries and alien derivatives, linking to supersymmetric quantum mechanics in Chapter 4.7 and providing insights into quantum gravity partition functions.
 
-| Example | Core Concept Demonstrated | Textbook Connection | Physical Meaning |
-|---------|---------------------------|---------------------|------------------|
-| Airy | Basic Borel summation | Ch 1.5 Stokes | Wave function matching |
-| Painlevé I | Transseries + alien derivatives | Ch 4.7 SUSY QM | Quantum gravity |
-| Double Well | Instanton chains | Ch 1.7 Non-perturbative | Tunneling amplitudes |
-| Hyperasymptotics | Nested resurgence | Ch 1.5 WKB | Optimal truncation |
-| $\Phi^4_3$ Renormalization | Counterterms = alien derivatives | Ch 5.6 Regularity | QFT renormalization |
-| Multisummability | Higher-order summation | Ch 1.7 Divergence | Double-scale physics |
+The double-well potential example shows how instanton chains arise naturally from the resurgent structure, connecting to the non-perturbative methods of Chapter 1.7 and providing a systematic framework for computing tunneling amplitudes. Hyperasymptotics reveals the nested structure of resurgence, where optimal truncation of asymptotic series leads to new asymptotic series for the remainder, connecting to the WKB methods of Chapter 1.5 and demonstrating how multiple scales can be handled systematically.
 
-**Summary of Analytical Power:**
+The $\Phi^4_3$ renormalization example is particularly profound: it shows that the infinite counterterms required in quantum field theory are not arbitrary subtractions, but are precisely determined by the alien derivatives of the perturbative series. This connects directly to the regularity structures of Chapter 5.6, revealing that renormalization is fundamentally a resurgent phenomenon. The counterterms emerge from the pole structure of the Borel transform, providing a complete algebraic characterization of renormalization that eliminates the need for ad-hoc regularization schemes.
 
-These complete analytical examples transform the abstract theory of resurgence into concrete, computable mathematics that directly connects all the divergent phenomena encountered throughout the textbook. Each example serves as a computational laboratory in its own right, providing readers with exact formulas they can verify, manipulate, and extend.
+Multisummability demonstrates how even the most rapidly divergent series can be systematically resummed through iterated Borel transforms, connecting to the double-scale physics of Chapter 1.7 where different timescales require different summation methods. Each example serves as a computational laboratory, providing exact formulas that readers can verify, manipulate, and extend to new contexts.
 
-**The message is clear:** Divergence is not a problem—it's the solution!
+The unifying message is profound: divergence is not a problem to be avoided, but rather a solution that encodes complete information about the non-perturbative structure of the system. The Borel singularities are not defects to be removed, but data that completely determines the analytic continuation and global behavior of solutions. This paradigm shift transforms our understanding of asymptotic analysis from a collection of ad-hoc techniques into a unified algebraic framework where every divergence carries precise geometric and topological information.
 
 ## References
 

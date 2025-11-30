@@ -162,7 +162,7 @@ The space of solutions $\mathcal{M}_{\text{harm}} = \{u: \Delta_g u = 0\}$ is si
 
    **For $d=2$:** $\langle \text{pt}^5 \rangle_{0,2} = 1$ (one conic through 5 points)
 
-   **Key Insight:** Derived geometry gives exact enumerative invariants where classical intersection theory fails.
+   Derived geometry resolves the fundamental limitation of classical intersection theory: when solution spaces are singular or have incorrect dimensions, classical methods fail to produce meaningful enumerative invariants. The virtual fundamental class construction shows that these apparent pathologies are artifacts of working in the wrong category. By lifting to the derived category, the moduli space becomes smooth, and the virtual class provides the correct integration cycle. For the Gromov-Witten invariants, this means that even when the classical space of rational curves through 5 points is 0-dimensional but contains multiple components or singular points, the derived approach gives a well-defined count of 1. This is not an approximation or regularization, but the exact answer that classical intersection theory was attempting to compute. The derived framework reveals that enumerative geometry is fundamentally about counting objects in the derived category, where all intersections are transverse and all dimensions are correct.
 
 ### Example 7.8.3: Advanced Demonstration—Derived Moduli Stack of Instantons
 
@@ -296,17 +296,17 @@ $$S[\phi] = \int \frac{1}{2} (\partial \phi)^2$$
 
    $$(\phi(U_1) \star \phi(U_2)) = \phi(U_1 \cup U_2)$$
 
-   $$(\star \phi(U_1)) \star (\star \phi(U_2)) = \langle \phi(U_1), \phi(U_2) \rangle = -\log |x-y|$$
+   $$(\star \phi(U_1)) \star (\star \phi(U_2)) = \langle \phi(U_1), \phi(U_2) \rangle = -\log \mid x-y \mid$$
 
 3. **Step 3: OPE Computation**
 
    Near $x \sim y$:
 
-   $$\phi(x) \star \phi(y) \sim -\log |x-y| + \text{regular}$$
+   $$\phi(x) \star \phi(y) \sim -\log \mid x-y \mid + \text{regular}$$
 
 4. **Step 4: Renormalization Connection (Ch 5.6)**
 
-   The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log |x-y|$ is exactly the factorization structure map!
+   The Wick product $:\phi(x)\phi(y): = \phi(x)\star\phi(y) + \log \mid x-y \mid$ is exactly the factorization structure map!
 
    **Verification:**
 
@@ -360,7 +360,7 @@ $$S[\phi] = \int \frac{1}{2} (\partial \phi)^2$$
 | Virtual Class | GW invariants | $\langle \text{pt}^5 \rangle_1 = 1$ | Exact curve counting |
 | Derived Stack | Instanton moduli | $\dim = 8k-3$ | Gauge theory resolution |
 | TQFT Functor | de Rham cohomology | Pair of pants matrices | Topological invariance |
-| Factorization | Free field | OPE: $-\log |x-y|$ | QFT observables |
+| Factorization | Free field | OPE: $-\log \mid x-y \mid$ | QFT observables |
 
 **Complete Analytical Toolkit Delivered:**
 

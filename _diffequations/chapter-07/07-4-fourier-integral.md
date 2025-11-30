@@ -22,7 +22,7 @@ The analysis of differential equations has thus far relied primarily on local op
 
 ### Pseudodifferential Operators
 
-We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{|\alpha| \le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:
+We begin by extending the Fourier inversion formula. A linear differential operator $P(x, D) = \sum_{\mid \alpha \mid \le m} a_\alpha(x) D^\alpha$ acts on a function $u$ via its Fourier transform:
 
 $$P(x, D)u(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{ix\cdot\xi} p(x, \xi) \hat{u}(\xi) \, d\xi$$
 
@@ -30,9 +30,9 @@ where $p(x, \xi) = \sum a_\alpha(x) \xi^\alpha$ is a polynomial in $\xi$. To def
 
 **Definition (Symbol Classes).** Let $m \in \mathbb{R}$. The symbol class $S^m_{1,0}(\mathbb{R}^n \times \mathbb{R}^n)$ consists of smooth functions $a(x, \xi)$ such that for all multi-indices $\alpha, \beta$, there exist constants $C_{\alpha\beta}$ satisfying:
 
-$$|\partial_\xi^\alpha \partial_x^\beta a(x, \xi)| \le C_{\alpha\beta} (1 + |\xi|)^{m - |\alpha|}$$
+$$\mid \partial_\xi^\alpha \partial_x^\beta a(x, \xi) \mid \le C_{\alpha\beta} (1 + \mid \xi \mid)^{m - \mid \alpha \mid}$$
 
-The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $|a(x,\xi)| \ge c|\xi|^m$ for large $|\xi|$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.
+The number $m$ is the order of the symbol. Operators defined by these symbols, denoted by $\Psi^m$, form an algebra closed under composition and adjoints. This calculus allows us to invert elliptic operators microlocally. If $a(x, \xi) \in S^m$ is elliptic (i.e., $\mid a(x,\xi) \mid \ge c\mid \xi \mid^m$ for large $\mid \xi \mid$), one can construct a parametrix $B \in \Psi^{-m}$ such that $P \circ B = I + R$, where $R$ is a smoothing operator (kernel in $C^\infty$). This establishes that $\text{WF}(Pu) = \text{WF}(u) \cap \text{char}(P)$, refining the singular support analysis of Chapter 2.
 
 ### Fourier Integral Operators
 
@@ -80,7 +80,7 @@ The operators $U(t) = e^{\pm it\sqrt{-\Delta}}$ are FIOs associated with the can
 
 $$\text{WF}(u(t)) \subset \chi_t(\text{WF}(f)) \cup \chi_{-t}(\text{WF}(f))$$
 
-where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$. This serves as the rigorous proof of Huygens' principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.
+where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $\mid \xi \mid$. This serves as the rigorous proof of Huygens' principle and the propagation of singularities along light cones. The construction of the Hadamard parametrix for variable coefficient operators is achieved by solving transport equations for the amplitude $a(x,y,\theta)$ along these bicharacteristics, providing a complete microlocal description of the solution modulo $C^\infty$.
 
 ## Complete Examples
 
@@ -94,15 +94,15 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$\Delta = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$$
 
 2. **Symbol:**
-   $$p(x, \xi) = |\xi|^2 = \xi_1^2 + \xi_2^2$$
+   $$p(x, \xi) = \mid \xi \mid^2 = \xi_1^2 + \xi_2^2$$
 
 3. **Parametrix Symbol:**
-   $$q(x, \xi) = \frac{1}{|\xi|^2}$$ for $|\xi| \geq 1$
+   $$q(x, \xi) = \frac{1}{\mid \xi \mid^2}$$ for $\mid \xi \mid \geq 1$
 
 4. **Symbol Class Verification:**
-   For $q(x, \xi) = |\xi|^{-2} \in S^{-2}_{1,0}$:
+   For $q(x, \xi) = \mid \xi \mid^{-2} \in S^{-2}_{1,0}$:
 
-   $$|\partial_\xi^\alpha q| \leq C_\alpha |\xi|^{-2-|\alpha|}$$
+   $$\mid \partial_\xi^\alpha q \mid \leq C_\alpha \mid \xi \mid^{-2-\mid \alpha \mid}$$
 
 5. **Microlocal Elliptic Regularity:**
    If $\text{WF}(u) \cap \{\xi_1 = \xi_2 = 0\} = \emptyset$, then $\Delta u \in C^\infty \Rightarrow u \in C^\infty$.
@@ -110,9 +110,9 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    **Proof:** $p(x, \xi) \neq 0$ on $\text{WF}(u) \Rightarrow q(x, \xi) \in S^{-2}$ is elliptic.
 
 6. **Explicit Computation:**
-   $$P = \Delta, \quad Q = \frac{1}{4\pi} \log(|x|^2) * \text{(fundamental solution)}$$
+   $$P = \Delta, \quad Q = \frac{1}{4\pi} \log(\mid x \mid^2) * \text{(fundamental solution)}$$
 
-   $$\sigma(Q) = \int e^{ix\cdot\xi} \frac{1}{|\xi|^2} \frac{d\xi}{(2\pi)^2} = |\xi|^{-2}$$
+   $$\sigma(Q) = \int e^{ix\cdot\xi} \frac{1}{\mid \xi \mid^2} \frac{d\xi}{(2\pi)^2} = \mid \xi \mid^{-2}$$
 
    $$\Delta Q = \delta_0 + R, \quad R \in C^\infty \text{ (smoothing operator)}$$
 
@@ -129,9 +129,9 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$\Lambda_\phi = \{(t, x, \tau, \xi); (0, y, 0, \eta) : \tau = 1, \xi = \eta, x = y \pm t\}$$
 
 3. **Eikonal Equation:**
-   $$|\nabla_x \phi| = 1$$
+   $$\mid \nabla_x \phi \mid = 1$$
 
-   $$\nabla_x \phi = -\theta = \xi \Rightarrow |\xi| = 1$$
+   $$\nabla_x \phi = -\theta = \xi \Rightarrow \mid \xi \mid = 1$$
 
 4. **Transport Equation:**
    $$2\nabla_x \phi \cdot \nabla_\theta a + \Delta_x \phi \cdot a = 0$$
@@ -139,7 +139,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$-2\theta \nabla_\theta a - a = 0 \Rightarrow a(t, x, y, \theta) = c(\theta)$$
 
 5. **FIO Representation:**
-   $$U(t)f(x) = \int\int e^{i\theta(t - |x-y|)} a(t, x, y, \theta) f(y) \, d\theta \, dy$$
+   $$U(t)f(x) = \int\int e^{i\theta(t - \mid x-y \mid)} a(t, x, y, \theta) f(y) \, d\theta \, dy$$
 
 6. **Stationary Phase:**
    $\theta = \text{sign}(x-y)$
@@ -183,7 +183,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
 **Step-by-Step Solution:**
 
 1. **Phase Function:**
-   $$\phi(t, x, y, \theta) = (x - y)\cdot\theta - t|\theta|^2$$
+   $$\phi(t, x, y, \theta) = (x - y)\cdot\theta - t\mid \theta \mid^2$$
 
 2. **Stationary Phase Conditions:**
    $$\nabla_\theta \phi = x - y - 2t\theta = 0 \Rightarrow \theta = \frac{x - y}{2t}$$
@@ -194,12 +194,12 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$a(t, x, y, \theta) = (2\pi it)^{-n/2} e^{i\pi/4 \text{ sign}}$$
 
 4. **Canonical Relation:**
-   $$\Lambda_\phi = \left\{\left(x, \frac{x-y}{2t}\right); \left(y, \frac{y-x}{2t}\right) : |x-y| = 2\sqrt{t}\right\}$$
+   $$\Lambda_\phi = \left\{\left(x, \frac{x-y}{2t}\right); \left(y, \frac{y-x}{2t}\right) : \mid x-y \mid = 2\sqrt{t}\right\}$$
 
 5. **Egorov's Theorem Verification:**
    $$P = -i\partial_t - \Delta, \quad Q = U(-t) P U(t)$$
 
-   $$\sigma(Q)(y, \eta) = |\eta|^2 = \sigma(P)(\chi_t(y, \eta))$$
+   $$\sigma(Q)(y, \eta) = \mid \eta \mid^2 = \sigma(P)(\chi_t(y, \eta))$$
 
 ### Example 7.4.5: Advanced Demonstration—Egorov's Theorem (Full Computation)
 
@@ -303,7 +303,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$\phi(t, x, y, \theta) = \theta(t^2 - d(x, y)^2)$$
 
 3. **Eikonal Verification:**
-   $$|\nabla_x \phi|^2 = 4\theta^2 = \tau^2 \text{ (principal symbol)}$$
+   $$\mid \nabla_x \phi \mid^2 = 4\theta^2 = \tau^2 \text{ (principal symbol)}$$
 
 4. **Transport Equation (order 0 amplitude):**
    $$2\nabla_x \phi \cdot \nabla_\theta a_0 + (\Delta_x \phi)a_0 = 0$$
@@ -333,7 +333,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$\text{WF}(QR(u)) = \emptyset \text{ (R smoothing)}$$
 
 4. **Principal Symbol Calculation:**
-   $$\sigma(\Delta Q) = |\xi|^2 \cdot |\xi|^{-2} = 1$$
+   $$\sigma(\Delta Q) = \mid \xi \mid^2 \cdot \mid \xi \mid^{-2} = 1$$
 
 5. **Elliptic Regularity:**
    $(x_0, \xi_0) \in \text{WF}(u) \setminus \text{char}(\Delta) \Rightarrow (x_0, \xi_0) \notin \text{WF}(\Delta u)$
@@ -341,9 +341,9 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
 6. **Complete Proof:**
    Let $(x_0, \xi_0) \in \text{WF}(\Delta u)$, $\xi_0 \neq 0$.
 
-   Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset \{\xi : |\xi - \xi_0| < \delta\}$
+   Then $\exists$ cutoff $\psi$: $\text{supp } \hat{\psi} \subset \{\xi : \mid \xi - \xi_0 \mid < \delta\}$
 
-   $$\sigma(\psi\Delta\hat{\psi}) = \hat{\psi}(x_0) \hat{\psi}(\xi_0) |\xi_0|^2 \neq 0$$
+   $$\sigma(\psi\Delta\hat{\psi}) = \hat{\psi}(x_0) \hat{\psi}(\xi_0) \mid \xi_0 \mid^2 \neq 0$$
 
    Thus $(x_0, \xi_0) \in \text{WF}(\Delta u)$ only if $\xi_0 \neq 0$.
 
@@ -360,7 +360,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
    $$\Lambda_\phi = \{(x, \xi); (y, -\xi) : x = y, \xi \text{ arbitrary}\}$$
 
 3. **Ellipticity Condition:**
-   FIO elliptic if $|a(x, y, \theta)| \geq c|\theta|^m$ on $C_\phi$.
+   FIO elliptic if $\mid a(x, y, \theta) \mid \geq c\mid \theta \mid^m$ on $C_\phi$.
 
 4. **Amplitude Analysis:**
    $$C_\phi = \{(x, x, \theta) : \nabla_\theta \phi = 0\} = \{(x, x, 0)\}$$
@@ -372,7 +372,7 @@ where $\chi_t$ is the time-$t$ map of the Hamiltonian flow of the symbol $|\xi|$
 
    $\Lambda_\phi$ projects cleanly onto neighborhood
 
-   $|a(x, x, \theta)| \geq c|\theta|^m$ near $\theta = \xi_0$.
+   $\mid a(x, x, \theta) \mid \geq c\mid \theta \mid^m$ near $\theta = \xi_0$.
 
 6. **Invertibility:**
    $F^{-1}$ has phase $\psi(y, x, \eta) = (y - x)\cdot\eta$
