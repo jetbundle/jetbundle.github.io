@@ -12,9 +12,8 @@ parent_chapter: 2
 parent_section: null
 ---
 
-# Section 2.6: Galerkin Methods & Finite Elements
 
-> Finite-dimensional projection preserves the variational structure: Céa's lemma shows that Galerkin error is controlled by approximation error, transforming abstract existence theory into constructive numerical algorithms with provable accuracy.
+Finite-dimensional projection preserves the variational structure: Céa's lemma shows that Galerkin error is controlled by approximation error, transforming abstract existence theory into constructive numerical algorithms with provable accuracy.
 
 ## Introduction
 
@@ -42,11 +41,11 @@ $$
 
 showing that the error $e=u-u_{h}$ is orthogonal to $V_{h}$ in the energy inner product defined by $a$. When $a$ is symmetric and induces the norm $\|v\|_{a}=\sqrt{a(v,v)}$, the discrete solution is the $a$-orthogonal projection of $u$ onto $V_{h}$, making $u_{h}$ the best approximation among all vectors with the same discrete support.
 
-> **Canonical 1D Poisson Galerkin Discretization**
+**Canonical 1D Poisson Galerkin Discretization**
 
-> Approximate $-u''=2$ on $(0,1)$ with $u(0)=u(1)=0$ using piecewise linear elements and quantify the error.
+Approximate $-u''=2$ on $(0,1)$ with $u(0)=u(1)=0$ using piecewise linear elements and quantify the error.
 
-> Choose $V_{h}=\operatorname{span}\{\phi_{1},\phi_{2}\}$ with $\phi_{1}$ supported on $[0,\tfrac{1}{2}]$ and $\phi_{2}$ supported on $[\tfrac{1}{2},1]$. The stiffness entries $A_{11}=A_{22}=\tfrac{1}{2}$ and $A_{12}=0$ follow from $a(v,w)=\int_{0}^{1}v'w'\,dx$. The load vector entries $F_{1}=F_{2}=\tfrac{3}{4}$ give $c_{1}=c_{2}=\tfrac{3}{2}$, hence $u_{h}=\tfrac{3}{2}(\phi_{1}+\phi_{2})$. The error satisfies $\|u-u_{h}\|_{H^{1}}^{2}=\int_{0}^{1}\mid (u-u_{h})' \mid^{2}dx=\tfrac{1}{12}$ and $\|u-u_{h}\|_{L^{2}}^{2}=\tfrac{1}{240}$, confirming Galerkin orthogonality and providing concrete values for Céa's estimate.
+Choose $V_{h}=\operatorname{span}\{\phi_{1},\phi_{2}\}$ with $\phi_{1}$ supported on $[0,\tfrac{1}{2}]$ and $\phi_{2}$ supported on $[\tfrac{1}{2},1]$. The stiffness entries $A_{11}=A_{22}=\tfrac{1}{2}$ and $A_{12}=0$ follow from $a(v,w)=\int_{0}^{1}v'w'\,dx$. The load vector entries $F_{1}=F_{2}=\tfrac{3}{4}$ give $c_{1}=c_{2}=\tfrac{3}{2}$, hence $u_{h}=\tfrac{3}{2}(\phi_{1}+\phi_{2})$. The error satisfies $\|u-u_{h}\|_{H^{1}}^{2}=\int_{0}^{1}\vert (u-u_{h})' \vert^{2}dx=\tfrac{1}{12}$ and $\|u-u_{h}\|_{L^{2}}^{2}=\tfrac{1}{240}$, confirming Galerkin orthogonality and providing concrete values for Céa's estimate.
 
 The Galerkin method provides a systematic approach to numerical approximation: we project the infinite-dimensional problem onto a finite-dimensional subspace, preserving the variational structure. The orthogonality property shows that the discrete solution is optimal in the energy norm: it minimizes the error among all functions in the subspace. This optimality property is fundamental to finite element methods: it ensures that refining the mesh (increasing the dimension of $V_{h}$) improves the approximation, and the rate of improvement depends only on how well the true solution can be approximated by functions in $V_{h}$.
 
@@ -66,11 +65,11 @@ $$
 
 which is **Céa's Lemma**. The Galerkin error is bounded by the best-approximation error up to the mesh-independent constant $C=M/\alpha$. For symmetric positive definite forms $a$, the constant is sharp with $C=1$ because the Galerkin projection is an exact orthogonal projection in the energy norm.
 
-> **Verifying Céa's Lemma Numerically**
+**Verifying Céa's Lemma Numerically**
 
-> For $-u''=\pi^{2}\sin(\pi x)$ with homogeneous boundary data, compare $\|u-u_{h}\|_{H^{1}}$ to the best approximation error for linear elements.
+For $-u''=\pi^{2}\sin(\pi x)$ with homogeneous boundary data, compare $\|u-u_{h}\|_{H^{1}}$ to the best approximation error for linear elements.
 
-> The best $H^{1}$ approximation in $V_{h}$ has error $\inf_{v_{h}\in V_{h}}\|u-v_{h}\|_{H^{1}}=\sqrt{1-8/\pi^{2}}\approx 0.172$. The Galerkin solution has $\|u-u_{h}\|_{H^{1}}\approx 0.289$, and since $M/\alpha=1$ for the Poisson bilinear form, Céa's Lemma predicts $\|u-u_{h}\|_{H^{1}}\le 0.172$. The computed values satisfy the inequality, demonstrating quasi-optimality.
+The best $H^{1}$ approximation in $V_{h}$ has error $\inf_{v_{h}\in V_{h}}\|u-v_{h}\|_{H^{1}}=\sqrt{1-8/\pi^{2}}\approx 0.172$. The Galerkin solution has $\|u-u_{h}\|_{H^{1}}\approx 0.289$, and since $M/\alpha=1$ for the Poisson bilinear form, Céa's Lemma predicts $\|u-u_{h}\|_{H^{1}}\le 0.172$. The computed values satisfy the inequality, demonstrating quasi-optimality.
 
 Céa's lemma provides a fundamental error estimate: the Galerkin error is bounded by the best approximation error times a constant that depends only on the continuity and coercivity constants of the bilinear form, not on the mesh. This result transforms error analysis into approximation theory: to understand the convergence rate of finite element methods, we need only understand how well functions can be approximated in the finite element space. The constant $M/\alpha$ measures how far the bilinear form is from being an inner product: when it equals 1 (symmetric positive definite case), the Galerkin solution is truly optimal.
 
@@ -85,34 +84,34 @@ $$
 with nodal basis functions $\{\phi_{j}\}$ and stiffness matrix $A_{ij}=a(\phi_{j},\phi_{i})$. Approximation theory provides an interpolation operator $\mathcal{I}_{h}:H^{p+1}(\Omega)\to V_{h}$ such that
 
 $$
-\|u-\mathcal{I}_{h}u\|_{H^{1}(\Omega)}\le C h^{p} \mid u \mid_{H^{p+1}(\Omega)}.
+\|u-\mathcal{I}_{h}u\|_{H^{1}(\Omega)}\le C h^{p} \vert u \vert_{H^{p+1}(\Omega)}.
 $$
 
-Combining this with Céa's Lemma (with $V=H_{0}^{1}$) gives the a priori estimate $\|u-u_{h}\|_{H^{1}}\le C h^{p}\mid u \mid_{H^{p+1}}$ whenever the solution possesses the indicated Sobolev regularity. The stiffness matrices inherit symmetry and positive definiteness from the continuous bilinear form, enabling efficient conjugate-gradient solvers.
+Combining this with Céa's Lemma (with $V=H_{0}^{1}$) gives the a priori estimate $\|u-u_{h}\|_{H^{1}}\le C h^{p}\vert u \vert_{H^{p+1}}$ whenever the solution possesses the indicated Sobolev regularity. The stiffness matrices inherit symmetry and positive definiteness from the continuous bilinear form, enabling efficient conjugate-gradient solvers.
 
-> **Interpolation Error for $u(x)=x^{3}(1-x)^{3}$**
+**Interpolation Error for $u(x)=x^{3}(1-x)^{3}$**
 
-> Verify the estimate $\|u-\mathcal{I}_{h}u\|_{H^{1}}\le C h \mid u \mid_{H^{2}}$ for linear interpolation on $h=\tfrac{1}{2}$.
+Verify the estimate $\|u-\mathcal{I}_{h}u\|_{H^{1}}\le C h \vert u \vert_{H^{2}}$ for linear interpolation on $h=\tfrac{1}{2}$.
 
-> The interpolant has nodal values $u(0)=u(1)=0$ and $u(\tfrac{1}{2})=\tfrac{1}{64}$, giving $\mathcal{I}_{h}u(x)=\tfrac{1}{16}x(1-x)$. Differentiating shows $\|(u-\mathcal{I}_{h}u)'\|_{L^{2}}\approx 0.197$, while $\mid u \mid_{H^{2}}=\|u''\|_{L^{2}}=\sqrt{777.6}$. The inequality $\|u-\mathcal{I}_{h}u\|_{H^{1}}\le \tfrac{1}{2}\sqrt{777.6}$ holds comfortably, illustrating the conservative nature of standard interpolation bounds.
+The interpolant has nodal values $u(0)=u(1)=0$ and $u(\tfrac{1}{2})=\tfrac{1}{64}$, giving $\mathcal{I}_{h}u(x)=\tfrac{1}{16}x(1-x)$. Differentiating shows $\|(u-\mathcal{I}_{h}u)'\|_{L^{2}}\approx 0.197$, while $\vert u \vert_{H^{2}}=\|u''\|_{L^{2}}=\sqrt{777.6}$. The inequality $\|u-\mathcal{I}_{h}u\|_{H^{1}}\le \tfrac{1}{2}\sqrt{777.6}$ holds comfortably, illustrating the conservative nature of standard interpolation bounds.
 
 Interpolation theory provides the link between Sobolev regularity and approximation error: if a function has $p+1$ derivatives in $L^{2}$, then piecewise polynomials of degree $p$ can approximate it with error $O(h^{p})$ in the $H^{1}$ norm. This result is fundamental to finite element convergence: the convergence rate depends on both the polynomial degree and the smoothness of the solution. Higher-order elements provide faster convergence, but only if the solution is sufficiently smooth—solutions with singularities require adaptive refinement to achieve optimal rates.
 
-> **2D Triangular Element Assembly**
+**2D Triangular Element Assembly**
 
-> Assemble the stiffness matrix for $-\Delta u=2\pi^{2}\sin(\pi x)\sin(\pi y)$ on the right triangle with vertices $(0,0)$, $(1,0)$, $(0,1)$.
+Assemble the stiffness matrix for $-\Delta u=2\pi^{2}\sin(\pi x)\sin(\pi y)$ on the right triangle with vertices $(0,0)$, $(1,0)$, $(0,1)$.
 
-> With linear shape functions $\phi_{1}=1-x-y$, $\phi_{2}=x$, and $\phi_{3}=y$, the gradients are constant: $\nabla\phi_{1}=(-1,-1)$, $\nabla\phi_{2}=(1,0)$, and $\nabla\phi_{3}=(0,1)$. Integrating over the triangle of area $1/2$ yields
+With linear shape functions $\phi_{1}=1-x-y$, $\phi_{2}=x$, and $\phi_{3}=y$, the gradients are constant: $\nabla\phi_{1}=(-1,-1)$, $\nabla\phi_{2}=(1,0)$, and $\nabla\phi_{3}=(0,1)$. Integrating over the triangle of area $1/2$ yields
 
-> $$
-> A=\begin{pmatrix}
-> 2 & -1 & -1\\
-> -1 & 1 & 0\\
-> -1 & 0 & 1
-> \end{pmatrix},
-> $$
+$$
+A=\begin{pmatrix}
+2 & -1 & -1\\
+-1 & 1 & 0\\
+-1 & 0 & 1
+\end{pmatrix},
+$$
 
-> while the load vector computed with exact integration is $F=(\tfrac{8}{\pi^{2}},\tfrac{4}{\pi^{2}},\tfrac{4}{\pi^{2}})^{\top}$. Solving produces coefficients $(1,\tfrac{1}{2},\tfrac{1}{2})$, exactly matching the restriction of the analytic solution to the triangle.
+while the load vector computed with exact integration is $F=(\tfrac{8}{\pi^{2}},\tfrac{4}{\pi^{2}},\tfrac{4}{\pi^{2}})^{\top}$. Solving produces coefficients $(1,\tfrac{1}{2},\tfrac{1}{2})$, exactly matching the restriction of the analytic solution to the triangle.
 
 Finite element assembly demonstrates how local computations combine to form global matrices: each element contributes local stiffness and load entries, which are assembled into the global system through the connectivity of the mesh. The constant gradient property of linear elements simplifies integration: derivatives are constant on each element, making the stiffness matrix computation straightforward. This local-to-global structure is fundamental to finite element methods: it allows efficient implementation, enables parallelization, and makes the method naturally adaptive—refining elements locally only requires recomputing contributions from those elements.
 
@@ -127,22 +126,22 @@ $$
 which leads to the **Aubin–Nitsche estimate**
 
 $$
-\|u-u_{h}\|_{L^{2}}\le C h^{p+1}\mid u \mid_{H^{p+1}},
+\|u-u_{h}\|_{L^{2}}\le C h^{p+1}\vert u \vert_{H^{p+1}},
 $$
 
 reflecting one additional order of convergence in the weaker norm.
 
-> **Aubin–Nitsche Dual Problem in 1D**
+**Aubin–Nitsche Dual Problem in 1D**
 
-> Prove $\|u-u_{h}\|_{L^{2}}\le C h^{2}\mid u \mid_{H^{2}}$ for the 1D Poisson equation using the dual solution.
+Prove $\|u-u_{h}\|_{L^{2}}\le C h^{2}\vert u \vert_{H^{2}}$ for the 1D Poisson equation using the dual solution.
 
-> Let $\phi$ solve $-\phi''=u-u_{h}$ with homogeneous boundary conditions. Green's identity gives $\|u-u_{h}\|_{L^{2}}^{2}=\int_{0}^{1}(u-u_{h})\phi''=-\int_{0}^{1}(u-u_{h})'\phi'$. Galerkin orthogonality implies $-\int (u-u_{h})'\phi'=-\int(u-u_{h})'(\phi-\phi_{h})'$ for any $\phi_{h}\in V_{h}$. The $H^{1}$ error estimate and interpolation bound for $\phi$ combine to yield $\|u-u_{h}\|_{L^{2}}\le C h^{2}\mid u \mid_{H^{2}}$, capturing the single-order improvement typical of duality arguments.
+Let $\phi$ solve $-\phi''=u-u_{h}$ with homogeneous boundary conditions. Green's identity gives $\|u-u_{h}\|_{L^{2}}^{2}=\int_{0}^{1}(u-u_{h})\phi''=-\int_{0}^{1}(u-u_{h})'\phi'$. Galerkin orthogonality implies $-\int (u-u_{h})'\phi'=-\int(u-u_{h})'(\phi-\phi_{h})'$ for any $\phi_{h}\in V_{h}$. The $H^{1}$ error estimate and interpolation bound for $\phi$ combine to yield $\|u-u_{h}\|_{L^{2}}\le C h^{2}\vert u \vert_{H^{2}}$, capturing the single-order improvement typical of duality arguments.
 
 The Aubin–Nitsche technique provides improved error estimates in weaker norms: by using the dual problem (which has better regularity due to the smoothness of the right-hand side), we can obtain an extra order of convergence in $L^{2}$ compared to $H^{1}$. This result is fundamental to understanding finite element accuracy: while the energy norm ($H^{1}$) is natural for the variational formulation, pointwise or $L^{2}$ accuracy is often more relevant for applications. The duality argument shows that these norms are related through the regularity of the dual problem, and smooth solutions enjoy superconvergence in weaker norms.
 
 ## A Posteriori Residual Estimates and Adaptive Refinement
 
-A priori bounds require knowledge of $\mid u \mid_{H^{p+1}}$, which is inaccessible in practice. Residual-based **a posteriori** estimators rely only on $u_{h}$ and $f$. For the Poisson problem $-\Delta u=f$, on each element $K$ with diameter $h_{K}$ define
+A priori bounds require knowledge of $\vert u \vert_{H^{p+1}}$, which is inaccessible in practice. Residual-based **a posteriori** estimators rely only on $u_{h}$ and $f$. For the Poisson problem $-\Delta u=f$, on each element $K$ with diameter $h_{K}$ define
 
 $$
 \eta_{K}^{2}=h_{K}^{2}\|f+\Delta u_{h}\|_{L^{2}(K)}^{2}+h_{K}\|\left[\nabla u_{h}\cdot n\right]\|_{L^{2}(\partial K)}^{2},
@@ -156,19 +155,19 @@ $$
 
 Consequently, large local indicators signal regions requiring mesh refinement. Adaptive algorithms iterate: solve on $\mathcal{T}_{h}$, compute $\eta_{K}$, mark elements with $\eta_{K}$ above a threshold, refine, and repeat. This concentrates degrees of freedom where boundary layers, singular sources, or geometric irregularities degrade uniform discretizations, often yielding optimal accuracy with significantly fewer unknowns than uniform refinement.
 
-> **Residual-Based A Posteriori Estimator**
+**Residual-Based A Posteriori Estimator**
 
-> Compute the element residual $\eta_{K}$ for $u=x^{4}(1-x)^{2}$ using a coarse mesh with $h=\tfrac{1}{2}$.
+Compute the element residual $\eta_{K}$ for $u=x^{4}(1-x)^{2}$ using a coarse mesh with $h=\tfrac{1}{2}$.
 
-> The manufactured solution leads to $f=-12x^{2}+44x^{3}-24x^{4}$. Taking $u_{h}(x)=\tfrac{1}{2}x(1-x)$, the interior residual on $K_{1}=[0,\tfrac{1}{2}]$ is $r_{1}=f+u_{h}''$, so $h_{1}^{2}\|r_{1}\|_{L^{2}(K_{1})}^{2}\approx 1.37\times 10^{-3}$. The jump in derivatives at $x=\tfrac{1}{2}$ equals $-1/2$, contributing $h_{1}\|\left[u_{h}'\right]\|_{L^{2}}^{2}\approx 0.125$. Thus $\eta_{1}\approx 0.354$, closely matching the true energy error $\|u-u_{h}\|_{H^{1}}\approx 0.342$ and demonstrating both reliability and efficiency.
+The manufactured solution leads to $f=-12x^{2}+44x^{3}-24x^{4}$. Taking $u_{h}(x)=\tfrac{1}{2}x(1-x)$, the interior residual on $K_{1}=[0,\tfrac{1}{2}]$ is $r_{1}=f+u_{h}''$, so $h_{1}^{2}\|r_{1}\|_{L^{2}(K_{1})}^{2}\approx 1.37\times 10^{-3}$. The jump in derivatives at $x=\tfrac{1}{2}$ equals $-1/2$, contributing $h_{1}\|\left[u_{h}'\right]\|_{L^{2}}^{2}\approx 0.125$. Thus $\eta_{1}\approx 0.354$, closely matching the true energy error $\|u-u_{h}\|_{H^{1}}\approx 0.342$ and demonstrating both reliability and efficiency.
 
 A posteriori error estimation provides a computable upper bound on the error: by evaluating how well the discrete solution satisfies the PDE (through the residual) and how smooth it is across element boundaries (through jump terms), we can estimate the error without knowing the exact solution. This is fundamental to adaptive methods: we can automatically identify regions where the error is large and refine the mesh there, achieving optimal accuracy with minimal computational cost. The reliability (upper bound) and efficiency (lower bound) properties ensure that the estimator accurately reflects the true error, making adaptive refinement effective.
 
-> **Adaptive Refinement Efficiency**
+**Adaptive Refinement Efficiency**
 
-> Compare uniform and adaptive refinement for the solution in the previous example using the indicator $\eta_{K}$.
+Compare uniform and adaptive refinement for the solution in the previous example using the indicator $\eta_{K}$.
 
-> Starting from $h=\tfrac{1}{4}$, compute $\eta_{K}$ on each element and mark those exceeding $\theta\,\eta_{\text{global}}$ with $\theta=0.3$. Refining only the marked elements concentrates nodes near $x=0$ and $x=1$, where the solution has steep gradients. After two adaptive cycles, the global error drops from $0.087$ to $0.019$ while the degrees of freedom triple (versus a sixteen-fold increase for uniform refinement). The efficiency index $\eta/\|u-u_{h}\|_{H^{1}}$ stays between $1.03$ and $1.08$, confirming the tight bounds predicted by residual theory.
+Starting from $h=\tfrac{1}{4}$, compute $\eta_{K}$ on each element and mark those exceeding $\theta\,\eta_{\text{global}}$ with $\theta=0.3$. Refining only the marked elements concentrates nodes near $x=0$ and $x=1$, where the solution has steep gradients. After two adaptive cycles, the global error drops from $0.087$ to $0.019$ while the degrees of freedom triple (versus a sixteen-fold increase for uniform refinement). The efficiency index $\eta/\|u-u_{h}\|_{H^{1}}$ stays between $1.03$ and $1.08$, confirming the tight bounds predicted by residual theory.
 
 Adaptive refinement demonstrates the power of a posteriori error estimation: by concentrating degrees of freedom where they are needed most, we can achieve the same accuracy as uniform refinement with far fewer elements. This efficiency is crucial for problems with singularities, boundary layers, or complex geometries: uniform refinement wastes computational resources in regions where the solution is smooth, while adaptive refinement automatically allocates resources where they are needed. The tight efficiency bounds ensure that the adaptive algorithm is both reliable (it doesn't over-refine) and efficient (it doesn't under-refine).
 
@@ -217,7 +216,7 @@ This demonstrates that Céa's lemma is sharp: the constant $M/\alpha$ cannot be 
 
 ### Challenge 2: Superconvergence and Post-Processing
 
-Show that for the Poisson equation with piecewise linear elements on a uniform mesh, the Galerkin solution exhibits superconvergence at mesh nodes: $\|u-u_{h}\|_{L^{\infty}(\text{nodes})} \le Ch^{2}\mid u \mid_{W^{2,\infty}}$ even though $\|u-u_{h}\|_{H^{1}} \le Ch\mid u \mid_{H^{2}}$. Construct a post-processing operator that recovers second-order accuracy globally.
+Show that for the Poisson equation with piecewise linear elements on a uniform mesh, the Galerkin solution exhibits superconvergence at mesh nodes: $\|u-u_{h}\|_{L^{\infty}(\text{nodes})} \le Ch^{2}\vert u \vert_{W^{2,\infty}}$ even though $\|u-u_{h}\|_{H^{1}} \le Ch\vert u \vert_{H^{2}}$. Construct a post-processing operator that recovers second-order accuracy globally.
 
 *(Hint: Use the fact that the error $e=u-u_{h}$ satisfies a certain orthogonality property. At nodes, the interpolation error and Galerkin error combine favorably. For post-processing, consider averaging or local projection.)*
 
@@ -232,7 +231,7 @@ More precisely, using the Green's function and the fact that $u-u_{h}$ is orthog
 
 For post-processing, define $u_{h}^{*}$ as the piecewise quadratic function that interpolates $u_{h}$ at nodes and has the same derivative at nodes as a recovered gradient. The gradient recovery can be done by local averaging: at each node, average the gradients from adjacent elements. This recovered gradient is $O(h)$ accurate, and using it in a quadratic interpolant gives $O(h^{2})$ accuracy.
 
-Alternatively, use local projection: on each element, project $u_{h}$ onto quadratic polynomials using the values and derivatives at nodes. This post-processed solution $u_{h}^{*}$ satisfies $\|u-u_{h}^{*}\|_{H^{1}} \le Ch^{2}\mid u \mid_{H^{3}}$, providing global second-order accuracy.
+Alternatively, use local projection: on each element, project $u_{h}$ onto quadratic polynomials using the values and derivatives at nodes. This post-processed solution $u_{h}^{*}$ satisfies $\|u-u_{h}^{*}\|_{H^{1}} \le Ch^{2}\vert u \vert_{H^{3}}$, providing global second-order accuracy.
 
 Superconvergence demonstrates that finite element solutions can have better accuracy at specific points (nodes) than the global error estimates suggest. This property is fundamental to error estimation and adaptivity: nodal superconvergence can be used to construct accurate a posteriori estimators, and post-processing can recover higher-order accuracy from low-order approximations. The technique extends to higher dimensions and higher-order elements, where superconvergence occurs at specific points (like Gauss points) that are determined by the element geometry and polynomial degree.
 
@@ -243,7 +242,7 @@ Superconvergence demonstrates that finite element solutions can have better accu
 Consider a non-conforming finite element method where $V_{h} \not\subset V$ (e.g., piecewise constants for $H^{1}$ problems). Show that the error estimate becomes
 
 $$
-\|u-u_{h}\|_{V} \le C\left(\inf_{v_{h}\in V_{h}}\|u-v_{h}\|_{V} + \sup_{w_{h}\in V_{h}}\frac{\mid a(u,w_{h})-F(w_{h}) \mid}{\|w_{h}\|_{V}}\right).
+\|u-u_{h}\|_{V} \le C\left(\inf_{v_{h}\in V_{h}}\|u-v_{h}\|_{V} + \sup_{w_{h}\in V_{h}}\frac{\vert a(u,w_{h})-F(w_{h}) \vert}{\|w_{h}\|_{V}}\right).
 $$
 
 The second term is the consistency error. Compute it explicitly for piecewise constant approximation of $-u''=f$ with $u(0)=u(1)=0$.
@@ -276,7 +275,7 @@ $$
 where $\Pi_{V}$ projects onto $V$. The consistency error is
 
 $$
-\sup_{w_{h}\in V_{h}}\frac{\mid a(u,w_{h})-F(w_{h}) \mid}{\|w_{h}\|_{V}} = \sup_{w_{h}\in V_{h}}\frac{\mid a(u,w_{h})-a_{h}(u,w_{h})+a_{h}(u,w_{h})-F_{h}(w_{h}) \mid}{\|w_{h}\|_{V}},
+\sup_{w_{h}\in V_{h}}\frac{\vert a(u,w_{h})-F(w_{h}) \vert}{\|w_{h}\|_{V}} = \sup_{w_{h}\in V_{h}}\frac{\vert a(u,w_{h})-a_{h}(u,w_{h})+a_{h}(u,w_{h})-F_{h}(w_{h}) \vert}{\|w_{h}\|_{V}},
 $$
 
 which measures the discrepancy between the continuous and discrete bilinear forms.

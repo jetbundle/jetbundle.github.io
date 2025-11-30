@@ -12,9 +12,7 @@ parent_chapter: 2
 parent_section: null
 ---
 
-# Section 2.3: Hilbert Space Theory & Spectral Theorem
-
-> Infinite-dimensional Euclidean geometry: functions become vectors, orthogonality becomes Fourier analysis, and compact operators diagonalize into eigenfunction expansions that rigorously justify separation of variables.
+Infinite-dimensional Euclidean geometry: functions become vectors, orthogonality becomes Fourier analysis, and compact operators diagonalize into eigenfunction expansions that rigorously justify separation of variables.
 
 ## Introduction
 
@@ -26,21 +24,21 @@ A Hilbert space $H$ is a complete inner-product space. The inner product induces
 
 The **Riesz Representation Theorem** states that every continuous linear functional $\phi\in H^{*}$ is uniquely represented by an element $f\in H$ such that $\phi(u)=\langle u,f\rangle$ for all $u\in H$. This self-duality underpins variational methods.
 
-> **Riesz Representation on $L^{2}[0,2\pi]$**
+**Riesz Representation on $L^{2}[0,2\pi]$**
 
-> Find the representing vector for $\phi(u)=\int_{0}^{2\pi} u(x)\sin x\,dx$.
+Find the representing vector for $\phi(u)=\int_{0}^{2\pi} u(x)\sin x\,dx$.
 
-> In $L^{2}[0,2\pi]$ with inner product $\langle f,g\rangle=\frac{1}{2\pi}\int f\overline{g}$, the Riesz theorem gives $f(x)=\sin x$, since $\phi(u)=\langle u,\sin x\rangle$.
+In $L^{2}[0,2\pi]$ with inner product $\langle f,g\rangle=\frac{1}{2\pi}\int f\overline{g}$, the Riesz theorem gives $f(x)=\sin x$, since $\phi(u)=\langle u,\sin x\rangle$.
 
 The Riesz representation theorem establishes the duality between functionals and vectors: every bounded linear functional on a Hilbert space corresponds to taking an inner product with a unique vector. This self-duality is fundamental to variational formulations, where functionals naturally arise from taking inner products with test functions.
 
-An **orthonormal basis** $\{e_{n}\}$ satisfies $\langle e_{n},e_{m}\rangle=\delta_{nm}$ and spans $H$ densely. Every $f\in H$ admits the Fourier expansion $f=\sum \langle f,e_{n}\rangle e_{n}$, and **Parseval's identity** preserves the norm: $\|f\|^{2}=\sum \mid \langle f,e_{n}\rangle \mid^{2}$.
+An **orthonormal basis** $\{e_{n}\}$ satisfies $\langle e_{n},e_{m}\rangle=\delta_{nm}$ and spans $H$ densely. Every $f\in H$ admits the Fourier expansion $f=\sum \langle f,e_{n}\rangle e_{n}$, and **Parseval's identity** preserves the norm: $\|f\|^{2}=\sum \vert \langle f,e_{n}\rangle \vert^{2}$.
 
-> **Parseval's Identity for a Square Wave**
+**Parseval's Identity for a Square Wave**
 
-> Verify Parseval for $f(x)=\operatorname{sgn}(\sin x)$ on $[0,2\pi]$.
+Verify Parseval for $f(x)=\operatorname{sgn}(\sin x)$ on $[0,2\pi]$.
 
-> Fourier coefficients: $b_{n}=\frac{4}{\pi n}$ for odd $n$, zero otherwise. Then $\|f\|^{2}=1$ and $\sum \mid b_{n} \mid^{2}=\frac{16}{\pi^{2}}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^{2}}=\frac{16}{\pi^{2}}\cdot\frac{\pi^{2}}{8}=1$, confirming Parseval.
+Fourier coefficients: $b_{n}=\frac{4}{\pi n}$ for odd $n$, zero otherwise. Then $\|f\|^{2}=1$ and $\sum \vert b_{n} \vert^{2}=\frac{16}{\pi^{2}}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^{2}}=\frac{16}{\pi^{2}}\cdot\frac{\pi^{2}}{8}=1$, confirming Parseval.
 
 Parseval's identity shows that Fourier coefficients encode the complete energy content of a function: the sum of squared coefficients equals the square of the norm. This identity is fundamental to understanding convergence: while Fourier series may not converge pointwise, they always converge in the $L^{2}$ norm, and Parseval quantifies this convergence precisely.
 
@@ -48,15 +46,15 @@ Parseval's identity shows that Fourier coefficients encode the complete energy c
 
 A bounded operator $K:H\to H$ is **compact** if it maps bounded sets to relatively compact sets. Equivalently, for any bounded sequence $\{u_{n}\}$, the sequence $\{Ku_{n}\}$ has a convergent subsequence. Integral operators with square-integrable kernels (Hilbert-Schmidt operators) are compact; they model Green's operators that smooth data.
 
-> **Hilbert-Schmidt Operator**
+**Hilbert-Schmidt Operator**
 
-> Consider $K:L^{2}[0,1]\to L^{2}[0,1]$ with kernel $K(x,y)=\min(x,y)$. Compute
+Consider $K:L^{2}[0,1]\to L^{2}[0,1]$ with kernel $K(x,y)=\min(x,y)$. Compute
 
-> $$
-> \|K\|_{HS}^{2}=\int_{0}^{1}\int_{0}^{1} \min(x,y)^{2}\,dx\,dy=\frac{1}{3}<\infty,
-> $$
+$$
+\|K\|_{HS}^{2}=\int_{0}^{1}\int_{0}^{1} \min(x,y)^{2}\,dx\,dy=\frac{1}{3}<\infty,
+$$
 
-> so $K$ is Hilbert-Schmidt and hence compact.
+so $K$ is Hilbert-Schmidt and hence compact.
 
 The Hilbert-Schmidt norm provides a concrete criterion for compactness: integral operators with square-integrable kernels are automatically compact. This result connects abstract operator theory to concrete integral equations: Green's operators, which smooth data by convolution with a kernel, are compact precisely when the kernel is square-integrable.
 
@@ -74,15 +72,15 @@ $$
 
 uniformly on $\Omega\times \Omega$.
 
-> **Spectral Decomposition of $K$**
+**Spectral Decomposition of $K$**
 
-> Solve $Ku=\lambda u$ where $K(x,y)=\min(x,y)$.
+Solve $Ku=\lambda u$ where $K(x,y)=\min(x,y)$.
 
-> Differentiating the integral equation yields $-u''=\lambda^{-1}u$ with $u(0)=u(1)=0$, giving eigenfunctions $\phi_{n}(x)=\sqrt{2}\sin(n\pi x)$ and eigenvalues $\lambda_{n}=\frac{1}{(n\pi)^{2}}$. The kernel admits the Mercer expansion
+Differentiating the integral equation yields $-u''=\lambda^{-1}u$ with $u(0)=u(1)=0$, giving eigenfunctions $\phi_{n}(x)=\sqrt{2}\sin(n\pi x)$ and eigenvalues $\lambda_{n}=\frac{1}{(n\pi)^{2}}$. The kernel admits the Mercer expansion
 
-> $$
-> K(x,y)=2\sum_{n=1}^{\infty}\frac{\sin(n\pi x)\sin(n\pi y)}{(n\pi)^{2}}.
-> $$
+$$
+K(x,y)=2\sum_{n=1}^{\infty}\frac{\sin(n\pi x)\sin(n\pi y)}{(n\pi)^{2}}.
+$$
 
 The spectral decomposition of a compact self-adjoint operator reveals its structure: the operator acts by scaling along eigenfunctions, with the scaling factors given by eigenvalues. Mercer's theorem shows that for integral operators, this decomposition can be expressed explicitly in terms of the kernel: the kernel itself is a sum of products of eigenfunctions, weighted by eigenvalues. This provides a rigorous foundation for the separation of variables method: the eigenfunctions form a complete orthonormal basis, and solutions expand naturally in terms of these eigenfunctions.
 
@@ -92,35 +90,35 @@ For elliptic operators such as $-\Delta$ with homogeneous Dirichlet boundary con
 
 Weyl's law describes the asymptotic distribution of eigenvalues, connecting spectrum to geometry: $N(\lambda)\sim \frac{\omega_{n}}{(2\pi)^{n}}\operatorname{vol}(\Omega)\lambda^{n/2}$.
 
-> **Sturm–Liouville Problem**
+**Sturm–Liouville Problem**
 
-> For $-(1-x^{2})u''-2xu'=\lambda u$ on $[-1,1]$, solutions are Legendre polynomials $P_{n}(x)$ with $\lambda=n(n+1)$. Their orthogonality $\int_{-1}^{1}P_{n}P_{m}\,dx=0$ ($n\ne m$) and completeness justify polynomial expansions in Chapter 1.
+For $-(1-x^{2})u''-2xu'=\lambda u$ on $[-1,1]$, solutions are Legendre polynomials $P_{n}(x)$ with $\lambda=n(n+1)$. Their orthogonality $\int_{-1}^{1}P_{n}P_{m}\,dx=0$ ($n\ne m$) and completeness justify polynomial expansions in Chapter 1.
 
 The Sturm-Liouville theory shows that eigenfunctions of self-adjoint differential operators form complete orthonormal bases. For the Legendre equation, the eigenfunctions are polynomials that are orthogonal with respect to the standard inner product. This completeness justifies the use of Legendre polynomials in series expansions, providing the rigorous foundation for the special function techniques developed in Chapter 1.2.
 
-> **Fredholm Alternative**
+**Fredholm Alternative**
 
-> Solve $(I-\lambda K)u=f$ with $K$ having kernel $\min(x,y)$.
+Solve $(I-\lambda K)u=f$ with $K$ having kernel $\min(x,y)$.
 
-> If $\lambda\neq 1/\lambda_{n}$, the solution is unique. At resonance ($\lambda=1/\lambda_{n}$), solvability requires $f$ orthogonal to the corresponding eigenfunction. Explicit computation shows failure when $\lambda=\pi^{2}/4$ unless $f\perp \sin(\pi x/2)$.
+If $\lambda\neq 1/\lambda_{n}$, the solution is unique. At resonance ($\lambda=1/\lambda_{n}$), solvability requires $f$ orthogonal to the corresponding eigenfunction. Explicit computation shows failure when $\lambda=\pi^{2}/4$ unless $f\perp \sin(\pi x/2)$.
 
 The Fredholm alternative provides a complete characterization of solvability for integral equations: either the homogeneous equation has only the trivial solution (in which case the inhomogeneous equation is uniquely solvable), or the homogeneous equation has nontrivial solutions (in which case the inhomogeneous equation is solvable if and only if the right-hand side is orthogonal to all solutions of the adjoint homogeneous equation). This alternative is a direct consequence of the spectral theorem: at eigenvalues, the operator fails to be invertible, and solvability requires orthogonality to the eigenfunctions.
 
-> **Weyl's Law on a Square**
+**Weyl's Law on a Square**
 
-> For $-\Delta$ on $[0,\pi]^{2}$ with Dirichlet boundary, eigenvalues are $\lambda_{mn}=m^{2}+n^{2}$. Counting eigenvalues up to $\lambda$ approximates the number of lattice points in a quarter circle, yielding $N(\lambda)\sim \lambda/4$, in agreement with Weyl's law.
+For $-\Delta$ on $[0,\pi]^{2}$ with Dirichlet boundary, eigenvalues are $\lambda_{mn}=m^{2}+n^{2}$. Counting eigenvalues up to $\lambda$ approximates the number of lattice points in a quarter circle, yielding $N(\lambda)\sim \lambda/4$, in agreement with Weyl's law.
 
 Weyl's law connects spectral geometry to classical geometry: the asymptotic distribution of eigenvalues depends only on the volume and dimension of the domain, not on its detailed shape. For the square, the eigenvalues correspond to lattice points in the plane, and counting these points asymptotically gives the volume of a quarter circle. This result shows that "one can hear the volume of a drum": the high-frequency spectrum encodes geometric information about the domain.
 
-> **Heat Equation Convergence**
+**Heat Equation Convergence**
 
-> For $u_{t}=u_{xx}$ on $(0,\pi)$ with Dirichlet data, the solution $u(x,t)=\sum c_{n}e^{-n^{2}t}\sin(nx)$ converges in $L^{2}$. Error estimates show $\|u-u_{N}\|\le C N^{-3}e^{-N^{2}t}$ for smooth initial data, illustrating spectral convergence.
+For $u_{t}=u_{xx}$ on $(0,\pi)$ with Dirichlet data, the solution $u(x,t)=\sum c_{n}e^{-n^{2}t}\sin(nx)$ converges in $L^{2}$. Error estimates show $\|u-u_{N}\|\le C N^{-3}e^{-N^{2}t}$ for smooth initial data, illustrating spectral convergence.
 
 The spectral decomposition of the heat equation reveals exponential convergence: each mode decays at a rate determined by its eigenvalue. For smooth initial data, the high-frequency modes decay extremely rapidly, producing spectral convergence where the error decreases faster than any power of $N$. This exponential convergence is a hallmark of spectral methods and distinguishes them from finite difference methods, which typically exhibit only algebraic convergence.
 
-> **Semiclassical Asymptotics**
+**Semiclassical Asymptotics**
 
-> For the harmonic oscillator $-h^{2}u''+x^{2}u=Eu$, eigenvalues satisfy $E_{n}=n+\tfrac{1}{2}$ exactly. Weyl's law predicts $N(E)\sim E/h$, matching the exact distribution and connecting spectral theory to semiclassical analysis.
+For the harmonic oscillator $-h^{2}u''+x^{2}u=Eu$, eigenvalues satisfy $E_{n}=n+\tfrac{1}{2}$ exactly. Weyl's law predicts $N(E)\sim E/h$, matching the exact distribution and connecting spectral theory to semiclassical analysis.
 
 The harmonic oscillator provides a bridge between quantum and classical mechanics: the eigenvalues correspond exactly to the classical action variables, with the zero-point energy $1/2$ arising from quantum fluctuations. Weyl's law reproduces the exact eigenvalue count, showing that the asymptotic formula captures the essential physics. This connection to semiclassical analysis reveals that spectral theory provides a rigorous framework for quantization: classical phase space volumes translate directly into quantum eigenvalue counts.
 
@@ -141,7 +139,7 @@ Since $K$ is a Hilbert-Schmidt operator (the kernel $\min(x,y)$ is square-integr
 
 From the example, we found that the eigenfunctions are $\phi_{n}(x)=\sqrt{2}\sin(n\pi x)$ with eigenvalues $\lambda_{n}=\frac{1}{(n\pi)^{2}}$. Since $K$ is compact and self-adjoint, and the eigenfunctions span the range of $K$, which is dense in $L^{2}[0,1]$ (because $K$ is injective for functions vanishing at the boundary), the eigenfunctions form a complete orthonormal basis.
 
-For any $f\in L^{2}[0,1]$, we can write $f=\sum_{n=1}^{\infty}\langle f,\phi_{n}\rangle\phi_{n}$, which is exactly the Fourier sine series expansion. Parseval's identity gives $\|f\|^{2}=\sum_{n=1}^{\infty}\mid \langle f,\phi_{n}\rangle \mid^{2}$.
+For any $f\in L^{2}[0,1]$, we can write $f=\sum_{n=1}^{\infty}\langle f,\phi_{n}\rangle\phi_{n}$, which is exactly the Fourier sine series expansion. Parseval's identity gives $\|f\|^{2}=\sum_{n=1}^{\infty}\vert \langle f,\phi_{n}\rangle \vert^{2}$.
 
 This demonstrates that the spectral theorem provides a rigorous foundation for Fourier series: the completeness of trigonometric functions is not an isolated fact but a consequence of the spectral decomposition of a specific compact self-adjoint operator. The connection between integral operators and differential operators reveals the deep structure underlying classical Fourier analysis.
 
@@ -159,14 +157,14 @@ Prove Weyl's law for the Laplacian on a bounded domain $\Omega\subset\mathbb{R}^
 Weyl's law follows from the min-max principle and a comparison argument. The min-max principle states that
 
 $$
-\lambda_{k}=\inf_{\dim V=k}\sup_{u\in V,\|u\|=1}\int_{\Omega}\mid \nabla u \mid^{2}dx,
+\lambda_{k}=\inf_{\dim V=k}\sup_{u\in V,\|u\|=1}\int_{\Omega}\vert \nabla u \vert^{2}dx,
 $$
 
 where the infimum is over all $k$-dimensional subspaces $V$ of $H_{0}^{1}(\Omega)$.
 
-For high frequencies, eigenfunctions oscillate rapidly and behave locally like plane waves. The number of eigenvalues up to $\lambda$ corresponds approximately to the number of wave vectors $k$ such that $\mid k \mid^{2}\le\lambda$. In phase space (position-momentum space), this corresponds to the volume of the set $\{(x,k):x\in\Omega,\mid k \mid^{2}\le\lambda\}$.
+For high frequencies, eigenfunctions oscillate rapidly and behave locally like plane waves. The number of eigenvalues up to $\lambda$ corresponds approximately to the number of wave vectors $k$ such that $\vert k \vert^{2}\le\lambda$. In phase space (position-momentum space), this corresponds to the volume of the set $\{(x,k):x\in\Omega,\vert k \vert^{2}\le\lambda\}$.
 
-The volume of this set is $\operatorname{vol}(\Omega)\times \operatorname{vol}(\{k:\mid k \mid^{2}\le\lambda\})$. The volume of the ball of radius $\sqrt{\lambda}$ in $k$-space is $\omega_{n}(\sqrt{\lambda})^{n}=\omega_{n}\lambda^{n/2}$. However, we need to account for the factor $(2\pi)^{-n}$ from the Fourier transform normalization.
+The volume of this set is $\operatorname{vol}(\Omega)\times \operatorname{vol}(\{k:\vert k \vert^{2}\le\lambda\})$. The volume of the ball of radius $\sqrt{\lambda}$ in $k$-space is $\omega_{n}(\sqrt{\lambda})^{n}=\omega_{n}\lambda^{n/2}$. However, we need to account for the factor $(2\pi)^{-n}$ from the Fourier transform normalization.
 
 Using a Tauberian theorem or direct comparison with the cube case (where the eigenvalues are explicitly known as $\lambda_{m_{1},\ldots,m_{n}}=\pi^{2}(m_{1}^{2}+\cdots+m_{n}^{2})$), we obtain
 

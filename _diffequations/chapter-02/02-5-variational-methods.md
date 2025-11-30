@@ -12,9 +12,8 @@ parent_chapter: 2
 parent_section: null
 ---
 
-# Section 2.5: Variational Methods & Lax-Milgram
 
-> Energy minimization replaces PDE solving: the Lax-Milgram theorem converts existence questions into verifying coercivity, transforming abstract operator theory into constructive computational algorithms.
+Energy minimization replaces PDE solving: the Lax-Milgram theorem converts existence questions into verifying coercivity, transforming abstract operator theory into constructive computational algorithms.
 
 ## Introduction
 
@@ -45,29 +44,29 @@ $$
 
 The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ for all $v\in H_{0}^{1}(\Omega)$. When $a$ is symmetric, $u$ minimizes the energy functional $J(u)=\frac{1}{2}a(u,u)-F(u)$.
 
-> **Poisson Equation on $(0,1)$**
+**Poisson Equation on $(0,1)$**
 
-> Solve $-u''=2$ with $u(0)=u(1)=0$.
+Solve $-u''=2$ with $u(0)=u(1)=0$.
 
-> Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u'v'=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int \mid u' \mid^{2}-\int 2u$.
+Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u'v'=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int \vert u' \vert^{2}-\int 2u$.
 
 The variational formulation transforms the differential equation into an integral equation: instead of requiring that the equation hold pointwise (which may not make sense for non-smooth functions), we require that it hold in a weak sense when integrated against test functions. This relaxation allows us to work in Sobolev spaces where solutions naturally exist. The energy functional $J$ provides a physical interpretation: solutions minimize the total energy (elastic energy minus work done by external forces), connecting mathematics to physics.
 
 ## Lax–Milgram Theorem
 
-Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($\mid a(u,v) \mid\le \beta\|u\|_{H}\|v\|_{H}$) and coercive ($a(u,u)\ge \alpha \|u\|_{H}^{2}$) for some $\alpha,\beta>0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.
+Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($\vert a(u,v) \vert\le \beta\|u\|_{H}\|v\|_{H}$) and coercive ($a(u,u)\ge \alpha \|u\|_{H}^{2}$) for some $\alpha,\beta>0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.
 
 In the Poisson case, boundedness follows from Cauchy–Schwarz, and coercivity from Poincaré's inequality on $H_{0}^{1}(\Omega)$, ensuring a unique weak solution.
 
-> **Lax–Milgram on the Unit Disk**
+**Lax–Milgram on the Unit Disk**
 
-> For $-\Delta u=1$ in $B_{1}(0)$ with $u=0$ on $\partial B_{1}$, $a(u,v)=\int \nabla u\cdot\nabla v$ is bounded and coercive on $H_{0}^{1}(B_{1})$. $F(v)=\int v$ is continuous. Lax–Milgram yields a unique weak solution, which by symmetry is $u(r)=(1-r^{2})/4$.
+For $-\Delta u=1$ in $B_{1}(0)$ with $u=0$ on $\partial B_{1}$, $a(u,v)=\int \nabla u\cdot\nabla v$ is bounded and coercive on $H_{0}^{1}(B_{1})$. $F(v)=\int v$ is continuous. Lax–Milgram yields a unique weak solution, which by symmetry is $u(r)=(1-r^{2})/4$.
 
 The Lax–Milgram theorem provides a universal existence and uniqueness result: once we verify that the bilinear form is bounded and coercive, a unique solution is guaranteed. This result is remarkable because it requires no explicit construction of the solution—it follows purely from the functional-analytic structure. The proof uses the Riesz representation theorem and the coercivity property to show that the variational equation defines a contraction mapping, whose fixed point is the solution. This abstract approach unifies many different PDE problems under a single framework.
 
-> **Reaction–Diffusion**
+**Reaction–Diffusion**
 
-> Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int \mid \nabla u \mid^{2}+c\mid u \mid^{2}\ge \int \mid \nabla u \mid^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.
+Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int \vert \nabla u \vert^{2}+c\vert u \vert^{2}\ge \int \vert \nabla u \vert^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.
 
 The Lax–Milgram theorem requires strict coercivity: the bilinear form must control the norm from below. When this condition fails (as in the case of negative potential $c(x)=-\pi^{2}$), we enter the realm of the Fredholm alternative: solutions exist if and only if the right-hand side is orthogonal to the kernel of the adjoint operator. This example shows the boundary between coercive and non-coercive problems: as parameters vary, a problem can transition from having a unique solution to having either no solution or infinitely many solutions.
 
@@ -75,9 +74,9 @@ The Lax–Milgram theorem requires strict coercivity: the bilinear form must con
 
 Weak solutions gain additional smoothness under elliptic regularity. Weyl's lemma states that if $\Delta u=0$ in distributions, then $u$ is smooth. More generally, if $-\Delta u=f$ with $f\in L^{2}(\Omega)$, then $u\in H^{2}(\Omega)$. Difference quotient methods show $u''$ exists in $L^{2}$; iterating yields $u\in H^{k+2}$ whenever $f\in H^{k}$, and Sobolev embeddings translate $H^{k}$ regularity to classical $C^{m}$ regularity for $k>n/2+m$.
 
-> **Weyl's Lemma via Difference Quotients**
+**Weyl's Lemma via Difference Quotients**
 
-> Let $u\in H^{1}_{\text{loc}}(\mathbb{R}^{n})$ satisfy $-\Delta u=f\in L^{2}_{\text{loc}}$. Using difference quotients $\tau_{h}u(x)=\frac{u(x+h)-u(x)}{h}$ as test functions shows $\tau_{h}u'$ is bounded in $L^{2}$, implying $u\in H^{2}_{\text{loc}}$. Repeating yields higher regularity when $f$ is smoother.
+Let $u\in H^{1}_{\text{loc}}(\mathbb{R}^{n})$ satisfy $-\Delta u=f\in L^{2}_{\text{loc}}$. Using difference quotients $\tau_{h}u(x)=\frac{u(x+h)-u(x)}{h}$ as test functions shows $\tau_{h}u'$ is bounded in $L^{2}$, implying $u\in H^{2}_{\text{loc}}$. Repeating yields higher regularity when $f$ is smoother.
 
 Weyl's lemma provides a remarkable regularity result: weak solutions of elliptic equations are actually smooth, even though they are only defined through weak formulations. The difference quotient technique is fundamental to regularity theory: it allows us to differentiate the equation in a weak sense by testing against translated versions of the solution. This technique reveals that elliptic operators have a smoothing property: they cannot create singularities, only propagate existing ones. The iterative application of this argument shows that if the right-hand side is smooth, the solution is also smooth, connecting the abstract weak formulation back to classical solutions.
 
@@ -85,27 +84,27 @@ Weyl's lemma provides a remarkable regularity result: weak solutions of elliptic
 
 Variational methods extend beyond the Poisson equation to many physical problems. The key is to identify the appropriate energy functional and verify coercivity.
 
-> **Linear Elasticity**
+**Linear Elasticity**
 
-> For $\mathbf{u}\in [H_{0}^{1}(\Omega)]^{2}$, the Lamé system has variational form
+For $\mathbf{u}\in [H_{0}^{1}(\Omega)]^{2}$, the Lamé system has variational form
 
-> $$
-> a(\mathbf{u},\mathbf{v})=\int_{\Omega}\left(2\mu\,\varepsilon(\mathbf{u}):\varepsilon(\mathbf{v})+\lambda (\nabla\cdot\mathbf{u})(\nabla\cdot\mathbf{v})\right)dx.
-> $$
+$$
+a(\mathbf{u},\mathbf{v})=\int_{\Omega}\left(2\mu\,\varepsilon(\mathbf{u}):\varepsilon(\mathbf{v})+\lambda (\nabla\cdot\mathbf{u})(\nabla\cdot\mathbf{v})\right)dx.
+$$
 
-> Korn's inequality provides $a(\mathbf{u},\mathbf{u})\ge C\|\mathbf{u}\|_{H^{1}}^{2}$, leading to existence and uniqueness.
+Korn's inequality provides $a(\mathbf{u},\mathbf{u})\ge C\|\mathbf{u}\|_{H^{1}}^{2}$, leading to existence and uniqueness.
 
 Linear elasticity demonstrates how variational methods apply to systems of PDEs: the displacement field minimizes the elastic energy, which is a quadratic form in the strain tensor. Korn's inequality plays the role of Poincaré's inequality: it ensures that the elastic energy controls the $H^{1}$ norm, providing coercivity. This result is fundamental to solid mechanics: it guarantees that elastic bodies have unique equilibrium configurations under given loads.
 
-> **Eigenvalue Problem**
+**Eigenvalue Problem**
 
-> Minimize $R[u]=\dfrac{\int \mid \nabla u \mid^{2}}{\int \mid u \mid^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.
+Minimize $R[u]=\dfrac{\int \vert \nabla u \vert^{2}}{\int \vert u \vert^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.
 
 The Rayleigh quotient provides a variational characterization of eigenvalues: the first eigenvalue minimizes the ratio of energy to mass, and higher eigenvalues are obtained by imposing orthogonality constraints. This variational approach reveals the physical meaning of eigenvalues: they represent frequencies of vibration (in wave equations) or critical buckling loads (in stability problems). The minimization formulation is often more tractable than solving the eigenvalue equation directly, and it provides upper bounds through trial functions.
 
-> **Mixed Boundary Problem**
+**Mixed Boundary Problem**
 
-> For $-\Delta u=1$ on $(0,1)^{2}$ with Dirichlet conditions on $y=0,1$ and Neumann on $x=0,1$, set $V=\{u\in H^{1} : u(x,0)=u(x,1)=0\}$. The bilinear form $a(u,v)=\int \nabla u\cdot \nabla v$ is coercive on $V$. Expanding in $\sin(m\pi y)\cos(nx)$ bases satisfies the mixed boundary conditions and converges to the exact solution.
+For $-\Delta u=1$ on $(0,1)^{2}$ with Dirichlet conditions on $y=0,1$ and Neumann on $x=0,1$, set $V=\{u\in H^{1} : u(x,0)=u(x,1)=0\}$. The bilinear form $a(u,v)=\int \nabla u\cdot \nabla v$ is coercive on $V$. Expanding in $\sin(m\pi y)\cos(nx)$ bases satisfies the mixed boundary conditions and converges to the exact solution.
 
 Mixed boundary problems require careful treatment of the function space: Dirichlet conditions are enforced by restricting to a subspace, while Neumann conditions are natural (they appear automatically in the weak formulation). The variational framework handles both types of boundary conditions naturally: Dirichlet conditions are essential (must be imposed on the space), while Neumann conditions are natural (emerge from integration by parts). This distinction is fundamental to finite element methods, where boundary conditions determine which basis functions are used.
 
@@ -127,7 +126,7 @@ The bilinear form is $a(u,v) = \int_{\Omega} \nabla u \cdot \nabla v + \lambda \
 Using the Poincaré inequality $\|u\|_{L^{2}} \le C \|\nabla u\|_{L^{2}}$ and the spectral decomposition of $-\Delta$, we have
 
 $$
-a(u,u) = \int_{\Omega} \mid \nabla u \mid^{2} + \lambda \int_{\Omega} \mid u \mid^{2} \ge (1 + \lambda C) \|\nabla u\|_{L^{2}}^{2}
+a(u,u) = \int_{\Omega} \vert \nabla u \vert^{2} + \lambda \int_{\Omega} \vert u \vert^{2} \ge (1 + \lambda C) \|\nabla u\|_{L^{2}}^{2}
 $$
 
 for $\lambda > -1/C$, where $C$ is the Poincaré constant. More precisely, if $\lambda_{1}$ is the first eigenvalue of $-\Delta$, then $\|\nabla u\|_{L^{2}}^{2} \ge \lambda_{1} \|u\|_{L^{2}}^{2}$, so
@@ -170,13 +169,13 @@ $$
 Setting $\phi = \tau_{h}^{i}u$ (which is valid for small $h$ when $u$ has compact support, and can be extended by density), we obtain
 
 $$
-\int_{\Omega} \mid \tau_{h}^{i}(\nabla u) \mid^{2} = \int_{\Omega} \tau_{h}^{i}f \cdot \tau_{h}^{i}u.
+\int_{\Omega} \vert \tau_{h}^{i}(\nabla u) \vert^{2} = \int_{\Omega} \tau_{h}^{i}f \cdot \tau_{h}^{i}u.
 $$
 
 By the properties of difference quotients, we have $\|\tau_{h}^{i}u\|_{L^{2}} \le \|\partial_{i}u\|_{L^{2}}$ for $u \in H^{1}$, so
 
 $$
-\int_{\Omega} \mid \tau_{h}^{i}(\nabla u) \mid^{2} \le \|f\|_{L^{2}} \|\partial_{i}u\|_{L^{2}}.
+\int_{\Omega} \vert \tau_{h}^{i}(\nabla u) \vert^{2} \le \|f\|_{L^{2}} \|\partial_{i}u\|_{L^{2}}.
 $$
 
 This shows that $\tau_{h}^{i}(\nabla u)$ is bounded in $L^{2}$ independently of $h$. By weak compactness, there exists a subsequence converging weakly to some $v \in L^{2}$. Since difference quotients converge to weak derivatives, we must have $v = \partial_{i}(\nabla u)$, so $u \in H^{2}$.
@@ -187,7 +186,7 @@ This technique demonstrates the power of difference quotients: they allow us to 
 
 ### Challenge 3: Nonlinear Variational Problem
 
-Consider the problem of minimizing $J(u) = \frac{1}{2}\int_{\Omega} \mid \nabla u \mid^{2} - \int_{\Omega} F(u)$ over $H_{0}^{1}(\Omega)$, where $F$ is a smooth function. Derive the Euler-Lagrange equation and show that minimizers satisfy $-\Delta u = F'(u)$. Discuss the challenges in proving existence when $F$ is not convex.
+Consider the problem of minimizing $J(u) = \frac{1}{2}\int_{\Omega} \vert \nabla u \vert^{2} - \int_{\Omega} F(u)$ over $H_{0}^{1}(\Omega)$, where $F$ is a smooth function. Derive the Euler-Lagrange equation and show that minimizers satisfy $-\Delta u = F'(u)$. Discuss the challenges in proving existence when $F$ is not convex.
 
 *(Hint: Compute the first variation of $J$. For existence, consider the case when $F$ is convex and use weak lower semicontinuity. For non-convex $F$, critical points may not be minimizers.)*
 
@@ -211,7 +210,7 @@ This is the weak form of $-\Delta u = F'(u)$.
 When $F$ is convex, $J$ is convex, so any critical point is a global minimizer. Existence follows from weak lower semicontinuity: if $u_{n} \rightharpoonup u$ weakly in $H_{0}^{1}$, then
 
 $$
-\liminf_{n \to \infty} \int_{\Omega} \mid \nabla u_{n} \mid^{2} \ge \int_{\Omega} \mid \nabla u \mid^{2}
+\liminf_{n \to \infty} \int_{\Omega} \vert \nabla u_{n} \vert^{2} \ge \int_{\Omega} \vert \nabla u \vert^{2}
 $$
 
 by weak lower semicontinuity of the norm, and
@@ -264,7 +263,7 @@ $$
 For $\mathbf{u}$ with zero boundary conditions, the boundary terms vanish. We can also relate this to the divergence: $\sum_{i} \partial_{ii}u_{i} = \Delta(\nabla \cdot \mathbf{u})$ in some sense, but a more direct approach uses the identity
 
 $$
-\int_{\Omega} \mid \nabla \mathbf{u} \mid^{2} = \int_{\Omega} \mid \varepsilon(\mathbf{u}) \mid^{2} + \int_{\Omega} \mid \omega(\mathbf{u}) \mid^{2},
+\int_{\Omega} \vert \nabla \mathbf{u} \vert^{2} = \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} + \int_{\Omega} \vert \omega(\mathbf{u}) \vert^{2},
 $$
 
 where $\omega(\mathbf{u}) = \frac{1}{2}(\nabla \mathbf{u} - \nabla \mathbf{u}^{T})$ is the rotation tensor. This identity shows that the symmetric and antisymmetric parts are orthogonal in $L^{2}$.
@@ -280,7 +279,7 @@ and since $\|\mathbf{u}\|_{L^{2}} \le C\|\nabla \mathbf{u}\|_{L^{2}}$ by Poincar
 Korn's inequality ensures coercivity of the elastic energy: for the Lamé system, we have
 
 $$
-a(\mathbf{u},\mathbf{u}) = 2\mu \int_{\Omega} \mid \varepsilon(\mathbf{u}) \mid^{2} + \lambda \int_{\Omega} (\nabla \cdot \mathbf{u})^{2} \ge 2\mu \int_{\Omega} \mid \varepsilon(\mathbf{u}) \mid^{2} \ge C\|\mathbf{u}\|_{H^{1}}^{2},
+a(\mathbf{u},\mathbf{u}) = 2\mu \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} + \lambda \int_{\Omega} (\nabla \cdot \mathbf{u})^{2} \ge 2\mu \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} \ge C\|\mathbf{u}\|_{H^{1}}^{2},
 $$
 
 where the last inequality is Korn's inequality. This provides the coercivity needed for the Lax-Milgram theorem.

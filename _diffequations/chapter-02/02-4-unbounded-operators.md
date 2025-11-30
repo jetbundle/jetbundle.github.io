@@ -12,9 +12,8 @@ parent_chapter: 2
 parent_section: null
 ---
 
-# Section 2.4: Unbounded Operators, Resolvents & Semigroups
 
-> Physical operators are unbounded: differentiation amplifies high frequencies, requiring domain constraints that encode boundary conditions and making self-adjointness a delicate balance between symmetry and completeness.
+Physical operators are unbounded: differentiation amplifies high frequencies, requiring domain constraints that encode boundary conditions and making self-adjointness a delicate balance between symmetry and completeness.
 
 ## Introduction
 
@@ -32,25 +31,25 @@ $$
 
 and satisfies $\langle Ax,y\rangle = \langle x,A^{*}y\rangle$ for all $x\in D(A)$.
 
-> **Differentiation Operator on $L^{2}(0,1)$**
+**Differentiation Operator on $L^{2}(0,1)$**
 
-> Analyze $A=\frac{d}{dx}$ with $D(A)=H^{1}_{0}(0,1)$.
+Analyze $A=\frac{d}{dx}$ with $D(A)=H^{1}_{0}(0,1)$.
 
-> Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)=\{(u,u') : u\in H^{1}_{0}\}$ is closed: if $u_{n}\to u$ and $u'_{n}\to v$ in $L^{2}$, then $u\in H^{1}_{0}$ and $u'=v$ by definition of weak derivatives. $A$ is unbounded because $\|Au_{n}\|/\|u_{n}\|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.
+Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)=\{(u,u') : u\in H^{1}_{0}\}$ is closed: if $u_{n}\to u$ and $u'_{n}\to v$ in $L^{2}$, then $u\in H^{1}_{0}$ and $u'=v$ by definition of weak derivatives. $A$ is unbounded because $\|Au_{n}\|/\|u_{n}\|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.
 
 The differentiation operator illustrates the fundamental property of unbounded operators: they cannot be continuous on the entire space because high-frequency functions have arbitrarily large derivatives. The graph topology provides the correct framework: an operator is closed if its graph is closed, ensuring that limits of convergent sequences remain within the domain. The closure property is essential for the spectral theorem, which requires closed operators.
 
-> **Momentum Operator on $\mathbb{R}$**
+**Momentum Operator on $\mathbb{R}$**
 
-> Consider $A=-i\frac{d}{dx}$ on $D(A)=H^{1}(\mathbb{R})$.
+Consider $A=-i\frac{d}{dx}$ on $D(A)=H^{1}(\mathbb{R})$.
 
-> Via Fourier transform, $D(A)=\{u\in L^{2} : \int \mid \xi \mid^{2}\mid \hat{u}(\xi) \mid^{2}<\infty\}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-\mid x \mid/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.
+Via Fourier transform, $D(A)=\{u\in L^{2} : \int \vert \xi \vert^{2}\vert \hat{u}(\xi) \vert^{2}<\infty\}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-\vert x \vert/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.
 
 The momentum operator reveals that domain restrictions encode physical constraints: functions with constant values (infinite wavelength) do not belong to the domain because they lack the decay necessary for differentiability. The Fourier transform characterization shows that the domain consists precisely of functions whose Fourier transforms decay sufficiently rapidly, connecting the operator domain to frequency content. This example demonstrates why quantum mechanical operators require careful domain specification: the physics of localization (decay at infinity) is encoded in the mathematical structure of the domain.
 
-> **Non-Closed Domain**
+**Non-Closed Domain**
 
-> Let $A=\frac{d}{dx}$ with $D(A)=C^{1}[0,1]\cap L^{2}$. This domain is not maximal. The closure $\bar{A}$ has domain $H^{1}_{0}(0,1)$, illustrating the need to work with closed extensions.
+Let $A=\frac{d}{dx}$ with $D(A)=C^{1}[0,1]\cap L^{2}$. This domain is not maximal. The closure $\bar{A}$ has domain $H^{1}_{0}(0,1)$, illustrating the need to work with closed extensions.
 
 The closure of an operator extends its domain to include limits of sequences in the graph topology. For the differentiation operator, the closure adds functions that are limits of continuously differentiable functions, which are precisely the Sobolev functions. This closure process is essential: many natural operators defined on smooth functions are not closed, but their closures are well-defined and have desirable spectral properties.
 
@@ -66,17 +65,17 @@ $$
 
 allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lambda)\,dE(\lambda)$.
 
-> **Symmetric vs. Self-Adjoint Laplacian**
+**Symmetric vs. Self-Adjoint Laplacian**
 
-> For $A=-\frac{d^{2}}{dx^{2}}$ on $L^{2}(0,\pi)$, compare domains.
+For $A=-\frac{d^{2}}{dx^{2}}$ on $L^{2}(0,\pi)$, compare domains.
 
-> With $D_{1}=\{u\in H^{2}:u(0)=u(\pi)=0\}$, $A$ is self-adjoint and has spectrum $\{n^{2}\}_{n\in\mathbb{N}}$. With $D_{3}=\{u\in H^{2}:u(0)=u'(\pi)=0\}$, $A$ is symmetric but not self-adjoint; deficiency indices $(1,1)$ yield a one-parameter family of self-adjoint extensions corresponding to different boundary conditions.
+With $D_{1}=\{u\in H^{2}:u(0)=u(\pi)=0\}$, $A$ is self-adjoint and has spectrum $\{n^{2}\}_{n\in\mathbb{N}}$. With $D_{3}=\{u\in H^{2}:u(0)=u'(\pi)=0\}$, $A$ is symmetric but not self-adjoint; deficiency indices $(1,1)$ yield a one-parameter family of self-adjoint extensions corresponding to different boundary conditions.
 
 The distinction between symmetric and self-adjoint operators is subtle but crucial: symmetric operators satisfy the adjoint relation on their domain, but self-adjoint operators require that the domain of the adjoint equals the original domain. For differential operators, this distinction encodes boundary conditions: different boundary conditions produce different self-adjoint extensions, each with its own spectrum. The deficiency indices count the "missing dimensions" needed to make the operator self-adjoint, revealing the freedom in choosing boundary conditions.
 
-> **Momentum vs. Position Operators**
+**Momentum vs. Position Operators**
 
-> On $L^{2}(\mathbb{R})$, the position operator $X$ (multiplication by $x$) and momentum operator $P=-i\frac{d}{dx}$ are self-adjoint on domains $D(X)=\{u : xu\in L^{2}\}$ and $D(P)=H^{1}(\mathbb{R})$. They satisfy the canonical commutation relation $[P,X]=-iI$, but $PX$ and $XP$ require careful domain intersections, highlighting the role of unbounded operator algebra.
+On $L^{2}(\mathbb{R})$, the position operator $X$ (multiplication by $x$) and momentum operator $P=-i\frac{d}{dx}$ are self-adjoint on domains $D(X)=\{u : xu\in L^{2}\}$ and $D(P)=H^{1}(\mathbb{R})$. They satisfy the canonical commutation relation $[P,X]=-iI$, but $PX$ and $XP$ require careful domain intersections, highlighting the role of unbounded operator algebra.
 
 The position and momentum operators illustrate the canonical commutation relations of quantum mechanics. While both operators are self-adjoint individually, their product is not self-adjoint because the domains of $P$ and $X$ do not align properly: functions in the domain of $PX$ must decay faster than those in the domain of $XP$. This domain subtlety is fundamental to quantum mechanics: the uncertainty principle arises precisely because $P$ and $X$ cannot be simultaneously diagonalized due to domain restrictions, not merely because they do not commute.
 
@@ -86,21 +85,21 @@ The **resolvent set** $\rho(A)$ consists of $\lambda\in\mathbb{C}$ for which $(A
 
 The spectrum decomposes into point spectrum (eigenvalues), continuous spectrum, and residual spectrum; in unbounded settings continuous spectrum often dominates (e.g., Laplacian on $\mathbb{R}^{n}$).
 
-> **Resolvent of the Laplacian**
+**Resolvent of the Laplacian**
 
-> Compute $(A-\lambda I)^{-1}$ for $A=-\Delta$ on $\mathbb{R}^{3}$.
+Compute $(A-\lambda I)^{-1}$ for $A=-\Delta$ on $\mathbb{R}^{3}$.
 
-> Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{\mid \xi \mid^{2}-\lambda}$. For $\text{Re}(\lambda)<0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}\mid x-y \mid}}{4\pi \mid x-y \mid}$, exhibiting the exponential decay of the resolvent.
+Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{\vert \xi \vert^{2}-\lambda}$. For $\text{Re}(\lambda)<0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}\vert x-y \vert}}{4\pi \vert x-y \vert}$, exhibiting the exponential decay of the resolvent.
 
 The resolvent of the Laplacian provides the Green's function for the Helmholtz equation: it describes how point sources propagate in space. The exponential decay reflects the diffusive nature of the Laplacian: for negative real parts of $\lambda$, solutions decay spatially, with the decay rate controlled by $\sqrt{-\lambda}$. This resolvent is fundamental to scattering theory: it provides the building blocks for constructing solutions to wave equations and understanding how waves propagate and interact.
 
-> **Resolvent Estimate**
+**Resolvent Estimate**
 
-> For $A=-\frac{d^{2}}{dx^{2}}$ on $(0,\pi)$ with Dirichlet conditions, the resolvent satisfies
+For $A=-\frac{d^{2}}{dx^{2}}$ on $(0,\pi)$ with Dirichlet conditions, the resolvent satisfies
 
-> $$
-> R(\lambda,A)f=\sum_{n=1}^{\infty}\frac{\langle f,\sin(n\pi x)\rangle}{n^{2}\pi^{2}-\lambda}\sin(n\pi x),\quad \|R(\lambda,A)\|\le \frac{1}{\text{dist}(\lambda,\{n^{2}\pi^{2}\})}.
-> $$
+$$
+R(\lambda,A)f=\sum_{n=1}^{\infty}\frac{\langle f,\sin(n\pi x)\rangle}{n^{2}\pi^{2}-\lambda}\sin(n\pi x),\quad \|R(\lambda,A)\|\le \frac{1}{\text{dist}(\lambda,\{n^{2}\pi^{2}\})}.
+$$
 
 The resolvent estimate shows that the norm of the resolvent is controlled by the distance to the spectrum: near eigenvalues, the resolvent becomes large, reflecting the fact that the operator is nearly singular. This estimate is fundamental to perturbation theory: small perturbations of operators produce small changes in resolvents away from the spectrum, but near eigenvalues the behavior can be more complex. The spectral representation of the resolvent reveals its structure: it acts by scaling Fourier modes, with the scaling factor depending on how close $\lambda$ is to each eigenvalue.
 
@@ -114,17 +113,17 @@ $$
 
 The **Hille–Yosida theorem** characterizes generators of contraction semigroups: a densely defined closed operator $A$ generates a $C_{0}$-contraction semigroup iff $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$ for all $\lambda>0$.
 
-> **Heat Semigroup via Hille–Yosida**
+**Heat Semigroup via Hille–Yosida**
 
-> Show $A=\frac{d^{2}}{dx^{2}}$ with $D(A)=H^{2}\cap H^{1}_{0}$ generates the heat semigroup.
+Show $A=\frac{d^{2}}{dx^{2}}$ with $D(A)=H^{2}\cap H^{1}_{0}$ generates the heat semigroup.
 
-> The resolvent satisfies $\|R(\lambda,A)\|\le 1/\lambda$ for $\lambda>0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.
+The resolvent satisfies $\|R(\lambda,A)\|\le 1/\lambda$ for $\lambda>0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.
 
 The Hille–Yosida theorem provides a complete characterization of generators: an operator generates a contraction semigroup if and only if it is densely defined, closed, and its resolvent satisfies the appropriate bounds. For the heat equation, this means that the Laplacian with Dirichlet boundary conditions generates a semigroup that smooths initial data: rough functions become smooth as time increases. This smoothing property is fundamental to parabolic equations: it ensures that solutions immediately become regular, regardless of the initial data.
 
-> **Semigroup Failure**
+**Semigroup Failure**
 
-> Let $A=\frac{d}{dx}$ on $L^{2}(0,1)$ with domain $H^{1}(0,1)$ (no boundary conditions). The resolvent estimate fails and $\rho(A)=\emptyset$, so $A$ does not generate a $C_{0}$-semigroup. This illustrates the need for proper domain choices to ensure well-posed evolution.
+Let $A=\frac{d}{dx}$ on $L^{2}(0,1)$ with domain $H^{1}(0,1)$ (no boundary conditions). The resolvent estimate fails and $\rho(A)=\emptyset$, so $A$ does not generate a $C_{0}$-semigroup. This illustrates the need for proper domain choices to ensure well-posed evolution.
 
 Not every operator generates a semigroup: the domain must be chosen carefully to ensure that the resolvent exists and satisfies the necessary bounds. For the differentiation operator without boundary conditions, the resolvent set is empty, so no semigroup can exist. This failure reflects physical reality: wave equations without boundary conditions are not well-posed because information can flow in from infinity. The requirement that operators generate semigroups encodes causality and well-posedness: solutions must exist, be unique, and depend continuously on initial data.
 
@@ -164,23 +163,23 @@ For the Laplacian $A=-\Delta$ on $L^{2}(\mathbb{R}^{n})$ with domain $D(A)=H^{2}
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Taking the Fourier transform, the Laplacian becomes multiplication by $\mid \xi \mid^{2}$, so $(A-\lambda I)u$ transforms to $(\mid \xi \mid^{2}-\lambda)\hat{u}(\xi)$.
+Taking the Fourier transform, the Laplacian becomes multiplication by $\vert \xi \vert^{2}$, so $(A-\lambda I)u$ transforms to $(\vert \xi \vert^{2}-\lambda)\hat{u}(\xi)$.
 
-For $\lambda<0$, the function $(\mid \xi \mid^{2}-\lambda)^{-1}$ is bounded and decays, so the resolvent exists and is given by
+For $\lambda<0$, the function $(\vert \xi \vert^{2}-\lambda)^{-1}$ is bounded and decays, so the resolvent exists and is given by
 
 $$
-R(\lambda,A)u=\mathcal{F}^{-1}\left(\frac{\hat{u}(\xi)}{\mid \xi \mid^{2}-\lambda}\right).
+R(\lambda,A)u=\mathcal{F}^{-1}\left(\frac{\hat{u}(\xi)}{\vert \xi \vert^{2}-\lambda}\right).
 $$
 
-This is a convolution with the Green's function $G_{\lambda}(x)$, which for $n=3$ is $G_{\lambda}(x)=\frac{e^{-\sqrt{-\lambda}\mid x \mid}}{4\pi \mid x \mid}$.
+This is a convolution with the Green's function $G_{\lambda}(x)$, which for $n=3$ is $G_{\lambda}(x)=\frac{e^{-\sqrt{-\lambda}\vert x \vert}}{4\pi \vert x \vert}$.
 
-For $\lambda\ge 0$, the function $(\mid \xi \mid^{2}-\lambda)^{-1}$ is not bounded: it becomes infinite when $\mid \xi \mid^{2}=\lambda$. Moreover, for any $\lambda\ge 0$, there exist functions $u$ such that $(A-\lambda I)u=0$ in a distributional sense (plane waves $e^{ik\cdot x}$ with $\mid k \mid^{2}=\lambda$), but these are not in $L^{2}$.
+For $\lambda\ge 0$, the function $(\vert \xi \vert^{2}-\lambda)^{-1}$ is not bounded: it becomes infinite when $\vert \xi \vert^{2}=\lambda$. Moreover, for any $\lambda\ge 0$, there exist functions $u$ such that $(A-\lambda I)u=0$ in a distributional sense (plane waves $e^{ik\cdot x}$ with $\vert k \vert^{2}=\lambda$), but these are not in $L^{2}$.
 
-However, the spectrum includes $[0,\infty)$ because for any $\lambda\ge 0$, the range of $A-\lambda I$ is not dense: functions whose Fourier transforms vanish near the sphere $\mid \xi \mid^{2}=\lambda$ cannot be approximated by functions in the range. More precisely, the spectrum consists of all $\lambda$ for which $A-\lambda I$ is not invertible, which includes all non-negative real numbers.
+However, the spectrum includes $[0,\infty)$ because for any $\lambda\ge 0$, the range of $A-\lambda I$ is not dense: functions whose Fourier transforms vanish near the sphere $\vert \xi \vert^{2}=\lambda$ cannot be approximated by functions in the range. More precisely, the spectrum consists of all $\lambda$ for which $A-\lambda I$ is not invertible, which includes all non-negative real numbers.
 
-To show there are no eigenvalues, suppose $Au=\lambda u$ for some $u\in L^{2}$ and $\lambda\in\mathbb{C}$. Taking the Fourier transform gives $(\mid \xi \mid^{2}-\lambda)\hat{u}(\xi)=0$, so $\hat{u}$ is supported on the set $\{\xi:\mid \xi \mid^{2}=\lambda\}$. For $\lambda<0$, this set is empty, so $u=0$. For $\lambda\ge 0$, this set is a sphere of measure zero, so $\hat{u}$ must be zero almost everywhere, again giving $u=0$. Therefore, there are no eigenvalues.
+To show there are no eigenvalues, suppose $Au=\lambda u$ for some $u\in L^{2}$ and $\lambda\in\mathbb{C}$. Taking the Fourier transform gives $(\vert \xi \vert^{2}-\lambda)\hat{u}(\xi)=0$, so $\hat{u}$ is supported on the set $\{\xi:\vert \xi \vert^{2}=\lambda\}$. For $\lambda<0$, this set is empty, so $u=0$. For $\lambda\ge 0$, this set is a sphere of measure zero, so $\hat{u}$ must be zero almost everywhere, again giving $u=0$. Therefore, there are no eigenvalues.
 
-The spectrum is absolutely continuous because the spectral measure is equivalent to Lebesgue measure on $[0,\infty)$: the operator is unitarily equivalent to multiplication by $\mid \xi \mid^{2}$ on $L^{2}(\mathbb{R}^{n})$, and the spectral measure is the pushforward of Lebesgue measure under the map $\xi\mapsto \mid \xi \mid^{2}$.
+The spectrum is absolutely continuous because the spectral measure is equivalent to Lebesgue measure on $[0,\infty)$: the operator is unitarily equivalent to multiplication by $\vert \xi \vert^{2}$ on $L^{2}(\mathbb{R}^{n})$, and the spectral measure is the pushforward of Lebesgue measure under the map $\xi\mapsto \vert \xi \vert^{2}$.
 
 This example illustrates the fundamental difference between bounded and unbounded domains: on bounded domains, the Laplacian has discrete spectrum (eigenvalues), while on unbounded domains, the spectrum is continuous. The continuous spectrum reflects the fact that plane waves are not normalizable but still represent physically meaningful scattering states in quantum mechanics.
 
@@ -195,15 +194,15 @@ Prove Stone's theorem: a densely defined operator $A$ on a Hilbert space $H$ gen
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-For the forward direction, suppose $A$ is self-adjoint. By the spectral theorem, there exists a projection-valued measure $E$ such that $A=\int \lambda\,dE(\lambda)$. Define $U(t)=e^{itA}=\int e^{it\lambda}\,dE(\lambda)$. Since $\mid e^{it\lambda} \mid=1$, $U(t)$ is unitary. The group property $U(t+s)=U(t)U(s)$ follows from $e^{i(t+s)\lambda}=e^{it\lambda}e^{is\lambda}$.
+For the forward direction, suppose $A$ is self-adjoint. By the spectral theorem, there exists a projection-valued measure $E$ such that $A=\int \lambda\,dE(\lambda)$. Define $U(t)=e^{itA}=\int e^{it\lambda}\,dE(\lambda)$. Since $\vert e^{it\lambda} \vert=1$, $U(t)$ is unitary. The group property $U(t+s)=U(t)U(s)$ follows from $e^{i(t+s)\lambda}=e^{it\lambda}e^{is\lambda}$.
 
 Strong continuity follows from the spectral theorem: for any $u\in H$,
 
 $$
-\|U(t)u-u\|^{2}=\int \mid e^{it\lambda}-1 \mid^{2}d\|E(\lambda)u\|^{2},
+\|U(t)u-u\|^{2}=\int \vert e^{it\lambda}-1 \vert^{2}d\|E(\lambda)u\|^{2},
 $$
 
-and by dominated convergence, this tends to zero as $t\to 0$ since $\mid e^{it\lambda}-1 \mid^{2}\le 4$ and $\lim_{t\to 0}\mid e^{it\lambda}-1 \mid^{2}=0$.
+and by dominated convergence, this tends to zero as $t\to 0$ since $\vert e^{it\lambda}-1 \vert^{2}\le 4$ and $\lim_{t\to 0}\vert e^{it\lambda}-1 \vert^{2}=0$.
 
 The generator of $U(t)$ is $A$: for $u\in D(A)$,
 
@@ -240,7 +239,7 @@ Conversely, if the Cauchy problem is well-posed, then for each $u_{0}\in H$, the
 
 For the heat equation with $A=\Delta$ on $D(A)=H^{2}\cap H^{1}_{0}$, we need to verify the Hille–Yosida conditions. The operator is densely defined (smooth functions with compact support are dense) and closed (as a differential operator with boundary conditions).
 
-For $\lambda>0$, we need to show that $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$. Using the spectral decomposition, if $A$ has eigenvalues $\{\lambda_{n}\}$ with $\lambda_{n}<0$ (since $\Delta$ is negative-definite), then $R(\lambda,A)$ has eigenvalues $1/(\lambda_{n}-\lambda)$. For $\lambda>0$ and $\lambda_{n}<0$, we have $\mid \lambda_{n}-\lambda \mid>\lambda$, so $\|R(\lambda,A)\|\le 1/\lambda$.
+For $\lambda>0$, we need to show that $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$. Using the spectral decomposition, if $A$ has eigenvalues $\{\lambda_{n}\}$ with $\lambda_{n}<0$ (since $\Delta$ is negative-definite), then $R(\lambda,A)$ has eigenvalues $1/(\lambda_{n}-\lambda)$. For $\lambda>0$ and $\lambda_{n}<0$, we have $\vert \lambda_{n}-\lambda \vert>\lambda$, so $\|R(\lambda,A)\|\le 1/\lambda$.
 
 Therefore, $A$ generates a contraction semigroup, and the heat equation is well-posed.
 
