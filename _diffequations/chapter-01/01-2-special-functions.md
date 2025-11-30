@@ -67,13 +67,17 @@ Merging singularities (confluence) produces equations with fewer regular singula
   x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,
   $$
 
-  whose solutions $J_{\nu}$ arise as confluent limits of ${}_2F_{1}$.
+  whose solutions $J_{\nu}$ arise as confluent limits of the hypergeometric function ${}_2F_{1}$.
 
 **Bessel Functions as Confluent Limits**
 
-Derive $J_{0}$ as a limit of ${}_2F_{1}$.
+Derive $J_{0}$ as a limit of the hypergeometric function ${}_2F_{1}$.
 
-Start from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
+Start from the hypergeometric function
+
+$${}_2F_{1}(a,b;c;z)$$
+
+with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
 
 $$
 J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
@@ -225,7 +229,11 @@ The following problems synthesize the concepts of hypergeometric functions, conf
 
 ### Challenge 1: Hypergeometric to Bessel Connection
 
-Starting from the hypergeometric function ${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
+Starting from the hypergeometric function
+
+$${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z),$$
+
+show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
 
 *(Hint: Use the limit representation of the Pochhammer symbol and Stirling's approximation for the Gamma function. Consider the scaling $z = -x^2/c$ as $c \to \infty$.)*
 

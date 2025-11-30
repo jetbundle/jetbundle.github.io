@@ -252,7 +252,11 @@ tying phase-space volume change to $\operatorname{tr} A$.
 
 Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.
 
-With $A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$, eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield
+With
+
+$$A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix},$$
+
+eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield
 
 $$
 \mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1 \\ -2 \end{pmatrix}.
