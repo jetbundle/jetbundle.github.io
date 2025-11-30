@@ -28,10 +28,10 @@ $$
 the main contribution arises near the global maximum of $h$. If $h$ has a unique interior maximum at $x_{0}$ with $h''(x_{0})<0$, Taylor expansion gives
 
 $$
-I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\mid h''(x_{0}) \mid}}.
+I(M)\sim g(x_{0})e^{M h(x_{0})}\sqrt{\frac{2\pi}{M\vert h''(x_{0}) \vert}}.
 $$
 
-When the maximum occurs at an endpoint with $h'(a)\neq 0$, the scaling changes to $I(M)\sim g(a)e^{M h(a)}/(M\mid h'(a) \mid)$, illustrating the discontinuous dependence on critical-point geometry.
+When the maximum occurs at an endpoint with $h'(a)\neq 0$, the scaling changes to $I(M)\sim g(a)e^{M h(a)}/(M\vert h'(a) \vert)$, illustrating the discontinuous dependence on critical-point geometry.
 
 **Endpoint Laplace Method**
 
@@ -86,7 +86,7 @@ $$
 rapid oscillations cancel except near stationary points where $h'(x_{0})=0$. Expanding $h$ quadratically yields
 
 $$
-I(M)\sim g(x_{0})e^{i M h(x_{0})}\sqrt{\frac{2\pi}{M\mid h''(x_{0}) \mid}}e^{i\frac{\pi}{4}\operatorname{sgn}(h''(x_{0}))},
+I(M)\sim g(x_{0})e^{i M h(x_{0})}\sqrt{\frac{2\pi}{M\vert h''(x_{0}) \vert}}e^{i\frac{\pi}{4}\operatorname{sgn}(h''(x_{0}))},
 $$
 
 introducing the Maslov phase shift $\pi/4$ that later reappears in semiclassical quantization.
@@ -141,7 +141,7 @@ Oscillatory behavior occurs where $Q>0$, exponential where $Q<0$. Near turning p
 
 Solve $\epsilon^{2}y''+(1-x^{2})y=0$ via WKB.
 
-The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $\mid x \mid <1$ is
+The action integral $\int_{-1}^{1}\sqrt{1-x^{2}}\,dx=\pi/2$ leads to the Bohr–Sommerfeld rule $(n+\tfrac{1}{2})\pi\epsilon=\pi/2$, giving energy levels $E_{n}=(n+\tfrac{1}{2})\epsilon$. The WKB wavefunction in $\vert x \vert <1$ is
 
 $$
 y(x)\sim \frac{1}{(1-x^{2})^{1/4}}\cos(\frac{1}{\epsilon}\int^{x}\sqrt{1-t^{2}}\,dt - \frac{\pi}{4}).
@@ -151,7 +151,7 @@ $$
 
 Estimate tunneling in $V(x)=x^{4}-2x^{2}$.
 
-In the forbidden region $\mid x \mid >1$, the WKB solution is $y\sim \mid Q \mid^{-1/4}\exp(-\epsilon^{-1}\int_{1}^{x}\sqrt{\mid Q \mid}\,dt)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
+In the forbidden region $\vert x \vert >1$, the WKB solution is $y\sim \vert Q \vert^{-1/4}\exp(-\epsilon^{-1}\int_{1}^{x}\sqrt{\vert Q \vert}\,dt)$. The splitting of nearly degenerate states is $\Delta E\sim e^{-2S/\epsilon}$ where $S=\int_{1}^{\infty}\sqrt{x^{4}-2x^{2}-1}\,dx\approx 1.44$.
 
 WKB connects quantum mechanics to classical mechanics: the phase $\int \sqrt{Q} \, dx$ is the classical action, and the amplitude $Q^{-1/4}$ reflects the classical density of trajectories. Tunneling probabilities are exponentially suppressed by the action barrier.
 
@@ -168,7 +168,7 @@ $$
 and
 
 $$
-\operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\mid x \mid^{1/4}}\sin(\frac{2}{3}\mid x \mid^{3/2}+\frac{\pi}{4}),\quad x\to -\infty.
+\operatorname{Ai}(x)\sim \frac{1}{\sqrt{\pi}\vert x \vert^{1/4}}\sin(\frac{2}{3}\vert x \vert^{3/2}+\frac{\pi}{4}),\quad x\to -\infty.
 $$
 
 Matching these yields the $\pi/4$ phase shift in the oscillatory region.
@@ -252,7 +252,7 @@ For $x > 1$, we have $Q(x) > 0$ as well, but we need to match through the turnin
 Using the Airy function asymptotics:
 
 - For $z \to +\infty$: $\operatorname{Ai}(z) \sim (2\sqrt{\pi} z^{1/4})^{-1} e^{-2z^{3/2}/3}$
-- For $z \to -\infty$: $\operatorname{Ai}(z) \sim (\sqrt{\pi} \mid z \mid^{1/4})^{-1} \sin(2\mid z \mid^{3/2}/3 + \pi/4)$
+- For $z \to -\infty$: $\operatorname{Ai}(z) \sim (\sqrt{\pi} \vert z \vert^{1/4})^{-1} \sin(2\vert z \vert^{3/2}/3 + \pi/4)$
 
 Matching through the turning point introduces the $\pi/4$ phase shift, connecting the oscillatory solution on one side to the appropriate linear combination on the other. Turning points require local analysis beyond WKB because the WKB ansatz breaks down where $Q(x) = 0$, necessitating a separate treatment of the transition region. Airy functions provide the universal transition functions near simple turning points: when $Q(x)$ has a simple zero, the local behavior is always described by Airy's equation after appropriate scaling. The $\pi/4$ phase shift is a topological invariant of the turning point structure, appearing universally whenever one connects oscillatory and exponential regions through a simple turning point, reflecting the geometric structure of the solution space near these critical points.
 
@@ -274,7 +274,7 @@ Stationary points satisfy $h'(\theta) = -3\sin \theta \cos^2 \theta = 0$, giving
 At non-degenerate points, we get the standard stationary phase result:
 
 $$
-I(\lambda) \sim \sqrt{\frac{2\pi}{\lambda \mid h''(\theta_0) \mid}} e^{i\lambda h(\theta_0) \pm i\pi/4}.
+I(\lambda) \sim \sqrt{\frac{2\pi}{\lambda \vert h''(\theta_0) \vert}} e^{i\lambda h(\theta_0) \pm i\pi/4}.
 $$
 
 At degenerate points, we must examine higher derivatives. At $\theta = \pi/2$, we have $h'''(\pi/2) = 0$ but $h^{(4)}(\pi/2) \neq 0$. Expanding to quartic order:

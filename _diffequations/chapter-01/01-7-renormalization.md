@@ -19,13 +19,13 @@ The chapter concludes with a crisis: perturbation series often diverge factorial
 
 ## Divergent Series and Gevrey Classes
 
-Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\mid f(x)-\sum_{n=0}^{N}a_{n}x^{n} \mid =O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\mid a_{n} \mid \le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\mid x \mid)$, producing an exponentially small remainder $\sim \exp(-1/(K\mid x \mid))$ that encodes non-perturbative effects invisible to any Taylor series.
+Formal perturbation series for differential equations typically diverge. An asymptotic expansion $f(x)\sim \sum a_{n}x^{n}$ (Poincaré sense) satisfies $\vert f(x)-\sum_{n=0}^{N}a_{n}x^{n} \vert =O(x^{N+1})$ as $x\to 0$. The coefficients often obey Gevrey-1 bounds $\vert a_{n} \vert \le C K^{n} n!$, implying factorial divergence. The optimal truncation index is $N_{\text{opt}}\approx 1/(K\vert x \vert)$, producing an exponentially small remainder $\sim \exp(-1/(K\vert x \vert))$ that encodes non-perturbative effects invisible to any Taylor series.
 
 **Gevrey-1 Series and Optimal Truncation**
 
 Analyze $\sum_{n=0}^{\infty}(-1)^{n}n!x^{n}$.
 
-The ratio $\mid a_{n+1}x^{n+1}/(a_{n}x^{n}) \mid =(n+1)\mid x \mid$ implies the least term occurs near $N_{\text{opt}}\approx 1/\mid x \mid$. Truncating at this index yields an error $O(e^{-1/\mid x \mid})$, the same order as the non-perturbative contribution absent from the series.
+The ratio $\vert a_{n+1}x^{n+1}/(a_{n}x^{n}) \vert =(n+1)\vert x \vert$ implies the least term occurs near $N_{\text{opt}}\approx 1/\vert x \vert$. Truncating at this index yields an error $O(e^{-1/\vert x \vert})$, the same order as the non-perturbative contribution absent from the series.
 
 Optimal truncation achieves exponential accuracy despite divergence. The truncation point balances between including too many terms (divergence) and too few (large truncation error), revealing that even divergent series contain useful information.
 
@@ -129,7 +129,7 @@ For the asymptotic series $f(x) = \sum_{n=0}^{\infty} (-1)^n n! x^n$ as $x \to 0
 For the series $\sum_{n=0}^{\infty} (-1)^n n! x^n$, the $n$-th term is $a_n = (-1)^n n! x^n$. The ratio of consecutive terms is:
 
 $$
-\mid \frac{a_{n+1}}{a_n} \mid = (n+1) x.
+\vert \frac{a_{n+1}}{a_n} \vert = (n+1) x.
 $$
 
 The optimal truncation occurs when this ratio equals 1, i.e., when $(n+1)x = 1$, so $N_{\text{opt}} \approx 1/x$ (taking the integer part).
@@ -156,7 +156,7 @@ This demonstrates that non-perturbative effects of order $e^{-1/x}$ cannot be ca
 
 For the divergent series $A(x) = \sum_{n=0}^{\infty} n! x^{n+1}$, construct the Borel transform $\mathcal{B}A(t)$ and show that it has a singularity at $t = 1$. Compute the lateral Borel sums $\mathcal{S}^{\pm}(x)$ by choosing integration contours above and below the singularity. Show that their difference is exponentially small and interpret this as a Stokes jump.
 
-*(Hint: The Borel transform is $\mathcal{B}A(t) = \sum_{n=0}^{\infty} t^n = 1/(1-t)$ for $\mid t \mid < 1$. The Laplace integral must be defined with contours avoiding the pole at $t = 1$.)*
+*(Hint: The Borel transform is $\mathcal{B}A(t) = \sum_{n=0}^{\infty} t^n = 1/(1-t)$ for $\vert t \vert < 1$. The Laplace integral must be defined with contours avoiding the pole at $t = 1$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
@@ -167,7 +167,7 @@ $$
 \mathcal{B}A(t) = \sum_{n=0}^{\infty} \frac{n!}{n!} t^n = \sum_{n=0}^{\infty} t^n = \frac{1}{1-t}
 $$
 
-for $\mid t \mid < 1$, with analytic continuation having a pole at $t = 1$.
+for $\vert t \vert < 1$, with analytic continuation having a pole at $t = 1$.
 
 The Borel sum is:
 

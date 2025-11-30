@@ -25,7 +25,7 @@ $$
 \mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.
 $$
 
-If $f$ is locally integrable on $[0,\infty)$ and satisfies $\mid f(t) \mid \leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$. Integration by parts algebraizes differentiation:
+If $f$ is locally integrable on $[0,\infty)$ and satisfies $\vert f(t) \vert \leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$. Integration by parts algebraizes differentiation:
 
 $$
 \mathcal{L}\{f'\}(s)=sF(s)-f(0), \qquad \mathcal{L}\{f^{(n)}\}(s)=s^{n}F(s)-\sum_{k=1}^{n}s^{n-k}f^{(k-1)}(0),
@@ -134,7 +134,7 @@ $$
 **Theorem (Plancherel).** The transform extends to a unitary map on $L^{2}(\mathbb{R})$:
 
 $$
-\|f\|_{L^{2}}^{2}=\int_{-\infty}^{\infty}\mid f(x) \mid^{2}\,dx=\int_{-\infty}^{\infty}\mid \hat{f}(\xi) \mid^{2}\,d\xi=\|\hat{f}\|_{L^{2}}^{2}.
+\|f\|_{L^{2}}^{2}=\int_{-\infty}^{\infty}\vert f(x) \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert \hat{f}(\xi) \vert^{2}\,d\xi=\|\hat{f}\|_{L^{2}}^{2}.
 $$
 
 Differentiation becomes multiplication,
@@ -149,7 +149,7 @@ $$
 \Delta x\,\Delta \xi \geq \frac{1}{4\pi},
 $$
 
-where the variances are defined using $\mid f \mid^{2}$ and $\mid \hat{f} \mid^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.
+where the variances are defined using $\vert f \vert^{2}$ and $\vert \hat{f} \vert^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.
 
 **Gaussian Fourier Transform and Plancherel**
 
@@ -170,7 +170,7 @@ $$
 The Gaussian is self-reciprocal under the Fourier transform. Moreover,
 
 $$
-\int_{-\infty}^{\infty}\mid e^{-\pi x^{2}} \mid^{2}\,dx=\int_{-\infty}^{\infty}\mid e^{-\pi \xi^{2}} \mid^{2}\,d\xi=\frac{1}{\sqrt{2}},
+\int_{-\infty}^{\infty}\vert e^{-\pi x^{2}} \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert e^{-\pi \xi^{2}} \vert^{2}\,d\xi=\frac{1}{\sqrt{2}},
 $$
 
 confirming Plancherel's theorem for this prototype.
@@ -187,7 +187,7 @@ $$
 \hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi \xi}=\operatorname{sinc}(2\xi).
 $$
 
-The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\mid \hat{f}(\xi) \mid^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.
+The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\vert \hat{f}(\xi) \vert^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.
 
 The uncertainty principle is not merely a quantum mechanical curiosity—it reflects the fundamental trade-off between localization in space and frequency. Compact support necessarily creates slow decay in the frequency domain.
 
@@ -381,7 +381,7 @@ The convolution representation elegantly separates the system dynamics—encoded
 Prove the Heisenberg uncertainty principle $\Delta x \cdot \Delta \xi \geq \frac{1}{4\pi}$ for any function $f \in L^2(\mathbb{R})$ with $\|f\|_{L^2} = 1$, where
 
 $$
-(\Delta x)^2 = \int_{-\infty}^{\infty} (x - \bar{x})^2 \mid f(x) \mid^2 \, dx, \quad \bar{x} = \int_{-\infty}^{\infty} x \mid f(x) \mid^2 \, dx,
+(\Delta x)^2 = \int_{-\infty}^{\infty} (x - \bar{x})^2 \vert f(x) \vert^2 \, dx, \quad \bar{x} = \int_{-\infty}^{\infty} x \vert f(x) \vert^2 \, dx,
 $$
 
 and similarly for $\Delta \xi$. Show that equality holds if and only if $f$ is a Gaussian. Use this to construct the optimal wave packet minimizing the uncertainty product.
@@ -394,28 +394,28 @@ and similarly for $\Delta \xi$. Show that equality holds if and only if $f$ is a
 Without loss of generality, assume $\bar{x} = 0$ and $\bar{\xi} = 0$ by translation. We have
 
 $$
-(\Delta x)^2 = \int_{-\infty}^{\infty} x^2 \mid f(x) \mid^2 \, dx, \quad (\Delta \xi)^2 = \int_{-\infty}^{\infty} \xi^2 \mid \hat{f}(\xi) \mid^2 \, d\xi.
+(\Delta x)^2 = \int_{-\infty}^{\infty} x^2 \vert f(x) \vert^2 \, dx, \quad (\Delta \xi)^2 = \int_{-\infty}^{\infty} \xi^2 \vert \hat{f}(\xi) \vert^2 \, d\xi.
 $$
 
 By Plancherel's theorem, $\xi \hat{f}(\xi)$ is the Fourier transform of $\frac{1}{2\pi i} f'(x)$. The Cauchy–Schwarz inequality gives
 
 $$
-\mid \int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx \mid^2 \leq \int_{-\infty}^{\infty} x^2 \mid f(x) \mid^2 \, dx \cdot \int_{-\infty}^{\infty} \mid f'(x) \mid^2 \, dx.
+\vert \int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx \vert^2 \leq \int_{-\infty}^{\infty} x^2 \vert f(x) \vert^2 \, dx \cdot \int_{-\infty}^{\infty} \vert f'(x) \vert^2 \, dx.
 $$
 
 Integration by parts (with boundary terms vanishing for $f \in L^2$) yields
 
 $$
-\int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx = -\int_{-\infty}^{\infty} \overline{f'(x)} f(x) \, dx - \int_{-\infty}^{\infty} \mid f(x) \mid^2 \, dx = -\frac{1}{2} - \int_{-\infty}^{\infty} \mid f(x) \mid^2 \, dx,
+\int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx = -\int_{-\infty}^{\infty} \overline{f'(x)} f(x) \, dx - \int_{-\infty}^{\infty} \vert f(x) \vert^2 \, dx = -\frac{1}{2} - \int_{-\infty}^{\infty} \vert f(x) \vert^2 \, dx,
 $$
 
 where we used $\int x (\overline{f} f')' = 0$. This gives
 
 $$
-\mid \int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx \mid = \frac{1}{2}.
+\vert \int_{-\infty}^{\infty} x \overline{f(x)} f'(x) \, dx \vert = \frac{1}{2}.
 $$
 
-By Plancherel, $\int \mid f'(x) \mid^2 \, dx = 4\pi^2 \int \xi^2 \mid \hat{f}(\xi) \mid^2 \, d\xi = 4\pi^2 (\Delta \xi)^2$. Therefore,
+By Plancherel, $\int \vert f'(x) \vert^2 \, dx = 4\pi^2 \int \xi^2 \vert \hat{f}(\xi) \vert^2 \, d\xi = 4\pi^2 (\Delta \xi)^2$. Therefore,
 
 $$
 \frac{1}{4} \leq (\Delta x)^2 \cdot 4\pi^2 (\Delta \xi)^2,

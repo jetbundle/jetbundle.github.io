@@ -31,7 +31,7 @@ $$
 {}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.
 $$
 
-The series converges for $\mid x \mid < 1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer's 24 solutions, highlighting the group structure of the solution space.
+The series converges for $\vert x \vert < 1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer's 24 solutions, highlighting the group structure of the solution space.
 
 **Hypergeometric Series Solution**
 
@@ -51,7 +51,7 @@ $$
 
 which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
 
-This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\mid x \mid < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.
+This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.
 
 ## Confluent Limits and Classical Descendants
 
@@ -151,7 +151,7 @@ $$
 \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
 $$
 
-valid for $\mid \arg x \mid <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
+valid for $\vert \arg x \vert <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.
 
 The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The solution's analytic form jumps discontinuously across certain rays, encoding topological information about the Riemann surface structure that cannot be captured by local series expansions alone.
 
@@ -183,14 +183,14 @@ $$
 
 integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.
 
-**Fourier–Legendre Series for $\mid x \mid$**
+**Fourier–Legendre Series for $\vert x \vert$**
 
-Expand $f(x)=\mid x \mid$ on $[-1,1]$.
+Expand $f(x)=\vert x \vert$ on $[-1,1]$.
 
 Coefficients are
 
 $$
-c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\mid x \mid P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
+c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\vert x \vert P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
 $$
 
 yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.
@@ -208,7 +208,7 @@ $$
 and Parseval's identity
 
 $$
-\int_{0}^{1}x\mid f(x) \mid^{2}\,dx=\sum_{n=1}^{\infty}\mid \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \mid^{2}.
+\int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\vert \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \vert^{2}.
 $$
 
 This shows how Bessel functions provide a Fourier-like expansion for radial problems.
@@ -327,7 +327,7 @@ $$
 Parseval's identity holds:
 
 $$
-\int_{S^2} \mid f(\theta, \phi) \mid^2 \, d\Omega = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} \mid c_{\ell m} \mid^2.
+\int_{S^2} \vert f(\theta, \phi) \vert^2 \, d\Omega = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} \vert c_{\ell m} \vert^2.
 $$
 
 This completeness result is fundamentally a Hilbert-space property, meaning convergence occurs in the $L^2$ norm rather than pointwise. This expansion is central to solving Laplace's equation in spherical domains, where the angular dependence must be decomposed into spherical harmonics. The structure reflects the rotational symmetry of the sphere: each $\ell$ corresponds to an irreducible representation of $SO(3)$, the rotation group in three dimensions, and the $2\ell+1$ functions $Y_\ell^m$ for fixed $\ell$ span the representation space of dimension $2\ell+1$.
@@ -351,10 +351,10 @@ $$
 
 where $z^{3/2}$ is defined with a branch cut along the negative real axis.
 
-For $\operatorname{Ai}(z)$, the dominant asymptotic in the sector $\mid \arg z \mid < \pi/3$ is
+For $\operatorname{Ai}(z)$, the dominant asymptotic in the sector $\vert \arg z \vert < \pi/3$ is
 
 $$
-\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp(-\frac{2}{3} z^{3/2}), \quad z \to \infty, \quad \mid \arg z \mid < \pi/3.
+\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp(-\frac{2}{3} z^{3/2}), \quad z \to \infty, \quad \vert \arg z \vert < \pi/3.
 $$
 
 The Stokes lines occur where $\Re(z^{3/2}) = 0$, which gives $\arg z = \pm \pi/3, \pm \pi$.

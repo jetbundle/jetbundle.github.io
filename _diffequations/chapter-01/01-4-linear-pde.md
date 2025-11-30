@@ -66,7 +66,7 @@ $$
 subject to homogeneous boundary conditions. The Rayleigh quotient
 
 $$
-\lambda_{1}=\min_{u\neq 0}\frac{\int_{\Omega}\mid \nabla u \mid^{2}dx}{\int_{\Omega}u^{2}dx}
+\lambda_{1}=\min_{u\neq 0}\frac{\int_{\Omega}\vert \nabla u \vert^{2}dx}{\int_{\Omega}u^{2}dx}
 $$
 
 characterizes the principal eigenvalue. Maximum principles imply interior extrema occur on $\partial\Omega$, providing uniqueness and a priori bounds without explicit solutions.
@@ -275,7 +275,7 @@ This analysis reveals that completeness is fundamentally an $L^2$ property rathe
 Solve the one-dimensional wave equation $u_{tt} - c^2 u_{xx} = 0$ on $\mathbb{R} \times (0,\infty)$ with initial data
 
 $$
-u(x,0) = \begin{cases} 1 & \text{if } \mid x \mid < a, \\ 0 & \text{if } \mid x \mid > a, \end{cases} \qquad u_t(x,0) = 0.
+u(x,0) = \begin{cases} 1 & \text{if } \vert x \vert < a, \\ 0 & \text{if } \vert x \vert > a, \end{cases} \qquad u_t(x,0) = 0.
 $$
 
 Use d'Alembert's formula to construct the solution and identify the regions in the $(x,t)$ plane where the solution takes different forms. Analyze the behavior at the wave fronts $x \pm ct = \pm a$.

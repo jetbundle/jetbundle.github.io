@@ -25,7 +25,7 @@ $$
 y(x;\epsilon)\sim \sum_{n=0}^{\infty}\epsilon^{n}y_{n}(x).
 $$
 
-Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system $y_{0}'=f(x,y_{0},0)$ followed by linear inhomogeneous equations for $y_{n}$ driven by $y_{0},\dots,y_{n-1}$. Analyticity of $f$ in $y$ and $\epsilon$ guarantees convergence for $\mid \epsilon \mid <R$ on finite intervals. The series fails when $\epsilon$ multiplies the highest derivative or when secular terms accumulate over long times, motivating singular and multiscale techniques.
+Substituting and expanding $f$ about $\epsilon=0$ yields the unperturbed system $y_{0}'=f(x,y_{0},0)$ followed by linear inhomogeneous equations for $y_{n}$ driven by $y_{0},\dots,y_{n-1}$. Analyticity of $f$ in $y$ and $\epsilon$ guarantees convergence for $\vert \epsilon \vert <R$ on finite intervals. The series fails when $\epsilon$ multiplies the highest derivative or when secular terms accumulate over long times, motivating singular and multiscale techniques.
 
 **Regular Perturbation of a Linear ODE**
 
@@ -51,7 +51,7 @@ $$
 y(x;\epsilon)\sim \sum_{n=0}^{\infty}\frac{\epsilon^{n}}{3^{n}(n+1)}e^{-(n+1)x}
 $$
 
-has radius $\mid \epsilon \mid <3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.
+has radius $\vert \epsilon \vert <3$, yet the exact solution $y=e^{-x}/[1-\frac{\epsilon}{3}(1-e^{-x})]$ is singular at $\epsilon=3/(1-e^{-x})$. The nearest pole in the complex $\epsilon$-plane controls convergence, illustrating asymptotic (non-convergent) behavior.
 
 The radius of convergence is controlled by the nearest singularity in the complex $\epsilon$-plane. Even when the exact solution exists for all time, the perturbation series may diverge, revealing that convergence is a delicate property.
 
@@ -116,7 +116,7 @@ Solve $y''+y+\epsilon y^{3}+\epsilon y'=0$.
 Introduce $t_{0}=t$, $t_{1}=\epsilon t$, and expand $y=Y_{0}(t_{0},t_{1})+\epsilon Y_{1}+\cdots$. The $O(1)$ solution is $Y_{0}=A(t_{1})e^{i t_{0}}+\bar{A}(t_{1})e^{-i t_{0}}$. The $O(\epsilon)$ equation yields the solvability condition
 
 $$
-2A'(t_{1})+(4\mid A \mid^{2}+1)A=0,
+2A'(t_{1})+(4\vert A \vert^{2}+1)A=0,
 $$
 
 showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.
@@ -202,7 +202,7 @@ Using multiple scales with $y(t) = Y_0(t_0, t_1) + \epsilon Y_1(t_0, t_1) + \cdo
 Substituting $Y_0$ and removing secular terms (coefficients of $e^{\pm i t_0}$) gives:
 
 $$
-2 A'(t_1) = A(t_1) (1 - \mid A(t_1) \mid^2).
+2 A'(t_1) = A(t_1) (1 - \vert A(t_1) \vert^2).
 $$
 
 Writing $A(t_1) = \frac{1}{2} a(t_1) e^{i \phi(t_1)}$, the amplitude equation is:
@@ -236,7 +236,7 @@ which is the Airy equation (after rescaling).
 
 The Airy function $\operatorname{Ai}(\xi)$ has the asymptotics:
 - For $\xi \to +\infty$: $\operatorname{Ai}(\xi) \sim (2\sqrt{\pi} \xi^{1/4})^{-1} \exp(-2\xi^{3/2}/3)$ (exponentially decaying)
-- For $\xi \to -\infty$: $\operatorname{Ai}(\xi) \sim (\sqrt{\pi} \mid \xi \mid^{1/4})^{-1} \sin(2\mid \xi \mid^{3/2}/3 + \pi/4)$ (oscillatory)
+- For $\xi \to -\infty$: $\operatorname{Ai}(\xi) \sim (\sqrt{\pi} \vert \xi \vert^{1/4})^{-1} \sin(2\vert \xi \vert^{3/2}/3 + \pi/4)$ (oscillatory)
 
 Matching these to the WKB solutions on either side provides the connection formulas, including the $\pi/4$ phase shift. Turning points are where the WKB approximation becomes singular: at these locations, $Q(x) = 0$ causes the phase integral $\int \sqrt{Q} \, dx$ to become undefined, breaking down the WKB ansatz. Local analysis near turning points reveals the global connection formulas: by solving the equation exactly in a small neighborhood and matching to WKB solutions on both sides, one obtains relations that connect solutions across the turning point, determining how oscillatory and exponential behaviors are linked. The method of matched asymptotic expansions unifies WKB and singular perturbation theory: both rely on constructing separate approximations in different regions and connecting them through matching, with the turning point serving as the boundary between regions where different asymptotic forms are valid.
 

@@ -28,7 +28,7 @@ Before seeking a formula, we must establish that a solution exists. The fundamen
 
 A function $f$ is **Lipschitz** in $y$ if there exists a constant $K$ such that for all $y_1, y_2$ in the domain:
 
-$$\mid f(x, y_1) - f(x, y_2) \mid \leq K \mid y_1 - y_2 \mid$$
+$$\vert f(x, y_1) - f(x, y_2) \vert \leq K \vert y_1 - y_2 \vert$$
 
 This condition prevents the vector field from changing "infinitely fast," ensuring trajectories cannot split or merge.
 
@@ -50,24 +50,24 @@ $$
 y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6},
 $$
 
-so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\mid x \mid < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.
+so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\vert x \vert < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error.
 
-This demonstrates that the abstract fixed-point argument yields a constructive algorithm. The iteration converges geometrically, with error bounded by $K^n \mid x \mid^n / n!$.
+This demonstrates that the abstract fixed-point argument yields a constructive algorithm. The iteration converges geometrically, with error bounded by $K^n \vert x \vert^n / n!$.
 
 However, when the Lipschitz condition fails, determinism breaks down. This is our first encounter with the limitations of classical analysis.
 
 **Failure of Determinism: Non-Uniqueness**
 
-Consider the initial value problem $y' = \sqrt{\mid y \mid}$ with $y(0) = 0$.
+Consider the initial value problem $y' = \sqrt{\vert y \vert}$ with $y(0) = 0$.
 
-The function $f(y) = \sqrt{\mid y \mid}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:
+The function $f(y) = \sqrt{\vert y \vert}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:
 
 $$\int y^{-1/2} dy = \int dx \implies 2\sqrt{y} = x \implies y = \frac{x^2}{4} \quad (x \geq 0)$$
 
 Since
 
 $$
-\frac{\mid \sqrt{\mid y_{1} \mid} - \sqrt{\mid y_{2} \mid} \mid}{\mid y_{1} - y_{2} \mid} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
+\frac{\vert \sqrt{\vert y_{1} \vert} - \sqrt{\vert y_{2} \vert} \vert}{\vert y_{1} - y_{2} \vert} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
 $$
 
 the Lipschitz condition fails and uniqueness is lost. A particle at the origin can wait for an arbitrary time before spontaneously moving along the parabola. The physical history is erased at the singularity.
@@ -154,7 +154,7 @@ reducing the problem to quadrature.
 
 Solve $y' = xy$ with $y(0) = 1$.
 
-We have $dy/y = x\,dx$, leading to $\ln \mid y \mid = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.
+We have $dy/y = x\,dx$, leading to $\ln \vert y \vert = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.
 
 This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The solution grows super-exponentially, faster than any polynomial.
 
@@ -170,7 +170,7 @@ The temperature approaches the ambient temperature exponentially, with rate cons
 
 Solve $y' = ry(1 - y/K)$.
 
-Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \mid \frac{y}{K - y} \mid = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.
+Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \vert \frac{y}{K - y} \vert = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.
 
 The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and many other bounded growth phenomena.
 
