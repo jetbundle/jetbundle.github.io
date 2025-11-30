@@ -49,7 +49,11 @@ $$
 y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
 $$
 
-which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
+which matches
+
+$${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$$
+
+and demonstrates how power-series solutions encode hypergeometric behavior.
 
 This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.
 
