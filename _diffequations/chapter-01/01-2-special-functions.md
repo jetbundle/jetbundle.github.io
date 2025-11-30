@@ -52,7 +52,7 @@ The series converges for $\mid x \mid < 1$ and extends elsewhere by analytic con
 > y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
 > $$
 
-> which matches ${{}_2F_1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
+> which matches ${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$ and demonstrates how power-series solutions encode hypergeometric behavior.
 
 This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\mid x \mid < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.
 
@@ -66,16 +66,16 @@ Merging singularities (confluence) produces equations with fewer regular singula
   x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,
   $$
 
-  whose solutions $J_{\nu}$ arise as confluent limits of ${{}_2F_1}$.
+  whose solutions $J_{\nu}$ arise as confluent limits of ${}_2F_1$.
 
 > **Bessel Functions as Confluent Limits**
 
-> Derive $J_{0}$ as a limit of ${{}_2F_1}$.
+> Derive $J_{0}$ as a limit of ${}_2F_1$.
 
-> Start from ${{}_2F_1}\left(a,b;c;z\right)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
+> Start from ${}_2F_1\left(a,b;c;z\right)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives
 
 > $$
-> J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{{}_2F_1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).
+> J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_1\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).
 > $$
 
 > For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{z}{2}\right)^{2k}$, recovering the Bessel series and illustrating confluence.
@@ -224,14 +224,14 @@ The following problems synthesize the concepts of hypergeometric functions, conf
 
 ### Challenge 1: Hypergeometric to Bessel Connection
 
-Starting from the hypergeometric function ${{}_2F_1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
+Starting from the hypergeometric function ${}_2F_1\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.
 
 *(Hint: Use the limit representation of the Pochhammer symbol and Stirling's approximation for the Gamma function. Consider the scaling $z = -x^2/c$ as $c \to \infty$.)*
 
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Starting with ${{}_2F_1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, we have
+Starting with ${}_2F_1\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right)$, we have
 
 $$
 {}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z\right) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.
