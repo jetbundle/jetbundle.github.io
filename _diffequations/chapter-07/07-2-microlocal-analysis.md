@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.2: Microlocal Analysis & Wave Front Sets
-
 ## Introduction
 
 In Chapter 2, we established the theory of distributions to handle singular solutions, identifying the **singular support** of a distribution $u$ as the set of points $x$ where $u$ is not smooth. However, this spatial localization is insufficient for hyperbolic dynamics. As observed in Chapter 3 via geometric optics, singularities do not simply exist at locations; they propagate along specific trajectories determined by momentum or frequency.
@@ -24,13 +22,13 @@ Microlocal analysis resolves this by lifting the analysis from the base manifold
 
 ### The Wave Front Set
 
-The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}'(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $\mid \xi \mid \to \infty$.
+The classical Fourier transform is global; it analyzes frequency content but destroys local spatial information. To analyze local regularity, we must localize the Fourier transform. A distribution $u \in \mathcal{D}'(X)$ is smooth at a point $x_0$ if, after multiplying by a smooth cutoff function $\phi \in C_c^\infty(X)$ with $\phi(x_0) \neq 0$, the Fourier transform $\widehat{\phi u}(\xi)$ decays rapidly in all directions as $\vert \xi \vert \to \infty$.
 
 A singularity occurs when this rapid decay fails. The wave front set identifies precisely *in which directions* the decay fails.
 
 **Definition 7.2.1 (Wave Front Set).** Let $X$ be a smooth manifold and $u \in \mathcal{D}'(X)$. A point $(x_0, \xi_0) \in T^*X \setminus \{0\}$ is **not** in the wave front set $WF(u)$ if there exists a neighborhood $U$ of $x_0$, a conic neighborhood $\Gamma$ of $\xi_0$, and a test function $\phi \in C_c^\infty(U)$ with $\phi(x_0) = 1$ such that for all $N \in \mathbb{N}$, there exists a constant $C_N$ satisfying:
 
-$$\mid \widehat{\phi u}(\xi) \mid \leq C_N (1 + \mid \xi \mid)^{-N}$$
+$$\vert \widehat{\phi u}(\xi) \vert \leq C_N (1 + \vert \xi \vert)^{-N}$$
 
 for all $\xi \in \Gamma$.
 
@@ -48,7 +46,7 @@ To manipulate wave front sets, we must generalize differential operators. A line
 
 **Definition 7.2.2 (Symbol Classes).** The symbol class $S^m_{1,0}(X)$, denoted $S^m$, consists of smooth functions $a(x, \xi)$ on $T^*X$ satisfying the estimates:
 
-$$\mid D_\xi^\alpha D_x^\beta a(x, \xi) \mid \leq C_{\alpha, \beta} (1 + \mid \xi \mid)^{m - \mid \alpha \mid}$$
+$$\vert D_\xi^\alpha D_x^\beta a(x, \xi) \vert \leq C_{\alpha, \beta} (1 + \vert \xi \vert)^{m - \vert \alpha \vert}$$
 
 for all multi-indices $\alpha, \beta$. The index $m$ is the order of the operator.
 
@@ -60,7 +58,7 @@ This class includes all differential operators, parametrices of elliptic operato
 
 The algebraic power of $\Psi$DOs lies in their closure under composition. If $A = \text{Op}(a)$ and $B = \text{Op}(b)$, their composition $A \circ B$ is a pseudodifferential operator with symbol $a \# b$. The **composition formula** provides an asymptotic expansion for this new symbol:
 
-$$(a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-\mid \alpha \mid}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).$$
+$$(a \# b)(x, \xi) \sim \sum_{\alpha} \frac{i^{-\vert \alpha \vert}}{\alpha!} \partial_\xi^\alpha a(x, \xi) \partial_x^\alpha b(x, \xi).$$
 
 This non-commutative product on the algebra of symbols corresponds to the quantization of the phase space. The leading term is the pointwise product $a(x, \xi)b(x, \xi)$, implying that to leading order, operators commute. The lower-order terms encode the non-commutativity arising from the Heisenberg uncertainty principle ($[x, \xi] \neq 0$).
 
@@ -111,7 +109,7 @@ This result rigorously validates the geometric optics of Chapter 3. The "rays" o
    $$\widehat{\phi \delta}(\xi_1,\xi_2) = \int \phi(x_1,x_2) \delta(x_1) e^{-i(x_1\xi_1 + x_2\xi_2)} dx = \psi(0)\chi(0) = 1$$
 
 3. **Decay Analysis:**
-   $\mid \widehat{\phi \delta}(\xi) \mid = 1$ for all $(\xi_1,\xi_2) \neq (0,0)$.
+   $\vert \widehat{\phi \delta}(\xi) \vert = 1$ for all $(\xi_1,\xi_2) \neq (0,0)$.
 
 4. **Conclusion:**
    No conic neighborhood $\Gamma$ exists where rapid decay occurs.
@@ -134,9 +132,9 @@ The Dirac delta function exhibits a unique wave front structure: it is singular 
    $$\widehat{\phi_0 u}(\xi) = \int \phi_0(x) e^{i(\xi_0 - \xi) \cdot x} dx = \widehat{\phi_0}(\xi - \xi_0)$$
 
 3. **Decay Analysis:**
-   **Around $\xi = \xi_0$:** $\mid \widehat{\phi_0 u}(\xi_0 + \eta) \mid = \mid \widehat{\phi_0}(\eta) \mid \leq C_N (1+\mid \eta \mid)^{-N}$.
+   **Around $\xi = \xi_0$:** $\vert \widehat{\phi_0 u}(\xi_0 + \eta) \vert = \vert \widehat{\phi_0}(\eta) \vert \leq C_N (1+\vert \eta \vert)^{-N}$.
 
-   **Away from $\xi_0$:** $\mid \widehat{\phi_0 u}(\xi) \mid = \mid \widehat{\phi_0}(\xi - \xi_0) \mid$ decays rapidly.
+   **Away from $\xi_0$:** $\vert \widehat{\phi_0 u}(\xi) \vert = \vert \widehat{\phi_0}(\xi - \xi_0) \vert$ decays rapidly.
 
 4. **Wave Front Set:**
    $$WF(u) = \{(x_0, \xi_0) : x_0 \in \mathbb{R}^n\}$$
@@ -161,7 +159,7 @@ Plane waves demonstrate how oscillations in a specific direction create a wave f
    $$\widehat{\phi H}(\xi_1,\xi_2) \sim \int_{-\infty}^0 \psi(x_1) e^{-ix_1\xi_1} dx_1$$
 
 4. **Decay Analysis:**
-   **For $\xi_1 > 0$ large:** Boundary term dominates, decay like $1/\mid \xi_1 \mid$.
+   **For $\xi_1 > 0$ large:** Boundary term dominates, decay like $1/\vert \xi_1 \vert$.
 
    **For $\xi_1 < 0$ large:** Rapid decay.
 
@@ -185,10 +183,10 @@ The Heaviside function reveals a fundamental asymmetry in how jump discontinuiti
    $$a(x,\xi) = -i \text{sgn}(\xi)$$
 
 3. **Symbol Class Verification:**
-   $$\mid D_\xi^\alpha a(x,\xi) \mid = \begin{cases} 0 & \text{if } \mid \alpha \mid \geq 1 \\ 1 & \text{if } \mid \alpha \mid = 0 \end{cases}$$
+   $$\vert D_\xi^\alpha a(x,\xi) \vert = \begin{cases} 0 & \text{if } \vert \alpha \vert \geq 1 \\ 1 & \text{if } \vert \alpha \vert = 0 \end{cases}$$
 
 4. **Order:**
-   $m = 0$ since $\mid a(x,\xi) \mid \leq C$.
+   $m = 0$ since $\vert a(x,\xi) \vert \leq C$.
 
 5. **Microlocal Property:**
    $WF(Hf) \subseteq WF(f)$
@@ -206,7 +204,7 @@ The Hilbert transform exemplifies how pseudodifferential operators can modify si
    - $b(x,\xi) = x$ (order 0)
 
 2. **Composition Formula:**
-   $$(a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-\mid \alpha \mid}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b$$
+   $$(a \# b)(x,\xi) \sim \sum_{\alpha} \frac{i^{-\vert \alpha \vert}}{\alpha!} \partial_\xi^\alpha a \cdot \partial_x^\alpha b$$
 
 3. **Compute Terms:**
    **$|\alpha| = 0$:** $ab = i\xi \cdot x$
@@ -232,13 +230,13 @@ The composition formula reveals the fundamental non-commutativity of quantum mec
 **Step-by-Step Solution:**
 
 1. **Principal Symbol:**
-   $$p(x,\xi) = \mid \xi \mid^2 + 1$$
+   $$p(x,\xi) = \vert \xi \vert^2 + 1$$
 
 2. **Parametrix Symbol:**
-   $$a(x,\xi) = \frac{1}{\mid \xi \mid^2 + 1}$$
+   $$a(x,\xi) = \frac{1}{\vert \xi \vert^2 + 1}$$
 
 3. **Verify $\Psi$DO Class:**
-   $$\mid D_\xi^\alpha a \mid \leq C_\alpha (1+\mid \xi \mid^2)^{-1 + \mid \alpha \mid/2} \in S^{-2}$$
+   $$\vert D_\xi^\alpha a \vert \leq C_\alpha (1+\vert \xi \vert^2)^{-1 + \vert \alpha \vert/2} \in S^{-2}$$
 
 4. **Regularity:**
    For $f \in H^s$, $u \in H^{s+2}$.
@@ -333,13 +331,13 @@ The connection between geometric optics and microlocal analysis is complete: lig
 **Step-by-Step Solution:**
 
 1. **Principal Symbol:**
-   $$p = \mid \xi \mid^2 + 1 > 0$$ everywhere.
+   $$p = \vert \xi \vert^2 + 1 > 0$$ everywhere.
 
 2. **Characteristic Set:**
    $\emptyset$.
 
 3. **Parametrix:**
-   $$E(x) = \frac{e^{-\mid x \mid}}{4\pi \mid x \mid}$$
+   $$E(x) = \frac{e^{-\vert x \vert}}{4\pi \vert x \vert}$$
 
 4. **Solution:**
    $u = E * H(x_1)$.
@@ -363,7 +361,7 @@ Elliptic operators provide the ultimate smoothing mechanism: they eliminate all 
    $$WF(u(0)) = \{(0,k_1,k_2) : k_1 > 0\}$$
 
 2. **Principal Symbol:**
-   $$p = \tau + \mid \xi \mid^2$$
+   $$p = \tau + \vert \xi \vert^2$$
 
 3. **Bicharacteristic Flow:**
    $$H_p = \partial_t + 2\xi \cdot \nabla_x - 2\xi \cdot \nabla_\xi$$
@@ -375,7 +373,7 @@ Elliptic operators provide the ultimate smoothing mechanism: they eliminate all 
    | $t(s)$ | $\dot{t} = 1$ | $t = s$ |
    | $x(s)$ | $\dot{x} = 2\xi$ | $x = x_0 + 2 s \xi$ |
    | $\xi(s)$ | $\dot{\xi} = 0$ | $\xi = \text{constant}$ |
-   | $\tau(s)$ | $\dot{\tau} = 0$ | $\tau = -\mid \xi \mid^2$ |
+   | $\tau(s)$ | $\dot{\tau} = 0$ | $\tau = -\vert \xi \vert^2$ |
 
 5. **Evolved WF:**
    $$WF(u(t)) = \{(x_0 + 2tk_1, k_1, k_2) : k_1 > 0\}$$

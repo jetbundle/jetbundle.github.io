@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.7: Noncommutative Geometry
-
 ## Introduction
 
 The trajectory of this text has moved steadily from the local study of functions to the global study of manifolds. In Chapter 3, we established that differential equations are geometric objects invariant under coordinate transformations. In Chapter 7.6, the Atiyah-Singer Index Theorem demonstrated that the analytical properties of these equations (such as the dimension of the solution space) are determined by the topology of the underlying bundle.

@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.8: Higher Categories, Derived Stacks & TQFT
-
 ## Introduction
 
 The trajectory of this survey has moved from the search for explicit functions solving differential equations to the study of the geometric spaces formed by those solutions. In Chapter 6, we encountered the Moduli Space of Instantons, and in Chapter 7.6, we computed invariants over these spaces. However, a fundamental pathology remains: solution spaces to nonlinear PDEs are often singular, non-compact, or possess unstable dimensions. Classical intersection theory fails in these contexts.

@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.3: Riemann-Hilbert Correspondence
-
 ## Introduction
 
 In Chapter 1, we encountered the Frobenius method for regular singular points of ordinary differential equations. We observed that the behavior of solutions near a singularity—specifically their growth rates and monodromy—was entirely determined by the algebraic coefficients of the equation. In Chapter 7.3, we elevate this local observation to a global equivalence between analysis and topology.

@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.1: D-Modules & Holonomic Systems
-
 ## Introduction
 
 In the preceding chapters, we progressed from the explicit construction of solutions to their geometric formulation on manifolds and jet bundles. However, a fundamental limitation persists: we have largely treated the differential operator $P$ as a tool to act upon a function space, seeking a kernel $u$ such that $Pu=0$. In this chapter, we invert this perspective. We cease the search for specific solutions and instead study the algebraic structure of the system itself.
@@ -133,7 +131,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
    $$\text{gr}(\mathcal{M}) = \mathbb{C}[t,x,\tau,\xi] / (\tau - \xi^2)$$
 
 4. **Characteristic Variety:**
-   $$\text{Ch}(\mathcal{M}) = \{(t,x,\tau,\xi) \mid \tau = \xi^2\} \subset T^*(\mathbb{C}^2)$$
+   $$\text{Ch}(\mathcal{M}) = \{(t,x,\tau,\xi) \,\vert\, \tau = \xi^2\} \subset T^*(\mathbb{C}^2)$$
 
    **Geometric Interpretation:**
    - $T^*(\mathbb{C}^2)$ has dimension $4$
@@ -168,7 +166,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 
    **Characteristic variety:**
 
-   $$\text{Ch}(\mathcal{M}) = \{(x,\xi) \in T^*\mathbb{C}_x \mid \xi^2 = 0\} = \{(x,0) \mid x \in \mathbb{C}\}$$
+   $$\text{Ch}(\mathcal{M}) = \{(x,\xi) \in T^*\mathbb{C}_x \,\vert\, \xi^2 = 0\} = \{(x,0) \,\vert\, x \in \mathbb{C}\}$$
 
 3. **Dimension Analysis:**
    - $T^*\mathbb{C}_x$ has dimension $2$
@@ -189,7 +187,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
    The characteristic variety $\{(x,0)\}$ is Lagrangian in $T^*\mathbb{C}_x$:
    - $\omega = dx \wedge d\xi$ is the symplectic form
    - $\text{Ch}(\mathcal{M})$ is 1-dimensional in 2-dimensional symplectic space
-   - **Maximal isotropy:** $\omega \mid_{\text{Ch}(\mathcal{M})} = 0$
+   - **Maximal isotropy:** $\omega \big\vert_{\text{Ch}(\mathcal{M})} = 0$
 
 ### Example 7.1.3: Physical Application—Schrödinger Operator
 
@@ -205,12 +203,12 @@ $$\partial_t u - \partial_{xx} u = 0$$
 2. **Characteristic Variety:**
    $$\sigma_2(P_E) = -\xi^2 + x^2 - E$$
 
-   $$\text{Ch}(\mathcal{M}_E) = \{(x,\xi) \mid \xi^2 = x^2 - E\}$$
+   $$\text{Ch}(\mathcal{M}_E) = \{(x,\xi) \,\vert\, \xi^2 = x^2 - E\}$$
 
 3. **Geometric Analysis:**
    **Case 1:** $E < 0$
 
-   $\xi^2 = x^2 + \mid E \mid$ (hyperbola)
+   $\xi^2 = x^2 + \vert E \vert$ (hyperbola)
 
    $\dim \text{Ch}(\mathcal{M}_E) = 1 = n$
 
@@ -262,7 +260,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
    **Principal symbol:** $\sigma_0(x) = x$ (order 0 operator)
 
 3. **Characteristic Variety:**
-   $$\text{Ch}(\mathcal{M}_\delta) = \{(x,\xi) \in T^*\mathbb{C}_x \mid x = 0\}$$
+   $$\text{Ch}(\mathcal{M}_\delta) = \{(x,\xi) \in T^*\mathbb{C}_x \,\vert\, x = 0\}$$
 
    **Geometric description:** $\{x = 0\} \times \mathbb{C}_\xi =$ entire cotangent fiber over point $0$
 
@@ -271,7 +269,7 @@ $$\partial_t u - \partial_{xx} u = 0$$
 4. **Lagrangian Verification:**
    **Symplectic form:** $\omega = dx \wedge d\xi$
 
-   **Restricted to $x=0$:** $\omega \mid_{x=0} = 0$ (since $dx = 0$)
+   **Restricted to $x=0$:** $\omega \big\vert_{x=0} = 0$ (since $dx = 0$)
 
    **Conclusion:** The Dirac delta module is **HOLONOMIC**!
 

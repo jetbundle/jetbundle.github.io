@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.4: Fourier Integral Operators
-
 ## Introduction
 
 The analysis of differential equations has thus far relied primarily on local operators—differential operators that examine a function's behavior in the infinitesimal neighborhood of a point. However, the geometric perspective of Chapter 7.2 established that singularities propagate along bicharacteristic flows in the cotangent bundle. To describe operators that transport singularities from one region of phase space to another—such as the solution operators for hyperbolic equations—we must generalize the concept of the differential operator. We introduce Pseudodifferential Operators ($\Psi$DOs) to handle microlocal elliptic regularity and Fourier Integral Operators (FIOs) to quantize canonical transformations on the phase space.

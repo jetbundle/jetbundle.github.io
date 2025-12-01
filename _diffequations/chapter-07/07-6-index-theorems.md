@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.6: Index Theorems & K-Theory
-
 ## Introduction
 
 The preceding sections of this chapter established that differential equations on manifolds can be resolved algebraically via $\mathcal{D}$-modules and microlocally via the analysis of wavefront sets. However, these methods primarily address the local structure of solutions and singularities. We now turn to the global solvability of differential equations. Specifically, we address the fundamental question: given a differential operator on a compact manifold, upon what global topological properties does the existence and uniqueness of solutions depend?
@@ -52,7 +50,7 @@ The **topological index** is constructed by combining these classes. It represen
 
 The Atiyah-Singer Index Theorem (1963) unifies these domains by equating the analytical index (the dimension of solution spaces) with the topological index (integral of curvature forms). For a generic elliptic operator $P$ associated with the vector bundles $E$ and $F$, the theorem states:
 
-$$\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big\mid_n$$
+$$\text{ind}(P) = \int_X \text{ch}(E) \wedge \text{td}(TM \otimes \mathbb{C}) \Big\vert_n$$
 
 where the integration selects the component of the cohomology class of degree $n$ (the volume form).
 

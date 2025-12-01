@@ -12,8 +12,6 @@ parent_chapter: 7
 parent_section: null
 ---
 
-# Section 7.5: Resurgence, Borel Summation & Alien Calculus
-
 ## Introduction
 
 The overarching narrative of this survey has repeatedly encountered the phenomenon of divergence. In Chapter 1.7, we observed that asymptotic expansions for nonlinear differential equations often diverge factorially. In Chapter 5.6, we saw that stochastic regularity structures require the subtraction of infinite counterterms to yield finite physical predictions. Until now, these divergences were treated as pathologies—obstacles to be managed or removed.
@@ -28,7 +26,7 @@ We begin by formalizing the relationship between divergent formal power series a
 
 $$\tilde{u}(z) = \sum_{n=0}^\infty a_n z^{-n}$$
 
-In physical contexts, the coefficients $a_n$ often exhibit **Gevrey-1 growth**, satisfying bounds of the form $\mid a_n \mid \leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the **Borel Transform** $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:
+In physical contexts, the coefficients $a_n$ often exhibit **Gevrey-1 growth**, satisfying bounds of the form $\vert a_n \vert \leq C K^n n!$. Such series have a vanishing radius of convergence. To analyze them, we utilize the **Borel Transform** $\mathcal{B}$, which maps the formal series $\tilde{u}(z)$ to a formal series $\hat{u}(\zeta)$ in the dual variable $\zeta$:
 
 $$\mathcal{B}[\tilde{u}](\zeta) = \hat{u}(\zeta) = \sum_{n=0}^\infty \frac{a_n}{n!} \zeta^{n-1}$$
 
