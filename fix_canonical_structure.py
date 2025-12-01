@@ -128,9 +128,13 @@ def clean_article_content(html: str) -> str:
     # Remove old final cliffhanger (we'll add proper one)
     content = re.sub(r'<div class="cliffhanger final">.*?</div>', '', content, flags=re.DOTALL)
     
-    # Remove stray closing tags
-    content = re.sub(r'</section>\s*(?=<section|</article>|<!--)', '', content, flags=re.DOTALL)
-    content = re.sub(r'</nav>\s*(?=<nav|</article>|<!--)', '', content, flags=re.DOTALL)
+    # Remove stray closing tags (but preserve if they're part of valid structure)
+    # Remove orphaned </section> tags
+    content = re.sub(r'</section>\s*(?=\s*<!--|</article>|$)', '', content, flags=re.DOTALL)
+    content = re.sub(r'</nav>\s*(?=\s*<!--|</article>|$)', '', content, flags=re.DOTALL)
+    
+    # Remove duplicate navigation comments
+    content = re.sub(r'<!--\s*8\.\s*Navigation\s*-->\s*(?=<!--\s*8\.\s*Navigation\s*-->)', '', content, flags=re.DOTALL | re.IGNORECASE)
     
     # Clean up multiple blank lines
     content = re.sub(r'\n\s*\n\s*\n+', '\n\n', content)
