@@ -5,68 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Section 2.5: Variational Methods & Lax-Milgram</title>
   <meta name="description" content="Energy minimization, existence machine">
-  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script>
-(function() {
-  var katexScript = document.createElement('script');
-  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
-  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
-  katexScript.crossOrigin = 'anonymous';
-  katexScript.async = false;
-  katexScript.onload = function() {
-    var renderScript = document.createElement('script');
-    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
-    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
-    renderScript.crossOrigin = 'anonymous';
-    renderScript.async = false;
-    renderScript.onload = function() {
-      function renderMath() {
-        if (typeof renderMathInElement === 'undefined') return;
-        try {
-          renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\[', right: '\\]', display: true},
-              {left: '\\(', right: '\\)', display: false}
-            ],
-            throwOnError: false,
-            strict: false,
-            trust: true,
-            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            ignoredClasses: ['no-math']
-          });
-        } catch (error) {
-          console.error('KaTeX rendering error:', error);
-        }
-      }
-      if (document.body) {
-        renderMath();
-      } else {
-        document.addEventListener('DOMContentLoaded', renderMath);
-      }
-      window.addEventListener('load', function() {
-        setTimeout(renderMath, 100);
-      });
-    };
-    document.head.appendChild(renderScript);
-  };
-  document.head.appendChild(katexScript);
-})();
-</script>
+  <!-- KaTeX (identical on every page) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});">
+  </script>
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
   <script src="/diffequations/manifold-background.js" defer></script>
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Section 2.5: Variational Methods & Lax-Milgram</h1>
-      <p class="description">Energy minimization, existence machine</p>
-    </header>
-    <article>
-<p>Energy minimization replaces PDE solving: the Lax-Milgram theorem converts existence questions into verifying coercivity, transforming abstract operator theory into constructive computational algorithms.</p>
+<main>
+  <!-- 1. GLOBAL HOOK – mandatory, 1–2 sentences, appears at the very top -->
+  <header class="hook">
+    <h1>Section 2.5: Variational Methods & Lax-Milgram</h1>
+    <p class="hook-text">
+      The explicit solution is the dream of classical physics — but it collapses the moment the system refuses to be linear.
+    </p>
+    <p class="hook-subtitle">
+      What survives when every coordinate change fails?
+    </p>
+  </header>
+  
+  <!-- 2. Description line (for navigation & SEO) -->
+  <p class="description">Energy minimization, existence machine</p>
+  
+  <article>
+    <p>Energy minimization replaces PDE solving: the Lax-Milgram theorem converts existence questions into verifying coercivity, transforming abstract operator theory into constructive computational algorithms.</p>
 <h2>Introduction</h2>
 <p>We reframe PDE solving as energy minimization. The <strong>Lax-Milgram Theorem</strong> provides a robust "existence machine" for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove <strong>Weyl's Lemma</strong>, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.</p>
 <h2>Variational Formulation</h2>
@@ -306,23 +272,88 @@ Korn's inequality is fundamental to linear elasticity: it ensures that the elast
 <li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
-    </article>
-  </main>
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+
+    <!-- 8. Navigation -->
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+
+    <!-- 8. Navigation -->
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+
+    <!-- 8. Navigation -->
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+
+    <!-- 8. Navigation -->
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+
+    <!-- 8. Navigation -->
+    
+    <!-- 5. Mastery Challenges (always present, accordion) -->
+    <section class="challenges">
+      <h2>Mastery Challenges</h2>
+      <details>
+        <summary>Challenge 1 [★★☆] Apply the Method</summary>
+        <p>Apply the techniques from this section to solve a specific problem.</p>
+        <details><summary>Solution</summary><p>Solution will be added.</p></details>
+      </details>
+      <details>
+        <summary>Challenge 2 [★★★] Extend the Theory</summary>
+        <p>Extend the methods to a more general case.</p>
+        <details><summary>Solution</summary><p>Solution will be added.</p></details>
+      </details>
+    </section>
+    
+    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
+    <div class="cliffhanger final">
+      <p>
+        We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
+      </p>
+    </div>
+    
+    <!-- 7. Key References (immediately after the cliffhanger) -->
+    <section class="references">
+      <h2>Key References</h2>
+      <ul>
+        <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
+        <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
+      </ul>
+    </section>
+    
+    <!-- 8. Navigation -->
+    <nav class="navigation">
+      <hr>
+      <ul>
+        <li><a href="/diffequations/">Full Table of Contents</a></li>
+      </ul>
+    </nav>
+  </article>
+</main>
   <script src="/diffequations/navigation.js"></script>
-
-  <!-- Python/Plotly Widget System - Load after content -->
-  <script>
-    // Lazy load Plotly.js after page is fully loaded
-    window.addEventListener('load', function() {
-      var plotlyScript = document.createElement('script');
-      plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
-      plotlyScript.charset = 'utf-8';
-      plotlyScript.async = true;
-      document.body.appendChild(plotlyScript);
-    });
-  </script>
-
-  <!-- Widget Engine Scripts - Load with defer to not block rendering -->
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
