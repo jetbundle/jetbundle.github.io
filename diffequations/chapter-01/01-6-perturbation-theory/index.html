@@ -262,5 +262,21 @@ Matching these to the WKB solutions on either side provides the connection formu
     </article>
   </main>
   <script src="/diffequations/navigation.js"></script>
+
+  <!-- Python/Plotly Widget System - Load after content -->
+  <script>
+    // Lazy load Plotly.js after page is fully loaded
+    window.addEventListener('load', function() {
+      var plotlyScript = document.createElement('script');
+      plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+      plotlyScript.charset = 'utf-8';
+      plotlyScript.async = true;
+      document.body.appendChild(plotlyScript);
+    });
+  </script>
+
+  <!-- Widget Engine Scripts - Load with defer to not block rendering -->
+  <script defer src="/diffequations/js/textbook-engine.js"></script>
+  <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
 </html>

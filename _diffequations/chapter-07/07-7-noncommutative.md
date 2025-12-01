@@ -20,7 +20,7 @@ However, a fundamental limitation remains. The entire machinery of differential 
 
 We achieve this by generalizing the Gelfand-Naimark theorem. Just as a topological space $X$ can be reconstructed from the commutative algebra of continuous functions $C(X)$, a geometric space can be reconstructed from a **Spectral Triple** $(\mathcal{A}, \mathcal{H}, D)$. This framework, developed by Alain Connes, translates the tools of calculus—differentiation, integration, and metric distance—into the language of operator algebras, allowing us to define differential equations on noncommutative spaces where coordinates do not commute.
 
-## Mathematical Content
+
 
 ### Spectral Triples
 
@@ -44,13 +44,13 @@ The condition that $[D, a]$ is bounded is the operator-theoretic equivalent of t
 
 **The Dimension:**
 
-The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $\mid D \mid^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl's Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.
+The dimension of the noncommutative space is determined by the growth rate of the eigenvalues of $D$. We say the triple is $d$-summable if the operator $\vert D \vert^{-d}$ belongs to the Dixmier trace class (a logarithmic refinement of the trace class). This generalizes Weyl's Law for the Laplacian, where the $n$-th eigenvalue grows as $\lambda_n \sim n^{2/d}$.
 
 ### Connes Distance Formula
 
 In Riemannian geometry, the geodesic distance between two points $p, q$ is the infimum of the lengths of paths connecting them:
 
-$$d(p, q) = \inf_\gamma \left\{ \int_0^1 \sqrt{g(\dot{\gamma}(t), \dot{\gamma}(t))} \, dt \mid \gamma(0)=p, \gamma(1)=q \right\}$$
+$$d(p, q) = \inf_\gamma \left\{ \int_0^1 \sqrt{g(\dot{\gamma}(t), \dot{\gamma}(t))} \, dt \,\Big\vert\, \gamma(0)=p, \gamma(1)=q \right\}$$
 
 This definition fails in disconnected spaces, discrete sets, or noncommutative algebras where "points" (pure states) may not be well-defined. Connes provided a dual formulation based on the observation that distance measures how much a function can change between two points relative to its gradient.
 
@@ -58,7 +58,7 @@ This definition fails in disconnected spaces, discrete sets, or noncommutative a
 
 Given a spectral triple $(\mathcal{A}, \mathcal{H}, D)$, the distance between two states $\phi, \psi$ of the algebra $\mathcal{A}$ is given by:
 
-$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ \mid \phi(a) - \psi(a) \mid : \| [D, a] \| \le 1 \}$$
+$$d(\phi, \psi) = \sup_{a \in \mathcal{A}} \{ \vert \phi(a) - \psi(a) \vert : \| [D, a] \| \le 1 \}$$
 
 In the classical case where $\mathcal{A} = C^\infty(M)$ and $D$ is the Dirac operator, the condition $\| [D, a] \| \le 1$ is equivalent to $\| \nabla a \|_\infty \le 1$ (the function is 1-Lipschitz). The supremum of the difference between values of 1-Lipschitz functions recovers the geodesic distance exactly.
 
@@ -112,7 +112,7 @@ For a Cantor set or Sierpinski gasket, one constructs a spectral triple where th
 
 * The **Connes distance** recovers the metric on the fractal.
 
-* The **Dixmier trace** $\text{Tr}_\omega(\mid D \mid^{-d})$ recovers the Hausdorff measure (volume) of the fractal.
+* The **Dixmier trace** $\text{Tr}_\omega(\vert D \vert^{-d})$ recovers the Hausdorff measure (volume) of the fractal.
 
 * The value $d$ for which the trace is finite and non-zero is the Hausdorff dimension.
 
@@ -184,14 +184,14 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 
    $$[D, a] = \begin{pmatrix} 0 & 0 \\ 0 & (a_1-a_2) \end{pmatrix}$$
 
-   $$\|[D, a]\| = \mid a_1 - a_2 \mid$$
+   $$\|[D, a]\| = \vert a_1 - a_2 \vert$$
 
 4. **Compute Connes Distance:**
    **States:** $\phi_1(a) = a_1$, $\phi_2(a) = a_2$ (evaluation at points)
 
-   $$d(\phi_1, \phi_2) = \sup\{\mid a_1 - a_2 \mid : \|[D, a]\| \leq 1\}$$
+   $$d(\phi_1, \phi_2) = \sup\{\vert a_1 - a_2 \vert : \|[D, a]\| \leq 1\}$$
 
-   $$= \sup\{\mid a_1 - a_2 \mid : \mid a_1 - a_2 \mid \leq 1\} = 1$$ ✓
+   $$= \sup\{\vert a_1 - a_2 \vert : \vert a_1 - a_2 \vert \leq 1\} = 1$$ ✓
 
    This computation demonstrates a fundamental principle of noncommutative geometry: distance is not a primitive geometric concept but emerges from the algebraic structure of operators. The Connes distance formula shows that the metric is encoded in the commutator $[D, a]$, which measures how much a function can vary relative to its "gradient" as defined by the Dirac operator. For the two-point space, the distance of 1 emerges naturally from the constraint that the commutator norm be bounded by 1, without any reference to coordinates or embedding in Euclidean space. This algebraic definition of distance works equally well for discrete spaces, fractals, and noncommutative algebras where classical geometric notions break down, revealing that geometry is fundamentally a property of the algebra of observables rather than an underlying space.
 
@@ -221,13 +221,13 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 3. **Distance Calculation:**
    $\phi_\theta(f) = f(\theta)$, $\phi_\phi(f) = f(\phi)$
 
-   $$d(\theta, \phi) = \sup\{\mid f(\theta) - f(\phi) \mid : \|f'\|_\infty \leq 1\}$$
+   $$d(\theta, \phi) = \sup\{\vert f(\theta) - f(\phi) \vert : \|f'\|_\infty \leq 1\}$$
 
    **Test with $f(\theta) = \theta$:**
 
-   $$\mid f(\theta) - f(\phi) \mid = \mid \theta - \phi \mid$$
+   $$\vert f(\theta) - f(\phi) \vert = \vert \theta - \phi \vert$$
 
-   This achieves the supremum → $d(\theta, \phi) = \min(\mid \theta - \phi \mid, 2\pi - \mid \theta - \phi \mid)$
+   This achieves the supremum → $d(\theta, \phi) = \min(\vert \theta - \phi \vert, 2\pi - \vert \theta - \phi \vert)$
 
    **Result:** Connes distance = arc length metric ✓
 
@@ -249,7 +249,7 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
 2. **Distance between vertices 1 and 2:**
    $\phi_1(a) = a_1$, $\phi_2(a) = a_2$
 
-   $$d(1,2) = \sup\{\mid a_1 - a_2 \mid : \|[D, a]\| \leq 1\}$$
+   $$d(1,2) = \sup\{\vert a_1 - a_2 \vert : \|[D, a]\| \leq 1\}$$
 
 3. **Compute $[D, a]$:**
    $$[D, a] = D \text{diag}(a_1, a_2, a_3) - \text{diag}(a_1, a_2, a_3) D$$
@@ -264,13 +264,13 @@ Thus, the spectral triple $(\mathcal{A}, \mathcal{H}, D)$ serves as the ultimate
    After computation: $\rho([D, a]) = \sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]}/\sqrt{2}$
 
 5. **Optimization:**
-   Maximize $\mid a_1 - a_2 \mid$ subject to $\sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]} \leq \sqrt{2}$
+   Maximize $\vert a_1 - a_2 \vert$ subject to $\sqrt{[(a_1-a_2)^2 + (a_2-a_3)^2 + (a_3-a_1)^2]} \leq \sqrt{2}$
 
    **Optimal:** $a_1 = 1$, $a_2 = 0$, $a_3 = 0$
 
    $$\|[D, a]\| = \sqrt{[(1-0)^2 + (0-0)^2 + (0-1)^2]}/\sqrt{2} = 1$$
 
-   $$\mid a_1 - a_2 \mid = 1$$
+   $$\vert a_1 - a_2 \vert = 1$$
 
    **Result:** $d(1,2) = 1$ ✓ (graph distance recovered)
 

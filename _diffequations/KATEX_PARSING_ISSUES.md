@@ -124,7 +124,8 @@ $\begin{cases} a & b \\ c & d \end{cases}$  ❌ Won't work
 4. **Preserve context** - don't break surrounding text
 5. **Test compilation** after fixes
 
+Also in general, you need to ensure that mostly simple small things like explaining veriablesor quickexpressions are done in $...$ exclusively, and most functions and equations etc are done with $$...$$ primarily. expressions $...$ and reasoning etc but equations nad longer things done exclusively with $$ $$ thank you. Ensure that this is all properly cleanred up. thank you.
+
 ## Implementation
 
 See `fix_katex_parsing.py` for automated fix script.
-

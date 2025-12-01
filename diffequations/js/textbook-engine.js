@@ -210,8 +210,8 @@ if 'plot_data' in globals() and plot_data is not None:
         const plotJson = this.pyodide.runPython(`json.dumps(plot_data)`);
         const plotData = JSON.parse(plotJson);
 
-        // Ensure dark theme for Plotly
-        const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
+        // Default to dark theme for Plotly (static HTML pages use dark theme)
+        const isDark = !window.themeManager || (window.themeManager && window.themeManager.currentTheme === 'dark');
         const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
 
         // Enable LaTeX rendering in Plotly

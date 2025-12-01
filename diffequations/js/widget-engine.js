@@ -404,8 +404,8 @@ else:
           title: plotData.layout?.title || 'No title'
         });
 
-        // Ensure dark theme for Plotly
-        const isDark = window.themeManager && window.themeManager.currentTheme === 'dark';
+        // Default to dark theme for Plotly (static HTML pages use dark theme)
+        const isDark = !window.themeManager || (window.themeManager && window.themeManager.currentTheme === 'dark');
         const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
 
         // Enable LaTeX rendering in Plotly

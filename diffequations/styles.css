@@ -761,7 +761,9 @@ hr {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Widget Responsive Design */

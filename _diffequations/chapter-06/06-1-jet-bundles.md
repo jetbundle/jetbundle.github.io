@@ -14,7 +14,7 @@ parent_section: null
 
 # Section 6.1: Jet Bundles & Prolongation
 
-> Derivatives become coordinates, and differential equations become geometry.
+Derivatives become coordinates, and differential equations become geometry.
 
 ## Introduction
 

@@ -184,7 +184,7 @@ def create_html_page(front_matter: Optional[Dict], html_body: str, permalink: st
     </article>
   </main>
   <script src="/diffequations/navigation.js"></script>
-  
+
   <!-- Python/Plotly Widget System - Load after content -->
   <script>
     // Lazy load Plotly.js after page is fully loaded
@@ -196,7 +196,7 @@ def create_html_page(front_matter: Optional[Dict], html_body: str, permalink: st
       document.body.appendChild(plotlyScript);
     }});
   </script>
-  
+
   <!-- Widget Engine Scripts - Load with defer to not block rendering -->
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>

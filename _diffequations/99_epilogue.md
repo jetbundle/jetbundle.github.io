@@ -50,3 +50,4 @@ We live in a deeply mathematical universe. To study it is to reflect on what it 
 - [Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution]({{ '/diffequations/chapter-07/' | relative_url }})
 - [Section 7.8: Higher Categories, Derived Stacks & TQFT]({{ '/diffequations/chapter-07/07-8-higher-categories/' | relative_url }})
 
+
