@@ -157,7 +157,7 @@ Each HTML file includes:
 **Dark Theme Default:**
 ```javascript
 // Defaults to dark theme if themeManager not available
-const isDark = !window.themeManager || 
+const isDark = !window.themeManager ||
                (window.themeManager && window.themeManager.currentTheme === 'dark');
 const plotlyTemplate = isDark ? 'plotly_dark' : 'plotly_white';
 ```
@@ -619,4 +619,3 @@ The system is designed to be easily extensible:
 This static HTML system provides a robust, performant, and maintainable solution for interactive educational content. It combines the simplicity of static files with the power of client-side computation, creating an optimal experience for both authors and readers.
 
 For questions or issues, refer to the troubleshooting section or examine the source code in the `diffequations/` directory.
-
