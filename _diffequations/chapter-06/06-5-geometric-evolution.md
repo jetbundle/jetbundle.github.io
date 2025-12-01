@@ -14,7 +14,7 @@ parent_section: null
 
 # Section 6.5: Geometric Evolution Equations
 
-> Geometry flows toward canonical forms, revealing topology through dynamics.
+Geometry flows toward canonical forms, revealing topology through dynamics.
 
 ## Introduction
 
@@ -65,7 +65,7 @@ While Hamilton established the analytic foundations, the Ricci flow program face
 Perelman defined the $\mathcal{F}$-functional for a metric $g$ and a scalar function $f$ (often interpreted as a dilaton or probability density potential):
 
 $$
-\mathcal{F}(g, f) = \int_M (R + \mid \nabla f \mid^2) e^{-f} dV_g
+\mathcal{F}(g, f) = \int_M (R + \vert \nabla f \vert^2) e^{-f} dV_g
 $$
 
 subject to the constraint $\int_M e^{-f} dV_g = 1$. The gradient flow of this functional, coupled with the backward heat equation for $f$, yields the Ricci flow for $g$.
@@ -144,7 +144,7 @@ where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the 
 
 > The Ricci curvature is $\text{Ric} = -\frac{1}{2} \frac{u_{xx}}{u^2}$, giving the flow $\partial_t u = u_{xx}$. Perelman's system couples this with $\partial_t f = -\log u + \text{constant}$.
 
-> Computing the first variation, we find $\frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx$. After integration by parts and substitution, this gives $\frac{d}{dt} \mathcal{F} = 2 \int \left| \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \right|^2 e^{-f} \sqrt{u}\, dx \ge 0$.
+> Computing the first variation, we find $\frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx$. After integration by parts and substitution, this gives $\frac{d}{dt} \mathcal{F} = 2 \int \vert \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \vert^2 e^{-f} \sqrt{u}\, dx \ge 0$.
 
 > The equality case occurs when $\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} = 1$. The gradient flow structure shows that Ricci flow equals the gradient flow of $\mathcal{F}$, and monotonicity prevents periodic solutions (no breathers). The $\mathcal{F}$-monotonicity provides a Lyapunov functional controlling the entire flow, demonstrating how entropy functionals govern geometric evolution.
 
@@ -156,15 +156,15 @@ where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the 
 
 > Letting $\gamma = \log \beta$ gives $\gamma'' + \frac{1}{2} (\gamma')^2 + \frac{1}{2} \gamma' = 0$, with solution $\gamma' = -\frac{1}{1 + e^{r/\sqrt{2}}}$, so $\beta(r) = \sqrt{2} \tanh\left(\frac{r}{2\sqrt{2}}\right)$.
 
-> The singularity analysis shows the neck radius $\alpha(0,t) \sim \sqrt{T-t}$, curvature $R \sim \frac{1}{T-t}$, and singularity time $t = T$ (diameter $\to 0$). The high curvature region $r \lesssim \sqrt{T-t}$ resembles a shrinking cylinder. Surgery removes $\mid r \mid < \epsilon \sqrt{T-t}$ and caps with standard spheres. Neck pinches are universal and admit explicit self-similar models, demonstrating how geometric evolution equations develop controlled singularities.
+> The singularity analysis shows the neck radius $\alpha(0,t) \sim \sqrt{T-t}$, curvature $R \sim \frac{1}{T-t}$, and singularity time $t = T$ (diameter $\to 0$). The high curvature region $r \lesssim \sqrt{T-t}$ resembles a shrinking cylinder. Surgery removes $\vert r \vert < \epsilon \sqrt{T-t}$ and caps with standard spheres. Neck pinches are universal and admit explicit self-similar models, demonstrating how geometric evolution equations develop controlled singularities.
 
 > **Huisken's Monotonicity for Mean Curvature Flow**
 
-> To verify Huisken's monotonicity for a shrinking $S^{n-1} \subset \mathbb{R}^n$, we consider the embedding $F(x,t): S^{n-1} \to \mathbb{R}^n$ with evolution $\partial_t F = \vec{H} = -(n-1) F/\mid F \mid^2$.
+> To verify Huisken's monotonicity for a shrinking $S^{n-1} \subset \mathbb{R}^n$, we consider the embedding $F(x,t): S^{n-1} \to \mathbb{R}^n$ with evolution $\partial_t F = \vec{H} = -(n-1) F/\vert F \vert^2$.
 
-> The self-similar solution ansatz $F(x,t) = \sqrt{T-t} \cdot \phi(x)$ gives the reduced MCF $\Delta \phi + \frac{1}{2} \phi = 0$. Huisken's functional is the Gaussian density $\Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-\mid x-p \mid^2/4(T-t_0)} d\mathcal{H}^{n-1}$.
+> The self-similar solution ansatz $F(x,t) = \sqrt{T-t} \cdot \phi(x)$ gives the reduced MCF $\Delta \phi + \frac{1}{2} \phi = 0$. Huisken's functional is the Gaussian density $\Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-\vert x-p \vert^2/4(T-t_0)} d\mathcal{H}^{n-1}$.
 
-> Computing the evolution gives $\frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int \mid \vec{H} + \frac{x-p}{2(T-t_0)} \mid^2 e^{-\mid x-p \mid^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0$. As $t \to T^-$, the asymptotic analysis shows $\lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}$ where $\omega_{n-1}$ is the solid angle of $S^{n-1}$. Monotonicity classifies singularities by their asymptotic density, providing a geometric characterization of singularity types in mean curvature flow.
+> Computing the evolution gives $\frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int \vert \vec{H} + \frac{x-p}{2(T-t_0)} \vert^2 e^{-\vert x-p \vert^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0$. As $t \to T^-$, the asymptotic analysis shows $\lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}$ where $\omega_{n-1}$ is the solid angle of $S^{n-1}$. Monotonicity classifies singularities by their asymptotic density, providing a geometric characterization of singularity types in mean curvature flow.
 
 > **Stochastic Quantization and Ricci Flow**
 

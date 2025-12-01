@@ -37,7 +37,7 @@ $$
 The **Yang-Mills functional** serves as the energy of the connection, analogous to the Dirichlet energy for harmonic maps:
 
 $$
-\mathcal{YM}(A) = \int_M \mid F_A \mid^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)
+\mathcal{YM}(A) = \int_M \vert F_A \vert^2 \, d\text{vol}_g = -\int_M \text{tr}(F_A \wedge *F_A)
 $$
 
 where $*$ is the Hodge star operator and the norm is defined via the Killing form on the Lie algebra $\mathfrak{g}$.
@@ -65,13 +65,13 @@ corresponding to eigenvalues $+1$ (self-dual) and $-1$ (anti-self-dual). The cur
 The Yang-Mills functional can be rewritten using the Chern-Weil topological invariant. The second Chern number (or topological charge) $k$ is given by:
 
 $$
-8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (\mid F_A^+ \mid^2 - \mid F_A^- \mid^2) \, d\text{vol}
+8\pi^2 k = \int_M \text{tr}(F_A \wedge F_A) = \int_M (\vert F_A^+ \vert^2 - \vert F_A^- \vert^2) \, d\text{vol}
 $$
 
-Since $\mathcal{YM}(A) = \int_M (\mid F_A^+ \mid^2 + \mid F_A^- \mid^2) \, d\text{vol}$, we obtain the topological bound:
+Since $\mathcal{YM}(A) = \int_M (\vert F_A^+ \vert^2 + \vert F_A^- \vert^2) \, d\text{vol}$, we obtain the topological bound:
 
 $$
-\mathcal{YM}(A) \ge 8\pi^2 \mid k \mid
+\mathcal{YM}(A) \ge 8\pi^2 \vert k \vert
 $$
 
 Equality holds if and only if $F_A^- = 0$ (if $k \ge 0$) or $F_A^+ = 0$ (if $k \le 0$). Connections satisfying $F_A = *F_A$ are called **instantons** (or anti-instantons for $F_A = -*F_A$).
@@ -100,7 +100,7 @@ $$
 \mathcal{M}_k = \{ A \in \mathcal{A} : F_A^+ = 0 \} / \mathcal{G}
 $$
 
-This space is generally a finite-dimensional smooth manifold, but it is not compact. The non-compactness arises not from solutions "escaping to infinity" in the vector space sense, but from the phenomenon of **bubbling**. As established in the foundational work of Uhlenbeck (1982), a sequence of instantons $A_i$ with bounded energy may fail to converge on the whole manifold. Instead, the curvature density $|F_{A_i}|^2$ may concentrate at a finite number of points. In the limit, the connection remains smooth away from these points, while at the singular points, the energy "bubbles off" as an instanton on the sphere $S^4$.
+This space is generally a finite-dimensional smooth manifold, but it is not compact. The non-compactness arises not from solutions "escaping to infinity" in the vector space sense, but from the phenomenon of **bubbling**. As established in the foundational work of Uhlenbeck (1982), a sequence of instantons $A_i$ with bounded energy may fail to converge on the whole manifold. Instead, the curvature density $\vert F_{A_i} \vert^2$ may concentrate at a finite number of points. In the limit, the connection remains smooth away from these points, while at the singular points, the energy "bubbles off" as an instanton on the sphere $S^4$.
 
 This **Uhlenbeck Compactification** $\overline{\mathcal{M}}_k$ adds ideal points at the boundary of the moduli space corresponding to these bubbled configurations. The geometric structure of this compactification is essential for defining invariants.
 
@@ -114,7 +114,7 @@ This completes the geometric program of Chapter 6: we have moved from local solu
 
 > Computing the curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$, for $\mu=i$ and $\nu=j$ we find $F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^a \sigma^a$. To verify self-duality, we compute $*F_{ij} = \frac{1}{2} \epsilon_{ijkl} F_{kl} = \frac{1}{2} \epsilon_{ijkl} \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{kl}^b \sigma^b$. Using $\epsilon_{ijkl} \eta_{kl}^b = 2 \eta_{ij}^b$, we find $*F_{ij} = \frac{2\rho^2}{(x^2 + \rho^2)^2} \eta_{ij}^b \sigma^b = F_{ij}$, confirming $F = *F$ and verifying the self-dual instanton.
 
-> The Yang-Mills functional is $\mathcal{YM}(A) = \int_{\mathbb{R}^4} \mid F \mid^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2$, and the topological charge is $k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1$. Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space. The global gauge transformation $A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}$ with $g(x) = \frac{x^4 + i x^a \sigma^a}{\mid x \mid}$ preserves self-duality since $F^{g} = g F g^{-1}$, demonstrating how instantons encode topological information through their moduli spaces.
+> The Yang-Mills functional is $\mathcal{YM}(A) = \int_{\mathbb{R}^4} \vert F \vert^2 = 8\pi^2 \int_0^\infty \frac{8\rho^4 r^3}{(r^2 + \rho^2)^4} dr = 8\pi^2$, and the topological charge is $k = \frac{1}{8\pi^2} \int \text{tr}(F \wedge F) = 1$. Translations $x \to x - a$ and dilations $\rho \to \lambda\rho$ generate the 5-dimensional moduli space. The global gauge transformation $A^g_\mu = g A_\mu g^{-1} + g \partial_\mu g^{-1}$ with $g(x) = \frac{x^4 + i x^a \sigma^a}{\vert x \vert}$ preserves self-duality since $F^{g} = g F g^{-1}$, demonstrating how instantons encode topological information through their moduli spaces.
 
 > **Index Theorem Computation on $S^4$**
 
@@ -130,15 +130,15 @@ This completes the geometric program of Chapter 6: we have moved from local solu
 
 > The moment map equations are $[B_1, B_1^\dagger] + [B_2, B_2^\dagger] + I I^\dagger = 0$ and $[B_1, B_2^\dagger] - [B_2, B_1^\dagger] + I J^\dagger - J I^\dagger = 0$. The explicit solution (Atiyah-Drinfeld-Hitchin-Manin) is $B_1 = \begin{pmatrix} z_1 & 0 \\ 0 & z_2 \end{pmatrix}$ and $B_2 = \begin{pmatrix} 0 & -w_2 \\ w_1 & 0 \end{pmatrix}$ where $z_1, z_2 \in \mathbb{C}^2$ provide 8 real parameters (positions).
 
-> The moduli space metric (Atiyah-Hitchin metric) is $ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2$ where $r = \mid z_1 - z_2 \mid$ is the separation distance. For small $r$, the explicit computation gives $h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)$. As $r \to 0$, the metric degenerates at the bubbling point, demonstrating how the moduli space geometry encodes the interaction between instantons.
+> The moduli space metric (Atiyah-Hitchin metric) is $ds^2 = h(r) dr^2 + r^2 h(r) d\Omega_3^2$ where $r = \vert z_1 - z_2 \vert$ is the separation distance. For small $r$, the explicit computation gives $h(r) = 1 + \frac{1}{2} \left( \frac{\rho}{r} \right)^4 + O\left( \left( \frac{\rho}{r} \right)^8 \right)$. As $r \to 0$, the metric degenerates at the bubbling point, demonstrating how the moduli space geometry encodes the interaction between instantons.
 
 > **Uhlenbeck Compactification and Bubbling**
 
 > To construct an explicit sequence exhibiting bubbling, we consider a sequence $A_n$ on $S^4$ given by $A_n = A_1 + \frac{1}{n} A_2 \circ \phi_n$ where $\phi_n: S^4 \to S^4$ is stereographic projection concentrating at the north pole.
 
-> The energy decomposition shows $\mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)$. Curvature concentration occurs as $\int_{B(p,1/n)} \mid F_{A_n} \mid^2 \to 8\pi^2$ when $n \to \infty$.
+> The energy decomposition shows $\mathcal{YM}(A_n) = \mathcal{YM}(A_1) + \frac{8\pi^2}{n^2} + o(1)$. Curvature concentration occurs as $\int_{B(p,1/n)} \vert F_{A_n} \vert^2 \to 8\pi^2$ when $n \to \infty$.
 
-> For weak convergence analysis, we extract the bubble by rescaling: define $\tilde{A}_n(x) = n A_n\left( \frac{x}{n} \right)$ with domain $B\left(p, \frac{1}{n}\right) \to \mathbb{R}^4$. The limit is $\tilde{A}_n \rightharpoonup A_{\text{BPST}}$ in $L^{3/2}_{\text{loc}}$. Verification shows $\int_{\mathbb{R}^4} \mid F_{\tilde{A}_n} \mid^2 \to 8\pi^2$ with boundary behavior $\tilde{A}_n \to 0$ weakly at infinity, demonstrating how energy concentrates at points in the Uhlenbeck compactification.
+> For weak convergence analysis, we extract the bubble by rescaling: define $\tilde{A}_n(x) = n A_n\left( \frac{x}{n} \right)$ with domain $B\left(p, \frac{1}{n}\right) \to \mathbb{R}^4$. The limit is $\tilde{A}_n \rightharpoonup A_{\text{BPST}}$ in $L^{3/2}_{\text{loc}}$. Verification shows $\int_{\mathbb{R}^4} \vert F_{\tilde{A}_n} \vert^2 \to 8\pi^2$ with boundary behavior $\tilde{A}_n \to 0$ weakly at infinity, demonstrating how energy concentrates at points in the Uhlenbeck compactification.
 
 > **Donaldson Invariant Computation**
 

@@ -110,17 +110,17 @@ This method illustrates "rigidity": local enforcement of the PDE and boundary da
 
 > **Monge-Ampère in Optimal Transport**
 
-> For optimal transport, we transport density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}\mid x-y \mid^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves $\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}$.
+> For optimal transport, we transport density $\rho_0$ to $\rho_1$ with minimal cost $c(x,y) = \frac{1}{2}\vert x-y \vert^2$. The optimal transport map is $T = \nabla \phi$ where $\phi$ solves $\det(D^2 \phi(x)) = \frac{\rho_1(\nabla \phi(x))}{\rho_0(x)}$.
 
-> For uniform densities $\rho_0 = \rho_1 = 1$ on the unit ball, the solution is $\phi(x) = \frac{1}{6}(\mid x \mid^3 - 1)$, giving $T(x) = x$ (identity map). For the general case with $\rho_0, \rho_1$ having the same mass, linearization at $\phi_0$ gives $L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)$. Ellipticity holds since $\text{adj}(D^2 \phi_0) \succ 0$ when $\phi_0$ is strictly convex. The Implicit Function Theorem gives local uniqueness, demonstrating how the Monge-Ampère equation encodes optimal transport problems.
+> For uniform densities $\rho_0 = \rho_1 = 1$ on the unit ball, the solution is $\phi(x) = \frac{1}{6}(\vert x \vert^3 - 1)$, giving $T(x) = x$ (identity map). For the general case with $\rho_0, \rho_1$ having the same mass, linearization at $\phi_0$ gives $L v = \text{tr}(\text{adj}(D^2 \phi_0) D^2 v)$. Ellipticity holds since $\text{adj}(D^2 \phi_0) \succ 0$ when $\phi_0$ is strictly convex. The Implicit Function Theorem gives local uniqueness, demonstrating how the Monge-Ampère equation encodes optimal transport problems.
 
 > **Pogorelov's $C^2$ Estimates**
 
-> For the Monge-Ampère equation $\det(D^2 u) = 1$ in $B(0,1)$ with $u|_{\partial B} = 0$ and $u$ convex, Pogorelov's auxiliary function is $w(x) = e^{\alpha \mid x \mid^2} \mid D^2 u(x) \mid^2$.
+> For the Monge-Ampère equation $\det(D^2 u) = 1$ in $B(0,1)$ with $u|_{\partial B} = 0$ and $u$ convex, Pogorelov's auxiliary function is $w(x) = e^{\alpha \vert x \vert^2} \vert D^2 u(x) \vert^2$.
 
-> The key computation gives $\Delta w = e^{\alpha \mid x \mid^2} \left[ \alpha n \mid D^2 u \mid^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + \mid D^3 u \mid^2 \right]$. From differentiating $\det(D^2 u) = 1$, the crucial inequality is $\text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C \mid D^2 u \mid^{3/2}$.
+> The key computation gives $\Delta w = e^{\alpha \vert x \vert^2} \left[ \alpha n \vert D^2 u \vert^2 + 2 \text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) + \vert D^3 u \vert^2 \right]$. From differentiating $\det(D^2 u) = 1$, the crucial inequality is $\text{tr}(\text{adj}(D^2 u) D^3 u \cdot D^2 u) \geq -C \vert D^2 u \vert^{3/2}$.
 
-> At the maximum point of $w$, the maximum principle gives $\Delta w \leq 0$, so $\mid D^2 u \mid^2 \leq C \alpha^{-n/2}$. The result is $\|D^2 u\|_{L^\infty(B_{1/2})} \leq C$, demonstrating how Pogorelov's estimates provide crucial second derivative bounds for fully nonlinear equations.
+> At the maximum point of $w$, the maximum principle gives $\Delta w \leq 0$, so $\vert D^2 u \vert^2 \leq C \alpha^{-n/2}$. The result is $\|D^2 u\|_{L^\infty(B_{1/2})} \leq C$, demonstrating how Pogorelov's estimates provide crucial second derivative bounds for fully nonlinear equations.
 
 > **Evans-Krylov $C^{2,\alpha}$ Theory**
 
@@ -136,7 +136,7 @@ This method illustrates "rigidity": local enforcement of the PDE and boundary da
 
 > For the openness proof, linearization gives $L v = \text{tr}\left( \text{adj}(D^2 u_0 + u_0 \delta) D^2 v \right)$. Ellipticity holds since eigenvalues of $\text{adj}(D^2 u_0 + u_0 \delta)$ are positive when $D^2 u_0 + u_0 \delta \succ 0$ (strictly convex) and $\text{adj}(M) \succ 0$ when $M \succ 0$. Invertibility follows since $L: C^{2,\alpha}(S^{n-1}) \to C^\alpha(S^{n-1})$ is Fredholm index 0 and injective (by maximum principle), hence surjective.
 
-> For the closedness argument, consider a sequence $u_k$ solving $G_{t_k}(u_k) = 0$ with $t_k \to t^*$. $C^0$ bounds (Krylov) give $\sup \mid u \mid \leq C(\sup f, \text{diam } \Omega)$ using the maximum principle. $C^1$ bounds (Calabi) use $w = e^{\alpha \mid x \mid^2} \mid \nabla u \mid^2$ with $\Delta w + c(x) \mid \nabla w \mid \leq C w$. $C^2$ bounds follow from Pogorelov's estimates, and higher regularity from Evans-Krylov and Schauder. Convergence via Arzelà-Ascoli and regularity gives $u_k \to u^*$ in $C^{2,\alpha}$, demonstrating how the continuity method systematically constructs solutions.
+> For the closedness argument, consider a sequence $u_k$ solving $G_{t_k}(u_k) = 0$ with $t_k \to t^*$. $C^0$ bounds (Krylov) give $\sup \vert u \vert \leq C(\sup f, \text{diam } \Omega)$ using the maximum principle. $C^1$ bounds (Calabi) use $w = e^{\alpha \vert x \vert^2} \vert \nabla u \vert^2$ with $\Delta w + c(x) \vert \nabla w \vert \leq C w$. $C^2$ bounds follow from Pogorelov's estimates, and higher regularity from Evans-Krylov and Schauder. Convergence via Arzelà-Ascoli and regularity gives $u_k \to u^*$ in $C^{2,\alpha}$, demonstrating how the continuity method systematically constructs solutions.
 
 > **Serrin's Problem in 2D**
 
@@ -148,7 +148,7 @@ This method illustrates "rigidity": local enforcement of the PDE and boundary da
 
 > **Moving Planes for Monge-Ampère**
 
-> For the Monge-Ampère equation $\det(D^2 u) = 1$ with $u|_{\partial \Omega} = 0$ and $\mid \nabla u \mid_{\partial \Omega} = c$, the reflection function is $w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(\mid x^\lambda \mid^2 - \mid x \mid^2)$.
+> For the Monge-Ampère equation $\det(D^2 u) = 1$ with $u|_{\partial \Omega} = 0$ and $\vert \nabla u \vert_{\partial \Omega} = c$, the reflection function is $w_\lambda(x) = u(x^\lambda) - u(x) - \epsilon(\vert x^\lambda \vert^2 - \vert x \vert^2)$.
 
 > The key computation gives $\det(D^2 w_\lambda) = \det\begin{pmatrix} D^2 u(x^\lambda) & * \\ * & D^2 u(x) \end{pmatrix} + \text{lower order}$. Block determinant analysis shows $w_\lambda \geq 0$ by convexity, demonstrating how the method of moving planes extends to fully nonlinear equations.
 

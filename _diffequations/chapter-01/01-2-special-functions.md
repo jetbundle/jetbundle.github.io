@@ -240,7 +240,11 @@ show that in the limit as the third parameter approaches infinity with appropria
 <details>
 <summary><strong>Expand Solution</strong></summary>
 
-Starting with ${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z)$, we have
+Starting with
+
+$${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z),$$
+
+we have
 
 $$
 {}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.

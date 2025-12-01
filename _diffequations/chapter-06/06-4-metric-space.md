@@ -14,7 +14,7 @@ parent_section: null
 
 # Section 6.4: The Space of Riemannian Metrics
 
-> Metrics become points, and geometries become orbits.
+Metrics become points, and geometries become orbits.
 
 ## Introduction
 
