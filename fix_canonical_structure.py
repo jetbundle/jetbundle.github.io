@@ -106,7 +106,8 @@ def clean_article_content(html: str) -> str:
     content = re.sub(r'<h2>Challenge Problems</h2>.*?(?=<h2>|<section|</article>)', '', content, flags=re.DOTALL)
     
     # Remove old "References" section entirely (heading + content until next section)
-    content = re.sub(r'<h2>References</h2>.*?(?=<h2>|<section|</article>|<nav|<!--)', '', content, flags=re.DOTALL)
+    # But preserve if it's part of a list (like in chapter index)
+    content = re.sub(r'<h2>References</h2>.*?(?=<h2>|<section|</article>|<nav|<!--|</ul>)', '', content, flags=re.DOTALL)
     
     # Remove old "Navigation" heading and related sections
     content = re.sub(r'<h2>Navigation</h2>.*?(?=<h2>|<section|</article>|<nav|<!--)', '', content, flags=re.DOTALL)
@@ -128,13 +129,15 @@ def clean_article_content(html: str) -> str:
     # Remove old final cliffhanger (we'll add proper one)
     content = re.sub(r'<div class="cliffhanger final">.*?</div>', '', content, flags=re.DOTALL)
     
-    # Remove stray closing tags (but preserve if they're part of valid structure)
-    # Remove orphaned </section> tags
-    content = re.sub(r'</section>\s*(?=\s*<!--|</article>|$)', '', content, flags=re.DOTALL)
-    content = re.sub(r'</nav>\s*(?=\s*<!--|</article>|$)', '', content, flags=re.DOTALL)
+    # Remove all orphaned closing tags (not preceded by opening tag)
+    # Remove standalone </section> tags
+    content = re.sub(r'^\s*</section>\s*$', '', content, flags=re.MULTILINE)
+    content = re.sub(r'\n\s*</section>\s*\n(?=\s*<!--|\s*</article>|\s*<section|\s*<nav|\s*$)', '\n', content, flags=re.DOTALL)
+    content = re.sub(r'\n\s*</nav>\s*\n(?=\s*<!--|\s*</article>|\s*<nav|\s*$)', '\n', content, flags=re.DOTALL)
     
     # Remove duplicate navigation comments
-    content = re.sub(r'<!--\s*8\.\s*Navigation\s*-->\s*(?=<!--\s*8\.\s*Navigation\s*-->)', '', content, flags=re.DOTALL | re.IGNORECASE)
+    while re.search(r'<!--\s*8\.\s*Navigation\s*-->\s*<!--\s*8\.\s*Navigation\s*-->', content, re.IGNORECASE):
+        content = re.sub(r'<!--\s*8\.\s*Navigation\s*-->\s*(?=<!--\s*8\.\s*Navigation\s*-->)', '', content, flags=re.IGNORECASE)
     
     # Clean up multiple blank lines
     content = re.sub(r'\n\s*\n\s*\n+', '\n\n', content)
