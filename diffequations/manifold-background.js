@@ -42,7 +42,7 @@
   function initBackground() {
     // Prevent multiple initializations
     if (initialized) return;
-    
+
     // Check if canvas already exists
     const existing = document.getElementById('manifold-background');
     if (existing) {
@@ -64,7 +64,7 @@
       // Create and append canvas
       createCanvas();
       ctx = canvas.getContext('2d');
-      
+
       if (!ctx) {
         console.warn('Canvas 2D context not available');
         return;
@@ -75,10 +75,10 @@
 
       // Initial resize
       resizeCanvas();
-      
+
       // Add resize listener
       window.addEventListener('resize', resizeCanvas, { passive: true });
-      
+
       // Start animation
       startAnimation();
     } catch (error) {
@@ -88,7 +88,7 @@
 
   function resizeCanvas() {
     if (!canvas || !ctx) return;
-    
+
     try {
       const dpr = window.devicePixelRatio || 1;
       const width = window.innerWidth;
@@ -96,19 +96,19 @@
 
       // Save current transform
       ctx.save();
-      
+
       // Reset transform
       ctx.setTransform(1, 0, 0, 1, 0, 0);
-      
+
       // Set canvas size
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
-      
+
       // Scale context for high DPI
       ctx.scale(dpr, dpr);
-      
+
       // Restore transform
       ctx.restore();
     } catch (error) {
@@ -240,7 +240,7 @@
 
   function startAnimation() {
     if (isRunning || !canvas || !ctx) return;
-    
+
     isRunning = true;
     lastFrameTime = performance.now();
     animationId = requestAnimationFrame(animate);

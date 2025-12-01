@@ -160,7 +160,7 @@ def create_html_page(front_matter: Optional[Dict], html_body: str, permalink: st
     """Create a complete HTML page with KaTeX support, dark theme, and navigation."""
     title = front_matter.get('title', 'Differential Equations') if front_matter else 'Differential Equations'
     description = front_matter.get('description', '') if front_matter else ''
-    
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,6 +171,7 @@ def create_html_page(front_matter: Optional[Dict], html_body: str, permalink: st
   {KATEX_RENDERER}
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
+  <script src="/diffequations/manifold-background.js" defer></script>
 </head>
 <body>
   <main>
@@ -185,7 +186,7 @@ def create_html_page(front_matter: Optional[Dict], html_body: str, permalink: st
   <script src="/diffequations/navigation.js"></script>
 </body>
 </html>"""
-    
+
     return html
 
 
