@@ -6,12 +6,11 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
 
 **Status**: Analysis complete. Ready for manual transformation.
 
-**Estimated Scope**: 
-- 61 section pages (1.1 through 7.8)
-- 1 main index page (`/diffequations/index.html`)
-- 7 chapter index pages (`/diffequations/chapter-01/index.html` through `chapter-07/index.html`)
-- 1 epilogue page (`/diffequations/epilogue/index.html`)
-- **Total: 70 HTML files** need structural transformation
+**Estimated Scope**: 63 HTML files need structural transformation:
+- 61 Section pages (1.1 through 7.8)
+- 1 Main Index page (`/diffequations/index.html`)
+- 7 Chapter Index pages (`/diffequations/chapter-XX/index.html`)
+- 1 Epilogue page (`/diffequations/epilogue/index.html`)
 
 ---
 
@@ -48,7 +47,50 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
 
 ## Target State: Canonical Template
 
-### Mandatory Structure (Every Page Must Have)
+### Global Head (Identical on Every Page)
+
+**Every single page must use this exact head structure:**
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exact Title of This Page</title>
+  <meta name="description" content="One devastating sentence for SEO">
+  
+  <!-- KaTeX – simplified, identical everywhere -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
+  </script>
+  
+  <link rel="stylesheet" href="/diffequations/styles.css">
+  <script src="/diffequations/navigation-data.js"></script>
+  <script src="/diffequations/navigation.js"></script>
+  
+  <!-- Only the main index keeps the animated background -->
+  <!-- <script src="/diffequations/manifold-background.js" defer></script> -->
+</head>
+```
+
+**Key Points:**
+- KaTeX loading is simplified (no complex inline scripts)
+- Navigation scripts in head (not body)
+- Manifold background ONLY on main index (commented out elsewhere)
+
+### Page Type Hierarchy
+
+Different page types have different required elements:
+
+| Page Type | Hook | Description | Narrative Intro | Challenges | Final Cliffhanger | References | Navigation |
+|-----------|------|------------|-----------------|------------|-------------------|------------|------------|
+| **Main Index** | Yes | Yes | No | No | No | No | No |
+| **Chapter Index** | Yes | Yes | Yes (3 paras) | No | Yes | Yes | Yes |
+| **Normal Section** (1.1–7.8) | Yes | Yes | Yes (2-4 paras) | Yes | Yes | Yes | Yes |
+| **Epilogue** | Yes | Yes | Yes (3 paras) | Optional | Yes (huge) | Yes | Yes |
+
+### Mandatory Structure (Section Pages: 1.1–7.8)
 
 ```html
 <!DOCTYPE html>
@@ -117,6 +159,222 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
 </html>
 ```
 
+### Main Index Template (`/diffequations/index.html`)
+
+**Structure:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use global head template above -->
+  <!-- UNCOMMENT manifold-background.js for main index only -->
+  <script src="/diffequations/manifold-background.js" defer></script>
+</head>
+<body>
+<main>
+  <header class="hook">
+    <h1>A Survey of Differential Equations<br>and their Algebraic Geometry</h1>
+    <p class="hook-text">
+      We begin believing every differential equation has an explicit formula.
+      By the end we realize the formula was never the point — the invariant was.
+    </p>
+    <p class="hook-subtitle">This is the story of how mathematics kills its own children to grow stronger.</p>
+  </header>
+  
+  <p class="description">J. Saucedo • 2025 • An ascent from explicit solutions to categorical resolution</p>
+  
+  <article class="toc-article">
+    <h2>The Seven Ascents</h2>
+    <ol class="seven-ascents">
+      <li>Chapter 1 – Classical Explicit & Quasi-Explicit Arsenal</li>
+      <li>Chapter 2 – Functional Analysis, Distributions & Weak Solutions</li>
+      <li>Chapter 3 – Tensor Fields, Conservation Laws & Geometric Formulation</li>
+      <li>Chapter 4 – Symmetry, Lie Theory & Classical Integrability</li>
+      <li>Chapter 5 – Stochastic, Rough, Fractional & Nonlocal Dynamics</li>
+      <li>Chapter 6 – Jet Bundles, Exterior Differential Systems & Intrinsic PDEs</li>
+      <li>Chapter 7 – Microlocal Analysis, D-Modules & Categorical Resolution</li>
+    </ol>
+    
+    <h2>Complete Table of Contents</h2>
+    <div class="toc-grid">
+      <section class="toc-chapter">
+        <h3>Chapter 1 Classical Explicit & Quasi-Explicit Arsenal</h3>
+        <p class="chapter-tagline">The Rise and Fall of the Specific Solution</p>
+        <ul>
+          <li><a href="/diffequations/chapter-01/">Chapter 1 Introduction</a></li>
+          <li><a href="/diffequations/chapter-01/01-1-exact-methods/">1.1 Exact Methods</a></li>
+          <!-- ... all other sections ... -->
+        </ul>
+      </section>
+      <!-- Repeat for Chapters 2–7 -->
+    </div>
+    
+    <h3>Epilogue</h3>
+    <ul>
+      <li><a href="/diffequations/epilogue/">The Eternal Structure</a></li>
+    </ul>
+  </article>
+</main>
+<script defer src="/diffequations/js/textbook-engine.js"></script>
+<script defer src="/diffequations/js/widget-engine.js"></script>
+<script src="/diffequations/manifold-background.js" defer></script>
+</body>
+</html>
+```
+
+**Key Differences from Section Pages:**
+- No narrative intro
+- No challenges
+- No final cliffhanger
+- No references
+- No navigation block
+- Has "Seven Ascents" list
+- Has TOC grid with chapter sections
+- Manifold background script is active (not commented)
+
+### Chapter Index Template (`/diffequations/chapter-XX/index.html`)
+
+**Structure:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use global head template (manifold-background.js commented) -->
+</head>
+<body>
+<main>
+  <header class="hook">
+    <h1>Chapter X: Chapter Title</h1>
+    <p class="hook-text">
+      Explicit formulas are the dream of classical physics — but they die the moment the vector field refuses to flatten.
+    </p>
+    <p class="hook-subtitle">This chapter is their funeral.</p>
+  </header>
+  
+  <p class="description">The Rise and Fall of the Specific Solution</p>
+  
+  <article>
+    <section class="narrative-intro">
+      <p>We begin with the most optimistic assumption in all of mathematics: that every differential equation has an explicit, closed-form solution we can write down with pen and paper.</p>
+      <p>Over the next seven sections we will watch this dream shatter — beautifully, irreversibly, and with perfect logical necessity.</p>
+      <p>Each method will be born, celebrated, pushed to its absolute limit, and then murdered by a single counterexample that forces us to the next paradigm.</p>
+    </section>
+    
+    <h2>Chapter Contents</h2>
+    <ol class="chapter-contents">
+      <li><a href="/diffequations/chapter-XX/XX-Y-section/">X.Y Section Title</a></li>
+      <!-- ... all sections in chapter ... -->
+    </ol>
+    
+    <div class="cliffhanger final">
+      <p>
+        When this chapter ends, the explicit solution will be dead.
+        What rises from its grave is the true subject of this book:
+        the eternal, coordinate-independent, cohomological structure that survives when formulas fail.
+      </p>
+    </div>
+    
+    <section class="references">
+      <h2>Key References for Chapter X</h2>
+      <ul>
+        <li>Author – <em>Title</em></li>
+        <!-- ... more references ... -->
+      </ul>
+    </section>
+    
+    <nav class="navigation">
+      <hr>
+      <ul>
+        <li>Start the journey → <a href="/diffequations/chapter-XX/XX-1-first-section/">Section X.1: First Section</a></li>
+        <li><a href="/diffequations/">Full Table of Contents</a></li>
+      </ul>
+    </nav>
+  </article>
+</main>
+<script defer src="/diffequations/js/textbook-engine.js"></script>
+<script defer src="/diffequations/js/widget-engine.js"></script>
+</body>
+</html>
+```
+
+**Key Differences from Section Pages:**
+- Has narrative intro (3 paragraphs)
+- No challenges section
+- Has final cliffhanger (chapter-level conclusion)
+- Has references (chapter-level)
+- Has navigation (links to first section + TOC)
+- Uses `<ol class="chapter-contents">` for section list
+
+### Epilogue Template (`/diffequations/epilogue/index.html`)
+
+**Structure:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use global head template (manifold-background.js commented) -->
+</head>
+<body>
+<main>
+  <header class="hook">
+    <h1>Epilogue: The Eternal Structure</h1>
+    <p class="hook-text">
+      We began chasing formulas. We end staring directly into the face of topology.
+    </p>
+    <p class="hook-subtitle">The ladder has been kicked away — and we are still standing.</p>
+  </header>
+  
+  <p class="description">From explicit solutions to categorical invariants — the ascent is complete</p>
+  
+  <article>
+    <section class="narrative-intro">
+      <p>Seven chapters ago we believed a differential equation was solved when we could write $y(x) = \ldots$.</p>
+      <p>Today we know the true solution is often an integer (an index), a cohomology class, or the simple statement "this system is holonomic."</p>
+      <p>The formula was never the destination. It was only the first rung of an infinite ladder.</p>
+    </section>
+    
+    <!-- Full epilogue text – keep existing content, wrap in <p> tags -->
+    <!-- No extra headings needed, just flowing prose -->
+    
+    <div class="cliffhanger final" style="font-size:1.3rem; padding:3rem;">
+      <p>
+        The differential equation was never about finding functions.<br>
+        It was the universe teaching us — in its own austere language —<br>
+        that reality is algebraic geometry wearing the mask of calculus.
+      </p>
+    </div>
+    
+    <section class="references">
+      <h2>References for the Entire Journey</h2>
+      <ul>
+        <li>Arnold – Mathematical Methods of Classical Mechanics</li>
+        <li>Kashiwara – Algebraic Study of Systems of Partial Differential Equations</li>
+        <!-- ... comprehensive references ... -->
+      </ul>
+    </section>
+    
+    <nav class="navigation">
+      <hr>
+      <ul>
+        <li><a href="/diffequations/">Return to Table of Contents</a></li>
+        <li><a href="/diffequations/chapter-07/07-8-higher-categories/">Revisit the Summit – Section 7.8</a></li>
+      </ul>
+    </nav>
+  </article>
+</main>
+<script defer src="/diffequations/js/textbook-engine.js"></script>
+<script defer src="/diffequations/js/widget-engine.js"></script>
+</body>
+</html>
+```
+
+**Key Differences from Section Pages:**
+- Has narrative intro (3 paragraphs)
+- Challenges optional (may have 1-2, but not required)
+- Final cliffhanger is HUGE (larger font, more padding)
+- References are comprehensive (entire journey)
+- Navigation links back to TOC and to 7.8 (summit)
+
 ### Widget Placement Rules
 
 **Three Widget Types:**
@@ -128,6 +386,7 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
 - Maximum 3 widgets per section (most have 2: Crisis + Victory)
 - Widgets must serve narrative arc
 - Place immediately after relevant content paragraph
+- **Note:** Widgets are for SECTION pages only, not index pages or epilogue
 
 ---
 
@@ -491,6 +750,99 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
   padding: 1rem;
   min-height: 400px;
 }
+
+/* Table of Contents Enhancements (Main Index) */
+.toc-article h2 {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  color: var(--link-color);
+}
+
+.seven-ascents {
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 2.2;
+  list-style: none;
+  padding-left: 0;
+  margin: 2rem 0;
+}
+
+.seven-ascents li {
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.toc-chapter {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.toc-chapter h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--link-color);
+  font-size: 1.2rem;
+}
+
+.chapter-tagline {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.toc-chapter ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc-chapter li {
+  margin: 0.5rem 0;
+}
+
+.toc-chapter a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toc-chapter a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Chapter Index List */
+.chapter-contents {
+  font-size: 1.2rem;
+  line-height: 2.1;
+  list-style: decimal;
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+
+.chapter-contents li {
+  margin: 0.75rem 0;
+}
+
+.chapter-contents a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.chapter-contents a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
 ```
 
 ---
@@ -524,6 +876,45 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
 ---
 
 ### Phase 3: Structural Transformation (Per Page)
+
+### Page Type Identification
+
+Before transformation, identify the page type:
+
+1. **Main Index** (`/diffequations/index.html`) - 1 page
+2. **Chapter Index** (`/diffequations/chapter-XX/index.html`) - 7 pages
+3. **Section Page** (`/diffequations/chapter-XX/XX-Y-section/index.html`) - 61 pages
+4. **Epilogue** (`/diffequations/epilogue/index.html`) - 1 page
+
+**Total: 70 pages** (not 61 - we also have indexes and epilogue)
+
+### Transformation Checklists by Page Type
+
+#### Checklist A: Main Index (`/diffequations/index.html`)
+
+- [ ] Update head to global head template
+- [ ] Uncomment manifold-background.js (only page with it active)
+- [ ] Create/update hook section with main title
+- [ ] Add "Seven Ascents" ordered list
+- [ ] Transform TOC into `.toc-grid` with `.toc-chapter` sections
+- [ ] Add chapter taglines
+- [ ] Remove any narrative intro, challenges, cliffhanger, references, navigation
+- [ ] Ensure scripts load correctly
+
+#### Checklist B: Chapter Index (`/diffequations/chapter-XX/index.html`)
+
+- [ ] Update head to global head template
+- [ ] Ensure manifold-background.js is commented/absent
+- [ ] Create/update hook section (chapter-level hook)
+- [ ] Add description line (chapter tagline)
+- [ ] Create narrative intro section (3 paragraphs about chapter's arc)
+- [ ] Transform section list to `<ol class="chapter-contents">`
+- [ ] Add final cliffhanger (chapter-level conclusion)
+- [ ] Add references section (chapter-level references)
+- [ ] Add navigation (link to first section + TOC)
+- [ ] Remove any challenges section
+
+#### Checklist C: Section Pages (1.1–7.8)
 
 For each of the 61 HTML files, follow this checklist:
 
@@ -597,7 +988,187 @@ For sections that need widgets:
 
 ---
 
+## Mathematical Rigor and Content Quality Checks
+
+### Mandatory Mathematical Verification
+
+During transformation, **every mathematical statement must be verified**:
+
+#### 1. Theorem Statements
+- [ ] All theorems are correctly stated
+- [ ] Hypotheses are complete and necessary
+- [ ] Conclusions are precise
+- [ ] No missing conditions or assumptions
+- [ ] Check against authoritative sources
+
+#### 2. Proofs and Derivations
+- [ ] All steps are logically sound
+- [ ] No gaps in reasoning
+- [ ] All limits, integrals, derivatives are well-defined
+- [ ] Convergence conditions are stated
+- [ ] Edge cases are addressed
+
+#### 3. Examples and Computations
+- [ ] All calculations are correct
+- [ ] Numerical values are accurate
+- [ ] Asymptotic expansions are valid
+- [ ] Special cases are handled correctly
+- [ ] Verify against known results
+
+#### 4. Definitions
+- [ ] Definitions are standard and consistent
+- [ ] Notation matches throughout
+- [ ] No circular definitions
+- [ ] Edge cases are covered
+
+#### 5. Cross-References
+- [ ] References to other sections are accurate
+- [ ] Chapter numbers match
+- [ ] Theorem numbers (if used) are correct
+- [ ] Links work and point to correct content
+
+### Content Quality Red Flags
+
+**Watch for these common issues:**
+
+1. **Random Corrections**
+   - Look for inconsistent notation within same section
+   - Check for hastily added corrections that break flow
+   - Verify that "fixes" don't introduce new errors
+
+2. **Questionable Mathematics**
+   - Statements that seem too strong or too weak
+   - Missing hypotheses in theorems
+   - Computations that don't match stated results
+   - Definitions that don't match standard usage
+
+3. **Inconsistencies**
+   - Same concept defined differently in different places
+   - Notation changes mid-section
+   - Terminology switches (e.g., "function" vs "map")
+   - Units or scaling factors that don't match
+
+4. **Missing Rigor**
+   - Claims without justification
+   - "It is easy to see" without explanation
+   - Hand-waving over difficult steps
+   - Unstated assumptions
+
+5. **Formatting Errors**
+   - Math that doesn't render correctly
+   - Broken LaTeX syntax
+   - Missing delimiters
+   - Incorrect equation numbering
+
+### Verification Protocol
+
+**For Each Page:**
+
+1. **Mathematical Content Review**
+   - Read every theorem statement carefully
+   - Verify all computations manually
+   - Check definitions against standard references
+   - Ensure proofs are complete
+
+2. **Notation Consistency Check**
+   - Scan for all uses of each symbol
+   - Ensure same symbol means same thing
+   - Check that notation matches conventions
+   - Verify Greek letters are used consistently
+
+3. **Cross-Reference Verification**
+   - Click every internal link
+   - Verify section numbers are correct
+   - Check that referenced content exists
+   - Ensure external references are accurate
+
+4. **Content Flow Review**
+   - Read the entire page as narrative
+   - Check that ideas build logically
+   - Verify cliffhangers make sense
+   - Ensure transitions are smooth
+
+5. **Final Accuracy Pass**
+   - Double-check all numbers
+   - Verify all formulas
+   - Check all citations
+   - Ensure no typos in technical terms
+
+### Common Mathematical Errors to Catch
+
+1. **Dimensional Analysis**
+   - Check units match in equations
+   - Verify scaling factors are correct
+   - Ensure dimensionless quantities are properly normalized
+
+2. **Limits and Convergence**
+   - Verify limit conditions are stated
+   - Check convergence criteria
+   - Ensure asymptotic expansions are valid
+   - Verify radius of convergence
+
+3. **Index Notation**
+   - Check summation indices match
+   - Verify Einstein summation (if used)
+   - Ensure indices are not reused incorrectly
+
+4. **Operator Notation**
+   - Verify operator composition is correct
+   - Check domain/codomain match
+   - Ensure adjoints are properly defined
+
+5. **Geometric Quantities**
+   - Verify curvature formulas
+   - Check metric tensor components
+   - Ensure coordinate transformations are correct
+
+### Content Error Detection Checklist
+
+**Before marking page complete:**
+
+- [ ] No mathematical errors found
+- [ ] All notation is consistent
+- [ ] All cross-references verified
+- [ ] All computations double-checked
+- [ ] No "random corrections" that break flow
+- [ ] No questionable statements
+- [ ] All definitions are standard
+- [ ] All theorems are correctly stated
+- [ ] All examples work correctly
+- [ ] Content reads as finalized, polished work
+
+---
+
 ## Page-by-Page Transformation Checklist
+
+### Special Pages (Do First)
+
+#### Main Index (`/diffequations/index.html`)
+- [ ] Apply Main Index Template
+- [ ] Verify "Seven Ascents" list is correct
+- [ ] Check all TOC links work
+- [ ] Ensure manifold background is active
+- [ ] Verify no narrative intro, challenges, or cliffhanger
+
+#### Chapter Indexes (7 pages: `/diffequations/chapter-01/index.html` through `chapter-07/index.html`)
+- [ ] Apply Chapter Index Template
+- [ ] Write chapter-specific hook (≤22 words + ≤15 subtitle)
+- [ ] Write 3-paragraph narrative intro
+- [ ] Create `<ol class="chapter-contents">` with all sections
+- [ ] Write chapter-level final cliffhanger
+- [ ] Add chapter-level references
+- [ ] Add navigation (first section + TOC)
+- [ ] Verify no challenges section
+
+#### Epilogue (`/diffequations/epilogue/index.html`)
+- [ ] Apply Epilogue Template
+- [ ] Write epilogue-specific hook
+- [ ] Write 3-paragraph narrative intro
+- [ ] Keep existing epilogue content (wrap in `<p>` tags)
+- [ ] Create huge final cliffhanger (larger font, more padding)
+- [ ] Add comprehensive references (entire journey)
+- [ ] Add navigation (TOC + link to 7.8)
+- [ ] Challenges optional (may have 1-2, not required)
 
 ### Chapter 1: Classical Explicit & Quasi-Explicit Arsenal
 
@@ -658,646 +1229,6 @@ For each section in chapters 2-7:
 - [ ] Apply same structure
 - [ ] Final cliffhanger should be the ultimate conclusion
 - [ ] No "next section" in navigation (only TOC links)
-
----
-
-## Special Page Types: Index Pages and Epilogue
-
-### Overview: The Three Special Page Types
-
-The textbook has three distinct page types that require different structural approaches:
-
-1. **Main Index** (`/diffequations/index.html`) - Landing page, table of contents
-2. **Chapter Indexes** (`/diffequations/chapter-XX/index.html`) - Chapter introductions (7 pages)
-3. **Epilogue** (`/diffequations/epilogue/index.html`) - Final conclusion
-
-Each has unique requirements while maintaining the canonical hook structure.
-
----
-
-### Type 1: Main Index Page
-
-**File:** `/diffequations/index.html`
-
-**Purpose:** Landing page, complete table of contents, entry point to the textbook
-
-**Unique Characteristics:**
-- Only page with animated manifold background
-- No narrative intro section
-- No challenges section
-- No final cliffhanger
-- No references section
-- Contains complete TOC with all chapters and sections
-
-**Canonical Structure:**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Survey of Differential Equations and their Algebraic Geometry</title>
-  <meta name="description" content="We begin believing every differential equation has an explicit formula. By the end we realize the formula was never the point — the invariant was.">
-  
-  <!-- KaTeX – simplified, identical everywhere -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
-  </script>
-  
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/navigation.js"></script>
-  <!-- Note: manifold-background.js loaded at bottom, only on this page -->
-</head>
-<body>
-<main>
-  <!-- 1. HOOK (mandatory) -->
-  <header class="hook">
-    <h1>A Survey of Differential Equations<br>and their Algebraic Geometry</h1>
-    <p class="hook-text">
-      We begin believing every differential equation has an explicit formula.
-      By the end we realize the formula was never the point — the invariant was.
-    </p>
-    <p class="hook-subtitle">
-      This is the story of how mathematics kills its own children to grow stronger.
-    </p>
-  </header>
-  
-  <!-- 2. DESCRIPTION (mandatory) -->
-  <p class="description">J. Saucedo • 2025 • An ascent from explicit solutions to categorical resolution</p>
-  
-  <!-- 3. TABLE OF CONTENTS (no narrative intro, no challenges) -->
-  <article class="toc-article">
-    <h2>The Seven Ascents</h2>
-    <ol class="seven-ascents">
-      <li>Chapter 1 – Classical Explicit & Quasi-Explicit Arsenal</li>
-      <li>Chapter 2 – Functional Analysis, Distributions & Weak Solutions</li>
-      <li>Chapter 3 – Tensor Fields, Conservation Laws & Geometric Formulation</li>
-      <li>Chapter 4 – Symmetry, Lie Theory & Classical Integrability</li>
-      <li>Chapter 5 – Stochastic, Rough, Fractional & Nonlocal Dynamics</li>
-      <li>Chapter 6 – Jet Bundles, Exterior Differential Systems & Intrinsic PDEs</li>
-      <li>Chapter 7 – Microlocal Analysis, D-Modules & Categorical Resolution</li>
-    </ol>
-    
-    <h2>Complete Table of Contents</h2>
-    <div class="toc-grid">
-      <!-- Chapter 1 -->
-      <section class="toc-chapter">
-        <h3>Chapter 1 Classical Explicit & Quasi-Explicit Arsenal</h3>
-        <p class="chapter-tagline">The Rise and Fall of the Specific Solution</p>
-        <ul>
-          <li><a href="/diffequations/chapter-01/">Chapter 1 Introduction</a></li>
-          <li><a href="/diffequations/chapter-01/01-1-exact-methods/">1.1 Exact Methods</a></li>
-          <li><a href="/diffequations/chapter-01/01-2-special-functions/">1.2 Special Functions</a></li>
-          <!-- ... all sections ... -->
-        </ul>
-      </section>
-      
-      <!-- Repeat for Chapters 2–7 -->
-    </div>
-    
-    <h3>Epilogue</h3>
-    <ul>
-      <li><a href="/diffequations/epilogue/">The Eternal Structure</a></li>
-    </ul>
-  </article>
-</main>
-
-<!-- Scripts -->
-<script defer src="/diffequations/js/textbook-engine.js"></script>
-<script defer src="/diffequations/js/widget-engine.js"></script>
-<!-- Animated background ONLY on main index -->
-<script src="/diffequations/manifold-background.js" defer></script>
-</body>
-</html>
-```
-
-**Main Index Checklist:**
-- [ ] Hook section with book title and devastating hook text
-- [ ] Description line with author/year/tagline
-- [ ] "The Seven Ascents" ordered list
-- [ ] Complete TOC in `.toc-grid` with all chapters
-- [ ] Each chapter in `.toc-chapter` section with tagline
-- [ ] Epilogue link at end
-- [ ] Animated background script (only page with this)
-- [ ] NO narrative intro
-- [ ] NO challenges
-- [ ] NO final cliffhanger
-- [ ] NO references
-- [ ] NO navigation block
-
----
-
-### Type 2: Chapter Index Pages
-
-**Files:** `/diffequations/chapter-01/index.html` through `/diffequations/chapter-07/index.html`
-
-**Purpose:** Chapter introductions, set narrative context, list chapter sections
-
-**Unique Characteristics:**
-- Has narrative intro (3 paragraphs setting up chapter)
-- Has final cliffhanger (chapter-level conclusion)
-- Has references (chapter-level)
-- Has navigation (to first section + TOC)
-- NO challenges section
-- NO widgets (chapter overview, not technical content)
-- Lists all sections in the chapter
-
-**Canonical Structure:**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapter X: Chapter Title</title>
-  <meta name="description" content="One devastating sentence for SEO">
-  
-  <!-- KaTeX – simplified, identical everywhere -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
-  </script>
-  
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/navigation.js"></script>
-  <!-- NO manifold-background.js on chapter indexes -->
-</head>
-<body>
-<main>
-  <!-- 1. HOOK (mandatory) -->
-  <header class="hook">
-    <h1>Chapter X: Chapter Title</h1>
-    <p class="hook-text">
-      Explicit formulas are the dream of classical physics — but they die the moment the vector field refuses to flatten.
-    </p>
-    <p class="hook-subtitle">
-      This chapter is their funeral.
-    </p>
-  </header>
-  
-  <!-- 2. DESCRIPTION (mandatory) -->
-  <p class="description">The Rise and Fall of the Specific Solution</p>
-  
-  <article>
-    <!-- 3. NARRATIVE INTRO (mandatory, 3 paragraphs) -->
-    <section class="narrative-intro">
-      <p>We begin with the most optimistic assumption in all of mathematics: that every differential equation has an explicit, closed-form solution we can write down with pen and paper.</p>
-      <p>Over the next seven sections we will watch this dream shatter — beautifully, irreversibly, and with perfect logical necessity.</p>
-      <p>Each method will be born, celebrated, pushed to its absolute limit, and then murdered by a single counterexample that forces us to the next paradigm.</p>
-    </section>
-    
-    <!-- 4. CHAPTER CONTENTS LIST -->
-    <h2>Chapter Contents</h2>
-    <ol class="chapter-contents">
-      <li><a href="/diffequations/chapter-XX/XX-1-section/">X.1 Section Title</a></li>
-      <li><a href="/diffequations/chapter-XX/XX-2-section/">X.2 Section Title</a></li>
-      <!-- ... all sections in chapter ... -->
-    </ol>
-    
-    <!-- 5. FINAL CLIFFHANGER (mandatory, chapter-level) -->
-    <div class="cliffhanger final">
-      <p>
-        When this chapter ends, the explicit solution will be dead.
-        What rises from its grave is the true subject of this book:
-        the eternal, coordinate-independent, cohomological structure that survives when formulas fail.
-      </p>
-    </div>
-    
-    <!-- 6. KEY REFERENCES (mandatory, chapter-level) -->
-    <section class="references">
-      <h2>Key References for Chapter X</h2>
-      <ul>
-        <li>Author, I. – <em>Book Title</em></li>
-        <li>Author, I. – <em>Book Title</em></li>
-      </ul>
-    </section>
-    
-    <!-- 7. NAVIGATION (mandatory) -->
-    <nav class="navigation">
-      <hr>
-      <ul>
-        <li>Start the journey → <a href="/diffequations/chapter-XX/XX-1-first-section/">Section X.1: First Section Title</a></li>
-        <li><a href="/diffequations/">Full Table of Contents</a></li>
-      </ul>
-    </nav>
-  </article>
-</main>
-
-<!-- Scripts -->
-<script defer src="/diffequations/js/textbook-engine.js"></script>
-<script defer src="/diffequations/js/widget-engine.js"></script>
-<!-- NO manifold-background.js on chapter indexes -->
-</body>
-</html>
-```
-
-**Chapter Index Checklist (for each of 7 chapters):**
-- [ ] Hook section with chapter title and chapter-specific hook
-- [ ] Description line with chapter tagline
-- [ ] Narrative intro section (exactly 3 paragraphs)
-- [ ] "Chapter Contents" heading
-- [ ] Ordered list (`.chapter-contents`) of all sections
-- [ ] Final cliffhanger (chapter-level conclusion)
-- [ ] Key References section (chapter-level references)
-- [ ] Navigation block (to first section + TOC)
-- [ ] NO challenges section
-- [ ] NO widgets
-- [ ] NO manifold background script
-
----
-
-### Type 3: Epilogue Page
-
-**File:** `/diffequations/epilogue/index.html`
-
-**Purpose:** Final conclusion, ultimate synthesis, forward-looking questions
-
-**Unique Characteristics:**
-- Has narrative intro (3 paragraphs reflecting on journey)
-- Has final cliffhanger (largest, most important - the ultimate conclusion)
-- Has references (entire journey references)
-- Has navigation (to TOC + back to 7.8)
-- Optional challenges (if pedagogically appropriate)
-- NO widgets (epilogue is reflection, not computation)
-- NO manifold background script
-
-**Canonical Structure:**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epilogue: The Eternal Structure</title>
-  <meta name="description" content="We began chasing formulas. We end staring directly into the face of topology.">
-  
-  <!-- KaTeX – simplified, identical everywhere -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
-  </script>
-  
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/navigation.js"></script>
-  <!-- NO manifold-background.js on epilogue -->
-</head>
-<body>
-<main>
-  <!-- 1. HOOK (mandatory) -->
-  <header class="hook">
-    <h1>Epilogue: The Eternal Structure</h1>
-    <p class="hook-text">
-      We began chasing formulas. We end staring directly into the face of topology.
-    </p>
-    <p class="hook-subtitle">
-      The ladder has been kicked away — and we are still standing.
-    </p>
-  </header>
-  
-  <!-- 2. DESCRIPTION (mandatory) -->
-  <p class="description">From explicit solutions to categorical invariants — the ascent is complete</p>
-  
-  <article>
-    <!-- 3. NARRATIVE INTRO (mandatory, 3 paragraphs) -->
-    <section class="narrative-intro">
-      <p>Seven chapters ago we believed a differential equation was solved when we could write $y(x) = \ldots$.</p>
-      <p>Today we know the true solution is often an integer (an index), a cohomology class, or the simple statement "this system is holonomic."</p>
-      <p>The formula was never the destination. It was only the first rung of an infinite ladder.</p>
-    </section>
-    
-    <!-- 4. EPILOGUE CONTENT (full prose, normal <p> tags) -->
-    <p>The journey is complete. We have ascended from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants...</p>
-    
-    <!-- Optional: Forward-looking questions in list format -->
-    <ul>
-      <li><strong>What lies beneath the phase space?</strong> ...</li>
-      <li><strong>Can topology be simplified?</strong> ...</li>
-      <!-- ... more questions ... -->
-    </ul>
-    
-    <!-- 5. FINAL CLIFFHANGER (mandatory, LARGEST and MOST IMPORTANT) -->
-    <div class="cliffhanger final" style="font-size:1.3rem; padding:3rem;">
-      <p>
-        The differential equation was never about finding functions.<br>
-        It was the universe teaching us — in its own austere language —<br>
-        that reality is algebraic geometry wearing the mask of calculus.
-      </p>
-    </div>
-    
-    <!-- 6. KEY REFERENCES (mandatory, entire journey) -->
-    <section class="references">
-      <h2>References for the Entire Journey</h2>
-      <ul>
-        <li>Arnold – <em>Mathematical Methods of Classical Mechanics</em></li>
-        <li>Kashiwara – <em>Algebraic Study of Systems of Partial Differential Equations</em></li>
-        <li>Deligne et al. – <em>Quantum Fields and Strings: A Course for Mathematicians</em></li>
-        <li>Écalle – <em>Introduction to Resurgent Functions</em></li>
-        <li>Gromov – <em>Partial Differential Relations</em></li>
-      </ul>
-    </section>
-    
-    <!-- 7. NAVIGATION (mandatory) -->
-    <nav class="navigation">
-      <hr>
-      <ul>
-        <li><a href="/diffequations/">Return to Table of Contents</a></li>
-        <li><a href="/diffequations/chapter-07/07-8-higher-categories/">Revisit the Summit – Section 7.8</a></li>
-      </ul>
-    </nav>
-  </article>
-</main>
-
-<!-- Scripts -->
-<script defer src="/diffequations/js/textbook-engine.js"></script>
-<script defer src="/diffequations/js/widget-engine.js"></script>
-<!-- NO manifold-background.js on epilogue -->
-</body>
-</html>
-```
-
-**Epilogue Checklist:**
-- [ ] Hook section with epilogue title and ultimate hook
-- [ ] Description line
-- [ ] Narrative intro (3 paragraphs reflecting on journey)
-- [ ] Full epilogue prose content (normal paragraphs)
-- [ ] Optional: Forward-looking questions list
-- [ ] Final cliffhanger (largest, most important - enhanced styling)
-- [ ] Key References section (entire journey references)
-- [ ] Navigation block (to TOC + back to 7.8)
-- [ ] Optional challenges (if pedagogically appropriate)
-- [ ] NO widgets
-- [ ] NO manifold background script
-
----
-
-### Page Type Comparison Matrix
-
-| Element | Main Index | Chapter Index | Normal Section | Epilogue |
-|---------|-----------|---------------|----------------|----------|
-| Hook (≤22 + ≤15) | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| Description line | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| Narrative Intro | ❌ No | ✅ Yes (3 paras) | ✅ Yes (2-4 paras) | ✅ Yes (3 paras) |
-| Challenges | ❌ No | ❌ No | ✅ Yes (2-3 min) | ⚠️ Optional |
-| Final Cliffhanger | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes (largest) |
-| References | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
-| Navigation | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
-| Widgets | ❌ No | ❌ No | ✅ Yes (0-3) | ❌ No |
-| Manifold Background | ✅ Yes (only) | ❌ No | ❌ No | ❌ No |
-| TOC Content | ✅ Yes (full) | ❌ No | ❌ No | ❌ No |
-| Chapter Sections List | ❌ No | ✅ Yes | ❌ No | ❌ No |
-
----
-
-### Global Head Template (All Pages)
-
-**Every single page** (main index, chapter indexes, sections, epilogue) must use this identical head:
-
-```html
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exact Title of This Page</title>
-  <meta name="description" content="One devastating sentence for SEO">
-  
-  <!-- KaTeX – simplified, identical everywhere -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
-  </script>
-  
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/navigation.js"></script>
-  
-  <!-- Only main index gets manifold-background.js (loaded at bottom, not in head) -->
-  <!-- All other pages: NO manifold-background.js -->
-</head>
-```
-
-**Key Points:**
-- KaTeX loading is simplified and identical on every page
-- Navigation scripts in head (not body)
-- Manifold background ONLY on main index (loaded at bottom of body)
-- Widget engine scripts at bottom of body (all pages)
-
----
-
-### Additional CSS for Index Pages
-
-Add these styles to `styles.css` for TOC and chapter index formatting:
-
-```css
-/* ============================================
-   INDEX PAGE STYLES
-   ============================================ */
-
-/* Table of Contents Article */
-.toc-article {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.toc-article h2 {
-  text-align: center;
-  margin: 3rem 0 2rem;
-  color: var(--link-color);
-  font-size: 1.8rem;
-}
-
-/* Seven Ascents List */
-.seven-ascents {
-  font-size: 1.3rem;
-  text-align: center;
-  line-height: 2.2;
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0 3rem;
-  counter-reset: ascent-counter;
-}
-
-.seven-ascents li {
-  counter-increment: ascent-counter;
-  margin: 1rem 0;
-  padding-left: 0;
-  position: relative;
-}
-
-.seven-ascents li::before {
-  content: counter(ascent-counter) ".";
-  position: absolute;
-  left: -2rem;
-  color: var(--link-color);
-  font-weight: 600;
-}
-
-/* TOC Grid Layout */
-.toc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-/* TOC Chapter Section */
-.toc-chapter {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.toc-chapter:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.toc-chapter h3 {
-  margin: 0 0 0.5rem 0;
-  color: var(--link-color);
-  font-size: 1.3rem;
-}
-
-.chapter-tagline {
-  font-style: italic;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.toc-chapter ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-chapter li {
-  margin: 0.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.toc-chapter li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--link-color);
-}
-
-.toc-chapter a {
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.toc-chapter a:hover {
-  color: var(--link-color);
-  text-decoration: underline;
-}
-
-/* Chapter Index List */
-.chapter-contents {
-  font-size: 1.2rem;
-  line-height: 2.1;
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-  counter-reset: section-counter;
-}
-
-.chapter-contents li {
-  counter-increment: section-counter;
-  margin: 1rem 0;
-  padding-left: 2.5rem;
-  position: relative;
-}
-
-.chapter-contents li::before {
-  content: counter(section-counter, decimal) ".";
-  position: absolute;
-  left: 0;
-  color: var(--link-color);
-  font-weight: 600;
-  width: 2rem;
-  text-align: right;
-}
-
-.chapter-contents a {
-  color: var(--link-color);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.chapter-contents a:hover {
-  color: var(--link-hover);
-  text-decoration: underline;
-}
-```
-
----
-
-### Transformation Priority Order
-
-**Recommended sequence:**
-
-1. **Phase 1: CSS Foundation** (one-time)
-   - Add all canonical CSS styles
-   - Add index page CSS styles
-   - Test on one page
-
-2. **Phase 2: Main Index** (pilot)
-   - Transform main index as template
-   - Verify TOC structure
-   - Test animated background
-
-3. **Phase 3: Chapter Indexes** (7 pages)
-   - Transform all chapter indexes
-   - Ensure narrative intro consistency
-   - Verify chapter-level cliffhangers
-
-4. **Phase 4: Epilogue** (1 page)
-   - Transform epilogue
-   - Ensure ultimate cliffhanger is largest
-   - Verify references are comprehensive
-
-5. **Phase 5: Section Pages** (61 pages)
-   - Follow original 10-step checklist
-   - Add widgets where narratively appropriate
-   - Ensure all mandatory elements
-
----
-
-### Special Considerations for Index Pages
-
-**Main Index:**
-- TOC must be complete and accurate
-- Seven Ascents list should be visually prominent
-- Grid layout should be responsive
-- Animated background should be subtle (already configured)
-
-**Chapter Indexes:**
-- Narrative intro must set up entire chapter arc
-- Chapter contents list should be numbered
-- Final cliffhanger should bridge to first section
-- References should be chapter-specific (not section-specific)
-
-**Epilogue:**
-- Narrative intro should reflect on entire journey
-- Final cliffhanger is the MOST IMPORTANT paragraph in entire book
-- References should span entire journey
-- Navigation should allow return to TOC and revisit of 7.8
-- Optional challenges only if they synthesize across chapters
 
 ---
 
@@ -1615,15 +1546,18 @@ After transformation, every page should:
 ## Timeline Estimate
 
 **Per Page Transformation Time:**
-- Main Index: 60-90 minutes (TOC structure, grid layout)
-- Chapter Index (each): 45-60 minutes (narrative intro, chapter-level content)
-- Epilogue: 60-90 minutes (ultimate cliffhanger, comprehensive references)
-- Simple section (no widgets): 30-45 minutes
-- Medium section (2 widgets): 45-60 minutes
-- Complex section (3 widgets + extensive content): 60-90 minutes
+- Simple page (no widgets): 30-45 minutes
+- Medium page (2 widgets): 45-60 minutes
+- Complex page (3 widgets + extensive content): 60-90 minutes
 
 **Total Pages:** 70 (61 sections + 1 main index + 7 chapter indexes + 1 epilogue)
-**Estimated Total Time:** 35-65 hours
+**Estimated Total Time:** 35-70 hours
+
+**Breakdown:**
+- Main Index: 1-2 hours
+- Chapter Indexes (7): 2-3 hours each = 14-21 hours
+- Section Pages (61): 30-60 minutes each = 30-60 hours
+- Epilogue: 2-3 hours
 
 **Recommended Approach:**
 - Transform 2-3 pages per day
@@ -1644,6 +1578,82 @@ After transformation, every page should:
 
 ---
 
+## Mathematical Rigor Verification Workflow
+
+### Step-by-Step Verification Process
+
+**For Each Page During Transformation:**
+
+1. **Initial Read-Through**
+   - Read entire page as narrative
+   - Note any statements that seem off
+   - Flag unclear or ambiguous passages
+   - Identify potential errors
+
+2. **Mathematical Statement Verification**
+   - For each theorem: verify statement is correct
+   - For each definition: check against standard sources
+   - For each example: verify computation is correct
+   - For each proof: check logical flow
+
+3. **Notation Audit**
+   - List all mathematical symbols used
+   - Verify each symbol is used consistently
+   - Check that notation matches conventions
+   - Ensure no conflicts or ambiguities
+
+4. **Cross-Reference Check**
+   - Verify all internal links work
+   - Check section numbers are correct
+   - Ensure referenced content exists
+   - Verify external citations are accurate
+
+5. **Content Quality Review**
+   - Check for "random corrections" that break flow
+   - Look for hastily added fixes
+   - Verify no contradictory statements
+   - Ensure narrative coherence
+
+6. **Final Accuracy Pass**
+   - Double-check all numbers and formulas
+   - Verify all citations
+   - Check spelling of technical terms
+   - Ensure page reads as finalized work
+
+### Red Flags: What to Question
+
+**Immediate Red Flags:**
+- Statements that seem too good to be true
+- Computations that give "nice" numbers without explanation
+- Theorems without complete hypotheses
+- Proofs with gaps marked "obvious" or "easy to see"
+- Notation that changes mid-section
+- References to sections that don't exist
+- Formulas that don't match dimensions
+
+**Content Quality Red Flags:**
+- Abrupt changes in tone or style
+- Sections that seem hastily added
+- Corrections that don't fit the narrative
+- Inconsistent terminology
+- Missing explanations for key steps
+
+### Verification Tools
+
+**Manual Checks:**
+- Read page aloud to catch awkward phrasing
+- Work through examples manually
+- Verify computations with calculator/computer
+- Check definitions against authoritative sources
+
+**Consistency Checks:**
+- Search for all uses of each symbol
+- Verify notation matches across pages
+- Check that terminology is consistent
+- Ensure cross-references are accurate
+
+---
+
 ## Questions to Resolve
 
 Before beginning transformation, clarify:
@@ -1653,22 +1663,32 @@ Before beginning transformation, clarify:
 3. **Hook Writing:** Should hooks be written fresh or adapted from existing content?
 4. **References:** Should we expand reference lists or keep current?
 5. **Navigation:** Should we add "Previous Section" links, or only "Next"?
-6. **Chapter Index Narrative:** Should chapter intros be written fresh or adapted from existing chapter descriptions?
-7. **Main Index TOC:** Should we maintain current TOC structure or reorganize?
-8. **Epilogue Challenges:** Should epilogue have challenges, or is it purely reflective?
+6. **Mathematical Verification:** Who performs final mathematical accuracy review?
 
 ---
 
 ## Conclusion
 
-This guide provides the complete roadmap for transforming all 61 HTML pages to the canonical template. The transformation will create a unified, narratively-driven experience that guides readers through the mathematical ascent from explicit solutions to categorical resolution.
+This guide provides the complete roadmap for transforming all 70 HTML pages (61 sections + 1 main index + 7 chapter indexes + 1 epilogue) to the canonical template. The transformation will create a unified, narratively-driven experience that guides readers through the mathematical ascent from explicit solutions to categorical resolution.
 
 **Key Principles:**
-- Consistency: Every page follows the same structure
-- Narrative: Every element serves the story arc
-- Quality: Every detail matters
-- Efficiency: Systematic approach minimizes errors
+- **Consistency:** Every page follows the same structure (with page-type variations)
+- **Narrative:** Every element serves the story arc
+- **Quality:** Every detail matters, especially mathematical accuracy
+- **Rigor:** Every mathematical statement must be verified
+- **Efficiency:** Systematic approach minimizes errors
 
-**Remember:** This is a manual transformation. Take time to ensure each page is perfect. The result will be a textbook that reads like a single, unstoppable intellectual journey.
+**Critical Reminders:**
+- This is a manual transformation - take time to ensure each page is perfect
+- Mathematical accuracy is non-negotiable - verify everything
+- Watch for random corrections that break flow
+- Ensure content reads as finalized, polished work
+- The result will be a textbook that reads like a single, unstoppable intellectual journey
+
+**Page Type Summary:**
+- **Main Index:** Hook + TOC only (no narrative, challenges, or cliffhanger)
+- **Chapter Indexes:** Hook + Narrative Intro + Section List + Final Cliffhanger + References + Navigation
+- **Section Pages:** Full structure with challenges and widgets
+- **Epilogue:** Hook + Narrative Intro + Content + Huge Final Cliffhanger + Comprehensive References + Navigation
 
 Good luck with the transformation!
