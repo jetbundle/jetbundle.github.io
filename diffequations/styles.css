@@ -525,3 +525,262 @@ hr {
         color: #0066cc;
     }
 }
+
+/* ============================================
+   Widget System Styles (Python/Plotly Integration)
+   ============================================ */
+
+/* Code Block Styles */
+.code-block {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.code-toggle-wrapper {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.code-block.hidden {
+    display: none;
+}
+
+.code-toggle-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    z-index: 10;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 0.5rem;
+}
+
+.code-toggle-btn:hover {
+    background: var(--bg-primary);
+    transform: translateY(-1px);
+}
+
+.code-block pre {
+    margin: 0;
+    overflow-x: auto;
+}
+
+.code-block code {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Interactive Module */
+.interactive-module {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.module-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+}
+
+.run-button {
+    background: var(--link-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.run-button:hover:not(:disabled) {
+    background: var(--link-hover);
+    transform: translateY(-1px);
+}
+
+.run-button:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.plotly-container {
+    width: 100%;
+    min-height: 400px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    background: var(--bg-secondary);
+}
+
+.output-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: 'Fira Code', monospace;
+    color: var(--text-primary);
+}
+
+.computing {
+    color: var(--link-color);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Widget System */
+.widget-module {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.widget-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.widget-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.widget-control label {
+    min-width: 120px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.widget-slider {
+    flex: 1;
+    min-width: 200px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--bg-primary);
+    outline: none;
+    -webkit-appearance: none;
+    accent-color: var(--link-color);
+}
+
+.widget-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--link-color);
+    cursor: pointer;
+}
+
+.widget-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--link-color);
+    cursor: pointer;
+    border: none;
+}
+
+.widget-dropdown {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    min-width: 200px;
+}
+
+.widget-dropdown:hover {
+    border-color: var(--link-color);
+}
+
+.widget-dropdown:focus {
+    outline: none;
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+.widget-value {
+    min-width: 60px;
+    text-align: right;
+    color: var(--link-color);
+    font-weight: 600;
+    font-family: 'Fira Code', monospace;
+}
+
+/* Loading States */
+.loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--link-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Widget Responsive Design */
+@media (max-width: 768px) {
+    .module-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .widget-controls {
+        gap: 1.5rem;
+    }
+
+    .widget-control {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .widget-slider {
+        width: 100%;
+    }
+}
