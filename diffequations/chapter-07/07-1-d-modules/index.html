@@ -55,61 +55,16 @@
   document.head.appendChild(katexScript);
 })();
 </script>
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #fff;
-      color: #333;
-    }
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #1a1a1a;
-        color: #e0e0e0;
-      }
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    code {
-      background: #f4f4f4;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-      font-size: 0.9em;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background: #f8f8f8;
-    }
-  </style>
+  <link rel="stylesheet" href="/diffequations/styles.css">
+  <script src="/diffequations/navigation-data.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Section 7.1: D-Modules & Holonomic Systems</h1>
-    <p class="description">Modules over differential operators</p>
-  </header>
-  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-07/" style="color: #3b82f6; text-decoration: none;">Chapter 7 Index</a></p></nav>
-  <article>
+  <main>
+    <header>
+      <h1>Section 7.1: D-Modules & Holonomic Systems</h1>
+      <p class="description">Modules over differential operators</p>
+    </header>
+    <article>
 <h2>Introduction</h2>
 <p>In the preceding chapters, we progressed from the explicit construction of solutions to their geometric formulation on manifolds and jet bundles. However, a fundamental limitation persists: we have largely treated the differential operator $P$ as a tool to act upon a function space, seeking a kernel $u$ such that $Pu=0$. In this chapter, we invert this perspective. We cease the search for specific solutions and instead study the algebraic structure of the system itself.</p>
 <p>Just as algebraic geometry studies geometric varieties by analyzing their coordinate rings, algebraic analysis studies systems of differential equations by analyzing modules over the ring of differential operators. This shift allows us to utilize the powerful machinery of homological algebra to resolve questions of solvability and regularity that are intractable via pure analysis. The differential equation is no longer an analytic constraint; it is an algebraic object.</p>
@@ -541,6 +496,8 @@ $$\sigma_2(P) = z^2 \xi^2 + z \xi - z^2 - \nu^2$$
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
 $\xi = \pm x$
-  </article>
+    </article>
+  </main>
+  <script src="/diffequations/navigation.js"></script>
 </body>
 </html>

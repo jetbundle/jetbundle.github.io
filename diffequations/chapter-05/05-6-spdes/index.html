@@ -55,61 +55,16 @@
   document.head.appendChild(katexScript);
 })();
 </script>
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #fff;
-      color: #333;
-    }
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #1a1a1a;
-        color: #e0e0e0;
-      }
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    code {
-      background: #f4f4f4;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-      font-size: 0.9em;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background: #f8f8f8;
-    }
-  </style>
+  <link rel="stylesheet" href="/diffequations/styles.css">
+  <script src="/diffequations/navigation-data.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Section 5.6: SPDEs & Regularity Structures</h1>
-    <p class="description">Hairer's regularity structures, renormalization</p>
-  </header>
-  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-05/" style="color: #3b82f6; text-decoration: none;">Chapter 5 Index</a></p></nav>
-  <article>
+  <main>
+    <header>
+      <h1>Section 5.6: SPDEs & Regularity Structures</h1>
+      <p class="description">Hairer's regularity structures, renormalization</p>
+    </header>
+    <article>
 <p>Regularity structures replace classical Taylor expansions with expansions in "noise monomials," transforming the analytic impossibility of singular products into a geometric study of decorated trees and structure groups.</p>
 <h2>Introduction</h2>
 <p>We now address the most profound analytical crisis in modern probability theory: the ill-posedness of nonlinear stochastic partial differential equations (SPDEs). In the previous sections, we established that stochastic trajectories are inherently rough, requiring the machinery of rough paths to define integration. However, when noise depends on both space and time—spacetime white noise—the singularity of the driving signal exceeds the capacity of classical distribution theory.</p>
@@ -361,6 +316,8 @@ $$
 <li><a href="{{ '/diffequations/chapter-05/' \vert relative_url }}">Chapter Index</a></li>
 <li><a href="{{ '/diffequations/' \vert relative_url }}">Full Table of Contents</a></li>
 </ul>
-  </article>
+    </article>
+  </main>
+  <script src="/diffequations/navigation.js"></script>
 </body>
 </html>

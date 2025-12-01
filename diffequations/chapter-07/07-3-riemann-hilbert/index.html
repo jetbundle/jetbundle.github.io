@@ -55,61 +55,16 @@
   document.head.appendChild(katexScript);
 })();
 </script>
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #fff;
-      color: #333;
-    }
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #1a1a1a;
-        color: #e0e0e0;
-      }
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    code {
-      background: #f4f4f4;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-      font-size: 0.9em;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background: #f8f8f8;
-    }
-  </style>
+  <link rel="stylesheet" href="/diffequations/styles.css">
+  <script src="/diffequations/navigation-data.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Section 7.3: Riemann-Hilbert Correspondence</h1>
-    <p class="description">D-modules and perverse sheaves</p>
-  </header>
-  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-07/" style="color: #3b82f6; text-decoration: none;">Chapter 7 Index</a></p></nav>
-  <article>
+  <main>
+    <header>
+      <h1>Section 7.3: Riemann-Hilbert Correspondence</h1>
+      <p class="description">D-modules and perverse sheaves</p>
+    </header>
+    <article>
 <h2>Introduction</h2>
 <p>In Chapter 1, we encountered the Frobenius method for regular singular points of ordinary differential equations. We observed that the behavior of solutions near a singularity—specifically their growth rates and monodromy—was entirely determined by the algebraic coefficients of the equation. In Chapter 7.3, we elevate this local observation to a global equivalence between analysis and topology.</p>
 <p>The Riemann-Hilbert Correspondence represents the summit of linear differential equation theory. It establishes that the category of systems of linear partial differential equations with regular singularities (Regular Holonomic D-modules) is equivalent to the category of topological constructs encoding the solution data (Perverse Sheaves). This correspondence resolves the inverse problem posed by Hilbert: it allows us to reconstruct a differential equation solely from the topological behavior of its solutions.</p>
@@ -552,6 +507,8 @@ $$\mathcal{D} = \partial_z^2 + \frac{1}{z(z-1)}\partial_z$$
 <li><a href="/diffequations/chapter-07/">Chapter Index</a></li>
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
-  </article>
+    </article>
+  </main>
+  <script src="/diffequations/navigation.js"></script>
 </body>
 </html>

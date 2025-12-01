@@ -55,61 +55,16 @@
   document.head.appendChild(katexScript);
 })();
 </script>
-  <link rel="stylesheet" href="/assets/css/textbook.css">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: #fff;
-      color: #333;
-    }
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #1a1a1a;
-        color: #e0e0e0;
-      }
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    code {
-      background: #f4f4f4;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-      font-size: 0.9em;
-    }
-    pre {
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background: #f8f8f8;
-    }
-  </style>
+  <link rel="stylesheet" href="/diffequations/styles.css">
+  <script src="/diffequations/navigation-data.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Section 7.7: Noncommutative Geometry</h1>
-    <p class="description">Spectral triples, geometry from spectrum</p>
-  </header>
-  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-07/" style="color: #3b82f6; text-decoration: none;">Chapter 7 Index</a></p></nav>
-  <article>
+  <main>
+    <header>
+      <h1>Section 7.7: Noncommutative Geometry</h1>
+      <p class="description">Spectral triples, geometry from spectrum</p>
+    </header>
+    <article>
 <h2>Introduction</h2>
 <p>The trajectory of this text has moved steadily from the local study of functions to the global study of manifolds. In Chapter 3, we established that differential equations are geometric objects invariant under coordinate transformations. In Chapter 7.6, the Atiyah-Singer Index Theorem demonstrated that the analytical properties of these equations (such as the dimension of the solution space) are determined by the topology of the underlying bundle.</p>
 <p>However, a fundamental limitation remains. The entire machinery of differential geometry relies on the existence of a manifold—a space that is locally isomorphic to $\mathbb{R}^n$. Yet, as seen in Chapter 5.8 (Fractal Geometry) and Chapter 6.6 (Moduli Spaces), physical and mathematical reality often presents "spaces" that are singular, discrete, or fractal, possessing no tangent vectors and no local coordinate charts. To analyze differential equations on such structures, we must abandon the concept of a point entirely.</p>
@@ -598,6 +553,8 @@ $[D, f]$
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
 $1/(\pm n\pi - \lambda) \to 0$$n \to \infty$$a \cdot (\psi_1 \oplus \psi_2) = (a_1\psi_1 \oplus a_2\psi_2)$$[0, 2\pi)$$\phi_\phi(f) = f(\phi)$$\phi_2(a) = a_2$$d = \log_2 3$
-  </article>
+    </article>
+  </main>
+  <script src="/diffequations/navigation.js"></script>
 </body>
 </html>
