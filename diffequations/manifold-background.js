@@ -1,4 +1,4 @@
-// Subtle animated manifold background
+// Subtle animated manifold background - Optimized and efficient
 (function() {
   'use strict';
 
@@ -7,19 +7,26 @@
   let animationId;
   let time = 0;
   let isRunning = false;
+  let lastFrameTime = 0;
 
   // Configuration for subtle effect
   const CONFIG = {
-    opacity: 0.15,        // Very subtle
-    lineWidth: 1.5,
-    gridSize: 40,         // Grid spacing
-    waveSpeed: 0.0003,   // Slow evolution
-    amplitude: 8,         // Small amplitude
-    frequency: 0.02,      // Low frequency
-    color: '#58a6ff'      // Match link color
+    opacity: 0.12,        // Very subtle
+    lineWidth: 1.2,
+    gridSize: 50,         // Grid spacing (larger = fewer lines = faster)
+    waveSpeed: 0.5,       // Animation speed (pixels per frame)
+    amplitude: 6,         // Small amplitude
+    frequency: 0.015,     // Low frequency
+    color: '#58a6ff',     // Match link color
+    fadeAlpha: 0.08       // Fade effect for trailing
   };
 
   function initBackground() {
+    // Check if canvas already exists
+    if (document.getElementById('manifold-background')) {
+      return;
+    }
+
     // Create canvas element
     canvas = document.createElement('canvas');
     canvas.id = 'manifold-background';
@@ -33,40 +40,67 @@
     canvas.style.opacity = CONFIG.opacity.toString();
 
     ctx = canvas.getContext('2d');
-    document.body.appendChild(canvas);
+    
+    // Ensure body exists before appending
+    if (document.body) {
+      document.body.appendChild(canvas);
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.appendChild(canvas);
+      });
+    }
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
     startAnimation();
   }
 
   function resizeCanvas() {
     if (!canvas) return;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    
+    if (ctx) {
+      ctx.scale(dpr, dpr);
+    }
   }
 
-  function drawManifold() {
-    if (!ctx || !canvas) return;
+  function drawManifold(currentTime) {
+    if (!ctx || !canvas || !isRunning) return;
 
-    const width = canvas.width;
-    const height = canvas.height;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     const gridSize = CONFIG.gridSize;
-    const t = time;
+    
+    // Delta time for smooth animation
+    const deltaTime = currentTime - lastFrameTime;
+    lastFrameTime = currentTime;
+    time += deltaTime * 0.001; // Convert to seconds
 
-    // Clear with slight fade for trailing effect
-    ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+    // Clear with fade for trailing effect
+    ctx.fillStyle = `rgba(13, 17, 23, ${CONFIG.fadeAlpha})`;
     ctx.fillRect(0, 0, width, height);
 
     ctx.strokeStyle = CONFIG.color;
     ctx.lineWidth = CONFIG.lineWidth;
-    ctx.globalAlpha = 0.4;
+    ctx.globalAlpha = 0.35;
 
-    // Draw flowing grid lines (manifold-like structure)
+    // Calculate grid dimensions
     const cols = Math.ceil(width / gridSize) + 2;
     const rows = Math.ceil(height / gridSize) + 2;
 
-    // Vertical flowing lines
+    // Pre-calculate time-dependent values
+    const t1 = time * CONFIG.waveSpeed;
+    const t2 = time * CONFIG.waveSpeed * 0.75;
+    const t3 = time * CONFIG.waveSpeed * 0.5;
+
+    // Draw vertical flowing lines (optimized)
     for (let i = -1; i < cols; i++) {
       const x = i * gridSize;
       ctx.beginPath();
@@ -74,10 +108,11 @@
 
       for (let j = 0; j <= rows; j++) {
         const y = j * gridSize;
-        // Create smooth wave using sine functions
-        const offsetX = Math.sin(y * CONFIG.frequency + t * 2) * CONFIG.amplitude +
-                       Math.sin(y * CONFIG.frequency * 1.3 + t * 1.5) * CONFIG.amplitude * 0.6;
-        const offsetY = Math.cos(x * CONFIG.frequency * 0.8 + t * 1.8) * CONFIG.amplitude * 0.4;
+        // Optimized wave calculation
+        const wave1 = Math.sin(y * CONFIG.frequency + t1) * CONFIG.amplitude;
+        const wave2 = Math.sin(y * CONFIG.frequency * 1.3 + t2) * CONFIG.amplitude * 0.6;
+        const offsetX = wave1 + wave2;
+        const offsetY = Math.cos(x * CONFIG.frequency * 0.8 + t3) * CONFIG.amplitude * 0.4;
 
         const px = x + offsetX;
         const py = y + offsetY;
@@ -92,7 +127,8 @@
       ctx.stroke();
     }
 
-    // Horizontal flowing lines
+    // Draw horizontal flowing lines (optimized)
+    ctx.globalAlpha = 0.3;
     for (let j = -1; j < rows; j++) {
       const y = j * gridSize;
       ctx.beginPath();
@@ -100,10 +136,11 @@
 
       for (let i = 0; i <= cols; i++) {
         const x = i * gridSize;
-        // Create smooth wave using cosine functions
-        const offsetX = Math.cos(x * CONFIG.frequency * 0.9 + t * 1.6) * CONFIG.amplitude * 0.5;
-        const offsetY = Math.sin(x * CONFIG.frequency + t * 2.2) * CONFIG.amplitude +
-                       Math.sin(x * CONFIG.frequency * 1.2 + t * 1.7) * CONFIG.amplitude * 0.7;
+        // Optimized wave calculation
+        const wave1 = Math.sin(x * CONFIG.frequency + t1 * 1.1) * CONFIG.amplitude;
+        const wave2 = Math.sin(x * CONFIG.frequency * 1.2 + t2) * CONFIG.amplitude * 0.7;
+        const offsetX = Math.cos(x * CONFIG.frequency * 0.9 + t3) * CONFIG.amplitude * 0.5;
+        const offsetY = wave1 + wave2;
 
         const px = x + offsetX;
         const py = y + offsetY;
@@ -118,53 +155,60 @@
       ctx.stroke();
     }
 
-    // Draw subtle flowing curves (manifold paths)
-    ctx.globalAlpha = 0.2;
-    for (let k = 0; k < 3; k++) {
-      const phase = t + k * Math.PI * 0.6;
+    // Draw subtle flowing curves (reduced for performance)
+    ctx.globalAlpha = 0.15;
+    for (let k = 0; k < 2; k++) {
+      const phase = t1 + k * Math.PI * 0.6;
       ctx.beginPath();
-      for (let i = 0; i < width; i += 2) {
-        const x = i;
-        const y = height * 0.3 + 
-                  Math.sin(i * CONFIG.frequency * 0.5 + phase) * CONFIG.amplitude * 2 +
-                  Math.cos(i * CONFIG.frequency * 0.3 + phase * 0.7) * CONFIG.amplitude;
+      const step = 3; // Larger step = fewer points = faster
+      for (let i = 0; i < width; i += step) {
+        const wave1 = Math.sin(i * CONFIG.frequency * 0.5 + phase) * CONFIG.amplitude * 2;
+        const wave2 = Math.cos(i * CONFIG.frequency * 0.3 + phase * 0.7) * CONFIG.amplitude;
+        const y = height * 0.3 + wave1 + wave2;
+        
         if (i === 0) {
-          ctx.moveTo(x, y);
+          ctx.moveTo(i, y);
         } else {
-          ctx.lineTo(x, y);
+          ctx.lineTo(i, y);
         }
       }
       ctx.stroke();
     }
   }
 
-  function animate() {
+  function animate(currentTime) {
     if (!isRunning) return;
     
-    time += CONFIG.waveSpeed;
-    drawManifold();
+    drawManifold(currentTime || performance.now());
     animationId = requestAnimationFrame(animate);
   }
 
   function startAnimation() {
     if (isRunning) return;
     isRunning = true;
-    animate();
+    lastFrameTime = performance.now();
+    animationId = requestAnimationFrame(animate);
   }
 
   function stopAnimation() {
     isRunning = false;
     if (animationId) {
       cancelAnimationFrame(animationId);
+      animationId = null;
     }
   }
 
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBackground);
-  } else {
-    initBackground();
+  function init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBackground);
+    } else {
+      // Small delay to ensure body exists
+      setTimeout(initBackground, 10);
+    }
   }
+
+  init();
 
   // Pause when page is hidden (save resources)
   document.addEventListener('visibilitychange', function() {
@@ -173,6 +217,10 @@
     } else {
       startAnimation();
     }
-  });
-})();
+  }, { passive: true });
 
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', function() {
+    stopAnimation();
+  }, { passive: true });
+})();
