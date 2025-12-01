@@ -27,14 +27,7 @@ This document describes the complete static HTML system for the differential equ
 
 ```
 jetbundle.github.io/
-├── _diffequations/              # Source Markdown files
-│   ├── 00_index.md              # Main index page
-│   ├── 99_epilogue.md           # Epilogue
-│   └── chapter-*/               # Chapter directories
-│       ├── index.md             # Chapter index
-│       └── *.md                 # Section files
-│
-├── diffequations/               # Generated HTML output
+├── diffequations/               # Static HTML files (source of truth)
 │   ├── index.html               # Main index
 │   ├── epilogue/
 │   │   └── index.html
@@ -53,45 +46,13 @@ jetbundle.github.io/
 └── convert_to_html.py           # Conversion script
 ```
 
-## Conversion Workflow
+## Content Management
 
-### Step 1: Source Markdown Files
+### Direct HTML Editing
 
-Markdown files in `_diffequations/` contain:
-- Front matter (YAML) with metadata
-- Markdown content with LaTeX math (`$...$` and `$$...$$`)
-- Optional HTML widget blocks
+All content is now managed directly in HTML files. The system uses static HTML files as the source of truth.
 
-**Example Front Matter:**
-```yaml
----
-layout: textbook
-title: "Section 1.1: Exact Methods"
-description: "Methods for solving exact differential equations"
-permalink: /diffequations/chapter-01/01-1-exact-methods/
-order: 1.1
-chapter: 1
-section: 1
----
-```
-
-### Step 2: Conversion Process
-
-The `convert_to_html.py` script:
-
-1. **Reads** all Markdown files from `_diffequations/`
-2. **Extracts** front matter and content
-3. **Preserves** LaTeX math delimiters using HTML comments
-4. **Converts** Markdown to HTML
-5. **Restores** LaTeX delimiters for client-side rendering
-6. **Generates** complete HTML pages with:
-   - KaTeX math renderer
-   - Dark theme CSS
-   - Navigation scripts
-   - Python/Plotly widget engines
-   - Animated background (index page only)
-
-### Step 3: Generated HTML Structure
+**HTML File Structure:**
 
 Each HTML file includes:
 
@@ -413,10 +374,11 @@ const navigationData = {
 
 ### Adding New Content
 
-1. **Create Markdown File:**
-   - Add to `_diffequations/chapter-XX/XX-Y-section.md`
-   - Include front matter with permalink
-   - Write content with LaTeX math
+1. **Create HTML File:**
+   - Create new directory: `diffequations/chapter-XX/XX-Y-section/`
+   - Add `index.html` file
+   - Use existing HTML files as templates
+   - Include proper structure with KaTeX, CSS, and scripts
 
 2. **Add Widget (Optional):**
    - Insert widget HTML block
@@ -427,12 +389,7 @@ const navigationData = {
    - Edit `diffequations/navigation-data.js`
    - Add new section to appropriate chapter
 
-4. **Regenerate HTML:**
-   ```bash
-   python3 convert_to_html.py
-   ```
-
-5. **Commit and Push:**
+4. **Commit and Push:**
    ```bash
    git add diffequations/
    git commit -m "Add new section"
@@ -441,20 +398,16 @@ const navigationData = {
 
 ### Modifying Existing Content
 
-1. **Edit Markdown:**
-   - Modify files in `_diffequations/`
-   - Changes to widgets, math, or content
+1. **Edit HTML Directly:**
+   - Modify files in `diffequations/`
+   - Edit content, widgets, or math directly in HTML
+   - LaTeX math uses `$...$` (inline) and `$$...$$` (display)
 
-2. **Regenerate:**
-   ```bash
-   python3 convert_to_html.py
-   ```
-
-3. **Test Locally:**
+2. **Test Locally:**
    - Open HTML files in browser
    - Test widgets and navigation
 
-4. **Deploy:**
+3. **Deploy:**
    ```bash
    git add -A
    git commit -m "Update content"
