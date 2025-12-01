@@ -2,21 +2,20 @@
 
 ## Overview
 
-This document describes the complete static HTML system for the differential equations textbook. The system converts Markdown source files to fully self-contained HTML pages with integrated Python/Plotly widgets, dark theme, and interactive navigation.
+This document describes the complete static HTML system for the differential equations textbook. The system uses fully self-contained HTML pages with integrated Python/Plotly widgets, dark theme, and interactive navigation.
 
 ## Architecture
 
 ### Core Components
 
-1. **Source Files**: Markdown files in `_diffequations/` directory
-2. **Conversion Script**: `convert_to_html.py` - Converts Markdown to HTML
-3. **Output**: Static HTML files in `diffequations/` directory
-4. **JavaScript Engines**: Widget and Python execution engines
-5. **Styling**: Dark theme CSS with responsive design
+1. **Source Files**: Static HTML files in `diffequations/` directory (source of truth)
+2. **JavaScript Engines**: Widget and Python execution engines
+3. **Styling**: Dark theme CSS with responsive design
+4. **Navigation**: Dynamic navigation system with dropdown menus
+5. **Math Rendering**: KaTeX client-side rendering
 
 ### Technology Stack
 
-- **Markdown Processing**: Python `markdown` library
 - **Math Rendering**: KaTeX (client-side, reliable)
 - **Python Execution**: Pyodide 0.24.1 (WebAssembly)
 - **Plotting**: Plotly.js 2.27.0
@@ -42,8 +41,6 @@ jetbundle.github.io/
 │   └── js/                      # JavaScript engines
 │       ├── textbook-engine.js   # Pyodide/Python execution
 │       └── widget-engine.js     # Widget system
-│
-└── convert_to_html.py           # Conversion script
 ```
 
 ## Content Management
@@ -72,7 +69,7 @@ Each HTML file includes:
       <h1>Page Title</h1>
     </header>
     <article>
-      <!-- Converted Markdown content -->
+      <!-- HTML content -->
     </article>
   </main>
   <!-- navigation.js -->
@@ -297,7 +294,7 @@ create_plot([trace], layout)
 
 ### Adding New Widgets
 
-1. **Add HTML to Markdown:**
+1. **Add HTML to page:**
 ```html
 <div class="widget-module" id="unique-widget-id">
   <!-- Widget structure -->
@@ -362,13 +359,13 @@ const navigationData = {
 ### Customizing Math Rendering
 
 **KaTeX Configuration:**
-- Located in `convert_to_html.py` (KATEX_RENDERER constant)
+- KaTeX is loaded via CDN in each HTML file
 - Supports `$...$` (inline) and `$$...$$` (display)
 - Auto-renders on page load
 
 **To Change Renderer:**
-1. Modify `KATEX_RENDERER` in `convert_to_html.py`
-2. Regenerate HTML files
+1. Edit the KaTeX script tags in HTML files directly
+2. Or create a template and copy to new pages
 
 ## Workflow for Content Updates
 
