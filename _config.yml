@@ -29,15 +29,16 @@ collections:
   pages:
     output: true
     permalink: /:name/
-  diffequations:
-    output: true
-    permalink: /diffequations/:path/
+  # diffequations collection disabled - using static HTML files instead
+  # diffequations:
+  #   output: true
+  #   permalink: /diffequations/:path/
 
-defaults:
-  - scope:
-      type: diffequations
-    values:
-      layout: textbook
+# defaults:
+#   - scope:
+#       type: diffequations
+#     values:
+#       layout: textbook
 
 # Plugins
 plugins:

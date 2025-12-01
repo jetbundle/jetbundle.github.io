@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 2.4: Unbounded Operators, Resolvents & Semigroups</title>
+  <meta name="description" content="Physical operators, Stone's theorem">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Section 2.4: Unbounded Operators, Resolvents & Semigroups</h1>
+    <p class="description">Physical operators, Stone's theorem</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-02/" style="color: #3b82f6; text-decoration: none;">Chapter 2 Index</a></p></nav>
+  <article>
+<p>Physical operators are unbounded: differentiation amplifies high frequencies, requiring domain constraints that encode boundary conditions and making self-adjointness a delicate balance between symmetry and completeness.</p>
+<h2>Introduction</h2>
+<p>Physical operators like the Laplacian are unbounded (differentiation roughens functions). We introduce the domain subtleties of <strong>Self-Adjointness</strong> versus Symmetricity. We construct the <strong>Resolvent Operator</strong> and use <strong>Stone's Theorem</strong> to define time evolution ($e^{itH}$) as a unitary group, providing a rigorous foundation for Quantum Mechanics without relying on convergent power series.</p>
+<h2>Unbounded Operators and Domains</h2>
+<p>An operator $A$ on a Hilbert space $H$ is a linear map $A:D(A)\to H$ defined on a subspace $D(A)\subset H$. It is <strong>densely defined</strong> if $\overline{D(A)}=H$, a prerequisite for defining the adjoint $A^{*}$. The graph $\Gamma(A)=\{(x,Ax):x\in D(A)\}$ is a subspace of $H\times H$. The operator $A$ is <strong>closed</strong> if $\Gamma(A)$ is closed; this ensures that convergence $x_{n}\to x$ and $Ax_{n}\to y$ implies $x\in D(A)$ and $Ax=y$. A closable operator admits a smallest closed extension $\bar{A}$.</p>
+<p>For a densely defined $A$, the adjoint $A^{*}$ has domain</p>
+$$
+D(A^{*})=\{ y\in H : x\mapsto \langle Ax,y\rangle \text{ is continuous on } D(A) \},
+$$
+
+<p>and satisfies $\langle Ax,y\rangle = \langle x,A^{*}y\rangle$ for all $x\in D(A)$.</p>
+<p><strong>Differentiation Operator on $L^{2}(0,1)$</strong></p>
+<p>Analyze $A=\frac{d}{dx}$ with $D(A)=H^{1}_{0}(0,1)$.</p>
+<p>Since $C_{c}^{\infty}(0,1)\subset D(A)$ densely, $A$ is densely defined. The graph $\Gamma(A)=\{(u,u') : u\in H^{1}_{0}\}$ is closed: if $u_{n}\to u$ and $u'_{n}\to v$ in $L^{2}$, then $u\in H^{1}_{0}$ and $u'=v$ by definition of weak derivatives. $A$ is unbounded because $\|Au_{n}\|/\|u_{n}\|=n\pi\to\infty$ for $u_{n}(x)=\sin(n\pi x)$.</p>
+<p>The differentiation operator illustrates the fundamental property of unbounded operators: they cannot be continuous on the entire space because high-frequency functions have arbitrarily large derivatives. The graph topology provides the correct framework: an operator is closed if its graph is closed, ensuring that limits of convergent sequences remain within the domain. The closure property is essential for the spectral theorem, which requires closed operators.</p>
+<p><strong>Momentum Operator on $\mathbb{R}$</strong></p>
+<p>Consider $A=-i\frac{d}{dx}$ on $D(A)=H^{1}(\mathbb{R})$.</p>
+<p>Via Fourier transform, $D(A)=\{u\in L^{2} : \int \vert \xi \vert^{2}\vert \hat{u}(\xi) \vert^{2}<\infty\}$. Gaussian functions $u(x)=e^{-x^{2}/2}$ lie in $D(A)$ with $Au=ixe^{-x^{2}/2}$. Approximating constants with $u_{\epsilon}(x)=e^{-\vert x \vert/\epsilon}/\sqrt{2\epsilon}$ shows the necessity of decay for membership in $D(A)$: $u_{\epsilon}\to \frac{1}{\sqrt{2}}$ in $L^{2}$ but $Au_{\epsilon}$ fails to converge.</p>
+<p>The momentum operator reveals that domain restrictions encode physical constraints: functions with constant values (infinite wavelength) do not belong to the domain because they lack the decay necessary for differentiability. The Fourier transform characterization shows that the domain consists precisely of functions whose Fourier transforms decay sufficiently rapidly, connecting the operator domain to frequency content. This example demonstrates why quantum mechanical operators require careful domain specification: the physics of localization (decay at infinity) is encoded in the mathematical structure of the domain.</p>
+<p><strong>Non-Closed Domain</strong></p>
+<p>Let $A=\frac{d}{dx}$ with $D(A)=C^{1}[0,1]\cap L^{2}$. This domain is not maximal. The closure $\bar{A}$ has domain $H^{1}_{0}(0,1)$, illustrating the need to work with closed extensions.</p>
+<p>The closure of an operator extends its domain to include limits of sequences in the graph topology. For the differentiation operator, the closure adds functions that are limits of continuously differentiable functions, which are precisely the Sobolev functions. This closure process is essential: many natural operators defined on smooth functions are not closed, but their closures are well-defined and have desirable spectral properties.</p>
+<h2>Symmetric vs. Self-Adjoint</h2>
+<p>An operator $A$ is <strong>symmetric</strong> if $\langle Ax,y\rangle=\langle x,Ay\rangle$ for all $x,y\in D(A)$; equivalently $A\subseteq A^{*}$. It is <strong>self-adjoint</strong> if $A=A^{*}$, i.e., $D(A)=D(A^{*})$ and $A$ agrees with $A^{*}$ on this domain. Symmetric operators have real expectation values, but only self-adjoint operators generate unitary dynamics. Deficiency indices $n_{\pm}=\dim\ker(A^{*}\mp iI)$ classify self-adjoint extensions: $A$ admits extensions iff $n_{+}=n_{-}$.</p>
+<p>The spectral theorem extends to self-adjoint (possibly unbounded) operators: there exists a projection-valued measure $E(\lambda)$ such that</p>
+$$
+A=\int_{-\infty}^{\infty} \lambda\, dE(\lambda),
+$$
+
+<p>allowing functional calculus for measurable functions $f$ via $f(A)=\int f(\lambda)\,dE(\lambda)$.</p>
+<p><strong>Symmetric vs. Self-Adjoint Laplacian</strong></p>
+<p>For $A=-\frac{d^{2}}{dx^{2}}$ on $L^{2}(0,\pi)$, compare domains.</p>
+<p>With $D_{1}=\{u\in H^{2}:u(0)=u(\pi)=0\}$, $A$ is self-adjoint and has spectrum $\{n^{2}\}_{n\in\mathbb{N}}$. With $D_{3}=\{u\in H^{2}:u(0)=u'(\pi)=0\}$, $A$ is symmetric but not self-adjoint; deficiency indices $(1,1)$ yield a one-parameter family of self-adjoint extensions corresponding to different boundary conditions.</p>
+<p>The distinction between symmetric and self-adjoint operators is subtle but crucial: symmetric operators satisfy the adjoint relation on their domain, but self-adjoint operators require that the domain of the adjoint equals the original domain. For differential operators, this distinction encodes boundary conditions: different boundary conditions produce different self-adjoint extensions, each with its own spectrum. The deficiency indices count the "missing dimensions" needed to make the operator self-adjoint, revealing the freedom in choosing boundary conditions.</p>
+<p><strong>Momentum vs. Position Operators</strong></p>
+<p>On $L^{2}(\mathbb{R})$, the position operator $X$ (multiplication by $x$) and momentum operator $P=-i\frac{d}{dx}$ are self-adjoint on domains $D(X)=\{u : xu\in L^{2}\}$ and $D(P)=H^{1}(\mathbb{R})$. They satisfy the canonical commutation relation $[P,X]=-iI$, but $PX$ and $XP$ require careful domain intersections, highlighting the role of unbounded operator algebra.</p>
+<p>The position and momentum operators illustrate the canonical commutation relations of quantum mechanics. While both operators are self-adjoint individually, their product is not self-adjoint because the domains of $P$ and $X$ do not align properly: functions in the domain of $PX$ must decay faster than those in the domain of $XP$. This domain subtlety is fundamental to quantum mechanics: the uncertainty principle arises precisely because $P$ and $X$ cannot be simultaneously diagonalized due to domain restrictions, not merely because they do not commute.</p>
+<h2>Resolvents and Spectrum</h2>
+<p>The <strong>resolvent set</strong> $\rho(A)$ consists of $\lambda\in\mathbb{C}$ for which $(A-\lambda I):D(A)\to H$ is bijective with bounded inverse $R(\lambda,A)=(A-\lambda I)^{-1}$. The spectrum $\sigma(A)$ is its complement. For self-adjoint $A$, $\sigma(A)\subset\mathbb{R}$ and $\|R(\lambda,A)\|\le 1/\text{dist}(\lambda,\sigma(A))$.</p>
+<p>The spectrum decomposes into point spectrum (eigenvalues), continuous spectrum, and residual spectrum; in unbounded settings continuous spectrum often dominates (e.g., Laplacian on $\mathbb{R}^{n}$).</p>
+<p><strong>Resolvent of the Laplacian</strong></p>
+<p>Compute $(A-\lambda I)^{-1}$ for $A=-\Delta$ on $\mathbb{R}^{3}$.</p>
+<p>Fourier transform yields $\widehat{R(\lambda,A)u}(\xi)=\frac{\hat{u}(\xi)}{\vert \xi \vert^{2}-\lambda}$. For $\text{Re}(\lambda)<0$, the kernel is $G_{\lambda}(x,y)=\frac{e^{-\sqrt{-\lambda}\vert x-y \vert}}{4\pi \vert x-y \vert}$, exhibiting the exponential decay of the resolvent.</p>
+<p>The resolvent of the Laplacian provides the Green's function for the Helmholtz equation: it describes how point sources propagate in space. The exponential decay reflects the diffusive nature of the Laplacian: for negative real parts of $\lambda$, solutions decay spatially, with the decay rate controlled by $\sqrt{-\lambda}$. This resolvent is fundamental to scattering theory: it provides the building blocks for constructing solutions to wave equations and understanding how waves propagate and interact.</p>
+<p><strong>Resolvent Estimate</strong></p>
+<p>For $A=-\frac{d^{2}}{dx^{2}}$ on $(0,\pi)$ with Dirichlet conditions, the resolvent satisfies</p>
+$$
+R(\lambda,A)f=\sum_{n=1}^{\infty}\frac{\langle f,\sin(n\pi x)\rangle}{n^{2}\pi^{2}-\lambda}\sin(n\pi x),\quad \|R(\lambda,A)\|\le \frac{1}{\text{dist}(\lambda,\{n^{2}\pi^{2}\})}.
+$$
+
+<p>The resolvent estimate shows that the norm of the resolvent is controlled by the distance to the spectrum: near eigenvalues, the resolvent becomes large, reflecting the fact that the operator is nearly singular. This estimate is fundamental to perturbation theory: small perturbations of operators produce small changes in resolvents away from the spectrum, but near eigenvalues the behavior can be more complex. The spectral representation of the resolvent reveals its structure: it acts by scaling Fourier modes, with the scaling factor depending on how close $\lambda$ is to each eigenvalue.</p>
+<h2>Strongly Continuous Semigroups</h2>
+<p>For the abstract Cauchy problem $u'(t)=Au(t)$ with $u(0)=u_{0}$, we seek a strongly continuous semigroup $\{T(t)\}_{t\ge 0}$ such that $T(0)=I$, $T(t+s)=T(t)T(s)$, and $\lim_{t\to 0^{+}}\|T(t)u-u\|=0$. The generator $A$ is defined on</p>
+$$
+D(A)=\left\{ u\in H : \lim_{t\to 0^{+}}\frac{T(t)u-u}{t} \text{ exists} \right\},\quad Au=\lim_{t\to 0^{+}}\frac{T(t)u-u}{t}.
+$$
+
+<p>The <strong>Hille–Yosida theorem</strong> characterizes generators of contraction semigroups: a densely defined closed operator $A$ generates a $C_{0}$-contraction semigroup iff $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$ for all $\lambda>0$.</p>
+<p><strong>Heat Semigroup via Hille–Yosida</strong></p>
+<p>Show $A=\frac{d^{2}}{dx^{2}}$ with $D(A)=H^{2}\cap H^{1}_{0}$ generates the heat semigroup.</p>
+<p>The resolvent satisfies $\|R(\lambda,A)\|\le 1/\lambda$ for $\lambda>0$, and $(0,\infty)\subset \rho(A)$. Hence $A$ generates a contraction semigroup $T(t)=e^{tA}$, the heat kernel, smoothing initial data.</p>
+<p>The Hille–Yosida theorem provides a complete characterization of generators: an operator generates a contraction semigroup if and only if it is densely defined, closed, and its resolvent satisfies the appropriate bounds. For the heat equation, this means that the Laplacian with Dirichlet boundary conditions generates a semigroup that smooths initial data: rough functions become smooth as time increases. This smoothing property is fundamental to parabolic equations: it ensures that solutions immediately become regular, regardless of the initial data.</p>
+<p><strong>Semigroup Failure</strong></p>
+<p>Let $A=\frac{d}{dx}$ on $L^{2}(0,1)$ with domain $H^{1}(0,1)$ (no boundary conditions). The resolvent estimate fails and $\rho(A)=\emptyset$, so $A$ does not generate a $C_{0}$-semigroup. This illustrates the need for proper domain choices to ensure well-posed evolution.</p>
+<p>Not every operator generates a semigroup: the domain must be chosen carefully to ensure that the resolvent exists and satisfies the necessary bounds. For the differentiation operator without boundary conditions, the resolvent set is empty, so no semigroup can exist. This failure reflects physical reality: wave equations without boundary conditions are not well-posed because information can flow in from infinity. The requirement that operators generate semigroups encodes causality and well-posedness: solutions must exist, be unique, and depend continuously on initial data.</p>
+<h2>Challenge Problems</h2>
+<p>The following problems synthesize concepts from unbounded operators, self-adjointness, resolvents, and semigroups.</p>
+<h3>Challenge 1: Deficiency Indices and Self-Adjoint Extensions</h3>
+<p>Consider the operator $A=-i\frac{d}{dx}$ on $L^{2}(0,1)$ with domain $D(A)=\{u\in H^{1}(0,1):u(0)=0\}$. Compute the deficiency indices $n_{\pm}=\dim\ker(A^{*}\mp iI)$ and classify all self-adjoint extensions. Show that each extension corresponds to a boundary condition at $x=1$ of the form $u(1)=e^{i\theta}u(0)$ for some $\theta\in[0,2\pi)$.</p>
+<p><em>(Hint: Compute the adjoint domain and solve $(A^{*}\mp i)u=0$. Self-adjoint extensions are parametrized by isometries between the deficiency spaces.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The adjoint $A^{*}$ has domain consisting of all $v\in L^{2}(0,1)$ such that the map $u\mapsto \langle Au,v\rangle$ is continuous on $D(A)$. Integration by parts shows that $D(A^{*})=H^{1}(0,1)$ with no boundary conditions, and $A^{*}v=-i\frac{dv}{dx}$.
+
+To find $\ker(A^{*}-iI)$, we solve $-i\frac{dv}{dx}-iv=0$, which gives $v(x)=Ce^{x}$. Since $v\in H^{1}(0,1)$, we have $v\in L^{2}(0,1)$, so $C$ can be any constant. Thus $\dim\ker(A^{*}-iI)=1$.
+
+Similarly, $\ker(A^{*}+iI)$ consists of solutions to $-i\frac{dv}{dx}+iv=0$, giving $v(x)=Ce^{-x}$, so $\dim\ker(A^{*}+iI)=1$.
+
+Since $n_{+}=n_{-}=1$, there is a one-parameter family of self-adjoint extensions. Each extension is determined by an isometry $U:\ker(A^{*}-iI)\to\ker(A^{*}+iI)$. Since both spaces are one-dimensional, $U$ is multiplication by $e^{i\theta}$ for some $\theta\in[0,2\pi)$.
+
+The extended domain consists of functions $u$ such that $u(0)=0$ and $u(1)=e^{i\theta}u(0)=0$, or more generally, such that the boundary values satisfy a specific relation. The general form is $u(1)=e^{i\theta}u(0)$, which for $u(0)=0$ reduces to $u(1)=0$ (the Dirichlet case), but the full parameter family includes periodic boundary conditions when $\theta=0$ and antiperiodic when $\theta=\pi$.
+
+This demonstrates how deficiency indices encode the freedom in choosing boundary conditions: each self-adjoint extension corresponds to a different physical boundary condition. The parameter $\theta$ reflects the phase relationship between the boundaries, which in quantum mechanics corresponds to different flux conditions or boundary phase factors.
+
+</details>
+
+<h3>Challenge 2: Resolvent and Spectrum of the Laplacian</h3>
+<p>For the Laplacian $A=-\Delta$ on $L^{2}(\mathbb{R}^{n})$ with domain $D(A)=H^{2}(\mathbb{R}^{n})$, compute the resolvent $R(\lambda,A)$ explicitly and show that the spectrum is $\sigma(A)=[0,\infty)$ (pure continuous spectrum). Prove that there are no eigenvalues and that the spectrum is absolutely continuous.</p>
+<p><em>(Hint: Use the Fourier transform. The resolvent is a convolution operator with kernel given by the Green's function. Show that for $\lambda<0$, the resolvent exists and is bounded, while for $\lambda\ge 0$, the operator $A-\lambda I$ is not invertible.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Taking the Fourier transform, the Laplacian becomes multiplication by $\vert \xi \vert^{2}$, so $(A-\lambda I)u$ transforms to $(\vert \xi \vert^{2}-\lambda)\hat{u}(\xi)$.
+
+For $\lambda<0$, the function $(\vert \xi \vert^{2}-\lambda)^{-1}$ is bounded and decays, so the resolvent exists and is given by
+
+$$
+R(\lambda,A)u=\mathcal{F}^{-1}\left(\frac{\hat{u}(\xi)}{\vert \xi \vert^{2}-\lambda}\right).
+$$
+
+This is a convolution with the Green's function $G_{\lambda}(x)$, which for $n=3$ is $G_{\lambda}(x)=\frac{e^{-\sqrt{-\lambda}\vert x \vert}}{4\pi \vert x \vert}$.
+
+For $\lambda\ge 0$, the function $(\vert \xi \vert^{2}-\lambda)^{-1}$ is not bounded: it becomes infinite when $\vert \xi \vert^{2}=\lambda$. Moreover, for any $\lambda\ge 0$, there exist functions $u$ such that $(A-\lambda I)u=0$ in a distributional sense (plane waves $e^{ik\cdot x}$ with $\vert k \vert^{2}=\lambda$), but these are not in $L^{2}$.
+
+However, the spectrum includes $[0,\infty)$ because for any $\lambda\ge 0$, the range of $A-\lambda I$ is not dense: functions whose Fourier transforms vanish near the sphere $\vert \xi \vert^{2}=\lambda$ cannot be approximated by functions in the range. More precisely, the spectrum consists of all $\lambda$ for which $A-\lambda I$ is not invertible, which includes all non-negative real numbers.
+
+To show there are no eigenvalues, suppose $Au=\lambda u$ for some $u\in L^{2}$ and $\lambda\in\mathbb{C}$. Taking the Fourier transform gives $(\vert \xi \vert^{2}-\lambda)\hat{u}(\xi)=0$, so $\hat{u}$ is supported on the set $\{\xi:\vert \xi \vert^{2}=\lambda\}$. For $\lambda<0$, this set is empty, so $u=0$. For $\lambda\ge 0$, this set is a sphere of measure zero, so $\hat{u}$ must be zero almost everywhere, again giving $u=0$. Therefore, there are no eigenvalues.
+
+The spectrum is absolutely continuous because the spectral measure is equivalent to Lebesgue measure on $[0,\infty)$: the operator is unitarily equivalent to multiplication by $\vert \xi \vert^{2}$ on $L^{2}(\mathbb{R}^{n})$, and the spectral measure is the pushforward of Lebesgue measure under the map $\xi\mapsto \vert \xi \vert^{2}$.
+
+This example illustrates the fundamental difference between bounded and unbounded domains: on bounded domains, the Laplacian has discrete spectrum (eigenvalues), while on unbounded domains, the spectrum is continuous. The continuous spectrum reflects the fact that plane waves are not normalizable but still represent physically meaningful scattering states in quantum mechanics.
+
+</details>
+
+<h3>Challenge 3: Stone's Theorem and Unitary Evolution</h3>
+<p>Prove Stone's theorem: a densely defined operator $A$ on a Hilbert space $H$ generates a strongly continuous one-parameter unitary group $\{U(t)\}_{t\in\mathbb{R}}$ (i.e., $U(t)$ is unitary, $U(t+s)=U(t)U(s)$, and $\lim_{t\to 0}\|U(t)u-u\|=0$) if and only if $A$ is self-adjoint. Show that in this case, $U(t)=e^{itA}$ can be defined via the spectral theorem.</p>
+<p><em>(Hint: Use the Hille–Yosida theorem for the forward direction. For the reverse, show that if $U(t)$ is a unitary group, then its generator $A$ defined by $Au=\lim_{t\to 0}(U(t)u-u)/(it)$ is self-adjoint. Use the spectral theorem to define $e^{itA}$.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+For the forward direction, suppose $A$ is self-adjoint. By the spectral theorem, there exists a projection-valued measure $E$ such that $A=\int \lambda\,dE(\lambda)$. Define $U(t)=e^{itA}=\int e^{it\lambda}\,dE(\lambda)$. Since $\vert e^{it\lambda} \vert=1$, $U(t)$ is unitary. The group property $U(t+s)=U(t)U(s)$ follows from $e^{i(t+s)\lambda}=e^{it\lambda}e^{is\lambda}$.
+
+Strong continuity follows from the spectral theorem: for any $u\in H$,
+
+$$
+\|U(t)u-u\|^{2}=\int \vert e^{it\lambda}-1 \vert^{2}d\|E(\lambda)u\|^{2},
+$$
+
+and by dominated convergence, this tends to zero as $t\to 0$ since $\vert e^{it\lambda}-1 \vert^{2}\le 4$ and $\lim_{t\to 0}\vert e^{it\lambda}-1 \vert^{2}=0$.
+
+The generator of $U(t)$ is $A$: for $u\in D(A)$,
+
+$$
+\lim_{t\to 0}\frac{U(t)u-u}{it}=\lim_{t\to 0}\int\frac{e^{it\lambda}-1}{it}dE(\lambda)u=\int i\lambda\,dE(\lambda)u=iAu,
+$$
+
+so the generator is $iA$, which means $A$ itself is the generator if we define $U(t)=e^{itA}$.
+
+For the reverse direction, suppose $U(t)$ is a strongly continuous unitary group. Define the generator $A$ on the domain
+
+$$
+D(A)=\left\{u\in H:\lim_{t\to 0}\frac{U(t)u-u}{it}\text{ exists}\right\}
+$$
+
+by $Au=\lim_{t\to 0}(U(t)u-u)/(it)$. One can show that $A$ is densely defined (the domain contains all vectors for which the limit exists in a weaker sense, and these are dense), closed, and symmetric. The key is to show that $A$ is actually self-adjoint, which follows from the fact that the resolvent of $iA$ exists and is bounded, allowing one to apply the Hille–Yosida theorem in reverse.
+
+Stone's theorem provides the rigorous foundation for quantum mechanics: the time evolution operator $e^{-itH/\hbar}$ (where $H$ is the Hamiltonian) is well-defined as a unitary group if and only if $H$ is self-adjoint. This connection between self-adjointness and unitary evolution is fundamental: it ensures that probability is conserved (unitarity) and that the evolution is deterministic and reversible (group property). The spectral theorem allows us to compute $e^{itA}$ explicitly, providing the link between the abstract operator and concrete time evolution.
+
+</details>
+
+<h3>Challenge 4: Hille–Yosida and Well-Posedness</h3>
+<p>Show that the abstract Cauchy problem $u'(t)=Au(t)$ with $u(0)=u_{0}$ is well-posed (has a unique solution depending continuously on initial data) if and only if $A$ generates a strongly continuous semigroup. Use this to prove that the heat equation $u_{t}=\Delta u$ with Dirichlet boundary conditions is well-posed.</p>
+<p><em>(Hint: Well-posedness requires existence, uniqueness, and continuous dependence. Show that these are equivalent to $A$ generating a semigroup. For the heat equation, verify the Hille–Yosida conditions.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+If $A$ generates a strongly continuous semigroup $\{T(t)\}_{t\ge 0}$, then $u(t)=T(t)u_{0}$ is a solution: $u(0)=T(0)u_{0}=u_{0}$ and $u'(t)=AT(t)u_{0}=Au(t)$ for $u_{0}\in D(A)$. Uniqueness follows from the fact that if $v(t)$ is another solution, then $\frac{d}{dt}\|u(t)-v(t)\|^{2}=2\text{Re}\langle A(u(t)-v(t)),u(t)-v(t)\rangle\le 0$ (for contraction semigroups), so $\|u(t)-v(t)\|^{2}\le \|u(0)-v(0)\|^{2}=0$. Continuous dependence follows from $\|T(t)u_{0}-T(t)v_{0}\|\le \|u_{0}-v_{0}\|$ for contraction semigroups.
+
+Conversely, if the Cauchy problem is well-posed, then for each $u_{0}\in H$, there exists a unique solution $u(t)$ depending continuously on $u_{0}$. Define $T(t)u_{0}=u(t)$. Then $T(t)$ is linear (by linearity of the equation) and bounded (by continuous dependence), and $T(0)=I$, $T(t+s)=T(t)T(s)$ (by uniqueness). Strong continuity follows from continuous dependence at $t=0$. The generator is $A$ as defined.
+
+For the heat equation with $A=\Delta$ on $D(A)=H^{2}\cap H^{1}_{0}$, we need to verify the Hille–Yosida conditions. The operator is densely defined (smooth functions with compact support are dense) and closed (as a differential operator with boundary conditions).
+
+For $\lambda>0$, we need to show that $(0,\infty)\subset\rho(A)$ and $\|R(\lambda,A)\|\le 1/\lambda$. Using the spectral decomposition, if $A$ has eigenvalues $\{\lambda_{n}\}$ with $\lambda_{n}<0$ (since $\Delta$ is negative-definite), then $R(\lambda,A)$ has eigenvalues $1/(\lambda_{n}-\lambda)$. For $\lambda>0$ and $\lambda_{n}<0$, we have $\vert \lambda_{n}-\lambda \vert>\lambda$, so $\|R(\lambda,A)\|\le 1/\lambda$.
+
+Therefore, $A$ generates a contraction semigroup, and the heat equation is well-posed.
+
+The Hille–Yosida theorem provides a complete characterization of well-posedness: the abstract Cauchy problem is well-posed if and only if the operator generates a semigroup. This connection between operator theory and PDE theory is fundamental: it translates the analytic question of well-posedness into the algebraic question of whether an operator satisfies certain resolvent bounds. For parabolic equations like the heat equation, these bounds are automatically satisfied because the Laplacian is negative-definite, ensuring that the semigroup is contractive and solutions decay in time.
+
+</details>
+
+<p>Unbounded operators extend the spectral theory of compact operators to physical systems: differentiation, multiplication, and their combinations generate semigroups that describe time evolution in quantum mechanics and PDEs. However, the domain subtleties reveal fundamental limitations: not every symmetric operator is self-adjoint, and not every operator generates a semigroup. These distinctions encode boundary conditions, causality, and physical constraints that cannot be captured by bounded operator theory. The connection between self-adjointness and unitary evolution provides the rigorous foundation for quantum mechanics, while the Hille–Yosida theorem links operator theory to well-posedness of PDEs. These results prepare the transition to variational methods, where existence and uniqueness follow from coercivity rather than spectral decomposition.</p>
+<h2>References</h2>
+<ul>
+<li><strong>Brezis, H. (2011).</strong> <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+<li><strong>Reed, M., &amp; Simon, B. (1972).</strong> <em>Methods of Modern Mathematical Physics I: Functional Analysis</em>. Academic Press.</li>
+<li><strong>Reed, M., &amp; Simon, B. (1975).</strong> <em>Methods of Modern Mathematical Physics II: Fourier Analysis, Self-Adjointness</em>. Academic Press.</li>
+<li><strong>Rudin, W. (1991).</strong> <em>Functional Analysis</em>. McGraw-Hill.</li>
+<li><strong>Yosida, K. (1980).</strong> <em>Functional Analysis</em>. Springer.</li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Related Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-02/02-3-hilbert-spaces/">Previous Section: 2.3 Hilbert Space Theory &amp; Spectral Theorem</a></li>
+<li><a href="/diffequations/chapter-02/02-5-variational-methods/">Next Section: 2.5 Variational Methods &amp; Lax-Milgram</a></li>
+<li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
+<li><a href="/diffequations/">Full Table of Contents</a></li>
+</ul>
+  </article>
+</body>
+</html>

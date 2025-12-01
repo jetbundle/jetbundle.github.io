@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 6.5: Geometric Evolution Equations</title>
+  <meta name="description" content="Ricci flow, Perelman entropy">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Section 6.5: Geometric Evolution Equations</h1>
+    <p class="description">Ricci flow, Perelman entropy</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-06/" style="color: #3b82f6; text-decoration: none;">Chapter 6 Index</a></p></nav>
+  <article>
+<h1>Section 6.5: Geometric Evolution Equations</h1>
+<p>Geometry flows toward canonical forms, revealing topology through dynamics.</p>
+<h2>Introduction</h2>
+<p>The construction of the infinite-dimensional manifold of metrics, $\text{Met}(M)$, in the previous section provides the kinematic arena for geometric analysis. However, the study of static metrics is insufficient for understanding the topological classification of manifolds. To resolve the topological obstructions presented by the Poincaré and Geometrization conjectures, we must introduce dynamics. We seek a canonical deformation of the Riemannian structure—a differential equation where the metric itself is the time-dependent variable, evolving toward a state of constant curvature or high symmetry.</p>
+<p>This section covers the parabolic systems governing these deformations, specifically the Ricci flow and the Mean Curvature flow. These are gradient flows of geometric functionals on $\text{Met}(M)$, establishing a rigorous connection between the variational methods of Chapter 2, the entropy principles of Chapter 3, and the stochastic analysis of Chapter 5.</p>
+<h3>The Ricci Flow and Parabolicity</h3>
+<p>The Ricci flow, introduced by Richard Hamilton, allows the metric to evolve in proportion to its Ricci curvature tensor. For a smooth manifold $M$ with a one-parameter family of Riemannian metrics $g(t)$, the evolution equation is:</p>
+$$
+\frac{\partial}{\partial t} g_{ij} = -2 R_{ij}
+$$
+
+<p>Here, $R_{ij}$ is the Ricci curvature tensor. This equation is structurally analogous to the heat equation $\partial_t u = \Delta u$. In harmonic coordinates, the principal symbol of the Ricci tensor is given by $-\frac{1}{2} \Delta g_{ij}$ plus lower-order terms. Thus, the Ricci flow behaves as a nonlinear heat equation for the metric tensor, smoothing out irregularities in curvature.</p>
+<p>However, a fundamental analytic difficulty arises: the equation is only weakly parabolic. Due to the diffeomorphism invariance of the curvature (the gauge symmetry discussed in Chapter 6.4), the linearization of the Ricci tensor possesses a degenerate symbol. Solutions are unique only up to diffeomorphism.</p>
+<p>To prove short-time existence and uniqueness, one employs the De Turck trick. We modify the flow by a time-dependent diffeomorphism generated by a vector field $W$. By solving the strictly parabolic system:</p>
+$$
+\frac{\partial}{\partial t} g_{ij} = -2 R_{ij} + \nabla_i W_j + \nabla_j W_i
+$$
+
+<p>where $W$ is chosen to cancel the degenerate terms of the Ricci tensor in a specific harmonic gauge, we obtain a solution. The geometric flow is then recovered by pulling back via the diffeomorphism. This methodology is covered extensively in Hamilton (1995) and Chow et al. (2004).</p>
+<h3>Maximum Principles and Tensor Analysis</h3>
+<p>The analysis of geometric flows relies heavily on extending the scalar maximum principle to tensor bundles. If the initial metric possesses positive curvature, does the flow preserve this positivity?</p>
+<p>For a scalar function $u$ satisfying $\partial_t u \ge \Delta u + F(u)$, the minimum of $u$ is non-decreasing if $F$ satisfies certain reaction conditions. In the context of Ricci flow, the evolution of the full Riemannian curvature tensor $Rm$ follows a reaction-diffusion equation:</p>
+$$
+\frac{\partial}{\partial t} Rm = \Delta Rm + Q(Rm)
+$$
+
+<p>Here, $\Delta$ is the Lichnerowicz Laplacian and $Q$ is a quadratic form in the curvature components. To ensure that specific curvature cones (such as non-negative sectional curvature) are preserved, Hamilton developed the Tensor Maximum Principle. This allows for global curvature estimates, ensuring that as the metric evolves, the geometry does not become arbitrarily singular without control.</p>
+<p>Furthermore, differential Harnack inequalities provide a mechanism to compare values of the curvature at different points in spacetime. For positive solutions to the heat equation, the Li-Yau-Hamilton inequality constrains the gradient of the solution by its value. These estimates are essential for analyzing the behavior of the flow as it approaches a singularity.</p>
+<h3>Perelman's Entropy Functionals</h3>
+<p>While Hamilton established the analytic foundations, the Ricci flow program faced a critical obstacle: the analysis of singularities. Singularities in nonlinear heat equations can form in finite time (e.g., neck pinches). To understand these, Grisha Perelman introduced a variational structure that interprets the Ricci flow as a gradient flow, analogous to the thermodynamic entropy discussed in Chapter 3.</p>
+<p>Perelman defined the $\mathcal{F}$-functional for a metric $g$ and a scalar function $f$ (often interpreted as a dilaton or probability density potential):</p>
+$$
+\mathcal{F}(g, f) = \int_M (R + \vert \nabla f \vert^2) e^{-f} dV_g
+$$
+
+<p>subject to the constraint $\int_M e^{-f} dV_g = 1$. The gradient flow of this functional, coupled with the backward heat equation for $f$, yields the Ricci flow for $g$.</p>
+<p>Crucially, Perelman proved a monotonicity formula:</p>
+$$
+\frac{d}{dt} \mathcal{F}(g(t), f(t)) \ge 0
+$$
+
+<p>This monotonicity precludes the existence of "breathers" (solutions that oscillate indefinitely) and forces the flow to evolve toward canonical solitons. This result is formally analogous to the H-theorem in the kinetic theory of Chapter 5.7, suggesting a deep link between geometric evolution and statistical mechanics. The quantity $\lambda(g) = \inf_f \mathcal{F}(g,f)$ serves as a spectral lower bound for the geometry.</p>
+<p>For detailed singularity analysis, Perelman introduced the $\mathcal{W}$-entropy, which includes a scale parameter $\tau$. This functional is monotonic along the flow and detects the local geometry of shrinking solitons, which model the blow-up of singularities. These concepts are covered extensively in Perelman (2002) and Morgan &amp; Tian (2014).</p>
+<h3>Singularities and Surgery</h3>
+<p>When the curvature becomes unbounded as $t \to T$, the flow must be stopped and modified. This process, known as Ricci flow with surgery, involves identifying the region of high curvature (typically distinct topological components like necks), excising them, and gluing in topologically standard caps of controlled curvature.</p>
+<p>The validity of this procedure rests on the Canonical Neighborhood Theorem, which asserts that regions of high scalar curvature in three dimensions are universally modeled by cylinders or caps. By performing surgery and restarting the flow, one can decompose the manifold into pieces that admit standard geometries. This technique provided the analytical engine for the proof of the Geometrization Conjecture.</p>
+<h3>Mean Curvature Flow</h3>
+<p>Parallel to the intrinsic evolution of the metric, we consider the extrinsic evolution of a submanifold $\Sigma \subset \mathbb{R}^{n+1}$. The Mean Curvature Flow (MCF) moves the submanifold in the direction of its mean curvature vector $\vec{H}$:</p>
+$$
+\frac{\partial}{\partial t} F(x,t) = \vec{H}(F(x,t))
+$$
+
+<p>where $F: \Sigma \times [0, T) \to \mathbb{R}^{n+1}$ is the embedding. This is the gradient flow of the Area functional. Much like Ricci flow, MCF smooths the submanifold but can develop singularities (pinching off).</p>
+<p>A central tool in analyzing MCF is Huisken's monotonicity formula. We consider the backward heat kernel $\Phi$ centered at a point $(x_0, t_0)$ in spacetime. The Gaussian density:</p>
+$$
+\Theta(t) = \int_{\Sigma_t} \Phi(x_0, t_0, x, t) d\mathcal{H}^n
+$$
+
+<p>is monotonically decreasing for $t < t_0$. The limit as $t \to t_0$ defines the density of the singularity, classifying it as a smooth point, a cylinder, or a more complex singularity type. Solitons in this context are self-similar solutions that evolve only by rescaling or translation, known as ancient solutions.</p>
+<h3>Stochastic Quantization and the Semiclassical Limit</h3>
+<p>In the synthesis of Chapter 6 with Chapter 5, we recognize geometric evolution equations as the semiclassical limits of stochastic quantization. As discussed in Chapter 5.6 regarding Regularity Structures, the stochastic quantization of a field theory involves a Langevin equation:</p>
+$$
+\frac{\partial \phi}{\partial t} = -\frac{\delta S}{\delta \phi} + \xi
+$$
+
+<p>where $S$ is the action and $\xi$ is white noise. For gravity, where $S$ is the Einstein-Hilbert action, the deterministic drift term $-\frac{\delta S}{\delta g}$ corresponds to the Ricci tensor (in harmonic gauge). Thus, the Ricci flow $\partial_t g = -2 \text{Ric}$ can be viewed as the zero-noise limit of the stochastic evolution of spacetime geometry. The "singularities" encountered in the deterministic flow—such as topology-changing neck pinches—correspond to phase transitions in the underlying quantum field theory, where the system tunnels between different topological sectors of the moduli space.</p>
+<blockquote>
+<p><strong>Normalized Ricci Flow on $S^2$</strong></p>
+<p>For the 2-sphere $S^2$ with the standard round metric $g_0 = d\theta^2 + \sin^2\theta d\phi^2$, the normalized Ricci flow admits an exact solution. For the round metric $g(t) = f(t)^2 (d\theta^2 + \sin^2\theta d\phi^2)$, the Ricci tensor is $R_{ij} = (1/f(t)^2 - 1) g_{ij}$ and the scalar curvature is $R = 2/f(t)^2$.</p>
+<p>The normalized flow is $\frac{\partial}{\partial t} g_{ij} = -2 \text{Ric}_{ij} + \frac{r}{n} g_{ij}$ where $r = \text{tr}_g \text{Ric} = R$. For $n=2$, this gives $\frac{\partial f^2}{\partial t} = -2(1 - f^2) + f^2 = 2(f^2 - 1)$. Solving $\frac{df^2}{dt} = 2(f^2 - 1)$ gives $\frac{df^2}{f^2 - 1} = 2\, dt$. Integrating yields $\int \frac{df^2}{f^2 - 1} = 2t + C$, so $\tanh^{-1}f = t + C$. With initial condition $f(0) = f_0$, the solution is $f(t) = \tanh(t + \tanh^{-1}f_0)$.</p>
+<p>As $t \to \infty$, $f(t) \to 1$, converging to the standard round metric. The curvature evolution gives $R(t) = 2/f(t)^2 \to 2$ (constant), and volume is preserved: $\text{Vol}(S^2, g(t)) = 4\pi$ (normalized). The Ricci flow acts as a nonlinear heat equation that homogenizes curvature while preserving topology, demonstrating how geometric evolution equations systematically evolve metrics toward canonical forms.</p>
+<p><strong>De Turck Trick for Strict Parabolicity</strong></p>
+<p>For the flat torus $T^2 = S^1 \times S^1$ with metric $g_{ij}(t)$, the De Turck trick demonstrates strict parabolicity. The Ricci flow $\partial_t g = -2\text{Ric}(g)$ has linearization $\mathcal{L} h_{ij} = -\Delta_L h_{ij} + \text{lower order terms}$ where $\Delta_L$ is the Lichnerowicz Laplacian: $\Delta_L h_{ij} = \Delta h_{ij} + 2 R_{ikjl} h^{kl} - 2 R_{ik} h_j^k - 2 R_{jk} h_i^k + 2 R_{ij} \text{tr}_h g$.</p>
+<p>The symbol of $\Delta_L$ is degenerate due to diffeomorphism invariance: $\sigma(\Delta_L)(\xi) h_{ij} = -\mid \xi \mid^2 h_{ij} + 2\xi_i \xi_k h^k_j + 2\xi_j \xi_k h^k_i$. The De Turck modification introduces a vector field $W$ solving $\Delta_L W_i + \nabla_j \nabla_i W^j = \Gamma_k(g, \partial_t g)$, giving the modified flow $\partial_t g_{ij} = -2\text{Ric}_{ij} + \mathcal{L}_W g_{ij}$ where $\mathcal{L}_W g_{ij} = \nabla_i W_j + \nabla_j W_i$.</p>
+<p>For the flat torus with initial metric $g_0 = dx^2 + dy^2$ and perturbation $h_{ij} = \begin{pmatrix} h_{11} & h_{12} \\ h_{12} & h_{22} \end{pmatrix}$, the De Turck vector $W = (w_1, w_2)$ satisfies $\Delta w_1 = \partial_x h_{11} + \partial_y h_{12}$ and $\Delta w_2 = 2\partial_x h_{12} + \partial_y h_{22}$. The modified symbol is $\sigma(\partial_t g + 2\Delta_L g - \mathcal{L}_W g)(\xi) = \mid \xi \mid^2 g_{ij}$, giving strict parabolicity with principal symbol $\mid \xi \mid^2 > 0$. The De Turck trick transforms a weakly parabolic system into a strictly parabolic one while preserving the geometric content, enabling rigorous existence and uniqueness results.</p>
+<p><strong>Tensor Maximum Principle for Sectional Curvature</strong></p>
+<p>To show that positive sectional curvature is preserved under Ricci flow on $S^2$, we consider the metric $g(t) = f(t)^2 g_{\text{round}}$ with sectional curvature $K = 1/f(t)^2$. The evolution is $\partial_t K = \Delta K + 2K(R - 2K)$.</p>
+<p>The tensor maximum principle states that for a tensor $T$ satisfying $\partial_t T \ge \Delta T + Q(T)$ where $Q$ is quadratic, if $T \ge 0$ initially and $Q(T) \ge 0$ when $T \ge 0$, then $T(t) \ge 0$. For sectional curvature, the Lichnerowicz Laplacian is $\Delta K = f^{-4} \partial_\theta (\sin\theta \partial_\theta K)/\sin\theta$ and the reaction term is $Q(K) = 2K(2/f^2 - 2K)$. Positivity preservation holds: if $K \ge 0$, then $Q(K) \ge 0$ when $K \le 1/f^2$.</p>
+<p>From the normalized Ricci flow solution, $f(t) = \tanh(t + C)$, giving $K(t) = \frac{1}{f(t)^2} = \frac{1}{\tanh^2(t + C)} = \coth^2(t + C)$. Checking $\partial_t K = -2\coth^2(t + C) \tanh(t + C) \ge 0$ for $t \ge 0$ confirms positivity preservation. Geometric inequalities are preserved through the tensor maximum principle, ensuring controlled evolution and preventing curvature from becoming negative.</p>
+<p><strong>Perelman's $\mathcal{F}$-Functional Monotonicity</strong></p>
+<p>To verify Perelman's monotonicity formula for Ricci flow on $S^1$, we consider the metric $g(t) = u(x,t) dx^2$ with $x \in [0,2\pi]$ and the $\mathcal{F}$-functional $\mathcal{F}(u, f) = \int_0^{2\pi} \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) e^{-f} \sqrt{u}\, dx$.</p>
+<p>The Ricci curvature is $\text{Ric} = -\frac{1}{2} \frac{u_{xx}}{u^2}$, giving the flow $\partial_t u = u_{xx}$. Perelman's system couples this with $\partial_t f = -\log u + \text{constant}$.</p>
+<p>Computing the first variation, we find $\frac{d}{dt} \mathcal{F} = \int \left[ \partial_t \left( \frac{u_{xx}}{u^2} \right) e^{-f} \sqrt{u} + \left( \frac{u_{xx}}{u^2} + \frac{f_x^2}{u} \right) \partial_t \left( e^{-f} \sqrt{u} \right) \right] dx$. After integration by parts and substitution, this gives $\frac{d}{dt} \mathcal{F} = 2 \int \vert \frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} - 1 \vert^2 e^{-f} \sqrt{u}\, dx \ge 0$.</p>
+<p>The equality case occurs when $\frac{u_{xx}}{u^2} + \frac{f_x^2}{2u} = 1$. The gradient flow structure shows that Ricci flow equals the gradient flow of $\mathcal{F}$, and monotonicity prevents periodic solutions (no breathers). The $\mathcal{F}$-monotonicity provides a Lyapunov functional controlling the entire flow, demonstrating how entropy functionals govern geometric evolution.</p>
+<p><strong>Neck Pinch Singularity</strong></p>
+<p>To construct an explicit solution exhibiting neck pinch singularity in finite time, we consider the domain $S^1 \times \mathbb{R}$ with metric $g(t) = dr^2 + \alpha(r,t)^2 d\theta^2$.</p>
+<p>The Ricci tensor is $\text{Ric} = -\partial_{rr} \log \alpha \cdot g_{\theta\theta}$, giving the evolution $\partial_t \alpha = \alpha_{rr}$. Assuming a self-similar solution $\alpha(r,t) = \frac{1}{\sqrt{T-t}} \beta\left(\frac{r}{\sqrt{T-t}}\right)$, the reduced equation is $\beta'' + \frac{1}{2} \beta' + \frac{1}{2} \frac{\beta'^2}{\beta} = 0$.</p>
+<p>Letting $\gamma = \log \beta$ gives $\gamma'' + \frac{1}{2} (\gamma')^2 + \frac{1}{2} \gamma' = 0$, with solution $\gamma' = -\frac{1}{1 + e^{r/\sqrt{2}}}$, so $\beta(r) = \sqrt{2} \tanh\left(\frac{r}{2\sqrt{2}}\right)$.</p>
+<p>The singularity analysis shows the neck radius $\alpha(0,t) \sim \sqrt{T-t}$, curvature $R \sim \frac{1}{T-t}$, and singularity time $t = T$ (diameter $\to 0$). The high curvature region $r \lesssim \sqrt{T-t}$ resembles a shrinking cylinder. Surgery removes $\vert r \vert < \epsilon \sqrt{T-t}$ and caps with standard spheres. Neck pinches are universal and admit explicit self-similar models, demonstrating how geometric evolution equations develop controlled singularities.</p>
+<p><strong>Huisken's Monotonicity for Mean Curvature Flow</strong></p>
+<p>To verify Huisken's monotonicity for a shrinking $S^{n-1} \subset \mathbb{R}^n$, we consider the embedding $F(x,t): S^{n-1} \to \mathbb{R}^n$ with evolution $\partial_t F = \vec{H} = -(n-1) F/\vert F \vert^2$.</p>
+<p>The self-similar solution ansatz $F(x,t) = \sqrt{T-t} \cdot \phi(x)$ gives the reduced MCF $\Delta \phi + \frac{1}{2} \phi = 0$. Huisken's functional is the Gaussian density $\Theta(p,t_0) = (4\pi(T-t_0))^{-n/2} \int_{S^{n-1}(t)} e^{-\vert x-p \vert^2/4(T-t_0)} d\mathcal{H}^{n-1}$.</p>
+<p>Computing the evolution gives $\frac{d}{dt} \Theta = -\frac{1}{2(4\pi(T-t_0))^{n/2}} \int \vert \vec{H} + \frac{x-p}{2(T-t_0)} \vert^2 e^{-\vert x-p \vert^2/4(T-t_0)} d\mathcal{H}^{n-1} \le 0$. As $t \to T^-$, the asymptotic analysis shows $\lim_{t \to T^-} \Theta(p,T) = \omega_{n-1}$ where $\omega_{n-1}$ is the solid angle of $S^{n-1}$. Monotonicity classifies singularities by their asymptotic density, providing a geometric characterization of singularity types in mean curvature flow.</p>
+<p><strong>Stochastic Quantization and Ricci Flow</strong></p>
+<p>To derive Ricci flow as the mean-field limit of stochastic quantization, we begin with the Einstein-Hilbert action $S[g] = \int_M R[g] dV_g$.</p>
+<p>The stochastic quantization Langevin equation is $\partial_t g_{ij} = -2\text{Ric}_{ij} + \xi_{ij}$ where $\xi_{ij}$ is space-time white noise with $\mathbb{E}[\xi_{ij}(x,t) \xi_{kl}(x',t')] = \delta_{ik}\delta_{jl} \delta(x-x')\delta(t-t')$. The Fokker-Planck equation for the probability density $P[g,t]$ is $\partial_t P = \int \frac{\delta}{\delta g_{ij}} \left[ \frac{\delta}{\delta g_{ij}} + 2\text{Ric}_{ij} \right] P\, dV_g$.</p>
+<p>In the mean-field limit, the averaged evolution is $\partial_t \langle g_{ij} \rangle = -2 \langle \text{Ric}_{ij} \rangle$. Fluctuation-dissipation shows that higher moments are controlled by Perelman's $\mathcal{W}$-entropy. The singularity interpretation connects neck pinches to quantum tunneling between topology classes, and surgery to phase transitions in the path integral measure. Ricci flow emerges as the deterministic limit of the quantum gravity path integral, demonstrating how geometric evolution equations arise from stochastic field theory.</p>
+</blockquote>
+<h2>References</h2>
+<ul>
+<li>Chow, B., Lu, P., &amp; Ni, L. (2004). <em>The Ricci Flow: An Introduction</em>. American Mathematical Society.</li>
+<li>Hamilton, R. S. (1995). <em>The Formation of Singularities in the Ricci Flow</em>. Surveys in Differential Geometry, 2, 7-136.</li>
+<li>Morgan, J., &amp; Tian, G. (2014). <em>Ricci Flow and the Poincaré Conjecture</em>. American Mathematical Society.</li>
+<li>Perelman, G. (2002). <em>The Entropy Formula for the Ricci Flow and its Geometric Applications</em>. arXiv:math/0211159.</li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Related Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-06/06-4-metric-space/">Previous Section: 6.4 The Space of Riemannian Metrics</a></li>
+<li><a href="/diffequations/chapter-06/06-6-gauge-theories/">Next Section: 6.6 Gauge Theories &amp; Instanton Moduli</a></li>
+<li><a href="/diffequations/chapter-06/">Chapter Index</a></li>
+<li><a href="/diffequations/">Full Table of Contents</a></li>
+</ul>
+  </article>
+</body>
+</html>

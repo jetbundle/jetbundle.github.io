@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 2.5: Variational Methods & Lax-Milgram</title>
+  <meta name="description" content="Energy minimization, existence machine">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Section 2.5: Variational Methods & Lax-Milgram</h1>
+    <p class="description">Energy minimization, existence machine</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-02/" style="color: #3b82f6; text-decoration: none;">Chapter 2 Index</a></p></nav>
+  <article>
+<p>Energy minimization replaces PDE solving: the Lax-Milgram theorem converts existence questions into verifying coercivity, transforming abstract operator theory into constructive computational algorithms.</p>
+<h2>Introduction</h2>
+<p>We reframe PDE solving as energy minimization. The <strong>Lax-Milgram Theorem</strong> provides a robust "existence machine" for solving $Lu=f$ by proving the coercivity of the associated bilinear form. We prove <strong>Weyl's Lemma</strong>, showing that abstract weak solutions to elliptic problems are actually smooth classical solutions.</p>
+<h2>Variational Formulation</h2>
+<p>For the Poisson problem</p>
+$$
+\begin{cases}
+-\Delta u = f & \text{in }\Omega,\\
+u=0 & \text{on }\partial\Omega,
+\end{cases}
+$$
+
+<p>multiply by a test function $v\in C_{c}^{\infty}(\Omega)$ and integrate:</p>
+$$
+\int_{\Omega} \nabla u\cdot \nabla v\,dx = \int_{\Omega} f v\,dx.
+$$
+
+<p>This identity extends to $u,v\in H_{0}^{1}(\Omega)$. Define</p>
+$$
+a(u,v)=\int_{\Omega}\nabla u\cdot \nabla v\,dx,\qquad F(v)=\int_{\Omega} f v\,dx.
+$$
+
+<p>The variational problem seeks $u\in H_{0}^{1}(\Omega)$ such that $a(u,v)=F(v)$ for all $v\in H_{0}^{1}(\Omega)$. When $a$ is symmetric, $u$ minimizes the energy functional $J(u)=\frac{1}{2}a(u,u)-F(u)$.</p>
+<p><strong>Poisson Equation on $(0,1)$</strong></p>
+<p>Solve $-u''=2$ with $u(0)=u(1)=0$.</p>
+<p>Weak formulation: find $u\in H_{0}^{1}(0,1)$ such that $\int_{0}^{1} u'v'=\int_{0}^{1} 2v$ for all $v$. Poincaré inequality ensures coercivity. The classical solution $u(x)=x^{2}-x$ satisfies the weak form and minimizes $J(u)=\frac{1}{2}\int \vert u' \vert^{2}-\int 2u$.</p>
+<p>The variational formulation transforms the differential equation into an integral equation: instead of requiring that the equation hold pointwise (which may not make sense for non-smooth functions), we require that it hold in a weak sense when integrated against test functions. This relaxation allows us to work in Sobolev spaces where solutions naturally exist. The energy functional $J$ provides a physical interpretation: solutions minimize the total energy (elastic energy minus work done by external forces), connecting mathematics to physics.</p>
+<h2>Lax–Milgram Theorem</h2>
+<p>Let $H$ be a Hilbert space, $a:H\times H\to \mathbb{R}$ bilinear, and $F:H\to \mathbb{R}$ linear continuous. If $a$ is bounded ($\vert a(u,v) \vert\le \beta\|u\|_{H}\|v\|_{H}$) and coercive ($a(u,u)\ge \alpha \|u\|_{H}^{2}$) for some $\alpha,\beta>0$, then there exists a unique $u\in H$ with $a(u,v)=F(v)$ for all $v\in H$. This theorem converts PDE solvability into verifying continuity and coercivity of the associated form.</p>
+<p>In the Poisson case, boundedness follows from Cauchy–Schwarz, and coercivity from Poincaré's inequality on $H_{0}^{1}(\Omega)$, ensuring a unique weak solution.</p>
+<p><strong>Lax–Milgram on the Unit Disk</strong></p>
+<p>For $-\Delta u=1$ in $B_{1}(0)$ with $u=0$ on $\partial B_{1}$, $a(u,v)=\int \nabla u\cdot\nabla v$ is bounded and coercive on $H_{0}^{1}(B_{1})$. $F(v)=\int v$ is continuous. Lax–Milgram yields a unique weak solution, which by symmetry is $u(r)=(1-r^{2})/4$.</p>
+<p>The Lax–Milgram theorem provides a universal existence and uniqueness result: once we verify that the bilinear form is bounded and coercive, a unique solution is guaranteed. This result is remarkable because it requires no explicit construction of the solution—it follows purely from the functional-analytic structure. The proof uses the Riesz representation theorem and the coercivity property to show that the variational equation defines a contraction mapping, whose fixed point is the solution. This abstract approach unifies many different PDE problems under a single framework.</p>
+<p><strong>Reaction–Diffusion</strong></p>
+<p>Consider $-\Delta u+c(x)u=f$ with $c\ge 0$. Then $a(u,u)=\int \vert \nabla u \vert^{2}+c\vert u \vert^{2}\ge \int \vert \nabla u \vert^{2}$, ensuring coercivity. If $c(x)=-\pi^{2}$, coercivity fails; solutions exist only when $f$ is orthogonal to $\sin(\pi x)$, illustrating the Fredholm alternative.</p>
+<p>The Lax–Milgram theorem requires strict coercivity: the bilinear form must control the norm from below. When this condition fails (as in the case of negative potential $c(x)=-\pi^{2}$), we enter the realm of the Fredholm alternative: solutions exist if and only if the right-hand side is orthogonal to the kernel of the adjoint operator. This example shows the boundary between coercive and non-coercive problems: as parameters vary, a problem can transition from having a unique solution to having either no solution or infinitely many solutions.</p>
+<h2>Regularity and Weyl's Lemma</h2>
+<p>Weak solutions gain additional smoothness under elliptic regularity. Weyl's lemma states that if $\Delta u=0$ in distributions, then $u$ is smooth. More generally, if $-\Delta u=f$ with $f\in L^{2}(\Omega)$, then $u\in H^{2}(\Omega)$. Difference quotient methods show $u''$ exists in $L^{2}$; iterating yields $u\in H^{k+2}$ whenever $f\in H^{k}$, and Sobolev embeddings translate $H^{k}$ regularity to classical $C^{m}$ regularity for $k>n/2+m$.</p>
+<p><strong>Weyl's Lemma via Difference Quotients</strong></p>
+<p>Let $u\in H^{1}_{\text{loc}}(\mathbb{R}^{n})$ satisfy $-\Delta u=f\in L^{2}_{\text{loc}}$. Using difference quotients $\tau_{h}u(x)=\frac{u(x+h)-u(x)}{h}$ as test functions shows $\tau_{h}u'$ is bounded in $L^{2}$, implying $u\in H^{2}_{\text{loc}}$. Repeating yields higher regularity when $f$ is smoother.</p>
+<p>Weyl's lemma provides a remarkable regularity result: weak solutions of elliptic equations are actually smooth, even though they are only defined through weak formulations. The difference quotient technique is fundamental to regularity theory: it allows us to differentiate the equation in a weak sense by testing against translated versions of the solution. This technique reveals that elliptic operators have a smoothing property: they cannot create singularities, only propagate existing ones. The iterative application of this argument shows that if the right-hand side is smooth, the solution is also smooth, connecting the abstract weak formulation back to classical solutions.</p>
+<h2>Applications</h2>
+<p>Variational methods extend beyond the Poisson equation to many physical problems. The key is to identify the appropriate energy functional and verify coercivity.</p>
+<p><strong>Linear Elasticity</strong></p>
+<p>For $\mathbf{u}\in [H_{0}^{1}(\Omega)]^{2}$, the Lamé system has variational form</p>
+$$
+a(\mathbf{u},\mathbf{v})=\int_{\Omega}\left(2\mu\,\varepsilon(\mathbf{u}):\varepsilon(\mathbf{v})+\lambda (\nabla\cdot\mathbf{u})(\nabla\cdot\mathbf{v})\right)dx.
+$$
+
+<p>Korn's inequality provides $a(\mathbf{u},\mathbf{u})\ge C\|\mathbf{u}\|_{H^{1}}^{2}$, leading to existence and uniqueness.</p>
+<p>Linear elasticity demonstrates how variational methods apply to systems of PDEs: the displacement field minimizes the elastic energy, which is a quadratic form in the strain tensor. Korn's inequality plays the role of Poincaré's inequality: it ensures that the elastic energy controls the $H^{1}$ norm, providing coercivity. This result is fundamental to solid mechanics: it guarantees that elastic bodies have unique equilibrium configurations under given loads.</p>
+<p><strong>Eigenvalue Problem</strong></p>
+<p>Minimize $R[u]=\dfrac{\int \vert \nabla u \vert^{2}}{\int \vert u \vert^{2}}$ over $H_{0}^{1}(0,1)$ to find eigenpairs of $-\frac{d^{2}}{dx^{2}}$. The minimizer is $u(x)=\sin(\pi x)$ with eigenvalue $\lambda_{1}=\pi^{2}$. Higher modes $\sin(n\pi x)$ yield $\lambda_{n}=n^{2}\pi^{2}$.</p>
+<p>The Rayleigh quotient provides a variational characterization of eigenvalues: the first eigenvalue minimizes the ratio of energy to mass, and higher eigenvalues are obtained by imposing orthogonality constraints. This variational approach reveals the physical meaning of eigenvalues: they represent frequencies of vibration (in wave equations) or critical buckling loads (in stability problems). The minimization formulation is often more tractable than solving the eigenvalue equation directly, and it provides upper bounds through trial functions.</p>
+<p><strong>Mixed Boundary Problem</strong></p>
+<p>For $-\Delta u=1$ on $(0,1)^{2}$ with Dirichlet conditions on $y=0,1$ and Neumann on $x=0,1$, set $V=\{u\in H^{1} : u(x,0)=u(x,1)=0\}$. The bilinear form $a(u,v)=\int \nabla u\cdot \nabla v$ is coercive on $V$. Expanding in $\sin(m\pi y)\cos(nx)$ bases satisfies the mixed boundary conditions and converges to the exact solution.</p>
+<p>Mixed boundary problems require careful treatment of the function space: Dirichlet conditions are enforced by restricting to a subspace, while Neumann conditions are natural (they appear automatically in the weak formulation). The variational framework handles both types of boundary conditions naturally: Dirichlet conditions are essential (must be imposed on the space), while Neumann conditions are natural (emerge from integration by parts). This distinction is fundamental to finite element methods, where boundary conditions determine which basis functions are used.</p>
+<h2>Challenge Problems</h2>
+<p>The following problems synthesize concepts from variational formulations, the Lax-Milgram theorem, regularity theory, and applications to physical problems.</p>
+<h3>Challenge 1: Coercivity and Existence</h3>
+<p>Consider the problem $-\Delta u + \lambda u = f$ on a bounded domain $\Omega$ with $u=0$ on $\partial\Omega$, where $\lambda$ is a parameter. Determine the range of $\lambda$ for which the Lax-Milgram theorem applies, and identify what happens when $\lambda$ is an eigenvalue of $-\Delta$. Show that for $\lambda$ not an eigenvalue, the solution depends continuously on $\lambda$.</p>
+<p><em>(Hint: Coercivity requires $a(u,u) \ge \alpha \|u\|_{H^{1}}^{2}$. Use the Poincaré inequality and the spectral decomposition of $-\Delta$.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The bilinear form is $a(u,v) = \int_{\Omega} \nabla u \cdot \nabla v + \lambda \int_{\Omega} uv$. Coercivity requires $a(u,u) \ge \alpha \|u\|_{H^{1}}^{2}$ for some $\alpha > 0$.
+
+Using the Poincaré inequality $\|u\|_{L^{2}} \le C \|\nabla u\|_{L^{2}}$ and the spectral decomposition of $-\Delta$, we have
+
+$$
+a(u,u) = \int_{\Omega} \vert \nabla u \vert^{2} + \lambda \int_{\Omega} \vert u \vert^{2} \ge (1 + \lambda C) \|\nabla u\|_{L^{2}}^{2}
+$$
+
+for $\lambda > -1/C$, where $C$ is the Poincaré constant. More precisely, if $\lambda_{1}$ is the first eigenvalue of $-\Delta$, then $\|\nabla u\|_{L^{2}}^{2} \ge \lambda_{1} \|u\|_{L^{2}}^{2}$, so
+
+$$
+a(u,u) \ge \|\nabla u\|_{L^{2}}^{2} + \lambda \|u\|_{L^{2}}^{2} \ge \min(1, 1 + \lambda/\lambda_{1}) \|u\|_{H^{1}}^{2}.
+$$
+
+Coercivity holds when $\lambda > -\lambda_{1}$, i.e., when $\lambda$ is not less than the first eigenvalue.
+
+When $\lambda = \lambda_{n}$ is an eigenvalue, the homogeneous problem has nontrivial solutions, so the Lax-Milgram theorem does not apply. The Fredholm alternative holds: solutions exist if and only if $f$ is orthogonal to all eigenfunctions corresponding to $\lambda_{n}$.
+
+For $\lambda$ not an eigenvalue, the resolvent $(-\Delta + \lambda I)^{-1}$ exists and is bounded. The solution is $u = (-\Delta + \lambda I)^{-1}f$, so continuity in $\lambda$ follows from continuity of the resolvent, which in turn follows from the spectral theorem.
+
+This demonstrates the boundary between coercive and non-coercive problems: as $\lambda$ decreases, we approach an eigenvalue where uniqueness fails. The Lax-Milgram theorem provides a sharp criterion: coercivity is equivalent to $\lambda$ being greater than the negative of the first eigenvalue. This connection between spectral theory and variational methods reveals that existence and uniqueness are controlled by the spectrum of the operator.
+
+</details>
+
+<h3>Challenge 2: Regularity via Difference Quotients</h3>
+<p>Prove that if $u \in H^{1}(\Omega)$ satisfies $-\Delta u = f$ with $f \in L^{2}(\Omega)$, then $u \in H^{2}(\Omega)$. Use the difference quotient technique to show that second derivatives exist in $L^{2}$.</p>
+<p><em>(Hint: Test the equation with difference quotients of the solution. Use the fact that difference quotients commute with weak derivatives, and apply the coercivity of the Laplacian.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+Let $\tau_{h}^{i}u(x) = \frac{u(x+he_{i}) - u(x)}{h}$ be the difference quotient in the $i$-th direction. For small $h$ and test functions $\phi$ with compact support, we can use $\tau_{-h}^{i}\phi$ as a test function in the weak formulation:
+
+$$
+\int_{\Omega} \nabla u \cdot \nabla(\tau_{-h}^{i}\phi) = \int_{\Omega} f \tau_{-h}^{i}\phi.
+$$
+
+Using integration by parts for difference quotients, this becomes
+
+$$
+\int_{\Omega} \tau_{h}^{i}(\nabla u) \cdot \nabla \phi = \int_{\Omega} \tau_{h}^{i}f \cdot \phi.
+$$
+
+Setting $\phi = \tau_{h}^{i}u$ (which is valid for small $h$ when $u$ has compact support, and can be extended by density), we obtain
+
+$$
+\int_{\Omega} \vert \tau_{h}^{i}(\nabla u) \vert^{2} = \int_{\Omega} \tau_{h}^{i}f \cdot \tau_{h}^{i}u.
+$$
+
+By the properties of difference quotients, we have $\|\tau_{h}^{i}u\|_{L^{2}} \le \|\partial_{i}u\|_{L^{2}}$ for $u \in H^{1}$, so
+
+$$
+\int_{\Omega} \vert \tau_{h}^{i}(\nabla u) \vert^{2} \le \|f\|_{L^{2}} \|\partial_{i}u\|_{L^{2}}.
+$$
+
+This shows that $\tau_{h}^{i}(\nabla u)$ is bounded in $L^{2}$ independently of $h$. By weak compactness, there exists a subsequence converging weakly to some $v \in L^{2}$. Since difference quotients converge to weak derivatives, we must have $v = \partial_{i}(\nabla u)$, so $u \in H^{2}$.
+
+This technique demonstrates the power of difference quotients: they allow us to "differentiate" the equation even when we don't know a priori that derivatives exist. The key insight is that boundedness of difference quotients in $L^{2}$ implies that the corresponding weak derivative exists and is in $L^{2}$. This method extends to higher derivatives: if $f \in H^{k}$, then $u \in H^{k+2}$, showing that elliptic operators have a smoothing property of order 2.
+
+</details>
+
+<h3>Challenge 3: Nonlinear Variational Problem</h3>
+<p>Consider the problem of minimizing $J(u) = \frac{1}{2}\int_{\Omega} \vert \nabla u \vert^{2} - \int_{\Omega} F(u)$ over $H_{0}^{1}(\Omega)$, where $F$ is a smooth function. Derive the Euler-Lagrange equation and show that minimizers satisfy $-\Delta u = F'(u)$. Discuss the challenges in proving existence when $F$ is not convex.</p>
+<p><em>(Hint: Compute the first variation of $J$. For existence, consider the case when $F$ is convex and use weak lower semicontinuity. For non-convex $F$, critical points may not be minimizers.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+The first variation of $J$ is
+
+$$
+\delta J(u)[v] = \lim_{\epsilon \to 0} \frac{J(u + \epsilon v) - J(u)}{\epsilon} = \int_{\Omega} \nabla u \cdot \nabla v - \int_{\Omega} F'(u)v.
+$$
+
+At a minimizer, we must have $\delta J(u)[v] = 0$ for all $v \in H_{0}^{1}(\Omega)$, which gives the weak formulation
+
+$$
+\int_{\Omega} \nabla u \cdot \nabla v = \int_{\Omega} F'(u)v \quad \forall v \in H_{0}^{1}(\Omega).
+$$
+
+This is the weak form of $-\Delta u = F'(u)$.
+
+When $F$ is convex, $J$ is convex, so any critical point is a global minimizer. Existence follows from weak lower semicontinuity: if $u_{n} \rightharpoonup u$ weakly in $H_{0}^{1}$, then
+
+$$
+\liminf_{n \to \infty} \int_{\Omega} \vert \nabla u_{n} \vert^{2} \ge \int_{\Omega} \vert \nabla u \vert^{2}
+$$
+
+by weak lower semicontinuity of the norm, and
+
+$$
+\lim_{n \to \infty} \int_{\Omega} F(u_{n}) = \int_{\Omega} F(u)
+$$
+
+by compactness of the embedding $H_{0}^{1} \hookrightarrow L^{2}$ and continuity of $F$. Therefore, $J$ is weakly lower semicontinuous, and since it is coercive (when $F$ grows at most quadratically), minimizers exist.
+
+When $F$ is not convex, $J$ may have multiple critical points, and not all critical points are minimizers. The problem becomes more complex: we may have local minimizers, saddle points, and global minimizers. Existence of critical points can be established using minimax methods (mountain pass lemma, linking theorems), but these critical points are not necessarily minimizers.
+
+This demonstrates the difference between linear and nonlinear variational problems: linear problems (where $F$ is quadratic) have unique minimizers by the Lax-Milgram theorem, while nonlinear problems can have multiple solutions and require more sophisticated methods. The convexity of $F$ plays a crucial role: it ensures that the energy functional is convex, making every critical point a minimizer.
+
+</details>
+
+<h3>Challenge 4: Korn's Inequality and Elasticity</h3>
+<p>Prove Korn's inequality: for $\mathbf{u} \in [H_{0}^{1}(\Omega)]^{n}$, there exists a constant $C$ such that</p>
+$$
+\|\mathbf{u}\|_{H^{1}} \le C \|\varepsilon(\mathbf{u})\|_{L^{2}},
+$$
+
+<p>where $\varepsilon(\mathbf{u}) = \frac{1}{2}(\nabla \mathbf{u} + \nabla \mathbf{u}^{T})$ is the strain tensor. Use this to establish coercivity of the elastic energy functional.</p>
+<p><em>(Hint: First prove the inequality for smooth functions using integration by parts. The key is to relate $\|\varepsilon(\mathbf{u})\|_{L^{2}}^{2}$ to $\|\nabla \mathbf{u}\|_{L^{2}}^{2}$ plus terms involving the divergence and curl. For functions with zero boundary conditions, these additional terms can be controlled.)</em></p>
+<details>
+<summary><strong>Expand Solution</strong></summary>
+
+For smooth functions $\mathbf{u}$, we have
+
+$$
+\|\varepsilon(\mathbf{u})\|_{L^{2}}^{2} = \frac{1}{4}\int_{\Omega} \sum_{i,j} (\partial_{i}u_{j} + \partial_{j}u_{i})^{2}.
+$$
+
+Expanding the square:
+
+$$
+(\partial_{i}u_{j} + \partial_{j}u_{i})^{2} = (\partial_{i}u_{j})^{2} + (\partial_{j}u_{i})^{2} + 2\partial_{i}u_{j}\partial_{j}u_{i}.
+$$
+
+Summing over $i,j$ and using integration by parts:
+
+$$
+\int_{\Omega} \sum_{i,j} \partial_{i}u_{j}\partial_{j}u_{i} = \int_{\Omega} \sum_{i,j} \partial_{i}u_{j}\partial_{j}u_{i} = -\int_{\Omega} \sum_{i,j} u_{j}\partial_{ij}u_{i} + \text{boundary terms}.
+$$
+
+For $\mathbf{u}$ with zero boundary conditions, the boundary terms vanish. We can also relate this to the divergence: $\sum_{i} \partial_{ii}u_{i} = \Delta(\nabla \cdot \mathbf{u})$ in some sense, but a more direct approach uses the identity
+
+$$
+\int_{\Omega} \vert \nabla \mathbf{u} \vert^{2} = \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} + \int_{\Omega} \vert \omega(\mathbf{u}) \vert^{2},
+$$
+
+where $\omega(\mathbf{u}) = \frac{1}{2}(\nabla \mathbf{u} - \nabla \mathbf{u}^{T})$ is the rotation tensor. This identity shows that the symmetric and antisymmetric parts are orthogonal in $L^{2}$.
+
+For functions with zero boundary conditions, we can show that $\|\omega(\mathbf{u})\|_{L^{2}} \le C\|\varepsilon(\mathbf{u})\|_{L^{2}}$ using integration by parts and the fact that the curl of $\mathbf{u}$ (related to $\omega$) can be controlled by the strain when boundary conditions are imposed. This gives
+
+$$
+\|\nabla \mathbf{u}\|_{L^{2}}^{2} \le (1 + C^{2})\|\varepsilon(\mathbf{u})\|_{L^{2}}^{2},
+$$
+
+and since $\|\mathbf{u}\|_{L^{2}} \le C\|\nabla \mathbf{u}\|_{L^{2}}$ by Poincaré's inequality, we obtain Korn's inequality.
+
+Korn's inequality ensures coercivity of the elastic energy: for the Lamé system, we have
+
+$$
+a(\mathbf{u},\mathbf{u}) = 2\mu \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} + \lambda \int_{\Omega} (\nabla \cdot \mathbf{u})^{2} \ge 2\mu \int_{\Omega} \vert \varepsilon(\mathbf{u}) \vert^{2} \ge C\|\mathbf{u}\|_{H^{1}}^{2},
+$$
+
+where the last inequality is Korn's inequality. This provides the coercivity needed for the Lax-Milgram theorem.
+
+Korn's inequality is fundamental to linear elasticity: it ensures that the elastic energy controls the displacement field, providing the mathematical foundation for existence and uniqueness of elastic equilibrium. The proof reveals the geometric structure: the strain tensor captures the symmetric part of the deformation, while the rotation (which does not contribute to energy) can be controlled through boundary conditions. This result extends to more general elasticity problems and is essential for establishing well-posedness of elastic boundary value problems.
+
+</details>
+
+<p>Variational methods provide a unified framework for existence, uniqueness, and regularity of solutions to elliptic PDEs. The Lax-Milgram theorem converts operator equations into energy minimization problems, making existence questions tractable through functional analysis. However, this framework requires coercivity: when the bilinear form fails to control the norm, we must turn to Fredholm theory, which handles non-coercive problems through index theory. The regularity results show that weak solutions are actually smooth, bridging the gap between abstract functional analysis and classical PDE theory. These methods extend naturally to numerical approximation, as the next section will show, where the variational formulation provides the foundation for finite element methods.</p>
+<h2>References</h2>
+<ul>
+<li><strong>Brezis, H. (2011).</strong> <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+<li><strong>Ciarlet, P. G. (1988).</strong> <em>Mathematical Elasticity, Vol. 1: Three-Dimensional Elasticity</em>. North-Holland.</li>
+<li><strong>Evans, L. C. (2010).</strong> <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+<li><strong>Gilbarg, D., &amp; Trudinger, N. S. (2001).</strong> <em>Elliptic Partial Differential Equations of Second Order</em>. Springer.</li>
+<li><strong>Monk, P. (2003).</strong> <em>Finite Element Methods for Maxwell's Equations</em>. Oxford University Press.</li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Related Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-02/02-4-unbounded-operators/">Previous Section: 2.4 Unbounded Operators, Resolvents &amp; Semigroups</a></li>
+<li><a href="/diffequations/chapter-02/02-6-galerkin-methods/">Next Section: 2.6 Galerkin Methods &amp; Finite Elements</a></li>
+<li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
+<li><a href="/diffequations/">Full Table of Contents</a></li>
+</ul>
+  </article>
+</body>
+</html>

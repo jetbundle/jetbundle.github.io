@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution</title>
+  <meta name="description" content="The Phase Space is the Reality">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chapter 7: Microlocal Analysis, D-Modules & Categorical Resolution</h1>
+    <p class="description">The Phase Space is the Reality</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-07/" style="color: #3b82f6; text-decoration: none;">Chapter 7 Index</a></p></nav>
+  <article>
+<h1>Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution</h1>
+<p>The Phase Space is the Reality.</p>
+<h2>Introduction</h2>
+<p>Chapter 6 geometrized PDEs completely, but moduli spaces are often singular or non-compact, preventing simple calculus. This final chapter resolves these singularities using the algebraic tools of the cotangent bundle and category theory. We replace the "solution" with the system itself, refine the concept of singularity via wave front sets, and ultimately frame physics as a topological quantum field theory—a functor from cobordisms to vector spaces.</p>
+<p>The final goal of this endeavour is to resolve the singularities of analysis and geometry using the algebraic tools of the cotangent bundle and category theory.</p>
+<h2>Chapter Overview</h2>
+<p>This chapter addresses the categorical and microlocal resolution of differential equations. We will explore:</p>
+<ol>
+<li>
+<p><strong>D-Modules &amp; Holonomic Systems</strong>: Replacing the "solution" with the system itself, defining D-modules (modules over differential operators) and holonomicity as algebraic condition of being "determined."</p>
+</li>
+<li>
+<p><strong>Microlocal Analysis &amp; Wave Front Sets</strong>: Refining the concept of singularity via wave front sets in the cotangent bundle, distinguishing singularities by position and direction, with propagation of singularities theorem.</p>
+</li>
+<li>
+<p><strong>Riemann-Hilbert Correspondence</strong>: Connecting algebra to topology, showing that regular holonomic D-modules are equivalent to perverse sheaves, implying solutions are determined by topology.</p>
+</li>
+<li>
+<p><strong>Fourier Integral Operators</strong>: Quantizing canonical transformations, generalizing Fourier transform to curved manifolds, with Egorov's theorem showing quantum-classical correspondence.</p>
+</li>
+<li>
+<p><strong>Resurgence, Borel Summation &amp; Alien Calculus</strong>: Resolving divergence from Chapter 1, introducing alien calculus and bridge equation, showing divergence as information carrier for non-perturbative physics.</p>
+</li>
+<li>
+<p><strong>Index Theorems &amp; K-Theory</strong>: The grand unification—defining analytical and topological indices, proving Atiyah-Singer index theorem, uniting analysis, geometry, topology, and stochastics.</p>
+</li>
+<li>
+<p><strong>Noncommutative Geometry</strong>: Abstracting away points, defining geometry via spectrum of Dirac operator (spectral triples), handling fractal and quantum geometries.</p>
+</li>
+<li>
+<p><strong>Higher Categories, Derived Stacks &amp; TQFT</strong>: Addressing singular moduli spaces as derived stacks, framing physics as topological quantum field theory—functor from cobordisms to vector spaces.</p>
+</li>
+</ol>
+<h2>Chapter Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-07/07-1-d-modules/">7.1 D-Modules &amp; Holonomic Systems</a></li>
+<li><a href="/diffequations/chapter-07/07-2-microlocal-analysis/">7.2 Microlocal Analysis &amp; Wave Front Sets</a></li>
+<li><a href="/diffequations/chapter-07/07-3-riemann-hilbert/">7.3 Riemann-Hilbert Correspondence</a></li>
+<li><a href="/diffequations/chapter-07/07-4-fourier-integral/">7.4 Fourier Integral Operators</a></li>
+<li><a href="/diffequations/chapter-07/07-5-resurgence/">7.5 Resurgence, Borel Summation &amp; Alien Calculus</a></li>
+<li><a href="/diffequations/chapter-07/07-6-index-theorems/">7.6 Index Theorems &amp; K-Theory</a></li>
+<li><a href="/diffequations/chapter-07/07-7-noncommutative/">7.7 Noncommutative Geometry</a></li>
+<li><a href="/diffequations/chapter-07/07-8-higher-categories/">7.8 Higher Categories, Derived Stacks &amp; TQFT</a></li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Chapter Themes</h2>
+<p>This final chapter provides the ultimate resolution. We replace the concept of "solution" with the system itself—a D-module. Holonomicity becomes an algebraic condition, and the Riemann-Hilbert correspondence shows that analytic solutions are completely determined by topology. Wave front sets refine singularities to position and direction in phase space, and Fourier integral operators quantize canonical transformations.</p>
+<p>Resurgence theory resolves the divergent series of Chapter 1, showing that divergence carries information about non-perturbative physics. The Atiyah-Singer index theorem unites everything: analysis (Chapter 2), geometry (Chapter 3), topology (Chapter 6), and stochastics (Chapter 5) in a single formula.</p>
+<p>Noncommutative geometry abstracts away points entirely, defining geometry via operator spectra. Finally, we frame physics itself as a topological quantum field theory—a functor from the category of cobordisms to vector spaces. The differential equation has dissolved; only the categorical structure remains.</p>
+<p>The journey is complete. We have ascended from the manual calculation of explicit solutions to the contemplation of eternal cohomological invariants. <strong>A differential equation is not merely a problem to be solved, but the language through which the topology of the universe speaks to itself.</strong></p>
+<h2>Prerequisites</h2>
+<p>This chapter assumes familiarity with:<br />
+- Category theory (functors, natural transformations)<br />
+- Algebraic geometry (schemes, sheaves)<br />
+- Homological algebra (derived categories)<br />
+- All previous chapters (this is the synthesis)</p>
+<h2>Notation</h2>
+<ul>
+<li>$D_X$: ring of differential operators</li>
+<li>$\text{Ch}(M)$: characteristic variety</li>
+<li>$\text{WF}(u)$: wave front set</li>
+<li>$\text{ind}(P)$: analytical index</li>
+<li>$(A, H, D)$: spectral triple</li>
+<li>$\text{TQFT}$: topological quantum field theory</li>
+</ul>
+<hr />
+<p><strong>Previous Chapter:</strong> <a href="/diffequations/chapter-06/">Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs</a></p>
+  </article>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics</title>
+  <meta name="description" content="Regularity is an Exception; Roughness is the Rule">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chapter 5: Stochastic, Rough, Fractional & Nonlocal Dynamics</h1>
+    <p class="description">Regularity is an Exception; Roughness is the Rule</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-05/" style="color: #3b82f6; text-decoration: none;">Chapter 5 Index</a></p></nav>
+  <article>
+<h1>Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics</h1>
+<p>Regularity is an Exception; Roughness is the Rule.</p>
+<h2>Introduction</h2>
+<p>Chapter 4 revealed that integrability relies on precise algebraic cancellation, which is destroyed by noise and roughness in real-world systems. This chapter rebuilds calculus for trajectories that are nowhere differentiable and possess memory. We confront the non-differentiable nature of physical trajectories, developing stochastic calculus, rough path theory, fractional calculus, and the supersymmetric theory that unifies these approaches.</p>
+<p>We will rebuild calculus for trajectories that are nowhere differentiable and possess memory.</p>
+<h2>Chapter Overview</h2>
+<p>This chapter addresses analysis in noisy, rough, and nonlocal settings. We will explore:</p>
+<ol>
+<li>
+<p><strong>Stochastic Calculus Foundations</strong>: Demonstrating failure of classical calculus for Brownian paths, introducing Itô integration and the modified chain rule with quadratic variation.</p>
+</li>
+<li>
+<p><strong>SDEs &amp; Diffusion Processes</strong>: Connecting stochastic differential equations to parabolic PDEs via Feynman-Kac formula, and using Girsanov theorem for measure changes.</p>
+</li>
+<li>
+<p><strong>Geometric Stochastic Analysis</strong>: Lifting stochastic processes to manifolds, defining stochastic parallel transport and Malliavin calculus, with Hörmander's theorem linking Lie algebra structure to regularity.</p>
+</li>
+<li>
+<p><strong>Rough Paths &amp; Controlled Rough Paths</strong>: Decoupling roughness from probability, introducing path signatures and Terry Lyons' rough path theory for deterministic non-smooth calculus.</p>
+</li>
+<li>
+<p><strong>Fractional Calculus &amp; Nonlocal Operators</strong>: Abandoning locality with fractional Laplacians and Lévy flights, showing non-locality in $n$ dimensions as locality in $n+1$ dimensions.</p>
+</li>
+<li>
+<p><strong>SPDEs &amp; Regularity Structures</strong>: Tackling multiplication of distributions (noise × solution) via Hairer's regularity structures, with renormalization as rigorous algebraic requirement.</p>
+</li>
+<li>
+<p><strong>Kinetic Theory &amp; Mean-Field Games</strong>: Connecting microscopic to macroscopic via Boltzmann equation and mean-field games, with Wasserstein gradient flows viewing diffusion as geometry on probability measures.</p>
+</li>
+<li>
+<p><strong>Fractal Geometry &amp; Dirichlet Forms</strong>: Doing analysis on spaces without tangent vectors, defining Laplacians on fractals via Dirichlet forms.</p>
+</li>
+<li>
+<p><strong>Supersymmetric Theory of Stochastics</strong>: Revealing that all SDEs possess hidden topological supersymmetry, with dynamical long-range order as symmetry breaking and Witten index as robust topological invariant.</p>
+</li>
+</ol>
+<h2>Chapter Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-05/05-1-stochastic-calculus/">5.1 Stochastic Calculus Foundations</a></li>
+<li><a href="/diffequations/chapter-05/05-2-sdes/">5.2 SDEs &amp; Diffusion Processes</a></li>
+<li><a href="/diffequations/chapter-05/05-3-geometric-stochastic/">5.3 Geometric Stochastic Analysis</a></li>
+<li><a href="/diffequations/chapter-05/05-4-rough-paths/">5.4 Rough Paths &amp; Controlled Rough Paths</a></li>
+<li><a href="/diffequations/chapter-05/05-5-fractional-calculus/">5.5 Fractional Calculus &amp; Nonlocal Operators</a></li>
+<li><a href="/diffequations/chapter-05/05-6-spdes/">5.6 SPDEs &amp; Regularity Structures</a></li>
+<li><a href="/diffequations/chapter-05/05-7-kinetic-theory/">5.7 Kinetic Theory &amp; Mean-Field Games</a></li>
+<li><a href="/diffequations/chapter-05/05-8-fractal-geometry/">5.8 Fractal Geometry &amp; Dirichlet Forms</a></li>
+<li><a href="/diffequations/chapter-05/05-9-susy-stochastics/">5.9 Supersymmetric Theory of Stochastics</a></li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Chapter Themes</h2>
+<p>This chapter confronts the reality that most physical trajectories are not smooth. Brownian motion is nowhere differentiable, requiring a modified chain rule (Itô's formula) with quadratic variation terms. We develop stochastic calculus on manifolds, showing how Lie algebra structure (from Chapter 4) determines analytic regularity via Hörmander's theorem.</p>
+<p>Rough path theory provides a deterministic framework for non-smooth calculus, decoupling roughness from probability. Fractional calculus abandons locality, modeling systems with long-range correlations and memory. Regularity structures generalize Taylor expansions to "noisy" bases, requiring algebraic renormalization to define products of distributions.</p>
+<p>The chapter culminates in the supersymmetric theory of stochastics, revealing that all SDEs possess hidden topological supersymmetry. Chaos and turbulence emerge as spontaneous symmetry breaking, with the Witten index providing a robust topological invariant.</p>
+<p>Noise dissolves the background geometry. We are still solving equations <em>on</em> a space. We need a framework where the PDE defines the geometry <em>intrinsically</em>. This motivates Chapter 6, where we view the equation itself as the fundamental geometric object.</p>
+<h2>Prerequisites</h2>
+<p>This chapter assumes familiarity with:<br />
+- Probability theory (measure theory, random variables)<br />
+- Chapter 2 material (distributions, Sobolev spaces)<br />
+- Chapter 3 material (manifolds, geometric formulation)<br />
+- Chapter 4 material (Lie algebras, for Hörmander's theorem)</p>
+<h2>Notation</h2>
+<ul>
+<li>$B_t$: Brownian motion</li>
+<li>$dX_t$: stochastic differential</li>
+<li>$[X]_t$: quadratic variation</li>
+<li>$(-\Delta)^s$: fractional Laplacian</li>
+<li>$W_2$: Wasserstein distance</li>
+<li>$Q$, $Q^\dagger$: supersymmetry generators</li>
+</ul>
+<hr />
+<p><strong>Previous Chapter:</strong> <a href="/diffequations/chapter-04/">Chapter 4: Symmetry, Lie Theory &amp; Classical Integrability</a><br />
+<strong>Next Chapter:</strong> <a href="/diffequations/chapter-06/">Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs</a></p>
+  </article>
+</body>
+</html>

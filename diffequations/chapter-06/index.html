@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs</title>
+  <meta name="description" content="The PDE is the Manifold">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chapter 6: Jet Bundles, Exterior Differential Systems & Intrinsic Geometric PDEs</h1>
+    <p class="description">The PDE is the Manifold</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-06/" style="color: #3b82f6; text-decoration: none;">Chapter 6 Index</a></p></nav>
+  <article>
+<h1>Chapter 6: Jet Bundles, Exterior Differential Systems &amp; Intrinsic Geometric PDEs</h1>
+<p>The PDE <em>is</em> the Manifold.</p>
+<h2>Introduction</h2>
+<p>Chapter 5 showed that noise dissolves background geometry, and we are still solving equations <em>on</em> a space. This chapter reformulates PDEs as submanifolds of jet space, viewing the equation itself as the fundamental geometric object. We erase the distinction between dependent and independent variables, study the geometry of solution spaces (moduli spaces), and develop geometric evolution equations like Ricci flow.</p>
+<p>Now the goal is to reformulate PDEs as submanifolds of Jet Space and study the geometry of the solution space itself.</p>
+<h2>Chapter Overview</h2>
+<p>This chapter addresses the intrinsic geometric formulation of PDEs. We will explore:</p>
+<ol>
+<li>
+<p><strong>Jet Bundles &amp; Prolongation</strong>: Erasing the distinction between dependent and independent variables, constructing jet bundles and contact structures, and defining PDEs as closed submanifolds.</p>
+</li>
+<li>
+<p><strong>Formal Integrability &amp; Spencer Cohomology</strong>: Defining the symbol of a PDE as a geometric object, introducing Spencer cohomology to measure formal obstructions, and defining involution.</p>
+</li>
+<li>
+<p><strong>Exterior Differential Systems &amp; Cartan-Kähler</strong>: Treating PDEs as differential ideals in exterior algebra, with Cartan-Kähler theorem guaranteeing analytic solutions for involutive systems.</p>
+</li>
+<li>
+<p><strong>The Space of Riemannian Metrics</strong>: Constructing the moduli space of all possible geometries, with Ebin slice theorem handling diffeomorphism gauge symmetry.</p>
+</li>
+<li>
+<p><strong>Geometric Evolution Equations</strong>: Defining dynamics on the space of metrics, with Ricci flow as gradient flow of Einstein-Hilbert action, and singularity formation as topological surgery.</p>
+</li>
+<li>
+<p><strong>Gauge Theories &amp; Instanton Moduli</strong>: Studying geometry of fiber bundles, defining instantons (self-dual connections) and their moduli spaces, identifying them as supersymmetric vacua.</p>
+</li>
+<li>
+<p><strong>Fully Nonlinear &amp; Overdetermined Systems</strong>: Returning to scalar equations with maximal geometric nonlinearity (Monge-Ampère), with continuity method and a priori estimates solving the convexity barrier.</p>
+</li>
+</ol>
+<h2>Chapter Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-06/06-1-jet-bundles/">6.1 Jet Bundles &amp; Prolongation</a></li>
+<li><a href="/diffequations/chapter-06/06-2-formal-integrability/">6.2 Formal Integrability &amp; Spencer Cohomology</a></li>
+<li><a href="/diffequations/chapter-06/06-3-exterior-systems/">6.3 Exterior Differential Systems &amp; Cartan-Kähler</a></li>
+<li><a href="/diffequations/chapter-06/06-4-metric-space/">6.4 The Space of Riemannian Metrics</a></li>
+<li><a href="/diffequations/chapter-06/06-5-geometric-evolution/">6.5 Geometric Evolution Equations</a></li>
+<li><a href="/diffequations/chapter-06/06-6-gauge-theories/">6.6 Gauge Theories &amp; Instanton Moduli</a></li>
+<li><a href="/diffequations/chapter-06/06-7-nonlinear-systems/">6.7 Fully Nonlinear &amp; Overdetermined Systems</a></li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Chapter Themes</h2>
+<p>This chapter geometrizes PDEs completely. We erase the artificial distinction between dependent and independent variables by working in jet space, where a PDE is a submanifold. The symbol of a PDE becomes a geometric object, and Spencer cohomology measures formal obstructions to solving the equation. Cartan-Kähler theorem converts analysis into the algebraic problem of constructing integral elements.</p>
+<p>We zoom out to study the space of all possible geometries—the moduli space of metrics. Geometric evolution equations like Ricci flow define dynamics on this infinite-dimensional space. Singularity formation becomes topological surgery, and instantons emerge as supersymmetric vacua connecting to Chapter 5.</p>
+<p><strong>We have geometrized everything, but the moduli spaces (solution spaces) are often singular or non-compact. We cannot do simple calculus on them</strong>  We need a tool that is robust against these singularities. This motivates Chapter 7, where we resolve singularities using the algebraic tools of the cotangent bundle and category theory.</p>
+<h2>Prerequisites</h2>
+<p>This chapter assumes familiarity with:<br />
+- Differential geometry (fiber bundles, connections)<br />
+- Algebraic geometry (schemes, moduli spaces)<br />
+- Chapter 3 material (manifolds, tensors)<br />
+- Chapter 4 material (symmetries, for gauge theories)<br />
+- Chapter 5 material (supersymmetry, for instantons)</p>
+<h2>Notation</h2>
+<ul>
+<li>$J^k$: $k$-th jet bundle</li>
+<li>$\theta^\alpha$: contact forms</li>
+<li>$g_k$: symbol module</li>
+<li>$H^{p,q}$: Spencer cohomology</li>
+<li>$\text{Met}(M)$: space of Riemannian metrics</li>
+<li>$F_A$: curvature of connection $A$</li>
+</ul>
+<hr />
+<p><strong>Previous Chapter:</strong> <a href="/diffequations/chapter-05/">Chapter 5: Stochastic, Rough, Fractional &amp; Nonlocal Dynamics</a><br />
+<strong>Next Chapter:</strong> <a href="/diffequations/chapter-07/">Chapter 7: Microlocal Analysis, D-Modules &amp; Categorical Resolution</a></p>
+  </article>
+</body>
+</html>

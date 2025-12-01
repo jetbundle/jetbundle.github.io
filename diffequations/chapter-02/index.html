@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Functional Analysis, Distributions & Weak Solutions</title>
+  <meta name="description" content="The Geometry of Infinite Dimensions">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chapter 2: Functional Analysis, Distributions & Weak Solutions</h1>
+    <p class="description">The Geometry of Infinite Dimensions</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-02/" style="color: #3b82f6; text-decoration: none;">Chapter 2 Index</a></p></nav>
+  <article>
+<h1>Chapter 2: Functional Analysis, Distributions &amp; Weak Solutions</h1>
+<p>The Geometry of Infinite Dimensions.</p>
+<h2>Introduction</h2>
+<p>Chapter 1 revealed that we can formally manipulate divergent series and delta functions, but they lack a rigorous foundation in standard calculus. This chapter constructs the rigorous analytical framework required to support these heuristic objects. We build a cathedral of analysis on infinite-dimensional spaces, providing the mathematical infrastructure for distributions, weak solutions, and the spectral theory that justifies the methods of Chapter 1.</p>
+<p>We wish to construct the rigorous analytical framework required to support the heuristic objects of Chapter 1.</p>
+<h2>Chapter Overview</h2>
+<p>This chapter addresses the functional analytic foundations necessary for rigorous treatment of differential equations. We will explore:</p>
+<ol>
+<li>
+<p><strong>Distributions &amp; Test Functions</strong>: Redefining differentiation via duality, creating a rigorous home for delta functions and Green's functions.</p>
+</li>
+<li>
+<p><strong>Sobolev Spaces &amp; Weak Derivatives</strong>: Defining energy-based function spaces where weak derivatives exist, with embedding theorems connecting weak regularity to classical continuity.</p>
+</li>
+<li>
+<p><strong>Hilbert Space Theory &amp; Spectral Theorem</strong>: Visualizing functions as vectors in infinite-dimensional Euclidean space, with the spectral theorem providing rigorous justification for separation of variables.</p>
+</li>
+<li>
+<p><strong>Unbounded Operators, Resolvents &amp; Semigroups</strong>: Handling physical operators like the Laplacian, constructing resolvents, and using Stone's theorem for time evolution.</p>
+</li>
+<li>
+<p><strong>Variational Methods &amp; Lax-Milgram</strong>: Reframing PDE solving as energy minimization, with Lax-Milgram providing an existence machine.</p>
+</li>
+<li>
+<p><strong>Galerkin Methods &amp; Finite Elements</strong>: Projecting infinite-dimensional problems onto finite subspaces, connecting abstract theory to computation.</p>
+</li>
+<li>
+<p><strong>Fredholm Theory &amp; Index</strong>: Classifying operators that are "almost" invertible, introducing the index as a stable topological invariant.</p>
+</li>
+</ol>
+<h2>Chapter Sections</h2>
+<ul>
+<li><a href="/diffequations/chapter-02/02-1-distributions/">2.1 Distributions &amp; Test Functions</a></li>
+<li><a href="/diffequations/chapter-02/02-2-sobolev-spaces/">2.2 Sobolev Spaces &amp; Weak Derivatives</a></li>
+<li><a href="/diffequations/chapter-02/02-3-hilbert-spaces/">2.3 Hilbert Space Theory &amp; Spectral Theorem</a></li>
+<li><a href="/diffequations/chapter-02/02-4-unbounded-operators/">2.4 Unbounded Operators, Resolvents &amp; Semigroups</a></li>
+<li><a href="/diffequations/chapter-02/02-5-variational-methods/">2.5 Variational Methods &amp; Lax-Milgram</a></li>
+<li><a href="/diffequations/chapter-02/02-6-galerkin-methods/">2.6 Galerkin Methods &amp; Finite Elements</a></li>
+<li><a href="/diffequations/chapter-02/02-7-fredholm-theory/">2.7 Fredholm Theory &amp; Index</a></li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Chapter Themes</h2>
+<p>This chapter builds the analytical foundation for everything that follows. We resolve the ambiguity of the delta function by redefining differentiation as a duality operation. We construct Sobolev spaces to house functions with weak derivatives, providing the bridge between distributional and classical solutions. The spectral theorem gives rigorous meaning to the eigenfunction expansions used heuristically in Chapter 1.</p>
+<p>We develop the geometry of infinite-dimensional spaces, showing how functions can be viewed as vectors, how operators act on these spaces, and how variational principles provide existence results. The chapter culminates in Fredholm theory, which classifies operators that are "almost" invertible and introduces the index—a topological invariant that will play a crucial role in later chapters.</p>
+<p><strong>We have built a cathedral of analysis, but it rests on the flat ground of $\mathbb{R}^n$.</strong> Physics, however, lives on curved manifolds where "global vector addition" is meaningless. This limitation motivates Chapter 3, where we detach differential equations from coordinate systems and formulate them intrinsically on manifolds.</p>
+<h2>Prerequisites</h2>
+<p>This chapter assumes familiarity with:<br />
+- Real analysis (Lebesgue measure, $L^p$ spaces)<br />
+- Linear algebra (vector spaces, operators)<br />
+- Basic topology (metric spaces, compactness)<br />
+- Chapter 1 material (especially integral transforms and eigenfunction expansions)</p>
+<h2>Notation</h2>
+<ul>
+<li>$D'(\Omega)$: space of distributions</li>
+<li>$H^k(\Omega)$: Sobolev space of order $k$</li>
+<li>$L^2(\Omega)$: space of square-integrable functions</li>
+<li>$\langle \cdot, \cdot \rangle$: inner product or duality pairing</li>
+<li>$\nabla$: gradient operator</li>
+<li>$\Delta$: Laplacian operator</li>
+</ul>
+<hr />
+<p><strong>Previous Chapter:</strong> <a href="/diffequations/chapter-01/">Chapter 1: Classical Explicit &amp; Quasi-Explicit Arsenal</a><br />
+<strong>Next Chapter:</strong> <a href="/diffequations/chapter-03/">Chapter 3: Tensor Fields, Conservation Laws &amp; Geometric Formulation</a></p>
+  </article>
+</body>
+</html>

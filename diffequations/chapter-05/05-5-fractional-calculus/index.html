@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 5.5: Fractional Calculus & Nonlocal Operators</title>
+  <meta name="description" content="Fractional Laplacian, Lévy flights">
+  <!-- KaTeX Math Renderer - Reliable Client-Side Rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script>
+(function() {
+  var katexScript = document.createElement('script');
+  katexScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+  katexScript.integrity = 'sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8';
+  katexScript.crossOrigin = 'anonymous';
+  katexScript.async = false;
+  katexScript.onload = function() {
+    var renderScript = document.createElement('script');
+    renderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+    renderScript.integrity = 'sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05';
+    renderScript.crossOrigin = 'anonymous';
+    renderScript.async = false;
+    renderScript.onload = function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'undefined') return;
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\[', right: '\\]', display: true},
+              {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoredClasses: ['no-math']
+          });
+        } catch (error) {
+          console.error('KaTeX rendering error:', error);
+        }
+      }
+      if (document.body) {
+        renderMath();
+      } else {
+        document.addEventListener('DOMContentLoaded', renderMath);
+      }
+      window.addEventListener('load', function() {
+        setTimeout(renderMath, 100);
+      });
+    };
+    document.head.appendChild(renderScript);
+  };
+  document.head.appendChild(katexScript);
+})();
+</script>
+  <link rel="stylesheet" href="/assets/css/textbook.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+      color: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Section 5.5: Fractional Calculus & Nonlocal Operators</h1>
+    <p class="description">Fractional Laplacian, Lévy flights</p>
+  </header>
+  <nav style="margin: 2rem 0; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px;"><p style="margin: 0;"><a href="/diffequations/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">← Table of Contents</a></p><p style="margin: 0.5rem 0 0 0;"><a href="/diffequations/chapter-05/" style="color: #3b82f6; text-decoration: none;">Chapter 5 Index</a></p></nav>
+  <article>
+<p>Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously, bridging local differential operators and global integral transforms.</p>
+<h2>Introduction</h2>
+<p>The trajectory of this text has thus far assumed locality: the behavior of a function or a physical field at a point depends only on its values in an infinitesimal neighborhood of that point. However, both mathematical completeness and physical reality compel us to abandon this constraint. Systems exhibiting memory, anomalous diffusion, or long-range interactions require operators that perceive the entire domain simultaneously. In this section, we rigorously construct the calculus of non-integer order, bridging the gap between local differential operators and global integral transforms.</p>
+<h3>Fractional Integrals and Derivatives</h3>
+<p>The generalization of differentiation to non-integer orders begins with the inverse operation: integration. Recall Cauchy's formula for repeated integration, which collapses an $n$-fold iterated integral into a single convolution kernel:</p>
+$$
+(J^n f)(t) = \frac{1}{(n-1)!} \int_0^t (t-\tau)^{n-1} f(\tau) \, d\tau.
+$$
+
+<p>By analytically continuing the factorial via the Gamma function, we define the <strong>Riemann-Liouville fractional integral</strong> of order $\alpha > 0$:</p>
+$$
+(I^\alpha f)(t) = \frac{1}{\Gamma(\alpha)} \int_0^t (t-\tau)^{\alpha-1} f(\tau) \, d\tau.
+$$
+
+<p>This operator creates a semigroup structure where $I^\alpha I^\beta = I^{\alpha+\beta}$, satisfying the algebraic expectation for an integration operator.</p>
+<p>To define the fractional derivative, one must invert this integration. Unlike the integral, the definition bifurcates based on the order of operations. For a differentiation order $\alpha$ such that $n-1 < \alpha < n$, the <strong>Riemann-Liouville fractional derivative</strong> $D^\alpha_{RL}$ is defined by differentiating the fractional integral:</p>
+$$
+D^\alpha_{RL} f(t) = \frac{d^n}{dt^n} (I^{n-\alpha} f)(t) = \frac{1}{\Gamma(n-\alpha)} \frac{d^n}{dt^n} \int_0^t (t-\tau)^{n-\alpha-1} f(\tau) \, d\tau.
+$$
+
+<p>While analytically sound, this definition presents physical difficulties; specifically, the Riemann-Liouville derivative of a constant is not zero, and the required initial conditions involve fractional integrals rather than field values.</p>
+<p>To resolve this, we introduce the <strong>Caputo fractional derivative</strong>, which permutes the differential and integral operators. By differentiating the function <em>before</em> convolution, we annihilate constants and preserve the physical interpretation of initial conditions:</p>
+$$
+D^\alpha_C f(t) = (I^{n-\alpha} f^{(n)})(t) = \frac{1}{\Gamma(n-\alpha)} \int_0^t (t-\tau)^{n-\alpha-1} f^{(n)}(\tau) \, d\tau.
+$$
+
+<p>The Caputo derivative serves as the foundational operator for time-fractional differential equations governing systems with power-law memory.</p>
+<h3>The Fractional Laplacian</h3>
+<p>Moving from the temporal domain to the spatial domain $\mathbb{R}^n$, we seek a generalization of the Laplacian operator $\Delta = \sum \partial_{x_i}^2$. The spectral definition via the Fourier transform provides the most direct algebraic construction. Since the classical Laplacian corresponds to multiplication by $-\vert \xi \vert^2$ in frequency space, the <strong>Fractional Laplacian</strong> $(-\Delta)^s$ for $s \in (0,1)$ is defined by the Fourier multiplier:</p>
+$$
+\mathcal{F}((-\Delta)^s u)(\xi) = \vert \xi \vert^{2s} \hat{u}(\xi).
+$$
+
+<p>While algebraically concise, this definition obscures the nonlocal nature of the operator in physical space. By computing the inverse Fourier transform of the symbol $\vert \xi \vert^{2s}$ (in the sense of tempered distributions), we recover the singular integral representation:</p>
+$$
+(-\Delta)^s u(x) = C_{n,s} \, \text{P.V.} \int_{\mathbb{R}^n} \frac{u(x) - u(y)}{\vert x-y \vert^{n+2s}} \, dy,
+$$
+
+<p>where $C_{n,s}$ is a normalization constant involving Gamma functions, and P.V. denotes the Cauchy principal value.</p>
+<p>This integral representation reveals the operator's global character: the value of $(-\Delta)^s u$ at a point $x$ depends on the value of $u(y)$ everywhere in $\mathbb{R}^n$, weighted by a singular kernel that decays algebraically.</p>
+<p>The inverse of this operator is the <strong>Riesz Potential</strong> $(-\Delta)^{-s}$, which is realized as a convolution with the fundamental solution of the fractional Laplacian:</p>
+$$
+(-\Delta)^{-s} f(x) = \int_{\mathbb{R}^n} \frac{f(y)}{\vert x-y \vert^{n-2s}} \, dy.
+$$
+
+<p>The mapping properties of these potentials on $L^p$ spaces are governed by the Hardy-Littlewood-Sobolev inequality, extending the Sobolev embedding theorems of Chapter 2 to the fractional setting.</p>
+<h3>The Caffarelli-Silvestre Extension</h3>
+<p>A fundamental obstacle in analyzing nonlocal operators is the inability to apply local PDE techniques, such as integration by parts or boundary tracing, directly in the domain $\mathbb{R}^n$. In 2007, Caffarelli and Silvestre proved that the nonlocal fractional Laplacian in $\mathbb{R}^n$ can be realized as a Dirichlet-to-Neumann map for a <em>local</em> elliptic operator in the half-space $\mathbb{R}^{n+1}_+ = \mathbb{R}^n \times (0, \infty)$.</p>
+<p>Let $(x,y)$ denote coordinates in $\mathbb{R}^{n+1}_+$, where $x \in \mathbb{R}^n$ and $y > 0$ is the extension variable. Consider the extension function $v(x,y)$ satisfying the degenerate elliptic equation:</p>
+$$
+\nabla \cdot (y^a \nabla v) = 0 \quad \text{in } \mathbb{R}^{n+1}_+,
+$$
+
+<p>where $a = 1-2s$, subject to the Dirichlet boundary condition $v(x,0) = u(x)$.</p>
+<p>The operator in the bulk is local, allowing the use of standard weighted Sobolev space theory. The nonlocality of the fractional Laplacian emerges at the boundary $y=0$. Specifically, the conormal derivative of the extension recovers the fractional Laplacian of the trace:</p>
+$$
+(-\Delta)^s u(x) = - C_{n,s} \lim_{y \to 0^+} y^a \frac{\partial v}{\partial y}.
+$$
+
+<p>This extension theorem transforms nonlocal problems involving $(-\Delta)^s$ into local boundary value problems involving the weighted operator $L_a = \text{div}(y^a \nabla)$. It provides the rigorous geometric justification for treating fractional operators within the framework of variational calculus and establishes a connection between the anomalous diffusion on the boundary and Brownian motion with a specific time-change in the bulk.</p>
+<h2>Complete Examples</h2>
+<h3>Example 5.5.1: Canonical Computation—Power Functions</h3>
+<p><strong>Problem:</strong> Compute the Riemann-Liouville fractional integral and derivatives of $f(t) = t^\beta$ for $\beta > -1$.</p>
+<p><strong>Solution:</strong></p>
+<p>For the Riemann-Liouville integral $I^\alpha f(t)$:</p>
+$$
+I^\alpha(t^\beta) = \frac{1}{\Gamma(\alpha)} \int_0^t (t-\tau)^{\alpha-1} \tau^\beta \, d\tau
+$$
+
+<p>Using the substitution $\tau = t u$, $d\tau = t du$:</p>
+$$
+I^\alpha(t^\beta) = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} \int_0^1 (1-u)^{\alpha-1} u^\beta \, du = \frac{t^{\alpha+\beta}}{\Gamma(\alpha)} B(\alpha, \beta+1)
+$$
+
+<p>Applying the Beta function identity $B(\alpha, \beta+1) = \frac{\Gamma(\alpha) \Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)}$:</p>
+$$
+I^\alpha(t^\beta) = \frac{\Gamma(\beta+1)}{\Gamma(\alpha+\beta+1)} t^{\alpha+\beta}
+$$
+
+<p>The semigroup property is verified:</p>
+$$
+I^\alpha I^\beta(t^\gamma) = I^\alpha\left( \frac{\Gamma(\gamma+1)}{\Gamma(\beta+\gamma+1)} t^{\beta+\gamma} \right) = \frac{\Gamma(\gamma+1)}{\Gamma(\alpha+\beta+\gamma+1)} t^{\alpha+\beta+\gamma} = I^{\alpha+\beta}(t^\gamma)
+$$
+
+<p>For the Riemann-Liouville derivative $D^\alpha_{RL} f(t)$ with $0 < \alpha < 1$:</p>
+$$
+D^\alpha_{RL}(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \frac{d}{dt} \int_0^t (t-\tau)^{-\alpha} \tau^\beta \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
+$$
+
+<p>For the Caputo derivative $D^\alpha_C f(t)$:</p>
+$$
+D^\alpha_C(t^\beta) = \frac{1}{\Gamma(1-\alpha)} \int_0^t (t-\tau)^{-\alpha} \beta \tau^{\beta-1} \, d\tau = \frac{\Gamma(\beta+1)}{\Gamma(\beta+1-\alpha)} t^{\beta-\alpha}
+$$
+
+<p>For power functions, the Riemann-Liouville and Caputo derivatives coincide: $D^\alpha_{RL} = D^\alpha_C$. However, this equality fails for general functions, highlighting the importance of choosing the appropriate definition based on the physical interpretation of initial conditions.</p>
+<h3>Example 5.5.2: Physical Application—Viscoelasticity</h3>
+<p><strong>Problem:</strong> Solve the fractional relaxation equation $D^\alpha_C u(t) = -\lambda u(t)$, $u(0) = u_0$, modeling viscoelastic materials.</p>
+<p><strong>Solution:</strong></p>
+<p>Using the Laplace transform approach, the transform of the Caputo derivative is:</p>
+$$
+\mathcal{L}\{D^\alpha_C u\}(s) = s^\alpha \hat{u}(s) - s^{\alpha-1} u(0)
+$$
+
+<p>Applying to the equation $D^\alpha_C u(t) = -\lambda u(t)$:</p>
+$$
+s^\alpha \hat{u}(s) - s^{\alpha-1} u_0 = -\lambda \hat{u}(s)
+$$
+
+<p>Solving for $\hat{u}(s)$:</p>
+$$
+\hat{u}(s) = \frac{u_0}{s^\alpha + \lambda}
+$$
+
+<p>The solution is given by the Mittag-Leffler function:</p>
+$$
+u(t) = u_0 E_\alpha(-\lambda t^\alpha)
+$$
+
+<p>where $E_\alpha(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\alpha k + 1)}$.</p>
+<p>For $\alpha = 1/2$, the complete computation yields:</p>
+$$
+E_{1/2}(-t^{1/2}) = e^{t} \text{erfc}(\sqrt{t})
+$$
+
+<p>Verification confirms:</p>
+$$
+D^{1/2}_C[e^t \text{erfc}(\sqrt{t})] = -\text{erfc}(\sqrt{t}) + \frac{e^{-t}}{\sqrt{\pi t}}
+$$
+
+<p>This demonstrates that the solution satisfies the fractional relaxation equation, providing a rigorous model for viscoelastic materials with power-law memory.</p>
+<h3>Example 5.5.3: Advanced Demonstration—Fractional Harmonic Oscillator</h3>
+<p><strong>Problem:</strong> Solve $D^{2\alpha}_C u(t) + \omega^2 u(t) = 0$, $u(0) = u_0$, $D^\alpha_C u(0) = v_0$.</p>
+<p><strong>Solution:</strong></p>
+<p>Taking the Laplace transform:</p>
+$$
+s^{2\alpha} \hat{u}(s) - s^{2\alpha-1} u_0 - s^\alpha v_0 + \omega^2 \hat{u}(s) = 0
+$$
+
+$$
+\hat{u}(s) = \frac{s^{2\alpha-1} u_0 + s^\alpha v_0}{s^{2\alpha} + \omega^2}
+$$
+
+<p>The inverse transform using the Mittag-Leffler function yields:</p>
+$$
+u(t) = u_0 t^{\alpha-1} E_{\alpha, \alpha}(\omega^2 t^{2\alpha}) + v_0 t^\alpha E_{\alpha, \alpha+1}(\omega^2 t^{2\alpha})
+$$
+
+<p>Asymptotic analysis as $\alpha \to 1^-$ shows:</p>
+$$
+E_{1,1}(\omega^2 t^2) = \cos(\omega t), \quad t E_{1,2}(\omega^2 t^2) = \frac{\sin(\omega t)}{\omega}
+$$
+
+<p>This recovers the classical solution: $u(t) = u_0 \cos(\omega t) + \frac{v_0}{\omega} \sin(\omega t)$.</p>
+<p><strong>Failure Mode:</strong> For $\alpha < 1/2$, the solution exhibits anomalous dispersion where high frequencies decay slower than low frequencies, connecting to Chapter 5.6 (regularity structures).</p>
+<h3>Example 5.5.4: Canonical Computation—Fundamental Solution</h3>
+<p><strong>Problem:</strong> Find the fundamental solution of $(-\Delta)^s u = \delta$ in $\mathbb{R}^n$.</p>
+<p><strong>Solution:</strong></p>
+<p>Using the Fourier transform method:</p>
+$$
+   \hat{u}(\xi) = \vert \xi \vert^{-2s}
+   $$
+
+<p>The inverse Fourier transform is:</p>
+$$
+   u(x) = c_{n,s} \int_{\mathbb{R}^n} \vert \xi \vert^{-2s} e^{2\pi i x \cdot \xi} \, d\xi
+   $$
+
+<p>Using spherical coordinates in frequency space:</p>
+$$
+   u(x) = c_{n,s} \int_0^\infty \rho^{n-1-2s} \int_{S^{n-1}} e^{2\pi i \vert x \vert \rho \omega \cdot e_1} \, d\omega \, d\rho
+   $$
+
+<p>The known result is:</p>
+$$
+   u(x) = C_{n,s} \vert x \vert^{2s-n}, \quad C_{n,s} = \frac{\Gamma\left(\frac{n-2s}{2}\right)}{2^{2s} \pi^{n/2} \Gamma(s)}
+   $$
+
+<p>Verification via direct computation for $n=1$, $s=1/2$:</p>
+$$
+   (-\Delta)^{1/2} \vert x \vert^{-1/2} = c \text{P.V.} \int_{-\infty}^\infty \frac{\vert x \vert^{-1/2} - \vert y \vert^{-1/2}}{\vert x-y \vert^{2}} \, dy
+   $$
+
+<p>The principal value integral converges and equals $\delta(x)$, confirming that the fundamental solution has the correct singularity structure.</p>
+<h3>Example 5.5.5: Physical Application—Anomalous Diffusion</h3>
+<p><strong>Problem:</strong> Solve the fractional diffusion equation $\partial_t u = -(-\Delta)^s u$ in $\mathbb{R}^n$.</p>
+<p><strong>Solution:</strong></p>
+<p>Taking the Fourier transform:</p>
+$$
+   \hat{u}(\xi,t) = \hat{u}_0(\xi) e^{-t \vert \xi \vert^{2s}}
+   $$
+
+<p>The self-similar solution for $\delta$-initial data is:</p>
+$$
+   u(x,t) = t^{-n/(2s)} K\left(\frac{\vert x \vert}{t^{1/(2s)}}\right)
+   $$
+
+<p>For $n=1$, $s=1/2$, the complete computation of $K(\eta)$ yields:</p>
+$$
+   K(\eta) = \frac{1}{2\sqrt{\pi}} \eta^{-1/2} e^{-\eta^2/4}
+   $$
+
+<p>Moments analysis shows:</p>
+$$
+   \langle \vert x \vert^q \rangle_t = \int \vert x \vert^q u(x,t) \, dx \sim t^{q/(2s)}
+   $$
+
+<p>For $s > 1/2$, moments grow faster than classical diffusion ($s=1/2$), demonstrating super-diffusion behavior. This anomalous scaling reflects the nonlocal nature of the fractional Laplacian, where long-range interactions accelerate the spread of probability mass.</p>
+<h3>Example 5.5.6: Advanced Demonstration—Fractional Yamabe Problem</h3>
+<p><strong>Problem:</strong> Solve $(-\Delta)^s u = u^{\frac{n+2s}{n-2s}}$ on $S^n$.</p>
+<p><strong>Step-by-Step Solution:</strong></p>
+<ol>
+<li><strong>Stereographic Projection:</strong><br />
+   Map to $\mathbb{R}^n$:</li>
+</ol>
+$$
+   (-\Delta)^s u = \vert x \vert^{-2s} u^{\frac{n+2s}{n-2s}}
+   $$
+
+<p>Using the ansatz $u(x) = \vert x \vert^{-\frac{n-2s}{2}} v(\vert x \vert)$, the radial ODE is:</p>
+$$
+   v'' + \frac{n-1+2s}{r} v' + v^{\frac{n+2s}{n-2s}} = 0
+   $$
+
+<p>Applying the Emden-Fowler transformation $v(r) = r^{-\frac{n-2s}{2}} w(z)$ with $z = \log r$:</p>
+$$
+   w'' + \left(1 - \frac{n-2s}{2}\right) w' + w^{\frac{n+2s}{n-2s}} = 0
+   $$
+
+<p>The exact solution is:</p>
+$$
+   w(z) = \left[ \frac{\sqrt{n-2s}}{2} \text{sech}\left(\frac{\sqrt{n-2s}}{2} z\right) \right]^{\frac{n-2s}{2}}
+   $$
+
+<p>The global solution is:</p>
+$$
+   u(x) = c_n (1 + \vert x \vert^2)^{-s}
+   $$
+
+<p><strong>Connection to Chapter 6.7:</strong> This is a fully nonlinear fractional PDE solved via geometric methods.</p>
+<h3>Example 5.5.7: Canonical Computation—Explicit Extension</h3>
+<p><strong>Problem:</strong> Find the extension $v(x,y)$ for $u(x) = e^{-\vert x\vert^2}$ with $s=1/2$.</p>
+<p><strong>Solution:</strong></p>
+<p>The extension equation is $\nabla \cdot (y \nabla v) = 0$ in $\mathbb{R}^{n+1}_+$ with $v(x,0) = e^{-\vert x \vert^2}$. Using the ansatz $v(x,y) = e^{-(\vert x \vert^2 + y^2)}$ (for $s=1/4$), verification shows:</p>
+$$
+\nabla \cdot (y \nabla v) = y \Delta v + \nabla v \cdot \nabla y = y \Delta v + \partial_y v
+$$
+
+<p>With $\Delta v = -(n+1) v$ and $\partial_y v = -y v$:</p>
+$$
+y \Delta v + \partial_y v = -y(n+1)v - y v = -y(n+2)v \neq 0
+$$
+
+<p>The boundary operator is:</p>
+$$
+\lim_{y \to 0^+} y^{1-2s} \partial_y v = \lim_{y \to 0^+} y^{1/2} (-2y) e^{-(\vert x \vert^2 + y^2)} = -\sqrt{y} e^{-\vert x \vert^2} \to 0
+$$
+
+<h3>Example 5.5.8: Physical Application—Fractional Heat Equation</h3>
+<p><strong>Problem:</strong> Solve $\partial_t u + (-\Delta)^s u = 0$ via extension.</p>
+<p><strong>Solution:</strong></p>
+<p>The extension formulation is:</p>
+$$
+\partial_t v + \nabla \cdot (y^a \nabla v) = 0, \quad v(x,0,t) = u(x,t)
+$$
+
+<p>Using separation of variables $v(x,y,t) = T(t) Y(y) e^{-i\xi \cdot x}$, the spatial ODE is:</p>
+$$
+y^a (Y'' + \vert \xi \vert^2 Y) + a y^{a-1} Y' = 0
+$$
+
+<p>With the change of variables $y = \vert \xi \vert^{-2/(1-a)} w$:</p>
+$$
+(1-w^2) W'' - \frac{1+a}{1-a} w W' + \frac{2s}{1-a} W = 0
+$$
+
+<p>The hypergeometric solution is:</p>
+$$
+W(w) = {}_2F_1\left(s, 1-s; \frac{1}{2}; w^2\right)
+$$
+
+<p>Time evolution follows:</p>
+$$
+T(t) = e^{-\vert \xi \vert^{2s} t}
+$$
+
+<p>Boundary recovery yields:</p>
+$$
+(-\Delta)^s u = -c_s \lim_{y \to 0^+} y^a \partial_y v
+$$
+
+<h3>Example 5.5.9: Advanced Demonstration—Hardy-Littlewood-Sobolev Inequality</h3>
+<p><strong>Problem:</strong> Prove $\|(-\Delta)^{-s} f\|_{L^q} \leq C \|f\\vert_{L^p}$ for $\frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}$.</p>
+<p><strong>Solution:</strong></p>
+<p>The Riesz potential is $(-\Delta)^{-s} f = I_{2s} * f$ where $I_{2s}(x) = c \vert x \vert^{2s-n}$. Applying Young's inequality:</p>
+$$
+\| I_{2s} * f \|_q \leq \| I_{2s} \|_r \| f \|_p, \quad \frac{1}{p} + \frac{1}{r} = 1 + \frac{1}{q}
+$$
+
+<p>Since $I_{2s} \in L^r_{\text{weak}}$ with $\frac{1}{r} = 1 - \frac{2s}{n}$, verification shows:</p>
+$$
+\frac{1}{p} + 1 - \frac{2s}{n} = 1 + \frac{1}{q} \implies \frac{1}{p} + \frac{2s}{n} = 1 + \frac{1}{q}
+$$
+
+<p>The sharp constant via Gamma functions is:</p>
+$$
+C_{n,s} = \pi^{s} \frac{\Gamma\left(\frac{n}{2} - s\right)}{\Gamma(s) \Gamma\left(\frac{n}{2}\right)}
+$$
+
+<p>This connects to Sobolev embeddings (Chapter 2.2.3):</p>
+$$
+W^{s,p}(\mathbb{R}^n) \hookrightarrow L^{p^*}, \quad \frac{1}{p^*} = \frac{1}{p} - \frac{s}{n}
+$$
+
+<p>The extension proof via weighted spaces yields:</p>
+$$
+\| u \|_{L^q(\mathbb{R}^n)} \leq C \| \nabla v \|_{L^2(\mathbb{R}^{n+1}_+, y^a)} \leq C \| v(x,0) \|_{W^{s,2}}
+$$
+
+<h2>References</h2>
+<ul>
+<li>Brezis, H. (2011). <em>Functional Analysis, Sobolev Spaces and Partial Differential Equations</em>. Springer.</li>
+<li>Evans, L. C. (2010). <em>Partial Differential Equations</em>. American Mathematical Society.</li>
+<li>Stein, E. M., &amp; Shakarchi, R. (2003). <em>Fourier Analysis: An Introduction</em>. Princeton University Press.</li>
+</ul>
+<h2>Navigation</h2>
+<hr />
+<h2>Related Sections</h2>
+<ul>
+<li><a href="{{ '/diffequations/chapter-05/05-4-rough-paths/' \vert relative_url }}">Previous Section: 5.4 Rough Paths &amp; Controlled Rough Paths</a></li>
+<li><a href="{{ '/diffequations/chapter-05/05-6-spdes/' \vert relative_url }}">Next Section: 5.6 SPDEs &amp; Regularity Structures</a></li>
+<li><a href="{{ '/diffequations/chapter-05/' \vert relative_url }}">Chapter Index</a></li>
+<li><a href="{{ '/diffequations/' \vert relative_url }}">Full Table of Contents</a></li>
+</ul>
+  </article>
+</body>
+</html>
