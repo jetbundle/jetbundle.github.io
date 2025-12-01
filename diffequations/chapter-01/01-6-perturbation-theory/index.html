@@ -102,211 +102,36 @@ $$
 
 <p>showing slow amplitude decay due to damping and nonlinearity. This envelope equation captures modulation absent from naïve perturbation.</p>
 <p>Multiple scales reveal that the amplitude and phase evolve on a slow timescale, separate from the rapid oscillations. The solvability condition (removing resonant terms) produces evolution equations for these slow variables, capturing phenomena like amplitude decay and frequency modulation that single-scale perturbation cannot see.</p>
-<h2>Challenge Problems</h2>
-<p>The following problems synthesize concepts from regular perturbation, singular perturbations, Poincaré–Lindstedt method, and multiple scales.</p>
-<h3>Challenge 1: Secular Terms and Poincaré–Lindstedt</h3>
-<p>Consider the weakly nonlinear oscillator $y'' + y + \epsilon y^2 = 0$ with $y(0) = 1$, $y'(0) = 0$. Show that naïve perturbation produces secular terms, then use the Poincaré–Lindstedt method to remove them. Compute the frequency shift to $O(\epsilon^2)$ and explain why the quadratic nonlinearity creates different behavior than the cubic nonlinearity in the Duffing oscillator.</p>
-<p><em>(Hint: The quadratic term creates a non-zero average forcing that shifts the equilibrium position. Use $\tau = \omega t$ with $\omega = 1 + \epsilon \omega_1 + \epsilon^2 \omega_2 + \cdots$ and expand $y(\tau) = y_0(\tau) + \epsilon y_1(\tau) + \cdots$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
 
-Naïve perturbation with $y(t) = y_0(t) + \epsilon y_1(t) + \cdots$ gives:
-
-- $O(1)$: $y_0'' + y_0 = 0$ with $y_0(0) = 1$, $y_0'(0) = 0$, so $y_0(t) = \cos t$.
-- $O(\epsilon)$: $y_1'' + y_1 = -y_0^2 = -\cos^2 t = -\frac{1}{2}(1 + \cos 2t)$.
-
-The particular solution contains a constant term $-\frac{1}{2}$ (shifting the equilibrium) and a resonant term proportional to $t \sin t$ (secular growth).
-
-Using Poincaré–Lindstedt with $\tau = \omega t$, $\omega = 1 + \epsilon \omega_1 + \cdots$, we have:
-
-- $O(1)$: $y_0'' + y_0 = 0$, so $y_0(\tau) = \cos \tau$.
-- $O(\epsilon)$: $y_1'' + y_1 = -y_0^2 + 2\omega_1 y_0'' = -\frac{1}{2}(1 + \cos 2\tau) - 2\omega_1 \cos \tau$.
-
-To remove secular terms, we set the coefficient of $\cos \tau$ to zero: $-2\omega_1 = 0$, so $\omega_1 = 0$.
-
-Continuing to $O(\epsilon^2)$ reveals that $\omega_2 \neq 0$, so the frequency shift appears at second order. The quadratic nonlinearity creates a DC shift but no first-order frequency shift, unlike cubic nonlinearity which shifts frequency at first order. This asymmetry reflects a fundamental difference: quadratic nonlinearities shift equilibrium positions but don't affect frequency at first order, while the symmetry of cubic nonlinearities allows them to modify the frequency directly. Secular terms must be removed systematically at each order of the expansion, with the frequency correction chosen precisely to cancel resonant forcing terms. The order at which frequency shifts appear depends critically on the symmetry of the nonlinearity, revealing how the algebraic structure of the perturbation determines the nature of the response.
-
-</details>
-
-<h3>Challenge 2: Matched Asymptotic Expansions</h3>
-<p>Solve the singular perturbation problem $\epsilon y'' + (1 + x) y' + y = 0$ on $[0,1]$ with $y(0) = 0$ and $y(1) = 1$ using matched asymptotic expansions. Identify the boundary layer location, determine its thickness, construct both the outer and inner solutions, and match them to obtain a uniformly valid composite solution.</p>
-<p><em>(Hint: The reduced equation $(1+x)y' + y = 0$ loses one boundary condition. Determine which boundary cannot be satisfied by the outer solution, indicating where the boundary layer forms. Use a stretched coordinate to resolve the layer.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The outer solution solves $(1+x)y' + y = 0$, giving $y_0(x) = C/(1+x)$. Applying $y(1) = 1$ gives $C = 2$, so $y_0(x) = 2/(1+x)$. This satisfies the right boundary but gives $y_0(0) = 2 \neq 0$, so a boundary layer forms at $x = 0$.
-
-Using the stretched coordinate $\tau = x/\epsilon$, the inner equation becomes:
-
-$$
-Y'' + (1 + \epsilon \tau) Y' + \epsilon Y = 0.
-$$
-
-To leading order: $Y'' + Y' = 0$, with solution $Y(\tau) = A + B e^{-\tau}$. Applying $Y(0) = 0$ gives $A + B = 0$, so $Y(\tau) = A(1 - e^{-\tau})$.
-
-Matching: as $\tau \to \infty$, $Y(\tau) \to A$. As $x \to 0$, $y_0(x) \to 2$. Therefore $A = 2$, and the inner solution is $Y(\tau) = 2(1 - e^{-\tau})$.
-
-The composite solution is:
-
-$$
-y(x) = y_0(x) + Y(x/\epsilon) - (\text{matching limit}) = \frac{2}{1+x} + 2(1 - e^{-x/\epsilon}) - 2 = \frac{2}{1+x} - 2e^{-x/\epsilon}.
-$$
-
-This satisfies both boundary conditions and is uniformly valid. Boundary layers form precisely where the outer solution cannot satisfy boundary conditions: in this case, the reduced equation loses the boundary condition at $x=0$, forcing the solution to adjust rapidly in a thin region near that boundary. Matching connects the outer and inner solutions in their overlap region, where both expansions are valid and must agree. The composite solution is constructed by subtracting the common limit to avoid double-counting: the outer and inner solutions both approach the same value in the matching region, so we add them together and subtract this common value once to obtain a uniformly valid approximation that correctly represents the solution in both regions.
-
-</details>
-
-<h3>Challenge 3: Multiple Scales for Van der Pol Oscillator</h3>
-<p>Apply the method of multiple scales to the Van der Pol oscillator $y'' - \epsilon(1 - y^2) y' + y = 0$ with initial conditions $y(0) = 1$, $y'(0) = 0$. Derive the slow-time evolution equation for the amplitude and show that the system evolves to a limit cycle. Compute the limit cycle amplitude and compare with the exact value $A = 2$.</p>
-<p><em>(Hint: Use $t_0 = t$, $t_1 = \epsilon t$ and expand $y = Y_0(t_0, t_1) + \epsilon Y_1 + \cdots$. The solvability condition at $O(\epsilon)$ gives the amplitude equation. Look for fixed points where $A' = 0$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-Using multiple scales with $y(t) = Y_0(t_0, t_1) + \epsilon Y_1(t_0, t_1) + \cdots$ and $d/dt = \partial_{t_0} + \epsilon \partial_{t_1}$:
-
-- $O(1)$: $\partial_{t_0}^2 Y_0 + Y_0 = 0$, so $Y_0 = A(t_1) e^{i t_0} + \bar{A}(t_1) e^{-i t_0}$.
-- $O(\epsilon)$: $\partial_{t_0}^2 Y_1 + Y_1 = (1 - Y_0^2) \partial_{t_0} Y_0 - 2 \partial_{t_0} \partial_{t_1} Y_0$.
-
-Substituting $Y_0$ and removing secular terms (coefficients of $e^{\pm i t_0}$) gives:
-
-$$
-2 A'(t_1) = A(t_1) (1 - \vert A(t_1) \vert^2).
-$$
-
-Writing $A(t_1) = \frac{1}{2} a(t_1) e^{i \phi(t_1)}$, the amplitude equation is:
-
-$$
-a' = \frac{a}{2} (1 - \frac{a^2}{4}).
-$$
-
-Fixed points occur at $a = 0$ (unstable) and $a = 2$ (stable). The limit cycle amplitude is $A = 2$, matching the exact result. Multiple scales reveal the slow evolution of the amplitude envelope: while the system oscillates rapidly at frequency $\omega \approx 1$, the amplitude evolves on the slow timescale $\epsilon t$, gradually approaching its asymptotic value. Limit cycles correspond to stable fixed points of the amplitude equation, where the slow-time derivative vanishes and the system settles into periodic motion. The method captures the transition from initial conditions to the attractor, showing how the system evolves from an arbitrary starting point toward the limit cycle, with the amplitude equation describing this transient behavior that single-scale perturbation cannot capture.
-
-</details>
-
-<h3>Challenge 4: WKB as Singular Perturbation</h3>
-<p>Show that the WKB approximation for $\epsilon^2 y'' + Q(x) y = 0$ can be viewed as a singular perturbation problem. Identify the turning points (where $Q(x) = 0$) as locations where the perturbation becomes singular. Use matched asymptotic expansions near a turning point to recover the Airy function connection formulas.</p>
-<p><em>(Hint: Near a turning point $x_0$ where $Q(x_0) = 0$, expand $Q(x) \approx Q'(x_0)(x - x_0)$. Use the stretched coordinate $\xi = (x - x_0)/\epsilon^{2/3}$ to obtain the Airy equation. Match WKB solutions on both sides to the Airy solution.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The WKB ansatz $y = A(x) \exp(i S(x)/\epsilon)$ with $S' = \pm \sqrt{Q(x)}$ breaks down where $Q(x) = 0$ (turning points), making this a singular perturbation problem.
-
-Near a turning point at $x_0$ with $Q'(x_0) > 0$, expand $Q(x) \approx Q'(x_0)(x - x_0)$. Using the stretched coordinate $\xi = (x - x_0)/\epsilon^{2/3}$, the equation becomes:
-
-$$
-\frac{d^2 y}{d\xi^2} - Q'(x_0) \xi y = 0,
-$$
-
-which is the Airy equation (after rescaling).
-
-The Airy function $\operatorname{Ai}(\xi)$ has the asymptotics:
-- For $\xi \to +\infty$: $\operatorname{Ai}(\xi) \sim (2\sqrt{\pi} \xi^{1/4})^{-1} \exp(-2\xi^{3/2}/3)$ (exponentially decaying)
-- For $\xi \to -\infty$: $\operatorname{Ai}(\xi) \sim (\sqrt{\pi} \vert \xi \vert^{1/4})^{-1} \sin(2\vert \xi \vert^{3/2}/3 + \pi/4)$ (oscillatory)
-
-Matching these to the WKB solutions on either side provides the connection formulas, including the $\pi/4$ phase shift. Turning points are where the WKB approximation becomes singular: at these locations, $Q(x) = 0$ causes the phase integral $\int \sqrt{Q} \, dx$ to become undefined, breaking down the WKB ansatz. Local analysis near turning points reveals the global connection formulas: by solving the equation exactly in a small neighborhood and matching to WKB solutions on both sides, one obtains relations that connect solutions across the turning point, determining how oscillatory and exponential behaviors are linked. The method of matched asymptotic expansions unifies WKB and singular perturbation theory: both rely on constructing separate approximations in different regions and connecting them through matching, with the turning point serving as the boundary between regions where different asymptotic forms are valid.
-
-</details>
-
-<p>Perturbation theory extends the explicit arsenal by allowing systematic expansion around solvable limits. However, its limitations are profound: regular perturbation diverges due to secular terms or finite convergence radii, singular perturbations require sophisticated matching techniques that break down for complex geometries, and multiple scales methods become intractable for systems with many interacting timescales. These restrictions motivate the renormalization group methods, Borel summation, and non-perturbative techniques of the next section, which provide frameworks for resumming divergent series and capturing exponentially small effects invisible to power series.</p>
-<h2>References</h2>
-<ul>
-<li><strong>Bender, C. M., &amp; Orszag, S. A. (1978).</strong> <em>Advanced Mathematical Methods for Scientists and Engineers</em>. McGraw–Hill.</li>
-<li><strong>Coddington, E. A., &amp; Levinson, N. (1955).</strong> <em>Theory of Ordinary Differential Equations</em>. McGraw–Hill.</li>
-<li><strong>Kevorkian, J., &amp; Cole, J. D. (1981).</strong> <em>Perturbation Methods in Applied Mathematics</em>. Springer.</li>
-<li><strong>Nayfeh, A. H. (1973).</strong> <em>Perturbation Methods</em>. Wiley.</li>
-<li><strong>Van Dyke, M. (1964).</strong> <em>Perturbation Methods in Fluid Mechanics</em>. Academic Press.</li>
-</ul>
-<h2>Navigation</h2>
-<hr />
-<h2>Related Sections</h2>
-<ul>
-<li><a href="/diffequations/chapter-01/01-5-asymptotic-analysis/">Previous Section: 1.5 Asymptotic Analysis</a></li>
-<li><a href="/diffequations/chapter-01/01-7-renormalization/">Next Section: 1.7 Classical Renormalization &amp; Non-Perturbative Methods</a></li>
-<li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-<li><a href="/diffequations/">Full Table of Contents</a></li>
-</ul>
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-    <section class="challenges">
-      <h2>Mastery Challenges</h2>
-      <details>
-        <summary>Challenge 1 [★★☆] Apply the Method</summary>
-        <p>Apply the techniques from this section to solve a specific problem.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
-      <details>
-        <summary>Challenge 2 [★★★] Extend the Theory</summary>
-        <p>Extend the methods to a more general case.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
     </section>
-    
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-    <div class="cliffhanger final">
-      <p>
-        We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
-      </p>
-    </div>
     
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
-      <ul>
+<ul>
         <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
     
     <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
       <ul>
+        <li><a href="/diffequations/chapter-01/01-5-asymptotic-analysis/">Previous Section: 1.5 Asymptotic Analysis</a></li>
+        <li><a href="/diffequations/chapter-01/01-7-renormalization/">Next Section: 1.7 Classical Renormalization &amp; Non-Perturbative Methods</a></li>
+        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
         <li><a href="/diffequations/">Full Table of Contents</a></li>
       </ul>
     </nav>
   </article>
-</main>
-  <script src="/diffequations/navigation.js"></script>
+</main>  <script src="/diffequations/navigation.js"></script>
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>

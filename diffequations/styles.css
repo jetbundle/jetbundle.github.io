@@ -791,35 +791,42 @@ hr {
    Global Template Styles (Canonical Structure)
    ============================================ */
 
-/* Hook Section - Mandatory on every page */
+/* Hook Section - Mandatory on every page - Subtle and Transparent */
 .hook {
     text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #0d47a1, #42a5f5);
-    color: white;
+    padding: 2.5rem 1rem;
+    background: rgba(13, 71, 161, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(66, 165, 245, 0.2);
+    color: var(--text-primary);
     margin-bottom: 2rem;
     border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .hook h1 {
-    color: white;
+    color: var(--text-primary);
     margin: 0 0 1rem 0;
     font-size: 2rem;
+    font-weight: 600;
 }
 
 .hook-text {
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 500;
     margin: 1rem 0;
-    line-height: 1.4;
+    line-height: 1.5;
+    color: var(--text-primary);
+    opacity: 0.95;
 }
 
 .hook-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 400;
     font-style: italic;
-    opacity: 0.9;
-    margin-top: 0.5rem;
+    opacity: 0.85;
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
 }
 
 /* Description line - for SEO and navigation */

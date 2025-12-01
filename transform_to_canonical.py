@@ -32,7 +32,7 @@ def extract_h1_title(html: str) -> str:
     hook_match = re.search(r'<header[^>]*class="hook"[^>]*>.*?<h1>(.*?)</h1>', html, re.DOTALL)
     if hook_match:
         return hook_match.group(1).strip()
-    
+
     # Try regular header
     match = re.search(r'<h1>(.*?)</h1>', html)
     return match.group(1).strip() if match else extract_title(html)
@@ -50,72 +50,72 @@ def extract_article_content(html: str) -> str:
     article_match = re.search(r'<article>(.*?)</article>', html, re.DOTALL)
     if not article_match:
         return ""
-    
+
     content = article_match.group(1)
-    
+
     # Remove existing hook header if present
     content = re.sub(r'<header[^>]*class="hook"[^>]*>.*?</header>', '', content, flags=re.DOTALL)
-    
+
     # Remove description paragraph if at start
     content = re.sub(r'<p class="description">.*?</p>', '', content, count=1, flags=re.DOTALL)
-    
+
     # Remove existing navigation if present
     content = re.sub(r'<nav class="navigation">.*?</nav>', '', content, flags=re.DOTALL)
-    
+
     # Remove existing references if present
     content = re.sub(r'<section class="references">.*?</section>', '', content, flags=re.DOTALL)
-    
+
     # Remove existing challenges if present
     content = re.sub(r'<section class="challenges">.*?</section>', '', content, flags=re.DOTALL)
-    
+
     # Remove existing final cliffhanger if present
     content = re.sub(r'<div class="cliffhanger final">.*?</div>', '', content, flags=re.DOTALL)
-    
+
     # Clean up multiple blank lines
     content = re.sub(r'\n\s*\n\s*\n+', '\n\n', content)
-    
+
     return content.strip()
 
 def extract_scripts(html: str) -> list:
     """Extract all important scripts, avoiding duplicates and old KaTeX."""
     scripts = []
     seen = set()
-    
+
     # Split HTML to get body section only
     body_match = re.search(r'</main>(.*?)</body>', html, re.DOTALL)
     if not body_match:
         return scripts
-    
+
     body_html = body_match.group(1)
-    
+
     # Navigation script (only once, from body)
     nav_match = re.search(r'<script[^>]*src="[^"]*navigation\.js[^"]*"[^>]*></script>', body_html)
     if nav_match and 'navigation.js' not in seen:
         scripts.append(nav_match.group(0))
         seen.add('navigation.js')
-    
+
     # Widget engine scripts (from body, not head)
     for script_type in ['textbook-engine', 'widget-engine']:
         match = re.search(r'<script[^>]*src="[^"]*' + script_type + r'[^"]*"[^>]*></script>', body_html)
         if match and script_type not in seen:
             scripts.append(match.group(0))
             seen.add(script_type)
-    
+
     # Plotly loading script (inline, exclude KaTeX)
     plotly_match = re.search(r'<script>.*?plotly.*?</script>', body_html, re.DOTALL | re.IGNORECASE)
     if plotly_match and 'plotly' not in seen and 'katex' not in plotly_match.group(0).lower():
         scripts.append(plotly_match.group(0))
         seen.add('plotly')
-    
+
     return scripts
 
 def transform_html_file(html_path: Path) -> None:
     """Transform a single HTML file to canonical template."""
     print(f"Transforming: {html_path.name}")
-    
+
     with open(html_path, 'r', encoding='utf-8') as f:
         html = f.read()
-    
+
     # Extract components
     title = extract_title(html)
     h1_title = extract_h1_title(html)
@@ -123,7 +123,7 @@ def transform_html_file(html_path: Path) -> None:
     hook_text, hook_subtitle = generate_hook_text(title)
     article_content = extract_article_content(html)
     scripts = extract_scripts(html)
-    
+
     # Build new HTML
     new_html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -149,13 +149,13 @@ def transform_html_file(html_path: Path) -> None:
       {hook_subtitle}
     </p>
   </header>
-  
+
   <!-- 2. Description line (for navigation & SEO) -->
   <p class="description">{description}</p>
-  
+
   <article>
     {article_content}
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
     <section class="challenges">
       <h2>Mastery Challenges</h2>
@@ -170,14 +170,14 @@ def transform_html_file(html_path: Path) -> None:
         <details><summary>Solution</summary><p>Solution will be added.</p></details>
       </details>
     </section>
-    
+
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
     <div class="cliffhanger final">
       <p>
         We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
       </p>
     </div>
-    
+
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
@@ -186,7 +186,7 @@ def transform_html_file(html_path: Path) -> None:
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
-    
+
     <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
@@ -197,7 +197,7 @@ def transform_html_file(html_path: Path) -> None:
   </article>
 </main>
 """
-    
+
     # Add scripts (only navigation.js and widget engines, others are in head)
     # Exclude any old KaTeX scripts
     for script in scripts:
@@ -205,23 +205,23 @@ def transform_html_file(html_path: Path) -> None:
             continue  # Skip old inline KaTeX scripts
         if 'navigation.js' in script or 'textbook-engine' in script or 'widget-engine' in script or 'plotly' in script.lower():
             new_html += f"  {script}\n"
-    
+
     new_html += """</body>
 </html>"""
-    
+
     # Write back
     with open(html_path, 'w', encoding='utf-8') as f:
         f.write(new_html)
-    
+
     print(f"  ✓ Done")
 
 def main():
     """Transform all HTML files."""
     base_dir = Path('diffequations')
-    
+
     html_files = list(base_dir.rglob('index.html'))
     print(f"Found {len(html_files)} HTML files to transform\n")
-    
+
     for html_file in sorted(html_files):
         try:
             transform_html_file(html_file)
@@ -229,7 +229,7 @@ def main():
             print(f"  ✗ Error: {e}")
             import traceback
             traceback.print_exc()
-    
+
     print(f"\n✓ Transformation complete! {len(html_files)} files processed.")
 
 if __name__ == '__main__':

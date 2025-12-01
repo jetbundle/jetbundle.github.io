@@ -157,222 +157,36 @@ $$
 
 <p>illustrating how spherical harmonics encode boundary data.</p>
 <p>Spherical harmonics provide a complete basis for functions on the sphere, just as Fourier series do for functions on the circle. The addition theorem reveals the deep connection between spherical harmonics and Legendre polynomials, enabling efficient computation of rotationally symmetric potentials.</p>
-<h2>Challenge Problems</h2>
-<p>The following problems synthesize concepts from classification, separation of variables, characteristics, and special coordinate systems.</p>
-<h3>Challenge 1: Mixed-Type PDE and Transonic Flow</h3>
-<p>Consider the Tricomi equation $y u_{xx} + u_{yy} = 0$ on the domain $\Omega = \{(x,y) : y > 0\}$. Classify the equation and show that it is elliptic for $y > 0$ but becomes parabolic on the boundary $y = 0$. Construct a solution using separation of variables in the elliptic region and analyze the behavior as $y \to 0^+$.</p>
-<p><em>(Hint: Use the substitution $u(x,y) = X(x)Y(y)$ and consider power series solutions. The boundary $y=0$ is a characteristic line.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
 
-For $y > 0$, the discriminant is $\Delta = -4y < 0$, so the equation is elliptic. Separating variables with $u(x,y) = X(x)Y(y)$ gives
-
-$$
-y X'' Y + X Y'' = 0 \implies \frac{X''}{X} = -\frac{Y''}{y Y} = -\lambda.
-$$
-
-The $X$ equation $X'' + \lambda X = 0$ has solutions $X(x) = A \cos(\sqrt{\lambda} x) + B \sin(\sqrt{\lambda} x)$ for $\lambda > 0$.
-
-The $Y$ equation becomes $Y'' - \lambda y Y = 0$. Making the substitution $\eta = (4\lambda/9)^{1/3} y$, this becomes Airy's equation, with solutions $Y(y) = C \operatorname{Ai}(\eta) + D \operatorname{Bi}(\eta)$.
-
-As $y \to 0^+$, the elliptic character degenerates and the equation becomes parabolic. The solution develops singular behavior, reflecting the physical fact that transonic flows exhibit fundamentally different dynamics in subsonic (elliptic) and supersonic (hyperbolic) regions. Mixed-type equations model physical transitions between different regimes, where the governing PDE changes type depending on the local flow conditions. The classification changes continuously with the coefficients, creating regions of different character that require piecewise solution construction. Solutions must therefore be built separately in regions of constant type, with matching conditions at the boundaries where the type changes, revealing the intricate structure of mixed-type problems.
-
-</details>
-
-<h3>Challenge 2: Completeness of Eigenfunction Expansions</h3>
-<p>For the Sturm–Liouville problem $-u'' = \lambda u$ on $[0,\pi]$ with boundary conditions $u(0) = u'(\pi) = 0$, show that the eigenfunctions form a complete orthonormal basis for $L^2[0,\pi]$. Use this to expand the function $f(x) = x$ and analyze the convergence properties of the series. Compare the rate of convergence to that of the standard Fourier sine series.</p>
-<p><em>(Hint: Use the orthogonality relation and Parseval's identity. The eigenfunctions are $\phi_n(x) = \sin((2n-1)x/2)$ with eigenvalues $\lambda_n = ((2n-1)/2)^2$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The eigenfunctions are $\phi_n(x) = \sqrt{2/\pi} \sin((2n-1)x/2)$ with eigenvalues $\lambda_n = ((2n-1)/2)^2$ for $n = 1, 2, 3, \ldots$. Orthogonality follows from integration:
-
-$$
-\int_0^{\pi} \phi_m(x) \phi_n(x) \, dx = \delta_{mn}.
-$$
-
-Completeness in $L^2[0,\pi]$ follows from the general theory of Sturm–Liouville operators on compact intervals. For $f(x) = x$, the expansion coefficients are
-
-$$
-c_n = \int_0^{\pi} x \phi_n(x) \, dx = \sqrt{\frac{2}{\pi}} \int_0^{\pi} x \sin(\frac{(2n-1)x}{2}) \, dx = \sqrt{\frac{2}{\pi}} \frac{8(-1)^{n+1}}{(2n-1)^2}.
-$$
-
-The series converges pointwise to $f(x)$ on $(0,\pi)$ by Dirichlet's theorem, and uniformly on any compact subset. The rate of convergence is $O(n^{-2})$, slower than the $O(n^{-1})$ rate for the standard Fourier sine series because the boundary condition mismatch creates slower decay.
-
-Parseval's identity gives
-
-$$
-\int_0^{\pi} x^2 \, dx = \frac{\pi^3}{3} = \sum_{n=1}^{\infty} \frac{128}{\pi(2n-1)^4},
-$$
-
-which can be verified numerically.
-
-This analysis reveals that completeness is fundamentally an $L^2$ property rather than a pointwise convergence result: the series converges in the $L^2$ norm even when pointwise convergence fails. The boundary conditions significantly affect the rate of convergence: the mixed boundary condition $u'(\pi) = 0$ creates a mismatch that slows the decay of coefficients to $O(n^{-2})$ compared to the $O(n^{-1})$ rate for standard Fourier series. Parseval's identity provides a convergence test independent of pointwise behavior, allowing one to verify completeness and compute norms using only the spectral coefficients, demonstrating the power of Hilbert-space methods for understanding eigenfunction expansions.
-
-</details>
-
-<h3>Challenge 3: Riemann Problem for the Wave Equation</h3>
-<p>Solve the one-dimensional wave equation $u_{tt} - c^2 u_{xx} = 0$ on $\mathbb{R} \times (0,\infty)$ with initial data</p>
-$$
-u(x,0) = \begin{cases} 1 & \text{if } \vert x \vert < a, \\ 0 & \text{if } \vert x \vert > a, \end{cases} \qquad u_t(x,0) = 0.
-$$
-
-<p>Use d'Alembert's formula to construct the solution and identify the regions in the $(x,t)$ plane where the solution takes different forms. Analyze the behavior at the wave fronts $x \pm ct = \pm a$.</p>
-<p><em>(Hint: d'Alembert's formula is $u(x,t) = \frac{1}{2}[f(x+ct) + f(x-ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} g(s) \, ds$ for initial data $u(x,0) = f(x)$, $u_t(x,0) = g(x)$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-Using d'Alembert's formula with $f(x)$ as given and $g(x) = 0$:
-
-$$
-u(x,t) = \frac{1}{2}[f(x+ct) + f(x-ct)].
-$$
-
-The solution depends on which characteristics $x \pm ct = \pm a$ intersect the point $(x,t)$:
-
-- **Region I:** $x + ct < -a$ or $x - ct > a$: Both $f(x \pm ct) = 0$, so $u(x,t) = 0$ (undisturbed region).
-
-- **Region II:** $-a < x - ct < a$ and $x + ct > a$: Only $f(x-ct) = 1$, so $u(x,t) = 1/2$ (half-amplitude region).
-
-- **Region III:** $-a < x + ct < a$ and $x - ct < -a$: Only $f(x+ct) = 1$, so $u(x,t) = 1/2$.
-
-- **Region IV:** $-a < x - ct < a$ and $-a < x + ct < a$: Both $f(x \pm ct) = 1$, so $u(x,t) = 1$ (fully excited region).
-
-At the wave fronts $x \pm ct = \pm a$, the solution is discontinuous, reflecting the discontinuous initial data. The solution propagates along characteristics at speed $c$, with the disturbance spreading in both directions and creating distinct regions separated by the characteristic lines. This demonstrates a fundamental property of the wave equation: discontinuous initial data produce discontinuous solutions that travel along characteristics, in contrast to parabolic equations which smooth singularities. The wave equation preserves the structure of the initial data as it propagates, with each point of discontinuity traveling along its characteristic curves and maintaining its amplitude until it encounters boundaries or other waves.
-
-</details>
-
-<h3>Challenge 4: Heat Kernel and Regularization</h3>
-<p>Show that the heat kernel $G(x,t) = (4\pi t)^{-1/2} e^{-x^2/(4t)}$ for $t > 0$ (and $0$ for $t < 0$) provides a regularization of the Dirac delta: $\lim_{t \to 0^+} G(x,t) = \delta(x)$ in the sense of distributions. Use this to solve the heat equation $u_t = u_{xx}$ on $\mathbb{R} \times (0,\infty)$ with initial data $u(x,0) = \delta(x - x_0)$ and show that the solution is $u(x,t) = G(x - x_0, t)$.</p>
-<p><em>(Hint: Show that $\int_{-\infty}^{\infty} G(x,t) \, dx = 1$ for all $t > 0$, and that for any smooth test function $\phi$, $\lim_{t \to 0^+} \int G(x,t) \phi(x) \, dx = \phi(0)$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The heat kernel is $G(x,t) = (4\pi t)^{-1/2} e^{-x^2/(4t)}$ for $t > 0$. Direct integration shows
-
-$$
-\int_{-\infty}^{\infty} G(x,t) \, dx = \frac{1}{\sqrt{4\pi t}} \int_{-\infty}^{\infty} e^{-x^2/(4t)} \, dx = 1.
-$$
-
-For any smooth test function $\phi$ with compact support, making the substitution $y = x/\sqrt{4t}$:
-
-$$
-\int_{-\infty}^{\infty} G(x,t) \phi(x) \, dx = \frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-y^2} \phi(\sqrt{4t} y) \, dy.
-$$
-
-As $t \to 0^+$, $\phi(\sqrt{4t} y) \to \phi(0)$ uniformly on compact sets, so
-
-$$
-\lim_{t \to 0^+} \int_{-\infty}^{\infty} G(x,t) \phi(x) \, dx = \frac{\phi(0)}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-y^2} \, dy = \phi(0).
-$$
-
-This shows that $G(x,t) \to \delta(x)$ as $t \to 0^+$ in the sense of distributions.
-
-For initial data $u(x,0) = \delta(x - x_0)$, the solution is $u(x,t) = G(x - x_0, t)$ by translation invariance. This satisfies the heat equation (verified by direct differentiation) and approaches $\delta(x - x_0)$ as $t \to 0^+$. The heat kernel provides a smooth approximation to the delta function, with the width of the Gaussian growing as $\sqrt{t}$ and the amplitude decreasing to maintain unit mass. This smoothing property of the heat equation regularizes singular initial data: even when starting from a distribution like the delta function, the solution immediately becomes smooth for $t > 0$. This construction extends to arbitrary initial data via convolution, demonstrating that the heat kernel serves as the fundamental solution from which all solutions can be constructed, showcasing the regularization power of parabolic equations.
-
-</details>
-
-<p>Classical PDE methods expose the dependence of explicit solutions on domain geometry and spectral data. Their limitations—convergence failures, shocks, and irregular boundaries—motivate the functional analysis, distribution theory, and geometric frameworks introduced in Chapter 2 and beyond.</p>
-<p>However, these methods fail catastrophically when: (1) boundaries are irregular (no separation of variables), (2) coefficients are discontinuous (no smooth eigenfunctions), (3) initial data are singular (no pointwise convergence), and (4) nonlinearities create shocks (classical solutions break down). These fundamental limitations necessitate the weak solution framework, distribution theory, and functional-analytic machinery of subsequent chapters, which provide rigorous foundations for problems that classical methods cannot handle.</p>
-<h2>References</h2>
-<ul>
-<li><strong>Andrews, G. E., Askey, R., &amp; Roy, R. (1999).</strong> <em>Special Functions</em>. Cambridge University Press.</li>
-<li><strong>Evans, L. C. (2010).</strong> <em>Partial Differential Equations</em>. American Mathematical Society.</li>
-<li><strong>Gilbarg, D., &amp; Trudinger, N. S. (2001).</strong> <em>Elliptic Partial Differential Equations of Second Order</em>. Springer.</li>
-<li><strong>John, F. (1982).</strong> <em>Partial Differential Equations</em>. Springer-Verlag.</li>
-<li><strong>Stein, E. M., &amp; Shakarchi, R. (2003).</strong> <em>Fourier Analysis: An Introduction</em>. Princeton University Press.</li>
-</ul>
-<h2>Navigation</h2>
-<hr />
-<h2>Related Sections</h2>
-<ul>
-<li><a href="/diffequations/chapter-01/01-3-integral-transforms/">Previous Section: 1.3 Integral Transforms</a></li>
-<li><a href="/diffequations/chapter-01/01-5-asymptotic-analysis/">Next Section: 1.5 Asymptotic Analysis</a></li>
-<li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-<li><a href="/diffequations/">Full Table of Contents</a></li>
-</ul>
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-    <section class="challenges">
-      <h2>Mastery Challenges</h2>
-      <details>
-        <summary>Challenge 1 [★★☆] Apply the Method</summary>
-        <p>Apply the techniques from this section to solve a specific problem.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
-      <details>
-        <summary>Challenge 2 [★★★] Extend the Theory</summary>
-        <p>Extend the methods to a more general case.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
     </section>
-    
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-    <div class="cliffhanger final">
-      <p>
-        We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
-      </p>
-    </div>
     
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
-      <ul>
+<ul>
         <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
     
     <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
       <ul>
+        <li><a href="/diffequations/chapter-01/01-3-integral-transforms/">Previous Section: 1.3 Integral Transforms</a></li>
+        <li><a href="/diffequations/chapter-01/01-5-asymptotic-analysis/">Next Section: 1.5 Asymptotic Analysis</a></li>
+        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
         <li><a href="/diffequations/">Full Table of Contents</a></li>
       </ul>
     </nav>
   </article>
-</main>
-  <script src="/diffequations/navigation.js"></script>
+</main>  <script src="/diffequations/navigation.js"></script>
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>

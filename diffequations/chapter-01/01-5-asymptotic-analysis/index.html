@@ -155,210 +155,36 @@ $$
 <p>In alpha decay, analytic continuation around a turning point causes the transmission coefficient to jump discretely.</p>
 <p>WKB solutions in the complex $r$-plane pick up Stokes multipliers when circling the barrier, quantizing decay rates and connecting asymptotic analysis to observable half-lives.</p>
 <p>The Stokes phenomenon is not merely a mathematical curiosity—it has physical consequences. Quantum tunneling rates depend on these discontinuous jumps, connecting the abstract geometry of asymptotic analysis to measurable decay processes.</p>
-<h2>Challenge Problems</h2>
-<p>The following problems synthesize concepts from Laplace's method, stationary phase, WKB approximation, and the Stokes phenomenon.</p>
-<h3>Challenge 1: Steepest Descent Method</h3>
-<p>For the integral $I(\lambda) = \int_{-\infty}^{\infty} e^{-\lambda(x^4 - x^2)} \, dx$ with $\lambda \to \infty$, use the method of steepest descent to find the asymptotic expansion. Identify the critical points, determine the steepest descent paths through each, and compute the leading-order contributions. Compare with Laplace's method.</p>
-<p><em>(Hint: The critical points are at $x = 0, \pm 1/\sqrt{2}$. Deform the contour to pass through these points along paths of steepest descent where $\Im(h(z))$ is constant.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
 
-The phase function is $h(x) = -(x^4 - x^2)$. Critical points occur where $h'(x) = -4x^3 + 2x = 0$, giving $x = 0$ and $x = \pm 1/\sqrt{2}$.
-
-At $x = 0$: $h''(0) = 2 > 0$, so this is a minimum of $-h(x)$, meaning a maximum of $h(x)$ for the integrand. The steepest descent path through the origin is along the real axis.
-
-At $x = \pm 1/\sqrt{2}$: $h''(\pm 1/\sqrt{2}) = -4 < 0$, so these are maxima of $-h(x)$, meaning minima of $h(x)$ for the integrand. The steepest descent paths are at angles of $\pm \pi/4$ from the real axis.
-
-The dominant contribution comes from the saddle points at $x = \pm 1/\sqrt{2}$. Each contributes
-
-$$
-I(\lambda) \sim 2 \cdot e^{\lambda/4} \sqrt{\frac{2\pi}{\lambda \cdot 4}} = e^{\lambda/4} \sqrt{\frac{\pi}{\lambda}}.
-$$
-
-The contribution from $x = 0$ is subdominant by a factor of $e^{-\lambda/4}$.
-
-The method of steepest descent generalizes Laplace's method to complex integrals, allowing one to handle oscillatory integrands by deforming the integration contour through saddle points. Contour deformation is essential for capturing all relevant contributions: by choosing paths along which the phase varies slowly (steepest descent paths), one can extract the dominant asymptotic behavior while suppressing oscillatory contributions. The leading contribution comes from the global minima of the phase function, with each such minimum producing its own asymptotic contribution, and subdominant contributions being exponentially suppressed relative to the dominant ones.
-
-</details>
-
-<h3>Challenge 2: WKB Connection Formulas</h3>
-<p>For the equation $\epsilon^2 y'' + (x - 1)^2 y = 0$ with a turning point at $x = 1$, construct the WKB solutions on both sides of the turning point and use Airy function matching to derive the connection formulas. Show that the phase shift of $\pi/4$ appears in the connection between the exponential and oscillatory regions.</p>
-<p><em>(Hint: Near $x = 1$, expand $Q(x) = (x-1)^2$ to linear order and match to the Airy equation. The connection formulas link the exponentially decaying solution for $x > 1$ to the oscillatory solution for $x < 1$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-For $x < 1$, we have $Q(x) > 0$, so the WKB solution is oscillatory:
-
-$$
-y(x) \sim \frac{A}{(1-x)^{1/2}} \cos(\frac{1}{\epsilon} \int_x^1 (1-t) \, dt - \frac{\pi}{4}) = \frac{A}{(1-x)^{1/2}} \cos(\frac{(1-x)^2}{2\epsilon} - \frac{\pi}{4}).
-$$
-
-For $x > 1$, we have $Q(x) > 0$ as well, but we need to match through the turning point. Near $x = 1$, we linearize: $Q(x) \approx (x-1)^2$. Setting $z = (x-1)/\epsilon^{2/3}$, the equation becomes approximately $d^2y/dz^2 - z^2 y = 0$, which matches the Airy equation after appropriate scaling.
-
-Using the Airy function asymptotics:
-
-- For $z \to +\infty$: $\operatorname{Ai}(z) \sim (2\sqrt{\pi} z^{1/4})^{-1} e^{-2z^{3/2}/3}$
-- For $z \to -\infty$: $\operatorname{Ai}(z) \sim (\sqrt{\pi} \vert z \vert^{1/4})^{-1} \sin(2\vert z \vert^{3/2}/3 + \pi/4)$
-
-Matching through the turning point introduces the $\pi/4$ phase shift, connecting the oscillatory solution on one side to the appropriate linear combination on the other. Turning points require local analysis beyond WKB because the WKB ansatz breaks down where $Q(x) = 0$, necessitating a separate treatment of the transition region. Airy functions provide the universal transition functions near simple turning points: when $Q(x)$ has a simple zero, the local behavior is always described by Airy's equation after appropriate scaling. The $\pi/4$ phase shift is a topological invariant of the turning point structure, appearing universally whenever one connects oscillatory and exponential regions through a simple turning point, reflecting the geometric structure of the solution space near these critical points.
-
-</details>
-
-<h3>Challenge 3: Stationary Phase with Degenerate Points</h3>
-<p>Consider the integral $I(\lambda) = \int_0^{2\pi} e^{i\lambda \cos^3 \theta} \, d\theta$. Identify all stationary points and classify their degeneracy. Show that degenerate stationary points (where $h''(\theta_0) = 0$) produce different asymptotic scaling than non-degenerate ones. Compute the leading-order asymptotic for each type.</p>
-<p><em>(Hint: Stationary points satisfy $\sin \theta \cos^2 \theta = 0$. Degenerate points occur where $h''(\theta_0) = 0$, requiring examination of higher derivatives.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-Stationary points satisfy $h'(\theta) = -3\sin \theta \cos^2 \theta = 0$, giving:
-- $\theta = 0, \pi$ (non-degenerate): $h''(0) = -3$, $h''(\pi) = 3$
-- $\theta = \pi/2, 3\pi/2$ (degenerate): $h''(\pi/2) = 0$
-
-At non-degenerate points, we get the standard stationary phase result:
-
-$$
-I(\lambda) \sim \sqrt{\frac{2\pi}{\lambda \vert h''(\theta_0) \vert}} e^{i\lambda h(\theta_0) \pm i\pi/4}.
-$$
-
-At degenerate points, we must examine higher derivatives. At $\theta = \pi/2$, we have $h'''(\pi/2) = 0$ but $h^{(4)}(\pi/2) \neq 0$. Expanding to quartic order:
-
-$$
-h(\pi/2 + \delta) \approx h(\pi/2) + \frac{1}{24} h^{(4)}(\pi/2) \delta^4.
-$$
-
-This gives scaling $I(\lambda) \sim \lambda^{-1/4}$ instead of $\lambda^{-1/2}$, with the constant determined by the quartic coefficient. Degenerate stationary points produce different power-law scalings because the quadratic approximation fails, requiring expansion to higher order. The asymptotic order depends on the first non-vanishing derivative: if $h''(\theta_0) = 0$ but $h^{(k)}(\theta_0) \neq 0$ for some $k > 2$, the scaling becomes $\lambda^{-1/k}$ rather than $\lambda^{-1/2}$. Multiple degenerate points may contribute at the same order, requiring careful analysis to combine their contributions correctly, as the relative phases determine whether they interfere constructively or destructively.
-
-</details>
-
-<h3>Challenge 4: Borel Summation and Stokes Jumps</h3>
-<p>For the divergent series $y(z) \sim e^z \sum_{n=0}^{\infty} \frac{(-1)^n n!}{z^{n+1}}$ as $z \to \infty$ in $\arg z = 0$, construct the Borel transform and show that it has a singularity on the positive real axis. Demonstrate that the lateral Borel sums $\mathcal{S}^{\pm}$ differ by an exponentially small amount that matches the Stokes jump. Calculate the Stokes multiplier explicitly.</p>
-<p><em>(Hint: The Borel transform is $\mathcal{B}(t) = \sum_{n=0}^{\infty} \frac{(-1)^n t^n}{n!} = e^{-t}$. The singularity at $t = 1$ corresponds to the integration path obstruction. Lateral sums differ by the residue contribution.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The Borel transform is:
-
-$$
-\mathcal{B}(t) = \sum_{n=0}^{\infty} \frac{(-1)^n t^n}{n!} = e^{-t}.
-$$
-
-The Borel sum is:
-
-$$
-\mathcal{S}(z) = \frac{1}{z} \int_0^{\infty} e^{-t} e^{-t/z} \, dt = \frac{1}{z} \int_0^{\infty} e^{-t(1 + 1/z)} \, dt = \frac{1}{z + 1}.
-$$
-
-However, this is only valid for $\Re(z) > 0$. For $\arg z = 0^+$ and $\arg z = 0^-$, we must choose integration contours above or below any singularities.
-
-The difference between lateral sums is:
-
-$$
-\mathcal{S}^+(z) - \mathcal{S}^-(z) = \frac{2\pi i}{z} \operatorname{Res}_{t=1}( \mathcal{B}(t) e^{-t/z} ) = \frac{2\pi i e^{-1}}{z} e^{-1/z}.
-$$
-
-This exponentially small difference is the Stokes jump. The Stokes multiplier is $2\pi i e^{-1}$, encoding how the subdominant exponential is activated when crossing the Stokes line. Borel summation provides a rigorous interpretation of divergent series by transforming factorial divergence into a convergent integral representation, making sense of series that fail to converge in the traditional sense. Stokes jumps are encoded in the analytic continuation of the Borel transform: when the integration contour must pass above or below a singularity, the two choices produce different results that differ by exponentially small amounts. The multiplier is determined by the singularity structure in the Borel plane, with each singularity corresponding to a non-perturbative effect and its position determining the magnitude of the associated Stokes jump.
-
-</details>
-
-<p>Asymptotics converts intractable integrals and differential equations into local expansions controlled by critical points and turning points. The resulting sectorial truths and Stokes jumps expose the topological constraints governing analytic continuation, anticipating the microlocal and resurgent frameworks of later chapters.</p>
-<p>However, these methods have fundamental limitations: they provide only local information (valid in sectors, not globally), they fail at degenerate critical points (requiring more sophisticated techniques), and the Stokes phenomenon reveals that asymptotic expansions cannot be globally valid. These restrictions motivate the resurgent analysis, microlocal analysis, and topological methods of later chapters, which provide frameworks for understanding the global structure of asymptotic solutions.</p>
-<h2>References</h2>
-<ul>
-<li><strong>Olver, F. W. J., Lozier, D. W., Boisvert, R. F., &amp; Clark, C. W. (2010).</strong> <em>NIST Handbook of Mathematical Functions</em>. Cambridge University Press.</li>
-<li><strong>Stein, E. M., &amp; Shakarchi, R. (2003).</strong> <em>Fourier Analysis: An Introduction</em>. Princeton University Press.</li>
-<li><strong>Whittaker, E. T., &amp; Watson, G. N. (1927).</strong> <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
-</ul>
-<h2>Navigation</h2>
-<hr />
-<h2>Related Sections</h2>
-<ul>
-<li><a href="/diffequations/chapter-01/01-4-linear-pde/">Previous Section: 1.4 Classical Linear Partial Differential Equations</a></li>
-<li><a href="/diffequations/chapter-01/01-6-perturbation-theory/">Next Section: 1.6 Classical Perturbation Theory</a></li>
-<li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-<li><a href="/diffequations/">Full Table of Contents</a></li>
-</ul>
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-    <section class="challenges">
-      <h2>Mastery Challenges</h2>
-      <details>
-        <summary>Challenge 1 [★★☆] Apply the Method</summary>
-        <p>Apply the techniques from this section to solve a specific problem.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
-      <details>
-        <summary>Challenge 2 [★★★] Extend the Theory</summary>
-        <p>Extend the methods to a more general case.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
     </section>
-    
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-    <div class="cliffhanger final">
-      <p>
-        We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
-      </p>
-    </div>
     
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
-      <ul>
+<ul>
         <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
     
     <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
       <ul>
+        <li><a href="/diffequations/chapter-01/01-4-linear-pde/">Previous Section: 1.4 Classical Linear Partial Differential Equations</a></li>
+        <li><a href="/diffequations/chapter-01/01-6-perturbation-theory/">Next Section: 1.6 Classical Perturbation Theory</a></li>
+        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
         <li><a href="/diffequations/">Full Table of Contents</a></li>
       </ul>
     </nav>
   </article>
-</main>
-  <script src="/diffequations/navigation.js"></script>
+</main>  <script src="/diffequations/navigation.js"></script>
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>

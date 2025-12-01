@@ -184,253 +184,36 @@ $$
 
 <p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.</p>
 <p>Orthogonality and completeness transform special functions from isolated solutions into complete bases. However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the functional-analytic framework of Chapter 2.</p>
-<h2>Challenge Problems</h2>
-<p>The following problems synthesize the concepts of hypergeometric functions, confluence, Frobenius analysis, and orthogonality.</p>
-<h3>Challenge 1: Hypergeometric to Bessel Connection</h3>
-<p>Starting from the hypergeometric function</p>
-$${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z),$$
 
-<p>show that in the limit as the third parameter approaches infinity with appropriate scaling, one recovers the Bessel function $J_{\nu}(z)$. Explicitly derive the normalization constant that ensures $J_{\nu}(0) = \delta_{\nu 0}$.</p>
-<p><em>(Hint: Use the limit representation of the Pochhammer symbol and Stirling's approximation for the Gamma function. Consider the scaling $z = -x^2/c$ as $c \to \infty$.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-Starting with
-
-$${}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z),$$
-
-we have
-
-$$
-{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;z) = \sum_{n=0}^{\infty} \frac{(\nu/2)_n(-\nu/2)_n}{(\nu+1)_n} \frac{z^n}{n!}.
-$$
-
-Substitute $z = -x^2/c$ and take $c \to \infty$. Using $\lim_{c \to \infty} (\nu+1)_n / c^n = 1$ and the identity $(\nu/2)_n(-\nu/2)_n = (-1)^n (\nu/2)_n^2$, we obtain
-
-$$
-\lim_{c \to \infty} {}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{x^2}{c}) = \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} (\frac{x}{2})^{2n+\nu}.
-$$
-
-Multiplying by the normalization factor $(x/2)^\nu / \Gamma(\nu+1)$ yields
-
-$$
-J_\nu(x) = (\frac{x}{2})^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} (\frac{x}{2})^{2n}.
-$$
-
-This derivation reveals how confluence transforms the hypergeometric equation: the process of merging singular points reduces the number of regular singular points from three to one, creating Bessel's equation in the limit. The normalization factor ensures that $J_0(0) = 1$ while other orders vanish at the origin, establishing the correct boundary behavior. This demonstrates that Bessel functions are not isolated special functions but rather limits of a unified hypergeometric family, with their properties emerging naturally from the confluent limit process.
-
-</details>
-
-<h3>Challenge 2: Frobenius Method with Logarithmic Branch</h3>
-<p>For the equation $x^2 y'' + x y' + (x^2 - \nu^2) y = 0$ (Bessel's equation), when $\nu$ is a non-negative integer, show that the Frobenius method produces a logarithmic solution for the second linearly independent function. Derive the explicit form of this logarithmic solution.</p>
-<p><em>(Hint: When the indicial roots differ by an integer, the second solution involves a logarithmic term. Use reduction of order or the Wronskian method to construct it.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-For Bessel's equation with $\nu = m$ a non-negative integer, the indicial equation gives roots $r = \pm m$. When $m = 0$, both roots coincide; when $m > 0$, they differ by $2m$, an integer.
-
-For the case $m = 0$, the first solution is $J_0(x)$. The second solution $Y_0(x)$ (the Bessel function of the second kind) takes the form
-
-$$
-Y_0(x) = \frac{2}{\pi} [\ln(\frac{x}{2}) + \gamma] J_0(x) + \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^n}{n^2} (\frac{x}{2})^{2n},
-$$
-
-where $\gamma$ is Euler's constant.
-
-For $m > 0$, the second solution is
-
-$$
-Y_m(x) = \frac{2}{\pi} [\ln(\frac{x}{2}) + \gamma] J_m(x) - \frac{1}{\pi} \sum_{k=0}^{m-1} \frac{(m-k-1)!}{k!} (\frac{x}{2})^{2k-m} - \frac{1}{\pi} \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(n+m)!} [\psi(n+1) + \psi(n+m+1)] (\frac{x}{2})^{2n+m},
-$$
-
-where $\psi$ is the digamma function.
-
-The appearance of logarithmic terms in these solutions stems from the failure of the Frobenius ansatz when the indicial roots differ by an integer. These logarithmic solutions are essential for constructing complete bases in boundary-value problems, as they provide the second linearly independent solution that the standard power series method cannot produce. The logarithmic behavior near the origin reflects the irregular nature of the second solution's branch structure, revealing that while the first solution $J_m(x)$ is entire, the second solution $Y_m(x)$ possesses a branch point at the origin that cannot be captured by ordinary power series methods.
-
-</details>
-
-<h3>Challenge 3: Completeness of Spherical Harmonics</h3>
-<p>Show that the spherical harmonics $Y_\ell^m(\theta, \phi)$ form a complete orthonormal basis for $L^2(S^2)$, where $S^2$ is the unit sphere. Use this to prove that any square-integrable function on the sphere can be expanded as</p>
-$$
-f(\theta, \phi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} c_{\ell m} Y_\ell^m(\theta, \phi),
-$$
-
-<p>with coefficients $c_{\ell m} = \int_{S^2} f(\theta, \phi) \overline{Y_\ell^m(\theta, \phi)} \, d\Omega$.</p>
-<p><em>(Hint: Use the fact that spherical harmonics are eigenfunctions of the angular part of the Laplacian on $S^2$. Apply the Sturm–Liouville completeness theorem for compact manifolds.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the angular Laplacian on the unit sphere:
-
-$$
--\Delta_{S^2} Y_\ell^m = \ell(\ell+1) Y_\ell^m,
-$$
-
-subject to the orthonormality condition
-
-$$
-\int_{S^2} Y_\ell^m(\theta, \phi) \overline{Y_{\ell'}^{m'}(\theta, \phi)} \, d\Omega = \delta_{\ell \ell'} \delta_{mm'},
-$$
-
-where $d\Omega = \sin\theta \, d\theta \, d\phi$ is the surface measure.
-
-The completeness follows from the general theory of Sturm–Liouville operators on compact manifolds. The angular Laplacian $-\Delta_{S^2}$ is self-adjoint with respect to the $L^2(S^2)$ inner product, has a discrete spectrum $\{\ell(\ell+1) : \ell = 0, 1, 2, \ldots\}$, and each eigenspace has dimension $2\ell+1$.
-
-For any $f \in L^2(S^2)$, the expansion
-
-$$
-f(\theta, \phi) = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} c_{\ell m} Y_\ell^m(\theta, \phi)
-$$
-
-converges in $L^2$, with coefficients given by the orthogonal projection:
-
-$$
-c_{\ell m} = \int_{S^2} f(\theta, \phi) \overline{Y_\ell^m(\theta, \phi)} \, d\Omega.
-$$
-
-Parseval's identity holds:
-
-$$
-\int_{S^2} \vert f(\theta, \phi) \vert^2 \, d\Omega = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} \vert c_{\ell m} \vert^2.
-$$
-
-This completeness result is fundamentally a Hilbert-space property, meaning convergence occurs in the $L^2$ norm rather than pointwise. This expansion is central to solving Laplace's equation in spherical domains, where the angular dependence must be decomposed into spherical harmonics. The structure reflects the rotational symmetry of the sphere: each $\ell$ corresponds to an irreducible representation of $SO(3)$, the rotation group in three dimensions, and the $2\ell+1$ functions $Y_\ell^m$ for fixed $\ell$ span the representation space of dimension $2\ell+1$.
-
-</details>
-
-<h3>Challenge 4: Stokes Phenomenon for the Airy Function</h3>
-<p>For the Airy function $\operatorname{Ai}(z)$ defined as a solution to $y'' - z y = 0$, trace the asymptotic behavior as $z \to \infty$ along different rays in the complex plane. Show explicitly how the Stokes phenomenon manifests: identify the Stokes lines and compute the jump in the asymptotic expansion coefficient when crossing them.</p>
-<p><em>(Hint: Use the WKB method to construct asymptotic solutions. The Stokes lines are where the two exponential terms have equal real parts. The jump occurs because the "small" exponential becomes comparable in certain sectors.)</em></p>
-<details>
-<summary><strong>Expand Solution</strong></summary>
-
-The Airy equation $y'' - z y = 0$ has asymptotic solutions of the form
-
-$$
-y(z) \sim z^{-1/4} \exp(\pm \frac{2}{3} z^{3/2}) \sum_{n=0}^{\infty} a_n z^{-3n/2},
-$$
-
-where $z^{3/2}$ is defined with a branch cut along the negative real axis.
-
-For $\operatorname{Ai}(z)$, the dominant asymptotic in the sector $\vert \arg z \vert < \pi/3$ is
-
-$$
-\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} \exp(-\frac{2}{3} z^{3/2}), \quad z \to \infty, \quad \vert \arg z \vert < \pi/3.
-$$
-
-The Stokes lines occur where $\Re(z^{3/2}) = 0$, which gives $\arg z = \pm \pi/3, \pm \pi$.
-
-Crossing the Stokes line at $\arg z = 2\pi/3$, the subdominant exponential $\exp(+\frac{2}{3} z^{3/2})$ is "turned on" with a multiplier. The asymptotic expansion jumps to include both terms:
-
-$$
-\operatorname{Ai}(z) \sim \frac{1}{2\sqrt{\pi} z^{1/4}} [ \exp(-\frac{2}{3} z^{3/2}) + i \exp(+\frac{2}{3} z^{3/2}) ], \quad \frac{2\pi}{3} < \arg z < \frac{4\pi}{3}.
-$$
-
-The multiplier $i$ encodes the Stokes constant, which cannot be determined from local analysis alone but reflects global monodromy data. The Stokes phenomenon reveals that asymptotic expansions are sectorial rather than global: the form of the expansion changes discontinuously as one crosses Stokes lines in the complex plane. This discontinuity encodes topological information about the Riemann surface structure of the solution, revealing connections between different sheets that cannot be detected through local power series methods. This phenomenon is generic for solutions of differential equations with irregular singular points, where the analytic continuation of solutions involves intricate monodromy behavior that manifests as Stokes jumps in asymptotic representations.
-
-</details>
-
-<p>Special functions extend the explicit arsenal by defining solutions as canonical responses to singular geometries. Hypergeometric unification and Sturm–Liouville completeness reveal that structure arises from singular-point placement. Their asymptotics and Stokes data lead directly to the analytic continuation, spectral theory, and microlocal analysis developed in later chapters.</p>
-<p>However, the limitations are profound: convergence is typically in $L^2$ rather than pointwise, Stokes phenomena prevent global asymptotic representations, and the completeness theorems require compact domains with smooth coefficients. These restrictions motivate the distributional framework, Sobolev spaces, and functional-analytic machinery of Chapter 2, which provides a rigorous foundation for the formal manipulations encountered here.</p>
-<h2>References</h2>
-<ul>
-<li><strong>Andrews, G. E., Askey, R., &amp; Roy, R. (1999).</strong> <em>Special Functions</em>. Cambridge University Press.</li>
-<li><strong>Coddington, E. A., &amp; Levinson, N. (1955).</strong> <em>Theory of Ordinary Differential Equations</em>. McGraw–Hill.</li>
-<li><strong>Olver, F. W. J. (1997).</strong> <em>Asymptotics and Special Functions</em>. AK Peters.</li>
-<li><strong>Titchmarsh, E. C. (1946).</strong> <em>Eigenfunction Expansions Associated with Second-Order Differential Equations</em>. Clarendon Press.</li>
-<li><strong>Whittaker, E. T., &amp; Watson, G. N. (1927).</strong> <em>A Course of Modern Analysis</em>. Cambridge University Press.</li>
-</ul>
-<h2>Navigation</h2>
-<hr />
-<h2>Related Sections</h2>
-<ul>
-<li><a href="/diffequations/chapter-01/01-1-exact-methods/">Previous Section: 1.1 Exact Methods for Ordinary Differential Equations</a></li>
-<li><a href="/diffequations/chapter-01/01-3-integral-transforms/">Next Section: 1.3 Integral Transforms</a></li>
-<li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-<li><a href="/diffequations/">Full Table of Contents</a></li>
-</ul>
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-
-    <!-- 8. Navigation -->
-    
-    <!-- 5. Mastery Challenges (always present, accordion) -->
-    <section class="challenges">
-      <h2>Mastery Challenges</h2>
-      <details>
-        <summary>Challenge 1 [★★☆] Apply the Method</summary>
-        <p>Apply the techniques from this section to solve a specific problem.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
-      <details>
-        <summary>Challenge 2 [★★★] Extend the Theory</summary>
-        <p>Extend the methods to a more general case.</p>
-        <details><summary>Solution</summary><p>Solution will be added.</p></details>
-      </details>
     </section>
-    
-    <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
-    <div class="cliffhanger final">
-      <p>
-        We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
-      </p>
-    </div>
     
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
-      <ul>
+<ul>
         <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
     
     <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
+    </section>
+    
+    <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
       <ul>
+        <li><a href="/diffequations/chapter-01/01-1-exact-methods/">Previous Section: 1.1 Exact Methods for Ordinary Differential Equations</a></li>
+        <li><a href="/diffequations/chapter-01/01-3-integral-transforms/">Next Section: 1.3 Integral Transforms</a></li>
+        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
         <li><a href="/diffequations/">Full Table of Contents</a></li>
       </ul>
     </nav>
   </article>
-</main>
-  <script src="/diffequations/navigation.js"></script>
+</main>  <script src="/diffequations/navigation.js"></script>
   <script defer src="/diffequations/js/textbook-engine.js"></script>
   <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
