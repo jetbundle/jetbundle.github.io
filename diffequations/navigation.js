@@ -41,7 +41,7 @@
     // Add click handlers for dropdown
     const dropdownBtn = nav.querySelector('.nav-dropdown-btn');
     const dropdownContent = nav.querySelector('.nav-dropdown-content');
-    
+
     dropdownBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       const isExpanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
@@ -103,4 +103,3 @@
     document.body.insertBefore(nav, document.body.firstChild);
   }
 })();
-

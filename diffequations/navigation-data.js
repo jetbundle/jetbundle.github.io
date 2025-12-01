@@ -115,4 +115,3 @@ const DIFFEQUATIONS_NAV = {
     path: "/diffequations/epilogue/"
   }
 };
-
