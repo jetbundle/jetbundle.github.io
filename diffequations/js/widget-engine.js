@@ -341,27 +341,32 @@ class WidgetEngine {
         code = '# Parameters from widgets\n' + paramLines + '\n\n' + code;
       }
 
-      // Ensure Plotly.js is loaded
+      // Ensure Plotly.js is loaded before execution
       if (typeof Plotly === 'undefined') {
-        // Try to load Plotly.js if not already loaded
-        await new Promise((resolve, reject) => {
-          if (typeof Plotly !== 'undefined') {
-            resolve();
-            return;
-          }
-          var plotlyScript = document.createElement('script');
-          plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
-          plotlyScript.charset = 'utf-8';
-          plotlyScript.async = true;
-          plotlyScript.onload = () => {
-            console.log('Plotly.js loaded for widget');
-            resolve();
-          };
-          plotlyScript.onerror = () => {
-            reject(new Error('Failed to load Plotly.js'));
-          };
-          document.head.appendChild(plotlyScript);
-        });
+        // Wait for Plotly.js to load (it may already be loading)
+        let plotlyRetries = 0;
+        while (typeof Plotly === 'undefined' && plotlyRetries < 50) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          plotlyRetries++;
+        }
+        
+        // If still not loaded, try to load it
+        if (typeof Plotly === 'undefined') {
+          await new Promise((resolve, reject) => {
+            var plotlyScript = document.createElement('script');
+            plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+            plotlyScript.charset = 'utf-8';
+            plotlyScript.async = true;
+            plotlyScript.onload = () => {
+              console.log('Plotly.js loaded for widget');
+              resolve();
+            };
+            plotlyScript.onerror = () => {
+              reject(new Error('Failed to load Plotly.js'));
+            };
+            document.head.appendChild(plotlyScript);
+          });
+        }
       }
 
       if (!window.textbookEngine || !(await window.textbookEngine.waitForLoad())) {
