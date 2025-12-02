@@ -328,13 +328,15 @@ class WidgetEngine {
       paramNames.forEach(param => {
         const baseName = paramMapping[param] || param;
         // Remove assignments for this parameter with various suffixes
-        // Also remove the base name without suffix (e.g., M =, N =)
+        // Match: param_name = ... (with optional _val or _expr suffix)
         code = code.replace(new RegExp(`${baseName}(_val|_expr)?\\s*=.*?\\n`, 'g'), '');
-        // For M and N, also remove direct assignments
-        if (param === 'M' || param === 'N') {
-          code = code.replace(new RegExp(`^${param}\\s*=.*?\\n`, 'gm'), '');
-        }
       });
+      // Special handling for M and N: remove direct assignments (M =, N =) that might exist
+      // Do this separately to avoid regex conflicts
+      if (params.hasOwnProperty('M') || params.hasOwnProperty('N')) {
+        code = code.replace(/^M\s*=.*?\n/gm, '');
+        code = code.replace(/^N\s*=.*?\n/gm, '');
+      }
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
 
