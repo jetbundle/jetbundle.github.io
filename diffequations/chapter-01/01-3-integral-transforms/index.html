@@ -576,7 +576,7 @@ for i, x_val in enumerate(x):
         else:
             G_val = 0.5 * (1 - xi_j**2)
         integrand[j] = G_val * f_test[j]
-    u_response[i] = np.trapz(integrand, xi_test)
+    u_response[i] = np.trapz(integrand, xi_test)  # Trapezoidal integration
 
 # Exact solution to -u'' = x^2, u(±1) = 0
 # u(x) = (1/12) * (1 - x^4) - (1/3) * (1 - x^2)
