@@ -236,7 +236,7 @@ create_plot(traces, layout)</code></pre>
                     <div class="plotly-container widget-output"></div>
                     <div class="code-block hidden">
                         <pre><code class="language-python">import numpy as np
-from sympy import symbols, diff, integrate, simplify
+from sympy import symbols, diff, integrate, simplify, sympify
 import sympy as sp
 
 # Parameters from widgets
@@ -245,15 +245,19 @@ N_expr = "x**2 + 2*x*y"
 
 x, y = symbols('x y', real=True)
 
-# Parse M and N
-M = eval(M_expr.replace('**', '**'))
-N = eval(N_expr.replace('**', '**'))
+# Parse M and N using sympify (safer than eval)
+M = sympify(M_expr)
+N = sympify(N_expr)
 
 # Check exactness
 M_y = diff(M, y)
 N_x = diff(N, x)
 
-if simplify(M_y - N_x) == 0:
+# Use sympy equality check (not Python ==)
+exactness_check = simplify(M_y - N_x)
+is_exact = exactness_check.equals(0)
+
+if is_exact:
     # Find potential
     psi_x = integrate(M, x)
     psi_xy = diff(psi_x, y)
@@ -286,9 +290,13 @@ if simplify(M_y - N_x) == 0:
         'height': 500
     }
 else:
+    # Show the difference to help user understand why it's not exact
+    difference = simplify(M_y - N_x)
     traces = []
     layout = {
-        'title': f'Not exact: ∂M/∂y = {sp.latex(M_y)}, ∂N/∂x = {sp.latex(N_x)}',
+        'title': f'Not exact: ∂M/∂y - ∂N/∂x = {sp.latex(difference)}',
+        'xaxis': {'title': ''},
+        'yaxis': {'title': ''},
         'height': 200
     }
 
@@ -608,15 +616,15 @@ create_plot(traces, layout)</code></pre>
     <!-- Python/Plotly Widget System - Load after content -->
     <script>
         // Lazy load Plotly.js after page is fully loaded
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var plotlyScript = document.createElement('script');
             plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
             plotlyScript.charset = 'utf-8';
             plotlyScript.async = true;
-            plotlyScript.onload = function() {
+            plotlyScript.onload = function () {
                 console.log('Plotly.js loaded successfully');
             };
-            plotlyScript.onerror = function() {
+            plotlyScript.onerror = function () {
                 console.error('Failed to load Plotly.js');
             };
             document.body.appendChild(plotlyScript);
