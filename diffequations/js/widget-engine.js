@@ -323,19 +323,29 @@ class WidgetEngine {
       code = code.replace(/# Parameters injected automatically.*?\n/g, '');
       code = code.replace(/# lambda_val, y0_val, t_max_val.*?\n/g, '');
       // Remove any existing parameter assignments (may have template syntax or placeholders)
-      // Remove common parameter names with both _val and _expr suffixes
-      const paramNames = Object.keys(params).concat(Object.values(paramMapping));
-      paramNames.forEach(param => {
-        const baseName = paramMapping[param] || param;
-        // Remove assignments for this parameter with various suffixes
-        // Match: param_name = ... (with optional _val or _expr suffix)
-        code = code.replace(new RegExp(`${baseName}(_val|_expr)?\\s*=.*?\\n`, 'g'), '');
+      // Only remove lines that look like parameter assignments, not code that uses those parameters
+      // We need to be careful: remove "M_expr = ..." but NOT "M = sympify(M_expr)"
+      
+      // Remove parameter assignments with _expr or _val suffixes (these are the injected parameters)
+      Object.keys(params).forEach(param => {
+        // For text inputs (M, N), remove M_expr= and N_expr= assignments
+        if (param === 'M' || param === 'N') {
+          code = code.replace(new RegExp(`^${param}_expr\\s*=.*?\\n`, 'gm'), '');
+        } else {
+          // For other params, remove with _val or _expr suffix
+          const baseName = paramMapping[param] || param;
+          code = code.replace(new RegExp(`^${baseName}(_val|_expr)\\s*=.*?\\n`, 'gm'), '');
+        }
       });
-      // Special handling for M and N: remove direct assignments (M =, N =) that might exist
-      // Do this separately to avoid regex conflicts
-      if (params.hasOwnProperty('M') || params.hasOwnProperty('N')) {
-        code = code.replace(/^M\s*=.*?\n/gm, '');
-        code = code.replace(/^N\s*=.*?\n/gm, '');
+      
+      // Also remove any direct M= or N= assignments that are simple string assignments
+      // But be careful not to remove "M = sympify(...)" which is code, not a parameter
+      if (params.hasOwnProperty('M')) {
+        // Only remove if it looks like a parameter assignment (string literal or simple value)
+        code = code.replace(/^M\s*=\s*["'].*?["'].*?\n/gm, '');
+      }
+      if (params.hasOwnProperty('N')) {
+        code = code.replace(/^N\s*=\s*["'].*?["'].*?\n/gm, '');
       }
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
