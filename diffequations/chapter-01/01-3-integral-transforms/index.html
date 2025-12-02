@@ -1,296 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 1.3: Integral Transforms</title>
-  <meta name="description" content="Laplace and Fourier transforms, Green's functions">
-  <!-- KaTeX (identical on every page) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});">
-  </script>
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.3: Integral Transforms</title>
+    <meta name="description"
+        content="We trade differential complexity for algebraic simplicity — until convergence fails and the inverse transform becomes meaningless.">
+
+    <!-- KaTeX – canonical loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
+        </script>
+
+    <link rel="stylesheet" href="/diffequations/styles.css">
+    <script src="/diffequations/navigation-data.js"></script>
+    <script src="/diffequations/navigation.js"></script>
+    <!-- Manifold background only on main index -->
 </head>
+
 <body>
-<main>
-  <!-- 1. GLOBAL HOOK – mandatory, 1–2 sentences, appears at the very top -->
-  <header class="hook">
-    <h1>Section 1.3: Integral Transforms</h1>
-    <p class="hook-text">
-      The explicit solution is the dream of classical physics — but it collapses the moment the system refuses to be linear.
-    </p>
-    <p class="hook-subtitle">
-      What survives when every coordinate change fails?
-    </p>
-  </header>
-  
-  <!-- 2. Description line (for navigation & SEO) -->
-  <p class="description">Laplace and Fourier transforms, Green's functions</p>
-  
-  <article>
-    <p>We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation, converting calculus into algebra.</p>
-<h2>Introduction</h2>
-<p>We trade differential complexity for algebraic simplicity. The <strong>Laplace</strong> and <strong>Fourier Transforms</strong> are presented as diagonalizing operators. We construct <strong>Green's Functions</strong> to solve inhomogeneous linear problems, introducing the Dirac delta as a heuristic tool. The limitation exposed here is convergence: for general initial data, the inverse transform integrals may not converge in any classical sense, hinting at the need for a generalized calculus.</p>
-<h2>The Laplace Transform</h2>
-<p>For initial value problems constrained by causality ($f(t)=0$ for $t<0$) the Laplace transform maps real time to complex frequency:</p>
-$$
-\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.
-$$
+    <main>
+        <!-- 1. HOOK -->
+        <header class="hook">
+            <h1>Section 1.3: Integral Transforms</h1>
+            <p class="hook-text">
+                We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation,
+                converting calculus into algebra.
+            </p>
+            <p class="hook-subtitle">
+                But the inverse transform integrals may not converge in any classical sense.
+            </p>
+        </header>
 
-<p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\vert f(t) \vert \leq M e^{\sigma t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$. Integration by parts algebraizes differentiation:</p>
-$$
-\mathcal{L}\{f'\}(s)=sF(s)-f(0), \qquad \mathcal{L}\{f^{(n)}\}(s)=s^{n}F(s)-\sum_{k=1}^{n}s^{n-k}f^{(k-1)}(0),
-$$
+        <!-- 2. DESCRIPTION -->
+        <p class="description">
+            Laplace and Fourier transforms, Green's functions, and the convergence crisis that forces us toward
+            distributions.
+        </p>
 
-<p>so constant coefficient ODEs reduce to polynomial equations in $s$ with initial conditions inserted automatically. Convolution becomes multiplication:</p>
-$$
-(f*g)(t)=\int_{0}^{t}f(\tau)g(t-\tau)\,d\tau, \qquad \mathcal{L}\{f*g\}(s)=F(s)G(s),
-$$
+        <article>
 
-<p>providing the backbone for system identification. Inversion is encoded by the Bromwich integral</p>
-$$
-f(t)=\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}F(s)e^{st}\,ds, \qquad \gamma>\sigma_{0},
-$$
+            <!-- 3. NARRATIVE INTRODUCTION (3 paragraphs) -->
+            <section class="narrative-intro">
+                <p>When explicit solutions fail, we change the game. Instead of solving differential equations directly,
+                    we transform them into algebraic problems. The Laplace transform maps time to complex frequency,
+                    turning derivatives into polynomials. The Fourier transform diagonalizes the Laplacian, converting
+                    PDEs into families of decoupled ODEs. This is the power of integral transforms: they reveal the
+                    spectral structure hidden in differential operators.</p>
+                <p>But this algebraic victory comes at a price. The inverse transform requires evaluating integrals
+                    that may not converge in any classical sense. For general initial data, the Bromwich integral may
+                    diverge. The Fourier inversion formula assumes functions are smooth and decay rapidly, but physical
+                    problems often involve discontinuities, impulses, and boundary layers. The transform method works
+                    beautifully when it works, but it fails precisely when we need it most.</p>
+                <p>This convergence crisis forces us to confront a deeper truth: the classical calculus of functions
+                    is too narrow. We need a generalized calculus that can handle distributions, weak solutions, and
+                    singular data. The Dirac delta function, introduced heuristically here as the "inverse" of the
+                    constant function, is not a function at all—it is a distribution. Green's functions are distributional
+                    inverses of linear operators. This section builds the machinery of integral transforms, but it also
+                    plants the seed of their own destruction: the need for a functional-analytic framework that can
+                    handle what classical analysis cannot.</p>
+            </section>
 
-<p>which ties the exponential growth of $f$ to the pole structure of $F$. Poles with $\operatorname{Re}(s)<0$ yield decaying modes, so stability is a spectral placement question.</p>
-<p><strong>Laplace Transform of a Damped Oscillator</strong></p>
-<p>Solve $y''+4y'+5y=0$ with $y(0)=1$ and $y'(0)=0$.</p>
-<p>Taking Laplace transforms produces</p>
-$$
-\mathcal{L}\{y''\}+4\mathcal{L}\{y'\}+5\mathcal{L}\{y\}=0,
-$$
+            <!-- CORE CONTENT WITH SEMANTIC BLOCKS & INTERMEDIATE CLIFFHANGERS -->
 
-<p>and the differentiation rules insert the initial data:</p>
-$$
-[s^{2}Y(s)-sy(0)-y'(0)]+4[sY(s)-y(0)]+5Y(s)=0.
-$$
+            <section>
+                <h2>The Laplace Transform</h2>
 
-<p>Substituting $y(0)=1$ and $y'(0)=0$ yields $(s^{2}+4s+5)Y(s)=s+4$, so</p>
-$$
-Y(s)=\frac{s+4}{(s+2)^{2}+1}=\frac{s+2}{(s+2)^{2}+1}+\frac{2}{(s+2)^{2}+1}.
-$$
+                <div class="definition">
+                    <p><strong>The Laplace Transform:</strong> For initial value problems constrained by causality
+                        ($f(t)=0$ for $t<0$), the Laplace transform maps real time to complex frequency:</p>
+                    $$\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.$$
+                    <p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\vert f(t) \vert \leq M e^{\sigma
+                        t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$.</p>
+                </div>
 
-<p>Inverting term by term gives $y(t)=e^{-2t}\cos t+2e^{-2t}\sin t$. Evaluating at $t=0$ reproduces $y(0)=1$ and $y'(0)=0$, so the transformed solution matches the initial data.</p>
-<p>The Laplace transform automatically incorporates initial conditions into the algebraic problem, eliminating the need for separate constant determination. The pole locations at $s=-2\pm i$ directly encode the frequency and damping rate of the oscillator.</p>
-<p><strong>Convolution Solution of an Inhomogeneous Oscillator</strong></p>
-<p>Solve $y''+y=\sin(2t)$ with $y(0)=0$ and $y'(0)=1$.</p>
-<p>Laplace transforming leads to</p>
-$$
-(s^{2}+1)Y(s)-s y(0)-y'(0)=\frac{2}{s^{2}+4},
-$$
+                <p>Integration by parts algebraizes differentiation:</p>
+                $$
+                \mathcal{L}\{f'\}(s)=sF(s)-f(0), \qquad
+                \mathcal{L}\{f^{(n)}\}(s)=s^{n}F(s)-\sum_{k=1}^{n}s^{n-k}f^{(k-1)}(0),
+                $$
 
-<p>so $Y(s)=\dfrac{s+1}{s^{2}+1}+\dfrac{2}{(s^{2}+1)(s^{2}+4)}$. The first term inverts to the homogeneous response $\cos t$, while the second term becomes a convolution:</p>
-$$
-y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin(2(t-\tau))\,d\tau.
-$$
+                <p>so constant coefficient ODEs reduce to polynomial equations in $s$ with initial conditions inserted
+                    automatically. Convolution becomes multiplication:</p>
+                $$
+                (f*g)(t)=\int_{0}^{t}f(\tau)g(t-\tau)\,d\tau, \qquad \mathcal{L}\{f*g\}(s)=F(s)G(s),
+                $$
 
-<p>Using $\sin A \sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ reduces the integral to elementary sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution</p>
-$$
-y(t)=\cos t+\frac{2}{3}\sin t
-$$
+                <p>providing the backbone for system identification.</p>
 
-<p>satisfies both the differential equation and the initial conditions.</p>
-<p>Convolution represents the system's response to external forcing. The Laplace transform converts this integral into a simple product, making the solution structure transparent.</p>
-<p><strong>Bromwich Inversion by Residues</strong></p>
-<p>Invert $Y(s)=\dfrac{e^{-3s}}{s^{2}+2s+5}$.</p>
-<p>The quadratic denominator has poles at $s=-1\pm 2i$. Choose a Bromwich line $\operatorname{Re}(s)=\gamma>0$ and close the contour in the left half-plane for $t>3$, where the exponential factor enforces a unit-step delay. The residues are</p>
-$$
-\operatorname{Res}_{-1\pm 2i}(Y(s)e^{st})=\frac{e^{-3(-1\pm 2i)}e^{t(-1\pm 2i)}}{4i}.
-$$
+                <div class="theorem">
+                    <p><strong>Bromwich Inversion:</strong> Inversion is encoded by the Bromwich integral</p>
+                    $$f(t)=\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}F(s)e^{st}\,ds, \qquad
+                    \gamma>\sigma_{0},$$
+                    <p>which ties the exponential growth of $f$ to the pole structure of $F$. Poles with
+                        $\operatorname{Re}(s)<0$ yield decaying modes, so stability is a spectral placement question.
+                    </p>
+                </div>
 
-<p>Summing the residues yields</p>
-$$
-f(t)=e^{3-t}\sin(2(t-3))H(t-3),
-$$
+                <div class="example">
+                    <p><strong>Laplace Transform of a Damped Oscillator</strong></p>
+                    <p>Solve $y''+4y'+5y=0$ with $y(0)=1$ and $y'(0)=0$.</p>
+                    <p>Taking Laplace transforms produces</p>
+                    $$\mathcal{L}\{y''\}+4\mathcal{L}\{y'\}+5\mathcal{L}\{y\}=0,$$
 
-<p>where $H$ is the Heaviside step function. The solution activates exactly three time units after $t=0$, mirroring the exponential shift $e^{-3s}$ in the Laplace domain.</p>
-<p>The Bromwich integral reveals that inversion is fundamentally a contour integration problem. The exponential shift $e^{-3s}$ produces a time delay, demonstrating how Laplace transforms encode causality.</p>
-<h2>The Fourier Transform</h2>
-<p>Global phenomena on $\mathbb{R}$ demand the Fourier transform</p>
-$$
-\mathcal{F}\{f\}(\xi)=\hat{f}(\xi)=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\,dx,
-$$
+                    <p>and the differentiation rules insert the initial data:</p>
+                    $$[s^{2}Y(s)-sy(0)-y'(0)]+4[sY(s)-y(0)]+5Y(s)=0.$$
 
-<p>with inverse</p>
-$$
-f(x)=\int_{-\infty}^{\infty}\hat{f}(\xi)e^{2\pi i x\xi}\,d\xi.
-$$
+                    <p>Substituting $y(0)=1$ and $y'(0)=0$ yields $(s^{2}+4s+5)Y(s)=s+4$, so</p>
+                    $$Y(s)=\frac{s+4}{(s+2)^{2}+1}=\frac{s+2}{(s+2)^{2}+1}+\frac{2}{(s+2)^{2}+1}.$$
 
-<p><strong>Theorem (Plancherel).</strong> The transform extends to a unitary map on $L^{2}(\mathbb{R})$:</p>
-$$
-\|f\|_{L^{2}}^{2}=\int_{-\infty}^{\infty}\vert f(x) \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert \hat{f}(\xi) \vert^{2}\,d\xi=\|\hat{f}\|_{L^{2}}^{2}.
-$$
+                    <p>Inverting term by term gives $y(t)=e^{-2t}\cos t+2e^{-2t}\sin t$. The pole locations at
+                        $s=-2\pm i$ directly encode the frequency and damping rate of the oscillator.</p>
+                </div>
 
-<p>Differentiation becomes multiplication,</p>
-$$
-\mathcal{F}\{f'\}(\xi)=2\pi i\xi \hat{f}(\xi),
-$$
+                <div class="example">
+                    <p><strong>Convolution Solution of an Inhomogeneous Oscillator</strong></p>
+                    <p>Solve $y''+y=\sin(2t)$ with $y(0)=0$ and $y'(0)=1$.</p>
+                    <p>Laplace transforming leads to</p>
+                    $$(s^{2}+1)Y(s)-s y(0)-y'(0)=\frac{2}{s^{2}+4},$$
 
-<p>so smooth signals decay rapidly in frequency, while compact spatial support forces entire transforms with prescribed growth. The Heisenberg uncertainty relation states</p>
-$$
-\Delta x\,\Delta \xi \geq \frac{1}{4\pi},
-$$
+                    <p>so $Y(s)=\dfrac{s+1}{s^{2}+1}+\dfrac{2}{(s^{2}+1)(s^{2}+4)}$. The first term inverts to the
+                        homogeneous response $\cos t$, while the second term becomes a convolution:</p>
+                    $$y_{p}(t)=\int_{0}^{t}\sin(\tau)\sin(2(t-\tau))\,d\tau.$$
 
-<p>where the variances are defined using $\vert f \vert^{2}$ and $\vert \hat{f} \vert^{2}$. The Paley–Wiener theorem refines this by linking compact support to entire functions of exponential type.</p>
-<p><strong>Gaussian Fourier Transform and Plancherel</strong></p>
-<p>Compute $\mathcal{F}\{e^{-\pi x^{2}}\}(\xi)$.</p>
-<p>Completing the square in the exponent,</p>
-$$
--\pi x^{2}-2\pi i x\xi=-\pi[(x+i\xi)^{2}+\xi^{2}],
-$$
+                    <p>Using $\sin A \sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ reduces the integral to elementary
+                        sines, giving $y_{p}(t)=\tfrac{2}{3}\sin t$. The complete solution</p>
+                    $$y(t)=\cos t+\frac{2}{3}\sin t$$
 
-<p>so</p>
-$$
-\hat{f}(\xi)=e^{-\pi \xi^{2}}\int_{-\infty}^{\infty}e^{-\pi (x+i\xi)^{2}}\,dx=e^{-\pi \xi^{2}}.
-$$
+                    <p>satisfies both the differential equation and the initial conditions. Convolution represents the
+                        system's response to external forcing, and the Laplace transform converts this integral into a
+                        simple product.</p>
+                </div>
 
-<p>The Gaussian is self-reciprocal under the Fourier transform. Moreover,</p>
-$$
-\int_{-\infty}^{\infty}\vert e^{-\pi x^{2}} \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert e^{-\pi \xi^{2}} \vert^{2}\,d\xi=\frac{1}{\sqrt{2}},
-$$
+                <div class="example">
+                    <p><strong>Bromwich Inversion by Residues</strong></p>
+                    <p>Invert $Y(s)=\dfrac{e^{-3s}}{s^{2}+2s+5}$.</p>
+                    <p>The quadratic denominator has poles at $s=-1\pm 2i$. Choose a Bromwich line
+                        $\operatorname{Re}(s)=\gamma>0$ and close the contour in the left half-plane for $t>3$, where
+                        the exponential factor enforces a unit-step delay. Summing the residues yields</p>
+                    $$f(t)=e^{3-t}\sin(2(t-3))H(t-3),$$
 
-<p>confirming Plancherel's theorem for this prototype.</p>
-<p>The Gaussian is the fixed point of the Fourier transform, representing perfect balance between localization in space and frequency. This property makes it fundamental in both quantum mechanics and signal processing.</p>
-<p><strong>Rectangular Pulse and the Uncertainty Principle</strong></p>
-<p>Let $f(x)=\mathbf{1}_{[-1,1]}(x)$. Compute its Fourier transform and verify the uncertainty inequality.</p>
-<p>Integrating directly gives</p>
-$$
-\hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi \xi}=\operatorname{sinc}(2\xi).
-$$
+                    <p>where $H$ is the Heaviside step function. The solution activates exactly three time units after
+                        $t=0$, mirroring the exponential shift $e^{-3s}$ in the Laplace domain. The Bromwich integral
+                        reveals that inversion is fundamentally a contour integration problem.</p>
+                </div>
 
-<p>The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\vert \hat{f}(\xi) \vert^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces spectral spread.</p>
-<p>The uncertainty principle is not merely a quantum mechanical curiosity—it reflects the fundamental trade-off between localization in space and frequency. Compact support necessarily creates slow decay in the frequency domain.</p>
-<p><strong>Heat Equation via Fourier Transform</strong></p>
-<p>Solve $u_{t}=u_{xx}$ with $u(x,0)=e^{-x^{2}/4}$.</p>
-<p>Fourier transforming in $x$ provides $\partial_{t}\hat{u}(\xi,t)=-4\pi^{2}\xi^{2}\hat{u}(\xi,t)$ and the initial data $\hat{u}(\xi,0)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}}$. The transformed ODE integrates to</p>
-$$
-\hat{u}(\xi,t)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}(1+t)}.
-$$
+                <div class="cliffhanger">
+                    The Laplace transform works beautifully for causal systems with exponential growth bounds. But what
+                    happens when the initial data grows faster than any exponential? The Bromwich integral diverges, and
+                    the transform method fails.
+                </div>
 
-<p>Inverting the transform yields</p>
-$$
-u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp(-\frac{x^{2}}{1+4t}),
-$$
+            </section>
 
-<p>showing Gaussian spreading with conserved total mass.</p>
-<p>The Fourier transform diagonalizes the Laplacian, converting the heat equation into a family of decoupled ODEs. Each frequency mode decays independently, with higher frequencies decaying faster—the physical basis of diffusion.</p>
-<h2>Green's Functions and Resolvent Kernels</h2>
-<p>Integral transforms naturally produce Green's functions—the distributional inverses of linear operators. For an operator $L$ the Green's function $G(x,\xi)$ solves</p>
-$$
-L_{x}[G(x,\xi)]=\delta(x-\xi),
-$$
+            <section>
+                <h2>The Fourier Transform</h2>
 
-<p>and converts $Lu=f$ into the superposition</p>
-$$
-u(x)=\int G(x,\xi)f(\xi)\,d\xi.
-$$
+                <div class="definition">
+                    <p><strong>The Fourier Transform:</strong> Global phenomena on $\mathbb{R}$ demand the Fourier
+                        transform</p>
+                    $$\mathcal{F}\{f\}(\xi)=\hat{f}(\xi)=\int_{-\infty}^{\infty}f(x)e^{-2\pi i x\xi}\,dx,$$
 
-<p>Boundary conditions are enforced directly on $G$, with the method of images providing explicit constructions for symmetric domains. Writing $Lu=f$ as $u=f+\lambda Ku$ yields integral equations whose solutions follow from the Neumann series</p>
-$$
-(I-\lambda K)^{-1}=\sum_{n=0}^{\infty}\lambda^{n}K^{n},
-$$
+                    <p>with inverse</p>
+                    $$f(x)=\int_{-\infty}^{\infty}\hat{f}(\xi)e^{2\pi i x\xi}\,d\xi.$$
+                </div>
 
-<p>mirroring geometric series convergence when the spectral radius of $\lambda K$ is below one.</p>
-<p><strong>Sturm–Liouville Green's Function</strong></p>
-<p>Construct the Green's function for $-y''+x^{2}y=f(x)$ on $[-1,1]$ with $y(\pm 1)=0$.</p>
-<p>Let $\phi_{1}(x)=\int_{-1}^{x}e^{-t^{3}/3}\,dt$ enforce the left boundary and $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so</p>
-$$
-G(x,\xi)=
-\begin{cases}
-\phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\
-\phi_{1}(\xi)\phi_{2}(x), & x>\xi,
-\end{cases}
-$$
+                <div class="theorem">
+                    <p><strong>Plancherel's Theorem:</strong> The transform extends to a unitary map on $L^{2}(\mathbb{R})$:</p>
+                    $$\|f\|_{L^{2}}^{2}=\int_{-\infty}^{\infty}\vert f(x) \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert
+                    \hat{f}(\xi) \vert^{2}\,d\xi=\|\hat{f}\|_{L^{2}}^{2}.$$
 
-<p>satisfies the boundary conditions and reproduces the delta source through the jump in $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$.</p>
-<p>Green's functions encode both the differential operator and the boundary conditions into a single kernel. The discontinuity in the derivative at $x=\xi$ creates the delta function source, while the boundary conditions are built into the construction of $\phi_1$ and $\phi_2$.</p>
-<p><strong>Method of Images for Dirichlet Data</strong></p>
-<p>Solve $\Delta u=0$ in the unit disk with $u(1,\theta)=\cos(3\theta)$.</p>
-<p>The Poisson kernel</p>
-$$
-P(r,\theta-\phi)=\frac{1-r^{2}}{1-2r\cos(\theta-\phi)+r^{2}}
-$$
+                    <p>Differentiation becomes multiplication,</p>
+                    $$\mathcal{F}\{f'\}(\xi)=2\pi i\xi \hat{f}(\xi),$$
 
-<p>expands boundary data into harmonic modes. Since $\cos(3\theta)$ selects the $n=3$ Fourier mode, the interior solution is $u(r,\theta)=r^{3}\cos(3\theta)$. This matches the method-of-images viewpoint: the image charges outside the disk cancel the boundary data, and the resulting harmonic function satisfies both the Laplace equation and the boundary values.</p>
-<p>The method of images provides a geometric interpretation of Green's functions: boundary data is replaced by equivalent sources outside the domain. This elegant technique works only for symmetric domains, limiting its applicability.</p>
-<h2>Mellin, Hankel, and Additional Transforms</h2>
-<p>Symmetries beyond translation require different kernels. The Mellin transform,</p>
-$$
-\mathcal{M}\{f\}(s)=\int_{0}^{\infty}x^{s-1}f(x)\,dx,
-$$
+                    <p>so smooth signals decay rapidly in frequency, while compact spatial support forces entire
+                        transforms with prescribed growth.</p>
+                </div>
 
-<p>diagonalizes dilation operators by mapping $x\dfrac{d}{dx}$ to $-s$. Euler–Cauchy equations and asymptotic scaling analyses thus become algebraic problems in $s$. Radial geometries prefer Hankel transforms with Bessel kernels; for order zero</p>
-$$
-\mathcal{H}\{u\}(\kappa)=\int_{0}^{\infty}r J_{0}(\kappa r)u(r)\,dr,
-$$
+                <div class="theorem">
+                    <p><strong>Heisenberg Uncertainty Principle:</strong> The uncertainty relation states</p>
+                    $$\Delta x\,\Delta \xi \geq \frac{1}{4\pi},$$
 
-<p>which diagonalizes the radial Laplacian and produces exact solutions for cylindrically symmetric PDEs.</p>
-<p><strong>Mellin Transform of an Euler–Cauchy Equation</strong></p>
-<p>Solve $x^{2}y''+3xy'-3y=0$ using the Mellin transform.</p>
-<p>Applying $\mathcal{M}$ gives</p>
-$$
-s(s-1)Y(s)+3sY(s)-3Y(s)=0,
-$$
+                    <p>where the variances are defined using $\vert f \vert^{2}$ and $\vert \hat{f} \vert^{2}$. The
+                        Paley–Wiener theorem refines this by linking compact support to entire functions of exponential
+                        type.</p>
+                </div>
 
-<p>so $(s^{2}+2s-3)Y(s)=0$ with roots $s=1$ and $s=-3$. Inverting via residues on vertical lines produces</p>
-$$
-y(x)=Ax+Bx^{-3},
-$$
+                <div class="example">
+                    <p><strong>Gaussian Fourier Transform and Plancherel</strong></p>
+                    <p>Compute $\mathcal{F}\{e^{-\pi x^{2}}\}(\xi)$.</p>
+                    <p>Completing the square in the exponent,</p>
+                    $$-\pi x^{2}-2\pi i x\xi=-\pi[(x+i\xi)^{2}+\xi^{2}],$$
 
-<p>which indeed satisfies the differential equation, showcasing how Mellin transforms diagonalize dilation operators.</p>
-<p><strong>Radial Helmholtz Equation via Hankel Transform</strong></p>
-<p>Solve $\Delta u+k^{2}u=0$ in $\mathbb{R}^{2}$ under radial symmetry.</p>
-<p>The order-zero Hankel transform</p>
-$$
-\tilde{u}(\kappa)=\int_{0}^{\infty}r J_{0}(\kappa r)u(r)\,dr
-$$
+                    <p>so</p>
+                    $$\hat{f}(\xi)=e^{-\pi \xi^{2}}\int_{-\infty}^{\infty}e^{-\pi (x+i\xi)^{2}}\,dx=e^{-\pi \xi^{2}}.$$
 
-<p>maps the radial Laplacian to multiplication by $-\kappa^{2}$, so the transformed equation is $(-\kappa^{2}+k^{2})\tilde{u}(\kappa)=0$. The only distributional solutions are multiples of $\delta(\kappa-k)$, hence</p>
-$$
-u(r)=A k J_{0}(kr),
-$$
+                    <p>The Gaussian is self-reciprocal under the Fourier transform. Moreover,</p>
+                    $$\int_{-\infty}^{\infty}\vert e^{-\pi x^{2}} \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert e^{-\pi
+                    \xi^{2}} \vert^{2}\,d\xi=\frac{1}{\sqrt{2}},$$
 
-<p>which represents a cylindrical wave satisfying the Helmholtz equation.</p>
-<p>Each transform is tailored to a specific symmetry: Fourier for translations, Mellin for dilations, Hankel for radial symmetry. The choice of transform reflects the underlying geometric structure of the problem.</p>
-    
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-    <section class="references">
-      <h2>Key References</h2>
-<ul>
-        <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
-        <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
-      </ul>
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    <nav class="navigation">
-      <hr>
-      <ul>
-        <li><a href="/diffequations/chapter-01/01-2-special-functions/">Previous Section: 1.2 Special Functions of Mathematical Physics</a></li>
-        <li><a href="/diffequations/chapter-01/01-4-linear-pde/">Next Section: 1.4 Classical Linear Partial Differential Equations</a></li>
-        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-        <li><a href="/diffequations/">Full Table of Contents</a></li>
-      </ul>
-    </nav>
-  </article>
-</main>  <script src="/diffequations/navigation.js"></script>
-  <script defer src="/diffequations/js/textbook-engine.js"></script>
-  <script defer src="/diffequations/js/widget-engine.js"></script>
+                    <p>confirming Plancherel's theorem for this prototype. The Gaussian is the fixed point of the
+                        Fourier transform, representing perfect balance between localization in space and frequency.</p>
+                </div>
+
+                <div class="example">
+                    <p><strong>Rectangular Pulse and the Uncertainty Principle</strong></p>
+                    <p>Let $f(x)=\mathbf{1}_{[-1,1]}(x)$. Compute its Fourier transform and verify the uncertainty
+                        inequality.</p>
+                    <p>Integrating directly gives</p>
+                    $$\hat{f}(\xi)=\int_{-1}^{1}e^{-2\pi i x\xi}\,dx=\frac{\sin(2\pi \xi)}{\pi
+                    \xi}=\operatorname{sinc}(2\xi).$$
+
+                    <p>The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta
+                        x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\vert
+                        \hat{f}(\xi) \vert^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta
+                        \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces
+                        spectral spread. The uncertainty principle is not merely a quantum mechanical curiosity—it
+                        reflects the fundamental trade-off between localization in space and frequency.</p>
+                </div>
+
+                <!-- CRISIS WIDGET -->
+                <div class="widget-module crisis-widget" id="fourier-convergence-1-3">
+                    <div class="module-header">
+                        <h3>Interactive: Watch Convergence Fail — Fourier Inversion Crisis</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Function width $\sigma$</label>
+                                <input type="range" class="widget-slider" data-param="sigma" min="0.1" max="2" step="0.1"
+                                    value="1">
+                                <span class="widget-value" data-param="sigma">1.0</span>
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Run</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python">import numpy as np
+
+# Parameters from widgets (injected automatically)
+sigma_val = 1.0
+
+# Create a function that may not have a convergent Fourier inversion
+# Example: f(x) = exp(-x^2/(2*sigma^2)) for |x| < 1, but grows outside
+x = np.linspace(-3, 3, 500)
+f = np.exp(-x**2 / (2 * sigma_val**2))
+
+# Compute Fourier transform numerically
+xi = np.linspace(-10, 10, 500)
+f_hat = np.fft.fftshift(np.fft.fft(np.fft.fftshift(f)))
+
+# Attempt inverse transform
+f_reconstructed = np.fft.fftshift(np.fft.ifft(np.fft.fftshift(f_hat)))
+
+# For functions that don't decay, the inverse may not converge
+# Show the original, transform, and attempted reconstruction
+traces = [
+    {
+        'x': x.tolist(),
+        'y': np.real(f).tolist(),
+        'mode': 'lines',
+        'name': 'Original f(x)',
+        'line': {'color': '#4caf50', 'width': 3}
+    },
+    {
+        'x': xi.tolist(),
+        'y': np.abs(f_hat).tolist(),
+        'mode': 'lines',
+        'name': '|Fourier transform|',
+        'line': {'color': '#ff6b6b', 'width': 3},
+        'xaxis': 'x2',
+        'yaxis': 'y2'
+    },
+    {
+        'x': x.tolist(),
+        'y': np.real(f_reconstructed).tolist(),
+        'mode': 'lines',
+        'name': 'Reconstructed (may diverge)',
+        'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'}
+    }
+]
+
+layout = {
+    'title': f'Fourier Transform Convergence: σ = {sigma_val:.1f}',
+    'height': 500,
+    'xaxis': {
+        'title': 'x',
+        'domain': [0, 0.48]
+    },
+    'yaxis': {
+        'title': 'f(x)',
+        'domain': [0, 1]
+    },
+    'xaxis2': {
+        'title': 'ξ (frequency)',
+        'domain': [0.52, 1],
+        'anchor': 'y2'
+    },
+    'yaxis2': {
+        'title': '|F̂(ξ)|',
+        'domain': [0, 1],
+        'anchor': 'x2'
+    },
+    'showlegend': True
+}
+
+create_plot(traces, layout)</code></pre>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <p><strong>Heat Equation via Fourier Transform</strong></p>
+                    <p>Solve $u_{t}=u_{xx}$ with $u(x,0)=e^{-x^{2}/4}$.</p>
+                    <p>Fourier transforming in $x$ provides $\partial_{t}\hat{u}(\xi,t)=-4\pi^{2}\xi^{2}\hat{u}(\xi,t)$
+                        and the initial data $\hat{u}(\xi,0)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}}$. The transformed ODE
+                        integrates to</p>
+                    $$\hat{u}(\xi,t)=2\sqrt{\pi}e^{-4\pi^{2}\xi^{2}(1+t)}.$$
+
+                    <p>Inverting the transform yields</p>
+                    $$u(x,t)=\sqrt{\frac{4\pi}{1+4t}}\exp(-\frac{x^{2}}{1+4t}),$$
+
+                    <p>showing Gaussian spreading with conserved total mass. The Fourier transform diagonalizes the
+                        Laplacian, converting the heat equation into a family of decoupled ODEs. Each frequency mode
+                        decays independently, with higher frequencies decaying faster—the physical basis of diffusion.
+                    </p>
+                </div>
+
+                <div class="cliffhanger">
+                    The Fourier transform works perfectly for smooth, rapidly decaying functions. But physical problems
+                    involve discontinuities, impulses, and boundary layers. For these, the inversion integral may not
+                    converge, and we need a generalized calculus.
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Green's Functions and Resolvent Kernels</h2>
+
+                <div class="definition">
+                    <p><strong>Green's Function:</strong> Integral transforms naturally produce Green's functions—the
+                        distributional inverses of linear operators. For an operator $L$, the Green's function
+                        $G(x,\xi)$ solves</p>
+                    $$L_{x}[G(x,\xi)]=\delta(x-\xi),$$
+
+                    <p>and converts $Lu=f$ into the superposition</p>
+                    $$u(x)=\int G(x,\xi)f(\xi)\,d\xi.$$
+
+                    <p>Boundary conditions are enforced directly on $G$, with the method of images providing explicit
+                        constructions for symmetric domains.</p>
+                </div>
+
+                <p>Writing $Lu=f$ as $u=f+\lambda Ku$ yields integral equations whose solutions follow from the Neumann
+                    series</p>
+                $$(I-\lambda K)^{-1}=\sum_{n=0}^{\infty}\lambda^{n}K^{n},$$
+
+                <p>mirroring geometric series convergence when the spectral radius of $\lambda K$ is below one.</p>
+
+                <div class="example">
+                    <p><strong>Sturm–Liouville Green's Function</strong></p>
+                    <p>Construct the Green's function for $-y''+x^{2}y=f(x)$ on $[-1,1]$ with $y(\pm 1)=0$.</p>
+                    <p>Let $\phi_{1}(x)=\int_{-1}^{x}e^{-t^{3}/3}\,dt$ enforce the left boundary and
+                        $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so</p>
+                    $$G(x,\xi)=
+                    \begin{cases}
+                    \phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\
+                    \phi_{1}(\xi)\phi_{2}(x), & x>\xi,
+                    \end{cases}$$
+
+                    <p>satisfies the boundary conditions and reproduces the delta source through the jump in
+                        $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$. Green's
+                        functions encode both the differential operator and the boundary conditions into a single kernel.
+                    </p>
+                </div>
+
+                <div class="example">
+                    <p><strong>Method of Images for Dirichlet Data</strong></p>
+                    <p>Solve $\Delta u=0$ in the unit disk with $u(1,\theta)=\cos(3\theta)$.</p>
+                    <p>The Poisson kernel</p>
+                    $$P(r,\theta-\phi)=\frac{1-r^{2}}{1-2r\cos(\theta-\phi)+r^{2}}$$
+
+                    <p>expands boundary data into harmonic modes. Since $\cos(3\theta)$ selects the $n=3$ Fourier mode,
+                        the interior solution is $u(r,\theta)=r^{3}\cos(3\theta)$. This matches the method-of-images
+                        viewpoint: the image charges outside the disk cancel the boundary data, and the resulting
+                        harmonic function satisfies both the Laplace equation and the boundary values. The method of
+                        images provides a geometric interpretation of Green's functions, but it works only for symmetric
+                        domains.</p>
+                </div>
+
+                <!-- VICTORY WIDGET -->
+                <div class="widget-module victory-widget" id="greens-function-1-3">
+                    <div class="module-header">
+                        <h3>Interactive: Green's Function Visualization</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Source position $\xi$</label>
+                                <input type="range" class="widget-slider" data-param="xi" min="-0.8" max="0.8" step="0.1"
+                                    value="0">
+                                <span class="widget-value" data-param="xi">0.0</span>
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Run</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python">import numpy as np
+
+# Parameters from widgets (injected automatically)
+xi_val = 0.0
+
+# Simple 1D Green's function: -u'' = delta(x - xi) on [-1, 1] with u(±1) = 0
+# Solution: G(x, xi) = (1/2) * (1 - x) * (1 + xi) for x < xi
+#                    = (1/2) * (1 + x) * (1 - xi) for x > xi
+x = np.linspace(-1, 1, 200)
+G = np.zeros_like(x)
+
+mask_left = x < xi_val
+mask_right = x > xi_val
+mask_center = np.abs(x - xi_val) < 0.01
+
+G[mask_left] = 0.5 * (1 - x[mask_left]) * (1 + xi_val)
+G[mask_right] = 0.5 * (1 + x[mask_right]) * (1 - xi_val)
+G[mask_center] = 0.5 * (1 - xi_val**2)  # At x = xi
+
+traces = [
+    {
+        'x': x.tolist(),
+        'y': G.tolist(),
+        'mode': 'lines',
+        'name': f'Green\'s function G(x, ξ={xi_val:.1f})',
+        'line': {'color': '#4caf50', 'width': 3}
+    },
+    {
+        'x': [xi_val],
+        'y': [0.5 * (1 - xi_val**2)],
+        'mode': 'markers',
+        'name': f'Source at ξ = {xi_val:.1f}',
+        'marker': {'color': '#ff6b6b', 'size': 12, 'symbol': 'x'}
+    }
+]
+
+layout = {
+    'title': f'Green\'s Function: -u\'\' = δ(x - {xi_val:.1f}), u(±1) = 0',
+    'xaxis': {'title': 'x', 'range': [-1, 1]},
+    'yaxis': {'title': 'G(x, ξ)', 'range': [-0.1, 0.6]},
+    'height': 500,
+    'showlegend': True,
+    'annotations': [{
+        'text': 'The Green\'s function encodes the response to a point source',
+        'x': 0,
+        'y': 0.5,
+        'showarrow': False,
+        'font': {'size': 12, 'color': '#8b949e'},
+        'bgcolor': 'rgba(0,0,0,0.5)',
+        'bordercolor': '#30363d',
+        'borderwidth': 1
+    }]
+}
+
+create_plot(traces, layout)</code></pre>
+                    </div>
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Mellin, Hankel, and Additional Transforms</h2>
+
+                <p>Symmetries beyond translation require different kernels. The Mellin transform,</p>
+                $$\mathcal{M}\{f\}(s)=\int_{0}^{\infty}x^{s-1}f(x)\,dx,$$
+
+                <p>diagonalizes dilation operators by mapping $x\dfrac{d}{dx}$ to $-s$. Euler–Cauchy equations and
+                    asymptotic scaling analyses thus become algebraic problems in $s$.</p>
+
+                <div class="definition">
+                    <p><strong>Hankel Transform:</strong> Radial geometries prefer Hankel transforms with Bessel
+                        kernels; for order zero</p>
+                    $$\mathcal{H}\{u\}(\kappa)=\int_{0}^{\infty}r J_{0}(\kappa r)u(r)\,dr,$$
+
+                    <p>which diagonalizes the radial Laplacian and produces exact solutions for cylindrically symmetric
+                        PDEs.</p>
+                </div>
+
+                <div class="example">
+                    <p><strong>Mellin Transform of an Euler–Cauchy Equation</strong></p>
+                    <p>Solve $x^{2}y''+3xy'-3y=0$ using the Mellin transform.</p>
+                    <p>Applying $\mathcal{M}$ gives</p>
+                    $$s(s-1)Y(s)+3sY(s)-3Y(s)=0,$$
+
+                    <p>so $(s^{2}+2s-3)Y(s)=0$ with roots $s=1$ and $s=-3$. Inverting via residues on vertical lines
+                        produces</p>
+                    $$y(x)=Ax+Bx^{-3},$$
+
+                    <p>which indeed satisfies the differential equation, showcasing how Mellin transforms diagonalize
+                        dilation operators.</p>
+                </div>
+
+                <div class="example">
+                    <p><strong>Radial Helmholtz Equation via Hankel Transform</strong></p>
+                    <p>Solve $\Delta u+k^{2}u=0$ in $\mathbb{R}^{2}$ under radial symmetry.</p>
+                    <p>The order-zero Hankel transform maps the radial Laplacian to multiplication by $-\kappa^{2}$, so
+                        the transformed equation is $(-\kappa^{2}+k^{2})\tilde{u}(\kappa)=0$. The only distributional
+                        solutions are multiples of $\delta(\kappa-k)$, hence</p>
+                    $$u(r)=A k J_{0}(kr),$$
+
+                    <p>which represents a cylindrical wave satisfying the Helmholtz equation. Each transform is tailored
+                        to a specific symmetry: Fourier for translations, Mellin for dilations, Hankel for radial
+                        symmetry.</p>
+                </div>
+
+            </section>
+
+            <!-- MASTERY CHALLENGES -->
+            <section class="challenges">
+                <h2>Mastery Challenges</h2>
+
+                <details>
+                    <summary>Challenge 1 [★★☆] Laplace Transform of Distributions</summary>
+                    <p>Extend the Laplace transform to handle the Dirac delta function $\delta(t)$ and its derivatives.
+                        Show that $\mathcal{L}\{\delta(t)\}(s)=1$ and $\mathcal{L}\{\delta^{(n)}(t)\}(s)=s^{n}$. Use
+                        this to solve $y''+y=\delta(t)$ with zero initial conditions.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Using the sifting property, $\mathcal{L}\{\delta(t)\}(s)=\int_{0}^{\infty}\delta(t)e^{-st}\,dt=e^{0}=1$.
+                            For derivatives, integration by parts (or the definition of distributional derivatives) gives
+                            $\mathcal{L}\{\delta^{(n)}(t)\}(s)=s^{n}$. For $y''+y=\delta(t)$ with $y(0)=y'(0)=0$, we
+                            get $(s^{2}+1)Y(s)=1$, so $Y(s)=1/(s^{2}+1)$ and $y(t)=\sin t H(t)$, where $H$ is the
+                            Heaviside function. This demonstrates how distributions extend the classical Laplace transform
+                            to handle singular forcing.</p>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>Challenge 2 [★★★] Paley–Wiener Theorem</summary>
+                    <p>Prove that if $f$ has compact support on $[-a,a]$, then its Fourier transform $\hat{f}(\xi)$ is
+                        an entire function of exponential type $2\pi a$. Conversely, show that if $\hat{f}$ is entire
+                        and of exponential type, then $f$ has compact support.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>If $f$ has support in $[-a,a]$, then $\hat{f}(\xi)=\int_{-a}^{a}f(x)e^{-2\pi i x\xi}\,dx$ is
+                            entire (analytic for all complex $\xi$) because the integral converges uniformly. The
+                            exponential bound $|\hat{f}(\xi)|\leq Ce^{2\pi a|\operatorname{Im}(\xi)|}$ follows from
+                            $|e^{-2\pi i x\xi}|\leq e^{2\pi a|\operatorname{Im}(\xi)|}$. The converse uses the
+                            Phragmén–Lindelöf principle: if $\hat{f}$ is entire and of exponential type, then $f$ must
+                            vanish outside a compact set. This theorem links spatial localization to analyticity in the
+                            frequency domain.</p>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>Challenge 3 [★★★] Convergence of Inverse Transforms</summary>
+                    <p>Construct an example of a function $f(t)$ for which the Laplace transform $F(s)$ exists and is
+                        analytic in a half-plane, but the Bromwich inversion integral diverges for all $\gamma$. Show
+                        that this forces us to consider distributions rather than functions.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Consider $f(t)=e^{t^{2}}$ for $t\geq 0$. This function grows faster than any exponential, so
+                            its Laplace transform does not exist in the classical sense. However, we can define
+                            $F(s)$ as a distribution via analytic continuation. The Bromwich integral
+                            $\int_{\gamma-i\infty}^{\gamma+i\infty}F(s)e^{st}\,ds$ diverges because $F(s)$ has
+                            essential singularities. This example demonstrates that the classical theory of Laplace
+                            transforms is insufficient for functions with super-exponential growth, necessitating the
+                            distributional framework developed in Chapter 2.</p>
+                    </details>
+                </details>
+
+            </section>
+
+            <!-- FINAL CLIFFHANGER -->
+            <div class="cliffhanger final">
+                <p>We have mastered the machinery of integral transforms: Laplace for causal systems, Fourier for global
+                    phenomena, Mellin for scaling, Hankel for radial symmetry. But this mastery exposes its own
+                    limitations. The inverse transforms require integrals that may not converge. The Dirac delta is not a
+                    function. Green's functions are distributional inverses. The classical calculus of functions is too
+                    narrow. In the next section, we abandon the hope of explicit solutions entirely and embrace the
+                    functional-analytic framework where completeness, orthogonality, and weak convergence become the
+                    fundamental tools.</p>
+            </div>
+
+            <!-- REFERENCES -->
+            <section class="references">
+                <h2>Key References</h2>
+                <ul>
+                    <li>Folland, G. B. (2009). <em>Fourier Analysis and its Applications</em>.</li>
+                    <li>Duffy, D. G. (2004). <em>Transform Methods for Solving Partial Differential Equations</em>.
+                    </li>
+                    <li>Davies, B. (2002). <em>Integral Transforms and their Applications</em>, 3rd ed.</li>
+                    <li>Zemanian, A. H. (1987). <em>Distribution Theory and Transform Analysis</em>.</li>
+                </ul>
+            </section>
+
+            <!-- NAVIGATION -->
+            <nav class="navigation">
+                <hr>
+                <ul>
+                    <li>Previous → <a href="/diffequations/chapter-01/01-2-special-functions/">Section 1.2: Special
+                            Functions of Mathematical Physics</a></li>
+                    <li>Next → <a href="/diffequations/chapter-01/01-4-linear-pde/">Section 1.4: Classical Linear
+                            Partial Differential Equations</a></li>
+                    <li><a href="/diffequations/chapter-01/">Chapter 1 Contents</a></li>
+                    <li><a href="/diffequations/">Full Table of Contents</a></li>
+                </ul>
+            </nav>
+
+        </article>
+    </main>
+
+    <!-- Python/Plotly Widget System - Load after content -->
+    <script>
+        // Lazy load Plotly.js after page is fully loaded
+        window.addEventListener('load', function () {
+            var plotlyScript = document.createElement('script');
+            plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+            plotlyScript.charset = 'utf-8';
+            plotlyScript.async = true;
+            plotlyScript.onload = function () {
+                console.log('Plotly.js loaded successfully');
+            };
+            plotlyScript.onerror = function () {
+                console.error('Failed to load Plotly.js');
+            };
+            document.body.appendChild(plotlyScript);
+        });
+    </script>
+
+    <!-- Widget Engine Scripts - Load with defer to not block rendering -->
+    <script defer src="/diffequations/js/textbook-engine.js"></script>
+    <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
+
 </html>
