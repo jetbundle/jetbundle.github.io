@@ -68,7 +68,8 @@ class TextbookEngine {
 
       await this.pyodide.loadPackage([
         "numpy",
-        "scipy"
+        "scipy",
+        "sympy"
       ]);
 
       // Initialize global variable for plot data

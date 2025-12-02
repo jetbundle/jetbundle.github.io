@@ -302,7 +302,7 @@ class WidgetEngine {
         const paramName = paramMapping[key] || key;
         // Check if this is a text input (ends with _expr or contains quotes)
         // Text inputs should be treated as strings
-        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') || 
+        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') ||
                            (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
         if (isTextInput) {
           // Escape quotes and wrap in quotes
@@ -339,6 +339,29 @@ class WidgetEngine {
                code.substring(importEnd);
       } else {
         code = '# Parameters from widgets\n' + paramLines + '\n\n' + code;
+      }
+
+      // Ensure Plotly.js is loaded
+      if (typeof Plotly === 'undefined') {
+        // Try to load Plotly.js if not already loaded
+        await new Promise((resolve, reject) => {
+          if (typeof Plotly !== 'undefined') {
+            resolve();
+            return;
+          }
+          var plotlyScript = document.createElement('script');
+          plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+          plotlyScript.charset = 'utf-8';
+          plotlyScript.async = true;
+          plotlyScript.onload = () => {
+            console.log('Plotly.js loaded for widget');
+            resolve();
+          };
+          plotlyScript.onerror = () => {
+            reject(new Error('Failed to load Plotly.js'));
+          };
+          document.head.appendChild(plotlyScript);
+        });
       }
 
       if (!window.textbookEngine || !(await window.textbookEngine.waitForLoad())) {

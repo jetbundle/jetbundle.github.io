@@ -300,7 +300,8 @@ create_plot(traces, layout)</code></pre>
 
                 <p>Most differential forms are not naturally exact. However, exactness is often a property of the
                     coordinate representation, not the physics. We seek a scalar multiplier $\mu(x,y)$ (an
-                    <strong>integrating factor</strong>) such that:</p>
+                    <strong>integrating factor</strong>) such that:
+                </p>
                 $$\mu M \, dx + \mu N \, dy = 0$$
 
                 <p>satisfies the exactness condition.</p>
@@ -604,6 +605,25 @@ create_plot(traces, layout)</code></pre>
         </article>
     </main>
 
+    <!-- Python/Plotly Widget System - Load after content -->
+    <script>
+        // Lazy load Plotly.js after page is fully loaded
+        window.addEventListener('load', function() {
+            var plotlyScript = document.createElement('script');
+            plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+            plotlyScript.charset = 'utf-8';
+            plotlyScript.async = true;
+            plotlyScript.onload = function() {
+                console.log('Plotly.js loaded successfully');
+            };
+            plotlyScript.onerror = function() {
+                console.error('Failed to load Plotly.js');
+            };
+            document.body.appendChild(plotlyScript);
+        });
+    </script>
+
+    <!-- Widget Engine Scripts - Load with defer to not block rendering -->
     <script defer src="/diffequations/js/textbook-engine.js"></script>
     <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
