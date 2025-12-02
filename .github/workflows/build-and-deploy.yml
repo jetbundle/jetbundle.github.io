@@ -67,29 +67,29 @@ jobs:
       - name: Verify build output
         run: |
           set +e  # Don't exit on error during verification
-          
+
           if [ ! -d "_site" ]; then
             echo "ERROR: _site directory not found! Creating it..."
             mkdir -p _site
           fi
-          
+
           # Ensure diffequations is copied if not already there
           if [ ! -d "_site/diffequations" ] && [ -d "diffequations" ]; then
             echo "Copying diffequations to _site..."
             cp -r diffequations _site/
           fi
-          
+
           # Count HTML files
           HTML_COUNT=$(find _site -name '*.html' 2>/dev/null | wc -l)
           echo "Found $HTML_COUNT HTML files in _site"
-          
+
           # Check for main index
           if [ ! -f "_site/index.html" ] && [ ! -f "_site/index.md" ]; then
             echo "WARNING: index.html/index.md not found in _site root!"
             echo "Files in _site root:"
             ls -la _site/ 2>/dev/null | head -20 || echo "Could not list _site directory"
           fi
-          
+
           # Verify diffequations HTML files
           if [ -d "_site/diffequations" ]; then
             DIFFEQ_HTML=$(find _site/diffequations -name '*.html' 2>/dev/null | wc -l)
@@ -110,7 +110,7 @@ jobs:
               cp -r diffequations _site/ 2>&1
             fi
           fi
-          
+
           set -e  # Re-enable exit on error
           echo "Build verification complete!"
 
