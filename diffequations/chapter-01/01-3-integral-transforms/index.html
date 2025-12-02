@@ -558,31 +558,42 @@ traces.append({
 # Show how u(x) = ∫ G(x, ξ) f(ξ) dξ works
 # Use a simple test function: f(ξ) = ξ^2
 # This is the solution to -u'' = x^2 with u(±1) = 0
-xi_test = np.linspace(-1, 1, 500)  # More points for better accuracy
+xi_test = np.linspace(-1, 1, 1000)  # High resolution for accuracy
 f_test = xi_test**2
 
 # Compute response: u(x) = ∫_{-1}^{1} G(x, ξ) * ξ^2 dξ
+# Split the integral: u(x) = ∫_{-1}^{x} G(x, ξ) f(ξ) dξ + ∫_{x}^{1} G(x, ξ) f(ξ) dξ
 u_response = np.zeros_like(x)
 
 for i, x_val in enumerate(x):
-    # For each x, integrate G(x, ξ) * f(ξ) over ξ
-    integrand = np.zeros_like(xi_test)
-    for j, xi_j in enumerate(xi_test):
-        # Green's function: G(x, ξ)
-        # For x < ξ: G(x, ξ) = (1/2) * (1 - x) * (1 + ξ)
-        # For x > ξ: G(x, ξ) = (1/2) * (1 + x) * (1 - ξ)
-        # At x = ξ: G(ξ, ξ) = (1/2) * (1 - ξ^2)
-        if x_val < xi_j:
-            G_val = 0.5 * (1 - x_val) * (1 + xi_j)
-        elif x_val > xi_j:
-            G_val = 0.5 * (1 + x_val) * (1 - xi_j)
-        else:
-            # At the source point, use the average or the limit value
-            G_val = 0.5 * (1 - xi_j**2)
-        integrand[j] = G_val * f_test[j]
+    # Split integration domain at x_val
+    mask_left = xi_test < x_val
+    mask_right = xi_test > x_val
+    mask_at = np.abs(xi_test - x_val) < 1e-10
     
-    # Use trapezoidal integration
-    u_response[i] = np.trapz(integrand, xi_test)
+    # Left part: x < ξ, so G(x, ξ) = (1/2)(1 - x)(1 + ξ)
+    if np.any(mask_left):
+        xi_left = xi_test[mask_left]
+        f_left = f_test[mask_left]
+        G_left = 0.5 * (1 - x_val) * (1 + xi_left)
+        integrand_left = G_left * f_left
+        u_left = np.trapz(integrand_left, xi_left)
+    else:
+        u_left = 0.0
+    
+    # Right part: x > ξ, so G(x, ξ) = (1/2)(1 + x)(1 - ξ)
+    if np.any(mask_right):
+        xi_right = xi_test[mask_right]
+        f_right = f_test[mask_right]
+        G_right = 0.5 * (1 + x_val) * (1 - xi_right)
+        integrand_right = G_right * f_right
+        u_right = np.trapz(integrand_right, xi_right)
+    else:
+        u_right = 0.0
+    
+    # At x = ξ, G is continuous, so we can ignore the point or use either branch
+    # The contribution is negligible (measure zero)
+    u_response[i] = u_left + u_right
 
 # Exact solution to -u'' = x^2, u(±1) = 0
 # Solving: -u'' = x^2, so u'' = -x^2
