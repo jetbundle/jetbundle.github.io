@@ -82,33 +82,32 @@
                 $$
 
                 <p>The series converges for $\vert x \vert < 1$ and extends elsewhere by analytic continuation.
-                    Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate
-                    Kummer's 24 solutions, highlighting the group structure of the solution space.</p>
+                        Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and
+                        generate Kummer's 24 solutions, highlighting the group structure of the solution space.</p>
 
-                <div class="example">
-                    <p><strong>Hypergeometric Series Solution</strong></p>
-                    <p>Solve $x(1-x)y''+(2-3x)y'-y=0$.</p>
-                    <p>We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence</p>
-                    $$
-                    a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
-                    $$
+                        <div class="example">
+                            <p><strong>Hypergeometric Series Solution</strong></p>
+                            <p>Solve $x(1-x)y''+(2-3x)y'-y=0$.</p>
+                            <p>We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence</p>
+                            $$
+                            a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
+                            $$
 
-                    <p>so</p>
-                    $$
-                    y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\frac{\ln(1-x)}{x},
-                    $$
+                            <p>so</p>
+                            $$
+                            y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\frac{\ln(1-x)}{x},
+                            $$
 
-                    <p>which matches</p>
-                    $${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$$
+                            <p>which matches</p>
+                            $${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$$
 
-                    <p>and demonstrates how power-series solutions encode hypergeometric behavior.</p>
-                </div>
+                            <p>and demonstrates how power-series solutions encode hypergeometric behavior.</p>
+                        </div>
 
-                <div class="cliffhanger">
-                    But the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes
-                    necessary, and with it comes the realization that the solution's form is not global — it depends on
-                    which path we take through the complex plane.
-                </div>
+                        <div class="cliffhanger">
+                            But the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes
+                                necessary, and with it comes the realization that the solution's form is not global — it
+                                depends on which path we take through the complex plane. </div>
 
             </section>
 
@@ -148,7 +147,8 @@
                     <p>Solve Laplace's equation in spherical coordinates with $u(1,\theta)=\cos\theta$.</p>
                     <p>Separation yields the angular ODE</p>
                     $$
-                    \frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda \Theta=0.
+                    \frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda
+                    \Theta=0.
                     $$
 
                     <p>Setting $x=\cos\theta$ produces the Legendre equation</p>
@@ -187,7 +187,8 @@
                 <div class="definition">
                     <p><strong>Regular Singular Point:</strong> For $y''+P(x)y'+Q(x)y=0$, a point $x_{0}$ is
                         <strong>regular singular</strong> if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic at
-                        $x_{0}$.</p>
+                        $x_{0}$.
+                    </p>
                 </div>
 
                 <p>The Frobenius method proposes a solution of the form</p>
@@ -245,9 +246,9 @@
                     $$
 
                     <p>valid for $\vert \arg x \vert <\pi /3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$
-                        introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This
-                        explicitly manifests the Stokes phenomenon: the asymptotic form of the solution is not global
-                        but depends on the sector of the complex plane.</p>
+                            introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$.
+                            This explicitly manifests the Stokes phenomenon: the asymptotic form of the solution is not
+                            global but depends on the sector of the complex plane.</p>
                 </div>
 
                 <!-- CRISIS WIDGET -->
@@ -255,6 +256,12 @@
                     <div class="module-header">
                         <h3>Interactive: Watch Analyticity Die — Airy Function Stokes Phenomenon</h3>
                         <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Radius $r$</label>
+                                <input type="range" class="widget-slider" data-param="r" min="2" max="10" step="0.5"
+                                    value="5">
+                                <span class="widget-value" data-param="r">5.0</span>
+                            </div>
                             <div class="widget-control">
                                 <label>Argument $\theta$ (radians)</label>
                                 <input type="range" class="widget-slider" data-param="theta" min="0" max="6.28"
@@ -270,53 +277,172 @@
 from scipy.special import airy
 
 # Parameters from widgets (injected automatically)
+r_val = 5.0
 theta_val = 0.0
 
-# Create complex argument
-r = 5.0  # Fixed radius
-z = r * np.exp(1j * theta_val)
+# Stokes lines for Airy equation: arg(z) = ±π/3, ±2π/3 (mod 2π)
+# These are where the asymptotic expansion changes discontinuously
+stokes_angles = [np.pi/3, 2*np.pi/3, 4*np.pi/3, 5*np.pi/3]
 
-# Compute Airy function
-Ai, Aip, Bi, Bip = airy(z)
+# Create full circle in complex plane to see behavior
+theta_range = np.linspace(0, 2*np.pi, 200)
+z_range = r_val * np.exp(1j * theta_range)
 
-# Create visualization in complex plane
-theta_range = np.linspace(0, 2*np.pi, 100)
-z_range = r * np.exp(1j * theta_range)
-Ai_range = np.array([airy(z)[0] for z in z_range])
+# Compute Airy functions along the circle
+# airy(z) returns (Ai, Ai', Bi, Bi')
+Ai_values = np.array([airy(z)[0] for z in z_range])
+Bi_values = np.array([airy(z)[2] for z in z_range])
 
-# Highlight Stokes lines at ±π/3
-stokes_angles = [np.pi/3, 5*np.pi/3]
+# Current point
+z_current = r_val * np.exp(1j * theta_val)
+Ai_current, Aip_current, Bi_current, Bip_current = airy(z_current)
 
-traces = [
-    {
-        'x': np.real(z_range).tolist(),
-        'y': np.imag(z_range).tolist(),
+# Determine which Stokes sector we're in (6 sectors total)
+def get_sector(theta):
+    """Determine which Stokes sector (0-5) based on angle"""
+    theta = theta % (2*np.pi)
+    if 0 <= theta < np.pi/3:
+        return 0
+    elif np.pi/3 <= theta < 2*np.pi/3:
+        return 1
+    elif 2*np.pi/3 <= theta < np.pi:
+        return 2
+    elif np.pi <= theta < 4*np.pi/3:
+        return 3
+    elif 4*np.pi/3 <= theta < 5*np.pi/3:
+        return 4
+    else:
+        return 5
+
+current_sector = get_sector(theta_val)
+
+# Create visualization with two subplots
+traces = []
+
+# LEFT PLOT: Complex plane with Stokes lines
+# 1. Circle path in complex plane
+traces.append({
+    'x': np.real(z_range).tolist(),
+    'y': np.imag(z_range).tolist(),
+    'mode': 'lines',
+    'name': 'Path: |z| = constant',
+    'line': {'color': '#58a6ff', 'width': 2},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# 2. Stokes lines (radial lines from origin)
+for i, angle in enumerate(stokes_angles):
+    x_line = [0, r_val * 1.2 * np.cos(angle)]
+    y_line = [0, r_val * 1.2 * np.sin(angle)]
+    traces.append({
+        'x': x_line,
+        'y': y_line,
         'mode': 'lines',
-        'name': 'Complex argument path',
-        'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dot'}
-    },
-    {
-        'x': [r*np.cos(t) for t in stokes_angles],
-        'y': [r*np.sin(t) for t in stokes_angles],
-        'mode': 'markers',
-        'name': 'Stokes lines',
-        'marker': {'color': '#f44336', 'size': 10, 'symbol': 'x'}
-    },
-    {
-        'x': [np.real(z)],
-        'y': [np.imag(z)],
-        'mode': 'markers',
-        'name': f'Current point (θ = {theta_val:.2f})',
-        'marker': {'color': '#4caf50', 'size': 12}
-    }
-]
+        'name': 'Stokes lines' if i == 0 else '',
+        'line': {'color': '#f44336', 'width': 2, 'dash': 'dash'},
+        'showlegend': i == 0,
+        'xaxis': 'x',
+        'yaxis': 'y'
+    })
+
+# 3. Current point
+traces.append({
+    'x': [np.real(z_current)],
+    'y': [np.imag(z_current)],
+    'mode': 'markers',
+    'name': f'Current: θ = {theta_val:.2f}',
+    'marker': {'color': '#4caf50', 'size': 12},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# RIGHT PLOT: Magnitude of Ai and Bi along the circle
+# This shows how the functions behave as we cross Stokes lines
+traces.append({
+    'x': theta_range.tolist(),
+    'y': np.abs(Ai_values).tolist(),
+    'mode': 'lines',
+    'name': '|Ai(z)|',
+    'line': {'color': '#4caf50', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+traces.append({
+    'x': theta_range.tolist(),
+    'y': np.abs(Bi_values).tolist(),
+    'mode': 'lines',
+    'name': '|Bi(z)|',
+    'line': {'color': '#ff6b6b', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Add vertical lines for Stokes angles on right plot
+for angle in stokes_angles:
+    traces.append({
+        'x': [angle, angle],
+        'y': [1e-10, 1e10],  # Full height
+        'mode': 'lines',
+        'name': '',
+        'line': {'color': '#f44336', 'width': 1, 'dash': 'dash'},
+        'showlegend': False,
+        'xaxis': 'x2',
+        'yaxis': 'y2'
+    })
+
+# Mark current angle
+traces.append({
+    'x': [theta_val, theta_val],
+    'y': [1e-10, 1e10],
+    'mode': 'lines',
+    'name': f'θ = {theta_val:.2f}',
+    'line': {'color': '#4caf50', 'width': 2, 'dash': 'dot'},
+    'showlegend': False,
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
 
 layout = {
-    'title': f'Airy Function: Stokes Phenomenon at θ = {theta_val:.2f}',
-    'xaxis': {'title': 'Re(z)', 'range': [-6, 6]},
-    'yaxis': {'title': 'Im(z)', 'range': [-6, 6], 'scaleanchor': 'x', 'scaleratio': 1},
-    'height': 500,
-    'legend': {'y': 0.99, 'yanchor': 'top'}
+    'title': f'Airy Function Stokes Phenomenon: r = {r_val:.1f}, θ = {theta_val:.2f} rad (Sector {current_sector})',
+    'height': 550,
+    'showlegend': True,
+    'xaxis': {
+        'title': 'Re(z)',
+        'domain': [0, 0.48],
+        'range': [-r_val*1.3, r_val*1.3]
+    },
+    'yaxis': {
+        'title': 'Im(z)',
+        'domain': [0, 1],
+        'range': [-r_val*1.3, r_val*1.3],
+        'scaleanchor': 'x',
+        'scaleratio': 1
+    },
+    'xaxis2': {
+        'title': 'θ (radians)',
+        'domain': [0.52, 1],
+        'range': [0, 2*np.pi]
+    },
+    'yaxis2': {
+        'title': 'Magnitude',
+        'domain': [0, 1],
+        'type': 'log',
+        'range': [np.log10(max(1e-6, np.abs(Ai_values).min())), 
+                  np.log10(max(1e-6, np.abs(Ai_values).max()) * 1.5)]
+    },
+    'annotations': [
+        {
+            'text': f'Sector {current_sector}: Asymptotic form changes at Stokes lines',
+            'x': 0.5,
+            'y': 1.02,
+            'xref': 'paper',
+            'yref': 'paper',
+            'showarrow': False,
+            'font': {'size': 12, 'color': '#8b949e'}
+        }
+    ]
 }
 
 create_plot(traces, layout)</code></pre>
@@ -381,12 +507,14 @@ create_plot(traces, layout)</code></pre>
                         $\lambda_{n}$ are zeros of $J_{0}$.</p>
                     <p>Writing $-(x y')'=\lambda x y$ yields orthogonality</p>
                     $$
-                    \int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
+                    \int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n}
+                    x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
                     $$
 
                     <p>and Parseval's identity</p>
                     $$
-                    \int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\left\vert \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \right\vert^{2}.
+                    \int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\left\vert
+                    \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \right\vert^{2}.
                     $$
 
                     <p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.</p>
@@ -489,12 +617,12 @@ create_plot(traces, layout)</code></pre>
                     <details>
                         <summary>Solution</summary>
                         <p>The Airy equation has an irregular singular point at infinity. In the sector $\vert \arg x
-                            \vert < \pi/3$, the dominant solution is $\operatorname{Ai}(x)$. Crossing the Stokes line
-                            at $\arg x = \pi/3$ introduces the subdominant solution $\operatorname{Bi}(x)$ with
-                            multiplier $i$. The Stokes multipliers are determined by the requirement that the solution
-                            be single-valued on the Riemann surface. This connects local asymptotic behavior to global
-                            topological structure, demonstrating that the Stokes phenomenon is not a defect but a
-                            feature that encodes essential geometric information.</p>
+                            \vert < \pi/3$, the dominant solution is $\operatorname{Ai}(x)$. Crossing the Stokes line at
+                                $\arg x=\pi/3$ introduces the subdominant solution $\operatorname{Bi}(x)$ with
+                                multiplier $i$. The Stokes multipliers are determined by the requirement that the
+                                solution be single-valued on the Riemann surface. This connects local asymptotic
+                                behavior to global topological structure, demonstrating that the Stokes phenomenon is
+                                not a defect but a feature that encodes essential geometric information.</p>
                     </details>
                 </details>
 
@@ -556,15 +684,15 @@ create_plot(traces, layout)</code></pre>
     <!-- Python/Plotly Widget System - Load after content -->
     <script>
         // Lazy load Plotly.js after page is fully loaded
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var plotlyScript = document.createElement('script');
             plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
             plotlyScript.charset = 'utf-8';
             plotlyScript.async = true;
-            plotlyScript.onload = function() {
+            plotlyScript.onload = function () {
                 console.log('Plotly.js loaded successfully');
             };
-            plotlyScript.onerror = function() {
+            plotlyScript.onerror = function () {
                 console.error('Failed to load Plotly.js');
             };
             document.body.appendChild(plotlyScript);
