@@ -303,7 +303,7 @@ class WidgetEngine {
         // IMPORTANT: Only treat M/N as text if the value is actually a string (from text input)
         // If M/N comes from a slider (numeric), treat it as numeric
         const isTextInput = key.endsWith('_expr') || key.endsWith('_text') ||
-                           (typeof value === 'string' && (key === 'M' || key === 'N' || 
+                           (typeof value === 'string' && (key === 'M' || key === 'N' ||
                             value.includes('*') || value.includes('+') || value.includes('-')));
 
         if (isTextInput) {
@@ -333,13 +333,19 @@ class WidgetEngine {
 
       // Remove parameter assignments with _expr or _val suffixes (these are the injected parameters)
       Object.keys(params).forEach(param => {
-        // For text inputs (M, N), remove M_expr= and N_expr= assignments
-        if (param === 'M' || param === 'N') {
+        const paramValue = params[param];
+        // Check if this is a text input (string) or numeric (number)
+        const isTextParam = typeof paramValue === 'string' && (param === 'M' || param === 'N');
+        
+        if (isTextParam) {
+          // For text inputs (M, N as strings), remove M_expr= and N_expr= assignments
           code = code.replace(new RegExp(`^${param}_expr\\s*=.*?\\n`, 'gm'), '');
         } else {
-          // For other params, remove with _val or _expr suffix
+          // For numeric inputs (including N from slider), remove with _val or _expr suffix
           const baseName = paramMapping[param] || param;
-          code = code.replace(new RegExp(`^${baseName}(_val|_expr)\\s*=.*?\\n`, 'gm'), '');
+          // Remove both _val and _expr variants to be safe
+          code = code.replace(new RegExp(`^${baseName}_val\\s*=.*?\\n`, 'gm'), '');
+          code = code.replace(new RegExp(`^${baseName}_expr\\s*=.*?\\n`, 'gm'), '');
         }
       });
 
