@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Section 1.2: Special Functions of Mathematical Physics</title>
     <meta name="description"
-        content="When elementary functions fail, we define new ones. The hypergeometric master equation unifies Bessel, Legendre, and Hermite — until Stokes phenomenon shatters global analyticity.">
+        content="When elementary functions fail, we define new ones. The hypergeometric master equation unifies all classical special functions — until Stokes phenomenon shatters global analyticity.">
 
     <!-- KaTeX – canonical loading -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/diffequations/styles.css">
     <script src="/diffequations/navigation-data.js"></script>
     <script src="/diffequations/navigation.js"></script>
-    <script src="/diffequations/manifold-background.js" defer></script> <!-- ACTIVE EVERYWHERE -->
+    <!-- Manifold background only on main index -->
 </head>
 
 <body>
@@ -27,41 +27,39 @@
         <header class="hook">
             <h1>Section 1.2: Special Functions of Mathematical Physics</h1>
             <p class="hook-text">
-                The explicit solution is the dream of classical physics — but it collapses the moment the system refuses
-                to be linear.
+                When elementary functions fail, we define new ones via differential equations. The hypergeometric master
+                equation unifies the entire zoo.
             </p>
             <p class="hook-subtitle">
-                What survives when every coordinate change fails?
+                But the solution's analytic form jumps discontinuously across Stokes lines. Global analyticity is dead.
             </p>
         </header>
 
         <!-- 2. DESCRIPTION -->
         <p class="description">
-            Hypergeometric master equation, confluent limits, Frobenius method — where the "zoo" of special functions
-            reveals itself as a single unified family, until Stokes phenomenon shatters global analyticity.
+            Hypergeometric master equation, confluent limits, Frobenius method, and the Stokes phenomenon — where
+            classical special functions are born and global analyticity dies.
         </p>
 
         <article>
 
-            <!-- 3. NARRATIVE INTRODUCTION (3 paragraphs) -->
+            <!-- 3. NARRATIVE INTRODUCTION -->
             <section class="narrative-intro">
-                <p>When elementary functions fail, we define new ones via differential equations. This is not a retreat
-                    but an expansion: the universe of solutions is far richer than $\sin$, $\cos$, and $e^x$. The
-                    <strong>Hypergeometric Master Equation</strong> stands as the Rosetta Stone, unifying what appears to
-                    be a chaotic "zoo" of Bessel, Legendre, Hermite, and Whittaker functions into a single coherent
-                    family. All classical special functions emerge as confluent limits, dictated by the geometric
-                    placement of singularities on the Riemann sphere.</p>
-                <p>We introduce the <strong>Frobenius Method</strong> to systematically extract power-series solutions near
-                    regular singular points. This method transforms the problem of solving differential equations into the
-                    algebraic problem of finding indicial roots and recurrence relations. For a moment, everything seems
-                    under control: every singularity is classified, every solution is a convergent series, every function
-                    is globally analytic.</p>
-                <p>Then comes the <strong>Stokes Phenomenon</strong>: the devastating realization that asymptotic
-                    expansions are not global. The analytic form of a solution jumps discontinuously across specific
-                    rays in the complex plane. What appears as a single function is actually a multi-valued object
-                    encoding topological information about the Riemann surface structure. The dream of global explicit
-                    solutions dies here — but in its place, we discover something far more profound: the geometric
-                    structure of the solution space itself.</p>
+                <p>After exhausting every trick for explicit solutions, we face a deeper truth: most differential
+                    equations cannot be solved in terms of elementary functions. But this is not a failure — it is an
+                    invitation. We define new functions as solutions to differential equations, and these special
+                    functions become the vocabulary of mathematical physics.</p>
+                <p>The hypergeometric equation is the master key. With three regular singular points on the Riemann
+                    sphere, it generates all classical special functions through confluent limits: Bessel functions
+                    emerge when one singularity moves to infinity, Legendre polynomials when parameters become integers,
+                    Hermite functions when two singularities merge. What appears as a chaotic zoo is actually a single
+                    family, unified by the geometry of singular point configurations.</p>
+                <p>But this unification comes at a cost. The Frobenius method extracts local behavior near regular
+                    singularities, but when singularities coalesce, we encounter irregular singularities and the Stokes
+                    phenomenon: the solution's analytic form jumps discontinuously across certain rays in the complex
+                    plane. The dream of a global, explicit formula dies here. What survives is the recognition that
+                    special functions encode topological information about the Riemann surface structure — information
+                    that cannot be captured by local series expansions alone.</p>
             </section>
 
             <!-- CORE CONTENT WITH SEMANTIC BLOCKS & INTERMEDIATE CLIFFHANGERS -->
@@ -69,26 +67,23 @@
             <section>
                 <h2>The Hypergeometric Master Equation</h2>
 
-                <p>The hypergeometric equation is the canonical second-order linear ODE with three regular singular
-                    points on the Riemann sphere:</p>
-                $$
-                x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0.
-                $$
-
                 <div class="definition">
-                    <p><strong>Gauss Hypergeometric Function:</strong> The solution to the hypergeometric equation is
-                        defined by the power series</p>
-                    $$
-                    {}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad
-                    (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)},
-                    $$
-                    <p>where $(a)_n$ is the Pochhammer symbol. The series converges for $\vert x \vert < 1$ and extends
-                        elsewhere by analytic continuation.</p>
+                    <p><strong>The Hypergeometric Equation:</strong> The canonical second-order linear ODE with three
+                        regular singular points at $0$, $1$, and $\infty$ on the Riemann sphere:</p>
+                    $$x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0.$$
+                    <p>The parameters $a$, $b$, and $c$ control the exponents at each singularity, fully encoding the
+                        local monodromy structure.</p>
                 </div>
 
-                <p>Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate
-                    Kummer's 24 solutions, highlighting the group structure of the solution space. This symmetry is not
-                    accidental — it reflects the underlying geometric structure of the Riemann sphere.</p>
+                <p>Its solutions are defined by power series, yielding the Gauss hypergeometric function</p>
+                $$
+                {}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad
+                (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.
+                $$
+
+                <p>The series converges for $\vert x \vert < 1$ and extends elsewhere by analytic continuation.
+                    Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate
+                    Kummer's 24 solutions, highlighting the group structure of the solution space.</p>
 
                 <div class="example">
                     <p><strong>Hypergeometric Series Solution</strong></p>
@@ -100,16 +95,19 @@
 
                     <p>so</p>
                     $$
-                    y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
+                    y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\frac{\ln(1-x)}{x},
                     $$
 
                     <p>which matches</p>
                     $${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$$
 
-                    <p>and demonstrates how power-series solutions encode hypergeometric behavior. This example reveals
-                        that hypergeometric functions generalize elementary functions like logarithms, but the
-                        convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes necessary,
-                        foreshadowing the Stokes phenomenon.</p>
+                    <p>and demonstrates how power-series solutions encode hypergeometric behavior.</p>
+                </div>
+
+                <div class="cliffhanger">
+                    But the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes
+                    necessary, and with it comes the realization that the solution's form is not global — it depends on
+                    which path we take through the complex plane.
                 </div>
 
             </section>
@@ -118,34 +116,31 @@
                 <h2>Confluent Limits and Classical Descendants</h2>
 
                 <p>Merging singularities (confluence) produces equations with fewer regular singular points but
-                    introduces irregular ones, creating the classical special functions. This geometric operation reveals
-                    that the diversity of special functions is not arbitrary — it reflects the structure of singular
-                    point configurations on the Riemann sphere.</p>
+                    introduces irregular ones, creating the classical special functions. This geometric transformation
+                    reveals that the diversity of special functions is not arbitrary — it reflects the structure of
+                    singular point configurations on the Riemann sphere.</p>
 
                 <div class="theorem">
-                    <p><strong>Confluence Principle:</strong> All classical special functions arise as confluent limits
-                        of the hypergeometric function ${}_2F_1$ by merging singular points. The Bessel, Legendre, and
-                        Kummer functions are not separate families but different limiting behaviors of a single unified
-                        structure.</p>
+                    <p><strong>Confluent Limit Construction:</strong> By letting parameters approach limits while
+                        scaling the independent variable appropriately, the hypergeometric equation degenerates into
+                        equations with fewer singularities, generating all classical special functions.</p>
                 </div>
 
                 <div class="example">
                     <p><strong>Bessel Functions as Confluent Limits</strong></p>
-                    <p>Derive $J_{0}$ as a limit of the hypergeometric function ${}_2F_{1}$.</p>
-                    <p>Start from the hypergeometric function ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$,
-                        $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives</p>
+                    <p>The Bessel equation</p>
+                    $$x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,$$
+
+                    <p>arises from the hypergeometric equation by letting $c\to \infty$ while scaling $x$
+                        appropriately. Starting from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and
+                        $z=-\frac{z^{2}}{c}$, taking $c\to\infty$ gives</p>
                     $$
-                    J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
+                    J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}\left(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}\right).
                     $$
 
                     <p>For $\nu=0$, the limit yields
                         $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}(\frac{z}{2})^{2k}$, recovering the
-                        Bessel series and illustrating confluence. The Bessel equation</p>
-                    $$
-                    x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,
-                    $$
-                    <p>arises from the hypergeometric equation by letting $c\to \infty$ while scaling $x$ appropriately.
-                    </p>
+                        Bessel series and illustrating how confluence generates new function families.</p>
                 </div>
 
                 <div class="example">
@@ -153,7 +148,7 @@
                     <p>Solve Laplace's equation in spherical coordinates with $u(1,\theta)=\cos\theta$.</p>
                     <p>Separation yields the angular ODE</p>
                     $$
-                    \frac{1}{\sin\theta}\frac{d}{d\theta}(\sin\theta\,\frac{d\Theta}{d\theta})+\lambda \Theta=0.
+                    \frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\,\frac{d\Theta}{d\theta}\right)+\lambda \Theta=0.
                     $$
 
                     <p>Setting $x=\cos\theta$ produces the Legendre equation</p>
@@ -162,30 +157,26 @@
                     $$
 
                     <p>Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$, where</p>
-                    $$
-                    P_{n}(x)={}_2F_{1}(-n,n+1;1;\frac{1-x}{2}),
-                    $$
-                    <p>central to spherical harmonics. The boundary condition forces $l=1$, so $u(r,\theta)=A r
-                        \cos\theta$, showing how special functions emerge from physical boundary-value problems.</p>
+                    $$P_{n}(x)={}_2F_{1}\left(-n,n+1;1;\frac{1-x}{2}\right),$$
+
+                    <p>showing how special functions emerge from physical boundary-value problems. The boundary
+                        condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$.</p>
                 </div>
 
                 <div class="example">
                     <p><strong>Kummer/Whittaker Functions</strong></p>
                     <p>Merging two singular points yields the confluent hypergeometric equation</p>
-                    $$
-                    xy''+(c-x)y'-ay=0,
-                    $$
+                    $$xy''+(c-x)y'-ay=0,$$
 
                     <p>with solution ${}_1F_{1}(a;c;x)$, encompassing Hermite polynomials, error functions, and
-                        exponential integrals. This demonstrates how confluence transforms the hypergeometric structure
-                        into new families while preserving the underlying geometric organization.</p>
+                        exponential integrals. This demonstrates how confluence reduces the number of regular
+                        singularities while introducing new mathematical structures.</p>
                 </div>
 
                 <div class="cliffhanger">
-                    Confluence reveals that the diversity of special functions is not arbitrary—it reflects the geometric
-                    structure of singular point configurations on the Riemann sphere. This unification is profound: what
-                    appears as a "zoo" is actually a single family with different limiting behavior. But when
-                    singularities coalesce, regular points become irregular, and our power-series methods break down.
+                    Confluence reveals that the diversity of special functions is not arbitrary — it reflects the
+                    geometric structure of singular point configurations. But when singularities coalesce completely,
+                    regular points become irregular, and the Frobenius method breaks down.
                 </div>
 
             </section>
@@ -196,25 +187,26 @@
                 <div class="definition">
                     <p><strong>Regular Singular Point:</strong> For $y''+P(x)y'+Q(x)y=0$, a point $x_{0}$ is
                         <strong>regular singular</strong> if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic at
-                        $x_0$. At such points, the Frobenius method proposes</p>
-                    $$
-                    y(x)=(x-x_{0})^{r}\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}, \qquad a_{0}\neq 0,
-                    $$
-                    <p>producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$ whose roots determine the local solution
-                        structure.</p>
+                        $x_{0}$.</p>
                 </div>
 
-                <p>The Riemann $P$-symbol lists all singularities and their exponents, fully encoding the local
-                    monodromy. This classification system transforms the problem of solving differential equations into
-                    the algebraic problem of understanding the structure of singular points.</p>
+                <p>The Frobenius method proposes a solution of the form</p>
+                $$
+                y(x)=(x-x_{0})^{r}\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}, \qquad a_{0}\neq 0,
+                $$
+
+                <p>producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$, where $p_{0}$ and $q_{0}$ are the leading
+                    coefficients of the analytic functions. The Riemann $P$-symbol lists all singularities and their
+                    exponents, fully encoding the local monodromy.</p>
 
                 <div class="example">
                     <p><strong>Frobenius Analysis at a Regular Singular Point</strong></p>
                     <p>Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.</p>
                     <p>This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation
-                        $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is
-                        $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}(\frac{x}{2})^{2n}$; when
-                        the roots differ by an integer, the second solution involves a logarithmic term
+                        $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is</p>
+                    $$y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}\left(\frac{x}{2}\right)^{2n};$$
+
+                    <p>when the roots differ by an integer, the second solution involves a logarithmic term
                         $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius
                         captures both series and logarithmic structures.</p>
                 </div>
@@ -222,8 +214,7 @@
                 <div class="cliffhanger">
                     The Frobenius method provides a systematic way to extract the local behavior near singularities.
                     However, when singularities coalesce or move to infinity, this method breaks down, necessitating
-                    asymptotic analysis. The transition from regular to irregular singularities marks the boundary
-                    between power-series methods and the deeper geometric structure of the solution space.
+                    asymptotic analysis and revealing the Stokes phenomenon.
                 </div>
 
             </section>
@@ -231,43 +222,111 @@
             <section>
                 <h2>Irregular Singularities and Stokes Phenomenon</h2>
 
-                <p>When singularities coalesce, regular points become irregular, and Frobenius series fail. Solutions
-                    near such points take asymptotic forms</p>
-                $$
-                y(z)\sim z^{\rho}e^{S(z)}\sum_{n=0}^{\infty}a_{n}z^{-n},
-                $$
+                <div class="definition">
+                    <p><strong>Stokes Phenomenon:</strong> When singularities coalesce, regular points become irregular,
+                        and Frobenius series fail. Solutions near such points take asymptotic forms</p>
+                    $$y(z)\sim z^{\rho}e^{S(z)}\sum_{n=0}^{\infty}a_{n}z^{-n},$$
 
-                <p>valid only within sectors bounded by Stokes lines, where the subdominant exponentials switch on or
-                    off. Crossing a Stokes line causes discontinuous jumps (Stokes phenomenon), encoding global analytic
-                    data beyond perturbation theory.</p>
-
-                <div class="theorem">
-                    <p><strong>Stokes Phenomenon:</strong> Asymptotic expansions are not global. The analytic form of a
-                        solution jumps discontinuously across specific rays (Stokes lines) in the complex plane. This
-                        discontinuity encodes topological information about the Riemann surface structure that cannot be
-                        captured by local series expansions alone.</p>
+                    <p>valid only within sectors bounded by Stokes lines, where the subdominant exponentials switch on
+                        or off. Crossing a Stokes line causes discontinuous jumps in the asymptotic expansion,
+                        encoding global analytic data beyond perturbation theory.</p>
                 </div>
+
+                <p>This phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The
+                    solution's analytic form jumps discontinuously across certain rays, encoding topological information
+                    about the Riemann surface structure that cannot be captured by local series expansions alone.</p>
 
                 <div class="example">
                     <p><strong>Airy Equation and Stokes Phenomenon</strong></p>
                     <p>Analyze $y''-xy=0$ (Airy equation) near $x\to +\infty$.</p>
                     <p>WKB analysis gives asymptotics</p>
                     $$
-                    \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
+                    \operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp\left(-\frac{2}{3}x^{3/2}\right),
                     $$
 
                     <p>valid for $\vert \arg x \vert <\pi /3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$
                         introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This
-                        explicitly manifests the Stokes phenomenon: the solution's analytic form jumps discontinuously
-                        across these rays, encoding global information about the Riemann surface structure.</p>
+                        explicitly manifests the Stokes phenomenon: the asymptotic form of the solution is not global
+                        but depends on the sector of the complex plane.</p>
+                </div>
+
+                <!-- CRISIS WIDGET -->
+                <div class="widget-module crisis-widget" id="airy-stokes-1-2">
+                    <div class="module-header">
+                        <h3>Interactive: Watch Analyticity Die — Airy Function Stokes Phenomenon</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Argument $\theta$ (radians)</label>
+                                <input type="range" class="widget-slider" data-param="theta" min="0" max="6.28"
+                                    step="0.1" value="0">
+                                <span class="widget-value" data-param="theta">0.00</span>
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Run</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python">import numpy as np
+from scipy.special import airy
+
+# Parameters from widgets (injected automatically)
+theta_val = 0.0
+
+# Create complex argument
+r = 5.0  # Fixed radius
+z = r * np.exp(1j * theta_val)
+
+# Compute Airy function
+Ai, Aip, Bi, Bip = airy(z)
+
+# Create visualization in complex plane
+theta_range = np.linspace(0, 2*np.pi, 100)
+z_range = r * np.exp(1j * theta_range)
+Ai_range = np.array([airy(z)[0] for z in z_range])
+
+# Highlight Stokes lines at ±π/3
+stokes_angles = [np.pi/3, 5*np.pi/3]
+
+traces = [
+    {
+        'x': np.real(z_range).tolist(),
+        'y': np.imag(z_range).tolist(),
+        'mode': 'lines',
+        'name': 'Complex argument path',
+        'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dot'}
+    },
+    {
+        'x': [r*np.cos(t) for t in stokes_angles],
+        'y': [r*np.sin(t) for t in stokes_angles],
+        'mode': 'markers',
+        'name': 'Stokes lines',
+        'marker': {'color': '#f44336', 'size': 10, 'symbol': 'x'}
+    },
+    {
+        'x': [np.real(z)],
+        'y': [np.imag(z)],
+        'mode': 'markers',
+        'name': f'Current point (θ = {theta_val:.2f})',
+        'marker': {'color': '#4caf50', 'size': 12}
+    }
+]
+
+layout = {
+    'title': f'Airy Function: Stokes Phenomenon at θ = {theta_val:.2f}',
+    'xaxis': {'title': 'Re(z)', 'range': [-6, 6]},
+    'yaxis': {'title': 'Im(z)', 'range': [-6, 6], 'scaleanchor': 'x', 'scaleratio': 1},
+    'height': 500,
+    'legend': {'y': 0.99, 'yanchor': 'top'}
+}
+
+create_plot(traces, layout)</code></pre>
+                    </div>
                 </div>
 
                 <div class="cliffhanger">
-                    The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The
-                    solution's analytic form jumps discontinuously across certain rays, encoding topological information
-                    about the Riemann surface structure that cannot be captured by local series expansions alone. This
-                    is where the dream of global explicit solutions finally dies — but in its place, we discover the
-                    geometric structure of the solution space itself.
+                    The Stokes phenomenon reveals that the dream of a global, explicit formula is fundamentally
+                    impossible. The solution's analytic form is not a function but a multi-valued structure on a
+                    Riemann surface, with discontinuities that encode deep topological information.
                 </div>
 
             </section>
@@ -275,17 +334,16 @@
             <section>
                 <h2>Orthogonality and Completeness</h2>
 
-                <p>Special functions serve as orthogonal bases for Sturm–Liouville problems written in self-adjoint form</p>
-                $$
-                -\frac{d}{dx}(p(x)\frac{dy}{dx})+q(x)y=\lambda w(x)y.
-                $$
-
                 <div class="theorem">
-                    <p><strong>Sturm–Liouville Completeness:</strong> On compact domains with regular coefficients,
-                        eigenfunctions $\phi_{n}$ satisfy</p>
+                    <p><strong>Sturm–Liouville Completeness:</strong> Special functions serve as orthogonal bases for
+                        Sturm–Liouville problems written in self-adjoint form</p>
+                    $$-\frac{d}{dx}\left(p(x)\frac{dy}{dx}\right)+q(x)y=\lambda w(x)y.$$
+
+                    <p>On compact domains with regular coefficients, eigenfunctions $\phi_{n}$ satisfy</p>
                     $$
                     \int_{a}^{b}\phi_{n}(x)\phi_{m}(x)w(x)\,dx=\delta_{nm},
                     $$
+
                     <p>and any $f\in L^{2}_{w}$ admits an expansion $f(x)\sim \sum_{n} c_{n}\phi_{n}(x)$ with spectral
                         coefficients $c_{n}=\int f \phi_{n}w$. This spectral completeness generalizes Fourier analysis
                         and foreshadows the Hilbert-space machinery of Chapter 2.</p>
@@ -299,9 +357,9 @@
                     P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},
                     $$
 
-                    <p>integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal
-                        integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates
-                        Sturm–Liouville completeness.</p>
+                    <p>integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the
+                        diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and
+                        demonstrates Sturm–Liouville completeness.</p>
                 </div>
 
                 <div class="example">
@@ -328,16 +386,78 @@
 
                     <p>and Parseval's identity</p>
                     $$
-                    \int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\vert
-                    \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \vert^{2}.
+                    \int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\left\vert \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \right\vert^{2}.
                     $$
 
                     <p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.</p>
                 </div>
 
-                <p>Orthogonality and completeness transform special functions from isolated solutions into complete bases.
-                    However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the
-                    functional-analytic framework of Chapter 2.</p>
+                <!-- VICTORY WIDGET -->
+                <div class="widget-module victory-widget" id="bessel-orthogonality-1-2">
+                    <div class="module-header">
+                        <h3>Interactive: Bessel Function Orthogonality</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Number of zeros $n$</label>
+                                <input type="range" class="widget-slider" data-param="n" min="1" max="10" step="1"
+                                    value="3">
+                                <span class="widget-value" data-param="n">3</span>
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Run</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python">import numpy as np
+from scipy.special import j0, j1, jn_zeros
+
+# Parameters from widgets (injected automatically)
+n_val = 3
+
+# Get first n zeros of J_0
+zeros = jn_zeros(0, n_val)
+
+# Create x array
+x = np.linspace(0, 1, 500)
+
+# Compute Bessel functions at zeros
+traces = []
+for i, lam in enumerate(zeros):
+    y = j0(lam * x)
+    traces.append({
+        'x': x.tolist(),
+        'y': y.tolist(),
+        'mode': 'lines',
+        'name': f'J₀(λ_{i+1} x), λ_{i+1} = {lam:.4f}',
+        'line': {'width': 2}
+    })
+
+# Add zero line
+traces.append({
+    'x': x.tolist(),
+    'y': np.zeros_like(x).tolist(),
+    'mode': 'lines',
+    'name': 'y = 0',
+    'line': {'color': '#666', 'width': 1, 'dash': 'dash'}
+})
+
+layout = {
+    'title': f'First {n_val} Orthogonal Bessel Functions J₀(λₙ x)',
+    'xaxis': {'title': 'x', 'range': [0, 1]},
+    'yaxis': {'title': 'J₀(λₙ x)', 'range': [-1.2, 1.2]},
+    'height': 500,
+    'legend': {'y': 0.99, 'yanchor': 'top'}
+}
+
+create_plot(traces, layout)</code></pre>
+                    </div>
+                </div>
+
+                <div class="cliffhanger">
+                    Orthogonality and completeness transform special functions from isolated solutions into complete
+                    bases. However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the
+                    functional-analytic framework of Chapter 2.
+                </div>
 
             </section>
 
@@ -347,84 +467,82 @@
 
                 <details>
                     <summary>Challenge 1 [★★☆] Kummer's 24 Solutions</summary>
-                    <p>Show that the hypergeometric equation $x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0$ admits exactly 24
-                        solutions related by transformations $x\mapsto 1-x$, $x\mapsto 1/x$, and parameter
-                        permutations. Classify these solutions by their behavior near the three singular points.</p>
+                    <p>Show that the hypergeometric equation ${}_2F_{1}(a,b;c;x)$ admits 24 distinct solutions through
+                        transformations that permute the three singular points. Derive at least 6 of these explicitly.
+                    </p>
                     <details>
                         <summary>Solution</summary>
-                        <p>The three singular points at $x=0, 1, \infty$ can be permuted by Möbius transformations,
-                            generating a group of 6 transformations. Each transformation can be combined with parameter
-                            swaps $(a,b) \leftrightarrow (b,a)$ and the identity transformation, giving $6 \times 4 = 24$
-                            solutions. These solutions form a complete set, and their connection formulas encode the
-                            monodromy structure of the hypergeometric function.</p>
+                        <p>The three singular points at $0$, $1$, and $\infty$ can be permuted in $3! = 6$ ways. For
+                            each permutation, we can apply the transformation $x \mapsto 1-x$, $x \mapsto 1/x$, or
+                            combinations, generating additional solutions. The full set of 24 solutions includes
+                            ${}_2F_{1}(a,b;c;x)$, ${}_2F_{1}(a,b;a+b+1-c;1-x)$, $x^{1-c}{}_2F_{1}(a-c+1,b-c+1;2-c;x)$,
+                            and their various transformations. Each solution is valid in a different region of the
+                            complex plane, connected by analytic continuation.</p>
                     </details>
                 </details>
 
                 <details>
-                    <summary>Challenge 2 [★★★] Confluent Limit Derivation</summary>
-                    <p>Rigorously derive the Bessel equation from the hypergeometric equation by taking the confluent
-                        limit $c\to\infty$ with appropriate scaling. Show that the indicial equation reduces to the
-                        Bessel indicial equation, and verify that the series solution converges to the Bessel function
-                        series.</p>
-                    <details>
-                        <summary>Solution</summary>
-                        <p>Starting from ${}_2F_1(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-z^2/c$, the
-                            limit $c\to\infty$ requires careful scaling. The Pochhammer symbols $(c)_n$ in the
-                            denominator grow as $c^n$, while the numerator terms scale appropriately. The resulting
-                            series matches the Bessel function definition, and the differential equation reduces to
-                            Bessel's equation through the confluence of singular points.</p>
-                    </details>
-                </details>
-
-                <details>
-                    <summary>Challenge 3 [★★★] Stokes Lines and Monodromy</summary>
+                    <summary>Challenge 2 [★★★] Stokes Multipliers</summary>
                     <p>For the Airy equation $y''-xy=0$, compute the Stokes multipliers that connect the asymptotic
-                        expansions across the Stokes lines at $\arg x = \pm \pi/3$. Show how these multipliers encode the
-                        monodromy of the solution around the irregular singular point at infinity.</p>
+                        expansions in different sectors. Show how these multipliers encode the global monodromy
+                        structure.</p>
                     <details>
                         <summary>Solution</summary>
-                        <p>The Airy equation has an irregular singular point at infinity. WKB analysis reveals two
-                            independent solutions with different exponential behaviors. Crossing the Stokes lines causes
-                            the subdominant solution to "switch on" with a specific multiplier. These multipliers,
-                            computed via Borel resummation or connection formulas, encode the global monodromy
-                            structure. The discontinuity across Stokes lines is not a failure of the method but a
-                            fundamental property of the solution's Riemann surface structure.</p>
+                        <p>The Airy equation has an irregular singular point at infinity. In the sector $\vert \arg x
+                            \vert < \pi/3$, the dominant solution is $\operatorname{Ai}(x)$. Crossing the Stokes line
+                            at $\arg x = \pi/3$ introduces the subdominant solution $\operatorname{Bi}(x)$ with
+                            multiplier $i$. The Stokes multipliers are determined by the requirement that the solution
+                            be single-valued on the Riemann surface. This connects local asymptotic behavior to global
+                            topological structure, demonstrating that the Stokes phenomenon is not a defect but a
+                            feature that encodes essential geometric information.</p>
+                    </details>
+                </details>
+
+                <details>
+                    <summary>Challenge 3 [★★★] Confluent Limit Derivation</summary>
+                    <p>Rigorously derive the Bessel equation from the hypergeometric equation by taking the confluent
+                        limit. Show that the convergence is uniform on compact sets and that the limit preserves the
+                        orthogonality structure.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Starting from ${}_2F_{1}(a,b;c;z)$ with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and
+                            $z=-\frac{x^{2}}{4c}$, we take $c \to \infty$. The Pochhammer symbols $(a)_n$ and $(b)_n$
+                            remain finite, while $(c)_n \sim c^n n!$ for large $c$. The series becomes
+                            $\sum_{n=0}^{\infty} \frac{(-1)^n}{n!\Gamma(\nu+n+1)} \left(\frac{x}{2}\right)^{2n+\nu}$,
+                            which is exactly the Bessel function $J_\nu(x)$ up to normalization. The convergence is
+                            uniform on compact sets by the Weierstrass M-test, and the orthogonality relations follow
+                            from the self-adjoint structure of the limiting equation.</p>
                     </details>
                 </details>
 
             </section>
 
-            <!-- FINAL CLIFFHANGER – the single most important paragraph on the page -->
+            <!-- FINAL CLIFFHANGER -->
             <div class="cliffhanger final">
-                <p>We have unified the "zoo" of special functions into a single hypergeometric family. We have
-                    classified all singularities and extracted power-series solutions. We have discovered orthogonality
-                    and completeness. But the Stokes phenomenon has revealed the fundamental truth: asymptotic expansions
-                    are not global, and the analytic form of a solution jumps discontinuously across certain rays. The
-                    dream of global explicit solutions is dead. What survives is the geometric structure of the solution
-                    space itself — a structure that will require the full machinery of functional analysis to
-                    understand. In the next section, we abandon explicit formulas entirely and embrace the infinite
-                    series: integral transforms that encode solutions not as functions, but as their spectral
-                    decompositions.</p>
+                <p>We have unified the entire zoo of classical special functions under the hypergeometric master
+                    equation. But this unification comes at a price: the solution's analytic form is not global. It
+                    jumps discontinuously across Stokes lines, encoding topological information that cannot be
+                    captured by local series. The explicit formula was never the goal — it was always the invariant, the
+                    cohomology class, the structure that survives when coordinates fail. In the next section we abandon
+                    explicit solutions entirely and embrace the functional-analytic framework where completeness and
+                    orthogonality become the fundamental tools.</p>
             </div>
 
             <!-- REFERENCES -->
             <section class="references">
                 <h2>Key References</h2>
                 <ul>
-                    <li>Olver, F. W. J. (1974). <em>Asymptotics and Special Functions</em>. Academic Press.</li>
-                    <li>Abramowitz, M. & Stegun, I. A. (1964). <em>Handbook of Mathematical Functions</em>. NBS.</li>
-                    <li>Whittaker, E. T. & Watson, G. N. (1927). <em>A Course of Modern Analysis</em>, 4th ed. Cambridge
-                        University Press.</li>
-                    <li>NIST Digital Library of Mathematical Functions. <em>Hypergeometric Functions</em>. <a
-                            href="https://dlmf.nist.gov/15">https://dlmf.nist.gov/15</a></li>
+                    <li>Abramowitz, M. & Stegun, I. A. (1964). <em>Handbook of Mathematical Functions</em>.</li>
+                    <li>Olver, F. W. J. (1974). <em>Asymptotics and Special Functions</em>.</li>
+                    <li>Whittaker, E. T. & Watson, G. N. (1927). <em>A Course of Modern Analysis</em>, 4th ed.</li>
+                    <li>NIST Digital Library of Mathematical Functions. <em>Hypergeometric Functions</em>.</li>
                 </ul>
             </section>
 
-            <!-- NAVIGATION – next only, no previous -->
+            <!-- NAVIGATION -->
             <nav class="navigation">
                 <hr>
                 <ul>
-                    <li><a href="/diffequations/chapter-01/01-1-exact-methods/">← Previous: Section 1.1</a></li>
                     <li>Next → <a href="/diffequations/chapter-01/01-3-integral-transforms/">Section 1.3: Integral
                             Transforms</a></li>
                     <li><a href="/diffequations/chapter-01/">Chapter 1 Contents</a></li>
