@@ -102,7 +102,7 @@
 
 # Laplace's method: I(M) = ∫ g(x) e^{M h(x)} dx
 # Example: h(x) = -x^2, g(x) = 1, on [-3, 3]
-# Maximum at x = 0, h''(0) = -2
+# Maximum at x = 0, h(0) = 0, h''(0) = -2
 # Asymptotic: I(M) ~ g(0) e^{M h(0)} √(2π/(M|h''(0)|)) = √(π/M)
 
 x = np.linspace(-3, 3, 1000)
@@ -113,16 +113,39 @@ g_x = np.ones_like(x)
 integrand = g_x * np.exp(M_val * h_x)
 
 # Numerical integration
-I_numerical = np.trapz(integrand, x)
+I_numerical = float(np.trapz(integrand, x))
 
 # Asymptotic formula (for large M)
-I_asymptotic = np.sqrt(np.pi / M_val)
+I_asymptotic = float(np.sqrt(np.pi / M_val))
 
 # Gaussian approximation near maximum
 # Near x = 0: h(x) ≈ h(0) + (1/2) h''(0) x^2 = -x^2
 # So integrand ≈ e^{-M x^2}
-x_gauss = np.linspace(-2/np.sqrt(M_val), 2/np.sqrt(M_val), 200)
+# Width of Gaussian: σ = 1/√(2M)
+sigma = 1.0 / np.sqrt(2 * M_val)
+x_gauss = np.linspace(-3*sigma, 3*sigma, 200)
 gauss_approx = np.exp(-M_val * x_gauss**2)
+
+# Contribution from different regions
+# Most contribution comes from |x| < 3σ
+x_contrib = np.linspace(-3*sigma, 3*sigma, 500)
+integrand_contrib = np.exp(-M_val * x_contrib**2)
+I_contrib = float(np.trapz(integrand_contrib, x_contrib))
+
+# RIGHT PLOT: Comparison of numerical vs asymptotic for range of M
+M_range = np.linspace(1, 50, 50)
+I_num_range = []
+I_asym_range = []
+I_error_range = []
+
+for M in M_range:
+    x_temp = np.linspace(-3, 3, 1000)
+    integrand_temp = np.exp(-M * x_temp**2)
+    I_num = float(np.trapz(integrand_temp, x_temp))
+    I_asym = float(np.sqrt(np.pi / M))
+    I_num_range.append(I_num)
+    I_asym_range.append(I_asym)
+    I_error_range.append(abs(I_num - I_asym) / I_num * 100)
 
 traces = []
 
@@ -131,7 +154,7 @@ traces.append({
     'x': x.tolist(),
     'y': integrand.tolist(),
     'mode': 'lines',
-    'name': f'Integrand: e^{{{M_val} h(x)}}',
+    'name': f'Integrand: e^{{{M_val:.0f} h(x)}}',
     'line': {'color': '#4caf50', 'width': 3},
     'xaxis': 'x',
     'yaxis': 'y'
@@ -141,7 +164,7 @@ traces.append({
     'x': x_gauss.tolist(),
     'y': gauss_approx.tolist(),
     'mode': 'lines',
-    'name': 'Gaussian approximation',
+    'name': f'Gaussian approx (σ = {sigma:.3f})',
     'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
     'xaxis': 'x',
     'yaxis': 'y'
@@ -149,31 +172,34 @@ traces.append({
 
 # Mark the critical point
 traces.append({
-    'x': [0],
+    'x': [0.0],
     'y': [1.0],
     'mode': 'markers',
     'name': 'Maximum at x = 0',
-    'marker': {'color': '#ff6b6b', 'size': 12, 'symbol': 'x'},
+    'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'x', 'line': {'width': 2}},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# Mark contribution region
+traces.append({
+    'x': [-3*sigma, -3*sigma, 3*sigma, 3*sigma, -3*sigma],
+    'y': [0, 1.2, 1.2, 0, 0],
+    'mode': 'lines',
+    'name': f'Contribution region (|x| < 3σ)',
+    'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dash'},
+    'fill': 'toself',
+    'fillcolor': 'rgba(88, 166, 255, 0.1)',
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
 # RIGHT PLOT: Comparison of numerical vs asymptotic
-M_range = np.linspace(1, 50, 100)
-I_num_range = []
-I_asym_range = []
-
-for M in M_range:
-    x_temp = np.linspace(-3, 3, 1000)
-    integrand_temp = np.exp(-M * x_temp**2)
-    I_num_range.append(np.trapz(integrand_temp, x_temp))
-    I_asym_range.append(np.sqrt(np.pi / M))
-
 traces.append({
     'x': M_range.tolist(),
     'y': I_num_range,
     'mode': 'lines',
-    'name': 'Numerical integration',
+    'name': 'Numerical: ∫ e^{-Mx²} dx',
     'line': {'color': '#4caf50', 'width': 3},
     'xaxis': 'x2',
     'yaxis': 'y2'
@@ -191,27 +217,38 @@ traces.append({
 
 # Mark current M value
 traces.append({
-    'x': [M_val],
+    'x': [float(M_val)],
     'y': [I_numerical],
     'mode': 'markers',
     'name': f'Current: M = {M_val:.0f}',
-    'marker': {'color': '#ff6b6b', 'size': 12},
+    'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'diamond'},
     'xaxis': 'x2',
     'yaxis': 'y2'
 })
 
+# Error plot (relative error)
+traces.append({
+    'x': M_range.tolist(),
+    'y': I_error_range,
+    'mode': 'lines',
+    'name': 'Relative error (%)',
+    'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x2',
+    'yaxis': 'y3'
+})
+
 layout = {
-    'title': f'Laplace\'s Method: I(M) = ∫ e^{{{M_val} h(x)}} dx | Numerical = {I_numerical:.4f}, Asymptotic = {I_asymptotic:.4f}',
-    'height': 550,
+    'title': f'Laplace\'s Method: I(M) = ∫ e^{{{M_val:.0f} h(x)}} dx | Numerical = {I_numerical:.6f}, Asymptotic = {I_asymptotic:.6f}',
+    'height': 600,
     'showlegend': True,
     'xaxis': {
         'title': 'x',
         'domain': [0, 0.48],
-        'range': [-3, 3]
+        'range': [-1.5, 1.5]
     },
     'yaxis': {
         'title': 'Integrand',
-        'domain': [0, 1],
+        'domain': [0, 0.48],
         'range': [-0.1, 1.2]
     },
     'xaxis2': {
@@ -222,13 +259,19 @@ layout = {
     },
     'yaxis2': {
         'title': 'I(M)',
-        'domain': [0, 1],
+        'domain': [0.52, 1],
         'type': 'log',
         'anchor': 'x2'
     },
+    'yaxis3': {
+        'title': 'Error (%)',
+        'domain': [0, 0.48],
+        'anchor': 'x2',
+        'side': 'right'
+    },
     'annotations': [
         {
-            'text': f'Asymptotic accuracy: {abs(I_numerical - I_asymptotic)/I_numerical * 100:.2f}% error',
+            'text': f'Asymptotic accuracy: {abs(I_numerical - I_asymptotic)/I_numerical * 100:.3f}% error | Contribution region: {I_contrib/I_numerical*100:.1f}% of total',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',
@@ -336,51 +379,60 @@ from scipy.special import airy
 # This is the Airy equation: y'' - (1/ε²) x y = 0
 # After rescaling: Y'' - X Y = 0 where X = x/ε^{2/3}
 
-# Rescaled coordinate
-X = np.linspace(-5, 2, 1000)
-x = epsilon_val**(2/3) * X
+# Compute exact Airy function solution
+x_exact = np.linspace(-2, 2, 1000)
+X_exact = x_exact / (epsilon_val**(2/3))
+Ai_exact, _, _, _ = airy(X_exact)
 
-# Exact Airy function solution
-Ai_X, Aip_X, Bi_X, Bip_X = airy(X)
-# Ai is the physically relevant solution (decays as X → +∞)
+# Normalize Airy function for better visualization
+Ai_max = np.max(np.abs(Ai_exact[x_exact > 0.5]))
+if Ai_max > 0:
+    Ai_exact = Ai_exact / Ai_max
 
 # WKB approximation (valid away from turning point)
 # For x > 0 (oscillatory): y ~ A Q^{-1/4} cos((1/ε) ∫√Q dx - π/4)
 # For x < 0 (exponential): y ~ B |Q|^{-1/4} exp(-(1/ε) ∫√|Q| dx)
 
-# WKB in oscillatory region (x > 0, but need to be careful near x = 0)
-x_osc = np.linspace(0.1, 2, 500)
+# WKB in oscillatory region (x > 0)
+# Start further from turning point for better accuracy
+x_osc = np.linspace(max(0.3, 2*epsilon_val**(2/3)), 2, 500)
 Q_osc = x_osc
 # Action: S = ∫_0^x √Q dx = (2/3) x^{3/2}
 S_osc = (2/3) * x_osc**(3/2)
+# WKB: y ~ Q^{-1/4} cos(S/ε - π/4)
 y_wkb_osc = (x_osc)**(-1/4) * np.cos(S_osc / epsilon_val - np.pi/4)
 
+# Normalize WKB oscillatory to match Airy amplitude
+if len(y_wkb_osc) > 0:
+    wkb_max = np.max(np.abs(y_wkb_osc))
+    if wkb_max > 0:
+        y_wkb_osc = y_wkb_osc / wkb_max * np.max(np.abs(Ai_exact[x_exact > 0.5]))
+
 # WKB in exponential region (x < 0)
-x_exp = np.linspace(-2, -0.1, 500)
-Q_exp = x_exp  # Negative
-abs_Q_exp = np.abs(Q_exp)
+x_exp = np.linspace(-2, -max(0.3, 2*epsilon_val**(2/3)), 500)
+abs_Q_exp = np.abs(x_exp)
 # Action: S = ∫_x^0 √|Q| dx = (2/3) |x|^{3/2}
 S_exp = (2/3) * abs_Q_exp**(3/2)
+# WKB: y ~ |Q|^{-1/4} exp(-S/ε)
 y_wkb_exp = abs_Q_exp**(-1/4) * np.exp(-S_exp / epsilon_val)
 
-# Normalize to match at a point (approximate)
-# Airy function Ai(X) ~ (1/(2√π)) X^{-1/4} exp(-(2/3)X^{3/2}) for X >> 1
-# So we normalize WKB to match this behavior
+# Normalize WKB exponential to match Airy
+if len(y_wkb_exp) > 0:
+    wkb_exp_max = np.max(np.abs(y_wkb_exp))
+    if wkb_exp_max > 0:
+        Ai_exp_max = np.max(np.abs(Ai_exact[x_exact < -0.5]))
+        if Ai_exp_max > 0:
+            y_wkb_exp = y_wkb_exp / wkb_exp_max * Ai_exp_max
 
-# For comparison, compute exact Airy on original x scale
-x_exact = np.linspace(-2, 2, 1000)
-X_exact = x_exact / (epsilon_val**(2/3))
-Ai_exact, _, _, _ = airy(X_exact)
-# Normalize to match WKB scale
-normalization = np.max(np.abs(Ai_exact)) / np.max(np.abs(y_wkb_osc)) if len(y_wkb_osc) > 0 else 1.0
-Ai_exact_normalized = Ai_exact * normalization
+# Compute Q(x) for visualization
+Q_x = x_exact
 
 traces = []
 
 # LEFT PLOT: Exact Airy vs WKB
 traces.append({
     'x': x_exact.tolist(),
-    'y': Ai_exact_normalized.tolist(),
+    'y': Ai_exact.tolist(),
     'mode': 'lines',
     'name': 'Exact: Ai(x/ε^{2/3})',
     'line': {'color': '#4caf50', 'width': 3},
@@ -394,7 +446,7 @@ if len(x_osc) > 0:
         'x': x_osc.tolist(),
         'y': y_wkb_osc.tolist(),
         'mode': 'lines',
-        'name': 'WKB (oscillatory)',
+        'name': 'WKB (oscillatory: x > 0)',
         'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
         'xaxis': 'x',
         'yaxis': 'y'
@@ -406,7 +458,7 @@ if len(x_exp) > 0:
         'x': x_exp.tolist(),
         'y': y_wkb_exp.tolist(),
         'mode': 'lines',
-        'name': 'WKB (exponential)',
+        'name': 'WKB (exponential: x < 0)',
         'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
         'xaxis': 'x',
         'yaxis': 'y'
@@ -414,42 +466,81 @@ if len(x_exp) > 0:
 
 # Mark turning point
 traces.append({
-    'x': [0],
-    'y': [0],
+    'x': [0.0],
+    'y': [0.0],
     'mode': 'markers',
     'name': 'Turning point: Q(0) = 0',
-    'marker': {'color': '#f44336', 'size': 12, 'symbol': 'x'},
+    'marker': {'color': '#f44336', 'size': 15, 'symbol': 'x', 'line': {'width': 2}},
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
-# RIGHT PLOT: Error (WKB - Exact)
-if len(x_osc) > 0 and len(x_exact) > 0:
-    # Interpolate to compare
-    x_compare = np.linspace(0.2, 1.5, 200)
+# Mark WKB validity region
+turning_region = 3 * epsilon_val**(2/3)
+traces.append({
+    'x': [-turning_region, -turning_region, turning_region, turning_region, -turning_region],
+    'y': [-1.5, 1.5, 1.5, -1.5, -1.5],
+    'mode': 'lines',
+    'name': f'WKB breakdown region (|x| < 3ε^{{2/3}})',
+    'line': {'color': '#f44336', 'width': 1, 'dash': 'dash'},
+    'fill': 'toself',
+    'fillcolor': 'rgba(244, 67, 54, 0.1)',
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# RIGHT PLOT: Q(x) and error analysis
+traces.append({
+    'x': x_exact.tolist(),
+    'y': Q_x.tolist(),
+    'mode': 'lines',
+    'name': 'Q(x) = x',
+    'line': {'color': '#58a6ff', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Zero line
+traces.append({
+    'x': [-2, 2],
+    'y': [0, 0],
+    'mode': 'lines',
+    'name': 'Q = 0 (turning point)',
+    'line': {'color': '#8b949e', 'width': 1, 'dash': 'dash'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Error analysis: compare WKB and exact in oscillatory region
+if len(x_osc) > 0:
+    x_compare = np.linspace(0.5, 1.5, 300)
     X_compare = x_compare / (epsilon_val**(2/3))
     Ai_compare, _, _, _ = airy(X_compare)
-    Ai_compare_norm = Ai_compare * normalization
+    Ai_compare_norm = Ai_compare / np.max(np.abs(Ai_compare[x_compare > 0.5])) if np.max(np.abs(Ai_compare[x_compare > 0.5])) > 0 else Ai_compare
     
     # WKB at these points
     S_compare = (2/3) * x_compare**(3/2)
     y_wkb_compare = (x_compare)**(-1/4) * np.cos(S_compare / epsilon_val - np.pi/4)
+    wkb_compare_max = np.max(np.abs(y_wkb_compare))
+    if wkb_compare_max > 0:
+        y_wkb_compare = y_wkb_compare / wkb_compare_max * np.max(np.abs(Ai_compare_norm))
     
     error = np.abs(y_wkb_compare - Ai_compare_norm)
+    max_error = float(np.max(error)) if len(error) > 0 else 0.0
     
     traces.append({
         'x': x_compare.tolist(),
         'y': error.tolist(),
         'mode': 'lines',
-        'name': '|WKB - Exact|',
+        'name': f'|WKB - Exact| (max = {max_error:.4f})',
         'line': {'color': '#ff6b6b', 'width': 3},
         'xaxis': 'x2',
-        'yaxis': 'y2'
+        'yaxis': 'y3'
     })
 
 layout = {
     'title': f'WKB Breakdown: ε² y\'\' + x y = 0, ε = {epsilon_val:.3f} | WKB fails at turning point x = 0',
-    'height': 550,
+    'height': 600,
     'showlegend': True,
     'xaxis': {
         'title': 'x',
@@ -458,23 +549,31 @@ layout = {
     },
     'yaxis': {
         'title': 'y(x)',
-        'domain': [0, 1],
+        'domain': [0.52, 1],
         'range': [-1.5, 1.5]
     },
     'xaxis2': {
         'title': 'x',
         'domain': [0.52, 1],
-        'range': [0.2, 1.5],
+        'range': [-2, 2],
         'anchor': 'y2'
     },
     'yaxis2': {
-        'title': '|Error|',
-        'domain': [0, 1],
+        'title': 'Q(x)',
+        'domain': [0.52, 1],
+        'range': [-2, 2],
         'anchor': 'x2'
+    },
+    'yaxis3': {
+        'title': '|Error|',
+        'domain': [0, 0.48],
+        'range': [0, 0.5],
+        'anchor': 'x2',
+        'side': 'right'
     },
     'annotations': [
         {
-            'text': f'WKB breaks down near x = 0. Must match to Airy function for connection formulas.',
+            'text': f'WKB breaks down in region |x| < 3ε^{{2/3}} ≈ {3*epsilon_val**(2/3):.3f}. Must match to Airy function.',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',

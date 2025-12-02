@@ -151,16 +151,18 @@ y_composite = y_outer + (y_inner - np.exp(-0.5)) * np.exp(-2 * (1 - x) / epsilon
 # Exact solution (for comparison)
 # Characteristic equation: ε r² + 2r + 1 = 0
 # r = (-2 ± √(4 - 4ε)) / (2ε) = (-1 ± √(1 - ε)) / ε
-# For small ε: r₁ ≈ -1/ε, r₂ ≈ -1
-# y_exact = C₁ e^{r₁ x} + C₂ e^{r₂ x}
-# Boundary conditions determine C₁, C₂
-r1 = (-1 - np.sqrt(1 - epsilon_val)) / epsilon_val
-r2 = (-1 + np.sqrt(1 - epsilon_val)) / epsilon_val
+r1 = float((-1 - np.sqrt(1 - epsilon_val)) / epsilon_val)
+r2 = float((-1 + np.sqrt(1 - epsilon_val)) / epsilon_val)
 # Solve: y(0) = C₁ + C₂ = 0, y(1) = C₁ e^{r₁} + C₂ e^{r₂} = 1
 # C₁ = -C₂, so C₂ (e^{r₂} - e^{r₁}) = 1
-C2 = 1 / (np.exp(r2) - np.exp(r1))
+denom = float(np.exp(r2) - np.exp(r1))
+C2 = 1.0 / denom if abs(denom) > 1e-10 else 0.0
 C1 = -C2
 y_exact = C1 * np.exp(r1 * x) + C2 * np.exp(r2 * x)
+
+# Boundary layer thickness
+delta = 3 * epsilon_val
+x_layer_start = 1 - delta
 
 traces = []
 
@@ -169,7 +171,7 @@ traces.append({
     'x': x.tolist(),
     'y': y_outer.tolist(),
     'mode': 'lines',
-    'name': 'Outer solution',
+    'name': 'Outer: y = e^{1/2 - x/2}',
     'line': {'color': '#8b949e', 'width': 2, 'dash': 'dash'},
     'xaxis': 'x',
     'yaxis': 'y'
@@ -179,7 +181,7 @@ traces.append({
     'x': x.tolist(),
     'y': y_inner.tolist(),
     'mode': 'lines',
-    'name': 'Inner solution',
+    'name': 'Inner (boundary layer)',
     'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
     'xaxis': 'x',
     'yaxis': 'y'
@@ -206,35 +208,62 @@ traces.append({
 })
 
 # Mark boundary layer region
-x_layer = np.linspace(1 - 3*epsilon_val, 1, 100)
 traces.append({
-    'x': [1 - 3*epsilon_val, 1 - 3*epsilon_val, 1, 1],
-    'y': [0, 1.2, 1.2, 0],
+    'x': [x_layer_start, x_layer_start, 1.0, 1.0, x_layer_start],
+    'y': [0.0, 1.2, 1.2, 0.0, 0.0],
     'mode': 'lines',
-    'name': f'Boundary layer (thickness ~ {epsilon_val:.3f})',
+    'name': f'Boundary layer (δ ~ {epsilon_val:.3f})',
     'line': {'color': '#f44336', 'width': 1, 'dash': 'dash'},
     'fill': 'toself',
-    'fillcolor': 'rgba(244, 67, 54, 0.1)',
+    'fillcolor': 'rgba(244, 67, 54, 0.15)',
     'xaxis': 'x',
     'yaxis': 'y',
     'showlegend': True
 })
 
-# RIGHT PLOT: Error (composite - exact)
+# Mark boundary
+traces.append({
+    'x': [1.0],
+    'y': [1.0],
+    'mode': 'markers',
+    'name': 'Boundary: y(1) = 1',
+    'marker': {'color': '#f44336', 'size': 12, 'symbol': 'square'},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# RIGHT PLOT: Error (composite - exact) and derivative
 error = np.abs(y_composite - y_exact)
+max_error = float(np.max(error))
+
+# Compute derivative to show rapid transition
+dy_dx = np.gradient(y_composite, x)
+dy_dx_exact = np.gradient(y_exact, x)
+dy_dx_error = np.abs(dy_dx - dy_dx_exact)
+
 traces.append({
     'x': x.tolist(),
     'y': error.tolist(),
     'mode': 'lines',
-    'name': '|Composite - Exact|',
+    'name': f'|Composite - Exact| (max = {max_error:.4f})',
     'line': {'color': '#ff6b6b', 'width': 3},
     'xaxis': 'x2',
     'yaxis': 'y2'
 })
 
+traces.append({
+    'x': x.tolist(),
+    'y': dy_dx_error.tolist(),
+    'mode': 'lines',
+    'name': '|dy/dx error|',
+    'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x2',
+    'yaxis': 'y3'
+})
+
 layout = {
-    'title': f'Boundary Layer: ε y\'\' + 2y\' + y = 0, ε = {epsilon_val:.3f} | Uniform convergence fails',
-    'height': 550,
+    'title': f'Boundary Layer: ε y\'\' + 2y\' + y = 0, ε = {epsilon_val:.3f} | δ(ε) ~ {epsilon_val:.3f}',
+    'height': 600,
     'showlegend': True,
     'xaxis': {
         'title': 'x',
@@ -243,7 +272,7 @@ layout = {
     },
     'yaxis': {
         'title': 'y(x)',
-        'domain': [0, 1],
+        'domain': [0.52, 1],
         'range': [-0.1, 1.2]
     },
     'xaxis2': {
@@ -254,12 +283,18 @@ layout = {
     },
     'yaxis2': {
         'title': '|Error|',
-        'domain': [0, 1],
+        'domain': [0.52, 1],
         'anchor': 'x2'
+    },
+    'yaxis3': {
+        'title': '|dy/dx error|',
+        'domain': [0, 0.48],
+        'anchor': 'x2',
+        'side': 'right'
     },
     'annotations': [
         {
-            'text': f'Boundary layer thickness: δ(ε) ~ {epsilon_val:.3f}. Solution transitions rapidly near x = 1.',
+            'text': f'Boundary layer: rapid transition in region [1-3ε, 1] = [{x_layer_start:.3f}, 1.0]. Uniform convergence fails.',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',

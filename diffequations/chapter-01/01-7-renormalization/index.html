@@ -81,6 +81,7 @@
                     <div class="plotly-container widget-output"></div>
                     <div class="code-block hidden">
                         <pre><code class="language-python">import numpy as np
+import math
 
 # Parameters from widgets (injected automatically)
 # x_val will be injected here by widget engine
@@ -89,76 +90,88 @@
 # Optimal truncation: N_opt ≈ 1/|x|
 # Error at optimal truncation: O(e^{-1/|x|})
 
-# Compute partial sums
+# Compute partial sums (use Python int for factorial to avoid numpy intc)
 N_max = 50
-n_range = np.arange(0, N_max + 1)
-a_n = np.array([(-1)**n * np.math.factorial(n) for n in n_range])
-x_powers = np.array([x_val**n for n in n_range])
-terms = a_n * x_powers
+n_range = [int(n) for n in range(0, N_max + 1)]
+a_n = [float((-1)**n * math.factorial(n)) for n in n_range]
+x_powers = [float(x_val**n) for n in n_range]
+terms = [a * xp for a, xp in zip(a_n, x_powers)]
 
 # Partial sums
-partial_sums = np.cumsum(terms)
+partial_sums = []
+cumsum = 0.0
+for term in terms:
+    cumsum += term
+    partial_sums.append(float(cumsum))
 
-# Optimal truncation index
-N_opt = int(1 / x_val) if x_val > 0 else 1
+# Optimal truncation index (convert to Python int)
+N_opt = int(round(1.0 / x_val)) if x_val > 0 else 1
 N_opt = min(N_opt, N_max)
 
 # Error estimate (exponential)
-error_estimate = np.exp(-1 / x_val) if x_val > 0 else 1.0
+error_estimate = float(np.exp(-1.0 / x_val)) if x_val > 0 else 1.0
 
 # Find minimum error (least term)
-abs_terms = np.abs(terms)
-min_idx = np.argmin(abs_terms[:N_max+1])
+abs_terms = [abs(t) for t in terms]
+min_idx = int(np.argmin(abs_terms))
 min_term = abs_terms[min_idx]
 
 # Borel sum (exact value for this series)
-# Borel transform: B(t) = Σ (-t)^n / (n!)^2
-# For small x, we approximate: S(x) ≈ e (for this specific series)
-# More generally, the Borel sum is computed via Laplace transform
-borel_sum_approx = np.exp(1)  # Simplified for demonstration
+# Borel transform: B(t) = Σ (-t)^n / (n!)^2 = I_0(2√t)
+# Borel sum: S(x) = (1/x) ∫_0^∞ I_0(2√t) e^{-t/x} dt = e (for this series)
+# For demonstration, we use the known result
+borel_sum_approx = float(np.exp(1.0))
+
+# Compute error at optimal truncation
+if N_opt < len(partial_sums):
+    error_at_opt = abs(partial_sums[N_opt] - borel_sum_approx)
+else:
+    error_at_opt = abs(partial_sums[-1] - borel_sum_approx)
 
 traces = []
 
 # LEFT PLOT: Partial sums and optimal truncation
 traces.append({
-    'x': n_range.tolist(),
-    'y': partial_sums.tolist(),
+    'x': n_range,
+    'y': partial_sums,
     'mode': 'lines+markers',
     'name': 'Partial sum S_N(x)',
     'line': {'color': '#4caf50', 'width': 2},
-    'marker': {'size': 4},
+    'marker': {'size': 5},
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
 # Mark optimal truncation
-traces.append({
-    'x': [N_opt],
-    'y': [partial_sums[N_opt] if N_opt < len(partial_sums) else partial_sums[-1]],
-    'mode': 'markers',
-    'name': f'Optimal: N = {N_opt}',
-    'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'x'},
-    'xaxis': 'x',
-    'yaxis': 'y'
-})
+if N_opt < len(partial_sums):
+    traces.append({
+        'x': [N_opt],
+        'y': [partial_sums[N_opt]],
+        'mode': 'markers',
+        'name': f'Optimal: N = {N_opt}',
+        'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'x', 'line': {'width': 2}},
+        'xaxis': 'x',
+        'yaxis': 'y'
+    })
 
 # Mark least term
-traces.append({
-    'x': [min_idx],
-    'y': [partial_sums[min_idx] if min_idx < len(partial_sums) else partial_sums[-1]],
-    'mode': 'markers',
-    'name': f'Least term: n = {min_idx}',
-    'marker': {'color': '#ffa500', 'size': 12, 'symbol': 'diamond'},
-    'xaxis': 'x',
-    'yaxis': 'y'
-})
+if min_idx < len(partial_sums):
+    traces.append({
+        'x': [min_idx],
+        'y': [partial_sums[min_idx]],
+        'mode': 'markers',
+        'name': f'Least term: n = {min_idx}',
+        'marker': {'color': '#ffa500', 'size': 12, 'symbol': 'diamond'},
+        'xaxis': 'x',
+        'yaxis': 'y'
+    })
 
 # Borel sum reference line
 traces.append({
     'x': [0, N_max],
     'y': [borel_sum_approx, borel_sum_approx],
     'mode': 'lines',
-    'name': 'Borel sum (reference)',
+    'name': f'Borel sum ≈ {borel_sum_approx:.4f}',
     'line': {'color': '#8b949e', 'width': 2, 'dash': 'dash'},
     'xaxis': 'x',
     'yaxis': 'y'
@@ -166,22 +179,21 @@ traces.append({
 
 # RIGHT PLOT: Terms and error
 traces.append({
-    'x': n_range.tolist(),
-    'y': abs_terms.tolist(),
+    'x': n_range,
+    'y': abs_terms,
     'mode': 'lines+markers',
     'name': '|a_n x^n|',
     'line': {'color': '#ff6b6b', 'width': 2},
     'marker': {'size': 4},
     'xaxis': 'x2',
-    'yaxis': 'y2',
-    'type': 'scatter'
+    'yaxis': 'y2'
 })
 
 # Error estimate line
-error_line = np.full_like(n_range, error_estimate)
+error_line = [error_estimate] * len(n_range)
 traces.append({
-    'x': n_range.tolist(),
-    'y': error_line.tolist(),
+    'x': n_range,
+    'y': error_line,
     'mode': 'lines',
     'name': f'Error estimate: O(e^{{-1/x}})',
     'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
@@ -189,8 +201,20 @@ traces.append({
     'yaxis': 'y2'
 })
 
+# Mark optimal point on terms plot
+if N_opt < len(abs_terms):
+    traces.append({
+        'x': [N_opt],
+        'y': [abs_terms[N_opt]],
+        'mode': 'markers',
+        'name': f'Optimal truncation',
+        'marker': {'color': '#4caf50', 'size': 12, 'symbol': 'circle'},
+        'xaxis': 'x2',
+        'yaxis': 'y2'
+    })
+
 layout = {
-    'title': f'Optimal Truncation: Σ (-1)^n n! x^n, x = {x_val:.3f} | N_opt ≈ {N_opt}, Error ~ {error_estimate:.2e}',
+    'title': f'Optimal Truncation: Σ (-1)^n n! x^n, x = {x_val:.3f} | N_opt = {N_opt}, Error ≈ {error_at_opt:.4f}',
     'height': 550,
     'showlegend': True,
     'xaxis': {
@@ -218,7 +242,7 @@ layout = {
     },
     'annotations': [
         {
-            'text': f'Optimal truncation at N = {N_opt} achieves exponential accuracy despite divergence',
+            'text': f'Optimal truncation at N = {N_opt} achieves error ~ {error_at_opt:.4f} despite divergence',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',
@@ -341,17 +365,17 @@ V_instanton = (x_instanton**2 - 1)**2
 dx_dtau = 2 * (1 / np.cosh(2 * tau))**2
 T_instanton = 0.5 * dx_dtau**2
 
-# Total energy (should be constant = 0 for instanton)
-E_instanton = T_instanton + V_instanton
-
-# Action (numerical integration)
-# S = ∫ [T + V] dτ = ∫ [½ (dx/dτ)² + V] dτ
+# Action density
 action_density = T_instanton + V_instanton
-S_numerical = np.trapz(action_density, tau)
-S_exact = 8 * np.sqrt(2) / 3
+S_numerical = float(np.trapz(action_density, tau))
+S_exact = float(8 * np.sqrt(2) / 3)
 
 # Level splitting
-Delta_E = np.exp(-S_exact / epsilon_val)
+Delta_E = float(np.exp(-S_exact / epsilon_val))
+
+# Potential V(x) for visualization
+x_pot = np.linspace(-2, 2, 500)
+V_pot = (x_pot**2 - 1)**2
 
 # Perturbative series (first few terms, all vanish for flat function)
 # For f(x) = e^{-1/x²}, all Taylor coefficients at x=0 are zero
@@ -360,7 +384,7 @@ x_pert = np.linspace(0.1, 2, 200)
 f_flat = np.exp(-1 / x_pert**2)
 
 # Compare with power series (all terms zero)
-f_power_series = np.zeros_like(x_pert)
+f_power_series = [0.0] * len(x_pert)
 
 traces = []
 
@@ -379,47 +403,90 @@ traces.append({
     'x': tau.tolist(),
     'y': V_instanton.tolist(),
     'mode': 'lines',
-    'name': 'Potential V(x(τ))',
+    'name': 'V(x(τ)) along instanton',
     'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+traces.append({
+    'x': tau.tolist(),
+    'y': action_density.tolist(),
+    'mode': 'lines',
+    'name': 'Action density',
+    'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dash'},
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
 # Mark minima
 traces.append({
-    'x': [-5, 5],
-    'y': [-1, 1],
+    'x': [-5.0, 5.0],
+    'y': [-1.0, 1.0],
     'mode': 'markers',
     'name': 'Minima: x = ±1',
-    'marker': {'color': '#8b949e', 'size': 10, 'symbol': 'square'},
+    'marker': {'color': '#8b949e', 'size': 12, 'symbol': 'square'},
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
-# RIGHT PLOT: Flat function vs power series
+# RIGHT PLOT: Potential and flat function
 traces.append({
-    'x': x_pert.tolist(),
+    'x': x_pot.tolist(),
+    'y': V_pot.tolist(),
+    'mode': 'lines',
+    'name': 'V(x) = (x² - 1)²',
+    'line': {'color': '#58a6ff', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Mark instanton path on potential
+traces.append({
+    'x': x_instanton.tolist(),
+    'y': V_instanton.tolist(),
+    'mode': 'lines',
+    'name': 'Instanton path',
+    'line': {'color': '#4caf50', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Mark minima on potential
+traces.append({
+    'x': [-1.0, 1.0],
+    'y': [0.0, 0.0],
+    'mode': 'markers',
+    'name': 'Minima',
+    'marker': {'color': '#8b949e', 'size': 10, 'symbol': 'square'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Flat function plot (separate subplot)
+traces.append({
+    'x': x_pert,
     'y': f_flat.tolist(),
     'mode': 'lines',
     'name': 'f(x) = e^{-1/x²} (non-perturbative)',
     'line': {'color': '#4caf50', 'width': 3},
-    'xaxis': 'x2',
-    'yaxis': 'y2'
+    'xaxis': 'x3',
+    'yaxis': 'y3'
 })
 
 traces.append({
-    'x': x_pert.tolist(),
-    'y': f_power_series.tolist(),
+    'x': x_pert,
+    'y': f_power_series,
     'mode': 'lines',
     'name': 'Power series (all terms = 0)',
     'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
-    'xaxis': 'x2',
-    'yaxis': 'y2'
+    'xaxis': 'x3',
+    'yaxis': 'y3'
 })
 
 layout = {
     'title': f'Instanton: S = {S_exact:.4f}, ΔE ~ e^{{-S/ε}} = {Delta_E:.2e} for ε = {epsilon_val:.3f}',
-    'height': 550,
+    'height': 600,
     'showlegend': True,
     'xaxis': {
         'title': 'τ',
@@ -427,25 +494,37 @@ layout = {
         'range': [-5, 5]
     },
     'yaxis': {
-        'title': 'x(τ), V(x(τ))',
-        'domain': [0, 1],
+        'title': 'x(τ), V(x(τ)), Action density',
+        'domain': [0.52, 1],
         'range': [-1.5, 1.5]
     },
     'xaxis2': {
         'title': 'x',
         'domain': [0.52, 1],
-        'range': [0.1, 2],
+        'range': [-2, 2],
         'anchor': 'y2'
     },
     'yaxis2': {
-        'title': 'f(x)',
-        'domain': [0, 1],
-        'type': 'log',
+        'title': 'V(x)',
+        'domain': [0.52, 1],
+        'range': [-0.2, 4],
         'anchor': 'x2'
+    },
+    'xaxis3': {
+        'title': 'x',
+        'domain': [0.52, 1],
+        'range': [0.1, 2],
+        'anchor': 'y3'
+    },
+    'yaxis3': {
+        'title': 'f(x)',
+        'domain': [0, 0.48],
+        'type': 'log',
+        'anchor': 'x3'
     },
     'annotations': [
         {
-            'text': f'Non-perturbative effect: ΔE ~ {Delta_E:.2e} invisible to power series',
+            'text': f'Instanton connects x = -1 → +1. Action S = {S_exact:.4f}, Level splitting ΔE ~ {Delta_E:.2e}',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',
