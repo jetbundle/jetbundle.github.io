@@ -300,9 +300,11 @@ class WidgetEngine {
       const paramLines = Object.entries(params).map(([key, value]) => {
         // Check if this is a text input (ends with _expr, _text, or is M/N for exact solver)
         // Text inputs should be treated as strings
+        // IMPORTANT: Only treat M/N as text if the value is actually a string (from text input)
+        // If M/N comes from a slider (numeric), treat it as numeric
         const isTextInput = key.endsWith('_expr') || key.endsWith('_text') ||
-                           key === 'M' || key === 'N' ||
-                           (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
+                           (typeof value === 'string' && (key === 'M' || key === 'N' || 
+                            value.includes('*') || value.includes('+') || value.includes('-')));
 
         if (isTextInput) {
           // For text inputs, use the key name with _expr suffix

@@ -246,7 +246,7 @@
                         <pre><code class="language-python">import numpy as np
 
 # Parameters from widgets (injected automatically)
-N_val = 20
+N_val = 20  # This will be replaced by widget engine
 
 # Demonstrate Fourier series convergence issues with a discontinuous function
 # Use a step function: f(x) = 1 for x > 0, -1 for x < 0 on [-π, π]
@@ -570,7 +570,7 @@ for i, x_val in enumerate(x):
     mask_left = xi_test < x_val
     mask_right = xi_test > x_val
     mask_at = np.abs(xi_test - x_val) < 1e-10
-    
+
     # Left part: x < ξ, so G(x, ξ) = (1/2)(1 - x)(1 + ξ)
     if np.any(mask_left):
         xi_left = xi_test[mask_left]
@@ -580,7 +580,7 @@ for i, x_val in enumerate(x):
         u_left = np.trapz(integrand_left, xi_left)
     else:
         u_left = 0.0
-    
+
     # Right part: x > ξ, so G(x, ξ) = (1/2)(1 + x)(1 - ξ)
     if np.any(mask_right):
         xi_right = xi_test[mask_right]
@@ -590,7 +590,7 @@ for i, x_val in enumerate(x):
         u_right = np.trapz(integrand_right, xi_right)
     else:
         u_right = 0.0
-    
+
     # At x = ξ, G is continuous, so we can ignore the point or use either branch
     # The contribution is negligible (measure zero)
     u_response[i] = u_left + u_right
@@ -618,8 +618,8 @@ traces.append({
     'x': x.tolist(),
     'y': u_exact.tolist(),
     'mode': 'lines',
-    'name': 'Exact solution',
-    'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
+    'name': 'Exact solution: u(x) = (1/12)(1 - x⁴)',
+    'line': {'color': '#ffa500', 'width': 3, 'dash': 'dash'},
     'xaxis': 'x2',
     'yaxis': 'y2'
 })
