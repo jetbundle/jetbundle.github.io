@@ -57,18 +57,18 @@ This guide outlines the comprehensive plan to transform all 61 HTML pages from t
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exact Title of This Page</title>
   <meta name="description" content="One devastating sentence for SEO">
-  
+
   <!-- KaTeX – simplified, identical everywhere -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
   </script>
-  
+
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
   <script src="/diffequations/navigation.js"></script>
-  
+
   <!-- Only the main index keeps the animated background -->
   <!-- <script src="/diffequations/manifold-background.js" defer></script> -->
 </head>
@@ -180,9 +180,9 @@ Different page types have different required elements:
     </p>
     <p class="hook-subtitle">This is the story of how mathematics kills its own children to grow stronger.</p>
   </header>
-  
+
   <p class="description">J. Saucedo • 2025 • An ascent from explicit solutions to categorical resolution</p>
-  
+
   <article class="toc-article">
     <h2>The Seven Ascents</h2>
     <ol class="seven-ascents">
@@ -194,7 +194,7 @@ Different page types have different required elements:
       <li>Chapter 6 – Jet Bundles, Exterior Differential Systems & Intrinsic PDEs</li>
       <li>Chapter 7 – Microlocal Analysis, D-Modules & Categorical Resolution</li>
     </ol>
-    
+
     <h2>Complete Table of Contents</h2>
     <div class="toc-grid">
       <section class="toc-chapter">
@@ -208,7 +208,7 @@ Different page types have different required elements:
       </section>
       <!-- Repeat for Chapters 2–7 -->
     </div>
-    
+
     <h3>Epilogue</h3>
     <ul>
       <li><a href="/diffequations/epilogue/">The Eternal Structure</a></li>
@@ -250,22 +250,22 @@ Different page types have different required elements:
     </p>
     <p class="hook-subtitle">This chapter is their funeral.</p>
   </header>
-  
+
   <p class="description">The Rise and Fall of the Specific Solution</p>
-  
+
   <article>
     <section class="narrative-intro">
       <p>We begin with the most optimistic assumption in all of mathematics: that every differential equation has an explicit, closed-form solution we can write down with pen and paper.</p>
       <p>Over the next seven sections we will watch this dream shatter — beautifully, irreversibly, and with perfect logical necessity.</p>
       <p>Each method will be born, celebrated, pushed to its absolute limit, and then murdered by a single counterexample that forces us to the next paradigm.</p>
     </section>
-    
+
     <h2>Chapter Contents</h2>
     <ol class="chapter-contents">
       <li><a href="/diffequations/chapter-XX/XX-Y-section/">X.Y Section Title</a></li>
       <!-- ... all sections in chapter ... -->
     </ol>
-    
+
     <div class="cliffhanger final">
       <p>
         When this chapter ends, the explicit solution will be dead.
@@ -273,7 +273,7 @@ Different page types have different required elements:
         the eternal, coordinate-independent, cohomological structure that survives when formulas fail.
       </p>
     </div>
-    
+
     <section class="references">
       <h2>Key References for Chapter X</h2>
       <ul>
@@ -281,7 +281,7 @@ Different page types have different required elements:
         <!-- ... more references ... -->
       </ul>
     </section>
-    
+
     <nav class="navigation">
       <hr>
       <ul>
@@ -323,19 +323,19 @@ Different page types have different required elements:
     </p>
     <p class="hook-subtitle">The ladder has been kicked away — and we are still standing.</p>
   </header>
-  
+
   <p class="description">From explicit solutions to categorical invariants — the ascent is complete</p>
-  
+
   <article>
     <section class="narrative-intro">
       <p>Seven chapters ago we believed a differential equation was solved when we could write $y(x) = \ldots$.</p>
       <p>Today we know the true solution is often an integer (an index), a cohomology class, or the simple statement "this system is holonomic."</p>
       <p>The formula was never the destination. It was only the first rung of an infinite ladder.</p>
     </section>
-    
+
     <!-- Full epilogue text – keep existing content, wrap in <p> tags -->
     <!-- No extra headings needed, just flowing prose -->
-    
+
     <div class="cliffhanger final" style="font-size:1.3rem; padding:3rem;">
       <p>
         The differential equation was never about finding functions.<br>
@@ -343,7 +343,7 @@ Different page types have different required elements:
         that reality is algebraic geometry wearing the mask of calculus.
       </p>
     </div>
-    
+
     <section class="references">
       <h2>References for the Entire Journey</h2>
       <ul>
@@ -352,7 +352,7 @@ Different page types have different required elements:
         <!-- ... comprehensive references ... -->
       </ul>
     </section>
-    
+
     <nav class="navigation">
       <hr>
       <ul>

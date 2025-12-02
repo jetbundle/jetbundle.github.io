@@ -213,16 +213,16 @@ if simplify(M_y - N_x) == 0:
     h_prime = simplify(N - psi_xy)
     h = integrate(h_prime, y)
     psi = simplify(psi_x + h)
-    
+
     # Create level curves
     x_vals = np.linspace(-3, 3, 50)
     y_vals = np.linspace(-3, 3, 50)
     X, Y = np.meshgrid(x_vals, y_vals)
-    
+
     # Evaluate potential
     psi_func = sp.lambdify((x, y), psi, 'numpy')
     Z = psi_func(X, Y)
-    
+
     traces = [{
         'type': 'contour',
         'x': x_vals.tolist(),
@@ -231,7 +231,7 @@ if simplify(M_y - N_x) == 0:
         'colorscale': 'Viridis',
         'contours': {'showlines': True}
     }]
-    
+
     layout = {
         'title': f'Level curves of potential: ψ = {sp.latex(psi)} = C',
         'xaxis': {'title': 'x'},
