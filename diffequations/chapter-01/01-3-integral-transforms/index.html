@@ -556,27 +556,33 @@ traces.append({
 
 # RIGHT PLOT: Response to a test function
 # Show how u(x) = ∫ G(x, ξ) f(ξ) dξ works
-# Use a simple test function: f(x) = x^2
-xi_test = np.linspace(-1, 1, 100)
+# Use a simple test function: f(ξ) = ξ^2
+# This is the solution to -u'' = x^2 with u(±1) = 0
+xi_test = np.linspace(-1, 1, 500)  # More points for better accuracy
 f_test = xi_test**2
 
 # Compute response: u(x) = ∫_{-1}^{1} G(x, ξ) * ξ^2 dξ
-# This is the solution to -u'' = x^2 with u(±1) = 0
 u_response = np.zeros_like(x)
-dx_integral = 2.0 / len(xi_test)  # Integration step
 
 for i, x_val in enumerate(x):
     # For each x, integrate G(x, ξ) * f(ξ) over ξ
     integrand = np.zeros_like(xi_test)
     for j, xi_j in enumerate(xi_test):
+        # Green's function: G(x, ξ)
+        # For x < ξ: G(x, ξ) = (1/2) * (1 - x) * (1 + ξ)
+        # For x > ξ: G(x, ξ) = (1/2) * (1 + x) * (1 - ξ)
+        # At x = ξ: G(ξ, ξ) = (1/2) * (1 - ξ^2)
         if x_val < xi_j:
             G_val = 0.5 * (1 - x_val) * (1 + xi_j)
         elif x_val > xi_j:
             G_val = 0.5 * (1 + x_val) * (1 - xi_j)
         else:
+            # At the source point, use the average or the limit value
             G_val = 0.5 * (1 - xi_j**2)
         integrand[j] = G_val * f_test[j]
-    u_response[i] = np.trapz(integrand, xi_test)  # Trapezoidal integration
+    
+    # Use trapezoidal integration
+    u_response[i] = np.trapz(integrand, xi_test)
 
 # Exact solution to -u'' = x^2, u(±1) = 0
 # Solving: -u'' = x^2, so u'' = -x^2
