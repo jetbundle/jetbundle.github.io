@@ -146,27 +146,45 @@
 # Parameters from widgets
 tau_val = 0.0
 
+# For y' = sqrt(|y|), y(0) = 0, we have multiple solutions:
+# 1. The trivial solution: y(t) ≡ 0
+# 2. Solutions that wait until t = τ, then follow y(t) = (t-τ)²/4 for t ≥ τ
+
 t = np.linspace(0, 5, 500)
 
-# Zero solution
+# Trivial zero solution (always valid)
 y_zero = np.zeros_like(t)
 
-# Non-unique solution that waits until t = τ then follows the parabola
+# Non-unique solution: waits until t = τ, then follows the parabola
+# This demonstrates the failure of uniqueness when Lipschitz condition fails
 y_delayed = np.zeros_like(t)
 mask = t >= tau_val
 y_delayed[mask] = ((t[mask] - tau_val)**2) / 4
 
+# Verify: for t >= tau, y' = (t-τ)/2 = sqrt((t-τ)²/4) = sqrt(y) ✓
+# Both solutions satisfy y(0) = 0 and y' = sqrt(|y|)
+
 traces = [
-    {'x': t.tolist(), 'y': y_zero.tolist(), 'mode': 'lines', 'name': 'y(t) ≡ 0', 'line': {'color': '#ff6b6b', 'width': 4}},
-    {'x': t.tolist(), 'y': y_delayed.tolist(), 'mode': 'lines', 'name': f'Departs at τ = {tau_val:.2f}', 'line': {'color': '#4ecdc4', 'width': 4, 'dash': 'dot'}},
+    {'x': t.tolist(), 'y': y_zero.tolist(), 'mode': 'lines', 'name': 'y(t) ≡ 0 (trivial solution)', 'line': {'color': '#ff6b6b', 'width': 4}},
+    {'x': t.tolist(), 'y': y_delayed.tolist(), 'mode': 'lines', 'name': f'Delayed solution (departs at τ = {tau_val:.2f})', 'line': {'color': '#4ecdc4', 'width': 4, 'dash': 'dot'}},
 ]
 
 layout = {
-    'title': 'Multiple solutions through the same initial condition',
+    'title': 'Non-Uniqueness: Multiple Solutions for y\' = √|y|, y(0) = 0',
     'xaxis': {'title': 't', 'range': [0, 5]},
     'yaxis': {'title': 'y(t)', 'range': [-0.1, 4]},
     'height': 420,
-    'legend': {'y': 0.99, 'yanchor': 'top'}
+    'legend': {'y': 0.99, 'yanchor': 'top', 'x': 0.02, 'xanchor': 'left'},
+    'annotations': [{
+        'text': f'Adjust τ to see how the particle can wait arbitrarily long before moving',
+        'x': 2.5,
+        'y': 3.5,
+        'showarrow': False,
+        'font': {'size': 12, 'color': '#8b949e'},
+        'bgcolor': 'rgba(0,0,0,0.5)',
+        'bordercolor': '#30363d',
+        'borderwidth': 1
+    }]
 }
 
 create_plot(traces, layout)</code></pre>
