@@ -356,7 +356,13 @@ class WidgetEngine {
         code = code.replace(/^M\s*=\s*["'].*?["'].*?\n/gm, '');
       }
       if (params.hasOwnProperty('N')) {
+        const paramValue = params['N'];
+        // Remove string assignments (N = "...")
         code = code.replace(/^N\s*=\s*["'].*?["'].*?\n/gm, '');
+        // For numeric N, also remove N_val = ... assignments (handled above, but ensure it's removed)
+        if (typeof paramValue === 'number') {
+          code = code.replace(/^N_val\s*=.*?\n/gm, '');
+        }
       }
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
