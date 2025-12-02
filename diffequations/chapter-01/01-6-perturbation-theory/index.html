@@ -240,6 +240,7 @@ max_error = float(np.max(error))
 dy_dx = np.gradient(y_composite, x)
 dy_dx_exact = np.gradient(y_exact, x)
 dy_dx_error = np.abs(dy_dx - dy_dx_exact)
+max_deriv_error = float(np.max(dy_dx_error))
 
 traces.append({
     'x': x.tolist(),
@@ -255,10 +256,10 @@ traces.append({
     'x': x.tolist(),
     'y': dy_dx_error.tolist(),
     'mode': 'lines',
-    'name': '|dy/dx error|',
+    'name': f'|dy/dx error| (max = {max_deriv_error:.4f})',
     'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
     'xaxis': 'x2',
-    'yaxis': 'y3'
+    'yaxis': 'y2'
 })
 
 layout = {
@@ -285,12 +286,6 @@ layout = {
         'title': '|Error|',
         'domain': [0.52, 1],
         'anchor': 'x2'
-    },
-    'yaxis3': {
-        'title': '|dy/dx error|',
-        'domain': [0, 0.48],
-        'anchor': 'x2',
-        'side': 'right'
     },
     'annotations': [
         {

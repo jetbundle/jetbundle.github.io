@@ -535,7 +535,7 @@ if len(x_osc) > 0:
         'name': f'|WKB - Exact| (max = {max_error:.4f})',
         'line': {'color': '#ff6b6b', 'width': 3},
         'xaxis': 'x2',
-        'yaxis': 'y3'
+        'yaxis': 'y2'
     })
 
 layout = {
@@ -559,17 +559,10 @@ layout = {
         'anchor': 'y2'
     },
     'yaxis2': {
-        'title': 'Q(x)',
+        'title': 'Q(x), |Error|',
         'domain': [0.52, 1],
         'range': [-2, 2],
         'anchor': 'x2'
-    },
-    'yaxis3': {
-        'title': '|Error|',
-        'domain': [0, 0.48],
-        'range': [0, 0.5],
-        'anchor': 'x2',
-        'side': 'right'
     },
     'annotations': [
         {

@@ -463,14 +463,14 @@ traces.append({
     'yaxis': 'y2'
 })
 
-# Flat function plot (separate subplot)
+# Flat function plot (on same right plot, use secondary y-axis)
 traces.append({
     'x': x_pert,
     'y': f_flat.tolist(),
     'mode': 'lines',
     'name': 'f(x) = e^{-1/x²} (non-perturbative)',
     'line': {'color': '#4caf50', 'width': 3},
-    'xaxis': 'x3',
+    'xaxis': 'x2',
     'yaxis': 'y3'
 })
 
@@ -480,7 +480,7 @@ traces.append({
     'mode': 'lines',
     'name': 'Power series (all terms = 0)',
     'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
-    'xaxis': 'x3',
+    'xaxis': 'x2',
     'yaxis': 'y3'
 })
 
@@ -510,17 +510,12 @@ layout = {
         'range': [-0.2, 4],
         'anchor': 'x2'
     },
-    'xaxis3': {
-        'title': 'x',
-        'domain': [0.52, 1],
-        'range': [0.1, 2],
-        'anchor': 'y3'
-    },
     'yaxis3': {
         'title': 'f(x)',
         'domain': [0, 0.48],
         'type': 'log',
-        'anchor': 'x3'
+        'anchor': 'x2',
+        'side': 'right'
     },
     'annotations': [
         {
