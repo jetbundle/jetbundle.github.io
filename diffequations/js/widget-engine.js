@@ -307,13 +307,16 @@ class WidgetEngine {
         if (isTextInput) {
           // For text inputs, use the key name with _expr suffix
           const pythonVarName = key === 'M' ? 'M_expr' : (key === 'N' ? 'N_expr' : key);
-          // Escape quotes and wrap in quotes
-          const escapedValue = value.replace(/"/g, '\\"').replace(/\n/g, ' ');
+          // Ensure value is a string, then escape quotes and wrap in quotes
+          const stringValue = String(value || '');
+          const escapedValue = stringValue.replace(/"/g, '\\"').replace(/\n/g, ' ');
           return `${pythonVarName} = "${escapedValue}"`;
         } else {
           // For numeric inputs, use the key name with _val suffix
           const pythonVarName = (paramMapping[key] || key) + '_val';
-          return `${pythonVarName} = ${value}`;
+          // Ensure value is a number
+          const numValue = typeof value === 'number' ? value : parseFloat(value) || 0;
+          return `${pythonVarName} = ${numValue}`;
         }
       }).join('\n');
 
