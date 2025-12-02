@@ -228,15 +228,15 @@
                 </div>
 
                 <!-- CRISIS WIDGET -->
-                <div class="widget-module crisis-widget" id="fourier-convergence-1-3">
+                <div class="widget-module crisis-widget widget-continuous" id="fourier-convergence-1-3">
                     <div class="module-header">
-                        <h3>Interactive: Watch Convergence Fail — Fourier Inversion Crisis</h3>
+                        <h3>Interactive: Watch Convergence Fail — Gibbs Phenomenon and Reconstruction Errors</h3>
                         <div class="widget-controls">
                             <div class="widget-control">
-                                <label>Function width $\sigma$</label>
-                                <input type="range" class="widget-slider" data-param="sigma" min="0.1" max="2"
-                                    step="0.1" value="1">
-                                <span class="widget-value" data-param="sigma">1.0</span>
+                                <label>Number of terms $N$</label>
+                                <input type="range" class="widget-slider" data-param="N" min="5" max="100" step="5"
+                                    value="20">
+                                <span class="widget-value" data-param="N">20</span>
                             </div>
                         </div>
                         <button class="run-button widget-run">Run</button>
@@ -246,70 +246,132 @@
                         <pre><code class="language-python">import numpy as np
 
 # Parameters from widgets (injected automatically)
-sigma_val = 1.0
+N_val = 20
 
-# Create a function that may not have a convergent Fourier inversion
-# Example: f(x) = exp(-x^2/(2*sigma^2)) for |x| < 1, but grows outside
-x = np.linspace(-3, 3, 500)
-f = np.exp(-x**2 / (2 * sigma_val**2))
+# Demonstrate Fourier series convergence issues with a discontinuous function
+# Use a step function: f(x) = 1 for x > 0, -1 for x < 0 on [-π, π]
+# This has a jump discontinuity at x = 0, causing Gibbs phenomenon
 
-# Compute Fourier transform numerically
-xi = np.linspace(-10, 10, 500)
-f_hat = np.fft.fftshift(np.fft.fft(np.fft.fftshift(f)))
+x = np.linspace(-np.pi, np.pi, 1000)
 
-# Attempt inverse transform
-f_reconstructed = np.fft.fftshift(np.fft.ifft(np.fft.fftshift(f_hat)))
+# Exact step function (sign function)
+f_exact = np.sign(x)
+f_exact[x == 0] = 0  # At discontinuity, value is 0
 
-# For functions that don't decay, the inverse may not converge
-# Show the original, transform, and attempted reconstruction
-traces = [
-    {
-        'x': x.tolist(),
-        'y': np.real(f).tolist(),
-        'mode': 'lines',
-        'name': 'Original f(x)',
-        'line': {'color': '#4caf50', 'width': 3}
-    },
-    {
-        'x': xi.tolist(),
-        'y': np.abs(f_hat).tolist(),
-        'mode': 'lines',
-        'name': '|Fourier transform|',
-        'line': {'color': '#ff6b6b', 'width': 3},
+# Fourier series reconstruction: f(x) ~ (4/π) * Σ[k=1,3,5,...] sin(kx)/k
+# This series converges pointwise to f(x) except at x=0, but exhibits Gibbs phenomenon
+f_reconstructed = np.zeros_like(x)
+for k in range(1, N_val + 1, 2):  # Only odd terms
+    f_reconstructed += (4 / np.pi) * np.sin(k * x) / k
+
+# Compute the error
+error = np.abs(f_reconstructed - f_exact)
+
+# Find the maximum overshoot (Gibbs phenomenon)
+# The overshoot occurs near x = 0
+mask_near_zero = np.abs(x) < 0.5
+if np.any(mask_near_zero):
+    max_overshoot = np.max(f_reconstructed[mask_near_zero]) - 1
+    overshoot_location = x[np.argmax(f_reconstructed[mask_near_zero])]
+else:
+    max_overshoot = 0
+    overshoot_location = 0
+
+# Create dual-panel visualization
+traces = []
+
+# LEFT PLOT: Function and reconstruction
+traces.append({
+    'x': x.tolist(),
+    'y': f_exact.tolist(),
+    'mode': 'lines',
+    'name': 'Exact f(x) = sgn(x)',
+    'line': {'color': '#4caf50', 'width': 3},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+traces.append({
+    'x': x.tolist(),
+    'y': f_reconstructed.tolist(),
+    'mode': 'lines',
+    'name': f'Fourier series (N = {N_val} terms)',
+    'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# Mark the discontinuity
+traces.append({
+    'x': [0, 0],
+    'y': [-1.5, 1.5],
+    'mode': 'lines',
+    'name': 'Discontinuity',
+    'line': {'color': '#8b949e', 'width': 1, 'dash': 'dash'},
+    'showlegend': False,
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# RIGHT PLOT: Reconstruction error
+traces.append({
+    'x': x.tolist(),
+    'y': error.tolist(),
+    'mode': 'lines',
+    'name': '|Error|',
+    'line': {'color': '#ffa500', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Mark the overshoot location
+if max_overshoot > 0:
+    traces.append({
+        'x': [overshoot_location],
+        'y': [max_overshoot],
+        'mode': 'markers',
+        'name': f'Gibbs overshoot: {max_overshoot:.4f}',
+        'marker': {'color': '#ff6b6b', 'size': 12, 'symbol': 'x'},
         'xaxis': 'x2',
         'yaxis': 'y2'
-    },
-    {
-        'x': x.tolist(),
-        'y': np.real(f_reconstructed).tolist(),
-        'mode': 'lines',
-        'name': 'Reconstructed (may diverge)',
-        'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'}
-    }
-]
+    })
 
 layout = {
-    'title': f'Fourier Transform Convergence: σ = {sigma_val:.1f}',
-    'height': 500,
+    'title': f'Fourier Series Convergence Crisis: Gibbs Phenomenon (N = {N_val} terms)',
+    'height': 550,
+    'showlegend': True,
     'xaxis': {
         'title': 'x',
-        'domain': [0, 0.48]
+        'domain': [0, 0.48],
+        'range': [-np.pi, np.pi]
     },
     'yaxis': {
         'title': 'f(x)',
-        'domain': [0, 1]
+        'domain': [0, 1],
+        'range': [-1.5, 1.5]
     },
     'xaxis2': {
-        'title': 'ξ (frequency)',
+        'title': 'x',
         'domain': [0.52, 1],
+        'range': [-np.pi, np.pi],
         'anchor': 'y2'
     },
     'yaxis2': {
-        'title': '|F̂(ξ)|',
+        'title': '|Error|',
         'domain': [0, 1],
         'anchor': 'x2'
     },
-    'showlegend': True
+    'annotations': [
+        {
+            'text': f'Gibbs overshoot: {max_overshoot:.4f} (persists as N → ∞)',
+            'x': 0.5,
+            'y': 1.02,
+            'xref': 'paper',
+            'yref': 'paper',
+            'showarrow': False,
+            'font': {'size': 12, 'color': '#8b949e'}
+        }
+    ]
 }
 
 create_plot(traces, layout)</code></pre>
