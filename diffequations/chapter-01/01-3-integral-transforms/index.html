@@ -27,7 +27,8 @@
         <header class="hook">
             <h1>Section 1.3: Integral Transforms</h1>
             <p class="hook-text">
-                We trade differential complexity for algebraic simplicity: integral transforms diagonalize differentiation,
+                We trade differential complexity for algebraic simplicity: integral transforms diagonalize
+                differentiation,
                 converting calculus into algebra.
             </p>
             <p class="hook-subtitle">
@@ -58,7 +59,8 @@
                 <p>This convergence crisis forces us to confront a deeper truth: the classical calculus of functions
                     is too narrow. We need a generalized calculus that can handle distributions, weak solutions, and
                     singular data. The Dirac delta function, introduced heuristically here as the "inverse" of the
-                    constant function, is not a function at all—it is a distribution. Green's functions are distributional
+                    constant function, is not a function at all—it is a distribution. Green's functions are
+                    distributional
                     inverses of linear operators. This section builds the machinery of integral transforms, but it also
                     plants the seed of their own destruction: the need for a functional-analytic framework that can
                     handle what classical analysis cannot.</p>
@@ -72,9 +74,10 @@
                 <div class="definition">
                     <p><strong>The Laplace Transform:</strong> For initial value problems constrained by causality
                         ($f(t)=0$ for $t<0$), the Laplace transform maps real time to complex frequency:</p>
-                    $$\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.$$
-                    <p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\vert f(t) \vert \leq M e^{\sigma
-                        t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$.</p>
+                            $$\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt.$$
+                            <p>If $f$ is locally integrable on $[0,\infty)$ and satisfies $\vert f(t) \vert \leq M
+                                e^{\sigma
+                                t}$, then $F$ is analytic for $\operatorname{Re}(s)>\sigma$.</p>
                 </div>
 
                 <p>Integration by parts algebraizes differentiation:</p>
@@ -97,7 +100,7 @@
                     \gamma>\sigma_{0},$$
                     <p>which ties the exponential growth of $f$ to the pole structure of $F$. Poles with
                         $\operatorname{Re}(s)<0$ yield decaying modes, so stability is a spectral placement question.
-                    </p>
+                            </p>
                 </div>
 
                 <div class="example">
@@ -169,7 +172,8 @@
                 </div>
 
                 <div class="theorem">
-                    <p><strong>Plancherel's Theorem:</strong> The transform extends to a unitary map on $L^{2}(\mathbb{R})$:</p>
+                    <p><strong>Plancherel's Theorem:</strong> The transform extends to a unitary map on
+                        $L^{2}(\mathbb{R})$:</p>
                     $$\|f\|_{L^{2}}^{2}=\int_{-\infty}^{\infty}\vert f(x) \vert^{2}\,dx=\int_{-\infty}^{\infty}\vert
                     \hat{f}(\xi) \vert^{2}\,d\xi=\|\hat{f}\|_{L^{2}}^{2}.$$
 
@@ -216,7 +220,8 @@
 
                     <p>The spatial variance equals $\Delta x^{2}=\int_{-1}^{1}x^{2}\,dx=\tfrac{2}{3}$, so $\Delta
                         x=\sqrt{1/3}$. Parseval's identity evaluates $\Delta \xi$ numerically via $\int \xi^{2}\vert
-                        \hat{f}(\xi) \vert^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta x\,\Delta
+                        \hat{f}(\xi) \vert^{2}\,d\xi$, producing $\Delta \xi\approx 0.882$. The product $\Delta
+                        x\,\Delta
                         \xi\approx 0.509$ exceeds $\tfrac{1}{4\pi}$, illustrating that hard spatial localization forces
                         spectral spread. The uncertainty principle is not merely a quantum mechanical curiosity—it
                         reflects the fundamental trade-off between localization in space and frequency.</p>
@@ -229,8 +234,8 @@
                         <div class="widget-controls">
                             <div class="widget-control">
                                 <label>Function width $\sigma$</label>
-                                <input type="range" class="widget-slider" data-param="sigma" min="0.1" max="2" step="0.1"
-                                    value="1">
+                                <input type="range" class="widget-slider" data-param="sigma" min="0.1" max="2"
+                                    step="0.1" value="1">
                                 <span class="widget-value" data-param="sigma">1.0</span>
                             </div>
                         </div>
@@ -362,17 +367,18 @@ create_plot(traces, layout)</code></pre>
                     <p><strong>Sturm–Liouville Green's Function</strong></p>
                     <p>Construct the Green's function for $-y''+x^{2}y=f(x)$ on $[-1,1]$ with $y(\pm 1)=0$.</p>
                     <p>Let $\phi_{1}(x)=\int_{-1}^{x}e^{-t^{3}/3}\,dt$ enforce the left boundary and
-                        $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so</p>
+                        $\phi_{2}(x)=\int_{x}^{1}e^{t^{3}/3}\,dt$ enforce the right boundary. Their Wronskian is one, so
+                    </p>
                     $$G(x,\xi)=
                     \begin{cases}
-                    \phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\
-                    \phi_{1}(\xi)\phi_{2}(x), & x>\xi,
-                    \end{cases}$$
+                    \phi_{1}(x)\phi_{2}(\xi), & x<\xi,\\ \phi_{1}(\xi)\phi_{2}(x), & x>\xi,
+                        \end{cases}$$
 
-                    <p>satisfies the boundary conditions and reproduces the delta source through the jump in
-                        $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$. Green's
-                        functions encode both the differential operator and the boundary conditions into a single kernel.
-                    </p>
+                        <p>satisfies the boundary conditions and reproduces the delta source through the jump in
+                            $\partial_{x}G$. The solution becomes $u(x)=\int_{-1}^{1}G(x,\xi)f(\xi)\,d\xi$. Green's
+                            functions encode both the differential operator and the boundary conditions into a single
+                            kernel.
+                        </p>
                 </div>
 
                 <div class="example">
@@ -390,14 +396,14 @@ create_plot(traces, layout)</code></pre>
                 </div>
 
                 <!-- VICTORY WIDGET -->
-                <div class="widget-module victory-widget" id="greens-function-1-3">
+                <div class="widget-module victory-widget widget-continuous" id="greens-function-1-3">
                     <div class="module-header">
-                        <h3>Interactive: Green's Function Visualization</h3>
+                        <h3>Interactive: Green's Function Dynamics — Response to Point Sources</h3>
                         <div class="widget-controls">
                             <div class="widget-control">
                                 <label>Source position $\xi$</label>
-                                <input type="range" class="widget-slider" data-param="xi" min="-0.8" max="0.8" step="0.1"
-                                    value="0">
+                                <input type="range" class="widget-slider" data-param="xi" min="-0.8" max="0.8"
+                                    step="0.05" value="0">
                                 <span class="widget-value" data-param="xi">0.0</span>
                             </div>
                         </div>
@@ -406,57 +412,171 @@ create_plot(traces, layout)</code></pre>
                     <div class="plotly-container widget-output"></div>
                     <div class="code-block hidden">
                         <pre><code class="language-python">import numpy as np
+from scipy.integrate import solve_bvp
 
 # Parameters from widgets (injected automatically)
 xi_val = 0.0
 
-# Simple 1D Green's function: -u'' = delta(x - xi) on [-1, 1] with u(±1) = 0
-# Solution: G(x, xi) = (1/2) * (1 - x) * (1 + xi) for x < xi
-#                    = (1/2) * (1 + x) * (1 - xi) for x > xi
-x = np.linspace(-1, 1, 200)
-G = np.zeros_like(x)
+# Solve: -u'' = delta(x - xi) on [-1, 1] with u(±1) = 0
+# The Green's function G(x, xi) satisfies:
+#   -G''(x, xi) = delta(x - xi)
+#   G(-1, xi) = G(1, xi) = 0
+#   G is continuous at x = xi
+#   G' has a jump: G'(xi+, xi) - G'(xi-, xi) = 1
 
+# Analytical solution:
+# For x < xi: G(x, xi) = (1/2) * (1 - x) * (1 + xi)
+# For x > xi: G(x, xi) = (1/2) * (1 + x) * (1 - xi)
+# At x = xi: G(xi, xi) = (1/2) * (1 - xi^2)
+
+# Create fine grid
+x = np.linspace(-1, 1, 500)
+
+# Compute Green's function accurately
+G = np.zeros_like(x)
 mask_left = x < xi_val
 mask_right = x > xi_val
-mask_center = np.abs(x - xi_val) < 0.01
+mask_at_xi = np.abs(x - xi_val) < 1e-6
 
+# Left branch: x < xi
 G[mask_left] = 0.5 * (1 - x[mask_left]) * (1 + xi_val)
-G[mask_right] = 0.5 * (1 + x[mask_right]) * (1 - xi_val)
-G[mask_center] = 0.5 * (1 - xi_val**2)  # At x = xi
 
-traces = [
-    {
-        'x': x.tolist(),
-        'y': G.tolist(),
-        'mode': 'lines',
-        'name': f'Green\'s function G(x, ξ={xi_val:.1f})',
-        'line': {'color': '#4caf50', 'width': 3}
-    },
-    {
-        'x': [xi_val],
-        'y': [0.5 * (1 - xi_val**2)],
-        'mode': 'markers',
-        'name': f'Source at ξ = {xi_val:.1f}',
-        'marker': {'color': '#ff6b6b', 'size': 12, 'symbol': 'x'}
-    }
-]
+# Right branch: x > xi
+G[mask_right] = 0.5 * (1 + x[mask_right]) * (1 - xi_val)
+
+# At the source point
+G[mask_at_xi] = 0.5 * (1 - xi_val**2)
+
+# Compute derivative to show the jump
+# G'(x, xi) = -(1/2) * (1 + xi) for x < xi
+# G'(x, xi) = (1/2) * (1 - xi) for x > xi
+# Jump: G'(xi+) - G'(xi-) = (1/2)(1 - xi) - (-1/2)(1 + xi) = 1 ✓
+
+G_prime_left = -0.5 * (1 + xi_val)
+G_prime_right = 0.5 * (1 - xi_val)
+jump = G_prime_right - G_prime_left  # Should equal 1
+
+# Create visualization with dual panels
+traces = []
+
+# LEFT PLOT: Green's function
+traces.append({
+    'x': x.tolist(),
+    'y': G.tolist(),
+    'mode': 'lines',
+    'name': f'G(x, ξ={xi_val:.2f})',
+    'line': {'color': '#4caf50', 'width': 3},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# Mark source location
+traces.append({
+    'x': [xi_val],
+    'y': [0.5 * (1 - xi_val**2)],
+    'mode': 'markers',
+    'name': f'Source δ(x - {xi_val:.2f})',
+    'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'x', 'line': {'width': 2}},
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# Mark boundaries
+traces.append({
+    'x': [-1, 1],
+    'y': [0, 0],
+    'mode': 'markers',
+    'name': 'Boundary u(±1) = 0',
+    'marker': {'color': '#8b949e', 'size': 10, 'symbol': 'square'},
+    'showlegend': True,
+    'xaxis': 'x',
+    'yaxis': 'y'
+})
+
+# RIGHT PLOT: Response to a test function
+# Show how u(x) = ∫ G(x, ξ) f(ξ) dξ works
+# Use a simple test function: f(x) = x^2
+xi_test = np.linspace(-1, 1, 100)
+f_test = xi_test**2
+
+# Compute response: u(x) = ∫_{-1}^{1} G(x, ξ) * ξ^2 dξ
+# This is the solution to -u'' = x^2 with u(±1) = 0
+u_response = np.zeros_like(x)
+dx_integral = 2.0 / len(xi_test)  # Integration step
+
+for i, x_val in enumerate(x):
+    # For each x, integrate G(x, ξ) * f(ξ) over ξ
+    integrand = np.zeros_like(xi_test)
+    for j, xi_j in enumerate(xi_test):
+        if x_val < xi_j:
+            G_val = 0.5 * (1 - x_val) * (1 + xi_j)
+        elif x_val > xi_j:
+            G_val = 0.5 * (1 + x_val) * (1 - xi_j)
+        else:
+            G_val = 0.5 * (1 - xi_j**2)
+        integrand[j] = G_val * f_test[j]
+    u_response[i] = np.trapz(integrand, xi_test)
+
+# Exact solution to -u'' = x^2, u(±1) = 0
+# u(x) = (1/12) * (1 - x^4) - (1/3) * (1 - x^2)
+u_exact = (1/12) * (1 - x**4) - (1/3) * (1 - x**2)
+
+traces.append({
+    'x': x.tolist(),
+    'y': u_response.tolist(),
+    'mode': 'lines',
+    'name': 'u(x) = ∫ G(x,ξ) f(ξ) dξ',
+    'line': {'color': '#4caf50', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+traces.append({
+    'x': x.tolist(),
+    'y': u_exact.tolist(),
+    'mode': 'lines',
+    'name': 'Exact solution',
+    'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
 
 layout = {
-    'title': f'Green\'s Function: -u\'\' = δ(x - {xi_val:.1f}), u(±1) = 0',
-    'xaxis': {'title': 'x', 'range': [-1, 1]},
-    'yaxis': {'title': 'G(x, ξ)', 'range': [-0.1, 0.6]},
-    'height': 500,
+    'title': f'Green\'s Function: -u\'\' = δ(x - {xi_val:.2f}), u(±1) = 0 | Response to f(ξ) = ξ²',
+    'height': 550,
     'showlegend': True,
-    'annotations': [{
-        'text': 'The Green\'s function encodes the response to a point source',
-        'x': 0,
-        'y': 0.5,
-        'showarrow': False,
-        'font': {'size': 12, 'color': '#8b949e'},
-        'bgcolor': 'rgba(0,0,0,0.5)',
-        'bordercolor': '#30363d',
-        'borderwidth': 1
-    }]
+    'xaxis': {
+        'title': 'x',
+        'domain': [0, 0.48],
+        'range': [-1, 1]
+    },
+    'yaxis': {
+        'title': 'G(x, ξ)',
+        'domain': [0, 1],
+        'range': [-0.1, 0.6]
+    },
+    'xaxis2': {
+        'title': 'x',
+        'domain': [0.52, 1],
+        'range': [-1, 1],
+        'anchor': 'y2'
+    },
+    'yaxis2': {
+        'title': 'u(x)',
+        'domain': [0, 1],
+        'anchor': 'x2'
+    },
+    'annotations': [
+        {
+            'text': f'Derivative jump at ξ: {jump:.3f} (should be 1)',
+            'x': 0.5,
+            'y': 1.02,
+            'xref': 'paper',
+            'yref': 'paper',
+            'showarrow': False,
+            'font': {'size': 12, 'color': '#8b949e'}
+        }
+    ]
 }
 
 create_plot(traces, layout)</code></pre>
@@ -523,11 +643,14 @@ create_plot(traces, layout)</code></pre>
                         this to solve $y''+y=\delta(t)$ with zero initial conditions.</p>
                     <details>
                         <summary>Solution</summary>
-                        <p>Using the sifting property, $\mathcal{L}\{\delta(t)\}(s)=\int_{0}^{\infty}\delta(t)e^{-st}\,dt=e^{0}=1$.
-                            For derivatives, integration by parts (or the definition of distributional derivatives) gives
+                        <p>Using the sifting property,
+                            $\mathcal{L}\{\delta(t)\}(s)=\int_{0}^{\infty}\delta(t)e^{-st}\,dt=e^{0}=1$.
+                            For derivatives, integration by parts (or the definition of distributional derivatives)
+                            gives
                             $\mathcal{L}\{\delta^{(n)}(t)\}(s)=s^{n}$. For $y''+y=\delta(t)$ with $y(0)=y'(0)=0$, we
                             get $(s^{2}+1)Y(s)=1$, so $Y(s)=1/(s^{2}+1)$ and $y(t)=\sin t H(t)$, where $H$ is the
-                            Heaviside function. This demonstrates how distributions extend the classical Laplace transform
+                            Heaviside function. This demonstrates how distributions extend the classical Laplace
+                            transform
                             to handle singular forcing.</p>
                     </details>
                 </details>
@@ -572,7 +695,8 @@ create_plot(traces, layout)</code></pre>
             <div class="cliffhanger final">
                 <p>We have mastered the machinery of integral transforms: Laplace for causal systems, Fourier for global
                     phenomena, Mellin for scaling, Hankel for radial symmetry. But this mastery exposes its own
-                    limitations. The inverse transforms require integrals that may not converge. The Dirac delta is not a
+                    limitations. The inverse transforms require integrals that may not converge. The Dirac delta is not
+                    a
                     function. Green's functions are distributional inverses. The classical calculus of functions is too
                     narrow. In the next section, we abandon the hope of explicit solutions entirely and embrace the
                     functional-analytic framework where completeness, orthogonality, and weak convergence become the
