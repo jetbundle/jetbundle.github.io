@@ -141,8 +141,10 @@
                     </div>
                     <div class="plotly-container widget-output"></div>
                     <div class="code-block hidden">
-                        <pre><code class="language-python"># Parameters injected automatically: tau_val
-import numpy as np
+                        <pre><code class="language-python">import numpy as np
+
+# Parameters from widgets
+tau_val = 0.0
 
 t = np.linspace(0, 5, 500)
 
@@ -233,10 +235,13 @@ create_plot(traces, layout)</code></pre>
                     </div>
                     <div class="plotly-container widget-output"></div>
                     <div class="code-block hidden">
-                        <pre><code class="language-python"># Parameters injected automatically: M_expr, N_expr
-import numpy as np
+                        <pre><code class="language-python">import numpy as np
 from sympy import symbols, diff, integrate, simplify
 import sympy as sp
+
+# Parameters from widgets
+M_expr = "2*x*y + y**2"
+N_expr = "x**2 + 2*x*y"
 
 x, y = symbols('x y', real=True)
 

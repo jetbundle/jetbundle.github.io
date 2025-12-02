@@ -272,13 +272,21 @@ class WidgetEngine {
         }
       }
 
-      // Also collect dropdown values for parameters
+      // Also collect dropdown values and text inputs for parameters
       widgetData.dropdowns.forEach(dropdown => {
         if (!dropdown.dataset.codeSelector) {  // Don't include code selector as a param
           const paramName = dropdown.dataset.param;
           if (paramName) {
             params[paramName] = dropdown.value;
           }
+        }
+      });
+
+      // Collect text input values for parameters
+      widgetData.element.querySelectorAll('.widget-text').forEach(textInput => {
+        const paramName = textInput.dataset.param;
+        if (paramName) {
+          params[paramName] = textInput.value;
         }
       });
 
@@ -292,16 +300,32 @@ class WidgetEngine {
       const paramLines = Object.entries(params).map(([key, value]) => {
         // Map widget parameter names to Python variable names
         const paramName = paramMapping[key] || key;
-        return `${paramName} = ${value}`;
+        // Check if this is a text input (ends with _expr or contains quotes)
+        // Text inputs should be treated as strings
+        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') || 
+                           (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
+        if (isTextInput) {
+          // Escape quotes and wrap in quotes
+          const escapedValue = value.replace(/"/g, '\\"');
+          return `${paramName} = "${escapedValue}"`;
+        } else {
+          // Numeric value - use as-is
+          return `${paramName} = ${value}`;
+        }
       }).join('\n');
 
       // Remove any placeholder comment lines about parameters
       code = code.replace(/# Parameters from widgets.*?\n/g, '');
+      code = code.replace(/# Parameters injected automatically.*?\n/g, '');
       code = code.replace(/# lambda_val, y0_val, t_max_val.*?\n/g, '');
       // Remove any existing parameter assignments (may have template syntax or placeholders)
-      code = code.replace(/lambda_val\s*=.*?\n/g, '');
-      code = code.replace(/y0_val\s*=.*?\n/g, '');
-      code = code.replace(/t_max_val\s*=.*?\n/g, '');
+      // Remove common parameter names
+      const paramNames = Object.keys(params).concat(Object.values(paramMapping));
+      paramNames.forEach(param => {
+        const paramName = paramMapping[param] || param;
+        // Remove assignments for this parameter (handles various formats)
+        code = code.replace(new RegExp(`${paramName}\\s*=.*?\\n`, 'g'), '');
+      });
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
 
