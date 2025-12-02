@@ -316,7 +316,7 @@ def get_sector(theta):
 
 current_sector = get_sector(theta_val)
 
-# Create visualization with two subplots
+# Create visualization with two subplots using Plotly's subplot functionality
 traces = []
 
 # LEFT PLOT: Complex plane with Stokes lines
@@ -359,50 +359,37 @@ traces.append({
 
 # RIGHT PLOT: Magnitude of Ai and Bi along the circle
 # This shows how the functions behave as we cross Stokes lines
+# Use logarithmic scale to see exponential behavior
+Ai_mag = np.abs(Ai_values)
+Bi_mag = np.abs(Bi_values)
+# Avoid log(0)
+Ai_mag = np.maximum(Ai_mag, 1e-10)
+Bi_mag = np.maximum(Bi_mag, 1e-10)
+
 traces.append({
     'x': theta_range.tolist(),
-    'y': np.abs(Ai_values).tolist(),
+    'y': Ai_mag.tolist(),
     'mode': 'lines',
     'name': '|Ai(z)|',
     'line': {'color': '#4caf50', 'width': 3},
     'xaxis': 'x2',
-    'yaxis': 'y2'
+    'yaxis': 'y2',
+    'type': 'scatter'
 })
 
 traces.append({
     'x': theta_range.tolist(),
-    'y': np.abs(Bi_values).tolist(),
+    'y': Bi_mag.tolist(),
     'mode': 'lines',
     'name': '|Bi(z)|',
     'line': {'color': '#ff6b6b', 'width': 3},
     'xaxis': 'x2',
-    'yaxis': 'y2'
+    'yaxis': 'y2',
+    'type': 'scatter'
 })
 
-# Add vertical lines for Stokes angles on right plot
-for angle in stokes_angles:
-    traces.append({
-        'x': [angle, angle],
-        'y': [1e-10, 1e10],  # Full height
-        'mode': 'lines',
-        'name': '',
-        'line': {'color': '#f44336', 'width': 1, 'dash': 'dash'},
-        'showlegend': False,
-        'xaxis': 'x2',
-        'yaxis': 'y2'
-    })
-
-# Mark current angle
-traces.append({
-    'x': [theta_val, theta_val],
-    'y': [1e-10, 1e10],
-    'mode': 'lines',
-    'name': f'θ = {theta_val:.2f}',
-    'line': {'color': '#4caf50', 'width': 2, 'dash': 'dot'},
-    'showlegend': False,
-    'xaxis': 'x2',
-    'yaxis': 'y2'
-})
+# Add vertical lines for Stokes angles on right plot (as shapes in layout)
+# We'll add these as shapes in the layout instead
 
 layout = {
     'title': f'Airy Function Stokes Phenomenon: r = {r_val:.1f}, θ = {theta_val:.2f} rad (Sector {current_sector})',
@@ -423,15 +410,34 @@ layout = {
     'xaxis2': {
         'title': 'θ (radians)',
         'domain': [0.52, 1],
-        'range': [0, 2*np.pi]
+        'range': [0, 2*np.pi],
+        'anchor': 'y2'
     },
     'yaxis2': {
-        'title': 'Magnitude',
+        'title': 'Magnitude (log scale)',
         'domain': [0, 1],
         'type': 'log',
-        'range': [np.log10(max(1e-6, np.abs(Ai_values).min())), 
-                  np.log10(max(1e-6, np.abs(Ai_values).max()) * 1.5)]
+        'anchor': 'x2'
     },
+    'shapes': [
+        # Stokes lines on right plot
+        {
+            'type': 'line',
+            'x0': angle, 'x1': angle,
+            'y0': 0, 'y1': 1,
+            'xref': 'x2', 'yref': 'paper',
+            'line': {'color': '#f44336', 'width': 1, 'dash': 'dash'}
+        } for angle in stokes_angles
+    ] + [
+        # Current angle marker
+        {
+            'type': 'line',
+            'x0': theta_val, 'x1': theta_val,
+            'y0': 0, 'y1': 1,
+            'xref': 'x2', 'yref': 'paper',
+            'line': {'color': '#4caf50', 'width': 2, 'dash': 'dot'}
+        }
+    ],
     'annotations': [
         {
             'text': f'Sector {current_sector}: Asymptotic form changes at Stokes lines',
