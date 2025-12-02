@@ -128,9 +128,23 @@ if N_opt < len(partial_sums):
 else:
     error_at_opt = abs(partial_sums[-1] - borel_sum_approx)
 
+# Find reasonable y-range for partial sums (use linear scale, not log)
+# The partial sums oscillate, so find min/max around the optimal region
+n_plot_range = min(N_opt + 10, len(partial_sums))
+if n_plot_range > 0:
+    partial_sums_plot = partial_sums[:n_plot_range]
+    y_min = min(partial_sums_plot) - abs(min(partial_sums_plot)) * 0.1
+    y_max = max(partial_sums_plot) + abs(max(partial_sums_plot)) * 0.1
+    # Ensure we include the Borel sum
+    y_min = min(y_min, borel_sum_approx - abs(borel_sum_approx) * 0.1)
+    y_max = max(y_max, borel_sum_approx + abs(borel_sum_approx) * 0.1)
+else:
+    y_min = -5
+    y_max = 5
+
 traces = []
 
-# LEFT PLOT: Partial sums and optimal truncation
+# LEFT PLOT: Partial sums and optimal truncation (linear scale)
 traces.append({
     'x': n_range,
     'y': partial_sums,
@@ -225,8 +239,7 @@ layout = {
     'yaxis': {
         'title': 'S_N(x)',
         'domain': [0, 1],
-        'type': 'log',
-        'range': [1e-3, 1e3]
+        'range': [y_min, y_max]
     },
     'xaxis2': {
         'title': 'n',
@@ -370,25 +383,33 @@ action_density = T_instanton + V_instanton
 S_numerical = float(np.trapz(action_density, tau))
 S_exact = float(8 * np.sqrt(2) / 3)
 
-# Level splitting
+# Level splitting (exponentially small)
 Delta_E = float(np.exp(-S_exact / epsilon_val))
 
 # Potential V(x) for visualization
 x_pot = np.linspace(-2, 2, 500)
 V_pot = (x_pot**2 - 1)**2
 
-# Perturbative series (first few terms, all vanish for flat function)
-# For f(x) = e^{-1/x²}, all Taylor coefficients at x=0 are zero
-# But f(x) ≠ 0 for x > 0
-x_pert = np.linspace(0.1, 2, 200)
-f_flat = np.exp(-1 / x_pert**2)
+# Show how level splitting varies with epsilon
+epsilon_range = np.linspace(0.05, 0.5, 100)
+Delta_E_range = [float(np.exp(-S_exact / eps)) for eps in epsilon_range]
 
-# Compare with power series (all terms zero)
-f_power_series = [0.0] * len(x_pert)
+# WKB approximation for ground state wavefunction
+# In double well, the wavefunction is approximately symmetric/antisymmetric
+# The splitting determines the energy difference
+# For visualization, show the exponential dependence
+x_wkb = np.linspace(-2, 2, 500)
+# Ground state wavefunction (symmetric): ψ₀(x) ~ exp(-(1/ε)∫|x|^1 √(V(x')) dx')
+# Simplified: ψ₀(x) ~ exp(-(1/ε) * |x|^3/3) for |x| < 1
+psi_ground = np.exp(-(1.0/epsilon_val) * np.abs(x_wkb)**3 / 3.0)
+psi_ground = psi_ground / np.max(psi_ground)  # Normalize
+
+# Tunneling probability (proportional to level splitting)
+tunneling_prob = Delta_E / (2.0 * np.pi)  # Simplified relation
 
 traces = []
 
-# LEFT PLOT: Instanton trajectory and potential
+# LEFT PLOT: Instanton trajectory
 traces.append({
     'x': tau.tolist(),
     'y': x_instanton.tolist(),
@@ -409,16 +430,6 @@ traces.append({
     'yaxis': 'y'
 })
 
-traces.append({
-    'x': tau.tolist(),
-    'y': action_density.tolist(),
-    'mode': 'lines',
-    'name': 'Action density',
-    'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dash'},
-    'xaxis': 'x',
-    'yaxis': 'y'
-})
-
 # Mark minima
 traces.append({
     'x': [-5.0, 5.0],
@@ -430,62 +441,64 @@ traces.append({
     'yaxis': 'y'
 })
 
-# RIGHT PLOT: Potential and flat function
+# RIGHT PLOT: Level splitting vs epsilon (exponential dependence)
 traces.append({
-    'x': x_pot.tolist(),
-    'y': V_pot.tolist(),
+    'x': epsilon_range.tolist(),
+    'y': Delta_E_range,
     'mode': 'lines',
-    'name': 'V(x) = (x² - 1)²',
-    'line': {'color': '#58a6ff', 'width': 3},
-    'xaxis': 'x2',
-    'yaxis': 'y2'
-})
-
-# Mark instanton path on potential
-traces.append({
-    'x': x_instanton.tolist(),
-    'y': V_instanton.tolist(),
-    'mode': 'lines',
-    'name': 'Instanton path',
-    'line': {'color': '#4caf50', 'width': 2, 'dash': 'dot'},
-    'xaxis': 'x2',
-    'yaxis': 'y2'
-})
-
-# Mark minima on potential
-traces.append({
-    'x': [-1.0, 1.0],
-    'y': [0.0, 0.0],
-    'mode': 'markers',
-    'name': 'Minima',
-    'marker': {'color': '#8b949e', 'size': 10, 'symbol': 'square'},
-    'xaxis': 'x2',
-    'yaxis': 'y2'
-})
-
-# Flat function plot (on same right plot, use secondary y-axis)
-traces.append({
-    'x': x_pert,
-    'y': f_flat.tolist(),
-    'mode': 'lines',
-    'name': 'f(x) = e^{-1/x²} (non-perturbative)',
+    'name': f'Level splitting: ΔE = e^{{-S/ε}}',
     'line': {'color': '#4caf50', 'width': 3},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Mark current epsilon value
+traces.append({
+    'x': [epsilon_val],
+    'y': [Delta_E],
+    'mode': 'markers',
+    'name': f'Current: ε = {epsilon_val:.3f}',
+    'marker': {'color': '#ff6b6b', 'size': 15, 'symbol': 'diamond'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+# Show potential barrier height for reference
+barrier_height = 1.0  # V(0) - V(±1) = 1 - 0 = 1
+traces.append({
+    'x': [epsilon_val, epsilon_val],
+    'y': [0, barrier_height],
+    'mode': 'lines',
+    'name': f'Barrier height = {barrier_height:.1f}',
+    'line': {'color': '#8b949e', 'width': 1, 'dash': 'dash'},
     'xaxis': 'x2',
     'yaxis': 'y3'
 })
 
+# Show wavefunction localization (how it changes with epsilon)
 traces.append({
-    'x': x_pert,
-    'y': f_power_series,
+    'x': x_wkb.tolist(),
+    'y': psi_ground.tolist(),
     'mode': 'lines',
-    'name': 'Power series (all terms = 0)',
-    'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
+    'name': f'Ground state ψ₀(x) (ε = {epsilon_val:.3f})',
+    'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dot'},
+    'xaxis': 'x2',
+    'yaxis': 'y3'
+})
+
+# Mark minima on wavefunction plot
+traces.append({
+    'x': [-1.0, 1.0],
+    'y': [psi_ground[np.argmin(np.abs(x_wkb + 1.0))], psi_ground[np.argmin(np.abs(x_wkb - 1.0))]],
+    'mode': 'markers',
+    'name': 'Well centers',
+    'marker': {'color': '#8b949e', 'size': 10, 'symbol': 'square'},
     'xaxis': 'x2',
     'yaxis': 'y3'
 })
 
 layout = {
-    'title': f'Instanton: S = {S_exact:.4f}, ΔE ~ e^{{-S/ε}} = {Delta_E:.2e} for ε = {epsilon_val:.3f}',
+    'title': f'Instanton: S = {S_exact:.4f}, ΔE = e^{{-S/ε}} = {Delta_E:.2e} for ε = {epsilon_val:.3f}',
     'height': 600,
     'showlegend': True,
     'xaxis': {
@@ -494,32 +507,33 @@ layout = {
         'range': [-5, 5]
     },
     'yaxis': {
-        'title': 'x(τ), V(x(τ)), Action density',
+        'title': 'x(τ), V(x(τ))',
         'domain': [0.52, 1],
         'range': [-1.5, 1.5]
     },
     'xaxis2': {
-        'title': 'x',
+        'title': 'ε',
         'domain': [0.52, 1],
-        'range': [-2, 2],
+        'range': [0.05, 0.5],
         'anchor': 'y2'
     },
     'yaxis2': {
-        'title': 'V(x)',
+        'title': 'Level splitting ΔE',
         'domain': [0.52, 1],
-        'range': [-0.2, 4],
+        'type': 'log',
+        'range': [1e-10, 1e-1],
         'anchor': 'x2'
     },
     'yaxis3': {
-        'title': 'f(x)',
+        'title': 'V(x), ψ₀(x)',
         'domain': [0, 0.48],
-        'type': 'log',
+        'range': [-0.2, 1.2],
         'anchor': 'x2',
         'side': 'right'
     },
     'annotations': [
         {
-            'text': f'Instanton connects x = -1 → +1. Action S = {S_exact:.4f}, Level splitting ΔE ~ {Delta_E:.2e}',
+            'text': f'Exponential suppression: ΔE changes by {Delta_E_range[-1]/Delta_E_range[0]:.0e}x as ε varies. Tunneling probability ∝ ΔE.',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',
