@@ -336,7 +336,7 @@ class WidgetEngine {
         const paramValue = params[param];
         // Check if this is a text input (string) or numeric (number)
         const isTextParam = typeof paramValue === 'string' && (param === 'M' || param === 'N');
-        
+
         if (isTextParam) {
           // For text inputs (M, N as strings), remove M_expr= and N_expr= assignments
           code = code.replace(new RegExp(`^${param}_expr\\s*=.*?\\n`, 'gm'), '');
