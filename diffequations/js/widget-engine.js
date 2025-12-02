@@ -300,10 +300,10 @@ class WidgetEngine {
       const paramLines = Object.entries(params).map(([key, value]) => {
         // Check if this is a text input (ends with _expr, _text, or is M/N for exact solver)
         // Text inputs should be treated as strings
-        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') || 
+        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') ||
                            key === 'M' || key === 'N' ||
                            (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
-        
+
         if (isTextInput) {
           // For text inputs, use the key name with _expr suffix
           const pythonVarName = key === 'M' ? 'M_expr' : (key === 'N' ? 'N_expr' : key);
@@ -328,7 +328,12 @@ class WidgetEngine {
       paramNames.forEach(param => {
         const baseName = paramMapping[param] || param;
         // Remove assignments for this parameter with various suffixes
+        // Also remove the base name without suffix (e.g., M =, N =)
         code = code.replace(new RegExp(`${baseName}(_val|_expr)?\\s*=.*?\\n`, 'g'), '');
+        // For M and N, also remove direct assignments
+        if (param === 'M' || param === 'N') {
+          code = code.replace(new RegExp(`^${param}\\s*=.*?\\n`, 'gm'), '');
+        }
       });
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
