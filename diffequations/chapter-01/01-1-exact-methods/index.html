@@ -126,7 +126,7 @@
                     equation.</p>
 
                 <!-- CRISIS WIDGET -->
-                <div class="widget-module crisis-widget" id="non-uniqueness-1-1">
+                <div class="widget-module crisis-widget widget-continuous" id="non-uniqueness-1-1">
                     <div class="module-header">
                         <h3>Interactive: Watch Determinism Die</h3>
                         <div class="widget-controls">
@@ -143,7 +143,7 @@
                     <div class="code-block hidden">
                         <pre><code class="language-python">import numpy as np
 
-# Parameters from widgets
+# Parameters from widgets (injected automatically)
 tau_val = 0.0
 
 # For y' = sqrt(|y|), y(0) = 0, we have multiple solutions:
@@ -257,7 +257,7 @@ create_plot(traces, layout)</code></pre>
 from sympy import symbols, diff, integrate, simplify, sympify
 import sympy as sp
 
-# Parameters from widgets
+# Parameters from widgets (injected automatically)
 M_expr = "2*x*y + y**2"
 N_expr = "x**2 + 2*x*y"
 
@@ -272,8 +272,10 @@ M_y = diff(M, y)
 N_x = diff(N, x)
 
 # Use sympy equality check (not Python ==)
-exactness_check = simplify(M_y - N_x)
-is_exact = exactness_check.equals(0)
+# Check if M_y - N_x simplifies to zero
+exactness_diff = simplify(M_y - N_x)
+# Use is_zero() method which is more reliable than equals(0)
+is_exact = exactness_diff.is_zero
 
 if is_exact:
     # Find potential

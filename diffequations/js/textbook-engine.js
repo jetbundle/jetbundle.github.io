@@ -66,11 +66,14 @@ class TextbookEngine {
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
       });
 
-      await this.pyodide.loadPackage([
-        "numpy",
-        "scipy",
-        "sympy"
+      // Load packages in parallel for faster initialization
+      console.log('Loading Python packages...');
+      await Promise.all([
+        this.pyodide.loadPackage("numpy"),
+        this.pyodide.loadPackage("scipy"),
+        this.pyodide.loadPackage("sympy")
       ]);
+      console.log('All packages loaded');
 
       // Initialize global variable for plot data
       await this.pyodide.runPythonAsync(`

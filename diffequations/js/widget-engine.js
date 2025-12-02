@@ -300,31 +300,33 @@ class WidgetEngine {
       const paramLines = Object.entries(params).map(([key, value]) => {
         // Map widget parameter names to Python variable names
         const paramName = paramMapping[key] || key;
-        // Check if this is a text input (ends with _expr or contains quotes)
+        // Check if this is a text input (ends with _expr, _text, or is M/N for exact solver)
         // Text inputs should be treated as strings
-        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') ||
+        const isTextInput = key.endsWith('_expr') || key.endsWith('_text') || 
+                           key === 'M' || key === 'N' ||
                            (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
         if (isTextInput) {
           // Escape quotes and wrap in quotes
-          const escapedValue = value.replace(/"/g, '\\"');
-          return `${paramName} = "${escapedValue}"`;
+          const escapedValue = value.replace(/"/g, '\\"').replace(/\n/g, ' ');
+          return `${paramName}_expr = "${escapedValue}"`;
         } else {
           // Numeric value - use as-is
-          return `${paramName} = ${value}`;
+          return `${paramName}_val = ${value}`;
         }
       }).join('\n');
 
       // Remove any placeholder comment lines about parameters
       code = code.replace(/# Parameters from widgets.*?\n/g, '');
+      code = code.replace(/# Parameters from widgets \(injected automatically\).*?\n/g, '');
       code = code.replace(/# Parameters injected automatically.*?\n/g, '');
       code = code.replace(/# lambda_val, y0_val, t_max_val.*?\n/g, '');
       // Remove any existing parameter assignments (may have template syntax or placeholders)
-      // Remove common parameter names
+      // Remove common parameter names with both _val and _expr suffixes
       const paramNames = Object.keys(params).concat(Object.values(paramMapping));
       paramNames.forEach(param => {
-        const paramName = paramMapping[param] || param;
-        // Remove assignments for this parameter (handles various formats)
-        code = code.replace(new RegExp(`${paramName}\\s*=.*?\\n`, 'g'), '');
+        const baseName = paramMapping[param] || param;
+        // Remove assignments for this parameter with various suffixes
+        code = code.replace(new RegExp(`${baseName}(_val|_expr)?\\s*=.*?\\n`, 'g'), '');
       });
       // Remove any Liquid template syntax that might remain
       code = code.replace(/\{\{.*?\}\}/g, '');
@@ -349,7 +351,7 @@ class WidgetEngine {
           await new Promise(resolve => setTimeout(resolve, 100));
           plotlyRetries++;
         }
-        
+
         // If still not loaded, try to load it
         if (typeof Plotly === 'undefined') {
           await new Promise((resolve, reject) => {
