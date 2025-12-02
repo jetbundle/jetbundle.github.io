@@ -298,20 +298,22 @@ class WidgetEngine {
       };
 
       const paramLines = Object.entries(params).map(([key, value]) => {
-        // Map widget parameter names to Python variable names
-        const paramName = paramMapping[key] || key;
         // Check if this is a text input (ends with _expr, _text, or is M/N for exact solver)
         // Text inputs should be treated as strings
         const isTextInput = key.endsWith('_expr') || key.endsWith('_text') || 
                            key === 'M' || key === 'N' ||
                            (typeof value === 'string' && (value.includes('*') || value.includes('+') || value.includes('-')));
+        
         if (isTextInput) {
+          // For text inputs, use the key name with _expr suffix
+          const pythonVarName = key === 'M' ? 'M_expr' : (key === 'N' ? 'N_expr' : key);
           // Escape quotes and wrap in quotes
           const escapedValue = value.replace(/"/g, '\\"').replace(/\n/g, ' ');
-          return `${paramName}_expr = "${escapedValue}"`;
+          return `${pythonVarName} = "${escapedValue}"`;
         } else {
-          // Numeric value - use as-is
-          return `${paramName}_val = ${value}`;
+          // For numeric inputs, use the key name with _val suffix
+          const pythonVarName = (paramMapping[key] || key) + '_val';
+          return `${pythonVarName} = ${value}`;
         }
       }).join('\n');
 
