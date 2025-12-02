@@ -101,13 +101,14 @@
 # M_val will be injected here by widget engine
 
 # Laplace's method: I(M) = ∫ g(x) e^{M h(x)} dx
-# Example: h(x) = -x^2, g(x) = 1, on [-3, 3]
-# Maximum at x = 0, h(0) = 0, h''(0) = -2
-# Asymptotic: I(M) ~ g(0) e^{M h(0)} √(2π/(M|h''(0)|)) = √(π/M)
+# More non-trivial example: h(x) = -x^2 - x^4/4, g(x) = 1 + x^2, on [-2, 2]
+# Maximum at x = 0, h(0) = 0, h'(0) = 0, h''(0) = -2
+# Asymptotic: I(M) ~ g(0) e^{M h(0)} √(2π/(M|h''(0)|)) = (1 + 0) √(π/M) = √(π/M)
+# But the quartic term and g(x) variation create corrections
 
-x = np.linspace(-3, 3, 1000)
-h_x = -x**2
-g_x = np.ones_like(x)
+x = np.linspace(-2, 2, 2000)
+h_x = -x**2 - x**4/4
+g_x = 1 + x**2
 
 # Compute integrand
 integrand = g_x * np.exp(M_val * h_x)
@@ -115,51 +116,71 @@ integrand = g_x * np.exp(M_val * h_x)
 # Numerical integration
 I_numerical = float(np.trapz(integrand, x))
 
-# Asymptotic formula (for large M)
-I_asymptotic = float(np.sqrt(np.pi / M_val))
+# Asymptotic formula (leading order, ignoring quartic correction)
+# I(M) ~ g(0) √(2π/(M|h''(0)|)) = 1 * √(π/M)
+I_asymptotic_leading = float(np.sqrt(np.pi / M_val))
 
-# Gaussian approximation near maximum
-# Near x = 0: h(x) ≈ h(0) + (1/2) h''(0) x^2 = -x^2
-# So integrand ≈ e^{-M x^2}
+# Improved asymptotic including quartic correction
+# h(x) ≈ h(0) + (1/2)h''(0)x^2 + (1/24)h''''(0)x^4 = -x^2 - (1/2)x^4
+# The quartic term creates a correction: I(M) ~ √(π/M) * [1 - 3/(8M) + ...]
+I_asymptotic_corrected = I_asymptotic_leading * (1 - 3.0/(8*M_val))
+
+# Gaussian approximation near maximum (ignoring quartic)
 # Width of Gaussian: σ = 1/√(2M)
 sigma = 1.0 / np.sqrt(2 * M_val)
-x_gauss = np.linspace(-3*sigma, 3*sigma, 200)
-gauss_approx = np.exp(-M_val * x_gauss**2)
+x_gauss = np.linspace(-2*sigma, 2*sigma, 200)
+gauss_approx = (1 + x_gauss**2) * np.exp(-M_val * x_gauss**2)
 
-# Contribution from different regions
-# Most contribution comes from |x| < 3σ
-x_contrib = np.linspace(-3*sigma, 3*sigma, 500)
-integrand_contrib = np.exp(-M_val * x_contrib**2)
+# Contribution from critical region |x| < 3σ
+x_contrib = np.linspace(-3*sigma, 3*sigma, 1000)
+h_contrib = -x_contrib**2 - x_contrib**4/4
+g_contrib = 1 + x_contrib**2
+integrand_contrib = g_contrib * np.exp(M_val * h_contrib)
 I_contrib = float(np.trapz(integrand_contrib, x_contrib))
+
+# Contribution from outside critical region
+mask_outside = (np.abs(x) > 3*sigma)
+if np.any(mask_outside):
+    integrand_outside = integrand[mask_outside]
+    x_outside = x[mask_outside]
+    I_outside = float(np.trapz(integrand_outside, x_outside))
+else:
+    I_outside = 0.0
 
 # RIGHT PLOT: Comparison of numerical vs asymptotic for range of M
 M_range = np.linspace(1, 50, 50)
 I_num_range = []
-I_asym_range = []
+I_asym_leading_range = []
+I_asym_corrected_range = []
 I_error_range = []
 
 for M in M_range:
-    x_temp = np.linspace(-3, 3, 1000)
-    integrand_temp = np.exp(-M * x_temp**2)
+    x_temp = np.linspace(-2, 2, 2000)
+    h_temp = -x_temp**2 - x_temp**4/4
+    g_temp = 1 + x_temp**2
+    integrand_temp = g_temp * np.exp(M * h_temp)
     I_num = float(np.trapz(integrand_temp, x_temp))
-    I_asym = float(np.sqrt(np.pi / M))
+    I_asym_lead = float(np.sqrt(np.pi / M))
+    I_asym_corr = I_asym_lead * (1 - 3.0/(8*M))
     I_num_range.append(I_num)
-    I_asym_range.append(I_asym)
-    I_error_range.append(abs(I_num - I_asym) / I_num * 100)
+    I_asym_leading_range.append(I_asym_lead)
+    I_asym_corrected_range.append(I_asym_corr)
+    I_error_range.append(abs(I_num - I_asym_corr) / I_num * 100)
 
 traces = []
 
-# LEFT PLOT: Integrand and Gaussian approximation
+# LEFT PLOT: Integrand showing dominance of critical point
 traces.append({
     'x': x.tolist(),
     'y': integrand.tolist(),
     'mode': 'lines',
-    'name': f'Integrand: e^{{{M_val:.0f} h(x)}}',
+    'name': f'Integrand: g(x) e^{{{M_val:.0f} h(x)}}',
     'line': {'color': '#4caf50', 'width': 3},
     'xaxis': 'x',
     'yaxis': 'y'
 })
 
+# Gaussian approximation (leading order)
 traces.append({
     'x': x_gauss.tolist(),
     'y': gauss_approx.tolist(),
@@ -181,25 +202,29 @@ traces.append({
     'yaxis': 'y'
 })
 
-# Mark contribution region
+# Mark contribution region (critical region)
 traces.append({
     'x': [-3*sigma, -3*sigma, 3*sigma, 3*sigma, -3*sigma],
-    'y': [0, 1.2, 1.2, 0, 0],
+    'y': [0, np.max(integrand)*1.1, np.max(integrand)*1.1, 0, 0],
     'mode': 'lines',
-    'name': f'Contribution region (|x| < 3σ)',
+    'name': f'Critical region (|x| < 3σ = {3*sigma:.3f})',
     'line': {'color': '#58a6ff', 'width': 2, 'dash': 'dash'},
     'fill': 'toself',
-    'fillcolor': 'rgba(88, 166, 255, 0.1)',
+    'fillcolor': 'rgba(88, 166, 255, 0.15)',
     'xaxis': 'x',
     'yaxis': 'y'
 })
+
+# Show contribution breakdown
+contrib_percent = I_contrib / I_numerical * 100 if I_numerical > 0 else 0
+outside_percent = I_outside / I_numerical * 100 if I_numerical > 0 else 0
 
 # RIGHT PLOT: Comparison of numerical vs asymptotic
 traces.append({
     'x': M_range.tolist(),
     'y': I_num_range,
     'mode': 'lines',
-    'name': 'Numerical: ∫ e^{-Mx²} dx',
+    'name': 'Numerical: ∫ g(x) e^{M h(x)} dx',
     'line': {'color': '#4caf50', 'width': 3},
     'xaxis': 'x2',
     'yaxis': 'y2'
@@ -207,9 +232,19 @@ traces.append({
 
 traces.append({
     'x': M_range.tolist(),
-    'y': I_asym_range,
+    'y': I_asym_leading_range,
     'mode': 'lines',
-    'name': 'Asymptotic: √(π/M)',
+    'name': 'Asymptotic (leading): √(π/M)',
+    'line': {'color': '#8b949e', 'width': 2, 'dash': 'dash'},
+    'xaxis': 'x2',
+    'yaxis': 'y2'
+})
+
+traces.append({
+    'x': M_range.tolist(),
+    'y': I_asym_corrected_range,
+    'mode': 'lines',
+    'name': 'Asymptotic (corrected): √(π/M)(1 - 3/(8M))',
     'line': {'color': '#ffa500', 'width': 2, 'dash': 'dot'},
     'xaxis': 'x2',
     'yaxis': 'y2'
@@ -232,24 +267,24 @@ traces.append({
     'y': I_error_range,
     'mode': 'lines',
     'name': 'Relative error (%)',
-    'line': {'color': '#ff6b6b', 'width': 2, 'dash': 'dot'},
+    'line': {'color': '#ff6b6b', 'width': 2},
     'xaxis': 'x2',
     'yaxis': 'y3'
 })
 
 layout = {
-    'title': f'Laplace\'s Method: I(M) = ∫ e^{{{M_val:.0f} h(x)}} dx | Numerical = {I_numerical:.6f}, Asymptotic = {I_asymptotic:.6f}',
+    'title': f'Laplace\'s Method: I(M) = ∫ (1+x²) e^{{{M_val:.0f}(-x²-x⁴/4)}} dx | Numerical = {I_numerical:.6f}, Asymptotic = {I_asymptotic_corrected:.6f}',
     'height': 600,
     'showlegend': True,
     'xaxis': {
         'title': 'x',
         'domain': [0, 0.48],
-        'range': [-1.5, 1.5]
+        'range': [-0.8, 0.8]
     },
     'yaxis': {
         'title': 'Integrand',
         'domain': [0, 0.48],
-        'range': [-0.1, 1.2]
+        'range': [-0.05, np.max(integrand)*1.15]
     },
     'xaxis2': {
         'title': 'M',
@@ -271,7 +306,7 @@ layout = {
     },
     'annotations': [
         {
-            'text': f'Asymptotic accuracy: {abs(I_numerical - I_asymptotic)/I_numerical * 100:.3f}% error | Contribution region: {I_contrib/I_numerical*100:.1f}% of total',
+            'text': f'Critical region contributes {contrib_percent:.1f}% | Asymptotic error: {abs(I_numerical - I_asymptotic_corrected)/I_numerical * 100:.2f}%',
             'x': 0.5,
             'y': 1.02,
             'xref': 'paper',
@@ -517,17 +552,17 @@ if len(x_osc) > 0:
     X_compare = x_compare / (epsilon_val**(2/3))
     Ai_compare, _, _, _ = airy(X_compare)
     Ai_compare_norm = Ai_compare / np.max(np.abs(Ai_compare[x_compare > 0.5])) if np.max(np.abs(Ai_compare[x_compare > 0.5])) > 0 else Ai_compare
-    
+
     # WKB at these points
     S_compare = (2/3) * x_compare**(3/2)
     y_wkb_compare = (x_compare)**(-1/4) * np.cos(S_compare / epsilon_val - np.pi/4)
     wkb_compare_max = np.max(np.abs(y_wkb_compare))
     if wkb_compare_max > 0:
         y_wkb_compare = y_wkb_compare / wkb_compare_max * np.max(np.abs(Ai_compare_norm))
-    
+
     error = np.abs(y_wkb_compare - Ai_compare_norm)
     max_error = float(np.max(error)) if len(error) > 0 else 0.0
-    
+
     traces.append({
         'x': x_compare.tolist(),
         'y': error.tolist(),
