@@ -325,7 +325,7 @@ class WidgetEngine {
       // Remove any existing parameter assignments (may have template syntax or placeholders)
       // Only remove lines that look like parameter assignments, not code that uses those parameters
       // We need to be careful: remove "M_expr = ..." but NOT "M = sympify(M_expr)"
-      
+
       // Remove parameter assignments with _expr or _val suffixes (these are the injected parameters)
       Object.keys(params).forEach(param => {
         // For text inputs (M, N), remove M_expr= and N_expr= assignments
@@ -337,7 +337,7 @@ class WidgetEngine {
           code = code.replace(new RegExp(`^${baseName}(_val|_expr)\\s*=.*?\\n`, 'gm'), '');
         }
       });
-      
+
       // Also remove any direct M= or N= assignments that are simple string assignments
       // But be careful not to remove "M = sympify(...)" which is code, not a parameter
       if (params.hasOwnProperty('M')) {

@@ -264,6 +264,7 @@ N_expr = "x**2 + 2*x*y"
 x, y = symbols('x y', real=True)
 
 # Parse M and N using sympify (safer than eval)
+# M_expr and N_expr are injected as strings, convert to sympy expressions
 M = sympify(M_expr)
 N = sympify(N_expr)
 
