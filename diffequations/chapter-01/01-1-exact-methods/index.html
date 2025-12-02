@@ -1,117 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 1.1: Exact Methods for Ordinary Differential Equations</title>
-  <meta name="description" content="We begin believing every ODE has an explicit solution — until non-uniqueness and nonlinearity shatter the dream.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.1: Exact Methods for Ordinary Differential Equations</title>
+    <meta name="description"
+        content="We begin believing every ODE has an explicit solution — until non-uniqueness and nonlinearity shatter the dream.">
 
-  <!-- KaTeX – canonical loading -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
-  </script>
+    <!-- KaTeX – canonical loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
+        </script>
 
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/navigation.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script> <!-- ACTIVE EVERYWHERE -->
+    <link rel="stylesheet" href="/diffequations/styles.css">
+    <script src="/diffequations/navigation-data.js"></script>
+    <script src="/diffequations/navigation.js"></script>
+    <script src="/diffequations/manifold-background.js" defer></script> <!-- ACTIVE EVERYWHERE -->
 </head>
+
 <body>
-<main>
-  <!-- 1. HOOK -->
-  <header class="hook">
-    <h1>Section 1.1: Exact Methods for Ordinary Differential Equations</h1>
-    <p class="hook-text">
-      We begin believing every differential equation has an explicit, closed-form solution we can write with pen and paper.
-    </p>
-    <p class="hook-subtitle">
-      This belief dies in the next thirty pages.
-    </p>
-  </header>
+    <main>
+        <!-- 1. HOOK -->
+        <header class="hook">
+            <h1>Section 1.1: Exact Methods for Ordinary Differential Equations</h1>
+            <p class="hook-text">
+                We begin believing every differential equation has an explicit, closed-form solution we can write with
+                pen and paper.
+            </p>
+            <p class="hook-subtitle">
+                This belief dies in the next thirty pages.
+            </p>
+        </header>
 
-  <!-- 2. DESCRIPTION -->
-  <p class="description">
-    Existence, uniqueness, and the first classical methods — where the dream of explicit solvability is born, celebrated, and quietly murdered.
-  </p>
+        <!-- 2. DESCRIPTION -->
+        <p class="description">
+            Existence, uniqueness, and the first classical methods — where the dream of explicit solvability is born,
+            celebrated, and quietly murdered.
+        </p>
 
-  <article>
+        <article>
 
-    <!-- 3. NARRATIVE INTRODUCTION (3 paragraphs – the optimistic assumption) -->
-    <section class="narrative-intro">
-      <p>We open the book with the most optimistic assumption in all of mathematics: that a differential equation is "solved" when we can exhibit an explicit formula for $y(x)$. Classical physics was built on this faith. Newton, Euler, Lagrange — all believed the universe would eventually yield its trajectories in terms of elementary functions or quadratures.</p>
-      <p>In this section we arm ourselves with the most powerful weapons of that era: separation of variables, exact equations, integrating factors, linearization tricks, and reduction of order. For a brief, glorious moment, everything works. The world is deterministic, smooth, and integrable.</p>
-      <p>Then we watch it collapse. A single counterexample — $y' = \sqrt{\vert y \vert}$ — annihilates uniqueness. Another — the Riccati equation — reveals that nonlinearity is not a bug but a projection of higher-dimensional linearity. By the end of this section the explicit formula will lie bleeding on the floor, and we will be forced to pick up entirely new tools.</p>
-    </section>
+            <!-- 3. NARRATIVE INTRODUCTION (3 paragraphs – the optimistic assumption) -->
+            <section class="narrative-intro">
+                <p>We open the book with the most optimistic assumption in all of mathematics: that a differential
+                    equation is "solved" when we can exhibit an explicit formula for $y(x)$. Classical physics was built
+                    on this faith. Newton, Euler, Lagrange — all believed the universe would eventually yield its
+                    trajectories in terms of elementary functions or quadratures.</p>
+                <p>In this section we arm ourselves with the most powerful weapons of that era: separation of variables,
+                    exact equations, integrating factors, linearization tricks, and reduction of order. For a brief,
+                    glorious moment, everything works. The world is deterministic, smooth, and integrable.</p>
+                <p>Then we watch it collapse. A single counterexample — $y' = \sqrt{\vert y \vert}$ — annihilates
+                    uniqueness. Another — the Riccati equation — reveals that nonlinearity is not a bug but a projection
+                    of higher-dimensional linearity. By the end of this section the explicit formula will lie bleeding
+                    on the floor, and we will be forced to pick up entirely new tools.</p>
+            </section>
 
-    <!-- CORE CONTENT WITH SEMANTIC BLOCKS & INTERMEDIATE CLIFFHANGERS -->
+            <!-- CORE CONTENT WITH SEMANTIC BLOCKS & INTERMEDIATE CLIFFHANGERS -->
 
-    <section>
-      <h2>The Deterministic Dream: Picard–Lindelöf</h2>
+            <section>
+                <h2>The Deterministic Dream: Picard–Lindelöf</h2>
 
-      <div class="theorem">
-        <p><strong>Picard–Lindelöf Theorem:</strong> If $f(x,y)$ is continuous and locally Lipschitz in $y$, then the initial value problem $y' = f(x,y)$, $y(x_0)=y_0$ has a unique solution on some interval containing $x_0$.</p>
-      </div>
+                <div class="theorem">
+                    <p><strong>Picard–Lindelöf Theorem:</strong> If $f(x,y)$ is continuous and locally Lipschitz in $y$,
+                        then the initial value problem $y' = f(x,y)$, $y(x_0)=y_0$ has a unique solution on some
+                        interval containing $x_0$.</p>
+                </div>
 
-      <p>The proof constructs a contraction mapping on a function space. Define the operator</p>
-      $$
-      (\mathcal{T}y)(x) = y_{0} + \int_{x_{0}}^{x} f(t, y(t))\,dt
-      $$
+                <p>The proof constructs a contraction mapping on a function space. Define the operator</p>
+                $$
+                (\mathcal{T}y)(x) = y_{0} + \int_{x_{0}}^{x} f(t, y(t))\,dt
+                $$
 
-      <p>On a sufficiently small interval, the Lipschitz condition ensures $\mathcal{T}$ is a contraction. Banach's fixed-point theorem furnishes a unique fixed point, which is the solution. Beautiful. Ironclad. The universe behaves.</p>
+                <p>On a sufficiently small interval, the Lipschitz condition ensures $\mathcal{T}$ is a contraction.
+                    Banach's fixed-point theorem furnishes a unique fixed point, which is the solution. Beautiful.
+                    Ironclad. The universe behaves.</p>
 
-      <div class="definition">
-        <p><strong>The Lipschitz Condition:</strong> A function $f$ is <strong>Lipschitz</strong> in $y$ if there exists a constant $K$ such that for all $y_1, y_2$ in the domain:</p>
-        $$\vert f(x, y_1) - f(x, y_2) \vert \leq K \vert y_1 - y_2 \vert$$
-        <p>This condition prevents the vector field from changing "infinitely fast," ensuring trajectories cannot split or merge.</p>
-      </div>
+                <div class="definition">
+                    <p><strong>The Lipschitz Condition:</strong> A function $f$ is <strong>Lipschitz</strong> in $y$ if
+                        there exists a constant $K$ such that for all $y_1, y_2$ in the domain:</p>
+                    $$\vert f(x, y_1) - f(x, y_2) \vert \leq K \vert y_1 - y_2 \vert$$
+                    <p>This condition prevents the vector field from changing "infinitely fast," ensuring trajectories
+                        cannot split or merge.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Picard Iteration: Exponential Growth</strong></p>
-        <p>Solve $y' = y$ with $y(0) = 1$ and demonstrate convergence of Picard iteration.</p>
-        <p>The exact solution is $y = e^{x}$. Picard iteration starts with $y_{0} = 1$ and applies $y_{n+1}(x) = 1 + \int_{0}^{x} y_{n}(t)\,dt$, giving</p>
-        $$
-        y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6},
-        $$
-        <p>so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\vert x \vert < 1$ to $e^{x}$. The Lipschitz constant is $K = 1$, and standard estimates bound the truncation error. The iteration converges geometrically, with error bounded by $K^n \vert x \vert^n / n!$.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Picard Iteration: Exponential Growth</strong></p>
+                    <p>Solve $y' = y$ with $y(0) = 1$ and demonstrate convergence of Picard iteration.</p>
+                    <p>The exact solution is $y = e^{x}$. Picard iteration starts with $y_{0} = 1$ and applies
+                        $y_{n+1}(x) = 1 + \int_{0}^{x} y_{n}(t)\,dt$, giving</p>
+                    $$
+                    y_{1} = 1 + x, \quad y_{2} = 1 + x + \frac{x^{2}}{2}, \quad y_{3} = 1 + x + \frac{x^{2}}{2} +
+                    \frac{x^{3}}{6},
+                    $$
+                    <p>so $y_{n}(x) = \sum_{k=0}^{n} x^{k}/k!$ converges uniformly on $\vert x \vert < 1$ to $e^{x}$.
+                            The Lipschitz constant is $K=1$, and standard estimates bound the truncation error. The
+                            iteration converges geometrically, with error bounded by $K^n \vert x \vert^n / n!$.</p>
+                </div>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>First Crisis: Non-Uniqueness</h2>
+            <section>
+                <h2>First Crisis: Non-Uniqueness</h2>
 
-      <p>However, when the Lipschitz condition fails, determinism breaks down. This is our first encounter with the limitations of classical analysis.</p>
+                <p>However, when the Lipschitz condition fails, determinism breaks down. This is our first encounter
+                    with the limitations of classical analysis.</p>
 
-      <p>Consider the initial value problem $y' = \sqrt{\vert y \vert}$ with $y(0) = 0$.</p>
+                <p>Consider the initial value problem $y' = \sqrt{\vert y \vert}$ with $y(0) = 0$.</p>
 
-      <p>The function $f(y) = \sqrt{\vert y \vert}$ has an infinite derivative at $y=0$, violating the Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a second family of solutions:</p>
-      $$\int y^{-1/2} dy = \int dx \implies 2\sqrt{y} = x \implies y = \frac{x^2}{4} \quad (x \geq 0)$$
+                <p>The function $f(y) = \sqrt{\vert y \vert}$ has an infinite derivative at $y=0$, violating the
+                    Lipschitz condition. While $y(x) = 0$ is trivially a solution, separation of variables yields a
+                    second family of solutions:</p>
+                $$\int y^{-1/2} dy = \int dx \implies 2\sqrt{y} = x \implies y = \frac{x^2}{4} \quad (x \geq 0)$$
 
-      <p>Since</p>
-      $$
-      \frac{\vert \sqrt{\vert y_{1} \vert} - \sqrt{\vert y_{2} \vert} \vert}{\vert y_{1} - y_{2} \vert} \to \infty \quad \text{as } y_{1}, y_{2} \to 0,
-      $$
+                <p>Since</p>
+                $$
+                \frac{\vert \sqrt{\vert y_{1} \vert} - \sqrt{\vert y_{2} \vert} \vert}{\vert y_{1} - y_{2} \vert} \to
+                \infty \quad \text{as } y_{1}, y_{2} \to 0,
+                $$
 
-      <p>the Lipschitz condition fails and uniqueness is lost. Both $y(x) \equiv 0$ and $y(x) = \frac{x^2}{4}\text{sign}(x)$ (and infinitely many "waiting-then-moving" solutions) satisfy the equation.</p>
+                <p>the Lipschitz condition fails and uniqueness is lost. Both $y(x) \equiv 0$ and $y(x) =
+                    \frac{x^2}{4}\text{sign}(x)$ (and infinitely many "waiting-then-moving" solutions) satisfy the
+                    equation.</p>
 
-      <!-- CRISIS WIDGET -->
-      <div class="widget-module crisis-widget" id="non-uniqueness-1-1">
-        <div class="module-header">
-          <h3>Interactive: Watch Determinism Die</h3>
-          <div class="widget-controls">
-            <div class="widget-control">
-              <label>Waiting time $\tau$</label>
-              <input type="range" class="widget-slider" data-param="tau" min="0" max="5" step="0.1" value="0">
-              <span class="widget-value" data-param="tau">0.0</span>
-            </div>
-          </div>
-          <button class="run-button widget-run">Run</button>
-        </div>
-        <div class="plotly-container widget-output"></div>
-        <div class="code-block hidden">
-          <pre><code class="language-python"># Parameters injected automatically: tau_val
+                <!-- CRISIS WIDGET -->
+                <div class="widget-module crisis-widget" id="non-uniqueness-1-1">
+                    <div class="module-header">
+                        <h3>Interactive: Watch Determinism Die</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>Waiting time $\tau$</label>
+                                <input type="range" class="widget-slider" data-param="tau" min="0" max="5" step="0.1"
+                                    value="0">
+                                <span class="widget-value" data-param="tau">0.0</span>
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Run</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python"># Parameters injected automatically: tau_val
 import numpy as np
 
 t = np.linspace(0, 5, 500)
@@ -138,60 +168,72 @@ layout = {
 }
 
 create_plot(traces, layout)</code></pre>
-        </div>
-      </div>
+                    </div>
+                </div>
 
-      <div class="cliffhanger">
-        A particle at rest can spontaneously decide — at any moment — to start moving. The future is not determined by the present. Classical physics is already dead.
-      </div>
+                <div class="cliffhanger">
+                    A particle at rest can spontaneously decide — at any moment — to start moving. The future is not
+                    determined by the present. Classical physics is already dead.
+                </div>
 
-      <p>This failure motivates the need for more sophisticated existence and uniqueness criteria, such as Osgood's condition, which we explore in the challenge problems.</p>
+                <p>This failure motivates the need for more sophisticated existence and uniqueness criteria, such as
+                    Osgood's condition, which we explore in the challenge problems.</p>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>Victory (Temporary): Exact Equations and Integrating Factors</h2>
+            <section>
+                <h2>Victory (Temporary): Exact Equations and Integrating Factors</h2>
 
-      <p>Assuming uniqueness holds, the most general explicit method views the differential equation not as a function, but as a <strong>differential form</strong>. Rewriting $y' = -M(x,y)/N(x,y)$ gives the symmetric form:</p>
-      $$M(x,y)\,dx + N(x,y)\,dy = 0$$
+                <p>Assuming uniqueness holds, the most general explicit method views the differential equation not as a
+                    function, but as a <strong>differential form</strong>. Rewriting $y' = -M(x,y)/N(x,y)$ gives the
+                    symmetric form:</p>
+                $$M(x,y)\,dx + N(x,y)\,dy = 0$$
 
-      <p>We seek a scalar potential function $\psi(x,y)$ such that the solution curves correspond to the level sets $\psi(x,y) = c$. For this to hold, we must have $d\psi = M\,dx + N\,dy$.</p>
+                <p>We seek a scalar potential function $\psi(x,y)$ such that the solution curves correspond to the level
+                    sets $\psi(x,y) = c$. For this to hold, we must have $d\psi = M\,dx + N\,dy$.</p>
 
-      <div class="theorem">
-        <p><strong>Exactness Criterion:</strong> By the equality of mixed partial derivatives ($\psi_{xy} = \psi_{yx}$), a necessary and sufficient condition for <strong>exactness</strong> is:</p>
-        $$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$
-        <p>Geometrically, this states that the vector field $(M, N)$ is irrotational (has zero curl) in the plane.</p>
-      </div>
+                <div class="theorem">
+                    <p><strong>Exactness Criterion:</strong> By the equality of mixed partial derivatives ($\psi_{xy} =
+                        \psi_{yx}$), a necessary and sufficient condition for <strong>exactness</strong> is:</p>
+                    $$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$
+                    <p>Geometrically, this states that the vector field $(M, N)$ is irrotational (has zero curl) in the
+                        plane.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Exact Construction</strong></p>
-        <p>Solve the equation $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.</p>
-        <p><strong>Check Exactness:</strong> $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) = 2x + 2y$. They match.</p>
-        <p><strong>Integrate:</strong> Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 + h(y)$.</p>
-        <p><strong>Consistency:</strong> Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy + h'(y)$. Matching this with $N$, we find $h'(y) = 0$.</p>
-        <p>The general solution is the implicit curve $x^2y + xy^2 = C$.</p>
-        <p>This demonstrates that exactness is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The level sets of $\psi$ are the integral curves.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Exact Construction</strong></p>
+                    <p>Solve the equation $(2xy + y^{2})\,dx + (x^{2} + 2xy)\,dy = 0$.</p>
+                    <p><strong>Check Exactness:</strong> $\partial_y(2xy + y^2) = 2x + 2y$ and $\partial_x(x^2 + 2xy) =
+                        2x + 2y$. They match.</p>
+                    <p><strong>Integrate:</strong> Integrating $M$ with respect to $x$ yields $\psi = x^2y + xy^2 +
+                        h(y)$.</p>
+                    <p><strong>Consistency:</strong> Differentiating $\psi$ with respect to $y$ gives $x^2 + 2xy +
+                        h'(y)$. Matching this with $N$, we find $h'(y) = 0$.</p>
+                    <p>The general solution is the implicit curve $x^2y + xy^2 = C$.</p>
+                    <p>This demonstrates that exactness is not merely an algebraic manipulation, but a coordinate
+                        transformation that decouples the dynamics. The level sets of $\psi$ are the integral curves.
+                    </p>
+                </div>
 
-      <!-- VICTORY WIDGET -->
-      <div class="widget-module victory-widget" id="exact-solver-1-1">
-        <div class="module-header">
-          <h3>Interactive Exact Equation Solver</h3>
-          <div class="widget-controls">
-            <div class="widget-control">
-              <label>M(x,y)</label>
-              <input type="text" class="widget-text" data-param="M" value="2*x*y + y**2">
-            </div>
-            <div class="widget-control">
-              <label>N(x,y)</label>
-              <input type="text" class="widget-text" data-param="N" value="x**2 + 2*x*y">
-            </div>
-          </div>
-          <button class="run-button widget-run">Find Potential</button>
-        </div>
-        <div class="plotly-container widget-output"></div>
-        <div class="code-block hidden">
-          <pre><code class="language-python"># Parameters injected automatically: M_expr, N_expr
+                <!-- VICTORY WIDGET -->
+                <div class="widget-module victory-widget" id="exact-solver-1-1">
+                    <div class="module-header">
+                        <h3>Interactive Exact Equation Solver</h3>
+                        <div class="widget-controls">
+                            <div class="widget-control">
+                                <label>M(x,y)</label>
+                                <input type="text" class="widget-text" data-param="M" value="2*x*y + y**2">
+                            </div>
+                            <div class="widget-control">
+                                <label>N(x,y)</label>
+                                <input type="text" class="widget-text" data-param="N" value="x**2 + 2*x*y">
+                            </div>
+                        </div>
+                        <button class="run-button widget-run">Find Potential</button>
+                    </div>
+                    <div class="plotly-container widget-output"></div>
+                    <div class="code-block hidden">
+                        <pre><code class="language-python"># Parameters injected automatically: M_expr, N_expr
 import numpy as np
 from sympy import symbols, diff, integrate, simplify
 import sympy as sp
@@ -246,244 +288,319 @@ else:
     }
 
 create_plot(traces, layout)</code></pre>
-        </div>
-      </div>
+                    </div>
+                </div>
 
-      <h3>Integrating Factors as Coordinate Transformations</h3>
+                <h3>Integrating Factors as Coordinate Transformations</h3>
 
-      <p>Most differential forms are not naturally exact. However, exactness is often a property of the coordinate representation, not the physics. We seek a scalar multiplier $\mu(x,y)$ (an <strong>integrating factor</strong>) such that:</p>
-      $$\mu M \, dx + \mu N \, dy = 0$$
+                <p>Most differential forms are not naturally exact. However, exactness is often a property of the
+                    coordinate representation, not the physics. We seek a scalar multiplier $\mu(x,y)$ (an
+                    <strong>integrating factor</strong>) such that:</p>
+                $$\mu M \, dx + \mu N \, dy = 0$$
 
-      <p>satisfies the exactness condition.</p>
+                <p>satisfies the exactness condition.</p>
 
-      <p>The classical <strong>Linear First-Order Equation</strong> $y' + P(x)y = Q(x)$ is the archetype of this method. The specific factor $\mu(x) = \exp(\int P(x) dx)$ is not merely a heuristic trick; it is the unique transformation that renders the differential operator self-adjoint with respect to the weight $\mu$, allowing the equation to be written as a total derivative:</p>
-      $$\frac{d}{dx}(\mu y) = \mu Q$$
+                <p>The classical <strong>Linear First-Order Equation</strong> $y' + P(x)y = Q(x)$ is the archetype of
+                    this method. The specific factor $\mu(x) = \exp(\int P(x) dx)$ is not merely a heuristic trick; it
+                    is the unique transformation that renders the differential operator self-adjoint with respect to the
+                    weight $\mu$, allowing the equation to be written as a total derivative:</p>
+                $$\frac{d}{dx}(\mu y) = \mu Q$$
 
-      <div class="example">
-        <p><strong>Linear First-Order: Radioactive Decay with Production</strong></p>
-        <p>Solve $y' = -ky + P$ with $y(0) = y_{0}$.</p>
-        <p>The integrating factor is $\mu(x) = e^{kx}$. Multiplying both sides:</p>
-        $$\frac{d}{dx}(y e^{kx}) = P e^{kx}$$
+                <div class="example">
+                    <p><strong>Linear First-Order: Radioactive Decay with Production</strong></p>
+                    <p>Solve $y' = -ky + P$ with $y(0) = y_{0}$.</p>
+                    <p>The integrating factor is $\mu(x) = e^{kx}$. Multiplying both sides:</p>
+                    $$\frac{d}{dx}(y e^{kx}) = P e^{kx}$$
 
-        <p>Integrating and applying the initial condition:</p>
-        $$y(x) = (y_{0} - \frac{P}{k}) e^{-kx} + \frac{P}{k}$$
+                    <p>Integrating and applying the initial condition:</p>
+                    $$y(x) = (y_{0} - \frac{P}{k}) e^{-kx} + \frac{P}{k}$$
 
-        <p>Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution exhibits exponential decay to the equilibrium $P/k$.</p>
-      </div>
+                    <p>Picard iterates converge because $f(y) = -ky + P$ is Lipschitz with constant $k$. The solution
+                        exhibits exponential decay to the equilibrium $P/k$.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Linear First-Order: Exponential Growth with Forcing</strong></p>
-        <p>Solve $y' + 2xy = x$ with $y(0) = 0$.</p>
-        <p>Using $\mu = e^{x^{2}}$,</p>
-        $$
-        \frac{d}{dx}(y e^{x^{2}}) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}(1 - e^{-x^{2}}).
-        $$
+                <div class="example">
+                    <p><strong>Linear First-Order: Exponential Growth with Forcing</strong></p>
+                    <p>Solve $y' + 2xy = x$ with $y(0) = 0$.</p>
+                    <p>Using $\mu = e^{x^{2}}$,</p>
+                    $$
+                    \frac{d}{dx}(y e^{x^{2}}) = x e^{x^{2}}, \qquad y(x) = \frac{1}{2}(1 - e^{-x^{2}}).
+                    $$
 
-        <p>The integrating factor method transforms the non-homogeneous equation into a total derivative, revealing the structure of the solution.</p>
-      </div>
+                    <p>The integrating factor method transforms the non-homogeneous equation into a total derivative,
+                        revealing the structure of the solution.</p>
+                </div>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>Separation, Bernoulli, Riccati, and the Fragility of Explicitness</h2>
+            <section>
+                <h2>Separation, Bernoulli, Riccati, and the Fragility of Explicitness</h2>
 
-      <p>When the field factors as $y' = P(x)/Q(y)$ we obtain</p>
-      $$
-      Q(y)\,dy = P(x)\,dx, \qquad \int Q(y)\,dy = \int P(x)\,dx,
-      $$
+                <p>When the field factors as $y' = P(x)/Q(y)$ we obtain</p>
+                $$
+                Q(y)\,dy = P(x)\,dx, \qquad \int Q(y)\,dy = \int P(x)\,dx,
+                $$
 
-      <p>reducing the problem to quadrature.</p>
+                <p>reducing the problem to quadrature.</p>
 
-      <div class="example">
-        <p><strong>Exponential Growth</strong></p>
-        <p>Solve $y' = xy$ with $y(0) = 1$.</p>
-        <p>We have $dy/y = x\,dx$, leading to $\ln \vert y \vert = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.</p>
-        <p>This demonstrates that separation of variables is not merely an algebraic manipulation, but a coordinate transformation that decouples the dynamics. The solution grows super-exponentially, faster than any polynomial.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Exponential Growth</strong></p>
+                    <p>Solve $y' = xy$ with $y(0) = 1$.</p>
+                    <p>We have $dy/y = x\,dx$, leading to $\ln \vert y \vert = x^{2}/2 + C$ and $y = e^{x^{2}/2}$.</p>
+                    <p>This demonstrates that separation of variables is not merely an algebraic manipulation, but a
+                        coordinate transformation that decouples the dynamics. The solution grows super-exponentially,
+                        faster than any polynomial.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Newton's Law of Cooling</strong></p>
-        <p>Solve $T' = -k(T - T_{a})$.</p>
-        <p>Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.</p>
-        <p>The temperature approaches the ambient temperature exponentially, with rate constant $k$. This is a fundamental model of heat transfer.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Newton's Law of Cooling</strong></p>
+                    <p>Solve $T' = -k(T - T_{a})$.</p>
+                    <p>Separating gives $dT/(T - T_{a}) = -k\,dt$, hence $T(t) = T_{a} + (T_{0} - T_{a}) e^{-kt}$.</p>
+                    <p>The temperature approaches the ambient temperature exponentially, with rate constant $k$. This is
+                        a fundamental model of heat transfer.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Logistic Growth</strong></p>
-        <p>Solve $y' = ry(1 - y/K)$.</p>
-        <p>Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \vert \frac{y}{K - y} \vert = rt + C$ and $y(t) = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.</p>
-        <p>The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and many other bounded growth phenomena.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Logistic Growth</strong></p>
+                    <p>Solve $y' = ry(1 - y/K)$.</p>
+                    <p>Integrating $dy/[y(1 - y/K)] = r\,dt$ yields $\ln \vert \frac{y}{K - y} \vert = rt + C$ and $y(t)
+                        = \frac{K}{1 + A e^{-rt}}$ with $A = (K - y_{0})/y_{0}$.</p>
+                    <p>The solution exhibits sigmoidal growth: exponential growth for small $y$, followed by saturation
+                        at the carrying capacity $K$. This model captures population dynamics, chemical kinetics, and
+                        many other bounded growth phenomena.</p>
+                </div>
 
-      <p>Bernoulli equations $y' + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v = y^{1-n}$.</p>
+                <p>Bernoulli equations $y' + P(x) y = Q(x) y^{n}$ reduce to linear form once we substitute $v =
+                    y^{1-n}$.</p>
 
-      <div class="example">
-        <p><strong>Bernoulli Transformation</strong></p>
-        <p>Solve $y' + y = x y^{3}$.</p>
-        <p>Set $v = y^{-2}$ to obtain $v' - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.</p>
-        <p>The substitution transforms the nonlinear equation into a linear one, demonstrating that certain nonlinearities are merely coordinate artifacts.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Bernoulli Transformation</strong></p>
+                    <p>Solve $y' + y = x y^{3}$.</p>
+                    <p>Set $v = y^{-2}$ to obtain $v' - 2v = -2x$. Multiplying by $e^{-2x}$ gives $d(v e^{-2x})/dx = -2x
+                        e^{-2x}$, so $v = x - \tfrac{1}{2} + C e^{2x}$ and $y = (x - \tfrac{1}{2} + C e^{2x})^{-1/2}$.
+                    </p>
+                    <p>The substitution transforms the nonlinear equation into a linear one, demonstrating that certain
+                        nonlinearities are merely coordinate artifacts.</p>
+                </div>
 
-      <p>While linear and nonlinear equations are treated as distinct categories, there are profound algebraic bridges between them. The <strong>Riccati Equation</strong> represents the simplest non-trivial nonlinearity:</p>
-      $$y' = P(x) + Q(x)y + R(x)y^{2}$$
+                <p>While linear and nonlinear equations are treated as distinct categories, there are profound algebraic
+                    bridges between them. The <strong>Riccati Equation</strong> represents the simplest non-trivial
+                    nonlinearity:</p>
+                $$y' = P(x) + Q(x)y + R(x)y^{2}$$
 
-      <p>This equation possesses a remarkable property: it is a "projection" of a higher-dimensional linear system. If $y_{1}$ is a particular solution, substituting $y = y_{1} + 1/v$ produces a linear first-order equation for $v$. Alternatively, $y = -u'/(R u)$ converts the Riccati equation into</p>
-      $$
-      u'' + (Q + \frac{R'}{R})u' + PR\,u = 0,
-      $$
+                <p>This equation possesses a remarkable property: it is a "projection" of a higher-dimensional linear
+                    system. If $y_{1}$ is a particular solution, substituting $y = y_{1} + 1/v$ produces a linear
+                    first-order equation for $v$. Alternatively, $y = -u'/(R u)$ converts the Riccati equation into</p>
+                $$
+                u'' + (Q + \frac{R'}{R})u' + PR\,u = 0,
+                $$
 
-      <p>showing how nonlinearity can arise from projecting higher-dimensional linear flow.</p>
+                <p>showing how nonlinearity can arise from projecting higher-dimensional linear flow.</p>
 
-      <div class="example">
-        <p><strong>Reducing Riccati to Linear Form</strong></p>
-        <p>Solve the nonlinear equation $y' = y^{2} - 2xy + x^{2} + 1$.</p>
-        <p>By inspection, $y_1 = x$ is a particular solution. We use the substitution $y = y_1 + 1/v$ to linearize the deviation from the known solution.</p>
-        $$(x + 1/v)' = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$$
+                <div class="example">
+                    <p><strong>Reducing Riccati to Linear Form</strong></p>
+                    <p>Solve the nonlinear equation $y' = y^{2} - 2xy + x^{2} + 1$.</p>
+                    <p>By inspection, $y_1 = x$ is a particular solution. We use the substitution $y = y_1 + 1/v$ to
+                        linearize the deviation from the known solution.</p>
+                    $$(x + 1/v)' = (x + 1/v)^2 - 2x(x + 1/v) + x^2 + 1$$
 
-        <p>Expanding terms leads to $v' = -1$. Integrating gives $v(x) = -x + C$.</p>
-        <p>The general solution is $y(x) = x + \frac{1}{C - x}$.</p>
-        <p>Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear equations often exhibit <strong>finite-time blowup</strong>. This singularity represents a fundamental difference between linear and nonlinear dynamics.</p>
-      </div>
+                    <p>Expanding terms leads to $v' = -1$. Integrating gives $v(x) = -x + C$.</p>
+                    <p>The general solution is $y(x) = x + \frac{1}{C - x}$.</p>
+                    <p>Note the singularity at $x=C$. While linear equations generally have global solutions, nonlinear
+                        equations often exhibit <strong>finite-time blowup</strong>. This singularity represents a
+                        fundamental difference between linear and nonlinear dynamics.</p>
+                </div>
 
-      <div class="cliffhanger">
-        But the Riccati already whispers the truth: nonlinearity is often just linear dynamics projected down. And most projections are singular.
-      </div>
+                <div class="cliffhanger">
+                    But the Riccati already whispers the truth: nonlinearity is often just linear dynamics projected
+                    down. And most projections are singular.
+                </div>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>Second-Order Linear Homogeneous Equations</h2>
+            <section>
+                <h2>Second-Order Linear Homogeneous Equations</h2>
 
-      <p>Equations like $y'' + p(x) y' + q(x) y = 0$ underpin classical physics. Constant coefficients yield the characteristic polynomial $r^{2} + pr + q = 0$ with exponential solutions.</p>
+                <p>Equations like $y'' + p(x) y' + q(x) y = 0$ underpin classical physics. Constant coefficients yield
+                    the characteristic polynomial $r^{2} + pr + q = 0$ with exponential solutions.</p>
 
-      <div class="example">
-        <p><strong>Constant-Coefficient Second Order</strong></p>
-        <p>Solve $y'' - 3y' + 2y = 0$.</p>
-        <p>The characteristic polynomial $(r - 1)(r - 2) = 0$ produces $y = C_{1} e^{x} + C_{2} e^{2x}$.</p>
-        <p>The general solution is a linear combination of exponentials, with coefficients determined by initial conditions.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Constant-Coefficient Second Order</strong></p>
+                    <p>Solve $y'' - 3y' + 2y = 0$.</p>
+                    <p>The characteristic polynomial $(r - 1)(r - 2) = 0$ produces $y = C_{1} e^{x} + C_{2} e^{2x}$.</p>
+                    <p>The general solution is a linear combination of exponentials, with coefficients determined by
+                        initial conditions.</p>
+                </div>
 
-      <div class="example">
-        <p><strong>Cauchy–Euler Equation</strong></p>
-        <p>Solve $x^{2} y'' - 3x y' + 4y = 0$.</p>
-        <p>Substituting $y = x^{r}$ yields $(r - 2)^{2} = 0$, so $y = C_{1} x^{2} + C_{2} x^{2} \ln x$.</p>
-        <p>The repeated root produces a logarithmic term, demonstrating that the solution space structure depends on the algebraic multiplicity of eigenvalues.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Cauchy–Euler Equation</strong></p>
+                    <p>Solve $x^{2} y'' - 3x y' + 4y = 0$.</p>
+                    <p>Substituting $y = x^{r}$ yields $(r - 2)^{2} = 0$, so $y = C_{1} x^{2} + C_{2} x^{2} \ln x$.</p>
+                    <p>The repeated root produces a logarithmic term, demonstrating that the solution space structure
+                        depends on the algebraic multiplicity of eigenvalues.</p>
+                </div>
 
-      <p>When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving</p>
-      $$
-      y_{2}(x) = y_{1}(x) \int \frac{\exp(-\int p(s)\,ds)}{y_{1}(t)^{2}}\,dt.
-      $$
+                <p>When one solution $y_{1}$ is known, reduction of order sets $y_{2} = v(x) y_{1}(x)$, giving</p>
+                $$
+                y_{2}(x) = y_{1}(x) \int \frac{\exp(-\int p(s)\,ds)}{y_{1}(t)^{2}}\,dt.
+                $$
 
-      <div class="example">
-        <p><strong>Reduction of Order</strong></p>
-        <p>Given $y_{1} = e^{x^{2}/2}$ solves $x y'' + y' - xy = 0$, find $y_{2}$.</p>
-        <p>Let $y_{2} = v y_{1}$. Substituting leads to $v'' + (2x + 1/x) v' = 0$. Setting $w = v'$ gives $w = C/(x e^{x^{2}})$, and integrating yields $y_{2} = -\operatorname{Ei}(-x^{2}) e^{x^{2}/2}$.</p>
-        <p>The second solution involves the exponential integral, a special function that cannot be expressed in elementary terms. This foreshadows the need for special functions developed in later sections.</p>
-      </div>
+                <div class="example">
+                    <p><strong>Reduction of Order</strong></p>
+                    <p>Given $y_{1} = e^{x^{2}/2}$ solves $x y'' + y' - xy = 0$, find $y_{2}$.</p>
+                    <p>Let $y_{2} = v y_{1}$. Substituting leads to $v'' + (2x + 1/x) v' = 0$. Setting $w = v'$ gives $w
+                        = C/(x e^{x^{2}})$, and integrating yields $y_{2} = -\operatorname{Ei}(-x^{2}) e^{x^{2}/2}$.</p>
+                    <p>The second solution involves the exponential integral, a special function that cannot be
+                        expressed in elementary terms. This foreshadows the need for special functions developed in
+                        later sections.</p>
+                </div>
 
-      <p>The Wronskian $W = y_{1} y_{2}' - y_{1}' y_{2}$ satisfies Abel's identity $W' = -p(x) W$, so $W \neq 0$ at one point implies linear independence everywhere.</p>
+                <p>The Wronskian $W = y_{1} y_{2}' - y_{1}' y_{2}$ satisfies Abel's identity $W' = -p(x) W$, so $W \neq
+                    0$ at one point implies linear independence everywhere.</p>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>Systems and Matrix Methods</h2>
+            <section>
+                <h2>Systems and Matrix Methods</h2>
 
-      <p>Systems $\mathbf{y}' = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional vector space with fundamental matrix $\Phi$ satisfying $\Phi' = A\Phi$. The general solution is $\mathbf{y} = \Phi \mathbf{c}$. Abel's formula extends via</p>
-      $$
-      \det \Phi(x) = \det \Phi(x_{0}) \exp( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt ),
-      $$
+                <p>Systems $\mathbf{y}' = A(x) \mathbf{y}$ inherit linear structure. Solutions form an $n$-dimensional
+                    vector space with fundamental matrix $\Phi$ satisfying $\Phi' = A\Phi$. The general solution is
+                    $\mathbf{y} = \Phi \mathbf{c}$. Abel's formula extends via</p>
+                $$
+                \det \Phi(x) = \det \Phi(x_{0}) \exp( \int_{x_{0}}^{x} \operatorname{tr} A(t)\,dt ),
+                $$
 
-      <p>tying phase-space volume change to $\operatorname{tr} A$.</p>
+                <p>tying phase-space volume change to $\operatorname{tr} A$.</p>
 
-      <div class="example">
-        <p><strong>Linear System via Eigen-Decomposition</strong></p>
-        <p>Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.</p>
-        <p>With</p>
-        $$A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix},$$
+                <div class="example">
+                    <p><strong>Linear System via Eigen-Decomposition</strong></p>
+                    <p>Solve $y_{1}' = y_{1} + y_{2}$, $y_{2}' = 4y_{1} + y_{2}$.</p>
+                    <p>With</p>
+                    $$A = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix},$$
 
-        <p>eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} = -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield</p>
-        $$
-        \mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1 \\ -2 \end{pmatrix}.
-        $$
+                    <p>eigenvalues satisfy $\lambda^{2} - 2\lambda - 3 = 0$, giving $\lambda_{1} = 3$, $\lambda_{2} =
+                        -1$. Eigenvectors $(1,2)^{\top}$ and $(1,-2)^{\top}$ yield</p>
+                    $$
+                    \mathbf{y}(x) = C_{1} e^{3x} \begin{pmatrix} 1 \\ 2 \end{pmatrix} + C_{2} e^{-x} \begin{pmatrix} 1
+                    \\ -2 \end{pmatrix}.
+                    $$
 
-        <p>The solution is a linear combination of eigenmodes, each growing or decaying according to its eigenvalue. The unstable mode ($\lambda = 3$) dominates for large $x$, while the stable mode ($\lambda = -1$) dominates for large negative $x$.</p>
-      </div>
+                    <p>The solution is a linear combination of eigenmodes, each growing or decaying according to its
+                        eigenvalue. The unstable mode ($\lambda = 3$) dominates for large $x$, while the stable mode
+                        ($\lambda = -1$) dominates for large negative $x$.</p>
+                </div>
 
-    </section>
+            </section>
 
-    <section>
-      <h2>First Integrals and Level Sets</h2>
+            <section>
+                <h2>First Integrals and Level Sets</h2>
 
-      <p>Autonomous systems often admit first integrals $H(x,y)$ with $dH/dt = 0$, so trajectories lie on $H = c$. In Hamiltonian form the Poisson bracket</p>
-      $$
-      \{F, H\} = \nabla F \cdot J \nabla H
-      $$
+                <p>Autonomous systems often admit first integrals $H(x,y)$ with $dH/dt = 0$, so trajectories lie on $H =
+                    c$. In Hamiltonian form the Poisson bracket</p>
+                $$
+                \{F, H\} = \nabla F \cdot J \nabla H
+                $$
 
-      <p>encodes conservation: if $\{F, H\} = 0$, then $F$ is invariant. This foreshadows the symplectic viewpoint of later sections.</p>
+                <p>encodes conservation: if $\{F, H\} = 0$, then $F$ is invariant. This foreshadows the symplectic
+                    viewpoint of later sections.</p>
 
-      <div class="example">
-        <p><strong>First Integrals of the Harmonic Oscillator</strong></p>
-        <p>Show $H(x,y) = \tfrac{1}{2}(x^{2} + y^{2})$ is conserved for $x' = y$, $y' = -x$.</p>
-        <p>Compute $dH/dt = x y + y(-x) = 0$, so trajectories lie on circles $x^{2} + y^{2} = C$. The Poisson bracket with $H$ vanishes for any function of $x^{2} + y^{2}$, illustrating conserved quantities.</p>
-        <p>The phase space is foliated by level sets of $H$, each representing a different energy. This geometric structure is fundamental to Hamiltonian mechanics and will be developed extensively in later chapters.</p>
-      </div>
+                <div class="example">
+                    <p><strong>First Integrals of the Harmonic Oscillator</strong></p>
+                    <p>Show $H(x,y) = \tfrac{1}{2}(x^{2} + y^{2})$ is conserved for $x' = y$, $y' = -x$.</p>
+                    <p>Compute $dH/dt = x y + y(-x) = 0$, so trajectories lie on circles $x^{2} + y^{2} = C$. The
+                        Poisson bracket with $H$ vanishes for any function of $x^{2} + y^{2}$, illustrating conserved
+                        quantities.</p>
+                    <p>The phase space is foliated by level sets of $H$, each representing a different energy. This
+                        geometric structure is fundamental to Hamiltonian mechanics and will be developed extensively in
+                        later chapters.</p>
+                </div>
 
-    </section>
+            </section>
 
-    <!-- MASTERY CHALLENGES -->
-    <section class="challenges">
-      <h2>Mastery Challenges</h2>
+            <!-- MASTERY CHALLENGES -->
+            <section class="challenges">
+                <h2>Mastery Challenges</h2>
 
-      <details>
-        <summary>Challenge 1 [★★☆] Osgood Uniqueness Criterion</summary>
-        <p>Replace the Lipschitz condition with the weaker Osgood condition $\vert f(x,y_1) - f(x,y_2) \vert \leq K(x) \cdot \omega(\vert y_1 - y_2 \vert)$ where $\int_0^\epsilon \frac{d r}{\omega(r)} = \infty$. Prove uniqueness still holds.</p>
-        <details><summary>Solution</summary><p>Detailed proof using logarithmic modulus of continuity. The Osgood condition generalizes Lipschitz by allowing a modulus function $\omega$ that grows slower than linearly. The divergence condition $\int_0^\epsilon \frac{dr}{\omega(r)} = \infty$ ensures that the contraction mapping argument still works, as the integral test shows the iteration converges.</p></details>
-      </details>
+                <details>
+                    <summary>Challenge 1 [★★☆] Osgood Uniqueness Criterion</summary>
+                    <p>Replace the Lipschitz condition with the weaker Osgood condition $\vert f(x,y_1) - f(x,y_2) \vert
+                        \leq K(x) \cdot \omega(\vert y_1 - y_2 \vert)$ where $\int_0^\epsilon \frac{d r}{\omega(r)} =
+                        \infty$. Prove uniqueness still holds.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Detailed proof using logarithmic modulus of continuity. The Osgood condition generalizes
+                            Lipschitz by allowing a modulus function $\omega$ that grows slower than linearly. The
+                            divergence condition $\int_0^\epsilon \frac{dr}{\omega(r)} = \infty$ ensures that the
+                            contraction mapping argument still works, as the integral test shows the iteration
+                            converges.</p>
+                    </details>
+                </details>
 
-      <details>
-        <summary>Challenge 2 [★★★] Integrating Factor Depending on Both Variables</summary>
-        <p>Show that if $(\partial_y M - \partial_x N)/N$ is a function of $x$ alone, then $\mu(x) = \exp(\int (\partial_y M - \partial_x N)/N \, dx)$ works. Similarly, if $(\partial_x N - \partial_y M)/M$ is a function of $y$ alone, then $\mu(y) = \exp(\int (\partial_x N - \partial_y M)/M \, dy)$ works.</p>
-        <details><summary>Solution</summary><p>Standard derivation: For exactness of $\mu M dx + \mu N dy$, we need $\partial_y(\mu M) = \partial_x(\mu N)$. Expanding and rearranging gives $\mu(\partial_y M - \partial_x N) = N \partial_x \mu - M \partial_y \mu$. If the left side divided by $N$ depends only on $x$, then $\mu$ can be chosen as a function of $x$ alone, leading to the stated formula.</p></details>
-      </details>
+                <details>
+                    <summary>Challenge 2 [★★★] Integrating Factor Depending on Both Variables</summary>
+                    <p>Show that if $(\partial_y M - \partial_x N)/N$ is a function of $x$ alone, then $\mu(x) =
+                        \exp(\int (\partial_y M - \partial_x N)/N \, dx)$ works. Similarly, if $(\partial_x N -
+                        \partial_y M)/M$ is a function of $y$ alone, then $\mu(y) = \exp(\int (\partial_x N - \partial_y
+                        M)/M \, dy)$ works.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Standard derivation: For exactness of $\mu M dx + \mu N dy$, we need $\partial_y(\mu M) =
+                            \partial_x(\mu N)$. Expanding and rearranging gives $\mu(\partial_y M - \partial_x N) = N
+                            \partial_x \mu - M \partial_y \mu$. If the left side divided by $N$ depends only on $x$,
+                            then $\mu$ can be chosen as a function of $x$ alone, leading to the stated formula.</p>
+                    </details>
+                </details>
 
-      <details>
-        <summary>Challenge 3 [★★★] Finite-Time Blowup in Riccati</summary>
-        <p>Construct a Riccati equation with a solution that blows up in finite time starting from smooth initial data. Analyze the nature of the singularity.</p>
-        <details><summary>Solution</summary><p>Example: $y' = y^2 + 1$ with $y(0) = 0$. The solution is $y = \tan(x)$, which blows up at $x = \pi/2$. More generally, any Riccati equation with $R(x) > 0$ and appropriate initial conditions can exhibit finite-time blowup. The singularity is a pole, not a branch point, and represents the solution escaping to infinity in finite time — a fundamental difference from linear equations.</p></details>
-      </details>
+                <details>
+                    <summary>Challenge 3 [★★★] Finite-Time Blowup in Riccati</summary>
+                    <p>Construct a Riccati equation with a solution that blows up in finite time starting from smooth
+                        initial data. Analyze the nature of the singularity.</p>
+                    <details>
+                        <summary>Solution</summary>
+                        <p>Example: $y' = y^2 + 1$ with $y(0) = 0$. The solution is $y = \tan(x)$, which blows up at $x
+                            = \pi/2$. More generally, any Riccati equation with $R(x) > 0$ and appropriate initial
+                            conditions can exhibit finite-time blowup. The singularity is a pole, not a branch point,
+                            and represents the solution escaping to infinity in finite time — a fundamental difference
+                            from linear equations.</p>
+                    </details>
+                </details>
 
-    </section>
+            </section>
 
-    <!-- FINAL CLIFFHANGER – the single most important paragraph on the page -->
-    <div class="cliffhanger final">
-      <p>We have exhausted every classical explicit method. Separable, exact, linear, Bernoulli, Riccati — all fail generically. The explicit formula was never the point. What survives when the formula dies is the invariant, the cohomology class, the structure that lives beyond coordinates. In the next section we bury the dream of special functions and begin the true ascent.</p>
-    </div>
+            <!-- FINAL CLIFFHANGER – the single most important paragraph on the page -->
+            <div class="cliffhanger final">
+                <p>We have exhausted every classical explicit method. Separable, exact, linear, Bernoulli, Riccati — all
+                    fail generically. The explicit formula was never the point. What survives when the formula dies is
+                    the invariant, the cohomology class, the structure that lives beyond coordinates. In the next
+                    section we bury the dream of special functions and begin the true ascent.</p>
+            </div>
 
-    <!-- REFERENCES -->
-    <section class="references">
-      <h2>Key References</h2>
-      <ul>
-        <li>Arnold, V. I. (1989). <em>Mathematical Methods of Classical Mechanics</em>.</li>
-        <li>Hartman, P. (2002). <em>Ordinary Differential Equations</em>, 2nd ed.</li>
-        <li>Coddington & Levinson (1955). <em>Theory of Ordinary Differential Equations</em>.</li>
-      </ul>
-    </section>
+            <!-- REFERENCES -->
+            <section class="references">
+                <h2>Key References</h2>
+                <ul>
+                    <li>Arnold, V. I. (1989). <em>Mathematical Methods of Classical Mechanics</em>.</li>
+                    <li>Hartman, P. (2002). <em>Ordinary Differential Equations</em>, 2nd ed.</li>
+                    <li>Coddington & Levinson (1955). <em>Theory of Ordinary Differential Equations</em>.</li>
+                </ul>
+            </section>
 
-    <!-- NAVIGATION – next only, no previous -->
-    <nav class="navigation">
-      <hr>
-      <ul>
-        <li>Next → <a href="/diffequations/chapter-01/01-2-special-functions/">Section 1.2: Special Functions of Mathematical Physics</a></li>
-        <li><a href="/diffequations/chapter-01/">Chapter 1 Contents</a></li>
-        <li><a href="/diffequations/">Full Table of Contents</a></li>
-      </ul>
-    </nav>
+            <!-- NAVIGATION – next only, no previous -->
+            <nav class="navigation">
+                <hr>
+                <ul>
+                    <li>Next → <a href="/diffequations/chapter-01/01-2-special-functions/">Section 1.2: Special
+                            Functions of Mathematical Physics</a></li>
+                    <li><a href="/diffequations/chapter-01/">Chapter 1 Contents</a></li>
+                    <li><a href="/diffequations/">Full Table of Contents</a></li>
+                </ul>
+            </nav>
 
-  </article>
-</main>
+        </article>
+    </main>
 
-<script defer src="/diffequations/js/textbook-engine.js"></script>
-<script defer src="/diffequations/js/widget-engine.js"></script>
+    <script defer src="/diffequations/js/textbook-engine.js"></script>
+    <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
+
 </html>
