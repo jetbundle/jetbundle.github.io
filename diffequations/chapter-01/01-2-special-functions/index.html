@@ -1,224 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Section 1.2: Special Functions of Mathematical Physics</title>
-  <meta name="description" content="Hypergeometric master equation, confluent limits, Frobenius method">
-  <!-- KaTeX (identical on every page) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});">
-  </script>
-  <link rel="stylesheet" href="/diffequations/styles.css">
-  <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.2: Special Functions of Mathematical Physics</title>
+    <meta name="description"
+        content="The hypergeometric master equation, confluence, Frobenius method, and the birth of the Stokes phenomenon">
+
+    <!-- KaTeX – canonical loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false});">
+        </script>
+
+    <link rel="stylesheet" href="/diffequations/styles.css">
+    <script src="/diffequations/navigation-data.js"></script>
+    <script src="/diffequations/navigation.js"></script>
+    <script src="/diffequations/manifold-background.js" defer></script> <!-- ACTIVE EVERYWHERE -->
 </head>
+
 <body>
-<main>
-  <!-- 1. GLOBAL HOOK – mandatory, 1–2 sentences, appears at the very top -->
-  <header class="hook">
-    <h1>Section 1.2: Special Functions of Mathematical Physics</h1>
-    <p class="hook-text">
-      The explicit solution is the dream of classical physics — but it collapses the moment the system refuses to be linear.
-    </p>
-    <p class="hook-subtitle">
-      What survives when every coordinate change fails?
-    </p>
-  </header>
-  
-  <!-- 2. Description line (for navigation & SEO) -->
-  <p class="description">Hypergeometric master equation, confluent limits, Frobenius method</p>
-  
-  <article>
-    <p>The hypergeometric equation is the master key: all classical special functions emerge as confluent limits dictated by the placement of singularities on the Riemann sphere.</p>
-<h2>Introduction</h2>
-<p>When elementary functions fail, we define new ones via differential equations. The <strong>Hypergeometric Master Equation</strong> unifies the "zoo" of Bessel, Legendre, and Hermite functions, deriving them as confluent limits based on the placement of singularities on the Riemann sphere. We introduce the <strong>Frobenius Method</strong> to classify these singularities (regular vs. irregular). The narrative tension arises from the <strong>Stokes Phenomenon</strong>: the realization that the analytic form of a solution is not global, but jumps discontinuously across specific rays in the complex plane.</p>
-<h2>The Hypergeometric Master Equation</h2>
-<p>The hypergeometric equation is the canonical second-order linear ODE with three regular singular points on the Riemann sphere:</p>
-$$
-x(1-x)y''+[c-(a+b+1)x]y'-ab\,y=0.
-$$
+    <main>
+        <!-- 1. HOOK -->
+        <header class="hook">
+            <h1>Section 1.2: Special Functions of Mathematical Physics</h1>
+            <p class="hook-text">
+                The dream of explicit solutions did not die — it was merely reincarnated as special functions.
+            </p>
+            <p class="hook-subtitle">
+                But even these gods have feet of clay: their analytic form is not global.
+            </p>
+        </header>
 
-<p>Its solutions are defined by power series, yielding the Gauss hypergeometric function</p>
-$$
-{}_2F_{1}(a,b;c;x)=\sum_{n=0}^{\infty} \frac{(a)_{n}(b)_{n}}{(c)_{n}}\frac{x^{n}}{n!}, \qquad (a)_{n}=\frac{\Gamma(a+n)}{\Gamma(a)}.
-$$
+        <!-- 2. DESCRIPTION -->
+        <p class="description">
+            Hypergeometric master equation • confluent limits • Frobenius method • Stokes phenomenon
+        </p>
 
-<p>The series converges for $\vert x \vert < 1$ and extends elsewhere by analytic continuation. Transformations such as $x\mapsto 1-x$ or $x\mapsto 1/x$ permute the singular points and generate Kummer's 24 solutions, highlighting the group structure of the solution space.</p>
-<p><strong>Hypergeometric Series Solution</strong></p>
-<p>Solve $x(1-x)y''+(2-3x)y'-y=0$.</p>
-<p>We seek $y=\sum_{n=0}^{\infty}a_{n}x^{n}$. Substituting gives the recurrence</p>
-$$
-a_{n}=\frac{n}{n+1}a_{n-1}=\frac{a_{0}}{n+1},
-$$
+        <article>
 
-<p>so</p>
-$$
-y(x)=a_{0}\sum_{n=0}^{\infty}\frac{x^{n}}{n+1}=-a_{0}\ln(1-x),
-$$
+            <!-- 3. NARRATIVE INTRODUCTION (3 paragraphs) -->
+            <section class="narrative-intro">
+                <p>When separation of variables, integrating factors, and reduction of order all fail, physicists do
+                    not give up on explicit solutions — they invent new functions defined by the very differential
+                    equations they cannot solve in elementary terms. Legendre, Bessel, Airy, Hermite, and hypergeometric
+                    functions are not arbitrary inventions; they are the inevitable descendants of a single master
+                    equation whose singularities are choreographed on the Riemann sphere.</p>
+                <p>The hypergeometric equation reigns supreme: by moving its three regular singular points and taking
+                    confluent limits, every classical special function emerges as a controlled degeneration. The Frobenius
+                    method classifies these singularities, revealing indicial exponents and logarithmic branches. For a
+                    fleeting moment, order is restored.</p>
+                <p>Then the Stokes phenomenon strikes. Asymptotic expansions that dominate in one sector vanish in the
+                    next, switched on and off by invisible anti-Stokes lines. The solution you write down is not unique
+                    — it depends on the path you took in the complex plane. The dream of a single, globally valid
+                    explicit formula dies again, this time permanently.</p>
+            </section>
 
-<p>which matches</p>
-$${}_2F_{1}(1,1;2;x)=-\frac{\ln(1-x)}{x}$$
+            <!-- CORE CONTENT -->
 
-<p>and demonstrates how power-series solutions encode hypergeometric behavior.</p>
-<p>This example reveals that hypergeometric functions generalize elementary functions like logarithms, but the convergence domain $\vert x \vert < 1$ is restrictive. Analytic continuation becomes necessary, foreshadowing the Stokes phenomenon.</p>
-<h2>Confluent Limits and Classical Descendants</h2>
-<p>Merging singularities (confluence) produces equations with fewer regular singular points but introduces irregular ones, creating the classical special functions.</p>
-<ul>
-<li><strong>Bessel equation</strong>: letting $c\to \infty$ while scaling $x$ appropriately degenerates the hypergeometric equation into</li>
-</ul>
-$$
-  x^{2}y''+xy'+(x^{2}-\nu^{2})y=0,
-  $$
+            <section>
+                <h2>The Hypergeometric Master Equation</h2>
 
-<p>whose solutions $J_{\nu}$ arise as confluent limits of the hypergeometric function ${}_2F_{1}$.</p>
-<p><strong>Bessel Functions as Confluent Limits</strong></p>
-<p>Derive $J_{0}$ as a limit of the hypergeometric function ${}_2F_{1}$.</p>
-<p>Start from the hypergeometric function</p>
-$${}_2F_{1}(a,b;c;z)$$
+                <div class="theorem">
+                    <p><strong>Gauss Hypergeometric Equation</strong></p>
+                    $$ x(1-x)y'' + [c - (a+b+1)x]y' - ab y = 0 $$
+                    <p>has three regular singular points at $x=0,1,\infty$. Its solutions around $x=0$ are branches of
+                        the Gauss hypergeometric function</p>
+                    $${}_2F_1(a,b;c;x) = \sum_{n=0}^\infty \frac{(a)_n (b)_n}{(c)_n} \frac{x^n}{n!}, \quad \vert x \vert < 1.$$
+                </div>
 
-<p>with $a=\nu/2$, $b=-\nu/2$, $c=\nu+1$, and $z=-\frac{z^{2}}{c}$. Taking $c\to\infty$ gives</p>
-$$
-J_{\nu}(z)=\frac{(z/2)^{\nu}}{\Gamma(\nu+1)}\lim_{c\to\infty}{}_2F_{1}(\frac{\nu}{2},-\frac{\nu}{2};\nu+1;-\frac{z^{2}}{c}).
-$$
+                <p>All classical special functions of one variable are obtained by confluence (merging singularities) of
+                    this single equation.</p>
 
-<p>For $\nu=0$, the limit yields $J_{0}(z)=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}(\frac{z}{2})^{2k}$, recovering the Bessel series and illustrating confluence.</p>
-<ul>
-<li><strong>Legendre polynomials</strong>: integer parameters terminate the series, giving</li>
-</ul>
-$$
-  P_{n}(x)={}_2F_{1}(-n,n+1;1;\frac{1-x}{2}),
-  $$
+                <div class="example">
+                    <p><strong>Logarithm as Hypergeometric Function</strong></p>
+                    <p>The solution to $x(1-x)y'' + (2-3x)y' - y = 0$ is $y = {}_2F_1(1,1;2;x) = -\frac{\ln(1-x)}{x}$
+                        (up to constant), showing that even the logarithm is a hypergeometric creature.</p>
+                </div>
 
-<p>central to spherical harmonics.</p>
-<p><strong>Legendre Polynomials from Separation of Variables</strong></p>
-<p>Solve Laplace's equation in spherical coordinates with $u(1,\theta)=\cos\theta$.</p>
-<p>Separation yields the angular ODE</p>
-$$
-\frac{1}{\sin\theta}\frac{d}{d\theta}(\sin\theta\,\frac{d\Theta}{d\theta})+\lambda \Theta=0.
-$$
+            </section>
 
-<p>Setting $x=\cos\theta$ produces the Legendre equation</p>
-$$
-(1-x^{2})\Theta''-2x\Theta'+\lambda \Theta=0.
-$$
+            <section>
+                <h2>Confluent Limits: The Classical Zoo</h2>
 
-<p>Regularity selects $\lambda=l(l+1)$ and $\Theta=P_{l}(x)$. The boundary condition forces $l=1$, so $u(r,\theta)=A r \cos\theta$, showing how special functions emerge from physical boundary-value problems.</p>
-<ul>
-<li><strong>Kummer/Whittaker functions</strong>: merging two singular points yields the confluent hypergeometric equation</li>
-</ul>
-$$
-  xy''+(c-x)y'-ay=0,
-  $$
+                <ul>
+                    <li><strong>Bessel</strong>: $c\to\infty$, $x\to\infty$ with $x/c$ fixed → irregular singularity at
+                        $\infty$</li>
+                    <li><strong>Confluent hypergeometric (Kummer/Whittaker)</strong>: $b\to\infty$ → ${}_1F_1(a;c;x)$
+                    </li>
+                    <li><strong>Hermite</strong>: further scaling of ${}_1F_1$</li>
+                    <li><strong>Airy</strong>: triple confluence at infinity</li>
+                </ul>
 
-<p>with solution ${}_1F_{1}(a;c;x)$, encompassing Hermite polynomials, error functions, and exponential integrals.</p>
-<p>Confluence reveals that the diversity of special functions is not arbitrary—it reflects the geometric structure of singular point configurations on the Riemann sphere. This unification is profound: what appears as a "zoo" is actually a single family with different limiting behavior.</p>
-<h2>Frobenius Method and Regular Singularities</h2>
-<p>For $y''+P(x)y'+Q(x)y=0$, a point $x_{0}$ is <strong>regular singular</strong> if $(x-x_{0})P(x)$ and $(x-x_{0})^{2}Q(x)$ are analytic. The Frobenius method proposes</p>
-$$
-y(x)=(x-x_{0})^{r}\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}, \qquad a_{0}\neq 0,
-$$
+                <div class="example">
+                    <p><strong>Legendre Polynomials from Hypergeometric Termination</strong></p>
+                    $$ P_n(x) = {}_2F_1(-n,n+1;1;\tfrac{1-x}{2}) $$
+                    <p>Integer parameters cause polynomial termination — the only case where the "special" function
+                        becomes elementary again.</p>
+                </div>
 
-<p>producing the indicial equation $r(r-1)+p_{0}r+q_{0}=0$. The Riemann $P$-symbol lists all singularities and their exponents, fully encoding the local monodromy.</p>
-<p><strong>Frobenius Analysis at a Regular Singular Point</strong></p>
-<p>Solve $x^{2}y''+xy'+(x^{2}-\tfrac{1}{4})y=0$ near $x=0$.</p>
-<p>This is Bessel's equation of order $\tfrac{1}{2}$. Frobenius yields the indicial equation $r^{2}-\tfrac{1}{4}=0$, so $r=\pm\tfrac{1}{2}$. The first solution is $y_{1}(x)=x^{1/2}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n!\Gamma(n+3/2)}(\frac{x}{2})^{2n}$; when the roots differ by an integer, the second solution involves a logarithmic term $y_{2}=y_{1}\ln x+\cdots$. These correspond to $J_{1/2}$ and $Y_{1/2}$, showing how Frobenius captures both series and logarithmic structures.</p>
-<p>The Frobenius method provides a systematic way to extract the local behavior near singularities. However, when singularities coalesce or move to infinity, this method breaks down, necessitating asymptotic analysis.</p>
-<h2>Irregular Singularities and Stokes Phenomenon</h2>
-<p>When singularities coalesce, regular points become irregular, and Frobenius series fail. Solutions near such points take asymptotic forms</p>
-$$
-y(z)\sim z^{\rho}e^{S(z)}\sum_{n=0}^{\infty}a_{n}z^{-n},
-$$
+            </section>
 
-<p>valid only within sectors bounded by Stokes lines, where the subdominant exponentials switch on or off. Crossing a Stokes line causes discontinuous jumps (Stokes phenomenon), encoding global analytic data beyond perturbation theory.</p>
-<p><strong>Airy Equation and Stokes Phenomenon</strong></p>
-<p>Analyze $y''-xy=0$ (Airy equation) near $x\to +\infty$.</p>
-<p>WKB analysis gives asymptotics</p>
-$$
-\operatorname{Ai}(x)\sim \frac{1}{2\sqrt{\pi} x^{1/4}}\exp(-\frac{2}{3}x^{3/2}),
-$$
+            <section>
+                <h2>Frobenius Method and Regular Singularities</h2>
 
-<p>valid for $\vert \arg x \vert <\pi/3$. Crossing the Stokes lines at $\arg x=\pm \pi/3$ introduces the subdominant exponential $\exp(+\tfrac{2}{3}x^{3/2})$ with multiplier $i$. This explicitly manifests the Stokes phenomenon described in the narrative.</p>
-<p>The Stokes phenomenon reveals a fundamental limitation: asymptotic expansions are not global. The solution's analytic form jumps discontinuously across certain rays, encoding topological information about the Riemann surface structure that cannot be captured by local series expansions alone.</p>
-<h2>Orthogonality and Completeness</h2>
-<p>Special functions serve as orthogonal bases for Sturm–Liouville problems written in self-adjoint form</p>
-$$
--\frac{d}{dx}(p(x)\frac{dy}{dx})+q(x)y=\lambda w(x)y.
-$$
+                <div class="definition">
+                    <p>A point $x_0$ is a <strong>regular singular point</strong> of $y'' + P y' + Q y = 0$ if $(x-x_0)P(x)$
+                        and $(x-x_0)^2 Q(x)$ are analytic.</p>
+                </div>
 
-<p>On compact domains with regular coefficients, eigenfunctions $\phi_{n}$ satisfy</p>
-$$
-\int_{a}^{b}\phi_{n}(x)\phi_{m}(x)w(x)\,dx=\delta_{nm},
-$$
+                <p>The Frobenius ansatz $y = (x-x_0)^r \sum a_n (x-x_0)^n$ yields the indicial equation and two
+                    independent solutions (possibly involving $\ln(x-x_0)$ when roots differ by an integer).</p>
 
-<p>and any $f\in L^{2}_{w}$ admits an expansion $f(x)\sim \sum_{n} c_{n}\phi_{n}(x)$ with spectral coefficients $c_{n}=\int f \phi_{n}w$. This spectral completeness generalizes Fourier analysis and foreshadows the Hilbert-space machinery of Chapter 2.</p>
-<p><strong>Orthogonality of Legendre Polynomials</strong></p>
-<p>Prove $\int_{-1}^{1}P_{m}(x)P_{n}(x)\,dx=\frac{2}{2n+1}\delta_{mn}$.</p>
-<p>Using Rodrigues' formula</p>
-$$
-P_{n}(x)=\frac{1}{2^{n} n!}\frac{d^{n}}{dx^{n}}(x^{2}-1)^{n},
-$$
+            </section>
 
-<p>integration by parts $n$ times annihilates cross terms when $m\neq n$ and evaluates the diagonal integral to $2/(2n+1)$. This orthogonality underlies Fourier–Legendre expansions and demonstrates Sturm–Liouville completeness.</p>
-<p><strong>Fourier–Legendre Series for $\vert x \vert$</strong></p>
-<p>Expand $f(x)=\vert x \vert$ on $[-1,1]$.</p>
-<p>Coefficients are</p>
-$$
-c_{n}=\frac{2n+1}{2}\int_{-1}^{1}\vert x \vert P_{n}(x)\,dx=(2n+1)\int_{0}^{1}x P_{n}(x)\,dx,
-$$
+            <section>
+                <h2>Irregular Singularities and the Stokes Phenomenon</h2>
 
-<p>yielding $c_{0}=1/2$, $c_{1}=1/2$, $c_{2}=-1/8$, etc. The partial sums exhibit Gibbs oscillations near $x=0$, illustrating the limitations of pointwise convergence despite $L^{2}$ completeness.</p>
-<p><strong>Sturm–Liouville Completeness for Bessel Functions</strong></p>
-<p>Show $\{J_{0}(\lambda_{n} x)\}$ forms a complete set on $[0,1]$ with weight $x$, where $\lambda_{n}$ are zeros of $J_{0}$.</p>
-<p>Writing $-(x y')'=\lambda x y$ yields orthogonality</p>
-$$
-\int_{0}^{1}x J_{0}(\lambda_{m} x)J_{0}(\lambda_{n} x)\,dx=\frac{\delta_{mn}}{2}J_{1}^{2}(\lambda_{n}),
-$$
+                <p>Confluence creates <strong>irregular</strong> singularities. Formal asymptotic series diverge, but are
+                    summable in sectors. Crossing a <strong>Stokes line</strong> causes the coefficient of a subdominant
+                    exponential to jump discontinuously — the Stokes phenomenon.</p>
 
-<p>and Parseval's identity</p>
-$$
-\int_{0}^{1}x\vert f(x) \vert^{2}\,dx=\sum_{n=1}^{\infty}\vert \frac{2}{J_{1}^{2}(\lambda_{n})}\int_{0}^{1}x f(x)J_{0}(\lambda_{n} x)\,dx \vert^{2}.
-$$
+                <div class="example">
+                    <p><strong>Airy Functions and Stokes Switching</strong></p>
+                    <p>On the positive real axis, $\operatorname{Ai}(x) \sim \frac{1}{2\sqrt{\pi} x^{1/4}}
+                        e^{-(2/3)x^{3/2}}$, but crossing $\arg x = \pm \pi/3$ adds the explosively growing term
+                        $e^{+(2/3)x^{3/2}}$ with coefficient $\pm i$. The same function, different expansions, different
+                        paths.</p>
+                </div>
 
-<p>This shows how Bessel functions provide a Fourier-like expansion for radial problems.</p>
-<p>Orthogonality and completeness transform special functions from isolated solutions into complete bases. However, the convergence is typically in $L^{2}$, not pointwise, exposing the need for the functional-analytic framework of Chapter 2.</p>
-    
-    <!-- 7. Key References (immediately after the cliffhanger) -->
-    <section class="references">
-      <h2>Key References</h2>
-<ul>
-        <li>Arnold, V. I. (1983). <em>Ordinary Differential Equations</em>.</li>
-        <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
-      </ul>
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    </section>
-    
-    <!-- 8. Navigation -->
-    <nav class="navigation">
-      <hr>
-      <ul>
-        <li><a href="/diffequations/chapter-01/01-1-exact-methods/">Previous Section: 1.1 Exact Methods for Ordinary Differential Equations</a></li>
-        <li><a href="/diffequations/chapter-01/01-3-integral-transforms/">Next Section: 1.3 Integral Transforms</a></li>
-        <li><a href="/diffequations/chapter-01/">Chapter Index</a></li>
-        <li><a href="/diffequations/">Full Table of Contents</a></li>
-      </ul>
-    </nav>
-  </article>
-</main>  <script src="/diffequations/navigation.js"></script>
-  <script defer src="/diffequations/js/textbook-engine.js"></script>
-  <script defer src="/diffequations/js/widget-engine.js"></script>
+                <div class="cliffhanger">
+                    The explicit solution you proudly write on the page is a lie the moment you step outside its sector of
+                    validity.
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Orthogonality and Sturm–Liouville Theory</h2>
+
+                <p>Special functions are eigenfunctions of singular Sturm–Liouville problems. Their orthogonality with
+                    respect to weight functions (Legendre: $w=1$, Bessel: $w=x$, Laguerre: $w=x e^{-x}$, etc.) gives
+                    complete bases in weighted $L^2$ spaces.</p>
+
+                <div class="example">
+                    <p><strong>Fourier–Legendre Series of $\vert x \vert$ on $[-1,1]$</strong></p>
+                    <p>Exhibits Gibbs phenomenon at $x=0$ despite $L^2$-convergence — a preview of distribution theory.
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- MASTERY CHALLENGES -->
+            <section class="challenges">
+                <h2>Mastery Challenges</h2>
+
+                <details>
+                    <summary>Challenge 1 [★★☆] Derive Hermite Polynomials from Confluent Hypergeometric</summary>
+                    <p>Show $H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2} = 2^n x^n \,
+                        {}_1F_1(-n/2;(1-n)/2;-x^2) + \text{second term}$.</p>
+                </details>
+
+                <details>
+                    <summary>Challenge 2 [★★★] Stokes Phenomenon in the Airy Function</summary>
+                    <p>Explicitly compute the Stokes multiplier across $\arg z = \pi/3$ using the known connection
+                        formulas for $\operatorname{Ai}(z)$.</p>
+                </details>
+
+                <details>
+                    <summary>Challenge 3 [★★★] Monodromy of the Hypergeometric Equation</summary>
+                    <p>Compute the monodromy representation of $\pi_1(\mathbb{P}^1 \setminus \{0,1,\infty\})$ on the
+                        solution space of the Gauss equation with parameters $a=b=c=1/2$.</p>
+                </details>
+
+            </section>
+
+            <!-- FINAL CLIFFHANGER -->
+            <div class="cliffhanger final">
+                <p>Special functions were the last refuge of explicit solvability. The Stokes phenomenon destroys even
+                    that refuge. What remains when every explicit representation fails is not the formula, but the
+                    monodromy, the connection, the asymptotic skeleton that survives analytic continuation. In the next
+                    section we abandon functions altogether and descend into the integral transforms that resurrect them
+                    from their own ashes.</p>
+            </div>
+
+            <!-- REFERENCES -->
+            <section class="references">
+                <h2>Key References</h2>
+                <ul>
+                    <li>Nist, F. W. J. & Barrett, J. W. (2015). <em>Special Functions and Their Applications</em>.
+                        Dover.</li>
+                    <li>Temme, N. M. (2010). "Stokes Phenomenon" in <em>NIST Handbook of Mathematical Functions</em>.
+                        Cambridge University Press.</li>
+                    <li>Slavyanov, S. Yu. & Lay, W. (2000). <em>Special Functions: A Unified Theory Based on
+                            Singularities</em>. Oxford University Press.</li>
+                    <li>Whittaker, E. T. & Watson, G. N. (1927). <em>A Course of Modern Analysis</em>, 4th ed.
+                        Cambridge University Press. (still the bible)</li>
+                </ul>
+            </section>
+
+            <!-- NAVIGATION -->
+            <nav class="navigation">
+                <hr>
+                <ul>
+                    <li>Previous ← <a href="/diffequations/chapter-01/01-1-exact-methods/">Section 1.1: Exact
+                            Methods</a></li>
+                    <li>Next → <a href="/diffequations/chapter-01/01-3-integral-transforms/">Section 1.3: Integral
+                            Transforms</a></li>
+                    <li><a href="/diffequations/chapter-01/">Chapter 1 Contents</a></li>
+                    <li><a href="/diffequations/">Full Table of Contents</a></li>
+                </ul>
+            </nav>
+
+        </article>
+    </main>
+
+    <!-- Python/Plotly Widget System - Load after content -->
+    <script>
+        // Lazy load Plotly.js after page is fully loaded
+        window.addEventListener('load', function() {
+            var plotlyScript = document.createElement('script');
+            plotlyScript.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+            plotlyScript.charset = 'utf-8';
+            plotlyScript.async = true;
+            plotlyScript.onload = function() {
+                console.log('Plotly.js loaded successfully');
+            };
+            plotlyScript.onerror = function() {
+                console.error('Failed to load Plotly.js');
+            };
+            document.body.appendChild(plotlyScript);
+        });
+    </script>
+
+    <!-- Widget Engine Scripts - Load with defer to not block rendering -->
+    <script defer src="/diffequations/js/textbook-engine.js"></script>
+    <script defer src="/diffequations/js/widget-engine.js"></script>
 </body>
+
 </html>
