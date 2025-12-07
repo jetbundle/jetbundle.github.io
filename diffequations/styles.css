@@ -794,22 +794,15 @@ hr {
 /* Hook Section */
 .hook {
     text-align: center;
-    padding: 2rem 1rem;
-    background: var(--bg-secondary);
-    border-left: 4px solid var(--link-color);
-    color: var(--text-primary);
-    margin-bottom: 2rem;
-    border-radius: 4px;
-    border-top: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
 }
 
 .hook h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
-    margin: 0 0 1rem 0;
-    color: var(--link-color);
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
     line-height: 1.3;
 }
 

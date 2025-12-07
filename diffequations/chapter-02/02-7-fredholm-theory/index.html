@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script>
+  <script src="/diffequations/navigation.js"></script>
 </head>
 <body>
 <main>
@@ -27,14 +27,15 @@
       What survives when every coordinate change fails?
     </p>
   </header>
-  
+
   <!-- 2. Description line (for navigation & SEO) -->
   <p class="description">Almost invertible operators, index stability</p>
-  
+
   <article>
-    <p>Non-invertible operators are almost invertible: Fredholm operators have finite-dimensional obstructions to solvability, and the index (dimension of kernel minus cokernel) is a stable topological invariant that survives compact perturbations.</p>
-<h2>Introduction</h2>
-<p>We confront the failure of uniqueness. <strong>Fredholm Theory</strong> classifies operators that are "almost" invertible, introducing the <strong>Index</strong> (dimension of kernel minus dimension of cokernel). We prove the stability of the Index under compact perturbations.</p>
+    <section class="narrative-intro">
+      <p>Non-invertible operators are almost invertible: Fredholm operators have finite-dimensional obstructions to solvability, and the index (dimension of kernel minus cokernel) is a stable topological invariant that survives compact perturbations.</p>
+      <p>We confront the failure of uniqueness. <strong>Fredholm theory</strong> classifies operators that are "almost" invertible, introducing the <strong>index</strong> (dimension of kernel minus dimension of cokernel) and proving its stability under compact perturbations.</p>
+    </section>
 <h2>Fredholm Operators and the Alternative</h2>
 <p>Let $F:H_{1}\to H_{2}$ be bounded between Hilbert spaces. The operator is <strong>Fredholm</strong> if $\ker F$ and the cokernel $H_{2}/\operatorname{ran}F$ are finite dimensional and $\operatorname{ran}F$ is closed. When $K:H\to H$ is compact, the perturbation $I+K$ is Fredholm. The <strong>Fredholm Alternative</strong> for $(I+K)u=f$ states: either $\ker(I+K)=\{0\}$, so $(I+K)$ is invertible and every $f\in H$ admits a unique solution; or $\ker(I+K)$ is a non-trivial finite-dimensional space, in which case $(I+K)u=f$ is solvable only when $f\in (\ker(I+K)^{\ast})^{\perp}$.</p>
 <p>This dichotomy quantifies the precise obstruction to solvability and explains resonance phenomena in boundary-value and integral equations.</p>
@@ -214,7 +215,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
 <li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -222,7 +223,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -230,7 +231,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -238,7 +239,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -246,7 +247,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -254,7 +255,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
     <section class="challenges">
       <h2>Mastery Challenges</h2>
@@ -269,14 +270,14 @@ The index of boundary value problems provides a measure of how "balanced" the pr
         <details><summary>Solution</summary><p>Solution will be added.</p></details>
       </details>
     </section>
-    
+
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
     <div class="cliffhanger final">
       <p>
         We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
       </p>
     </div>
-    
+
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
@@ -285,7 +286,7 @@ The index of boundary value problems provides a measure of how "balanced" the pr
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
-    
+
     <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>

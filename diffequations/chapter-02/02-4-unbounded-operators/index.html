@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script>
+  <script src="/diffequations/navigation.js"></script>
 </head>
 <body>
 <main>
@@ -27,14 +27,15 @@
       What survives when every coordinate change fails?
     </p>
   </header>
-  
+
   <!-- 2. Description line (for navigation & SEO) -->
   <p class="description">Physical operators, Stone's theorem</p>
-  
+
   <article>
-    <p>Physical operators are unbounded: differentiation amplifies high frequencies, requiring domain constraints that encode boundary conditions and making self-adjointness a delicate balance between symmetry and completeness.</p>
-<h2>Introduction</h2>
-<p>Physical operators like the Laplacian are unbounded (differentiation roughens functions). We introduce the domain subtleties of <strong>Self-Adjointness</strong> versus Symmetricity. We construct the <strong>Resolvent Operator</strong> and use <strong>Stone's Theorem</strong> to define time evolution ($e^{itH}$) as a unitary group, providing a rigorous foundation for Quantum Mechanics without relying on convergent power series.</p>
+    <section class="narrative-intro">
+      <p>Physical operators are unbounded: differentiation amplifies high frequencies, requiring domain constraints that encode boundary conditions and making self-adjointness a delicate balance between symmetry and completeness.</p>
+      <p>Physical operators like the Laplacian are unbounded (differentiation roughens functions). We introduce the domain subtleties of <strong>self-adjointness</strong> versus symmetry. We construct the <strong>resolvent operator</strong> and use <strong>Stone's theorem</strong> to define time evolution ($e^{itH}$) as a unitary group, providing a rigorous foundation for quantum mechanics without relying on convergent power series.</p>
+    </section>
 <h2>Unbounded Operators and Domains</h2>
 <p>An operator $A$ on a Hilbert space $H$ is a linear map $A:D(A)\to H$ defined on a subspace $D(A)\subset H$. It is <strong>densely defined</strong> if $\overline{D(A)}=H$, a prerequisite for defining the adjoint $A^{*}$. The graph $\Gamma(A)=\{(x,Ax):x\in D(A)\}$ is a subspace of $H\times H$. The operator $A$ is <strong>closed</strong> if $\Gamma(A)$ is closed; this ensures that convergence $x_{n}\to x$ and $Ax_{n}\to y$ implies $x\in D(A)$ and $Ax=y$. A closable operator admits a smallest closed extension $\bar{A}$.</p>
 <p>For a densely defined $A$, the adjoint $A^{*}$ has domain</p>
@@ -221,7 +222,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
 <li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -229,7 +230,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -237,7 +238,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -245,7 +246,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -253,7 +254,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -261,7 +262,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
     <section class="challenges">
       <h2>Mastery Challenges</h2>
@@ -276,14 +277,14 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
         <details><summary>Solution</summary><p>Solution will be added.</p></details>
       </details>
     </section>
-    
+
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
     <div class="cliffhanger final">
       <p>
         We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
       </p>
     </div>
-    
+
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
@@ -292,7 +293,7 @@ The Hille–Yosida theorem provides a complete characterization of well-posednes
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
-    
+
     <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>

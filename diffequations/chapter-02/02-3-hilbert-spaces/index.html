@@ -13,7 +13,7 @@
   </script>
   <link rel="stylesheet" href="/diffequations/styles.css">
   <script src="/diffequations/navigation-data.js"></script>
-  <script src="/diffequations/manifold-background.js" defer></script>
+  <script src="/diffequations/navigation.js"></script>
 </head>
 <body>
 <main>
@@ -27,14 +27,15 @@
       What survives when every coordinate change fails?
     </p>
   </header>
-  
+
   <!-- 2. Description line (for navigation & SEO) -->
   <p class="description">Infinite-dimensional geometry, spectral theorem</p>
-  
+
   <article>
-    <p>Infinite-dimensional Euclidean geometry: functions become vectors, orthogonality becomes Fourier analysis, and compact operators diagonalize into eigenfunction expansions that rigorously justify separation of variables.</p>
-<h2>Introduction</h2>
-<p>We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of <strong>Hilbert Space</strong> (orthogonality, projection). The central result is the <strong>Spectral Theorem for Compact Self-Adjoint Operators</strong>, which provides the rigorous justification for the "separation of variables" and series expansions employed heuristically in Chapter 1.4.</p>
+    <section class="narrative-intro">
+      <p>Infinite-dimensional Euclidean geometry: functions become vectors, orthogonality becomes Fourier analysis, and compact operators diagonalize into eigenfunction expansions that rigorously justify separation of variables.</p>
+      <p>We visualize functions as vectors in an infinite-dimensional Euclidean space. We develop the geometry of <strong>Hilbert space</strong> (orthogonality, projection). The central result is the <strong>spectral theorem for compact self-adjoint operators</strong>, which provides the rigorous justification for the "separation of variables" and series expansions employed heuristically in Chapter 1.4.</p>
+    </section>
 <h2>Hilbert Space Geometry</h2>
 <p>A Hilbert space $H$ is a complete inner-product space. The inner product induces the norm $\|u\|=\sqrt{\langle u,u\rangle}$ and the notion of orthogonality. The canonical example is $L^{2}(\Omega)$ with $\langle f,g\rangle = \int_{\Omega} f \overline{g}\,dx$.</p>
 <p>The <strong>Riesz Representation Theorem</strong> states that every continuous linear functional $\phi\in H^{*}$ is uniquely represented by an element $f\in H$ such that $\phi(u)=\langle u,f\rangle$ for all $u\in H$. This self-duality underpins variational methods.</p>
@@ -236,7 +237,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
 <li><a href="/diffequations/chapter-02/">Chapter Index</a></li>
 <li><a href="/diffequations/">Full Table of Contents</a></li>
 </ul>
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -244,7 +245,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -252,7 +253,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -260,7 +261,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -268,7 +269,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
 
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
@@ -276,7 +277,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
     <!-- 7. Key References (immediately after the cliffhanger) -->
 
     <!-- 8. Navigation -->
-    
+
     <!-- 5. Mastery Challenges (always present, accordion) -->
     <section class="challenges">
       <h2>Mastery Challenges</h2>
@@ -291,14 +292,14 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
         <details><summary>Solution</summary><p>Solution will be added.</p></details>
       </details>
     </section>
-    
+
     <!-- 6. The Cliffhanger – the single most important paragraph of the entire section -->
     <div class="cliffhanger final">
       <p>
         We have exhausted every classical trick. The explicit solution is dead. To go further we must abandon the very notion of "formula" and invent new mathematical objects — special functions, infinite-dimensional spaces, and eventually the geometry of the equation itself.
       </p>
     </div>
-    
+
     <!-- 7. Key References (immediately after the cliffhanger) -->
     <section class="references">
       <h2>Key References</h2>
@@ -307,7 +308,7 @@ Mercer's theorem provides an explicit spectral decomposition of positive-definit
         <li>Hartman, P. (1964). <em>Ordinary Differential Equations</em>.</li>
       </ul>
     </section>
-    
+
     <!-- 8. Navigation -->
     <nav class="navigation">
       <hr>
