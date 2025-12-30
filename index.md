@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Home
+title: jetbundle
 description: The prolongation of higher-order intelligence. Engineering with principles of physics, mathematics and computation.
 permalink: /
 ---
