@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Legal
+description: License information and legal disclaimers for jetbundle.
 permalink: /legal/
 ---
 

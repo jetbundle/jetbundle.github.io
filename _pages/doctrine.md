@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Doctrine
+description: The philosophical bedrock of the jetspace. The Trinity Rules and Mathematics Ex Nihilo.
 permalink: /doctrine/
 ---
 

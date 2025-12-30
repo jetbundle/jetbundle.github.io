@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Nexus
+description: The live wire. Join the Discord, follow on X, and fork the code on GitHub.
 permalink: /nexus/
 ---
 
@@ -15,7 +16,7 @@ The live wire. This is where the work happens.
 <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center;">
   <h2 style="color: #ff4500; margin-top: 0;">Join the Jetspace</h2>
   <p style="font-size: 1.1rem; margin: 1rem 0; color: #ccc;">The main work is done here. No bloat. High density.</p>
-  <a href="https://discord.gg/5mbumWNb5U" style="display: inline-block; background: #ff4500; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">ENTER THE DISCORD</a>
+  <a href="https://discord.gg/5mbumWNb5U" style="display: inline-block; background: #ff4500; color: #ffffff !important; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">ENTER THE DISCORD</a>
 </div>
 
 ---
@@ -34,6 +35,6 @@ The live wire. This is where the work happens.
 <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center;">
   <h2 style="color: #ff4500; margin-top: 0;">Fork our Logic</h2>
   <p style="color: #ccc; margin: 1rem 0;">The code lives here. Fork it. Extend it. Build on it.</p>
-  <a href="https://github.com/jetbundle" style="display: inline-block; background: #ff4500; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">VIEW ON GITHUB</a>
+  <a href="https://github.com/jetbundle" style="display: inline-block; background: #ff4500; color: #ffffff !important; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">VIEW ON GITHUB</a>
   <p style="color: #888; margin-top: 1rem; font-size: 0.9rem;">github.com/jetbundle</p>
 </div>
