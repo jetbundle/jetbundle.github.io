@@ -31,12 +31,9 @@ The live wire. This is where the work happens.
 
 ## GitHub
 
-<div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
-  <h2 style="color: #fff; margin-top: 0;">Fork our Logic</h2>
-  <p style="color: #ccc;">The code lives here. Fork it. Extend it. Build on it.</p>
-  <ul style="list-style: none; padding: 0;">
-    <li style="margin: 1rem 0;">
-      <strong>Organization:</strong> <a href="https://github.com/jetbundle" style="color: #ff4500;">github.com/jetbundle</a>
-    </li>
-  </ul>
+<div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center;">
+  <h2 style="color: #ff4500; margin-top: 0;">Fork our Logic</h2>
+  <p style="color: #ccc; margin: 1rem 0;">The code lives here. Fork it. Extend it. Build on it.</p>
+  <a href="https://github.com/jetbundle" style="display: inline-block; background: #ff4500; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">VIEW ON GITHUB</a>
+  <p style="color: #888; margin-top: 1rem; font-size: 0.9rem;">github.com/jetbundle</p>
 </div>
