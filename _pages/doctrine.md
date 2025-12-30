@@ -30,7 +30,7 @@ The philosophical bedrock of the jetspace.
 
 **We propose a radical interpretation:** Mathematics is not discovered in a Platonic realm, but rigorously built from the deepest contingencies of physics, metaphysics, and philosophy.
 
-This sequence is the initial condition for all further study. It is imperative to train your mind in the initial conditions first. Strong foundation takes priority over any applied field (computation, finance, engineering, biology, etc.). 
+This sequence is the initial condition for all further study. It is imperative to train your mind in the initial conditions first. Strong foundation takes priority over any applied field (computation, finance, engineering, biology, etc.).
 
 Physics and mathematics are the substrate of all sciences; they provide the language of consistency required for making predictions. Mastering them *ex nihilo* gives you the highest acceleration to conquer any field.
 

@@ -18,6 +18,9 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 <div style="margin: 2rem 0;">
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/videoseries?list=PLgrgo-QP8PRZzRwE7ZwCzrrwCNhTv-1y7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p style="margin-top: 1rem; text-align: center;">
+    <a href="https://youtube.com/playlist?list=PLgrgo-QP8PRZzRwE7ZwCzrrwCNhTv-1y7&si=6dTIxSenNH2mUhBn" style="color: #ff4500; text-decoration: underline;">Open playlist on YouTube →</a>
+  </p>
 </div>
 
 ---

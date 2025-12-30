@@ -6,13 +6,13 @@ permalink: /
 
 <div class="hero-container" style="text-align: center; padding: 4rem 0;">
   <h1 style="font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 1.5rem;">The Prolongation of Higher-Order Intelligence.</h1>
-  
+
   <p style="font-size: 1.2rem; line-height: 1.6; max-width: 700px; margin: 0 auto 2rem auto; color: #a0a0a0;">
     In an internet saturated with zero-order information, we pursue the jet: the value, the trajectory, the forces, and the underlying curvature of reality. Mastery is not a function of time, but of intensity and density.
   </p>
   <div class="cta-group" style="margin-top: 3rem;">
     <a href="/library/" class="btn btn-primary" style="border: 1px solid #e5e5e5; padding: 10px 20px; text-decoration: none; color: #e5e5e5; margin-right: 15px; text-transform: uppercase; font-size: 0.9rem;">Enter the Library</a>
-    <a href="/doctrine/" class="btn btn-secondary" style="border: 1px solid #333; padding: 10px 20px; text-decoration: none; color: #888; text-transform: uppercase; font-size: 0.9rem;">Read the Doctrine</a>
+    <a href="/doctrine/" class="btn btn-secondary" style="border: 1px solid #333; padding: 10px 20px; text-decoration: none; color: #e5e5e5; text-transform: uppercase; font-size: 0.9rem;">Read the Doctrine</a>
   </div>
 </div>
 

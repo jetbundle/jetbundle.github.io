@@ -15,7 +15,7 @@ The live wire. This is where the work happens.
 <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center;">
   <h2 style="color: #ff4500; margin-top: 0;">Join the Jetspace</h2>
   <p style="font-size: 1.1rem; margin: 1rem 0; color: #ccc;">The main work is done here. No bloat. High density.</p>
-  <a href="https://discord.gg/5mbumWNb5U" style="display: inline-block; background: #ff4500; color: #000; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">ENTER THE DISCORD</a>
+  <a href="https://discord.gg/5mbumWNb5U" style="display: inline-block; background: #ff4500; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 1rem;">ENTER THE DISCORD</a>
 </div>
 
 ---

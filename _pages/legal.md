@@ -25,4 +25,3 @@ This website and its content are provided for **research and educational purpose
 3.  **LLM Usage:** AI assistance is used for organization and discovery. Users are encouraged to verify information in the Discord.
 
 [Back to Home →](/)
-
