@@ -45,7 +45,7 @@ This is the broadcast station for the jetspace. Here you'll find the latest vide
 
 ### Physics Engine v1.0
 
-**Released:** [Date]  
+**Released:** [Date]
 **Description:** Major release of the physics engine with [features].
 
 **Links:**
@@ -57,7 +57,7 @@ This is the broadcast station for the jetspace. Here you'll find the latest vide
 
 ### [Project Name] v[X.X]
 
-**Released:** [Date]  
+**Released:** [Date]
 **Description:** [Description of release].
 
 **Links:**
@@ -71,4 +71,3 @@ This is the broadcast station for the jetspace. Here you'll find the latest vide
 ---
 
 **Note:** This page will be automated in the future to fetch the latest videos and releases automatically. For now, it's manually updated.
-

@@ -1,13 +1,12 @@
 ---
 layout: page
 title: Doctrine
-description: The philosophical bedrock of the jetspace
 permalink: /doctrine/
 ---
 
 # The Doctrine
 
-The philosophical foundation of the jetspace.
+The philosophical bedrock of the jetspace.
 
 ---
 
@@ -27,21 +26,13 @@ The philosophical foundation of the jetspace.
 
 ---
 
-## Mathematics Ex Nihilo
+## The Initial Conditions: Mathematics Ex Nihilo
 
-Mathematics is not discovered. It is constructed.
+**We propose a radical interpretation:** Mathematics is not discovered in a Platonic realm, but rigorously built from the deepest contingencies of physics, metaphysics, and philosophy.
 
-We do not uncover pre-existing Platonic forms. We build mathematical structures from the raw materials of physics and metaphysics. Every theorem, every proof, every abstraction emerges from our interaction with reality.
+This sequence is the initial condition for all further study. It is imperative to train your mind in the initial conditions first. Strong foundation takes priority over any applied field (computation, finance, engineering, biology, etc.). 
 
-**The foundation is not axioms—it is observation.**
-
-We begin with what we can measure, what we can compute, what we can verify. From these initial conditions, we construct the mathematical edifice. The language of mathematics is not a translation of nature—it is a tool we forge to describe nature.
-
-This is not reductionism. This is constructionism.
-
-We build mathematics from the ground up, starting with the physical and the computational. The abstract emerges from the concrete. The general emerges from the specific. The infinite emerges from the finite.
-
-**Mathematics Ex Nihilo:** From nothing but the structure of reality itself, we build everything.
+Physics and mathematics are the substrate of all sciences; they provide the language of consistency required for making predictions. Mastering them *ex nihilo* gives you the highest acceleration to conquer any field.
 
 ---
 
@@ -49,14 +40,8 @@ We build mathematics from the ground up, starting with the physical and the comp
 
 This environment is maintained by **jetbundle**—a single operator building in the void.
 
-**Independent work.** No grants. No sponsors. No institutions. Just the work.
+* **X (Twitter):** [@jetbundle](https://x.com/jetbundle)
 
-- **X (Twitter):** [@jetbundle](https://twitter.com/jetbundle) *(update with actual handle)*
-- **GitHub:** [github.com/jetbundle](https://github.com/jetbundle)
+* **GitHub:** [github.com/jetbundle](https://github.com/jetbundle)
 
 The work continues. The structure grows. The jetspace expands.
-
----
-
-*"We live in a deeply mathematical universe. The question is not whether mathematics exists, but how we construct it."*
-

@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Library
-description: The Initial Conditions curriculum
 permalink: /library/
 ---
 
@@ -9,119 +8,86 @@ permalink: /library/
 
 **The Initial Conditions.**
 
-> "Strong foundation takes priority over any applied field."
+> "We choose the path of maximum density: deep dives into seminal works and original manuscripts themselves."
 
-This is not a reading list. This is a path. Each book builds on the previous. Each concept prepares for the next. Follow the sequence. Master the fundamentals. Then build.
+This is not a reading list. This is a path. Each book builds on the previous. Each concept prepares for the next.
 
 ---
 
 ## The Initial Conditions Playlist
 
 <div style="margin: 2rem 0;">
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/videoseries?list=PL_YOUR_PLAYLIST_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/videoseries?list=PLgrgo-QP8PRZzRwE7ZwCzrrwCNhTv-1y7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-*Replace `PL_YOUR_PLAYLIST_ID` with your actual YouTube playlist ID*
 
 ---
 
 ## The Path
 
-### 1. Philosophical Mathematics
+### 0. Philosophical Mathematics
 
-*The foundations of mathematical thought*
+*We begin with nothing. No points, no numbers, no space.*
 
-**Core Texts:**
-- **Schmidt, Michael** — *Mathematical Philosophy* *(add specific titles)*
-- **Lawvere, F. William** — *Category Theory* *(add specific titles)*
+* **A Logical Introduction to Proof** — David A. Schmidt
 
-**GitHub Repos:** *(add links to relevant repos)*
-- [Proofs and Exercises](https://github.com/jetbundle/...) *(update with actual repos)*
+* **Sets for Mathematics** — F. William Lawvere & Robert Rosebrugh (structural/category-theoretic sets)
 
-**Discord Channel:** `#philosophical-mathematics`
+### 1. Continuum Analysis
 
----
+*Zeno's paradoxes are resolved not by motion, but by the static adversarial game of epsilon-delta limits.*
 
-### 2. Continuum Analysis
+* **Understanding Analysis** — Stephen Abbott
 
-*The mathematics of continuous structures*
+* **Complex Analysis** — Lars Ahlfors
 
-**Core Texts:**
-- **Abbott, Stephen** — *Understanding Analysis*
-- **Ahlfors, Lars** — *Complex Analysis*
-- **Kolmogorov, A.N.** — *Introductory Real Analysis*
-- **Williams, David** — *Probability with Martingales*
+* **Measure, Lebegue Integrals, and Hilbert Spaces** — Kolmogorov & Fomin
 
-**GitHub Repos:**
-- [Analysis Exercises](https://github.com/jetbundle/...) *(update with actual repos)*
+* **Probability with Martingales** — David Williams
 
-**Discord Channel:** `#continuum-analysis`
+### 2. Invariance Algebra
 
----
+*From invariance we derive vector spaces, operators, tensors, and Lie groups.*
 
-### 3. Invariance Algebra
+* **Linear Algebra** — Georgi Shilov
 
-*Structures that remain unchanged*
+* **Lie Groups, Lie Algebras, and Representations** — Brian C. Hall
 
-**Core Texts:**
-- **Shilov, Georgi** — *Linear Algebra*
-- **Hall, Brian** — *Lie Groups, Lie Algebras, and Representations*
-- **Lang, Serge** — *Algebra*
+* **Algebra** — Serge Lang
 
-**GitHub Repos:**
-- [Algebraic Structures](https://github.com/jetbundle/...) *(update with actual repos)*
+### 3. Geometry & Representation
 
-**Discord Channel:** `#invariance-algebra`
+*Geometry is born locally flat, measured by holes, and transcended in algebraic geometry.*
 
----
+* **Topology and Groupoids** — Ronald Brown
 
-### 4. Geometry & Representation
+* **Lectures on Differential Geometry** — Shlomo Sternberg
 
-*Shapes, symmetries, and their representations*
+* **Linear Algebra & Geometry** — Alexei I. Kostrikin & Yu. I. Manin
 
-**Core Texts:**
-- **Brown, Kenneth** — *Cohomology of Groups*
-- **Sternberg, Shlomo** — *Group Theory and Physics*
-- **Kostrikin, A.I.** — *Introduction to Algebra*
-- *(Add more titles as needed)*
+* **Riemann Surfaces** — Simon Donaldson
 
-**GitHub Repos:**
-- [Geometric Structures](https://github.com/jetbundle/...) *(update with actual repos)*
+* **Differential Forms in Algebraic Topology** — Raoul Bott & Loring W. Tu
 
-**Discord Channel:** `#geometry-representation`
+* **Algebraic Geometry** — Robin Hartshorne
 
----
+* **A Concise Course in Algebraic Topology** — J. Peter May
 
-### 5. Mathematical Physics
+* **Vertex Operator Algebras and the Monster** — Igor Frenkel, James Lepowsky, Arne Meurman
 
-*Physics rebuilt without Newtonian crutches*
+### 4. Mathematical Physics
 
-**Core Texts:**
-- **Arnold, Vladimir** — *Mathematical Methods of Classical Mechanics*
-- **Nomizu, Katsumi** — *Foundations of Differential Geometry*
-- **Atiyah, Michael** — *Geometry and Physics*
-- **Costello, Kevin** — *Renormalization and Effective Field Theory*
+*Physics is rebuilt without Newtonian crutches: symplectomorphisms replace conservation, connections replace forces.*
 
-**GitHub Repos:**
-- [Physics Engine](https://github.com/jetbundle/...) *(update with actual repos)*
+* **Mathematical Methods of Classical Mechanics** — Vladimir I. Arnold
 
-**Discord Channel:** `#mathematical-physics`
+* **Foundations of Differential Geometry** — Katsumi Nomizu & Shoshichi Kobayashi
+
+* **Geometry of Yang-Mills Fields** — Michael Atiyah
+
+* **Renormalization and Effective Field Theory** — Kevin Costello
+
+* **Geometric Quantization** — N. M. J. Woodhouse
 
 ---
 
-## How to Use This Library
-
-1. **Follow the sequence.** Each section builds on the previous.
-2. **Work through the proofs.** Don't just read—verify.
-3. **Join the Discord.** The main work happens in discussion.
-4. **Check the GitHub repos.** See implementations and exercises.
-5. **Watch the videos.** The YouTube playlist complements the books.
-
-**This is not a course. This is a laboratory.**
-
-Build capability. Solve hard problems. Discover new connections.
-
----
-
-*"The laws of nature are written in the language of mathematics. But we must construct that language ourselves."*
-
+**Note:** Specific discussion on these texts occurs in the corresponding channels in the [Discord](/nexus/).

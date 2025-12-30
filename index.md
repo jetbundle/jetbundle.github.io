@@ -1,38 +1,34 @@
 ---
 layout: page
-title: jetbundle
-description: Welcome to the jetspace
-class: landing-page
+title: Home
+permalink: /
 ---
 
-<div class="landing-content">
-  <h1 class="landing-title">Welcome to the jetspace</h1>
+<div class="hero-container" style="text-align: center; padding: 4rem 0;">
+  <h1 style="font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 1.5rem;">The Prolongation of Higher-Order Intelligence.</h1>
   
-  <p class="landing-subtitle" style="font-size: 1.2rem; line-height: 1.8; max-width: 800px; margin: 2rem auto;">
-    This environment exists for the prolongation of higher-order intelligence. We pursue the jet: the value, the trajectory, the forces, and the underlying curvature of reality.
+  <p style="font-size: 1.2rem; line-height: 1.6; max-width: 700px; margin: 0 auto 2rem auto; color: #a0a0a0;">
+    In an internet saturated with zero-order information, we pursue the jet: the value, the trajectory, the forces, and the underlying curvature of reality. Mastery is not a function of time, but of intensity and density.
   </p>
-
-  <div style="margin: 3rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #ff4500;">Maximum Density vs. Zero-Order Information</h2>
-    <p style="line-height: 1.8; margin-bottom: 2rem;">
-      The internet is flooded with zero-order information: content that signals but does not inform, that entertains but does not educate, that consumes time but does not build capability.
-    </p>
-    <p style="line-height: 1.8; margin-bottom: 2rem;">
-      This space is different. Here, we prioritize maximum density: every word, every equation, every line of code is chosen to maximize information per unit of attention. No fluff. No marketing. Just the structure.
-    </p>
+  <div class="cta-group" style="margin-top: 3rem;">
+    <a href="/library/" class="btn btn-primary" style="border: 1px solid #e5e5e5; padding: 10px 20px; text-decoration: none; color: #e5e5e5; margin-right: 15px; text-transform: uppercase; font-size: 0.9rem;">Enter the Library</a>
+    <a href="/doctrine/" class="btn btn-secondary" style="border: 1px solid #333; padding: 10px 20px; text-decoration: none; color: #888; text-transform: uppercase; font-size: 0.9rem;">Read the Doctrine</a>
   </div>
+</div>
 
-  <div style="margin: 4rem 0; display: flex; flex-direction: column; gap: 1.5rem; align-items: center;">
-    <a href="/library/" class="learn-more-btn" style="background: #ff4500; color: #0a0a0a; padding: 1rem 3rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 1.1rem; display: inline-block;">
-      ENTER THE LIBRARY
-    </a>
-    
-    <a href="https://discord.gg/YOUR_INVITE_CODE" class="learn-more-btn" style="background: transparent; color: #ff4500; border: 2px solid #ff4500; padding: 1rem 3rem; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 1.1rem; display: inline-block;">
-      JOIN THE DISCORD
-    </a>
+<hr style="border-top: 1px solid #333; margin: 4rem 0;">
+
+<div class="trinity-preview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+  <div>
+    <h3 style="color: #ff4500;">i. Rigor</h3>
+    <p style="font-size: 0.9rem; color: #888;">Approach every question with mathematical precision. Truth is not a destination, but a direction.</p>
   </div>
-
-  <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333; color: #888; font-size: 0.9rem;">
-    <p>LLM assistance used for organization. Verify reality in the Discord.</p>
+  <div>
+    <h3 style="color: #ff4500;">ii. Creation</h3>
+    <p style="font-size: 0.9rem; color: #888;">Build tools, proofs, and models. Utility and beauty are the two faces of value.</p>
+  </div>
+  <div>
+    <h3 style="color: #ff4500;">iii. Freedom</h3>
+    <p style="font-size: 0.9rem; color: #888;">No sacred boundaries between disciplines. No prohibitions beyond basic decency.</p>
   </div>
 </div>
