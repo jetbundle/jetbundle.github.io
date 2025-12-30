@@ -30,7 +30,9 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 ### 0. Philosophical Mathematics
 
-*We begin with nothing. No points, no numbers, no space.*
+We begin with nothing. No points, no numbers, no space; and we forge the entire edifice through logical grammar, ontological commitment, and epistemological rigor. Arithmetic emerges as a consequence of stable identity and discrete separability.
+
+**Readings:**
 
 * **A Logical Introduction to Proof** — David A. Schmidt
 
@@ -38,7 +40,9 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 ### 1. Continuum Analysis
 
-*Zeno's paradoxes are resolved not by motion, but by the static adversarial game of epsilon-delta limits.*
+Zeno's paradoxes are resolved not by motion, but by the static adversarial game of epsilon-delta limits and the topological notions of connectedness and compactness. Differentiation becomes linear approximation (Fréchet), complex holomorphy enforces infinite rigidity (Liouville), and uncertainty itself is revealed as continuous integration via measure theory, martingales, and Brownian motion (Lévy characterization).
+
+**Readings:**
 
 * **Understanding Analysis** — Stephen Abbott
 
@@ -50,7 +54,9 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 ### 2. Invariance Algebra
 
-*From invariance we derive vector spaces, operators, tensors, and Lie groups.*
+From invariance we derive vector spaces, operators, tensors, Lie groups, and categories as the universal language of structure-preserving maps.
+
+**Readings:**
 
 * **Linear Algebra** — Georgi Shilov
 
@@ -60,7 +66,9 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 ### 3. Geometry & Representation
 
-*Geometry is born locally flat, measured by holes, and transcended in algebraic geometry.*
+Geometry is born locally flat (manifolds), measured by holes (cohomology, simplicial complexes), and finally transcended in algebraic geometry (schemes, sheaves) and representation theory (Virasoro, Monstrous Moonshine).
+
+**Readings:**
 
 * **Topology and Groupoids** — Ronald Brown
 
@@ -80,11 +88,13 @@ This is not a reading list. This is a path. Each book builds on the previous. Ea
 
 ### 4. Mathematical Physics
 
-*Physics is rebuilt without Newtonian crutches: symplectomorphisms replace conservation, connections replace forces.*
+Physics is rebuilt without Newtonian crutches: symplectomorphisms replace conservation, connections replace forces, particles are irreps of Poincaré, and quantum field theory is tamed by renormalization and topological indices.
+
+**Readings:**
 
 * **Mathematical Methods of Classical Mechanics** — Vladimir I. Arnold
 
-* **Foundations of Differential Geometry** — Katsumi Nomizu & Shoshichi Kobayashi
+* **Foundations of Differential Geometry (Vol. I & II)** — Katsumi Nomizu & Shoshichi Kobayashi
 
 * **Geometry of Yang-Mills Fields** — Michael Atiyah
 

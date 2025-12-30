@@ -12,9 +12,13 @@ permalink: /
     In an internet saturated with zero-order information, we pursue the jet: the value, the trajectory, the forces, and the underlying curvature of reality. Mastery is not a function of time, but of intensity and density.
   </p>
   <div class="cta-group" style="margin-top: 3rem;">
-    <a href="/library/" class="btn btn-primary" style="border: 1px solid #e5e5e5; padding: 10px 20px; text-decoration: none; color: #ffffff !important; margin-right: 15px; text-transform: uppercase; font-size: 0.9rem; font-weight: bold;">Enter the Library</a>
-    <a href="/doctrine/" class="btn btn-secondary" style="border: 1px solid #333; padding: 10px 20px; text-decoration: none; color: #ffffff !important; text-transform: uppercase; font-size: 0.9rem; font-weight: bold;">Read the Doctrine</a>
+    <a href="/library/" class="btn btn-primary" style="border: 1px solid #e5e5e5; padding: 10px 20px; text-decoration: none; color: #ffffff !important; margin-right: 15px; text-transform: uppercase; font-size: 0.9rem; font-weight: bold; transition: color 0.2s ease;">Enter the Library</a>
+    <a href="/doctrine/" class="btn btn-secondary" style="border: 1px solid #333; padding: 10px 20px; text-decoration: none; color: #ffffff !important; text-transform: uppercase; font-size: 0.9rem; font-weight: bold; transition: color 0.2s ease;">Read the Doctrine</a>
   </div>
+  <style>
+    .btn-primary:hover { color: #d0d0d0 !important; }
+    .btn-secondary:hover { color: #d0d0d0 !important; }
+  </style>
 </div>
 
 <hr style="border-top: 1px solid #333; margin: 4rem 0;">
