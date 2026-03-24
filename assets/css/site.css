@@ -1,0 +1,84 @@
+:root {
+  --bg: #0f0b1f;
+  --bg-elev: #181033;
+  --text: #f5f3ff;
+  --muted: #b8b0d8;
+  --accent: #8b5cf6;
+  --accent-2: #a78bfa;
+  --border: #2a1f50;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 800px at 20% -10%, #20114a 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: rgba(15, 11, 31, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+}
+
+.navbar-brand {
+  color: var(--accent-2);
+  text-decoration: none;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.site-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+h1, h2, h3 {
+  font-family: "Source Serif 4", Georgia, serif;
+  color: var(--accent-2);
+}
+
+a {
+  color: var(--accent-2);
+}
+
+a:hover {
+  color: #c4b5fd;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+  padding: 1rem 1.25rem 2rem;
+}
+
+.hero-container p {
+  color: var(--muted) !important;
+}
+
+.btn {
+  background: var(--accent);
+  color: #ffffff !important;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  color: #e9ddff !important;
+}
+
+/* KaTeX color integration */
+.katex, .katex-display {
+  color: var(--text);
+}

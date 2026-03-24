@@ -1,90 +1,24 @@
-# Site settings
 title: "jetbundle"
-description: "Engineering with principles of physics, mathematics and computation. The prolongation of higher-order intelligence."
+description: "Engineering with principles of physics, mathematics and computation."
 url: "https://jetbundle.github.io"
 baseurl: ""
 
-# Useful links
-github_username: "jetbundle"
-facebook_username: ""
-twitter_username: ""
-linkedin_id: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
 
-# Theme
-remote_theme: luxedo/jekyll-theme-potato-hacker
-theme_repository: "https://github.com/luxedo/jekyll-theme-potato-hacker"
-theme_base: "dark"
-theme_switch: "on"
-
-# Extra settings
-blog: "on"
-avatar: "on"
-avatar_image: "assets/img/avatar.jpg"
-avatar_description: "Engineering with principles of physics, mathematics and computation. The prolongation of higher-order intelligence."
-
-highlighter_theme: monokai
-
-# Defaults
 defaults:
   - scope:
       path: ""
     values:
       image: /assets/img/og-image.svg
 
-# Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-remote-theme
-  # Server-side LaTeX rendering (solves all client-side issues)
-  # NOTE: Jektex disabled - GitHub Pages blocks custom plugins
-  # Using client-side rendering (KaTeX) instead - works reliably
-  # - jektex
-  # Math protection plugin (optional - uncomment if math rendering issues persist)
-  # - math_protection  # Custom plugin to protect math from Kramdown processing
 
-# Markdown
-markdown: kramdown
-kramdown:
-  input: GFM
-  # NOTE: With Jektex, LaTeX is processed server-side during build
-  # Kramdown just processes markdown, Jektex handles all math rendering
-  math_engine: mathjax
-  math_engine_opts:
-    preview: AsciiMath
-    preview_as_mathml: true
-  syntax_highlighter: rouge
-  hard_wrap: false
-  auto_ids: true
-  footnote_backlink: "&#8617;"
-  footnote_backlink_inline: true
-  # Disable GFM table parsing quirks to avoid conflicts with math blocks
-  # Tables will still work but won't conflict with $...$ math
-  gfm_quirks: []
-
-# Math rendering engine - CLIENT-SIDE RENDERING
-# Using KaTeX for reliable client-side rendering (works on GitHub Pages)
-# Jektex would be ideal but GitHub Pages blocks custom plugins
-math_engine_client: 'katex'  # Client-side rendering with KaTeX (reliable and fast)
-
-# Jektex configuration (disabled - GitHub Pages blocks custom plugins)
-# Uncomment only if using GitHub Actions or local builds
-# jektex:
-#   cache_dir: ".jektex-cache"
-#   silent: false
-#   macros:
-#     - ["\\RR", "\\mathbb{R}"]
-#     - ["\\NN", "\\mathbb{N}"]
-#     - ["\\ZZ", "\\mathbb{Z}"]
-#     - ["\\QQ", "\\mathbb{Q}"]
-#     - ["\\CC", "\\mathbb{C}"]
-
-# Math protection plugin settings
-# Set to false to disable the math protection plugin (relies on JavaScript fallback)
-# NOTE: We now use \mid instead of | for separators, so this plugin is less critical
-math_protect_enabled: false
-
-# Exclude
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -92,24 +26,3 @@ exclude:
   - vendor
   - .git
   - .gitignore
-  - test-manifold-math.html
-  - index.md.old
-  - blog.md
-  - _pages/cartography.md
-  - _pages/stacks.md
-  - _pages/principal.md
-  - _pages/booklist.md
-  - _pages/archive.md
-  - _dropdown
-  - archive
-  # Exclude internal documentation files from being published
-  - _diffequations/CONTENT_STRUCTURE_GUIDE.md
-  - _diffequations/IMPLEMENTATION_PLAN.md
-  - _diffequations/MATH_FORMATTING_GUIDE.md
-  - _diffequations/PHASE_1_2_EXECUTION_PLAN.md
-  - _diffequations/README.md
-  - _diffequations/section-1-3-update-report.md
-  - _diffequations/transformation_guidline.md
-
-# PDF Settings
-pdf_height: 900px

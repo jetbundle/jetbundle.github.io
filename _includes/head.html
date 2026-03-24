@@ -1,164 +1,29 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-
-  <!-- Canonical URL -->
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ site.url }}/assets/img/og-image.svg">
 
-  <!-- Open Graph / Facebook / Discord -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   <meta property="og:site_name" content="{{ site.title }}">
-  {% if page.image %}
-  <meta property="og:image" content="{{ site.url }}{{ page.image }}">
+  <meta property="og:image" content="{{ site.url }}{% if page.image %}{{ page.image }}{% else %}/assets/img/og-image.svg{% endif %}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  {% elsif page.og_image %}
-  <meta property="og:image" content="{{ page.og_image }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  {% else %}
-  <meta property="og:image" content="{{ site.url }}/assets/img/og-image.svg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  {% endif %}
-  <meta property="og:image:alt" content="{{ site.title }} - {{ site.description }}">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@jetbundle">
-  <meta name="twitter:creator" content="@jetbundle">
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.image %}
-  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
-  {% elsif page.og_image %}
-  <meta name="twitter:image" content="{{ page.og_image }}">
-  {% else %}
-  <meta name="twitter:image" content="{{ site.url }}/assets/img/og-image.svg">
-  {% endif %}
-  <meta name="twitter:image:alt" content="{{ site.title }} - {{ site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}{% if page.image %}{{ page.image }}{% else %}/assets/img/og-image.svg{% endif %}">
+  <meta name="theme-color" content="#0f0b1f">
 
-  <!-- Additional Meta Tags -->
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="msapplication-TileColor" content="#0a0a0a">
-  <meta name="author" content="jetbundle">
-
-  <!-- Schema.org structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ site.title }}",
-    "description": "{{ site.description }}",
-    "url": "{{ site.url }}",
-    "author": {
-      "@type": "Organization",
-      "name": "jetbundle"
-    }
-  }
-  </script>
-
-  <!-- jetbundle Gauge Theme - Critical CSS (inline for immediate rendering) -->
-  <style>
-    /* Critical gauge theme styles - applied immediately */
-    :root {
-      --orange-primary: #ff4500;
-      --orange-accent: #e63900;
-      --blue-primary: #0ea5e9;
-      --dark-bg: #0a0a0a;
-      --text-primary: #ffffff;
-    }
-    html, body, body.animated, body.animated.fadeIn {
-      background: linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%) !important;
-      background-color: #0a0a0a !important;
-      color: #e5e5e5 !important;
-    }
-    #background-div, #background-svg {
-      background: #0a0a0a !important;
-      background-color: #0a0a0a !important;
-    }
-    .bgColor1 { stop-color: #0a0a0a !important; }
-    .bgColor2 { stop-color: #0a0a0a !important; }
-    h1, h2, h3, h4, h5, h6, .post-title {
-      color: #ff4500 !important;
-    }
-    h1 {
-      color: #ff4500 !important;
-    }
-    a { color: #ff4500 !important; }
-    a:hover { color: #e63900 !important; }
-    .navbar-icon, nav a, .navbar a { color: #e5e5e5 !important; }
-    .container, .wrapper, main { background: transparent !important; color: #e5e5e5 !important; }
-    .content-div { color: #e5e5e5 !important; }
-
-    /* CRITICAL: Ensure all buttons have white text */
-    a[style*="background"],
-    a.btn,
-    button,
-    .btn {
-      color: #ffffff !important;
-    }
-
-    /* CRITICAL: Hide theme navigation immediately */
-    body > nav:not(header nav):not(.site-navbar),
-    body > aside,
-    body > .toolbar:not(.navbar-container),
-    body > .sidebar,
-    .toolbar:not(.navbar-container):not(.site-navbar),
-    .sidebar {
-      display: none !important;
-      visibility: hidden !important;
-    }
-
-    /* Ensure our header is visible */
-    header.site-header {
-      display: block !important;
-      visibility: visible !important;
-    }
-
-    /* Ensure jetbundle brand is visible and clickable */
-    a.navbar-brand,
-    a.jetbundle-logo,
-    header a.navbar-brand {
-      display: inline-block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      cursor: pointer !important;
-      color: #ff4500 !important;
-    }
-  </style>
-
-  <!-- Theme CSS -->
-  <link rel="stylesheet" id="css-theme" href="/assets/css/main-dark.css">
-  <link rel="stylesheet" href="/assets/css/highlight/monokai.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
-
-  <!-- jetbundle Gauge Theme CSS - Loads after theme CSS -->
-  <link rel="stylesheet" href="/assets/css/gauge-theme.css">
-
-  <!-- KaTeX Math Rendering - Always use client-side (works reliably on GitHub Pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
   {% include katex-math-renderer.html %}
-
-  <!-- JavaScript: Load with defer to not block math rendering -->
-  <!-- jQuery must load first, then Bootstrap (depends on jQuery), then D3, then theme JS -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
-  <script defer src="/assets/js/main.js"></script>
-
-  <!-- Manifold background - loads after page is ready (script handles its own initialization) -->
-  <script defer src="/assets/js/manifold-background.js"></script>
 </head>
