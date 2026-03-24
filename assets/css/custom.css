@@ -1,8 +1,8 @@
 /* JetBundle Gauge Theme - Direct CSS file for maximum override */
 :root {
-    --orange-primary: #4f46e5;
-    --orange-accent: #4338ca;
-    --blue-primary: #4f46e5;
+    --orange-primary: #ff4500;
+    --orange-accent: #e63900;
+    --blue-primary: #0ea5e9;
     --blue-deep: #1e40af;
     --dark-bg: #0b0e17;
     --card-bg: #111827;
@@ -48,39 +48,39 @@ body h1,
 html body h1,
 body .container h1,
 body .wrapper h1 {
-    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+    background: linear-gradient(135deg, #ff4500 0%, #e63900 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    color: #4f46e5 !important;
+    color: #ff4500 !important;
     font-weight: 700 !important;
 }
 
 body h2,
 html body h2,
 body .container h2 {
-    color: #4f46e5 !important;
+    color: #ff4500 !important;
     border-bottom: 2px solid #1e293b !important;
     padding-bottom: 0.5rem !important;
 }
 
 body h3,
 html body h3 {
-    color: #4f46e5 !important;
+    color: #ff4500 !important;
 }
 
 body a,
 html body a,
 body .container a,
 body .wrapper a {
-    color: #4f46e5 !important;
+    color: #ff4500 !important;
     text-decoration: none !important;
 }
 
 body a:hover,
 html body a:hover {
-    color: #6366f1 !important;
-    text-shadow: 0 0 8px rgba(79, 70, 229, 0.5) !important;
+    color: #ff6a33 !important;
+    text-shadow: 0 0 8px rgba(255, 69, 0, 0.5) !important;
 }
 
 body nav,

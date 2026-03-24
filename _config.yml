@@ -34,11 +34,16 @@ collections:
   #   output: true
   #   permalink: /diffequations/:path/
 
-# defaults:
-#   - scope:
-#       type: diffequations
-#     values:
-#       layout: textbook
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      image: /assets/img/og-image.svg
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/og-image.svg
 
 # Plugins
 plugins:
