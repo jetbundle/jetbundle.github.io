@@ -24,22 +24,8 @@ avatar_description: "Engineering with principles of physics, mathematics and com
 
 highlighter_theme: monokai
 
-# Collections
-collections:
-  pages:
-    output: true
-    permalink: /:name/
-  # diffequations collection disabled - using static HTML files instead
-  # diffequations:
-  #   output: true
-  #   permalink: /diffequations/:path/
-
+# Defaults
 defaults:
-  - scope:
-      path: ""
-      type: pages
-    values:
-      image: /assets/img/og-image.svg
   - scope:
       path: ""
     values:
