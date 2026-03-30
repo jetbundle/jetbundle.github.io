@@ -1,12 +1,13 @@
-/* Terminal shell: black background, monospace, markdown-ready */
+/* Terminal shell: black + purple, monospace, markdown-ready */
 
 :root {
   --bg: #000000;
-  --fg: #c4ffc4;
-  --fg-dim: #6b8f6b;
-  --accent: #7cfc00;
-  --border: #1a1a1a;
-  --code-bg: #0d0d0d;
+  --fg: #ebe4ff;
+  --fg-dim: #7c6f9e;
+  --accent: #a78bfa;
+  --accent-hot: #c4b5fd;
+  --border: #1a1228;
+  --code-bg: #0c0814;
 }
 
 * {
@@ -36,7 +37,7 @@ body {
 .site-main h2,
 .site-main h3,
 .site-main h4 {
-  color: var(--accent);
+  color: var(--accent-hot);
   font-weight: 500;
   margin: 1.5rem 0 0.75rem;
 }
@@ -65,7 +66,7 @@ body {
 }
 
 .site-main a:hover {
-  color: #b4ff6a;
+  color: var(--accent-hot);
 }
 
 .site-main ul,
@@ -98,6 +99,7 @@ body {
   background: var(--code-bg);
   padding: 0.12em 0.35em;
   border-radius: 2px;
+  border: 1px solid var(--border);
 }
 
 .site-main pre {
@@ -112,9 +114,10 @@ body {
 .site-main pre code {
   background: none;
   padding: 0;
+  border: none;
 }
 
-/* Home: prompt line only */
+/* Home: prompt line */
 .tty {
   margin: 0;
   padding: 0;
@@ -123,6 +126,16 @@ body {
   font-family: inherit;
   font-size: inherit;
   color: var(--fg);
+}
+
+.tty-host {
+  color: var(--fg-dim);
+  user-select: none;
+}
+
+.tty-host::after {
+  content: ":";
+  color: var(--fg-dim);
 }
 
 .tty-prompt {
@@ -143,7 +156,7 @@ body {
 .tty-cursor::after {
   content: "\2588";
   animation: tty-blink 1s step-end infinite;
-  color: var(--accent);
+  color: var(--accent-hot);
 }
 
 @keyframes tty-blink {

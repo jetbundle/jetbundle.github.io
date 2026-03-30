@@ -1,11 +1,18 @@
-# jetbundle.github.io
+# jetspace (site) · jetbundle.github.io (host)
 
-Extremely minimal Jekyll site: black terminal aesthetic, almost no visible copy on the home page.
+Public name: **jetspace**.  
+Still hosted at `https://jetbundle.github.io` until you point a custom domain.
+
+Minimal Jekyll site: black background, purple terminal accent, almost no copy on the home page.
+
+## Why an old icon might still show
+
+Browsers cache favicons aggressively. This repo now ships **`assets/img/favicon.svg`** (purple prompt mark). After deploy, use a hard refresh or clear site data for the Pages URL if you still see an old glyph.
 
 ## Edit the home screen
 
 - File: `index.md`
-- The only visible line is a shell-style prompt + cursor (no favicon, no social preview image).
+- Prompt line shows `jetspace:~$` plus cursor.
 
 ## Add a page (Markdown)
 
@@ -20,21 +27,18 @@ permalink: /slug/
 ---
 ```
 
-3. Write Markdown below the `---`
-4. URL will be `https://jetbundle.github.io/slug/`
+3. URL: `https://jetbundle.github.io/slug/` (same host, **jetspace** title in the tab when `title` is empty on home).
 
 Example: `_pages/example.md` → `/example/`
 
 ## Theme
 
-- CSS: `assets/css/site.css` (pure black `#000`, green terminal text, `IBM Plex Mono`)
-- KaTeX: `_includes/katex-math-renderer.html` (for math on content pages)
+- `assets/css/site.css` — `#000` background, violet accents (`#a78bfa`, `#c4b5fd`)
+- `_includes/katex-math-renderer.html` — KaTeX on content pages
 
 ## Publish
 
 Push to `main` → GitHub Actions → GitHub Pages.
-
-Local:
 
 ```bash
 bundle install
