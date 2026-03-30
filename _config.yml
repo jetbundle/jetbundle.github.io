@@ -1,5 +1,5 @@
 title: "jetbundle"
-description: "Engineering with principles of physics, mathematics and computation."
+description: ""
 url: "https://jetbundle.github.io"
 baseurl: ""
 
@@ -9,15 +9,12 @@ kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
 
-defaults:
-  - scope:
-      path: ""
-    values:
-      image: /assets/img/og-image.svg
+collections:
+  pages:
+    output: true
+    permalink: /:name/
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+plugins: []
 
 exclude:
   - Gemfile

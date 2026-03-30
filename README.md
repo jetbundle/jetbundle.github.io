@@ -1,40 +1,42 @@
-# jetbundle.github.io (Reset Baseline)
+# jetbundle.github.io
 
-Minimal landing-only Jekyll site.
+Extremely minimal Jekyll site: black terminal aesthetic, almost no visible copy on the home page.
 
-## What remains
+## Edit the home screen
 
-- Landing page: `index.md`
-- Layout shell: `_layouts/default.html`
-- Core includes: `_includes/head.html`, `_includes/header.html`, `_includes/katex-math-renderer.html`
-- Purple theme stylesheet: `assets/css/site.css`
-- Social/preview image: `assets/img/og-image.svg`
-- Publish workflow: `.github/workflows/build-and-deploy.yml`
+- File: `index.md`
+- The only visible line is a shell-style prompt + cursor (no favicon, no social preview image).
 
-## General ideas
+## Add a page (Markdown)
 
-- Keep the public site intentionally small and direct.
-- Build from one strong landing page first.
-- Add pages only when needed, not by default.
-- Preserve KaTeX compatibility for future mathematical writing.
-- Keep the palette stable:
-  - background: `#0f0b1f`
-  - surface: `#181033`
-  - accent: `#8b5cf6`
-  - accent light: `#a78bfa`
-  - text: `#f5f3ff`
+1. Create `_pages/slug.md`
+2. Front matter:
 
-## Publish flow
+```yaml
+---
+layout: default
+title: slug
+permalink: /slug/
+---
+```
 
-1. Edit `index.md`, `_includes/head.html`, or `assets/css/site.css`
-2. Commit changes to `main`
-3. GitHub Actions builds Jekyll and deploys to GitHub Pages
+3. Write Markdown below the `---`
+4. URL will be `https://jetbundle.github.io/slug/`
 
-## Local preview
+Example: `_pages/example.md` → `/example/`
+
+## Theme
+
+- CSS: `assets/css/site.css` (pure black `#000`, green terminal text, `IBM Plex Mono`)
+- KaTeX: `_includes/katex-math-renderer.html` (for math on content pages)
+
+## Publish
+
+Push to `main` → GitHub Actions → GitHub Pages.
+
+Local:
 
 ```bash
 bundle install
 bundle exec jekyll serve
 ```
-
-Open `http://localhost:4000`.

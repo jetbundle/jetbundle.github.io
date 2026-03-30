@@ -1,84 +1,166 @@
+/* Terminal shell: black background, monospace, markdown-ready */
+
 :root {
-  --bg: #0f0b1f;
-  --bg-elev: #181033;
-  --text: #f5f3ff;
-  --muted: #b8b0d8;
-  --accent: #8b5cf6;
-  --accent-2: #a78bfa;
-  --border: #2a1f50;
+  --bg: #000000;
+  --fg: #c4ffc4;
+  --fg-dim: #6b8f6b;
+  --accent: #7cfc00;
+  --border: #1a1a1a;
+  --code-bg: #0d0d0d;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(1200px 800px at 20% -10%, #20114a 0%, var(--bg) 55%);
-  color: var(--text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
-
-.site-header {
-  border-bottom: 1px solid var(--border);
-  background: rgba(15, 11, 31, 0.85);
-  backdrop-filter: blur(8px);
-}
-
-.navbar-container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 1rem 1.25rem;
-}
-
-.navbar-brand {
-  color: var(--accent-2);
-  text-decoration: none;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.4rem;
-  font-weight: 700;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "IBM Plex Mono", ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100vh;
 }
 
 .site-main {
-  max-width: 980px;
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 1.25rem 1rem 3rem;
 }
 
-h1, h2, h3 {
-  font-family: "Source Serif 4", Georgia, serif;
-  color: var(--accent-2);
+/* Markdown prose */
+.site-main h1,
+.site-main h2,
+.site-main h3,
+.site-main h4 {
+  color: var(--accent);
+  font-weight: 500;
+  margin: 1.5rem 0 0.75rem;
 }
 
-a {
-  color: var(--accent-2);
+.site-main h1 {
+  font-size: 1.15rem;
 }
 
-a:hover {
-  color: #c4b5fd;
+.site-main h2 {
+  font-size: 1.05rem;
 }
 
-.site-footer {
+.site-main h3 {
+  font-size: 1rem;
+}
+
+.site-main p {
+  margin: 0.75rem 0;
+  color: var(--fg);
+}
+
+.site-main a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-main a:hover {
+  color: #b4ff6a;
+}
+
+.site-main ul,
+.site-main ol {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+  color: var(--fg);
+}
+
+.site-main blockquote {
+  margin: 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 2px solid var(--fg-dim);
+  color: var(--fg-dim);
+}
+
+.site-main hr {
+  border: none;
   border-top: 1px solid var(--border);
-  color: var(--muted);
-  text-align: center;
-  padding: 1rem 1.25rem 2rem;
+  margin: 1.5rem 0;
 }
 
-.hero-container p {
-  color: var(--muted) !important;
+.site-main pre,
+.site-main code {
+  font-family: inherit;
+  font-size: 0.92em;
 }
 
-.btn {
-  background: var(--accent);
-  color: #ffffff !important;
-  border-radius: 8px;
+.site-main code {
+  background: var(--code-bg);
+  padding: 0.12em 0.35em;
+  border-radius: 2px;
 }
 
-.btn:hover {
-  color: #e9ddff !important;
+.site-main pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 0;
+  margin: 1rem 0;
 }
 
-/* KaTeX color integration */
-.katex, .katex-display {
-  color: var(--text);
+.site-main pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Home: prompt line only */
+.tty {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--fg);
+}
+
+.tty-prompt {
+  color: var(--accent);
+  user-select: none;
+}
+
+.tty-prompt::after {
+  content: " ";
+}
+
+/* Blinking block cursor */
+.tty-cursor {
+  display: inline-block;
+  unicode-bidi: isolate;
+}
+
+.tty-cursor::after {
+  content: "\2588";
+  animation: tty-blink 1s step-end infinite;
+  color: var(--accent);
+}
+
+@keyframes tty-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tty-cursor::after {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* KaTeX */
+.katex,
+.katex-display {
+  color: var(--fg);
 }
