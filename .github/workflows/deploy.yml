@@ -25,10 +25,21 @@ jobs:
       - uses: actions/configure-pages@v4
       - name: Prepare site
         run: |
-          mkdir -p _site
-          cp index.html _site/
+          mkdir -p _site \
+            _site/physics \
+            _site/financial-computational-sciences \
+            _site/intelligence-engineering \
+            _site/space-energy-research
+          cp index.html styles.css _site/
+          cp physics/index.html _site/physics/
+          cp financial-computational-sciences/index.html _site/financial-computational-sciences/
+          cp intelligence-engineering/index.html _site/intelligence-engineering/
+          cp space-energy-research/index.html _site/space-energy-research/
       - name: Verify output
-        run: test -f _site/index.html && test -s _site/index.html
+        run: |
+          test -f _site/index.html && test -s _site/index.html
+          test -f _site/styles.css
+          test -f _site/physics/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

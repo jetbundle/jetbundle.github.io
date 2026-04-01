@@ -1,0 +1,131 @@
+:root {
+  --bg: #0a0a0c;
+  --text: #f2f2f4;
+  --muted: #9a96a8;
+  --purple: #ae93ec;
+  --orange: #e7b597;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--purple);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--orange);
+}
+
+.wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.brand {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.tagline {
+  margin: 0 0 2rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.cta {
+  margin: 0 0 2.75rem;
+  padding: 1rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--purple) 35%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--purple) 35%, transparent);
+}
+
+.cta-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.cta a {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.sections-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--orange);
+  margin: 0 0 1rem;
+}
+
+.section-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.section-list a {
+  display: block;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--purple) 30%, transparent);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--purple) 6%, var(--bg));
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.section-list a:hover {
+  border-color: color-mix(in srgb, var(--orange) 45%, transparent);
+  background: color-mix(in srgb, var(--orange) 8%, var(--bg));
+  color: var(--text);
+}
+
+.stub {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.stub h1 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--purple);
+}
+
+.stub p {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+}
+
+.back {
+  font-size: 0.95rem;
+}
