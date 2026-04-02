@@ -566,13 +566,123 @@
             </section>
 
             <section id="phase-space-and-canonical-structure" class="doc-section">
-                <h2>Phase space and canonical structure</h2>
-                <p>The Legendre transform moves from the Lagrangian on configuration space to the Hamiltonian on phase
-                    space. Hamilton’s equations follow from matching differentials after the transform. Poisson brackets
-                    encode time evolution and identify integrals of motion. The Hamilton–Jacobi picture treats the
-                    action as a generating function whose level surfaces organize trajectories. For periodic systems,
-                    action variables from contour integrals are adiabatic invariants under slow parameter change,
-                    foreshadowing symplectic geometry.</p>
+                <h2>phase space and canonical structure</h2>
+                <p>mechanics does not end in \((q,\dot{q})\): momenta are the right partners for coordinates, and the
+                    legendre transform is the unique swap that turns second-order euler-lagrange equations into a symmetric
+                    first-order flow. from there, brackets pick out constants, the hamilton–jacobi equation rebuilds
+                    families of orbits from a single scalar \(S\), and closed loops in phase space freeze area into
+                    adiabatic invariants.</p>
+
+                <h3>total versus partial derivatives and lagrangian gauge</h3>
+                <p>changing variables demands a clean split between explicit time dependence and motion through the
+                    coordinate chart. the partial derivative \(\partial f/\partial t\) holds all \(q\) fixed and records only
+                    explicit \(t\) dependence (a drive that shakes the system). along a trajectory,</p>
+                \[
+                    \frac{df}{dt}=\frac{\partial f}{\partial t}+\sum_i\frac{\partial f}{\partial q_i}\dot{q}_i.
+                \]
+                <p>if \(\partial L/\partial t\neq 0\), energy is generally not conserved. the earlier gauge fact still
+                    holds: two lagrangians differing by a total time derivative \(\frac{d}{dt}f(q,t)\) share the same
+                    euler-lagrange equations, because the action shifts only by fixed endpoint terms that vanish under the
+                    variational boundary conditions. that freedom keeps the physics insensitive to harmless rewritings of
+                    \(L\).</p>
+
+                <h3>the legendre transform and hamilton's equations</h3>
+                <p>define momenta from \(L\):</p>
+                \[
+                    p_i=\frac{\partial L}{\partial \dot{q}_i}.
+                \]
+                <p>the hamiltonian is the legendre transform</p>
+                \[
+                    H(q,p,t)=\sum_i p_i\dot{q}_i-L(q,\dot{q},t).
+                \]
+                <p>to derive the equations, compare differentials. first,</p>
+                \[
+                    dH=\sum_i\dot{q}_i\,dp_i+\sum_i p_i\,d\dot{q}_i-dL.
+                \]
+                <p>for \(L\),</p>
+                \[
+                    dL=\sum_i\frac{\partial L}{\partial q_i}\,dq_i+\sum_i\frac{\partial L}{\partial \dot{q}_i}\,d\dot{q}_i
+                    +\frac{\partial L}{\partial t}\,dt.
+                \]
+                <p>use \(\partial L/\partial q_i=\dot{p}_i\) from the euler-lagrange equations and \(\partial L/\partial\dot{q}_i=p_i\):</p>
+                \[
+                    dL=\sum_i\dot{p}_i\,dq_i+\sum_i p_i\,d\dot{q}_i+\frac{\partial L}{\partial t}\,dt.
+                \]
+                <p>insert into \(dH\): the terms \(p_i\,d\dot{q}_i\) cancel, leaving</p>
+                \[
+                    dH=\sum_i\dot{q}_i\,dp_i-\sum_i\dot{p}_i\,dq_i-\frac{\partial L}{\partial t}\,dt.
+                \]
+                <p>but as a function \(H(q,p,t)\), necessarily</p>
+                \[
+                    dH=\sum_i\frac{\partial H}{\partial p_i}\,dp_i+\sum_i\frac{\partial H}{\partial q_i}\,dq_i+\frac{\partial H}{\partial t}\,dt.
+                \]
+                <p>matching coefficients gives hamilton's canonical equations:</p>
+                \[
+                    \dot{q}_i=\frac{\partial H}{\partial p_i},\qquad
+                    \dot{p}_i=-\frac{\partial H}{\partial q_i},\qquad
+                    \frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t}.
+                \]
+                <p>the order-one system in \((q,p)\) is symmetric between coordinates and momenta; in this picture phase-space
+                    volume is preserved along the flow (liouville's theorem). the structure is forced: the legendre map is the
+                    standard algebraic route from lagrangian second-order dynamics to canonical first-order dynamics without
+                    discarding what symmetry and variation already fixed.</p>
+
+                <h3>poisson brackets and integrals of motion</h3>
+                <p>for any observable \(f(q,p,t)\), the chain rule along trajectories gives</p>
+                \[
+                    \frac{df}{dt}=\frac{\partial f}{\partial t}+\sum_i\left(\frac{\partial f}{\partial q_i}\dot{q}_i+\frac{\partial f}{\partial p_i}\dot{p}_i\right).
+                \]
+                <p>substitute hamilton's equations for \(\dot{q}_i\) and \(\dot{p}_i\):</p>
+                \[
+                    \frac{df}{dt}=\frac{\partial f}{\partial t}+\sum_i\left(\frac{\partial f}{\partial q_i}\frac{\partial H}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial H}{\partial q_i}\right).
+                \]
+                <p>the sum is the poisson bracket \(\{f,H\}\):</p>
+                \[
+                    \{f,H\}=\sum_i\left(\frac{\partial f}{\partial q_i}\frac{\partial H}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial H}{\partial q_i}\right).
+                \]
+                <p>so</p>
+                \[
+                    \frac{df}{dt}=\frac{\partial f}{\partial t}+\{f,H\}.
+                \]
+                <p>if \(\partial f/\partial t=0\) and \(\{f,H\}=0\), then \(df/dt=0\): \(f\) is a constant of the motion.
+                    every symmetry-generated integral reappears here as a function whose bracket with \(H\) vanishes; the
+                    bracket packages time evolution without solving the flow in closed form.</p>
+
+                <h3>the hamilton–jacobi equation</h3>
+                <p>treat the action \(S\) not as a single number between fixed endpoints but as a function
+                    \(S(q,t)\)—depending on the upper time and the coordinates there. then momenta are the gradients</p>
+                \[
+                    p_i=\frac{\partial S}{\partial q_i},
+                \]
+                <p>and \(\partial S/\partial t=-H\) along the solution. eliminating \(p\) from \(H\) yields the
+                    hamilton–jacobi equation</p>
+                \[
+                    \frac{\partial S}{\partial t}+H\left(q_i,\frac{\partial S}{\partial q_i},t\right)=0.
+                \]
+                <p>this is a first-order nonlinear pde for \(S\); where separation applies, its solution generates the
+                    full family of trajectories—level sets of \(S\) organize the motion, and momenta are read off from
+                    \(\nabla_q S\). \(S\) is the generating function for the canonical picture in the sense used
+                    throughout analytical mechanics.</p>
+
+                <h3>action variables and adiabatic invariants</h3>
+                <p>for motion that is conditionally periodic (bounded, returning after finitely many independent cycles),
+                    define action variables by contour integrals in phase space, one loop per independent degree of
+                    freedom \(k\):</p>
+                \[
+                    I_k=\frac{1}{2\pi}\oint p_k\,dq_k.
+                \]
+                <p>these \(I_k\) are constants for the unperturbed motion. for the one-dimensional harmonic oscillator,
+                    \(H=p^2/(2m)+\frac{1}{2}m\omega^2 q^2=E\), so \(p=\sqrt{2m(E-\frac{1}{2}m\omega^2 q^2)}\) and the
+                    orbit in \((q,p)\) is an ellipse. the contour integral equals the enclosed area divided by \(2\pi\),</p>
+                \[
+                    I=\frac{E}{\omega},
+                \]
+                <p>so \(E=I\omega\). when parameters drift slowly (e.g. \(\omega(t)\) changes on a time scale long
+                    compared to a period), the actions remain strict adiabatic invariants: the loop integral is
+                    topologically tied to the enclosed phase area, and slow deformation cannot tear that area without
+                    breaking the conservation structure already encoded in the hamiltonian picture. that closes the link
+                    from periodic geometry to invariants that survive slow change, and points forward to canonical
+                    transformations stated in coordinate-free language.</p>
             </section>
 
             <section id="special-relativity-and-the-free-relativistic-particle" class="doc-section">
