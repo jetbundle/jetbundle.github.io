@@ -90,6 +90,12 @@ a:hover {
   color: var(--dim);
 }
 
+.fg {
+  color: var(--fg);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
 .subnav {
   margin: 0 0 1.5rem;
   font-size: 0.9rem;

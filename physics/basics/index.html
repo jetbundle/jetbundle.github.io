@@ -1,105 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>basics · classical physics · JETBUNDLE</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="/styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>basics · classical physics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
-  <main class="doc">
-    <nav class="subnav" aria-label="section">
-      <a href="../">physics</a>
-      <span class="subnav-sep" aria-hidden="true">·</span>
-      <a href="/">../</a>
-    </nav>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
 
-    <header class="doc-header">
-      <h1>Classical Theoretical Physics</h1>
-      <p class="doc-lead"><em>In the spirit of Landau</em></p>
-      <p class="doc-intro">This single-page outline presents the complete logical progression of classical theoretical physics. Each section builds on the previous ones: least action, geometric symmetries, conservation laws, and relativistic invariance force the later structure. Use the table of contents to jump to any section.</p>
-    </header>
+        <header class="doc-header">
+            <h1>classical physics</h1>
+            <p class="doc-lead"><em>in the spirit of Landau</em></p>
+            <p class="doc-intro">the progression of classical theoretical physics is attempted to be compressed into an
+                impressionistic picture. each section tries to force the later structures that proceed its necessary
+                ideas. reverence to the original presentation of Landau's approach is paid in such a way that
+                extraneous mathematics for the basics foundations of physics is not added for distraction.</p>
+        </header>
 
-    <nav class="toc" aria-labelledby="toc-heading">
-      <h2 id="toc-heading" class="toc-title">Table of contents</h2>
-      <ol class="toc-list">
-        <li><a href="#variational-calculus-and-symmetries">Variational calculus and symmetries</a></li>
-        <li><a href="#reduction-and-effective-potentials">Reduction and effective potentials</a></li>
-        <li><a href="#linearization-and-normal-modes">Linearization and normal modes</a></li>
-        <li><a href="#phase-space-and-canonical-structure">Phase space and canonical structure</a></li>
-        <li><a href="#special-relativity-and-the-free-relativistic-particle">Special relativity and the free relativistic particle</a></li>
-        <li><a href="#waves-radiation-and-the-physical-meaning-of-integrals">Waves, radiation, and the physical meaning of integrals</a></li>
-        <li><a href="#general-relativity-and-curved-spacetime">General relativity and curved spacetime</a></li>
-        <li><a href="#global-and-topological-closure">Global and topological closure</a></li>
-      </ol>
-    </nav>
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">Table of contents</h2>
+            <ol class="toc-list">
+                <li><a href="#variational-calculus-and-symmetries">variational calculus and symmetries</a></li>
+                <li><a href="#reduction-and-effective-potentials">reduction and effective potentials</a></li>
+                <li><a href="#linearization-and-normal-modes">linearization and normal modes</a></li>
+                <li><a href="#phase-space-and-canonical-structure">phase space and canonical structure</a></li>
+                <li><a href="#special-relativity-and-the-free-relativistic-particle">special relativity and the free
+                        relativistic particle</a></li>
+                <li><a href="#waves-radiation-and-the-physical-meaning-of-integrals">waves, radiation, and the physical
+                        meaning of integrals</a></li>
+                <li><a href="#general-relativity-and-curved-spacetime">general relativity and curved spacetime</a></li>
+                <li><a href="#global-and-topological-closure">global and topological closure of differential forms</a>
+                </li>
+            </ol>
+        </nav>
 
-    <hr class="doc-rule">
+        <hr class="doc-rule">
 
-    <article class="doc-body">
-      <section id="variational-calculus-and-symmetries" class="doc-section">
-        <h2>Variational calculus and symmetries</h2>
-        <p>The entire framework begins with the principle of least action and the geometric symmetries of space and time. The Euler–Lagrange equations follow from stationarity of the action. Homogeneity and isotropy of space and time fix the form of the free-particle Lagrangian and yield conservation of energy, linear momentum, and angular momentum as consequences. This section establishes the variational foundation and the Noether link between symmetries and conserved quantities (<em>Mechanics</em>, Landau &amp; Lifshitz Vol. 1, secs. 1–3, 6, 7, 9). A relativistic preview via the spacetime interval prepares field theory (<em>The Classical Theory of Fields</em>, Landau &amp; Lifshitz Vol. 2, sec. 8).</p>
-      </section>
+        <article class="doc-body">
+            <section id="variational-calculus-and-symmetries" class="doc-section">
+                <h2>Variational calculus and symmetries</h2>
+                <p>The entire framework begins with the principle of least action and the geometric symmetries of space
+                    and time. The Euler–Lagrange equations follow from stationarity of the action. Homogeneity and
+                    isotropy of space and time fix the form of the free-particle Lagrangian and yield conservation of
+                    energy, linear momentum, and angular momentum as consequences. This section establishes the
+                    variational foundation and the Noether link between symmetries and conserved quantities
+                    (<em>Mechanics</em>, Landau &amp; Lifshitz Vol. 1, secs. 1–3, 6, 7, 9). A relativistic preview via
+                    the spacetime interval prepares field theory (<em>The Classical Theory of Fields</em>, Landau &amp;
+                    Lifshitz Vol. 2, sec. 8).</p>
+            </section>
 
-      <section id="reduction-and-effective-potentials" class="doc-section">
-        <h2>Reduction and effective potentials</h2>
-        <p>Conservative central-force systems reduce to an effective one-body problem by separating center-of-mass motion through a linear coordinate transformation. Angular-momentum conservation confines motion to a plane and yields the effective potential with the centrifugal barrier. Integration by quadratures gives the orbit equation; for an inverse-square potential the solutions are conic sections classified by total energy. Scattering trajectories give the Rutherford cross section as a geometric probability from impact-parameter relations. All of this follows from the conservation laws already fixed in the variational framework.</p>
-      </section>
+            <section id="reduction-and-effective-potentials" class="doc-section">
+                <h2>Reduction and effective potentials</h2>
+                <p>Conservative central-force systems reduce to an effective one-body problem by separating
+                    center-of-mass motion through a linear coordinate transformation. Angular-momentum conservation
+                    confines motion to a plane and yields the effective potential with the centrifugal barrier.
+                    Integration by quadratures gives the orbit equation; for an inverse-square potential the solutions
+                    are conic sections classified by total energy. Scattering trajectories give the Rutherford cross
+                    section as a geometric probability from impact-parameter relations. All of this follows from the
+                    conservation laws already fixed in the variational framework.</p>
+            </section>
 
-      <section id="linearization-and-normal-modes" class="doc-section">
-        <h2>Linearization and normal modes</h2>
-        <p>Near stable equilibrium the potential and kinetic energies are expanded to quadratic order. Positive definiteness of the kinetic-energy matrix forces simultaneous diagonalization of both quadratic forms, producing normal coordinates in which the system decouples into independent harmonic oscillators. The secular equation fixes the normal frequencies. The same quadratic machinery extends to rigid bodies: the inertia tensor from volume integrals and principal axes. Poinsot’s construction governs free rotation stability; fictitious forces in rotating frames bridge toward later gauge ideas.</p>
-      </section>
+            <section id="linearization-and-normal-modes" class="doc-section">
+                <h2>Linearization and normal modes</h2>
+                <p>Near stable equilibrium the potential and kinetic energies are expanded to quadratic order. Positive
+                    definiteness of the kinetic-energy matrix forces simultaneous diagonalization of both quadratic
+                    forms, producing normal coordinates in which the system decouples into independent harmonic
+                    oscillators. The secular equation fixes the normal frequencies. The same quadratic machinery extends
+                    to rigid bodies: the inertia tensor from volume integrals and principal axes. Poinsot’s construction
+                    governs free rotation stability; fictitious forces in rotating frames bridge toward later gauge
+                    ideas.</p>
+            </section>
 
-      <section id="phase-space-and-canonical-structure" class="doc-section">
-        <h2>Phase space and canonical structure</h2>
-        <p>The Legendre transform moves from the Lagrangian on configuration space to the Hamiltonian on phase space. Hamilton’s equations follow from matching differentials after the transform. Poisson brackets encode time evolution and identify integrals of motion. The Hamilton–Jacobi picture treats the action as a generating function whose level surfaces organize trajectories. For periodic systems, action variables from contour integrals are adiabatic invariants under slow parameter change, foreshadowing symplectic geometry.</p>
-      </section>
+            <section id="phase-space-and-canonical-structure" class="doc-section">
+                <h2>Phase space and canonical structure</h2>
+                <p>The Legendre transform moves from the Lagrangian on configuration space to the Hamiltonian on phase
+                    space. Hamilton’s equations follow from matching differentials after the transform. Poisson brackets
+                    encode time evolution and identify integrals of motion. The Hamilton–Jacobi picture treats the
+                    action as a generating function whose level surfaces organize trajectories. For periodic systems,
+                    action variables from contour integrals are adiabatic invariants under slow parameter change,
+                    foreshadowing symplectic geometry.</p>
+            </section>
 
-      <section id="special-relativity-and-the-free-relativistic-particle" class="doc-section">
-        <h2>Special relativity and the free relativistic particle</h2>
-        <p>Field theory needs Lorentz-invariant actions. The free-particle action is proportional to the spacetime interval, giving the relativistic Lagrangian and momentum. Minimal coupling to the electromagnetic four-potential adds the interaction term that shifts the canonical momentum. Varying the total action with respect to particle coordinates yields the Lorentz force and the antisymmetric electromagnetic field tensor \(F_{ik}\). Gauge invariance follows from commutativity of mixed partials; the inhomogeneous Maxwell equations arise from varying the field action with respect to the potential.</p>
-      </section>
+            <section id="special-relativity-and-the-free-relativistic-particle" class="doc-section">
+                <h2>Special relativity and the free relativistic particle</h2>
+                <p>Field theory needs Lorentz-invariant actions. The free-particle action is proportional to the
+                    spacetime interval, giving the relativistic Lagrangian and momentum. Minimal coupling to the
+                    electromagnetic four-potential adds the interaction term that shifts the canonical momentum. Varying
+                    the total action with respect to particle coordinates yields the Lorentz force and the antisymmetric
+                    electromagnetic field tensor \(F_{ik}\). Gauge invariance follows from commutativity of mixed
+                    partials; the inhomogeneous Maxwell equations arise from varying the field action with respect to
+                    the potential.</p>
+            </section>
 
-      <section id="waves-radiation-and-the-physical-meaning-of-integrals" class="doc-section">
-        <h2>Waves, radiation, and the physical meaning of integrals</h2>
-        <p>The homogeneous Maxwell equations are kinematic identities from \(F = \mathrm{d}A\) and \(\mathrm{d}^2 = 0\). Stokes’ theorem and the divergence theorem turn local differentials into macroscopic circulation and flux statements and explain wave propagation. Retarded potentials solve the wave equation with causality at the speed of light; Liénard–Wiechert fields describe arbitrary sources. In the wave zone, multipole expansion gives dipole radiation and the Larmor formula. Energy balance forces the Abraham–Lorentz radiation-reaction term, tying dissipated power to the jerk.</p>
-      </section>
+            <section id="waves-radiation-and-the-physical-meaning-of-integrals" class="doc-section">
+                <h2>Waves, radiation, and the physical meaning of integrals</h2>
+                <p>The homogeneous Maxwell equations are kinematic identities from \(F = \mathrm{d}A\) and
+                    \(\mathrm{d}^2 = 0\). Stokes’ theorem and the divergence theorem turn local differentials into
+                    macroscopic circulation and flux statements and explain wave propagation. Retarded potentials solve
+                    the wave equation with causality at the speed of light; Liénard–Wiechert fields describe arbitrary
+                    sources. In the wave zone, multipole expansion gives dipole radiation and the Larmor formula. Energy
+                    balance forces the Abraham–Lorentz radiation-reaction term, tying dissipated power to the jerk.</p>
+            </section>
 
-      <section id="general-relativity-and-curved-spacetime" class="doc-section">
-        <h2>General relativity and curved spacetime</h2>
-        <p>Gravity is identified with the geometry of a dynamical manifold. The metric tensor \(g_{ik}\) generalizes the flat Minkowski metric; general covariance demands tensor equations. Covariant derivatives and the Levi-Civita connection are fixed by metric compatibility and vanishing torsion. The Riemann tensor, from the commutator of covariant derivatives, measures curvature via parallel transport. The Einstein–Hilbert action, varied with respect to the metric, yields the Einstein equations linking curvature to the energy–momentum tensor. The Schwarzschild solution is the spherically symmetric vacuum; geodesic motion supplies the effective potential including the relativistic perihelion precession.</p>
-      </section>
+            <section id="general-relativity-and-curved-spacetime" class="doc-section">
+                <h2>General relativity and curved spacetime</h2>
+                <p>Gravity is identified with the geometry of a dynamical manifold. The metric tensor \(g_{ik}\)
+                    generalizes the flat Minkowski metric; general covariance demands tensor equations. Covariant
+                    derivatives and the Levi-Civita connection are fixed by metric compatibility and vanishing torsion.
+                    The Riemann tensor, from the commutator of covariant derivatives, measures curvature via parallel
+                    transport. The Einstein–Hilbert action, varied with respect to the metric, yields the Einstein
+                    equations linking curvature to the energy–momentum tensor. The Schwarzschild solution is the
+                    spherically symmetric vacuum; geodesic motion supplies the effective potential including the
+                    relativistic perihelion precession.</p>
+            </section>
 
-      <section id="global-and-topological-closure" class="doc-section">
-        <h2>Global and topological closure</h2>
-        <p>The local calculus lifts to exterior forms: the potential is a 1-form, field strength \(F = \mathrm{d}A\), and Maxwell’s equations become \(\mathrm{d}F = 0\) and \(\mathrm{d}\star F = \star J\) with the Hodge star \(\star\) in the Lorentzian metric. de Rham cohomology encodes global obstructions to potentials on nontrivial topology. Linearized gravity gives gravitational waves in transverse-traceless gauge, with radiated power tied to the third time derivative of the mass quadrupole. The cosmological principle restricts the metric to FLRW form; Friedmann equations govern the scale factor and imply an initial singularity where curvature and density diverge — the geometric picture of the hot big bang.</p>
-      </section>
-    </article>
+            <section id="global-and-topological-closure" class="doc-section">
+                <h2>Global and topological closure</h2>
+                <p>The local calculus lifts to exterior forms: the potential is a 1-form, field strength \(F =
+                    \mathrm{d}A\), and Maxwell’s equations become \(\mathrm{d}F = 0\) and \(\mathrm{d}\star F = \star
+                    J\) with the Hodge star \(\star\) in the Lorentzian metric. de Rham cohomology encodes global
+                    obstructions to potentials on nontrivial topology. Linearized gravity gives gravitational waves in
+                    transverse-traceless gauge, with radiated power tied to the third time derivative of the mass
+                    quadrupole. The cosmological principle restricts the metric to FLRW form; Friedmann equations govern
+                    the scale factor and imply an initial singularity where curvature and density diverge — the
+                    geometric picture of the hot big bang.</p>
+            </section>
+        </article>
 
-    <footer class="doc-footer">
-      <p>This outline is minimal and self-contained. Section headings are anchors for navigation; detailed derivations can be expanded or linked under each heading.</p>
-    </footer>
-  </main>
+        <footer class="doc-footer">
+            <p>This outline is minimal and self-contained. Section headings are anchors for navigation; detailed
+                derivations can be expanded or linked under each heading.</p>
+        </footer>
+    </main>
 
-  <script>
-    function jetbundleRenderMath() {
-      if (typeof renderMathInElement === "undefined") return;
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "\\[", right: "\\]", display: true },
-          { left: "\\(", right: "\\)", display: false }
-        ],
-        throwOnError: false,
-        strict: false
-      });
-    }
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
 </body>
+
 </html>
