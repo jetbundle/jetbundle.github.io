@@ -1040,15 +1040,124 @@
             </section>
 
             <section id="global-and-topological-closure" class="doc-section">
-                <h2>Global and topological closure</h2>
-                <p>The local calculus lifts to exterior forms: the potential is a 1-form, field strength \(F =
-                    \mathrm{d}A\), and Maxwell’s equations become \(\mathrm{d}F = 0\) and \(\mathrm{d}\star F = \star
-                    J\) with the Hodge star \(\star\) in the Lorentzian metric. de Rham cohomology encodes global
-                    obstructions to potentials on nontrivial topology. Linearized gravity gives gravitational waves in
-                    transverse-traceless gauge, with radiated power tied to the third time derivative of the mass
-                    quadrupole. The cosmological principle restricts the metric to FLRW form; Friedmann equations govern
-                    the scale factor and imply an initial singularity where curvature and density diverge — the
-                    geometric picture of the hot big bang.</p>
+                <h2>global and topological closure of differential forms</h2>
+                <p>component maxwell and riemann calculus are local. closing the classical arc means stating fields as
+                    forms on a manifold: \(F=\mathrm{d}A\) makes \(\mathrm{d}F=0\) automatic topology; sources enter through
+                    \(\mathrm{d}\star F=\star J\). closed versus exact is exactly what de rham measures—and that same
+                    split haunts monopoles, wave propagation at \(c\), and finally a whole universe in flrw geometry with
+                    a past singularity.</p>
+
+                <h3>the electromagnetic 2-form and exterior calculus</h3>
+                <p>the four-potential is a 1-form</p>
+                \[
+                    A=A_i\,dx^i=A_0\,dx^0+A_1\,dx^1+A_2\,dx^2+A_3\,dx^3.
+                \]
+                <p>the exterior derivative \(\mathrm{d}\) and wedge product \(\wedge\) (antisymmetric,
+                    \(dx^i\wedge dx^k=-dx^k\wedge dx^i\)) package the field strength without choosing coordinates:</p>
+                \[
+                    \mathrm{d}A=\mathrm{d}(A_i\,dx^i)=(\partial_k A_i)\,dx^k\wedge dx^i.
+                \]
+                <p>antisymmetrizing dummy indices,</p>
+                \[
+                    \mathrm{d}A=\frac{1}{2}(\partial_i A_k-\partial_k A_i)\,dx^i\wedge dx^k.
+                \]
+                <p>by definition this is the 2-form \(F\),</p>
+                \[
+                    \mathrm{d}A=\frac{1}{2}F_{ik}\,dx^i\wedge dx^k\equiv F,
+                \]
+                <p>so \(F_{ik}=\partial_i A_k-\partial_k A_i\) is just the coordinate display of \(F=\mathrm{d}A\).</p>
+
+                <h3>maxwell's equations as topological identities</h3>
+                <p>for smooth forms, \(\mathrm{d}^2=0\). hence</p>
+                \[
+                    \mathrm{d}F=\mathrm{d}(\mathrm{d}A)=0;
+                \]
+                <p>this is the global, coordinate-free homogeneous maxwell system—the same cyclic identity you get from
+                    \(\partial_{[i}F_{kl]}=0\), but automatic in form language. the dual formulation \(\partial_k\tilde{F}^{ik}=0\)
+                    splits into \(\nabla\cdot\mathbf{H}=0\) and faraday in 3-vector dress.</p>
+                <p>sources need the hodge star \(\star\) (on a lorentzian 4-manifold, \(\star\) maps \(k\)-forms to
+                    \((4-k)\)-forms). with current as a 3-form \(\star J\) paired with \(\star F\),</p>
+                \[
+                    \mathrm{d}\star F=\star J.
+                \]
+                <p>one line encodes gauss's law and ampère–maxwell. maxwell is therefore \(\mathrm{d}F=0\) (closed field)
+                    plus \(\mathrm{d}\star F=\star J\) (sources couple to the dual).</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>physical concept</th>
+                            <th>classical integral picture</th>
+                            <th>form statement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>work / potential</td>
+                            <td>line integral, circulation</td>
+                            <td>\(\int_C A\)</td>
+                        </tr>
+                        <tr>
+                            <td>magnetic / electric flux</td>
+                            <td>surface flux</td>
+                            <td>\(\int_S F\)</td>
+                        </tr>
+                        <tr>
+                            <td>homogeneous maxwell</td>
+                            <td>faraday; gauss for \(\mathbf{H}\)</td>
+                            <td>\(\mathrm{d}F=0\)</td>
+                        </tr>
+                        <tr>
+                            <td>inhomogeneous maxwell</td>
+                            <td>gauss for \(\mathbf{E}\); ampère–maxwell</td>
+                            <td>\(\mathrm{d}\star F=\star J\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>generalized stokes' theorem \(\int_{\partial M}\omega=\int_M\mathrm{d}\omega\) is the theorem behind
+                    every macroscopic circulation–flux identity used for waves—now one statement for all dimensions.</p>
+
+                <h3>de rham cohomology and topological obstructions</h3>
+                <p>if \(\mathrm{d}F=0\), poincaré's lemma gives \(F=\mathrm{d}A\) locally. globally, on a manifold \(M\)
+                    with holes or non-contractible cycles, a closed form need not be exact. the groups \(H^k_{dR}(M)\) label
+                    those obstructions: trivial class \(\Leftrightarrow\) global potential without patch. for
+                    \(F\in\Omega^2(M)\), nontrivial \(H^2_{dR}(M)\) means closed 2-forms that are not globally
+                    \(\mathrm{d}A\)—the template for dirac strings and multivalued potentials if magnetic monopoles were
+                    included. cohomology is the precise bridge from local field strength to global topology.</p>
+
+                <h3>gravitational waves and the quadrupole formula</h3>
+                <p>linearize around minkowski: \(g_{ik}=\eta_{ik}+h_{ik}\) with \(|h_{ik}|\ll 1\). in vacuum the linearized
+                    equations reduce to the wave equation (modulo gauge)</p>
+                \[
+                    \square h_{ik}=0,\qquad \square=\frac{1}{c^2}\partial_t^2-\nabla^2,
+                \]
+                <p>so perturbations propagate at \(c\). the harmonic condition \(\partial_k h^k_i-\frac{1}{2}\partial_i h=0\)
+                    (with \(h=h^k{}_k\)) and passage to transverse-traceless gauge leaves two physical polarizations.</p>
+                <p>at leading quadrupole order the gravitational-wave luminosity is</p>
+                \[
+                    -\frac{d\mathcal{E}}{dt}=\frac{k}{45c^5}\,\dddot{D}_{\alpha\beta}\dddot{D}^{\alpha\beta},
+                \]
+                <p>with mass quadrupole \(D_{\alpha\beta}\): no dipole radiation, by momentum conservation—gravity's
+                    analogue of electric dipole larmor, tied to the third time derivative of the quadrupole.</p>
+
+                <h3>cosmology and the global spacetime manifold</h3>
+                <p>homogeneity and isotropy on the largest scales force the friedmann–lemaître–robertson–walker line element</p>
+                \[
+                    ds^2=c^2dt^2-a(t)^2\left(\frac{dr^2}{1-\kappa r^2}+r^2(d\theta^2+\sin^2\theta\,d\phi^2)\right),
+                \]
+                <p>where \(a(t)\) is the scale factor and \(\kappa\in\{+1,0,-1\}\) is normalized spatial curvature (closed,
+                    flat, open). inserting a perfect fluid \((\rho,P)\) into the einstein equations gives the friedmann
+                    equations (writing \(k_G\) for the gravitational constant to avoid clutter with \(\kappa\)),</p>
+                \[
+                    \left(\frac{\dot{a}}{a}\right)^2=\frac{8\pi k_G}{3}\rho-\frac{\kappa c^2}{a^2},
+                \]
+                \[
+                    \frac{\ddot{a}}{a}=-\frac{4\pi k_G}{3}\left(\rho+\frac{3P}{c^2}\right).
+                \]
+                <p>integrating backward in time generically drives \(a\to 0\) at a finite cosmic time, where densities and
+                    curvature invariants blow up—the big bang as a prediction of the global field equations under the
+                    cosmological ansatz. that is the last global closure: particles, fields, forms, waves, and the manifold
+                    itself under one variational–geometric roof.</p>
             </section>
         </article>
 
