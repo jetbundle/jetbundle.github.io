@@ -22,9 +22,10 @@
             <h1>classical physics</h1>
             <p class="doc-lead"><em>in the spirit of Landau</em></p>
             <p class="doc-intro">the progression of classical theoretical physics is attempted to be compressed into an
-                impressionistic picture. each section tries to force the later structures that proceed its necessary
+                impressionistic picture. each section tries to force the later structures that proceed from necessary
                 ideas. reverence to the original presentation of Landau's approach is paid in such a way that
-                extraneous mathematics for the basics foundations of physics is not added for distraction.</p>
+                extraneous mathematics for the basic foundations of physics is not added for distraction but minimalist
+                for epistemic clarity.</p>
         </header>
 
         <nav class="toc" aria-labelledby="toc-heading">
@@ -48,15 +49,245 @@
 
         <article class="doc-body">
             <section id="variational-calculus-and-symmetries" class="doc-section">
-                <h2>Variational calculus and symmetries</h2>
-                <p>The entire framework begins with the principle of least action and the geometric symmetries of space
-                    and time. The Euler–Lagrange equations follow from stationarity of the action. Homogeneity and
-                    isotropy of space and time fix the form of the free-particle Lagrangian and yield conservation of
-                    energy, linear momentum, and angular momentum as consequences. This section establishes the
-                    variational foundation and the Noether link between symmetries and conserved quantities
-                    (<em>Mechanics</em>, Landau &amp; Lifshitz Vol. 1, secs. 1–3, 6, 7, 9). A relativistic preview via
-                    the spacetime interval prepares field theory (<em>The Classical Theory of Fields</em>, Landau &amp;
-                    Lifshitz Vol. 2, sec. 8).</p>
+                <h2>variational calculus and symmetries</h2>
+                <p>the equations of motion and conservation laws for any closed system arise with absolute necessity
+                    once
+                    the geometric symmetries of space and time are enforced. what must the dynamical law be, given that
+                    space is homogeneous and isotropic while time is homogeneous? the structure that satisfies these
+                    requirements is the principle of least action, the euler-lagrange equations, and the galilean
+                    invariance
+                    of the lagrangian (<em>mechanics</em>, landau &amp; lifshitz vol. 1, secs. 1–3).</p>
+
+                <h3>the principle of least action and the calculus of variations</h3>
+                <p>any mechanical system with \(s\) degrees of freedom is completely specified at each instant by
+                    generalized coordinates \(q_i\) and generalized velocities \(\dot{q}_i\). between fixed times
+                    \(t_1\)
+                    and \(t_2\), the system must follow one particular trajectory. why must it be the trajectory that
+                    makes
+                    the action integral stationary? the action is defined as</p>
+                \[
+                S = \int_{t_1}^{t_2} L(q_i, \dot{q}_i, t)\, dt,
+                \]
+                <p>where \(L\) is the lagrangian. any other conceivable path would violate the symmetries already built
+                    into the description of space and time; the stationary path is the unique one consistent with those
+                    symmetries.</p>
+
+                <p>to extract the equations of motion, introduce an arbitrary infinitesimal variation \(\delta q_i(t)\)
+                    about the true path, subject to the strict boundary conditions \(\delta q_i(t_1)=\delta
+                    q_i(t_2)=0\).
+                    the first variation of the action must vanish:</p>
+                \[
+                \delta S = \int_{t_1}^{t_2} \sum_{i=1}^{s}
+                \left(
+                \frac{\partial L}{\partial q_i}\delta q_i
+                + \frac{\partial L}{\partial \dot{q}_i}\delta \dot{q}_i
+                \right)dt = 0.
+                \]
+                <p>because \(\delta \dot{q}_i = \frac{d}{dt}\delta q_i\), the velocity term requires integration by
+                    parts:</p>
+                \[
+                \int_{t_1}^{t_2} \frac{\partial L}{\partial \dot{q}_i}
+                \frac{d}{dt}\left(\delta q_i\right)\, dt
+                =
+                \left[\frac{\partial L}{\partial \dot{q}_i}\delta q_i\right]_{t_1}^{t_2}
+                - \int_{t_1}^{t_2}
+                \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)\delta q_i\, dt.
+                \]
+                <p>the boundary term vanishes identically by the fixed-endpoint condition. substituting back and
+                    collecting
+                    coefficients of the arbitrary \(\delta q_i\) yields</p>
+                \[
+                \int_{t_1}^{t_2} \sum_{i=1}^{s}
+                \left(
+                \frac{\partial L}{\partial q_i}
+                - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}_i}
+                \right)\delta q_i\, dt = 0.
+                \]
+                <p>since the variations are completely arbitrary inside the interval, the integrand itself must be
+                    identically zero for each \(i\). this forces the euler-lagrange equations</p>
+                \[
+                \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)-\frac{\partial L}{\partial q_i}=0.
+                \]
+                <p>these equations are not an assumption; they are the direct mathematical consequence of demanding that
+                    the
+                    action be stationary under arbitrary variations that respect the boundary conditions required by the
+                    symmetries of the problem.</p>
+
+                <h3>geometric symmetries and the free particle lagrangian</h3>
+                <p>the lagrangian of a free particle cannot be chosen arbitrarily; every functional dependence is fixed
+                    by
+                    the symmetries of space and time. space is homogeneous, so \(L\) cannot depend on the position
+                    vector
+                    \(\mathbf{r}\). space is isotropic, so \(L\) cannot depend on the direction of the velocity
+                    \(\mathbf{v}\);
+                    it can depend only on the scalar \(v^2\). time is homogeneous, so \(L\) cannot depend explicitly on
+                    \(t\).
+                    thus \(L=L(v^2)\).</p>
+
+                <p>galilean relativity now supplies the final constraint. the equations of motion must be unchanged
+                    under an
+                    infinitesimal boost to a new inertial frame moving at velocity \(\boldsymbol{\epsilon}\). in the new
+                    frame the velocity becomes \(\mathbf{v}'=\mathbf{v}+\boldsymbol{\epsilon}\). expanding to first
+                    order gives</p>
+                \[
+                L(v'^2)=L\!\left(v^2+2\mathbf{v}\cdot\boldsymbol{\epsilon}+\boldsymbol{\epsilon}^2\right)
+                \approx L(v^2)+2\frac{\partial L}{\partial v^2}\left(\mathbf{v}\cdot\boldsymbol{\epsilon}\right).
+                \]
+                <p>for the physics to be identical, the difference between the two lagrangians must not change the
+                    stationary
+                    path. two lagrangians yield identical euler-lagrange equations if and only if they differ by the
+                    total
+                    time derivative of some scalar function \(f(q,t)\). to see why, consider \(L' = L + \frac{df}{dt}\).
+                    the
+                    corresponding action changes by</p>
+                \[
+                S' = S + f(q(t_2),t_2)-f(q(t_1),t_1).
+                \]
+                <p>the variation \(\delta S'\) therefore receives only boundary terms that vanish because the endpoints
+                    are fixed.
+                    hence \(\delta S'=\delta S=0\).</p>
+                <p>the extra term \(2\frac{\partial L}{\partial v^2}\left(\mathbf{v}\cdot\boldsymbol{\epsilon}\right)\)
+                    must
+                    therefore itself be a total time derivative. substituting \(\mathbf{v}=d\mathbf{r}/dt\) produces</p>
+                \[
+                2\frac{d\mathbf{r}}{dt}\cdot\boldsymbol{\epsilon}\,\frac{\partial L}{\partial v^2}
+                =
+                \frac{d}{dt}\left(2\mathbf{r}\cdot\boldsymbol{\epsilon}\,\frac{\partial L}{\partial v^2}\right)
+                \]
+                <p>if and only if \(\frac{\partial L}{\partial v^2}\) is independent of \(\mathbf{v}\). the only
+                    possibility is that
+                    this coefficient is a true constant, conventionally written \(\frac{1}{2}m\). the free-particle
+                    lagrangian is
+                    therefore forced to be</p>
+                \[
+                L=\frac{1}{2}mv^2.
+                \]
+                <p>this is the kinetic energy. when interactions are present, the potential \(u(\mathbf{r})\) enters
+                    with a minus sign,
+                    yielding the universal form \(L=T-U\).</p>
+
+                <h3>symmetries and conservation laws</h3>
+                <p>the same geometric symmetries that fixed the lagrangian now force the existence of conserved
+                    quantities. each symmetry
+                    is translated into a precise mathematical constraint on \(L\), and the euler-lagrange equations then
+                    convert that
+                    constraint into a conservation law.</p>
+
+                <h3>conservation of energy (homogeneity of time)</h3>
+                <p>homogeneity of time requires \(\frac{\partial L}{\partial t}=0\). the total time derivative of \(L\)
+                    is</p>
+                \[
+                \frac{d L}{dt}=\sum_i \frac{\partial L}{\partial q_i}\dot{q}_i+\sum_i \frac{\partial L}{\partial
+                \dot{q}_i}\ddot{q}_i.
+                \]
+                <p>replace \(\frac{\partial L}{\partial q_i}\) by \(\frac{d}{dt}\left(\frac{\partial L}{\partial
+                    \dot{q}_i}\right)\) using the
+                    euler-lagrange equations:</p>
+                \[
+                \frac{d L}{dt}=\sum_i\left(\dot{q}_i\frac{d}{dt}\frac{\partial L}{\partial
+                \dot{q}_i}+\ddot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right)
+                =\sum_i \frac{d}{dt}\left(\dot{q}_i\frac{\partial L}{\partial \dot{q}_i}\right).
+                \]
+                <p>rearrangement immediately isolates a quantity whose time derivative vanishes:</p>
+                \[
+                \frac{d}{dt}\left(\sum_i \dot{q}_i\frac{\partial L}{\partial \dot{q}_i}-L\right)=0.
+                \]
+                <p>the expression in parentheses is the total energy \(E\).</p>
+
+                <h3>conservation of momentum (homogeneity of space)</h3>
+                <p>homogeneity of space requires invariance under an arbitrary infinitesimal translation \(\delta
+                    \mathbf{r}\). the variation of
+                    the lagrangian must vanish:</p>
+                \[
+                \delta L=\sum_a \nabla_a L \cdot \delta \mathbf{r}=0.
+                \]
+                <p>because \(\delta \mathbf{r}\) is arbitrary, \(\sum_a \nabla_a L = 0\). substituting the
+                    euler-lagrange equations converts this into</p>
+                \[
+                \sum_a \frac{d}{dt}\left(\frac{\partial L}{\partial \mathbf{v}_a}\right)
+                =\frac{d}{dt}\sum_a \mathbf{p}_a = 0,
+                \]
+                <p>so the total linear momentum \(\mathbf{P}=\sum_a \mathbf{p}_a\) is conserved.</p>
+
+                <h3>conservation of angular momentum (isotropy of space)</h3>
+                <p>isotropy requires invariance under an infinitesimal rotation \(\delta \boldsymbol{\phi}\). the
+                    coordinate and velocity changes are</p>
+                \[
+                \delta \mathbf{r}_a = \delta \boldsymbol{\phi}\times \mathbf{r}_a,
+                \qquad
+                \delta \mathbf{v}_a = \delta \boldsymbol{\phi}\times \mathbf{v}_a.
+                \]
+                <p>the condition \(\delta L=0\) becomes</p>
+                \[
+                \sum_a\left(
+                \frac{\partial L}{\partial \mathbf{r}_a}\cdot(\delta \boldsymbol{\phi}\times \mathbf{r}_a)
+                +
+                \frac{\partial L}{\partial \mathbf{v}_a}\cdot(\delta \boldsymbol{\phi}\times \mathbf{v}_a)
+                \right)=0.
+                \]
+                <p>insert the euler-lagrange identifications \(\frac{\partial L}{\partial
+                    \mathbf{r}_a}=\dot{\mathbf{p}}_a\) and \(\frac{\partial L}{\partial \mathbf{v}_a}=\mathbf{p}_a\),
+                    then apply the cyclic property of the scalar triple product:</p>
+                \[
+                \delta \boldsymbol{\phi}\cdot \sum_a\left(\mathbf{r}_a\times \dot{\mathbf{p}}_a + \mathbf{v}_a\times
+                \mathbf{p}_a\right)
+                =
+                \delta \boldsymbol{\phi}\cdot \frac{d}{dt}\sum_a\left(\mathbf{r}_a\times \mathbf{p}_a\right)
+                =0.
+                \]
+                <p>since \(\delta \boldsymbol{\phi}\) is arbitrary, the total angular momentum \(\mathbf{M}=\sum_a
+                    \mathbf{r}_a\times \mathbf{p}_a\) is conserved.</p>
+
+                <p>these three conservation laws are not separate postulates; they are the direct, unavoidable
+                    consequences of the three continuous geometric
+                    symmetries once the variational structure is in place. the table below summarizes the exact mapping:
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>continuous geometric symmetry</th>
+                            <th>mathematical constraint on lagrangian</th>
+                            <th>conserved physical quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>homogeneity of time</td>
+                            <td>\(\frac{\partial L}{\partial t}=0\)</td>
+                            <td>total energy \(E\)</td>
+                        </tr>
+                        <tr>
+                            <td>homogeneity of space</td>
+                            <td>\(\sum_a \nabla_a L = 0\)</td>
+                            <td>linear momentum \(\mathbf{P}\)</td>
+                        </tr>
+                        <tr>
+                            <td>isotropy of space</td>
+                            <td>invariance under \(\delta \boldsymbol{\phi}\) rotation</td>
+                            <td>angular momentum \(\mathbf{M}\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>relativistic extension</h3>
+                <p>to prepare the ground for field theory, the galilean framework must be superseded by lorentz
+                    invariance. the action for a free
+                    relativistic particle must be a scalar that is the same in every inertial frame. the only geometric
+                    object available with this
+                    property is the spacetime interval \(ds\) itself (<em>the classical theory of fields</em>, landau
+                    &amp; lifshitz vol. 2, sec. 8). the action is therefore</p>
+                \[
+                S=-mc\int_a^b ds,
+                \]
+                <p>where \(ds=c\sqrt{1-v^2/c^2}\, dt\). expanding yields the relativistic lagrangian</p>
+                \[
+                L=-mc^2\sqrt{1-\frac{v^2}{c^2}}.
+                \]
+                <p>this form is forced by the requirement that the action be lorentz-invariant; no other dependence on
+                    velocity satisfies the symmetry.
+                    it stands as the necessary starting point for all subsequent developments involving fields and their
+                    interaction with matter.</p>
             </section>
 
             <section id="reduction-and-effective-potentials" class="doc-section">
@@ -138,8 +369,7 @@
         </article>
 
         <footer class="doc-footer">
-            <p>This outline is minimal and self-contained. Section headings are anchors for navigation; detailed
-                derivations can be expanded or linked under each heading.</p>
+            <p>thank you for reading my work</p>
         </footer>
     </main>
 

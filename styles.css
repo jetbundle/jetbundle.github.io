@@ -198,6 +198,33 @@ a:hover {
   color: var(--fg);
 }
 
+.doc-section h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e6e6e6;
+  letter-spacing: 0.03em;
+}
+
+.doc-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+}
+
+.doc-section th,
+.doc-section td {
+  border: 1px solid #222;
+  padding: 0.55rem 0.6rem;
+  vertical-align: top;
+}
+
+.doc-section th {
+  color: #e6e6e6;
+  font-weight: 600;
+}
+
 .doc-footer {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
