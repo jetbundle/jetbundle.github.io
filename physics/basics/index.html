@@ -686,14 +686,133 @@
             </section>
 
             <section id="special-relativity-and-the-free-relativistic-particle" class="doc-section">
-                <h2>Special relativity and the free relativistic particle</h2>
-                <p>Field theory needs Lorentz-invariant actions. The free-particle action is proportional to the
-                    spacetime interval, giving the relativistic Lagrangian and momentum. Minimal coupling to the
-                    electromagnetic four-potential adds the interaction term that shifts the canonical momentum. Varying
-                    the total action with respect to particle coordinates yields the Lorentz force and the antisymmetric
-                    electromagnetic field tensor \(F_{ik}\). Gauge invariance follows from commutativity of mixed
-                    partials; the inhomogeneous Maxwell equations arise from varying the field action with respect to
-                    the potential.</p>
+                <h2>special relativity and the free relativistic particle</h2>
+                <p>non-relativistic mechanics sits in absolute time; field theory does not. the minimal geometric move is
+                    lorentz-invariant scalars built on the worldline—then coupling to \(A_i\) as a line integral, a rank-two
+                    antisymmetric \(F_{ik}\), gauge redundancy, and finally an action for the field itself so maxwell's
+                    equations fall out of the same variational template.</p>
+
+                <h3>free particle and proper interval</h3>
+                <p>any lorentz scalar tied to a particle path and linear in the worldline element forces the free
+                    action to be proportional to the proper interval \(ds\): other choices either break invariance or fail to
+                    recover the correct low-energy limit. take</p>
+                \[
+                    S_m=-mc\int_a^b ds,
+                \]
+                <p>with</p>
+                \[
+                    ds=\sqrt{c^2dt^2-dx^2-dy^2-dz^2}=c\sqrt{1-\frac{v^2}{c^2}}\,dt.
+                \]
+                <p>then</p>
+                \[
+                    L=-mc^2\sqrt{1-\frac{v^2}{c^2}}.
+                \]
+                <p>the canonical momentum \(p_i=\partial L/\partial v_i\) gives the relativistic three-momentum</p>
+                \[
+                    \mathbf{p}=\frac{m\mathbf{v}}{\sqrt{1-v^2/c^2}}.
+                \]
+                <p>this velocity dependence is fixed: it is the unique lorentz-invariant extension whose small-\(v\) limit
+                    matches newtonian kinetic energy. that is the substrate for coupling matter to fields without spoiling
+                    spacetime symmetry.</p>
+
+                <h3>particle-field coupling and the four-potential</h3>
+                <p>to keep covariance, the interaction must be a lorentz scalar built from four-vectors. with four-potential
+                    \(A^i=(\phi,\mathbf{A})\) and worldline displacement \(dx^i=(c\,dt,d\mathbf{r})\), minimal coupling is the
+                    line integral</p>
+                \[
+                    S_{mf}=-\frac{e}{c}\int A_i\,dx^i,
+                \]
+                <p>so the total action is</p>
+                \[
+                    S=S_m+S_{mf}=\int_a^b\left(-mc\,ds-\frac{e}{c}A_i\,dx^i\right).
+                \]
+                <p>in laboratory time,</p>
+                \[
+                    L=-mc^2\sqrt{1-\frac{v^2}{c^2}}+\frac{e}{c}\mathbf{A}\cdot\mathbf{v}-e\phi.
+                \]
+                <p>differentiation with respect to \(\mathbf{v}\) shows the canonical momentum picks up the vector
+                    potential:</p>
+                \[
+                    \mathbf{P}=\mathbf{p}+\frac{e}{c}\mathbf{A}.
+                \]
+                <p>this shift is exactly what translation symmetry in the presence of the field demands for the conserved
+                    generator; the coupling term is minimal because it is essentially the only lorentz-scalar line integral one
+                    can add at linear order in \(A\).</p>
+
+                <h3>lorentz force and the field tensor</h3>
+                <p>fix \(A_i\) and vary particle coordinates \(x^i\):</p>
+                \[
+                    \delta S=-\delta\int mc\,ds-\frac{e}{c}\delta\int A_i\,dx^i=0.
+                \]
+                <p>for the interaction, expand the variation; integrating by parts kills endpoint terms because \(\delta
+                    x^i\) vanishes there:</p>
+                \[
+                    \delta\int A_i\,dx^i=\int\left(\frac{\partial A_i}{\partial x^k}\delta x^k\,dx^i+A_i\,d\delta x^i\right).
+                \]
+                <p>after relabeling and collecting \(\delta x^i\), arbitrary \(\delta x^i\) forces</p>
+                \[
+                    mc\frac{du_i}{ds}=\frac{e}{c}F_{ik}u^k,
+                \]
+                <p>where \(u^i=dx^i/ds\) is the four-velocity (index gymnastics follow the chosen metric convention; the
+                    structure is canonical), and the electromagnetic field tensor is the antisymmetric combination</p>
+                \[
+                    F_{ik}=\frac{\partial A_k}{\partial x^i}-\frac{\partial A_i}{\partial x^k}.
+                \]
+                <p>in three-vector form this reproduces the lorentz force</p>
+                \[
+                    \mathbf{f}=e\mathbf{E}+\frac{e}{c}\mathbf{v}\times\mathbf{H},
+                \]
+                <p>with</p>
+                \[
+                    \mathbf{E}=-\nabla\phi-\frac{1}{c}\frac{\partial\mathbf{A}}{\partial t},\qquad
+                    \mathbf{H}=\nabla\times\mathbf{A}.
+                \]
+                <p>\(F_{ik}\) is the geometric object encoding the field; antisymmetry and definition through \(A\) are
+                    forced if the equations are to follow from a covariant action principle in four dimensions.</p>
+
+                <h3>gauge invariance and differential forms</h3>
+                <p>\(F_{ik}\) is built from derivatives of \(A\), so observable fields are insensitive to the gauge shift</p>
+                \[
+                    A_i\to A_i-\partial_i f,
+                \]
+                <p>with smooth spacetime \(f\). substituting,</p>
+                \[
+                    F'_{ik}=\partial_i(A_k-\partial_k f)-\partial_k(A_i-\partial_i f)
+                    =(\partial_i A_k-\partial_k A_i)-(\partial_i\partial_k f-\partial_k\partial_i f)=F_{ik},
+                \]
+                <p>because mixed partials commute. in form language, \(A=A_i\,dx^i\) is a 1-form, \(F=\mathrm{d}A\) a 2-form, and
+                    \(A\mapsto A-\mathrm{d}f\). then \(\mathrm{d}(A-\mathrm{d}f)=\mathrm{d}A=F\) since \(\mathrm{d}^2=0\).
+                    the redundancy is geometric: many potentials describe one field; continuity of charge and the global
+                    consistency of the potentials are tied to the same structure (this is the seed of the topological side of
+                    electromagnetism).</p>
+
+                <h3>field action and maxwell's equations</h3>
+                <p>for the field alone one adds a lorentz-invariant action quadratic in \(F_{ik}\). the natural scalar is
+                    \(F_{ik}F^{ik}\), so</p>
+                \[
+                    S_f=-\frac{1}{16\pi c}\int F_{ik}F^{ik}\,d\Omega,\qquad d\Omega=c\,dt\,dx\,dy\,dz.
+                \]
+                <p>vary \(S_f+S_{mf}\) with respect to \(A_i\), paths of charges held fixed. after integration by parts (surface
+                    terms at infinity taken to vanish),</p>
+                \[
+                    \delta S_f=\frac{1}{4\pi c}\int \frac{\partial F^{ik}}{\partial x^i}\delta A_k\,d\Omega.
+                \]
+                <p>generalizing the matter coupling to a continuous four-current \(j^k=(c\rho,\rho\mathbf{v})\), the interaction
+                    contributes</p>
+                \[
+                    \delta S_{mf}=-\frac{1}{c^2}\int j^k\delta A_k\,d\Omega.
+                \]
+                <p>summing and using arbitrary \(\delta A_k\) gives the covariant inhomogeneous maxwell equations</p>
+                \[
+                    \partial_i F^{ik}=-\frac{4\pi}{c}j^k.
+                \]
+                <p>because \(\partial_k\partial_i F^{ik}=0\) for antisymmetric \(F^{ik}\), it follows that \(\partial_k j^k=0\):
+                    charge conservation is locked to the same differential identity that makes the field equations
+                    consistent.</p>
+                <p>that single tensor statement packages gauss's law \(\nabla\cdot\mathbf{E}=4\pi\rho\) and the ampère–maxwell
+                    law \(\nabla\times\mathbf{H}=\frac{4\pi}{c}\mathbf{j}+\frac{1}{c}\frac{\partial\mathbf{E}}{\partial t}\)
+                    (in these units). the dynamics of the field is therefore not bolted on: it is the variational completion
+                    of the same lorentz-covariant action that already fixed particle motion and the definition of \(F_{ik}\).</p>
             </section>
 
             <section id="waves-radiation-and-the-physical-meaning-of-integrals" class="doc-section">
