@@ -453,14 +453,116 @@
             </section>
 
             <section id="linearization-and-normal-modes" class="doc-section">
-                <h2>Linearization and normal modes</h2>
-                <p>Near stable equilibrium the potential and kinetic energies are expanded to quadratic order. Positive
-                    definiteness of the kinetic-energy matrix forces simultaneous diagonalization of both quadratic
-                    forms, producing normal coordinates in which the system decouples into independent harmonic
-                    oscillators. The secular equation fixes the normal frequencies. The same quadratic machinery extends
-                    to rigid bodies: the inertia tensor from volume integrals and principal axes. Poinsot’s construction
-                    governs free rotation stability; fictitious forces in rotating frames bridge toward later gauge
-                    ideas.</p>
+                <h2>linearization and normal modes</h2>
+                <p>small motion near stable equilibrium is not a pile of coupled springs chosen by hand: it is the unique
+                    outcome of expanding both energies to quadratic order while the mass matrix stays positive definite.
+                    the same structure repeats for rigid bodies—rotation becomes a quadratic form in \(\boldsymbol{\Omega}\),
+                    with a symmetric tensor that always admits principal axes.</p>
+
+                <h3>multivariable taylor expansion of energy</h3>
+                <p>consider a system with \(s\) degrees of freedom displaced slightly from stable equilibrium at
+                    generalized coordinates \(q_{i0}\). define \(x_i=q_i-q_{i0}\). expand the potential \(U(q)\) about
+                    this point. stability means a local minimum, so the first derivatives vanish:</p>
+                \[
+                    \left(\frac{\partial U}{\partial q_i}\right)_0=0.
+                \]
+                <p>truncate the taylor series at second order and drop the constant \(U(q_0)\). then</p>
+                \[
+                    U=\frac{1}{2}\sum_{i,k=1}^s k_{ik}x_i x_k,
+                \]
+                <p>where the stiffness matrix \(K=(k_{ik})\) with
+                    \(k_{ik}=\left(\partial^2 U/\partial q_i\partial q_k\right)_0\) is symmetric. stability requires
+                    \(U\) to increase for any nonzero displacement, so \(K\) is positive definite.</p>
+                <p>the kinetic energy \(T=\frac{1}{2}\sum a_{ik}(q)\dot{q}_i\dot{q}_k\) is expanded consistently: at
+                    second order the coefficients are evaluated at equilibrium, giving constants \(m_{ik}\) and</p>
+                \[
+                    T=\frac{1}{2}\sum_{i,k=1}^s m_{ik}\dot{x}_i\dot{x}_k.
+                \]
+                <p>the mass matrix \(M=(m_{ik})\) is symmetric and strictly positive definite because \(T>0\) for any
+                    nonzero velocity. both energies are quadratic forms; the euler-lagrange equations are linear in the
+                    small coordinates \(x_i\).</p>
+
+                <h3>simultaneous reduction of quadratic forms</h3>
+                <p>the coupled linear equations cannot stay opaque if the true independent modes are to appear. a
+                    coordinate change must diagonalize both \(T\) and \(U\) at once. because \(M\) is positive definite,
+                    there is a nonsingular map \(x=Cy\) with \(C^T M C=I\), so</p>
+                \[
+                    T=\frac{1}{2}\sum_i \dot{y}_i^2.
+                \]
+                <p>under the same change, the potential becomes</p>
+                \[
+                    U=\frac{1}{2}y^T(C^T K C)y,
+                \]
+                <p>with \(K'=C^T K C\) still symmetric. any real symmetric matrix is diagonalized by an orthogonal
+                    transformation \(y=O\Theta\), \(O^T O=I\), yielding</p>
+                \[
+                    T=\frac{1}{2}\dot{\Theta}^T\dot{\Theta}=\frac{1}{2}\sum_i\dot{\Theta}_i^2,\qquad
+                    U=\frac{1}{2}\sum_i\omega_i^2\Theta_i^2,
+                \]
+                <p>where \(\omega_i^2\) are the eigenvalues of the reduced problem. in normal coordinates \(\Theta_i\) the
+                    system splits into \(s\) independent oscillators,</p>
+                \[
+                    \ddot{\Theta}_i+\omega_i^2\Theta_i=0.
+                \]
+                <p>the frequencies obey the secular equation from the original matrices,</p>
+                \[
+                    \det(k_{ik}-\omega^2 m_{ik})=0.
+                \]
+                <p>this eigenproblem is forced: simultaneous diagonalization is the unique algebraic route that respects
+                    positive-definite kinetic energy while diagonalizing the potential. no other linear change of
+                    coordinates decouples the motion without distorting the physical meaning of \(T\) and \(U\).</p>
+
+                <h3>rigid body kinematics and the inertia tensor</h3>
+                <p>for a rigid body with fixed mutual distances, each mass element has velocity
+                    \(\mathbf{v}=\boldsymbol{\Omega}\times\mathbf{r}\) for angular velocity \(\boldsymbol{\Omega}\). thus</p>
+                \[
+                    T=\frac{1}{2}\int \rho(\boldsymbol{\Omega}\times\mathbf{r})^2\,dV.
+                \]
+                <p>using \((\mathbf{A}\times\mathbf{B})^2=A^2B^2-(\mathbf{A}\cdot\mathbf{B})^2\),</p>
+                \[
+                    T=\frac{1}{2}\int \rho\left[\Omega^2 r^2-(\boldsymbol{\Omega}\cdot\mathbf{r})^2\right]dV.
+                \]
+                <p>in cartesian components this becomes the quadratic form (with \(r^2=\sum_j x_j^2\))</p>
+                \[
+                    T=\frac{1}{2}\sum_{i,k}\Omega_i\Omega_k\int \rho\left(r^2\delta_{ik}-x_i x_k\right)dV.
+                \]
+                <p>the integrals define the inertia tensor</p>
+                \[
+                    I_{ik}=\int \rho\left(r^2\delta_{ik}-x_i x_k\right)dV,
+                \]
+                <p>so \(T=\frac{1}{2}\sum_{i,k}I_{ik}\Omega_i\Omega_k\). \(I_{ik}\) is real and symmetric. an orthogonal
+                    rotation of body-fixed axes diagonalizes it; in principal axes,</p>
+                \[
+                    T=\frac{1}{2}\left(I_1\Omega_1^2+I_2\Omega_2^2+I_3\Omega_3^2\right).
+                \]
+                <p>the principal moments \(I_1,I_2,I_3\) are all one needs for rotational kinetic energy.</p>
+
+                <h3>poinsot's construction and fictitious forces</h3>
+                <p>for a free asymmetric rigid body (\(I_1\neq I_2\neq I_3\)), conservation of \(E\) and \(\mathbf{M}\)
+                    gives two quadratic constraints in principal components:</p>
+                \[
+                    2E=I_1\Omega_1^2+I_2\Omega_2^2+I_3\Omega_3^2,\qquad
+                    M^2=I_1^2\Omega_1^2+I_2^2\Omega_2^2+I_3^2\Omega_3^2.
+                \]
+                <p>in \(\boldsymbol{\Omega}\)-space the first surface is the energy ellipsoid; the second is another
+                    ellipsoid. \(\boldsymbol{\Omega}\) lies on their intersection; its tip traces polhodes on those
+                    surfaces. the geometry of those curves fixes stability: rotation about the intermediate principal axis
+                    is unstable; the smallest and largest axes are stable.</p>
+                <p>in a rotating frame, substitute \(\mathbf{v}=\mathbf{v}'+\boldsymbol{\Omega}\times\mathbf{r}'\) into
+                    the free-particle lagrangian:</p>
+                \[
+                    L=\frac{1}{2}m(\mathbf{v}'+\boldsymbol{\Omega}\times\mathbf{r}')^2-U.
+                \]
+                <p>expanding,</p>
+                \[
+                    L=\frac{1}{2}mv'^2+m\mathbf{v}'\cdot(\boldsymbol{\Omega}\times\mathbf{r}')
+                    +\frac{1}{2}m(\boldsymbol{\Omega}\times\mathbf{r}')^2-U.
+                \]
+                <p>the euler-lagrange equations produce the coriolis term \(2m(\mathbf{v}'\times\boldsymbol{\Omega})\) and
+                    the centrifugal term \(m\boldsymbol{\Omega}\times(\mathbf{r}'\times\boldsymbol{\Omega})\). these are
+                    not new fundamental forces; they keep the equations consistent when the frame rotates. that is the
+                    same bridge toward non-inertial frames and later gauge ideas that completes the linearized picture for
+                    mechanics built from quadratic forms.</p>
             </section>
 
             <section id="phase-space-and-canonical-structure" class="doc-section">
