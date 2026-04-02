@@ -933,15 +933,110 @@
             </section>
 
             <section id="general-relativity-and-curved-spacetime" class="doc-section">
-                <h2>General relativity and curved spacetime</h2>
-                <p>Gravity is identified with the geometry of a dynamical manifold. The metric tensor \(g_{ik}\)
-                    generalizes the flat Minkowski metric; general covariance demands tensor equations. Covariant
-                    derivatives and the Levi-Civita connection are fixed by metric compatibility and vanishing torsion.
-                    The Riemann tensor, from the commutator of covariant derivatives, measures curvature via parallel
-                    transport. The Einstein–Hilbert action, varied with respect to the metric, yields the Einstein
-                    equations linking curvature to the energy–momentum tensor. The Schwarzschild solution is the
-                    spherically symmetric vacuum; geodesic motion supplies the effective potential including the
-                    relativistic perihelion precession.</p>
+                <h2>general relativity and curved spacetime</h2>
+                <p>flat minkowski space is the empty-room limit. with matter, the interval must be \(g_{ik}(x)\,dx^i dx^k\):
+                    gravity is not a force pasted on top of a fixed stage—it is the stage itself, required to transform
+                    properly under arbitrary coordinates. the metric fixes a connection, the connection defines curvature,
+                    and the unique diffeomorphism-invariant action at second order in the metric yields einstein's
+                    equations coupling curvature to \(T_{ik}\). schwarzschild is the clean vacuum laboratory; geodesics
+                    there add an \(r^{-3}\) term that precesses ellipses—geometry replacing newtonian bookkeeping.</p>
+
+                <h3>manifolds, metrics, and covariant derivatives</h3>
+                <p>the invariant line element is</p>
+                \[
+                    ds^2=g_{ik}\,dx^i\,dx^k.
+                \]
+                <p>laws must be written so \(x'^i=f^i(x)\) does not spoil tensorial meaning. ordinary \(\partial_l\) fails on
+                    vectors because bases vary from point to point. the covariant derivative on a covariant vector is</p>
+                \[
+                    \nabla_l A_k=\partial_l A_k-\Gamma^i_{kl}A_i,
+                \]
+                <p>with connection coefficients \(\Gamma^i_{kl}\). metric compatibility (parallel transport preserves lengths)
+                    requires</p>
+                \[
+                    \nabla_l g_{ik}=\partial_l g_{ik}-\Gamma^m_{li}g_{mk}-\Gamma^m_{lk}g_{im}=0,
+                \]
+                <p>and torsion-freeness \(\Gamma^i_{kl}=\Gamma^i_{lk}\). cycling indices and combining equations isolates the
+                    unique levi-civita connection</p>
+                \[
+                    \Gamma^n_{il}=\frac{1}{2}g^{kn}\bigl(\partial_i g_{kl}+\partial_l g_{ik}-\partial_k g_{li}\bigr).
+                \]
+                <p>this is the minimal tensor calculus compatible with a given \(g_{ik}\).</p>
+
+                <h3>curvature and parallel transport</h3>
+                <p>curvature means a vector can parallel-transport around a small loop and fail to match its initial
+                    orientation. equivalently, covariant derivatives fail to commute on \(A_i\):</p>
+                \[
+                    (\nabla_k\nabla_l-\nabla_l\nabla_k)A_i=R^m{}_{ikl}A_m.
+                \]
+                <p>expanding in \(\Gamma\) gives the riemann tensor</p>
+                \[
+                    R^i{}_{klm}=\partial_l\Gamma^i_{km}-\partial_m\Gamma^i_{kl}+\Gamma^i_{nl}\Gamma^n_{km}-\Gamma^i_{nm}\Gamma^n_{kl}.
+                \]
+                <p>contraction yields the ricci tensor \(R_{ik}=R^l{}_{ilk}\) and scalar \(R=g^{ik}R_{ik}\). these are the
+                    natural tensors built from \(g\) and derivatives through second order—data for field equations once
+                    transport is path-dependent.</p>
+
+                <h3>the einstein-hilbert action and field equations</h3>
+                <p>a coordinate-scalar built from \(g\) at low derivative order is the ricci scalar; with invariant volume
+                    \(\sqrt{-g}\,d\Omega\),</p>
+                \[
+                    S_g=-\frac{c^3}{16\pi k}\int R\,\sqrt{-g}\,d\Omega,
+                \]
+                <p>where \(k\) is the newtonian gravitational constant. varying \(S_g+S_m\) with respect to \(g^{ik}\) uses
+                    \(\delta\sqrt{-g}=-\frac{1}{2}\sqrt{-g}\,g_{ik}\,\delta g^{ik}\); the \(\delta R_{ik}\) piece becomes a
+                    surface term that one discards at infinity, leaving</p>
+                \[
+                    \delta S_g=-\frac{c^3}{16\pi k}\int\left(R_{ik}-\frac{1}{2}g_{ik}R\right)\delta g^{ik}\sqrt{-g}\,d\Omega.
+                \]
+                <p>the matter piece defines \(T_{ik}\) via</p>
+                \[
+                    \delta S_m=\frac{1}{2c}\int T_{ik}\,\delta g^{ik}\sqrt{-g}\,d\Omega.
+                \]
+                <p>stationarity for arbitrary \(\delta g^{ik}\) gives the einstein equations</p>
+                \[
+                    R_{ik}-\frac{1}{2}g_{ik}R=\frac{8\pi k}{c^4}T_{ik}.
+                \]
+                <p>they are the covariant tensor upgrade of poisson's equation, linked to \(\nabla^i G_{ik}=0\) (bianchi)
+                    so stress conservation is built in, and they recover newtonian gravity in the weak-field, slow-motion
+                    limit.</p>
+
+                <h3>the schwarzschild solution and exact metrics</h3>
+                <p>outside a static, spherically symmetric mass \(M\), vacuum gives \(R_{ik}=0\). symmetry forces</p>
+                \[
+                    ds^2=e^{\nu(r)}c^2dt^2-e^{\lambda(r)}dr^2-r^2(d\theta^2+\sin^2\theta\,d\phi^2).
+                \]
+                <p>substituting into \(R_{ik}=0\) and matching flat minkowski at spatial infinity fixes</p>
+                \[
+                    e^{\nu}=e^{-\lambda}=1-\frac{r_g}{r},\qquad r_g=\frac{2kM}{c^2}.
+                \]
+                <p>hence the exterior schwarzschild line element</p>
+                \[
+                    ds^2=\left(1-\frac{r_g}{r}\right)c^2dt^2-\left(1-\frac{r_g}{r}\right)^{-1}dr^2-r^2(d\theta^2+\sin^2\theta\,d\phi^2).
+                \]
+                <p>this is the unique spherically symmetric vacuum with the stated asymptotics.</p>
+
+                <h3>geodesics, effective potentials, and precession</h3>
+                <p>test particles extremize proper time \(\int ds\). killing symmetries of schwarzschild time translation and
+                    azimuthal rotation give conserved energy per unit mass \(\varepsilon\) and angular momentum per unit mass
+                    \(l\):</p>
+                \[
+                    \left(1-\frac{r_g}{r}\right)c\frac{dt}{ds}=\varepsilon,\qquad r^2\frac{d\phi}{ds}=l.
+                \]
+                <p>with four-velocity normalization \(g_{ik}u^iu^k=1\), \(u^i=dx^i/ds\), radial motion reduces to</p>
+                \[
+                    \left(\frac{dr}{ds}\right)^2+V_{\rm eff}(r)=\varepsilon^2-1,
+                \]
+                <p>where</p>
+                \[
+                    V_{\rm eff}(r)=-\frac{r_g}{r}+\frac{l^2}{r^2}-\frac{r_g l^2}{r^3}.
+                \]
+                <p>the first two terms echo newtonian gravity and the centrifugal barrier; the \(-r_g l^2/r^3\) term is
+                    purely relativistic—it ruins exact elliptic closure and forces perihelion advance. changing to \(u=1/r\)
+                    and integrating the orbit equation exhibits the fixed precession per revolution predicted in the
+                    weak-field expansion of this geometry. that closes the classical arc: field equations determine \(g\);
+                    geodesics turn \(g\) into orbits; the extra inverse-cube piece is curvature advertised in the effective
+                    potential.</p>
             </section>
 
             <section id="global-and-topological-closure" class="doc-section">
