@@ -182,7 +182,7 @@ a:hover {
   margin: 0 0 0.65rem;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #e6e6e6;
+  color: var(--link);
   letter-spacing: 0.04em;
 }
 
@@ -202,7 +202,7 @@ a:hover {
   margin: 1rem 0 0.5rem;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #e6e6e6;
+  color: var(--link-hover);
   letter-spacing: 0.03em;
 }
 
