@@ -816,13 +816,120 @@
             </section>
 
             <section id="waves-radiation-and-the-physical-meaning-of-integrals" class="doc-section">
-                <h2>Waves, radiation, and the physical meaning of integrals</h2>
-                <p>The homogeneous Maxwell equations are kinematic identities from \(F = \mathrm{d}A\) and
-                    \(\mathrm{d}^2 = 0\). Stokes’ theorem and the divergence theorem turn local differentials into
-                    macroscopic circulation and flux statements and explain wave propagation. Retarded potentials solve
-                    the wave equation with causality at the speed of light; Liénard–Wiechert fields describe arbitrary
-                    sources. In the wave zone, multipole expansion gives dipole radiation and the Larmor formula. Energy
-                    balance forces the Abraham–Lorentz radiation-reaction term, tying dissipated power to the jerk.</p>
+                <h2>waves, radiation, and the physical meaning of integrals</h2>
+                <p>the sourced maxwell equations are not the whole story: \(F=\mathrm{d}A\) forces extra differential
+                    identities—no monopoles, faraday coupling circulation to changing flux. from there, stokes and gauss
+                    turn infinitesimal statements into macroscopic propagation; retardation enforces \(c\); the wave zone
+                    isolates dipole radiation and larmor power; energy balance digs in a self-force that scales with the
+                    time derivative of acceleration.</p>
+
+                <h3>the homogeneous maxwell equations</h3>
+                <p>charges and currents appear in the inhomogeneous pair; the homogeneous pair is kinematics. with</p>
+                \[
+                    F_{ik}=\partial_i A_k-\partial_k A_i,
+                \]
+                <p>consider the cyclic sum</p>
+                \[
+                    \partial_i F_{kl}+\partial_k F_{li}+\partial_l F_{ik}.
+                \]
+                <p>expand in \(A\): six terms with mixed second derivatives. smoothness gives \(\partial_i\partial_k=\partial_k\partial_i\), so each term cancels and</p>
+                \[
+                    \partial_i F_{kl}+\partial_k F_{li}+\partial_l F_{ik}=0.
+                \]
+                <p>with the dual tensor \(\tilde{F}^{ik}=\frac{1}{2}\epsilon^{iklm}F_{lm}\) (\(\epsilon^{iklm}\) totally antisymmetric), this is equivalently</p>
+                \[
+                    \partial_k\tilde{F}^{ik}=0.
+                \]
+                <p>in three-vector language: \(\nabla\cdot\mathbf{H}=0\) and faraday
+                    \(\nabla\times\mathbf{E}=-\frac{1}{c}\frac{\partial\mathbf{H}}{\partial t}\). these are not new
+                    dynamics layered on the action—they are the consistency conditions that follow from antisymmetric
+                    \(F_{ik}\) and a local potential.</p>
+
+                <h3>integral theorems and macroscopic propagation</h3>
+                <p>line integrals \(\oint_C\mathbf{F}\cdot d\mathbf{l}\) measure circulation; surface integrals
+                    \(\iint_S\mathbf{F}\cdot\mathbf{n}\,dS\) measure flux. stokes' theorem gives</p>
+                \[
+                    \oint_{\partial S}\mathbf{F}\cdot d\mathbf{l}=\iint_S(\nabla\times\mathbf{F})\cdot\mathbf{n}\,dS.
+                \]
+                <p>applied to faraday's law,</p>
+                \[
+                    \oint_{\partial S}\mathbf{E}\cdot d\mathbf{l}=-\frac{1}{c}\frac{d}{dt}\iint_S\mathbf{H}\cdot\mathbf{n}\,dS.
+                \]
+                <p>the emf around a loop tracks the magnetic flux punched through any spanning surface. the divergence (gauss–ostrogradsky) theorem reads</p>
+                \[
+                    \iiint_V(\nabla\cdot\mathbf{F})\,dV=\oiint_{\partial V}\mathbf{F}\cdot\mathbf{n}\,dS.
+                \]
+                <p>with \(\nabla\cdot\mathbf{H}=0\),</p>
+                \[
+                    \oiint_{\partial V}\mathbf{H}\cdot\mathbf{n}\,dS=0.
+                \]
+                <p>magnetic flux through a closed surface vanishes—field lines close. linking induction and divergence to
+                    measurable loops and bags of flux is exactly how local maxwell equations become the language of
+                    waves in vacuum at speed \(c\).</p>
+
+                <h3>retarded potentials and liénard–wiechert solutions</h3>
+                <p>the potentials obey the wave operator \(\square=\frac{1}{c^2}\partial_t^2-\nabla^2\):</p>
+                \[
+                    \square A^i=\frac{4\pi}{c}j^i.
+                \]
+                <p>signals travel at \(c\), so the field at \((\mathbf{r},t)\) samples sources at retarded time
+                    \(t'=t-R/c\), \(R=|\mathbf{r}-\mathbf{r}'|\). the retarded green's function gives</p>
+                \[
+                    A^i(\mathbf{r},t)=\frac{1}{c}\int\frac{j^i(\mathbf{r}',t-R/c)}{R}\,dV'.
+                \]
+                <p>for a point charge \(e\) on \(\mathbf{r}_0(t)\), the integration collapses to the liénard–wiechert
+                    forms (evaluated at \(t'\)):</p>
+                \[
+                    \phi(\mathbf{r},t)=\left.\frac{e}{R-\mathbf{v}\cdot\mathbf{R}/c}\right|_{t'},\qquad
+                    \mathbf{A}(\mathbf{r},t)=\left.\frac{e\mathbf{v}}{c\left(R-\mathbf{v}\cdot\mathbf{R}/c\right)}\right|_{t'},
+                \]
+                <p>with \(\mathbf{R}=\mathbf{r}-\mathbf{r}_0\). the denominator is the relativistic beaming factor; retardation
+                    enforces strict causality.</p>
+
+                <h3>multipole expansions and dipole radiation</h3>
+                <p>far from the source (wave zone: \(R\) large compared to size and wavelength), expand the potentials.
+                    leading vector-potential piece:</p>
+                \[
+                    \mathbf{A}=\frac{1}{cR_0}\int\mathbf{j}\,dV\Big|_{t_0}=\frac{\dot{\mathbf{d}}}{cR_0},
+                \]
+                <p>where \(\mathbf{d}\) is the electric dipole moment and dots are at retarded time. fields transverse to
+                    \(\mathbf{n}\) are</p>
+                \[
+                    \mathbf{H}=\frac{1}{c^2R_0}(\ddot{\mathbf{d}}\times\mathbf{n}),\qquad
+                    \mathbf{E}=\mathbf{H}\times\mathbf{n}.
+                \]
+                <p>integrating the poynting vector \(\mathbf{S}=\frac{c}{4\pi}\mathbf{E}\times\mathbf{H}\) over a large sphere
+                    yields the larmor power</p>
+                \[
+                    I=\frac{2}{3c^3}\ddot{\mathbf{d}}^2.
+                \]
+                <p>at this order, radiation comes from accelerating charge; uniform motion or steady currents do not
+                    radiate here.</p>
+
+                <h3>the abraham-lorentz radiation reaction</h3>
+                <p>a radiating charge loses energy to the field; there must be a reaction force \(\mathbf{f}_{\rm rad}\).
+                    balance the work done against power radiated (larmor with charge \(e\)):</p>
+                \[
+                    \int_{t_1}^{t_2}\mathbf{f}_{\rm rad}\cdot\mathbf{v}\,dt
+                    =-\int_{t_1}^{t_2}\frac{2e^2}{3c^3}\dot{\mathbf{v}}^2\,dt.
+                \]
+                <p>rewrite \(\dot{\mathbf{v}}^2=\dot{\mathbf{v}}\cdot\dot{\mathbf{v}}\) and integrate by parts:</p>
+                \[
+                    \int_{t_1}^{t_2}\dot{\mathbf{v}}\cdot\dot{\mathbf{v}}\,dt
+                    =\bigl[\mathbf{v}\cdot\dot{\mathbf{v}}\bigr]_{t_1}^{t_2}-\int_{t_1}^{t_2}\mathbf{v}\cdot\ddot{\mathbf{v}}\,dt.
+                \]
+                <p>for periodic motion or vanishing boundary contributions,</p>
+                \[
+                    \int_{t_1}^{t_2}\left(\mathbf{f}_{\rm rad}-\frac{2e^2}{3c^3}\ddot{\mathbf{v}}\right)\cdot\mathbf{v}\,dt=0.
+                \]
+                <p>so for arbitrary \(\mathbf{v}(t)\) one takes</p>
+                \[
+                    \mathbf{f}_{\rm rad}=\frac{2e^2}{3c^3}\ddot{\mathbf{v}}.
+                \]
+                <p>this is proportional to the time derivative of acceleration (jerk of the worldline, up to mass factors in
+                    a fuller treatment). it completes the classical radiation picture: homogeneous identities, retarded
+                    propagation, dipole larmor, and a self-force that signals where classical electrodynamics needs
+                    quantum repair.</p>
             </section>
 
             <section id="general-relativity-and-curved-spacetime" class="doc-section">
