@@ -55,121 +55,201 @@
         <hr class="doc-rule">
 
         <article class="doc-body">
-            <section id="algebraic-substrate-and-categorical-foundations" class="doc-section">
+                        <section id="algebraic-substrate-and-categorical-foundations" class="doc-section">
                 <h2>algebraic substrate and categorical foundations</h2>
-                <p>the program in <a href="../basics/#variational-calculus-and-symmetries">variational calculus and
-                        symmetries</a> treats spatial homogeneity, isotropy, and gauge redundancies as constraints on
-                    allowed lagrangians and on admissible changes of description. to state those constraints without
-                    contradiction we need composition, inversion, comparison, and linear superposition, each governed by
-                    axioms that close under the operations physics actually uses. the layer below is that minimal closure,
-                    not a parallel story.</p>
+                <p>any physical theory names states that can be compared, composed, and transformed. once those
+                    operations are required to be coherent—associative composition, reversibility for symmetries,
+                    superposition for small excitations—the minimal algebraic objects are forced: monoids, then groups;
+                    vector spaces; and, when several levels of structure must be related consistently, categories and
+                    functors. the classical narrative in <a
+                        href="../basics/#variational-calculus-and-symmetries">variational calculus and symmetries</a>
+                    already implements this layer; here it is stated so nothing essential stays implicit.</p>
 
-                <h3>from monoids to groups</h3>
-                <p>a <em>monoid</em> is a set \(M\) with an associative binary operation \(\cdot:M\times M\to M\) and a
-                    two-sided unit \(e\in M\): \(a\cdot(b\cdot c)=(a\cdot b)\cdot c\) and \(e\cdot a=a\cdot e=a\). many
-                    composed processes are monoids. symmetries of a dynamical system are modeled as <em>invertible</em>
-                    transformations of state space: each admissible change of configuration must admit a physical
-                    inverse.</p>
-                <p>a <em>group</em> is a set \(G\) with \(\cdot:G\times G\to G\) satisfying</p>
+                <h3>monoid: the bare minimum of composition</h3>
+                <p>a <em>monoid</em> is a pair $(M,\cdot)$ where $M$ is a set and $\cdot:M\times M\to M$ is an
+                    associative binary operation with a two-sided unit $e\in M$:</p>
+                $$
+                a\cdot(b\cdot c)=(a\cdot b)\cdot c,\qquad e\cdot a=a\cdot e=a\quad\forall a,b,c\in M.
+                $$
+                <p>many “processes chained in time” are monoids. symmetries of a system, however, are modeled by
+                    <em>invertible</em> transformations: every admissible move of state space must be undoable. a general
+                    monoid does not demand inverses, so it is too weak for reversible symmetry.</p>
+
+                <h3>group axioms and elementary consequences</h3>
+                <p>a <em>group</em> is a pair $(G,\cdot)$ with $\cdot:G\times G\to G$ satisfying:</p>
                 <ol>
-                    <li>associativity: \((g_1\cdot g_2)\cdot g_3=g_1\cdot(g_2\cdot g_3)\) for all \(g_1,g_2,g_3\in G\);
-                    </li>
-                    <li>identity: there exists \(e\in G\) with \(g\cdot e=e\cdot g=g\) for all \(g\in G\);</li>
-                    <li>inverses: for each \(g\in G\) there exists \(g^{-1}\in G\) with \(g\cdot g^{-1}=g^{-1}\cdot g=e\).
-                    </li>
+                    <li><em>associativity:</em> $(g_1\cdot g_2)\cdot g_3=g_1\cdot(g_2\cdot g_3)$ for all $g_1,g_2,g_3\in
+                        G$;</li>
+                    <li><em>identity:</em> there exists $e\in G$ such that $g\cdot e=e\cdot g=g$ for every $g\in G$;</li>
+                    <li><em>inverses:</em> for each $g\in G$ there exists $g^{-1}\in G$ with $g\cdot g^{-1}=g^{-1}\cdot
+                        g=e$.</li>
                 </ol>
-                <p>from these axioms alone, identity and inverses are unique (if \(e,e'\) are units then \(e=e\cdot
-                    e'=e'\); if \(h,h'\) are both inverses of \(g\) then \(h=h\cdot e=h\cdot(g\cdot h')=(h\cdot g)\cdot
-                    h'=e\cdot h'=h'\)).</p>
-
-                <h3>theorem: admissible symmetries form a group</h3>
-                <p>fix a set \(X\) of states (configurations, phase-space points, fields on a slice—see <a
-                        href="../basics/">basics</a> throughout). suppose “symmetry” means a bijection \(f:X\to X\) that
-                    preserves whatever dynamical structure has been fixed: e.g. carries solutions of the equations of
-                    motion to solutions, or preserves an action on admissible paths. let \(G\) be the set of such
-                    bijections closed under the operations used in the theory.</p>
-                <p>if \(f,g\in G\), then \(f\circ g\) is again a bijection preserving the same structure. associativity
-                    is associativity of composition. \(\mathrm{id}_X\in G\). physical reversibility requires that whenever
-                    \(f\in G\), the inverse map \(f^{-1}\) is again admissible, hence in \(G\). therefore \((G,\circ)\) is
-                    a group. in practice one often replaces \(G\) by a <em>subgroup</em>—for example the connected
-                    component of the identity in a lie group of transformations—or quotients by a normal subgroup of
-                    redundancies; that matches orbit reduction in <a
-                        href="../basics/#reduction-and-effective-potentials">reduction and effective potentials</a>.</p>
-
-                <h3>subgroups, homomorphisms, normal subgroups, quotients</h3>
-                <p>a <em>subgroup</em> \(H\subseteq G\) is a nonempty subset such that \(ab\in H\) whenever \(a,b\in H\)
-                    and \(a^{-1}\in H\) whenever \(a\in H\) (equivalently \(ab^{-1}\in H\) whenever \(a,b\in H\)). the
-                    intersection of any family of subgroups is a subgroup. a subset \(S\subseteq G\) <em>generates</em>
-                    \(G\) if every element of \(G\) is a finite product of elements of \(S\) and their inverses.</p>
-                <p>a map \(\varphi:G\to G'\) is a <em>homomorphism</em> if \(\varphi(g_1g_2)=\varphi(g_1)\varphi(g_2)\)
-                    for all \(g_1,g_2\in G\). then \(\ker\varphi=\{g\in G:\varphi(g)=e'\}\) is a subgroup of \(G\), and
-                    \(\mathrm{im}\,\varphi\) is a subgroup of \(G'\).</p>
-                <p>a subgroup \(N\subseteq G\) is <em>normal</em> (\(N\trianglelefteq G\)) if \(gng^{-1}\in N\) for all
-                    \(g\in G\) and \(n\in N\). then the coset space \(G/N=\{gN:g\in G\}\) inherits a well-defined product
-                    \((aN)(bN)=(ab)N\), the quotient map \(G\to G/N\) is a homomorphism with kernel \(N\), and the
-                    first isomorphism theorem identifies \(G/\ker\varphi\) with \(\mathrm{im}\,\varphi\). normal subgroups
-                    are the algebraic face of constraints and redundancies one may quotient without breaking the remaining
-                    dynamics—dual, in the classical narrative, to factoring gauge and passing to true degrees of freedom.
+                <p>from (2)–(3) alone one proves <em>uniqueness of the identity</em> and <em>uniqueness of inverses</em>.
+                    if $e,e'$ are both identities, then $e=e\cdot e'=e'$. if $h,h'$ are both inverses of $g$, then</p>
+                $$
+                h = h\cdot e = h\cdot(g\cdot h') = (h\cdot g)\cdot h' = e\cdot h' = h'.
+                $$
+                <p>hence we may speak of <em>the</em> identity $e$ and <em>the</em> inverse $g^{-1}$ without ambiguity.
                 </p>
 
-                <h3>categories, functors, exactness</h3>
-                <p>a <em>category</em> \(\mathcal{C}\) has objects \(\mathrm{Ob}(\mathcal{C})\), morphism sets
-                    \(\mathrm{Hom}(X,Y)\) for each pair of objects, associative composition
-                    \(\circ:\mathrm{Hom}(Y,Z)\times\mathrm{Hom}(X,Y)\to\mathrm{Hom}(X,Z)\), and identities
-                    \(1_X\in\mathrm{Hom}(X,X)\). configuration spaces, spacetimes, and phase spaces are objects; once a
-                    structure is fixed (smooth, symplectic, lorentzian), the morphisms are the maps preserving that
-                    structure.</p>
-                <p>a <em>functor</em> \(F:\mathcal{C}\to\mathcal{D}\) maps objects and morphisms, preserves identities,
-                    and satisfies \(F(g\circ f)=F(g)\circ F(f)\) (covariant case). a <em>contravariant</em> functor
-                    reverses composition: \(F(g\circ f)=F(f)\circ F(g)\). functors formalize “change of description” that
-                    remains coherent under chaining—essential once fields live on bundles and laws are stated
-                    functorially.</p>
-                <p>in an abelian category (vector spaces, sheaves of modules, …), a sequence \(A\xrightarrow{f}
-                    B\xrightarrow{g}C\) is <em>exact</em> at \(B\) if \(\mathrm{im}\,f=\ker g\). longer exact sequences
-                    track how constraints and quotients propagate information—algebraic shadow of the same conservation
-                    and reduction themes that noether’s theorem and gauge fixing express on the classical side.</p>
-                <p>direct products and direct sums are pinned down by <em>universal properties</em>: they are unique up to
-                    isomorphism as the objects that mediate all compatible families of morphisms into or out of the
-                    factors. that is the correct notion of combining or decomposing independent subsystems at the level
-                    of structure.</p>
+                <h3>theorem: symmetries compatible with composition form a group</h3>
+                <p>fix a set $X$ of states (configurations, phase-space points, fields on a fixed slice—throughout <a
+                        href="../basics/">basics</a>). fix a distinguished class $\mathcal{S}$ of bijections $f:X\to X$
+                    deemed <em>symmetries</em>: for example, maps that send every solution of a given evolution equation to
+                    another solution, or preserve an action functional on admissible histories. assume:</p>
+                <ol>
+                    <li>if $f,g\in\mathcal{S}$ then $f\circ g\in\mathcal{S}$ (<em>closure under composition</em>);</li>
+                    <li>$\mathrm{id}_X\in\mathcal{S}$;</li>
+                    <li>if $f\in\mathcal{S}$ then $f^{-1}\in\mathcal{S}$ (<em>reversibility</em>).</li>
+                </ol>
+                <p>then $(\mathcal{S},\circ)$ is a group: associativity is associativity of composition; $\mathrm{id}_X$
+                    is the group identity; inverses in the group are inverse maps. in applications one often replaces
+                    $\mathcal{S}$ by a subgroup (e.g. the identity component of a lie group of transformations) or
+                    quotients a normal subgroup of gauge redundancies—precisely the orbit and constraint picture in <a
+                        href="../basics/#reduction-and-effective-potentials">reduction and effective potentials</a>.</p>
 
-                <h3>vector spaces, linear maps, spectra, jordan form</h3>
-                <p>a <em>vector space</em> over a field \(\mathbb{F}\) (\(\mathbb{R}\) or \(\mathbb{C}\) here) is an
-                    abelian group \((V,+)\) with a scalar multiplication \(\mathbb{F}\times V\to V\) satisfying the usual
-                    distributive and associative laws with the field. vectors \(v_1,\ldots,v_n\) are <em>linearly
-                        dependent</em> if \(\sum_i a_i v_i=0\) for some scalars \(a_i\), not all zero. a <em>basis</em> is
-                    a linearly independent spanning set; any two bases have the same cardinality \(\dim V\).</p>
-                <p>a map \(T:V\to W\) is <em>linear</em> if \(T(au+bv)=aT(u)+bT(v)\). after bases are chosen, \(T\) is a
-                    matrix; change of basis conjugates that matrix. \(\lambda\in\mathbb{F}\) is an <em>eigenvalue</em> if
-                    \(Tv=\lambda v\) for some \(v\neq 0\). over \(\mathbb{C}\), every operator on finite-dimensional
-                    \(V\) has an eigenvalue. over \(\mathbb{R}\), real symmetric operators—self-adjoint for the dot
-                    product—are orthogonally diagonalizable (<em>spectral theorem</em>).</p>
-                <p>over the algebraic closure, every linear operator on finite-dimensional \(V\) admits a <em>jordan
-                        normal form</em>: a basis in which \(T\) is block-diagonal with blocks \(J_m(\lambda)=\lambda
-                    I_m+N_m\), where \(N_m\) is nilpotent with ones on the first superdiagonal. jordan blocks package
-                    generalized eigenspaces; nondiagonalizable pieces often mark degenerate or resonant sectors in
-                    linearized dynamics, as in <a href="../basics/#linearization-and-normal-modes">linearization and
-                        normal modes</a>.</p>
+                <h3>subgroups, generators, homomorphisms</h3>
+                <p>a subset $H\subseteq G$ is a <em>subgroup</em> (written $H\le G$) if $H\neq\emptyset$, $ab\in H$
+                    whenever $a,b\in H$, and $a^{-1}\in H$ whenever $a\in H$ (equivalently $ab^{-1}\in H$ for all
+                    $a,b\in H$). the intersection of any nonempty family of subgroups is a subgroup. a subset
+                    $S\subseteq G$ <em>generates</em> $G$ if every element of $G$ is a finite product of elements of $S$
+                    and their inverses.</p>
+                <p>a map $\varphi:G\to G'$ is a <em>homomorphism</em> if $\varphi(g_1g_2)=\varphi(g_1)\varphi(g_2)$ for
+                    all $g_1,g_2\in G$. its <em>kernel</em> and <em>image</em> are</p>
+                $$
+                \ker\varphi=\{g\in G:\varphi(g)=e_{G'}\},\qquad \mathrm{im}\,\varphi=\{\varphi(g):g\in G\}.
+                $$
+                <p>$\ker\varphi$ is a normal subgroup of $G$ (see below); $\mathrm{im}\,\varphi$ is a subgroup of $G'$.
+                    the <em>first isomorphism theorem</em> states that $\varphi$ descends to an isomorphism</p>
+                $$
+                G/\ker\varphi \;\cong\; \mathrm{im}\,\varphi.
+                $$
 
-                <h3>example: inertia tensor as a symmetric operator on \(\mathbb{R}^3\)</h3>
+                <h3>normal subgroups, quotients, and gauge-type reduction</h3>
+                <p>a subgroup $N\le G$ is <em>normal</em>, written $N\trianglelefteq G$, if $gng^{-1}\in N$ for all $g\in
+                    G$ and $n\in N$ (equivalently $gNg^{-1}=N$ for all $g\in G$). normality is exactly the condition
+                    needed for the set of left cosets</p>
+                $$
+                G/N = \{gN : g\in G\}
+                $$
+                <p>to inherit a well-defined product $(aN)(bN)=(ab)N$: if $aN=a'N$ and $bN=b'N$, then $a'=an_1$,
+                    $b'=bn_2$ for some $n_i\in N$, and $a'b'N=an_1bn_2N=a(b(b^{-1}n_1b)n_2)N=abN$ because $b^{-1}n_1b\in
+                    N$. the quotient map $\pi:G\to G/N$ is a surjective homomorphism with $\ker\pi=N$.</p>
+                <p>when a redundancy acts on states but does not change physical predictions, quotienting by that normal
+                    subgroup implements “the same physics with fewer redundant labels”—the algebraic form of imposing
+                    gauge constraints and passing to true degrees of freedom.</p>
+
+                <h3>categories: objects, morphisms, composition</h3>
+                <p>a <em>category</em> $\mathcal{C}$ consists of:</p>
+                <ol>
+                    <li>a class $\mathrm{Ob}(\mathcal{C})$ of <em>objects</em> (configuration spaces, spacetimes, phase
+                        spaces, vector bundles, …);</li>
+                    <li>for each ordered pair $(X,Y)$ of objects, a set $\mathrm{Hom}_{\mathcal{C}}(X,Y)$ of
+                        <em>morphisms</em>;</li>
+                    <li>for each composable triple $(X,Y,Z)$, an associative composition (displayed below);</li>
+                    <li>for each object $X$, an identity morphism $1_X\in\mathrm{Hom}(X,X)$ such that $f\circ
+                        1_X=f$ and $1_Y\circ f=f$ for every $f:X\to Y$.</li>
+                </ol>
+                $$
+                \circ:\mathrm{Hom}(Y,Z)\times\mathrm{Hom}(X,Y)\to\mathrm{Hom}(X,Z),\qquad (g,f)\mapsto g\circ f,
+                $$
+                <p>with associativity $(h\circ g)\circ f=h\circ(g\circ f)$ whenever $f:X\to Y$, $g:Y\to Z$, and
+                    $h:Z\to W$.</p>
+                <p>once a structure is fixed on objects (smooth, symplectic, lorentzian, …), morphisms are precisely the
+                    maps preserving that structure—so functorial change of description cannot break the laws encoded in
+                    morphisms.</p>
+
+                <h3>functors and contravariance</h3>
+                <p>a <em>covariant functor</em> $F:\mathcal{C}\to\mathcal{D}$ assigns $F(X)\in\mathrm{Ob}(\mathcal{D})$ to
+                    each $X\in\mathrm{Ob}(\mathcal{C})$ and $F(f):F(X)\to F(Y)$ to each $f:X\to Y$, such that
+                    $F(1_X)=1_{F(X)}$ and $F(g\circ f)=F(g)\circ F(f)$. a <em>contravariant functor</em> reverses
+                    composition: $F(g\circ f)=F(f)\circ F(g)$. pulling back differential forms along smooth maps is a
+                    standard contravariant example; pushing forward tangent vectors is covariant.</p>
+
+                <h3>exactness (abelian setting) and universal properties</h3>
+                <p>in an abelian category (e.g. vector spaces over a field, modules over a ring, sheaves of such
+                    modules), a sequence of morphisms</p>
+                $$
+                A \xrightarrow{f} B \xrightarrow{g} C
+                $$
+                <p>is <em>exact at $B$</em> if $\mathrm{im}\,f=\ker g$ as subobjects of $B$. longer exact sequences
+                    organize how constraints, quotients, and extensions fit together—an algebraic shadow of conservation
+                    laws, reduction, and gauge fixing on the classical side.</p>
+                <p>binary products $A\times B$ and coproducts $A\oplus B$ (direct sum in linear categories) are
+                    characterized by <em>universal properties</em>: every compatible pair of morphisms into $A$ and $B$
+                    factors uniquely through $A\times B$, and every pair out of $A$ and $B$ factors uniquely through the
+                    coproduct. that is the correct abstract notion of combining or splitting independent subsystems at
+                    the level of structure, without choosing ad hoc coordinates.</p>
+
+                <h3>vector space axioms</h3>
+                <p>superposition of small disturbances forces a <em>vector space</em> over a field $\mathbb{F}$ (here
+                    $\mathbb{R}$ or $\mathbb{C}$): an abelian group $(V,+)$ together with scalar multiplication
+                    $\mathbb{F}\times V\to V$, written $(a,v)\mapsto av$, satisfying for all $u,v\in V$ and
+                    $a,b\in\mathbb{F}$:</p>
+                <ol>
+                    <li>$u+v=v+u$ (commutativity of $+$);</li>
+                    <li>$(u+v)+w=u+(v+w)$ (associativity of $+$);</li>
+                    <li>there exists $0\in V$ with $v+0=v$ for all $v$;</li>
+                    <li>for each $v$ there exists $-v\in V$ with $v+(-v)=0$;</li>
+                    <li>$a(bv)=(ab)v$ (associativity of scalar action);</li>
+                    <li>$1v=v$ for the multiplicative unit $1\in\mathbb{F}$;</li>
+                    <li>$a(u+v)=au+av$ (distributivity over vector addition);</li>
+                    <li>$(a+b)v=av+bv$ (distributivity over scalar addition).</li>
+                </ol>
+                <p>vectors $v_1,\ldots,v_n$ are <em>linearly dependent</em> if there exist scalars $a_i$, not all zero,
+                    with $\sum_i a_i v_i=0$. a <em>basis</em> is a linearly independent spanning set; any two bases of
+                    the same space have the same cardinality, denoted $\dim V$.</p>
+
+                <h3>linear maps, eigenvalues, Jordan normal form</h3>
+                <p>a map $T:V\to W$ is <em>linear</em> if $T(au+bv)=aT(u)+bT(v)$ for all $a,b\in\mathbb{F}$ and
+                    $u,v\in V$. after bases are chosen in finite dimensions, $T$ is represented by a matrix; change of basis
+                    conjugates that matrix.</p>
+                <p>$\lambda\in\mathbb{F}$ is an <em>eigenvalue</em> of $T:V\to V$ if $Tv=\lambda v$ for some $v\neq 0$.
+                    over $\mathbb{C}$, every linear operator on finite-dimensional $V$ has an eigenvalue (algebraic
+                    closure). over $\mathbb{R}$, real symmetric operators (self-adjoint for the dot product) are
+                    orthogonally diagonalizable—this is the <em>spectral theorem</em> used for the inertia tensor below.
+                </p>
+                <p>over the algebraic closure of $\mathbb{F}$, every linear operator $T$ on finite-dimensional $V$ admits
+                    a <em>Jordan normal form</em>: a basis in which the matrix of $T$ is block diagonal with Jordan blocks
+                </p>
+                $$
+                J_m(\lambda)=\lambda I_m + N_m,\qquad (N_m)_{ij}=\begin{cases}1&\text{if }j=i+1,\\0&\text{otherwise.}\end{cases}
+                $$
+                <p>equivalently, $V$ splits as a direct sum of <em>generalized eigenspaces</em> for $T$. nondiagonalizable
+                    Jordan pieces signal degeneracy or resonance in linearized dynamics—see <a
+                        href="../basics/#linearization-and-normal-modes">linearization and normal modes</a>—where pure
+                    eigenmode expansion is insufficient without generalized modes.</p>
+
+                <h3>example: inertia tensor versus Jordan form</h3>
                 <p>in <a href="../basics/#linearization-and-normal-modes">basics</a>, rigid-body kinetic energy is
-                    \(T=\tfrac12\sum_{i,k}I_{ik}\Omega_i\Omega_k\) with \(I_{ik}=I_{ki}\). thus \(I\) defines a
-                    symmetric linear operator on \(\mathbb{R}^3\). the spectral theorem gives an orthonormal basis of
-                    <em>principal axes</em> diagonalizing \(I\) with eigenvalues \(I_1,I_2,I_3\). this is not a separate
-                    trick from linear algebra: the physical tensor is exactly in the class forced to be orthogonally
-                    diagonalizable. contrast with a general non-symmetric operator, where jordan form (or complex
-                    triangularization) replaces principal-axis diagonalization.</p>
+                    $T=\tfrac12\sum_{i,k} I_{ik}\Omega_i\Omega_k$ with $I_{ik}=I_{ki}$. thus $I$ defines a <em>symmetric
+                        real</em> linear operator on $\mathbb{R}^3$. the spectral theorem yields an orthonormal basis of
+                    <em>principal axes</em> diagonalizing $I$ with eigenvalues $I_1,I_2,I_3$ (principal moments). symmetry
+                    of $I$ is forced by the physical construction of the tensor, and symmetric real matrices are always
+                    orthogonally diagonalizable—no Jordan blocks appear for $I$ itself.</p>
+                <p>jordan form still belongs in the same conceptual family: for a <em>general</em> non-symmetric
+                    operator on $\mathbb{R}^n$ or $\mathbb{C}^n$—for instance, the linearization of a coupled system at a
+                    fixed point—canonical form may require nontrivial Jordan blocks when algebraic and geometric
+                    multiplicities of an eigenvalue differ. the stability of spinning rigid bodies (intermediate axis
+                    instability) is governed by the nonlinear euler equations and energy–momentum geometry, not by
+                    nondiagonalizability of $I$; keeping the distinction explicit avoids a common conflation.</p>
 
-                <h3>reading the dictionary without a table</h3>
-                <p><em>lie groups</em> are groups with compatible smooth structure; they house continuous families of
-                    symmetries (rotations, boosts, translations) used everywhere in <a href="../basics/">basics</a>. the
-                    associated lie algebra infinitesimalizes the group and carries brackets, moment maps, and conserved
-                    quantities. <em>normal subgroups and quotients</em> align with factoring gauge and identifying orbits.
-                    <em>linear spaces and operators</em> underpin normal modes, stability, and the inertia construction.
-                    <em>categories and functors</em> organize covariant and contravariant laws under change of variables
-                    and over bundles. next, <a href="#metric-and-multilinear-structures">metric and multilinear
-                        structures</a> add inner products, indefinite metrics, and symplectic forms—the tensors that
-                    encode measurement and canonical geometry on top of this substrate.</p>
+                <h3>lie groups, quotients, and how this layer attaches to physics</h3>
+                <p>a <em>lie group</em> is a group $G$ with a compatible smooth manifold structure, so continuous
+                    families of symmetries (rotations, boosts, translations) are honest group elements. the associated
+                    <em>lie algebra</em> $\mathfrak{g}$ encodes infinitesimal symmetries; brackets, moment maps, and
+                    conserved quantities live there. normal subgroups and quotient groups model factoring gauge
+                    redundancies and identifying orbits. vector spaces and linear operators underpin superposition,
+                    normal modes, and the spectral theory of $I$. categories and functors organize how laws transform
+                    under change of variables and under passage to bundles and fields without breaking composition.</p>
+                <p>each structure answers a concrete requirement from the classical reconstruction: composition
+                    and inversion for symmetries; linearity for small oscillations; quotients for redundant descriptions;
+                    functoriality for coherent changes of model. groups and lie groups align with continuous symmetries
+                    and conservation laws; normal subgroups with gauge and phase redundancies; morphisms and functors with
+                    changes of representation; vector spaces with state spaces and superposition; spectra and Jordan data
+                    with normal modes and resonant linearizations. metrics, manifolds, forms, and cohomology in the
+                    following sections build on this substrate. next: <a
+                        href="#metric-and-multilinear-structures">metric and multilinear structures</a>.</p>
             </section>
 
             <section id="metric-and-multilinear-structures" class="doc-section">
@@ -410,6 +490,7 @@
             renderMathInElement(document.body, {
                 delimiters: [
                     { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
                     { left: "\\[", right: "\\]", display: true },
                     { left: "\\(", right: "\\)", display: false }
                 ],
