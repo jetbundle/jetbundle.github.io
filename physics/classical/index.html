@@ -865,45 +865,160 @@
             </section>
             <section id="cohomology-topology" class="doc-section">
                 <h2>cohomology, global topology</h2>
-                <p><strong>arc.</strong> local $F=\mathrm{d}A$ does not imply global $A$. cohomology counts those
-                    failures; duality pairs sources and fields; characteristic classes obstruct global sections.</p>
+                <p>this block is <strong>self-contained</strong> and follows the cohomology and global topology arc
+                    (items D1–D5) in
+                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                    de rham cohomology as obstruction to global primitives, periods and fluxes (dirac monopole),
+                    computing cohomology from patches (mayer–vietoris, čech–de rham), poincaré duality and euler-type
+                    obstructions, and a short outlook on spectral sequences. no links below point to other site pages.</p>
+                <p>the conceptual line is that <em>local</em> differential identities ($\mathrm{d}\omega=0$) do not decide
+                    whether $\omega=\mathrm{d}\alpha$ <em>globally</em>; cohomology classes record that gap. flux
+                    integrals and holonomies are <strong>periods</strong> pairing closed forms with cycles, detecting
+                    nontrivial classes.</p>
 
                 <h3 id="d-closed-exact">closed vs exact, de rham</h3>
-                <p><strong>m.</strong> $Z^p$, $B^p$, $H^p_{\mathrm{dR}}=Z^p/B^p$; functoriality under pullback.</p>
-                <p><strong>p.</strong> multivalued potentials; aharonov–bohm-type periods; flux without global vector
-                    potential.</p>
-                <p><strong>outcomes.</strong> decide whether $[\omega]=0$ from periods on generating cycles (simple
-                    cases).</p>
-                <p class="dim">draft narrative: <a href="../basics/#global-and-topological-closure">basics · global
-                        closure</a> · draft structure: <a
-                        href="../math-physics/#cohomological-invariants-and-spectral-topology">math physics · cohomology</a></p>
+                <p>let $M$ be a smooth manifold. write $\Omega^p(M)$ for the real vector space of smooth $p$-forms.
+                    exterior differentiation $\mathrm{d}:\Omega^p(M)\to\Omega^{p+1}(M)$ satisfies
+                    $\mathrm{d}^2=0$, so $(\Omega^\bullet(M),\mathrm{d})$ is a <strong>cochain complex</strong>:</p>
+                $$
+                0 \to \Omega^0(M) \xrightarrow{\mathrm{d}} \Omega^1(M) \xrightarrow{\mathrm{d}} \cdots
+                \xrightarrow{\mathrm{d}} \Omega^n(M) \to 0 .
+                $$
+                <p><strong>definitions.</strong> a form $\omega\in\Omega^p(M)$ is <em>closed</em> if
+                    $\mathrm{d}\omega=0$; it is <em>exact</em> if $\omega=\mathrm{d}\alpha$ for some
+                    $\alpha\in\Omega^{p-1}(M)$. every exact form is closed because $\mathrm{d}^2=0$. define</p>
+                $$
+                Z^p(M) = \ker\bigl(\mathrm{d}:\Omega^p\to\Omega^{p+1}\bigr),\qquad
+                B^p(M) = \mathrm{im}\bigl(\mathrm{d}:\Omega^{p-1}\to\Omega^p\bigr),
+                $$
+                $$
+                H^p_{\mathrm{dR}}(M;\mathbb{R}) := Z^p(M)/B^p(M).
+                $$
+                <p>two closed forms represent the same cohomology class iff they differ by an exact form. the dimension
+                    $\dim H^p(M)$ (when finite) is a topological invariant of $M$.</p>
+                <p><strong>pullback functoriality.</strong> a smooth map $f:M\to N$ induces
+                    $f^*:\Omega^p(N)\to\Omega^p(M)$ commuting with $\mathrm{d}$:
+                    $f^*(\mathrm{d}\omega)=\mathrm{d}(f^*\omega)$. hence $f^*$ descends to linear maps
+                    $f^*:H^p_{\mathrm{dR}}(N)\to H^p_{\mathrm{dR}}(M)$. diffeomorphic manifolds have isomorphic de rham
+                    cohomology.</p>
+                <p><strong>poincaré lemma (local exactness).</strong> on a contractible open set $U\subset M$, every
+                    closed $p$-form is exact on $U$. thus obstructions to $\omega=\mathrm{d}\alpha$ are <em>global</em>,
+                    not local.</p>
+                <p><strong>periods ($p=1$).</strong> if $\omega\in Z^1(M)$ and $\gamma:S^1\to M$ is a smooth loop, the
+                    <em>period</em></p>
+                $$
+                \oint_\gamma \omega \in \mathbb{R}
+                $$
+                <p>depends only on the homotopy class of $\gamma$ and the class $[\omega]\in H^1(M)$ (stokes’s theorem
+                    on the cylinder homotopy). if $[\omega]=0$ then all periods vanish; conversely, on reasonable
+                    spaces, nontrivial $[\omega]$ is detected by some period. multivalued potentials
+                    $\int_{p_0}^p\omega$ shift by periods around loops—precisely the holonomy of the connection
+                    $\mathrm{d}+\omega$ in a trivial line bundle (preview of gauge).</p>
+                <p><strong>physical reading.</strong> aharonov–bohm-type phenomena store phase in a flat connection:
+                    field strength vanishes locally while holonomy around a linked solenoid is nonzero—cohomology of the
+                    nonsimply connected region captures the obstruction to a single-valued global potential.</p>
 
                 <h3 id="d-monopole">dirac monopole, flux, periods</h3>
-                <p><strong>p.</strong> magnetic charge; dirac string; quantization sketch.</p>
-                <p><strong>m.</strong> nontrivial $[F]$ on punctured $\mathbb{R}^3$; integral over $S^2$ as period.</p>
-                <p class="dim">draft structure: same · dirac subsection in cohomology</p>
+                <p>work on $X=\mathbb{R}^3\setminus\{0\}$, which deformation retracts to $S^2$. de rham cohomology in
+                    degree two is one-dimensional:</p>
+                $$
+                H^2_{\mathrm{dR}}(X;\mathbb{R}) \cong \mathbb{R},
+                $$
+                <p>generated by the class of any $2$-form whose integral over a unit sphere enclosing the origin is
+                    nonzero.</p>
+                <p><strong>magnetic monopole field (idealized).</strong> in euclidean $\mathbb{R}^3$ minus the origin,
+                    the radial magnetic field of strength $g$ has associated two-form (heaviside–lorentz conventions
+                    absorbed into $g$) with spherical symmetry such that the flux through any sphere $S^2_R$ of radius
+                    $R$ centered at $0$ is</p>
+                $$
+                \int_{S^2_R} B \propto g,
+                $$
+                <p>independent of $R$ (gauss law for enclosed magnetic charge). the corresponding closed $2$-form $F$
+                    satisfies $\mathrm{d}F=0$ on $X$ (maxwell homogeneous, away from the singularity). its cohomology
+                    class $[F]\in H^2(X)$ is <em>nontrivial</em> if flux is nonzero: $F$ cannot equal $\mathrm{d}A$ for a
+                    <em>globally smooth</em> one-form $A$ on all of $X$.</p>
+                <p><strong>dirac string.</strong> on $X$ one may nevertheless write $F=\mathrm{d}A$ off a semi-infinite
+                    line (the “string”), where $A$ has a singularity. moving the string is a gauge transformation
+                    adding $\mathrm{d}\chi$ to $A$; the physical content is the class $[F]$, not the particular $A$.
+                    the flux $\int_{S^2}F$ is a <strong>period</strong> pairing $[F]$ with the generating cycle
+                    (fundamental class of the enclosing sphere).</p>
+                <p><strong>dirac quantization (statement).</strong> consistency of quantum charged particles with
+                    magnetic monopoles forces a discrete lattice condition relating electric charge $q$ and magnetic
+                    charge $g$ (in suitable units, schematically $qg\in 2\pi\mathbb{Z}$ up to convention-dependent
+                    factors). the geometric core is that holonomies and fluxes must combine consistently on all cycles—a
+                    constraint living naturally in integral (not merely real) cohomology and characteristic classes.</p>
 
                 <h3 id="d-mv-cech">mayer–vietoris, čech–de rham</h3>
-                <p><strong>m.</strong> long exact sequence; double complex; de rham theorem.</p>
-                <p><strong>p.</strong> building global understanding from patches—same ethos as gluing observers or
-                    charts.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#cohomological-invariants-and-spectral-topology">math
-                        physics · MV and čech–de rham</a></p>
+                <p>suppose $M=U\cup V$ with $U,V$ open and smoothly embedded. set $W=U\cap V$. there is a natural
+                    <strong>long exact sequence</strong> in de rham cohomology (real coefficients)</p>
+                $$
+                \cdots \to H^{k-1}(W) \xrightarrow{\ \delta\ } H^k(M) \xrightarrow{\ (j_U^*,j_V^*)\ }
+                H^k(U)\oplus H^k(V) \xrightarrow{\ j_U^*-j_V^*\ } H^k(W) \xrightarrow{\ \delta\ } H^{k+1}(M) \to \cdots
+                $$
+                <p>where $j$ denote inclusions and $\delta$ is the <em>coboundary</em> built from a partition of unity
+                    subordinate to $\{U,V\}$: one splits a closed form on $W$ into pieces on $U$ and $V$, corrects by
+                    exact forms, and glues to a closed form on $M$ representing $\delta[\cdot]$. exactness encodes
+                    consistency of patching cocycles across triple overlaps (here $W$).</p>
+                <p><strong>example ($H^1(S^1)$).</strong> cover $S^1$ by two arcs $U,V$ with connected intersection
+                    $W$ diffeomorphic to two disjoint intervals. $H^1(U)=H^1(V)=0$, while $H^0(W)\cong\mathbb{R}^2$ and
+                    $H^0(M)\cong\mathbb{R}$. the sequence forces $\dim H^1(S^1)=1$: the angular form $\mathrm{d}\theta$
+                    (well-defined on each semicircle, differing by a constant on overlap) represents the generator once
+                    glued—mayer–vietoris makes the one-dimensional cohomology visible from local acyclicity.</p>
+                <p><strong>čech–de rham double complex (idea).</strong> choose an open cover $\{U_\alpha\}$; forms on
+                    $U_\alpha$, on double overlaps $U_\alpha\cap U_\beta$, triple overlaps, etc., form a bicomplex with
+                    horizontal differential (alternating sum of restrictions) and vertical $\mathrm{d}$. total
+                    cohomology of the associated single complex agrees with $H^\bullet_{\mathrm{dR}}(M)$ under mild
+                    hypotheses on the cover—this is the <strong>de rham theorem</strong> in čech form: same global
+                    invariants whether computed analytically (forms) or combinatorially (cocycle data on a nerve).</p>
 
                 <h3 id="d-duality-euler">poincaré duality, euler class</h3>
-                <p><strong>m.</strong> pairing $H^p\times H^{n-p}\to\mathbb{R}$; euler class; hairy-ball theorem as
-                    nonvanishing section obstruction.</p>
-                <p><strong>p.</strong> dual descriptions of flux and charge; topological charges in field theory
-                    language.</p>
-                <p class="dim">draft structure: same · thom/euler block</p>
+                <p>let $M$ be a closed, connected, oriented smooth manifold of dimension $n$. <strong>poincaré
+                        duality</strong> asserts a nondegenerate pairing</p>
+                $$
+                H^p_{\mathrm{dR}}(M) \times H^{n-p}_{\mathrm{dR}}(M) \to \mathbb{R},\qquad
+                ([\omega],[\eta]) \mapsto \int_M \omega\wedge\eta,
+                $$
+                <p>when forms are chosen smoothly, the integral depends only on cohomology classes (stokes). thus
+                    $H^p$ and $H^{n-p}$ are dual vector spaces of the same finite dimension; geometrically, a $p$-dimensional
+                    cycle of sources pairs with an $(n-p)$-dimensional “field” degree of freedom.</p>
+                <p><strong>thom class (statement).</strong> for an oriented real vector bundle $\pi:E\to M$ of rank $r$,
+                    there is a canonical compactly supported cohomology class along fibers—the <em>thom class</em>
+                    $\Phi\in H^r_{\mathrm{cv}}(E)$—whose pullback under the zero section embeds $M\hookrightarrow E$
+                    yields the <strong>euler class</strong> $e(E)\in H^r(M)$. intuitively, $e(E)$ measures failure of
+                    the zero section to move off the zero locus in a nowhere-vanishing way.</p>
+                <p><strong>euler characteristic.</strong> for $E=TM$, the euler class $e(TM)\in H^n(M)$ evaluated on
+                    the fundamental class $[M]$ gives the <em>euler characteristic</em> $\chi(M)$ (gauss–bonnet connects
+                    this to curvature integration in riemannian geometry).</p>
+                <p><strong>hairy ball theorem as obstruction.</strong> a nowhere-vanishing vector field on $M$ is a
+                    nonvanishing section of $TM$. for $M=S^2$, $\chi(S^2)=2\neq 0$, hence $e(TS^2)\neq 0$ and no global
+                    nonvanishing section exists: “you cannot comb the sphere continuously.” the same euler obstruction
+                    appears whenever topology forces zeros in vector fields or in order-parameter fields in condensed
+                    matter.</p>
+                <p><strong>physical synthesis.</strong> fluxes pair with sources (poincaré dual cycles); topological
+                    charges in field theory are often cohomology classes of curvature forms or obstructions to trivializing
+                    bundles (monopoles, instanton sectors).</p>
 
                 <h3 id="d-spectral">spectral sequences (outlook)</h3>
-                <p><strong>m.</strong> filtered complexes; serre spectral sequence for fibrations (statement).</p>
-                <p><strong>p.</strong> conceptual: reduced models over nontrivial base spaces; organizing “base + fiber”
-                    contributions.</p>
-                <p class="dim">draft structure: spectral sequences subsection in cohomology</p>
+                <p>a <strong>filtered cochain complex</strong> $(C^\bullet,d)$ carries an increasing filtration
+                    $F_p C^n$ stable under $d$. the spectral sequence packages successive approximations to
+                    $H^*(C)$: pages $E_r^{p,q}$ with differentials $d_r$ of bidegree $(r,1-r)$, stabilizing under
+                    finite-dimensional or locally finite hypotheses to $E_\infty^{p,q}$ related to a graded piece of
+                    $H^{p+q}(C)$.</p>
+                <p><strong>serre spectral sequence (fibration, statement).</strong> for a fibration $F\to E\to B$ with
+                    $B$ path-connected and $F$ compact (or suitable local systems for twisted coefficients), there is
+                    a first-quadrant spectral sequence with</p>
+                $$
+                E_2^{p,q} \cong H^p\bigl(B;\mathcal{H}^q(F)\bigr)\quad\Rightarrow\quad H^{p+q}(E),
+                $$
+                <p>where $\mathcal{H}^q(F)$ denotes a local system of fiber cohomology on $B$. the differentials encode
+                    how base topology twists fiber cohomology into total space cohomology—organizing contributions from
+                    “base $\otimes$ fiber” degrees of freedom.</p>
+                <p><strong>conceptual use.</strong> reduced field theories, families of defects, and Kaluza–Klein-style
+                    reductions often produce fibrations or approximate fibrations; spectral sequences are the systematic
+                    bookkeeping tool when naive product cohomology $H^*(B)\otimes H^*(F)$ fails and differentials carry
+                    extension data between degrees. a full treatment belongs to specialized topology references; here
+                    only the map—global invariants from filtered local data—is fixed.</p>
             </section>
-
             <section id="geometric-mechanics" class="doc-section">
                 <h2>geometric mechanics</h2>
                 <p><strong>arc.</strong> redo variational and hamiltonian content intrinsically on $Q$ and $T^*Q$ after
