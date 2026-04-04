@@ -22,7 +22,7 @@
 
         <header class="doc-header">
             <h1>mathematical physics</h1>
-            <p class="doc-lead"><em>a structural companion to classical physics — the forced mathematical hierarchy</em>
+            <p class="doc-lead"><em>a structural companion to classical physics</em>
             </p>
             <p class="doc-intro">while the classical spine is laid out in <a href="../basics/">basics</a>—from
                 variational principles through symmetries, reduction, linearization, phase space, special relativity,
@@ -92,9 +92,9 @@
                 </ol>
                 $$
                 \begin{aligned}
-                    (g_1\cdot g_2)\cdot g_3 &= g_1\cdot(g_2\cdot g_3),\\
-                    \exists\,e\in G:\ g\cdot e=e\cdot g&=g,\\
-                    \forall g\ \exists\,g^{-1}\in G:\ g\cdot g^{-1}=g^{-1}\cdot g&=e.
+                (g_1\cdot g_2)\cdot g_3 &= g_1\cdot(g_2\cdot g_3),\\
+                \exists\,e\in G:\ g\cdot e=e\cdot g&=g,\\
+                \forall g\ \exists\,g^{-1}\in G:\ g\cdot g^{-1}=g^{-1}\cdot g&=e.
                 \end{aligned}
                 $$
                 <p>from (2)–(3) one proves <em>uniqueness of the identity</em> and <em>uniqueness of inverses</em>.
@@ -143,7 +143,8 @@
                 <p>$\ker\varphi$ is a normal subgroup of $G$ (see below); $\mathrm{im}\,\varphi$ is a subgroup of $G'$.
                     the <em>first isomorphism theorem</em> packages the induced map on cosets as an isomorphism</p>
                 $$
-                \bar{\varphi}:\ G/\ker\varphi \xrightarrow{\;\sim\;} \mathrm{im}\,\varphi,\qquad \bar{\varphi}(g\,\ker\varphi)=\varphi(g).
+                \bar{\varphi}:\ G/\ker\varphi \xrightarrow{\;\sim\;} \mathrm{im}\,\varphi,\qquad
+                \bar{\varphi}(g\,\ker\varphi)=\varphi(g).
                 $$
 
                 <h3>normal subgroups, quotients, and gauge-type reduction</h3>
@@ -159,8 +160,10 @@
                 (aN)\cdot(bN) := (ab)N.
                 $$
                 <p>this is well-defined if replacing $a\mapsto an$, $b\mapsto bn'$ ($n,n'\in N$) leaves the coset
-                    unchanged: one checks $(an)(bn')N=a\bigl(n(bn')n^{-1}\bigr)bN=abN$ using normality to absorb conjugates
-                    of $N$ into $N$. then $\pi:G\to G/N$, $\pi(g)=gN$, is a surjective homomorphism with $\ker\pi=N$.</p>
+                    unchanged: one checks $(an)(bn')N=a\bigl(n(bn')n^{-1}\bigr)bN=abN$ using normality to absorb
+                    conjugates
+                    of $N$ into $N$. then $\pi:G\to G/N$, $\pi(g)=gN$, is a surjective homomorphism with $\ker\pi=N$.
+                </p>
                 <p>when a redundancy acts on states but does not change physical predictions, quotienting by that normal
                     subgroup implements “the same physics with fewer redundant labels”—the algebraic form of imposing
                     gauge constraints and passing to true degrees of freedom.</p>
@@ -237,7 +240,8 @@
                 </ol>
                 <p>dependence and dimension are the bookkeeping of superposition:</p>
                 $$
-                \sum_{i=1}^n a_i v_i = 0 \ \text{with not all } a_i=0 \quad\Rightarrow\quad \{v_i\}\ \text{dependent};\qquad \dim V = |\text{basis}|.
+                \sum_{i=1}^n a_i v_i = 0 \ \text{with not all } a_i=0 \quad\Rightarrow\quad \{v_i\}\
+                \text{dependent};\qquad \dim V = |\text{basis}|.
                 $$
                 <p>a <em>basis</em> is a maximal linearly independent (equivalently, spanning) set; any two bases of a
                     fixed $V$ have the same cardinality.</p>
@@ -258,16 +262,21 @@
                 $$
                 c_T(\lambda):=\det(\lambda I-A).
                 $$
-                <p>in an algebraic closure of $\mathbb{F}$, $c_T$ factors as $\prod_{j}(\lambda-\lambda_j)^{m_a(\lambda_j)}$
+                <p>in an algebraic closure of $\mathbb{F}$, $c_T$ factors as
+                    $\prod_{j}(\lambda-\lambda_j)^{m_a(\lambda_j)}$
                     with distinct $\lambda_j$; the exponent $m_a(\lambda_j)$ is the <em>algebraic multiplicity</em>. the
                     <em>geometric multiplicity</em> is $m_g(\lambda):=\dim\ker(T-\lambda I)$. always
-                    $1\le m_g(\lambda)\le m_a(\lambda)$. equality $m_g=m_a$ for every eigenvalue holds if and only if $T$
+                    $1\le m_g(\lambda)\le m_a(\lambda)$. equality $m_g=m_a$ for every eigenvalue holds if and only if
+                    $T$
                     is diagonalizable over the splitting field of $c_T$. over $\mathbb{R}$, a real symmetric matrix is
-                    orthogonally diagonalizable (<em>spectral theorem</em>)—the situation for the inertia operator in the
-                    next subsection.</p>
+                    orthogonally diagonalizable (<em>spectral theorem</em>)—the situation for the inertia operator in
+                    the
+                    next subsection.
+                </p>
 
                 <p><strong>jordan normal form: existence, blocks, and dynamics.</strong> when
-                    $m_g(\lambda)&lt;m_a(\lambda)$ for some eigenvalue $\lambda$, the operator $T-\lambda I$ is not zero on
+                    $m_g(\lambda)&lt;m_a(\lambda)$ for some eigenvalue $\lambda$, the operator $T-\lambda I$ is not zero
+                    on
                     the whole $\lambda$-generalized subspace; eigenvectors alone do not span it. over an algebraically
                     closed field (e.g. $\mathbb{C}$), the <em>jordan canonical form theorem</em> asserts: there exists a
                     basis of $V$ in which the matrix of $T$ is block diagonal,</p>
@@ -276,13 +285,15 @@
                 $$
                 <p>each <em>jordan block</em> has the shape</p>
                 $$
-                J_m(\lambda)=\lambda I_m+N_m,\qquad (N_m)_{ij}=\begin{cases}1&\text{if }j=i+1,\\0&\text{otherwise.}\end{cases}
+                J_m(\lambda)=\lambda I_m+N_m,\qquad (N_m)_{ij}=\begin{cases}1&\text{if
+                }j=i+1,\\0&\text{otherwise.}\end{cases}
                 $$
                 <p>equivalently, a length-$m$ <em>jordan chain</em> for $\lambda$ is a tuple $(v_1,\ldots,v_m)$ with
                     $(T-\lambda I)v_1=0$ and $(T-\lambda I)v_{j}=v_{j-1}$ for $j\ge 2$; in that basis the block is
                     $J_m(\lambda)$. the matrix $N_m$ is strictly upper triangular with ones on the first superdiagonal;
                     it is nilpotent of <em>index</em> $m$: $N_m^m=0$, while $N_m^{m-1}\neq 0$ when $m\ge 2$ (for $m=1$,
-                    $N_1=0$). on $G_\lambda$, writing $T|_{G_\lambda}=\lambda I+N$ with $N$ nilpotent, $N$ and $\lambda I$
+                    $N_1=0$). on $G_\lambda$, writing $T|_{G_\lambda}=\lambda I+N$ with $N$ nilpotent, $N$ and $\lambda
+                    I$
                     commute, so</p>
                 $$
                 e^{tJ_m(\lambda)} = e^{t\lambda I}\,e^{tN_m} = e^{\lambda t}\sum_{k=0}^{m-1}\frac{(tN_m)^k}{k!}.
@@ -294,13 +305,14 @@
                     $N^2=0$, hence $e^{tN}=I+tN$ and</p>
                 $$
                 e^{tJ_2(\lambda)} = e^{\lambda t}\begin{pmatrix}1&t\\0&1\end{pmatrix}
-                    =\begin{pmatrix}e^{\lambda t}&t\,e^{\lambda t}\\0&e^{\lambda t}\end{pmatrix}.
+                =\begin{pmatrix}e^{\lambda t}&t\,e^{\lambda t}\\0&e^{\lambda t}\end{pmatrix}.
                 $$
                 <p>for $x(0)=\binom{c_0}{c_1}$,</p>
                 $$
                 x(t)=e^{tJ_2(\lambda)}x(0)=\begin{pmatrix}e^{\lambda t}(c_0+t c_1)\\ e^{\lambda t}c_1\end{pmatrix}.
                 $$
-                <p>if $c_1\neq 0$, the first component is $e^{\lambda t}(c_0+t c_1)$—a <em>secular</em> term $t\,e^{\lambda t}$
+                <p>if $c_1\neq 0$, the first component is $e^{\lambda t}(c_0+t c_1)$—a <em>secular</em> term
+                    $t\,e^{\lambda t}$
                     alongside $e^{\lambda t}$.</p>
 
                 <p><em>calculation ($m=3$).</em> for the $3\times 3$ block, $N^3=0$ but $N^2\neq 0$, so</p>
@@ -321,25 +333,31 @@
                     $T$-invariant, $\dim G_\lambda=m_a(\lambda)$, and $T|_{G_\lambda}$ is similar to a direct sum of
                     jordan blocks $J_{m_i}(\lambda)$ whose sizes $m_i$ sum to $m_a(\lambda)$. the number of blocks for
                     $\lambda$ equals $m_g(\lambda)$; the largest block size is the exponent of $(x-\lambda)$ in the
-                    <em>minimal polynomial</em> of $T$. jordan form is therefore the canonical coordinate system in which
+                    <em>minimal polynomial</em> of $T$. jordan form is therefore the canonical coordinate system in
+                    which
                     $T$ is a direct sum of indecomposable commuting pieces “scalar $+$ strictly upper shift”; computing
-                    $e^{tT}$ reduces to the block formula above.</p>
-                <p>in linearized dynamics around equilibria or periodic orbits, $T$ is typically the Jacobian linearization;
+                    $e^{tT}$ reduces to the block formula above.
+                </p>
+                <p>in linearized dynamics around equilibria or periodic orbits, $T$ is typically the Jacobian
+                    linearization;
                     defective eigenvalues produce the secular terms that pure normal-mode analysis misses—see <a
                         href="../basics/#linearization-and-normal-modes">linearization and normal modes</a>.</p>
 
                 <h3>example: inertia tensor versus Jordan form</h3>
-                <p>work in a body-fixed orthonormal frame so the angular velocity is $\Omega=(\Omega_1,\Omega_2,\Omega_3)^T\in\mathbb{R}^3$.
-                    as in <a href="../basics/#linearization-and-normal-modes">basics</a>, the rotational kinetic energy is the quadratic form</p>
+                <p>work in a body-fixed orthonormal frame so the angular velocity is
+                    $\Omega=(\Omega_1,\Omega_2,\Omega_3)^T\in\mathbb{R}^3$.
+                    as in <a href="../basics/#linearization-and-normal-modes">basics</a>, the rotational kinetic energy
+                    is the quadratic form</p>
                 $$
-                T=\frac12\sum_{i,k} I_{ik}\Omega_i\Omega_k=\frac12\,\Omega^{\mathsf T}I\Omega,\qquad I_{ik}=I_{ki}\in\mathbb{R}.
+                T=\frac12\sum_{i,k} I_{ik}\Omega_i\Omega_k=\frac12\,\Omega^{\mathsf T}I\Omega,\qquad
+                I_{ik}=I_{ki}\in\mathbb{R}.
                 $$
                 <p>thus $I$ is a concrete $3\times 3$ <em>real symmetric</em> matrix. identify it with
                     $I:\mathbb{R}^3\to\mathbb{R}^3$, $v\mapsto Iv$. with the standard inner product
                     $\langle u,v\rangle=u^{\mathsf T}v$, self-adjointness is the matrix identity</p>
                 $$
                 \langle Iu,v\rangle = u^{\mathsf T}I^{\mathsf T}v = u^{\mathsf T}Iv = \langle u,Iv\rangle
-                    \quad\Longleftrightarrow\quad I^{\mathsf T}=I.
+                \quad\Longleftrightarrow\quad I^{\mathsf T}=I.
                 $$
                 <p>the <em>spectral theorem</em> for such operators asserts the existence of $Q\in O(3)$ with</p>
                 $$
@@ -350,28 +368,36 @@
                 $$
                 T=\frac12\bigl(I_1\tilde\Omega_1^2+I_2\tilde\Omega_2^2+I_3\tilde\Omega_3^2\bigr).
                 $$
-                <p>for symmetric real $I$, every eigenvalue has $m_g=m_a$, so the jordan form is diagonal—there is nothing
+                <p>for symmetric real $I$, every eigenvalue has $m_g=m_a$, so the jordan form is diagonal—there is
+                    nothing
                     further to extract from the jordan–nilpotent picture for <em>this</em> operator; the entire
                     $\lambda$-generalized subspace is $\ker(I-\lambda I)$.</p>
-                <p>contrast of roles: $I$ is fixed body data; $R(t)\in SO(3)$ is configuration in the rotation group; the
+                <p>contrast of roles: $I$ is fixed body data; $R(t)\in SO(3)$ is configuration in the rotation group;
+                    the
                     euler equations in the body frame are</p>
                 $$
                 I\dot\Omega+\Omega\times(I\Omega)=0.
                 $$
-                <p>linearizing about a steady spin gives a $3\times 3$ real matrix acting on $\delta\Omega$ that need not be
-                    symmetric; its eigenvalues govern stability (intermediate-axis instability appears there). that matrix
+                <p>linearizing about a steady spin gives a $3\times 3$ real matrix acting on $\delta\Omega$ that need
+                    not be
+                    symmetric; its eigenvalues govern stability (intermediate-axis instability appears there). that
+                    matrix
                     is not $I$; orthogonal diagonalizability of $I$ is logically separate from stability of a particular
                     solution.</p>
-                <p>for multiplicity, jordan blocks, secular terms $t^k e^{\lambda t}$, and $G_\lambda$, see the preceding
-                    subsection; a generic linearization matrix $A$ in $\mathbb{R}^n$ or $\mathbb{C}^n$ need not match the
+                <p>for multiplicity, jordan blocks, secular terms $t^k e^{\lambda t}$, and $G_\lambda$, see the
+                    preceding
+                    subsection; a generic linearization matrix $A$ in $\mathbb{R}^n$ or $\mathbb{C}^n$ need not match
+                    the
                     special symmetric–real pattern of $I$.</p>
 
-                <h3>lie groups, quotients, and how this layer attaches to physics</h3>
-                <p>a <em>lie group</em> is a finite-dimensional smooth manifold $G$ together with smooth structure maps</p>
+                <h3>lie groups, lie algebras, and smooth quotients</h3>
+                <p>a <em>lie group</em> is a finite-dimensional smooth manifold $G$ together with smooth structure maps
+                </p>
                 $$
                 \mu:G\times G\to G\ \text{(product)},\qquad \iota:G\to G\ \text{(inverse)}
                 $$
-                <p>such that $(G,\mu,\iota)$ satisfies the usual group axioms (associativity, unit $e$, inverses). matrix
+                <p>such that $(G,\mu,\iota)$ satisfies the usual group axioms (associativity, unit $e$, inverses).
+                    matrix
                     groups $GL(n,\mathbb{R})$, $SL(n,\mathbb{R})$, $O(n)$, $SO(n)$, and $O(1,3)\subset GL(4,\mathbb{R})$
                     are closed subgroups of some $GL(m,\mathbb{R})$ in the subspace topology, hence embedded lie groups
                     (closed subgroup theorem).</p>
@@ -385,7 +411,8 @@
                 [\xi,\eta]=\xi\eta-\eta\xi,\qquad \xi,\eta\in\mathfrak{g}\subset\mathfrak{gl}(n,\mathbb{R}).
                 $$
                 <p>$\exp:\mathfrak{g}\to G$ is a local diffeomorphism near $0$; thus $\exp(\varepsilon\xi)$ is the
-                    first-order finite symmetry generated by the infinitesimal direction $\xi$—the usual input to noether-
+                    first-order finite symmetry generated by the infinitesimal direction $\xi$—the usual input to
+                    noether-
                     type arguments.</p>
                 <p>if $H\subseteq G$ is a closed normal lie subgroup, the quotient $G/H$ is a smooth manifold and</p>
                 $$
@@ -397,13 +424,25 @@
                     encode redundancies quotientable without breaking the remaining symmetry structure; functors between
                     categories of $G$-spaces or principal $G$-bundles formalize how fields and potentials change under
                     $G$.</p>
-                <p>each earlier object answers a definable requirement: composition and inversion define abstract
-                    groups; smooth dependence selects lie groups and $\mathfrak{g}$; linear superposition selects vector
-                    spaces; self-adjoint $I$ selects spectral data on $\mathbb{R}^3$; general $A$ in linearizations
-                    selects jordan/real canonical form; normal subgroups and $G/H$ select reduced degrees of freedom;
-                    morphisms and functors select coherent changes of model. metrics, manifolds, forms, and cohomology in
-                    the following sections build on this substrate. next: <a
-                        href="#metric-and-multilinear-structures">metric and multilinear structures</a>.</p>
+
+                <h3>from discrete moves to smooth families of symmetries</h3>
+                <p>why bother with the exponential map and the bracket when the classical text often speaks only of
+                    “rotations” and “boosts”? because any <em>continuous</em> symmetry worth the name is generated
+                    infinitesimally: a small transformation is $I+\varepsilon\xi+\cdots$, and composing such moves is
+                    multiplication in the group, while first-order non-commutativity is exactly the bracket. that is the
+                    same infinitesimal language noether’s theorem uses when it turns a flow on configuration space into a
+                    conserved quantity—only here the flow is assumed smooth and finite-dimensional.</p>
+                <p>what does quotienting $G$ by a closed normal subgroup buy you physically? it is the formal mirror of
+                    “forgetting” a redundant description—gauge copies of the same state, or rigid motions that decouple
+                    from internal dynamics—while keeping the remaining transformations coherent. the <a
+                        href="../basics/">basics</a> narrative keeps returning to that gesture: reduce before you
+                    integrate, quotient before you count states, identify what is genuinely invariant.</p>
+                <p>the linear algebra earlier in this section (vector spaces, jordan form, spectral data for symmetric
+                    operators) is the local-linear shadow of those same symmetries near equilibrium or near the
+                    identity. when you open <a href="#metric-and-multilinear-structures">metric and multilinear
+                        structures</a>, you will see how lengths, causal intervals, and symplectic pairings sit on top of
+                    the same tangent spaces—now equipped with extra tensorial structure the variational chapters in <a
+                        href="../basics/">basics</a> already treat as physically meaningful.</p>
             </section>
 
             <section id="metric-and-multilinear-structures" class="doc-section">
@@ -418,16 +457,18 @@
                     explicit—without compressing that map into a schematic summary.</p>
 
                 <h3>bilinear forms: axioms, matrices, nondegeneracy</h3>
-                <p>let $V$ be finite-dimensional over $\mathbb{R}$. a map $g:V\times V\to\mathbb{R}$ is <em>bilinear</em>
+                <p>let $V$ be finite-dimensional over $\mathbb{R}$. a map $g:V\times V\to\mathbb{R}$ is
+                    <em>bilinear</em>
                     if it is linear in each argument when the other is held fixed:</p>
                 $$
                 \begin{aligned}
-                    g(\alpha u_1+\beta u_2,\,v) &= \alpha\,g(u_1,v)+\beta\,g(u_2,v),\\
-                    g(u,\,\gamma v_1+\delta v_2) &= \gamma\,g(u,v_1)+\delta\,g(u,v_2).
+                g(\alpha u_1+\beta u_2,\,v) &= \alpha\,g(u_1,v)+\beta\,g(u_2,v),\\
+                g(u,\,\gamma v_1+\delta v_2) &= \gamma\,g(u,v_1)+\delta\,g(u,v_2).
                 \end{aligned}
                 $$
                 <p>it is <em>symmetric</em> if $g(u,v)=g(v,u)$, <em>skew-symmetric</em> if $g(u,v)=-g(v,u)$. fix a basis
-                    $\{e_i\}_{i=1}^n$ and components $u=\sum_i u^i e_i$, $v=\sum_j v^j e_j$. define $g_{ij}:=g(e_i,e_j)$.
+                    $\{e_i\}_{i=1}^n$ and components $u=\sum_i u^i e_i$, $v=\sum_j v^j e_j$. define
+                    $g_{ij}:=g(e_i,e_j)$.
                     then</p>
                 $$
                 g(u,v)=\sum_{i,j=1}^n g_{ij}\,u^i v^j.
@@ -437,7 +478,8 @@
                     $\det(g_{ij})\neq 0$ in one, hence every, basis.</p>
                 <p>for symmetric $g$, <em>sylvester’s law of inertia</em> asserts the existence of a basis in which
                     $g_{ij}$ is diagonal with entries $\pm 1$; the counts $(p,q)$ of $+1$ and $-1$ are independent of
-                    basis—the <em>signature</em> $(p,q)$. <em>positive definite</em> means $g(v,v)&gt;0$ for all $v\neq 0$;
+                    basis—the <em>signature</em> $(p,q)$. <em>positive definite</em> means $g(v,v)&gt;0$ for all $v\neq
+                    0$;
                     equivalently signature $(n,0)$. then $\|v\|:=\sqrt{g(v,v)}$ is a norm and
                     $\langle u,v\rangle:=g(u,v)$ is an <em>inner product</em>. kinetic energy
                     $T=\frac12 g_{ij}\dot q^i\dot q^j$ in <a href="../basics/">basics</a> is exactly such a quadratic
@@ -445,7 +487,8 @@
 
                 <h3>gram matrix, independence, and gram–schmidt</h3>
                 <p>given $v_1,\ldots,v_k\in V$ with an inner product $\langle\cdot,\cdot\rangle$, their <em>gram
-                        matrix</em> is $G\in\mathbb{R}^{k\times k}$ with entries $G_{ab}=\langle v_a,v_b\rangle$. then</p>
+                        matrix</em> is $G\in\mathbb{R}^{k\times k}$ with entries $G_{ab}=\langle v_a,v_b\rangle$. then
+                </p>
                 $$
                 \det G \neq 0 \quad\Longleftrightarrow\quad \{v_1,\ldots,v_k\}\ \text{is linearly independent}.
                 $$
@@ -454,9 +497,11 @@
                 $$
                 \tilde u_k := v_k-\sum_{j=1}^{k-1}\langle v_k,u_j\rangle\,u_j,\qquad u_k:=\tilde u_k/\|\tilde u_k\|.
                 $$
-                <p>then $\langle u_i,u_j\rangle=\delta_{ij}$ and $\mathrm{span}\{u_1,\ldots,u_k\}=\mathrm{span}\{v_1,\ldots,v_k\}$.
+                <p>then $\langle u_i,u_j\rangle=\delta_{ij}$ and
+                    $\mathrm{span}\{u_1,\ldots,u_k\}=\mathrm{span}\{v_1,\ldots,v_k\}$.
                     this algorithm is the constructive proof that every finite-dimensional inner-product space admits an
-                    orthonormal basis—needed whenever one diagonalizes quadratic forms by orthogonal change of basis.</p>
+                    orthonormal basis—needed whenever one diagonalizes quadratic forms by orthogonal change of basis.
+                </p>
 
                 <h3>complex inner products and complexification</h3>
                 <p>for $\mathbb{C}$-linear quantum amplitudes one uses a <em>sesquilinear</em> inner product
@@ -464,15 +509,17 @@
                     slot, linear in the second:</p>
                 $$
                 \begin{aligned}
-                    \langle \alpha u_1+\beta u_2,\,v\rangle &= \bar\alpha\langle u_1,v\rangle+\bar\beta\langle u_2,v\rangle,\\
-                    \langle u,\,\gamma v_1+\delta v_2\rangle &= \gamma\langle u,v_1\rangle+\delta\langle u,v_2\rangle.
+                \langle \alpha u_1+\beta u_2,\,v\rangle &= \bar\alpha\langle u_1,v\rangle+\bar\beta\langle
+                u_2,v\rangle,\\
+                \langle u,\,\gamma v_1+\delta v_2\rangle &= \gamma\langle u,v_1\rangle+\delta\langle u,v_2\rangle.
                 \end{aligned}
                 $$
                 <p><em>hermitian symmetry</em> and <em>positive definiteness</em> are</p>
                 $$
                 \langle v,u\rangle=\overline{\langle u,v\rangle},\qquad \langle v,v\rangle&gt;0\ \text{for }v\neq 0.
                 $$
-                <p>in a basis, $\langle u,v\rangle=\sum_{i,j}\overline{u^i}\,h_{ij}\,v^j$ with $h_{ij}=\overline{h_{ji}}$
+                <p>in a basis, $\langle u,v\rangle=\sum_{i,j}\overline{u^i}\,h_{ij}\,v^j$ with
+                    $h_{ij}=\overline{h_{ji}}$
                     hermitian. the <em>complexification</em> of a real vector space $V_{\mathbb{R}}$ is
                     $V_{\mathbb{C}}:=V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}$, extending scalars; an
                     $\mathbb{R}$-linear map $J:V_{\mathbb{R}}\to V_{\mathbb{R}}$ with $J^2=-\mathrm{id}$ encodes an
@@ -488,7 +535,8 @@
                 $$
                 ds^2=\eta_{\mu\nu}\,dx^\mu dx^\nu.
                 $$
-                <p>a nonzero vector $v^\mu$ is <em>timelike</em> if $\eta_{\mu\nu}v^\mu v^\nu&gt;0$, <em>spacelike</em> if
+                <p>a nonzero vector $v^\mu$ is <em>timelike</em> if $\eta_{\mu\nu}v^\mu v^\nu&gt;0$, <em>spacelike</em>
+                    if
                     $\eta_{\mu\nu}v^\mu v^\nu&lt;0$, <em>null</em> (lightlike) if $\eta_{\mu\nu}v^\mu v^\nu=0$. the
                     boundary of the timelike cones is the light cone. linear maps $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$
                     preserving $\eta$ in the sense $\langle \Lambda x,\Lambda y\rangle_\eta=\langle x,y\rangle_\eta$ for
@@ -498,25 +546,31 @@
                 $$
                 <p>they form the lie group $O(1,3)$. the indefinite signature is forced if one wants a nondegenerate
                     symmetric pairing and a finite invariant speed of light in the usual spacetime kinematics—see <a
-                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a> in
-                    <a href="../basics/">basics</a>.</p>
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>
+                    in
+                    <a href="../basics/">basics</a>.
+                </p>
 
                 <h3>symplectic vector spaces, darboux form, and poisson bracket</h3>
-                <p>a <em>symplectic form</em> on real finite-dimensional $V$ is a bilinear $\omega:V\times V\to\mathbb{R}$
+                <p>a <em>symplectic form</em> on real finite-dimensional $V$ is a bilinear $\omega:V\times
+                    V\to\mathbb{R}$
                     that is <em>skew-symmetric</em> and <em>nondegenerate</em>:</p>
                 $$
                 \omega(u,v)=-\omega(v,u),\qquad \bigl(\omega(u,v)=0\ \forall v\bigr)\Rightarrow u=0.
                 $$
-                <p>then $\dim V=2n$ is even. there exists a <em>darboux basis</em> in which the matrix of $\omega$ is</p>
+                <p>then $\dim V=2n$ is even. there exists a <em>darboux basis</em> in which the matrix of $\omega$ is
+                </p>
                 $$
                 [\omega_{ij}] = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix}.
                 $$
                 <p>writing coordinates as $(q^1,\ldots,q^n,p_1,\ldots,p_n)$ for that basis, the dual pairing is often
                     packaged with the wedge product on $T^*Q$ as $\omega=\sum_{i=1}^n dq^i\wedge dp_i$; the same
                     antisymmetric matrix encodes the bilinear pairing on the $2n$-dimensional model of phase space. the
-                    <em>poisson bracket</em> of smooth functions $f,g$ on an open set in those coordinates is</p>
+                    <em>poisson bracket</em> of smooth functions $f,g$ on an open set in those coordinates is
+                </p>
                 $$
-                \{f,g\}:=\sum_{i=1}^n\left(\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}\right).
+                \{f,g\}:=\sum_{i=1}^n\left(\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial
+                f}{\partial p_i}\frac{\partial g}{\partial q^i}\right).
                 $$
                 <p>equivalently, $\{f,g\}=\omega(X_f,X_g)$ where $X_f$ is the hamiltonian vector field defined by
                     $\iota_{X_f}\omega=\mathrm{d}f$. this is the linear infinitesimal backbone of <a
@@ -531,33 +585,38 @@
                     $\tilde B(v\otimes w)=B(v,w)$. the generating relations are</p>
                 $$
                 \begin{aligned}
-                    (\alpha v_1+\beta v_2)\otimes w &= \alpha(v_1\otimes w)+\beta(v_2\otimes w),\\
-                    v\otimes(\gamma w_1+\delta w_2) &= \gamma(v\otimes w_1)+\delta(v\otimes w_2).
+                (\alpha v_1+\beta v_2)\otimes w &= \alpha(v_1\otimes w)+\beta(v_2\otimes w),\\
+                v\otimes(\gamma w_1+\delta w_2) &= \gamma(v\otimes w_1)+\delta(v\otimes w_2).
                 \end{aligned}
                 $$
-                <p>a <em>tensor of type $(p,q)$</em> on $V$ is an element of $V^{\otimes p}\otimes (V^*)^{\otimes q}$. if
+                <p>a <em>tensor of type $(p,q)$</em> on $V$ is an element of $V^{\otimes p}\otimes (V^*)^{\otimes q}$.
+                    if
                     $S$ is the change-of-basis matrix on $V$ (new components $v'^i=S^i{}_j v^j$), <em>contravariant</em>
                     components pick up $S$, <em>covariant</em> components pick up $S^{-1}$:</p>
                 $$
                 \tilde T^{i_1\cdots i_p}{}_{j_1\cdots j_q}
-                    = S^{i_1}{}_{a_1}\cdots S^{i_p}{}_{a_p}\,(S^{-1})^{b_1}{}_{j_1}\cdots(S^{-1})^{b_q}{}_{j_q}\,
-                    T^{a_1\cdots a_p}{}_{b_1\cdots b_q}.
+                = S^{i_1}{}_{a_1}\cdots S^{i_p}{}_{a_p}\,(S^{-1})^{b_1}{}_{j_1}\cdots(S^{-1})^{b_q}{}_{j_q}\,
+                T^{a_1\cdots a_p}{}_{b_1\cdots b_q}.
                 $$
                 <p>a nondegenerate inner product $g_{ij}$ induces the <em>musical isomorphisms</em> $\flat:V\to V^*$ and
                     $\sharp:V^*\to V$:</p>
                 $$
                 v^\flat(w):=g(v,w),\qquad g(\alpha^\sharp,w):=\alpha(w),
                 $$
-                <p>and in components $v_i=g_{ij}v^j$, $v^i=g^{ij}v_j$ where $g^{ij}$ is the inverse matrix of $g_{ij}$.</p>
+                <p>and in components $v_i=g_{ij}v^j$, $v^i=g^{ij}v_j$ where $g^{ij}$ is the inverse matrix of $g_{ij}$.
+                </p>
 
                 <h3>symmetrization, alternation, and the exterior algebra</h3>
                 <p>on covariant rank-$p$ tensors (or components $T_{i_1\ldots i_p}$), the <em>symmetrization</em> and
-                    <em>alternation</em> operators are</p>
+                    <em>alternation</em> operators are
+                </p>
                 $$
-                (\mathrm{Sym}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p} T_{i_{\sigma(1)}\ldots i_{\sigma(p)}},
+                (\mathrm{Sym}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p} T_{i_{\sigma(1)}\ldots
+                i_{\sigma(p)}},
                 $$
                 $$
-                (\mathrm{Alt}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p} \mathrm{sgn}(\sigma)\,T_{i_{\sigma(1)}\ldots i_{\sigma(p)}}.
+                (\mathrm{Alt}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p}
+                \mathrm{sgn}(\sigma)\,T_{i_{\sigma(1)}\ldots i_{\sigma(p)}}.
                 $$
                 <p>the <em>exterior power</em> $\Lambda^k V^*$ consists of alternating multilinear forms; the <em>wedge
                         product</em> may be defined by $\alpha\wedge\beta:=\mathrm{Alt}(\alpha\otimes\beta)$ (up to the
@@ -570,15 +629,23 @@
                         href="../basics/#global-and-topological-closure">global forms</a> and in the next section on
                     manifolds.</p>
 
-                <h3>how these layers attach to the classical spine</h3>
-                <p>positive-definite symmetric $g$ supplies lengths, angles, orthonormal frames, and the quadratic kinetic
-                    energy; hermitian inner products supply complex amplitudes with a notion of magnitude. the minkowski
-                    form $\eta$ supplies causal order and lorentz symmetry. the symplectic form $\omega$ supplies canonical
-                    coordinates, hamiltonian flows, and poisson brackets without choosing a riemannian metric on phase
-                    space. tensor products and index bookkeeping encode multilinear physical laws under change of
-                    coordinates; the exterior algebra encodes antisymmetric line- and surface-integrand data that glue
-                    globally as forms. manifolds, metrics, connections, and cohomology in the sections that follow assume
-                    this multilinear layer is already fixed pointwise on tangent spaces.</p>
+                <h3>what kind of “inner product” does each part of physics need?</h3>
+                <p>kinetic energy wants a positive-definite quadratic form on velocities: that is a riemannian inner
+                    product on each tangent space, yielding lengths, angles, and orthonormal frames. quantum amplitudes
+                    want a hermitian structure so “probability” is a squared magnitude. relativity wants an <em>indefinite</em>
+                    inner product—the minkowski form $\eta$—so that “before and after” and “here and there” enter on equal
+                    footing and causal order becomes a geometric statement about cones, not an external postulate.</p>
+                <p>hamiltonian mechanics adds a further twist: phase space carries a symplectic form $\omega$, not a
+                    metric, so volume and canonical pairs are primary while “distance in phase space” is not. why is that
+                    the right object? because the variational calculus in <a href="../basics/">basics</a> already
+                    treats $(q,p)$ as coordinates in which evolution is a single hamiltonian flow; $\omega$ is the
+                    coordinate-invariant record of how those pairings must transform.</p>
+                <p>tensor products package multilinearity—several vector arguments entering one law—while the exterior
+                    algebra packages antisymmetry, the natural home of oriented fluxes, work along paths, and finally the
+                    differential forms that <a href="../basics/#global-and-topological-closure">maxwell and integration
+                        stories</a> write without choosing a preferred coordinate grid. the next step is to let those
+                    tangent spaces sit on a curved or topologically nontrivial base; that is the move to <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">manifolds and forms</a>.</p>
             </section>
 
             <section id="differentiable-manifolds-and-the-calculus-of-forms" class="doc-section">
@@ -596,7 +663,8 @@
                 <h3>topological manifolds and smooth atlases</h3>
                 <p>a <em>topological $n$-manifold</em> is a hausdorff, second-countable topological space $M$ such that
                     every point admits an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$. hausdorff
-                    and second-countability exclude pathologies (non-separable spaces, non-unique limits) and are part of
+                    and second-countability exclude pathologies (non-separable spaces, non-unique limits) and are part
+                    of
                     the standard definition so partitions of unity and embedding theorems apply.</p>
                 <p>a <em>$C^k$ chart</em> on $M$ is a pair $(U,\varphi)$ with $U\subset M$ open and
                     $\varphi:U\to\varphi(U)\subset\mathbb{R}^n$ a homeomorphism onto an open set. a <em>$C^k$
@@ -604,14 +672,17 @@
                     U_\alpha=M$ and, on every nonempty overlap $U_\alpha\cap U_\beta$, the <em>transition map</em></p>
                 $$
                 \varphi_{\beta\alpha}:=\varphi_\beta\circ\varphi_\alpha^{-1}:\ \varphi_\alpha(U_\alpha\cap U_\beta)\to
-                    \varphi_\beta(U_\alpha\cap U_\beta)
+                \varphi_\beta(U_\alpha\cap U_\beta)
                 $$
-                <p>is of class $C^k$ as a map between open subsets of $\mathbb{R}^n$. two atlases are <em>equivalent</em>
+                <p>is of class $C^k$ as a map between open subsets of $\mathbb{R}^n$. two atlases are
+                    <em>equivalent</em>
                     if their union is again a $C^k$ atlas. a <em>$C^k$ manifold</em> is $M$ equipped with a maximal
                     atlas (equivalently, an equivalence class). smooth ($C^\infty$) manifolds are the default for field
-                    theory; then all transition maps are $C^\infty$, and one may differentiate arbitrarily in coordinates.</p>
+                    theory; then all transition maps are $C^\infty$, and one may differentiate arbitrarily in
+                    coordinates.</p>
                 <p>the point of the transition condition: a function $f:M\to\mathbb{R}$ is declared <em>smooth</em> if
-                    $f\circ\varphi_\alpha^{-1}$ is smooth on $\varphi_\alpha(U_\alpha)$ for every chart. compatibility on
+                    $f\circ\varphi_\alpha^{-1}$ is smooth on $\varphi_\alpha(U_\alpha)$ for every chart. compatibility
+                    on
                     overlaps makes this definition independent of which chart contains $p$—the same construction carries
                     tangent vectors, tensors, and forms without coordinate ambiguity.</p>
 
@@ -626,23 +697,27 @@
                     $(x^i,v^i)$ on $TU$ representing $v=\sum_i v^i\partial/\partial x^i$. a <em>vector field</em> is a
                     smooth section $X:M\to TM$. the <em>cotangent space</em> $T_p^*M:=(T_pM)^*$ carries covectors; the
                     <em>cotangent bundle</em> $T^*M=\bigsqcup_p T_p^*M$ has dimension $2n$, and a smooth section is a
-                    <em>differential one-form</em> $\alpha$ with $\alpha_p\in T_p^*M$. pairing is canonical:</p>
+                    <em>differential one-form</em> $\alpha$ with $\alpha_p\in T_p^*M$. pairing is canonical:
+                </p>
                 $$
                 \langle \alpha_p, v\rangle := \alpha_p(v)\in\mathbb{R},\qquad v\in T_pM.
                 $$
                 <p>momenta and generalized forces in mechanics are naturally covectors; velocities are tangent vectors.
                     the <em>frame bundle</em> $F(M)$ has fiber over $p$ the set of ordered bases (frames) of $T_pM$; the
                     group $GL(n,\mathbb{R})$ acts freely and transitively on each fiber. it is the natural domain for
-                    connection forms and, in gauge theory, for local trivializations of linear-algebraic data attached to
+                    connection forms and, in gauge theory, for local trivializations of linear-algebraic data attached
+                    to
                     each point.</p>
 
                 <h3>partitions of unity and gluing local data</h3>
-                <p>many constructions—riemannian metrics, integrals of densities, bump functions—start <em>per chart</em>.
+                <p>many constructions—riemannian metrics, integrals of densities, bump functions—start <em>per
+                        chart</em>.
                     to obtain global objects one uses a <em>partition of unity</em> subordinate to an open cover
                     $\{U_\alpha\}$: a family $\{\psi_\alpha\}$ of smooth functions $M\to[0,\infty)$ such that</p>
                 <ol>
                     <li>$\mathrm{supp}(\psi_\alpha)\subset U_\alpha$ for each $\alpha$;</li>
-                    <li>the family is <em>locally finite</em>: every $p\in M$ has a neighborhood meeting only finitely many
+                    <li>the family is <em>locally finite</em>: every $p\in M$ has a neighborhood meeting only finitely
+                        many
                         $\mathrm{supp}(\psi_\alpha)$;</li>
                     <li>$\sum_\alpha \psi_\alpha(p)=1$ for all $p\in M$ (the sum is well-defined by local finiteness).
                     </li>
@@ -650,7 +725,8 @@
                 <p>on a smooth manifold (hausdorff, second-countable), such partitions exist for any open cover. bump
                     functions build the $\psi_\alpha$. typical global assembly formulas are</p>
                 $$
-                g=\sum_\alpha \psi_\alpha\,g_\alpha,\qquad \int_M \omega = \sum_\alpha \int_{U_\alpha}\psi_\alpha\,\omega,
+                g=\sum_\alpha \psi_\alpha\,g_\alpha,\qquad \int_M \omega = \sum_\alpha
+                \int_{U_\alpha}\psi_\alpha\,\omega,
                 $$
                 <p>where $g_\alpha$ is a metric tensor defined on $U_\alpha$ and $\omega$ is an $n$-form; each integrand
                     on the right is compactly supported in a chart domain. this is why global statements in <a
@@ -661,9 +737,11 @@
                 <p>a smooth <em>differential $p$-form</em> $\omega$ on $M$ assigns each $p\in M$ an alternating
                     multilinear map on $T_pM$:</p>
                 $$
-                \omega_p:\ (T_pM)^p\to\mathbb{R},\qquad \omega_p(\ldots,v,\ldots,w,\ldots)=-\omega_p(\ldots,w,\ldots,v,\ldots),
+                \omega_p:\ (T_pM)^p\to\mathbb{R},\qquad
+                \omega_p(\ldots,v,\ldots,w,\ldots)=-\omega_p(\ldots,w,\ldots,v,\ldots),
                 $$
-                <p>varying smoothly in $p$. equivalently, $\omega$ is a smooth section of the bundle $\Lambda^p(T^*M)$. in
+                <p>varying smoothly in $p$. equivalently, $\omega$ is a smooth section of the bundle $\Lambda^p(T^*M)$.
+                    in
                     local coordinates $(x^i)$ on $U$,</p>
                 $$
                 \omega|_U=\frac{1}{p!}\,\omega_{i_1\ldots i_p}(x)\,dx^{i_1}\wedge\cdots\wedge dx^{i_p},
@@ -679,18 +757,25 @@
                 <p>in coordinates, on a $p$-form written with ordered indices $i_1&lt;\cdots&lt;i_p$,</p>
                 $$
                 \mathrm{d}\omega=\sum_{j=1}^n \frac{\partial\omega_{i_1\ldots i_p}}{\partial x^j}\,dx^j\wedge
-                    dx^{i_1}\wedge\cdots\wedge dx^{i_p},
+                dx^{i_1}\wedge\cdots\wedge dx^{i_p},
                 $$
-                <p>with the understanding that components are extended by antisymmetry. the identity $\mathrm{d}^2=0$ is the
-                    coordinate-free packaging of equality of mixed partial derivatives (schwarz) for $C^2$ coefficients. on
-                    $\mathbb{R}^3$, $\mathrm{d}$ unifies gradient, curl, and divergence. closed forms ($\mathrm{d}\omega=0$)
+                <p>with the understanding that components are extended by antisymmetry. the identity $\mathrm{d}^2=0$ is
+                    the
+                    coordinate-free packaging of equality of mixed partial derivatives (schwarz) for $C^2$ coefficients.
+                    on
+                    $\mathbb{R}^3$, $\mathrm{d}$ unifies gradient, curl, and divergence. closed forms
+                    ($\mathrm{d}\omega=0$)
                     need not be globally exact; that gap is measured by de rham cohomology in the next section—already
-                    implicit in <a href="../basics/#global-and-topological-closure">maxwell and monopole obstructions</a>.</p>
+                    implicit in <a href="../basics/#global-and-topological-closure">maxwell and monopole
+                        obstructions</a>.</p>
 
                 <h3>contraction, lie derivative, and frobenius</h3>
-                <p>for a vector field $X$, <em>interior multiplication</em> (contraction) $\iota_X:\Omega^p(M)\to\Omega^{p-1}(M)$
-                    is the $\Omega(M)$-antiderivation determined by $\iota_X f=0$ on functions and $\iota_X(\mathrm{d}f)=X(f)$.
-                    <em>cartan’s magic formula</em> defines the <em>lie derivative</em> of forms:</p>
+                <p>for a vector field $X$, <em>interior multiplication</em> (contraction)
+                    $\iota_X:\Omega^p(M)\to\Omega^{p-1}(M)$
+                    is the $\Omega(M)$-antiderivation determined by $\iota_X f=0$ on functions and
+                    $\iota_X(\mathrm{d}f)=X(f)$.
+                    <em>cartan’s magic formula</em> defines the <em>lie derivative</em> of forms:
+                </p>
                 $$
                 \mathcal{L}_X := \iota_X\circ\mathrm{d}+\mathrm{d}\circ\iota_X.
                 $$
@@ -709,20 +794,29 @@
                     rolling constraints in the same geometric language.</p>
                 <p>in planar problems with harmonic or holomorphic complex coordinates, conformal maps preserve angles;
                     analytic continuation of potentials along homotopic paths agrees (monodromy), so the domain’s
-                    topology controls single-valuedness of potentials—another instance where global shape constrains local
+                    topology controls single-valuedness of potentials—another instance where global shape constrains
+                    local
                     analytic continuation.</p>
 
-                <h3>how this section feeds the rest of the hierarchy</h3>
-                <p>charts and transition maps fix <em>what smooth means</em> globally. $TM$ and $T^*M$ carry velocities
-                    and covectors (momenta, gradients) invariantly. partitions of unity make metrics, integrals, and
-                    bump-supported corrections globally coherent. $p$-forms and $\mathrm{d}$ encode antisymmetric field
-                    content and bianchi-type identities; $\mathcal{L}_X$ and $[X,Y]$ encode symmetries and constraint
-                    geometry; frobenius classifies foliations and constraint types. cohomology, connections, and
-                    curvature in the following sections are built on this calculus; they are the next
-                    algebraic-topological layer on the same smooth manifold, not an ad hoc overlay.</p>
+                <h3>why “smooth” is more than a technical hypothesis</h3>
+                <p>when <a href="../basics/">basics</a> writes an action or a field on “configuration space” or
+                    “spacetime,” you are entitled to ask: smooth in what sense, and with respect to which coordinates?
+                    charts answer that question democratically: any admissible coordinate system must agree with the
+                    others on overlaps, so a function differentiable in one chart is differentiable in all. that is the
+                    same physical demand that observable quantities should not depend on a labeling convention.</p>
+                <p>why package velocities in $TM$ and momenta in $T^*M$ separately? because they transform differently
+                    under coordinate change—even in elementary mechanics—and conflating them hides the pairing that
+                    defines work, power, and hamilton’s equations. forms and $\mathrm{d}$ then supply a single calculus
+                    in which constraints, conservation laws, and maxwell-type identities are all instances of
+                    “closed versus exact,” prepared for the cohomological reading in the next section.</p>
+                <p>partitions of unity are the honest reason global definitions (a metric on all of $M$, an integral
+                    over all of $M$) are not wishful thinking: they interpolate local data without destroying smoothness.
+                    frobenius’s theorem, in turn, is the mathematical voice of the question “are these constraints
+                    integrable, or genuinely non-holonomic?”—a distinction the classical text cannot afford to blur when
+                    it discusses rolling, steering, and reduced descriptions.</p>
             </section>
 
-                        <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
+            <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
                 <h2>cohomological invariants and spectral topology</h2>
                 <p>the preceding section fixed smooth manifolds, $\mathrm{d}^2=0$, and the calculus of forms. a
                     recurring physical pattern is <em>local solvability without global extension</em>: on a small ball,
@@ -738,20 +832,22 @@
                         complex</em> is the cochain complex</p>
                 $$
                 0\to\Omega^0(M)\xrightarrow{\mathrm{d}}\Omega^1(M)\xrightarrow{\mathrm{d}}\cdots\xrightarrow{\mathrm{d}}
-                    \Omega^n(M)\to 0,\qquad n=\dim M,
+                \Omega^n(M)\to 0,\qquad n=\dim M,
                 $$
-                <p>with the exterior derivative $\mathrm{d}$ satisfying, for all $\alpha,\beta$ of appropriate degree and
+                <p>with the exterior derivative $\mathrm{d}$ satisfying, for all $\alpha,\beta$ of appropriate degree
+                    and
                     $a,b\in\mathbb{R}$:</p>
                 <ol>
                     <li>$\mathrm{d}(a\alpha+b\beta)=a\,\mathrm{d}\alpha+b\,\mathrm{d}\beta$ (linearity);</li>
                     <li>$\mathrm{d}(\alpha\wedge\beta)=\mathrm{d}\alpha\wedge\beta+(-1)^{\deg\alpha}\alpha\wedge\mathrm{d}\beta$
                         (graded leibniz);</li>
-                    <li>$\mathrm{d}^2=0$ on every form (nilpotency—equivalently $\mathrm{im}\,\mathrm{d}\subseteq\ker\mathrm{d}$ in each degree).</li>
+                    <li>$\mathrm{d}^2=0$ on every form (nilpotency—equivalently
+                        $\mathrm{im}\,\mathrm{d}\subseteq\ker\mathrm{d}$ in each degree).</li>
                 </ol>
                 <p>define the <em>closed</em> and <em>exact</em> forms</p>
                 $$
                 Z^p(M):=\{\omega\in\Omega^p(M):\mathrm{d}\omega=0\},\qquad
-                    B^p(M):=\mathrm{im}\bigl(\mathrm{d}:\Omega^{p-1}(M)\to\Omega^p(M)\bigr).
+                B^p(M):=\mathrm{im}\bigl(\mathrm{d}:\Omega^{p-1}(M)\to\Omega^p(M)\bigr).
                 $$
                 <p>exact implies closed because $\mathrm{d}^2=0$. the <em>$p$-th de rham cohomology vector space</em> is
                     the quotient</p>
@@ -759,7 +855,8 @@
                 H^p_{\mathrm{dR}}(M):=Z^p(M)/B^p(M).
                 $$
                 <p>a class $[\omega]\in H^p_{\mathrm{dR}}(M)$ is the equivalence class of $\omega$ modulo adding
-                    $\mathrm{d}\eta$. for compact $M$ (or finite-dimensional cohomology), $\dim H^p_{\mathrm{dR}}(M)=b_p$
+                    $\mathrm{d}\eta$. for compact $M$ (or finite-dimensional cohomology), $\dim
+                    H^p_{\mathrm{dR}}(M)=b_p$
                     is the $p$-th betti number—a topological invariant, independent of metric or coordinates. a smooth
                     map $f:M\to N$ pulls back forms and commutes with $\mathrm{d}$, hence induces well-defined linear
                     maps</p>
@@ -772,7 +869,8 @@
                 <p><em>reading degrees for fields.</em> $H^1_{\mathrm{dR}}(M)\neq 0$ means there are closed $1$-forms
                     not globally $\mathrm{d}f$—multi-valued potentials, holonomy, and aharonov–bohm-type phases live in
                     this language. $H^2_{\mathrm{dR}}(M)\neq 0$ means closed $2$-forms need not be globally
-                    $\mathrm{d}A$; that is the cohomological obstruction to a single-valued vector potential when flux or
+                    $\mathrm{d}A$; that is the cohomological obstruction to a single-valued vector potential when flux
+                    or
                     bundle twisting is present.</p>
 
                 <h3>dirac monopole: closed flux, no global potential</h3>
@@ -789,21 +887,25 @@
                 $$
                 <p>$H^2_{\mathrm{dR}}(\mathbb{R}^3\setminus\{0\})\cong H^2_{\mathrm{dR}}(S^2)\cong\mathbb{R}$, and
                     integration over an enclosing $S^2$ identifies a generator: a class is zero if and only if its
-                    integral vanishes. thus $g\neq 0$ gives $[F]\neq 0$, so $F$ cannot be exact on the punctured space—there
-                    is no smooth global $A$ with $F=\mathrm{d}A$ on all of $\mathbb{R}^3\setminus\{0\}$. local potentials
+                    integral vanishes. thus $g\neq 0$ gives $[F]\neq 0$, so $F$ cannot be exact on the punctured
+                    space—there
+                    is no smooth global $A$ with $F=\mathrm{d}A$ on all of $\mathbb{R}^3\setminus\{0\}$. local
+                    potentials
                     $A_U$ exist on charts (e.g. two hemispheres), but gluing them smoothly forces a dirac string. the
                     cohomology class is the invariant record of that obstruction. coupling to a quantum phase
                     $\exp(\frac{\mathrm{i}e}{\hbar}\oint A)$ along loops then yields dirac-type quantization relations
                     between electric charge $e$ and magnetic charge $g$ (exact normalization depends on units).</p>
 
                 <h3>mayer–vietoris</h3>
-                <p>to compute $H^*_{\mathrm{dR}}(M)$ from simpler pieces, let $M=U\cup V$ with $U,V$ open. restriction of
+                <p>to compute $H^*_{\mathrm{dR}}(M)$ from simpler pieces, let $M=U\cup V$ with $U,V$ open. restriction
+                    of
                     forms gives a short complex; the resulting <em>mayer–vietoris long exact sequence</em> links
                     cohomology of $M$, $U$, $V$, and $U\cap V$:</p>
                 $$
-                \cdots\to H^p_{\mathrm{dR}}(M)\xrightarrow{(j_U^*,j_V^*)} H^p_{\mathrm{dR}}(U)\oplus H^p_{\mathrm{dR}}(V)
-                    \xrightarrow{j_{U\cap V,U}^*-j_{U\cap V,V}^*} H^p_{\mathrm{dR}}(U\cap V)\xrightarrow{\delta}
-                    H^{p+1}_{\mathrm{dR}}(M)\to\cdots
+                \cdots\to H^p_{\mathrm{dR}}(M)\xrightarrow{(j_U^*,j_V^*)} H^p_{\mathrm{dR}}(U)\oplus
+                H^p_{\mathrm{dR}}(V)
+                \xrightarrow{j_{U\cap V,U}^*-j_{U\cap V,V}^*} H^p_{\mathrm{dR}}(U\cap V)\xrightarrow{\delta}
+                H^{p+1}_{\mathrm{dR}}(M)\to\cdots
                 $$
                 <p>the connecting homomorphism $\delta$ is built by choosing a partition of unity subordinate to
                     $\{U,V\}$, splitting a closed form on $U\cap V$ into pieces extendable to $U$ and $V$, and taking
@@ -818,7 +920,8 @@
                     arranged so the <em>total differential</em> $D=\mathrm{d}+(-1)^p\check{\delta}$ satisfies $D^2=0$.
                     the associated spectral sequence (or direct acyclic-resolution argument) computes
                     $H^*_{\mathrm{dR}}(M)$ and proves the <em>de rham theorem</em>: $H^p_{\mathrm{dR}}(M)$ is naturally
-                    isomorphic to the real čech cohomology $\check{H}^p(M;\mathbb{R})$ of the nerve of the cover. analytic
+                    isomorphic to the real čech cohomology $\check{H}^p(M;\mathbb{R})$ of the nerve of the cover.
+                    analytic
                     forms and combinatorial topology are the same invariant; that isomorphism is why concrete flux
                     integrals count betti numbers.</p>
 
@@ -827,13 +930,14 @@
                     define a bilinear pairing</p>
                 $$
                 H^p_{\mathrm{dR}}(M)\times H^{n-p}_{\mathrm{dR}}(M)\to\mathbb{R},\qquad ([\alpha],[\beta])\mapsto
-                    \int_M \alpha\wedge\beta,
+                \int_M \alpha\wedge\beta,
                 $$
                 <p>well-defined because changing $\alpha$ by $\mathrm{d}\eta$ shifts the integrand by an exact $n$-form,
                     which integrates to zero by stokes. this pairing is <em>nondegenerate</em> (poincaré duality), hence
                     $\dim H^p_{\mathrm{dR}}(M)=\dim H^{n-p}_{\mathrm{dR}}(M)$. on noncompact $M$, one often pairs
                     $H^p(M)$ with $H^{n-p}_c(M)$ (compact support on one factor) so integrals converge. geometrically,
-                    $p$-cycles (sources, vortices, branes) sit in homology dual to $(n-p)$-cohomology; in four dimensions
+                    $p$-cycles (sources, vortices, branes) sit in homology dual to $(n-p)$-cohomology; in four
+                    dimensions
                     this is the structural reason electric and magnetic data can be exchanged while preserving global
                     consistency of flux and charge.</p>
 
@@ -841,14 +945,17 @@
                 <p>let $\pi:E\to M$ be an oriented real vector bundle of rank $k$. the <em>thom class</em>
                     $\Phi_E\in H^k_c(E)$ (compact support in the fiber direction) is characterized by integrating to $1$
                     along each oriented fiber, generating $H^k(\mathbb{R}^k,\mathbb{R}^k\setminus\{0\})$ fiberwise. the
-                    <em>euler class</em> is the pullback along the zero section:</p>
+                    <em>euler class</em> is the pullback along the zero section:
+                </p>
                 $$
                 e(E):=s_0^*\,\Phi_E\in H^k_{\mathrm{dR}}(M).
                 $$
                 <p>obstruction theory: a nowhere-vanishing global section forces $e(E)=0$ (pull the bundle off the zero
-                    section). conversely, $e(E)\neq 0$ obstructs every attempt at a continuous nowhere-vanishing section.
+                    section). conversely, $e(E)\neq 0$ obstructs every attempt at a continuous nowhere-vanishing
+                    section.
                     for an oriented surface $M$, $\int_M e(TM)=\chi(M)$ (gauss–bonnet); in particular
-                    $\int_{S^2}e(TS^2)=\chi(S^2)=2\neq 0$, so $e(TS^2)\neq 0$ and no continuous nonvanishing vector field
+                    $\int_{S^2}e(TS^2)=\chi(S^2)=2\neq 0$, so $e(TS^2)\neq 0$ and no continuous nonvanishing vector
+                    field
                     exists on $S^2$ (hairy ball theorem). euler class is <em>multiplicative</em> under whitney sum of
                     oriented bundles:</p>
                 $$
@@ -864,7 +971,8 @@
                     $B$ path-connected and $\pi_1(B)$ acting trivially on $H^*(F)$, the <em>serre spectral sequence</em>
                     has</p>
                 $$
-                E_2^{p,q}=H^p_{\mathrm{dR}}\bigl(B;\,H^q_{\mathrm{dR}}(F)\bigr)\quad\Rightarrow\quad H^{p+q}_{\mathrm{dR}}(E).
+                E_2^{p,q}=H^p_{\mathrm{dR}}\bigl(B;\,H^q_{\mathrm{dR}}(F)\bigr)\quad\Rightarrow\quad
+                H^{p+q}_{\mathrm{dR}}(E).
                 $$
                 <p>differentials transgress fiber classes into base cohomology, packaging how fiber topology twists the
                     total space. the same formalism organizes čech–de rham doubles, equivariant cohomology, and filtered
@@ -872,24 +980,33 @@
                     pulling back a volume form and choosing primitives encodes the <em>hopf invariant</em> in integrals
                     such as $\int \alpha\wedge\mathrm{d}\alpha$—linking homotopy of maps to cohomological pairings.</p>
 
-                <h3>how this feeds what follows</h3>
-                <p>closed versus exact is the differential shadow of global topology; $H^p_{\mathrm{dR}}$ is the linear
-                    measurement of that gap. mayer–vietoris and čech–de rham compute it; poincaré duality aligns degrees
-                    that carry dual flux and charge; euler and thom classes obstruct sections of bundles on which fields
-                    live; spectral sequences compute cohomology of total spaces when base and fiber are understood. the
-                    variational and field equations in <a href="../basics/">basics</a> assume this layer when asserting
-                    which potentials exist globally, which charges are quantized, and how connections on bundles patch—
-                    connections, curvature, and characteristic classes in later sections are built on the same cohomological
-                    skeleton.</p>
+                <h3>when a local potential is not a global promise</h3>
+                <p>if $\mathrm{d}F=0$ on a region, why is it still news that $F$ might not equal $\mathrm{d}A$ on the
+                    whole space? because “locally exact” is cheap—every point sits in a ball—but patching potentials
+                    across overlaps is a topological problem. cohomology is simply the book-keeping of that failure: it
+                    turns the question “can we choose $A$ globally?” into a linear invariant you can compute from covers,
+                    cycles, and duality.</p>
+                <p>why should a physicist care about euler classes or spectral sequences? the euler class answers blunt
+                    questions such as “does this bundle admit a nowhere-vanishing section?”—think hairy-ball obstructions
+                    and twists in field configurations. spectral sequences are less glamorous but serve the same role as
+                    dimensional reduction in a difficult problem: they organize how fiber topology influences the total
+                    space when you build a spacetime or a field configuration space as something fibering over something
+                    simpler.</p>
+                <p>read alongside <a href="../basics/#global-and-topological-closure">global and topological closure</a>
+                    in <a href="../basics/">basics</a>: the dirac-string phenomenon is not a trick of gauge fixing but a
+                    concrete warning that flux and potential are related globally, not chartwise. when you later couple
+                    geometry to matter in <a href="#geometric-gravity-connections-and-curvature">gravity</a>, the same
+                    distinction—local flatness versus global curvature—reappears with a different tensor as protagonist.</p>
             </section>
 
             <section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
                 <h2>the kinematics and dynamics of classical mechanics</h2>
                 <p>this page is not a second copy of <a href="../basics/">basics</a>: it packages the same motion in the
-                    language already forced by manifolds ($Q$, charts, $TQ$, $T^*Q$), the exterior calculus
+                    language of manifolds ($Q$, charts, $TQ$, $T^*Q$), the exterior calculus
                     ($\mathrm{d}$, $\mathrm{d}^2=0$, forms on bundles), symplectic linear algebra from <a
                         href="#metric-and-multilinear-structures">metric and multilinear structures</a>, and global
-                    invariants from <a href="#cohomological-invariants-and-spectral-topology">cohomology</a> (periods over
+                    invariants from <a href="#cohomological-invariants-and-spectral-topology">cohomology</a> (periods
+                    over
                     cycles, torus homology). the goal is explicit definitions, displayed equations, and the variational
                     chain that turns “stationary action” into hamiltonian flow on symplectic phase space.</p>
 
@@ -897,8 +1014,10 @@
                 <p>the <em>configuration space</em> is a smooth manifold $Q$ of dimension $n$ (constraints already
                     embedded, so $Q$ is reduced). local coordinates $(q^1,\ldots,q^n)$ are a chart
                     $\varphi:U\to\mathbb{R}^n$; a change of chart is a diffeomorphism, and physical laws must be
-                    tensorial or invariant under such changes—a requirement that rules out writing dynamics only in a fixed
-                    cartesian $\mathbb{R}^{3N}$ without quotienting by gauges or constraints. a <em>motion</em> is a smooth
+                    tensorial or invariant under such changes—a requirement that rules out writing dynamics only in a
+                    fixed
+                    cartesian $\mathbb{R}^{3N}$ without quotienting by gauges or constraints. a <em>motion</em> is a
+                    smooth
                     curve $\gamma:[t_1,t_2]\to Q$; its velocity is $\dot\gamma(t)\in T_{\gamma(t)}Q$. the <em>tangent
                         bundle</em> $\pi:TQ\to Q$ has points $(q,v)$ with $v\in T_qQ$; in bundle coordinates induced by
                     $(q^i)$, a tangent vector is $v=v^i\partial/\partial q^i$.</p>
@@ -909,24 +1028,31 @@
                 S[\gamma]=\int_{t_1}^{t_2} L\bigl(\gamma(t),\dot\gamma(t),t\bigr)\,\mathrm{d}t.
                 $$
                 <p>the variational problem fixes $\gamma(t_1)=q_1$, $\gamma(t_2)=q_2$. let $\gamma_s$ be a one-parameter
-                    family with $\gamma_0=\gamma$, and write $\delta q^i(t)=\partial_s\big|_{s=0} q^i_s(t)$ for coordinate
+                    family with $\gamma_0=\gamma$, and write $\delta q^i(t)=\partial_s\big|_{s=0} q^i_s(t)$ for
+                    coordinate
                     components in a fixed chart (intrinsically, $\delta q$ is a vector field along $\gamma$ vanishing at
-                    endpoints). then $\delta\dot q^i=\frac{\mathrm{d}}{\mathrm{d}t}\delta q^i$. the first variation is</p>
+                    endpoints). then $\delta\dot q^i=\frac{\mathrm{d}}{\mathrm{d}t}\delta q^i$. the first variation is
+                </p>
                 $$
-                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q^i}\,\delta q^i+\frac{\partial L}{\partial\dot q^i}\,\delta\dot q^i\right)\mathrm{d}t.
+                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q^i}\,\delta q^i+\frac{\partial
+                L}{\partial\dot q^i}\,\delta\dot q^i\right)\mathrm{d}t.
                 $$
                 <p>integrating the second term by parts and using $\delta q^i(t_1)=\delta q^i(t_2)=0$,</p>
                 $$
-                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q^i}-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q^i}\right)\delta q^i\,\mathrm{d}t.
+                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial
+                q^i}-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q^i}\right)\delta q^i\,\mathrm{d}t.
                 $$
-                <p>for arbitrary $\delta q^i$, stationarity $\delta S=0$ yields the <em>euler–lagrange equations</em></p>
+                <p>for arbitrary $\delta q^i$, stationarity $\delta S=0$ yields the <em>euler–lagrange equations</em>
+                </p>
                 $$
-                \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial\dot q^i}\right)-\frac{\partial L}{\partial q^i}=0,\qquad i=1,\ldots,n.
+                \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial\dot q^i}\right)-\frac{\partial
+                L}{\partial q^i}=0,\qquad i=1,\ldots,n.
                 $$
                 <p>under change of coordinates on $Q$, the left-hand sides transform as components of a covector along
                     $\gamma$ (the euler–lagrange covector); the vanishing condition is therefore intrinsic to $\gamma$
                     and $L$, not tied to one chart. see <a
-                        href="../basics/#variational-calculus-and-symmetries">variational calculus and symmetries</a> for
+                        href="../basics/#variational-calculus-and-symmetries">variational calculus and symmetries</a>
+                    for
                     the physical worked examples; here the emphasis is the geometric carrier ($TQ$ and path space).</p>
 
                 <h3>galilean kinetic energy from symmetry</h3>
@@ -938,7 +1064,8 @@
                 L(|\mathbf{v}+\boldsymbol{\epsilon}|^2)=L(|\mathbf{v}|^2)+2\boldsymbol{\epsilon}\cdot\mathbf{v}\,L'(|\mathbf{v}|^2)+O(|\boldsymbol{\epsilon}|^2).
                 $$
                 <p>requiring the euler–lagrange equations to be unchanged up to a total time derivative forces
-                    $L'(|\mathbf{v}|^2)$ to be constant (otherwise the linear-in-$\boldsymbol{\epsilon}$ term cannot be a
+                    $L'(|\mathbf{v}|^2)$ to be constant (otherwise the linear-in-$\boldsymbol{\epsilon}$ term cannot be
+                    a
                     total derivative for all trajectories). hence $L=\frac12 m|\mathbf{v}|^2$ up to an additive constant
                     and possible total time derivative—this is the quadratic kinetic energy singled out by the same
                     variational principle used on manifolds.</p>
@@ -946,7 +1073,8 @@
                 <h3>noether charges and the energy function</h3>
                 <p>suppose a local one-parameter family of diffeomorphisms $\Phi_s:Q\to Q$ lifts to $TQ$ by
                     $(q,v)\mapsto(\Phi_s(q),\mathrm{d}\Phi_s|_q(v))$ and leaves $L$ invariant:
-                    $L(\Phi_s(q),\mathrm{d}\Phi_s|_q(v),t)=L(q,v,t)$. differentiating at $s=0$ with generator vector field
+                    $L(\Phi_s(q),\mathrm{d}\Phi_s|_q(v),t)=L(q,v,t)$. differentiating at $s=0$ with generator vector
+                    field
                     $X$ on $Q$ gives a conserved quantity along euler–lagrange solutions (<em>noether’s theorem</em>,
                     simplest chart form):</p>
                 $$
@@ -963,7 +1091,8 @@
                 \mathbf{R}=\frac{\sum_a m_a\mathbf{r}_a}{\sum_a m_a}
                 $$
                 <p>satisfy $M\ddot{\mathbf{R}}=\mathbf{0}$ when external forces vanish. when the potential is invariant
-                    under translations, the lagrangian splits into center-of-mass kinetic energy plus an internal lagrangian
+                    under translations, the lagrangian splits into center-of-mass kinetic energy plus an internal
+                    lagrangian
                     on relative coordinates—an elementary instance of <em>symmetry reduction</em> on $Q$ before legendre
                     transform to $T^*Q$.</p>
 
@@ -971,7 +1100,8 @@
                 <p>define the <em>fiber derivative</em> (legendre map in coordinates)
                     $\mathbb{F}L:TQ\times\mathbb{R}\to T^*Q\times\mathbb{R}$ by</p>
                 $$
-                \mathbb{F}L(q,v,t)=\left(q,\,p_i\,\mathrm{d}q^i,\,t\right),\qquad p_i=\frac{\partial L}{\partial\dot q^i}(q,v,t).
+                \mathbb{F}L(q,v,t)=\left(q,\,p_i\,\mathrm{d}q^i,\,t\right),\qquad p_i=\frac{\partial L}{\partial\dot
+                q^i}(q,v,t).
                 $$
                 <p>$L$ is <em>hyperregular</em> if $\mathbb{F}L$ is a diffeomorphism (equivalently, for each fixed
                     $(q,t)$ the map $v\mapsto p$ is a global diffeomorphism $T_qQ\to T^*_qQ$). a local sufficient
@@ -981,11 +1111,13 @@
                 $$
                 <p>is invertible at each point (legendre transform is then locally invertible). mechanical lagrangians
                     kinetic $+$ potential typically satisfy strong convexity in $\dot q$, hence hyperregularity. the
-                    <em>hamiltonian</em> is</p>
+                    <em>hamiltonian</em> is
+                </p>
                 $$
                 H(q,p,t)=p_i\dot q^i-L(q,\dot q,t),
                 $$
-                <p>with $\dot q$ expressed implicitly as a function of $(q,p,t)$ by inverting $p=\partial L/\partial\dot q$.
+                <p>with $\dot q$ expressed implicitly as a function of $(q,p,t)$ by inverting $p=\partial L/\partial\dot
+                    q$.
                     along euler–lagrange trajectories, hamilton’s equations hold:</p>
                 $$
                 \dot q^i=\frac{\partial H}{\partial p_i},\qquad \dot p_i=-\frac{\partial H}{\partial q^i}.
@@ -998,15 +1130,19 @@
                 \theta=p_i\,\mathrm{d}q^i,\qquad \omega=-\mathrm{d}\theta=\mathrm{d}q^i\wedge\mathrm{d}p_i.
                 $$
                 <p>$\omega$ is <em>closed</em> ($\mathrm{d}\omega=0$) and <em>nondegenerate</em> at each point: the map
-                    $\flat:T(T^*Q)\to T^*(T^*Q)$ given by $X\mapsto \iota_X\omega$ is an isomorphism. the <em>hamiltonian
+                    $\flat:T(T^*Q)\to T^*(T^*Q)$ given by $X\mapsto \iota_X\omega$ is an isomorphism. the
+                    <em>hamiltonian
                         vector field</em> $X_H$ is defined uniquely by</p>
                 $$
                 \iota_{X_H}\omega=\mathrm{d}H.
                 $$
-                <p>in darboux coordinates this is equivalent to hamilton’s equations. for smooth $f,g:T^*Q\to\mathbb{R}$, the
-                    <em>poisson bracket</em> is</p>
+                <p>in darboux coordinates this is equivalent to hamilton’s equations. for smooth
+                    $f,g:T^*Q\to\mathbb{R}$, the
+                    <em>poisson bracket</em> is
+                </p>
                 $$
-                \{f,g\}=\omega(X_f,X_g)=\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}.
+                \{f,g\}=\omega(X_f,X_g)=\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial
+                f}{\partial p_i}\frac{\partial g}{\partial q^i}.
                 $$
                 <p>the poisson bracket satisfies, for all $f,g,h$ and constants $a,b$:</p>
                 <ol>
@@ -1022,36 +1158,45 @@
                 $$
                 <p>constants of motion are those with $\{f,H\}=0$ and, for autonomous $H$, $\partial f/\partial t=0$.
                     this ties directly to the lie-theoretic substrate in <a
-                        href="#algebraic-substrate-and-categorical-foundations">algebraic substrate</a>: symmetries of $H$
+                        href="#algebraic-substrate-and-categorical-foundations">algebraic substrate</a>: symmetries of
+                    $H$
                     close under bracket and generate flows preserving $\omega$ (when the symmetry is hamiltonian).</p>
 
                 <h3>hamilton–jacobi theory</h3>
                 <p>a time-dependent generating function $S(q,t)$ on $Q$ defines a canonical relation via
                     $p_i=\partial S/\partial q^i$. requiring the transformed hamiltonian to vanish yields the
-                    <em>hamilton–jacobi equation</em></p>
+                    <em>hamilton–jacobi equation</em>
+                </p>
                 $$
                 H\left(q^i,\frac{\partial S}{\partial q^i},t\right)+\frac{\partial S}{\partial t}=0.
                 $$
                 <p>a <em>complete integral</em> $S(q,\alpha_1,\ldots,\alpha_n,t)$ depending on $n$ independent constants
-                    $\alpha$ generates a canonical transformation to coordinates in which motion is trivial (constants of
-                    motion), reducing integration to quadratures—this is the pde formulation dual to hamilton’s ode flow on
+                    $\alpha$ generates a canonical transformation to coordinates in which motion is trivial (constants
+                    of
+                    motion), reducing integration to quadratures—this is the pde formulation dual to hamilton’s ode flow
+                    on
                     $T^*Q$.</p>
 
                 <h3>integrable tori, action–angle variables, and a cohomological period</h3>
-                <p>when $n$ independent conserved quantities in involution $\{F_i,F_j\}=0$ exist (liouville integrability),
-                    compact connected level sets are generically $n$-tori $T^n$. <em>action variables</em> are defined by
+                <p>when $n$ independent conserved quantities in involution $\{F_i,F_j\}=0$ exist (liouville
+                    integrability),
+                    compact connected level sets are generically $n$-tori $T^n$. <em>action variables</em> are defined
+                    by
                     choosing a basis $\{\gamma_k\}_{k=1}^n$ of $H_1(T^n,\mathbb{Z})\cong\mathbb{Z}^n$ and setting</p>
                 $$
                 I_k=\frac{1}{2\pi}\oint_{\gamma_k} p_i\,\mathrm{d}q^i.
                 $$
-                <p>the integrand is the canonical one-form $\theta$ pulled back to the torus; the $I_k$ are coordinates on
-                    the image of the period map and are preserved by the flow. for the one-dimensional harmonic oscillator
+                <p>the integrand is the canonical one-form $\theta$ pulled back to the torus; the $I_k$ are coordinates
+                    on
+                    the image of the period map and are preserved by the flow. for the one-dimensional harmonic
+                    oscillator
                     $H=p^2/(2m)+\frac12 m\omega^2 q^2$ at energy $E$, the energy surface in $(q,p)$ is the ellipse</p>
                 $$
                 \frac{p^2}{2mE}+\frac{m\omega^2 q^2}{2E}=1,
                 $$
                 <p>with area $\oint p\,\mathrm{d}q=2\pi E/\omega$, hence $I=E/\omega$. under slow, parametric change of
-                    $\omega(t)$, <em>adiabatic invariance</em> asserts approximate conservation of $I$; geometrically, the
+                    $\omega(t)$, <em>adiabatic invariance</em> asserts approximate conservation of $I$; geometrically,
+                    the
                     enclosed symplectic area of the orbit is a homological invariant of the frozen-energy torus—linking
                     mechanics to the same “period of a closed form over a cycle” viewpoint as $H^1(T^n)$ in de rham
                     theory (see <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
@@ -1059,40 +1204,56 @@
                 <h3>global topology: fundamental group and the path groupoid</h3>
                 <p>when $\pi_1(Q)$ is nontrivial, distinct homotopy classes of loops in $Q$ label <em>sectors</em> of
                     configuration space (e.g. indistinguishable particles in two dimensions, winding around obstacles).
-                    the space of piecewise-smooth paths $\mathrm{Path}(Q)$ carries a partial composition (concatenation when
-                    endpoints match); quotienting by reparameterization yields a <em>groupoid</em> whose objects are points
-                    of $Q$ and morphisms are homotopy classes of paths. the action $S$ is additive over composition up to
-                    the same endpoint data, so stationary paths respect this concatenation structure—variational principles
-                    are naturally formulated on this groupoid rather than on a single simply connected cover. monodromy in
-                    integrable systems (non-trivial bundle of tori over action space) is another global phenomenon; it is
+                    the space of piecewise-smooth paths $\mathrm{Path}(Q)$ carries a partial composition (concatenation
+                    when
+                    endpoints match); quotienting by reparameterization yields a <em>groupoid</em> whose objects are
+                    points
+                    of $Q$ and morphisms are homotopy classes of paths. the action $S$ is additive over composition up
+                    to
+                    the same endpoint data, so stationary paths respect this concatenation structure—variational
+                    principles
+                    are naturally formulated on this groupoid rather than on a single simply connected cover. monodromy
+                    in
+                    integrable systems (non-trivial bundle of tori over action space) is another global phenomenon; it
+                    is
                     not visible in the local darboux chart calculus alone.</p>
 
-                <h3>how this section uses the preceding hierarchy</h3>
-                <p>$Q$ is a manifold; $TQ$ and $T^*Q$ are the bundles introduced in <a
-                        href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds and forms</a>.
-                    $\theta$ and $\omega$ are one- and two-forms with $\mathrm{d}^2=0$ enforcing jacobi and bianchi-type
-                    consistency. symmetry groups act on $Q$ and lift to canonical transformations on $T^*Q$. periods
-                    $\oint_{\gamma_k} p\,\mathrm{d}q$ pair homology classes with the canonical one-form, exactly in the
-                    spirit of cohomological periods. <a href="../basics/">basics</a> keeps the phenomenology and examples;
-                    this section states the minimal geometric skeleton those examples assume.</p>
+                <h3>the same motion, read as geometry on $Q$ and as flow on $T^*Q$</h3>
+                <p>is lagrangian mechanics on $TQ$ “the same theory” as hamiltonian mechanics on $T^*Q$? for
+                    hyperregular systems, yes: the legendre map is a dictionary, not a competing ontology. what changes
+                    is which geometry is primary—variational principles prefer the tangent bundle; symmetries and
+                    canonical transformations prefer the cotangent bundle with its canonical one-form $\theta$ and
+                    symplectic form $\omega$.</p>
+                <p>why does $\mathrm{d}^2=0$ show up next to the poisson bracket? because both are facets of consistency:
+                    the exterior derivative enforces identities among derivatives; the jacobi identity encloses how
+                    conserved quantities close under bracket. symmetry groups acting on $Q$ lift to $T^*Q$, which is the
+                    geometric content of noether’s theorem married to canonical transformations—the very picture <a
+                        href="../basics/#phase-space-and-canonical-structure">phase space and canonical structure</a>
+                    sketches in prose.</p>
+                <p>when an integrable system’s action variables are defined by periods $\oint p\,\mathrm{d}q$, you are
+                    literally measuring the canonical one-form around holes in phase space. that is not an analogy to
+                    cohomology—it <em>is</em> a period integral, the same idea that entered with fluxes and potentials,
+                    now bearing on adiabatic invariance and the long-time stability questions <a
+                        href="../basics/">basics</a> poses in words rather than in de rham cohomology.</p>
             </section>
 
             <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
                 <h2>relativistic spacetime and electrodynamics</h2>
                 <p>finite signal speed contradicts galilean instantaneous interactions. the resolution is a single
                     lorentzian arena for all phenomena—already narrated in <a
-                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>, <a
-                        href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves and radiation</a>,
-                    and <a href="../basics/#global-and-topological-closure">maxwell as forms</a>. this section is the
-                    mathematical packaging tied to earlier layers: <a
-                        href="#differentiable-manifolds-and-the-calculus-of-forms">manifolds and $\mathrm{d}$</a>, <a
-                        href="#metric-and-multilinear-structures">metric duality</a>, <a
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>,
+                    <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves and radiation</a>,
+                    and <a href="../basics/#global-and-topological-closure">maxwell as forms</a>. here those threads are
+                    written in one place: <a href="#differentiable-manifolds-and-the-calculus-of-forms">manifolds and
+                        $\mathrm{d}$</a>, <a href="#metric-and-multilinear-structures">metric duality</a>, <a
                         href="#cohomological-invariants-and-spectral-topology">cohomology of gauge fields</a>, and <a
-                        href="#the-kinematics-and-dynamics-of-classical-mechanics">variational mechanics</a>. the signature
+                        href="#the-kinematics-and-dynamics-of-classical-mechanics">variational mechanics</a>. the
+                    signature
                     matches <a href="#geometric-gravity-connections-and-curvature">curved spacetime</a> later:
                     <em>mostly minus</em> $\eta=\mathrm{diag}(-1,1,1,1)$. texts using <em>mostly plus</em>
                     $\mathrm{diag}(+1,-1,-1,-1)$ flip the sign of $\eta(V,V)$ and of $\eta_{\mu\nu}p^\mu p^\nu$ on-shell
-                    (then $p^\mu p_\mu=+m^2c^2$); tensor equations are the same after that bookkeeping.</p>
+                    (then $p^\mu p_\mu=+m^2c^2$); tensor equations are the same after that bookkeeping.
+                </p>
 
                 <h3>minkowski metric, intervals, and lorentz symmetry</h3>
                 <p>work in cartesian coordinates $x^\mu=(x^0,x^1,x^2,x^3)$ with $x^0=ct$. the <em>minkowski metric</em>
@@ -1113,16 +1274,22 @@
                     <li><em>null</em> ($\eta(V,V)=0$): light;</li>
                     <li><em>spacelike</em> ($\eta(V,V)&gt;0$): no causal link to the origin in flat spacetime.</li>
                 </ul>
-                <p>a linear map $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$ is a <em>lorentz transformation</em> if it preserves
+                <p>a linear map $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$ is a <em>lorentz transformation</em> if it
+                    preserves
                     the interval for all displacements:</p>
                 $$
-                \eta_{\rho\sigma}=\Lambda^\mu{}_\rho\,\Lambda^\nu{}_\sigma\,\eta_{\mu\nu}\qquad\text{equivalently}\qquad \Lambda^{\mathsf T}\eta\Lambda=\eta.
+                \eta_{\rho\sigma}=\Lambda^\mu{}_\rho\,\Lambda^\nu{}_\sigma\,\eta_{\mu\nu}\qquad\text{equivalently}\qquad
+                \Lambda^{\mathsf T}\eta\Lambda=\eta.
                 $$
                 <p>the set of such $\Lambda$ is the lie group $O(1,3)$; the subgroup with $\det\Lambda=1$ and
-                    $\Lambda^0{}_0&gt;0$ is the <em>restricted lorentz group</em> $SO^+(1,3)$, preserving orientation and
-                    future time direction. contravariant vectors transform as $V'^\mu=\Lambda^\mu{}_\nu V^\nu$; covariant
-                    components use index lowering $V_\mu=\eta_{\mu\nu}V^\nu$ and $V'^\mu=\Lambda^\mu{}_\nu V^\nu$ implies
-                    $V'_\mu=(\Lambda^{-1})^\nu{}_\mu V_\nu=\Lambda_\mu{}^\nu V_\nu$ with $\Lambda_\mu{}^\nu=\eta_{\mu\rho}\Lambda^\rho{}_\sigma\eta^{\sigma\nu}$.</p>
+                    $\Lambda^0{}_0&gt;0$ is the <em>restricted lorentz group</em> $SO^+(1,3)$, preserving orientation
+                    and
+                    future time direction. contravariant vectors transform as $V'^\mu=\Lambda^\mu{}_\nu V^\nu$;
+                    covariant
+                    components use index lowering $V_\mu=\eta_{\mu\nu}V^\nu$ and $V'^\mu=\Lambda^\mu{}_\nu V^\nu$
+                    implies
+                    $V'_\mu=(\Lambda^{-1})^\nu{}_\mu V_\nu=\Lambda_\mu{}^\nu V_\nu$ with
+                    $\Lambda_\mu{}^\nu=\eta_{\mu\rho}\Lambda^\rho{}_\sigma\eta^{\sigma\nu}$.</p>
 
                 <h3>proper time and the free relativistic particle</h3>
                 <p>for a timelike worldline $x^\mu(\lambda)$, <em>proper time</em> $\tau$ is defined by</p>
@@ -1133,7 +1300,8 @@
                 $$
                 S_m[x]=-mc\int_{\lambda_1}^{\lambda_2}\sqrt{-\eta_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}}\,\mathrm{d}\lambda.
                 $$
-                <p>the integrand is reparameterization-invariant; choosing $\lambda=t$ gives the lagrangian in the laboratory
+                <p>the integrand is reparameterization-invariant; choosing $\lambda=t$ gives the lagrangian in the
+                    laboratory
                     frame</p>
                 $$
                 L=-mc^2\sqrt{1-\frac{\mathbf{v}^2}{c^2}},\qquad \mathbf{v}=\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}.
@@ -1142,22 +1310,28 @@
                 $$
                 \mathbf{p}=\frac{\partial L}{\partial\mathbf{v}}=\frac{m\mathbf{v}}{\sqrt{1-\mathbf{v}^2/c^2}}.
                 $$
-                <p>the <em>four-velocity</em> $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ satisfies $\eta_{\mu\nu}u^\mu u^\nu=-c^2$.
+                <p>the <em>four-velocity</em> $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ satisfies $\eta_{\mu\nu}u^\mu
+                    u^\nu=-c^2$.
                     the <em>four-momentum</em> $p^\mu=m u^\mu$ obeys the <em>mass-shell</em> constraint</p>
                 $$
-                \eta_{\mu\nu}p^\mu p^\nu=-m^2c^2\qquad\text{(equivalently }E^2=c^2\mathbf{p}^2+m^2c^4\text{ with }p^0=E/c\text{)}.
+                \eta_{\mu\nu}p^\mu p^\nu=-m^2c^2\qquad\text{(equivalently }E^2=c^2\mathbf{p}^2+m^2c^4\text{ with
+                }p^0=E/c\text{)}.
                 $$
-                <p>conservation of $p^\mu$ in scattering and decay is the relativistic replacement for separate newtonian
+                <p>conservation of $p^\mu$ in scattering and decay is the relativistic replacement for separate
+                    newtonian
                     momentum and energy conservation—algebraic closure of kinematics without dynamical details of
                     interaction zones.</p>
 
                 <h3>minimal coupling to the electromagnetic potential</h3>
-                <p>the potential is encoded as a <em>one-form</em> $A=A_\mu(x)\,\mathrm{d}x^\mu$ (equivalently covector field
+                <p>the potential is encoded as a <em>one-form</em> $A=A_\mu(x)\,\mathrm{d}x^\mu$ (equivalently covector
+                    field
                     $A_\mu$). the <em>minimal coupling</em> action along a worldline $\gamma$ is</p>
                 $$
-                S_{\mathrm{int}}=-\frac{e}{c}\int_\gamma A_\mu(x)\,\mathrm{d}x^\mu=-\frac{e}{c}\int A_\mu(x(\lambda))\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\,\mathrm{d}\lambda.
+                S_{\mathrm{int}}=-\frac{e}{c}\int_\gamma A_\mu(x)\,\mathrm{d}x^\mu=-\frac{e}{c}\int
+                A_\mu(x(\lambda))\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\,\mathrm{d}\lambda.
                 $$
-                <p>the total particle action is $S=S_m+S_{\mathrm{int}}$. in coordinates $(t,\mathbf{x})$ with $A^0=\phi$,
+                <p>the total particle action is $S=S_m+S_{\mathrm{int}}$. in coordinates $(t,\mathbf{x})$ with
+                    $A^0=\phi$,
                     $A^i$ the spatial components,</p>
                 $$
                 L=-mc^2\sqrt{1-\mathbf{v}^2/c^2}+\frac{e}{c}\mathbf{A}\cdot\mathbf{v}-e\phi.
@@ -1166,7 +1340,8 @@
                 $$
                 \mathbf{P}=\mathbf{p}+\frac{e}{c}\mathbf{A},
                 $$
-                <p>while the kinematic momentum $\mathbf{p}$ enters the kinetic term—exactly the momentum shift forced by gauge
+                <p>while the kinematic momentum $\mathbf{p}$ enters the kinetic term—exactly the momentum shift required
+                    by gauge
                     invariance (see below).</p>
 
                 <h3>field strength, gauge transformations, and the lorentz force</h3>
@@ -1175,8 +1350,10 @@
                 F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu.
                 $$
                 <p>antisymmetry $F_{\mu\nu}=-F_{\nu\mu}$ is automatic. in the language of <a
-                        href="#differentiable-manifolds-and-the-calculus-of-forms">exterior calculus</a>, $F=\mathrm{d}A$ is a
-                    closed two-form on minkowski space: $\mathrm{d}F=\mathrm{d}^2A=0$ (homogeneous maxwell / bianchi). a <em>gauge
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">exterior calculus</a>,
+                    $F=\mathrm{d}A$ is a
+                    closed two-form on minkowski space: $\mathrm{d}F=\mathrm{d}^2A=0$ (homogeneous maxwell / bianchi). a
+                    <em>gauge
                         transformation</em> is</p>
                 $$
                 A_\mu\longmapsto A_\mu+\partial_\mu\chi
@@ -1185,62 +1362,84 @@
                 $$
                 F'_{\mu\nu}=\partial_\mu(A_\nu+\partial_\nu\chi)-\partial_\nu(A_\mu+\partial_\mu\chi)=F_{\mu\nu}+\partial_\mu\partial_\nu\chi-\partial_\nu\partial_\mu\chi=F_{\mu\nu},
                 $$
-                <p>by equality of mixed partials—the coordinate face of $\mathrm{d}^2\chi=0$. equivalently $A\mapsto A+\mathrm{d}\chi$
-                    implies $\mathrm{d}(A+\mathrm{d}\chi)=\mathrm{d}A$. on a topologically nontrivial spacetime region, $F$
-                    may be closed without being globally $\mathrm{d}A$; the class $[F]\in H^2_{\mathrm{dR}}(M)$ is the obstruction
-                    (dirac string / monopole package in <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
-                <p>varying $S_m+S_{\mathrm{int}}$ with respect to $x^\mu(\lambda)$ (holding $A_\mu$ fixed) reproduces the geodesic
-                    term from $S_m$ plus a term $-(e/c)\int (\partial_\mu A_\nu-\partial_\nu A_\mu)\dot x^\nu\,\delta x^\mu\,\mathrm{d}\lambda$
-                    after integration by parts. the antisymmetric combination is $F_{\mu\nu}\dot x^\nu$; reparameterizing to
-                    proper time $\tau$ with $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ gives the <em>lorentz four-force law</em></p>
+                <p>by equality of mixed partials—the coordinate face of $\mathrm{d}^2\chi=0$. equivalently $A\mapsto
+                    A+\mathrm{d}\chi$
+                    implies $\mathrm{d}(A+\mathrm{d}\chi)=\mathrm{d}A$. on a topologically nontrivial spacetime region,
+                    $F$
+                    may be closed without being globally $\mathrm{d}A$; the class $[F]\in H^2_{\mathrm{dR}}(M)$ is the
+                    obstruction
+                    (dirac string / monopole package in <a
+                        href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
+                <p>varying $S_m+S_{\mathrm{int}}$ with respect to $x^\mu(\lambda)$ (holding $A_\mu$ fixed) reproduces
+                    the geodesic
+                    term from $S_m$ plus a term $-(e/c)\int (\partial_\mu A_\nu-\partial_\nu A_\mu)\dot x^\nu\,\delta
+                    x^\mu\,\mathrm{d}\lambda$
+                    after integration by parts. the antisymmetric combination is $F_{\mu\nu}\dot x^\nu$;
+                    reparameterizing to
+                    proper time $\tau$ with $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ gives the <em>lorentz four-force
+                        law</em></p>
                 $$
-                m\frac{\mathrm{d}u^\mu}{\mathrm{d}\tau}=\frac{e}{c}\,F^\mu{}_\nu\,u^\nu,\qquad F^\mu{}_\nu=\eta^{\mu\rho}F_{\rho\nu}.
+                m\frac{\mathrm{d}u^\mu}{\mathrm{d}\tau}=\frac{e}{c}\,F^\mu{}_\nu\,u^\nu,\qquad
+                F^\mu{}_\nu=\eta^{\mu\rho}F_{\rho\nu}.
                 $$
-                <p>equivalently $m c\,\mathrm{d}u^\mu/\mathrm{d}s=(e/c)F^\mu{}_\nu u^\nu$ if one writes affine parameter $s=c\tau$
+                <p>equivalently $m c\,\mathrm{d}u^\mu/\mathrm{d}s=(e/c)F^\mu{}_\nu u^\nu$ if one writes affine parameter
+                    $s=c\tau$
                     (so $u^\mu=\mathrm{d}x^\mu/\mathrm{d}s$ still satisfies $\eta_{\mu\nu}u^\mu u^\nu=-1$).</p>
-                <p>with contravariant potential $A^\mu=(\phi,\mathbf{A})$ and $x^0=ct$, lower indices by $A_\mu=\eta_{\mu\nu}A^\nu$
+                <p>with contravariant potential $A^\mu=(\phi,\mathbf{A})$ and $x^0=ct$, lower indices by
+                    $A_\mu=\eta_{\mu\nu}A^\nu$
                     so $A_0=-\phi$ and $A_i=A_i$. then</p>
                 $$
                 F_{0i}=\partial_0 A_i-\partial_i A_0=\frac1c\frac{\partial A_i}{\partial t}+\partial_i\phi,\qquad
-                    F_{ij}=\partial_i A_j-\partial_j A_i.
+                F_{ij}=\partial_i A_j-\partial_j A_i.
                 $$
-                <p>the electric field $\mathbf{E}=(E^1,E^2,E^3)$ and magnetic field $\mathbf{B}$ used in the laboratory (heaviside–lorentz)
+                <p>the electric field $\mathbf{E}=(E^1,E^2,E^3)$ and magnetic field $\mathbf{B}$ used in the laboratory
+                    (heaviside–lorentz)
                     are</p>
                 $$
                 E^i=F^{0i}=-F_{0i}=-\frac{\partial\phi}{\partial x^i}-\frac1c\frac{\partial A_i}{\partial t},\qquad
-                    B^k=\epsilon^{ijk}\frac{\partial A_j}{\partial x^i}\quad\text{(equivalently }F_{ij}=\epsilon_{ijk}B^k\text{)}.
+                B^k=\epsilon^{ijk}\frac{\partial A_j}{\partial x^i}\quad\text{(equivalently
+                }F_{ij}=\epsilon_{ijk}B^k\text{)}.
                 $$
-                <p>the spatial part of $m\,\mathrm{d}u^\mu/\mathrm{d}\tau=(e/c)F^\mu{}_\nu u^\nu$ then reduces, after a short
+                <p>the spatial part of $m\,\mathrm{d}u^\mu/\mathrm{d}\tau=(e/c)F^\mu{}_\nu u^\nu$ then reduces, after a
+                    short
                     calculation, to the three-vector lorentz force</p>
                 $$
                 \frac{\mathrm{d}\mathbf{p}}{\mathrm{d}t}=e\left(\mathbf{E}+\frac{\mathbf{v}}{c}\times\mathbf{B}\right),\qquad
-                    \mathbf{p}=\frac{m\mathbf{v}}{\sqrt{1-\mathbf{v}^2/c^2}},
+                \mathbf{p}=\frac{m\mathbf{v}}{\sqrt{1-\mathbf{v}^2/c^2}},
                 $$
                 <p>with $\mathbf{p}$ the kinematic (not canonical) three-momentum.</p>
 
                 <h3>maxwell’s equations: index form and hodge form</h3>
                 <p>the free electromagnetic action in a standard heaviside–lorentz normalization is</p>
                 $$
-                S_f=-\frac{1}{16\pi}\int_{\mathbb{R}^4} F_{\mu\nu}F^{\mu\nu}\,\mathrm{d}^4x,\qquad F^{\mu\nu}=\eta^{\mu\rho}\eta^{\nu\sigma}F_{\rho\sigma},\qquad \mathrm{d}^4x=\mathrm{d}x^0\,\mathrm{d}x^1\,\mathrm{d}x^2\,\mathrm{d}x^3,\ \ x^0=ct.
+                S_f=-\frac{1}{16\pi}\int_{\mathbb{R}^4} F_{\mu\nu}F^{\mu\nu}\,\mathrm{d}^4x,\qquad
+                F^{\mu\nu}=\eta^{\mu\rho}\eta^{\nu\sigma}F_{\rho\sigma},\qquad
+                \mathrm{d}^4x=\mathrm{d}x^0\,\mathrm{d}x^1\,\mathrm{d}x^2\,\mathrm{d}x^3,\ \ x^0=ct.
                 $$
-                <p>varying $A_\mu$ and integrating by parts (boundary terms vanish for suitable falloff) gives the <em>inhomogeneous</em>
+                <p>varying $A_\mu$ and integrating by parts (boundary terms vanish for suitable falloff) gives the
+                    <em>inhomogeneous</em>
                     equations</p>
                 $$
                 \partial_\mu F^{\mu\nu}=\frac{4\pi}{c}\,J^\nu,
                 $$
-                <p>with conserved four-current $J^\nu$ (e.g. $J^0=c\rho$ and spatial components equal to three-current density,
+                <p>with conserved four-current $J^\nu$ (e.g. $J^0=c\rho$ and spatial components equal to three-current
+                    density,
                     so $\partial_\nu J^\nu=0$ is charge conservation). the <em>homogeneous</em>
                     pair is purely geometric:</p>
                 $$
-                \partial_\lambda F_{\mu\nu}+\partial_\mu F_{\nu\lambda}+\partial_\nu F_{\lambda\mu}=0\qquad\Longleftrightarrow\qquad \mathrm{d}F=0.
+                \partial_\lambda F_{\mu\nu}+\partial_\mu F_{\nu\lambda}+\partial_\nu
+                F_{\lambda\mu}=0\qquad\Longleftrightarrow\qquad \mathrm{d}F=0.
                 $$
                 <p>on a general lorentzian four-manifold $(M,g)$, this package becomes $\mathrm{d}F=0$ and
-                    $\mathrm{d}\star_g F=\star_g J$ for a current three-form $J$, linking directly to the metric volume form
+                    $\mathrm{d}\star_g F=\star_g J$ for a current three-form $J$, linking directly to the metric volume
+                    form
                     and hodge star from <a href="#metric-and-multilinear-structures">multilinear structures</a>—the same
-                    pattern promoted in <a href="#geometric-gravity-connections-and-curvature">geometric gravity</a>.</p>
+                    pattern promoted in <a href="#geometric-gravity-connections-and-curvature">geometric gravity</a>.
+                </p>
 
                 <h3>stress–energy tensor and conservation</h3>
-                <p>the symmetric <em>electromagnetic stress–energy tensor</em> (same normalization as $S_f$ above) is</p>
+                <p>the symmetric <em>electromagnetic stress–energy tensor</em> (same normalization as $S_f$ above) is
+                </p>
                 $$
                 T^{\mu\nu}=\frac{1}{4\pi}\left(F^{\mu\lambda}F^\nu{}_\lambda-\frac14\,\eta^{\mu\nu}F_{\rho\sigma}F^{\rho\sigma}\right).
                 $$
@@ -1248,63 +1447,90 @@
                 $$
                 \partial_\mu T^{\mu\nu}=0,
                 $$
-                <p>encoding local energy and momentum conservation for the field. integrating $T^{0\mu}$ over a spatial slice
-                    gives the total energy-momentum four-vector of the field configuration (subject to falloff and boundary
+                <p>encoding local energy and momentum conservation for the field. integrating $T^{0\mu}$ over a spatial
+                    slice
+                    gives the total energy-momentum four-vector of the field configuration (subject to falloff and
+                    boundary
                     conditions).</p>
 
                 <h3>wave equation, retarded potentials, and liénard–wiechert</h3>
                 <p>in lorenz gauge $\partial_\mu A^\mu=0$, the potential obeys</p>
                 $$
-                \Box A^\nu:=\partial_\mu\partial^\mu A^\nu=\eta^{\rho\sigma}\partial_\rho\partial_\sigma A^\nu=\frac{4\pi}{c}\,J^\nu
+                \Box A^\nu:=\partial_\mu\partial^\mu A^\nu=\eta^{\rho\sigma}\partial_\rho\partial_\sigma
+                A^\nu=\frac{4\pi}{c}\,J^\nu
                 $$
-                <p>(up to gauge subtleties for coupled matter). the retarded green function enforces causality: influences
+                <p>(up to gauge subtleties for coupled matter). the retarded green function enforces causality:
+                    influences
                     propagate at speed $c$ along future light cones. symbolically,</p>
                 $$
-                A^\mu(x)=\int G_{\mathrm{ret}}(x-x')\,\frac{4\pi}{c}\,J^\mu(x')\,\mathrm{d}^4x',\qquad G_{\mathrm{ret}}\ \text{supported on the past light cone of }x.
+                A^\mu(x)=\int G_{\mathrm{ret}}(x-x')\,\frac{4\pi}{c}\,J^\mu(x')\,\mathrm{d}^4x',\qquad G_{\mathrm{ret}}\
+                \text{supported on the past light cone of }x.
                 $$
-                <p>for a point charge in arbitrary motion, the <em>liénard–wiechert</em> potentials have the schematic form</p>
+                <p>for a point charge in arbitrary motion, the <em>liénard–wiechert</em> potentials have the schematic
+                    form</p>
                 $$
-                \phi(\mathbf{x},t)=\left[\frac{e}{(1-\mathbf{n}\cdot\boldsymbol{\beta})\,R}\right]_{\mathrm{ret}},\qquad \mathbf{A}=[\boldsymbol{\beta}\,\phi]_{\mathrm{ret}},
+                \phi(\mathbf{x},t)=\left[\frac{e}{(1-\mathbf{n}\cdot\boldsymbol{\beta})\,R}\right]_{\mathrm{ret}},\qquad
+                \mathbf{A}=[\boldsymbol{\beta}\,\phi]_{\mathrm{ret}},
                 $$
-                <p>where $\boldsymbol{\beta}=\mathbf{v}/c$, $\mathbf{n}$ is the unit vector from retarded source position to the
-                    field point, $R$ is the spatial separation at retarded time, and $[\cdot]_{\mathrm{ret}}$ denotes evaluation
+                <p>where $\boldsymbol{\beta}=\mathbf{v}/c$, $\mathbf{n}$ is the unit vector from retarded source
+                    position to the
+                    field point, $R$ is the spatial separation at retarded time, and $[\cdot]_{\mathrm{ret}}$ denotes
+                    evaluation
                     at the unique retarded intersection of the observer’s past light cone with the charge worldline. the
-                    prefactor $(1-\mathbf{n}\cdot\boldsymbol{\beta})^{-1}$ is the beaming factor from relativistic kinematics,
+                    prefactor $(1-\mathbf{n}\cdot\boldsymbol{\beta})^{-1}$ is the beaming factor from relativistic
+                    kinematics,
                     distorting spherical wavefronts for moving sources.</p>
 
-                <h3>how this section closes the flat-spacetime layer</h3>
-                <p>minkowski space is the model lorentzian manifold; $O(1,3)$ is the global isometry group. forms $A$ and $F$
-                    realize the exterior calculus; gauge $A\mapsto A+\mathrm{d}\chi$ is an affine version of the cohomological
-                    “closed modulo exact” story for $F$. the variational principle produces both particle worldlines and field
-                    equations, unifying the lagrangian language of <a
-                        href="#the-kinematics-and-dynamics-of-classical-mechanics">classical mechanics</a> with tensorial
-                    covariance. replacing $\eta$ by a dynamical $g_{\mu\nu}$ is precisely the step to <a
-                        href="#geometric-gravity-connections-and-curvature">gravity</a>; maxwell on $(M,g)$ differs only in
-                    replacing $\eta$ by $g$ and $\mathrm{d}\star_\eta$ by $\mathrm{d}\star_g$.</p>
+                <h3>light cones, potentials, and what changes when spacetime bends</h3>
+                <p>why encode the field in a two-form $F$ and a potential $A$ at all? because gauge redundancy is not a
+                    nuisance—it is the admission that different $A$’s describe the same physical $F$, and that the
+                    physically natural object is closed ($\mathrm{d}F=0$) while the potential is a choice of primitive.
+                    when $\mathrm{d}^2=0$ kills mixed partials, you see gauge invariance as a consequence of calculus,
+                    not as an afterthought.</p>
+                <p>how does the same formalism speak both to particles and to fields? the worldline action and the
+                    maxwell action are both stationarity principles; the lorentz force law is the euler–lagrange equation
+                    of minimal coupling, while $\partial_\mu F^{\mu\nu}\propto J^\nu$ is the euler–lagrange equation of the
+                    field. that unity is what <a href="../basics/#special-relativity-and-the-free-relativistic-particle">special
+                        relativity</a> and <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves
+                        and radiation</a> already assume when they treat energy–momentum and poynting flux as aspects of
+                    one tensorial story.</p>
+                <p>if minkowski space is “flat,” what is gravity’s mathematical gesture? replace the fixed $\eta$ by a
+                    dynamical $g_{\mu\nu}$ and let the hodge star depend on $g$, so the same $\mathrm{d}F=0$ and
+                    $\mathrm{d}\star_g F=\star_g J$ live on the curved manifold of <a
+                        href="#geometric-gravity-connections-and-curvature">general relativity</a>. the physics
+                    question—whether signals still respect causal cones—is then carried by the metric itself rather than
+                    by a fixed background.</p>
             </section>
 
 
             <section id="geometric-gravity-connections-and-curvature" class="doc-section">
                 <h2>geometric gravity, connections, and curvature</h2>
-                <p>earlier sections fixed manifolds, <a href="#differentiable-manifolds-and-the-calculus-of-forms">forms and
-                    $\mathrm{d}$</a>, <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>, and <a
-                        href="../basics/#special-relativity-and-the-free-relativistic-particle">lorentzian flat
+                <p>earlier sections fixed manifolds, <a href="#differentiable-manifolds-and-the-calculus-of-forms">forms
+                        and
+                        $\mathrm{d}$</a>, <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>, and
+                    <a href="../basics/#special-relativity-and-the-free-relativistic-particle">lorentzian flat
                         geometry</a> with mostly-minus signature. <a
-                        href="../basics/#general-relativity-and-curved-spacetime">general relativity in basics</a> identifies
+                        href="../basics/#general-relativity-and-curved-spacetime">general relativity in basics</a>
+                    identifies
                     gravity with dynamical lorentzian geometry. here the same objects are named precisely: $(M,g)$ is a
                     four-dimensional smooth manifold with a metric of signature $(-,+,+,+)$—one timelike and three
-                    spacelike directions at each point, matching $\eta=\mathrm{diag}(-1,1,1,1)$ in local inertial frames.
-                    the equivalence principle motivates identifying freely falling trajectories with <em>geodesics</em> of
+                    spacelike directions at each point, matching $\eta=\mathrm{diag}(-1,1,1,1)$ in local inertial
+                    frames.
+                    the equivalence principle motivates identifying freely falling trajectories with <em>geodesics</em>
+                    of
                     $g$; general covariance requires field equations built only from $g$, its derivatives, and matter
-                    tensors transforming covariantly under diffeomorphisms. this section is the structural layer: connection,
-                    curvature, action, einstein equations, schwarzschild, and geodesic deviation—distinct from the physical
-                    narrative in <a href="../basics/">basics</a> by emphasis on definitions, variational logic, and links to
-                    bundle geometry.</p>
+                    tensors transforming covariantly under diffeomorphisms. what follows names the connection,
+                    curvature tensor, variational derivation of the field equations, the schwarzschild geometry, and
+                    geodesic deviation—the mathematical sentences that sit behind the physical narrative in <a
+                        href="../basics/">basics</a>, with emphasis on definitions, integration by parts in the action, and
+                    cartan’s form language alongside indices.</p>
 
                 <h3>why partial derivatives are insufficient</h3>
                 <p>under a coordinate change $x^\mu\mapsto x'^\mu(x)$, a vector field transforms as
-                    $V'^\mu=(\partial x'^\mu/\partial x^\nu)V^\nu$, but $\partial_\sigma V^\mu$ does <em>not</em> transform
-                    as a tensor—the inhomogeneous term comes from $\partial^2 x'/\partial x\partial x$. to form tensors one
+                    $V'^\mu=(\partial x'^\mu/\partial x^\nu)V^\nu$, but $\partial_\sigma V^\mu$ does <em>not</em>
+                    transform
+                    as a tensor—the inhomogeneous term comes from $\partial^2 x'/\partial x\partial x$. to form tensors
+                    one
                     introduces an <em>affine connection</em> $\nabla$, requiring $\nabla_\mu f=\partial_\mu f$ on
                     functions and on vector fields (in coordinates)</p>
                 $$
@@ -1316,7 +1542,8 @@
                 \nabla_\mu A_\nu=\partial_\mu A_\nu-\Gamma^\rho_{\mu\nu}\,A_\rho.
                 $$
                 <p>extension to arbitrary $(r,s)$ tensors uses leibniz and linearity; the connection coefficients
-                    $\Gamma^\nu_{\mu\lambda}$ are <em>not</em> tensors—they cancel the inhomogeneous piece of $\partial V$.</p>
+                    $\Gamma^\nu_{\mu\lambda}$ are <em>not</em> tensors—they cancel the inhomogeneous piece of $\partial
+                    V$.</p>
 
                 <h3>levi–civita connection: axioms and christoffel formula</h3>
                 <p>given a nondegenerate metric $g_{\mu\nu}=g_{\nu\mu}$ with inverse $g^{\mu\nu}$, the <em>levi–civita
@@ -1324,17 +1551,24 @@
                 <ol>
                     <li><em>metric compatibility</em>: $\nabla_X g=0$, equivalently in coordinates $\nabla_\lambda
                         g_{\mu\nu}=0$;</li>
-                    <li><em>torsion-free</em> (symmetric christoffels): $\Gamma^\rho_{\mu\nu}=\Gamma^\rho_{\nu\mu}$.</li>
+                    <li><em>torsion-free</em> (symmetric christoffels): $\Gamma^\rho_{\mu\nu}=\Gamma^\rho_{\nu\mu}$.
+                    </li>
                 </ol>
-                <p>writing metric compatibility as $\nabla_\lambda g_{\mu\nu}=\partial_\lambda g_{\mu\nu}-\Gamma^\rho_{\lambda\mu}g_{\rho\nu}-\Gamma^\rho_{\lambda\nu}g_{\mu\rho}=0$ and cycling $(\lambda,\mu,\nu)$, subtracting permutations eliminates derivatives of $\Gamma$ and solves uniquely for</p>
+                <p>writing metric compatibility as $\nabla_\lambda g_{\mu\nu}=\partial_\lambda
+                    g_{\mu\nu}-\Gamma^\rho_{\lambda\mu}g_{\rho\nu}-\Gamma^\rho_{\lambda\nu}g_{\mu\rho}=0$ and cycling
+                    $(\lambda,\mu,\nu)$, subtracting permutations eliminates derivatives of $\Gamma$ and solves uniquely
+                    for</p>
                 $$
-                \Gamma^\rho_{\mu\nu}=\frac12 g^{\rho\sigma}\left(\partial_\mu g_{\nu\sigma}+\partial_\nu g_{\mu\sigma}-\partial_\sigma g_{\mu\nu}\right).
+                \Gamma^\rho_{\mu\nu}=\frac12 g^{\rho\sigma}\left(\partial_\mu g_{\nu\sigma}+\partial_\nu
+                g_{\mu\sigma}-\partial_\sigma g_{\mu\nu}\right).
                 $$
-                <p>this is the only torsion-free, metric-compatible connection on $(M,g)$. the invariant line element is</p>
+                <p>this is the only torsion-free, metric-compatible connection on $(M,g)$. the invariant line element is
+                </p>
                 $$
                 \mathrm{d}s^2=g_{\mu\nu}(x)\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu.
                 $$
-                <p>parallel transport of a vector $V^\rho$ along a curve $x^\mu(\tau)$ with tangent $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$
+                <p>parallel transport of a vector $V^\rho$ along a curve $x^\mu(\tau)$ with tangent
+                    $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$
                     is defined by $\mathrm{d}V^\rho/\mathrm{d}\tau+\Gamma^\rho_{\mu\nu}u^\mu V^\nu=0$, equivalently
                     $u^\lambda\nabla_\lambda V^\rho=0$.</p>
 
@@ -1347,12 +1581,14 @@
                 $$
                 R^\rho{}_{\sigma\mu\nu}=\partial_\mu\Gamma^\rho_{\nu\sigma}-\partial_\nu\Gamma^\rho_{\mu\sigma}+\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}-\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
                 $$
-                <p>it measures holonomy of parallel transport around infinitesimal loops (intrinsic curvature—no embedding
+                <p>it measures holonomy of parallel transport around infinitesimal loops (intrinsic curvature—no
+                    embedding
                     required, in the spirit of gauss’s theorema egregium generalized). algebraic symmetries include
                     antisymmetry in the last pair, $R_{\rho\sigma\mu\nu}=-R_{\rho\sigma\nu\mu}$, and the (first) bianchi
                     identity</p>
                 $$
-                \nabla_\lambda R^\rho{}_{\sigma\mu\nu}+\nabla_\mu R^\rho{}_{\sigma\nu\lambda}+\nabla_\nu R^\rho{}_{\sigma\lambda\mu}=0.
+                \nabla_\lambda R^\rho{}_{\sigma\mu\nu}+\nabla_\mu R^\rho{}_{\sigma\nu\lambda}+\nabla_\nu
+                R^\rho{}_{\sigma\lambda\mu}=0.
                 $$
                 <p>contractions yield the <em>ricci tensor</em> $R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$, the <em>ricci
                         scalar</em> $R=g^{\mu\nu}R_{\mu\nu}$, and the <em>einstein tensor</em></p>
@@ -1360,36 +1596,46 @@
                 G_{\mu\nu}=R_{\mu\nu}-\frac12 R\,g_{\mu\nu}.
                 $$
                 <p>the contracted bianchi identity implies $\nabla_\mu G^{\mu\nu}=0$, so $G_{\mu\nu}$ is the natural
-                    symmetric, divergence-free two-tensor built from at most two derivatives of $g$—the geometric side of
+                    symmetric, divergence-free two-tensor built from at most two derivatives of $g$—the geometric side
+                    of
                     field equations is proportional to $G_{\mu\nu}$ (possibly plus $\Lambda g_{\mu\nu}$).</p>
 
                 <h3>cartan’s viewpoint (tie-in to exterior calculus)</h3>
                 <p>on the <em>orthonormal frame bundle</em> (special case of the frame bundle in <a
-                        href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds</a>), choose a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds</a>), choose
+                    a
                     local coframe $e^a=e^a{}_\mu\,\mathrm{d}x^\mu$ with $g_{\mu\nu}=\eta_{ab}e^a{}_\mu e^b{}_\nu$. the
                     <em>spin connection</em> one-forms $\omega^a{}_b$ and <em>curvature</em> two-forms $\Omega^a{}_b$
-                    satisfy the <em>structure equations</em></p>
+                    satisfy the <em>structure equations</em>
+                </p>
                 $$
-                \mathrm{d}e^a+\omega^a{}_b\wedge e^b=T^a,\qquad \Omega^a{}_b=\mathrm{d}\omega^a{}_b+\omega^a{}_c\wedge\omega^c{}_b,
+                \mathrm{d}e^a+\omega^a{}_b\wedge e^b=T^a,\qquad
+                \Omega^a{}_b=\mathrm{d}\omega^a{}_b+\omega^a{}_c\wedge\omega^c{}_b,
                 $$
-                <p>with torsion $T^a=0$ for levi–civita. components of $\Omega^a{}_b$ recover $R^a{}_{bcd}$; curvature is a
+                <p>with torsion $T^a=0$ for levi–civita. components of $\Omega^a{}_b$ recover $R^a{}_{bcd}$; curvature
+                    is a
                     matrix-valued two-form, so the same $\mathrm{d}$ and wedge formalism from <a
                         href="#differentiable-manifolds-and-the-calculus-of-forms">forms on manifolds</a> now carries
                     fiber-valued correction terms encoded in $\omega$ and $\Omega$.</p>
 
                 <h3>einstein–hilbert action and field equations</h3>
-                <p>let $\mathrm{vol}_g=\sqrt{-g}\,\mathrm{d}^4x$ be the metric volume element (with $g=\det(g_{\mu\nu})&lt;0$
-                    in mostly minus). the <em>einstein–hilbert action</em> (newton’s constant $G$, speed of light $c$) is</p>
+                <p>let $\mathrm{vol}_g=\sqrt{-g}\,\mathrm{d}^4x$ be the metric volume element (with
+                    $g=\det(g_{\mu\nu})&lt;0$
+                    in mostly minus). the <em>einstein–hilbert action</em> (newton’s constant $G$, speed of light $c$)
+                    is</p>
                 $$
                 S_g=\frac{c^4}{16\pi G}\int_M R\,\mathrm{vol}_g.
                 $$
-                <p>varying the inverse metric $g^{\mu\nu}$ (equivalently $g_{\mu\nu}$), discarding boundary terms (palatini
+                <p>varying the inverse metric $g^{\mu\nu}$ (equivalently $g_{\mu\nu}$), discarding boundary terms
+                    (palatini
                     / gibbons–hawking–york terms are required for open manifolds with boundary), one obtains</p>
                 $$
-                \delta S_g=\frac{c^4}{16\pi G}\int_M\left(R_{\mu\nu}-\frac12 R\,g_{\mu\nu}\right)\delta g^{\mu\nu}\,\mathrm{vol}_g.
+                \delta S_g=\frac{c^4}{16\pi G}\int_M\left(R_{\mu\nu}-\frac12 R\,g_{\mu\nu}\right)\delta
+                g^{\mu\nu}\,\mathrm{vol}_g.
                 $$
                 <p>matter, including fields from earlier sections, contributes $S_m[g,\Phi]$; defining the symmetric
-                    <em>stress–energy tensor</em> by</p>
+                    <em>stress–energy tensor</em> by
+                </p>
                 $$
                 \delta S_m=\frac12\int_M T_{\mu\nu}\,\delta g^{\mu\nu}\,\mathrm{vol}_g,
                 $$
@@ -1397,21 +1643,28 @@
                 $$
                 R_{\mu\nu}-\frac12 R\,g_{\mu\nu}=\frac{8\pi G}{c^4}\,T_{\mu\nu}.
                 $$
-                <p>a cosmological constant $\Lambda$ adds $S_\Lambda=-\frac{c^4\Lambda}{8\pi G}\int_M\mathrm{vol}_g$, producing
-                    $G_{\mu\nu}+\Lambda g_{\mu\nu}=(8\pi G/c^4)T_{\mu\nu}$. matter conservation $\nabla_\mu T^{\mu\nu}=0$ is
+                <p>a cosmological constant $\Lambda$ adds $S_\Lambda=-\frac{c^4\Lambda}{8\pi G}\int_M\mathrm{vol}_g$,
+                    producing
+                    $G_{\mu\nu}+\Lambda g_{\mu\nu}=(8\pi G/c^4)T_{\mu\nu}$. matter conservation $\nabla_\mu
+                    T^{\mu\nu}=0$ is
                     consistent with $\nabla_\mu G^{\mu\nu}=0$.</p>
 
                 <h3>schwarzschild geometry and effective radial potential</h3>
-                <p>for static, spherically symmetric vacuum ($T_{\mu\nu}=0$) in four dimensions, birkhoff’s theorem forces the
+                <p>for static, spherically symmetric vacuum ($T_{\mu\nu}=0$) in four dimensions, birkhoff’s theorem
+                    forces the
                     schwarzschild form (schwarzschild coordinates)</p>
                 $$
-                \mathrm{d}s^2=-\left(1-\frac{r_s}{r}\right)c^2\mathrm{d}t^2+\left(1-\frac{r_s}{r}\right)^{-1}\mathrm{d}r^2+r^2(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2),\qquad r_s=\frac{2GM}{c^2}.
+                \mathrm{d}s^2=-\left(1-\frac{r_s}{r}\right)c^2\mathrm{d}t^2+\left(1-\frac{r_s}{r}\right)^{-1}\mathrm{d}r^2+r^2(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2),\qquad
+                r_s=\frac{2GM}{c^2}.
                 $$
                 <p>asymptotic flatness fixes integration constants. timelike geodesics inherit conserved quantities from
-                    killing vectors $\partial_t$ and $\partial_\phi$; in the equatorial plane radial motion reduces to an
+                    killing vectors $\partial_t$ and $\partial_\phi$; in the equatorial plane radial motion reduces to
+                    an
                     energy equation with an <em>effective potential</em> whose newtonian limit includes $-GM/r$ and a
-                    centrifugal $\ell^2/(2r^2)$, plus a <em>post-newtonian</em> correction $\propto -GM\ell^2/(c^2 r^3)$ that
-                    lowers the inner barrier—this curvature term drives perihelion precession and innermost stable circular
+                    centrifugal $\ell^2/(2r^2)$, plus a <em>post-newtonian</em> correction $\propto -GM\ell^2/(c^2 r^3)$
+                    that
+                    lowers the inner barrier—this curvature term drives perihelion precession and innermost stable
+                    circular
                     orbits. null geodesics describe light deflection in the same metric.</p>
 
                 <h3>geodesic deviation (tidal equation)</h3>
@@ -1422,19 +1675,31 @@
                 $$
                 \frac{D^2\xi^\rho}{\mathrm{d}\tau^2}=-R^\rho{}_{\mu\sigma\nu}\,u^\mu u^\nu\,\xi^\sigma,
                 $$
-                <p>where $D/\mathrm{d}\tau=u^\lambda\nabla_\lambda$ and $\tau$ is an affine parameter. thus $R$ measures tidal
-                    shear: nearby free-fall trajectories accelerate relative to one another—gravity as intrinsic curvature,
+                <p>where $D/\mathrm{d}\tau=u^\lambda\nabla_\lambda$ and $\tau$ is an affine parameter. thus $R$ measures
+                    tidal
+                    shear: nearby free-fall trajectories accelerate relative to one another—gravity as intrinsic
+                    curvature,
                     not as a force field in flat space.</p>
 
-                <h3>how prior layers reappear</h3>
-                <p>$M$ is a smooth manifold; $g$ is a symmetric section of $T^*M\otimes T^*M$; $\nabla$ is the connection on
-                    $TM$ fixed by $g$. forms $e^a$, $\omega^a{}_b$, $\Omega^a{}_b$ repackage curvature as in <a
-                        href="#relativistic-spacetime-and-electrodynamics">electrodynamics on lorentzian manifolds</a>, where
-                    $\mathrm{d}$ and $\star_g$ already depended on $g$. bundles over curved $M$ and obstructions to global
-                    gauges still use <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>; test-particle
-                    reductions tie to <a href="#the-kinematics-and-dynamics-of-classical-mechanics">hamiltonian mechanics</a>
-                    on killing-reduced phase spaces. <a href="../basics/">basics</a> carries the phenomenology; this section
-                    states the geometric and variational identities those arguments assume.</p>
+                <h3>curvature as what remains when “inertial” is only local</h3>
+                <p>why replace ordinary derivatives by a connection? because in curvilinear coordinates on a curved
+                    spacetime, partial derivatives mix true geometry with coordinate artifacts; the connection isolates the
+                    tensorial rate of change—the same problem you already met when transforming vector components, now
+                    continuous across charts. levi–civita is distinguished because it is the unique torsion-free choice
+                    compatible with the metric: parallel transport then preserves inner products, matching the
+                    operational meaning of “inertial frame” as locally minkowskian.</p>
+                <p>what does the riemann tensor answer, in one sentence? whether parallel transport around a small loop
+                    returns a vector to itself. that failure is tidal shear: nearby geodesics accelerate relative to one
+                    another, which is gravity not as a force in flat space but as intrinsic geometry—precisely the
+                    picture <a href="../basics/#general-relativity-and-curved-spacetime">curved spacetime</a> argues in
+                    words, here reduced to an explicit tensor and a deviation equation.</p>
+                <p>cartan’s frames tie the story back to forms: curvature appears as a matrix of two-forms, the same
+                    $\mathrm{d}$-calculus that served maxwell, now coupled to spin connection data on the frame bundle.
+                    together with maxwell on $(M,g)$, you see one geometry governing causal structure, parallel
+                    transport, and the hodge operator that defines field strengths and sources. the variational
+                    derivation of einstein’s equations is the field-theoretic bookend to the particle actions you varied
+                    earlier: both assert that dynamics comes from a principled extremum, only the dynamical variable is
+                    now the metric itself.</p>
             </section>
 
         </article>
