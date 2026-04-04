@@ -1123,39 +1123,157 @@
 
             <section id="geometric-gravity-connections-and-curvature" class="doc-section">
                 <h2>geometric gravity, connections, and curvature</h2>
-                <p><a href="../basics/#general-relativity-and-curved-spacetime">general relativity and curved
-                        spacetime</a>
-                    identifies the gravitational field with a lorentzian metric \(g\) on a four-manifold \(M\). the
-                    mathematical layer spells out how \(g\) fixes geometry, curvature, and field equations.</p>
+                <p>earlier sections fixed manifolds, <a href="#differentiable-manifolds-and-the-calculus-of-forms">forms and
+                    $\mathrm{d}$</a>, <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>, and <a
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">lorentzian flat
+                        geometry</a> with mostly-minus signature. <a
+                        href="../basics/#general-relativity-and-curved-spacetime">general relativity in basics</a> identifies
+                    gravity with dynamical lorentzian geometry. here the same objects are named precisely: $(M,g)$ is a
+                    four-dimensional smooth manifold with a metric of signature $(-,+,+,+)$—one timelike and three
+                    spacelike directions at each point, matching $\eta=\mathrm{diag}(-1,1,1,1)$ in local inertial frames.
+                    the equivalence principle motivates identifying freely falling trajectories with <em>geodesics</em> of
+                    $g$; general covariance requires field equations built only from $g$, its derivatives, and matter
+                    tensors transforming covariantly under diffeomorphisms. this section is the structural layer: connection,
+                    curvature, action, einstein equations, schwarzschild, and geodesic deviation—distinct from the physical
+                    narrative in <a href="../basics/">basics</a> by emphasis on definitions, variational logic, and links to
+                    bundle geometry.</p>
 
-                <h3>levi-civita connection and curvature</h3>
-                <p>a <em>metric</em> on \(M\) is a smooth symmetric nondegenerate two-tensor \(g\) of lorentzian
-                    signature. the <em>levi-civita connection</em> \(\nabla\) is the unique affine connection that is
-                    metric compatible (\(\nabla g=0\)) and torsion-free. in coordinates, christoffel symbols
-                    \(\Gamma^k_{ij}=\tfrac12 g^{k\ell}(\partial_i g_{j\ell}+\partial_j g_{i\ell}-\partial_\ell g_{ij})\)
-                    define covariant derivatives \(\nabla_i V^k=\partial_i V^k+\Gamma^k_{ij}V^j\).</p>
-                <p>the <em>riemann curvature tensor</em> \(R^\rho{}_{\sigma\mu\nu}\) measures failure of covariant
-                    derivatives to commute and encodes holonomy of parallel transport around infinitesimal loops. the
-                    <em>ricci tensor</em> is the contraction \(R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}\); the <em>ricci
-                        scalar</em> is \(R=g^{\mu\nu}R_{\mu\nu}\). the <em>einstein tensor</em>
-                    \(G_{\mu\nu}=R_{\mu\nu}-\tfrac12 R\,g_{\mu\nu}\) satisfies the contracted <em>bianchi identity</em>
-                    \(\nabla_\mu G^{\mu\nu}=0\), parallel to conservation of stress–energy.
-                </p>
+                <h3>why partial derivatives are insufficient</h3>
+                <p>under a coordinate change $x^\mu\mapsto x'^\mu(x)$, a vector field transforms as
+                    $V'^\mu=(\partial x'^\mu/\partial x^\nu)V^\nu$, but $\partial_\sigma V^\mu$ does <em>not</em> transform
+                    as a tensor—the inhomogeneous term comes from $\partial^2 x'/\partial x\partial x$. to form tensors one
+                    introduces an <em>affine connection</em> $\nabla$, requiring $\nabla_\mu f=\partial_\mu f$ on
+                    functions and on vector fields (in coordinates)</p>
+                $$
+                \nabla_\mu V^\nu=\partial_\mu V^\nu+\Gamma^\nu_{\mu\lambda}(x)\,V^\lambda
+                $$
+                <p>with $\Gamma^\nu_{\mu\lambda}$ chosen so that $\nabla_\mu V^\nu$ transforms tensorially. on covectors
+                    the dual rule is</p>
+                $$
+                \nabla_\mu A_\nu=\partial_\mu A_\nu-\Gamma^\rho_{\mu\nu}\,A_\rho.
+                $$
+                <p>extension to arbitrary $(r,s)$ tensors uses leibniz and linearity; the connection coefficients
+                    $\Gamma^\nu_{\mu\lambda}$ are <em>not</em> tensors—they cancel the inhomogeneous piece of $\partial V$.</p>
 
-                <h3>einstein’s equations and vacuum solutions</h3>
-                <p>the <em>einstein–hilbert action</em> (with cosmological constant \(\Lambda\) optional) is
-                    \(S=\frac{1}{16\pi G}\int_M (R-2\Lambda)\,\mathrm{vol}_g+\int_M \mathcal{L}_m\,\mathrm{vol}_g\).
-                    variation with respect to \(g\) yields <em>einstein’s equations</em>
-                    \(G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,T_{\mu\nu}\), where \(T_{\mu\nu}\) is the matter
-                    stress–energy tensor. vacuum solutions (\(T_{\mu\nu}=0\)) include <em>schwarzschild</em>, the unique
-                    static, spherically symmetric, asymptotically flat black hole geometry in four dimensions
-                    (birkhoff’s
-                    theorem). <em>geodesics</em> of \(g\) are the worldlines of freely falling test particles; deviation
-                    of
-                    nearby geodesics is controlled by the riemann tensor—source of tidal forces and, in the weak-field
-                    limit, the extra \(r^{-3}\) contribution to perihelion precession described in <a
-                        href="../basics/#general-relativity-and-curved-spacetime">basics</a>.</p>
+                <h3>levi–civita connection: axioms and christoffel formula</h3>
+                <p>given a nondegenerate metric $g_{\mu\nu}=g_{\nu\mu}$ with inverse $g^{\mu\nu}$, the <em>levi–civita
+                        connection</em> is the unique connection satisfying, for all vector fields $X,Y,Z$:</p>
+                <ol>
+                    <li><em>metric compatibility</em>: $\nabla_X g=0$, equivalently in coordinates $\nabla_\lambda
+                        g_{\mu\nu}=0$;</li>
+                    <li><em>torsion-free</em> (symmetric christoffels): $\Gamma^\rho_{\mu\nu}=\Gamma^\rho_{\nu\mu}$.</li>
+                </ol>
+                <p>writing metric compatibility as $\nabla_\lambda g_{\mu\nu}=\partial_\lambda g_{\mu\nu}-\Gamma^\rho_{\lambda\mu}g_{\rho\nu}-\Gamma^\rho_{\lambda\nu}g_{\mu\rho}=0$ and cycling $(\lambda,\mu,\nu)$, subtracting permutations eliminates derivatives of $\Gamma$ and solves uniquely for</p>
+                $$
+                \Gamma^\rho_{\mu\nu}=\frac12 g^{\rho\sigma}\left(\partial_\mu g_{\nu\sigma}+\partial_\nu g_{\mu\sigma}-\partial_\sigma g_{\mu\nu}\right).
+                $$
+                <p>this is the only torsion-free, metric-compatible connection on $(M,g)$. the invariant line element is</p>
+                $$
+                \mathrm{d}s^2=g_{\mu\nu}(x)\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu.
+                $$
+                <p>parallel transport of a vector $V^\rho$ along a curve $x^\mu(\tau)$ with tangent $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$
+                    is defined by $\mathrm{d}V^\rho/\mathrm{d}\tau+\Gamma^\rho_{\mu\nu}u^\mu V^\nu=0$, equivalently
+                    $u^\lambda\nabla_\lambda V^\rho=0$.</p>
+
+                <h3>riemann curvature, ricci, einstein tensor, bianchi</h3>
+                <p>the <em>riemann tensor</em> is the commutator of covariant derivatives on vectors:</p>
+                $$
+                [\nabla_\mu,\nabla_\nu]V^\rho=R^\rho{}_{\sigma\mu\nu}\,V^\sigma,
+                $$
+                <p>which expands in coordinates to</p>
+                $$
+                R^\rho{}_{\sigma\mu\nu}=\partial_\mu\Gamma^\rho_{\nu\sigma}-\partial_\nu\Gamma^\rho_{\mu\sigma}+\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}-\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
+                $$
+                <p>it measures holonomy of parallel transport around infinitesimal loops (intrinsic curvature—no embedding
+                    required, in the spirit of gauss’s theorema egregium generalized). algebraic symmetries include
+                    antisymmetry in the last pair, $R_{\rho\sigma\mu\nu}=-R_{\rho\sigma\nu\mu}$, and the (first) bianchi
+                    identity</p>
+                $$
+                \nabla_\lambda R^\rho{}_{\sigma\mu\nu}+\nabla_\mu R^\rho{}_{\sigma\nu\lambda}+\nabla_\nu R^\rho{}_{\sigma\lambda\mu}=0.
+                $$
+                <p>contractions yield the <em>ricci tensor</em> $R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$, the <em>ricci
+                        scalar</em> $R=g^{\mu\nu}R_{\mu\nu}$, and the <em>einstein tensor</em></p>
+                $$
+                G_{\mu\nu}=R_{\mu\nu}-\frac12 R\,g_{\mu\nu}.
+                $$
+                <p>the contracted bianchi identity implies $\nabla_\mu G^{\mu\nu}=0$, so $G_{\mu\nu}$ is the natural
+                    symmetric, divergence-free two-tensor built from at most two derivatives of $g$—the geometric side of
+                    field equations is proportional to $G_{\mu\nu}$ (possibly plus $\Lambda g_{\mu\nu}$).</p>
+
+                <h3>cartan’s viewpoint (tie-in to exterior calculus)</h3>
+                <p>on the <em>orthonormal frame bundle</em> (special case of the frame bundle in <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds</a>), choose a
+                    local coframe $e^a=e^a{}_\mu\,\mathrm{d}x^\mu$ with $g_{\mu\nu}=\eta_{ab}e^a{}_\mu e^b{}_\nu$. the
+                    <em>spin connection</em> one-forms $\omega^a{}_b$ and <em>curvature</em> two-forms $\Omega^a{}_b$
+                    satisfy the <em>structure equations</em></p>
+                $$
+                \mathrm{d}e^a+\omega^a{}_b\wedge e^b=T^a,\qquad \Omega^a{}_b=\mathrm{d}\omega^a{}_b+\omega^a{}_c\wedge\omega^c{}_b,
+                $$
+                <p>with torsion $T^a=0$ for levi–civita. components of $\Omega^a{}_b$ recover $R^a{}_{bcd}$; curvature is a
+                    matrix-valued two-form, so the same $\mathrm{d}$ and wedge formalism from <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">forms on manifolds</a> now carries
+                    fiber-valued correction terms encoded in $\omega$ and $\Omega$.</p>
+
+                <h3>einstein–hilbert action and field equations</h3>
+                <p>let $\mathrm{vol}_g=\sqrt{-g}\,\mathrm{d}^4x$ be the metric volume element (with $g=\det(g_{\mu\nu})&lt;0$
+                    in mostly minus). the <em>einstein–hilbert action</em> (newton’s constant $G$, speed of light $c$) is</p>
+                $$
+                S_g=\frac{c^4}{16\pi G}\int_M R\,\mathrm{vol}_g.
+                $$
+                <p>varying the inverse metric $g^{\mu\nu}$ (equivalently $g_{\mu\nu}$), discarding boundary terms (palatini
+                    / gibbons–hawking–york terms are required for open manifolds with boundary), one obtains</p>
+                $$
+                \delta S_g=\frac{c^4}{16\pi G}\int_M\left(R_{\mu\nu}-\frac12 R\,g_{\mu\nu}\right)\delta g^{\mu\nu}\,\mathrm{vol}_g.
+                $$
+                <p>matter, including fields from earlier sections, contributes $S_m[g,\Phi]$; defining the symmetric
+                    <em>stress–energy tensor</em> by</p>
+                $$
+                \delta S_m=\frac12\int_M T_{\mu\nu}\,\delta g^{\mu\nu}\,\mathrm{vol}_g,
+                $$
+                <p>stationarity $\delta(S_g+S_m)=0$ for arbitrary $\delta g^{\mu\nu}$ yields</p>
+                $$
+                R_{\mu\nu}-\frac12 R\,g_{\mu\nu}=\frac{8\pi G}{c^4}\,T_{\mu\nu}.
+                $$
+                <p>a cosmological constant $\Lambda$ adds $S_\Lambda=-\frac{c^4\Lambda}{8\pi G}\int_M\mathrm{vol}_g$, producing
+                    $G_{\mu\nu}+\Lambda g_{\mu\nu}=(8\pi G/c^4)T_{\mu\nu}$. matter conservation $\nabla_\mu T^{\mu\nu}=0$ is
+                    consistent with $\nabla_\mu G^{\mu\nu}=0$.</p>
+
+                <h3>schwarzschild geometry and effective radial potential</h3>
+                <p>for static, spherically symmetric vacuum ($T_{\mu\nu}=0$) in four dimensions, birkhoff’s theorem forces the
+                    schwarzschild form (schwarzschild coordinates)</p>
+                $$
+                \mathrm{d}s^2=-\left(1-\frac{r_s}{r}\right)c^2\mathrm{d}t^2+\left(1-\frac{r_s}{r}\right)^{-1}\mathrm{d}r^2+r^2(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2),\qquad r_s=\frac{2GM}{c^2}.
+                $$
+                <p>asymptotic flatness fixes integration constants. timelike geodesics inherit conserved quantities from
+                    killing vectors $\partial_t$ and $\partial_\phi$; in the equatorial plane radial motion reduces to an
+                    energy equation with an <em>effective potential</em> whose newtonian limit includes $-GM/r$ and a
+                    centrifugal $\ell^2/(2r^2)$, plus a <em>post-newtonian</em> correction $\propto -GM\ell^2/(c^2 r^3)$ that
+                    lowers the inner barrier—this curvature term drives perihelion precession and innermost stable circular
+                    orbits. null geodesics describe light deflection in the same metric.</p>
+
+                <h3>geodesic deviation (tidal equation)</h3>
+                <p>consider a congruence of geodesics with tangent $u^\mu$ and a connecting vector $\xi^\mu$ to an
+                    infinitesimally nearby geodesic, lie transported so $[u,\xi]=0$. with riemann defined by
+                    $[\nabla_\mu,\nabla_\nu]V^\rho=R^\rho{}_{\sigma\mu\nu}V^\sigma$, the <em>geodesic deviation
+                        equation</em> is</p>
+                $$
+                \frac{D^2\xi^\rho}{\mathrm{d}\tau^2}=-R^\rho{}_{\mu\sigma\nu}\,u^\mu u^\nu\,\xi^\sigma,
+                $$
+                <p>where $D/\mathrm{d}\tau=u^\lambda\nabla_\lambda$ and $\tau$ is an affine parameter. thus $R$ measures tidal
+                    shear: nearby free-fall trajectories accelerate relative to one another—gravity as intrinsic curvature,
+                    not as a force field in flat space.</p>
+
+                <h3>how prior layers reappear</h3>
+                <p>$M$ is a smooth manifold; $g$ is a symmetric section of $T^*M\otimes T^*M$; $\nabla$ is the connection on
+                    $TM$ fixed by $g$. forms $e^a$, $\omega^a{}_b$, $\Omega^a{}_b$ repackage curvature as in <a
+                        href="#relativistic-spacetime-and-electrodynamics">electrodynamics on lorentzian manifolds</a>, where
+                    $\mathrm{d}$ and $\star_g$ already depended on $g$. bundles over curved $M$ and obstructions to global
+                    gauges still use <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>; test-particle
+                    reductions tie to <a href="#the-kinematics-and-dynamics-of-classical-mechanics">hamiltonian mechanics</a>
+                    on killing-reduced phase spaces. <a href="../basics/">basics</a> carries the phenomenology; this section
+                    states the geometric and variational identities those arguments assume.</p>
             </section>
+
         </article>
 
         <footer class="doc-footer">
