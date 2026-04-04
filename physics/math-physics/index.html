@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>math physics · mathematical physics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../basics/">basics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>mathematical physics</h1>
+            <p class="doc-lead"><em>a structural companion to classical physics</em></p>
+            <p class="doc-intro">while the classical spine is laid out in <a href="../basics/">basics</a>—from
+                variational principles through symmetries, reduction, linearization, phase space, special relativity,
+                waves and radiation, general relativity, and global topological closure—this page enumerates the
+                mathematical methods that make those structures possible. the work of mathematics is to characterize
+                problems and their underlying shape with precision; physics poses the constraints, and the minimal
+                imaginative language follows. each algebraic object, invariant, and operator here exists because the
+                    classical story demanded it. this is a layered blueprint: navigable below, cross-linked back to the
+                    corresponding classical passages where it helps.</p>
+        </header>
+
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">Table of contents</h2>
+            <ol class="toc-list">
+                <li><a href="#algebraic-substrate-and-categorical-foundations">algebraic substrate and categorical
+                        foundations</a></li>
+                <li><a href="#metric-and-multilinear-structures">metric and multilinear structures</a></li>
+                <li><a href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds and the calculus
+                        of forms</a></li>
+                <li><a href="#cohomological-invariants-and-spectral-topology">cohomological invariants and spectral
+                        topology</a></li>
+                <li><a href="#the-kinematics-and-dynamics-of-classical-mechanics">the kinematics and dynamics of classical
+                        mechanics</a></li>
+                <li><a href="#relativistic-spacetime-and-electrodynamics">relativistic spacetime and electrodynamics</a>
+                </li>
+                <li><a href="#geometric-gravity-connections-and-curvature">geometric gravity, connections, and curvature</a>
+                </li>
+            </ol>
+        </nav>
+
+        <hr class="doc-rule">
+
+        <article class="doc-body">
+            <section id="algebraic-substrate-and-categorical-foundations" class="doc-section">
+                <h2>algebraic substrate and categorical foundations</h2>
+                <p>combining states, comparing observables, and changing frames forces groups (reversible, associative
+                    symmetries), vector spaces (superposition), and categories (objects like configuration or phase spaces,
+                    morphisms as processes, functors as change of description). normal subgroups and quotients are the
+                    algebraic face of gauge redundancy. linearity hands you matrices, spectra, and jordan blocks when
+                    operators refuse diagonalization. this layer fixes what naive sets miss about reversibility and
+                    structural comparison—the floor under everything in <a
+                        href="../basics/#variational-calculus-and-symmetries">variational calculus and symmetries</a>
+                    (<em>mechanics</em>, landau &amp; lifshitz vol. 1).</p>
+            </section>
+
+            <section id="metric-and-multilinear-structures" class="doc-section">
+                <h2>metric and multilinear structures</h2>
+                <p>measuring lengths, angles, and (where relevant) probabilities asks for bilinear forms: euclidean
+                    geometry from symmetric positive-definite data and gram–schmidt; minkowski signature and light cones
+                    when indefiniteness is physical; skew-symmetric nondegenerate forms forcing symplectic geometry—the
+                    natural home of phase space and poisson structure. tensor products carry multilinearity;
+                    symmetrization and alternation feed the exterior algebra and the wedge product. this is the linear
+                    infrastructure behind <a href="../basics/#variational-calculus-and-symmetries">variation</a>, <a
+                        href="../basics/#linearization-and-normal-modes">quadratic reduction</a>, and <a
+                        href="../basics/#phase-space-and-canonical-structure">canonical brackets</a>.</p>
+            </section>
+
+            <section id="differentiable-manifolds-and-the-calculus-of-forms" class="doc-section">
+                <h2>differentiable manifolds and the calculus of forms</h2>
+                <p>configuration space and spacetime are rarely one global chart. manifolds patch euclidean pieces with
+                    smooth transitions; tangent bundles carry velocities, cotangent bundles carry momenta and differentials.
+                    partitions of unity weld local constructions into global ones. exterior forms unify line and surface
+                    data; the exterior derivative \(\mathrm{d}\) satisfies \(\mathrm{d}^2=0\) and packages gradient, curl,
+                    and divergence without coordinates. lie derivatives and frobenius classify symmetries and holonomic
+                    constraints. this is the language that makes <a
+                        href="../basics/#general-relativity-and-curved-spacetime">curved spacetime</a> and <a
+                        href="../basics/#global-and-topological-closure">global maxwell on manifolds</a> honest.</p>
+            </section>
+
+            <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
+                <h2>cohomological invariants and spectral topology</h2>
+                <p>local exactness does not imply global exactness. de rham cohomology measures closed versus exact
+                    forms—obstructions to global potentials, dirac strings, monopole thought experiments. mayer–vietoris
+                    and čech–de rham compute; poincaré duality pairs degrees on oriented manifolds. for bundles, thom
+                    and euler classes detect twists and missing global sections; spectral sequences organize fibrations.
+                    this is the topological side of gauge redundancy and flux questions already touched in <a
+                        href="../basics/#global-and-topological-closure">global and topological closure</a>.</p>
+            </section>
+
+            <section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
+                <h2>the kinematics and dynamics of classical mechanics</h2>
+                <p>configuration space as a manifold with generalized coordinates; action on the tangent bundle forcing
+                    euler–lagrange equations; noether pairing symmetries to conserved quantities; legendre map to the
+                    cotangent bundle, hamilton equations, and poisson brackets from the symplectic form;
+                    hamilton–jacobi as generating-function technology; action–angle variables and adiabatic invariants for
+                    integrable sectors; groupoids and topology for global histories. the classical tour in <a
+                        href="../basics/#variational-calculus-and-symmetries">variation</a>, <a
+                        href="../basics/#reduction-and-effective-potentials">reduction</a>, <a
+                        href="../basics/#linearization-and-normal-modes">linearization</a>, and <a
+                        href="../basics/#phase-space-and-canonical-structure">phase space</a> is the concrete instance of
+                    this layer.</p>
+            </section>
+
+            <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
+                <h2>relativistic spacetime and electrodynamics</h2>
+                <p>finite invariant speed forces minkowski geometry: indefinite metric, light cones, lorentz
+                    transformations, four-vectors for coordinates and energy–momentum. the electromagnetic field is the
+                    2-form \(F=\mathrm{d}A\); maxwell splits into the identity \(\mathrm{d}F=0\) and the sourced
+                    equation \(\mathrm{d}\star F=\star J\) with the hodge star in lorentz signature. retarded and
+                    liénard–wiechert potentials enforce causality; the symmetric stress tensor encodes local conservation.
+                    see <a href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity and
+                        coupling</a>, <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves and
+                        radiation</a>, and <a href="../basics/#global-and-topological-closure">forms closure</a>.</p>
+            </section>
+
+            <section id="geometric-gravity-connections-and-curvature" class="doc-section">
+                <h2>geometric gravity, connections, and curvature</h2>
+                <p>gravity as geometry: lorentzian manifolds, the levi-civita connection (metric-compatible, torsion-free),
+                    riemann tensor measuring holonomy of parallel transport, einstein–hilbert action and field equations
+                    \(G_{ik}\sim T_{ik}\), schwarzschild as the spherical vacuum, geodesics and perihelion precession. this
+                    is the mathematical closure of the story told in <a
+                        href="../basics/#general-relativity-and-curved-spacetime">general relativity and curved spacetime</a>.
+                </p>
+            </section>
+        </article>
+
+        <footer class="doc-footer">
+            <p>this outline is minimal and self-contained. section titles are anchors; detailed proofs and equations can be
+                expanded under each heading or wired to interactive elements later. thank you for reading my work.</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>
