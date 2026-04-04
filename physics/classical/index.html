@@ -1021,43 +1021,173 @@
             </section>
             <section id="geometric-mechanics" class="doc-section">
                 <h2>geometric mechanics</h2>
-                <p><strong>arc.</strong> redo variational and hamiltonian content intrinsically on $Q$ and $T^*Q$ after
-                    the symmetry, multilinear, and smooth-structure layers; connect integrable periods to cohomological
-                    periods; name topological sectors of paths.</p>
+                <p>this block is <strong>self-contained</strong> and follows the geometric mechanics arc (items E1–E5) in
+                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                    variational principles on $TQ$, symmetries and noether data, legendre passage to $(T^*Q,\omega)$,
+                    hamilton–jacobi and integrable tori, and fundamental-group bookkeeping for path sectors. it uses the
+                    manifold, symplectic, and cohomological language fixed earlier on this page. no links below point to
+                    other site pages.</p>
+                <p>the organizing idea is that <em>lagrangian</em> data live naturally on velocity space $TQ$ while
+                    <em>hamiltonian</em> data live on $T^*Q$ with canonical symplectic form; legendre transform is the
+                    fiberwise dictionary when convexity permits. conserved quantities arise from group actions; global
+                    topology of $Q$ splits the space of paths into sectors detected by $\pi_1$.</p>
 
                 <h3 id="e-action-manifold">action on $TQ$, intrinsic EL</h3>
-                <p><strong>outcomes.</strong> write $S[\gamma]$ reparametrization-invariant form; derive EL; explain
-                    covariance under chart change.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">math
-                        physics · mechanics</a></p>
+                <p>let $Q$ be a smooth manifold, $\dim Q=n$. a <strong>curve</strong> is a smooth map
+                    $\gamma:I\to Q$ on an interval $I\subset\mathbb{R}$. its <em>velocity lift</em> is
+                    $\dot\gamma(t)\in T_{\gamma(t)}Q$, equivalently the derivation $f\mapsto \frac{\mathrm{d}}{\mathrm{d}t}f(\gamma(t))$.</p>
+                <p><strong>lagrangian.</strong> a (possibly time-dependent) smooth lagrangian is a map
+                    $L:TQ\times\mathbb{R}\to\mathbb{R}$ (often written $L(q,v,t)$ in natural bundle coordinates). for
+                    each fixed $t$, the restriction $L(\cdot,\cdot,t)$ is smooth on $TQ$.</p>
+                <p><strong>action functional.</strong> for $\gamma$ with fixed endpoints $\gamma(t_1)=q_1$,
+                    $\gamma(t_2)=q_2$,</p>
+                $$
+                S[\gamma] = \int_{t_1}^{t_2} L\bigl(\gamma(t),\dot\gamma(t),t\bigr)\,\mathrm{d}t .
+                $$
+                <p><strong>first variation.</strong> a variation of $\gamma$ is a smooth map
+                    $\gamma_s(t)$ with $\gamma_0=\gamma$, fixing endpoints. writing
+                    $\delta q(t)=\left.\frac{\partial}{\partial s}\right|_{s=0}\gamma_s(t)\in T_{\gamma(t)}Q$, the
+                    variation of velocity is the covariant derivative along $s$ at $s=0$; in any coordinate chart
+                    $(q^i)$ on $Q$, this reduces to $\delta\dot q^i=\frac{\mathrm{d}}{\mathrm{d}t}(\delta q^i)$ as
+                    before. stationarity $\delta S=0$ for all endpoint-fixed variations yields, in chart coordinates, the
+                    euler–lagrange equations</p>
+                $$
+                \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial \dot q^i}
+                - \frac{\partial L}{\partial q^i} = 0 .
+                $$
+                <p><strong>intrinsic content.</strong> although the display uses coordinates, the left-hand side defines
+                    a covector along $\gamma$ independent of chart: if $\tilde q$ is another coordinate system, the chain
+                    rule implies the two coordinate expressions represent the same element of $T^*_{\gamma(t)}Q$. thus EL
+                    is the statement “a certain intrinsic covector along the motion vanishes,” not a coordinate trick.</p>
+                <p><strong>reparametrization (homogeneous lagrangians).</strong> if $L(q,\lambda v,t)=\lambda L(q,v,t)$
+                    for $\lambda&gt;0$ (positive one-homogeneity in velocity), the action $S[\gamma]=\int L(\dot\gamma)\,\mathrm{d}t$
+                    is invariant under orientation-preserving reparametrizations of $\gamma$; the extremals are
+                    <em>unparametrized</em> geodesics or lightlike curves in relativistic models. the variational
+                    derivation then uses constrained variations or the einstein–hilbert–style normalization of parameter.</p>
 
                 <h3 id="e-noether">noether charges, lifted actions</h3>
-                <p><strong>p.</strong> energy from time translation; momentum from space translation; angular momentum
-                    from rotation.</p>
-                <p><strong>m.</strong> lie group actions on $Q$, lifts to $TQ$; (momentum maps—phrase informally).</p>
-                <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics ·
-                        symmetries</a></p>
+                <p>let a lie group $G$ act smoothly on $Q$ by diffeomorphisms $\Phi_g:Q\to Q$. the <strong>tangent
+                        lift</strong> (or <em>prolongation</em>) acts on $TQ$ by</p>
+                $$
+                g\cdot (q,v) := \bigl(\Phi_g(q),\,(\Phi_g)_{*q}(v)\bigr)\in T_{\Phi_g(q)}Q,
+                $$
+                <p>where $(\Phi_g)_{*q}:T_qQ\to T_{\Phi_g(q)}Q$ is the differential (pushforward).</p>
+                <p><strong>symmetry of $L$.</strong> $L$ is <em>invariant</em> under the lifted action if, for all
+                    $g\in G$, $q\in Q$, $v\in T_qQ$, and $t$,</p>
+                $$
+                L\bigl(g\cdot(q,v),t\bigr) = L(q,v,t).
+                $$
+                <p>more generally, <em>equivariance up to a total time derivative</em> of a gauge function on $Q\times\mathbb{R}$
+                    yields the same conserved currents after adjustment.</p>
+                <p><strong>noether theorem (one-parameter version).</strong> let $\{\phi_s\}_{s\in\mathbb{R}}$ be a
+                    one-parameter subgroup of diffeomorphisms of $Q$ with generator vector field $X$:
+                    $X(q)=\left.\frac{\mathrm{d}}{\mathrm{d}s}\right|_{s=0}\phi_s(q)$. if $L$ is invariant under the
+                    induced tangent flow, then along any solution of EL the scalar</p>
+                $$
+                C(t) := \bigl\langle \mathbb{F}L(\dot\gamma(t)),\, X(\gamma(t))\bigr\rangle
+                = \frac{\partial L}{\partial \dot q^i}\,X^i
+                $$
+                <p>is constant in $t$, where $\mathbb{F}L$ is the fiber derivative (conjugate momentum covector) and
+                    $X^i$ are components of $X$ in coordinates.</p>
+                <p><strong>standard instances.</strong> time translation invariance of autonomous $L$ yields conservation
+                    of the hamiltonian $H=p_i\dot q^i-L$; translation symmetry in cartesian coordinates yields linear
+                    momentum components; rotation symmetry yields angular momentum. each is a noether charge attached to
+                    the lie algebra generator of the corresponding subgroup.</p>
+                <p><strong>momentum map (informal).</strong> for a general $G$-action, a <em>momentum map</em>
+                    $J:T^*Q\to\mathfrak{g}^*$ packages all momenta conjugate to infinitesimal symmetries; equivariance
+                    of $J$ under the cotangent lifted action is the global group-theoretic form of noether’s theorem.</p>
 
                 <h3 id="e-legendre-hamilton">legendre, hamiltonian flow, poisson</h3>
-                <p><strong>m.</strong> fiber derivative; hyperregularity; $\omega=-\mathrm{d}\theta$; $X_H$; poisson
-                    axioms.</p>
-                <p><strong>outcomes.</strong> pass from $L$ to $H$; write hamilton’s equations; compute $\{f,g\}$ in
-                    darboux coordinates.</p>
-                <p class="dim">draft narrative: <a href="../basics/#phase-space-and-canonical-structure">basics · phase
-                        space</a> · draft structure: mechanics section</p>
+                <p>the <strong>fiber derivative</strong> (legendre map in mechanics) is
+                    $\mathbb{F}L:TQ\to T^*Q$ sending $v\in T_qQ$ to the covector $p\in T^*_qQ$ defined by</p>
+                $$
+                \langle \mathbb{F}L(v), w\rangle
+                = \left.\frac{\mathrm{d}}{\mathrm{d}s}\right|_{s=0} L(v+s w)\quad\text{for all }w\in T_qQ .
+                $$
+                <p>in natural coordinates, $p_i=\partial L/\partial\dot q^i$. $L$ is <strong>hyperregular</strong> if
+                    $\mathbb{F}L$ is a diffeomorphism $TQ\to T^*Q$ (equivalently, the fiber hessian
+                    $\partial^2 L/\partial\dot q^i\partial\dot q^j$ is nondegenerate at every point).</p>
+                <p><strong>hamiltonian.</strong> define $H:T^*Q\times\mathbb{R}\to\mathbb{R}$ by</p>
+                $$
+                H\bigl(\mathbb{F}L(v),t\bigr) = \langle \mathbb{F}L(v), v\rangle - L(v,t),
+                $$
+                <p>and extend by the inverse of $\mathbb{F}L$ in the hyperregular case. in coordinates,
+                    $H(q,p,t)=p_i\dot q^i(q,p)-L$ with $\dot q$ solved from $p=\partial L/\partial\dot q$.</p>
+                <p><strong>canonical one-form and symplectic form on $T^*Q$.</strong> there is a canonical
+                    $\theta\in\Omega^1(T^*Q)$ with local expression $\theta=\sum_i p_i\,\mathrm{d}q^i$ in darboux
+                    coordinates $(q^i,p_i)$ induced from a chart on $Q$. the <strong>canonical symplectic form</strong>
+                    is</p>
+                $$
+                \omega = -\,\mathrm{d}\theta = \sum_i \mathrm{d}q^i\wedge \mathrm{d}p_i .
+                $$
+                <p><strong>hamiltonian vector field.</strong> given $H$, the vector field $X_H$ on $T^*Q$ is uniquely
+                    defined by</p>
+                $$
+                \iota_{X_H}\omega = \mathrm{d}H .
+                $$
+                <p>in darboux coordinates this reproduces hamilton’s equations
+                    $\dot q^i=\partial H/\partial p_i$, $\dot p_i=-\partial H/\partial q^i$.</p>
+                <p><strong>poisson bracket (axioms).</strong> on $C^\infty(T^*Q)$,</p>
+                $$
+                \{f,g\} = \omega(X_f,X_g) = \sum_i\left(
+                \frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}
+                - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}
+                \right).
+                $$
+                <p>it satisfies: <strong>P1</strong> bilinearity; <strong>P2</strong> antisymmetry $\{g,f\}=-\{f,g\}$;
+                    <strong>P3</strong> jacobi $\{f,\{g,h\}\}+\{g,\{h,f\}\}+\{h,\{f,g\}\}=0$; <strong>P4</strong> leibniz
+                    $\{fg,h\}=f\{g,h\}+\{f,h\}g$. along flow, $\dot f=\{f,H\}$.</p>
 
                 <h3 id="e-hj-integrable">hamilton–jacobi, action–angle</h3>
-                <p><strong>p.</strong> complete integrals; linear flow on tori; adiabatic invariance as geometric
-                    statement.</p>
-                <p><strong>m.</strong> $I_k=\frac{1}{2\pi}\oint_{\gamma_k}p\,\mathrm{d}q$; liouville tori.</p>
-                <p class="dim">draft structure: mechanics · HJ and action–angle</p>
+                <p>seek a generating function $S(q,t)$ such that $p_i=\partial S/\partial q^i$ defines a canonical
+                    transformation to constant coordinates. the <strong>hamilton–jacobi equation</strong> for
+                    time-dependent $H$ is</p>
+                $$
+                H\Bigl(q,\frac{\partial S}{\partial q},t\Bigr) + \frac{\partial S}{\partial t} = 0 .
+                $$
+                <p>a <strong>complete integral</strong> is a solution $S(q,\alpha,t)$ depending on $n$ independent
+                    constants $\alpha=(\alpha_1,\ldots,\alpha_n)$ such that $\det(\partial^2 S/\partial q^i\partial\alpha_j)\neq 0$;
+                    from it one constructs explicit solutions of hamilton’s equations by differentiation.</p>
+                <p><strong>liouville integrability (sketch).</strong> suppose there exist $n$ functionally independent
+                    first integrals $F_1,\ldots,F_n$ on an open set in $T^*Q$ with $\{F_i,F_j\}=0$ for all $i,j$, and
+                    $H=F_1$. compact connected regular level sets of $(F_1,\ldots,F_n)$ are then diffeomorphic to
+                    $n$-dimensional tori (liouville–arnold). there exist <strong>action–angle coordinates</strong>
+                    $(I_1,\ldots,I_n,\theta^1,\ldots,\theta^n)$ with each $I_k$ constant along flow and
+                    $\dot\theta^k=\omega^k(I)$.</p>
+                <p><strong>action variables as periods.</strong> on such a torus, fix a basis of independent cycles
+                    $\gamma_k$. the actions are</p>
+                $$
+                I_k = \frac{1}{2\pi}\oint_{\gamma_k} \sum_i p_i\,\mathrm{d}q^i,
+                $$
+                <p>with the integral taken along the cycle on the invariant torus. these are adiabatic invariants under
+                    slow parameter change in integrable systems (statement).</p>
+                <p><strong>link to cohomology.</strong> the one-form $p_i\,\mathrm{d}q^i$ on $T^*Q$ restricts to closed
+                    forms on invariant tori; period integrals $\oint_{\gamma_k} p\,\mathrm{d}q$ are the same
+                    “period” idea as flux periods in de rham cohomology—here pairing a closed form with cycles in
+                    configuration or phase space rather than with spatial spheres enclosing sources.</p>
 
                 <h3 id="e-path-topology">$\pi_1$, path sectors</h3>
-                <p><strong>p.</strong> winding; multiple homotopy classes of paths; monodromy in integrable systems.</p>
-                <p><strong>m.</strong> fundamental group; composition of paths up to homotopy.</p>
-                <p class="dim">draft structure: mechanics · global topology subsection</p>
+                <p>fix a basepoint $q_0\in Q$. a <strong>loop</strong> based at $q_0$ is a continuous
+                    $\ell:[0,1]\to Q$ with $\ell(0)=\ell(1)=q_0$. two loops are <em>homotopic rel endpoints</em> if one
+                    can be continuously deformed into the other fixing endpoints throughout.</p>
+                <p><strong>fundamental group $\pi_1(Q,q_0)$.</strong> homotopy classes of loops form a group under
+                    concatenation: $[\ell_1]\cdot[\ell_2]$ is the class of traverse $\ell_1$ then $\ell_2$ (reparametrized
+                    smoothly). the identity is the constant loop; the inverse is the reversed orientation. for path-connected
+                    $Q$, different basepoints yield isomorphic groups, written $\pi_1(Q)$ up to canonical isomorphism class.</p>
+                <p><strong>path sectors between two points.</strong> for $q_0,q_1\in Q$, homotopy classes of paths
+                    $\gamma:q_0\to q_1$ are a torsor over $\pi_1(Q,q_0)$: choosing one reference path fixes a bijection
+                    with $\pi_1$. if $Q$ is simply connected ($\pi_1=0$), there is a unique homotopy class of paths
+                    between any two points—global actions and phases need no multivaluedness from topology.</p>
+                <p><strong>covering spaces.</strong> nontrivial $\pi_1$ encodes obstruction to lifting paths globally
+                    on certain bundles; the universal cover $\tilde Q\to Q$ has $\pi_1(\tilde Q)=0$ and encodes all path
+                    lifts. classical actions defined as $\int_\gamma L\,\mathrm{d}t$ may depend on the homotopy class of
+                    $\gamma$ when $L$ descends from a multivalued potential on $\tilde Q$—quantum interference between
+                    sectors is the path-integral refinement.</p>
+                <p><strong>winding example.</strong> for $Q=\mathbb{R}^2\setminus\{0\}$, $\pi_1(Q)\cong\mathbb{Z}$ is
+                    generated by a loop winding once counterclockwise around the puncture. potentials with nontrivial
+                    holonomy around that loop (e.g. vortex) assign different phase accumulations to paths in different
+                    winding classes even when local dynamics looks identical.</p>
             </section>
-
             <section id="flat-spacetime-ed" class="doc-section">
                 <h2>flat spacetime: SR and ED</h2>
                 <p><strong>arc.</strong> unify particle dynamics and fields on minkowski space; gauge is a geometric
