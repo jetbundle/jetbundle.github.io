@@ -173,6 +173,13 @@ a:hover {
   margin: 0;
 }
 
+/* definitions and labeled items: bold + underline for scanability */
+main.doc .doc-body strong {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
 .doc-section {
   margin: 0 0 2.25rem;
   scroll-margin-top: 1.25rem;
