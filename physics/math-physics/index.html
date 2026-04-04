@@ -1077,7 +1077,7 @@
                     this section states the minimal geometric skeleton those examples assume.</p>
             </section>
 
-                        <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
+            <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
                 <h2>relativistic spacetime and electrodynamics</h2>
                 <p>finite signal speed contradicts galilean instantaneous interactions. the resolution is a single
                     lorentzian arena for all phenomena—already narrated in <a
@@ -1090,7 +1090,9 @@
                         href="#cohomological-invariants-and-spectral-topology">cohomology of gauge fields</a>, and <a
                         href="#the-kinematics-and-dynamics-of-classical-mechanics">variational mechanics</a>. the signature
                     matches <a href="#geometric-gravity-connections-and-curvature">curved spacetime</a> later:
-                    <em>mostly minus</em> $\eta=\mathrm{diag}(-1,1,1,1)$.</p>
+                    <em>mostly minus</em> $\eta=\mathrm{diag}(-1,1,1,1)$. texts using <em>mostly plus</em>
+                    $\mathrm{diag}(+1,-1,-1,-1)$ flip the sign of $\eta(V,V)$ and of $\eta_{\mu\nu}p^\mu p^\nu$ on-shell
+                    (then $p^\mu p_\mu=+m^2c^2$); tensor equations are the same after that bookkeeping.</p>
 
                 <h3>minkowski metric, intervals, and lorentz symmetry</h3>
                 <p>work in cartesian coordinates $x^\mu=(x^0,x^1,x^2,x^3)$ with $x^0=ct$. the <em>minkowski metric</em>
@@ -1187,13 +1189,34 @@
                     implies $\mathrm{d}(A+\mathrm{d}\chi)=\mathrm{d}A$. on a topologically nontrivial spacetime region, $F$
                     may be closed without being globally $\mathrm{d}A$; the class $[F]\in H^2_{\mathrm{dR}}(M)$ is the obstruction
                     (dirac string / monopole package in <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
-                <p>varying $S_m+S_{\mathrm{int}}$ with respect to the worldline (holding $A_\mu$ fixed) yields the covariant
-                    equation of motion</p>
+                <p>varying $S_m+S_{\mathrm{int}}$ with respect to $x^\mu(\lambda)$ (holding $A_\mu$ fixed) reproduces the geodesic
+                    term from $S_m$ plus a term $-(e/c)\int (\partial_\mu A_\nu-\partial_\nu A_\mu)\dot x^\nu\,\delta x^\mu\,\mathrm{d}\lambda$
+                    after integration by parts. the antisymmetric combination is $F_{\mu\nu}\dot x^\nu$; reparameterizing to
+                    proper time $\tau$ with $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ gives the <em>lorentz four-force law</em></p>
                 $$
                 m\frac{\mathrm{d}u^\mu}{\mathrm{d}\tau}=\frac{e}{c}\,F^\mu{}_\nu\,u^\nu,\qquad F^\mu{}_\nu=\eta^{\mu\rho}F_{\rho\nu}.
                 $$
-                <p>in three-vector notation this reproduces the lorentz force after identifying electric and magnetic fields
-                    from $F_{0i}$ and $F_{ij}$ (signs fixed by $\eta$ and the chosen $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$).</p>
+                <p>equivalently $m c\,\mathrm{d}u^\mu/\mathrm{d}s=(e/c)F^\mu{}_\nu u^\nu$ if one writes affine parameter $s=c\tau$
+                    (so $u^\mu=\mathrm{d}x^\mu/\mathrm{d}s$ still satisfies $\eta_{\mu\nu}u^\mu u^\nu=-1$).</p>
+                <p>with contravariant potential $A^\mu=(\phi,\mathbf{A})$ and $x^0=ct$, lower indices by $A_\mu=\eta_{\mu\nu}A^\nu$
+                    so $A_0=-\phi$ and $A_i=A_i$. then</p>
+                $$
+                F_{0i}=\partial_0 A_i-\partial_i A_0=\frac1c\frac{\partial A_i}{\partial t}+\partial_i\phi,\qquad
+                    F_{ij}=\partial_i A_j-\partial_j A_i.
+                $$
+                <p>the electric field $\mathbf{E}=(E^1,E^2,E^3)$ and magnetic field $\mathbf{B}$ used in the laboratory (heaviside–lorentz)
+                    are</p>
+                $$
+                E^i=F^{0i}=-F_{0i}=-\frac{\partial\phi}{\partial x^i}-\frac1c\frac{\partial A_i}{\partial t},\qquad
+                    B^k=\epsilon^{ijk}\frac{\partial A_j}{\partial x^i}\quad\text{(equivalently }F_{ij}=\epsilon_{ijk}B^k\text{)}.
+                $$
+                <p>the spatial part of $m\,\mathrm{d}u^\mu/\mathrm{d}\tau=(e/c)F^\mu{}_\nu u^\nu$ then reduces, after a short
+                    calculation, to the three-vector lorentz force</p>
+                $$
+                \frac{\mathrm{d}\mathbf{p}}{\mathrm{d}t}=e\left(\mathbf{E}+\frac{\mathbf{v}}{c}\times\mathbf{B}\right),\qquad
+                    \mathbf{p}=\frac{m\mathbf{v}}{\sqrt{1-\mathbf{v}^2/c^2}},
+                $$
+                <p>with $\mathbf{p}$ the kinematic (not canonical) three-momentum.</p>
 
                 <h3>maxwell’s equations: index form and hodge form</h3>
                 <p>the free electromagnetic action in a standard heaviside–lorentz normalization is</p>
