@@ -722,45 +722,168 @@
                     algebraic-topological layer on the same smooth manifold, not an ad hoc overlay.</p>
             </section>
 
-            <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
+                        <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
                 <h2>cohomological invariants and spectral topology</h2>
-                <p>the distinction “closed form” versus “globally exact form” in <a
-                        href="../basics/#global-and-topological-closure">global and topological closure</a> is not
-                    pedantry: it carries fluxes, winding numbers, and obstructions to choosing global gauges. de rham
-                    cohomology is the functorial invariant that counts those phenomena.</p>
+                <p>the preceding section fixed smooth manifolds, $\mathrm{d}^2=0$, and the calculus of forms. a
+                    recurring physical pattern is <em>local solvability without global extension</em>: on a small ball,
+                    closed forms admit primitives and gauge potentials exist; across all of $M$, those primitives may
+                    fail to patch to a single global object. magnetic flux can close ($\mathrm{d}F=0$) yet admit no
+                    global $A$ with $F=\mathrm{d}A$; gauge fields trivialize on patches but twist as a bundle so no
+                    global section exists. <a href="../basics/#global-and-topological-closure">global and topological
+                        closure</a> is the physics of that gap. de rham cohomology (and the tools below) measure it in
+                    linear, functorial language.</p>
 
-                <h3>de rham cohomology</h3>
-                <p>let \(M\) be a smooth manifold. write \(\Omega^k(M)\) for smooth \(k\)-forms.
-                    \(\mathrm{d}:\Omega^k(M)\to
-                    \Omega^{k+1}(M)\) satisfies \(\mathrm{d}^2=0\). a form \(\omega\) is <em>closed</em> if
-                    \(\mathrm{d}\omega=0\), <em>exact</em> if \(\omega=\mathrm{d}\eta\) for some \(\eta\). every exact
-                    form is closed. the <em>\(k\)-th de rham cohomology</em> is the quotient vector space</p>
-                \[
-                H^k_{\mathrm{dR}}(M)=\frac{\{\omega\in\Omega^k(M):\mathrm{d}\omega=0\}}{\{\omega=\mathrm{d}\eta\}}.
-                \]
-                <p>its dimension \(b_k=\dim H^k_{\mathrm{dR}}(M)\) is the \(k\)-th betti number (for reasonable \(M\),
-                    finite in each degree). pullback along smooth maps \(f:M\to N\) induces
-                    \(f^*:H^k_{\mathrm{dR}}(N)\to H^k_{\mathrm{dR}}(M)\), functorially.</p>
-                <p><em>poincaré lemma</em>: on a contractible open set, every closed form is exact. failure of
-                    contractibility produces the global obstructions the classical text names when discussing monopoles,
-                    dirac strings, and nontrivial bundles.</p>
+                <h3>the de rham complex and cohomology</h3>
+                <p>let $M$ be a smooth manifold. write $\Omega^p(M)$ for smooth real $p$-forms. the <em>de rham
+                        complex</em> is the cochain complex</p>
+                $$
+                0\to\Omega^0(M)\xrightarrow{\mathrm{d}}\Omega^1(M)\xrightarrow{\mathrm{d}}\cdots\xrightarrow{\mathrm{d}}
+                    \Omega^n(M)\to 0,\qquad n=\dim M,
+                $$
+                <p>with the exterior derivative $\mathrm{d}$ satisfying, for all $\alpha,\beta$ of appropriate degree and
+                    $a,b\in\mathbb{R}$:</p>
+                <ol>
+                    <li>$\mathrm{d}(a\alpha+b\beta)=a\,\mathrm{d}\alpha+b\,\mathrm{d}\beta$ (linearity);</li>
+                    <li>$\mathrm{d}(\alpha\wedge\beta)=\mathrm{d}\alpha\wedge\beta+(-1)^{\deg\alpha}\alpha\wedge\mathrm{d}\beta$
+                        (graded leibniz);</li>
+                    <li>$\mathrm{d}^2=0$ on every form (nilpotency—equivalently $\mathrm{im}\,\mathrm{d}\subseteq\ker\mathrm{d}$ in each degree).</li>
+                </ol>
+                <p>define the <em>closed</em> and <em>exact</em> forms</p>
+                $$
+                Z^p(M):=\{\omega\in\Omega^p(M):\mathrm{d}\omega=0\},\qquad
+                    B^p(M):=\mathrm{im}\bigl(\mathrm{d}:\Omega^{p-1}(M)\to\Omega^p(M)\bigr).
+                $$
+                <p>exact implies closed because $\mathrm{d}^2=0$. the <em>$p$-th de rham cohomology vector space</em> is
+                    the quotient</p>
+                $$
+                H^p_{\mathrm{dR}}(M):=Z^p(M)/B^p(M).
+                $$
+                <p>a class $[\omega]\in H^p_{\mathrm{dR}}(M)$ is the equivalence class of $\omega$ modulo adding
+                    $\mathrm{d}\eta$. for compact $M$ (or finite-dimensional cohomology), $\dim H^p_{\mathrm{dR}}(M)=b_p$
+                    is the $p$-th betti number—a topological invariant, independent of metric or coordinates. a smooth
+                    map $f:M\to N$ pulls back forms and commutes with $\mathrm{d}$, hence induces well-defined linear
+                    maps</p>
+                $$
+                f^*:H^p_{\mathrm{dR}}(N)\to H^p_{\mathrm{dR}}(M),\qquad f^*[\omega]=[f^*\omega],
+                $$
+                <p>functorially: $(g\circ f)^*=f^*\circ g^*$. <em>poincaré lemma</em>: on a contractible open subset of
+                    $M$, every closed $p$-form is exact. global topology is exactly what can block the extension of such
+                    local primitives.</p>
+                <p><em>reading degrees for fields.</em> $H^1_{\mathrm{dR}}(M)\neq 0$ means there are closed $1$-forms
+                    not globally $\mathrm{d}f$—multi-valued potentials, holonomy, and aharonov–bohm-type phases live in
+                    this language. $H^2_{\mathrm{dR}}(M)\neq 0$ means closed $2$-forms need not be globally
+                    $\mathrm{d}A$; that is the cohomological obstruction to a single-valued vector potential when flux or
+                    bundle twisting is present.</p>
 
-                <h3>computations, duality, bundles</h3>
-                <p><em>mayer–vietoris</em> and <em>čech–de rham</em> machinery compute \(H^*_{\mathrm{dR}}(M)\) from
-                    covers—exact sequences relate cohomology of pieces, intersections, and the union. on a closed
-                    oriented \(n\)-manifold, <em>poincaré duality</em> gives a nondegenerate pairing
-                    \(H^k_{\mathrm{dR}}(M)\times H^{n-k}_{\mathrm{dR}}(M)\to\mathbb{R}\), identifying degrees that carry
-                    complementary geometric data (sources versus fields, cycles versus fluxes).</p>
-                <p>for vector bundles \(E\to M\), characteristic classes such as <em>euler</em> and <em>thom</em>
-                    classes
-                    live in cohomology of \(M\) or of the total space and detect obstructions to nonvanishing sections
-                    (e.g. hairy ball phenomena) and twisting of bundles. <em>spectral sequences</em> organize filtered
-                    complexes arising from fibrations and local coefficient systems. these are the systematic language
-                    behind the “topological closure” paragraphs in <a
-                        href="../basics/#global-and-topological-closure">basics</a>.</p>
+                <h3>dirac monopole: closed flux, no global potential</h3>
+                <p>place a static magnetic monopole of strength $g$ at the origin in $\mathbb{R}^3$. on
+                    $\mathbb{R}^3\setminus\{0\}$, use standard spherical coordinates $(r,\theta,\phi)$. the magnetic
+                    field $2$-form (oriented so flux through a surrounding sphere is $4\pi g$) may be written</p>
+                $$
+                F = g\,\sin\theta\,\mathrm{d}\theta\wedge\mathrm{d}\phi.
+                $$
+                <p>then $\mathrm{d}F=0$ on $\mathbb{R}^3\setminus\{0\}$ (direct computation in these coordinates gives
+                    $\mathrm{d}F=0$). the integral over any sphere $S^2$ enclosing the origin is</p>
+                $$
+                \int_{S^2} F = \int_0^{2\pi}\!\!\int_0^{\pi} g\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi = 4\pi g.
+                $$
+                <p>$H^2_{\mathrm{dR}}(\mathbb{R}^3\setminus\{0\})\cong H^2_{\mathrm{dR}}(S^2)\cong\mathbb{R}$, and
+                    integration over an enclosing $S^2$ identifies a generator: a class is zero if and only if its
+                    integral vanishes. thus $g\neq 0$ gives $[F]\neq 0$, so $F$ cannot be exact on the punctured space—there
+                    is no smooth global $A$ with $F=\mathrm{d}A$ on all of $\mathbb{R}^3\setminus\{0\}$. local potentials
+                    $A_U$ exist on charts (e.g. two hemispheres), but gluing them smoothly forces a dirac string. the
+                    cohomology class is the invariant record of that obstruction. coupling to a quantum phase
+                    $\exp(\frac{\mathrm{i}e}{\hbar}\oint A)$ along loops then yields dirac-type quantization relations
+                    between electric charge $e$ and magnetic charge $g$ (exact normalization depends on units).</p>
+
+                <h3>mayer–vietoris</h3>
+                <p>to compute $H^*_{\mathrm{dR}}(M)$ from simpler pieces, let $M=U\cup V$ with $U,V$ open. restriction of
+                    forms gives a short complex; the resulting <em>mayer–vietoris long exact sequence</em> links
+                    cohomology of $M$, $U$, $V$, and $U\cap V$:</p>
+                $$
+                \cdots\to H^p_{\mathrm{dR}}(M)\xrightarrow{(j_U^*,j_V^*)} H^p_{\mathrm{dR}}(U)\oplus H^p_{\mathrm{dR}}(V)
+                    \xrightarrow{j_{U\cap V,U}^*-j_{U\cap V,V}^*} H^p_{\mathrm{dR}}(U\cap V)\xrightarrow{\delta}
+                    H^{p+1}_{\mathrm{dR}}(M)\to\cdots
+                $$
+                <p>the connecting homomorphism $\delta$ is built by choosing a partition of unity subordinate to
+                    $\{U,V\}$, splitting a closed form on $U\cap V$ into pieces extendable to $U$ and $V$, and taking
+                    $\mathrm{d}$ of the glued difference—so the same analytic tools that globalize metrics also build
+                    topological invariants. iterating on complicated $M$ reduces global cohomology to balls and
+                    intersections.</p>
+
+                <h3>čech–de rham and the de rham theorem</h3>
+                <p>for a <em>good cover</em> $\{U_\alpha\}$ (all finite intersections contractible), one forms a
+                    double complex: čech $q$-cochains with values in $p$-forms on $(q+1)$-fold intersections, with
+                    čech coboundary $\check{\delta}$ and exterior derivative $\mathrm{d}$ (extended row-wise). signs are
+                    arranged so the <em>total differential</em> $D=\mathrm{d}+(-1)^p\check{\delta}$ satisfies $D^2=0$.
+                    the associated spectral sequence (or direct acyclic-resolution argument) computes
+                    $H^*_{\mathrm{dR}}(M)$ and proves the <em>de rham theorem</em>: $H^p_{\mathrm{dR}}(M)$ is naturally
+                    isomorphic to the real čech cohomology $\check{H}^p(M;\mathbb{R})$ of the nerve of the cover. analytic
+                    forms and combinatorial topology are the same invariant; that isomorphism is why concrete flux
+                    integrals count betti numbers.</p>
+
+                <h3>poincaré duality</h3>
+                <p>let $M$ be a closed oriented smooth $n$-manifold (compact, no boundary). cup product and integration
+                    define a bilinear pairing</p>
+                $$
+                H^p_{\mathrm{dR}}(M)\times H^{n-p}_{\mathrm{dR}}(M)\to\mathbb{R},\qquad ([\alpha],[\beta])\mapsto
+                    \int_M \alpha\wedge\beta,
+                $$
+                <p>well-defined because changing $\alpha$ by $\mathrm{d}\eta$ shifts the integrand by an exact $n$-form,
+                    which integrates to zero by stokes. this pairing is <em>nondegenerate</em> (poincaré duality), hence
+                    $\dim H^p_{\mathrm{dR}}(M)=\dim H^{n-p}_{\mathrm{dR}}(M)$. on noncompact $M$, one often pairs
+                    $H^p(M)$ with $H^{n-p}_c(M)$ (compact support on one factor) so integrals converge. geometrically,
+                    $p$-cycles (sources, vortices, branes) sit in homology dual to $(n-p)$-cohomology; in four dimensions
+                    this is the structural reason electric and magnetic data can be exchanged while preserving global
+                    consistency of flux and charge.</p>
+
+                <h3>thom class, euler class, and nowhere-vanishing sections</h3>
+                <p>let $\pi:E\to M$ be an oriented real vector bundle of rank $k$. the <em>thom class</em>
+                    $\Phi_E\in H^k_c(E)$ (compact support in the fiber direction) is characterized by integrating to $1$
+                    along each oriented fiber, generating $H^k(\mathbb{R}^k,\mathbb{R}^k\setminus\{0\})$ fiberwise. the
+                    <em>euler class</em> is the pullback along the zero section:</p>
+                $$
+                e(E):=s_0^*\,\Phi_E\in H^k_{\mathrm{dR}}(M).
+                $$
+                <p>obstruction theory: a nowhere-vanishing global section forces $e(E)=0$ (pull the bundle off the zero
+                    section). conversely, $e(E)\neq 0$ obstructs every attempt at a continuous nowhere-vanishing section.
+                    for an oriented surface $M$, $\int_M e(TM)=\chi(M)$ (gauss–bonnet); in particular
+                    $\int_{S^2}e(TS^2)=\chi(S^2)=2\neq 0$, so $e(TS^2)\neq 0$ and no continuous nonvanishing vector field
+                    exists on $S^2$ (hairy ball theorem). euler class is <em>multiplicative</em> under whitney sum of
+                    oriented bundles:</p>
+                $$
+                e(E\oplus F)=e(E)\smile e(F),
+                $$
+                <p>with $\smile$ the cup product on $H^*(M)$. that multiplicativity underlies product-manifold index
+                    calculations and many anomaly-cancellation identities in gauge theory.</p>
+
+                <h3>spectral sequences and fibrations</h3>
+                <p>a <em>filtered cochain complex</em> $(K^\bullet,d)$ with subcomplexes $F^p K^\bullet$ yields a
+                    spectral sequence $\{E_r^{p,q},d_r\}$ with $d_r:E_r^{p,q}\to E_r^{p+r,\,q-r+1}$ and
+                    $d_r^2=0$; successive pages approximate $H^{p+q}(K^\bullet)$. for a fibration $F\to E\to B$ with
+                    $B$ path-connected and $\pi_1(B)$ acting trivially on $H^*(F)$, the <em>serre spectral sequence</em>
+                    has</p>
+                $$
+                E_2^{p,q}=H^p_{\mathrm{dR}}\bigl(B;\,H^q_{\mathrm{dR}}(F)\bigr)\quad\Rightarrow\quad H^{p+q}_{\mathrm{dR}}(E).
+                $$
+                <p>differentials transgress fiber classes into base cohomology, packaging how fiber topology twists the
+                    total space. the same formalism organizes čech–de rham doubles, equivariant cohomology, and filtered
+                    de rham complexes on flag manifolds and loop spaces. for a map $f:S^{2n-1}\to S^n$ of hopf type,
+                    pulling back a volume form and choosing primitives encodes the <em>hopf invariant</em> in integrals
+                    such as $\int \alpha\wedge\mathrm{d}\alpha$—linking homotopy of maps to cohomological pairings.</p>
+
+                <h3>how this feeds what follows</h3>
+                <p>closed versus exact is the differential shadow of global topology; $H^p_{\mathrm{dR}}$ is the linear
+                    measurement of that gap. mayer–vietoris and čech–de rham compute it; poincaré duality aligns degrees
+                    that carry dual flux and charge; euler and thom classes obstruct sections of bundles on which fields
+                    live; spectral sequences compute cohomology of total spaces when base and fiber are understood. the
+                    variational and field equations in <a href="../basics/">basics</a> assume this layer when asserting
+                    which potentials exist globally, which charges are quantized, and how connections on bundles patch—
+                    connections, curvature, and characteristic classes in later sections are built on the same cohomological
+                    skeleton.</p>
             </section>
 
-            <section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
+<section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
                 <h2>the kinematics and dynamics of classical mechanics</h2>
                 <p>this section names the geometric objects that the classical narrative in <a
                         href="../basics/">basics</a> manipulates: configuration manifolds, lagrangians on the tangent
