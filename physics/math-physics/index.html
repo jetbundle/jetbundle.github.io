@@ -1077,49 +1077,189 @@
                     this section states the minimal geometric skeleton those examples assume.</p>
             </section>
 
-            <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
+                        <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
                 <h2>relativistic spacetime and electrodynamics</h2>
-                <p>the classical development in <a
-                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>,
-                    <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves and radiation</a>,
-                    and <a href="../basics/#global-and-topological-closure">maxwell as forms</a> assumes a lorentzian
-                    background and gauge fields as connections; here is the compact mathematical packaging.</p>
+                <p>finite signal speed contradicts galilean instantaneous interactions. the resolution is a single
+                    lorentzian arena for all phenomena—already narrated in <a
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>, <a
+                        href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves and radiation</a>,
+                    and <a href="../basics/#global-and-topological-closure">maxwell as forms</a>. this section is the
+                    mathematical packaging tied to earlier layers: <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">manifolds and $\mathrm{d}$</a>, <a
+                        href="#metric-and-multilinear-structures">metric duality</a>, <a
+                        href="#cohomological-invariants-and-spectral-topology">cohomology of gauge fields</a>, and <a
+                        href="#the-kinematics-and-dynamics-of-classical-mechanics">variational mechanics</a>. the signature
+                    matches <a href="#geometric-gravity-connections-and-curvature">curved spacetime</a> later:
+                    <em>mostly minus</em> $\eta=\mathrm{diag}(-1,1,1,1)$.</p>
 
-                <h3>minkowski space and the lorentz group</h3>
-                <p>choose units with \(c=1\). <em>minkowski space</em> is \(\mathbb{R}^4\) with metric
-                    \(\eta=\mathrm{diag}
-                    (-1,1,1,1)\) and line element \(ds^2=\eta_{\mu\nu}\,dx^\mu dx^\nu\). a linear map \(\Lambda\) is a
-                    <em>lorentz transformation</em> if \(\Lambda^T\eta\Lambda=\eta\). they form the indefinite
-                    orthogonal
-                    group \(O(1,3)\); the component preserving orientation and time orientation is often written
-                    \(SO^+(1,3)\). four-vectors \(V^\mu\) transform by \(V'^\mu=\Lambda^\mu{}_\nu V^\nu\); covectors use
-                    \(\eta_{\mu\nu}\) to lower indices. <em>causal structure</em>: vectors with \(\eta(V,V)<0\) are
-                        timelike; null vectors define light cones.</p>
+                <h3>minkowski metric, intervals, and lorentz symmetry</h3>
+                <p>work in cartesian coordinates $x^\mu=(x^0,x^1,x^2,x^3)$ with $x^0=ct$. the <em>minkowski metric</em>
+                    $\eta_{\mu\nu}$ is the constant symmetric bilinear form with</p>
+                <ol>
+                    <li>$\eta_{\mu\nu}=\eta_{\nu\mu}$ (symmetry);</li>
+                    <li>$\det(\eta_{\mu\nu})=-1\neq 0$ (nondegeneracy);</li>
+                    <li>signature $(-,+,+,+)$: one negative and three positive eigenvalues.</li>
+                </ol>
+                <p>in these coordinates $\eta_{00}=-1$, $\eta_{ij}=\delta_{ij}$ for $i,j\in\{1,2,3\}$. the <em>spacetime
+                        interval</em> is</p>
+                $$
+                \mathrm{d}s^2=\eta_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu=-c^2\mathrm{d}t^2+\mathrm{d}x^2+\mathrm{d}y^2+\mathrm{d}z^2.
+                $$
+                <p>causal classification uses the sign of $\eta(V,V)$ for a tangent vector $V$:</p>
+                <ul>
+                    <li><em>timelike</em> ($\eta(V,V)&lt;0$): possible worldline direction for massive particles;</li>
+                    <li><em>null</em> ($\eta(V,V)=0$): light;</li>
+                    <li><em>spacelike</em> ($\eta(V,V)&gt;0$): no causal link to the origin in flat spacetime.</li>
+                </ul>
+                <p>a linear map $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$ is a <em>lorentz transformation</em> if it preserves
+                    the interval for all displacements:</p>
+                $$
+                \eta_{\rho\sigma}=\Lambda^\mu{}_\rho\,\Lambda^\nu{}_\sigma\,\eta_{\mu\nu}\qquad\text{equivalently}\qquad \Lambda^{\mathsf T}\eta\Lambda=\eta.
+                $$
+                <p>the set of such $\Lambda$ is the lie group $O(1,3)$; the subgroup with $\det\Lambda=1$ and
+                    $\Lambda^0{}_0&gt;0$ is the <em>restricted lorentz group</em> $SO^+(1,3)$, preserving orientation and
+                    future time direction. contravariant vectors transform as $V'^\mu=\Lambda^\mu{}_\nu V^\nu$; covariant
+                    components use index lowering $V_\mu=\eta_{\mu\nu}V^\nu$ and $V'^\mu=\Lambda^\mu{}_\nu V^\nu$ implies
+                    $V'_\mu=(\Lambda^{-1})^\nu{}_\mu V_\nu=\Lambda_\mu{}^\nu V_\nu$ with $\Lambda_\mu{}^\nu=\eta_{\mu\rho}\Lambda^\rho{}_\sigma\eta^{\sigma\nu}$.</p>
 
-                        <h3>maxwell as gauge theory on a lorentzian manifold</h3>
-                        <p>on a general lorentzian four-manifold \((M,g)\), the electromagnetic potential is a one-form
-                            \(A\); the
-                            field strength is the exact two-form \(F=\mathrm{d}A\) (so \(\mathrm{d}F=0\) is the
-                            homogeneous
-                            maxwell system, <em>bianchi identity</em>). sources enter through the <em>hodge star</em>
-                            \(\star_g\) built from \(g\): the inhomogeneous equation is \(\mathrm{d}\star_g F=\star_g
-                            J\) for
-                            current three-form \(J\). on minkowski space in cartesian coordinates this reproduces the
-                            standard
-                            \(\partial_\mu F^{\mu\nu}=J^\nu\) after identifying components. gauge freedom \(A\mapsto
-                            A+\mathrm{d}\chi\) leaves \(F\) unchanged—precisely a one-form worth of redundancy
-                            quotiented in the
-                            classical discussion of potentials.</p>
-                        <p>the <em>stress–energy tensor</em> \(T^{\mu\nu}\) packages local energy, momentum, and stress;
-                            its
-                            divergence vanishes when fields obey the coupled equations of motion (matter plus maxwell),
-                            encoding
-                            conservation compatible with lorentz symmetry. retarded potentials and liénard–wiechert
-                            fields are
-                            explicit green-function solutions tied to causal support of sources on lorentzian
-                            manifolds—the same
-                            causality enforced geometrically by the metric cone structure.</p>
+                <h3>proper time and the free relativistic particle</h3>
+                <p>for a timelike worldline $x^\mu(\lambda)$, <em>proper time</em> $\tau$ is defined by</p>
+                $$
+                -c^2\,\mathrm{d}\tau^2=\eta_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu,\qquad \mathrm{d}\tau&gt;0.
+                $$
+                <p>the lorentz-invariant action (mass $m&gt;0$) is proportional to proper time:</p>
+                $$
+                S_m[x]=-mc\int_{\lambda_1}^{\lambda_2}\sqrt{-\eta_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}}\,\mathrm{d}\lambda.
+                $$
+                <p>the integrand is reparameterization-invariant; choosing $\lambda=t$ gives the lagrangian in the laboratory
+                    frame</p>
+                $$
+                L=-mc^2\sqrt{1-\frac{\mathbf{v}^2}{c^2}},\qquad \mathbf{v}=\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}.
+                $$
+                <p>the canonical three-momentum is</p>
+                $$
+                \mathbf{p}=\frac{\partial L}{\partial\mathbf{v}}=\frac{m\mathbf{v}}{\sqrt{1-\mathbf{v}^2/c^2}}.
+                $$
+                <p>the <em>four-velocity</em> $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ satisfies $\eta_{\mu\nu}u^\mu u^\nu=-c^2$.
+                    the <em>four-momentum</em> $p^\mu=m u^\mu$ obeys the <em>mass-shell</em> constraint</p>
+                $$
+                \eta_{\mu\nu}p^\mu p^\nu=-m^2c^2\qquad\text{(equivalently }E^2=c^2\mathbf{p}^2+m^2c^4\text{ with }p^0=E/c\text{)}.
+                $$
+                <p>conservation of $p^\mu$ in scattering and decay is the relativistic replacement for separate newtonian
+                    momentum and energy conservation—algebraic closure of kinematics without dynamical details of
+                    interaction zones.</p>
+
+                <h3>minimal coupling to the electromagnetic potential</h3>
+                <p>the potential is encoded as a <em>one-form</em> $A=A_\mu(x)\,\mathrm{d}x^\mu$ (equivalently covector field
+                    $A_\mu$). the <em>minimal coupling</em> action along a worldline $\gamma$ is</p>
+                $$
+                S_{\mathrm{int}}=-\frac{e}{c}\int_\gamma A_\mu(x)\,\mathrm{d}x^\mu=-\frac{e}{c}\int A_\mu(x(\lambda))\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\,\mathrm{d}\lambda.
+                $$
+                <p>the total particle action is $S=S_m+S_{\mathrm{int}}$. in coordinates $(t,\mathbf{x})$ with $A^0=\phi$,
+                    $A^i$ the spatial components,</p>
+                $$
+                L=-mc^2\sqrt{1-\mathbf{v}^2/c^2}+\frac{e}{c}\mathbf{A}\cdot\mathbf{v}-e\phi.
+                $$
+                <p>the <em>canonical</em> three-momentum picks up the vector potential:</p>
+                $$
+                \mathbf{P}=\mathbf{p}+\frac{e}{c}\mathbf{A},
+                $$
+                <p>while the kinematic momentum $\mathbf{p}$ enters the kinetic term—exactly the momentum shift forced by gauge
+                    invariance (see below).</p>
+
+                <h3>field strength, gauge transformations, and the lorentz force</h3>
+                <p>define the <em>electromagnetic field strength</em></p>
+                $$
+                F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu.
+                $$
+                <p>antisymmetry $F_{\mu\nu}=-F_{\nu\mu}$ is automatic. in the language of <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">exterior calculus</a>, $F=\mathrm{d}A$ is a
+                    closed two-form on minkowski space: $\mathrm{d}F=\mathrm{d}^2A=0$ (homogeneous maxwell / bianchi). a <em>gauge
+                        transformation</em> is</p>
+                $$
+                A_\mu\longmapsto A_\mu+\partial_\mu\chi
+                $$
+                <p>for any smooth scalar $\chi$. then</p>
+                $$
+                F'_{\mu\nu}=\partial_\mu(A_\nu+\partial_\nu\chi)-\partial_\nu(A_\mu+\partial_\mu\chi)=F_{\mu\nu}+\partial_\mu\partial_\nu\chi-\partial_\nu\partial_\mu\chi=F_{\mu\nu},
+                $$
+                <p>by equality of mixed partials—the coordinate face of $\mathrm{d}^2\chi=0$. equivalently $A\mapsto A+\mathrm{d}\chi$
+                    implies $\mathrm{d}(A+\mathrm{d}\chi)=\mathrm{d}A$. on a topologically nontrivial spacetime region, $F$
+                    may be closed without being globally $\mathrm{d}A$; the class $[F]\in H^2_{\mathrm{dR}}(M)$ is the obstruction
+                    (dirac string / monopole package in <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
+                <p>varying $S_m+S_{\mathrm{int}}$ with respect to the worldline (holding $A_\mu$ fixed) yields the covariant
+                    equation of motion</p>
+                $$
+                m\frac{\mathrm{d}u^\mu}{\mathrm{d}\tau}=\frac{e}{c}\,F^\mu{}_\nu\,u^\nu,\qquad F^\mu{}_\nu=\eta^{\mu\rho}F_{\rho\nu}.
+                $$
+                <p>in three-vector notation this reproduces the lorentz force after identifying electric and magnetic fields
+                    from $F_{0i}$ and $F_{ij}$ (signs fixed by $\eta$ and the chosen $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$).</p>
+
+                <h3>maxwell’s equations: index form and hodge form</h3>
+                <p>the free electromagnetic action in a standard heaviside–lorentz normalization is</p>
+                $$
+                S_f=-\frac{1}{16\pi}\int_{\mathbb{R}^4} F_{\mu\nu}F^{\mu\nu}\,\mathrm{d}^4x,\qquad F^{\mu\nu}=\eta^{\mu\rho}\eta^{\nu\sigma}F_{\rho\sigma},\qquad \mathrm{d}^4x=\mathrm{d}x^0\,\mathrm{d}x^1\,\mathrm{d}x^2\,\mathrm{d}x^3,\ \ x^0=ct.
+                $$
+                <p>varying $A_\mu$ and integrating by parts (boundary terms vanish for suitable falloff) gives the <em>inhomogeneous</em>
+                    equations</p>
+                $$
+                \partial_\mu F^{\mu\nu}=\frac{4\pi}{c}\,J^\nu,
+                $$
+                <p>with conserved four-current $J^\nu$ (e.g. $J^0=c\rho$ and spatial components equal to three-current density,
+                    so $\partial_\nu J^\nu=0$ is charge conservation). the <em>homogeneous</em>
+                    pair is purely geometric:</p>
+                $$
+                \partial_\lambda F_{\mu\nu}+\partial_\mu F_{\nu\lambda}+\partial_\nu F_{\lambda\mu}=0\qquad\Longleftrightarrow\qquad \mathrm{d}F=0.
+                $$
+                <p>on a general lorentzian four-manifold $(M,g)$, this package becomes $\mathrm{d}F=0$ and
+                    $\mathrm{d}\star_g F=\star_g J$ for a current three-form $J$, linking directly to the metric volume form
+                    and hodge star from <a href="#metric-and-multilinear-structures">multilinear structures</a>—the same
+                    pattern promoted in <a href="#geometric-gravity-connections-and-curvature">geometric gravity</a>.</p>
+
+                <h3>stress–energy tensor and conservation</h3>
+                <p>the symmetric <em>electromagnetic stress–energy tensor</em> (same normalization as $S_f$ above) is</p>
+                $$
+                T^{\mu\nu}=\frac{1}{4\pi}\left(F^{\mu\lambda}F^\nu{}_\lambda-\frac14\,\eta^{\mu\nu}F_{\rho\sigma}F^{\rho\sigma}\right).
+                $$
+                <p>on-shell (maxwell satisfied),</p>
+                $$
+                \partial_\mu T^{\mu\nu}=0,
+                $$
+                <p>encoding local energy and momentum conservation for the field. integrating $T^{0\mu}$ over a spatial slice
+                    gives the total energy-momentum four-vector of the field configuration (subject to falloff and boundary
+                    conditions).</p>
+
+                <h3>wave equation, retarded potentials, and liénard–wiechert</h3>
+                <p>in lorenz gauge $\partial_\mu A^\mu=0$, the potential obeys</p>
+                $$
+                \Box A^\nu:=\partial_\mu\partial^\mu A^\nu=\eta^{\rho\sigma}\partial_\rho\partial_\sigma A^\nu=\frac{4\pi}{c}\,J^\nu
+                $$
+                <p>(up to gauge subtleties for coupled matter). the retarded green function enforces causality: influences
+                    propagate at speed $c$ along future light cones. symbolically,</p>
+                $$
+                A^\mu(x)=\int G_{\mathrm{ret}}(x-x')\,\frac{4\pi}{c}\,J^\mu(x')\,\mathrm{d}^4x',\qquad G_{\mathrm{ret}}\ \text{supported on the past light cone of }x.
+                $$
+                <p>for a point charge in arbitrary motion, the <em>liénard–wiechert</em> potentials have the schematic form</p>
+                $$
+                \phi(\mathbf{x},t)=\left[\frac{e}{(1-\mathbf{n}\cdot\boldsymbol{\beta})\,R}\right]_{\mathrm{ret}},\qquad \mathbf{A}=[\boldsymbol{\beta}\,\phi]_{\mathrm{ret}},
+                $$
+                <p>where $\boldsymbol{\beta}=\mathbf{v}/c$, $\mathbf{n}$ is the unit vector from retarded source position to the
+                    field point, $R$ is the spatial separation at retarded time, and $[\cdot]_{\mathrm{ret}}$ denotes evaluation
+                    at the unique retarded intersection of the observer’s past light cone with the charge worldline. the
+                    prefactor $(1-\mathbf{n}\cdot\boldsymbol{\beta})^{-1}$ is the beaming factor from relativistic kinematics,
+                    distorting spherical wavefronts for moving sources.</p>
+
+                <h3>how this section closes the flat-spacetime layer</h3>
+                <p>minkowski space is the model lorentzian manifold; $O(1,3)$ is the global isometry group. forms $A$ and $F$
+                    realize the exterior calculus; gauge $A\mapsto A+\mathrm{d}\chi$ is an affine version of the cohomological
+                    “closed modulo exact” story for $F$. the variational principle produces both particle worldlines and field
+                    equations, unifying the lagrangian language of <a
+                        href="#the-kinematics-and-dynamics-of-classical-mechanics">classical mechanics</a> with tensorial
+                    covariance. replacing $\eta$ by a dynamical $g_{\mu\nu}$ is precisely the step to <a
+                        href="#geometric-gravity-connections-and-curvature">gravity</a>; maxwell on $(M,g)$ differs only in
+                    replacing $\eta$ by $g$ and $\mathrm{d}\star_\eta$ by $\mathrm{d}\star_g$.</p>
             </section>
+
 
             <section id="geometric-gravity-connections-and-curvature" class="doc-section">
                 <h2>geometric gravity, connections, and curvature</h2>
