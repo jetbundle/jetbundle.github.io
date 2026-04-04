@@ -1190,32 +1190,157 @@
             </section>
             <section id="flat-spacetime-ed" class="doc-section">
                 <h2>flat spacetime: SR and ED</h2>
-                <p><strong>arc.</strong> unify particle dynamics and fields on minkowski space; gauge is a geometric
-                    redundancy; maxwell is $\mathrm{d}F=0$ plus source equations; stress tensor conservation is the
-                    field-theoretic balance law.</p>
+                <p>this block is <strong>self-contained</strong> and follows the flat spacetime: SR and ED arc (items
+                    F1–F3) in
+                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                    minkowski kinematics and four-momentum, the potential one-form $A$ and field strength $F$ with gauge
+                    and cohomological content, then maxwell’s equations, the stress tensor, and causal propagation of
+                    fields. conventions match the rest of this page: <strong>mostly minus</strong>
+                    $\eta_{\mu\nu}=\mathrm{diag}(-1,1,1,1)$ and $x^0=ct$. no links below point to other site pages.</p>
+                <p>the conceptual spine is that <em>lorentz invariance</em> is the statement that physical laws are
+                    built from tensors on $(\mathbb{R}^4,\eta)$; <em>gauge invariance</em> is the affine symmetry
+                    $A\mapsto A+\mathrm{d}\chi$ leaving $F=\mathrm{d}A$ fixed; <em>maxwell</em> ties closed $F$ to
+                    sources and forces conservation of charge and stress-energy in consistent units.</p>
 
                 <h3 id="f-minkowski-particle">proper time, four-momentum</h3>
-                <p><strong>outcomes.</strong> derive $L=-mc^2\sqrt{1-v^2/c^2}$; write $p^\mu$; verify
-                    $\eta_{\mu\nu}p^\mu p^\nu=-m^2c^2$.</p>
-                <p class="dim">draft narrative: <a href="../basics/#special-relativity-and-the-free-relativistic-particle">basics
-                        · SR particle</a> · draft structure: <a
-                        href="../math-physics/#relativistic-spacetime-and-electrodynamics">math physics · relativistic
-                        block</a></p>
+                <p><strong>minkowski spacetime.</strong> model spacetime as $\mathbb{R}^4$ with coordinates
+                    $x^\mu=(x^0,x^1,x^2,x^3)$, $x^0=ct$, and metric</p>
+                $$
+                \eta_{\mu\nu} = \mathrm{diag}(-1,1,1,1),\qquad
+                \mathrm{d}s^2 = \eta_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu = -c^2\mathrm{d}t^2 + \mathrm{d}\mathbf{x}^2 .
+                $$
+                <p>the <strong>interval</strong> between infinitesimally separated events is $\mathrm{d}s^2$; causal
+                    classification (timelike, spacelike, null) follows the sign of $\mathrm{d}s^2$ as in the multilinear
+                    minkowski block.</p>
+                <p><strong>proper time.</strong> a <em>timelike worldline</em> is a smooth embedding
+                    $x:\mathbb{R}\to\mathbb{R}^4$ (or an interval) with everywhere timelike tangent
+                    $\eta(\dot x,\dot x)&lt;0$ for an increasing parameter. the <strong>proper time</strong> $\tau$
+                    along the curve is defined by</p>
+                $$
+                -c^2\,\mathrm{d}\tau^2 = \eta_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu,
+                \qquad\text{i.e.}\qquad
+                \mathrm{d}\tau = \frac{1}{c}\sqrt{-\eta_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu}\quad(\mathrm{d}\tau&gt;0).
+                $$
+                <p>if $t$ is coordinate time and $\mathbf{v}=\mathrm{d}\mathbf{x}/\mathrm{d}t$, then</p>
+                $$
+                \mathrm{d}\tau = \mathrm{d}t\,\sqrt{1-\frac{v^2}{c^2}} = \frac{\mathrm{d}t}{\gamma},\qquad
+                \gamma = \frac{1}{\sqrt{1-v^2/c^2}} .
+                $$
+                <p><strong>four-velocity.</strong> parametrizing by proper time, $u^\mu = \mathrm{d}x^\mu/\mathrm{d}\tau$
+                    satisfies the normalization</p>
+                $$
+                \eta_{\mu\nu}\,u^\mu u^\nu = -c^2 .
+                $$
+                <p>in terms of coordinate velocity, $u^0=\gamma c$, $u^i=\gamma v^i$.</p>
+                <p><strong>free particle action.</strong> the simplest lorentz-invariant action for a massive particle
+                    is proportional to proper time:</p>
+                $$
+                S[x] = -mc\int_{\tau_1}^{\tau_2} \sqrt{-\eta_{\mu\nu}\,\dot x^\mu\dot x^\nu}\,\mathrm{d}\tau
+                = -mc^2\int_{t_1}^{t_2} \sqrt{1-v^2/c^2}\,\mathrm{d}t ,
+                $$
+                <p>where the second form uses coordinate time parameter (reparametrization-invariant form recovers the
+                    same EL equations). variation with fixed endpoints yields straight-line motion in minkowski space
+                    (inertial motion).</p>
+                <p><strong>four-momentum.</strong> the conserved generator of spacetime translations for a free particle
+                    is the vector</p>
+                $$
+                p^\mu = m\,u^\mu = m\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\tau},
+                $$
+                <p>equivalently obtained as the canonical momentum from the reparametrization-invariant action
+                    $S=-mc\int\mathrm{d}s$. the <strong>mass shell</strong> (invariant norm) is</p>
+                $$
+                \boxed{\;\eta_{\mu\nu}\,p^\mu p^\nu = -m^2 c^2\;}
+                $$
+                <p>in a frame where $p^\mu=(E/c,\mathbf{p})$, this reads $E^2/c^2 = m^2c^2 + \mathbf{p}^2$, the
+                    relativistic energy–momentum relation. conservation of $p^\mu$ in isolated interactions replaces
+                    separate nonrelativistic mass and energy bookkeeping.</p>
 
                 <h3 id="f-gauge-f">$A$, $F$, gauge, cohomology class</h3>
-                <p><strong>m.</strong> $F=\mathrm{d}A$; $A\mapsto A+\mathrm{d}\chi$; $[F]\in H^2$ when $A$ is not global.</p>
-                <p><strong>p.</strong> lorentz force; $\mathbf{E}$, $\mathbf{B}$ from $F_{\mu\nu}$ in mostly-minus
-                    conventions.</p>
-                <p class="dim">draft narrative: <a href="../basics/#global-and-topological-closure">basics · forms</a> ·
-                    draft structure: relativistic ED section</p>
+                <p>on minkowski space (or any smooth manifold), the <strong>electromagnetic potential</strong> is a
+                    one-form</p>
+                $$
+                A = A_\mu(x)\,\mathrm{d}x^\mu .
+                $$
+                <p>its <strong>field strength</strong> (faraday two-form) is the exterior derivative</p>
+                $$
+                F = \mathrm{d}A = \tfrac12 F_{\mu\nu}(x)\,\mathrm{d}x^\mu\wedge\mathrm{d}x^\nu,
+                $$
+                <p>with components</p>
+                $$
+                F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu .
+                $$
+                <p>automatically $\mathrm{d}F=\mathrm{d}^2 A=0$, i.e. in components the <strong>bianchi identity</strong></p>
+                $$
+                \partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0,
+                $$
+                <p>equivalent to homogeneous maxwell equations.</p>
+                <p><strong>gauge transformations.</strong> for any smooth scalar $\chi$,</p>
+                $$
+                A \longmapsto A' = A + \mathrm{d}\chi,\qquad F' = \mathrm{d}A' = F .
+                $$
+                <p>thus $F$ is <em>gauge invariant</em> while $A$ is defined only up to an exact one-form: the space of
+                    physically distinct potentials with fixed $F$ is an affine space modeled on exact forms. gauge is
+                    not “optional notation”—it is the symmetry that makes $A$ a connection one-form whose curvature is $F$.</p>
+                <p><strong>cohomological class.</strong> on a contractible domain, every closed $F$ ($\mathrm{d}F=0$)
+                    admits $F=\mathrm{d}A$ globally. on spaces with nontrivial topology, $F$ may represent a nonzero class
+                    in $H^2_{\mathrm{dR}}$; then no global smooth $A$ exists, though $F=\mathrm{d}A$ holds on patches—this
+                    is the same obstruction language as flux periods and dirac monopoles in the cohomology arc.</p>
+                <p><strong>lorentz force (covariant).</strong> a particle of charge $q$ satisfies, with proper time
+                    $\tau$,</p>
+                $$
+                m\,\frac{\mathrm{d}u^\mu}{\mathrm{d}\tau} = q\,F^{\mu}{}_{\nu}\,u^\nu,
+                \qquad
+                F^{\mu}{}_{\nu} = \eta^{\mu\sigma}F_{\sigma\nu},
+                $$
+                <p>where indices are raised with $\eta^{\mu\nu}$ (inverse of $\eta_{\mu\nu}$). this is reparametrization
+                    covariant and lorentz covariant.</p>
+                <p><strong>electric and magnetic fields ($3{+}1$ split).</strong> in inertial coordinates one fixes
+                    isomorphisms $F_{0i}\leftrightarrow E_i$ and $F_{ij}\leftrightarrow \varepsilon_{ijk}B^k$ with
+                    convention-dependent overall signs and factors of $c$; with a standard choice,
+                    $F_{\mu\nu}$ encodes $(\mathbf{E},\mathbf{B})$ and the spatial part of the lorentz force reduces to
+                    $\mathrm{d}\mathbf{p}/\mathrm{d}t = q(\mathbf{E}+\mathbf{v}\times\mathbf{B})$ in the appropriate
+                    limit.</p>
 
                 <h3 id="f-maxwell-matter">maxwell, stress, radiation</h3>
-                <p><strong>outcomes.</strong> write $\partial_\mu F^{\mu\nu}\propto J^\nu$; state $\partial_\mu T^{\mu\nu}=0$
-                    on-shell; sketch retarded green’s / liénard–wiechert roles.</p>
-                <p class="dim">draft narrative: <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">basics
-                        · waves and radiation</a> · draft structure: maxwell/stress/wave subsections</p>
+                <p>work in <strong>heaviside–lorentz</strong> rationalized units (no explicit $4\pi$ in maxwell’s
+                    equations). let $J^\mu$ be the four-current with $\rho=J^0/c$ charge density and spatial current
+                    $\mathbf{J}$.</p>
+                <p><strong>charge conservation.</strong> local conservation is</p>
+                $$
+                \partial_\mu J^\mu = 0 .
+                $$
+                <p><strong>inhomogeneous maxwell.</strong> with raised $F^{\mu\nu}=\eta^{\mu\alpha}\eta^{\nu\beta}F_{\alpha\beta}$,</p>
+                $$
+                \boxed{\;\partial_\mu F^{\mu\nu} = J^\nu\;}
+                $$
+                <p>this packages gauss’s and ampère–maxwell’s laws; together with $\mathrm{d}F=0$ the full maxwell system
+                    is determined.</p>
+                <p><strong>stress–energy tensor (electromagnetic).</strong> define</p>
+                $$
+                T^{\mu\nu}_{\mathrm{em}}
+                = F^{\mu\alpha}F^{\nu}{}_{\alpha} - \tfrac14\,\eta^{\mu\nu}\,F_{\alpha\beta}F^{\alpha\beta}.
+                $$
+                <p>it is symmetric, traceless in $3{+}1$ dimensions (in vacuum), and satisfies</p>
+                $$
+                \partial_\mu T^{\mu\nu}_{\mathrm{em}} = -F^{\nu\rho}J_\rho
+                $$
+                <p>when sources are present—the lorentz force density balances field momentum transfer. for a closed
+                    system (matter + field) the total $T^{\mu\nu}=T^{\mu\nu}_{\mathrm{matter}}+T^{\mu\nu}_{\mathrm{em}}$
+                    obeys $\partial_\mu T^{\mu\nu}=0$ on solutions of coupled equations of motion.</p>
+                <p><strong>vacuum wave equation.</strong> in lorenz gauge $\partial_\mu A^\mu=0$, each component obeys
+                    the massless wave equation $\Box A_\nu = -J_\nu$ (with $\Box=\partial_\mu\partial^\mu$ in flat space).
+                    solutions superpose; plane waves $A_\mu\propto\varepsilon_\mu\mathrm{e}^{\mathrm{i}k\cdot x}$ with
+                    $k^2=0$ and transverse polarization encode radiation.</p>
+                <p><strong>retarded green’s function (causality).</strong> the causal propagator for $\Box$ in minkowski
+                    space has support on (and inside, depending on definition) future light cones, enforcing that
+                    disturbances propagate at most at speed $c$. the retarded potential at $x$ due to a source at $y$ is
+                    nonzero only when $x$ lies in the causal future of $y$—matching the metric’s light-cone structure.</p>
+                <p><strong>liénard–wiechert (schematic).</strong> for a point charge on a worldline $z^\mu(\tau)$, the
+                    retarded potential $A^\mu(x)$ is supported on the unique intersection of $x$’s past light cone with
+                    the worldline; fields fall off as inverse distance squared and encode both velocity and acceleration
+                    fields, producing radiation when the charge accelerates. explicit formulas are lengthy; geometrically,
+                    they are the pullback of the retarded green’s kernel along the worldline.</p>
             </section>
-
             <section id="gravity-geometry" class="doc-section">
                 <h2>dynamical lorentzian geometry</h2>
                 <p><strong>arc.</strong> equivalence principle: gravitation = failure of global inertial frames;
