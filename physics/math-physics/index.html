@@ -883,52 +883,198 @@
                     skeleton.</p>
             </section>
 
-<section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
+            <section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
                 <h2>the kinematics and dynamics of classical mechanics</h2>
-                <p>this section names the geometric objects that the classical narrative in <a
-                        href="../basics/">basics</a> manipulates: configuration manifolds, lagrangians on the tangent
-                    bundle, legendre transforms to the cotangent bundle, and symplectic hamiltonian flows.</p>
+                <p>this page is not a second copy of <a href="../basics/">basics</a>: it packages the same motion in the
+                    language already forced by manifolds ($Q$, charts, $TQ$, $T^*Q$), the exterior calculus
+                    ($\mathrm{d}$, $\mathrm{d}^2=0$, forms on bundles), symplectic linear algebra from <a
+                        href="#metric-and-multilinear-structures">metric and multilinear structures</a>, and global
+                    invariants from <a href="#cohomological-invariants-and-spectral-topology">cohomology</a> (periods over
+                    cycles, torus homology). the goal is explicit definitions, displayed equations, and the variational
+                    chain that turns “stationary action” into hamiltonian flow on symplectic phase space.</p>
 
-                <h3>configuration space and the tangent bundle</h3>
-                <p>let \(Q\) be a smooth manifold of generalized coordinates \(q^i\) (possibly with constraints already
-                    embedded, so \(Q\) is the reduced configuration space). the <em>tangent bundle</em> \(TQ\) has
-                    points
-                    \((q,v)\) with \(v\in T_qQ\). a <em>lagrangian</em> is a function \(L:TQ\to\mathbb{R}\) (possibly
-                    time
-                    dependent); the action on a path \(q(t)\) is \(S[q]=\int L(q,\dot{q},t)\,dt\). stationarity of \(S\)
-                    under fixed-endpoint variations yields the <em>euler–lagrange equations</em> in coordinates:
-                    \(\frac{d}{dt}\frac{\partial L}{\partial\dot{q}^i}-\frac{\partial L}{\partial q^i}=0\). this is the
-                    coordinate-free content of <a href="../basics/#variational-calculus-and-symmetries">variational
-                        calculus</a>, expressed invariantly as an equation on \(TQ\) or, via the variational principle,
-                    on
-                    the path space of maps into \(Q\).</p>
+                <h3>configuration manifold, paths, and the tangent bundle</h3>
+                <p>the <em>configuration space</em> is a smooth manifold $Q$ of dimension $n$ (constraints already
+                    embedded, so $Q$ is reduced). local coordinates $(q^1,\ldots,q^n)$ are a chart
+                    $\varphi:U\to\mathbb{R}^n$; a change of chart is a diffeomorphism, and physical laws must be
+                    tensorial or invariant under such changes—a requirement that rules out writing dynamics only in a fixed
+                    cartesian $\mathbb{R}^{3N}$ without quotienting by gauges or constraints. a <em>motion</em> is a smooth
+                    curve $\gamma:[t_1,t_2]\to Q$; its velocity is $\dot\gamma(t)\in T_{\gamma(t)}Q$. the <em>tangent
+                        bundle</em> $\pi:TQ\to Q$ has points $(q,v)$ with $v\in T_qQ$; in bundle coordinates induced by
+                    $(q^i)$, a tangent vector is $v=v^i\partial/\partial q^i$.</p>
+                <p>a <em>time-dependent lagrangian</em> is a smooth map $L:TQ\times\mathbb{R}\to\mathbb{R}$, written
+                    $L(q,v,t)$; equivalently a map on the first jet extension of $Q$ in time. for autonomous systems,
+                    $L$ depends only on $(q,v)$. the <em>action</em> of $\gamma$ is</p>
+                $$
+                S[\gamma]=\int_{t_1}^{t_2} L\bigl(\gamma(t),\dot\gamma(t),t\bigr)\,\mathrm{d}t.
+                $$
+                <p>the variational problem fixes $\gamma(t_1)=q_1$, $\gamma(t_2)=q_2$. let $\gamma_s$ be a one-parameter
+                    family with $\gamma_0=\gamma$, and write $\delta q^i(t)=\partial_s\big|_{s=0} q^i_s(t)$ for coordinate
+                    components in a fixed chart (intrinsically, $\delta q$ is a vector field along $\gamma$ vanishing at
+                    endpoints). then $\delta\dot q^i=\frac{\mathrm{d}}{\mathrm{d}t}\delta q^i$. the first variation is</p>
+                $$
+                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q^i}\,\delta q^i+\frac{\partial L}{\partial\dot q^i}\,\delta\dot q^i\right)\mathrm{d}t.
+                $$
+                <p>integrating the second term by parts and using $\delta q^i(t_1)=\delta q^i(t_2)=0$,</p>
+                $$
+                \delta S=\int_{t_1}^{t_2}\left(\frac{\partial L}{\partial q^i}-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q^i}\right)\delta q^i\,\mathrm{d}t.
+                $$
+                <p>for arbitrary $\delta q^i$, stationarity $\delta S=0$ yields the <em>euler–lagrange equations</em></p>
+                $$
+                \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial\dot q^i}\right)-\frac{\partial L}{\partial q^i}=0,\qquad i=1,\ldots,n.
+                $$
+                <p>under change of coordinates on $Q$, the left-hand sides transform as components of a covector along
+                    $\gamma$ (the euler–lagrange covector); the vanishing condition is therefore intrinsic to $\gamma$
+                    and $L$, not tied to one chart. see <a
+                        href="../basics/#variational-calculus-and-symmetries">variational calculus and symmetries</a> for
+                    the physical worked examples; here the emphasis is the geometric carrier ($TQ$ and path space).</p>
 
-                <h3>legendre transform and the symplectic cotangent bundle</h3>
-                <p>when the fiber hessian \(\partial^2 L/\partial\dot{q}^i\partial\dot{q}^j\) is nondegenerate,
-                    the <em>legendre map</em> \(\mathbb{F}L:TQ\to T^*Q\) sends \((q,\dot{q})\mapsto(q,p)\) with
-                    \(p_i=\partial L/\partial\dot{q}^i\). the <em>hamiltonian</em> on \(T^*Q\) is \(H=p_i\dot{q}^i-L\)
-                    expressed as a function of \((q,p)\). the <em>canonical one-form</em> \(\theta=p_i\,dq^i\) on
-                    \(T^*Q\) and the <em>symplectic form</em> \(\omega=-\mathrm{d}\theta=\sum_i dq^i\wedge dp_i\) (in
-                    darboux coordinates) make \((T^*Q,\omega)\) a symplectic manifold. hamilton’s equations are the flow
-                    of
-                    the vector field \(X_H\) defined by \(\iota_{X_H}\omega=\mathrm{d}H\). equivalently, the <em>poisson
-                        bracket</em> \(\{f,g\}=\omega(X_f,X_g)\) encodes the same dynamics. this is the geometric
-                    content of <a href="../basics/#phase-space-and-canonical-structure">phase space and canonical
-                        structure</a>, linked also to <a href="#metric-and-multilinear-structures">symplectic linear
-                        algebra</a> above.</p>
+                <h3>galilean kinetic energy from symmetry</h3>
+                <p>for a free particle in euclidean space, galilean invariance restricts $L$ to depend on velocity only
+                    through $|\mathbf{v}|^2$ (homogeneity and isotropy of space, time translation). write
+                    $L=L(|\mathbf{v}|^2)$. an infinitesimal boost $\mathbf{v}\mapsto\mathbf{v}+\boldsymbol{\epsilon}$
+                    gives, to first order in $\boldsymbol{\epsilon}$,</p>
+                $$
+                L(|\mathbf{v}+\boldsymbol{\epsilon}|^2)=L(|\mathbf{v}|^2)+2\boldsymbol{\epsilon}\cdot\mathbf{v}\,L'(|\mathbf{v}|^2)+O(|\boldsymbol{\epsilon}|^2).
+                $$
+                <p>requiring the euler–lagrange equations to be unchanged up to a total time derivative forces
+                    $L'(|\mathbf{v}|^2)$ to be constant (otherwise the linear-in-$\boldsymbol{\epsilon}$ term cannot be a
+                    total derivative for all trajectories). hence $L=\frac12 m|\mathbf{v}|^2$ up to an additive constant
+                    and possible total time derivative—this is the quadratic kinetic energy singled out by the same
+                    variational principle used on manifolds.</p>
 
-                <h3>symmetries, constants, integrable structure</h3>
-                <p>a lie group action on \(Q\) or \(TQ\) leaving \(L\) invariant generates conserved quantities via
-                    noether’s theorem (made precise via momentum maps in symplectic geometry). <em>hamilton–jacobi
-                        theory</em>
-                    seeks a generating function \(S(q,t)\) solving \(H(q,\partial S/\partial q)+\partial S/\partial
-                    t=0\),
-                    rebuilding families of trajectories from a single scalar. in integrable systems,
-                    <em>action–angle</em>
-                    coordinates linearize flow on invariant tori; <em>adiabatic invariants</em> track approximate
-                    conservation of actions under slow parameter change—topics treated concretely in the same classical
-                    sections. global issues (e.g. monodromy, nontrivial \(TQ\) or \(T^*Q\) topology) refine the picture
-                    but the local hamiltonian formalism above is the universal core.</p>
+                <h3>noether charges and the energy function</h3>
+                <p>suppose a local one-parameter family of diffeomorphisms $\Phi_s:Q\to Q$ lifts to $TQ$ by
+                    $(q,v)\mapsto(\Phi_s(q),\mathrm{d}\Phi_s|_q(v))$ and leaves $L$ invariant:
+                    $L(\Phi_s(q),\mathrm{d}\Phi_s|_q(v),t)=L(q,v,t)$. differentiating at $s=0$ with generator vector field
+                    $X$ on $Q$ gives a conserved quantity along euler–lagrange solutions (<em>noether’s theorem</em>,
+                    simplest chart form):</p>
+                $$
+                I_X=\frac{\partial L}{\partial\dot q^i}\,X^i(q).
+                $$
+                <p>time translation symmetry $\partial L/\partial t=0$ gives the <em>energy</em></p>
+                $$
+                E=\dot q^i\,\frac{\partial L}{\partial\dot q^i}-L.
+                $$
+                <p>translational and rotational invariance yield linear and angular momentum as further $I_X$. for $N$
+                    particles with pairwise interactions depending only on relative positions, the total mass
+                    $M=\sum_a m_a$ and <em>center of mass</em></p>
+                $$
+                \mathbf{R}=\frac{\sum_a m_a\mathbf{r}_a}{\sum_a m_a}
+                $$
+                <p>satisfy $M\ddot{\mathbf{R}}=\mathbf{0}$ when external forces vanish. when the potential is invariant
+                    under translations, the lagrangian splits into center-of-mass kinetic energy plus an internal lagrangian
+                    on relative coordinates—an elementary instance of <em>symmetry reduction</em> on $Q$ before legendre
+                    transform to $T^*Q$.</p>
+
+                <h3>legendre transform and hyperregularity</h3>
+                <p>define the <em>fiber derivative</em> (legendre map in coordinates)
+                    $\mathbb{F}L:TQ\times\mathbb{R}\to T^*Q\times\mathbb{R}$ by</p>
+                $$
+                \mathbb{F}L(q,v,t)=\left(q,\,p_i\,\mathrm{d}q^i,\,t\right),\qquad p_i=\frac{\partial L}{\partial\dot q^i}(q,v,t).
+                $$
+                <p>$L$ is <em>hyperregular</em> if $\mathbb{F}L$ is a diffeomorphism (equivalently, for each fixed
+                    $(q,t)$ the map $v\mapsto p$ is a global diffeomorphism $T_qQ\to T^*_qQ$). a local sufficient
+                    condition is that the <em>hessian matrix</em> with entries</p>
+                $$
+                \frac{\partial^2 L}{\partial\dot q^i\,\partial\dot q^j}(q,v,t)
+                $$
+                <p>is invertible at each point (legendre transform is then locally invertible). mechanical lagrangians
+                    kinetic $+$ potential typically satisfy strong convexity in $\dot q$, hence hyperregularity. the
+                    <em>hamiltonian</em> is</p>
+                $$
+                H(q,p,t)=p_i\dot q^i-L(q,\dot q,t),
+                $$
+                <p>with $\dot q$ expressed implicitly as a function of $(q,p,t)$ by inverting $p=\partial L/\partial\dot q$.
+                    along euler–lagrange trajectories, hamilton’s equations hold:</p>
+                $$
+                \dot q^i=\frac{\partial H}{\partial p_i},\qquad \dot p_i=-\frac{\partial H}{\partial q^i}.
+                $$
+
+                <h3>symplectic structure, hamiltonian vector fields, poisson algebra</h3>
+                <p>on $T^*Q$ with canonical coordinates $(q^i,p_i)$, the <em>canonical one-form</em> and <em>symplectic
+                        two-form</em> are</p>
+                $$
+                \theta=p_i\,\mathrm{d}q^i,\qquad \omega=-\mathrm{d}\theta=\mathrm{d}q^i\wedge\mathrm{d}p_i.
+                $$
+                <p>$\omega$ is <em>closed</em> ($\mathrm{d}\omega=0$) and <em>nondegenerate</em> at each point: the map
+                    $\flat:T(T^*Q)\to T^*(T^*Q)$ given by $X\mapsto \iota_X\omega$ is an isomorphism. the <em>hamiltonian
+                        vector field</em> $X_H$ is defined uniquely by</p>
+                $$
+                \iota_{X_H}\omega=\mathrm{d}H.
+                $$
+                <p>in darboux coordinates this is equivalent to hamilton’s equations. for smooth $f,g:T^*Q\to\mathbb{R}$, the
+                    <em>poisson bracket</em> is</p>
+                $$
+                \{f,g\}=\omega(X_f,X_g)=\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}.
+                $$
+                <p>the poisson bracket satisfies, for all $f,g,h$ and constants $a,b$:</p>
+                <ol>
+                    <li>bilinearity: $\{af+bg,h\}=a\{f,h\}+b\{g,h\}$;</li>
+                    <li>antisymmetry: $\{f,g\}=-\{g,f\}$;</li>
+                    <li>jacobi identity: $\{f,\{g,h\}\}+\{g,\{h,f\}\}+\{h,\{f,g\}\}=0$;</li>
+                    <li>leibniz rule: $\{fg,h\}=f\{g,h\}+\{f,h\}g$.</li>
+                </ol>
+                <p>thus $C^\infty(T^*Q)$ is a <em>lie algebra</em> (jacobi) and a derivation of the pointwise product
+                    (leibniz)—a poisson algebra. time evolution of observables obeys</p>
+                $$
+                \frac{\mathrm{d}f}{\mathrm{d}t}=\{f,H\}+\frac{\partial f}{\partial t}.
+                $$
+                <p>constants of motion are those with $\{f,H\}=0$ and, for autonomous $H$, $\partial f/\partial t=0$.
+                    this ties directly to the lie-theoretic substrate in <a
+                        href="#algebraic-substrate-and-categorical-foundations">algebraic substrate</a>: symmetries of $H$
+                    close under bracket and generate flows preserving $\omega$ (when the symmetry is hamiltonian).</p>
+
+                <h3>hamilton–jacobi theory</h3>
+                <p>a time-dependent generating function $S(q,t)$ on $Q$ defines a canonical relation via
+                    $p_i=\partial S/\partial q^i$. requiring the transformed hamiltonian to vanish yields the
+                    <em>hamilton–jacobi equation</em></p>
+                $$
+                H\left(q^i,\frac{\partial S}{\partial q^i},t\right)+\frac{\partial S}{\partial t}=0.
+                $$
+                <p>a <em>complete integral</em> $S(q,\alpha_1,\ldots,\alpha_n,t)$ depending on $n$ independent constants
+                    $\alpha$ generates a canonical transformation to coordinates in which motion is trivial (constants of
+                    motion), reducing integration to quadratures—this is the pde formulation dual to hamilton’s ode flow on
+                    $T^*Q$.</p>
+
+                <h3>integrable tori, action–angle variables, and a cohomological period</h3>
+                <p>when $n$ independent conserved quantities in involution $\{F_i,F_j\}=0$ exist (liouville integrability),
+                    compact connected level sets are generically $n$-tori $T^n$. <em>action variables</em> are defined by
+                    choosing a basis $\{\gamma_k\}_{k=1}^n$ of $H_1(T^n,\mathbb{Z})\cong\mathbb{Z}^n$ and setting</p>
+                $$
+                I_k=\frac{1}{2\pi}\oint_{\gamma_k} p_i\,\mathrm{d}q^i.
+                $$
+                <p>the integrand is the canonical one-form $\theta$ pulled back to the torus; the $I_k$ are coordinates on
+                    the image of the period map and are preserved by the flow. for the one-dimensional harmonic oscillator
+                    $H=p^2/(2m)+\frac12 m\omega^2 q^2$ at energy $E$, the energy surface in $(q,p)$ is the ellipse</p>
+                $$
+                \frac{p^2}{2mE}+\frac{m\omega^2 q^2}{2E}=1,
+                $$
+                <p>with area $\oint p\,\mathrm{d}q=2\pi E/\omega$, hence $I=E/\omega$. under slow, parametric change of
+                    $\omega(t)$, <em>adiabatic invariance</em> asserts approximate conservation of $I$; geometrically, the
+                    enclosed symplectic area of the orbit is a homological invariant of the frozen-energy torus—linking
+                    mechanics to the same “period of a closed form over a cycle” viewpoint as $H^1(T^n)$ in de rham
+                    theory (see <a href="#cohomological-invariants-and-spectral-topology">cohomology</a>).</p>
+
+                <h3>global topology: fundamental group and the path groupoid</h3>
+                <p>when $\pi_1(Q)$ is nontrivial, distinct homotopy classes of loops in $Q$ label <em>sectors</em> of
+                    configuration space (e.g. indistinguishable particles in two dimensions, winding around obstacles).
+                    the space of piecewise-smooth paths $\mathrm{Path}(Q)$ carries a partial composition (concatenation when
+                    endpoints match); quotienting by reparameterization yields a <em>groupoid</em> whose objects are points
+                    of $Q$ and morphisms are homotopy classes of paths. the action $S$ is additive over composition up to
+                    the same endpoint data, so stationary paths respect this concatenation structure—variational principles
+                    are naturally formulated on this groupoid rather than on a single simply connected cover. monodromy in
+                    integrable systems (non-trivial bundle of tori over action space) is another global phenomenon; it is
+                    not visible in the local darboux chart calculus alone.</p>
+
+                <h3>how this section uses the preceding hierarchy</h3>
+                <p>$Q$ is a manifold; $TQ$ and $T^*Q$ are the bundles introduced in <a
+                        href="#differentiable-manifolds-and-the-calculus-of-forms">differentiable manifolds and forms</a>.
+                    $\theta$ and $\omega$ are one- and two-forms with $\mathrm{d}^2=0$ enforcing jacobi and bianchi-type
+                    consistency. symmetry groups act on $Q$ and lift to canonical transformations on $T^*Q$. periods
+                    $\oint_{\gamma_k} p\,\mathrm{d}q$ pair homology classes with the canonical one-form, exactly in the
+                    spirit of cohomological periods. <a href="../basics/">basics</a> keeps the phenomenology and examples;
+                    this section states the minimal geometric skeleton those examples assume.</p>
             </section>
 
             <section id="relativistic-spacetime-and-electrodynamics" class="doc-section">
