@@ -266,48 +266,64 @@
                     orthogonally diagonalizable (<em>spectral theorem</em>)—the situation for the inertia operator in the
                     next subsection.</p>
 
-                <p><em>jordan blocks: shape, nilpotent part, and what they do to $\dot x=Tx$.</em></p>
-                <p>when $m_g(\lambda)&lt;m_a(\lambda)$, eigenvectors alone do not span the $\lambda$-generalized
-                    subspace; one needs <em>generalized eigenvectors</em>. over an algebraically closed field, there exists
-                    a basis in which the matrix of $T$ is block diagonal with <em>Jordan blocks</em></p>
+                <p><strong>jordan normal form: existence, blocks, and dynamics.</strong> when
+                    $m_g(\lambda)&lt;m_a(\lambda)$ for some eigenvalue $\lambda$, the operator $T-\lambda I$ is not zero on
+                    the whole $\lambda$-generalized subspace; eigenvectors alone do not span it. over an algebraically
+                    closed field (e.g. $\mathbb{C}$), the <em>jordan canonical form theorem</em> asserts: there exists a
+                    basis of $V$ in which the matrix of $T$ is block diagonal,</p>
                 $$
-                J_m(\lambda)=\lambda I_m+N_m,\qquad (N_m)_{ij}=\begin{cases}1&\text{if }j=i+1,\\0&\text{otherwise,}\end{cases}
+                [T] = \mathrm{diag}\bigl(J_{m_1}(\lambda_1),\,J_{m_2}(\lambda_2),\,\ldots\bigr),
                 $$
-                <p>the matrix $N_m$ is strictly upper triangular with $1$ on the first superdiagonal; it is nilpotent of
-                    <em>index</em> $m$: $N_m^m=0$, and if $m\ge 2$ then $N_m^{m-1}\neq 0$ (for $m=1$, $N_1$ is the
-                    zero $1\times 1$ matrix). write $N=N_m$. because $\lambda I$ and $N$ commute,</p>
+                <p>each <em>jordan block</em> has the shape</p>
                 $$
-                e^{tJ_m(\lambda)} = e^{t\lambda I}\,e^{tN} = e^{\lambda t}\sum_{k=0}^{m-1}\frac{(tN)^k}{k!},
+                J_m(\lambda)=\lambda I_m+N_m,\qquad (N_m)_{ij}=\begin{cases}1&\text{if }j=i+1,\\0&\text{otherwise.}\end{cases}
                 $$
-                <p>the sum terminates at $k=m-1$ since $N^m=0$. this is the <em>fundamental matrix solution</em> of the
-                    linear ODE $\dot x=J_m(\lambda)x$ on $\mathbb{F}^m$.</p>
+                <p>equivalently, a length-$m$ <em>jordan chain</em> for $\lambda$ is a tuple $(v_1,\ldots,v_m)$ with
+                    $(T-\lambda I)v_1=0$ and $(T-\lambda I)v_{j}=v_{j-1}$ for $j\ge 2$; in that basis the block is
+                    $J_m(\lambda)$. the matrix $N_m$ is strictly upper triangular with ones on the first superdiagonal;
+                    it is nilpotent of <em>index</em> $m$: $N_m^m=0$, while $N_m^{m-1}\neq 0$ when $m\ge 2$ (for $m=1$,
+                    $N_1=0$). on $G_\lambda$, writing $T|_{G_\lambda}=\lambda I+N$ with $N$ nilpotent, $N$ and $\lambda I$
+                    commute, so</p>
+                $$
+                e^{tJ_m(\lambda)} = e^{t\lambda I}\,e^{tN_m} = e^{\lambda t}\sum_{k=0}^{m-1}\frac{(tN_m)^k}{k!}.
+                $$
+                <p>the sum stops at $k=m-1$ because $N_m^m=0$. this matrix is the <em>fundamental solution</em> of
+                    $\dot x=J_m(\lambda)x$ on $\mathbb{F}^m$.</p>
 
-                <p><em>calculation ($m=2$).</em> here $N=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$,
-                    $N^2=0$, so $e^{tN}=I+tN$. therefore</p>
+                <p><em>calculation ($m=2$).</em> $N=\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)$,
+                    $N^2=0$, hence $e^{tN}=I+tN$ and</p>
                 $$
                 e^{tJ_2(\lambda)} = e^{\lambda t}\begin{pmatrix}1&t\\0&1\end{pmatrix}
                     =\begin{pmatrix}e^{\lambda t}&t\,e^{\lambda t}\\0&e^{\lambda t}\end{pmatrix}.
                 $$
-                <p>for initial data $x(0)=\binom{c_0}{c_1}$,</p>
+                <p>for $x(0)=\binom{c_0}{c_1}$,</p>
                 $$
                 x(t)=e^{tJ_2(\lambda)}x(0)=\begin{pmatrix}e^{\lambda t}(c_0+t c_1)\\ e^{\lambda t}c_1\end{pmatrix}.
                 $$
-                <p>if $c_1\neq 0$, the upper component carries a factor $t\,e^{\lambda t}$—a <em>secular</em> polynomial
-                    factor multiplying an exponential. that is the concrete mechanism: a Jordan block of size $&gt;1$
-                    forces polynomial prefactors in time (or in discrete iteration $x_{k+1}=Ax$, polynomial factors in
-                    $k$ for defective eigenvalues). pure exponentials $e^{\lambda t}$ alone suffice only on the ordinary
-                    eigenspace $\ker(T-\lambda I)$.</p>
+                <p>if $c_1\neq 0$, the first component is $e^{\lambda t}(c_0+t c_1)$—a <em>secular</em> term $t\,e^{\lambda t}$
+                    alongside $e^{\lambda t}$.</p>
 
-                <p><em>generalized eigenspace.</em> for each $\lambda$, define</p>
+                <p><em>calculation ($m=3$).</em> for the $3\times 3$ block, $N^3=0$ but $N^2\neq 0$, so</p>
+                $$
+                e^{tN}=I+tN+\frac{t^2}{2}N^2,\qquad
+                e^{tJ_3(\lambda)}=e^{\lambda t}\begin{pmatrix}1&t&t^2/2\\0&1&t\\0&0&1\end{pmatrix}.
+                $$
+                <p>thus coordinates along the chain pick up polynomial prefactors up to degree $m-1$ multiplying
+                    $e^{\lambda t}$. in discrete time $x_{k+1}=Ax$, the same nilpotent polynomial structure appears in
+                    $k$ (via $(A-\lambda I)^r$ on generalized eigenvectors). pure exponentials $e^{\lambda t}$ alone
+                    parametrize only $\ker(T-\lambda I)$, not the full $G_\lambda$ when $m_a&gt;m_g$.</p>
+
+                <p><em>generalized eigenspace.</em> for each eigenvalue $\lambda$ of $T$ (root of $c_T$), define</p>
                 $$
                 G_\lambda:=\ker(T-\lambda I)^{m_a(\lambda)}.
                 $$
-                <p>over $\mathbb{C}$, one has the invariant splitting $V=\bigoplus_\lambda G_\lambda$, and on each
-                    $G_\lambda$ the operator $T$ restricts to a direct sum of Jordan blocks for that $\lambda$. the
-                    dimension of $G_\lambda$ equals $m_a(\lambda)$ (counted with block sizes). this is the precise sense
-                    in which jordan form is <em>necessary</em> when diagonalization fails: it is the canonical coordinate
-                    system in which $T$ is a direct sum of the smallest non-diagonal building blocks, and the exponential
-                    $e^{tT}$ is computed blockwise by the formula above.</p>
+                <p>over $\mathbb{C}$, $V=\bigoplus_\lambda G_\lambda$ (primary decomposition), each $G_\lambda$ is
+                    $T$-invariant, $\dim G_\lambda=m_a(\lambda)$, and $T|_{G_\lambda}$ is similar to a direct sum of
+                    jordan blocks $J_{m_i}(\lambda)$ whose sizes $m_i$ sum to $m_a(\lambda)$. the number of blocks for
+                    $\lambda$ equals $m_g(\lambda)$; the largest block size is the exponent of $(x-\lambda)$ in the
+                    <em>minimal polynomial</em> of $T$. jordan form is therefore the canonical coordinate system in which
+                    $T$ is a direct sum of indecomposable commuting pieces “scalar $+$ strictly upper shift”; computing
+                    $e^{tT}$ reduces to the block formula above.</p>
                 <p>in linearized dynamics around equilibria or periodic orbits, $T$ is typically the Jacobian linearization;
                     defective eigenvalues produce the secular terms that pure normal-mode analysis misses—see <a
                         href="../basics/#linearization-and-normal-modes">linearization and normal modes</a>.</p>
@@ -567,53 +583,143 @@
 
             <section id="differentiable-manifolds-and-the-calculus-of-forms" class="doc-section">
                 <h2>differentiable manifolds and the calculus of forms</h2>
-                <p>configuration space and spacetime are rarely one global coordinate patch. <a
-                        href="../basics/#general-relativity-and-curved-spacetime">general relativity</a> and <a
-                        href="../basics/#global-and-topological-closure">maxwell on manifolds</a> require a definition
-                    of
-                    “smooth structure” that glues local euclidean models consistently.</p>
+                <p>vector spaces, tensors, and the exterior algebra live on a <em>single</em> model space
+                    $\mathbb{R}^n$. configuration spaces, spacetimes, and constrained surfaces in <a
+                        href="../basics/">basics</a> are not always globally identifiable with one $\mathbb{R}^n$: rigid
+                    rotation groups, nontrivial topology, and curvature all obstruct a single global chart. the minimal
+                    repair is a topological space that is <em>locally</em> euclidean, together with a consistent
+                    $C^\infty$ calculus across overlaps. that is a smooth manifold; on it sit $TM$, $T^*M$, forms,
+                    $\mathrm{d}$, and partitions of unity—the language of <a
+                        href="../basics/#general-relativity-and-curved-spacetime">curved spacetime</a> and <a
+                        href="../basics/#global-and-topological-closure">fields as forms</a>.</p>
 
-                <h3>charts, atlases, tangent and cotangent bundles</h3>
-                <p>a <em>topological \(n\)-manifold</em> is a second-countable hausdorff space locally homeomorphic to
-                    \(\mathbb{R}^n\). a <em>\(C^k\) atlas</em> is a family of pairs \((U_\alpha,\varphi_\alpha)\) with
-                    \(U_\alpha\) open, \(\bigcup_\alpha U_\alpha=M\), and \(\varphi_\alpha:U_\alpha\to\mathbb{R}^n\)
-                    homeomorphisms onto open sets, such that transition maps \(\varphi_\beta\circ\varphi_\alpha^{-1}\)
-                    are
-                    \(C^k\) on overlaps. a <em>\(C^k\) manifold</em> is an equivalence class of compatible atlases.</p>
-                <p>at \(p\in M\), <em>tangent vectors</em> may be defined as equivalence classes of curves through \(p\)
-                    (same first derivative in one, hence every, chart) or as derivations of germs of \(C^k\) functions
-                    at \(p\). they form a vector space \(T_pM\) of dimension \(n\). the disjoint union
-                    \(TM=\bigsqcup_{p\in M}T_pM\) is the <em>tangent bundle</em>; with the natural manifold charts it is
-                    a \(C^{k-1}\) vector bundle over \(M\). the dual bundle \(T^*M\) has fibers \(T^*_pM=(T_pM)^*\);
-                    sections are <em>one-forms</em>.</p>
-                <p>on a smooth manifold, <em>partitions of unity</em> subordinate to any open cover let one patch local
-                    constructions—metrics, connections, integrals—into global objects. that is the analytic reason
-                    global
-                    statements in <a href="../basics/">basics</a> are legitimate once stated chart-invariantly.</p>
+                <h3>topological manifolds and smooth atlases</h3>
+                <p>a <em>topological $n$-manifold</em> is a hausdorff, second-countable topological space $M$ such that
+                    every point admits an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$. hausdorff
+                    and second-countability exclude pathologies (non-separable spaces, non-unique limits) and are part of
+                    the standard definition so partitions of unity and embedding theorems apply.</p>
+                <p>a <em>$C^k$ chart</em> on $M$ is a pair $(U,\varphi)$ with $U\subset M$ open and
+                    $\varphi:U\to\varphi(U)\subset\mathbb{R}^n$ a homeomorphism onto an open set. a <em>$C^k$
+                        atlas</em> is a family $\{(U_\alpha,\varphi_\alpha)\}_{\alpha\in A}$ such that $\bigcup_\alpha
+                    U_\alpha=M$ and, on every nonempty overlap $U_\alpha\cap U_\beta$, the <em>transition map</em></p>
+                $$
+                \varphi_{\beta\alpha}:=\varphi_\beta\circ\varphi_\alpha^{-1}:\ \varphi_\alpha(U_\alpha\cap U_\beta)\to
+                    \varphi_\beta(U_\alpha\cap U_\beta)
+                $$
+                <p>is of class $C^k$ as a map between open subsets of $\mathbb{R}^n$. two atlases are <em>equivalent</em>
+                    if their union is again a $C^k$ atlas. a <em>$C^k$ manifold</em> is $M$ equipped with a maximal
+                    atlas (equivalently, an equivalence class). smooth ($C^\infty$) manifolds are the default for field
+                    theory; then all transition maps are $C^\infty$, and one may differentiate arbitrarily in coordinates.</p>
+                <p>the point of the transition condition: a function $f:M\to\mathbb{R}$ is declared <em>smooth</em> if
+                    $f\circ\varphi_\alpha^{-1}$ is smooth on $\varphi_\alpha(U_\alpha)$ for every chart. compatibility on
+                    overlaps makes this definition independent of which chart contains $p$—the same construction carries
+                    tangent vectors, tensors, and forms without coordinate ambiguity.</p>
+
+                <h3>tangent and cotangent spaces, bundles, frames</h3>
+                <p>fix $p\in M$. a <em>tangent vector</em> at $p$ may be defined either as an equivalence class of
+                    smooth curves $\gamma:(-\varepsilon,\varepsilon)\to M$ with $\gamma(0)=p$ (same first derivative in
+                    any chart) or as a <em>derivation</em> $D:C^\infty(M)\to\mathbb{R}$ at $p$ satisfying the leibniz
+                    rule $D(fg)=f(p)Dg+g(p)Df$. these definitions yield the same finite-dimensional vector space $T_pM$,
+                    $\dim T_pM=n$.</p>
+                <p>the <em>tangent bundle</em> is the disjoint union $TM:=\bigsqcup_{p\in M}T_pM$ with the standard
+                    smooth manifold structure of dimension $2n$: local coordinates $(x^i)$ on $U$ induce coordinates
+                    $(x^i,v^i)$ on $TU$ representing $v=\sum_i v^i\partial/\partial x^i$. a <em>vector field</em> is a
+                    smooth section $X:M\to TM$. the <em>cotangent space</em> $T_p^*M:=(T_pM)^*$ carries covectors; the
+                    <em>cotangent bundle</em> $T^*M=\bigsqcup_p T_p^*M$ has dimension $2n$, and a smooth section is a
+                    <em>differential one-form</em> $\alpha$ with $\alpha_p\in T_p^*M$. pairing is canonical:</p>
+                $$
+                \langle \alpha_p, v\rangle := \alpha_p(v)\in\mathbb{R},\qquad v\in T_pM.
+                $$
+                <p>momenta and generalized forces in mechanics are naturally covectors; velocities are tangent vectors.
+                    the <em>frame bundle</em> $F(M)$ has fiber over $p$ the set of ordered bases (frames) of $T_pM$; the
+                    group $GL(n,\mathbb{R})$ acts freely and transitively on each fiber. it is the natural domain for
+                    connection forms and, in gauge theory, for local trivializations of linear-algebraic data attached to
+                    each point.</p>
+
+                <h3>partitions of unity and gluing local data</h3>
+                <p>many constructions—riemannian metrics, integrals of densities, bump functions—start <em>per chart</em>.
+                    to obtain global objects one uses a <em>partition of unity</em> subordinate to an open cover
+                    $\{U_\alpha\}$: a family $\{\psi_\alpha\}$ of smooth functions $M\to[0,\infty)$ such that</p>
+                <ol>
+                    <li>$\mathrm{supp}(\psi_\alpha)\subset U_\alpha$ for each $\alpha$;</li>
+                    <li>the family is <em>locally finite</em>: every $p\in M$ has a neighborhood meeting only finitely many
+                        $\mathrm{supp}(\psi_\alpha)$;</li>
+                    <li>$\sum_\alpha \psi_\alpha(p)=1$ for all $p\in M$ (the sum is well-defined by local finiteness).
+                    </li>
+                </ol>
+                <p>on a smooth manifold (hausdorff, second-countable), such partitions exist for any open cover. bump
+                    functions build the $\psi_\alpha$. typical global assembly formulas are</p>
+                $$
+                g=\sum_\alpha \psi_\alpha\,g_\alpha,\qquad \int_M \omega = \sum_\alpha \int_{U_\alpha}\psi_\alpha\,\omega,
+                $$
+                <p>where $g_\alpha$ is a metric tensor defined on $U_\alpha$ and $\omega$ is an $n$-form; each integrand
+                    on the right is compactly supported in a chart domain. this is why global statements in <a
+                        href="../basics/">basics</a> (total energy, flux through a closed surface, action integrals) can
+                    be defined invariantly even when no single chart covers $M$.</p>
 
                 <h3>differential forms and the exterior derivative</h3>
-                <p>a <em>differential \(k\)-form</em> is a smooth section of \(\Lambda^k T^*M\). in local coordinates,
-                    \(\alpha=\sum_{i_1<\cdots<i_k}\alpha_{i_1\ldots i_k}\,dx^{i_1}\wedge\cdots\wedge dx^{i_k}\). the
-                        <em>exterior derivative</em> \(\mathrm{d}\) is the unique \(\mathbb{R}\)-linear map on forms
-                        raising
-                        degree by one, satisfying the leibniz rule
-                        \(\mathrm{d}(\alpha\wedge\beta)=\mathrm{d}\alpha\wedge\beta+
-                        (-1)^k\alpha\wedge\mathrm{d}\beta\) for \(\alpha\) a \(k\)-form, and \(\mathrm{d}^2=0\). on
-                        \(\mathbb{R}^3\), \(\mathrm{d}\) encodes gradient, curl, and divergence in one operator. the
-                        identity
-                        \(\mathrm{d}^2=0\) is the source of conserved, cohomological content: closed forms need not be
-                        exact
-                        globally.</p>
-                <p>the <em>lie derivative</em> \(\mathcal{L}_X\) along a vector field \(X\) measures how tensors flow
-                    with
-                    the flow of \(X\); <em>cartan’s magic formula</em>
-                    \(\mathcal{L}_X=\mathrm{d}\,\iota_X+\iota_X\,\mathrm{d}\)
-                    links it to contraction \(\iota_X\) and \(\mathrm{d}\). <em>frobenius’ theorem</em> characterizes
-                    when
-                    a distribution of subspaces is tangent to foliations—i.e. when constraints are holonomic. together
-                    these tools are the differential-geometric backbone of symmetry reduction and constrained mechanics
-                    on
-                    manifolds.</p>
+                <p>a smooth <em>differential $p$-form</em> $\omega$ on $M$ assigns each $p\in M$ an alternating
+                    multilinear map on $T_pM$:</p>
+                $$
+                \omega_p:\ (T_pM)^p\to\mathbb{R},\qquad \omega_p(\ldots,v,\ldots,w,\ldots)=-\omega_p(\ldots,w,\ldots,v,\ldots),
+                $$
+                <p>varying smoothly in $p$. equivalently, $\omega$ is a smooth section of the bundle $\Lambda^p(T^*M)$. in
+                    local coordinates $(x^i)$ on $U$,</p>
+                $$
+                \omega|_U=\frac{1}{p!}\,\omega_{i_1\ldots i_p}(x)\,dx^{i_1}\wedge\cdots\wedge dx^{i_p},
+                $$
+                <p>with $\omega_{\ldots}$ totally antisymmetric in its indices; the factor $1/p!$ avoids over-counting
+                    when indices are summed without ordering.</p>
+                <p>the <em>exterior derivative</em> $\mathrm{d}:\Omega^p(M)\to\Omega^{p+1}(M)$ is uniquely characterized
+                    by: $\mathrm{d}$ is $\mathbb{R}$-linear; $\mathrm{d}(f)=\partial_i f\,dx^i$ on functions;
+                    $\mathrm{d}^2=0$; and the graded leibniz rule</p>
+                $$
+                \mathrm{d}(\alpha\wedge\beta)=\mathrm{d}\alpha\wedge\beta+(-1)^{\deg\alpha}\,\alpha\wedge\mathrm{d}\beta.
+                $$
+                <p>in coordinates, on a $p$-form written with ordered indices $i_1&lt;\cdots&lt;i_p$,</p>
+                $$
+                \mathrm{d}\omega=\sum_{j=1}^n \frac{\partial\omega_{i_1\ldots i_p}}{\partial x^j}\,dx^j\wedge
+                    dx^{i_1}\wedge\cdots\wedge dx^{i_p},
+                $$
+                <p>with the understanding that components are extended by antisymmetry. the identity $\mathrm{d}^2=0$ is the
+                    coordinate-free packaging of equality of mixed partial derivatives (schwarz) for $C^2$ coefficients. on
+                    $\mathbb{R}^3$, $\mathrm{d}$ unifies gradient, curl, and divergence. closed forms ($\mathrm{d}\omega=0$)
+                    need not be globally exact; that gap is measured by de rham cohomology in the next section—already
+                    implicit in <a href="../basics/#global-and-topological-closure">maxwell and monopole obstructions</a>.</p>
+
+                <h3>contraction, lie derivative, and frobenius</h3>
+                <p>for a vector field $X$, <em>interior multiplication</em> (contraction) $\iota_X:\Omega^p(M)\to\Omega^{p-1}(M)$
+                    is the $\Omega(M)$-antiderivation determined by $\iota_X f=0$ on functions and $\iota_X(\mathrm{d}f)=X(f)$.
+                    <em>cartan’s magic formula</em> defines the <em>lie derivative</em> of forms:</p>
+                $$
+                \mathcal{L}_X := \iota_X\circ\mathrm{d}+\mathrm{d}\circ\iota_X.
+                $$
+                <p>on vector fields, $\mathcal{L}_XY=[X,Y]$, the <em>lie bracket</em>, equivalently the commutator of
+                    flows at first order. a <em>distribution</em> is a subbundle $\Delta\subset TM$ of constant rank; it
+                    is <em>involutive</em> if $[X,Y]$ is a section of $\Delta$ whenever $X,Y$ are. <em>frobenius’
+                        theorem</em> states: $\Delta$ is tangent to a foliation by immersed submanifolds (integrable) if
+                    and only if $\Delta$ is involutive. in mechanics, holonomic constraints define integrable
+                    distributions; non-holonomic constraints (rolling without slipping) yield non-involutive ones—finite
+                    rotations do not commute, as seen already on $SO(3)$.</p>
+                <p><em>example ($SO(3)$).</em> the configuration space of a rigid body orientation is the lie group
+                    $SO(3)$, a three-dimensional manifold. left-invariant vector fields correspond to body angular
+                    velocity components; their lie brackets reproduce the cross-product algebra of $\mathbb{R}^3$. the
+                    span of two independent left-invariant fields is generically not involutive, consistent with
+                    non-commutativity of finite rotations and with the distinction between holonomic and non-holonomic
+                    rolling constraints in the same geometric language.</p>
+                <p>in planar problems with harmonic or holomorphic complex coordinates, conformal maps preserve angles;
+                    analytic continuation of potentials along homotopic paths agrees (monodromy), so the domain’s
+                    topology controls single-valuedness of potentials—another instance where global shape constrains local
+                    analytic continuation.</p>
+
+                <h3>how this section feeds the rest of the hierarchy</h3>
+                <p>charts and transition maps fix <em>what smooth means</em> globally. $TM$ and $T^*M$ carry velocities
+                    and covectors (momenta, gradients) invariantly. partitions of unity make metrics, integrals, and
+                    bump-supported corrections globally coherent. $p$-forms and $\mathrm{d}$ encode antisymmetric field
+                    content and bianchi-type identities; $\mathcal{L}_X$ and $[X,Y]$ encode symmetries and constraint
+                    geometry; frobenius classifies foliations and constraint types. cohomology, connections, and
+                    curvature in the following sections are built on this calculus; they are the next
+                    algebraic-topological layer on the same smooth manifold, not an ad hoc overlay.</p>
             </section>
 
             <section id="cohomological-invariants-and-spectral-topology" class="doc-section">
