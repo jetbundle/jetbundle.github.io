@@ -393,67 +393,250 @@
                     closed-versus-exact forms in de rham cohomology: obstructions are <em>classes of ambiguities</em>,
                     not ad hoc choices.</p>
             </section>
-<section id="multilinear-pairings" class="doc-section">
+            <section id="multilinear-pairings" class="doc-section">
                 <h2>multilinear pairings</h2>
-                <p><strong>arc.</strong> not every physical “length” is positive-definite; not every pairing is an inner
-                    product. kinetic energy wants $+$ definite quadratic forms; spacetime intervals want lorentzian
-                    signature; hamiltonian mechanics wants symplectic pairing. tensors and wedges package multilinearity
-                    and antisymmetry for fields and fluxes.</p>
+                <p>this block is <strong>self-contained</strong> and follows the multilinear pairings arc (items B1–B6) in
+                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>.
+                    the progression is fixed: euclidean kinetic energy as a symmetric bilinear pairing, orthonormal frames
+                    and spectral diagonalization, complex hermitian structure for amplitudes, indefinite minkowski pairing
+                    and the lorentz group, symplectic (not metric) geometry of phase space, then tensor and exterior
+                    products for multicomponent and antisymmetric objects. no links below point to other site pages.</p>
+                <p>physically, different “geometries” coexist: a positive-definite quadratic form measures kinetic cost
+                    in velocity space at fixed configuration; a lorentzian form classifies causal order in flat
+                    spacetime; a symplectic form pairs positions and momenta without choosing a riemannian distance on
+                    phase space. tensors and wedges unify how multilinear measurements transform under linear changes of
+                    components.</p>
 
                 <h3 id="b-kinetic-bilinear">kinetic energy, bilinear forms</h3>
-                <p><strong>p.</strong> $T=\frac12 g_{ij}\dot q^i\dot q^j$ as the minimal covariant notion of kinetic
-                    energy in generalized coordinates.</p>
-                <p><strong>m.</strong> symmetric bilinear forms; gram matrix; nondegeneracy; polarization identity.</p>
-                <p><strong>outcomes.</strong> read off $g_{ij}$ from $T$; test nondegeneracy; relate to mass matrix in
-                    normal-mode problems.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
-                        physics · metric and multilinear</a></p>
+                <p>let $V$ be a finite-dimensional real vector space (instantaneous velocities $\dot q$ at a fixed
+                    configuration, once coordinates are chosen, $V\cong\mathbb{R}^n$).</p>
+                <p><strong>definition (bilinear form).</strong> a map $g:V\times V\to\mathbb{R}$ is <em>bilinear</em> if
+                    it is linear in each argument separately. it is <em>symmetric</em> if $g(u,v)=g(v,u)$ for all
+                    $u,v\in V$.</p>
+                <p><strong>associated quadratic form.</strong> $q_g(v)=g(v,v)$. conversely, a symmetric bilinear form is
+                    recovered from its quadratic form by the <em>polarization identity</em></p>
+                $$
+                g(u,v) = \tfrac12\bigl(q_g(u+v)-q_g(u)-q_g(v)\bigr).
+                $$
+                <p>given a basis $(e_1,\ldots,e_n)$ of $V$, the <strong>gram matrix</strong> has entries</p>
+                $$
+                g_{ij} = g(e_i,e_j).
+                $$
+                <p>if $u=\sum_i u^i e_i$ and $v=\sum_j v^j e_j$, bilinearity gives</p>
+                $$
+                g(u,v) = \sum_{i,j} g_{ij}\,u^i v^j .
+                $$
+                <p>for symmetric $g$, $g_{ij}=g_{ji}$.</p>
+                <p><strong>definitions.</strong> $g$ is <em>nondegenerate</em> if $g(u,v)=0$ for all $v$ implies
+                    $u=0$ (equivalently, $\det(g_{ij})\neq 0$ in some, hence every, basis). $g$ is <em>positive
+                        definite</em> if $g(v,v)>0$ for all $v\neq 0$ (then $\det(g_{ij})>0$).</p>
+                <p><strong>kinetic energy.</strong> in generalized coordinates $q^i$, generalized velocities $\dot q^i$
+                    lie in $V\cong\mathbb{R}^n$ at each $q$. newtonian kinetic energy is modeled by</p>
+                $$
+                T(q,\dot q) = \tfrac12\, g_{ij}(q)\,\dot q^i \dot q^j,
+                $$
+                <p>where $g_{ij}(q)$ is symmetric positive semidefinite; for mechanical systems with unconstrained
+                    velocities it is positive definite. the dependence on $q$ encodes curvature of configuration space
+                    (metric on $Q$) once manifolds are introduced; here $q$ is merely a parameter labeling which bilinear
+                    form acts on $\dot q$.</p>
+                <p><strong>worked comparison (cartesian plane).</strong> for a free particle in the plane,
+                    $T=\frac{m}{2}(\dot x^2+\dot y^2)$, so in coordinates $(x,y)$ one has constant
+                    $g_{ij}=m\,\delta_{ij}$. in polar coordinates $(r,\theta)$, $\dot x=\cos\theta\,\dot r -
+                    r\sin\theta\,\dot\theta$, $\dot y=\sin\theta\,\dot r + r\cos\theta\,\dot\theta$, hence</p>
+                $$
+                T = \tfrac{m}{2}\bigl(\dot r^2 + r^2\dot\theta^2\bigr),
+                $$
+                <p>so $g_{rr}=m$, $g_{\theta\theta}=m r^2$, $g_{r\theta}=0$: the same abstract $T$, different gram
+                    components—coefficients change, the quadratic form on velocity is intrinsic once $Q$ and a riemannian
+                    metric are fixed globally.</p>
 
                 <h3 id="b-frames">frames, diagonalization</h3>
-                <p><strong>p.</strong> principal axes of inertia; choosing coordinates that decouple quadratic forms.</p>
-                <p><strong>m.</strong> gram–schmidt; orthonormal frames; simultaneous diagonalization when operators
-                    commute.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
-                        physics · gram and frames</a></p>
+                <p>fix a symmetric bilinear form $g$ that is an inner product (positive definite symmetric). an
+                    <strong>orthonormal frame</strong> relative to $g$ is a basis $(e_1,\ldots,e_n)$ with
+                    $g(e_i,e_j)=\delta_{ij}$.</p>
+                <p><strong>gram–schmidt (constructive).</strong> given linearly independent $(v_1,\ldots,v_n)$, define
+                    inductively</p>
+                $$
+                u_1 = v_1,\qquad
+                e_1 = \frac{u_1}{\sqrt{g(u_1,u_1)}},
+                $$
+                $$
+                u_k = v_k - \sum_{j=1}^{k-1} g(v_k,e_j)\,e_j,\qquad
+                e_k = \frac{u_k}{\sqrt{g(u_k,u_k)}}\quad (k\ge 2).
+                $$
+                <p>then $g(e_i,e_j)=\delta_{ij}$ and $\mathrm{span}\{e_1,\ldots,e_k\}=\mathrm{span}\{v_1,\ldots,v_k\}$.</p>
+                <p><strong>spectral theorem (symmetric operators).</strong> if $A:\mathbb{R}^n\to\mathbb{R}^n$ is
+                    represented by a real symmetric matrix, there exists an orthogonal matrix $R$ ($R^{\mathsf T}R=I$)
+                    such that</p>
+                $$
+                R^{\mathsf T} A R = \mathrm{diag}(\lambda_1,\ldots,\lambda_n),\qquad \lambda_i\in\mathbb{R}.
+                $$
+                <p>the columns of $R$ are an orthonormal basis of eigenvectors. physically, for the inertia tensor
+                    $I$ (symmetric) in body coordinates, eigenvectors are <em>principal axes</em>; in that frame
+                    $T_{\mathrm{rot}}=\frac12\sum_i I_i \omega_i^2$ with principal moments $I_i\ge 0$.</p>
+                <p><strong>simultaneous diagonalization.</strong> if $A,B$ are real symmetric and $AB=BA$, there exists
+                    an orthonormal basis diagonalizing both: in the eigenbasis of $A$, $B$ preserves each eigenspace of
+                    $A$ and restricts to symmetric operators there, hence diagonalizes within blocks. if moreover $A$
+                    is positive definite, one may instead diagonalize $A^{-1}B$ in the $A$-inner product—this reappears in
+                    normal-mode analysis as simultaneous diagonalization of $M$ and $K$.</p>
 
                 <h3 id="b-complex">complex amplitudes, hermitian structure</h3>
-                <p><strong>p.</strong> steady waves and interference: complex exponentials encode phase and amplitude.</p>
-                <p><strong>m.</strong> sesquilinear/hermitian inner products; unitary transformations.</p>
-                <p class="dim">draft narrative: <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">basics
-                        · waves and radiation</a> · draft structure: <a
-                        href="../math-physics/#metric-and-multilinear-structures">math physics · complex inner products</a></p>
+                <p>let $W$ be a finite-dimensional complex vector space. a map $(\cdot,\cdot):W\times W\to\mathbb{C}$ is
+                    a <strong>hermitian inner product</strong> if for all $u,v,w\in W$ and $\alpha,\beta\in\mathbb{C}$,</p>
+                <ol>
+                    <li><strong>H1 (sesquilinearity, second slot linear).</strong>
+                        $(u,\alpha v+\beta w)=\alpha(u,v)+\beta(u,w)$.</li>
+                    <li><strong>H2 (sesquilinearity, first slot conjugate-linear).</strong>
+                        $(\alpha u+\beta v,w)=\bar\alpha(u,w)+\bar\beta(v,w)$.</li>
+                    <li><strong>H3 (hermitian symmetry).</strong> $(v,u)=\overline{(u,v)}$.</li>
+                    <li><strong>H4 (positive definiteness).</strong> $(u,u)\in\mathbb{R}_{>0}$ for $u\neq 0$.</li>
+                </ol>
+                <p>the <strong>norm</strong> is $\lVert u\rVert=\sqrt{(u,u)}$.</p>
+                <p><strong>unitary operators.</strong> $U:W\to W$ is unitary if $(Uv,Uw)=(v,w)$ for all $v,w$. in a
+                    orthonormal basis, this is $U^\dagger U = I$ with $U^\dagger=\bar U^{\mathsf T}$. unitary maps are
+                    precisely the complex linear isomorphisms preserving hermitian length; they are the symmetry group
+                    of hermitian geometry, paralleling orthogonal maps in the real case.</p>
+                <p><strong>worked superposition (two-mode interference).</strong> fix a frequency $\omega$ and combine
+                    complex amplitudes $z=c_1\mathrm{e}^{\mathrm{i}\omega t}+c_2\mathrm{e}^{\mathrm{i}\omega t}
+                    =(c_1+c_2)\mathrm{e}^{\mathrm{i}\omega t}$ with $c_1,c_2\in\mathbb{C}$ encoding relative phase and
+                    magnitude of two coherent contributions. the squared modulus (intensity) is</p>
+                $$
+                \lvert z\rvert^2
+                = \lvert c_1+c_2\rvert^2
+                = \lvert c_1\rvert^2 + \lvert c_2\rvert^2 + 2\,\mathrm{Re}(c_1\bar c_2).
+                $$
+                <p>the cross term $2\,\mathrm{Re}(c_1\bar c_2)$ is the interference pattern; it depends on the
+                    <em>relative phase</em> of $c_1$ and $c_2$, not on magnitudes alone. this is the simplest display of
+                    why complex linear combinations plus hermitian squaring $(z,z)=\lvert z\rvert^2$ encode wave
+                    superposition beyond real-valued sinusoids.</p>
 
                 <h3 id="b-minkowski">minkowski, causality, lorentz group</h3>
-                <p><strong>p.</strong> finite signal speed: unify space and time; classify intervals by causal type.</p>
-                <p><strong>m.</strong> $\eta_{\mu\nu}$ with signature $(-,+,+,+)$; $O(1,3)$, $SO^+(1,3)$; four-vectors and
-                    covectors.</p>
-                <p><strong>outcomes.</strong> compute $\eta(v,v)$; transform $V^\mu$; relate energy and momentum to
-                    $p^0$.</p>
-                <p class="dim">draft narrative: <a href="../basics/#special-relativity-and-the-free-relativistic-particle">basics
-                        · special relativity</a> · draft structure: <a
-                        href="../math-physics/#metric-and-multilinear-structures">math physics · minkowski</a> and <a
-                        href="../math-physics/#relativistic-spacetime-and-electrodynamics">relativistic spacetime</a></p>
+                <p>fix <strong>mostly minus</strong> lorentzian signature on $\mathbb{R}^4$ with coordinates
+                    $x^\mu=(x^0,x^1,x^2,x^3)$ and metric components $\eta_{\mu\nu}=\mathrm{diag}(-1,1,1,1)$. the
+                    <strong>minkowski pairing</strong> of vectors $v^\mu,w^\mu$ is</p>
+                $$
+                \langle v,w\rangle = \eta_{\mu\nu}\,v^\mu w^\nu = -v^0 w^0 + v^1 w^1 + v^2 w^2 + v^3 w^3.
+                $$
+                <p>the <strong>interval invariant</strong> of $v$ is $\langle v,v\rangle=\eta_{\mu\nu}v^\mu v^\nu$.</p>
+                <p><strong>causal classification.</strong> a nonzero $v$ is <em>timelike</em> if $\langle v,v\rangle&lt;0$,
+                    <em>spacelike</em> if $\langle v,v\rangle&gt;0$, <em>null</em> (lightlike) if $\langle v,v\rangle=0$.
+                    for $v^0&gt;0$ and $v$ timelike or null, $v$ is <em>future-directed</em>. the future light cone at
+                    the origin is $\{v:\langle v,v\rangle\le 0,\; v^0&gt;0\}$; its boundary is the future null cone. causal
+                    structure is read from the <em>sign</em> of $\langle v,v\rangle$, not from a euclidean length.</p>
+                <p><strong>lorentz transformations.</strong> a linear map $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$ is a
+                    lorentz transformation if it preserves $\eta$:</p>
+                $$
+                \langle \Lambda v,\Lambda w\rangle = \langle v,w\rangle\quad\forall v,w
+                \quad\Longleftrightarrow\quad
+                \Lambda^{\mathsf T}\eta\Lambda = \eta.
+                $$
+                <p>such $\Lambda$ form the indefinite orthogonal group $O(1,3)$. the component $SO^+(1,3)$ (restricted
+                    lorentz group) consists of $\Lambda$ with $\det\Lambda=1$ and $\Lambda^0{}_0&gt;0$, preserving
+                    orientation and the forward time direction.</p>
+                <p><strong>boost example.</strong> a boost along $x^1$ with rapidity $\phi$ is</p>
+                $$
+                \Lambda =
+                \begin{pmatrix}
+                \cosh\phi & -\sinh\phi & 0 & 0 \\
+                -\sinh\phi & \cosh\phi & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1
+                \end{pmatrix},
+                \qquad
+                \Lambda^{\mathsf T}\eta\Lambda=\eta
+                $$
+                <p>(direct multiplication check: hyperbolic identity $\cosh^2\phi-\sinh^2\phi=1$).</p>
+                <p><strong>four-momentum.</strong> a massive particle has four-momentum $p^\mu$ with</p>
+                $$
+                \langle p,p\rangle = -m^2 c^2
+                $$
+                <p>in units where $c=1$, $\langle p,p\rangle=-m^2$. in coordinates, $p^0$ relates to energy and $p^i$ to
+                    spatial momentum; the single lorentz-invariant scalar $m$ packages both under boosts.</p>
 
                 <h3 id="b-symplectic">phase space, symplectic pairing</h3>
-                <p><strong>p.</strong> hamiltonian flow; canonical pairs $(q^i,p_i)$; poisson brackets as operational
-                    calculus.</p>
-                <p><strong>m.</strong> nondegenerate skew-symmetric form $\omega$; darboux theorem (statement);
-                    jacobi identity and leibniz rule for $\{\cdot,\cdot\}$.</p>
-                <p class="dim">draft narrative: <a href="../basics/#phase-space-and-canonical-structure">basics · phase
-                        space</a> · draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
-                        physics · symplectic</a> and <a
-                        href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">mechanics · poisson</a></p>
+                <p>let $V$ be real, $\dim V=2n$. a <strong>symplectic form</strong> on $V$ is a bilinear map
+                    $\omega:V\times V\to\mathbb{R}$ that is <em>skew-symmetric</em>, $\omega(u,v)=-\omega(v,u)$, and
+                    <em>nondegenerate</em>: $\omega(u,v)=0$ for all $v$ implies $u=0$.</p>
+                <p><strong>standard symplectic $\mathbb{R}^{2n}$.</strong> identify coordinates $(q^1,\ldots,q^n,p_1,\ldots,p_n)$
+                    and set</p>
+                $$
+                \omega\bigl((q,p),(q',p')\bigr) = \sum_{i=1}^n \bigl(p_i q'^i - p'_i q^i\bigr)
+                = p^{\mathsf T} q' - p'^{\mathsf T} q .
+                $$
+                <p>in block matrix form with $z=(q,p)$,</p>
+                $$
+                \omega(z,z') = z^{\mathsf T} J z',\qquad
+                J = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix},\qquad J^{\mathsf T}=-J,\quad \det J=1.
+                $$
+                <p><strong>darboux theorem (statement).</strong> any finite-dimensional symplectic vector space admits a
+                    linear basis—canonical $(q^i,p_i)$—in which $\omega$ takes the standard form above. thus all
+                    nondegenerate skew pairings of the same dimension are linearly isomorphic; unlike metrics, there is
+                    no signature dichotomy beyond even dimension.</p>
+                <p><strong>hamilton’s equations.</strong> given smooth $H(q,p)$ on an open region of $\mathbb{R}^{2n}$,
+                    hamilton’s equations are</p>
+                $$
+                \dot q^i = \frac{\partial H}{\partial p_i},\qquad
+                \dot p_i = -\,\frac{\partial H}{\partial q^i}.
+                $$
+                <p>equivalently, with $z=(q,p)$ and the symplectic gradient encoded by $J$, one may write
+                    $\dot z = J\,\nabla H$ (sign conventions match the chosen $\omega$).</p>
+                <p><strong>poisson bracket (axioms).</strong> on functions $f,g$ on phase space,</p>
+                $$
+                \{f,g\}
+                = \sum_{i=1}^n\left(
+                \frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}
+                - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}
+                \right).
+                $$
+                <p>it satisfies: bilinearity; antisymmetry $\{f,g\}=-\{g,f\}$; <strong>jacobi identity</strong>
+                    $\{f,\{g,h\}\}+\{g,\{h,f\}\}+\{h,\{f,g\}\}=0$; and <strong>leibniz rule</strong>
+                    $\{fg,h\}=f\{g,h\}+\{f,h\}g$. time evolution obeys $\dot f=\{f,H\}$ along hamiltonian flow.</p>
+                <p><strong>canonical example.</strong> for one degree of freedom, $\{q,p\}=1$, while $\{q,q\}=\{p,p\}=0$.
+                    these relations are the infinitesimal shadow of darboux coordinates.</p>
+                <p><strong>contrast with riemannian geometry.</strong> there is no requirement that phase space carry a
+                    positive-definite metric for hamiltonian mechanics: dynamics is tied to $\omega$ (or equivalently to
+                    the poisson bracket), not to a kinetic distance on $(q,p)$. kinetic energy metrics live on $TQ$;
+                    symplectic structure lives naturally on $T^*Q$ after legendre transform.</p>
 
                 <h3 id="b-exterior">tensors, exterior algebra</h3>
-                <p><strong>p.</strong> oriented flux and work; field strength as “something you integrate over
-                    surfaces.”</p>
-                <p><strong>m.</strong> tensor product; alternation; wedge product; graded commutativity.</p>
-                <p><strong>outcomes.</strong> express a 2-form in components; see $F$ as element of $\Lambda^2$.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math physics
-                        · exterior algebra</a> · narrative: <a href="../basics/#global-and-topological-closure">basics ·
-                        maxwell as forms</a></p>
+                <p>let $V$ be finite-dimensional over $\mathbb{R}$, $\dim V=n$, dual $V^*=\mathrm{Hom}(V,\mathbb{R})$.</p>
+                <p><strong>tensor product (universal property, compressed).</strong> $V\otimes W$ is characterized by
+                    bilinear $(v,w)\mapsto v\otimes w$ such that any bilinear $B:V\times W\to U$ factors uniquely as
+                    $B=\tilde B\circ\otimes$ with linear $\tilde B:V\otimes W\to U$. a basis $\{e_i\}$ of $V$ and
+                    $\{f_j\}$ of $W$ yields basis $\{e_i\otimes f_j\}$ of $V\otimes W$, so
+                    $\dim(V\otimes W)=\dim V\cdot\dim W$.</p>
+                <p><strong>$(r,s)$ tensors on $V$.</strong> elements of</p>
+                $$
+                T^r_s(V) = V^{\otimes r}\otimes (V^*)^{\otimes s}
+                $$
+                <p>transform multilinearly under independent linear changes of $V$ and $V^*$ factors. components carry
+                    $r$ upper and $s$ lower indices once a basis is chosen.</p>
+                <p><strong>symmetric and alternating parts.</strong> on $V^{\otimes k}$, the <em>symmetrizer</em> averages
+                    over $S_k$; the <em>alternator</em> averages signed permutations. for $k=2$, every bilinear form
+                    splits into symmetric and skew parts; symplectic $\omega$ lives in the skew piece.</p>
+                <p><strong>exterior powers $\Lambda^k V^*$.</strong> the $k$th exterior power is the quotient of
+                    $(V^*)^{\otimes k}$ by alternating relations $v\otimes v=0$ for degree-one $v$. for one-forms
+                    $\alpha,\beta\in V^*$, the wedge product $\alpha\wedge\beta$ is the class of
+                    $\alpha\otimes\beta-\beta\otimes\alpha$, with</p>
+                $$
+                \alpha\wedge\beta = -\,\beta\wedge\alpha,\qquad
+                (\alpha\wedge\beta)(u,v)=\alpha(u)\beta(v)-\alpha(v)\beta(u).
+                $$
+                <p>more generally, $\alpha\in\Lambda^p V^*$, $\beta\in\Lambda^q V^*$ satisfy graded commutativity</p>
+                $$
+                \alpha\wedge\beta = (-1)^{pq}\,\beta\wedge\alpha.
+                $$
+                <p><strong>dimension.</strong> $\dim\Lambda^k V^*=\binom{n}{k}$; top degree $\Lambda^n V^*$ is
+                    one-dimensional, spanned by any volume form.</p>
+                <p><strong>antisymmetric field strength.</strong> on minkowski space, the electromagnetic two-form
+                    $F=\frac12 F_{\mu\nu}\,\mathrm{d}x^\mu\wedge\mathrm{d}x^\nu$ packages $F_{\mu\nu}=-F_{\nu\mu}$.
+                    bianchi $\mathrm{d}F=0$ (homogeneous maxwell) is the natural closure statement in exterior calculus on
+                    spacetime—developed fully once $\mathrm{d}$ is globalized on manifolds.</p>
+                <p><strong>work and flux as pairings.</strong> oriented line integrals $\int_C \alpha$ pair a 1-form
+                    $\alpha$ with an oriented curve; oriented surface integrals $\int_S \beta$ pair a 2-form $\beta$ with
+                    an oriented surface. this is the geometric content of “multilinear antisymmetric objects integrated
+                    over oriented $k$-cells”—wedges are the algebraic substrate.</p>
             </section>
-
             <section id="smooth-structure" class="doc-section">
                 <h2>manifolds, bundles, constraints</h2>
                 <p><strong>arc.</strong> global configuration and spacetime are rarely one chart. smooth structure
