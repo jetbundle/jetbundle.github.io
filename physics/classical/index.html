@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>classical physics · unified index · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">unified index</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../basics/">basics (draft narrative)</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../math-physics/">math physics (draft structure)</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>classical physics — unified index</h1>
+            <p class="doc-lead"><em>one progression: narrative and structure together</em></p>
+            <p class="doc-intro">this page is the <strong>master outline</strong> for building out classical physics on
+                this site. it merges the intent of <a href="../basics/">basics</a> (landau-style physical narrative) and
+                <a href="../math-physics/">mathematical physics</a> (definitions, theorems, coordinate-free language).
+                treat those two pages as <strong>first-draft expansions</strong>—already rich—while this index states
+                <em>why</em> each topic appears, <em>what</em> must be true physically and mathematically, and
+                <em>what</em> a reader should be able to say and compute when the arc is written to completion here.</p>
+            <p class="doc-intro">the offline syllabus <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>
+                is the same spine in markdown form; use it for checklists and anchor maps. <strong>p</strong> below
+                means physics (phenomenology, variational reasoning, landau spirit); <strong>m</strong> means mathematics
+                (structural, rigorous carrier). they are woven together—no separate “math appendix” in spirit.</p>
+            <p class="doc-intro"><strong>convention:</strong> lorentzian signature is mostly minus
+                $\eta=\mathrm{diag}(-1,1,1,1)$, $x^0=ct$, matching the current math-physics and gr blocks.</p>
+        </header>
+
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">table of contents</h2>
+            <ol class="toc-list">
+                <li><a href="#symmetry-variation">symmetry, composition, variation</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#a-algebraic-structure">algebraic structure of symmetries</a></li>
+                        <li><a href="#a-action-el">action, variation, euler–lagrange</a></li>
+                        <li><a href="#a-linear-stability">superposition, modes, stability</a></li>
+                        <li><a href="#a-bookkeeping">bookkeeping across descriptions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#multilinear-pairings">multilinear pairings</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#b-kinetic-bilinear">kinetic energy, bilinear forms</a></li>
+                        <li><a href="#b-frames">frames, diagonalization</a></li>
+                        <li><a href="#b-complex">complex amplitudes, hermitian structure</a></li>
+                        <li><a href="#b-minkowski">minkowski, causality, lorentz group</a></li>
+                        <li><a href="#b-symplectic">phase space, symplectic pairing</a></li>
+                        <li><a href="#b-exterior">tensors, exterior algebra</a></li>
+                    </ul>
+                </li>
+                <li><a href="#smooth-structure">manifolds, bundles, constraints</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#c-manifold-q">configuration space as manifold</a></li>
+                        <li><a href="#c-tangent-cotangent">$TQ$, $T^*Q$, covectors</a></li>
+                        <li><a href="#c-partitions">partitions of unity, global glue</a></li>
+                        <li><a href="#c-forms-d">forms, $\mathrm{d}$, bianchi-type identities</a></li>
+                        <li><a href="#c-frobenius">frobenius: holonomic vs nonholonomic</a></li>
+                        <li><a href="#c-so3">$SO(3)$, rigid body</a></li>
+                    </ul>
+                </li>
+                <li><a href="#cohomology-topology">cohomology, global topology</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#d-closed-exact">closed vs exact, de rham</a></li>
+                        <li><a href="#d-monopole">dirac monopole, flux, periods</a></li>
+                        <li><a href="#d-mv-cech">mayer–vietoris, čech–de rham</a></li>
+                        <li><a href="#d-duality-euler">poincaré duality, euler class</a></li>
+                        <li><a href="#d-spectral">spectral sequences (outlook)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#geometric-mechanics">geometric mechanics</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#e-action-manifold">action on $TQ$, intrinsic EL</a></li>
+                        <li><a href="#e-noether">noether charges, lifted actions</a></li>
+                        <li><a href="#e-legendre-hamilton">legendre, hamiltonian flow, poisson</a></li>
+                        <li><a href="#e-hj-integrable">hamilton–jacobi, action–angle</a></li>
+                        <li><a href="#e-path-topology">$\pi_1$, path sectors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#flat-spacetime-ed">flat spacetime: SR and ED</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#f-minkowski-particle">proper time, four-momentum</a></li>
+                        <li><a href="#f-gauge-f">$A$, $F$, gauge, cohomology class</a></li>
+                        <li><a href="#f-maxwell-matter">maxwell, stress, radiation</a></li>
+                    </ul>
+                </li>
+                <li><a href="#gravity-geometry">dynamical lorentzian geometry</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#g-connection">connection, levi–civita, geodesics</a></li>
+                        <li><a href="#g-curvature">riemann, tides, deviation</a></li>
+                        <li><a href="#g-einstein">cartan, einstein–hilbert</a></li>
+                        <li><a href="#g-schwarzschild">schwarzschild, orbits</a></li>
+                    </ul>
+                </li>
+            </ol>
+        </nav>
+
+        <hr class="doc-rule">
+
+        <article class="doc-body">
+
+            <section id="symmetry-variation" class="doc-section">
+                <h2>symmetry, composition, variation</h2>
+                <p><strong>arc.</strong> postulate homogeneity and isotropy of space and time, then ask what dynamics
+                    is compatible. the variational principle is the hinge; linear algebra is the language of small
+                    disturbances; categories are honest bookkeeping when the same system is described many ways.</p>
+
+                <h3 id="a-algebraic-structure">algebraic structure of symmetries</h3>
+                <p><strong>p.</strong> why should conserved quantities accompany continuous symmetries? because
+                    redundant directions in configuration space imply constraints on allowed motion—noether’s story
+                    begins here.</p>
+                <p><strong>m.</strong> a symmetry group: composition, identity, inverses; morphisms that preserve
+                    structure. start from monoids if you want to expose irreversibility before groups.</p>
+                <p><strong>questions.</strong> what is being composed (states? maps? coordinate changes)? what must be
+                    invertible for a “symmetry” of equations?</p>
+                <p><strong>outcomes.</strong> state the group axioms; recognize $O(3)$, translations, and (later)
+                    $SO^+(1,3)$ as symmetry groups in concrete models.</p>
+                <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics ·
+                        variational calculus and symmetries</a> · draft structure: <a
+                        href="../math-physics/#algebraic-substrate-and-categorical-foundations">math physics · algebraic
+                        substrate</a></p>
+
+                <h3 id="a-action-el">action, variation, euler–lagrange</h3>
+                <p><strong>p.</strong> the action $S=\int L\,\mathrm{d}t$ is stationary on physical paths with fixed
+                    endpoints; EL equations are the necessary conditions.</p>
+                <p><strong>m.</strong> variations $\delta q$ as tangent directions; integration by parts; the EL
+                    expression as a covector along the trajectory (coordinate independence comes fully with manifolds).</p>
+                <p><strong>questions.</strong> why fixed endpoints? what if $L$ depends explicitly on time?</p>
+                <p><strong>outcomes.</strong> derive EL in coordinates; compute conjugate momenta $\partial L/\partial\dot q$;
+                    recover galilean kinetic energy from symmetry arguments.</p>
+                <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics · same</a>
+                    · draft structure: <a href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">math
+                        physics · classical mechanics</a> (action/EL block)</p>
+
+                <h3 id="a-linear-stability">superposition, modes, stability</h3>
+                <p><strong>p.</strong> small oscillations near equilibrium: normal modes, stability, secular growth when
+                    modes are defective.</p>
+                <p><strong>m.</strong> vector spaces; characteristic polynomial; diagonalization vs jordan form;
+                    symmetric operators (inertia) vs general linearization.</p>
+                <p><strong>questions.</strong> when do repeated eigenvalues still yield orthogonal modes? when do you
+                    need generalized eigenvectors?</p>
+                <p><strong>outcomes.</strong> write $m\ddot\eta=A\eta$ mode expansion; read jordan blocks from
+                    defective eigenvalues; contrast spectral theorem for real symmetric $I$ with generic $A$.</p>
+                <p class="dim">draft narrative: <a href="../basics/#linearization-and-normal-modes">basics ·
+                        linearization and normal modes</a> · draft structure: <a
+                        href="../math-physics/#algebraic-substrate-and-categorical-foundations">math physics · jordan and
+                        inertia example</a></p>
+
+                <h3 id="a-bookkeeping">bookkeeping across descriptions</h3>
+                <p><strong>p.</strong> the same rod can be described in lab frames, body frames, reduced coordinates after
+                    quotienting translations.</p>
+                <p><strong>m.</strong> categories, functors, universal properties; normal subgroups and quotients $G/H$;
+                    exact sequences as preview for cohomology.</p>
+                <p><strong>questions.</strong> what must be preserved when you “change model”? when is quotienting
+                    $Q$ by a group physically legitimate?</p>
+                <p><strong>outcomes.</strong> translate a coordinate change into a morphism; state universal properties
+                    of product/coproduct in words.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#algebraic-substrate-and-categorical-foundations">math
+                        physics · categories and quotients</a> · narrative glue: <a
+                        href="../basics/#reduction-and-effective-potentials">basics · reduction</a></p>
+            </section>
+
+            <section id="multilinear-pairings" class="doc-section">
+                <h2>multilinear pairings</h2>
+                <p><strong>arc.</strong> not every physical “length” is positive-definite; not every pairing is an inner
+                    product. kinetic energy wants $+$ definite quadratic forms; spacetime intervals want lorentzian
+                    signature; hamiltonian mechanics wants symplectic pairing. tensors and wedges package multilinearity
+                    and antisymmetry for fields and fluxes.</p>
+
+                <h3 id="b-kinetic-bilinear">kinetic energy, bilinear forms</h3>
+                <p><strong>p.</strong> $T=\frac12 g_{ij}\dot q^i\dot q^j$ as the minimal covariant notion of kinetic
+                    energy in generalized coordinates.</p>
+                <p><strong>m.</strong> symmetric bilinear forms; gram matrix; nondegeneracy; polarization identity.</p>
+                <p><strong>outcomes.</strong> read off $g_{ij}$ from $T$; test nondegeneracy; relate to mass matrix in
+                    normal-mode problems.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
+                        physics · metric and multilinear</a></p>
+
+                <h3 id="b-frames">frames, diagonalization</h3>
+                <p><strong>p.</strong> principal axes of inertia; choosing coordinates that decouple quadratic forms.</p>
+                <p><strong>m.</strong> gram–schmidt; orthonormal frames; simultaneous diagonalization when operators
+                    commute.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
+                        physics · gram and frames</a></p>
+
+                <h3 id="b-complex">complex amplitudes, hermitian structure</h3>
+                <p><strong>p.</strong> steady waves and interference: complex exponentials encode phase and amplitude.</p>
+                <p><strong>m.</strong> sesquilinear/hermitian inner products; unitary transformations.</p>
+                <p class="dim">draft narrative: <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">basics
+                        · waves and radiation</a> · draft structure: <a
+                        href="../math-physics/#metric-and-multilinear-structures">math physics · complex inner products</a></p>
+
+                <h3 id="b-minkowski">minkowski, causality, lorentz group</h3>
+                <p><strong>p.</strong> finite signal speed: unify space and time; classify intervals by causal type.</p>
+                <p><strong>m.</strong> $\eta_{\mu\nu}$ with signature $(-,+,+,+)$; $O(1,3)$, $SO^+(1,3)$; four-vectors and
+                    covectors.</p>
+                <p><strong>outcomes.</strong> compute $\eta(v,v)$; transform $V^\mu$; relate energy and momentum to
+                    $p^0$.</p>
+                <p class="dim">draft narrative: <a href="../basics/#special-relativity-and-the-free-relativistic-particle">basics
+                        · special relativity</a> · draft structure: <a
+                        href="../math-physics/#metric-and-multilinear-structures">math physics · minkowski</a> and <a
+                        href="../math-physics/#relativistic-spacetime-and-electrodynamics">relativistic spacetime</a></p>
+
+                <h3 id="b-symplectic">phase space, symplectic pairing</h3>
+                <p><strong>p.</strong> hamiltonian flow; canonical pairs $(q^i,p_i)$; poisson brackets as operational
+                    calculus.</p>
+                <p><strong>m.</strong> nondegenerate skew-symmetric form $\omega$; darboux theorem (statement);
+                    jacobi identity and leibniz rule for $\{\cdot,\cdot\}$.</p>
+                <p class="dim">draft narrative: <a href="../basics/#phase-space-and-canonical-structure">basics · phase
+                        space</a> · draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math
+                        physics · symplectic</a> and <a
+                        href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">mechanics · poisson</a></p>
+
+                <h3 id="b-exterior">tensors, exterior algebra</h3>
+                <p><strong>p.</strong> oriented flux and work; field strength as “something you integrate over
+                    surfaces.”</p>
+                <p><strong>m.</strong> tensor product; alternation; wedge product; graded commutativity.</p>
+                <p><strong>outcomes.</strong> express a 2-form in components; see $F$ as element of $\Lambda^2$.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#metric-and-multilinear-structures">math physics
+                        · exterior algebra</a> · narrative: <a href="../basics/#global-and-topological-closure">basics ·
+                        maxwell as forms</a></p>
+            </section>
+
+            <section id="smooth-structure" class="doc-section">
+                <h2>manifolds, bundles, constraints</h2>
+                <p><strong>arc.</strong> global configuration and spacetime are rarely one chart. smooth structure
+                    makes “differentiable” independent of coordinates; bundles carry velocity and momentum; forms carry
+                    maxwell; frobenius separates integrable constraints from rolling.</p>
+
+                <h3 id="c-manifold-q">configuration space as manifold</h3>
+                <p><strong>m.</strong> topological manifold; smooth atlas; transition maps $C^\infty$; smooth functions
+                    $M\to\mathbb{R}$.</p>
+                <p><strong>p.</strong> $Q$ for constrained mechanics; $SO(3)$; later spacetime $M$ in gr.</p>
+                <p><strong>outcomes.</strong> write transition jacobian; state why EL components define a covector along
+                    a curve.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
+                        physics · manifolds and forms</a></p>
+
+                <h3 id="c-tangent-cotangent">$TQ$, $T^*Q$, covectors</h3>
+                <p><strong>m.</strong> tangent vectors as derivations or curve classes; cotangent as dual; bundle
+                    charts.</p>
+                <p><strong>p.</strong> lagrangian on $TQ$; momenta as covectors; legendre map $TQ\to T^*Q$.</p>
+                <p class="dim">draft structure: same · draft narrative: <a href="../basics/#reduction-and-effective-potentials">basics
+                        · reduction</a></p>
+
+                <h3 id="c-partitions">partitions of unity, global glue</h3>
+                <p><strong>m.</strong> subordinate partitions; local finiteness; gluing metrics and integrands.</p>
+                <p><strong>p.</strong> global action, total charge, total energy on noncompact or multi-chart domains.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
+                        physics · partitions</a></p>
+
+                <h3 id="c-forms-d">forms, $\mathrm{d}$, bianchi-type identities</h3>
+                <p><strong>m.</strong> $\Omega^p(M)$; $\mathrm{d}^2=0$; lie derivative; cartan formula.</p>
+                <p><strong>p.</strong> homogeneous maxwell as $\mathrm{d}F=0$; conserved circulation as closed
+                    1-forms modulo exactness.</p>
+                <p class="dim">draft structure: same section · narrative: <a
+                        href="../basics/#global-and-topological-closure">basics · global closure</a></p>
+
+                <h3 id="c-frobenius">frobenius: holonomic vs nonholonomic</h3>
+                <p><strong>m.</strong> distributions; involutivity; integrability $\Leftrightarrow$ foliation.</p>
+                <p><strong>p.</strong> rolling constraints; which constraints define surfaces in $Q$?</p>
+                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
+                        physics · frobenius</a></p>
+
+                <h3 id="c-so3">$SO(3)$, rigid body</h3>
+                <p><strong>p.</strong> body-fixed angular velocity; euler angles; qualitative nonholonomic examples.</p>
+                <p><strong>m.</strong> lie group as manifold; bracket of left-invariant fields.</p>
+                <p class="dim">draft structure: same · algebraic: <a
+                        href="../math-physics/#algebraic-substrate-and-categorical-foundations">lie groups block</a></p>
+            </section>
+
+            <section id="cohomology-topology" class="doc-section">
+                <h2>cohomology, global topology</h2>
+                <p><strong>arc.</strong> local $F=\mathrm{d}A$ does not imply global $A$. cohomology counts those
+                    failures; duality pairs sources and fields; characteristic classes obstruct global sections.</p>
+
+                <h3 id="d-closed-exact">closed vs exact, de rham</h3>
+                <p><strong>m.</strong> $Z^p$, $B^p$, $H^p_{\mathrm{dR}}=Z^p/B^p$; functoriality under pullback.</p>
+                <p><strong>p.</strong> multivalued potentials; aharonov–bohm-type periods; flux without global vector
+                    potential.</p>
+                <p><strong>outcomes.</strong> decide whether $[\omega]=0$ from periods on generating cycles (simple
+                    cases).</p>
+                <p class="dim">draft narrative: <a href="../basics/#global-and-topological-closure">basics · global
+                        closure</a> · draft structure: <a
+                        href="../math-physics/#cohomological-invariants-and-spectral-topology">math physics · cohomology</a></p>
+
+                <h3 id="d-monopole">dirac monopole, flux, periods</h3>
+                <p><strong>p.</strong> magnetic charge; dirac string; quantization sketch.</p>
+                <p><strong>m.</strong> nontrivial $[F]$ on punctured $\mathbb{R}^3$; integral over $S^2$ as period.</p>
+                <p class="dim">draft structure: same · dirac subsection in cohomology</p>
+
+                <h3 id="d-mv-cech">mayer–vietoris, čech–de rham</h3>
+                <p><strong>m.</strong> long exact sequence; double complex; de rham theorem.</p>
+                <p><strong>p.</strong> building global understanding from patches—same ethos as gluing observers or
+                    charts.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#cohomological-invariants-and-spectral-topology">math
+                        physics · MV and čech–de rham</a></p>
+
+                <h3 id="d-duality-euler">poincaré duality, euler class</h3>
+                <p><strong>m.</strong> pairing $H^p\times H^{n-p}\to\mathbb{R}$; euler class; hairy-ball theorem as
+                    nonvanishing section obstruction.</p>
+                <p><strong>p.</strong> dual descriptions of flux and charge; topological charges in field theory
+                    language.</p>
+                <p class="dim">draft structure: same · thom/euler block</p>
+
+                <h3 id="d-spectral">spectral sequences (outlook)</h3>
+                <p><strong>m.</strong> filtered complexes; serre spectral sequence for fibrations (statement).</p>
+                <p><strong>p.</strong> conceptual: reduced models over nontrivial base spaces; organizing “base + fiber”
+                    contributions.</p>
+                <p class="dim">draft structure: spectral sequences subsection in cohomology</p>
+            </section>
+
+            <section id="geometric-mechanics" class="doc-section">
+                <h2>geometric mechanics</h2>
+                <p><strong>arc.</strong> redo variational and hamiltonian content intrinsically on $Q$ and $T^*Q$ after
+                    the symmetry, multilinear, and smooth-structure layers; connect integrable periods to cohomological
+                    periods; name topological sectors of paths.</p>
+
+                <h3 id="e-action-manifold">action on $TQ$, intrinsic EL</h3>
+                <p><strong>outcomes.</strong> write $S[\gamma]$ reparametrization-invariant form; derive EL; explain
+                    covariance under chart change.</p>
+                <p class="dim">draft structure: <a href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">math
+                        physics · mechanics</a></p>
+
+                <h3 id="e-noether">noether charges, lifted actions</h3>
+                <p><strong>p.</strong> energy from time translation; momentum from space translation; angular momentum
+                    from rotation.</p>
+                <p><strong>m.</strong> lie group actions on $Q$, lifts to $TQ$; (momentum maps—phrase informally).</p>
+                <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics ·
+                        symmetries</a></p>
+
+                <h3 id="e-legendre-hamilton">legendre, hamiltonian flow, poisson</h3>
+                <p><strong>m.</strong> fiber derivative; hyperregularity; $\omega=-\mathrm{d}\theta$; $X_H$; poisson
+                    axioms.</p>
+                <p><strong>outcomes.</strong> pass from $L$ to $H$; write hamilton’s equations; compute $\{f,g\}$ in
+                    darboux coordinates.</p>
+                <p class="dim">draft narrative: <a href="../basics/#phase-space-and-canonical-structure">basics · phase
+                        space</a> · draft structure: mechanics section</p>
+
+                <h3 id="e-hj-integrable">hamilton–jacobi, action–angle</h3>
+                <p><strong>p.</strong> complete integrals; linear flow on tori; adiabatic invariance as geometric
+                    statement.</p>
+                <p><strong>m.</strong> $I_k=\frac{1}{2\pi}\oint_{\gamma_k}p\,\mathrm{d}q$; liouville tori.</p>
+                <p class="dim">draft structure: mechanics · HJ and action–angle</p>
+
+                <h3 id="e-path-topology">$\pi_1$, path sectors</h3>
+                <p><strong>p.</strong> winding; multiple homotopy classes of paths; monodromy in integrable systems.</p>
+                <p><strong>m.</strong> fundamental group; composition of paths up to homotopy.</p>
+                <p class="dim">draft structure: mechanics · global topology subsection</p>
+            </section>
+
+            <section id="flat-spacetime-ed" class="doc-section">
+                <h2>flat spacetime: SR and ED</h2>
+                <p><strong>arc.</strong> unify particle dynamics and fields on minkowski space; gauge is a geometric
+                    redundancy; maxwell is $\mathrm{d}F=0$ plus source equations; stress tensor conservation is the
+                    field-theoretic balance law.</p>
+
+                <h3 id="f-minkowski-particle">proper time, four-momentum</h3>
+                <p><strong>outcomes.</strong> derive $L=-mc^2\sqrt{1-v^2/c^2}$; write $p^\mu$; verify
+                    $\eta_{\mu\nu}p^\mu p^\nu=-m^2c^2$.</p>
+                <p class="dim">draft narrative: <a href="../basics/#special-relativity-and-the-free-relativistic-particle">basics
+                        · SR particle</a> · draft structure: <a
+                        href="../math-physics/#relativistic-spacetime-and-electrodynamics">math physics · relativistic
+                        block</a></p>
+
+                <h3 id="f-gauge-f">$A$, $F$, gauge, cohomology class</h3>
+                <p><strong>m.</strong> $F=\mathrm{d}A$; $A\mapsto A+\mathrm{d}\chi$; $[F]\in H^2$ when $A$ is not global.</p>
+                <p><strong>p.</strong> lorentz force; $\mathbf{E}$, $\mathbf{B}$ from $F_{\mu\nu}$ in mostly-minus
+                    conventions.</p>
+                <p class="dim">draft narrative: <a href="../basics/#global-and-topological-closure">basics · forms</a> ·
+                    draft structure: relativistic ED section</p>
+
+                <h3 id="f-maxwell-matter">maxwell, stress, radiation</h3>
+                <p><strong>outcomes.</strong> write $\partial_\mu F^{\mu\nu}\propto J^\nu$; state $\partial_\mu T^{\mu\nu}=0$
+                    on-shell; sketch retarded green’s / liénard–wiechert roles.</p>
+                <p class="dim">draft narrative: <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">basics
+                        · waves and radiation</a> · draft structure: maxwell/stress/wave subsections</p>
+            </section>
+
+            <section id="gravity-geometry" class="doc-section">
+                <h2>dynamical lorentzian geometry</h2>
+                <p><strong>arc.</strong> equivalence principle: gravitation = failure of global inertial frames;
+                    curvature tensor measures tidal shear; einstein equations couple geometry to $T_{\mu\nu}$; schwarzschild
+                    is the spherical vacuum template.</p>
+
+                <h3 id="g-connection">connection, levi–civita, geodesics</h3>
+                <p><strong>m.</strong> covariant derivative; christoffel; metric compatibility and vanishing torsion;
+                    parallel transport.</p>
+                <p><strong>p.</strong> free fall = geodesic; local inertial coordinates.</p>
+                <p class="dim">draft narrative: <a href="../basics/#general-relativity-and-curved-spacetime">basics ·
+                        GR</a> · draft structure: <a
+                        href="../math-physics/#geometric-gravity-connections-and-curvature">math physics · gravity</a></p>
+
+                <h3 id="g-curvature">riemann, tides, deviation</h3>
+                <p><strong>outcomes.</strong> state $[\nabla_\mu,\nabla_\nu]V^\rho=R^\rho{}_{\sigma\mu\nu}V^\sigma$;
+                    interpret tidal acceleration from deviation equation.</p>
+                <p class="dim">draft structure: gravity · riemann and deviation</p>
+
+                <h3 id="g-einstein">cartan, einstein–hilbert</h3>
+                <p><strong>m.</strong> $e^a$, $\omega^a{}_b$, $\Omega^a{}_b$; $G_{\mu\nu}$ and bianchi; variational
+                    derivation sketch.</p>
+                <p><strong>p.</strong> $\nabla_\mu G^{\mu\nu}=0$ matches $\nabla_\mu T^{\mu\nu}=0$.</p>
+                <p class="dim">draft structure: gravity · cartan and einstein–hilbert</p>
+
+                <h3 id="g-schwarzschild">schwarzschild, orbits</h3>
+                <p><strong>p.</strong> line element; $r_s$; effective potential; perihelion precession and light
+                    deflection as qualitative targets.</p>
+                <p><strong>m.</strong> killing vectors and conserved quantities along geodesics.</p>
+                <p class="dim">draft narrative: basics · GR · draft structure: gravity · schwarzschild</p>
+            </section>
+
+        </article>
+
+        <footer class="doc-footer">
+            <p>this unified index is the editorial spine. expand it here into full prose and equations over time, using
+                <a href="../basics/">basics</a> and <a href="../math-physics/">math physics</a> as first-draft mines and
+                <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>
+                as the parity checklist. headings: <span style="color:var(--link)">purple</span> ($h2$) = major arc,
+                <span style="color:var(--link-hover)">orange</span> ($h3$) = unit to write out.</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>

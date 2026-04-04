@@ -1,6 +1,6 @@
 # Classical physics and mathematics — unified progression
 
-*A single reading spine that interleaves the narrative of [classical physics · basics](basics/index.html) with the structural tools of [mathematical physics](math-physics/index.html). This file is **not** published on the site; it is a map and syllabus. Last aligned with the repository state that includes: expanded math-physics sections (algebra through GR), reflective closings on math-physics, and the physics hub copy on [physics/index.html](index.html).*
+*A single reading spine that interleaves the narrative of [classical physics · basics](basics/index.html) with the structural tools of [mathematical physics](math-physics/index.html). **On the site, the live master outline is** [classical · unified index](classical/index.html) (`physics/classical/index.html`)—this markdown remains the offline checklist and anchor map. Last aligned with the repository state that includes: expanded math-physics sections (algebra through GR), reflective closings on math-physics, and the physics hub on [physics/index.html](index.html).*
 
 ---
 
@@ -44,13 +44,13 @@
 
 ---
 
-## 3. Unified progression — parts, chapters, and synthesis
+## 3. Unified progression
 
-Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural). Each chapter states what you should be able to *say* and *compute* after reading the paired site material (expanded with this outline).
+Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural). Each block states what you should be able to *say* and *compute* after reading the paired site material (expanded with this outline). Web anchors: [classical/index.html](classical/index.html) (`#symmetry-variation`, `#multilinear-pairings`, …).
 
 ---
 
-### Part A — Symmetry, composition, and the variational seed
+### Symmetry, composition, variation
 
 #### Chapter A1 — *Why “closed system” wants algebraic structure* (P+M)
 
@@ -78,7 +78,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part B — Multilinear measurement: metric, causality, symplectic pairing
+### Multilinear pairings
 
 #### Chapter B1 — *Bilinear forms and kinetic energy* (P+M)
 
@@ -118,7 +118,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part C — Smooth structure: manifolds, bundles, constraints
+### Manifolds, bundles, constraints
 
 #### Chapter C1 — *Configuration space as manifold* (P+M)
 
@@ -158,7 +158,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part D — Global topology and cohomology
+### Cohomology, global topology
 
 #### Chapter D1 — *Closed vs exact* (P+M)
 
@@ -192,7 +192,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part E — Classical mechanics in geometric form
+### Geometric mechanics
 
 #### Chapter E1 — *Action on manifolds and EL* (P+M)
 
@@ -226,7 +226,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part F — Relativity and electrodynamics (flat spacetime)
+### Flat spacetime: SR and ED
 
 #### Chapter F1 — *Minkowski space and particle dynamics* (P+M)
 
@@ -248,7 +248,7 @@ Below, **P** = physics (Landau-style narrative), **M** = mathematics (structural
 
 ---
 
-### Part G — Gravity as dynamical Lorentzian geometry
+### Dynamical Lorentzian geometry
 
 #### Chapter G1 — *Why partial derivatives fail; connection* (P+M)
 

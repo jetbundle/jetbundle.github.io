@@ -15,6 +15,8 @@
         <nav class="subnav" aria-label="section">
             <a href="../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../classical/">unified index</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="../basics/">basics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="/">../</a>
@@ -430,7 +432,8 @@
                     “rotations” and “boosts”? because any <em>continuous</em> symmetry worth the name is generated
                     infinitesimally: a small transformation is $I+\varepsilon\xi+\cdots$, and composing such moves is
                     multiplication in the group, while first-order non-commutativity is exactly the bracket. that is the
-                    same infinitesimal language noether’s theorem uses when it turns a flow on configuration space into a
+                    same infinitesimal language noether’s theorem uses when it turns a flow on configuration space into
+                    a
                     conserved quantity—only here the flow is assumed smooth and finite-dimensional.</p>
                 <p>what does quotienting $G$ by a closed normal subgroup buy you physically? it is the formal mirror of
                     “forgetting” a redundant description—gauge copies of the same state, or rigid motions that decouple
@@ -440,7 +443,8 @@
                 <p>the linear algebra earlier in this section (vector spaces, jordan form, spectral data for symmetric
                     operators) is the local-linear shadow of those same symmetries near equilibrium or near the
                     identity. when you open <a href="#metric-and-multilinear-structures">metric and multilinear
-                        structures</a>, you will see how lengths, causal intervals, and symplectic pairings sit on top of
+                        structures</a>, you will see how lengths, causal intervals, and symplectic pairings sit on top
+                    of
                     the same tangent spaces—now equipped with extra tensorial structure the variational chapters in <a
                         href="../basics/">basics</a> already treat as physically meaningful.</p>
             </section>
@@ -459,7 +463,8 @@
                 <h3>bilinear forms: axioms, matrices, nondegeneracy</h3>
                 <p>let $V$ be finite-dimensional over $\mathbb{R}$. a map $g:V\times V\to\mathbb{R}$ is
                     <em>bilinear</em>
-                    if it is linear in each argument when the other is held fixed:</p>
+                    if it is linear in each argument when the other is held fixed:
+                </p>
                 $$
                 \begin{aligned}
                 g(\alpha u_1+\beta u_2,\,v) &= \alpha\,g(u_1,v)+\beta\,g(u_2,v),\\
@@ -632,16 +637,21 @@
                 <h3>what kind of “inner product” does each part of physics need?</h3>
                 <p>kinetic energy wants a positive-definite quadratic form on velocities: that is a riemannian inner
                     product on each tangent space, yielding lengths, angles, and orthonormal frames. quantum amplitudes
-                    want a hermitian structure so “probability” is a squared magnitude. relativity wants an <em>indefinite</em>
-                    inner product—the minkowski form $\eta$—so that “before and after” and “here and there” enter on equal
-                    footing and causal order becomes a geometric statement about cones, not an external postulate.</p>
+                    want a hermitian structure so “probability” is a squared magnitude. relativity wants an
+                    <em>indefinite</em>
+                    inner product—the minkowski form $\eta$—so that “before and after” and “here and there” enter on
+                    equal
+                    footing and causal order becomes a geometric statement about cones, not an external postulate.
+                </p>
                 <p>hamiltonian mechanics adds a further twist: phase space carries a symplectic form $\omega$, not a
-                    metric, so volume and canonical pairs are primary while “distance in phase space” is not. why is that
+                    metric, so volume and canonical pairs are primary while “distance in phase space” is not. why is
+                    that
                     the right object? because the variational calculus in <a href="../basics/">basics</a> already
                     treats $(q,p)$ as coordinates in which evolution is a single hamiltonian flow; $\omega$ is the
                     coordinate-invariant record of how those pairings must transform.</p>
                 <p>tensor products package multilinearity—several vector arguments entering one law—while the exterior
-                    algebra packages antisymmetry, the natural home of oriented fluxes, work along paths, and finally the
+                    algebra packages antisymmetry, the natural home of oriented fluxes, work along paths, and finally
+                    the
                     differential forms that <a href="../basics/#global-and-topological-closure">maxwell and integration
                         stories</a> write without choosing a preferred coordinate grid. the next step is to let those
                     tangent spaces sit on a curved or topologically nontrivial base; that is the move to <a
@@ -679,7 +689,8 @@
                     if their union is again a $C^k$ atlas. a <em>$C^k$ manifold</em> is $M$ equipped with a maximal
                     atlas (equivalently, an equivalence class). smooth ($C^\infty$) manifolds are the default for field
                     theory; then all transition maps are $C^\infty$, and one may differentiate arbitrarily in
-                    coordinates.</p>
+                    coordinates.
+                </p>
                 <p>the point of the transition condition: a function $f:M\to\mathbb{R}$ is declared <em>smooth</em> if
                     $f\circ\varphi_\alpha^{-1}$ is smooth on $\varphi_\alpha(U_\alpha)$ for every chart. compatibility
                     on
@@ -810,7 +821,8 @@
                     in which constraints, conservation laws, and maxwell-type identities are all instances of
                     “closed versus exact,” prepared for the cohomological reading in the next section.</p>
                 <p>partitions of unity are the honest reason global definitions (a metric on all of $M$, an integral
-                    over all of $M$) are not wishful thinking: they interpolate local data without destroying smoothness.
+                    over all of $M$) are not wishful thinking: they interpolate local data without destroying
+                    smoothness.
                     frobenius’s theorem, in turn, is the mathematical voice of the question “are these constraints
                     integrable, or genuinely non-holonomic?”—a distinction the classical text cannot afford to blur when
                     it discusses rolling, steering, and reduced descriptions.</p>
@@ -984,10 +996,12 @@
                 <p>if $\mathrm{d}F=0$ on a region, why is it still news that $F$ might not equal $\mathrm{d}A$ on the
                     whole space? because “locally exact” is cheap—every point sits in a ball—but patching potentials
                     across overlaps is a topological problem. cohomology is simply the book-keeping of that failure: it
-                    turns the question “can we choose $A$ globally?” into a linear invariant you can compute from covers,
+                    turns the question “can we choose $A$ globally?” into a linear invariant you can compute from
+                    covers,
                     cycles, and duality.</p>
                 <p>why should a physicist care about euler classes or spectral sequences? the euler class answers blunt
-                    questions such as “does this bundle admit a nowhere-vanishing section?”—think hairy-ball obstructions
+                    questions such as “does this bundle admit a nowhere-vanishing section?”—think hairy-ball
+                    obstructions
                     and twists in field configurations. spectral sequences are less glamorous but serve the same role as
                     dimensional reduction in a difficult problem: they organize how fiber topology influences the total
                     space when you build a spacetime or a field configuration space as something fibering over something
@@ -996,7 +1010,8 @@
                     in <a href="../basics/">basics</a>: the dirac-string phenomenon is not a trick of gauge fixing but a
                     concrete warning that flux and potential are related globally, not chartwise. when you later couple
                     geometry to matter in <a href="#geometric-gravity-connections-and-curvature">gravity</a>, the same
-                    distinction—local flatness versus global curvature—reappears with a different tensor as protagonist.</p>
+                    distinction—local flatness versus global curvature—reappears with a different tensor as protagonist.
+                </p>
             </section>
 
             <section id="the-kinematics-and-dynamics-of-classical-mechanics" class="doc-section">
@@ -1132,7 +1147,8 @@
                 <p>$\omega$ is <em>closed</em> ($\mathrm{d}\omega=0$) and <em>nondegenerate</em> at each point: the map
                     $\flat:T(T^*Q)\to T^*(T^*Q)$ given by $X\mapsto \iota_X\omega$ is an isomorphism. the
                     <em>hamiltonian
-                        vector field</em> $X_H$ is defined uniquely by</p>
+                        vector field</em> $X_H$ is defined uniquely by
+                </p>
                 $$
                 \iota_{X_H}\omega=\mathrm{d}H.
                 $$
@@ -1224,7 +1240,8 @@
                     is which geometry is primary—variational principles prefer the tangent bundle; symmetries and
                     canonical transformations prefer the cotangent bundle with its canonical one-form $\theta$ and
                     symplectic form $\omega$.</p>
-                <p>why does $\mathrm{d}^2=0$ show up next to the poisson bracket? because both are facets of consistency:
+                <p>why does $\mathrm{d}^2=0$ show up next to the poisson bracket? because both are facets of
+                    consistency:
                     the exterior derivative enforces identities among derivatives; the jacobi identity encloses how
                     conserved quantities close under bracket. symmetry groups acting on $Q$ lift to $T^*Q$, which is the
                     geometric content of noether’s theorem married to canonical transformations—the very picture <a
@@ -1354,7 +1371,8 @@
                     $F=\mathrm{d}A$ is a
                     closed two-form on minkowski space: $\mathrm{d}F=\mathrm{d}^2A=0$ (homogeneous maxwell / bianchi). a
                     <em>gauge
-                        transformation</em> is</p>
+                        transformation</em> is
+                </p>
                 $$
                 A_\mu\longmapsto A_\mu+\partial_\mu\chi
                 $$
@@ -1418,7 +1436,8 @@
                 $$
                 <p>varying $A_\mu$ and integrating by parts (boundary terms vanish for suitable falloff) gives the
                     <em>inhomogeneous</em>
-                    equations</p>
+                    equations
+                </p>
                 $$
                 \partial_\mu F^{\mu\nu}=\frac{4\pi}{c}\,J^\nu,
                 $$
@@ -1488,10 +1507,14 @@
                     when $\mathrm{d}^2=0$ kills mixed partials, you see gauge invariance as a consequence of calculus,
                     not as an afterthought.</p>
                 <p>how does the same formalism speak both to particles and to fields? the worldline action and the
-                    maxwell action are both stationarity principles; the lorentz force law is the euler–lagrange equation
-                    of minimal coupling, while $\partial_\mu F^{\mu\nu}\propto J^\nu$ is the euler–lagrange equation of the
-                    field. that unity is what <a href="../basics/#special-relativity-and-the-free-relativistic-particle">special
-                        relativity</a> and <a href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves
+                    maxwell action are both stationarity principles; the lorentz force law is the euler–lagrange
+                    equation
+                    of minimal coupling, while $\partial_\mu F^{\mu\nu}\propto J^\nu$ is the euler–lagrange equation of
+                    the
+                    field. that unity is what <a
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special
+                        relativity</a> and <a
+                        href="../basics/#waves-radiation-and-the-physical-meaning-of-integrals">waves
                         and radiation</a> already assume when they treat energy–momentum and poynting flux as aspects of
                     one tensorial story.</p>
                 <p>if minkowski space is “flat,” what is gravity’s mathematical gesture? replace the fixed $\eta$ by a
@@ -1522,8 +1545,10 @@
                     tensors transforming covariantly under diffeomorphisms. what follows names the connection,
                     curvature tensor, variational derivation of the field equations, the schwarzschild geometry, and
                     geodesic deviation—the mathematical sentences that sit behind the physical narrative in <a
-                        href="../basics/">basics</a>, with emphasis on definitions, integration by parts in the action, and
-                    cartan’s form language alongside indices.</p>
+                        href="../basics/">basics</a>, with emphasis on definitions, integration by parts in the action,
+                    and
+                    cartan’s form language alongside indices.
+                </p>
 
                 <h3>why partial derivatives are insufficient</h3>
                 <p>under a coordinate change $x^\mu\mapsto x'^\mu(x)$, a vector field transforms as
@@ -1683,7 +1708,8 @@
 
                 <h3>curvature as what remains when “inertial” is only local</h3>
                 <p>why replace ordinary derivatives by a connection? because in curvilinear coordinates on a curved
-                    spacetime, partial derivatives mix true geometry with coordinate artifacts; the connection isolates the
+                    spacetime, partial derivatives mix true geometry with coordinate artifacts; the connection isolates
+                    the
                     tensorial rate of change—the same problem you already met when transforming vector components, now
                     continuous across charts. levi–civita is distinguished because it is the unique torsion-free choice
                     compatible with the metric: parallel transport then preserves inner products, matching the
