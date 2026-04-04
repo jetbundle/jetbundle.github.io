@@ -256,3 +256,19 @@ main.doc .doc-body strong {
   color: var(--dim);
   line-height: 1.65;
 }
+
+/* optional easter-egg / bonus outline entry */
+.toc-bonus {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #333;
+}
+
+.toc-bonus a {
+  color: var(--dim);
+  font-size: 0.88rem;
+}
+
+.toc-bonus a:hover {
+  color: var(--link);
+}

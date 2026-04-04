@@ -136,6 +136,8 @@
                     </ul>
                 </li>
             </ol>
+            <p class="toc-bonus" style="margin:1rem 0 0;padding:0;"><a href="#bonus-ehresmann-prelude">bonus · easter egg ·
+                    prelude: Ehresmann geometry and four classical lenses</a></p>
         </nav>
 
         <hr class="doc-rule">
@@ -1655,6 +1657,89 @@
                 <p><strong>light deflection.</strong> null geodesics grazing a mass $M$ at impact parameter $b\gg r_s$
                     suffer a deflection angle of order $4GM/(c^2 b)$, twice the newtonian “corpuscular” estimate because
                     both temporal and spatial metric components contribute.</p>
+            </section>
+
+            <section id="bonus-ehresmann-prelude" class="doc-section" style="margin-top:3rem;padding-top:1.5rem;border-top:1px dashed #2a2a2a;">
+                <h2>bonus · easter egg · prelude: Ehresmann geometry</h2>
+                <p>if you scrolled past schwarzschild and wondered whether any of the machinery above secretly rhymes,
+                    this coda is for you. it is not part of the main syllabus; treat it as a map of the territory after
+                    the territory has already been built. the question is blunt: <em>what single geometric idea lets
+                        symplectic mechanics, riemannian metrics, einstein gravity, and gauge fields look like cousins?</em>
+                </p>
+
+                <h3 id="bonus-what-ehresmann">what Ehresmann geometry is, in one breath</h3>
+                <p>fix a surjective submersion $\pi:E\to M$ (a <strong>fiber bundle</strong> in the smooth category).
+                    vertical vectors are those killed by $\mathrm{d}\pi$; they lie purely in the fiber direction. an
+                    <strong>Ehresmann connection</strong> is a smooth choice of complementary subbundle
+                    $H\subset TE$, called <em>horizontal</em>, such that at each point</p>
+                $$
+                T_e E = H_e \oplus V_e,\qquad V_e=\ker(\mathrm{d}\pi_e).
+                $$
+                <p>equivalently, it is a rule for <strong>lifting</strong> vector fields from the base $M$ to the total
+                    space $E$ in a way compatible with projection. <strong>parallel transport</strong> along a base curve
+                    is implemented by integrating horizontal lifts. <strong>curvature</strong> measures failure of
+                    horizontal planes to mesh into a foliation: it is the obstruction to commuting horizontal flows, and
+                    it is the infinitesimal content of holonomy around small loops (themes you already met in cohomology,
+                    gauge, and riemannian blocks).</p>
+
+                <h3 id="bonus-symplectic-lens">symplectic lens (phase space without a riemannian metric)</h3>
+                <p>on $T^*Q$ the canonical symplectic form $\omega$ pairs positions and momenta without choosing a
+                    kinetic metric on configuration space. there is no preferred Ehresmann splitting of $T(T^*Q)$ until you
+                    add extra data (a metric on $Q$, a connection on $Q$, or a choice of local trivialization of the
+                    cotangent bundle). that is exactly why the symplectic block insisted: <em>symplectic geometry is not
+                        riemannian geometry in disguise.</em></p>
+                <p>once you <em>do</em> choose auxiliary structure (for example a riemannian metric on $Q$ or a principal
+                    connection on a gauge bundle pulled back to phase space), horizontal/vertical language returns: the
+                    legendre map and constrained dynamics are bookkeeping for which directions in velocity space are
+                    “free” versus “forced” by constraints. the frobenius/nonholonomic discussion is the integrability
+                    question for constraint distributions, parallel to curvature obstructing flat horizontal foliations on
+                    bundles.</p>
+
+                <h3 id="bonus-riemannian-lens">riemannian lens (levi-civita lives on the tangent bundle)</h3>
+                <p>a riemannian metric $g$ on $M$ singles out the <strong>levi-civita connection</strong> on $TM$: the
+                    unique torsion-free, metric-compatible covariant derivative. geodesics are autoparallel curves; the
+                    geodesic vector field on $TM$ can be read as dynamics in a horizontal/vertical split of $T(TM)$ once
+                    the connection is fixed (the precise global picture uses the connection map and horizontal lift on
+                    $TM$). this is the same “choose horizontal complements” story as Ehresmann, with compatibility
+                    constraints ($\nabla g=0$, $T^\nabla=0$) shrinking the space of admissible splittings to a unique
+                    one.</p>
+
+                <h3 id="bonus-einsteinian-lens">einsteinian lens (lorentzian base, dynamical metric)</h3>
+                <p>replace $g$ by a lorentzian metric on spacetime. the formalism is still riemannian geometry of a
+                    tangent bundle, but the metric is now dynamical: einstein’s equations constrain $g$ via curvature of
+                    its levi-civita connection. the cartan/vierbein formulation packages the connection on the
+                    <em>frame bundle</em> (a principal $\mathrm{SO}(1,3)$ bundle): spin connection plus soldering form
+                    $e^a$ relate Ehresmann data on $P$ to tensor curvature on $M$. here you see the same pattern as gauge
+                    theory, but with the soldering form tying internal lorentz indices to spacetime geometry.</p>
+
+                <h3 id="bonus-ehresmann-gauge-lens">Ehresmann gauge lens (potentials, holonomy, cohomology)</h3>
+                <p>for a principal $G$-bundle $P\to M$, an Ehresmann connection is often encoded as a
+                    $\mathfrak{g}$-valued one-form $\omega$ with equivariance and a vertical normalization. its curvature
+                    $\Omega$ is the field strength; on an associated vector bundle, covariant derivative and parallel
+                    transport are the induced horizontal lifts.</p>
+                <p>this is the geometric spine behind the electromagnetic block: $A$ is a local connection potential,
+                    $F=\mathrm{d}A$ its curvature, and nontrivial cohomology classes mean $F$ is closed but $A$ cannot
+                    be chosen globally smooth. the aharonov-bohm / period language is holonomy of a flat connection on
+                    a punctured region: horizontal lifts pick up phase around cycles. you already proved to yourself that
+                    “gauge” is not cosmetic notation; here it is literally a connection on a bundle over spacetime (or
+                    space).</p>
+
+                <h3 id="bonus-synthesis-questions">synthesis: questions the whole page leaves in your lap</h3>
+                <p><strong>(i) what is being transported?</strong> tangent vectors along geodesics, internal charges in a
+                    gauge multiplet, phase factors in an abelian line bundle, or abstract fiber coordinates in an
+                    associated bundle. the answer fixes which $E$ and which structure group you are using.</p>
+                <p><strong>(ii) what chooses the split?</strong> a metric (levi-civita), a variational principle with
+                    symmetry (principal connection), a constraint distribution (partial Ehresmann data subject to
+                    frobenius), or additional symplectic structure (canonical $\omega$ without metric).</p>
+                <p><strong>(iii) when is curvature physical?</strong> when holonomy around cycles is measurable: tidal
+                    tensors in gravity, field strengths in gauge theory, obstructions to global gauges in cohomology, and
+                    in mechanics the failure of constraints to close into surfaces (nonholonomic curvature).</p>
+                <p><strong>(iv) why four names for one intuition?</strong> because classical physics keeps reusing the
+                    same move: erect a bundle over a base, choose how to move across fibers consistently, then read
+                    curvature as the object that survives after you quotient out gauge-like redundancies and coordinate
+                    chatter. symplectic, riemannian, einsteinian, and Ehresmann are not competing religions; they are
+                    four pressure points on the same hydraulic line. you were warned this was an easter egg. now close the
+                    tab and compute something.</p>
             </section>
 
         </article>
