@@ -392,52 +392,177 @@
 
             <section id="metric-and-multilinear-structures" class="doc-section">
                 <h2>metric and multilinear structures</h2>
-                <p>once states live in vector spaces (superposition, small oscillations), “how large” and “which
-                    directions are orthogonal” are extra data. the classical spine uses that data repeatedly: kinetic
-                    energy as a positive-definite quadratic form, metric intervals on spacetime, and the symplectic
-                    pairing
-                    on phase space. this section fixes the definitions so those uses in <a href="../basics/">basics</a>
-                    are instances of a single pattern.</p>
+                <p>with vector spaces and linear maps fixed (<a
+                        href="#algebraic-substrate-and-categorical-foundations">algebraic substrate</a>), many physical
+                    quantities still cannot be stated: magnitude along a direction, orthogonality, invariant intervals,
+                    canonical pairing of coordinates and momenta, or dependence on several vectors at once. vector
+                    addition and scalar multiplication do not determine those notions. the minimal extensions are
+                    bilinear (and sesquilinear) forms, then tensor products and their symmetrized/alternating quotients.
+                    what follows makes each object’s definition, axioms, and role in <a href="../basics/">basics</a>
+                    explicit—without compressing that map into a schematic summary.</p>
 
-                <h3>bilinear forms, signature, nondegeneracy</h3>
-                <p>a <em>bilinear form</em> on a real vector space \(V\) is a map \(g:V\times V\to\mathbb{R}\) linear in
-                    each argument separately. it is <em>symmetric</em> if \(g(u,v)=g(v,u)\), <em>skew-symmetric</em> if
-                    \(g(u,v)=-g(v,u)\). in a basis \(\{e_i\}\), \(g_{ij}=g(e_i,e_j)\) is the matrix of \(g\); for
-                    \(u=\sum u^i e_i\), \(v=\sum v^j e_j\), \(g(u,v)=\sum_{i,j} g_{ij}u^i v^j\). \(g\) is
-                    <em>nondegenerate</em> if \(g(u,v)=0\) for all \(v\) implies \(u=0\) (equivalently
-                    \(\det(g_{ij})\neq
-                    0\) in some, hence every, basis).
-                </p>
-                <p>for symmetric nondegenerate \(g\) over \(\mathbb{R}\), <em>sylvester’s law of inertia</em> says there
-                    is a basis in which \(g_{ij}\) is diagonal with entries \(\pm 1\); the count \((p,q)\) of plus and
-                    minus signs is the <em>signature</em>, a basis invariant. <em>positive definite</em> (\(p=\dim V\),
-                    \(q=0\)) is euclidean geometry: lengths \(\|v\|=\sqrt{g(v,v)}\), angles from \(g\), and gram–schmidt
-                    orthogonalization. <em>lorentzian</em> signature \((1,3)\) or \((3,1)\) is the linear model of
-                    spacetime intervals and light cones in <a
-                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a>.
-                </p>
+                <h3>bilinear forms: axioms, matrices, nondegeneracy</h3>
+                <p>let $V$ be finite-dimensional over $\mathbb{R}$. a map $g:V\times V\to\mathbb{R}$ is <em>bilinear</em>
+                    if it is linear in each argument when the other is held fixed:</p>
+                $$
+                \begin{aligned}
+                    g(\alpha u_1+\beta u_2,\,v) &= \alpha\,g(u_1,v)+\beta\,g(u_2,v),\\
+                    g(u,\,\gamma v_1+\delta v_2) &= \gamma\,g(u,v_1)+\delta\,g(u,v_2).
+                \end{aligned}
+                $$
+                <p>it is <em>symmetric</em> if $g(u,v)=g(v,u)$, <em>skew-symmetric</em> if $g(u,v)=-g(v,u)$. fix a basis
+                    $\{e_i\}_{i=1}^n$ and components $u=\sum_i u^i e_i$, $v=\sum_j v^j e_j$. define $g_{ij}:=g(e_i,e_j)$.
+                    then</p>
+                $$
+                g(u,v)=\sum_{i,j=1}^n g_{ij}\,u^i v^j.
+                $$
+                <p>$g$ is <em>nondegenerate</em> if the equivalent conditions hold: (i) $g(u,v)=0$ for all $v$ implies
+                    $u=0$; (ii) the linear map $V\to V^*$, $u\mapsto g(u,\cdot)$, is an isomorphism; (iii)
+                    $\det(g_{ij})\neq 0$ in one, hence every, basis.</p>
+                <p>for symmetric $g$, <em>sylvester’s law of inertia</em> asserts the existence of a basis in which
+                    $g_{ij}$ is diagonal with entries $\pm 1$; the counts $(p,q)$ of $+1$ and $-1$ are independent of
+                    basis—the <em>signature</em> $(p,q)$. <em>positive definite</em> means $g(v,v)&gt;0$ for all $v\neq 0$;
+                    equivalently signature $(n,0)$. then $\|v\|:=\sqrt{g(v,v)}$ is a norm and
+                    $\langle u,v\rangle:=g(u,v)$ is an <em>inner product</em>. kinetic energy
+                    $T=\frac12 g_{ij}\dot q^i\dot q^j$ in <a href="../basics/">basics</a> is exactly such a quadratic
+                    form built from a positive-definite $g$ in many mechanical models.</p>
 
-                <h3>symplectic vector spaces</h3>
-                <p>a <em>symplectic form</em> on finite-dimensional \(V\) is a skew-symmetric, nondegenerate bilinear
-                    map
-                    \(\omega:V\times V\to\mathbb{R}\). then \(\dim V\) is even, and there exists a <em>darboux
-                        basis</em>
-                    in which \(\omega\) has block matrix \(\bigl(\begin{smallmatrix}0&I\\-I&0\end{smallmatrix}\bigr)\).
-                    the top form \(\omega^n/n!\) is a canonical volume. this is the linear prototype of phase space in
-                    <a href="../basics/#phase-space-and-canonical-structure">phase space and canonical structure</a>:
-                    momenta pair with coordinates through \(\omega\), not through a metric.</p>
+                <h3>gram matrix, independence, and gram–schmidt</h3>
+                <p>given $v_1,\ldots,v_k\in V$ with an inner product $\langle\cdot,\cdot\rangle$, their <em>gram
+                        matrix</em> is $G\in\mathbb{R}^{k\times k}$ with entries $G_{ab}=\langle v_a,v_b\rangle$. then</p>
+                $$
+                \det G \neq 0 \quad\Longleftrightarrow\quad \{v_1,\ldots,v_k\}\ \text{is linearly independent}.
+                $$
+                <p><em>gram–schmidt</em> turns an arbitrary independent ordered set into an orthonormal one. set
+                    $u_1=v_1/\|v_1\|$. for $k\ge 2$, define the unnormalized residual</p>
+                $$
+                \tilde u_k := v_k-\sum_{j=1}^{k-1}\langle v_k,u_j\rangle\,u_j,\qquad u_k:=\tilde u_k/\|\tilde u_k\|.
+                $$
+                <p>then $\langle u_i,u_j\rangle=\delta_{ij}$ and $\mathrm{span}\{u_1,\ldots,u_k\}=\mathrm{span}\{v_1,\ldots,v_k\}$.
+                    this algorithm is the constructive proof that every finite-dimensional inner-product space admits an
+                    orthonormal basis—needed whenever one diagonalizes quadratic forms by orthogonal change of basis.</p>
 
-                <h3>tensors and the exterior algebra</h3>
-                <p>the <em>tensor product</em> \(V\otimes W\) (finite-dimensional) is characterized by bilinearity of
-                    \((v,w)\mapsto v\otimes w\) and universal factorization of every bilinear map \(V\times W\to U\).
-                    multilinear maps \(V^k\to\mathbb{R}\) identify with \((V^*)^{\otimes k}\). <em>symmetrization</em>
-                    and
-                    <em>alternation</em> project to subspaces carrying the symmetric group action; the alternating part
-                    yields the <em>exterior powers</em> \(\Lambda^k V^*\), generated by wedge products with
-                    \(\alpha\wedge\beta=(-1)^{pq}\beta\wedge\alpha\) for \(\alpha\in\Lambda^p\), \(\beta\in\Lambda^q\).
-                    that is the coordinate-free home of antisymmetric field strengths and volume elements used in <a
-                        href="../basics/#global-and-topological-closure">forms on manifolds</a>.
-                </p>
+                <h3>complex inner products and complexification</h3>
+                <p>for $\mathbb{C}$-linear quantum amplitudes one uses a <em>sesquilinear</em> inner product
+                    $\langle\cdot,\cdot\rangle:V\times V\to\mathbb{C}$, convention here: conjugate linear in the first
+                    slot, linear in the second:</p>
+                $$
+                \begin{aligned}
+                    \langle \alpha u_1+\beta u_2,\,v\rangle &= \bar\alpha\langle u_1,v\rangle+\bar\beta\langle u_2,v\rangle,\\
+                    \langle u,\,\gamma v_1+\delta v_2\rangle &= \gamma\langle u,v_1\rangle+\delta\langle u,v_2\rangle.
+                \end{aligned}
+                $$
+                <p><em>hermitian symmetry</em> and <em>positive definiteness</em> are</p>
+                $$
+                \langle v,u\rangle=\overline{\langle u,v\rangle},\qquad \langle v,v\rangle&gt;0\ \text{for }v\neq 0.
+                $$
+                <p>in a basis, $\langle u,v\rangle=\sum_{i,j}\overline{u^i}\,h_{ij}\,v^j$ with $h_{ij}=\overline{h_{ji}}$
+                    hermitian. the <em>complexification</em> of a real vector space $V_{\mathbb{R}}$ is
+                    $V_{\mathbb{C}}:=V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}$, extending scalars; an
+                    $\mathbb{R}$-linear map $J:V_{\mathbb{R}}\to V_{\mathbb{R}}$ with $J^2=-\mathrm{id}$ encodes an
+                    alternative complex structure when present.</p>
+
+                <h3>minkowski inner product, causal type, and lorentz isometries</h3>
+                <p>special relativity fixes a nondegenerate symmetric form of signature $(1,3)$ or $(3,1)$ on
+                    $\mathbb{R}^4$. one standard component form (matching $ds^2=c^2dt^2-dx^2-dy^2-dz^2$) is</p>
+                $$
+                \eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1),\qquad \langle x,y\rangle_\eta := \eta_{\mu\nu}x^\mu y^\nu.
+                $$
+                <p>the <em>invariant interval</em> along a displacement $dx^\mu$ is</p>
+                $$
+                ds^2=\eta_{\mu\nu}\,dx^\mu dx^\nu.
+                $$
+                <p>a nonzero vector $v^\mu$ is <em>timelike</em> if $\eta_{\mu\nu}v^\mu v^\nu&gt;0$, <em>spacelike</em> if
+                    $\eta_{\mu\nu}v^\mu v^\nu&lt;0$, <em>null</em> (lightlike) if $\eta_{\mu\nu}v^\mu v^\nu=0$. the
+                    boundary of the timelike cones is the light cone. linear maps $\Lambda:\mathbb{R}^4\to\mathbb{R}^4$
+                    preserving $\eta$ in the sense $\langle \Lambda x,\Lambda y\rangle_\eta=\langle x,y\rangle_\eta$ for
+                    all $x,y$ are exactly the <em>lorentz transformations</em>; in matrix form,</p>
+                $$
+                \Lambda^{\mathsf T}\eta\,\Lambda=\eta.
+                $$
+                <p>they form the lie group $O(1,3)$. the indefinite signature is forced if one wants a nondegenerate
+                    symmetric pairing and a finite invariant speed of light in the usual spacetime kinematics—see <a
+                        href="../basics/#special-relativity-and-the-free-relativistic-particle">special relativity</a> in
+                    <a href="../basics/">basics</a>.</p>
+
+                <h3>symplectic vector spaces, darboux form, and poisson bracket</h3>
+                <p>a <em>symplectic form</em> on real finite-dimensional $V$ is a bilinear $\omega:V\times V\to\mathbb{R}$
+                    that is <em>skew-symmetric</em> and <em>nondegenerate</em>:</p>
+                $$
+                \omega(u,v)=-\omega(v,u),\qquad \bigl(\omega(u,v)=0\ \forall v\bigr)\Rightarrow u=0.
+                $$
+                <p>then $\dim V=2n$ is even. there exists a <em>darboux basis</em> in which the matrix of $\omega$ is</p>
+                $$
+                [\omega_{ij}] = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix}.
+                $$
+                <p>writing coordinates as $(q^1,\ldots,q^n,p_1,\ldots,p_n)$ for that basis, the dual pairing is often
+                    packaged with the wedge product on $T^*Q$ as $\omega=\sum_{i=1}^n dq^i\wedge dp_i$; the same
+                    antisymmetric matrix encodes the bilinear pairing on the $2n$-dimensional model of phase space. the
+                    <em>poisson bracket</em> of smooth functions $f,g$ on an open set in those coordinates is</p>
+                $$
+                \{f,g\}:=\sum_{i=1}^n\left(\frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}-\frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}\right).
+                $$
+                <p>equivalently, $\{f,g\}=\omega(X_f,X_g)$ where $X_f$ is the hamiltonian vector field defined by
+                    $\iota_{X_f}\omega=\mathrm{d}f$. this is the linear infinitesimal backbone of <a
+                        href="../basics/#phase-space-and-canonical-structure">phase space and canonical structure</a>.
+                    symplectic geometry answers a different physical demand than a metric: it measures canonical
+                    pairing and phase-space volume ($\omega^n/n!$), not lengths of single vectors.</p>
+
+                <h3>tensor product: universal bilinearity</h3>
+                <p>given finite-dimensional $V,W$ over $\mathbb{R}$ (or $\mathbb{C}$), the <em>tensor product</em>
+                    $V\otimes W$ is built so that $(v,w)\mapsto v\otimes w$ is bilinear and every bilinear
+                    $B:V\times W\to U$ factors uniquely through a linear $\tilde B:V\otimes W\to U$ with
+                    $\tilde B(v\otimes w)=B(v,w)$. the generating relations are</p>
+                $$
+                \begin{aligned}
+                    (\alpha v_1+\beta v_2)\otimes w &= \alpha(v_1\otimes w)+\beta(v_2\otimes w),\\
+                    v\otimes(\gamma w_1+\delta w_2) &= \gamma(v\otimes w_1)+\delta(v\otimes w_2).
+                \end{aligned}
+                $$
+                <p>a <em>tensor of type $(p,q)$</em> on $V$ is an element of $V^{\otimes p}\otimes (V^*)^{\otimes q}$. if
+                    $S$ is the change-of-basis matrix on $V$ (new components $v'^i=S^i{}_j v^j$), <em>contravariant</em>
+                    components pick up $S$, <em>covariant</em> components pick up $S^{-1}$:</p>
+                $$
+                \tilde T^{i_1\cdots i_p}{}_{j_1\cdots j_q}
+                    = S^{i_1}{}_{a_1}\cdots S^{i_p}{}_{a_p}\,(S^{-1})^{b_1}{}_{j_1}\cdots(S^{-1})^{b_q}{}_{j_q}\,
+                    T^{a_1\cdots a_p}{}_{b_1\cdots b_q}.
+                $$
+                <p>a nondegenerate inner product $g_{ij}$ induces the <em>musical isomorphisms</em> $\flat:V\to V^*$ and
+                    $\sharp:V^*\to V$:</p>
+                $$
+                v^\flat(w):=g(v,w),\qquad g(\alpha^\sharp,w):=\alpha(w),
+                $$
+                <p>and in components $v_i=g_{ij}v^j$, $v^i=g^{ij}v_j$ where $g^{ij}$ is the inverse matrix of $g_{ij}$.</p>
+
+                <h3>symmetrization, alternation, and the exterior algebra</h3>
+                <p>on covariant rank-$p$ tensors (or components $T_{i_1\ldots i_p}$), the <em>symmetrization</em> and
+                    <em>alternation</em> operators are</p>
+                $$
+                (\mathrm{Sym}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p} T_{i_{\sigma(1)}\ldots i_{\sigma(p)}},
+                $$
+                $$
+                (\mathrm{Alt}\,T)_{i_1\ldots i_p}:=\frac{1}{p!}\sum_{\sigma\in S_p} \mathrm{sgn}(\sigma)\,T_{i_{\sigma(1)}\ldots i_{\sigma(p)}}.
+                $$
+                <p>the <em>exterior power</em> $\Lambda^k V^*$ consists of alternating multilinear forms; the <em>wedge
+                        product</em> may be defined by $\alpha\wedge\beta:=\mathrm{Alt}(\alpha\otimes\beta)$ (up to the
+                    conventional factorial normalization). graded commutativity holds:</p>
+                $$
+                \alpha\wedge\beta=(-1)^{pq}\,\beta\wedge\alpha,\qquad \alpha\in\Lambda^p,\ \beta\in\Lambda^q.
+                $$
+                <p>in particular $v\wedge v=0$ for any one-form $v$; iterated wedges yield oriented $k$-volumes and are
+                    the algebraic substrate of differential $k$-forms in <a
+                        href="../basics/#global-and-topological-closure">global forms</a> and in the next section on
+                    manifolds.</p>
+
+                <h3>how these layers attach to the classical spine</h3>
+                <p>positive-definite symmetric $g$ supplies lengths, angles, orthonormal frames, and the quadratic kinetic
+                    energy; hermitian inner products supply complex amplitudes with a notion of magnitude. the minkowski
+                    form $\eta$ supplies causal order and lorentz symmetry. the symplectic form $\omega$ supplies canonical
+                    coordinates, hamiltonian flows, and poisson brackets without choosing a riemannian metric on phase
+                    space. tensor products and index bookkeeping encode multilinear physical laws under change of
+                    coordinates; the exterior algebra encodes antisymmetric line- and surface-integrand data that glue
+                    globally as forms. manifolds, metrics, connections, and cohomology in the sections that follow assume
+                    this multilinear layer is already fixed pointwise on tangent spaces.</p>
             </section>
 
             <section id="differentiable-manifolds-and-the-calculus-of-forms" class="doc-section">
