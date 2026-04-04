@@ -639,52 +639,230 @@
             </section>
             <section id="smooth-structure" class="doc-section">
                 <h2>manifolds, bundles, constraints</h2>
-                <p><strong>arc.</strong> global configuration and spacetime are rarely one chart. smooth structure
-                    makes “differentiable” independent of coordinates; bundles carry velocity and momentum; forms carry
-                    maxwell; frobenius separates integrable constraints from rolling.</p>
+                <p>this block is <strong>self-contained</strong> and follows the manifolds–bundles–constraints arc (items
+                    C1–C6) in
+                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                    smooth models of configuration space, tangent and cotangent bundles carrying velocity and momentum,
+                    partitions of unity for global constructions, exterior calculus and $\mathrm{d}^2=0$, frobenius
+                    integrability versus nonholonomic constraints, and $SO(3)$ as the concrete orientation manifold for
+                    rigid motion. no links below point to other site pages.</p>
+                <p>the recurring theme is that <em>coordinates are local choices</em>; physical laws are statements about
+                    intrinsic objects (tangent vectors, covectors, differential forms, distributions) whose transformation
+                    laws are fixed by smooth structure. constraints are then either integrable submanifolds in $Q$ or
+                    genuinely nonholonomic restrictions detected by frobenius.</p>
 
                 <h3 id="c-manifold-q">configuration space as manifold</h3>
-                <p><strong>m.</strong> topological manifold; smooth atlas; transition maps $C^\infty$; smooth functions
-                    $M\to\mathbb{R}$.</p>
-                <p><strong>p.</strong> $Q$ for constrained mechanics; $SO(3)$; later spacetime $M$ in gr.</p>
-                <p><strong>outcomes.</strong> write transition jacobian; state why EL components define a covector along
-                    a curve.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
-                        physics · manifolds and forms</a></p>
+                <p>a <strong>topological $n$-manifold</strong> $M$ is a second-countable hausdorff topological space such
+                    that every point $p\in M$ admits an open neighborhood $U$ and a homeomorphism
+                    $\varphi:U\to \varphi(U)\subset\mathbb{R}^n$ onto an open subset of $\mathbb{R}^n$. such a pair
+                    $(U,\varphi)$ is a <em>chart</em>; writing $\varphi(p)=(x^1(p),\ldots,x^n(p))$ yields <em>local
+                        coordinates</em>.</p>
+                <p><strong>smooth atlas.</strong> two charts $(U,\varphi)$ and $(V,\psi)$ are <em>compatible</em> if
+                    the <strong>transition map</strong></p>
+                $$
+                \psi\circ\varphi^{-1}:\ \varphi(U\cap V)\to \psi(U\cap V)
+                $$
+                <p>is a $C^\infty$ diffeomorphism between open subsets of $\mathbb{R}^n$. a <em>smooth atlas</em> is a
+                    family of pairwise compatible charts whose domains cover $M$. a <strong>smooth structure</strong> is
+                    a maximal such atlas; fixing it selects which maps $M\to\mathbb{R}$ are <em>smooth</em> (pull back
+                    to $\mathbb{R}^n$ via charts and require $C^\infty$ there).</p>
+                <p><strong>configuration space $Q$.</strong> for a finite-dimensional mechanical system without
+                    singularities, admissible configurations are modeled by a smooth manifold $Q$: each point $q\in Q$ is
+                    a physical configuration, and a choice of chart near $q$ is a choice of generalized coordinates
+                    $(q^1,\ldots,q^n)$. constraints that reduce degrees of freedom globally may produce $Q$ with
+                    nontrivial topology (e.g. $SO(3)$ for spatial orientation, $\mathbb{R}^2\setminus\{0\}$ for a planar
+                    particle excluded from a point).</p>
+                <p><strong>worked chart overlap ($S^1$).</strong> cover the circle by two arcs $U_\pm$ omitting one point
+                    each; stereographic-like coordinates give $\varphi_\pm:U_\pm\to(-\pi,\pi)$ with a transition on the
+                    overlap that is smooth (in fact affine on each connected component of the overlap). this exhibits
+                    $S^1$ as a smooth $1$-manifold—the idea generalizes to spheres and projective spaces with more charts.</p>
+                <p><strong>lagrangian on $Q$ (preview).</strong> a smooth lagrangian is a map $L:TQ\to\mathbb{R}$ (defined
+                    once tangent bundle is made precise below). in coordinates $(q^i)$ on $U\subset Q$, it appears as
+                    $L(q^i,\dot q^i,t)$ with $\dot q^i$ transforming as components of a tangent vector to a curve. the
+                    partials $\partial L/\partial\dot q^i$ assemble into a covector along the trajectory (conjugate
+                    momentum); under a change of coordinates $q\mapsto \tilde q(q)$,</p>
+                $$
+                \dot{\tilde q}^j = \frac{\partial \tilde q^j}{\partial q^i}\,\dot q^i,
+                $$
+                <p>and the chain rule on $L$ implies the correct covariant transformation of $\partial L/\partial\dot q$
+                    so that the euler–lagrange expressions $\mathrm{d}/\mathrm{d}t(\partial L/\partial\dot q^i)-
+                    \partial L/\partial q^i$ are components of a covector along the motion—chart-independent as a
+                    geometric object on the curve in $Q$.</p>
 
                 <h3 id="c-tangent-cotangent">$TQ$, $T^*Q$, covectors</h3>
-                <p><strong>m.</strong> tangent vectors as derivations or curve classes; cotangent as dual; bundle
-                    charts.</p>
-                <p><strong>p.</strong> lagrangian on $TQ$; momenta as covectors; legendre map $TQ\to T^*Q$.</p>
-                <p class="dim">draft structure: same · draft narrative: <a href="../basics/#reduction-and-effective-potentials">basics
-                        · reduction</a></p>
+                <p>fix a smooth manifold $M$ and $p\in M$. a <strong>tangent vector at $p$</strong> can be defined as
+                    an equivalence class of smooth curves $\gamma:(-\varepsilon,\varepsilon)\to M$ with $\gamma(0)=p$,
+                    where two curves are equivalent if their coordinate derivatives agree in one, hence every, chart.
+                    equivalently, $T_pM$ is the space of <em>derivations</em> $X:C^\infty(M)\to\mathbb{R}$ at $p$:
+                    $\mathbb{R}$-linear maps satisfying the <strong>leibniz rule</strong></p>
+                $$
+                X(fg) = f(p)\,X(g) + g(p)\,X(f).
+                $$
+                <p>in a chart $(U,x^i)$, the coordinate vectors $\partial/\partial x^i|_p$ form a basis of $T_pM$, and
+                    any $X_p = X^i\,\partial/\partial x^i|_p$.</p>
+                <p><strong>transformation law.</strong> on overlaps of charts $x$ and $\tilde x$,</p>
+                $$
+                \frac{\partial}{\partial x^i}
+                = \frac{\partial \tilde x^j}{\partial x^i}\,\frac{\partial}{\partial \tilde x^j}.
+                $$
+                <p>thus the components $X^i$ of a tangent vector satisfy $X^i = (\partial x^i/\partial \tilde x^j)\tilde X^j$
+                    (contravariant vector transformation).</p>
+                <p><strong>tangent bundle $TM$.</strong> as a set, $TM=\bigsqcup_{p\in M}T_pM$. it carries a canonical
+                    smooth manifold structure of dimension $2\dim M$: a chart $(U,x^i)$ on $M$ induces
+                    $(\pi^{-1}(U),(x^i,v^i))$ where $v^i$ are fiber coordinates of $\sum_i v^i\partial/\partial x^i$. the
+                    projection $\pi:TM\to M$ is smooth.</p>
+                <p><strong>cotangent space and bundle.</strong> the <em>dual</em> $T_p^*M=\mathrm{Hom}(T_pM,\mathbb{R})$
+                    consists of <strong>covectors</strong> (one-forms at $p$). the differential $\mathrm{d}f|_p\in T_p^*M$
+                    of $f\in C^\infty(M)$ is defined by $\mathrm{d}f|_p(X_p)=X_p(f)$. coordinate covectors
+                    $\mathrm{d}x^i|_p$ form the basis dual to $\partial/\partial x^i|_p$. a general covector
+                    $\omega_p=\omega_i\,\mathrm{d}x^i|_p$ transforms <em>covariantly</em>:</p>
+                $$
+                \omega_i = \frac{\partial \tilde x^j}{\partial x^i}\,\tilde\omega_j.
+                $$
+                <p>the disjoint union $T^*M$ is the <strong>cotangent bundle</strong>, again a $2\dim M$ manifold with
+                    canonical “momentum” fiber coordinates $p_i$ dual to $q^i$ in darboux-style notation.</p>
+                <p><strong>legendre transform (fiberwise).</strong> given $L:TQ\to\mathbb{R}$, the <em>fiber derivative</em>
+                    $\mathbb{F}L:TQ\to T^*Q$ sends $v\in T_qQ$ to the covector</p>
+                $$
+                \mathbb{F}L(v)\cdot w = \left.\frac{\mathrm{d}}{\mathrm{d}s}\right|_{s=0} L(v+s w),
+                \qquad w\in T_qQ,
+                $$
+                <p>which in coordinates is $p_i=\partial L/\partial\dot q^i$. hyperregular $L$ makes $\mathbb{F}L$ a
+                    fiberwise diffeomorphism and defines the hamiltonian on $T^*Q$ by $H\circ\mathbb{F}L = p_i\dot q^i-L$.</p>
 
                 <h3 id="c-partitions">partitions of unity, global glue</h3>
-                <p><strong>m.</strong> subordinate partitions; local finiteness; gluing metrics and integrands.</p>
-                <p><strong>p.</strong> global action, total charge, total energy on noncompact or multi-chart domains.</p>
-                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
-                        physics · partitions</a></p>
+                <p>a <strong>partition of unity</strong> subordinate to an open cover $\{U_\alpha\}$ of $M$ is a family
+                    of smooth functions $\rho_\alpha:M\to[0,1]$ such that (i) $\mathrm{supp}(\rho_\alpha)\subset U_\alpha$,
+                    (ii) the family $\{\mathrm{supp}(\rho_\alpha)\}$ is <em>locally finite</em> (every point has a
+                    neighborhood meeting only finitely many supports), and (iii)</p>
+                $$
+                \sum_\alpha \rho_\alpha(p) = 1\quad\text{for all }p\in M.
+                $$
+                <p><strong>existence.</strong> every smooth manifold admits partitions of unity subordinate to any open
+                    cover; standard proofs use second countability (hence paracompactness of smooth manifolds) and
+                    smooth bump functions on $\mathbb{R}^n$.</p>
+                <p><strong>global integrals.</strong> if $\omega$ is a top-degree form (or a density) on compact $M$, one
+                    defines</p>
+                $$
+                \int_M \omega = \sum_\alpha \int_{U_\alpha} \rho_\alpha\,\omega
+                $$
+                <p>in coordinates on each chart; local finiteness and smoothness of transitions make the result
+                    independent of choices. the same device globalizes riemannian metrics (patch together local
+                    euclidean metrics with partition weights), vector fields with prescribed properties, and cutoff
+                    arguments in analysis on $Q$ or spacetime.</p>
+                <p><strong>bump function (model).</strong> on $\mathbb{R}^n$, one constructs $\beta\ge 0$ smooth with
+                    $\beta\equiv 1$ on a ball $B_1$ and $\beta\equiv 0$ outside $B_2$; transporting via charts and
+                    scaling yields flexible localization—this is the analytic backbone of “define locally, sum
+                    globally.”</p>
 
                 <h3 id="c-forms-d">forms, $\mathrm{d}$, bianchi-type identities</h3>
-                <p><strong>m.</strong> $\Omega^p(M)$; $\mathrm{d}^2=0$; lie derivative; cartan formula.</p>
-                <p><strong>p.</strong> homogeneous maxwell as $\mathrm{d}F=0$; conserved circulation as closed
-                    1-forms modulo exactness.</p>
-                <p class="dim">draft structure: same section · narrative: <a
-                        href="../basics/#global-and-topological-closure">basics · global closure</a></p>
+                <p>for each $p\in M$, the exterior algebra $\Lambda(T_p^*M)$ packages alternating multilinear forms. a
+                    <strong>differential $k$-form</strong> is a smooth section $\omega$ of the bundle
+                    $\Lambda^k T^*M\to M$; locally on a chart $(U,x^i)$,</p>
+                $$
+                \omega|_U = \frac{1}{k!}\,\omega_{i_1\cdots i_k}(x)\,\mathrm{d}x^{i_1}\wedge\cdots\wedge\mathrm{d}x^{i_k},
+                $$
+                <p>with $\omega_{\cdots}$ totally antisymmetric in indices.</p>
+                <p><strong>exterior derivative.</strong> there is a unique $\mathbb{R}$-linear operator
+                    $\mathrm{d}:\Omega^k(M)\to\Omega^{k+1}(M)$ such that: $\mathrm{d}f$ is the differential for
+                    $f\in\Omega^0(M)=C^\infty(M)$; <strong>leibniz</strong></p>
+                $$
+                \mathrm{d}(\alpha\wedge\beta) = \mathrm{d}\alpha\wedge\beta + (-1)^{\deg\alpha}\,\alpha\wedge\mathrm{d}\beta;
+                $$
+                <p>and <strong>$\mathrm{d}^2=0$</strong>. in coordinates, on $k$-forms $\mathrm{d}$ acts by
+                    antisymmetrized partials; for example for $\alpha=\alpha_i\,\mathrm{d}x^i$,</p>
+                $$
+                \mathrm{d}\alpha = \frac{\partial \alpha_i}{\partial x^j}\,\mathrm{d}x^j\wedge\mathrm{d}x^i
+                = \tfrac12\Bigl(\frac{\partial \alpha_j}{\partial x^i}-\frac{\partial \alpha_i}{\partial x^j}\Bigr)\mathrm{d}x^i\wedge\mathrm{d}x^j.
+                $$
+                <p><strong>proof that $\mathrm{d}^2 f=0$ for functions.</strong></p>
+                $$
+                \mathrm{d}f = \frac{\partial f}{\partial x^i}\,\mathrm{d}x^i,\qquad
+                \mathrm{d}^2 f
+                = \frac{\partial^2 f}{\partial x^j\partial x^i}\,\mathrm{d}x^j\wedge\mathrm{d}x^i.
+                $$
+                <p>the coefficient is symmetric in $i,j$ (equality of mixed partials for $C^2$ functions) while
+                    $\mathrm{d}x^j\wedge\mathrm{d}x^i$ is antisymmetric; pairing yields zero. extending to all forms uses
+                    the leibniz rule and induction.</p>
+                <p><strong>cartan (magic) formula (statement).</strong> for a vector field $X$, let
+                    $\iota_X$ denote interior product. the lie derivative obeys</p>
+                $$
+                \mathcal{L}_X = \mathrm{d}\,\iota_X + \iota_X\,\mathrm{d}.
+                $$
+                <p>this links infinitesimal symmetries, contractions, and exterior differentiation.</p>
+                <p><strong>bianchi-type identity.</strong> if $F\in\Omega^2(M)$ is a field-strength two-form (e.g.
+                    electromagnetic $F$ on spacetime), the homogeneous maxwell equations are packaged as</p>
+                $$
+                \mathrm{d}F = 0,
+                $$
+                <p>which is coordinate-free and immediate from $\mathrm{d}^2=0$ when $F=\mathrm{d}A$ locally. globally,
+                    $F$ need not be exact; cohomology measures the obstruction (treated in the next major arc).</p>
 
                 <h3 id="c-frobenius">frobenius: holonomic vs nonholonomic</h3>
-                <p><strong>m.</strong> distributions; involutivity; integrability $\Leftrightarrow$ foliation.</p>
-                <p><strong>p.</strong> rolling constraints; which constraints define surfaces in $Q$?</p>
-                <p class="dim">draft structure: <a href="../math-physics/#differentiable-manifolds-and-the-calculus-of-forms">math
-                        physics · frobenius</a></p>
+                <p>a <strong>distribution</strong> of rank $k$ on $M$ is a smooth subbundle $D\subset TM$ of fiber
+                    dimension $k$: at each $p$, $D_p\subset T_pM$ varies smoothly with $p$. it is <strong>involutive</strong>
+                    (in involution) if for every pair of smooth local sections $X,Y$ of $D$, the lie bracket $[X,Y]$ is
+                    again a section of $D$.</p>
+                <p><strong>frobenius theorem (local flat chart).</strong> $D$ is involutive if and only if, near each
+                    point, there exist coordinates $(y^1,\ldots,y^n)$ such that $D$ is spanned by
+                    $\partial/\partial y^1,\ldots,\partial/\partial y^k$. equivalently, $D$ is <em>integrable</em>: through
+                    each point there is a unique local integral submanifold (leaf) tangent to $D$; these leaves foliate
+                    the neighborhood.</p>
+                <p><strong>holonomic constraints.</strong> constraints of the form $f_a(q)=0$ for independent functions
+                    $f_a$ define (regular value) embedded submanifolds $N\subset Q$. infinitesimal motions satisfying
+                    $\mathrm{d}f_a(v)=0$ span the tangent bundle $TN$; this distribution is involutive because $TN$ is
+                    integrable by construction (the leaves are open subsets of $N$).</p>
+                <p><strong>linear constraints and integrability.</strong> constraints $\omega_a(v)=0$ for independent
+                    one-forms $\omega_a\in\Omega^1(U)$ define a distribution $D=\bigcap_a\ker\omega_a$. local
+                    integrability is equivalent to the ideal generated by $\{\omega_a\}$ being closed under
+                    $\mathrm{d}$ (in the sense of differential systems); frobenius is the geometric packaging of this
+                    test.</p>
+                <p><strong>nonholonomic example (rolling).</strong> a vertical disk rolling without slipping on a plane
+                    has constraints relating linear velocity to angular velocity that cannot be integrated to relations
+                    $f(q)=0$ between coordinates alone: the accessible configurations in $Q$ are not a smaller
+                    embedded submanifold cut out by functions of $q$ only—the distribution fails involutivity, so no
+                    frobenius foliation of $Q$ by constraint surfaces exists. such systems require the full
+                    lagrange–d’alembert or geometric mechanics with constraints.</p>
 
                 <h3 id="c-so3">$SO(3)$, rigid body</h3>
-                <p><strong>p.</strong> body-fixed angular velocity; euler angles; qualitative nonholonomic examples.</p>
-                <p><strong>m.</strong> lie group as manifold; bracket of left-invariant fields.</p>
-                <p class="dim">draft structure: same · algebraic: <a
-                        href="../math-physics/#algebraic-substrate-and-categorical-foundations">lie groups block</a></p>
+                <p>the <strong>special orthogonal group</strong> in three dimensions is</p>
+                $$
+                SO(3) = \{\, R\in \mathrm{GL}_3(\mathbb{R}) : R^{\mathsf T}R = I,\ \det R = 1 \,\}.
+                $$
+                <p>it is a compact, connected lie group of dimension $3$. topologically, $SO(3)$ is real projective
+                    three-space $\mathbb{R}\mathrm{P}^3$: identify $R$ with the rotation by angle $\theta$ about axis
+                    $n\in S^2$ and identify $(n,\theta)\sim(-n,-\theta)$ for $\theta=\pi$—hence double covers by
+                    $SU(2)\cong S^3$.</p>
+                <p><strong>lie algebra $\mathfrak{so}(3)$.</strong> the tangent space at $I$ consists of skew-symmetric
+                    matrices $\Omega^{\mathsf T}=-\Omega$. the <strong>hat isomorphism</strong>
+                    $\widehat{\ }:\mathbb{R}^3\to\mathfrak{so}(3)$ encodes cross products:</p>
+                $$
+                \widehat{\omega}\,v = \omega\times v\quad\text{for all }v\in\mathbb{R}^3,
+                $$
+                <p>with explicit matrix entries $(\widehat{\omega})_{ij}=-\varepsilon_{ijk}\omega_k$ in cartesian
+                    components.</p>
+                <p><strong>angular velocity.</strong> for a smooth trajectory $R(t)\in SO(3)$, define the <em>spatial</em>
+                    angular velocity $\omega_{\mathrm{sp}}(t)\in\mathbb{R}^3$ by</p>
+                $$
+                \dot R(t)\,R(t)^{\mathsf T} = \widehat{\omega_{\mathrm{sp}}(t)},
+                $$
+                <p>and the <em>body</em> angular velocity by $R(t)^{\mathsf T}\dot R(t)=\widehat{\omega_{\mathrm{body}}(t)}$.
+                    then $\omega_{\mathrm{sp}} = R\,\omega_{\mathrm{body}}$ (same geometric vector expressed in space vs
+                    body frame).</p>
+                <p><strong>euler’s rigid-body equations (body frame).</strong> let $I$ be the constant positive-definite
+                    inertia matrix in principal body axes, $\omega=\omega_{\mathrm{body}}$. newton–euler balance yields</p>
+                $$
+                I\dot\omega + \omega\times(I\omega) = \tau_{\mathrm{ext}},
+                $$
+                <p>with $\tau_{\mathrm{ext}}$ external torque in body components. free motion ($\tau_{\mathrm{ext}}=0$)
+                    conserves both kinetic energy $T=\frac12\omega^{\mathsf T}I\omega$ and spatial angular momentum
+                    $L=R\,I\omega$.</p>
+                <p><strong>noncommutativity of finite rotations.</strong> $SO(3)$ is non-abelian: generally
+                    $R_1R_2\neq R_2R_1$. infinitesimally, this is measured by the lie bracket on $\mathfrak{so}(3)$,
+                    isomorphic to the vector cross product: $[\widehat u,\widehat v]=\widehat{u\times v}$. thus “small
+                    rotations commute to first order, but composition of finite rotations depends on order”—the
+                    geometric origin of gyroscopic coupling in multibody mechanics.</p>
             </section>
-
             <section id="cohomology-topology" class="doc-section">
                 <h2>cohomology, global topology</h2>
                 <p><strong>arc.</strong> local $F=\mathrm{d}A$ does not imply global $A$. cohomology counts those
