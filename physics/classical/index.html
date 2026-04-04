@@ -15,30 +15,19 @@
         <nav class="subnav" aria-label="section">
             <a href="../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
-            <span class="dim">unified index</span>
-            <span class="subnav-sep" aria-hidden="true">·</span>
-            <a href="../basics/">basics (draft narrative)</a>
-            <span class="subnav-sep" aria-hidden="true">·</span>
-            <a href="../math-physics/">math physics (draft structure)</a>
+            <span class="dim">classical physics</span>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="/">../</a>
         </nav>
 
         <header class="doc-header">
-            <h1>classical physics — unified index</h1>
-            <p class="doc-lead"><em>one progression: narrative and structure together</em></p>
-            <p class="doc-intro">this page is the <strong>master outline</strong> for building out classical physics on
-                this site. it merges the intent of <a href="../basics/">basics</a> (landau-style physical narrative) and
-                <a href="../math-physics/">mathematical physics</a> (definitions, theorems, coordinate-free language).
-                treat those two pages as <strong>first-draft expansions</strong>—already rich—while this index states
-                <em>why</em> each topic appears, <em>what</em> must be true physically and mathematically, and
-                <em>what</em> a reader should be able to say and compute when the arc is written to completion here.</p>
-            <p class="doc-intro">the offline syllabus <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>
-                is the same spine in markdown form; use it for checklists and anchor maps. <strong>p</strong> below
-                means physics (phenomenology, variational reasoning, landau spirit); <strong>m</strong> means mathematics
-                (structural, rigorous carrier). they are woven together—no separate “math appendix” in spirit.</p>
+            <h1>classical physics</h1>
+            <p class="doc-lead"><em>unified presentation</em></p>
+            <p class="doc-intro">a single progression from symmetry and variational principles through differential
+                geometry, cohomology, geometric mechanics, flat spacetime field theory, and dynamical lorentzian
+                geometry. each major block below is written to stand on its own.</p>
             <p class="doc-intro"><strong>convention:</strong> lorentzian signature is mostly minus
-                $\eta=\mathrm{diag}(-1,1,1,1)$, $x^0=ct$, matching the current math-physics and gr blocks.</p>
+                $\eta=\mathrm{diag}(-1,1,1,1)$ and $x^0=ct$ unless noted otherwise.</p>
         </header>
 
         <nav class="toc" aria-labelledby="toc-heading">
@@ -114,12 +103,9 @@
 
             <section id="symmetry-variation" class="doc-section">
                 <h2>symmetry, composition, variation</h2>
-                <p>this block is written to be <strong>self-contained</strong> and to follow the logical order fixed in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>
-                    (§3, symmetry–composition–variation, items A1–A4 there): algebraic composition laws for redundancies,
+                <p>this block is <strong>self-contained</strong>. it develops symmetry–composition–variation (items A1–A4): algebraic composition laws for redundancies,
                     stationary action and euler–lagrange equations, linearized dynamics and spectral data, then categorical
-                    bookkeeping for changes of description. nothing below points outward to other site pages; the only
-                    external pointer is that syllabus file, for parity of scope.</p>
+                    bookkeeping for changes of description.</p>
                 <p>the motivating tension is plain: experiments can be translated, rotated, or time-shifted without
                     changing outcome laws, yet a <em>single</em> trajectory is realized. classical mechanics resolves
                     this by (i) encoding redundancies as a compositional algebra acting on configuration data, (ii)
@@ -395,9 +381,7 @@
             </section>
             <section id="multilinear-pairings" class="doc-section">
                 <h2>multilinear pairings</h2>
-                <p>this block is <strong>self-contained</strong> and follows the multilinear pairings arc (items B1–B6) in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>.
-                    the progression is fixed: euclidean kinetic energy as a symmetric bilinear pairing, orthonormal frames
+                <p>this block is <strong>self-contained</strong>. the multilinear pairings arc (items B1–B6) runs as follows: euclidean kinetic energy as a symmetric bilinear pairing, orthonormal frames
                     and spectral diagonalization, complex hermitian structure for amplitudes, indefinite minkowski pairing
                     and the lorentz group, symplectic (not metric) geometry of phase space, then tensor and exterior
                     products for multicomponent and antisymmetric objects. no links below point to other site pages.</p>
@@ -639,13 +623,11 @@
             </section>
             <section id="smooth-structure" class="doc-section">
                 <h2>manifolds, bundles, constraints</h2>
-                <p>this block is <strong>self-contained</strong> and follows the manifolds–bundles–constraints arc (items
-                    C1–C6) in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                <p>this block is <strong>self-contained</strong> and covers manifolds–bundles–constraints (items C1–C6):
                     smooth models of configuration space, tangent and cotangent bundles carrying velocity and momentum,
                     partitions of unity for global constructions, exterior calculus and $\mathrm{d}^2=0$, frobenius
                     integrability versus nonholonomic constraints, and $SO(3)$ as the concrete orientation manifold for
-                    rigid motion. no links below point to other site pages.</p>
+                    rigid motion.</p>
                 <p>the recurring theme is that <em>coordinates are local choices</em>; physical laws are statements about
                     intrinsic objects (tangent vectors, covectors, differential forms, distributions) whose transformation
                     laws are fixed by smooth structure. constraints are then either integrable submanifolds in $Q$ or
@@ -865,12 +847,10 @@
             </section>
             <section id="cohomology-topology" class="doc-section">
                 <h2>cohomology, global topology</h2>
-                <p>this block is <strong>self-contained</strong> and follows the cohomology and global topology arc
-                    (items D1–D5) in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                <p>this block is <strong>self-contained</strong> and covers cohomology and global topology (items D1–D5):
                     de rham cohomology as obstruction to global primitives, periods and fluxes (dirac monopole),
                     computing cohomology from patches (mayer–vietoris, čech–de rham), poincaré duality and euler-type
-                    obstructions, and a short outlook on spectral sequences. no links below point to other site pages.</p>
+                    obstructions, and a short outlook on spectral sequences.</p>
                 <p>the conceptual line is that <em>local</em> differential identities ($\mathrm{d}\omega=0$) do not decide
                     whether $\omega=\mathrm{d}\alpha$ <em>globally</em>; cohomology classes record that gap. flux
                     integrals and holonomies are <strong>periods</strong> pairing closed forms with cycles, detecting
@@ -1021,12 +1001,9 @@
             </section>
             <section id="geometric-mechanics" class="doc-section">
                 <h2>geometric mechanics</h2>
-                <p>this block is <strong>self-contained</strong> and follows the geometric mechanics arc (items E1–E5) in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                <p>this block is <strong>self-contained</strong> and covers geometric mechanics (items E1–E5):
                     variational principles on $TQ$, symmetries and noether data, legendre passage to $(T^*Q,\omega)$,
-                    hamilton–jacobi and integrable tori, and fundamental-group bookkeeping for path sectors. it uses the
-                    manifold, symplectic, and cohomological language fixed earlier on this page. no links below point to
-                    other site pages.</p>
+                    hamilton–jacobi and integrable tori, and fundamental-group bookkeeping for path sectors, using manifold, symplectic, and cohomological language developed earlier in the document.</p>
                 <p>the organizing idea is that <em>lagrangian</em> data live naturally on velocity space $TQ$ while
                     <em>hamiltonian</em> data live on $T^*Q$ with canonical symplectic form; legendre transform is the
                     fiberwise dictionary when convexity permits. conserved quantities arise from group actions; global
@@ -1190,13 +1167,11 @@
             </section>
             <section id="flat-spacetime-ed" class="doc-section">
                 <h2>flat spacetime: SR and ED</h2>
-                <p>this block is <strong>self-contained</strong> and follows the flat spacetime: SR and ED arc (items
-                    F1–F3) in
-                    <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>:
+                <p>this block is <strong>self-contained</strong> and covers flat spacetime: SR and ED (items F1–F3):
                     minkowski kinematics and four-momentum, the potential one-form $A$ and field strength $F$ with gauge
                     and cohomological content, then maxwell’s equations, the stress tensor, and causal propagation of
                     fields. conventions match the rest of this page: <strong>mostly minus</strong>
-                    $\eta_{\mu\nu}=\mathrm{diag}(-1,1,1,1)$ and $x^0=ct$. no links below point to other site pages.</p>
+                    $\eta_{\mu\nu}=\mathrm{diag}(-1,1,1,1)$ and $x^0=ct$.</p>
                 <p>the conceptual spine is that <em>lorentz invariance</em> is the statement that physical laws are
                     built from tensors on $(\mathbb{R}^4,\eta)$; <em>gauge invariance</em> is the affine symmetry
                     $A\mapsto A+\mathrm{d}\chi$ leaving $F=\mathrm{d}A$ fixed; <em>maxwell</em> ties closed $F$ to
@@ -1341,46 +1316,159 @@
                     fields, producing radiation when the charge accelerates. explicit formulas are lengthy; geometrically,
                     they are the pullback of the retarded green’s kernel along the worldline.</p>
             </section>
+
             <section id="gravity-geometry" class="doc-section">
                 <h2>dynamical lorentzian geometry</h2>
-                <p><strong>arc.</strong> equivalence principle: gravitation = failure of global inertial frames;
-                    curvature tensor measures tidal shear; einstein equations couple geometry to $T_{\mu\nu}$; schwarzschild
-                    is the spherical vacuum template.</p>
+                <p>this block is <strong>self-contained</strong>. the dynamical lorentzian geometry arc (items G1–G4)
+                    treats the levi–civita connection and geodesics as inertial motion, curvature and tidal deviation,
+                    cartan’s frame formulation and the einstein–hilbert variational principle, and the schwarzschild
+                    vacuum as the spherical template for orbital phenomenology.</p>
+                <p>the equivalence principle is encoded geometrically: gravitation is not modeled as a force field in
+                    fixed minkowski space, but as lorentzian curvature; freely falling bodies follow timelike (or null)
+                    geodesics of the spacetime metric.</p>
 
                 <h3 id="g-connection">connection, levi–civita, geodesics</h3>
-                <p><strong>m.</strong> covariant derivative; christoffel; metric compatibility and vanishing torsion;
-                    parallel transport.</p>
-                <p><strong>p.</strong> free fall = geodesic; local inertial coordinates.</p>
-                <p class="dim">draft narrative: <a href="../basics/#general-relativity-and-curved-spacetime">basics ·
-                        GR</a> · draft structure: <a
-                        href="../math-physics/#geometric-gravity-connections-and-curvature">math physics · gravity</a></p>
+                <p>let $M$ be a smooth four-manifold and $g$ a lorentzian metric of signature $(-,+,+,+)$ (mostly minus).
+                    the <strong>levi–civita connection</strong> is the unique affine connection $\nabla$ on $TM$ that
+                    is (i) <em>torsion-free</em>, $\nabla_X Y - \nabla_Y X = [X,Y]$, and (ii) <em>metric compatible</em>,
+                    $\nabla g = 0$ (equivalently $X\langle Y,Z\rangle_g = \langle\nabla_X Y,Z\rangle_g + \langle
+                    Y,\nabla_X Z\rangle_g$).</p>
+                <p><strong>christoffel symbols.</strong> in coordinates $(x^\mu)$ with $g_{\mu\nu}=g(\partial_\mu,\partial_\nu)$,
+                    the connection coefficients are</p>
+                $$
+                \Gamma^\lambda_{\mu\nu}
+                = \tfrac12\,g^{\lambda\sigma}\left(
+                \partial_\mu g_{\nu\sigma} + \partial_\nu g_{\sigma\mu} - \partial_\sigma g_{\mu\nu}
+                \right),
+                $$
+                <p>where $g^{\mu\nu}$ is the inverse matrix. the covariant derivative of a vector field
+                    $V=V^\mu\partial_\mu$ is</p>
+                $$
+                \nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma^\nu_{\mu\sigma} V^\sigma .
+                $$
+                <p><strong>geodesic equation.</strong> a curve $x^\mu(\tau)$ is an <em>autoparallel</em> (geodesic) if
+                    its tangent $u^\mu=\mathrm{d}x^\mu/\mathrm{d}\tau$ satisfies</p>
+                $$
+                \boxed{\;
+                \frac{\mathrm{d}^2 x^\rho}{\mathrm{d}\tau^2}
+                + \Gamma^\rho_{\mu\nu}\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\tau}\,\frac{\mathrm{d}x^\nu}{\mathrm{d}\tau}
+                = 0\;}
+                $$
+                <p>for affine parameter $\tau$. for a massive particle, proper time normalization
+                    $g_{\mu\nu}u^\mu u^\nu=-c^2$ fixes $\tau$; for massless particles one uses an affine parameter with
+                    $g_{\mu\nu}u^\mu u^\nu=0$.</p>
+                <p><strong>equivalence principle (local inertial frames).</strong> at any event $p\in M$, there exist
+                    riemann normal coordinates in which $g_{\mu\nu}(p)=\eta_{\mu\nu}$ and $\Gamma^\rho_{\mu\nu}(p)=0$;
+                    freely falling observers experience minkowski physics to first order in separation from $p$.
+                    tidal effects appear at second order through curvature.</p>
 
                 <h3 id="g-curvature">riemann, tides, deviation</h3>
-                <p><strong>outcomes.</strong> state $[\nabla_\mu,\nabla_\nu]V^\rho=R^\rho{}_{\sigma\mu\nu}V^\sigma$;
-                    interpret tidal acceleration from deviation equation.</p>
-                <p class="dim">draft structure: gravity · riemann and deviation</p>
+                <p>the <strong>riemann curvature endomorphism</strong> is defined by</p>
+                $$
+                R(X,Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z ,
+                $$
+                <p>for vector fields $X,Y,Z$. in coordinates, with components $R^\rho{}_{\sigma\mu\nu}$,</p>
+                $$
+                \boxed{\;
+                [\nabla_\mu,\nabla_\nu]\,V^\rho = R^\rho{}_{\sigma\mu\nu}\,V^\sigma\;}
+                $$
+                <p>for all $V^\sigma$. the tensor has symmetries $R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}=
+                    -R_{\rho\sigma\nu\mu}$ and the algebraic bianchi identity
+                    $R_{\rho[\sigma\mu\nu]}=0$.</p>
+                <p><strong>ricci and scalar curvature.</strong> contractions yield</p>
+                $$
+                R_{\mu\nu} = R^\rho{}_{\mu\rho\nu},\qquad R = g^{\mu\nu}R_{\mu\nu}.
+                $$
+                <p>the <strong>einstein tensor</strong> is</p>
+                $$
+                G_{\mu\nu} = R_{\mu\nu} - \tfrac12\,R\,g_{\mu\nu}.
+                $$
+                <p><strong>contracted bianchi identity.</strong> differential bianchi
+                    $\nabla_\lambda R_{\rho\sigma\mu\nu}+\cdots=0$ implies</p>
+                $$
+                \boxed{\;\nabla_\mu G^{\mu\nu} = 0\;}
+                $$
+                <p>identically—a consistency constraint matching $\nabla_\mu T^{\mu\nu}=0$ for matter.</p>
+                <p><strong>geodesic deviation (tidal equation).</strong> let $\gamma(\tau)$ be a geodesic with tangent
+                    $u^\mu$ and let $\xi^\mu$ be a deviation vector to a nearby geodesic (lie transported with vanishing
+                    bracket $[u,\xi]=0$). then</p>
+                $$
+                \boxed{\;
+                \frac{D^2 \xi^\rho}{\mathrm{d}\tau^2}
+                = -\,R^\rho{}_{\sigma\mu\nu}\,u^\sigma u^\nu \xi^\mu\;}
+                $$
+                <p>where $D/\mathrm{d}\tau = u^\lambda\nabla_\lambda$. this is the precise geometric statement that
+                    curvature drives relative acceleration between infinitesimally separated free-fall trajectories—tidal
+                    shear and convergence.</p>
 
                 <h3 id="g-einstein">cartan, einstein–hilbert</h3>
-                <p><strong>m.</strong> $e^a$, $\omega^a{}_b$, $\Omega^a{}_b$; $G_{\mu\nu}$ and bianchi; variational
-                    derivation sketch.</p>
-                <p><strong>p.</strong> $\nabla_\mu G^{\mu\nu}=0$ matches $\nabla_\mu T^{\mu\nu}=0$.</p>
-                <p class="dim">draft structure: gravity · cartan and einstein–hilbert</p>
+                <p><strong>orthonormal coframe (vierbein).</strong> on an open set, choose one-forms $e^a=e^a{}_\mu\,\mathrm{d}x^\mu$
+                    ($a=0,1,2,3$) such that</p>
+                $$
+                g_{\mu\nu} = \eta_{ab}\,e^a{}_\mu\,e^b{}_\nu .
+                $$
+                <p>the <strong>spin connection</strong> one-forms $\omega^a{}_b=\omega^a{}_{b\mu}\,\mathrm{d}x^\mu$ obey
+                    the <em>first structure equation</em> (torsion-free case)</p>
+                $$
+                \mathrm{d}e^a + \omega^a{}_b\wedge e^b = 0 .
+                $$
+                <p>the <strong>curvature two-forms</strong> are</p>
+                $$
+                \Omega^a{}_b = \mathrm{d}\omega^a{}_b + \omega^a{}_c\wedge\omega^c{}_b
+                = \tfrac12 R^a{}_{b\mu\nu}\,\mathrm{d}x^\mu\wedge\mathrm{d}x^\nu ,
+                $$
+                <p>relating cartan data to coordinate riemann components.</p>
+                <p><strong>einstein–hilbert action.</strong> with gravitational constant $G$, the dynamics of $g$ is
+                    determined by</p>
+                $$
+                S_{\mathrm{EH}}[g] = \frac{c^3}{16\pi G}\int_M R\,\sqrt{-g}\,\mathrm{d}^4x
+                $$
+                <p>plus boundary terms when $\partial M\neq\emptyset$. variation with respect to $g_{\mu\nu}$ (and fixing
+                    suitable boundary data) yields the <strong>einstein field equations</strong></p>
+                $$
+                \boxed{\;
+                G_{\mu\nu} + \Lambda\,g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu}\;}
+                $$
+                <p>where $T_{\mu\nu}$ is the symmetric stress–energy tensor of matter and fields and $\Lambda$ is an
+                    optional cosmological constant. the identity $\nabla_\mu G^{\mu\nu}=0$ forces consistent matter
+                    conservation $\nabla_\mu T^{\mu\nu}=0$ on solutions.</p>
 
                 <h3 id="g-schwarzschild">schwarzschild, orbits</h3>
-                <p><strong>p.</strong> line element; $r_s$; effective potential; perihelion precession and light
-                    deflection as qualitative targets.</p>
-                <p><strong>m.</strong> killing vectors and conserved quantities along geodesics.</p>
-                <p class="dim">draft narrative: basics · GR · draft structure: gravity · schwarzschild</p>
+                <p>the <strong>schwarzschild metric</strong> is the unique spherically symmetric, static, asymptotically
+                    flat vacuum solution ($T_{\mu\nu}=0$, $\Lambda=0$) outside a mass $M$. in schwarzschild coordinates
+                    $(t,r,\theta,\phi)$,</p>
+                $$
+                \mathrm{d}s^2
+                = -\Bigl(1-\frac{2GM}{c^2 r}\Bigr)c^2\mathrm{d}t^2
+                + \Bigl(1-\frac{2GM}{c^2 r}\Bigr)^{-1}\mathrm{d}r^2
+                + r^2\bigl(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2\bigr).
+                $$
+                <p>the <strong>schwarzschild radius</strong> $r_s=2GM/c^2$ marks the coordinate singularity of these
+                    coordinates; the physical singularity lies at $r=0$.</p>
+                <p><strong>killing vectors and constants of motion.</strong> time translation $\partial/\partial t$ and
+                    rotation $\partial/\partial\phi$ are killing; along geodesics the corresponding conserved quantities
+                    are energy per unit mass (at infinity) and angular momentum. reduction yields an effective
+                    one-dimensional radial problem with potential $V_{\mathrm{eff}}(r)$ combining newtonian attraction
+                    and a repulsive centrifugal barrier shaped by $g_{rr}$ and $g_{\phi\phi}$.</p>
+                <p><strong>circular orbits and ISCO.</strong> timelike circular geodesics in the schwarzschild exterior
+                    are stable only for $r &gt; 6GM/c^2$; the <em>innermost stable circular orbit</em> (ISCO) sits at
+                    $r_{\mathrm{ISCO}}=6GM/c^2=3r_s$—central to accretion-disk phenomenology.</p>
+                <p><strong>perihelion precession.</strong> for nearly newtonian bound orbits, general relativity adds a
+                    small advance per revolution</p>
+                $$
+                \Delta\varphi \approx \frac{6\pi G M}{c^2 a(1-e^2)}
+                $$
+                <p>in the weak-field limit (semimajor axis $a$, eccentricity $e$)—the classic solar-system test.</p>
+                <p><strong>light deflection.</strong> null geodesics grazing a mass $M$ at impact parameter $b\gg r_s$
+                    suffer a deflection angle of order $4GM/(c^2 b)$—twice the newtonian “corpuscular” estimate because
+                    both temporal and spatial metric components contribute.</p>
             </section>
 
         </article>
 
         <footer class="doc-footer">
-            <p>this unified index is the editorial spine. expand it here into full prose and equations over time, using
-                <a href="../basics/">basics</a> and <a href="../math-physics/">math physics</a> as first-draft mines and
-                <a href="../CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md"><code>CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md</code></a>
-                as the parity checklist. headings: <span style="color:var(--link)">purple</span> ($h2$) = major arc,
-                <span style="color:var(--link-hover)">orange</span> ($h3$) = unit to write out.</p>
+            <p><a href="../">physics</a> · headings: <span style="color:var(--link)">purple</span> ($h2$) = major arc,
+                <span style="color:var(--link-hover)">orange</span> ($h3$) = unit.</p>
         </footer>
     </main>
 
