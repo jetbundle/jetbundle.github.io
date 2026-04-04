@@ -114,60 +114,190 @@
 
             <section id="symmetry-variation" class="doc-section">
                 <h2>symmetry, composition, variation</h2>
-                <p><strong>arc.</strong> postulate homogeneity and isotropy of space and time, then ask what dynamics
-                    is compatible. the variational principle is the hinge; linear algebra is the language of small
-                    disturbances; categories are honest bookkeeping when the same system is described many ways.</p>
+                <p>what picks out one trajectory among all mathematically conceivable paths through configuration
+                    space? why should the laws look the same if you translate the experiment, rotate it, or run it
+                    tomorrow instead of today? and if several such transformations leave the law unchanged, what is the
+                    correct notion of “doing one symmetry after another”—so that the algebra of redundancies is not
+                    ambiguous?</p>
+                <p>a provisional classical answer is that compatible dynamics arises from a single scalar quantity,
+                    the action, made stationary on the actual motion; the allowed symmetries then constrain the form of
+                    the lagrangian and, through noether’s theorem (developed later in geometric language), force
+                    conserved quantities along solutions. composition of symmetries is modeled by a <em>group</em> (or,
+                    when time reversal or coarse-graining is emphasized, first by a <em>monoid</em>); changes of
+                    description are morphisms in a category. none of this claims uniqueness of presentation: many
+                    lagrangians differ by total time derivatives yet yield the same equations; gauged and constrained
+                    systems hide redundant variables; quantum interference will reinterpret “allowed paths.” the point
+                    here is to fix the minimal classical spine—variation, linearized motion, and honest bookkeeping—before
+                    multilinear geometry carries the same ideas globally.</p>
+                <p>below, four threads are written out in full: (i) what symmetries <em>are</em> algebraically and how
+                    they act on configuration data; (ii) the principle of stationary action and the euler–lagrange
+                    equations, including conjugate momenta, boundary conditions, and explicit time dependence; (iii)
+                    linear superposition near equilibrium, normal modes, and the spectral distinction between symmetric
+                    stiffness/mass pairs and defective linearizations; (iv) categorical language as compression of
+                    “same physics, many coordinates,” with quotients and exact sequences as previews of reduction and
+                    cohomology. what remains open on purpose: whether least action is “really” teleological or
+                    emergent; how discrete and gauge symmetries alter the groupoid picture; and where the boundary
+                    between bookkeeping and ontology should be drawn when a functor re-packages the entire theory.</p>
 
                 <h3 id="a-algebraic-structure">algebraic structure of symmetries</h3>
-                <p><strong>p.</strong> why should conserved quantities accompany continuous symmetries? because
-                    redundant directions in configuration space imply constraints on allowed motion—noether’s story
-                    begins here.</p>
-                <p><strong>m.</strong> a symmetry group: composition, identity, inverses; morphisms that preserve
-                    structure. start from monoids if you want to expose irreversibility before groups.</p>
-                <p><strong>questions.</strong> what is being composed (states? maps? coordinate changes)? what must be
-                    invertible for a “symmetry” of equations?</p>
-                <p><strong>outcomes.</strong> state the group axioms; recognize $O(3)$, translations, and (later)
-                    $SO^+(1,3)$ as symmetry groups in concrete models.</p>
+                <p><strong>physics.</strong> a <em>symmetry</em> of a model is an active transformation of states or
+                    fields that carries solutions to solutions. examples: translating all particles by the same vector,
+                    rotating rigid frames, shifting the time origin for autonomous laws. if transformation \(g\) sends
+                    state \(x\) to \(g\cdot x\), then doing \(h\) after \(g\) must agree with a single transformation
+                    \(hg\); doing nothing is a symmetry; every physically allowed symmetry should be undoable in
+                    idealized reversible mechanics. that is exactly the group axioms in motion.</p>
+                <p><strong>mathematics.</strong> a <em>group</em> \((G,\cdot)\) is a set with an associative product,
+                    an identity \(e\) with \(eg=ge=g\), and inverses \(g^{-1}\) with \(g^{-1}g=gg^{-1}=e\). a
+                    <em>left action</em> of \(G\) on a set \(Q\) (configuration space at this level of abstraction) is
+                    a map \((g,q)\mapsto g\cdot q\) such that \(e\cdot q=q\) and \((gh)\cdot q=g\cdot(h\cdot q)\). a
+                    <em>symmetry of equations</em> is often packaged as an action on \(Q\) that preserves the lagrangian
+                    up to a total time derivative (then the stationary-action principle is invariant); noether’s
+                    theorem, in a first pass, turns one-parameter subgroups \(\exp(s\xi)\subset G\) into conserved
+                    charges along trajectories.</p>
+                <p><strong>monoid first.</strong> if irreversibility or coarse observation is primary, one may drop
+                    inverses: a <em>monoid</em> has associative product and identity only. classical conservative
+                    mechanics prefers groups because along a solution you can run time backward and stay in the same
+                    theory.</p>
+                <p><strong>concrete groups.</strong> translations of \(\mathbb{R}^3\) form the additive group
+                    \((\mathbb{R}^3,+)\). rotations leaving lengths and orientations fixed form \(SO(3)\); including
+                    reflections gives \(O(3)\). galilean boosts, spatial rotations, translations, and time translations
+                    fit into the galilean group (often presented as a semidirect product); relativity replaces this with
+                    the poincaré group, deferred here. a <em>homomorphism</em> \(\varphi:G\to H\) between symmetry
+                    groups preserves composition: \(\varphi(gh)=\varphi(g)\varphi(h)\); changing coordinates or units
+                    should be such a morphism, not an arbitrary reshuffling.</p>
+                <p><strong>what you should carry forward.</strong> name the group acting, distinguish global from local
+                    (gauge) symmetry in words, and recognize when a map of transformations fails to be a homomorphism
+                    (then “composition of changes of description” is ill-defined).</p>
                 <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics ·
                         variational calculus and symmetries</a> · draft structure: <a
                         href="../math-physics/#algebraic-substrate-and-categorical-foundations">math physics · algebraic
                         substrate</a></p>
 
                 <h3 id="a-action-el">action, variation, euler–lagrange</h3>
-                <p><strong>p.</strong> the action $S=\int L\,\mathrm{d}t$ is stationary on physical paths with fixed
-                    endpoints; EL equations are the necessary conditions.</p>
-                <p><strong>m.</strong> variations $\delta q$ as tangent directions; integration by parts; the EL
-                    expression as a covector along the trajectory (coordinate independence comes fully with manifolds).</p>
-                <p><strong>questions.</strong> why fixed endpoints? what if $L$ depends explicitly on time?</p>
-                <p><strong>outcomes.</strong> derive EL in coordinates; compute conjugate momenta $\partial L/\partial\dot q$;
-                    recover galilean kinetic energy from symmetry arguments.</p>
+                <p><strong>setup.</strong> fix generalized coordinates \(q=(q^1,\ldots,q^n)\) on an open region of
+                    configuration space and consider trajectories \(q(t)\) for \(t\in[t_1,t_2]\). suppose a lagrangian
+                    \(L(q,\dot q,t)\) is given (in this section everything is coordinatewise; the geometric meaning of
+                    \(\partial L/\partial\dot q\) as a covector comes with manifolds later). the <em>action</em> is
+                </p>
+                \[
+                S[q] = \int_{t_1}^{t_2} L(q(t),\dot q(t),t)\,\mathrm{d}t .
+                \]
+                <p><strong>principle.</strong> the physical path is a <em>stationary point</em> of \(S\) among all
+                    \(C^1\) variations \(q(t)+\delta q(t)\) with fixed endpoints \(\delta q(t_1)=\delta q(t_2)=0\).
+                    (local minima are common, but the first-order condition is stationarity.)</p>
+                <p><strong>first variation.</strong> to first order,
+                    \(\delta\dot q=\frac{\mathrm{d}}{\mathrm{d}t}\delta q\). then
+                </p>
+                \[
+                \delta S
+                = \int_{t_1}^{t_2}\left(
+                \frac{\partial L}{\partial q^i}\,\delta q^i
+                + \frac{\partial L}{\partial\dot q^i}\,\delta\dot q^i
+                \right)\mathrm{d}t
+                = \int_{t_1}^{t_2}\left(
+                \frac{\partial L}{\partial q^i}
+                - \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q^i}
+                \right)\delta q^i\,\mathrm{d}t,
+                \]
+                <p>after integration by parts, using vanishing boundary data so the boundary term
+                    \(\bigl[\frac{\partial L}{\partial\dot q^i}\delta q^i\bigr]_{t_1}^{t_2}\) is zero. since the
+                    \(\delta q^i\) are arbitrary inside the interval, stationarity \(\delta S=0\) is equivalent to the
+                    <em>euler–lagrange equations</em>
+                </p>
+                \[
+                \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot q^i}
+                - \frac{\partial L}{\partial q^i} = 0,
+                \qquad i=1,\ldots,n.
+                \]
+                <p><strong>conjugate momenta and hamiltonian preview.</strong> define \(p_i=\partial L/\partial\dot q^i\).
+                    when the legendre transform is well posed (hessian \(\partial^2 L/\partial\dot q^i\,\partial\dot q^j\)
+                    nondegenerate), the <em>hamiltonian</em> \(H=\sum_i p_i\dot q^i-L\) is a function of
+                    \((q,p,t)\) along solutions. if \(L\) has no explicit time dependence, \(\partial L/\partial t=0\)
+                    and formally \(\mathrm{d}H/\mathrm{d}t=0\) on solutions—<em>energy conservation</em> in autonomous
+                    systems. if \(L\) depends on \(t\) explicitly, energy need not be conserved; the same variation
+                    calculus applies, but first integrals come only from symmetries in the remaining variables.</p>
+                <p><strong>boundary conditions.</strong> fixed endpoints select a dirichlet problem in path space; other
+                    physical statements (free ends, constraints) change boundary terms and hence the natural boundary
+                    conditions—those extensions belong to constrained calculus and later geometric formulations.</p>
+                <p><strong>galilean hint.</strong> requiring invariance of the action of a free particle up to endpoint
+                    terms forces the kinetic part of \(L\) to depend on \(\dot q\) only through a quadratic form
+                    invariant under rotations; adding a potential \(V(q)\) breaks translation symmetry and destroys
+                    momentum conservation in that direction—consistent with the noether picture.</p>
+                <p><strong>what you should carry forward.</strong> derive EL from \(S\) for any given \(L\); read off
+                    \(p_i\); decide whether energy is conserved from explicit \(t\) dependence; recognize equivalence
+                    of EL under \(L\mapsto L+\mathrm{d}f/\mathrm{d}t\) for \(f(q,t)\).</p>
                 <p class="dim">draft narrative: <a href="../basics/#variational-calculus-and-symmetries">basics · same</a>
                     · draft structure: <a href="../math-physics/#the-kinematics-and-dynamics-of-classical-mechanics">math
                         physics · classical mechanics</a> (action/EL block)</p>
 
                 <h3 id="a-linear-stability">superposition, modes, stability</h3>
-                <p><strong>p.</strong> small oscillations near equilibrium: normal modes, stability, secular growth when
-                    modes are defective.</p>
-                <p><strong>m.</strong> vector spaces; characteristic polynomial; diagonalization vs jordan form;
-                    symmetric operators (inertia) vs general linearization.</p>
-                <p><strong>questions.</strong> when do repeated eigenvalues still yield orthogonal modes? when do you
-                    need generalized eigenvectors?</p>
-                <p><strong>outcomes.</strong> write $m\ddot\eta=A\eta$ mode expansion; read jordan blocks from
-                    defective eigenvalues; contrast spectral theorem for real symmetric $I$ with generic $A$.</p>
+                <p><strong>linearization.</strong> suppose \(q_0\) is an equilibrium in generalized coordinates (all
+                    generalized forces vanish there). write \(q=q_0+\eta\) with \(\eta\) small, expand \(L\) to
+                    quadratic order in \(\eta,\dot\eta\) around static \(\eta=\dot\eta=0\). euler–lagrange linearize to
+                    a system of the form
+                </p>
+                \[
+                M\ddot\eta + K\eta = 0,
+                \]
+                <p>with symmetric positive-definite mass matrix \(M\) (kinetic term) and symmetric stiffness matrix
+                    \(K\) (potential curvature) in the common mechanical case. more generally, linearizations of
+                    nonconservative couplings produce first-order systems or nonsymmetric pairs \((M,K)\); the same
+                    spectral language applies with care.</p>
+                <p><strong>normal modes.</strong> seek solutions \(\eta(t)=u\,\mathrm{e}^{\mathrm{i}\omega t}\) with
+                    \(u\in\mathbb{C}^n\). then \((K-\omega^2 M)u=0\). nontrivial \(u\) exist when \(\omega^2\) solves
+                    \(\det(K-\omega^2 M)=0\). for real symmetric \(M\) positive definite, there exists an \(M\)-orthogonal
+                    basis of real modes diagonalizing both quadratics; in coordinates aligned with <em>normal modes</em>,
+                    the system decouples into independent harmonic oscillators whose squared frequencies are the
+                    generalized eigenvalues \(\omega_k^2\).</p>
+                <p><strong>stability.</strong> if all \(\omega_k^2>0\), small disturbances oscillate boundedly
+                    (elliptic equilibrium). if some \(\omega_k^2<0\), there are exponential runaway directions
+                    (hyperbolic instability). zero eigenvalues signal neutral modes—often related to continuous symmetry
+                    or redundancy—and demand reduced variables or dirac-style analysis later.</p>
+                <p><strong>defective matrices.</strong> when \(M^{-1}K\) is not diagonalizable (nontrivial jordan
+                    blocks), normal modes alone do not span: there appear <em>secular</em> terms such as
+                    \(t\,\mathrm{e}^{\mathrm{i}\omega t}\) in the real-time solution. physically, repeated frequencies with insufficient geometric
+                    multiplicity produce polynomial growth in degenerate subspaces; contrast this with the symmetric
+                    case where repeated eigenvalues can still admit a full orthogonal basis of modes (think isotropic
+                    oscillator shells versus deliberately tuned nonsymmetric couplings).</p>
+                <p><strong>superposition.</strong> linearity implies that sums of solutions are solutions; the general
+                    small motion is a superposition of modes (plus jordan contributions if present). this is the
+                    backbone of acoustics, molecular vibrations, and stability analysis before chaos enters.</p>
+                <p><strong>what you should carry forward.</strong> assemble \(M,K\) from a lagrangian; solve the
+                    generalized eigenproblem; classify stability; recognize when jordan form intrudes and what it does to
+                    long-time growth.</p>
                 <p class="dim">draft narrative: <a href="../basics/#linearization-and-normal-modes">basics ·
                         linearization and normal modes</a> · draft structure: <a
                         href="../math-physics/#algebraic-substrate-and-categorical-foundations">math physics · jordan and
                         inertia example</a></p>
 
                 <h3 id="a-bookkeeping">bookkeeping across descriptions</h3>
-                <p><strong>p.</strong> the same rod can be described in lab frames, body frames, reduced coordinates after
-                    quotienting translations.</p>
-                <p><strong>m.</strong> categories, functors, universal properties; normal subgroups and quotients $G/H$;
-                    exact sequences as preview for cohomology.</p>
-                <p><strong>questions.</strong> what must be preserved when you “change model”? when is quotienting
-                    $Q$ by a group physically legitimate?</p>
-                <p><strong>outcomes.</strong> translate a coordinate change into a morphism; state universal properties
-                    of product/coproduct in words.</p>
+                <p><strong>problem.</strong> one and the same rod, fluid, or solar system can be described in lab
+                    frames, body-fixed frames, center-of-mass plus relative coordinates, or fourier modes. which
+                    structures must be preserved when passing between descriptions, and how is “quotienting out” a
+                    symmetry (e.g. translation invariance) not mere notation?</p>
+                <p><strong>categories, informally.</strong> a <em>category</em> has objects (types of models: spaces,
+                    groups, vector spaces) and morphisms (structure-preserving maps: smooth maps, homomorphisms, linear
+                    maps) that compose associatively and have identities. a <em>functor</em> sends objects and morphisms
+                    of one category to another while respecting composition—linearization is a functor from a category of
+                    pointed mechanical systems to vector spaces; forgetting extra structure is another functor.</p>
+                <p><strong>products and coproducts (words).</strong> the <em>product</em> of two objects encodes paired
+                    independent data (joint system with projections to each factor). the <em>coproduct</em> encodes
+                    disjoint alternative or free combination (direct sum of vector spaces is both product and coproduct
+                    in finite dimensions—a special accident). universal properties pin these constructions uniquely up to
+                    unique isomorphism, which is the honest replacement for hand-waving “choose coordinates.”</p>
+                <p><strong>quotients and normal subgroups.</strong> if a group \(G\) acts on configuration space \(Q\)
+                    and physical observables are constant on orbits, the reduced space is often a quotient \(Q/G\) (after
+                    resolving singularities carefully). if \(H\triangleleft G\) is a normal subgroup, \(G/H\) is a group
+                    capturing residual symmetries after modding out \(H\); this is the algebraic face of “remove center
+                    of mass motion” or “factor out gauge.”</p>
+                <p><strong>exact sequences as preview.</strong> a short exact sequence
+                    \(0\to A\to B\to C\to 0\) means \(B\) is an extension of \(C\) by \(A\): every element of \(C\) lifts
+                    to \(B\) with ambiguity in \(A\). the same diagrammatic tension reappears as closed versus exact
+                    differential forms in cohomology—obstructions to global potentials are bookkeeping of “which lifts
+                    are consistent.”</p>
+                <p><strong>what you should carry forward.</strong> articulate a change of model as a morphism or
+                    functor; recognize when a quotient is legitimate (free, proper actions; or stratified geometry); read
+                    a short exact sequence as obstruction data, not mere symbols.</p>
                 <p class="dim">draft structure: <a href="../math-physics/#algebraic-substrate-and-categorical-foundations">math
                         physics · categories and quotients</a> · narrative glue: <a
                         href="../basics/#reduction-and-effective-potentials">basics · reduction</a></p>
