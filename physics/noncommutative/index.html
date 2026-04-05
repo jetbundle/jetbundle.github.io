@@ -133,48 +133,402 @@
 
             <section id="arc-deformation" class="doc-section">
                 <h2>deformation: Poisson algebra meets measurement</h2>
-                <p>classically, a pure state can be modeled as a point in phase space with canonical coordinates
-                    $(q^i,p_i)$ on <a href="../classical/index.html#b-symplectic">cotangent bundle-level phase
-                        space</a>. observables are functions $f(q,p)$; the product is pointwise and commutative; dynamics
-                    is $\mathrm{d}f/\mathrm{d}t=\{H,f\}$ with the Poisson bracket from the symplectic form as in
-                    <a href="../classical/index.html#e-legendre-hamilton">hamiltonian flow and Poisson structure</a>.
-                    nothing in that commutative algebra forbids simultaneous arbitrarily sharp values for $q$ and $p$.</p>
+                <p>the classical index treats mechanics as a story about <em>composition</em> (symmetries, categories),
+                    <em>selection</em> (stationary action), and <em>bookkeeping</em> (multilinear objects, forms, bundles).
+                    once phase space is symplectic, observables form a commutative poisson algebra and every pure state is
+                    morally a point evaluation: sharp joint values cost nothing algebraically. quantum mechanics is the
+                    same spine with one lie-theoretic edit: the poisson bracket is shadowed by a commutator bracket on a
+                    noncommutative $\ast$-algebra, and measurement is read through spectral measures instead of pointwise
+                    evaluation. this arc makes that edit as explicit as the opening sections of the classical page make
+                    monoids, actions, and euler–lagrange.</p>
+                <p>throughout, keep the classical dictionary in view: $f,g$ on $T^*Q$ commute under pointwise product;
+                    $\{f,g\}$ is the infinitesimal twin of hamiltonian shearing. after deformation, $\hat f,\hat g$ need
+                    not commute; $\frac{\mathrm{i}}{\hbar}[\hat f,\hat g]$ is the quantum twin of $\{f,g\}$ on the largest
+                    subalgebra where the identification is consistent. the double slit and uncertainty are not metaphors
+                    layered on top—they are the failure of commutative spectral calculus that the classical page never had
+                    to confront.</p>
+
+                <p><strong>symplectic coordinates and poisson axioms (classical spine).</strong> on an open chart of
+                    phase space with darboux coordinates $(q^1,\ldots,q^n,p_1,\ldots,p_n)$, use $z=(q,p)\in\mathbb{R}^{2n}$
+                    and the standard symplectic matrix
+                </p>
+                $$
+                J = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix},\qquad
+                \omega(z,z') = z^{\mathsf T} J z' .
+                $$
+                <p>for smooth observables $f,g$, the <strong>poisson bracket</strong> is
+                </p>
+                $$
+                \{f,g\}
+                = \sum_{i=1}^n\left(
+                \frac{\partial f}{\partial q^i}\frac{\partial g}{\partial p_i}
+                - \frac{\partial f}{\partial p_i}\frac{\partial g}{\partial q^i}
+                \right)
+                = \omega(X_f,X_g),
+                $$
+                <p>where $X_f$ is the hamiltonian vector field defined by $\iota_{X_f}\omega=\mathrm{d}f$. it satisfies
+                    the following axioms for all $f,g,h\in C^\infty$ and constants $a,b$:</p>
+                <ol>
+                    <li><strong>P1 (bilinearity).</strong> $\{af+bg,h\}=a\{f,h\}+b\{g,h\}$ and similarly in the second
+                        slot.</li>
+                    <li><strong>P2 (antisymmetry).</strong> $\{g,f\}=-\{f,g\}$.</li>
+                    <li><strong>P3 (jacobi).</strong>
+                        $\{f,\{g,h\}\}+\{g,\{h,f\}\}+\{h,\{f,g\}\}=0$.</li>
+                    <li><strong>P4 (leibniz).</strong> $\{fg,h\}=f\{g,h\}+\{f,h\}g$.</li>
+                </ol>
+                <p>given a hamiltonian $H$, time evolution of observables along physical trajectories obeys
+                </p>
+                $$
+                \frac{\mathrm{d}f}{\mathrm{d}t}=\{f,H\}.
+                $$
+                <p>a <em>pure classical state</em> $x\in M$ induces an algebra homomorphism
+                    $\mathrm{ev}_x:C^\infty(M,\mathbb{R})\to\mathbb{R}$, $f\mapsto f(x)$, compatible with pointwise
+                    product: $\mathrm{ev}_x(fg)=\mathrm{ev}_x(f)\mathrm{ev}_x(g)$. commutativity of the product is what
+                    allows, at least in idealized language, arbitrarily sharp simultaneous values for any finite list of
+                    independent observables whose level sets meet transversely. the quantum upgrade replaces this by
+                    spectral projectors that need not commute.</p>
 
                 <h3 id="q-joint-spectra">sharp values and joint spectra</h3>
-                <p>quantum mechanics replaces sharp classical values by the spectral theory of self-adjoint operators.
-                    two observables admit a basis of simultaneous eigenstates if and only if the operators commute on a
-                    suitable domain. for conjugate pairs this fails: there is no quantum state with definite $x$ and
-                    definite $p_x$ beyond the empty idealization. the classical Poisson bracket $\{q^i,p_j\}=\delta^i_j$
-                    becomes $[\hat q^i,\hat p_j]=\mathrm{i}\hbar\,\delta^i_j$.</p>
+                <p><strong>postulates (quantum structural, finite-level).</strong> fix a separable complex Hilbert space
+                    $\mathcal{H}$.</p>
+                <ol>
+                    <li><strong>Q1 (observables).</strong> a (real) observable is a self-adjoint operator $A$ with dense
+                        domain $\mathcal{D}(A)\subset\mathcal{H}$ (in applications one constructs a common core
+                        $\mathcal{D}_0$ where algebraic identities are checked, then closes to self-adjoint extensions).</li>
+                    <li><strong>Q2 (pure states).</strong> pure states are rays: nonzero $\psi\in\mathcal{H}$ with
+                        $\psi\sim \lambda\psi$ for $\lambda\in\mathbb{C}^\times$ identified.</li>
+                    <li><strong>Q3 (mixed states).</strong> general states are density operators: positive trace-class
+                        operators $\rho$ with $\mathrm{Tr}\,\rho=1$.</li>
+                    <li><strong>Q4 (expectations).</strong> $\langle A\rangle_\psi=\langle\psi,A\psi\rangle/\langle\psi,\psi\rangle$
+                        for pure states; $\langle A\rangle_\rho=\mathrm{Tr}(\rho A)$ when $A\rho$ is trace-class (e.g.
+                        $A$ bounded or $\rho$ finite-rank on the relevant subspace).</li>
+                </ol>
+                <p><strong>spectral theorem (functional form).</strong> to each self-adjoint $A$ corresponds a unique
+                    projection-valued measure $E_A$ on the Borel $\sigma$-algebra of $\mathbb{R}$ such that
+                </p>
+                $$
+                A = \int_{\mathbb{R}} \lambda\,\mathrm{d}E_A(\lambda),
+                $$
+                <p>with the integral understood in the strong sense on $\mathcal{D}(A)$. for every bounded Borel $g$,
+                </p>
+                $$
+                g(A) = \int_{\mathbb{R}} g(\lambda)\,\mathrm{d}E_A(\lambda)
+                $$
+                <p>defines a bounded operator. the <strong>born rule</strong> assigns to a Borel set $\Delta\subset\mathbb{R}$
+                    the outcome probability
+                </p>
+                $$
+                \mathbb{P}_\psi(A\in\Delta)=\frac{\|E_A(\Delta)\psi\|^2}{\|\psi\|^2},\qquad
+                \mathbb{P}_\rho(A\in\Delta)=\mathrm{Tr}\bigl(\rho\,E_A(\Delta)\bigr),
+                $$
+                <p>for pure and mixed states respectively (under standard trace-class hypotheses).</p>
+                <p><strong>lemma (PVM bookkeeping).</strong> the family $\{E_A(\Delta)\}$ satisfies $E_A(\emptyset)=0$,
+                    $E_A(\mathbb{R})=I$, $E_A(\Delta_1\cap\Delta_2)=E_A(\Delta_1)E_A(\Delta_2)$, and for pairwise disjoint
+                    $\Delta_n$, $E_A(\bigcup_n\Delta_n)=\sum_n E_A(\Delta_n)$ in the strong operator topology. these are
+                    the axioms of a resolution of the identity; they are the quantum replacement for pulling back borel
+                    sets through classical $f:M\to\mathbb{R}$.</p>
+                <p><strong>definition (joint measurability).</strong> self-adjoint $A,B$ are <em>jointly measurable</em> if
+                    their spectral measures strongly commute:
+                </p>
+                $$
+                [E_A(\Delta_1),E_B(\Delta_2)]=0\quad\text{for all Borel }\Delta_1,\Delta_2\subset\mathbb{R}.
+                $$
+                <p>equivalently, $f(A)$ and $g(B)$ commute for all bounded borel $f,g$. under standard regularity
+                    (bounded $A,B$, or polynomially bounded on a joint core with essential self-adjointness of
+                    polynomials), joint measurability is equivalent to $[A,B]=0$ on a dense subspace invariant under both
+                    operators’ bounded functional calculus.</p>
+                <p><strong>proposition (simultaneous diagonalization, statement).</strong> if $A,B$ are commuting
+                    self-adjoint operators on $\mathcal{H}$, there exists a unitary map $\mathcal{H}\cong\int^\oplus
+                    \mathcal{H}(\lambda,\mu)\,\mathrm{d}\nu(\lambda,\mu)$ diagonalizing both: $A$ acts as multiplication
+                    by $\lambda$, $B$ by $\mu$ on each fiber. in particular, when spectra are discrete and multiplicities
+                    finite, there is an orthonormal basis of simultaneous eigenvectors.</p>
+                <p><strong>canonical commutation relations (CCR) on a core.</strong> in one dimension, position and momentum
+                    are modeled by symmetric operators on $\mathcal{D}_0\subset L^2(\mathbb{R},\mathrm{d}x)$ with
+                </p>
+                $$
+                [\hat x,\hat p]=\mathrm{i}\hbar\,\mathbb{I},\qquad
+                \hat x\psi(x)=x\psi(x),\qquad \hat p\psi(x)=-\mathrm{i}\hbar\,\psi'(x).
+                $$
+                <p><strong>lemma (no sharp joint $(x,p)$ in $L^2$).</strong> there is no nonzero $\psi\in L^2(\mathbb{R})$
+                    satisfying both $\hat x\psi=x_0\psi$ and $\hat p\psi=p_0\psi$ for finite $x_0,p_0\in\mathbb{R}$.</p>
+                <p><em>proof.</em> the equation $\hat p\psi=p_0\psi$ forces $\psi(x)=C\,\exp(\mathrm{i}p_0 x/\hbar)$ a.e.,
+                    which has constant modulus $|C|^2$ and cannot be square-integrable unless $C=0$. separately,
+                    $\hat x\psi=x_0\psi$ would require $\psi$ supported at $x_0$ (a delta distribution), which is not an
+                    element of $L^2$. thus the classical idealization of a point in phase space cannot be realized as a
+                    simultaneous pair of proper eigenvectors in the schrödinger representation.</p>
+                <p><strong>remark (continuous spectrum and rigged spaces).</strong> generalized eigenvectors (plane waves,
+                    deltas) live in distributional extensions (gelfand triples); the operational content remains the
+                    projection-valued measure on $\mathcal{H}$. discrete spectra (finite-dimensional subspaces, bound states)
+                    are the setting where “sharp values” look most like finite-dimensional linear algebra, but the joint
+                    measurability criterion is always the commuting of spectral projectors, not the classical existence of
+                    a point in $T^*Q$.</p>
 
                 <h3 id="q-double-slit">double slit, interference, which-path</h3>
-                <p>the double-slit experiment is the laboratory emblem of the failure of classical joint probabilities
-                    for complementary variables. which-path information couples to a noncommuting observable and destroys
-                    coherence in the basis that built the interference term. classical probability on
-                    <a href="../classical/index.html#b-symplectic">phase space</a> cannot reproduce the observed
-                    composition law without upgrading the event algebra.</p>
+                <p>work in a two-dimensional schematic: transverse coordinate $y$ on a screen, two slits labeled $1,2$.
+                    after preparation, the <em>which-slit</em> degree of freedom is modeled as a two-dimensional subspace
+                    $\mathbb{C}^2=\mathrm{span}\{|1\rangle,|2\rangle\}$ with $\langle i|j\rangle=\delta_{ij}$. a pure
+                    pre-slit transverse state is
+                </p>
+                $$
+                |\psi_{\mathrm{slit}}\rangle=\alpha|1\rangle+\beta|2\rangle,\qquad |\alpha|^2+|\beta|^2=1.
+                $$
+                <p>propagation from slit $j$ to a point $y$ on the screen contributes a complex amplitude $K_j(y)$ (a
+                    green function / propagator evaluated between slit and detector in a fixed approximation). the total
+                    amplitude at $y$ is the coherent sum
+                </p>
+                $$
+                \psi(y)=\alpha K_1(y)+\beta K_2(y).
+                $$
+                <p><strong>lemma (born composition).</strong> the detection density is proportional to
+                </p>
+                $$
+                |\psi(y)|^2
+                =|\alpha|^2|K_1|^2+|\beta|^2|K_2|^2
+                +2\operatorname{Re}\bigl(\alpha^*\beta\,K_1^*K_2\bigr).
+                $$
+                <p><em>proof.</em> expand $|\alpha K_1+\beta K_2|^2$ and group terms.</p>
+                <p>the third term is the <em>interference</em> term; it vanishes if either amplitude $\alpha^*\beta$ is
+                    zero or if the relative phase of $K_1^*K_2$ is washed out. in the far-field approximation with
+                    equal slit–screen optical path length moduli and small diffraction envelope, one often writes
+                    $K_j(y)\propto \mathrm{e}^{\mathrm{i}\phi_j(y)}$ with slowly varying modulus; then the interference
+                    oscillates as $\cos(\phi_2(y)-\phi_1(y)+\arg(\beta/\alpha))$.</p>
+                <p><strong>worked example (symmetric slits).</strong> take $|\alpha|=|\beta|=1/\sqrt{2}$ and
+                    $|K_1(y)|=|K_2(y)|=:A(y)&gt;0$ with $K_1^*K_2=A(y)^2\mathrm{e}^{\mathrm{i}\delta(y)}$. then
+                </p>
+                $$
+                |\psi(y)|^2 = A(y)^2\bigl(1+\cos\delta(y)\bigr)=2A(y)^2\cos^2\bigl(\delta(y)/2\bigr),
+                $$
+                <p>exhibiting perfect fringe visibility when $\delta$ sweeps a range much larger than $2\pi$ across the
+                    screen.</p>
+                <p><strong>which-path coupling (tensor product model).</strong> adjoin an apparatus with orthonormal
+                    readout states $|e_1\rangle,|e_2\rangle$ in $\mathcal{H}_{\mathrm{m}}$ and entangle:
+                </p>
+                $$
+                |\Psi\rangle=\alpha|1\rangle\otimes|e_1\rangle+\beta|2\rangle\otimes|e_2\rangle.
+                $$
+                <p>the reduced density matrix on the slit space after tracing out $\mathcal{H}_{\mathrm{m}}$ is
+                </p>
+                $$
+                \rho_{\mathrm{slit}}
+                =\mathrm{Tr}_{\mathrm{m}}|\Psi\rangle\langle\Psi|
+                =|\alpha|^2|1\rangle\langle 1|+|\beta|^2|2\rangle\langle 2|
+                $$
+                <p>whenever $\langle e_1|e_2\rangle=0$ (orthogonal which-path records). expanding the same amplitudes
+                    with this $\rho$ replaces $|\psi|^2$ by an incoherent sum: cross terms vanish because coherences
+                    $\langle 1|\rho|2\rangle$ are zero.</p>
+                <p><strong>lemma (two-level visibility).</strong> for any $2\times 2$ hermitian density matrix $\rho$ in the
+                    $\{|1\rangle,|2\rangle\}$ basis, define fringe visibility from off-diagonal magnitude:
+                    $V=2|\rho_{12}|/(\rho_{11}+\rho_{22})$ when the denominator is positive. pure superpositions
+                    $|\langle 1|\psi\rangle\langle\psi|2\rangle|$ maximize $|V|$ for fixed diagonal weights; the partial
+                    trace above sets $\rho_{12}=0$ while preserving $\rho_{11}=|\alpha|^2$, $\rho_{22}=|\beta|^2$.</p>
+                <p><strong>remark (complementarity as algebra).</strong> which-path information is correlation with a
+                    commuting subalgebra of the apparatus; complete distinguishability orthogonalizes the records, erasing
+                    coherences in the reduced state. interference reappears only when the joint state remains entangled in a
+                    basis where both slits contribute to the same off-diagonal of the relevant reduced density operator.
+                    this is the same structural obstruction as noncommuting spectral measures: the classical phase-space
+                    point cannot encode both sharp slit label and maximal fringe contrast in one commutative probability
+                    space without enlarging the sample space (here, tensor product structure).</p>
 
                 <h3 id="q-dirac-map">dirac map: Poisson bracket to commutator</h3>
-                <p>dirac’s quantization prescription sends
-                    $$\{f,g\}\;\longmapsto\;\frac{1}{\mathrm{i}\hbar}[\hat f,\hat g]$$
-                    on a Lie subalgebra of observables (polynomials in $q,p$ to start). the map is not a functor from all
-                    smooth functions: operator ordering ambiguities (Weyl, normal, etc.) are physical data hiding in
-                    $\hbar$-corrections and foreshadow geometric quantization and field-theory counterterms.</p>
+                <p><strong>definition (dirac quantization map, local form).</strong> fix a darboux chart on
+                    $M=T^*Q$ and let $\mathcal{P}\subset C^\infty(M)$ be a real vector subspace closed under poisson
+                    bracket (a lie subalgebra under $\{\cdot,\cdot\}$). a <em>quantization map</em> is a linear assignment
+                    $f\mapsto \hat f$ from $\mathcal{P}$ to self-adjoint (or hermitian) operators on $\mathcal{H}$ such
+                    that, on a specified dense domain,
+                </p>
+                $$
+                \widehat{\{f,g\}}
+                = \frac{1}{\mathrm{i}\hbar}\,[\hat f,\hat g]
+                $$
+                <p>whenever $f,g,\{f,g\}\in\mathcal{P}$. this is a lie algebra homomorphism from $(\mathcal{P},\{\cdot,\cdot\})$
+                    to $(\mathrm{Op}(\mathcal{H}),\frac{\mathrm{i}}{\hbar}[\cdot,\cdot])$ after restricting to the image.
+                </p>
+                <p><strong>proposition (heisenberg algebra is consistent).</strong> let $\mathcal{P}_2$ be real
+                    polynomials in $(q,p)$ of degree at most two. there exists an quantization map on $\mathcal{P}_2$
+                    with $\hat q,\hat p$ the standard operators and $\widehat{q^2}=\hat q^2$, $\widehat{p^2}=\hat p^2$,
+                    $\widehat{qp}=\frac12(\hat q\hat p+\hat p\hat q)$, satisfying the exact dirac identity for all pairs
+                    in $\mathcal{P}_2$.</p>
+                <p><em>verification (quadratic sample).</em> classically $\{q^2,p\}=2q$. quantum mechanically, using
+                    $[\hat q,\hat p]=\mathrm{i}\hbar\,\mathbb{I}$,
+                </p>
+                $$
+                [\hat q^2,\hat p]
+                =\hat q[\hat q,\hat p]+[\hat q,\hat p]\hat q
+                =2\mathrm{i}\hbar\,\hat q,
+                \qquad\text{hence}\qquad
+                \frac{1}{\mathrm{i}\hbar}[\hat q^2,\hat p]=2\hat q=\widehat{\{q^2,p\}}.
+                $$
+                <p>similar checks cover all generators of $\mathcal{P}_2$; the symmetric (weyl) ordering for $\widehat{qp}$
+                    is forced if one insists on hermitian $\widehat{qp}$ and consistency with linear assignments.</p>
+                <p><strong>theorem (Groenewold–van Hove, statement).</strong> there is no linear quantization map from the
+                    full lie algebra of all polynomials in $(q,p)$ to operators satisfying the exact dirac identity for
+                    every pair and agreeing with the schrödinger representation on $\mathcal{P}_2$. in short, <em>no
+                        universal polynomial quantization functor</em> exists; ordering is extra data.</p>
+                <p><strong>remark (deformation quantization / Moyal, one line of algebra).</strong> the weyl symbol map
+                    identifies polynomials with operators; the product of symbols is deformed to the <em>moyal
+                        star-product</em> $f\star g$ with
+                </p>
+                $$
+                f\star g - g\star f = \mathrm{i}\hbar\,\{f,g\} + O(\hbar^3)
+                $$
+                <p>in the semiclassical expansion for polynomials (the $\hbar^2$ term already encodes ordering choices).
+                    this packages the dirac map inside an associative but noncommutative product on a function space,
+                    parallel to how the classical page packages dynamics inside the poisson bracket’s derivation property
+                    P4.</p>
+                <p><strong>leading deformation identities (boxed for reuse).</strong> matching the classical canonical
+                    brackets,
+                </p>
+                $$
+                \boxed{\;
+                \{q^i,p_j\}=\delta^i_j
+                \;\longleftrightarrow\;
+                [\hat q^i,\hat p_j]=\mathrm{i}\hbar\,\delta^i_j,\qquad
+                [\hat q^i,\hat q^j]=[\hat p_i,\hat p_j]=0
+                \;}
+                $$
+                <p>and for dynamics, the dirac analogy continues in the heisenberg equation derived below:
+                    $\mathrm{d}\hat f/\mathrm{d}t=\frac{\mathrm{i}}{\hbar}[\hat H,\hat f]$ versus
+                    $\mathrm{d}f/\mathrm{d}t=\{H,f\}$.</p>
 
                 <h3 id="q-robertson-uncertainty">robertson uncertainty from commutators</h3>
-                <p>for any states and self-adjoint $A,B$ with domains such that expectations exist, the
-                    Robertson–Schrödinger inequality gives a lower bound on $\Delta A\,\Delta B$ from $\|[A,B]\|$.
-                    saturated states (gaussians for $x,p$) are the closest quantum analogue of classical minimum-uncertainty
-                    phase-space localization, but the product cannot vanish for conjugate pairs.</p>
+                <p><strong>definition (dispersion).</strong> for a self-adjoint $A$ and a unit vector
+                    $\psi\in\mathcal{D}(A^2)$, set $\langle A\rangle=\langle\psi,A\psi\rangle$ and
+                </p>
+                $$
+                (\Delta A)^2=\langle(A-\langle A\rangle\mathbb{I})^2\rangle=\|A_0\psi\|^2,\qquad A_0=A-\langle A\rangle\mathbb{I}.
+                $$
+                <p><strong>theorem (Robertson).</strong> let $A,B$ be self-adjoint and $\psi\in\mathcal{D}(AB)\cap\mathcal{D}(BA)$
+                    with $\|\psi\|=1$. then
+                </p>
+                $$
+                \boxed{\;
+                \Delta A\,\Delta B\;\geq\;\frac{1}{2}\,\bigl|\langle [A,B]\rangle\bigr|
+                \;}
+                $$
+                <p>where $\langle[A,B]\rangle=\langle\psi,[A,B]\psi\rangle$.</p>
+                <p><em>proof.</em> with $A_0,B_0$ centered, self-adjointness gives
+                    $\langle\psi,[A_0,B_0]\psi\rangle=\langle A_0\psi,B_0\psi\rangle-\langle B_0\psi,A_0\psi\rangle
+                    =2\mathrm{i}\,\operatorname{Im}\langle A_0\psi,B_0\psi\rangle$. hence
+                    $|\langle[A_0,B_0]\rangle|\leq 2|\langle A_0\psi,B_0\psi\rangle|$. Cauchy–Schwarz yields
+                    $|\langle A_0\psi,B_0\psi\rangle|\leq\|A_0\psi\|\,\|B_0\psi\|=\Delta A\,\Delta B$. finally
+                    $[A_0,B_0]=[A,B]$ because scalars commute. combine to obtain the claim.</p>
+                <p><strong>corollary (Heisenberg–Kennard for one mode).</strong> for $[\hat x,\hat p]=\mathrm{i}\hbar\,\mathbb{I}$,
+                </p>
+                $$
+                \Delta x\,\Delta p\geq \frac{\hbar}{2}.
+                $$
+                <p><strong>theorem (Schrödinger / Robertson combined cleanly).</strong> with $\{A_0,B_0\}=A_0B_0+B_0A_0$,
+                </p>
+                $$
+                (\Delta A)^2(\Delta B)^2
+                \geq
+                \frac{1}{4}\bigl|\langle[A,B]\rangle\bigr|^2
+                +\frac{1}{4}\bigl|\langle\{A_0,B_0\}\rangle\bigr|^2.
+                $$
+                <p><em>proof.</em> Cauchy–Schwarz on $A_0\psi$ and $B_0\psi$ gives $|\langle A_0B_0\rangle|\leq \Delta A\,\Delta B$.
+                    expand $A_0B_0=\tfrac12\{A_0,B_0\}+\tfrac12[A_0,B_0]$; for self-adjoint $A_0,B_0$,
+                    $\langle\{A_0,B_0\}\rangle\in\mathbb{R}$ and
+                    $\langle[A_0,B_0]\rangle=\langle A_0B_0\rangle-\overline{\langle A_0B_0\rangle}=2\mathrm{i}\,\operatorname{Im}\langle A_0B_0\rangle$,
+                    hence
+                    $|\langle A_0B_0\rangle|^2
+                    =(\operatorname{Re}\langle A_0B_0\rangle)^2+(\operatorname{Im}\langle A_0B_0\rangle)^2
+                    =\tfrac14\langle\{A_0,B_0\}\rangle^2+\tfrac14|\langle[A,B]\rangle|^2$.
+                    combine with Cauchy–Schwarz. robertson follows by dropping the nonnegative anticommutator term.</p>
+                <p><strong>worked example (gaussian saturates $\Delta x\,\Delta p=\hbar/2$).</strong> take the normalized
+                    state
+                </p>
+                $$
+                \psi(x)=\left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\exp\!\Bigl(-\frac{x^2}{4\sigma^2}\Bigr)
+                \in L^2(\mathbb{R},\mathrm{d}x).
+                $$
+                <p>then $\Delta x=\sigma$ and a fourier transform gives $\Delta p=\hbar/(2\sigma)$, hence
+                    $\Delta x\,\Delta p=\hbar/2$. equality in the robertson step of the proof forces collinearity of
+                    $A_0\psi$ and $B_0\psi$; gaussians (translated in $x$ and boosted in momentum by phase) exhaust the
+                    minimizers in one dimension.</p>
 
                 <h3 id="q-heisenberg-dynamics">heisenberg versus schrödinger picture</h3>
-                <p>time evolution can be carried on operators (Heisenberg) or states (Schrödinger). the Heisenberg
-                    equation
-                    $$\frac{\mathrm{d}\hat A}{\mathrm{d}t}=\frac{\mathrm{i}}{\hbar}[\hat H,\hat A]$$
-                    parallels the classical $\mathrm{d}f/\mathrm{d}t=\{H,f\}$. unitary evolution $\hat U(t)=\exp(-\mathrm{i}t\hat H/\hbar)$
-                    implements the same dynamics on vectors. the classical Hamiltonian generator story on
-                    <a href="../classical/index.html#e-legendre-hamilton">phase space</a> is the $\hbar\to 0$ shadow of
-                    this commutator flow.</p>
+                <p>let $\hat H$ be self-adjoint and time-independent. stone’s theorem guarantees a strongly continuous
+                    one-parameter unitary group with generator $\hat H$; write
+                </p>
+                $$
+                \hat U(t)=\exp\!\Bigl(-\frac{\mathrm{i}}{\hbar}t\hat H\Bigr).
+                $$
+                <p><strong>Schrödinger picture.</strong> states evolve, operators fixed:
+                </p>
+                $$
+                |\psi(t)\rangle=\hat U(t)|\psi(0)\rangle,\qquad
+                \mathrm{i}\hbar\,\frac{\mathrm{d}}{\mathrm{d}t}|\psi(t)\rangle=\hat H|\psi(t)\rangle
+                $$
+                <p>on $\mathcal{D}(\hat H)$.</p>
+                <p><strong>Heisenberg picture.</strong> states fixed, operators evolve:
+                </p>
+                $$
+                \hat A_H(t)=\hat U(t)^\dagger\,\hat A\,\hat U(t).
+                $$
+                <p><strong>lemma (expectation equivalence).</strong> for all $t$ and bounded $\hat A$ (more generally on
+                    domains preserved by $\hat U(t)$),
+                </p>
+                $$
+                \langle\psi(t)|\hat A|\psi(t)\rangle=\langle\psi(0)|\hat A_H(t)|\psi(0)\rangle.
+                $$
+                <p><em>proof.</em> substitute $|\psi(t)\rangle=\hat U(t)|\psi(0)\rangle$ and use unitarity
+                    $\hat U^\dagger\hat U=I$.</p>
+                <p><strong>computation (Heisenberg equation).</strong> differentiate strongly on a core (formally,
+                    product rule):
+                </p>
+                $$
+                \frac{\mathrm{d}}{\mathrm{d}t}\hat A_H(t)
+                =\frac{\mathrm{d}\hat U^\dagger}{\mathrm{d}t}\hat A\hat U+\hat U^\dagger\hat A\frac{\mathrm{d}\hat U}{\mathrm{d}t}.
+                $$
+                <p>since $\mathrm{d}\hat U/\mathrm{d}t=-\frac{\mathrm{i}}{\hbar}\hat H\hat U$ and
+                    $\mathrm{d}\hat U^\dagger/\mathrm{d}t=\frac{\mathrm{i}}{\hbar}\hat U^\dagger\hat H$,
+                </p>
+                $$
+                \frac{\mathrm{d}\hat A_H}{\mathrm{d}t}
+                =\frac{\mathrm{i}}{\hbar}\hat U^\dagger(\hat H\hat A-\hat A\hat H)\hat U
+                =\frac{\mathrm{i}}{\hbar}\,[\hat H,\hat A_H(t)].
+                $$
+                <p>thus
+                </p>
+                $$
+                \boxed{\;
+                \frac{\mathrm{d}\hat A_H}{\mathrm{d}t}
+                =\frac{\mathrm{i}}{\hbar}\,[\hat H,\hat A_H(t)]
+                \;}
+                $$
+                <p>on the appropriate domain. this mirrors $\mathrm{d}f/\mathrm{d}t=\{H,f\}$ with the dirac substitution
+                    $\{\cdot,\cdot\}\mapsto \frac{\mathrm{i}}{\hbar}[\cdot,\cdot]$ on the lie subalgebra where quantization
+                    is exact.</p>
+                <p><strong>corollary (Ehrenfest, schrödinger form).</strong> for $\psi(t)$ solving the schrödinger equation
+                    and $\hat A$ time-independent in the schrödinger picture,
+                </p>
+                $$
+                \frac{\mathrm{d}}{\mathrm{d}t}\langle\hat A\rangle
+                =\frac{\mathrm{i}}{\hbar}\,\langle[\hat H,\hat A]\rangle,
+                $$
+                <p>with the expectation taken in $|\psi(t)\rangle$. for mixed $\rho(t)=\hat U(t)\rho(0)\hat U(t)^\dagger$,
+                    $\frac{\mathrm{d}}{\mathrm{d}t}\mathrm{Tr}(\rho\hat A)
+                    =\frac{\mathrm{i}}{\hbar}\mathrm{Tr}(\rho[\hat H,\hat A])$ under trace-class hypotheses.</p>
+                <p><strong>interaction picture (pointer).</strong> split $\hat H=\hat H_0+\hat V$ and set
+                    $\hat U_0(t)=\exp(-\mathrm{i}t\hat H_0/\hbar)$. operators carry free evolution,
+                    $\hat A_I(t)=\hat U_0(t)^\dagger\hat A\hat U_0(t)$, while states solve
+                    $\mathrm{i}\hbar\,\partial_t|\psi_I(t)\rangle=\hat V_I(t)|\psi_I(t)\rangle$ with
+                    $\hat V_I(t)=\hat U_0(t)^\dagger\hat V\hat U_0(t)$. this is the bookkeeping behind time-dependent
+                    perturbation theory and dyson series in later arcs.</p>
+                <p><strong>worked example (harmonic oscillator ladder in Heisenberg).</strong> for
+                    $\hat H=\hbar\omega(\hat a^\dagger\hat a+\tfrac12)$ with $[\hat a,\hat a^\dagger]=\mathbb{I}$, the
+                    Heisenberg equations
+                    $\mathrm{d}\hat a/\mathrm{d}t=\frac{\mathrm{i}}{\hbar}[\hat H,\hat a]$ and
+                    $[\hat H,\hat a]=-\hbar\omega\hat a$ give
+                </p>
+                $$
+                \hat a_H(t)=\mathrm{e}^{-\mathrm{i}\omega t}\hat a(0),\qquad
+                \hat a^\dagger_H(t)=\mathrm{e}^{\mathrm{i}\omega t}\hat a^\dagger(0),
+                $$
+                <p>so $\hat x_H(t)\propto \hat a_H+\hat a_H^\dagger$ oscillates at frequency $\omega$ while vector states
+                    in the schrödinger picture need not move if prepared in an energy eigenstate—two faces of the same
+                    unitary evolution, exactly as the classical page’s hamiltonian flow can be read either on observables
+                    or on initial points once a symplectomorphism is fixed.</p>
             </section>
 
             <section id="arc-canonical" class="doc-section">
