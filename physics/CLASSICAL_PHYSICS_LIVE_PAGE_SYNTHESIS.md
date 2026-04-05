@@ -164,6 +164,7 @@ Use this as a **template** for other topics (e.g. statistical mechanics, QFT pre
 | [classical/index.html](classical/index.html) | **Live** unified classical physics + mathematics document. |
 | [CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md](CLASSICAL_PHYSICS_AND_MATHEMATICS_UNIFIED.md) | Checklist spine, A1–G4 style parity, links to legacy drafts. |
 | **This file** | **Documentation + mathematical synthesis** of the live index; **meta-principles** for similar pages. |
+| [NONCOMMUTATIVE_PHYSICS_LANDAU_3_4_OUTLINE.md](NONCOMMUTATIVE_PHYSICS_LANDAU_3_4_OUTLINE.md) | **Planned** continuation (Landau 3–4): eight-arc outline, chapter units, classical anchor cross-links; contract for a future `noncommutative/` index. |
 | [physics/index.html](index.html) | Hub; primary public entry to `classical/`. |
 
 ---
