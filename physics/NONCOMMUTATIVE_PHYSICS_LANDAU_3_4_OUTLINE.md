@@ -225,7 +225,7 @@ This mirrors how the classical page internalizes prerequisites **without** requi
 
 ## 6. How to build the live page (mirror classical index)
 
-1. **One `index.html`** under e.g. `physics/noncommutative/` with the same `main.doc` / `doc-header` / `toc` / `article.doc-body` pattern as [classical/index.html](classical/index.html).
+1. **One `index.html`** under `physics/noncommutative/` (live: [noncommutative/index.html](noncommutative/index.html)) with the same `main.doc` / `doc-header` / `toc` / `article.doc-body` pattern as [classical/index.html](classical/index.html). Not linked from the physics hub until you choose to surface it.
 2. **Stable `id`s** on every `<h3>`; TOC mirrors headings; **no LaTeX in heading text**.
 3. **Convention block** early: $\hbar$, signature, HL vs SI for fields (state explicitly).
 4. **Boxes** for: canonical commutation, Heisenberg equation, Dirac equation, CCR/CAR, **one** Feynman rule example, integrality condition for prequantization.

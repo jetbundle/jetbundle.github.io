@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>noncommutative physics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">noncommutative physics</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../classical/">classical physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>noncommutative physics</h1>
+            <p class="doc-lead"><em>landau 3–4 backbone, one algebraic deformation from the classical spine</em></p>
+            <p class="doc-intro">this page assumes you have already walked the unified classical road:
+                <a href="../classical/index.html#b-symplectic">symplectic phase space</a>,
+                <a href="../classical/index.html#e-legendre-hamilton">Poisson brackets and Hamiltonian flow</a>,
+                variational action and Noether data on manifolds, minkowski structure, gauge potentials and curvature,
+                and optionally the <a href="../classical/index.html#bonus-ehresmann-prelude">bundle connection picture</a>.
+                the physical story of landau–lifshitz volumes 3 and 4 is then read as a single forced upgrade: keep the
+                symplectic and variational origin of dynamics, but replace the commutative algebra of classical
+                observables with an operator algebra whose commutators shadow Poisson brackets.</p>
+            <p class="doc-intro">the deformation rule, stated once and reused everywhere it applies, is
+                $\{f,g\}\mapsto \frac{1}{i\hbar}[\hat f,\hat g]$ on a domain of observables where both sides make
+                sense. ordering choices and domain issues are part of the physics, not bugs in the exposition. every
+                arc below traces a consequence: finite-dimensional quantum mechanics, spin and representation theory,
+                relativistic wave equations, field quantization and a QED-shaped skeleton, global quantization when
+                chartwise canonical rules break, worldsheets and conformal data as the same variational DNA in $1{+}1$,
+                then closure and honest pointers where the deformation is not yet finished (UV, full rigorous QFT,
+                measurement philosophy).</p>
+            <p class="doc-intro"><strong>convention:</strong> lorentzian signature matches the classical page,
+                mostly minus $\eta=\mathrm{diag}(-1,1,1,1)$, $x^0=ct$; $\hbar$ is explicit in commutators; field
+                normalizations follow heaviside–lorentz style where QED-style formulas appear.</p>
+        </header>
+
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">outline</h2>
+            <ol class="toc-list">
+                <li><a href="#arc-deformation">deformation: Poisson algebra meets measurement</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-joint-spectra">sharp values and joint spectra</a></li>
+                        <li><a href="#q-double-slit">double slit, interference, which-path</a></li>
+                        <li><a href="#q-dirac-map">dirac map: Poisson bracket to commutator</a></li>
+                        <li><a href="#q-robertson-uncertainty">robertson uncertainty from commutators</a></li>
+                        <li><a href="#q-heisenberg-dynamics">heisenberg versus schrödinger picture</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-canonical">canonical quantization: Heisenberg algebra to Schrödinger equation</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-heisenberg-algebra">canonical commutators and weyl form</a></li>
+                        <li><a href="#q-stone-von-neumann">stone–von neumann rigidity</a></li>
+                        <li><a href="#q-hilbert-domains">Hilbert space, domains, self-adjointness</a></li>
+                        <li><a href="#q-states-born">states, density matrices, born rule</a></li>
+                        <li><a href="#q-schrodinger">schrödinger equation and unitary evolution</a></li>
+                        <li><a href="#q-variation-schrodinger">deformed variational principle for the wavefunction</a></li>
+                        <li><a href="#q-wkb-hj">WKB and Hamilton–Jacobi recovery</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-symmetries-spin">symmetries, angular momentum, spin</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-unitary-symmetry">symmetries as projective unitary representations</a></li>
+                        <li><a href="#q-stone-one-parameter">stone’s theorem and generators</a></li>
+                        <li><a href="#q-so3-ladder">so(3) algebra, ladders, spectra</a></li>
+                        <li><a href="#q-su2-spinors">SU(2) covering SO(3), half-integer spin</a></li>
+                        <li><a href="#q-pauli-bloch">Pauli matrices, Bloch sphere, Stern–Gerlach</a></li>
+                        <li><a href="#q-many-body-tensor">tensor products and composite systems</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-relativistic">relativistic extension: Klein–Gordon and Dirac</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-klein-gordon">from mass shell to Klein–Gordon</a></li>
+                        <li><a href="#q-dirac-clifford">Clifford algebra and Dirac equation</a></li>
+                        <li><a href="#q-lorentz-minimal-coupling">Lorentz covariance and minimal coupling</a></li>
+                        <li><a href="#q-antiparticles-fall-center">antiparticles, fall to center, regularity</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-field-qed">field quantization and QED-shaped skeleton</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-ccr-car-fock">CCR, CAR, and Fock space</a></li>
+                        <li><a href="#q-ovd-smearing">operator-valued distributions and smearing</a></li>
+                        <li><a href="#q-free-photon-electron">free photon and electron fields</a></li>
+                        <li><a href="#q-qed-gauge-fix">minimal coupling, gauge fixing, QED interaction</a></li>
+                        <li><a href="#q-s-matrix">interaction picture and S-matrix (formal)</a></li>
+                        <li><a href="#q-feynman-skeleton">wick, diagrams, UV as residual issue</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-geometric-quantization">global geometric quantization</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-schrodinger-limits">limits of chartwise Schrödinger quantization</a></li>
+                        <li><a href="#q-prequantum-integrality">prequantum line bundle and integrality</a></li>
+                        <li><a href="#q-polarizations">polarizations and half-form correction</a></li>
+                        <li><a href="#q-bohr-sommerfeld">Bohr–Sommerfeld, Maslov, EBK</a></li>
+                        <li><a href="#q-dirac-constraints-q">dirac constraints and gauge reduction (pointer)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-worldsheets">complex structures, sigma models, worldsheets</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-riemann-worldsheet">Riemann surfaces and worldsheet actions</a></li>
+                        <li><a href="#q-conformal-virasoro">conformal symmetry and Virasoro algebra</a></li>
+                        <li><a href="#q-cft-oPE-modular">CFT data: OPE, modular invariance (outline)</a></li>
+                        <li><a href="#q-sigma-models">nonlinear sigma models and target geometry</a></li>
+                    </ul>
+                </li>
+                <li><a href="#arc-closure">interpretation, closure, what this page does not finish</a>
+                    <ul class="toc-list" style="margin-top:0.35rem;margin-bottom:0.5rem;">
+                        <li><a href="#q-one-deformation-table">one deformation, many faces</a></li>
+                        <li><a href="#q-cstar-operational">operator algebras and the operational core</a></li>
+                        <li><a href="#q-microlocal-curved">microlocal QFT on curved spacetime (pointer)</a></li>
+                        <li><a href="#q-rigged-hilbert">rigged Hilbert spaces (pointer)</a></li>
+                        <li><a href="#q-supersymmetry-pointer">supersymmetry as later graded deformation (pointer)</a></li>
+                        <li><a href="#q-out-of-scope">out of scope and next books</a></li>
+                    </ul>
+                </li>
+            </ol>
+        </nav>
+
+        <hr class="doc-rule">
+
+        <article class="doc-body">
+
+            <section id="arc-deformation" class="doc-section">
+                <h2>deformation: Poisson algebra meets measurement</h2>
+                <p>classically, a pure state can be modeled as a point in phase space with canonical coordinates
+                    $(q^i,p_i)$ on <a href="../classical/index.html#b-symplectic">cotangent bundle-level phase
+                        space</a>. observables are functions $f(q,p)$; the product is pointwise and commutative; dynamics
+                    is $\mathrm{d}f/\mathrm{d}t=\{H,f\}$ with the Poisson bracket from the symplectic form as in
+                    <a href="../classical/index.html#e-legendre-hamilton">hamiltonian flow and Poisson structure</a>.
+                    nothing in that commutative algebra forbids simultaneous arbitrarily sharp values for $q$ and $p$.</p>
+
+                <h3 id="q-joint-spectra">sharp values and joint spectra</h3>
+                <p>quantum mechanics replaces sharp classical values by the spectral theory of self-adjoint operators.
+                    two observables admit a basis of simultaneous eigenstates if and only if the operators commute on a
+                    suitable domain. for conjugate pairs this fails: there is no quantum state with definite $x$ and
+                    definite $p_x$ beyond the empty idealization. the classical Poisson bracket $\{q^i,p_j\}=\delta^i_j$
+                    becomes $[\hat q^i,\hat p_j]=\mathrm{i}\hbar\,\delta^i_j$.</p>
+
+                <h3 id="q-double-slit">double slit, interference, which-path</h3>
+                <p>the double-slit experiment is the laboratory emblem of the failure of classical joint probabilities
+                    for complementary variables. which-path information couples to a noncommuting observable and destroys
+                    coherence in the basis that built the interference term. classical probability on
+                    <a href="../classical/index.html#b-symplectic">phase space</a> cannot reproduce the observed
+                    composition law without upgrading the event algebra.</p>
+
+                <h3 id="q-dirac-map">dirac map: Poisson bracket to commutator</h3>
+                <p>dirac’s quantization prescription sends
+                    $$\{f,g\}\;\longmapsto\;\frac{1}{\mathrm{i}\hbar}[\hat f,\hat g]$$
+                    on a Lie subalgebra of observables (polynomials in $q,p$ to start). the map is not a functor from all
+                    smooth functions: operator ordering ambiguities (Weyl, normal, etc.) are physical data hiding in
+                    $\hbar$-corrections and foreshadow geometric quantization and field-theory counterterms.</p>
+
+                <h3 id="q-robertson-uncertainty">robertson uncertainty from commutators</h3>
+                <p>for any states and self-adjoint $A,B$ with domains such that expectations exist, the
+                    Robertson–Schrödinger inequality gives a lower bound on $\Delta A\,\Delta B$ from $\|[A,B]\|$.
+                    saturated states (gaussians for $x,p$) are the closest quantum analogue of classical minimum-uncertainty
+                    phase-space localization, but the product cannot vanish for conjugate pairs.</p>
+
+                <h3 id="q-heisenberg-dynamics">heisenberg versus schrödinger picture</h3>
+                <p>time evolution can be carried on operators (Heisenberg) or states (Schrödinger). the Heisenberg
+                    equation
+                    $$\frac{\mathrm{d}\hat A}{\mathrm{d}t}=\frac{\mathrm{i}}{\hbar}[\hat H,\hat A]$$
+                    parallels the classical $\mathrm{d}f/\mathrm{d}t=\{H,f\}$. unitary evolution $\hat U(t)=\exp(-\mathrm{i}t\hat H/\hbar)$
+                    implements the same dynamics on vectors. the classical Hamiltonian generator story on
+                    <a href="../classical/index.html#e-legendre-hamilton">phase space</a> is the $\hbar\to 0$ shadow of
+                    this commutator flow.</p>
+            </section>
+
+            <section id="arc-canonical" class="doc-section">
+                <h2>canonical quantization: Heisenberg algebra to Schrödinger equation</h2>
+                <p>this arc closes the finite-degree-of-freedom story before spin and fields complicate representation
+                    theory: start from canonical commutators, justify uniqueness of the irreducible unitary representation
+                    (stone–von neumann), build $L^2$ wave mechanics, state the born rule, and recover classical mechanics
+                    in the WKB / Hamilton–Jacobi limit tied to
+                    <a href="../classical/index.html#e-hj-integrable">action–angle and hamilton–jacobi</a> on the
+                    classical side.</p>
+
+                <h3 id="q-heisenberg-algebra">canonical commutators and weyl form</h3>
+                <p>the heisenberg relations $[\hat q_i,\hat p_j]=\mathrm{i}\hbar\,\delta_{ij}$ exponentiate to weyl
+                    relations for unitary phase operators; this avoids domain pathologies in stating uniqueness. the
+                    classical bracket $\{q^i,p_j\}=\delta^i_j$ is the leading term of the commutator in $\hbar$.</p>
+
+                <h3 id="q-stone-von-neumann">stone–von neumann rigidity</h3>
+                <p>for finite degrees of freedom, irreducible unitary representations of the weyl algebra are unique up to
+                    unitary equivalence. this is the quantum rigidity that has no classical analogue: darboux charts are
+                    flexible symplectically, but the irreducible Hilbert-space realization is essentially unique.</p>
+
+                <h3 id="q-hilbert-domains">Hilbert space, domains, self-adjointness</h3>
+                <p>the schrödinger representation uses $\mathcal{H}=L^2(\mathbb{R}^n,\mathrm{d}^nq)$ with $\hat q$
+                    multiplication and $\hat p=-\mathrm{i}\hbar\nabla$ on schwartz-class cores. physically acceptable
+                    hamiltonians require self-adjoint or essentially self-adjoint extensions (free particle, harmonic
+                    oscillator, hydrogen) so that unitary time evolution exists.</p>
+
+                <h3 id="q-states-born">states, density matrices, born rule</h3>
+                <p>pure states are rays in $\mathcal{H}$; general states are density matrices $\rho$ with
+                    $\mathrm{Tr}\,\rho=1$, $\rho\ge 0$. expectations are $\langle A\rangle=\mathrm{Tr}(\rho\hat A)$.
+                    the born rule ties probabilities to spectral measures. compare to classical mixed states as
+                    probability measures on <a href="../classical/index.html#b-symplectic">phase space</a>; the quantum
+                    linearity of superposition is new.</p>
+
+                <h3 id="q-schrodinger">schrödinger equation and unitary evolution</h3>
+                <p>the abstract statement is $\mathrm{i}\hbar\,\partial_t\psi=\hat H\psi$ with $\psi\in\mathcal{H}$.
+                    formally $\psi(t)=\hat U(t)\psi(0)$. stationary states reduce to the spectral problem for $\hat H$.</p>
+
+                <h3 id="q-variation-schrodinger">deformed variational principle for the wavefunction</h3>
+                <p>the schrödinger equation can be derived from a variational principle on complex fields (time-dependent
+                    euler–lagrange in field form), preserving the variational lineage from
+                    <a href="../classical/index.html#symmetry-variation">classical action principles</a>. path-integral
+                    formulations push the same idea to infinite-dimensional integration (heuristic until measure is
+                    specified).</p>
+
+                <h3 id="q-wkb-hj">WKB and Hamilton–Jacobi recovery</h3>
+                <p>the ansatz $\psi\sim \exp(\mathrm{i}S/\hbar)$ yields at leading order in $\hbar$ the
+                    Hamilton–Jacobi equation for $S(q,t)$, linking straight back to the classical generating-function
+                    picture in <a href="../classical/index.html#e-hj-integrable">hamilton–jacobi and integrable
+                        structure</a>. classical trajectories live in the stationary-phase support of amplitudes.</p>
+            </section>
+
+            <section id="arc-symmetries-spin" class="doc-section">
+                <h2>symmetries, angular momentum, spin</h2>
+                <p>classical continuous symmetries on <a href="../classical/index.html#e-noether">phase space</a> generate
+                    conserved quantities via Noether’s story. in quantum mechanics, symmetries are implemented by
+                    (projective) unitary operators; stone’s theorem ties one-parameter groups to self-adjoint generators.
+                    spatial rotations produce the $\mathfrak{so}(3)$ commutator algebra; the universal cover $\mathrm{SU}(2)$
+                    forces half-integer spin and connects to the double-cover story already visible for
+                    <a href="../classical/index.html#c-so3">SO(3) and rigid body</a>.</p>
+
+                <h3 id="q-unitary-symmetry">symmetries as projective unitary representations</h3>
+                <p>wigner’s framework: symmetries are ray maps preserving transition probabilities; they lift to unitary or
+                    antiunitary operators. time-reversal and certain discrete symmetries involve the latter; continuous
+                    connected symmetries are typically unitary.</p>
+
+                <h3 id="q-stone-one-parameter">stone’s theorem and generators</h3>
+                <p>strongly continuous one-parameter unitary groups $U(s)$ have self-adjoint generators $A$ with
+                    $U(s)=\exp(-\mathrm{i}sA/\hbar)$ (conventions vary). this is the quantum replacement for the classical
+                    hamiltonian flow generated by a moment map.</p>
+
+                <h3 id="q-so3-ladder">so(3) algebra, ladders, spectra</h3>
+                <p>components $J_i$ satisfy $[J_i,J_j]=\mathrm{i}\hbar\,\epsilon_{ijk}J_k$. ladder operators raise and
+                    lower $J_z$ eigenvalues; $J^2$ Casimir labels total angular momentum quantum number. the classical
+                    vector $\mathbf{L}=\mathbf{r}\times\mathbf{p}$ obeys the same bracket structure at the Poisson level.</p>
+
+                <h3 id="q-su2-spinors">SU(2) covering SO(3), half-integer spin</h3>
+                <p>projective representations of $\mathrm{SO}(3)$ lift to linear representations of $\mathrm{SU}(2)$.
+                    half-integer spin representations are faithful on $\mathrm{SU}(2)$ but only projective on spatial
+                    rotations, matching the sign ambiguity of spinors under $2\pi$ rotation.</p>
+
+                <h3 id="q-pauli-bloch">Pauli matrices, Bloch sphere, Stern–Gerlach</h3>
+                <p>spin-$\tfrac12$ uses pauli matrices with $[\sigma_j,\sigma_k]=2\mathrm{i}\epsilon_{jkl}\sigma_l$.
+                    pure states form the Bloch sphere; Stern–Gerlach is the two-outcome noncommutative measurement
+                    prototype.</p>
+
+                <h3 id="q-many-body-tensor">tensor products and composite systems</h3>
+                <p>composite systems use $\mathcal{H}_1\otimes\mathcal{H}_2$; entanglement appears as non-factorizable
+                    states. this generalizes classical product configuration spaces
+                    $Q_1\times Q_2$ from <a href="../classical/index.html#smooth-structure">manifold-level
+                        mechanics</a>. identical-particle statistics wait for the field arc.</p>
+            </section>
+
+            <section id="arc-relativistic" class="doc-section">
+                <h2>relativistic extension: Klein–Gordon and Dirac</h2>
+                <p>classical four-momentum lives on minkowski space as in
+                    <a href="../classical/index.html#f-minkowski-particle">flat spacetime kinematics</a>. quantizing the
+                    mass-shell constraint $p_\mu p^\mu=m^2c^2$ yields the Klein–Gordon equation; linearizing in a first-order
+                    way compatible with spin forces the Clifford algebra and the Dirac equation. minimal coupling
+                    $p_\mu\to p_\mu-qA_\mu$ matches the classical gauge minimal coupling from
+                    <a href="../classical/index.html#f-gauge-f">potentials and field strength</a>.</p>
+
+                <h3 id="q-klein-gordon">from mass shell to Klein–Gordon</h3>
+                <p>the scalar wave equation $(\Box+m^2)\phi=0$ follows from promoting $p_\mu$ to operators on spacetime.
+                    negative-frequency modes signal the need for field reinterpretation (particle / antiparticle) and
+                    careful definition of conserved currents.</p>
+
+                <h3 id="q-dirac-clifford">Clifford algebra and Dirac equation</h3>
+                <p>dirac matrices satisfy $\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}$. the Dirac operator
+                    $\mathrm{i}\gamma^\mu\partial_\mu-m$ linearizes the KG operator squared. spinor fields carry
+                    representations of $\mathrm{Spin}(1,3)$.</p>
+
+                <h3 id="q-lorentz-minimal-coupling">Lorentz covariance and minimal coupling</h3>
+                <p>covariance fixes the form of couplings to $A_\mu$; nonrelativistic reduction recovers pauli dynamics
+                    with g-factor $2$ at leading order for weak fields. this is the same geometric minimal-coupling story
+                    as classical electrodynamics, now on operator-valued spinors.</p>
+
+                <h3 id="q-antiparticles-fall-center">antiparticles, fall to center, regularity</h3>
+                <p>relativistic coulomb-type problems exhibit regimes where classical singular potentials would collapse;
+                    the quantum field viewpoint regulates behavior via pair creation thresholds and vacuum stability
+                    conditions (landau-level themes, stated here as pointers to Vol. 4 calculations).</p>
+            </section>
+
+            <section id="arc-field-qed" class="doc-section">
+                <h2>field quantization and QED-shaped skeleton</h2>
+                <p>classical fields on spacetime appear as sections and forms in
+                    <a href="../classical/index.html#flat-spacetime-ed">flat spacetime SR and ED</a>; gauge redundancy
+                    and cohomology of $F$ were already <a href="../classical/index.html#f-gauge-f">global issues</a>.
+                    quantization promotes field amplitudes to operator-valued distributions; bosonic commutators and
+                    fermionic anticommutators build Fock space; minimal coupling and interaction picture produce the QED
+                    interaction term; wick contraction and diagrams encode perturbation theory. the
+                    <a href="../classical/index.html#bonus-ehresmann-prelude">Ehresmann connection picture</a> is the
+                    classical geometric spine behind gauge fixing and bundle-level thinking.</p>
+
+                <h3 id="q-ccr-car-fock">CCR, CAR, and Fock space</h3>
+                <p>bosonic modes obey canonical commutation relations; fermionic modes obey anticommutation. Fock space
+                    builds total Hilbert space from one-particle space via symmetrized or antisymmetrized tensor powers,
+                    enforcing bose / fermi statistics algebraically.</p>
+
+                <h3 id="q-ovd-smearing">operator-valued distributions and smearing</h3>
+                <p>fields $\hat\phi(f)$ are defined against test functions $f$ because pointwise multiplication is
+                    ill-defined. this parallels switching from classical smooth fields to distributional sources in maxwell
+                    theory, but now operators replace $c$-numbers.</p>
+
+                <h3 id="q-free-photon-electron">free photon and electron fields</h3>
+                <p>maxwell quantization yields photon creation / annihilation operators in transverse polarizations;
+                    dirac quantization yields electron / positron operators. vacuum choice and normal ordering fix
+                    zero-point subtraction conventions.</p>
+
+                <h3 id="q-qed-gauge-fix">minimal coupling, gauge fixing, QED interaction</h3>
+                <p>the interaction hamiltonian (or lagrangian density) couples $\bar\psi\gamma^\mu\psi$ to $A_\mu$.
+                    gauge fixing (landau, feynman, coulomb) is required for perturbation theory while preserving physical
+                    equivalence classes of observables.</p>
+
+                <h3 id="q-s-matrix">interaction picture and S-matrix (formal)</h3>
+                <p>the dyson series expresses time evolution as time-ordered exponentials of the interaction in the
+                    interaction picture. unitarity of the S-matrix is the formal constraint; IR divergences in massless
+                    theories appear as incompleteness of naive fock space for scattering.</p>
+
+                <h3 id="q-feynman-skeleton">wick, diagrams, UV as residual issue</h3>
+                <p>wick’s theorem reduces time-ordered products to contractions; feynman diagrams bookkeep them. one-loop
+                    divergences preview renormalization: the deformation to noncommutative fields does not by itself fix
+                    short-distance singularities of interaction distributions.</p>
+            </section>
+
+            <section id="arc-geometric-quantization" class="doc-section">
+                <h2>global geometric quantization</h2>
+                <p>when configuration space is not $\mathbb{R}^n$ or when polarizations are twisted, schrödinger
+                    quantization in a single chart fails to be invariant or globally defined. geometric quantization
+                    starts from a symplectic manifold $(M,\omega)$ (think generalized phase space, as in
+                    <a href="../classical/index.html#b-symplectic">symplectic geometry</a> and
+                    <a href="../classical/index.html#geometric-mechanics">geometric mechanics</a>), builds a prequantum
+                    line bundle with curvature $\omega$, imposes integrality tied to
+                    <a href="../classical/index.html#d-closed-exact">cohomological periods</a>, then chooses a
+                    polarization to halve degrees of freedom. bohr–sommerfeld rules reappear as geometric conditions with
+                    maslov corrections, linking to <a href="../classical/index.html#e-hj-integrable">action–angle</a>
+                    classical intuition.</p>
+
+                <h3 id="q-schrodinger-limits">limits of chartwise Schrödinger quantization</h3>
+                <p>ordering ambiguities and lack of canonical transformation equivariance force a coordinate-free
+                    replacement. darboux holds locally, but global topology of $T^*Q$ matters.</p>
+
+                <h3 id="q-prequantum-integrality">prequantum line bundle and integrality</h3>
+                <p>prequantization requires a hermitian line bundle with unitary connection whose curvature is $\omega$.
+                    weil integrality demands $\frac{1}{2\pi\hbar}\int_\Sigma\omega\in\mathbb{Z}$ for closed surfaces
+                    $\Sigma$. this is the geometric origin of quantization of certain classical periods.</p>
+
+                <h3 id="q-polarizations">polarizations and half-form correction</h3>
+                <p>real polarizations (lagrangian foliations) pick position- or momentum-like representations; kähler
+                    polarizations link to holomorphic / bargmann–fock pictures. metaplectic correction adjusts phases and
+                    zero-point shifts (maslov indices).</p>
+
+                <h3 id="q-bohr-sommerfeld">Bohr–Sommerfeld, Maslov, EBK</h3>
+                <p>semiclassical quantization conditions on lagrangian tori combine action integrals with maslov
+                    phases. this closes the loop to integrable classical systems and torus quantization.</p>
+
+                <h3 id="q-dirac-constraints-q">dirac constraints and gauge reduction (pointer)</h3>
+                <p>gauge systems with constraints require dirac quantization or BRST methods; classical constraint
+                    geometry appears in <a href="../classical/index.html#c-frobenius">frobenius and nonholonomic
+                        discussion</a>. full treatment belongs to dedicated field-theory texts.</p>
+            </section>
+
+            <section id="arc-worldsheets" class="doc-section">
+                <h2>complex structures, sigma models, worldsheets</h2>
+                <p>the classical particle action $\int L\,\mathrm{d}t$ on
+                    <a href="../classical/index.html#e-action-manifold">$TQ$</a> generalizes to maps $\Sigma\to X$ from a
+                    worldsheet (or worldline with internal geometry). in $1{+}1$ dimensions, conformal symmetry is
+                    infinite-dimensional; the virasoro algebra is the quantum central extension of conformal killing
+                    symmetries. CFT data (primary fields, OPE, modular $S$-matrix) package operator algebras that replace
+                    hamiltonian time evolution as the organizing principle. this arc is intentionally lean: it shows the
+                    same variational and deformation philosophy applied to worldsheets, not a full string course.</p>
+
+                <h3 id="q-riemann-worldsheet">Riemann surfaces and worldsheet actions</h3>
+                <p>complex coordinates on $\Sigma$ give conformal structure; string and sigma-model actions are
+                    reparametrization invariant with enhanced symmetry in 2D. classical solutions are harmonic maps in
+                    relevant gauges.</p>
+
+                <h3 id="q-conformal-virasoro">conformal symmetry and Virasoro algebra</h3>
+                <p>modes of the stress tensor satisfy $[L_m,L_n]=(m-n)L_{m+n}+\frac{c}{12}m(m^2-1)\delta_{m+n,0}$ with
+                    central charge $c$. the central term is a pure quantum effect breaking naive classical scale symmetry.</p>
+
+                <h3 id="q-cft-oPE-modular">CFT data: OPE, modular invariance (outline)</h3>
+                <p>operator product expansions define short-distance algebra of fields. on a torus, modular invariance of
+                    the partition function constrains spectra; the verlinde formula links fusion to modular matrices
+                    (stated as pointer).</p>
+
+                <h3 id="q-sigma-models">nonlinear sigma models and target geometry</h3>
+                <p>pullback metrics and $B$-fields on the target define couplings on the worldsheet; connections to
+                    geometric quantization of loop spaces appear when one treats boundary conditions and branes (pointer
+                    only).</p>
+            </section>
+
+            <section id="arc-closure" class="doc-section">
+                <h2>interpretation, closure, what this page does not finish</h2>
+                <p>the narrative thread is one deformation of the classical observable algebra, anchored in landau’s
+                    quantum and relativistic volumes, built on the symplectic and variational foundations of the
+                    <a href="../classical/index.html">classical index</a>. the following subsections collect the dictionary
+                    between classical and quantum idioms, state the operational role of operator algebras, and list honest
+                    omissions.</p>
+
+                <h3 id="q-one-deformation-table">one deformation, many faces</h3>
+                <p>poisson bracket becomes commutator; phase-space points become rays or density matrices; liouville
+                    evolution becomes unitary schrödinger evolution; classical superposition of probabilities becomes
+                    interference of amplitudes; sharp trajectories become emergent in WKB / classical limits tied to
+                    <a href="../classical/index.html#e-hj-integrable">hamilton–jacobi</a>.</p>
+
+                <h3 id="q-cstar-operational">operator algebras and the operational core</h3>
+                <p>$C^\ast$-algebraic formulations emphasize that all measurable content lives in expectation values and
+                    spectral measures. this viewpoint unifies finite and infinite systems at the cost of analytic detail
+                    in concrete models.</p>
+
+                <h3 id="q-microlocal-curved">microlocal QFT on curved spacetime (pointer)</h3>
+                <p>on curved lorentzian manifolds, lack of global poincaré symmetry destroys a preferred vacuum; hadamard
+                    states and wavefront-set conditions replace minkowski fock vacuum; stress-energy renormalization feeds
+                    back to geometry. connect to <a href="../classical/index.html#gravity-geometry">classical GR
+                        template</a> as semiclassical target.</p>
+
+                <h3 id="q-rigged-hilbert">rigged Hilbert spaces (pointer)</h3>
+                <p>continuous spectra require rigged hilbert spaces (gelfand triples) to treat generalized eigenvectors
+                    such as plane waves as honest objects paired with test functions.</p>
+
+                <h3 id="q-supersymmetry-pointer">supersymmetry as later graded deformation (pointer)</h3>
+                <p>supersymmetry extends the algebra with odd generators; anticommutators join commutators in the
+                    deformation package; UV cancellations in susy gauge theories are a further layer beyond this page.</p>
+
+                <h3 id="q-out-of-scope">out of scope and next books</h3>
+                <p>this index does not construct interacting QFT rigorously in four dimensions, develop full
+                    renormalization group technology, settle measurement interpretation, or treat lattice gauge theory.
+                    those are the next deformations and readings after landau 3–4 and the geometric supplements sketched
+                    above. when in doubt, return to the classical spine and ask what commutative structure failed, then
+                    promote that failure to a commutator.</p>
+            </section>
+
+        </article>
+
+        <footer class="doc-footer">
+            <p><a href="../">physics</a> · <a href="../classical/">classical physics</a> · $h2$ headings tint
+                <span style="color:var(--link)">purple</span>, $h3$ units tint
+                <span style="color:var(--link-hover)">orange</span>.</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>
