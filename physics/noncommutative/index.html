@@ -533,52 +533,330 @@
 
             <section id="arc-canonical" class="doc-section">
                 <h2>canonical quantization: Heisenberg algebra to Schrödinger equation</h2>
-                <p>this arc closes the finite-degree-of-freedom story before spin and fields complicate representation
-                    theory: start from canonical commutators, justify uniqueness of the irreducible unitary representation
-                    (stone–von neumann), build $L^2$ wave mechanics, state the born rule, and recover classical mechanics
-                    in the WKB / Hamilton–Jacobi limit tied to
-                    <a href="../classical/index.html#e-hj-integrable">action–angle and hamilton–jacobi</a> on the
-                    classical side.</p>
+                <p>the deformation arc replaced commutative phase-space evaluation by spectral measures and
+                    noncommutative products. this arc pins down the <em>unique</em> irreducible unitary model of
+                    finitely many canonical degrees of freedom, builds the concrete $L^2$ realization, packages states
+                    and the born rule as trace data, derives dynamics from a self-adjoint hamiltonian, and closes the
+                    loop: a variational principle on the wavefunction and the WKB phase recover hamilton–jacobi
+                    structure in the $\hbar\to 0$ front of the same equations. the logical order is lie algebra and
+                    weyl form $\to$ stone–von neumann rigidity $\to$ domains and self-adjointness $\to$ states and born
+                    $\to$ schrödinger flow $\to$ lagrangian field form $\to$ classical limit.</p>
+                <p>throughout, $n$ counts independent canonical pairs $(\hat q_j,\hat p_j)$. tensor products reduce
+                    multiparticle euclidean models to $n=3N$ with permutation symmetry added later when identical
+                    particles matter; here the emphasis is structural, not combinatorics of particle labels.</p>
 
                 <h3 id="q-heisenberg-algebra">canonical commutators and weyl form</h3>
-                <p>the heisenberg relations $[\hat q_i,\hat p_j]=\mathrm{i}\hbar\,\delta_{ij}$ exponentiate to weyl
-                    relations for unitary phase operators; this avoids domain pathologies in stating uniqueness. the
-                    classical bracket $\{q^i,p_j\}=\delta^i_j$ is the leading term of the commutator in $\hbar$.</p>
+                <p><strong>heisenberg lie algebra (degree $n$).</strong> abstract generators $Q_j,P_k$ and central
+                    $Z$ over $\mathbb{R}$ with brackets
+                </p>
+                $$
+                [Q_j,P_k]=\delta_{jk}Z,\qquad [Q_j,Q_k]=[P_j,P_k]=[Q_j,Z]=[P_j,Z]=0.
+                $$
+                <p>for a unitary representation on $\mathcal{H}$, one arranges $Z\mapsto \mathrm{i}\hbar\,\mathbb{I}$,
+                    producing the <strong>canonical commutation relations (CCR)</strong>
+                </p>
+                $$
+                [\hat q_j,\hat p_k]=\mathrm{i}\hbar\,\delta_{jk}\,\mathbb{I},\qquad
+                [\hat q_j,\hat q_k]=[\hat p_j,\hat p_k]=0,
+                $$
+                <p>understood on a common dense domain where all compositions needed are defined. the algebra is a
+                    <em>central extension</em> of the abelian $2n$-dimensional lie algebra of classical positions and
+                    momenta: the bracket remembers $\hbar$ as a central charge invisible to classical poisson brackets
+                    alone.</p>
+                <p><strong>weyl unitaries (integrated CCR).</strong> exponentiation avoids the pathology that formal
+                    power series for $\exp(\hat q)$ need not yield bounded operators on $\mathcal{H}$. for real
+                    $a^j,b_k$, define
+                </p>
+                $$
+                U(\mathbf{a})=\exp\!\Bigl(-\frac{\mathrm{i}}{\hbar}\,\mathbf{a}\cdot\hat{\mathbf{p}}\Bigr),\qquad
+                V(\mathbf{b})=\exp\!\Bigl(\frac{\mathrm{i}}{\hbar}\,\mathbf{b}\cdot\hat{\mathbf{q}}\Bigr),
+                $$
+                <p>so that in the schrödinger representation $U(\mathbf{a})$ implements translation in position,
+                    $(U(\mathbf{a})\psi)(x)=\psi(x-\mathbf{a})$. with $[\hat q_j,\hat p_k]=\mathrm{i}\hbar\,\delta_{jk}$ one has
+                    $[\hat p_j,\hat q_k]=-\mathrm{i}\hbar\,\delta_{jk}$, hence
+                    $[\mathbf{a}\cdot\hat{\mathbf{p}},\mathbf{b}\cdot\hat{\mathbf{q}}]
+                    =-\mathrm{i}\hbar\,\mathbf{a}\cdot\mathbf{b}\,\mathbb{I}$, central. for
+                    $A=-\mathrm{i}a\hat p/\hbar$ and $B=\mathrm{i}b\hat q/\hbar$,
+                    $[A,B]=-\mathrm{i}ab/\hbar\,\mathbb{I}$. the baker–campbell–hausdorff formula truncates, giving the
+                    <strong>weyl relations</strong>
+                </p>
+                $$
+                U(\mathbf{a})V(\mathbf{b})
+                =\exp\bigl(-\tfrac{\mathrm{i}}{\hbar}\,\mathbf{a}\cdot\mathbf{b}\bigr)\,
+                V(\mathbf{b})U(\mathbf{a}).
+                $$
+                <p><em>verification ($n=1$).</em> with $A,B$ as above, $\mathrm{e}^A\mathrm{e}^B=\mathrm{e}^{A+B}\mathrm{e}^{[A,B]/2}$
+                    and $\mathrm{e}^B\mathrm{e}^A=\mathrm{e}^{A+B}\mathrm{e}^{-[A,B]/2}$, so
+                    $\mathrm{e}^A\mathrm{e}^B=\mathrm{e}^{[A,B]}\mathrm{e}^B\mathrm{e}^A
+                    =\mathrm{e}^{-\mathrm{i}ab/\hbar}\mathrm{e}^B\mathrm{e}^A$, i.e.
+                    $U(a)V(b)=\mathrm{e}^{-\mathrm{i}ab/\hbar}V(b)U(a)$.</p>
+                <p>the map $(\mathbf{a},\mathbf{b},c)\mapsto \mathrm{e}^{\mathrm{i}c/\hbar}V(\mathbf{b})U(\mathbf{a})$
+                    realizes the <strong>heisenberg group</strong> in $2n+1$ parameters; the weyl relations are the
+                    group multiplication law in exponential coordinates. finite-dimensional unitary representations of
+                    this group force $\hbar=0$ (vanishing central phase), so nontrivial quantum mechanics lives only on
+                    infinite-dimensional $\mathcal{H}$.</p>
+                <p><strong>boxed summary.</strong>
+                </p>
+                $$
+                \boxed{\;
+                [\hat q_j,\hat p_k]=\mathrm{i}\hbar\,\delta_{jk}\mathbb{I}
+                \;\;\Longleftrightarrow\;\;
+                U(\mathbf{a})V(\mathbf{b})
+                =\mathrm{e}^{-\mathrm{i}\mathbf{a}\cdot\mathbf{b}/\hbar}V(\mathbf{b})U(\mathbf{a})
+                \;}
+                $$
+                <p>on the domain where the unitary one-parameter groups are defined.</p>
 
                 <h3 id="q-stone-von-neumann">stone–von neumann rigidity</h3>
-                <p>for finite degrees of freedom, irreducible unitary representations of the weyl algebra are unique up to
-                    unitary equivalence. this is the quantum rigidity that has no classical analogue: darboux charts are
-                    flexible symplectically, but the irreducible Hilbert-space realization is essentially unique.</p>
+                <p><strong>theorem (stone–von neumann, qualitative form).</strong> fix $n&lt;\infty$. every strongly
+                    continuous irreducible unitary representation of the weyl relations on separable $\mathcal{H}$ is
+                    unitarily equivalent to the <strong>schrödinger representation</strong> on
+                    $\mathcal{H}=L^2(\mathbb{R}^n,\mathrm{d}^nx)$ with
+                </p>
+                $$
+                (\hat q_j\psi)(x)=x_j\psi(x),\qquad
+                (\hat p_k\psi)(x)=-\mathrm{i}\hbar\,\frac{\partial\psi}{\partial x_k}(x),
+                $$
+                <p>for $\psi$ in the standard domain (e.g. schwartz space $\mathcal{S}(\mathbb{R}^n)$ as a core).</p>
+                <p><strong>what the theorem buys.</strong> classically, darboux charts are unique only up to
+                    symplectomorphism—many equivalent models of the same mechanical system. quantum mechanically, once
+                    the weyl form of CCR is fixed and irreducibility is imposed (no superselection sectors mixing
+                    different values of $\hbar$, no hidden factoring of the Hilbert space), the representation is rigid:
+                    there is essentially one Hilbert-space realization of $n$ canonical pairs. this is the precise
+                    sense in which “quantizing $\mathbb{R}^{2n}$” is not a gauge choice like picking coordinates on
+                    $T^*Q$.</p>
+                <p><strong>hypotheses matter.</strong> the statement fails or weakens if $n=\infty$ (field theory:
+                    inequivalent Fock vacua), if one abandons strong continuity (pathological unbounded representations),
+                    or if reducible representations are allowed (direct sums of copies). for atomic-scale QM with
+                    finitely many degrees of freedom, the schrödinger picture is not optional decoration—it is the unique
+                    irreducible unitary spine.</p>
+                <p><strong>remark (projective representations).</strong> phases $\exp(\mathrm{i}\theta(\mathbf{a},\mathbf{b}))$
+                    in group multiplication define a $U(1)$ central extension classified by the commutation cocycle
+                    $\exp(-\mathrm{i}\mathbf{a}\cdot\mathbf{b}/\hbar)$; stone–von neumann classifies these projective
+                    reps of the translation subgroup of phase space.</p>
 
                 <h3 id="q-hilbert-domains">Hilbert space, domains, self-adjointness</h3>
-                <p>the schrödinger representation uses $\mathcal{H}=L^2(\mathbb{R}^n,\mathrm{d}^nq)$ with $\hat q$
-                    multiplication and $\hat p=-\mathrm{i}\hbar\nabla$ on schwartz-class cores. physically acceptable
-                    hamiltonians require self-adjoint or essentially self-adjoint extensions (free particle, harmonic
-                    oscillator, hydrogen) so that unitary time evolution exists.</p>
+                <p><strong>schrödinger representation.</strong> take $\mathcal{H}=L^2(\mathbb{R}^n,\mathrm{d}^nx)$ with
+                    lebesgue measure. multiplication by $x_j$ is densely defined and essentially self-adjoint on
+                    $\mathcal{S}(\mathbb{R}^n)$; differentiation $\partial/\partial x_k$ with the factor
+                    $-\mathrm{i}\hbar$ yields the momentum operator symmetric on $\mathcal{S}(\mathbb{R}^n)$ and again
+                    essentially self-adjoint there. fourier transform $\mathcal{F}:L^2(\mathbb{R}^n)\to L^2(\mathbb{R}^n)$
+                    intertwines the two pictures:
+                </p>
+                $$
+                \mathcal{F}\hat q_j\mathcal{F}^{-1}=\mathrm{i}\hbar\,\frac{\partial}{\partial p_j},\qquad
+                \mathcal{F}\hat p_k\mathcal{F}^{-1}=p_k\ \text{(multiplication)},
+                $$
+                <p>up to conventional sign choices in the transform normalization.</p>
+                <p><strong>symmetric versus self-adjoint.</strong> an operator $A$ with dense domain $\mathcal{D}(A)$ is
+                    <em>symmetric</em> if $\langle\phi,A\psi\rangle=\langle A\phi,\psi\rangle$ for all
+                    $\phi,\psi\in\mathcal{D}(A)$. it is <em>self-adjoint</em> if $A=A^\dagger$ with domains matched by the
+                    adjoint definition. only self-adjoint generators guarantee strongly continuous unitary groups
+                    $U(t)=\exp(-\mathrm{i}tA/\hbar)$ via spectral calculus. a symmetric operator may admit multiple
+                    self-adjoint extensions (deficiency indices nonzero) or none; each extension is a different physics
+                    choice (boundary conditions at singular endpoints).</p>
+                <p><strong>example (harmonic oscillator).</strong> on $\mathbb{R}$, $\hat H=\frac{\hat p^2}{2m}
+                    +\frac{m\omega^2}{2}\hat q^2$ is essentially self-adjoint on $\mathcal{S}(\mathbb{R})$; the
+                    spectrum is discrete $\{(n+\tfrac12)\hbar\omega\}_{n\geq 0}$ with hermite eigenfunctions. the
+                    domain issue is benign because confinement is built into the potential.</p>
+                <p><strong>example (free particle).</strong> $\hat H_0=\hat p^2/(2m)$ is essentially self-adjoint on
+                    $\mathcal{S}(\mathbb{R}^n)$; spectrum $[0,\infty)$ is continuous. plane waves are generalized
+                    eigenfunctions, not elements of $L^2$.</p>
+                <p><strong>counterpoint (half-line).</strong> on $L^2((0,\infty))$, the laplacian admits a family of
+                    self-adjoint extensions (robin / dirichlet boundary data); different extensions are different
+                    dynamics. this is the analytic face of “choice of polarization / boundary condition” that geometric
+                    quantization makes global.</p>
+                <p><strong>lemma (core criterion, statement).</strong> if $A$ is symmetric and $\mathcal{D}_0\subset\mathcal{D}(A)$
+                    is dense, and the closure of $A|_{\mathcal{D}_0}$ is self-adjoint, then $\mathcal{D}_0$ is a <em>core</em>
+                    for $A$. nelson’s theorem: if a symmetric $A$ has a dense subspace of analytic vectors, $A$ is
+                    essentially self-adjoint; this is the standard shortcut for representations of finite-dimensional
+                    lie algebras generated by angular momentum or harmonic-oscillator mode operators.</p>
 
                 <h3 id="q-states-born">states, density matrices, born rule</h3>
-                <p>pure states are rays in $\mathcal{H}$; general states are density matrices $\rho$ with
-                    $\mathrm{Tr}\,\rho=1$, $\rho\ge 0$. expectations are $\langle A\rangle=\mathrm{Tr}(\rho\hat A)$.
-                    the born rule ties probabilities to spectral measures. compare to classical mixed states as
-                    probability measures on <a href="../classical/index.html#b-symplectic">phase space</a>; the quantum
-                    linearity of superposition is new.</p>
+                <p><strong>axioms (states).</strong></p>
+                <ol>
+                    <li><strong>S1 (convexity).</strong> states are positive, normalized linear functionals $\omega$ on a
+                        suitable operator algebra containing observables; convex combinations $t\omega_1+(1-t)\omega_2$
+                        are states for $t\in[0,1]$.</li>
+                    <li><strong>S2 (GNS for $C^\ast$-algebras, pointer).</strong> every state arises as a vector state
+                        in some cyclic representation; for type-I factors with separable $\mathcal{H}$, this reduces
+                        to density matrices below.</li>
+                </ol>
+                <p><strong>density matrices.</strong> a <em>density operator</em> is a positive trace-class operator
+                    $\rho$ on $\mathcal{H}$ with $\mathrm{Tr}\,\rho=1$. it defines
+                </p>
+                $$
+                \omega_\rho(A)=\mathrm{Tr}(\rho A)
+                $$
+                <p>for bounded $A$ (extend to unbounded under domain hypotheses). <strong>pure states</strong> satisfy
+                    $\rho^2=\rho$ with $\mathrm{rank}\,\rho=1$, equivalently $\rho=|\psi\rangle\langle\psi|$ for a unit
+                    vector. <strong>mixed states</strong> are nontrivial convex combinations of pure states; then
+                    $\mathrm{Tr}\,\rho^2&lt;1$.</p>
+                <p><strong>born rule (spectral form).</strong> for a self-adjoint observable $A$ with PVM $E_A$,
+                </p>
+                $$
+                \mathbb{P}_\rho(A\in\Delta)=\mathrm{Tr}\bigl(\rho\,E_A(\Delta)\bigr).
+                $$
+                <p>for pure $\rho=|\psi\rangle\langle\psi|$, this reduces to $\|E_A(\Delta)\psi\|^2$. expectations obey
+                </p>
+                $$
+                \langle A\rangle_\rho=\mathrm{Tr}(\rho A)=\int_{\mathbb{R}}\lambda\,\mathrm{d}\mu_\rho(\lambda),\qquad
+                \mu_\rho(\Delta)=\mathrm{Tr}(\rho E_A(\Delta)).
+                $$
+                <p><strong>remark (classical contrast without phase-space measures).</strong> a classical mixed state
+                    on $T^*Q$ is often a probability density $\rho_{\mathrm{cl}}(q,p)$ evolved by liouville; expectations
+                    are $\int f\,\rho_{\mathrm{cl}}\,\mathrm{d}\mu_{\mathrm{Liouville}}$. quantum linearity allows
+                    superpositions $|\psi_1\rangle+|\psi_2\rangle$ whose interference cannot be reproduced by any
+                    nonnegative $\rho_{\mathrm{cl}}$ alone—this is the same obstruction already visible in the double-slit
+                    density-matrix discussion.</p>
+                <p><strong>preview (wigner quasiprobability).</strong> the wigner transform linearly maps $\rho$ to a
+                    real phase-space function $W_\rho(q,p)$ integrating to $1$, but $W_\rho$ need not be pointwise
+                    nonnegative; only the marginals recover quantum position and momentum statistics. this packages
+                    complementarity in a single scalar field at the cost of losing classical probability interpretation.</p>
 
                 <h3 id="q-schrodinger">schrödinger equation and unitary evolution</h3>
-                <p>the abstract statement is $\mathrm{i}\hbar\,\partial_t\psi=\hat H\psi$ with $\psi\in\mathcal{H}$.
-                    formally $\psi(t)=\hat U(t)\psi(0)$. stationary states reduce to the spectral problem for $\hat H$.</p>
+                <p>let $\hat H$ be self-adjoint on $\mathcal{H}$. stone’s theorem for one-parameter unitary groups
+                    provides a unique strongly continuous $U(t)$ with generator $-\hat H/\hbar$ in the convention used
+                    here:
+                </p>
+                $$
+                \hat U(t)=\exp\!\Bigl(-\frac{\mathrm{i}}{\hbar}t\hat H\Bigr),\qquad
+                |\psi(t)\rangle=\hat U(t)|\psi(0)\rangle.
+                $$
+                <p>for $|\psi(0)\rangle\in\mathcal{D}(\hat H)$, differentiation gives the <strong>schrödinger
+                        equation</strong>
+                </p>
+                $$
+                \boxed{\;
+                \mathrm{i}\hbar\,\frac{\mathrm{d}}{\mathrm{d}t}|\psi(t)\rangle=\hat H|\psi(t)\rangle
+                \;}
+                $$
+                <p>in the strong sense on $\mathcal{D}(\hat H)$. for time-dependent $\hat H(t)$, the same abstract
+                    equation holds with $\hat H(t)$ inserted if domains are compatible; the formal solution is a
+                    time-ordered exponential.</p>
+                <p><strong>continuity equation (position representation, one particle).</strong> for
+                    $\hat H=\frac{1}{2m}\hat p^2+V(\hat q)$ and $\psi\in\mathcal{S}$, define the probability density
+                    $\rho=|\psi|^2$ and current
+                </p>
+                $$
+                \mathbf{j}=\frac{\hbar}{2m\mathrm{i}}(\psi^*\nabla\psi-\psi\nabla\psi^*)
+                =\frac{1}{m}\operatorname{Re}(\psi^*\hat{\mathbf{p}}\psi).
+                $$
+                <p>then schrödinger implies
+                </p>
+                $$
+                \frac{\partial\rho}{\partial t}+\nabla\cdot\mathbf{j}=0,
+                $$
+                <p>so total probability is conserved when boundary terms vanish—unitarity in differential form.</p>
+                <p><strong>stationary states and spectral resolution.</strong> if $\hat H\psi_E=E\psi_E$, then
+                    $|\psi(t)\rangle=\mathrm{e}^{-\mathrm{i}Et/\hbar}|\psi_E\rangle$. general solutions superpose
+                    spectral modes:
+                </p>
+                $$
+                |\psi(t)\rangle=\int_{\mathbb{R}}\mathrm{e}^{-\mathrm{i}Et/\hbar}\,\mathrm{d}E_H(E)|\psi(0)\rangle,
+                $$
+                <p>with $E_H$ the spectral measure of $\hat H$. this is the quantum analogue of decomposing classical
+                    motion into action-angle modes, except frequencies $E/\hbar$ are quantized or continuous according
+                    to $\mathrm{spec}(\hat H)$.</p>
 
                 <h3 id="q-variation-schrodinger">deformed variational principle for the wavefunction</h3>
-                <p>the schrödinger equation can be derived from a variational principle on complex fields (time-dependent
-                    euler–lagrange in field form), preserving the variational lineage from
-                    <a href="../classical/index.html#symmetry-variation">classical action principles</a>. path-integral
-                    formulations push the same idea to infinite-dimensional integration (heuristic until measure is
-                    specified).</p>
+                <p>treat $\psi(t,x)$ and $\psi^*(t,x)$ as independent complex fields on $\mathbb{R}\times\mathbb{R}^n$
+                    (schwartz in $x$ for integration by parts). consider the action
+                </p>
+                $$
+                S[\psi,\psi^*]=\int_{t_1}^{t_2}\!\int_{\mathbb{R}^n}\mathcal{L}\,\mathrm{d}^nx\,\mathrm{d}t,\qquad
+                \mathcal{L}
+                =\frac{\mathrm{i}\hbar}{2}\Bigl(\psi^*\frac{\partial\psi}{\partial t}
+                -\frac{\partial\psi^*}{\partial t}\psi\Bigr)
+                -\psi^*\hat H\psi,
+                $$
+                <p>where for $\hat H=-\frac{\hbar^2}{2m}\nabla^2+V(x)$ one writes explicitly
+                </p>
+                $$
+                \mathcal{L}
+                =\frac{\mathrm{i}\hbar}{2}\Bigl(\psi^*\dot\psi-\dot\psi^*\psi\Bigr)
+                -\frac{\hbar^2}{2m}|\nabla\psi|^2-V(x)|\psi|^2,
+                $$
+                <p>after integrating the kinetic term by parts in $x$ (boundary terms vanish for schwartz data).</p>
+                <p><strong>principle of stationary action.</strong> require $\delta S=0$ for independent variations
+                    $\delta\psi,\delta\psi^*$ with fixed values at $t_1,t_2$.</p>
+                <p><strong>computation (euler–lagrange for $\psi^*$).</strong> the variation $\delta\psi^*$ yields
+                </p>
+                $$
+                \delta S
+                =\int_{t_1}^{t_2}\!\int\Bigl(
+                -\frac{\mathrm{i}\hbar}{2}\frac{\partial}{\partial t}(\delta\psi^*)\psi
+                -\frac{\mathrm{i}\hbar}{2}\delta\psi^*\frac{\partial\psi}{\partial t}
+                -\delta\psi^*\hat H\psi
+                \Bigr)\mathrm{d}^nx\,\mathrm{d}t+\text{(t-terms)}.
+                $$
+                <p>integrate $\delta\psi^*$ time derivative by parts in $t$; boundary terms vanish at $t_1,t_2$. the
+                    coefficient of $\delta\psi^*$ inside $(t_1,t_2)$ becomes
+                </p>
+                $$
+                \mathrm{i}\hbar\,\frac{\partial\psi}{\partial t}-\hat H\psi=0.
+                $$
+                <p>the conjugate variation gives the adjoint equation (complex conjugate schrödinger). thus the abstract
+                    dynamics is the euler–lagrange system of a first-order-in-time lagrangian density—deformed from
+                    classical second-order field theories but still variational.</p>
+                <p><strong>remark (path integrals).</strong> composing short-time propagators $\exp(-\mathrm{i}\hat H\,\delta t/\hbar)$
+                    and inserting resolutions of the identity produces formal path-space measures whose stationary phase
+                    in the semiclassical limit ties to classical trajectories; rigorous construction requires extra
+                    analytic structure beyond this page.</p>
 
                 <h3 id="q-wkb-hj">WKB and Hamilton–Jacobi recovery</h3>
-                <p>the ansatz $\psi\sim \exp(\mathrm{i}S/\hbar)$ yields at leading order in $\hbar$ the
-                    Hamilton–Jacobi equation for $S(q,t)$, linking straight back to the classical generating-function
-                    picture in <a href="../classical/index.html#e-hj-integrable">hamilton–jacobi and integrable
-                        structure</a>. classical trajectories live in the stationary-phase support of amplitudes.</p>
+                <p>seek solutions of the time-dependent schrödinger equation in position representation in the form
+                </p>
+                $$
+                \psi(t,x)=A(t,x)\,\exp\!\Bigl(\frac{\mathrm{i}}{\hbar}S(t,x)\Bigr),
+                $$
+                <p>with real amplitude $A&gt;0$ and real phase $S$ (slowly varying in $\hbar$ in the semiclassical sense).
+                    plug into
+                </p>
+                $$
+                \mathrm{i}\hbar\,\frac{\partial\psi}{\partial t}
+                =-\frac{\hbar^2}{2m}\nabla^2\psi+V(x)\psi.
+                $$
+                <p><strong>expansion in $\hbar$.</strong> compute gradients:
+                    $\nabla\psi=(\nabla A+\frac{\mathrm{i}}{\hbar}A\nabla S)\mathrm{e}^{\mathrm{i}S/\hbar}$, and
+                </p>
+                $$
+                \nabla^2\psi
+                =\Bigl(\nabla^2 A+\frac{2\mathrm{i}}{\hbar}\nabla A\cdot\nabla S
+                +\frac{\mathrm{i}}{\hbar}A\nabla^2 S
+                -\frac{1}{\hbar^2}A|\nabla S|^2\Bigr)\mathrm{e}^{\mathrm{i}S/\hbar}.
+                $$
+                <p>collect leading powers of $\hbar$. the terms of order one in the phase (equivalently, the dominant
+                    oscillatory balance between $\mathrm{i}\hbar\,\partial_t\psi$ and the $|\nabla S|^2/\hbar^2$ piece
+                    from $\nabla^2\psi$) yield
+                </p>
+                $$
+                \frac{\partial S}{\partial t}+\frac{1}{2m}|\nabla S|^2+V(x)=0,
+                $$
+                <p>the <strong>hamilton–jacobi equation</strong> for the principal function $S(t,x)$, identical to the
+                    classical generating-function equation for a hamiltonian $H(q,p)=p^2/(2m)+V(q)$ with $p=\nabla S$.</p>
+                <p>the $\mathcal{O}(\hbar^1)$ sector (after extracting the phase) produces a <strong>transport
+                        equation</strong> for $A$ along classical characteristics:
+                </p>
+                $$
+                \frac{\partial A}{\partial t}+\frac{1}{m}\nabla S\cdot\nabla A+\frac{1}{2m}A\nabla^2 S=0,
+                $$
+                <p>which preserves $\int |A|^2\,\mathrm{d}^nx$ compatibly with liouville evolution of probability density
+                    on the lagrangian manifold supporting the wave.</p>
+                <p><strong>interpretation.</strong> classical trajectories are the characteristic curves of the HJ
+                    equation; WKB builds quantum phases whose stationary-phase locus concentrates on those curves as
+                    $\hbar\to 0$. turning points and caustics require connection formulas (airy layers) beyond leading
+                    order—local obstructions parallel to maslov corrections in geometric quantization.</p>
+                <p><strong>boxed leading balance.</strong>
+                </p>
+                $$
+                \boxed{\;
+                \psi\sim A\,\mathrm{e}^{\mathrm{i}S/\hbar},\qquad
+                \partial_t S+\frac{1}{2m}|\nabla S|^2+V=0\quad(\mathcal{O}(\hbar^0))
+                \;}
+                $$
+                <p>this is the explicit bridge from unitary quantum dynamics to the same hamilton–jacobi front the
+                    classical mechanics spine uses for integrable structure and generating functions.</p>
             </section>
 
             <section id="arc-symmetries-spin" class="doc-section">
