@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""Emit physics/architecture-linearity/chapter-1/index.html (static lecture + widgets)."""
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "physics" / "architecture-linearity" / "chapter-1" / "index.html"
+
+HTML = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -171,3 +178,13 @@
   </main>
 </body>
 </html>
+"""
+
+def main() -> None:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(HTML, encoding="utf-8")
+    print("wrote", OUT)
+
+
+if __name__ == "__main__":
+    main()

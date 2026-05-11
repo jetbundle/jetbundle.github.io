@@ -36,7 +36,9 @@ jobs:
           test -f _site/styles.css
           test -f _site/physics/index.html
           test -f _site/physics/architecture-linearity/index.html
-          test -f _site/physics/architecture-linearity/chapter-1/deck/linearity-ch01/index.html
+          test -f _site/physics/architecture-linearity/chapter-1/index.html
+          test -f _site/physics/architecture-linearity/chapter-1/heat-line.json
+          test -f _site/physics/architecture-linearity/chapter-1/widgets.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

@@ -4,183 +4,59 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Architecture of linearity &amp; geometric dynamics</title>
-    <link rel="icon" href="data:,">
+    <title>architecture of linearity &amp; geometric dynamics · JETBUNDLE</title>
     <meta name="robots" content="noindex,nofollow">
-    <style>
-        :root {
-            --paper: #f8f4ec;
-            --ink: #1c1914;
-            --muted: #5c564c;
-            --accent: #6b5a3a;
-            --rule: #d9d0c2;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            min-height: 100%;
-            background: var(--paper);
-            color: var(--ink);
-            font-family: "Georgia", "Times New Roman", serif;
-            line-height: 1.65;
-        }
-
-        .veil {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse 120% 70% at 50% 0%, rgba(107, 90, 58, 0.08), transparent 55%),
-                radial-gradient(ellipse 80% 50% at 100% 100%, rgba(28, 25, 20, 0.04), transparent 45%);
-        }
-
-        #bg {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            opacity: 0.35;
-        }
-
-        main {
-            position: relative;
-            z-index: 1;
-            max-width: 36rem;
-            margin: 0 auto;
-            padding: 4.5rem 1.75rem 5rem;
-        }
-
-        h1 {
-            font-size: clamp(1.55rem, 4vw, 2.05rem);
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            line-height: 1.25;
-            margin: 0 0 0.35rem;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: var(--muted);
-            font-style: italic;
-            margin: 0 0 2.5rem;
-        }
-
-        .series {
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            color: var(--muted);
-            margin: 0 0 1.25rem;
-        }
-
-        p {
-            margin: 0 0 1.1rem;
-            color: var(--ink);
-        }
-
-        .lead {
-            font-size: 1.05rem;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid var(--rule);
-            margin: 2.25rem 0;
-        }
-
-        .cta {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.65rem 1.35rem;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.04em;
-            transition: background 0.15s, color 0.15s;
-        }
-
-        .cta:hover,
-        .cta:focus {
-            background: var(--accent);
-            color: var(--paper);
-        }
-
-        .small {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-    <div class="veil" aria-hidden="true"></div>
-    <canvas id="bg" width="800" height="600" aria-hidden="true"></canvas>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="/physics/">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
 
-    <main>
-        <p class="series">Part I · foundations</p>
-        <h1>The architecture of linearity<br><span style="font-weight:400">and geometric dynamics</span></h1>
-        <p class="subtitle">a unified thread through computation, structure, geometry, and physics</p>
+        <header class="doc-header">
+            <h1>architecture of linearity &amp; geometric dynamics</h1>
+            <p class="doc-lead">part I — foundations · part II — geometric dynamics (draft outline)</p>
+        </header>
 
-        <p class="lead">
-            We begin where every smooth model begins: in the small, where nature is linear. The first chapter
-            installs the object in three projections—matrices, morphisms, and tangent maps—and lets you move
-            inside the first computational ledger while a companion field evolves in the margin.
-        </p>
+        <p class="doc-intro">This thread follows one cycle: compute → abstract → geometrize → dynamize → topologize.
+            Each chapter opens with an inevitability statement, then the computational ledger, structural abstraction,
+            geometric manifestation, and physical synthesis where it applies. Below, only chapter 1 is written out;
+            later entries are placeholders until the prose exists.</p>
 
-        <hr>
+        <hr class="doc-rule">
 
-        <p><strong>Chapter 1.</strong> The inevitability of the linear object — vectors, bases, elimination,
-            conjugation, dual pairings, Jacobians, and the cycle that repeats for the rest of the book.</p>
+        <nav class="toc" aria-label="book outline">
+            <h2 class="toc-title">part I · the architecture of linearity</h2>
+            <ol class="toc-list">
+                <li><a href="chapter-1/">chapter 1 — the inevitability of the linear object</a></li>
+                <li><span class="dim">chapter 2 — volume, alternation, exterior algebra</span></li>
+                <li><span class="dim">chapter 3 — metric structures</span></li>
+                <li><span class="dim">chapter 4 — dynamics, operators, eigenvalues, flows</span></li>
+                <li><span class="dim">chapter 5 — affine, projective, G-structures</span></li>
+                <li><span class="dim">chapter 6 — infinite dimensions</span></li>
+                <li><span class="dim">chapter 7 — part I synthesis</span></li>
+            </ol>
+            <h2 class="toc-title">part II · geometric dynamics</h2>
+            <ol class="toc-list" start="8">
+                <li><span class="dim">chapter 8 — introduction</span></li>
+                <li><span class="dim">chapter 9 — mechanics &amp; symplectic flows</span></li>
+                <li><span class="dim">chapter 10 — connections, curvature, gauge</span></li>
+                <li><span class="dim">chapter 11 — general relativity</span></li>
+                <li><span class="dim">chapter 12 — global topology</span></li>
+                <li><span class="dim">chapter 13 — part II synthesis</span></li>
+            </ol>
+        </nav>
 
-        <p><a class="cta" href="chapter-1/deck/linearity-ch01/">Begin chapter 1</a></p>
-
-        <p class="small">Further chapters will attach here in the same form as they are drafted.</p>
+        <footer class="doc-footer">
+            <p>chapter 1 is static HTML with KaTeX and small canvas widgets; symplect data ship as
+                <code>heat-line.json</code> beside the page.</p>
+        </footer>
     </main>
-
-    <script>
-        (function () {
-            var canvas = document.getElementById("bg");
-            if (!canvas || !canvas.getContext) return;
-            var ctx = canvas.getContext("2d");
-            var t0 = performance.now();
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener("resize", resize);
-            function frame(now) {
-                var t = (now - t0) * 0.00008;
-                var w = canvas.width, h = canvas.height;
-                ctx.clearRect(0, 0, w, h);
-                var cx = w * 0.5, cy = h * 0.42;
-                for (var r = 0; r < 10; r++) {
-                    ctx.beginPath();
-                    var base = 40 + r * 36 + 8 * Math.sin(t * 0.8 + r * 0.5);
-                    for (var i = 0; i <= 80; i++) {
-                        var u = (i / 80) * Math.PI * 2;
-                        var rad = base * (1 + 0.04 * Math.sin(3 * u + t + r * 0.3));
-                        var x = cx + rad * Math.cos(u + t * 0.05 * (r + 1));
-                        var y = cy + rad * Math.sin(u + t * 0.05 * (r + 1)) * 0.88;
-                        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-                    }
-                    ctx.closePath();
-                    ctx.strokeStyle = r % 2 === 0 ? "rgba(107,90,58,0.12)" : "rgba(28,25,20,0.06)";
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-                requestAnimationFrame(frame);
-            }
-            requestAnimationFrame(frame);
-        })();
-    </script>
 </body>
 
 </html>
