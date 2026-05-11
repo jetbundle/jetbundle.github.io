@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>physics / lab · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <span class="dim">physics / lab</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>physics / lab</h1>
+            <p class="doc-lead"><em>isolated experiments — not linked from the public physics index</em></p>
+            <p class="doc-intro">these URLs form their own small link graph for drafts: static lecture HTML, the
+                <strong>jetbundle-yt</strong> SvelteKit deck runner (Pyodide, canvas, symplect JSON fixtures), and a
+                zero-framework canvas probe that reads the same fixture for parity testing.</p>
+        </header>
+
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">clusters</h2>
+            <ol class="toc-list">
+                <li><a href="emergent-invariance/index.html">emergent invariance — static chapter spine (KaTeX)</a>
+                </li>
+                <li><a href="jetbundle-yt/index.html">jetbundle-yt — interactive decks (nested SvelteKit build)</a>
+                </li>
+                <li><a href="symplect-canvas/index.html">symplect-canvas — lightweight fixture visualizer (vanilla
+                        JS)</a></li>
+            </ol>
+        </nav>
+
+        <article class="doc-body">
+            <p class="doc-intro"><strong>deploy</strong>: the <code>jetbundle-yt</code> tree is produced by
+                <code>jetbundle-yt/scripts/publish_jetbundle_github_io.sh</code> (builds with
+                <code>JBYT_BASE=/physics/lab/jetbundle-yt</code> and copies <code>apps/jetbundle-yt-web/build/</code>
+                here). push <code>jetbundle.github.io</code> to refresh GitHub Pages.</p>
+        </article>
+
+        <footer class="doc-footer">
+            <p>lab · noindex · <a href="../">physics</a></p>
+        </footer>
+    </main>
+</body>
+
+</html>
