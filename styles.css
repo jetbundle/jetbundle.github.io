@@ -272,3 +272,145 @@ main.doc .doc-body strong {
 .toc-bonus a:hover {
   color: var(--link);
 }
+
+/* architecture-linearity book: spine rails + ledger tables */
+.spine-rail {
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 0 0.65rem 0.85rem;
+  border-left: 3px solid color-mix(in srgb, var(--link) 55%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+.spine-rail strong {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.spine-map {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.spine-map th,
+.spine-map td {
+  border: 1px solid #222;
+  padding: 0.5rem 0.55rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.spine-map th {
+  color: #e6e6e6;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.spine-map td {
+  color: var(--fg);
+}
+
+.spine-map td.dim {
+  color: var(--dim);
+  font-size: 0.85rem;
+}
+
+/* chapters: headings directly under .doc-body (no .doc-section wrapper) */
+main.doc .doc-body>h2 {
+  margin: 1.6rem 0 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--link);
+  letter-spacing: 0.04em;
+}
+
+main.doc .doc-body>h2:first-child {
+  margin-top: 0;
+}
+
+main.doc .doc-body>.spine-rail+h2 {
+  margin-top: 0.75rem;
+}
+
+main.doc .doc-body>h3 {
+  margin: 1.1rem 0 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--link-hover);
+  letter-spacing: 0.03em;
+}
+
+main.doc .doc-body>p,
+main.doc .doc-body>ul,
+main.doc .doc-body>ol {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--fg);
+}
+
+main.doc .doc-body>ul,
+main.doc .doc-body>ol {
+  padding-left: 1.35rem;
+}
+
+main.doc .doc-body li {
+  margin: 0.3rem 0;
+}
+
+/* architecture-linearity book landing */
+.architecture-landing {
+  position: relative;
+  z-index: 1;
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.architecture-landing__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.11;
+}
+
+.architecture-landing__bg canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.architecture-landing h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #e6e6e6;
+}
+
+.architecture-landing .doc-lead {
+  margin: 0 0 1.25rem;
+  color: var(--dim);
+  font-size: 0.95rem;
+}
+
+.architecture-landing .doc-intro {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.architecture-landing .toc-list {
+  margin: 1rem 0 0;
+  padding-left: 1.35rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}

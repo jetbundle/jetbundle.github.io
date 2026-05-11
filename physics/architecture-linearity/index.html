@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>architecture of linearity &amp; geometric dynamics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="architecture-landing__bg" aria-hidden="true">
+        <canvas id="architecture-bg-canvas" width="800" height="600"></canvas>
+    </div>
+
+    <main class="architecture-landing">
+        <nav class="subnav" aria-label="section">
+            <span class="dim">architecture of linearity</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../index.html">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <h1>the architecture of linearity &amp; geometric dynamics</h1>
+        <p class="doc-lead"><em>a unified synthesis of computation, structure, geometry, and physics — drafted as static
+                KaTeX chapters with optional jetbundle-yt + symplect fixtures</em></p>
+
+        <p class="doc-intro">this route is intentionally <strong>separate</strong> from the classical physics notes:
+            it follows the book outline below (finite operators → bundles → curvature → physical law). each chapter
+            opens with why the next move is inevitable, cycles through <strong>computational</strong>,
+            <strong>structural</strong>, <strong>geometric</strong>, and <strong>dynamical</strong> projections, and ends
+            with compressed ledgers. <strong>master problems</strong> live only at the end of each chapter page — never
+            scattered as homework bait mid-stream.</p>
+
+        <p class="doc-intro">reproducible build + import rules for html, <code>jetbundle-yt</code>, and
+            <code>symplect</code> live in
+            <a href="BOOK_BUILD_PROTOCOL.md"><code>BOOK_BUILD_PROTOCOL.md</code></a> (read this before extending the
+            site).</p>
+
+        <nav class="toc" aria-labelledby="toc-h">
+            <h2 id="toc-h" class="toc-title">start here</h2>
+            <ol class="toc-list">
+                <li><a href="chapter-01.html">chapter 1 — the inevitability of the linear object</a></li>
+                <li><a href="fixtures/jetbundle-yt/index.html">fixtures / jetbundle-yt</a> (after publish)</li>
+                <li><a href="fixtures/symplect-canvas/index.html">fixtures / canvas check</a></li>
+            </ol>
+        </nav>
+
+        <hr class="doc-rule">
+
+        <article class="doc-body">
+            <h2>book outline (compressed)</h2>
+            <p class="doc-intro"><strong>part I — architecture of linearity.</strong> ch.1 linear object; ch.2 exterior
+                algebra &amp; Stokes; ch.3 metrics &amp; signatures; ch.4 dynamics &amp; spectra; ch.5 affine / projective
+                / G-structures; ch.6 infinite dimensions; ch.7 part I synthesis.</p>
+            <p class="doc-intro"><strong>part II — geometric dynamics.</strong> ch.8 bridge; ch.9 mechanics; ch.10
+                connections &amp; gauge; ch.11 GR; ch.12 global topology; ch.13 synthesis.</p>
+            <p class="doc-intro">every major section keeps the cycle: <em>compute → abstract → geometrize →
+                    dynamize</em>, with invariant dictionaries at chapter ends and a neo-theoretical minimum problem bank
+                reserved for the closing section of each page.</p>
+        </article>
+
+        <footer class="doc-footer">
+            <p><a href="../index.html">physics</a> · <a href="BOOK_BUILD_PROTOCOL.md">protocol</a></p>
+        </footer>
+    </main>
+
+    <script>
+        (function () {
+            var canvas = document.getElementById('architecture-bg-canvas');
+            if (!canvas || !canvas.getContext) return;
+            var ctx = canvas.getContext('2d');
+            var t0 = performance.now();
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function frame(now) {
+                var t = (now - t0) * 0.00012;
+                var w = canvas.width, h = canvas.height;
+                ctx.clearRect(0, 0, w, h);
+                ctx.globalAlpha = 1;
+                ctx.lineWidth = 1;
+                var cx = w * 0.5, cy = h * 0.42;
+                var rings = 6;
+                for (var r = 0; r < rings; r++) {
+                    ctx.beginPath();
+                    var base = 40 + r * 55 + 12 * Math.sin(t + r * 0.7);
+                    for (var i = 0; i <= 120; i++) {
+                        var u = (i / 120) * Math.PI * 2;
+                        var wobble = 0.04 * Math.sin(3 * u + t * 2 + r);
+                        var rad = base * (1 + wobble);
+                        var x = cx + rad * Math.cos(u + t * 0.15 * (r + 1));
+                        var y = cy + rad * Math.sin(u + t * 0.15 * (r + 1)) * 0.88;
+                        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.strokeStyle = r % 2 === 0 ? 'rgba(174,147,236,0.35)' : 'rgba(231,181,151,0.28)';
+                    ctx.stroke();
+                }
+                ctx.strokeStyle = 'rgba(231,181,151,0.2)';
+                for (var g = 0; g < 14; g++) {
+                    var y = (g / 14) * h + 20 * Math.sin(t + g * 0.5);
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(w, y + 8 * Math.sin(t * 0.8 + g));
+                    ctx.stroke();
+                }
+                requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        })();
+    </script>
+</body>
+
+</html>

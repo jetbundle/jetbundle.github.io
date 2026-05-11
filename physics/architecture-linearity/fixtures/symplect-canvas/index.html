@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>canvas · fixtures · architecture of linearity · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .noir-panel {
+            background: color-mix(in srgb, var(--fg) 6%, var(--bg));
+            border: 1px solid color-mix(in srgb, var(--link) 35%, var(--bg));
+            border-radius: 2px;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            color: var(--fg);
+        }
+
+        .noir-canvas-wrap {
+            background: var(--bg);
+            border: 1px solid color-mix(in srgb, var(--link) 28%, var(--bg));
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        canvas.sym-canvas {
+            display: block;
+            width: 100%;
+            height: 280px;
+        }
+
+        input.sym-slider {
+            width: 100%;
+            max-width: 36rem;
+            margin-top: 0.75rem;
+            accent-color: var(--link-hover);
+        }
+
+        .sym-meta {
+            font-size: 0.85rem;
+            color: var(--dim);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="fixtures">
+            <a href="../../index.html">book</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">canvas</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../jetbundle-yt/index.html">jetbundle-yt</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../../index.html">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>symplect JSON · canvas check</h1>
+            <p class="doc-lead"><em>vanilla JS on the same fixture file the Svelte runner loads</em></p>
+            <p class="doc-intro">fetches <code>sav-state.json</code> from
+                <code>../jetbundle-yt/decks/emergent-invariance/</code>, draws snapshot fields with
+                <a href="/styles.css"><code>styles.css</code></a> tokens. see
+                <a href="../../BOOK_BUILD_PROTOCOL.md"><code>BOOK_BUILD_PROTOCOL.md</code></a> for how this fits the
+                three-surface pattern.</p>
+        </header>
+
+        <article class="doc-body">
+            <div class="noir-panel" id="status">loading fixture…</div>
+            <div class="noir-canvas-wrap">
+                <canvas class="sym-canvas" id="c" width="900" height="560" aria-label="scalar field preview"></canvas>
+            </div>
+            <label for="snap" class="sym-meta">snapshot index</label>
+            <input class="sym-slider" type="range" id="snap" min="0" max="0" value="0" disabled>
+            <p class="sym-meta" id="meta"></p>
+            <p class="doc-intro">compare with
+                <a href="../jetbundle-yt/deck/emergent-invariance/index.html">jetbundle-yt / emergent-invariance</a>
+                (SymplectViewer on slide 05).</p>
+        </article>
+
+        <footer class="doc-footer">
+            <p><a href="../../index.html">book</a> · fixtures · <a href="../../../index.html">physics</a></p>
+        </footer>
+    </main>
+
+    <script type="module">
+        function pick(name, fallback) {
+            const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+            return v || fallback;
+        }
+
+        const PALETTE = {
+            bg: pick('--bg', '#000000'),
+            panel: pick('--panel-fallback', '#0d0d10'),
+            gold: pick('--link-hover', '#e7b597'),
+            goldSoft: pick('--link', '#ae93ec'),
+            wireframe: pick('--wire-fallback', '#3d3a45'),
+            muted: pick('--dim', '#6a6a6a')
+        };
+
+        const fixtureUrl = new URL('../jetbundle-yt/decks/emergent-invariance/sav-state.json', import.meta.url);
+        const status = document.getElementById('status');
+        const canvas = document.getElementById('c');
+        const slider = document.getElementById('snap');
+        const meta = document.getElementById('meta');
+
+        function yMinMax(ys) {
+            let lo = ys[0], hi = ys[0];
+            for (let i = 1; i < ys.length; i++) {
+                const v = ys[i];
+                if (v < lo) lo = v;
+                if (v > hi) hi = v;
+            }
+            if (lo === hi) { hi = lo + 1e-9; }
+            return { lo, hi };
+        }
+
+        function draw(ys) {
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const W = canvas.parentElement.clientWidth;
+            const H = 280;
+            canvas.width = Math.floor(W * dpr);
+            canvas.height = Math.floor(H * dpr);
+            canvas.style.width = W + 'px';
+            canvas.style.height = H + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            const pad = 20;
+            ctx.fillStyle = PALETTE.bg;
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = PALETTE.panel;
+            ctx.fillRect(pad, pad, W - 2 * pad, H - 2 * pad);
+            ctx.strokeStyle = PALETTE.wireframe;
+            ctx.strokeRect(pad + 0.5, pad + 0.5, W - 2 * pad - 1, H - 2 * pad - 1);
+            const box = { x: pad + 10, y: pad + 10, w: W - 2 * pad - 20, h: H - 2 * pad - 20 };
+            const { lo, hi } = yMinMax(ys);
+            const n = ys.length;
+            ctx.strokeStyle = PALETTE.goldSoft;
+            ctx.globalAlpha = 0.35;
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            for (let i = 0; i < n; i++) {
+                const t = i / (n - 1);
+                const x = box.x + t * box.w;
+                const u = (ys[i] - lo) / (hi - lo);
+                const y = box.y + box.h - u * box.h;
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = PALETTE.gold;
+            ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            for (let i = 0; i < n; i++) {
+                const t = i / (n - 1);
+                const x = box.x + t * box.w;
+                const u = (ys[i] - lo) / (hi - lo);
+                const y = box.y + box.h - u * box.h;
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            ctx.fillStyle = PALETTE.muted;
+            ctx.font = "12px ui-monospace, monospace";
+            ctx.fillText(`min=${lo.toExponential(3)}  max=${hi.toExponential(3)}  n=${n}`, box.x, H - 6);
+        }
+
+        try {
+            const res = await fetch(fixtureUrl);
+            if (!res.ok) throw new Error(fixtureUrl.href + ' → ' + res.status);
+            const data = await res.json();
+            const snaps = data?.frontend?.snapshots;
+            if (!snaps || !Array.isArray(snaps.phi)) throw new Error('fixture missing frontend.snapshots.phi');
+            const nSnap = snaps.n ?? snaps.phi.length;
+            slider.max = String(Math.max(0, nSnap - 1));
+            slider.disabled = false;
+            slider.value = String(nSnap - 1);
+
+            function frame() {
+                const i = Number(slider.value);
+                const ys = snaps.phi[i];
+                draw(ys);
+                meta.textContent = `integrator: ${data.integrator?.name ?? '?'} · dt=${data.integrator?.dt ?? '?'} · snapshot ${i + 1}/${nSnap}`;
+            }
+
+            slider.addEventListener('input', frame);
+            window.addEventListener('resize', frame);
+            status.textContent = 'fixture loaded — scrub the slider.';
+            frame();
+        } catch (e) {
+            status.textContent = String(e);
+        }
+    </script>
+</body>
+
+</html>
