@@ -76,9 +76,8 @@
             <label for="snap" class="sym-meta">snapshot index</label>
             <input class="sym-slider" type="range" id="snap" min="0" max="0" value="0" disabled>
             <p class="sym-meta" id="meta"></p>
-            <p class="doc-intro">compare with
-                <a href="../jetbundle-yt/deck/emergent-invariance/index.html">jetbundle-yt / emergent-invariance</a>
-                (SymplectViewer on slide 05).</p>
+            <p class="doc-intro">same JSON as
+                <a href="../jetbundle-yt/deck/linearity-ch01/index.html">chapter 1 reader</a>.</p>
         </article>
 
         <footer class="doc-footer">
@@ -101,7 +100,7 @@
             muted: pick('--dim', '#6a6a6a')
         };
 
-        const fixtureUrl = new URL('../jetbundle-yt/decks/emergent-invariance/sav-state.json', import.meta.url);
+        const fixtureUrl = new URL('../jetbundle-yt/decks/linearity-ch01/heat-line.json', import.meta.url);
         const status = document.getElementById('status');
         const canvas = document.getElementById('c');
         const slider = document.getElementById('snap');
