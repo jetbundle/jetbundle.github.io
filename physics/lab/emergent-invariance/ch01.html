@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ch.1 symbolic structure · emergent invariance lab · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="lab">
+            <a href="index.html">lab hub</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ch.1</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>chapter 1 — symbolic structure, logic, and combinatorial compression</h1>
+            <p class="doc-lead"><em>foundations: encode astronomically large configuration spaces with precise symbolic
+                    tools</em></p>
+        </header>
+
+        <article class="doc-body">
+            <h2 id="sets">1.1 sets and sample space</h2>
+            <p>a <strong>set</strong> collects distinct objects (elements). the <strong>sample space</strong> $S$
+                (also $\Omega$) lists all microstates — one complete specification of the system. an <strong>event</strong>
+                is any subset $A \subseteq S$. a <strong>$\sigma$-algebra</strong> is a family of subsets closed under
+                complement and countable unions and intersections; it is the bookkeeping needed before measure and
+                probability become rigorous.</p>
+            <p><strong>example (two fair coins).</strong> $S=\{HH,HT,TH,TT\}$. the event “at least one heads” is
+                $\{HH,HT,TH\}$.</p>
+
+            <h2 id="maps">1.2 mappings and equivalence classes</h2>
+            <p>a <strong>mapping</strong> $f:S\to T$ assigns exactly one output in $T$ to each input in $S$.
+                <strong>permutations</strong> are bijections $S\to S$. when microstates are physically indistinguishable,
+                partition $S$ into <strong>equivalence classes</strong>; counting distinct classes is the statistical
+                weight $\Omega$.</p>
+
+            <h2 id="comb">1.3 combinatorics — counting microstates</h2>
+            <p>permutations of $n$ distinct objects: $n!$. combinations (“choose $k$ of $n$”):
+                $$\binom{n}{k}=\frac{n!}{k!(n-k)!}.$$</p>
+            <p><strong>multinomial coefficient.</strong> partition $N$ objects into groups of sizes $n_1,\dots,n_r$ with
+                $\sum_i n_i=N$. the number of distinct assignments is
+                $$\frac{N!}{n_1!\,n_2!\cdots n_r!}.$$ this is the multiplicity for distributing $N$ <em>labeled</em>
+                objects into labeled bins; indistinguishability modifies the story exactly through these factorial
+                corrections.</p>
+
+            <h2 id="induction">1.4 induction and summation</h2>
+            <p><strong>induction</strong> proves $P(n)$ for all integers $n\ge 1$: base case $P(1)$, then
+                $P(k)\Rightarrow P(k+1)$. <strong>summation</strong> $\sum_{k=1}^n a_k$ packages finite totals.
+                <strong>generating functions</strong> encode sequences as formal power series; the equilibrium partition
+                function $Z=\sum_i e^{-\beta E_i}$ is the flagship generating functional for thermodynamic
+                observables.</p>
+
+            <h2 id="stirling">1.5 stirling preview</h2>
+            <p>for large $N$, factorials dominate naive numerics. stirling’s leading logarithm is
+                $$\ln N! = \sum_{k=1}^N \ln k \approx N\ln N - N.$$ chapter 2 re-derives this picture by comparing the
+                sum to a Riemann integral of $\ln x$.</p>
+
+            <h2 id="expect">1.6 expectation and the partition function</h2>
+            <p>let $p(x)$ be probabilities over microstates with $\sum_x p(x)=1$. the <strong>expectation</strong> of a
+                quantity $f$ is $$\mathbb{E}[f]=\sum_x f(x)\,p(x).$$ the <strong>canonical partition function</strong>
+                (discrete spectrum) is
+                $$Z(\beta)=\sum_i e^{-\beta E_i}, \qquad \beta=\frac{1}{k_{\mathrm{B}}T}.$$
+                it normalizes the gibbs weights $p_i = Z^{-1} e^{-\beta E_i}$ and generates averages via derivatives of
+                $\ln Z$.</p>
+
+            <h2 id="bridge">1.7 bridge summary</h2>
+            <ul>
+                <li>discrete symbolic tools $\to$ continuous integrals (ch.2)</li>
+                <li>combinatorial constraints $\to$ symmetries and quotient spaces (ch.5)</li>
+                <li>sums and generating functions $\to$ $Z$ for the rest of the spine</li>
+            </ul>
+
+            <h2 id="problems">1.8 worked problems (condensed)</h2>
+            <p><strong>problem 1 (multinomial microstates).</strong> $N$ indistinguishable particles occupy energy bins
+                with occupancies $n_i$, $\sum_i n_i=N$. if particles were distinguishable there would be $N!$
+                assignments; dividing by $\prod_i n_i!$ removes permutations inside each bin, giving
+                $\Omega=\frac{N!}{\prod_i n_i!}$. fixing total energy $E=\sum_i n_i\varepsilon_i$ turns counting
+                $\Omega(E)$ into a constrained composition problem — the microcanonical weight.</p>
+            <p><strong>problem 2 (stirling via integrals — sketch).</strong> because $\ln x$ is increasing,
+                $$\int_1^N \ln x\,dx < \sum_{k=1}^N \ln k < \int_1^{N+1}\ln x\,dx.$$
+                with $\int \ln x\,dx = x\ln x - x$, both bounds behave as $N\ln N - N$ at leading order.</p>
+            <p><strong>problem 3 (two-state paramagnet).</strong> single spin energies $\pm \mu B$ give
+                $z=e^{\beta\mu B}+e^{-\beta\mu B}=2\cosh(\beta\mu B)$. $N$ independent spins factor:
+                $Z=z^N$. helmholtz free energy $F=-k_{\mathrm{B}}T\ln Z$; average energy
+                $\langle E\rangle=-\partial_\beta \ln Z = -N\mu B\tanh(\beta\mu B)$.</p>
+        </article>
+
+        <nav class="subnav" aria-label="chapter">
+            <span class="dim">ch.1</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="ch02.html">ch.2 →</a>
+        </nav>
+
+        <footer class="doc-footer">
+            <p><a href="index.html">lab hub</a> · isolated lab · noindex</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ch.6 statistical mechanics synthesis · emergent invariance lab · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="lab">
+            <a href="index.html">lab hub</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ch.6</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>chapter 6 — statistical mechanics: the synthesis</h1>
+            <p class="doc-lead"><em>Liouville, ensembles, $Z$, and fluctuations in one continuous narrative</em></p>
+        </header>
+
+        <article class="doc-body">
+            <h2 id="liouville">6.1 phase space and Liouville</h2>
+            <p>for $s$ degrees of freedom, phase space is $2s$-dimensional $(q,p)$. a distribution $\rho(q,p,t)$
+                evolves with hamiltonian flow. <strong>Liouville’s theorem:</strong> the flow preserves phase-space
+                volume; equivalently, the convective derivative of $\rho$ along trajectories vanishes for equilibrium
+                distributions that depend on constants of motion such as $H(q,p)$.</p>
+
+            <h2 id="micro">6.2 microcanonical ensemble</h2>
+            <p>isolated system at fixed energy: all accessible microstates on the energy shell (or in a thin shell)
+                carry equal probability. entropy
+                $$S=k_{\mathrm{B}}\ln \Delta\Gamma(E)$$
+                with $\Delta\Gamma$ counting states or measuring shell volume depending on the classical vs quantum
+                modeling choice.</p>
+
+            <h2 id="canon">6.3 canonical ensemble</h2>
+            <p>system weakly coupled to a heat bath at temperature $T$. maximizing entropy subject to fixed average
+                energy yields gibbs weights
+                $$p_n=\frac{1}{Z}e^{-\beta E_n},\qquad Z=\sum_n e^{-\beta E_n},\qquad \beta=\frac{1}{k_{\mathrm{B}}T}.$$
+                helmholtz free energy $F=-k_{\mathrm{B}}T\ln Z$ generates $U=\langle E\rangle$ via
+                $U=-\partial_\beta\ln Z$, and all standard thermodynamic potentials follow by Legendre transforms.</p>
+
+            <h2 id="classical">6.4 classical partition integral</h2>
+            <p>in the semiclassical counting convention,
+                $$Z=\frac{1}{(2\pi\hbar)^s}\int e^{-\beta H(q,p)}\,d^sq\,d^sp.$$
+                separable $H=K(p)+U(q)$ factorizes $Z=Z_K Z_U$.</p>
+
+            <h2 id="grand">6.5 grand canonical sketch</h2>
+            <p>exchange particles with a reservoir at chemical potential $\mu$:
+                $$\Xi=\sum_N e^{\beta\mu N}Z_N.$$
+                average particle number follows from $\partial_\mu\ln\Xi$.</p>
+
+            <h2 id="fluc">6.6 fluctuations and response</h2>
+            <p>near equilibrium, entropy expansions are quadratic (ch.3–4 link): small macroscopic deviations are
+                gaussian. energy fluctuations satisfy
+                $$\langle (\Delta E)^2\rangle = k_{\mathrm{B}}T^2 C_V$$
+                in the canonical ensemble, with $C_V=\partial U/\partial T$.</p>
+
+            <h2 id="limit">6.7 thermodynamic limit and equivalence</h2>
+            <p>as $N,V\to\infty$ with $N/V$ fixed, relative fluctuations $\sim N^{-1/2}$ collapse ensemble differences
+                between microcanonical and canonical descriptions of the same intensive thermodynamics.</p>
+
+            <h2 id="problems">6.8 worked problems (condensed)</h2>
+            <p><strong>ideal gas (classical, identical particles).</strong> single-particle partition function in
+                volume $V$:
+                $$z_1=\frac{V}{\lambda_{\mathrm{th}}^3},\qquad
+                \lambda_{\mathrm{th}}=\sqrt{\frac{2\pi\hbar^2}{mk_{\mathrm{B}}T}}.$$
+                for $N$ indistinguishable molecules, $Z=z_1^N/N!$. stirling on $\ln N!$ recovers extensive entropy — the
+                sackur–tetrode constant in three dimensions.</p>
+            <p><strong>energy variance shortcut.</strong> $\partial_\beta^2\ln Z = \langle E^2\rangle-\langle
+                E\rangle^2$.</p>
+        </article>
+
+        <nav class="subnav" aria-label="chapter">
+            <a href="ch05.html">← ch.5</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ch.6</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="ch07.html">ch.7 →</a>
+        </nav>
+
+        <footer class="doc-footer">
+            <p><a href="index.html">lab hub</a> · isolated lab · noindex</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>emergent invariance lab · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="lab">
+            <span class="dim">lab / emergent invariance</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>emergent invariance lab</h1>
+            <p class="doc-lead"><em>isolated test topology — not linked from the public physics hub</em></p>
+            <p class="doc-intro">this cluster is a <strong>draft curriculum spine</strong>: discrete symbolic counting,
+                continuous aggregation (Riemann → phase integrals), linear spectral structure, high-dimensional probability,
+                local-to-global topology, then statistical mechanics as one partition-function story. pages here only
+                link to each other and back to <code>physics/</code>; they are meant for iteration before any public
+                listing.</p>
+            <p class="doc-intro"><strong>symplect parallel (repo <code>symplect/</code>).</strong> the same design move
+                appears there in code: a <em>mathematical IR</em> encodes state and geometry, structure-preserving
+                integrators enforce invariants stepwise, and multiple renderers read one truth. this lab is the
+                <em>expository</em> analogue for equilibrium: encode microstates → compress sums to integrals →
+                diagonalize energy forms → read typical sets and $Z$.</p>
+            <p class="doc-intro"><strong>convention:</strong> inline and display math use the same KaTeX setup as
+                <code>physics/classical/index.html</code>. thermodynamic $\beta$ is $1/(k_{\mathrm{B}}T)$ where needed;
+                the notes sometimes write $\beta=1/T$ in reduced units.</p>
+        </header>
+
+        <nav class="toc" aria-labelledby="toc-heading">
+            <h2 id="toc-heading" class="toc-title">chapters (lab only)</h2>
+            <ol class="toc-list">
+                <li><a href="ch01.html">ch.1 — symbolic structure, logic, combinatorial compression</a></li>
+                <li><a href="ch02.html">ch.2 — continuous aggregation (integral as thermodynamic limit)</a></li>
+                <li><a href="ch03.html">ch.3 — linear structure and spectral invariance</a></li>
+                <li><a href="ch04.html">ch.4 — multivariable geometry and high-dimensional probability</a></li>
+                <li><a href="ch05.html">ch.5 — local-to-global structure (topology and groupoids)</a></li>
+                <li><a href="ch06.html">ch.6 — statistical mechanics synthesis ($Z$, ensembles, fluctuations)</a></li>
+                <li><a href="ch07.html">ch.7 — emergent invariance (conclusion and extensions)</a></li>
+            </ol>
+        </nav>
+
+        <hr class="doc-rule">
+
+        <article class="doc-body">
+            <p class="doc-intro">start at <a href="ch01.html">chapter 1</a>. each chapter ends with forward pointers
+                to the next file in this folder.</p>
+        </article>
+
+        <footer class="doc-footer">
+            <p>isolated lab · noindex · <a href="../../">physics</a></p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>

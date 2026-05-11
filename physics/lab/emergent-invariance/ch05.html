@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ch.5 topology and groupoids · emergent invariance lab · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="robots" content="noindex,nofollow">
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="lab">
+            <a href="index.html">lab hub</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ch.5</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>chapter 5 — local-to-global structure</h1>
+            <p class="doc-lead"><em>topology and groupoids: gluing admissible local moves into global phases</em></p>
+        </header>
+
+        <article class="doc-body">
+            <h2 id="top">5.1 topological spaces</h2>
+            <p>a <strong>topological space</strong> is a set $X$ with a distinguished family of <em>open</em> subsets:
+                $\emptyset,X$ are open; any union of opens is open; finite intersections of opens are open.
+                <strong>continuity</strong> means preimages of opens are open. <strong>connectedness</strong> forbids
+                splitting $X$ into two disjoint nonempty clopens; <strong>compactness</strong> asks that every open
+                cover admits a finite subcover (heine–borel: closed bounded sets in $\mathbb{R}^n$).</p>
+
+            <h2 id="mfld">5.2 manifolds</h2>
+            <p>locally modeled on $\mathbb{R}^n$ with consistent transition maps between charts. configuration spaces of
+                rigid bodies, circles of angles, and projective spaces of lines are standard examples.</p>
+
+            <h2 id="cat">5.3 categories and groupoids</h2>
+            <p>a <strong>category</strong> has objects, morphisms, associative composition, and identities. a
+                <strong>groupoid</strong> is a category where every morphism is invertible — partial symmetries with
+                composability only when endpoints match. the <strong>fundamental groupoid</strong> $\Pi(X)$ has
+                points as objects and homotopy classes of paths as morphisms; for nice spaces loops recover
+                $\pi_1(X,x_0)$.</p>
+
+            <h2 id="vank">5.4 van Kampen (groupoid viewpoint)</h2>
+            <p>when $X=U\cup V$ with $U,V$ open, global connectivity data is assembled from local groupoids on $U$, $V$,
+                and $U\cap V$ via a pushout — a precise “local rules $\to$ global structure” machine.</p>
+
+            <h2 id="orbit">5.5 group actions and quotients</h2>
+            <p>a group $G$ acting on $X$ produces <strong>orbits</strong> $G\cdot x$ and the <strong>orbit
+                    space</strong> $X/G$. gauge redundancies and indistinguishable particles are modeled by quotienting
+                a larger naive configuration space.</p>
+
+            <h2 id="phys">5.6 mapping to statistical physics (prose)</h2>
+            <ul>
+                <li>allowed local rearrangements $\leftrightarrow$ morphisms in a groupoid picture of dynamics</li>
+                <li>global equilibrium sectors $\leftrightarrow$ connected components / ergodic components</li>
+                <li>defect sectors (vortices, dislocations) $\leftrightarrow$ nontrivial homotopy classes</li>
+                <li>spontaneous symmetry breaking $\leftrightarrow$ degenerate ground-state manifolds and reduced
+                    effective descriptions on quotients</li>
+            </ul>
+
+            <h2 id="problems">5.7 worked problems (condensed)</h2>
+            <p><strong>$\pi_1(S^1)\cong\mathbb{Z}$.</strong> homotopy classes of loops are labeled by winding number;
+                composition adds windings — integer vortex charge in planar XY-type stories.</p>
+            <p><strong>periodic boundary conditions.</strong> identify $0\sim L$ on $[0,L]$ to obtain a circle: a
+                quotient topology enforcing translation identification.</p>
+            <p><strong>two identical particles on $\mathbb{R}$.</strong> swap symmetry identifies $(x_1,x_2)$ with
+                $(x_2,x_1)$; the reduced configuration space is a half-plane with boundary conventions depending on
+                bosonic vs fermionic statistics (phase factors on exchange paths in quantum lifts).</p>
+        </article>
+
+        <nav class="subnav" aria-label="chapter">
+            <a href="ch04.html">← ch.4</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ch.5</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="ch06.html">ch.6 →</a>
+        </nav>
+
+        <footer class="doc-footer">
+            <p><a href="index.html">lab hub</a> · isolated lab · noindex</p>
+        </footer>
+    </main>
+
+    <script>
+        function jetbundleRenderMath() {
+            if (typeof renderMathInElement === "undefined") return;
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                strict: false
+            });
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+
+</html>
