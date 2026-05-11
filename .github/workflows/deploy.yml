@@ -36,7 +36,7 @@ jobs:
           test -f _site/styles.css
           test -f _site/physics/index.html
           test -f _site/physics/architecture-linearity/index.html
-          test -f _site/physics/architecture-linearity/fixtures/jetbundle-yt/deck/linearity-ch01/index.html
+          test -f _site/physics/architecture-linearity/chapter-1/deck/linearity-ch01/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
