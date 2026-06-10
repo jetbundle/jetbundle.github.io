@@ -28,8 +28,10 @@ jobs:
           mkdir -p _site
           cp index.html styles.css _site/
           test -f .nojekyll && cp .nojekyll _site/
-          mkdir -p _site/physics
+          cp -a _style _site/_style
+          mkdir -p _site/physics _site/computation
           cp -a physics/. _site/physics/
+          cp -a computation/. _site/computation/
       - name: Verify output
         run: |
           test -f _site/index.html && test -s _site/index.html
@@ -37,8 +39,12 @@ jobs:
           test -f _site/physics/index.html
           test -f _site/physics/architecture-linearity/index.html
           test -f _site/physics/architecture-linearity/chapter-1/index.html
-          test -f _site/physics/architecture-linearity/chapter-1/heat-line.json
           test -f _site/physics/architecture-linearity/chapter-1/widgets.js
+          test -f _site/physics/architecture-linearity/chapter-1/VISUALIZATIONS.md
+          test -f _site/computation/index.html
+          test -f _site/computation/basics/index.html
+          test -f _site/computation/widgets/memory-explorer.js
+          test -f _site/_style/tokens.css
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

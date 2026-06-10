@@ -1,0 +1,511 @@
+#!/usr/bin/env python3
+"""Generate computation/basics/index.html. Run from repo root."""
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "computation" / "basics" / "index.html"
+
+W = {
+    "ca": """<div class="ca-stepper widget-panel">
+<p class="widget-label">rule 110 cellular automaton · <span class="ca-generation">t = 0</span></p>
+<canvas class="ca-canvas" width="512" height="256"></canvas>
+<p class="widget-controls">
+<button type="button" class="ca-step-btn widget-btn">next step</button>
+<button type="button" class="ca-run-btn widget-btn">run</button>
+<button type="button" class="ca-reset-btn widget-btn widget-btn--dim">reset</button>
+</p></div>""",
+    "machine_bits": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">microstate cardinality</p>
+<p class="dim">if \(|\mathcal{S}| = W\) microstates are accessible, specifying \(S_t\) exactly requires \(H = \log_2 W\) bits.</p>
+<p>this demo uses 64 cells: \(W \\leq 2^{64}\), hence \(H \\leq 64\) bits per time slice.</p>
+</div>""",
+    "entropy": """<div class="entropy-viz widget-panel">
+<p class="widget-label">shannon entropy · \(H = -\\sum_i p_i \\log_2 p_i\)</p>
+<p class="entropy-stats"><span class="entropy-bits">0.00 bits/char</span> <span class="entropy-max dim"></span></p>
+<div class="entropy-bar"><div class="entropy-bar-fill"></div></div>
+<textarea class="entropy-input" rows="2">AAAAAAAAAAAAAAAAAAAA</textarea>
+<p class="widget-controls">
+<button type="button" class="widget-btn" data-entropy-preset="AAAAAAAAAAAAAAAAAAAA">low entropy</button>
+<button type="button" class="widget-btn" data-entropy-preset="4A9C18D7E2B0F6318A4C2E9D1B7F305A8C4E2">high entropy</button>
+</p></div>""",
+    "landauer": """<div class="landauer-calc widget-panel">
+<p class="widget-label">landauer bound · \(E_{\\mathrm{erase}} \\geq N\\, k_B T \\ln 2\)</p>
+<p class="dim">bits erased: <span class="landauer-bits-label">1</span>
+<input type="range" class="landauer-bits" min="1" max="64" value="1">
+· temperature: <span class="landauer-temp-label">300</span> K
+<input type="range" class="landauer-temp" min="4" max="400" value="300"></p>
+<p>minimum heat dissipated: <strong class="landauer-out">computing…</strong></p>
+</div>""",
+    "memory": """<div class="memory-explorer widget-panel">
+<p class="widget-label">memory map · \(M : \\mathcal{A} \\to \\mathcal{V}\)</p>
+<pre class="code-panel code-panel--compact"><code class="memory-code-step">// step 0</code></pre>
+<table class="memory-table"><thead><tr><th>address</th><th>value</th><th>interpretation</th></tr></thead>
+<tbody class="memory-table-body"></tbody></table>
+<p class="widget-controls">
+<button type="button" class="memory-step-btn widget-btn">next step</button>
+<button type="button" class="memory-reset-btn widget-btn widget-btn--dim">reset</button>
+</p></div>""",
+    "latency": """<div class="memory-latency widget-panel">
+<p class="widget-label">memory hierarchy · latency and bandwidth</p>
+<p class="latency-list widget-controls"></p>
+<p>latency: <strong class="latency-value">0.3 ns</strong> · bandwidth: <strong class="latency-bw">~</strong></p>
+</div>""",
+    "phase": """<div class="state-phase widget-panel">
+<p class="widget-label">phase portrait · damped oscillator</p>
+<canvas class="phase-canvas" width="400" height="280"></canvas>
+<p class="phase-xv dim">x = 0.800, v = 0.000</p>
+<p class="widget-controls">
+<button type="button" class="phase-play-btn widget-btn">run</button>
+<button type="button" class="phase-step-btn widget-btn">one step</button>
+<button type="button" class="phase-reset-btn widget-btn widget-btn--dim">reset</button>
+</p></div>""",
+    "state_table": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">configuration coordinates by model</p>
+<table class="spine-map"><thead><tr><th>model</th><th>state \\(\\mathbf{x}\\)</th><th>dimension</th></tr></thead>
+<tbody>
+<tr><td>scalar ODE</td><td>\\(x \\in \\mathbb{R}\\)</td><td>1</td></tr>
+<tr><td>particle</td><td>\\((\\mathbf{x}, \\mathbf{v}) \\in \\mathbb{R}^6\\)</td><td>6</td></tr>
+<tr><td>N-body</td><td>\\((\\mathbf{x}_1,\\ldots,\\mathbf{v}_N)\\)</td><td>\\(6N\\)</td></tr>
+<tr><td>field on grid</td><td>\\(u_{i,j,k}\\)</td><td>\\(N_x N_y N_z\\)</td></tr>
+</tbody></table>
+</div>""",
+    "operator": """<div class="operator-iterate widget-panel">
+<p class="widget-label">logistic map · \(x_{n+1} = r x_n(1-x_n)\), \(r=3.9\)</p>
+<canvas class="op-canvas" width="400" height="200"></canvas>
+<p class="dim">step \(n\) = <span class="op-n">0</span> · value \(x_n\) = <span class="op-x">0.310000</span></p>
+<p class="widget-controls">
+<button type="button" class="op-apply-btn widget-btn">apply \\(\\mathcal{O}\\)</button>
+<button type="button" class="op-reset-btn widget-btn widget-btn--dim">reset</button>
+</p></div>""",
+    "compose": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">iterated composition</p>
+\\[
+\\mathcal{O}^n = \\underbrace{\\mathcal{O} \\circ \\cdots \\circ \\mathcal{O}}_{n\\ \\text{times}}
+\\]
+<pre class="code-panel"><code>for (int i = 0; i &lt; n; i++)
+    x = f(x);   // each iteration is one application of \\mathcal{O}</code></pre>
+</div>""",
+    "euler": """<div class="euler-stability widget-panel">
+<p class="widget-label">euler method · \(\dot{y}=-\lambda y\), \(\lambda=2\)</p>
+<p class="dim">stable when \(|1-\\lambda\\Delta t| &lt; 1\). gray curve: exact \(e^{-\\lambda t}\). purple: euler orbit.</p>
+<canvas class="euler-canvas" width="480" height="200"></canvas>
+<div class="euler-dt-row"><label>timestep Δt = <span class="euler-dt-label">0.10</span></label>
+<input type="range" class="euler-dt" min="0.05" max="1.5" step="0.05" value="0.1"></div>
+<p class="euler-status euler-status--ok">stable</p></div>""",
+    "verlet": """<div class="verlet-compare widget-panel">
+<p class="widget-label">euler versus verlet on harmonic motion</p>
+<p class="dim">gray: exact \(\cos(\omega t)\). colored: discrete trajectory. toggle the integrator.</p>
+<canvas class="verlet-canvas" width="400" height="160"></canvas>
+<p class="widget-controls"><button type="button" class="verlet-toggle widget-btn">Euler</button></p>
+</div>""",
+    "aos": """<div class="aos-soa widget-panel">
+<p class="widget-label">array of structures versus structure of arrays</p>
+<p class="aos-note dim"></p>
+<canvas class="aos-canvas"></canvas>
+<p class="widget-controls">
+<button type="button" class="widget-btn" data-aos-mode="aos">AoS</button>
+<button type="button" class="widget-btn" data-aos-mode="soa">SoA</button>
+<span class="dim">cache lines touched: <strong class="aos-miss-count">0</strong></span>
+</p></div>""",
+    "roofline": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">roofline bound</p>
+\\[
+t \\geq \\max\\!\\left(\\frac{\\mathrm{FLOPs}}{P_{\\mathrm{flop}}},\\; \\frac{\\mathrm{bytes}}{B_w}\\right)
+\\]
+<p class="dim">\(P_{\\mathrm{flop}}\) is peak arithmetic throughput. \(B_w\) is memory bandwidth. when the byte term dominates, rearranging data layout matters more than shaving operations.</p>
+</div>""",
+    "amdahl": """<div class="amdahl-viz widget-panel">
+<p class="widget-label">amdahl speedup · \(S(N) = \\dfrac{1}{(1-p) + p/N}\)</p>
+<p class="dim">parallel fraction \(p\): <span class="amdahl-p-label">80%</span>
+<input type="range" class="amdahl-p" min="10" max="99" value="80">
+· cores \(N\): <span class="amdahl-n-label">8</span>
+<input type="range" class="amdahl-n" min="1" max="64" value="8">
+· speedup: <strong class="amdahl-speedup">computing…</strong></p>
+<canvas class="amdahl-canvas" width="400" height="160"></canvas>
+</div>""",
+    "comm": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">communication time</p>
+\\[
+t_{\\mathrm{total}} \\geq t_{\\mathrm{comp}} + t_{\\mathrm{comm}}, \\qquad t_{\\mathrm{comm}} \\geq \\frac{B}{B_w}.
+\\]
+<p class="dim">\(B\) bytes moved across a link of bandwidth \(B_w\). good decomposition keeps \(B\) small.</p>
+</div>""",
+    "rep": r"""<div class="representations widget-panel">
+<p class="widget-label">representation map \(\rho\) · euler step in five charts</p>
+<p class="rep-lang-name">C</p>
+<div class="rep-tabs widget-controls">
+<button type="button" class="widget-btn widget-btn--active" data-rep-lang="c">C</button>
+<button type="button" class="widget-btn" data-rep-lang="cpp">C++</button>
+<button type="button" class="widget-btn" data-rep-lang="rust">Rust</button>
+<button type="button" class="widget-btn" data-rep-lang="python">Python</button>
+<button type="button" class="widget-btn" data-rep-lang="julia">Julia</button>
+</div>
+<pre class="code-panel"><code class="rep-code"></code></pre>
+</div>""",
+    "rho_table": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">what each representation emphasizes</p>
+<table class="spine-map"><thead><tr><th>chart</th><th>exposes to the programmer</th><th>static constraints</th></tr></thead>
+<tbody>
+<tr><td>C</td><td>addresses, raw bytes, explicit operators</td><td>manual memory safety</td></tr>
+<tr><td>Rust</td><td>ownership and borrowing of memory regions</td><td>no data races at compile time (when safe)</td></tr>
+<tr><td>Python</td><td>high level semantics over objects</td><td>hides \(M\); pays interpreter and allocation cost</td></tr>
+</tbody></table>
+</div>""",
+    "arch": """<div class="architecture-explorer widget-panel">
+<p class="widget-label">four questions per domain · click a row</p>
+<p class="arch-eq dim">select a domain below</p>
+<p class="arch-note dim"></p>
+<table class="spine-map"><thead><tr><th>domain</th><th>object</th><th>realization</th><th>representation</th><th>evolution</th></tr></thead>
+<tbody>
+<tr data-arch="memory"><td>memory</td><td>address space \(\mathcal{A}\)</td><td>RAM cells</td><td>bytes and pointers</td><td>mutation \(M(a)\\leftarrow v\)</td></tr>
+<tr data-arch="pdes"><td>PDEs</td><td>field \(u(x,t)\)</td><td>spatial grid</td><td>array \(u_{i,j,k}^n\)</td><td>timestep stencil</td></tr>
+<tr data-arch="star"><td>geometry</td><td>manifold / simplicial complex</td><td>mesh</td><td>sparse stiffness \(K\)</td><td>solve \(Ku=f\)</td></tr>
+<tr data-arch="alpha"><td>alpha engine</td><td>stochastic state \(S_t\)</td><td>market data feed</td><td>feature buffers</td><td>\(S_{t+1}=F(S_t,\\xi_t)\)</td></tr>
+</tbody></table>
+</div>""",
+    "arch_spine": """<div class="widget-panel widget-panel--compact">
+<p class="widget-label">shared architectural spine</p>
+\\[
+(\\text{State},\\ \\text{Operator},\\ \\text{Memory},\\ \\text{Evolution})
+\\]
+<p class="dim">the table above instantiates this tuple in four different scientific contexts.</p>
+</div>""",
+}
+
+SECTIONS = [
+    ("machines", "I · machines", ["ca", "machine_bits"], r"""
+<p>the starting point is not software. before one writes <code>for(int i=0;i&lt;n;i++)</code> one must ask what a computer actually is. a physicist would not memorize \(F=ma\) before mass, force, and acceleration are understood as objects in the world. programming is often taught in the opposite order: symbols first, ontology later. this section repairs that order.</p>
+
+<h3>definition · finite dynamical system</h3>
+<p><strong>Definition.</strong> A <strong>computing machine</strong> is a finite physical system characterized by two data:</p>
+<ul>
+<li>a <strong>state set</strong> \(\mathcal{S}\), the collection of all microscopically distinguishable configurations the hardware can occupy;</li>
+<li>a <strong>transition map</strong> \(F:\mathcal{S}\to\mathcal{S}\), the rule that advances the machine from one configuration to the next when a clock cycle completes.</li>
+</ul>
+<p>At discrete times \(t = 0,1,2,\ldots\), the <strong>microstate</strong> \(S_t \in \mathcal{S}\) evolves according to</p>
+\[
+S_{t+1} = F(S_t).
+\]
+<p>Here \(S_t\) is not an abstract variable. It encodes register contents, RAM cell voltages, cache tags, and whatever other physical degrees of freedom the architecture exposes. The cardinality \(W = |\mathcal{S}|\) is enormous but finite: a real machine has no access to continuous state space.</p>
+<p>A <strong>program</strong>, in this view, is not primarily a text file. It is a specification of the map \(F\) together with initial data \(S_0\). Source code is a human readable encoding of that specification; the executing process is the trajectory \(S_0, S_1, S_2, \ldots\) on the hardware.</p>
+
+<h3>the transition operator as the unit of execution</h3>
+<p>Modern CPUs implement \(F\) as a pipeline: fetch an instruction from memory, decode it, execute it, write results back to memory, then repeat. Each full pass is one application of \(F\). Cellular automata, molecular dynamics timesteps, finite difference stencils, and forward passes through neural networks are the same mathematical pattern at different scales: a state vector updated by a fixed rule.</p>
+
+<h3>elementary cellular automaton as a visible model</h3>
+<p>Rule 110 is a one dimensional cellular automaton. Label cells by \(i \in \mathbb{Z}/N\mathbb{Z}\) on a ring of length \(N\). Each cell holds a bit \(s_i \in \{0,1\}\). The global state is \(S_t = (s_0,\ldots,s_{N-1})\). A <strong>local rule</strong> \(R:\{0,1\}^3\to\{0,1\}\) reads the neighborhood \((s_{i-1},s_i,s_{i+1})\) and writes the next bit:</p>
+\[
+s_i' = R(s_{i-1}, s_i, s_{i+1}).
+\]
+<p>All cells update in parallel, producing \(S_{t+1} = F(S_t)\). Press <strong>next step</strong> below: you are watching the same state update pattern a CPU performs, only on a grid you can see.</p>
+"""),
+    ("information", "II · information", ["entropy", "landauer"], r"""
+<p>before arrays, loops, or syntax: what is <strong>information</strong>? In physics it is not a file size and not a database column. Information is <strong>distinguishability</strong> between physical states. If two microstates can be reliably told apart by measurement, they carry different information. If they cannot, they are the same information for all operational purposes.</p>
+
+<h3>definition · shannon entropy</h3>
+<p><strong>Definition.</strong> Suppose a system can occupy \(W\) microstates, all equally likely. The information required to specify which one it occupies is</p>
+\[
+H = \log_2 W \quad \text{(bits)}.
+\]
+<p>When microstates are not equally likely, assign probabilities \(p_i\) with \(\sum_i p_i = 1\). The <strong>Shannon entropy</strong> is</p>
+\[
+H = -\sum_i p_i \log_2 p_i.
+\]
+<p>This quantity measures average uncertainty before measurement. It satisfies \(0 \leq H \leq \log_2 W\), with equality on the upper bound only when every state is equally probable.</p>
+<p>Memory <strong>stores</strong> information by pinning the machine into one of finitely many configurations. Computation <strong>transforms</strong> information by applying \(F\). Communication <strong>transports</strong> information by copying correlated physical degrees of freedom across space.</p>
+
+<h3>compression and redundancy</h3>
+<p>A highly repetitive string such as <code>AAAAAAAAAAAAAAAAAAAA</code> has low entropy per character because the next symbol is predictable. A pseudorandom hex string has entropy near the per character maximum for its alphabet. <strong>Compression</strong> is the removal of redundancy: finding a shorter description of the same distinguishable content. Kolmogorov complexity formalizes the shortest program that generates a string; Shannon entropy lower bounds the expected code length for independent draws from a source.</p>
+
+<h3>landauer's principle</h3>
+<p>Information is physical. Erasing a bit means merging two previously distinguishable microstates into one. That reduction of distinguishability cannot be free. <strong>Landauer's principle</strong> states that erasing \(N\) bits at temperature \(T\) dissipates at least</p>
+\[
+E_{\mathrm{erase}} \geq N\, k_B T \ln 2
+\]
+<p>joules of heat into the environment, where \(k_B\) is Boltzmann's constant. Reversible computation can avoid erasure in principle; real machines pay this thermodynamic cost whenever they overwrite memory without retaining the old value elsewhere.</p>
+"""),
+    ("memory", "III · memory", ["memory", "latency"], r"""
+<p>memory is the section where computation usually becomes concrete. Most introductory courses hide memory behind interpreters and garbage collectors. Yet every algorithm executes on memory: the CPU reads operands from addresses, performs arithmetic, and writes results back. High performance computing begins with the question of where bytes live and how they move.</p>
+
+<h3>definition · address map</h3>
+<p><strong>Definition.</strong> <strong>Memory</strong> is a stable, addressable map</p>
+\[
+M : \mathcal{A} \to \mathcal{V}
+\]
+<p>from an <strong>address space</strong> \(\mathcal{A}\) (typically a finite set of integers) to a <strong>value space</strong> \(\mathcal{V}\) (for example the 256 possible byte values). RAM is a physical device that realizes such a map: each address names a cell; each cell holds a voltage pattern interpreted as a value.</p>
+<p>A <strong>pointer</strong> is a value \(p \in \mathcal{V}\) that is interpreted as an address. The C expression <code>*p</code> means: evaluate \(M(p)\) for a read, or update \(M(p)\leftarrow v\) for a write. There is no magic indirection layer in the physics; there is only a number stored in one cell that names another cell.</p>
+
+<h3>mutating state through pointers</h3>
+<pre class="code-panel"><code>int x = 5;        // write 5 into the cell named &amp;x
+int *p = &amp;x;      // store the address of x into the cell named p
+*p = 10;          // write 10 into the cell whose address is stored in p</code></pre>
+<p>After the final line, the variable name <code>x</code> is not required for the update to occur. The machine changed a physical degree of freedom at the address held in <code>p</code>. Use the explorer below to watch addresses, values, and interpretations change step by step.</p>
+
+<h3>memory hierarchy as a physical constraint</h3>
+<p>Not all addresses are equally fast to reach. Registers sit inside the processor core. L1 and L3 caches are small, fast SRAM banks. DRAM is large and slower. Storage is larger still and slower again. Each level trades <strong>latency</strong> \(\ell\) (time to first byte) against <strong>bandwidth</strong> \(B_w\) (bytes per second sustained). A useful lower bound on runtime is</p>
+\[
+t \geq \max\!\left(\frac{\mathrm{FLOPs}}{P_{\mathrm{flop}}},\; \frac{\mathrm{bytes moved}}{B_w}\right),
+\]
+<p>where \(P_{\mathrm{flop}}\) is peak floating point throughput. When the second term dominates, the program is <strong>memory bound</strong>: rearranging what you fetch matters more than shaving arithmetic.</p>
+"""),
+    ("state-spaces", "IV · state spaces", ["phase", "state_table"], r"""
+<p>students often meet functions and classes before they meet <strong>state</strong> as a geometric object. Yet a molecular dynamics simulation has state (positions and velocities of every atom). A compiler has state (symbol tables and intermediate representations). A neural network at inference has state (activations in each layer). Viewing all of these as points in a configuration space makes the common structure visible.</p>
+
+<h3>definition · configuration vector</h3>
+<p><strong>Definition.</strong> A <strong>state</strong> is a point in a configuration space \(\mathcal{X}\), written as a coordinate vector</p>
+\[
+\mathbf{x} = (x_1, x_2, \ldots, x_n) \in \mathcal{X}.
+\]
+<p>The integer \(n\) is the number of scalar degrees of freedom in the model. The full microstate of a modern machine has \(n\) on the order of billions when every bit of RAM and every register is counted. A scientific program does not manipulate all coordinates at once; it chooses a <strong>chart</strong>: a subset of coordinates that represent the modeled phenomenon.</p>
+
+<h3>examples across physics and software</h3>
+<p>A free particle in three dimensions has \(\mathbf{x} = (\mathbf{r}, \mathbf{v}) \in \mathbb{R}^6\). A rigid body adds orientation \(R \in SO(3)\) and angular velocity \(\boldsymbol{\omega}\). A field discretized on a grid replaces continuous \(u(x,y,z)\) with values \(u_{i,j,k}\) at mesh points. A control program for a robot tracks joint angles and velocities. In every case, evolution is a trajectory \(\mathbf{x}(t)\) or a discrete sequence \(\mathbf{x}_0,\mathbf{x}_1,\ldots\).</p>
+
+<h3>phase space of a damped oscillator</h3>
+<p>Consider the second order equation \(\ddot{x} + 2\gamma \dot{x} + \omega^2 x = 0\), written as a first order system in \((x,v)\) with \(v=\dot{x}\):</p>
+\[
+\dot{x} = v, \qquad \dot{v} = -\omega^2 x - 2\gamma v.
+\]
+<p>Here \(\omega\) is the natural frequency and \(\gamma\) is a damping coefficient. The pair \((x,v)\) is a point in <strong>phase space</strong>. The plot below integrates this system explicitly and draws the trajectory. State is not a metaphor here; it is a curve you can see.</p>
+"""),
+    ("operators", "V · operators", ["operator", "compose"], r"""
+<p>once a state space \(\mathcal{X}\) is fixed, dynamics require maps that carry one state to another. This is the central abstraction of computational science. A function call that updates memory, a compiler pass that rewrites an intermediate representation, and a numerical timestep are all instances of the same idea.</p>
+
+<h3>definition · operator on state space</h3>
+<p><strong>Definition.</strong> An <strong>operator</strong> is a map</p>
+\[
+\mathcal{O} : \mathcal{X} \to \mathcal{X}.
+\]
+<p>Given current state \(\mathbf{x}_n\), one application produces \(\mathbf{x}_{n+1} = \mathcal{O}(\mathbf{x}_n)\). If the map depends on parameters (time step, mesh spacing), write \(\mathcal{O}_{\Delta t}\) to make the dependence explicit.</p>
+
+<h3>iteration and the meaning of loops</h3>
+<p>Repeated application defines</p>
+\[
+\mathcal{O}^n = \underbrace{\mathcal{O} \circ \mathcal{O} \circ \cdots \circ \mathcal{O}}_{n\ \text{times}},
+\qquad \mathbf{x}_n = \mathcal{O}^n(\mathbf{x}_0).
+\]
+<p>A <code>for</code> loop in code is not merely syntactic convenience. It is the construction of \(\mathcal{O}^n\) by repeated evaluation. Stability, convergence, periodicity, and chaos are properties of the operator and its discretization, exactly as in classical mechanics.</p>
+
+<h3>the logistic map as a nonlinear example</h3>
+<p>The logistic map on the unit interval is</p>
+\[
+x_{n+1} = r\, x_n (1 - x_n),
+\]
+<p>with parameter \(r\). For \(r \approx 3.9\) the orbit is chaotic: two nearby initial conditions diverge rapidly even though the formula is deterministic. Press <strong>apply</strong> below to iterate the map and watch sensitivity to initial data emerge from a single line of arithmetic.</p>
+"""),
+    ("evolution", "VI · evolution", ["euler", "verlet"], r"""
+<p>numerical analysis and programming are not separate subjects for the working scientist. Both approximate the same object: continuous evolution \(\dot{\mathbf{x}} = f(\mathbf{x})\) by discrete updates compatible with finite memory and finite timestep.</p>
+
+<h3>definition · discrete evolution scheme</h3>
+<p><strong>Definition.</strong> A <strong>discrete evolution scheme</strong> is an operator \(T_{\Delta t}\) such that</p>
+\[
+\mathbf{x}_{n+1} = T_{\Delta t}(\mathbf{x}_n) \approx \mathbf{x}(t_n + \Delta t)
+\]
+<p>for a continuous trajectory solving \(\dot{\mathbf{x}} = f(\mathbf{x})\). The error of the scheme depends on \(\Delta t\) and on the smoothness of \(f\).</p>
+
+<h3>explicit euler method</h3>
+<p>The simplest explicit scheme for \(\dot{x} = f(x)\) is Euler's method:</p>
+\[
+x_{n+1} = x_n + \Delta t\, f(x_n).
+\]
+<p>In C this is literally <code>x += dt * f(x);</code>. The mathematics, the program, and the memory write to the cell holding <code>x</code> are the same action viewed in three languages.</p>
+
+<h3>stability as a property of the operator</h3>
+<p>Test the decay equation \(\dot{y} = -\lambda y\) with \(\lambda > 0\). Euler gives \(y_{n+1} = (1 - \lambda\Delta t)\, y_n\). The fixed point \(y=0\) is stable only if \(|1 - \lambda\Delta t| < 1\). Increase \(\Delta t\) in the demo below: when the inequality fails, the discrete orbit diverges even though the exact solution decays smoothly. That failure is not a bug in the compiler; it is the timestep violating the stability region of the scheme.</p>
+
+<h3>verlet integration for hamiltonian structure</h3>
+<p>For second order systems \(\ddot{x} = a(x)\), the velocity Verlet scheme reads</p>
+\[
+x_{n+1} = x_n + v_n \Delta t + \tfrac{1}{2} a_n \Delta t^2,
+\]
+\[
+v_{n+1} = v_n + \tfrac{1}{2}(a_n + a_{n+1})\Delta t.
+\]
+<p>Verlet is <strong>symplectic</strong> for Hamiltonian problems: it approximately preserves phase space volume and energy over long times, whereas Euler typically does not. Toggle integrators in the second demo to compare qualitative long time behavior on harmonic motion.</p>
+"""),
+    ("memory-geometry", "VII · memory geometry", ["aos", "roofline"], r"""
+<p class="warn-text">on modern hardware, moving information often costs more than transforming it.</p>
+<p>Two programs that perform the same floating point operation count can differ in wall clock time by large factors. The difference is not in the arithmetic; it is in <strong>memory geometry</strong>: how logical data structures are embedded into physical addresses, and therefore which cache lines and DRAM pages are touched when the operator runs.</p>
+
+<h3>definition · layout embedding</h3>
+<p><strong>Definition.</strong> Let \(\mathcal{L}\) be a logical data structure (an array of particles, a sparse matrix, a tree). A <strong>layout embedding</strong> is an injective map</p>
+\[
+\iota : \mathcal{L} \hookrightarrow \mathcal{A}^m
+\]
+<p>that places each logical element at a physical address in \(\mathcal{A}\). The geometry of \(\iota\) determines spatial and temporal locality when an operator scans the structure.</p>
+
+<h3>cache lines and locality</h3>
+<p>CPUs do not fetch individual bytes from DRAM. They fetch <strong>cache lines</strong>, typically 64 contiguous bytes. If your operator reads \(x_i\) and \(x_{i+1}\) lies in the same line, the second read is cheap. <strong>Spatial locality</strong> means nearby indices map to nearby addresses. <strong>Temporal locality</strong> means the same line is reused before eviction.</p>
+
+<h3>array of structures versus structure of arrays</h3>
+<p>In <strong>array of structures</strong> (AoS), each particle stores \((x_i,y_i,z_i)\) contiguously:</p>
+<p><code>struct Particle { float x, y, z; } p[N];</code></p>
+<p>In <strong>structure of arrays</strong> (SoA), coordinates of the same type are contiguous:</p>
+<p><code>float x[N], y[N], z[N];</code></p>
+<p>Summing all \(x_i\) touches every particle in AoS but strides across unrelated \(y_i,z_i\) fields, loading cache lines that are only partly used. SoA loads lines packed with useful \(x_i\) values. The operation count is identical; the bytes moved are not.</p>
+"""),
+    ("parallelism", "VIII · parallelism", ["amdahl", "comm"], r"""
+<p>parallelism is no longer an exotic topic reserved for supercomputers. A laptop CPU contains multiple cores with SIMD units; many machines also include a GPU. Teaching computation as purely sequential does not match the hardware students actually own.</p>
+
+<h3>definition · concurrent operators on subspaces</h3>
+<p><strong>Definition.</strong> <strong>Parallel computation</strong> applies operators \(\mathcal{O}_i\) simultaneously on subspaces \(\mathcal{X}_i \subset \mathcal{X}\), with <strong>synchronization</strong> wherever two subspaces overlap (shared memory, halos in grid codes, locks on aliased data). The global evolution is coherent only if these interfaces are handled consistently.</p>
+
+<h3>amdahl's law</h3>
+<p>Suppose a fraction \(p\) of work parallelizes perfectly across \(N\) cores, and the remaining fraction \(1-p\) must run serially. <strong>Amdahl's law</strong> gives speedup</p>
+\[
+S(N) = \frac{1}{(1-p) + p/N}.
+\]
+<p>As \(N \to \infty\), speedup approaches \(1/(1-p)\). A tiny serial section caps scalability no matter how many cores you buy. The slider below plots \(S(N)\) as a function of core count for your chosen \(p\).</p>
+
+<h3>communication as a time floor</h3>
+<p>Moving \(B\) bytes between cores or between host and device requires time at least \(t_{\mathrm{comm}} \geq B/B_w\), where \(B_w\) is link bandwidth. Total time satisfies</p>
+\[
+t_{\mathrm{total}} \geq t_{\mathrm{comp}} + t_{\mathrm{comm}}.
+\]
+<p>Good parallel algorithms minimize \(B\) by keeping data local. <strong>False sharing</strong> occurs when two cores write different variables that happen to live in the same cache line, forcing expensive coherence traffic even though the logical variables are unrelated.</p>
+"""),
+    ("representations", "IX · representations", ["rep", "rho_table"], r"""
+<p>programming languages are often mistaken for the subject of computer science itself. They are not. They are <strong>representations</strong>: coordinate charts that map human readable syntax onto the same underlying machine objects (state, operator, memory layout).</p>
+
+<h3>definition · representation map</h3>
+<p><strong>Definition.</strong> A <strong>programming language</strong> is a representation map</p>
+\[
+\rho : \text{syntax} \to (\text{State},\ \text{Operator},\ \text{Memory geometry})
+\]
+<p>that assigns program text to sequences of machine operations and data layouts. Changing \(\rho\) (switching from C to Python to Rust) does not change the physics of the silicon. It changes which aspects are visible, which are checked at compile time, and which are deferred to runtime.</p>
+
+<h3>the same euler step in five charts</h3>
+<p>Consider explicit Euler for \(\dot{x} = -\lambda x\):</p>
+\[
+x_{n+1} = x_n + \Delta t\,(-\lambda x_n).
+\]
+<p>The update is the same operator in every language below. C exposes the memory address of <code>x</code>. Rust tracks ownership of the binding. Python hides addresses but still executes loads and stores on the interpreter's representation of <code>x</code>. Toggle the tabs and read the identical numerical kernel through different coordinate systems.</p>
+"""),
+    ("scientific-architectures", "X · scientific architectures", ["arch", "arch_spine"], r"""
+<p>computational fluid dynamics, finite element analysis, molecular dynamics, climate modeling, and quantitative finance are often taught as unrelated courses with unrelated software stacks. Practitioners frequently discover that the same architectural spine appears in each domain.</p>
+
+<h3>the four question template</h3>
+<p>Every serious system can be interrogated with four questions:</p>
+<ol>
+<li>What is the <strong>mathematical object</strong> being evolved?</li>
+<li>What is its <strong>physical realization</strong> in the laboratory or the world?</li>
+<li>What is the <strong>machine representation</strong> (arrays, sparse matrices, feature buffers)?</li>
+<li>What <strong>operator</strong> advances the state by one timestep or iteration?</li>
+</ol>
+
+<h3>one spine, many domains</h3>
+\[
+(\text{State},\ \text{Operator},\ \text{Memory},\ \text{Evolution}).
+\]
+<p>Click a row in the table below. The evolution law displayed above the table is the operator for that domain. Memory is the address map holding the representation. State is the coordinate vector being evolved. The details change; the decomposition does not.</p>
+"""),
+    ("closing", "closing", [], r"""
+<p>conventional curricula often begin with syntax: variables, loops, objects, frameworks. a physics first view begins earlier, with the machine as a finite dynamical system, information as distinguishability, memory as an address map, and programs as operators that evolve state under physical constraints.</p>
+<p>that ordering is not nostalgia for assembly language. it is the decomposition mature computational scientists use when debugging performance, stability, and correctness at scale. languages enter late because they are charts on a fixed object, not the object itself.</p>
+<p class="invariant-block">Computation is the controlled evolution of physical information bearing states under fixed operators acting on finite memory geometries.</p>
+"""),
+]
+
+HEADER = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>basics of computation · JETBUNDLE</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="doc">
+<nav class="subnav" aria-label="section">
+<a href="../">computation</a>
+<span class="subnav-sep" aria-hidden="true">·</span>
+<a href="/physics/">physics</a>
+<span class="subnav-sep" aria-hidden="true">·</span>
+<a href="/">../</a>
+</nav>
+<header class="doc-header">
+<h1>basics of computation</h1>
+<p class="doc-lead invariant">formal yet physics first. computation is the controlled evolution of physical information bearing states under fixed operators acting on finite memory geometries.</p>
+<p class="doc-intro">i formalize computation the way a physicist builds mechanics: start from objects that exist on the bench (machines, memory, distinguishable states), then derive syntax, not the reverse. this page is a deliberately critical reordering of how the subject is usually taught, written to be read as a single treatise rather than a tutorial index.</p>
+<p class="doc-intro fg">the strongest claim here is not that computer science is wrong. many criticisms of the field itself are unfair. what is often justified is criticism of the <strong>educational decomposition</strong>: syntax before ontology, languages mistaken for the subject itself, memory hidden until late, state buried inside objects, hardware treated as optional, performance framed as a late optimization pass, numerical methods isolated from programming, parallelism deferred as advanced, scientific computing fragmented into unrelated silos. that stack is historically contingent, not conceptually necessary. mature practitioners reason from the tuple \((\text{State}, \text{Operator}, \text{Memory}, \text{Evolution})\). everything else, including C, Rust, CUDA, climate models, and geometry engines, is a projection of the same structure.</p>
+<p class="doc-intro dim">the risk is philosophy without contact. every section below states definitions in plain language, introduces the symbols before using them, and pairs the prose with at least one interactive demonstration you can run on this page: mathematical object, physical realization, machine representation, and evolution you can watch.</p>
+</header>
+<nav class="toc" aria-labelledby="toc-heading">
+<h2 id="toc-heading" class="toc-title">contents</h2>
+<ol class="toc-list">
+<li><a href="#machines">I · machines</a></li>
+<li><a href="#information">II · information</a></li>
+<li><a href="#memory">III · memory</a></li>
+<li><a href="#state-spaces">IV · state spaces</a></li>
+<li><a href="#operators">V · operators</a></li>
+<li><a href="#evolution">VI · evolution</a></li>
+<li><a href="#memory-geometry">VII · memory geometry</a></li>
+<li><a href="#parallelism">VIII · parallelism</a></li>
+<li><a href="#representations">IX · representations</a></li>
+<li><a href="#scientific-architectures">X · scientific architectures</a></li>
+<li><a href="#closing">closing</a></li>
+</ol>
+</nav>
+<hr class="doc-rule">
+<article class="doc-body">
+"""
+
+FOOTER = r"""
+</article>
+<footer class="doc-footer doc-footer--egg">
+<p>this page obeys \(S_{t+1} = F(S_t)\): reload the browser and you reinitialize \(S_0\). if you stepped the memory explorer before finishing section III, you already understand pointers more concretely than most syllabi require. jetbundle · prolonging higher order intelligence · <span id="footer-year"></span></p>
+</footer>
+</main>
+<script src="../widgets/ca-stepper.js" defer></script>
+<script src="../widgets/entropy-viz.js" defer></script>
+<script src="../widgets/landauer-calc.js" defer></script>
+<script src="../widgets/memory-explorer.js" defer></script>
+<script src="../widgets/memory-latency.js" defer></script>
+<script src="../widgets/state-phase.js" defer></script>
+<script src="../widgets/operator-iterate.js" defer></script>
+<script src="../widgets/euler-stability.js" defer></script>
+<script src="../widgets/verlet-compare.js" defer></script>
+<script src="../widgets/aos-soa.js" defer></script>
+<script src="../widgets/amdahl-viz.js" defer></script>
+<script src="../widgets/representations.js" defer></script>
+<script src="../widgets/architecture-explorer.js" defer></script>
+<script>
+document.getElementById("footer-year").textContent = new Date().getFullYear();
+function jetbundleRenderMath() {
+  if (typeof renderMathInElement === "undefined") return;
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "\\[", right: "\\]", display: true },
+      { left: "\\(", right: "\\)", display: false }
+    ],
+    throwOnError: false,
+    strict: false
+  });
+}
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="jetbundleRenderMath()"></script>
+</body>
+</html>
+"""
+
+
+def main():
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    parts = [HEADER]
+    for sid, title, widget_keys, prose in SECTIONS:
+        block = f'<section id="{sid}" class="doc-section">\n<h2>{title}</h2>\n{prose.strip()}\n'
+        for key in widget_keys:
+            block += W[key] + "\n"
+        block += "</section>\n"
+        parts.append(block)
+    parts.append(FOOTER)
+    OUT.write_text("".join(parts), encoding="utf-8")
+    print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")
+
+
+if __name__ == "__main__":
+    main()
