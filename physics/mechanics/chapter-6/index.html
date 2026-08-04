@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>symplectic techniques · mechanics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">mechanics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">symplectic techniques</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>6 · symplectic techniques</h1>
+            <p class="doc-lead"><em>hamiltonian geometry, conservation, integrability, and optics</em></p>
+            <p class="doc-intro">Symplectic geometry furnishes the intrinsic language of Hamiltonian mechanics. Once the
+                phase space is recognised as a manifold equipped with a closed, non-degenerate two-form, the entire
+                apparatus of classical dynamics (conservation laws, integrability, perturbation theory, and reduction)
+                acquires a coordinate-free geometric meaning. The same structure reappears, almost unchanged, in the
+                linear and wave theories of optics, revealing a profound unity between mechanics and the propagation of
+                light.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="forms">
+                <h2>differential forms, exterior differentiation and stokes’ theorem</h2>
+                <p>A differential $k$-form $\alpha$ on a manifold $M$ is a smooth skew-symmetric multilinear field on
+                    the tangent spaces. Exterior differentiation
+                    $$
+                    d:\Omega^k(M)\to\Omega^{k+1}(M)
+                    $$
+                    satisfies $d^2=0$ and is uniquely characterised by its action on functions and by the graded Leibniz
+                    rule. Stokes’ theorem
+                    $$
+                    \int_M d\alpha=\int_{\partial M}\alpha
+                    $$
+                    links the local calculus of forms to global topological invariants and supplies the analytic
+                    foundation for all integral conservation laws that follow.</p>
+
+                <p><strong>definition (differential $k$-form).</strong> a smooth section of
+                    $\bigwedge^k T^*M$ is a differential $k$-form. in local coordinates,
+                    $$
+                    \alpha=\sum_{i_1&lt;\cdots&lt;i_k}\alpha_{i_1\dots i_k}(x)\,dx^{i_1}\wedge\cdots\wedge dx^{i_k}.
+                    $$</p>
+
+                <p><strong>definition (exterior derivative on functions and products).</strong> on functions one sets
+                    $df(X)=X(f)$. the operator $d$ is required to satisfy
+                    $d(\alpha\wedge\beta)=d\alpha\wedge\beta+(-1)^{\deg\alpha}\alpha\wedge d\beta$ and to be local. these
+                    axioms determine $d$ uniquely on all forms.</p>
+
+                <p><strong>theorem ($d^2=0$).</strong> for every smooth form $\alpha$, $d(d\alpha)=0$.</p>
+
+                <p><strong>proof.</strong> the claim is local. for a function $f$,
+                    $$
+                    d(df)=\sum_{i,j}\partial_i\partial_j f\,dx^i\wedge dx^j=0
+                    $$
+                    because mixed partials commute and $dx^i\wedge dx^j$ is skew. if the identity holds for $\alpha$ and
+                    $\beta$, the Leibniz rule yields
+                    $$
+                    d^2(\alpha\wedge\beta)
+                    =d^2\alpha\wedge\beta
+                    +(-1)^{\deg\alpha}d\alpha\wedge d\beta
+                    +(-1)^{\deg\alpha}d\alpha\wedge d\beta
+                    +\alpha\wedge d^2\beta
+                    =0
+                    $$
+                    because the cross terms cancel and $d^2\alpha=d^2\beta=0$ by induction on form degree (every form is
+                    locally a sum of products $f\,dx^{i_1}\wedge\cdots\wedge dx^{i_k}$). $\square$</p>
+
+                <p><strong>theorem (stokes).</strong> if $M$ is an oriented manifold with boundary and $\alpha$ is a
+                    compactly supported $(n-1)$-form (or $M$ is compact), then
+                    $$
+                    \int_M d\alpha=\int_{\partial M}\alpha.
+                    $$</p>
+
+                <p><strong>proof (reduction to the standard half-space).</strong> by partitions of unity it is enough to
+                    treat forms supported in a single positively oriented chart. after a coordinate change the claim is
+                    the classical Stokes formula on a half-ball in $\mathbb{R}^n$, proved by integrating the definition of
+                    $d$ coordinatewise and using the fundamental theorem of calculus in each variable (boundary terms
+                    survive only on $\partial M$). $\square$</p>
+            </section>
+
+            <section class="doc-section" id="hamilton">
+                <h2>symplectic manifolds and hamiltonian vector fields</h2>
+                <p>A symplectic manifold is a pair $(M,\omega)$ where $\omega$ is a closed, non-degenerate two-form.
+                    Non-degeneracy means that the map
+                    $$
+                    v\mapsto\iota_v\omega
+                    $$
+                    is an isomorphism between vector fields and one-forms. Given a smooth function $H$ (the Hamiltonian),
+                    the corresponding Hamiltonian vector field $X_H$ is defined by
+                    $$
+                    \iota_{X_H}\omega=-dH.
+                    $$
+                    The flow $\varphi_t$ of $X_H$ automatically preserves $\omega$ (Cartan’s magic formula and
+                    $d\omega=0$), and is therefore a one-parameter group of symplectomorphisms. This is the geometric
+                    content of Hamilton’s equations.</p>
+
+                <p><strong>definition (symplectic manifold).</strong> a pair $(M,\omega)$ with $\omega\in\Omega^2(M)$
+                    closed ($d\omega=0$) and non-degenerate: for each $x$, if $\omega_x(v,w)=0$ for all $w$ then
+                    $v=0$. necessarily $\dim M$ is even.</p>
+
+                <p><strong>definition (hamiltonian vector field).</strong> for $H\in C^\infty(M)$, the unique field
+                    $X_H$ satisfying $\iota_{X_H}\omega=-dH$ (equivalently $\omega(X_H,\cdot)=-dH$) is the Hamiltonian
+                    vector field of $H$.</p>
+
+                <p><strong>theorem (hamiltonian flow is symplectic).</strong> if $\varphi_t$ is the (local) flow of
+                    $X_H$, then $\varphi_t^*\omega=\omega$ wherever the flow is defined.</p>
+
+                <p><strong>proof.</strong> Cartan’s magic formula reads
+                    $\mathcal{L}_X=d\,\iota_X+\iota_X\,d$ for the Lie derivative of forms. thus
+                    $$
+                    \frac{d}{dt}\varphi_t^*\omega
+                    =\varphi_t^*(\mathcal{L}_{X_H}\omega)
+                    =\varphi_t^*\bigl(d\iota_{X_H}\omega+\iota_{X_H}d\omega\bigr).
+                    $$
+                    now $d\omega=0$ and $\iota_{X_H}\omega=-dH$, so
+                    $d\iota_{X_H}\omega=-d(dH)=0$. therefore $\frac{d}{dt}\varphi_t^*\omega=0$, and
+                    $\varphi_0^*\omega=\omega$ yields $\varphi_t^*\omega=\omega$. $\square$</p>
+
+                <p><strong>remark (hamilton equations in Darboux coordinates).</strong> when
+                    $\omega=\sum_i dp_i\wedge dq^i$ the defining relation $\iota_{X_H}\omega=-dH$ becomes
+                    $\dot q=\partial H/\partial p$, $\dot p=-\partial H/\partial q$.</p>
+            </section>
+
+            <section class="doc-section" id="poisson">
+                <h2>liouville, poisson brackets and the lie algebra of hamiltonian fields</h2>
+                <p>Because a symplectomorphism preserves $\omega$, it preserves the Liouville volume form
+                    $\omega^n/n!$. Consequently every Hamiltonian flow is incompressible (Liouville’s theorem). The
+                    Poisson bracket
+                    $$
+                    \{F,G\}=\omega(X_F,X_G)
+                    $$
+                    turns the space of smooth functions into a Lie algebra, and the map $H\mapsto X_H$ is a Lie-algebra
+                    anti-homomorphism into the Lie algebra of vector fields. Vanishing of the Poisson bracket is the
+                    geometric expression of the conservation of $G$ along the flow of $H$.</p>
+
+                <p><strong>definition (liouville volume).</strong> on a $2n$-dimensional symplectic manifold the volume
+                    form $\mu=\omega^n/n!$ is nowhere zero and orientation-compatible with any Darboux chart.</p>
+
+                <p><strong>theorem (liouville).</strong> if $\varphi_t$ is a Hamiltonian flow, then
+                    $\varphi_t^*\mu=\mu$. in particular the flow is volume-preserving.</p>
+
+                <p><strong>proof.</strong> pullback is a ring homomorphism, so
+                    $\varphi_t^*(\omega^n)=(\varphi_t^*\omega)^n=\omega^n$ by the previous theorem. dividing by $n!$
+                    gives $\varphi_t^*\mu=\mu$. $\square$</p>
+
+                <p><strong>definition (poisson bracket).</strong>
+                    $\{F,G\}:=\omega(X_F,X_G)=-X_F(G)=X_G(F)$.</p>
+
+                <p><strong>theorem (poisson bracket is a lie algebra).</strong> $\{\cdot,\cdot\}$ is bilinear,
+                    skew-symmetric, and satisfies the Jacobi identity. moreover
+                    $$
+                    X_{\{F,G\}}=-[X_F,X_G]
+                    $$
+                    (anti-homomorphism of Lie algebras). in particular $G$ is constant along the flow of $X_H$ if and
+                    only if $\{H,G\}=0$.</p>
+
+                <p><strong>proof.</strong> bilinearity and skew-symmetry are immediate from those of $\omega$. the
+                    identity $X_F(G)=dG(X_F)=-\omega(X_G,X_F)=\omega(X_F,X_G)=\{F,G\}$ gives
+                    $\{H,G\}=X_H(G)$, so conservation along $X_H$ is exactly $\{H,G\}=0$. to compare brackets of fields,
+                    evaluate for an arbitrary test function $K$:
+                    $$
+                    [X_F,X_G](K)
+                    =X_F(X_G K)-X_G(X_F K)
+                    =X_F(\{G,K\})-X_G(\{F,K\})
+                    =\{\{G,K\},F\}-\{\{F,K\},G\}.
+                    $$
+                    the Jacobi identity for functions (expand $\mathrm{Jac}(F,G,K)=0$ identically, a local coordinate
+                    computation or the closedness of $\omega$ via Cartan) rearranges this as
+                    $-\{\{F,G\},K\}=-X_{\{F,G\}}(K)$. hence $[X_F,X_G]=-X_{\{F,G\}}$. Jacobi for vector fields then
+                    yields Jacobi for $\{\cdot,\cdot\}$. $\square$</p>
+
+                <p><strong>theorem (energy conservation).</strong> $\{H,H\}=0$, so $H$ is constant along its own
+                    Hamiltonian flow.</p>
+
+                <p><strong>proof.</strong> skew-symmetry of $\{\cdot,\cdot\}$. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="hj">
+                <h2>poincare-cartan invariant, hamilton-jacobi and generating functions</h2>
+                <p>On the extended phase space the one-form
+                    $$
+                    \theta=p_i\,dq^i-H\,dt
+                    $$
+                    (the Poincare-Cartan form) has exterior derivative whose kernel defines the equations of motion. Its
+                    integral over any closed curve is invariant under the flow. A generating function $S(q,P,t)$ produces
+                    a canonical transformation via
+                    $$
+                    p=\partial S/\partial q,\qquad
+                    Q=\partial S/\partial P,\qquad
+                    K=H+\partial S/\partial t.
+                    $$
+                    When the new Hamiltonian $K$ vanishes, $S$ satisfies the Hamilton-Jacobi equation
+                    $$
+                    \partial S/\partial t+H(q,\partial S/\partial q,t)=0,
+                    $$
+                    reducing integration of the flow to the determination of a complete integral of a first-order PDE.</p>
+
+                <p><strong>definition (poincare-cartan form).</strong> on $T^*Q\times\mathbb{R}$ with coordinates
+                    $(q,p,t)$ and Hamiltonian $H(q,p,t)$, set $\Theta=p_i\,dq^i-H\,dt$.</p>
+
+                <p><strong>theorem (characteristic equations from $d\Theta$).</strong> a curve
+                    $\gamma(s)=(q(s),p(s),t(s))$ is an integral curve of the characteristic distribution of $d\Theta$
+                    (annihilator of maximal rank of $d\Theta$) precisely when, after reparametrisation with
+                    $t$ as time, Hamilton’s equations hold for $(q,p)$.</p>
+
+                <p><strong>proof.</strong> compute
+                    $$
+                    d\Theta
+                    =dp_i\wedge dq^i
+                    -dH\wedge dt
+                    =\bigl(dp_i+\partial_{q^i}H\,dt\bigr)\wedge dq^i
+                    -\partial_{p_i}H\,dp_i\wedge dt
+                    $$
+                    (summation implied). imposing $\iota_{\dot\gamma}d\Theta=0$ with $\dot t\neq 0$ and reading
+                    coefficients of the basis forms yields $\dot q=\partial_p H$, $\dot p=-\partial_q H$, which is Hamilton’s
+                    system. $\square$</p>
+
+                <p><strong>remark (generating functions).</strong> a function $S(q,P,t)$ with
+                    $\det\partial^2 S/\partial q\,\partial P\neq 0$ defines an exact symplectic relation
+                    $p\,dq-P\,dQ=dS-K\,dt$ after $K=H+\partial_t S$, i.e. a time-dependent canonical transformation. if
+                    $K=0$ then $S$ solves Hamilton-Jacobi and the new momenta $P$ are constant of motion.</p>
+            </section>
+
+            <section class="doc-section" id="action-angle">
+                <h2>action-angle variables, averaging and KAM</h2>
+                <p>A completely integrable Hamiltonian system on a $2n$-dimensional symplectic manifold admits $n$
+                    independent integrals in involution. Under suitable compactness and non-degeneracy assumptions the
+                    common level sets are Lagrangian tori, and there exist action-angle coordinates $(I,\vartheta)$ in
+                    which
+                    $$
+                    H=H(I),\qquad
+                    \dot{\vartheta}=\partial H/\partial I,\qquad
+                    \dot I=0.
+                    $$
+                    When a small perturbation $\varepsilon H_1(I,\vartheta)$ is added, the averaging principle replaces
+                    $H_1$ by its average over the torus. Kolmogorov-Arnold-Moser theory asserts that those tori whose
+                    frequency vectors are sufficiently irrational persist as slightly deformed invariant tori for all
+                    sufficiently small $\varepsilon$. The surviving tori form a set of positive measure, thereby
+                    establishing the stability of a large portion of phase space.</p>
+
+                <p><strong>definition (integrals in involution).</strong> smooth functions
+                    $F_1,\dots,F_n$ are in involution if $\{F_i,F_j\}=0$ for all $i,j$. they are independent if
+                    $dF_1\wedge\cdots\wedge dF_n\neq 0$ on a dense open set.</p>
+
+                <p><strong>theorem (liouville-arnold, statement).</strong> let $F_1,\dots,F_n$ be independent integrals
+                    in involution on a $2n$-dimensional symplectic manifold, and let $c$ be a regular value such that the
+                    level set $M_c=\{F=c\}$ is compact and connected. then $M_c$ is diffeomorphic to a torus
+                    $\mathbb{T}^n$, and there exist action-angle coordinates $(I,\vartheta)$ in a neighbourhood of $M_c$
+                    putting the flow of any Hamiltonian of the form $H=h(F)$ into the linear form
+                    $\dot\vartheta=\omega(I)$, $\dot I=0$.</p>
+
+                <p><strong>remark.</strong> the proof constructs the angle coordinates from the joint flow of the
+                    commuting Hamiltonian fields $X_{F_i}$ (chapter 5 orbits on compact abelian Lie groups are tori) and
+                    defines actions as integrals of the Liouville one-form over a basis of cycles. full technical
+                    details (properness, exactness of periods) are classical; the geometric content is that
+                    complete integrability linearises the dynamics on Lagrangian tori.</p>
+
+                <p><strong>remark (KAM).</strong> for real-analytic Hamiltonians $H_0(I)+\varepsilon H_1(I,\vartheta)$
+                    with nondegenerate frequency map $I\mapsto\partial H_0/\partial I$, Diophantine tori survive as
+                    invariant Lagrangian tori for small $\varepsilon$. the proof is a rapidly convergent Newton scheme
+                    for conjugacy to a linear flow and will not be reproduced here; the theorem is the precise
+                    persistence statement of classical perturbation theory.</p>
+            </section>
+
+            <section class="doc-section" id="darboux">
+                <h2>darboux-weinstein, moment maps and slices</h2>
+                <p>Darboux’s theorem states that every symplectic manifold is locally isomorphic to
+                    $(\mathbb{R}^{2n},\sum dp_i\wedge dq^i)$. The Weinstein tubular neighbourhood theorem extends this
+                    linearisation to a neighbourhood of any Lagrangian submanifold.</p>
+                <p>When a Lie group $G$ acts on $(M,\omega)$ by symplectomorphisms and the action admits an equivariant
+                    moment map
+                    $$
+                    \mu:M\to\mathfrak{g}^*,
+                    $$
+                    the components of $\mu$ are the Noether conserved quantities associated with the infinitesimal
+                    generators. On a Kahler manifold the moment map of a holomorphic group action is often the gradient
+                    of a $G$-invariant function with respect to the Kahler metric. Coisotropic embeddings realise a
+                    given Poisson manifold as a coisotropic submanifold of a symplectic manifold, while symplectic slices
+                    provide normal forms for the neighbourhood of a group orbit. These constructions are the local models
+                    on which singular reduction and the theory of symplectic stratifications are built.</p>
+
+                <p><strong>theorem (darboux).</strong> about every point of a symplectic manifold $(M,\omega)$ there
+                    exist local coordinates $(q^1,\dots,q^n,p_1,\dots,p_n)$ in which
+                    $$
+                    \omega=\sum_{i=1}^n dp_i\wedge dq^i.
+                    $$</p>
+
+                <p><strong>proof.</strong> it suffices to work near $0\in\mathbb{R}^{2n}$ with a symplectic form
+                    $\omega$ that coincides with the standard form $\omega_0=\sum dp_i\wedge dq^i$ at the origin (apply a
+                    linear symplectic basis of $T_0 M$). set $\omega_t=(1-t)\omega_0+t\omega$ for $t\in[0,1]$. then
+                    $\omega_t$ is closed and nondegenerate near $0$ for all $t$ (nondegeneracy is an open condition and
+                    holds at $t=0$). hence $\omega-\omega_0=d\alpha$ for a one-form $\alpha$ with $\alpha_0=0$ (Poincare
+                    lemma). solve Moser’s equation
+                    $$
+                    \iota_{X_t}\omega_t=-\alpha
+                    $$
+                    for a time-dependent field $X_t$ vanishing at $0$. let $\psi_t$ be its flow; then
+                    $$
+                    \frac{d}{dt}(\psi_t^*\omega_t)
+                    =\psi_t^*\bigl(\mathcal{L}_{X_t}\omega_t+\partial_t\omega_t\bigr)
+                    =\psi_t^*\bigl(d\iota_{X_t}\omega_t+\omega-\omega_0\bigr)
+                    =\psi_t^*( -d\alpha+\omega-\omega_0)=0
+                    $$
+                    because $\partial_t\omega_t=\omega-\omega_0$ and $d\alpha=\omega-\omega_0$. thus
+                    $\psi_1^*\omega=\omega_0$. the map $\psi_1$ provides Darboux coordinates. $\square$</p>
+
+                <p><strong>definition (equivariant moment map).</strong> a $G$-action by symplectomorphisms admits a
+                    moment map $\mu:M\to\mathfrak{g}^*$ if for every $\xi\in\mathfrak{g}$ the fundamental field
+                    $\xi_M$ is Hamiltonian with $\iota_{\xi_M}\omega=-d\langle\mu,\xi\rangle$, and $\mu$ is equivariant
+                    with respect to the coadjoint action on $\mathfrak{g}^*$.</p>
+
+                <p><strong>theorem (noether from the moment map).</strong> if $H$ is $G$-invariant,
+                    $\mathcal{L}_{\xi_M}H=0$ for all $\xi$, then $\langle\mu,\xi\rangle$ is constant along the flow of
+                    $X_H$.</p>
+
+                <p><strong>proof.</strong>
+                    $$
+                    X_H\langle\mu,\xi\rangle
+                    =\{H,\langle\mu,\xi\rangle\}
+                    =\omega(X_H,\xi_M)
+                    =-dH(\xi_M)
+                    =-\xi_M(H)=0
+                    $$
+                    by invariance. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="integrability">
+                <h2>complete integrability, kostant-symes and hidden symmetries</h2>
+                <p>A Hamiltonian system is completely integrable when its phase space is foliated by invariant Lagrangian
+                    tori. The Kostant-Symes lemma produces such systems on coadjoint orbits of Lie algebras by
+                    restricting a suitable invariant function; the resulting equations are solvable by factorisation in
+                    the Lie group. Hidden symmetries (often realised by Lax pairs or by pseudodifferential operators)
+                    enlarge the obvious symmetry algebra and account for the unexpected integrability of systems of
+                    Calogero-Moser type.</p>
+
+                <p><strong>definition (complete integrability).</strong> a Hamiltonian system $(M,\omega,H)$ of
+                    dimension $2n$ is completely integrable if there exist $n$ independent integrals in involution
+                    including $H$ (or any regular reparametrisation of the energy).</p>
+
+                <p><strong>remark (kostant-symes).</strong> if $\mathfrak{g}=\mathfrak{k}\oplus\mathfrak{n}$ is a vector
+                    space splitting of a Lie algebra into subalgebras, restriction of an $\mathrm{Ad}^*$-invariant
+                    function on $\mathfrak{g}^*$ to the dual of one factor yields a Poisson-commuting family on
+                    coadjoint orbits (after the appropriate identification). this is a Lie-algebraic engine for
+                    integrable systems; details live in the geometry of coadjoint orbits.</p>
+            </section>
+
+            <section class="doc-section" id="contraction">
+                <h2>contraction and deformation theory</h2>
+                <p>Contractions of Lie algebras (Inonu-Wigner contractions) induce contractions of the associated
+                    symplectic homogeneous spaces. The Whitehead lemmas and the Hochschild-Serre spectral sequence
+                    control the deformation theory of these actions, explaining how the symplectic geometry of the Galilei
+                    group deforms into that of the Poincare group when the speed of light is restored to a finite value.</p>
+
+                <p><strong>remark.</strong> a contraction is a continuous family of Lie brackets $[-,-]_\varepsilon$
+                    converging to a new bracket as $\varepsilon\to 0$ (classically a rescaling of generators). the dual
+                    coadjoint geometry contracts accordingly; Galilei structures appear as $c\to\infty$ limits of Poincare
+                    structures. this is the infinitesimal counterpart of the passage between relativistic and
+                    nonrelativistic Hamiltonian geometries of chapter 1’s Galilean modelling.</p>
+            </section>
+
+            <section class="doc-section" id="optics">
+                <h2>optical realisation of symplectic geometry</h2>
+                <p>The same symplectic structures govern the propagation of light.</p>
+                <ul class="toc-list" style="list-style:disc;">
+                    <li>Gaussian (paraxial, rotationally symmetric) optics is described by matrices in
+                        $\operatorname{SL}(2,\mathbb{R})$.</li>
+                    <li>Linear optics with arbitrary apertures requires the full symplectic group
+                        $\operatorname{Sp}(2n,\mathbb{R})$, which preserves the optical form
+                        $\sum dp_i\wedge dq_i$.</li>
+                    <li>Geometrical optics in the short-wavelength limit is the theory of symplectic diffeomorphisms
+                        generated by eikonal functions (point characteristics).</li>
+                    <li>Wave optics at the Fresnel level lifts the symplectic group to its double cover, the metaplectic
+                        group $\operatorname{Mp}(2n,\mathbb{R})$, realised by unitary integral operators on
+                        $L^2(\mathbb{R}^n)$. The metaplectic correction supplies the phase factor $e^{-i\pi/4}$ at each
+                        passage through a caustic, resolving the topological Maslov index.</li>
+                </ul>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>optical framework</th>
+                            <th>physical approximation</th>
+                            <th>mathematical structure</th>
+                            <th>transformation representation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gaussian optics</td>
+                            <td>paraxial rays, rotational symmetry</td>
+                            <td>$\operatorname{SL}(2,\mathbb{R})$</td>
+                            <td>linear maps of $(q,p)$</td>
+                        </tr>
+                        <tr>
+                            <td>linear optics</td>
+                            <td>paraxial rays, asymmetric apertures</td>
+                            <td>$\operatorname{Sp}(2n,\mathbb{R})$</td>
+                            <td>preservation of $\omega$</td>
+                        </tr>
+                        <tr>
+                            <td>geometrical optics</td>
+                            <td>short-wavelength limit</td>
+                            <td>eikonal / point characteristic</td>
+                            <td>symplectomorphisms</td>
+                        </tr>
+                        <tr>
+                            <td>Fresnel (wave) optics</td>
+                            <td>interference and diffraction</td>
+                            <td>$\operatorname{Mp}(2n,\mathbb{R})$</td>
+                            <td>unitary integral transforms on $L^2$</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>definition (linear symplectic group).</strong>
+                    $$
+                    \operatorname{Sp}(2n,\mathbb{R})
+                    =\{S\in\mathrm{GL}(2n,\mathbb{R}): S^T J S=J\},
+                    $$
+                    where $J$ is the standard matrix of $\omega_0$. for $n=1$, $\operatorname{Sp}(2,\mathbb{R})=\operatorname{SL}(2,\mathbb{R})$.</p>
+
+                <p><strong>theorem (linear optics preserves $\omega_0$).</strong> a linear map
+                    $S:\mathbb{R}^{2n}\to\mathbb{R}^{2n}$ preserves $\omega_0(u,v)=u^T J v$ for all $u,v$ if and only if
+                    $S\in\operatorname{Sp}(2n,\mathbb{R})$.</p>
+
+                <p><strong>proof.</strong> $\omega_0(Su,Sv)=(Su)^T J(Sv)=u^T(S^T JS)v$. this equals $u^T J v$ for all
+                    $u,v$ if and only if $S^T JS=J$. $\square$</p>
+
+                <p>In this way symplectic geometry unifies the classical mechanics of particles with the Hamiltonian
+                    theory of light, while the moment-map and integrability techniques of the abstract theory find concrete
+                    realisation in both domains.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (harmonic oscillator).</strong> on $\mathbb{R}^2$ with $\omega=dp\wedge dq$ and
+                    $H=\frac12(p^2+q^2)$, compute $X_H$ and solve the flow explicitly. verify
+                    $\varphi_t^*\omega=\omega$ by direct differentiation and check that $H$ is constant.</p>
+
+                <p><strong>exercise 2 (poisson algebra).</strong> show that $\{q^i,p_j\}=\delta^i_j$ and
+                    $\{q^i,q^j\}=\{p_i,p_j\}=0$ in standard Darboux coordinates, and compute $\{H,q\}$, $\{H,p\}$ for
+                    $H=\frac12 p^2+V(q)$ in one degree of freedom.</p>
+
+                <p><strong>exercise 3 (liouville area).</strong> for a planar Hamiltonian flow, explain why
+                    $\varphi_t^*\omega=\omega$ is equivalent to area preservation. give a one-line proof that the flow of
+                    $X_H$ cannot have asymptotically stable equilibria in the plane.</p>
+
+                <p><strong>exercise 4 (optical $\operatorname{SL}(2)$).</strong> take
+                    $S=\begin{pmatrix}1&d\\0&1\end{pmatrix}$ (a free drift of length $d$ in paraxial $2\times 2$
+                    ray-transfer convention). verify $\det S=1$ and interpret the action on $(q,p)$.</p>
+            </section>
+
+        </div>
+    </main>
+</body>
+
+</html>
