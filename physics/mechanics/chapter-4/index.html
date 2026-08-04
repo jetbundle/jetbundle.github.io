@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>mathematical methods · mechanics · JETBUNDLE</title>
+    <title>algebraic, analytic & geometric techniques · mechanics · JETBUNDLE</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles.css">
@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch4.js"></script>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
         <nav class="subnav" aria-label="section">
             <a href="../">mechanics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
-            <span class="dim">mathematical methods</span>
+            <span class="dim">algebraic, analytic, and geometric techniques</span>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="../../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
@@ -27,7 +30,7 @@
         </nav>
 
         <header class="doc-header">
-            <h1>4 · mathematical methods</h1>
+            <h1>4 · algebraic, analytic, and geometric techniques</h1>
             <p class="doc-lead"><em>algebraic, analytic, and geometric tools for exact reduction and reliable computation</em></p>
             <p class="doc-intro">The geometric and dynamical theories of the preceding chapters rest on a compact set of
                 algebraic, analytic, and differential-geometric tools that make both exact reductions and reliable
@@ -128,7 +131,46 @@
                     always admits the nontrivial free solution $\dot x_*$. solvability of inhomogeneous variational
                     equations (Melnikov, Floquet corrections, bordering for continuation) is decided exactly by
                     orthogonality of the forcing term to the adjoint kernel (Fredholm on the circle).</p>
-            </section>
+            
+                
+
+                
+
+                <div class="doc-widget" id="fig-jordan">
+                    <p class="doc-widget-title">figure · matrix exponential and Jordan geometry</p>
+                    <p class="doc-widget-caption">Orbits of $\dot x=Ax$ for diagonal, nilpotent, and shear blocks, with $e^{tA}$ from a power series and volume check $\det e^{tA}=e^{t\,\mathrm{tr}A}$.</p>
+                    <div class="doc-widget-plot tall" id="fig4-jordan-plot" role="img" aria-label="figure · matrix exponential and Jordan geometry"></div>
+                    <div class="doc-widget-controls">
+                        <label>form
+                            <select id="fig4-jordan-type">
+                                <option value="diag">diagonal</option>
+                                <option value="nilp">nilpotent</option>
+                                <option value="shear" selected>shear</option>
+                            </select>
+                        </label>
+                        <label>time $t$
+                            <input id="fig4-jordan-t" type="range" min="0" max="4" value="1.0" step="0.05">
+                        </label>
+                        <button type="button" id="fig4-jordan-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig4-jordan-readout"></p>
+                </div>
+
+                <div class="doc-widget" id="fig-fred">
+                    <p class="doc-widget-title">figure · Fredholm alternative in $\mathbb{R}^2$</p>
+                    <p class="doc-widget-caption">For $A=\mathrm{diag}(1,0)$, $\mathrm{im}\,A=\mathrm{span}\{e_1\}$ and $\ker A^*=\mathrm{span}\{e_2\}$. Solvability of $Ax=b$ is equivalent to $b\perp\ker A^*$.</p>
+                    <div class="doc-widget-plot tall" id="fig4-fred-plot" role="img" aria-label="figure · Fredholm alternative in $\mathbb{R}^2$"></div>
+                    <div class="doc-widget-controls">
+                        <label>$b_1$
+                            <input id="fig4-fred-b1" type="range" min="-2" max="2" value="1.0" step="0.05">
+                        </label>
+                        <label>$b_2$
+                            <input id="fig4-fred-b2" type="range" min="-2" max="2" value="0.8" step="0.05">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig4-fred-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="manifolds-compute">
                 <h2>manifold geometry as computational foundation</h2>
@@ -158,7 +200,9 @@
                 <p><strong>remark.</strong> the abstract Newton equation is chart-independent when $F$ is a section of a
                     vector bundle: $DF(x)$ is a linear map between fibres. choosing a metric identifies duals so that
                     least-squares and Gauss-Newton variants become available on under- or over-determined systems.</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="newton">
                 <h2>numerical location of fixed points and periodic orbits</h2>
@@ -239,7 +283,24 @@
                     the bordered linearisation invertible under generic nondegeneracy (simple Floquet multiplier $1$).
                     this is the finite-dimensional Fredholm alternative applied to the bordered Jacobian of
                     $(G,\mathrm{phase})$.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-newton">
+                    <p class="doc-widget-title">figure · Newton iteration with quadratic error decay</p>
+                    <p class="doc-widget-caption">Root-finding for $F(x)=x^2-2$. Tangents show Newton steps; log-error plot exhibits the quadratic phase while $F^\prime(\sqrt{2})\neq 0$.</p>
+                    <div class="doc-widget-plot tall" id="fig4-newton-plot" role="img" aria-label="figure · Newton iteration with quadratic error decay"></div>
+                    <div class="doc-widget-controls">
+                        <label>$x_0$
+                            <input id="fig4-newton-x0" type="range" min="0.5" max="3.0" value="2.0" step="0.05">
+                        </label>
+                        <label>steps
+                            <input id="fig4-newton-steps" type="range" min="1" max="8" value="5" step="1">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig4-newton-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="dae">
                 <h2>algebraic decomposition of linear time-invariant systems</h2>
@@ -385,6 +446,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-3/">← chapter 3: lie theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-5/">next: dynamical systems →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

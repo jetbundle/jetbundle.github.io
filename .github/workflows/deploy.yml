@@ -46,6 +46,16 @@ jobs:
           test -f _site/physics/mechanics/chapter-6/index.html
           test -f _site/physics/mechanics/chapter-7/index.html
           test -f _site/physics/mechanics/chapter-8/index.html
+          test -f _site/physics/field-theory/index.html
+          test -f _site/physics/field-theory/chapter-1/index.html
+          test -f _site/physics/field-theory/chapter-2/index.html
+          test -f _site/physics/field-theory/chapter-3/index.html
+          test -f _site/physics/field-theory/chapter-4/index.html
+          test -f _site/physics/field-theory/chapter-5/index.html
+          test -f _site/physics/field-theory/chapter-6/index.html
+          test -f _site/physics/field-theory/chapter-7/index.html
+          test -f _site/physics/field-theory/chapter-8/index.html
+          test -f _site/physics/field-theory/chapter-9/index.html
           test -f _site/physics/architecture-linearity/index.html
           test -f _site/physics/architecture-linearity/chapter-1/index.html
           test -f _site/physics/architecture-linearity/chapter-1/widgets.js

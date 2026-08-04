@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch8.js"></script>
 </head>
 
 <body>
@@ -81,7 +84,21 @@
                 <p><strong>remark (reduction to maps).</strong> by chapter 5, a hyperbolic periodic orbit produces a
                     hyperbolic fixed point of a Poincare map. bifurcations of the orbit are therefore equivalent to
                     bifurcations of that fixed point in a family of maps of one lower dimension.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-sn">
+                    <p class="doc-widget-title">figure · saddle–node bifurcation</p>
+                    <p class="doc-widget-caption">Normal form $\dot x=\mu-x^2$. Vector field and bifurcation diagram: branches $\pm\sqrt\mu$ with stability from $f^\prime=-2x$.</p>
+                    <div class="doc-widget-plot tall" id="fig8-sn-plot" role="img" aria-label="figure · saddle–node bifurcation"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\mu$
+                            <input id="fig8-sn-mu" type="range" min="-0.6" max="1.0" value="0.35" step="0.02">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig8-sn-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="symmetry">
                 <h2>discrete symmetries and constrained bifurcations</h2>
@@ -117,7 +134,27 @@
 
                 <p><strong>remark.</strong> without the $\mathbb{Z}_2$ constraint the generic bifurcation of a simple zero
                     eigenvalue is the saddle-node $\dot x=\mu\pm x^2$, which is forbidden for odd fields.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-pitch">
+                    <p class="doc-widget-title">figure · pitchfork under $\mathbb{Z}_2$ equivariance</p>
+                    <p class="doc-widget-caption">Odd normal form $\dot x=\mu x\mp x^3$. Super/subcritical branches; symmetry forbids a pure saddle-node at the origin.</p>
+                    <div class="doc-widget-plot tall" id="fig8-pitch-plot" role="img" aria-label="figure · pitchfork under $\mathbb{Z}_2$ equivariance"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\mu$
+                            <input id="fig8-pitch-mu" type="range" min="-1.0" max="1.0" value="0.45" step="0.02">
+                        </label>
+                        <label>type
+                            <select id="fig8-pitch-sign">
+                                <option value="super" selected>supercritical</option>
+                                <option value="sub">subcritical</option>
+                            </select>
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig8-pitch-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="normal">
                 <h2>two-parameter bifurcations and normal forms</h2>
@@ -161,7 +198,9 @@
                     a singularity if every other perturbation of $v_0$ is fibrewise equivalent, after smooth
                     reparametrisation of parameters, to a family induced from $v_\mu$. the minimal number of parameters
                     is the codimension of the singularity.</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="five">
                 <h2>the five critical codimension-two bifurcations</h2>
@@ -210,7 +249,22 @@
                     $\tilde c(0)=c(0)\neq 0$. rescale $y$ and the time (or absorb constants into $\mu$) to normalise
                     $|\tilde c|=1$, obtaining $\dot y=\mu\pm y^2$ at leading order, which is $C^1$-equivalent to the
                     quadratic normal form near the bifurcation. $\square$</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-hopf">
+                    <p class="doc-widget-title">figure · supercritical Hopf bifurcation</p>
+                    <p class="doc-widget-caption">Planar normal form with $\mathrm{Re}\,\lambda=\mu$ and cubic saturation. Phase portrait plus polar amplitude law $\dot r=\mu r-r^3$ with cycle at $r=\sqrt\mu$.</p>
+                    <div class="doc-widget-plot tall" id="fig8-hopf-plot" role="img" aria-label="figure · supercritical Hopf bifurcation"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\mu$
+                            <input id="fig8-hopf-mu" type="range" min="-0.5" max="1.0" value="0.35" step="0.02">
+                        </label>
+                        <button type="button" id="fig8-hopf-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig8-hopf-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="bt">
                 <h2>bogdanov-takens as organising centre</h2>
@@ -244,7 +298,25 @@
                     with standard asymptotic tangencies. the geometric programme of the chapter is complete once this
                     skeleton is in place: codimension-two BT organises the entire planar equilibrium-cycle-homoclinic
                     scenario.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-bt">
+                    <p class="doc-widget-title">figure · Bogdanov–Takens unfolding</p>
+                    <p class="doc-widget-caption">Truncated BT field $\dot x=y$, $\dot y=\beta_1+\beta_2 x+x^2+xy$. Equilibria from the quadratic discriminant; parameter plane shows SN curve $\Delta=\beta_2^2-4\beta_1=0$.</p>
+                    <div class="doc-widget-plot tall" id="fig8-bt-plot" role="img" aria-label="figure · Bogdanov–Takens unfolding"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\beta_1$
+                            <input id="fig8-bt-b1" type="range" min="-0.6" max="0.5" value="-0.12" step="0.02">
+                        </label>
+                        <label>$\beta_2$
+                            <input id="fig8-bt-b2" type="range" min="-1.0" max="1.2" value="0.45" step="0.02">
+                        </label>
+                        <button type="button" id="fig8-bt-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig8-bt-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="numerical">
                 <h2>numerical continuation</h2>
@@ -349,6 +421,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-7/">← chapter 7: control theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">mechanics index →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>algebraic topology and global obstructions · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">algebraic topology and global obstructions</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>5 · algebraic topology and global obstructions</h1>
+            <p class="doc-lead"><em>cohomology, Stokes, and the classification of field sectors</em></p>
+            <p class="doc-intro">Local differential equations determine the behavior of classical fields on open
+                neighborhoods, yet they leave undecided the global consistency of those solutions across the entire
+                manifold. Algebraic topology supplies the invariants that detect and classify the obstructions to such
+                global consistency. These invariants partition the space of field configurations into distinct
+                topological sectors that cannot be deformed into one another by continuous gauge or coordinate
+                transformations.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="cech-derham">
+                <h2>cech-de rham cohomology</h2>
+                <p>The de Rham cohomology groups $H^k_{\mathrm{dR}}(M)$ arise from the complex of global differential
+                    forms. An equivalent combinatorial description is provided by Cech cohomology with values in the
+                    constant sheaf $\underline{\mathbb{R}}$. Given an open cover $\mathfrak{U}=\{U_i\}$ of $M$, a Cech
+                    $k$-cochain assigns to each ordered intersection $U_{i_0}\cap\cdots\cap U_{i_k}$ a locally constant
+                    real function. The Cech differential is the alternating sum of restrictions, and the resulting
+                    cohomology $H^k(\mathfrak{U};\underline{\mathbb{R}})$ is independent of the cover once a refinement
+                    limit is taken.</p>
+
+                <p><strong>definition (de rham cohomology).</strong>
+                    $$
+                    H^k_{\mathrm{dR}}(M)
+                    =\frac{\ker\bigl(d:\Omega^k(M)\to\Omega^{k+1}(M)\bigr)}
+                    {\operatorname{im}\bigl(d:\Omega^{k-1}(M)\to\Omega^k(M)\bigr)}.
+                    $$
+                    closed forms that are not exact represent nontrivial classes.</p>
+
+                <p><strong>definition (cech cochains and differential).</strong> let $\mathfrak{U}=\{U_i\}_{i\in I}$ be
+                    an open cover of $M$ and let $\mathcal{F}$ be a sheaf of abelian groups on $M$. a Cech $k$-cochain
+                    with values in $\mathcal{F}$ assigns to every ordered $(k+1)$-tuple $(i_0,\dots,i_k)$ a section
+                    $$
+                    \sigma_{i_0\dots i_k}
+                    \in\mathcal{F}\bigl(U_{i_0}\cap\cdots\cap U_{i_k}\bigr)
+                    $$
+                    (vanishing when the intersection is empty). the Cech differential
+                    $\delta:C^k(\mathfrak{U};\mathcal{F})\to C^{k+1}(\mathfrak{U};\mathcal{F})$ is
+                    $$
+                    (\delta\sigma)_{i_0\dots i_{k+1}}
+                    =\sum_{j=0}^{k+1}(-1)^j
+                    \sigma_{i_0\dots\widehat{i_j}\dots i_{k+1}}
+                    \big|_{U_{i_0}\cap\cdots\cap U_{i_{k+1}}}.
+                    $$
+                    one has $\delta^2=0$; the cohomology of $(C^\bullet,\delta)$ is the Cech cohomology of the cover.</p>
+
+                <p><strong>definition (cech cohomology of $M$).</strong>
+                    $$
+                    H^k(M;\mathcal{F})
+                    :=\varinjlim_{\mathfrak{U}} H^k(\mathfrak{U};\mathcal{F}),
+                    $$
+                    the direct limit over refinements of open covers. for $\mathcal{F}=\underline{\mathbb{R}}$ (locally
+                    constant real functions) one writes $H^k(M;\underline{\mathbb{R}})$ or simply
+                    $H^k(M;\mathbb{R})$ when singular and sheaf cohomology have been identified.</p>
+
+                <p>The Cech-de Rham theorem asserts a canonical isomorphism
+                    $$
+                    H^k_{\mathrm{dR}}(M)\simeq H^k(M;\underline{\mathbb{R}}).
+                    $$
+                    The proof proceeds by constructing the double complex of Cech cochains with values in differential
+                    forms; its total cohomology computes both theories. Presheaves of differential forms encode the
+                    local-to-global passage, while monodromy representations of $\pi_1(M)$ appear as the obstruction to
+                    extending local closed forms to global ones. In field theory this equivalence translates the analytic
+                    question "Does a closed field strength admit a global potential?" into the purely topological question
+                    of the vanishing of a Cech cohomology class.</p>
+
+                <p><strong>theorem (cech-de rham).</strong> for a smooth manifold $M$ there is a natural isomorphism
+                    $$
+                    H^k_{\mathrm{dR}}(M)\xrightarrow{\simeq} H^k(M;\underline{\mathbb{R}})
+                    $$
+                    for every $k\ge 0$.</p>
+
+                <p><strong>proof.</strong> form the Cech-de Rham double complex associated to a good open cover
+                    $\mathfrak{U}$ (all finite intersections diffeomorphic to convex open sets of $\mathbb{R}^n$, hence
+                    contractible):
+                    $$
+                    C^{p,q}=C^p\bigl(\mathfrak{U};\Omega^q\bigr),
+                    $$
+                    with differentials $\delta$ (Cech) of bidegree $(1,0)$ and $(-1)^p d$ (exterior derivative) of
+                    bidegree $(0,1)$. the total complex $(C^\bullet_{\mathrm{tot}},D=\delta+d)$ has cohomology written
+                    $H^\bullet_{\mathrm{tot}}$. two spectral sequences abut to $H_{\mathrm{tot}}$:</p>
+
+                <p>filtering by Cech degree, the $E_1$-page is $C^p(\mathfrak{U};H^q_{\mathrm{dR}})$. on a good cover
+                    the Poincare lemma gives $H^q_{\mathrm{dR}}(U_{i_0}\cap\cdots\cap U_{i_p})=0$ for $q\ge 1$ and
+                    $\mathbb{R}$ for $q=0$, so $E_2^{p,0}=H^p(\mathfrak{U};\underline{\mathbb{R}})$ and
+                    $E_2^{p,q}=0$ for $q>0$. thus $H^k_{\mathrm{tot}}\simeq H^k(\mathfrak{U};\underline{\mathbb{R}})$.
+                </p>
+
+                <p>filtering by form degree, $E_1^{p,q}=H^q_{\mathrm{dR}}$ of the Cech sheafification; exactness of the
+                    Cech resolution for the fine sheaves $\Omega^q$ implies $E_1^{0,q}=\Omega^q(M)$ and
+                    $E_1^{p,q}=0$ for $p>0$, with $d$-differential producing $E_2^{0,q}=H^q_{\mathrm{dR}}(M)$. hence
+                    $H^k_{\mathrm{tot}}\simeq H^k_{\mathrm{dR}}(M)$. identifying the two computations of
+                    $H_{\mathrm{tot}}$ yields the isomorphism. passage to the refinement limit removes dependence on a
+                    single good cover. $\square$</p>
+
+                <p><strong>theorem (existence of global potentials).</strong> a closed $k$-form $F$ on $M$ is exact if
+                    and only if its de Rham class $[F]$ vanishes in $H^k_{\mathrm{dR}}(M)$. under the Cech-de Rham
+                    isomorphism, this is equivalent to the vanishing of the corresponding Cech class
+                    $[\{A_{i_0\dots i_{k-1}}\}]$ built from local primitives on a good cover.</p>
+
+                <p><strong>proof.</strong> if $F=dA$ globally then $[F]=0$ by definition of de Rham cohomology.
+                    conversely, if $[F]=0$ then $F=dA$ for some global $A$ by definition of the quotient. on a good
+                    cover the Poincare lemma supplies local primitives $A_i$ with $F|_{U_i}=dA_i$; the differences
+                    $A_i-A_j$ are closed on overlaps and, after further primitives if $k>1$, produce a Cech cocycle
+                    whose class is the image of $[F]$. vanishing of that class is equivalent to the existence of adjusted
+                    local primitives that glue to a global potential. $\square$</p>
+
+                <p><strong>remark (monodromy).</strong> for $k=1$, a closed one-form $\alpha$ defines the periods
+                    $\int_\gamma\alpha$ along loops. the class $[\alpha]$ vanishes if and only if all periods vanish.
+                    the monodromy representation $\pi_1(M)\to\mathbb{R}$ given by those periods is the obstruction to a
+                    global single-valued primitive, the classical Abel theorem in elementary form.</p>
+            </section>
+
+            <section class="doc-section" id="euler-thom">
+                <h2>sphere bundles, the euler class, and the thom isomorphism</h2>
+                <p>Let $\pi:E\to M$ be an oriented real vector bundle of rank $n$. The associated sphere bundle $S(E)$
+                    carries a global angular form $\psi$, a differential form of degree $n-1$ whose restriction to each
+                    fiber generates the cohomology of the sphere and whose exterior derivative satisfies
+                    $$
+                    d\psi=\pi^*e(E),
+                    $$
+                    where $e(E)\in H^n(M;\mathbb{Z})$ is the Euler class of the bundle. The Euler class vanishes if and
+                    only if $E$ admits a nowhere-zero section. When an isolated zero of a section occurs, the Hopf index
+                    theorem identifies the local degree of that zero with the pairing of the Euler class against the
+                    fundamental class of a small surrounding sphere.</p>
+
+                <p><strong>definition (sphere bundle and angular form).</strong> for a Riemannian metric on an oriented
+                    rank-$n$ vector bundle $E\to M$, let $S(E)=\{v\in E:\|v\|=1\}$. an angular form $\psi\in
+                    \Omega^{n-1}(S(E))$ is a form that restricts on each fiber $S(E_p)\simeq S^{n-1}$ to a generator of
+                    $H^{n-1}(S^{n-1})$ with total integral $1$ (normalized volume form), and that is globally defined on
+                    $S(E)$.</p>
+
+                <p><strong>definition (euler class via angular form).</strong> for any angular form $\psi$, the form
+                    $d\psi$ is basic (constant on fibers and horizontal), hence $d\psi=\pi_S^*\alpha$ for a unique closed
+                    $n$-form $\alpha$ on $M$. the de Rham class $[\alpha]=e(E)_{\mathbb{R}}$ is the real image of the
+                    integral Euler class $e(E)\in H^n(M;\mathbb{Z})$.</p>
+
+                <p><strong>theorem (euler class obstructs nowhere-zero sections).</strong> an oriented real vector bundle
+                    $E\to M$ of rank $n$ admits a nowhere-vanishing continuous section if and only if $e(E)=0$ in
+                    $H^n(M;\mathbb{Z})$ (when $M$ is a closed oriented $n$-manifold, equivalently
+                    $\langle e(E),[M]\rangle=0$).</p>
+
+                <p><strong>proof.</strong> a nowhere-zero section $s$ normalizes to $s/\|s\|:M\to S(E)$, a global section
+                    of the sphere bundle. the pullback of the fiberwise volume yields a global primitive relationship:
+                    $s^*\psi$ satisfies $d(s^*\psi)=e(E)_{\mathbb{R}}$, and on a closed oriented base
+                    $\int_M e(E)=\int_M d(s^*\psi)=0$, so the Euler number vanishes; integrally, the obstruction class
+                    defining $e(E)$ is zero once a section of $S(E)$ exists. conversely, primary obstruction theory for
+                    sections of $S(E)$ (fibers $(n-1)$-connected through the range of the first obstruction) places the
+                    primary obstruction in $H^n(M;\pi_{n-1}(S^{n-1}))\simeq H^n(M;\mathbb{Z})$, and that class is
+                    $e(E)$. vanishing allows a section of $S(E)$, hence a nowhere-zero section of $E$. $\square$</p>
+
+                <p><strong>theorem (hopf index).</strong> let $M$ be a closed oriented manifold of dimension $n$ and let
+                    $X$ be a smooth vector field with isolated zeros $p_1,\dots,p_N$. then
+                    $$
+                    \sum_{i=1}^N \operatorname{index}_{p_i}(X)
+                    =\langle e(TM),[M]\rangle=\chi(M),
+                    $$
+                    where $\operatorname{index}_{p_i}(X)$ is the degree of the normalized map
+                    $S^{n-1}_\varepsilon(p_i)\to S^{n-1}$ and $\chi(M)$ is the Euler characteristic.</p>
+
+                <p><strong>proof.</strong> remove small balls $B_i$ about each zero. on the compact manifold with boundary
+                    $M\setminus\bigcup\mathrm{int}(B_i)$, the field $X$ has no zeros and may be normalized to a section of
+                    $S(TM)$. Stokes and the angular-form identity $d\psi=\pi^*e(TM)$ convert
+                    $\int_M e(TM)$ into a sum of fiber integrals of $\psi$ over $\partial B_i$, each of which equals the
+                    local degree of $X/\|X\|$ on $\partial B_i$. the Poincare-Hopf theorem identifies the resulting
+                    integer with $\chi(M)$. $\square$</p>
+
+                <p>The Thom isomorphism relates the cohomology of the base to the compactly supported cohomology of the
+                    total space:
+                    $$
+                    H^k(M)\xrightarrow{\simeq} H^{k+n}_{\mathrm{c}}(E),\qquad
+                    \alpha\mapsto\pi^*\alpha\wedge\Phi(E),
+                    $$
+                    where $\Phi(E)$ is the Thom class, a compactly supported form that restricts to a generator of the
+                    cohomology of each fiber. In classical field theory the Euler and Thom classes control the existence
+                    of global frame fields, the localization of topological charge, and the intersection theory of
+                    submanifolds defined by vanishing loci of sections.</p>
+
+                <p><strong>definition (thom class).</strong> for an oriented rank-$n$ vector bundle $E\to M$, a Thom class
+                    is a cohomology class $\Phi(E)\in H^n_{\mathrm{c}}(E)$ (or $H^n(D(E),S(E))$ in the disk-sphere pair
+                    picture) whose restriction to each fiber is the positive generator of
+                    $H^n_{\mathrm{c}}(\mathbb{R}^n)\simeq\mathbb{Z}$.</p>
+
+                <p><strong>theorem (thom isomorphism).</strong> cup product (or wedge) with $\Phi(E)$ induces isomorphisms
+                    $$
+                    H^k(M;\mathbb{Z})\xrightarrow{\simeq} H^{k+n}_{\mathrm{c}}(E;\mathbb{Z})
+                    $$
+                    for every $k$. the Euler class is recovered as $e(E)=s_0^*\Phi(E)$ for the zero section
+                    $s_0:M\to E$.</p>
+
+                <p><strong>proof.</strong> for a trivial bundle $E=M\times\mathbb{R}^n$ the claim is the Kunneth theorem
+                    with compact supports in the fiber, with $\Phi=1\otimes u$ for the standard volume class $u$ of
+                    $\mathbb{R}^n$. for general $E$, cover $M$ by opens that trivialize $E$ and apply a Mayer-Vietoris
+                    induction: the Thom classes on restrictions glue because orientations of the fibers match, and the
+                    five lemma upgrades local Thom isomorphisms to a global isomorphism. naturality of the construction
+                    under pullback identifies $s_0^*\Phi(E)$ with the Euler class defined by the angular form.
+                    $\square$</p>
+            </section>
+
+            <section class="doc-section" id="spectral">
+                <h2>spectral sequences and rational homotopy</h2>
+                <p>When a manifold or a fiber bundle is filtered, or when a double complex appears (as in the Cech-de
+                    Rham construction), the associated spectral sequence converges to the cohomology of the total
+                    complex. The Serre spectral sequence of a fibration $F\to E\to B$ has $E_2$-page
+                    $$
+                    E_2^{p,q}=H^p(B;H^q(F))
+                    $$
+                    and converges to $H^{p+q}(E)$. It computes the cohomology of path fibrations, loop spaces, and
+                    configuration spaces of fields.</p>
+
+                <p><strong>definition (spectral sequence of a filtered complex).</strong> a decreasing filtration
+                    $F^\bullet C$ of a cochain complex $(C,d)$ produces pages $E_r^{p,q}$ with differentials
+                    $d_r:E_r^{p,q}\to E_r^{p+r,q-r+1}$ such that $E_{r+1}=H(E_r,d_r)$. under mild exhaustiveness and
+                    completeness hypotheses, $E_r\Rightarrow H^{p+q}(C)$.</p>
+
+                <p><strong>theorem (serre spectral sequence, statement).</strong> for a Serre fibration $F\to E\to B$ of
+                    path-connected spaces with $B$ simply connected (or with local coefficients), there is a spectral
+                    sequence with
+                    $$
+                    E_2^{p,q}=H^p\bigl(B;H^q(F)\bigr)
+                    \Rightarrow H^{p+q}(E).
+                    $$</p>
+
+                <p><strong>proof (outline).</strong> filter the singular cochains of $E$ by the skeleta of a CW model of
+                    $B$ (or use the Cartan-Serre filtration of the cochain path fibration). the associated graded of the
+                    filtration at $E_1$ is the cochain complex of $B$ with coefficients in the cohomology of the fiber.
+                    passage to $E_2$ yields $H^p(B;H^q(F))$. standard convergence theorems for bounded filtrations give
+                    the abutment $H^\bullet(E)$. $\square$</p>
+
+                <p>Rational homotopy theory, via Sullivan's minimal models, replaces a space by a differential graded
+                    algebra of rational differential forms whose cohomology recovers the rational homotopy type. The
+                    minimal model encodes all higher-order Massey products and is especially effective for calculating
+                    the rational cohomology of mapping spaces and gauge-orbit spaces that arise as configuration spaces
+                    of classical fields.</p>
+
+                <p><strong>definition (sullivan minimal model).</strong> a commutative differential graded algebra
+                    (cdga) $(\mathcal{M},d)$ over $\mathbb{Q}$ is minimal if $\mathcal{M}$ is free commutative on a
+                    graded vector space $V$ with generators decomposable under $d$ (in positive degrees,
+                    $dV\subset \mathcal{M}^+\cdot\mathcal{M}^+$). a minimal model of a space $X$ is a quasi-isomorphism
+                    $\mathcal{M}_X\to A_{\mathrm{PL}}(X)$ from a minimal cdga to the algebra of piecewise-linear
+                    rational forms on $X$.</p>
+
+                <p><strong>theorem (existence and uniqueness of minimal models).</strong> every path-connected space $X$
+                    of finite rational type admits a Sullivan minimal model, unique up to isomorphism. its cohomology is
+                    $H^\bullet(X;\mathbb{Q})$, and the indecomposables of $\mathcal{M}_X$ compute
+                    $\operatorname{Hom}(\pi_\bullet(X)\otimes\mathbb{Q},\mathbb{Q})$ under mild nilpotence hypotheses.</p>
+
+                <p><strong>proof (outline).</strong> proceed inductively by killing successive cohomology classes: start
+                    with $\mathcal{M}(0)=\mathbb{Q}$, and at stage $n$ adjoin generators in degree $n$ with differentials
+                    recording a basis of $\ker(H^n(\mathcal{M}(n-1))\to H^n(X))$ and of the cokernel of that map, using
+                    relative lifting properties of free cdgas. the process converges to a quasi-isomorphism. uniqueness
+                    follows from the lifting theorem for minimal cdgas: a quasi-isomorphism between minimals is an
+                    isomorphism. the identification with rational homotopy groups is Sullivan's dual of the Whitehead
+                    tower at the level of indecomposables. $\square$</p>
+
+                <p><strong>remark (configuration spaces).</strong> gauge-orbit spaces $\mathcal{A}/\mathcal{G}$ and
+                    mapping spaces $\operatorname{Map}(M,G)$ inherit rational models from those of $M$ and $BG$; spectral
+                    sequences and minimal models then compute their rational cohomology, which classifies infinitesimal
+                    deformations of topological sector labels.</p>
+            </section>
+
+            <section class="doc-section" id="sectors">
+                <h2>topological sectors in the configuration space of classical fields</h2>
+                <p>The space of smooth sections of a fiber bundle $E\to M$, modulo gauge transformations, decomposes into
+                    path components labeled by characteristic classes and homotopy invariants. For an abelian gauge field
+                    the first Chern class (or equivalently the de Rham class of the field strength) labels the magnetic
+                    flux sectors. For nonabelian fields the second Chern number distinguishes instanton sectors. On a
+                    spin manifold the existence of a spin structure itself is a $\mathbb{Z}/2$-valued topological datum.
+                    Each such sector supports its own copy of the classical phase space; continuous time evolution cannot
+                    interpolate between them. Consequently the global topology of spacetime and of the bundles that carry
+                    the fields imposes a discrete superselection structure on the classical theory, a structure that
+                    survives quantization and reappears as the topological selection rules of quantum field theory.</p>
+
+                <p><strong>definition (configuration space and gauge orbits).</strong> for a principal $G$-bundle $P\to M$,
+                    let $\mathcal{A}$ be the affine space of connections on $P$ and $\mathcal{G}$ the group of gauge
+                    transformations (vertical automorphisms of $P$). the configuration space of classical gauge fields is
+                    the quotient stack $\mathcal{A}/\mathcal{G}$ (or a Sobolev completion thereof). path components of
+                    the space of based gauge transformations and of $\operatorname{Map}(M,G)$ label components of the
+                    quotient.</p>
+
+                <p><strong>theorem (u(1) flux sectors).</strong> isomorphism classes of principal $\mathrm{U}(1)$-bundles
+                    on a manifold $M$ are in natural bijection with $H^2(M;\mathbb{Z})$. for a connection $A$ on such a
+                    bundle, the curvature $F=dA$ (locally) represents $2\pi c_1$ in de Rham cohomology, and the class
+                    $c_1\in H^2(M;\mathbb{Z})$ is independent of $A$.</p>
+
+                <p><strong>proof.</strong> the exponential sequence of sheaves
+                    $0\to\mathbb{Z}\to\underline{\mathbb{R}}\to\underline{\mathrm{U}(1)}\to 0$ yields, because
+                    $H^1(M;\underline{\mathbb{R}})=H^2(M;\underline{\mathbb{R}})=0$ for the soft sheaf of smooth real
+                    functions,
+                    $$
+                    H^1\bigl(M;\underline{\mathrm{U}(1)}\bigr)\simeq H^2(M;\mathbb{Z}).
+                    $$
+                    Cech $1$-cocycles with values in $\mathrm{U}(1)$ are precisely the transition functions of principal
+                    $\mathrm{U}(1)$-bundles. given a connection, local curvature forms $F_i=dA_i$ glue because
+                    $A_i-A_j=g_{ij}^{-1}dg_{ij}$ is closed as a real form after taking $d\log$, and Chern-Weil (chapter 6)
+                    identifies $[F/2\pi]$ with the real image of $c_1$. independence of connection follows because the
+                    difference of two connection forms is globally defined and the curvatures differ by an exact form.
+                    $\square$</p>
+
+                <p><strong>theorem (instanton number as a topological invariant).</strong> for a principal
+                    $\mathrm{SU}(n)$-bundle $P$ on a closed oriented four-manifold $M$, the integer
+                    $$
+                    k
+                    =-\frac{1}{8\pi^2}\int_M\operatorname{tr}(F_A\wedge F_A)
+                    $$
+                    equals the second Chern number $c_2(P)[M]$ and is independent of the connection $A$. connections
+                    with different $k$ lie in distinct path components of $\mathcal{A}/\mathcal{G}$.</p>
+
+                <p><strong>proof.</strong> by Chern-Weil theory, $\operatorname{tr}(F\wedge F)$ is closed and its de Rham
+                    class is a characteristic class of $P$, independent of $A$ up to exact forms; on a closed manifold
+                    the integral is therefore constant on the affine space $\mathcal{A}$. integrality follows from the
+                    identification with $c_2\in H^4(M;\mathbb{Z})$. a continuous path of connections would produce a
+                    continuous (hence constant) integer $k$, so different $k$ cannot be joined by a continuous path of
+                    gauge fields even after gauge transformations (which preserve $c_2$). $\square$</p>
+
+                <p><strong>remark (spin structures as $\mathbb{Z}/2$ data).</strong> as in chapter 3, spin structures exist
+                    iff $w_2(TM)=0$ and then form a torsor over $H^1(M;\mathbb{Z}/2)$. each choice yields a distinct
+                    spinor bundle and therefore a distinct configuration space for fermionic fields.</p>
+
+                <p>Algebraic topology therefore converts the global geometric questions left open by local differential
+                    equations into a precise system of computable invariants. These invariants label the distinct
+                    topological sectors of classical field configurations and prepare the ground for the characteristic
+                    classes, $K$-theory, and index theorems that refine the classification still further.</p>
+
+                <p><strong>remark (to the next chapters).</strong> chapter 6 constructs characteristic classes from
+                    curvature by Chern-Weil theory; chapter 7 reorganizes bundles into $K$-theory; chapter 8 relates
+                    topology to analytical indices.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (magnetic flux).</strong> on $S^2$, let $F$ be a closed two-form with
+                    $\int_{S^2}F=2\pi n$ for $n\in\mathbb{Z}$. using the Cech-de Rham correspondence with the cover by
+                    northern and southern hemispheres, show that a $\mathrm{U}(1)$ potential exists globally if and only
+                    if $n=0$, and construct the transition function on the equator when $n\neq 0$.</p>
+
+                <p><strong>exercise 2 (euler number of $TS^2$).</strong> compute $\langle e(TS^2),[S^2]\rangle$ two ways:
+                    (i) as the Euler characteristic $\chi(S^2)$; (ii) as the sum of indices of a vector field with
+                    isolated zeros (for example the gradient of height). conclude that $TS^2$ is nontrivial.</p>
+
+                <p><strong>exercise 3 (path components of maps).</strong> identify $\pi_0\operatorname{Map}(S^3,\mathrm{SU}(2))$
+                    with $\pi_3(\mathrm{SU}(2))\simeq\mathbb{Z}$ and interpret the integer as a winding / instanton
+                    number for pure gauge transformations on $S^3$ (or on $\mathbb{R}^3$ with decay at infinity).</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-4/">← classical field dynamics</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-6/">next: characteristic classes →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

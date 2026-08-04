@@ -102,10 +102,40 @@ a:hover {
     color: var(--dim);
 }
 
+/* Page shell is wide enough for figures; prose is narrowed separately. */
 .doc {
-    max-width: 68ch;
+    max-width: min(1180px, calc(100vw - 1.5rem));
     margin: 0 auto;
     padding: 2.5rem 1.25rem 4rem;
+    overflow-x: visible;
+}
+
+/* Keep reading measure for prose; plots fill the shell width.
+   Prose is horizontally centered in the wide shell (do NOT use margin shorthand
+   later — it would zero margin-left/right and break centering). */
+main.doc > .subnav,
+main.doc > .doc-header,
+main.doc > .doc-rule,
+main.doc > .doc-footer,
+main.doc > .toc,
+main.doc .doc-body > h2,
+main.doc .doc-body > h3,
+main.doc .doc-body > p,
+main.doc .doc-body > ul,
+main.doc .doc-body > ol,
+main.doc .doc-body > table,
+main.doc .doc-body > blockquote,
+main.doc .doc-section > h2,
+main.doc .doc-section > h3,
+main.doc .doc-section > p,
+main.doc .doc-section > ul,
+main.doc .doc-section > ol,
+main.doc .doc-section > table,
+main.doc .doc-section > blockquote,
+main.doc .doc-section > .spine-rail {
+    max-width: 68ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .doc-header {
@@ -181,7 +211,8 @@ main.doc .doc-body strong {
 }
 
 .doc-section h2 {
-    margin: 0 0 0.65rem;
+    margin-top: 0;
+    margin-bottom: 0.65rem;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--link);
@@ -189,7 +220,8 @@ main.doc .doc-body strong {
 }
 
 .doc-section p {
-    margin: 0 0 0.95rem;
+    margin-top: 0;
+    margin-bottom: 0.95rem;
     font-size: 0.95rem;
     line-height: 1.75;
     color: var(--fg);
@@ -200,8 +232,10 @@ main.doc .doc-body strong {
 }
 
 .doc-section ol {
-    margin: 0.5rem 0 0.85rem 1.35rem;
-    padding: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.85rem;
+    /* horizontal centering from main.doc rules; indent via padding */
+    padding-left: 1.35rem;
     font-size: 0.95rem;
     line-height: 1.75;
     color: var(--fg);
@@ -217,7 +251,8 @@ main.doc .doc-body strong {
 }
 
 .doc-section h3 {
-    margin: 1rem 0 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--link-hover);
@@ -323,7 +358,8 @@ main.doc .doc-body strong {
 
 /* chapters: headings directly under .doc-body (no .doc-section wrapper) */
 main.doc .doc-body>h2 {
-    margin: 1.6rem 0 0.55rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.55rem;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--link);
@@ -339,7 +375,8 @@ main.doc .doc-body>.spine-rail+h2 {
 }
 
 main.doc .doc-body>h3 {
-    margin: 1.1rem 0 0.45rem;
+    margin-top: 1.1rem;
+    margin-bottom: 0.45rem;
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--link-hover);
@@ -349,7 +386,8 @@ main.doc .doc-body>h3 {
 main.doc .doc-body>p,
 main.doc .doc-body>ul,
 main.doc .doc-body>ol {
-    margin: 0 0 0.85rem;
+    margin-top: 0;
+    margin-bottom: 0.85rem;
     font-size: 0.95rem;
     line-height: 1.75;
     color: var(--fg);
@@ -778,5 +816,214 @@ main.doc .doc-body li {
             "theory"
             "terminal"
             "viz";
+    }
+}
+
+/* mechanics chapter interactive figures — full shell width (prose stays 68ch) */
+main.doc .doc-widget {
+    width: 100%;
+    max-width: none;
+    margin: 1.45rem 0 1.75rem;
+    padding: 0.9rem 1rem 1.05rem;
+    border: 1px solid #222;
+    background: #000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* fallback when not under main.doc */
+.doc-widget {
+    margin: 1.1rem 0 1.35rem;
+    padding: 0.75rem 0.85rem 0.85rem;
+    border: 1px solid #222;
+    background: #000;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.doc-widget-title {
+    margin: 0 0 0.4rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--link);
+    overflow-wrap: anywhere;
+}
+
+.doc-widget-caption {
+    margin: 0 0 0.75rem;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--dim);
+    overflow-wrap: anywhere;
+    max-width: 88ch;
+}
+
+.doc-widget canvas,
+.doc-widget-plot {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 420px;
+    height: clamp(420px, 46vw, 620px);
+    border: 1px solid #1a1a1a;
+    background: #000;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* dual-panel / 3D figures need extra vertical room */
+.doc-widget-plot.tall {
+    height: clamp(500px, 52vw, 700px);
+    min-height: 500px;
+}
+
+.doc-widget-plot .js-plotly-plot,
+.doc-widget-plot .plot-container,
+.doc-widget-plot .svg-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.doc-widget-plot .main-svg {
+    overflow: hidden !important;
+}
+
+.doc-widget-plot .legend {
+    max-width: 100% !important;
+}
+
+.doc-widget-plot .modebar {
+    top: 4px !important;
+    right: 4px !important;
+    max-width: calc(100% - 8px) !important;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 3;
+}
+
+.doc-widget-readout .katex {
+    font-size: 1em;
+}
+
+.doc-widget-readout .katex-display {
+    margin: 0.2em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.doc-widget-plot .modebar-btn path {
+    fill: #6a6a6a !important;
+}
+
+.doc-widget-plot .modebar-btn:hover path {
+    fill: #ae93ec !important;
+}
+
+.doc-widget-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.15rem;
+    margin: 0.75rem 0 0.4rem;
+    font-size: 0.86rem;
+    color: var(--dim);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.doc-widget-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1 1 9rem;
+    max-width: 18rem;
+}
+
+.doc-widget-controls select {
+    font: inherit;
+    color: var(--fg);
+    background: #000;
+    border: 1px solid #222;
+    padding: 0.25rem 0.35rem;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.doc-widget-controls input[type="range"] {
+    width: 100%;
+    max-width: 100%;
+    accent-color: var(--link);
+    box-sizing: border-box;
+}
+
+.doc-widget-controls button,
+.doc-widget-button {
+    align-self: flex-end;
+    font: inherit;
+    font-size: 0.86rem;
+    color: var(--fg);
+    background: #000;
+    border: 1px solid #333;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.doc-widget-controls button:hover,
+.doc-widget-button:hover {
+    border-color: var(--link);
+    color: var(--link);
+}
+
+.doc-widget-readout {
+    margin: 0.45rem 0 0;
+    font-size: 0.82rem;
+    color: var(--fg);
+    line-height: 1.55;
+    max-width: 100%;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* KaTeX MathML is screen-reader only; never participate in layout overflow */
+.doc-widget .katex-mathml {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0) !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 720px) {
+    .doc {
+        max-width: 100%;
+        padding: 1.5rem 0.85rem 3rem;
+    }
+
+    main.doc .doc-widget {
+        margin: 1.1rem 0 1.35rem;
+        padding: 0.6rem 0.55rem 0.75rem;
+    }
+
+    .doc-widget-controls label {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .doc-widget-plot {
+        height: clamp(360px, 78vw, 480px);
+        min-height: 360px;
+    }
+
+    .doc-widget-plot.tall {
+        height: clamp(420px, 88vw, 560px);
+        min-height: 420px;
     }
 }

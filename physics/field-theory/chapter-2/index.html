@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>metrics, connections, and curvature · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">metrics, connections, and curvature</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>2 · metrics, connections, and curvature</h1>
+            <p class="doc-lead"><em>parallel transport, obstruction measures, and geometric structure</em></p>
+            <p class="doc-intro">With the kinematic arena of a differentiable manifold established, the next layer of
+                structure equips spacetime with the means to measure lengths, angles, and parallel transport, and to
+                quantify the intrinsic bending of the geometry itself. These notions are supplied by a metric and a
+                connection; their interplay yields the curvature that governs both the motion of test particles and the
+                conservation laws of classical field theory.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="metric">
+                <h2>pseudo-riemannian metrics and the levi-civita connection</h2>
+                <p>A pseudo-Riemannian metric on an $n$-dimensional manifold $M$ is a smooth, symmetric, nondegenerate
+                    bilinear form $g$ of fixed signature on each tangent space. In spacetime the signature is Lorentzian,
+                    conventionally $(-,+,+,+)$ or $(+,-,-,-)$. The metric defines the causal structure, proper time along
+                    timelike curves, and the Hodge dual on differential forms.</p>
+
+                <p><strong>definition (pseudo-riemannian metric).</strong> a smooth section $g$ of
+                    $\operatorname{Sym}^2 T^*M$ such that each $g_p:T_p M\times T_p M\to\mathbb{R}$ is a nondegenerate
+                    symmetric bilinear form of constant signature. if the signature is definite one speaks of a
+                    Riemannian metric; if it is Lorentzian one speaks of a spacetime metric.</p>
+
+                <p><strong>definition (causal character).</strong> a nonzero vector $v\in T_p M$ is timelike, null, or
+                    spacelike according as $g_p(v,v)$ is negative, zero, or positive (in the signature $(-,+,+,+)$). a
+                    curve is classified by the character of its velocity.</p>
+
+                <p>Among all linear connections compatible with a given metric, there is a unique torsion-free
+                    connection: the Levi-Civita connection $\nabla$. Its Christoffel symbols in local coordinates are
+                    $$
+                    \Gamma^\lambda_{\mu\nu}
+                    =\frac12 g^{\lambda\sigma}\bigl(
+                    \partial_\mu g_{\nu\sigma}+\partial_\nu g_{\mu\sigma}-\partial_\sigma g_{\mu\nu}\bigr).
+                    $$
+                    Metric compatibility means $\nabla g=0$, so lengths and angles are preserved under parallel
+                    transport. Vanishing torsion means that the antisymmetric part of the connection coefficients is
+                    zero, equivalently that the torsion tensor
+                    $$
+                    T(X,Y)=\nabla_X Y-\nabla_Y X-[X,Y]
+                    $$
+                    vanishes identically.</p>
+
+                <p><strong>definition (affine connection).</strong> an affine connection on $M$ is an
+                    $\mathbb{R}$-bilinear operator $\nabla:\mathfrak{X}(M)\times\mathfrak{X}(M)\to\mathfrak{X}(M)$,
+                    written $\nabla_X Y$, which is $C^\infty$-linear in $X$ and satisfies the Leibniz rule
+                    $\nabla_X(fY)=X(f)Y+f\nabla_X Y$.</p>
+
+                <p><strong>definition (metric compatibility and torsion).</strong> $\nabla$ is metric-compatible if
+                    $Xg(Y,Z)=g(\nabla_X Y,Z)+g(Y,\nabla_X Z)$ for all vector fields, written $\nabla g=0$. the torsion
+                    is $T(X,Y)=\nabla_X Y-\nabla_Y X-[X,Y]$.</p>
+
+                <p><strong>theorem (fundamental theorem of riemannian geometry).</strong> on a pseudo-Riemannian manifold
+                    $(M,g)$ there exists a unique affine connection $\nabla$ that is torsion-free and
+                    metric-compatible. it is called the Levi-Civita connection of $g$.</p>
+
+                <p><strong>proof.</strong> assume $\nabla$ is torsion-free and metric-compatible. expand the three cyclic
+                    permutations of metric compatibility,
+                    $$
+                    \begin{aligned}
+                    Xg(Y,Z)&=g(\nabla_X Y,Z)+g(Y,\nabla_X Z),\\
+                    Yg(Z,X)&=g(\nabla_Y Z,X)+g(Z,\nabla_Y X),\\
+                    Zg(X,Y)&=g(\nabla_Z X,Y)+g(X,\nabla_Z Y).
+                    \end{aligned}
+                    $$
+                    add the first two, subtract the third, and replace $\nabla_Y X=\nabla_X Y-[X,Y]$ (and cyclic
+                    analogues) by torsion-freeness. the result is Koszul's formula
+                    $$
+                    \begin{aligned}
+                    2g(\nabla_X Y,Z)
+                    &=Xg(Y,Z)+Yg(Z,X)-Zg(X,Y)\\
+                    &\quad -g(X,[Y,Z])+g(Y,[Z,X])+g(Z,[X,Y]).
+                    \end{aligned}
+                    $$
+                    the right-hand side depends only on $g$ and the Lie bracket, so $g(\nabla_X Y,Z)$ is uniquely
+                    determined for all $Z$. nondegeneracy of $g$ therefore determines $\nabla_X Y$ uniquely. for
+                    existence, declare $\nabla_X Y$ by Koszul's formula in any chart (or abstractly by the same
+                    identity); the right-hand side is $C^\infty$-linear in $Z$, hence defines a vector field, and the
+                    usual verifications show that this $\nabla$ is an affine connection that is torsion-free and
+                    metric-compatible. in coordinates the Koszul prescription reduces to the displayed Christoffel
+                    formula. $\square$</p>
+
+                <p>Parallel transport along a curve $\gamma$ is the unique solution of the first-order equation
+                    $\nabla_{\dot\gamma}V=0$. Geodesics are the autoparallel curves satisfying
+                    $\nabla_{\dot\gamma}\dot\gamma=0$; they extremize the proper-time functional (for timelike curves
+                    in Lorentzian signature) and furnish the trajectories of freely falling test particles.</p>
+
+                <p><strong>definition (parallel transport and geodesic).</strong> a vector field $V$ along a curve
+                    $\gamma$ is parallel if $\nabla_{\dot\gamma}V=0$. the curve $\gamma$ is a geodesic if
+                    $\nabla_{\dot\gamma}\dot\gamma=0$.</p>
+
+                <p><strong>theorem (existence and uniqueness of parallel transport).</strong> let $\gamma:[a,b]\to M$ be
+                    a piecewise $C^1$ curve and let $v\in T_{\gamma(a)}M$. there exists a unique piecewise $C^1$ vector
+                    field $V$ along $\gamma$ with $V(a)=v$ and $\nabla_{\dot\gamma}V=0$ on each smooth piece.</p>
+
+                <p><strong>proof.</strong> in a chart along a smooth piece the equation $\nabla_{\dot\gamma}V=0$ becomes
+                    the linear ODE
+                    $$
+                    \dot V^\lambda+\Gamma^\lambda_{\mu\nu}(\gamma)\dot\gamma^\mu V^\nu=0.
+                    $$
+                    existence and uniqueness for linear first-order ODEs with continuous coefficients yield a unique
+                    solution on that piece. continuous matching of the vector at breakpoints gives the unique solution
+                    on $[a,b]$. $\square$</p>
+
+                <p><strong>remark (metric preservation).</strong> if $\nabla$ is the Levi-Civita connection and $V,W$
+                    are parallel along $\gamma$, then $\frac{d}{dt}g(V,W)=0$. thus parallel transport is a linear
+                    isometry $T_{\gamma(a)}M\to T_{\gamma(b)}M$.</p>
+            </section>
+
+            <section class="doc-section" id="riemann">
+                <h2>the riemann curvature tensor and the bianchi identities</h2>
+                <p>Curvature measures the failure of parallel transport to be path-independent. The Riemann curvature
+                    tensor is defined by the commutator of covariant derivatives:
+                    $$
+                    R(X,Y)Z=\nabla_X\nabla_Y Z-\nabla_Y\nabla_X Z-\nabla_{[X,Y]}Z.
+                    $$
+                    In components,
+                    $$
+                    R^\rho{}_{\sigma\mu\nu}
+                    =\partial_\mu\Gamma^\rho_{\nu\sigma}
+                    -\partial_\nu\Gamma^\rho_{\mu\sigma}
+                    +\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+                    -\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
+                    $$</p>
+
+                <p><strong>definition (riemann, ricci, scalar curvature).</strong> $R$ is the $(1,3)$-tensor determined
+                    by the formula above. the lowered tensor is
+                    $R_{\rho\sigma\mu\nu}=g_{\rho\lambda}R^\lambda{}_{\sigma\mu\nu}$. the Ricci tensor is
+                    $\operatorname{Ric}_{\sigma\nu}=R^\rho{}_{\sigma\rho\nu}$, and the scalar curvature is
+                    $\mathrm{Scal}=g^{\sigma\nu}\operatorname{Ric}_{\sigma\nu}$.</p>
+
+                <p>The tensor satisfies the algebraic symmetries
+                    $$
+                    R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}=-R_{\rho\sigma\nu\mu}=R_{\mu\nu\rho\sigma}
+                    $$
+                    and the first Bianchi identity
+                    $$
+                    R^\rho{}_{\sigma\mu\nu}+R^\rho{}_{\mu\nu\sigma}+R^\rho{}_{\nu\sigma\mu}=0.
+                    $$
+                    The second (differential) Bianchi identity
+                    $$
+                    \nabla_\lambda R^\rho{}_{\sigma\mu\nu}
+                    +\nabla_\mu R^\rho{}_{\sigma\nu\lambda}
+                    +\nabla_\nu R^\rho{}_{\sigma\lambda\mu}=0
+                    $$
+                    is a geometric constraint of profound physical consequence. When the Einstein equation is imposed,
+                    the contracted Bianchi identity implies the covariant conservation of the energy-momentum tensor,
+                    $$
+                    \nabla_\mu T^{\mu\nu}=0,
+                    $$
+                    thereby guaranteeing local energy-momentum balance without additional assumptions.</p>
+
+                <p><strong>theorem (algebraic symmetries of the riemann tensor).</strong> for the Levi-Civita connection
+                    of a pseudo-Riemannian metric,
+                    $$
+                    R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}=-R_{\rho\sigma\nu\mu},\qquad
+                    R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma},
+                    $$
+                    and the first Bianchi identity
+                    $R^\rho{}_{\sigma\mu\nu}+R^\rho{}_{\mu\nu\sigma}+R^\rho{}_{\nu\sigma\mu}=0$ holds.</p>
+
+                <p><strong>proof.</strong> skew-symmetry in $(X,Y)$ is immediate from the definition of $R(X,Y)Z$.
+                    metric compatibility implies
+                    $$
+                    Xg(\nabla_Y Z,W)+Xg(Z,\nabla_Y W)=XYg(Z,W)
+                    $$
+                    and cyclic rearrangements; evaluating the cyclic sum that defines
+                    $g(R(X,Y)Z,W)+g(Z,R(X,Y)W)$ yields zero, which is $R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}$
+                    after lowering. the pair-swap symmetry $R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma}$ follows from the
+                    first Bianchi identity together with the two skew-symmetries by a standard algebraic identity
+                    (expand the three cyclic sums with lowered indices). for the first Bianchi identity in the
+                    torsion-free case, expand
+                    $$
+                    \mathfrak{S}_{X,Y,Z}R(X,Y)Z
+                    =\mathfrak{S}_{X,Y,Z}\bigl(\nabla_X\nabla_Y Z-\nabla_Y\nabla_X Z-\nabla_{[X,Y]}Z\bigr)
+                    $$
+                    and cancel terms by the torsion-free Jacobi identity for the Lie bracket; the sum vanishes identically.
+                    $\square$</p>
+
+                <p><strong>theorem (second bianchi identity).</strong> for the Levi-Civita connection,
+                    $$
+                    \mathfrak{S}_{X,Y,Z}(\nabla_X R)(Y,Z)=0,
+                    $$
+                    which in components is the differential Bianchi identity displayed above.</p>
+
+                <p><strong>proof.</strong> work in a normal neighborhood of $p$ with a geodesic frame at $p$ so that
+                    $\Gamma^\lambda_{\mu\nu}(p)=0$ and therefore covariant derivatives of tensors at $p$ reduce to
+                    partial derivatives of components. the definition of $R$ then gives, at $p$,
+                    $$
+                    (\nabla_X R)(Y,Z)W
+                    =X\bigl(R(Y,Z)W\bigr)-R(\nabla_X Y,Z)W-\cdots
+                    $$
+                    with all $\nabla$-terms on frame fields vanishing at $p$. expanding
+                    $\mathfrak{S}_{X,Y,Z}\nabla_X\nabla_Y\nabla_Z W$ by associativity and cancelling against the
+                    commutator definitions of $R$ produces zero at $p$. since $p$ was arbitrary, the identity holds
+                    everywhere. $\square$</p>
+
+                <p><strong>theorem (contracted bianchi and conservation).</strong> the contracted second Bianchi identity
+                    reads
+                    $$
+                    \nabla^\mu\bigl(\operatorname{Ric}_{\mu\nu}-\tfrac12\mathrm{Scal}\,g_{\mu\nu}\bigr)=0.
+                    $$
+                    consequently, if Einstein's equation $\operatorname{Ric}_{\mu\nu}-\frac12\mathrm{Scal}\,g_{\mu\nu}
+                    +\Lambda g_{\mu\nu}=8\pi G\,T_{\mu\nu}$ holds, then $\nabla^\mu T_{\mu\nu}=0$.</p>
+
+                <p><strong>proof.</strong> contract the second Bianchi identity on the first and third indices (relabel
+                    carefully) and use the algebraic symmetries to obtain
+                    $\nabla^\rho\operatorname{Ric}_{\rho\nu}=\frac12\nabla_\nu\mathrm{Scal}$. rearranging yields
+                    divergence-freeness of the Einstein tensor $G_{\mu\nu}=\operatorname{Ric}_{\mu\nu}
+                    -\frac12\mathrm{Scal}\,g_{\mu\nu}$. the cosmological term $\Lambda g_{\mu\nu}$ is parallel for the
+                    Levi-Civita connection, so $\nabla^\mu G_{\mu\nu}+\Lambda\nabla^\mu g_{\mu\nu}=0$ still holds.
+                    Einstein's equation therefore forces $\nabla^\mu T_{\mu\nu}=0$. $\square$</p>
+
+                <p><strong>remark (holonomy infinitesimal).</strong> if $P_\gamma$ denotes parallel transport around a
+                    small parallelogram spanned by $X,Y$, then
+                    $P_\gamma=\mathrm{id}-R(X,Y)+o(|X||Y|)$. curvature is the infinitesimal holonomy of the
+                    connection.</p>
+            </section>
+
+            <section class="doc-section" id="ehresmann">
+                <h2>ehresmann connections on principal fiber bundles</h2>
+                <p>The notion of connection extends far beyond the tangent bundle. Let $\pi:P\to M$ be a principal
+                    $G$-bundle. An Ehresmann connection is a smooth horizontal distribution $H\subset TP$ complementary
+                    to the vertical distribution $V=\ker d\pi$ and invariant under the right $G$-action. Equivalently, a
+                    connection may be specified by a $\mathfrak{g}$-valued one-form $\omega$ on $P$ that reproduces the
+                    generators of the fundamental vector fields and transforms under the adjoint representation.</p>
+
+                <p><strong>definition (principal $G$-bundle).</strong> a smooth free right $G$-action on a manifold $P$
+                    with quotient map $\pi:P\to M=P/G$ a smooth submersion, locally trivial as $P|_U\simeq U\times G$ by
+                    $G$-equivariant diffeomorphisms.</p>
+
+                <p><strong>definition (ehresmann connection / connection form).</strong> an Ehresmann connection is a
+                    smooth complementary horizontal distribution $H\subset TP$ with $T_u P=H_u\oplus V_u$ and
+                    $R_g^*H=H$ for all $g\in G$. equivalently, a connection one-form is
+                    $\omega\in\Omega^1(P,\mathfrak{g})$ such that $\omega(\xi_P)=\xi$ for every fundamental field
+                    $\xi_P$ generated by $\xi\in\mathfrak{g}$, and $R_g^*\omega=\operatorname{Ad}_{g^{-1}}\omega$.
+                    the horizontal space is $H_u=\ker\omega_u$.</p>
+
+                <p><strong>definition (curvature form).</strong> the curvature of a connection form $\omega$ is the
+                    $\mathfrak{g}$-valued two-form
+                    $$
+                    \Omega=d\omega+\tfrac12[\omega,\omega],
+                    $$
+                    equivalently $\Omega(X,Y)=d\omega(X^H,Y^H)$ for the horizontal projections of $X,Y$.</p>
+
+                <p>Parallel displacement of a point $u\in P$ along a curve $\gamma$ in $M$ is obtained by lifting
+                    $\gamma$ to a horizontal curve in $P$. The holonomy group $\mathrm{Hol}_u(P,\omega)$ consists of all
+                    elements of $G$ realized by parallel transport around loops based at $\pi(u)$. The holonomy theorem
+                    of Ambrose and Singer identifies the Lie algebra of the holonomy group with the algebra generated by
+                    the curvature form evaluated on horizontal vectors. The reduction theorem asserts that if the
+                    holonomy group lies in a closed subgroup $H\subset G$, then the structure group of $P$ can be reduced
+                    to $H$.</p>
+
+                <p><strong>theorem (existence of horizontal lifts).</strong> let $\omega$ be a connection on $P\to M$
+                    and let $\gamma:[0,1]\to M$ be piecewise $C^1$ with $\gamma(0)=\pi(u)$. there exists a unique
+                    piecewise $C^1$ horizontal lift $\tilde\gamma$ of $\gamma$ with $\tilde\gamma(0)=u$, meaning
+                    $\pi\circ\tilde\gamma=\gamma$ and $\omega(\dot{\tilde\gamma})=0$.</p>
+
+                <p><strong>proof.</strong> locally trivialize $P|_U\simeq U\times G$ so that $\omega$ becomes a
+                    $\mathfrak{g}$-valued one-form $A$ on $U$ (plus the Maurer-Cartan form on $G$). a horizontal lift is
+                    then a path $(\gamma(t),g(t))$ satisfying the linear ODE
+                    $\dot g=-A(\dot\gamma)g$ (matrix form) or the corresponding right-invariant equation on $G$. unique
+                    solutions for ODEs on $G$, together with unique continuation across a finite cover of $\gamma$, give
+                    the global horizontal lift. $\square$</p>
+
+                <p><strong>theorem (ambrose-singer, statement).</strong> the Lie algebra of $\mathrm{Hol}_u^0(P,\omega)$
+                    (the restricted holonomy group of piecewise smooth null-homotopic loops) is generated by all elements
+                    $\Omega_v(X,Y)$ where $v$ lies in the horizontal holonomy-leaf through $u$ and $X,Y\in H_v$.</p>
+
+                <p><strong>proof (outline of idea).</strong> parallel transport around an infinitesimal parallelogram
+                    produces the curvature as in the Riemann case. the Lie algebra of a Lie group is recovered from
+                    one-parameter subgroups generated by such infinitesimal conjugations; integrating curvature along a
+                    dense set of loops fills the holonomy algebra. a complete rigorous treatment uses the reduction of
+                    the bundle to the holonomy group and the fact that curvature takes values in that algebra on the
+                    reduced total space. $\square$</p>
+
+                <p><strong>theorem (holonomy reduction).</strong> if $H\subset G$ is a closed subgroup containing
+                    $\mathrm{Hol}_u(P,\omega)$, then the set of points of $P$ reachable from $u$ by horizontal curves is
+                    a principal $H$-subbundle to which $\omega$ reduces.</p>
+
+                <p><strong>proof.</strong> let $Q$ be the set of endpoints of horizontal lifts starting at $u$. if
+                    $\tilde\gamma$ ends at $v$ and $h\in H$ contains the holonomy that would correct any two paths to the
+                    same basepoint, the $H$-orbit of $Q$ is well-defined and free. local triviality follows because
+                    horizontal lifts vary smoothly with basepaths in charts. by construction $\omega|_Q$ takes values
+                    in $\mathfrak{h}$ on vertical vectors for $H$, so the connection reduces. $\square$</p>
+
+                <p><strong>remark (gauge potentials).</strong> pullback of $\omega$ by a local section $s:U\to P$
+                    yields a local $\mathfrak{g}$-valued one-form $A=s^*\omega$ on $U$, the gauge potential. under
+                    $s'=s\cdot g$ one has $A'=g^{-1}Ag+g^{-1}dg$, recovering the classical gauge transformation law.</p>
+            </section>
+
+            <section class="doc-section" id="completeness">
+                <h2>completeness, decomposition, and space forms</h2>
+                <p>A Riemannian manifold is geodesically complete if every geodesic extends to all values of its affine
+                    parameter. The Hopf-Rinow theorem equates geodesic completeness with metric completeness (every
+                    Cauchy sequence converges) and guarantees that any two points may be joined by a minimizing geodesic.
+                    In the Lorentzian setting the corresponding notions are more subtle, but geodesic incompleteness
+                    remains the standard geometric signal of singularities.</p>
+
+                <p><strong>definition (geodesic completeness).</strong> $(M,g)$ is geodesically complete if every
+                    maximal geodesic is defined on all of $\mathbb{R}$.</p>
+
+                <p><strong>theorem (hopf-rinow).</strong> for a connected Riemannian manifold $(M,g)$ the following are
+                    equivalent: (i) $M$ is geodesically complete; (ii) $(M,d_g)$ is a complete metric space; (iii)
+                    closed bounded subsets of $M$ are compact. if any holds, then any two points of $M$ may be joined by
+                    a length-minimizing geodesic.</p>
+
+                <p><strong>proof.</strong> the Riemannian distance $d_g(p,q)$ is the infimum of lengths of piecewise
+                    $C^1$ curves from $p$ to $q$. geodesic completeness implies metric completeness because a Cauchy
+                    sequence eventually lies in a compact geodesic ball once the exponential map is defined for long
+                    enough times (Hopf-Rinow's standard argument: extend geodesics from a fixed basepoint to reach
+                    limit points). conversely, if a geodesic cannot be extended past finite affine time, the sequence of
+                    points along it at rational times is Cauchy but has no limit in $M$. once metric completeness holds,
+                    the exponential map at $p$ is defined on all of $T_p M$; the usual length comparison shows that a
+                    point $q$ is reached by a minimizing geodesic realizing $d_g(p,q)$. compact closed balls follow from
+                    Hopf-Rinow's characterization via completeness of the metric topology. $\square$</p>
+
+                <p>The de Rham decomposition theorem states that a simply connected, complete Riemannian manifold whose
+                    holonomy representation is reducible splits isometrically as a product of lower-dimensional factors.
+                    Space forms (manifolds of constant sectional curvature) are locally isometric to Euclidean space, the
+                    sphere, or hyperbolic space according to the sign of the curvature; their global geometry is
+                    completely classified by the fundamental group.</p>
+
+                <p><strong>theorem (de rham decomposition, statement).</strong> let $(M,g)$ be a simply connected,
+                    complete Riemannian manifold. if the holonomy representation of $T_p M$ decomposes as an orthogonal
+                    sum of irreducible subspaces, then $M$ is isometric to a Riemannian product of complete factors
+                    whose tangent spaces realize those summands.</p>
+
+                <p><strong>proof (idea).</strong> parallel transport preserves the holonomy-invariant decomposition of
+                    $T_p M$, yielding smooth complementary parallel distributions $E$ and $F$ on $M$. by the Frobenius
+                    theorem (chapter 1) these integrate to foliations; completeness and simple connectivity imply that
+                    $M$ is a global product and the metric is a product metric. $\square$</p>
+
+                <p>Infinitesimal affine transformations are vector fields that preserve the connection; they generate
+                    the Lie algebra of the affine group of the manifold and play a central role in the study of
+                    homogeneous spaces and symmetric spaces.</p>
+
+                <p><strong>definition (affine vector field).</strong> a vector field $X$ is affine for $\nabla$ if its
+                    flow preserves $\nabla$, equivalently $\mathcal{L}_X\nabla=0$ (in components,
+                    $\nabla_\mu\nabla_\nu X^\rho+R^\rho{}_{\sigma\mu\nu}X^\sigma=0$).</p>
+            </section>
+
+            <section class="doc-section" id="flatness">
+                <h2>curvature as the obstruction to flatness</h2>
+                <p>A connection is flat when its curvature vanishes identically. Locally, flatness is equivalent to the
+                    existence of parallel frames; globally, the holonomy representation must be trivial. Sectional
+                    curvature $K(\Pi)$ of a two-plane $\Pi\subset T_p M$ is the Gauss curvature of the surface obtained by
+                    exponentiating $\Pi$. When the sectional curvature is constant, the manifold is a space form; the
+                    comparison of local sectional curvature with global isometries yields rigidity theorems (for
+                    example, the Cartan-Hadamard theorem for nonpositive curvature and the sphere theorem for positive
+                    curvature).</p>
+
+                <p><strong>definition (sectional curvature).</strong> for a nondegenerate plane $\Pi=\operatorname{span}
+                    \{X,Y\}\subset T_p M$,
+                    $$
+                    K(\Pi)
+                    =\frac{g\bigl(R(X,Y)Y,X\bigr)}{g(X,X)g(Y,Y)-g(X,Y)^2}.
+                    $$</p>
+
+                <p><strong>theorem (flatness and local parallel frames).</strong> let $\nabla$ be an affine connection
+                    on $M$. the following are equivalent in a simply connected open set $U$: (i) $R\equiv 0$ on $U$;
+                    (ii) every $p\in U$ admits a neighborhood with a parallel frame field; (iii) parallel transport in
+                    $U$ is path-independent.</p>
+
+                <p><strong>proof.</strong> if a parallel frame $e_i$ exists, then $R(X,Y)e_i=0$ for all $X,Y$, so
+                    $R=0$. conversely, if $R=0$ then the PDE $\nabla e_i=0$ is integrable by the Frobenius theorem on the
+                    frame bundle (the horizontal distribution of the induced linear connection is involutive precisely
+                    when $R=0$). unique continuation of parallel transport from a chosen frame at $p$ then yields a local
+                    parallel frame. path-independence of parallel transport on loops contractible in $U$ follows, and
+                    on a simply connected $U$ this gives global path-independence within $U$. $\square$</p>
+
+                <p><strong>theorem (cartan-hadamard, statement).</strong> if $(M,g)$ is a complete, simply connected
+                    Riemannian manifold of nonpositive sectional curvature, then $\exp_p:T_p M\to M$ is a diffeomorphism
+                    for every $p$, and $M$ is diffeomorphic to $\mathbb{R}^n$.</p>
+
+                <p><strong>proof (outline).</strong> nonpositive curvature implies, by the second variation formula /
+                    Jacobi field comparison, that $\exp_p$ has no conjugate points. geodesic completeness and the
+                    Hopf-Rinow theorem make $\exp_p$ a smooth covering map; simple connectivity forces it to be a
+                    diffeomorphism. $\square$</p>
+
+                <p>Thus curvature simultaneously obstructs the existence of global parallel frames, dictates the
+                    focusing of geodesics, constrains the possible holonomy groups, and, through the Bianchi identities,
+                    enforces the conservation laws that underwrite classical field dynamics. The geometric structures
+                    introduced in this chapter (metric, Levi-Civita connection, curvature, and their principal-bundle
+                    generalizations) constitute the indispensable bridge between the local differential equations of
+                    classical fields and the global topology of spacetime.</p>
+
+                <p><strong>remark (bridge to later chapters).</strong> spin geometry will lift the orthonormal frame
+                    bundle to a spin cover (chapter 3); gauge fields will treat connections on general principal bundles
+                    as dynamical variables (chapters 4 and 9); characteristic classes will be built from curvature forms
+                    by Chern-Weil theory (chapter 6).</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (koszul).</strong> from Koszul's formula deduce the Christoffel formula for
+                    $\Gamma^\lambda_{\mu\nu}$ in a coordinate frame $\partial_\mu$, using
+                    $g(\nabla_{\partial_\mu}\partial_\nu,\partial_\sigma)=\Gamma^\lambda_{\mu\nu}g_{\lambda\sigma}$.</p>
+
+                <p><strong>exercise 2 (geodesic conservation).</strong> if $X$ is a Killing field ($\mathcal{L}_X g=0$)
+                    and $\gamma$ is a geodesic, show that $g(\dot\gamma,X)$ is constant along $\gamma$. interpret as a
+                    Noether charge of the geodesic Lagrangian.</p>
+
+                <p><strong>exercise 3 (u(1) holonomy).</strong> on $S^1$ with the flat connection $A=a\,d\theta$
+                    ($a\in\mathbb{R}$) on the trivial $\mathrm{U}(1)$ bundle, compute the holonomy of the loop that
+                    winds once. for which $a$ is the holonomy trivial?</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-1/">← fields on differentiable manifolds</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-3/">next: spinors and spacetime geometry →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

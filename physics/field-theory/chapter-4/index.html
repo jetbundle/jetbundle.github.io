@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>classical field dynamics · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">classical field dynamics</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>4 · classical field dynamics</h1>
+            <p class="doc-lead"><em>action principles, gauge symmetry, and conservation laws</em></p>
+            <p class="doc-intro">The geometric structures developed in the preceding chapters furnish the kinematic
+                arena of classical field theory. Dynamics are imposed by the principle of least action: the physical
+                configurations are those that extremize a suitably constructed action functional. Variation of the action
+                yields the Euler-Lagrange equations, which, once expressed in geometric language, become the field
+                equations of electromagnetism, Yang-Mills theory, and general relativity.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="action">
+                <h2>the principle of least action and the euler-lagrange equations</h2>
+                <p>Let $\Phi$ denote a collection of fields (scalar, tensor, or spinor) defined on a manifold $M$. An
+                    action is a functional
+                    $$
+                    S[\Phi]=\int_M\mathcal{L}(\Phi,\nabla\Phi,g)\,d\mathrm{vol}_g,
+                    $$
+                    where the Lagrangian density $\mathcal{L}$ is a scalar constructed from the fields, their covariant
+                    derivatives, and the metric. Stationarity under compactly supported variations, $\delta S=0$, produces
+                    the Euler-Lagrange equations
+                    $$
+                    \frac{\delta\mathcal{L}}{\delta\Phi}=0.
+                    $$
+                    When the fields take values in a vector bundle, the variational derivative is understood with
+                    respect to the appropriate fiber metric. Gauge symmetries of the Lagrangian imply, via Noether's
+                    theorem, the existence of conserved currents; diffeomorphism invariance likewise yields covariant
+                    conservation of the energy-momentum tensor.</p>
+
+                <p><strong>definition (action and lagrangian density).</strong> given a fiber bundle $E\to M$ with
+                    configuration sections $\Phi\in\Gamma(E)$, a Lagrangian density is a smooth map assigning to the
+                    $k$-jet of $\Phi$ and to $g$ a scalar density $\mathcal{L}\,\mathrm{vol}_g$ (often written as a
+                    scalar $\mathcal{L}$ times the metric volume form). the action on a region $U\subset M$ is
+                    $S_U[\Phi]=\int_U\mathcal{L}\,d\mathrm{vol}_g$.</p>
+
+                <p><strong>definition (euler-lagrange equations).</strong> $\Phi$ is critical for $S$ if for every
+                    compactly supported vertical variation $\Phi_\varepsilon$ with $\Phi_0=\Phi$,
+                    $$
+                    \frac{d}{d\varepsilon}\Big|_{\varepsilon=0}S[\Phi_\varepsilon]=0.
+                    $$
+                    the resulting differential equations are the Euler-Lagrange equations of $\mathcal{L}$.</p>
+
+                <p><strong>theorem (euler-lagrange for first-order scalar fields).</strong> on Minkowski space, for
+                    $\mathcal{L}=\mathcal{L}(\phi,\partial_\mu\phi)$ of class $C^2$, a smooth field $\phi$ is critical
+                    for compactly supported variations if and only if
+                    $$
+                    \partial_\mu\Bigl(\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\Bigr)
+                    -\frac{\partial\mathcal{L}}{\partial\phi}=0.
+                    $$</p>
+
+                <p><strong>proof.</strong> let $\phi_\varepsilon=\phi+\varepsilon\eta$ with $\eta$ smooth and supported
+                    in a compact set $K\subset\mathrm{int}\,U$. then
+                    $$
+                    \frac{d}{d\varepsilon}\Big|_{0}S
+                    =\int_U\Bigl(
+                    \frac{\partial\mathcal{L}}{\partial\phi}\,\eta
+                    +\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\,\partial_\mu\eta
+                    \Bigr)\,d^4x.
+                    $$
+                    integrate the second summand by parts:
+                    $$
+                    \int_U\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\,\partial_\mu\eta\,d^4x
+                    =-\int_U\partial_\mu\Bigl(\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\Bigr)\eta\,d^4x,
+                    $$
+                    the boundary term vanishing because $\eta|_{\partial U}=0$. thus
+                    $$
+                    \frac{d}{d\varepsilon}\Big|_{0}S
+                    =\int_U\eta\Biggl(
+                    \frac{\partial\mathcal{L}}{\partial\phi}
+                    -\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}
+                    \Biggr)\,d^4x.
+                    $$
+                    this vanishes for all such $\eta$ if and only if the Euler-Lagrange expression is identically zero.
+                    $\square$</p>
+
+                <p><strong>theorem (noether for internal symmetries).</strong> suppose $\mathcal{L}$ is invariant under
+                    a one-parameter group of field transformations $\delta_\varepsilon\phi=K(\phi)\varepsilon$
+                    (to first order), up to a pure divergence $\delta\mathcal{L}=\partial_\mu K^\mu$. then the current
+                    $$
+                    j^\mu
+                    =\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\,K(\phi)-K^\mu
+                    $$
+                    is conserved on shell: $\partial_\mu j^\mu=0$ whenever the Euler-Lagrange equations hold.</p>
+
+                <p><strong>proof.</strong> compute $\delta\mathcal{L}$ by the chain rule:
+                    $$
+                    \delta\mathcal{L}
+                    =\frac{\partial\mathcal{L}}{\partial\phi}\delta\phi
+                    +\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\partial_\mu(\delta\phi).
+                    $$
+                    rewrite the second term as
+                    $$
+                    \partial_\mu\Bigl(\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\delta\phi\Bigr)
+                    -\Biggl(\partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\Biggr)\delta\phi.
+                    $$
+                    the coefficient of $\delta\phi$ is the Euler-Lagrange expression. on shell it vanishes, so
+                    $\delta\mathcal{L}$ equals a pure divergence built from $j^\mu$. but by hypothesis
+                    $\delta\mathcal{L}=\partial_\mu K^\mu$ identically (off shell for a strict symmetry of the
+                    Lagrangian density up to $K^\mu$). equating the two expressions for $\delta\mathcal{L}$ on shell
+                    yields $\partial_\mu j^\mu=0$. $\square$</p>
+
+                <p><strong>remark (bundle-valued fields).</strong> when $\Phi$ is a section of a vector bundle, the same
+                    argument applies in local frames after replacing $\partial_\mu$ by a connection $\nabla_\mu$; the
+                    variational derivative becomes the fiberwise dual of the Euler-Lagrange one-form. gauge symmetries
+                    are then vertical automorphisms of the principal bundle, and Noether currents take values in the
+                    dual of the gauge Lie algebra (chapter 9).</p>
+            </section>
+
+            <section class="doc-section" id="srm-em">
+                <h2>special-relativistic mechanics and electrodynamics</h2>
+                <p>In Minkowski space the principle of relativity fixes the causal structure and the invariance of the
+                    interval. The four-momentum $p^\mu=mu^\mu$ of a massive particle satisfies $p\cdot p=-m^2$, while the
+                    kinematics of collisions and decays follow from four-momentum conservation.</p>
+
+                <p><strong>definition (relativistic particle).</strong> a massive particle of rest mass $m>0$ has a
+                    future-directed unit (or normalized) four-velocity $u^\mu$ with $u\cdot u=-1$ and four-momentum
+                    $p^\mu=mu^\mu$. free motion extremizes proper time, equivalently $p$ is parallel-transported along the
+                    worldline.</p>
+
+                <p><strong>theorem (geodesic equation from proper time).</strong> among future-directed timelike curves
+                    from $p$ to $q$ in Minkowski space, the straight line maximizes proper time
+                    $\tau=\int\sqrt{-g(\dot\gamma,\dot\gamma)}\,d\lambda$. its Euler-Lagrange equation is
+                    $\ddot x^\mu=0$ in inertial coordinates.</p>
+
+                <p><strong>proof.</strong> in inertial coordinates $L=\sqrt{-\eta_{\mu\nu}\dot x^\mu\dot x^\nu}$. the
+                    Euler-Lagrange equation for a reparametrization-invariant Lagrangian reduces on the constant-speed
+                    gauge $\eta(\dot x,\dot x)=-1$ to $\ddot x^\mu=0$. uniqueness of solutions through given endpoints
+                    yields the straight-line maximizer. $\square$</p>
+
+                <p>Electromagnetism is introduced through a $\mathrm{U}(1)$ connection: the four-potential $A_\mu$. The
+                    field strength
+                    $$
+                    F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+                    $$
+                    is the curvature of this connection. Gauge invariance $A_\mu\mapsto A_\mu+\partial_\mu\lambda$ leaves
+                    $F$ unchanged and guarantees that physical observables depend only on the curvature. The homogeneous
+                    Maxwell equations
+                    $$
+                    dF=0\qquad\bigl(\partial_{[\lambda}F_{\mu\nu]}=0\bigr)
+                    $$
+                    are the Bianchi identity for an abelian connection and are therefore geometric. The inhomogeneous
+                    equations
+                    $$
+                    d{*F}=4\pi{*J}\qquad\bigl(\partial_\mu F^{\mu\nu}=4\pi J^\nu\bigr)
+                    $$
+                    arise as the Euler-Lagrange equations of the Maxwell action
+                    $$
+                    S_{\mathrm{EM}}
+                    =-\frac14\int F_{\mu\nu}F^{\mu\nu}\,d^4x
+                    +\int A_\mu J^\mu\,d^4x.
+                    $$</p>
+
+                <p><strong>definition (maxwell field strength).</strong> for a $\mathrm{U}(1)$ connection one-form $A$,
+                    set $F=dA\in\Omega^2(M)$. in components $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$.</p>
+
+                <p><strong>theorem (gauge invariance of the maxwell action).</strong> if $\partial_\mu J^\mu=0$ (and
+                    boundary terms vanish), then $S_{\mathrm{EM}}$ is invariant under $A\mapsto A+d\lambda$. moreover
+                    $F$ itself is gauge invariant.</p>
+
+                <p><strong>proof.</strong> $d(A+d\lambda)=dA$, so the $F_{\mu\nu}F^{\mu\nu}$ term is unchanged. the
+                    coupling shifts by $\int(\partial_\mu\lambda)J^\mu=-\int\lambda\,\partial_\mu J^\mu=0$ after
+                    integration by parts and using current conservation. $\square$</p>
+
+                <p><strong>theorem (maxwell equations from the action).</strong> critical points of $S_{\mathrm{EM}}$
+                    with respect to compactly supported variations of $A$ satisfy $\partial_\mu F^{\mu\nu}=4\pi J^\nu$.
+                    the identity $dF=0$ holds for any $A$ of class $C^2$.</p>
+
+                <p><strong>proof.</strong> $dF=d^2A=0$ is immediate. for the inhomogeneous equation, vary
+                    $A\mapsto A+\varepsilon a$ with $a$ compactly supported. using
+                    $\delta(F_{\mu\nu}F^{\mu\nu})=4F^{\mu\nu}\partial_\mu a_\nu$ and integrating by parts,
+                    $$
+                    \delta S_{\mathrm{EM}}
+                    =\int a_\nu\bigl(\partial_\mu F^{\mu\nu}+4\pi J^\nu\bigr)\,d^4x
+                    $$
+                    up to the conventional overall normalization matching the $-1/4$ prefactor (the same computation with
+                    exterior calculus reads $\delta\int F\wedge{*F}\propto\int a\wedge d{*F}$). vanishing for all $a$
+                    yields $\partial_\mu F^{\mu\nu}=-4\pi J^\nu$ or $\partial_\mu F^{\mu\nu}=4\pi J^\nu$ according to the
+                    metric signature and ${*}$ convention; the text adopts the form $\partial_\mu F^{\mu\nu}=4\pi J^\nu$
+                    as stated for the action above. $\square$</p>
+
+                <p>The energy-momentum tensor
+                    $$
+                    T_{\mu\nu}
+                    =F_{\mu\lambda}F^\lambda{}_\nu-\frac14 g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}
+                    $$
+                    is symmetric, traceless (in four dimensions), and divergenceless on shell; it supplies the energy
+                    density, Poynting flux, and Maxwell stresses.</p>
+
+                <p><strong>theorem (properties of the maxwell stress-energy).</strong> for $F=dA$ on Minkowski space in
+                    four dimensions, $T_{\mu\nu}$ is symmetric, $T^\mu{}_\mu=0$, and $\partial^\mu T_{\mu\nu}=J^\lambda
+                    F_{\lambda\nu}$ (hence $\partial^\mu T_{\mu\nu}=0$ in source-free regions where Maxwell's equation
+                    holds with $J=0$).</p>
+
+                <p><strong>proof.</strong> symmetry is manifest. the trace identity
+                    $F_{\mu\lambda}F^{\lambda\mu}-\frac14\cdot 4\,F_{\alpha\beta}F^{\alpha\beta}=0$ is four-dimensional.
+                    for the divergence, compute
+                    $$
+                    \partial^\mu T_{\mu\nu}
+                    =(\partial^\mu F_{\mu\lambda})F^\lambda{}_\nu
+                    +F_{\mu\lambda}\partial^\mu F^\lambda{}_\nu
+                    -\frac12 F_{\alpha\beta}\partial_\nu F^{\alpha\beta}.
+                    $$
+                    the homogeneous equation $\partial_{[\nu}F_{\alpha\beta]}=0$ rearranges the last two structures so
+                    that they cancel against $F_{\mu\lambda}\partial^\mu F^\lambda{}_\nu$ up to
+                    $F^\lambda{}_\nu\partial^\mu F_{\mu\lambda}$, and Maxwell $\partial^\mu F_{\mu\lambda}=4\pi J_\lambda$
+                    produces $4\pi J^\lambda F_{\lambda\nu}$ (sign fixed with the same conventions as the field
+                    equation). in free space $J=0$, so $\partial^\mu T_{\mu\nu}=0$. $\square$</p>
+
+                <p>The field of an arbitrarily moving point charge is given by the Lienard-Wiechert potentials. At large
+                    distances the radiation field falls as $1/r$ and carries energy whose angular distribution is
+                    controlled by the multipole moments of the source. Dipole radiation dominates for nonrelativistic
+                    accelerations; synchrotron radiation appears for ultrarelativistic charges in magnetic fields. The
+                    back-reaction of the emitted radiation on the particle is described by the Lorentz-Dirac equation,
+                    whose radiation-damping term follows from energy-momentum balance.</p>
+
+                <p><strong>definition (lienard-wiechert potentials).</strong> for a point charge $e$ with worldline
+                    $z^\mu(\tau)$ and four-velocity $u^\mu$, the retarded distance $R^\mu=x^\mu-z^\mu(\tau_{\mathrm{ret}})$
+                    is null and future-directed from the emission event. the potentials are
+                    $$
+                    A^\mu(x)=\frac{e u^\mu}{u\cdot R}\Big|_{\tau_{\mathrm{ret}}},
+                    $$
+                    up to overall $4\pi\epsilon_0$-type constants fixed by unit conventions.</p>
+
+                <p><strong>remark (radiation and radiation reaction).</strong> the $1/r$ piece of $F_{\mu\nu}$
+                    constructed from the Lienard-Wiechert field carries a null Poynting flux; integrating $T_{\mu\nu}$
+                    over large spheres yields the Larmor (or relativistic Larmor) power. the Lorentz-Dirac
+                    self-force balances that loss against the mechanical four-momentum, at the price of familiar runaway
+                    and preacceleration issues in the pure point-particle idealization.</p>
+            </section>
+
+            <section class="doc-section" id="gr">
+                <h2>general relativity: the metric as a dynamical field</h2>
+                <p>In general relativity the metric itself becomes a dynamical variable. The Einstein-Hilbert action
+                    $$
+                    S_{\mathrm{EH}}
+                    =\frac{1}{16\pi G}\int_M R\,d\mathrm{vol}_g
+                    +S_{\mathrm{matter}}
+                    $$
+                    is varied with respect to $g_{\mu\nu}$. The resulting Euler-Lagrange equation is the Einstein
+                    equation
+                    $$
+                    G_{\mu\nu}=R_{\mu\nu}-\frac12 R g_{\mu\nu}=8\pi G\,T_{\mu\nu},
+                    $$
+                    where $G_{\mu\nu}$ is the Einstein tensor and $T_{\mu\nu}$ is the energy-momentum tensor of all
+                    non-gravitational fields. The twice-contracted Bianchi identity $\nabla^\mu G_{\mu\nu}=0$
+                    automatically enforces $\nabla^\mu T_{\mu\nu}=0$, so local energy-momentum conservation is a
+                    geometric necessity rather than an extra postulate.</p>
+
+                <p><strong>definition (einstein-hilbert action).</strong> for a Lorentzian metric $g$ on an oriented
+                    manifold $M$,
+                    $$
+                    S_{\mathrm{EH}}[g]
+                    =\frac{1}{16\pi G}\int_M R_g\,d\mathrm{vol}_g
+                    +S_{\mathrm{matter}}[g,\Phi],
+                    $$
+                    with $R_g$ the scalar curvature of the Levi-Civita connection of $g$. boundary Gibbons-Hawking-York
+                    terms may be added when $M$ has boundary so that the variational principle is well-posed for fixed
+                    induced metric on $\partial M$.</p>
+
+                <p><strong>definition (matter stress-energy).</strong>
+                    $$
+                    T_{\mu\nu}
+                    :=-\frac{2}{\sqrt{|g|}}\frac{\delta S_{\mathrm{matter}}}{\delta g^{\mu\nu}}
+                    $$
+                    (sign conventions vary; the main point is that $T_{\mu\nu}$ is the metric variational derivative of
+                    the matter action).</p>
+
+                <p><strong>theorem (einstein equation from the einstein-hilbert action).</strong> if $g$ is critical for
+                    $S_{\mathrm{EH}}$ under compactly supported variations of the metric (with suitable boundary terms
+                    arranged to cancel), then
+                    $$
+                    R_{\mu\nu}-\frac12 R g_{\mu\nu}=8\pi G\,T_{\mu\nu}.
+                    $$</p>
+
+                <p><strong>proof.</strong> the Palatini identity states that the linearization of the Ricci tensor is a
+                    total covariant divergence of metric derivatives of $\delta g_{\mu\nu}$:
+                    $$
+                    \delta R_{\mu\nu}
+                    =\nabla_\lambda(\delta\Gamma^\lambda_{\mu\nu})
+                    -\nabla_\nu(\delta\Gamma^\lambda_{\mu\lambda}).
+                    $$
+                    contracting and integrating against $\sqrt{|g|}$ converts $\int\sqrt{|g|}\,g^{\mu\nu}\delta R_{\mu\nu}$
+                    into a pure boundary integral when $\delta g$ has compact support. the variation of the volume
+                    density contributes $-\frac12 g_{\mu\nu}\delta g^{\mu\nu}$ times $R$, while
+                    $\delta(g^{\mu\nu}R_{\mu\nu})=R_{\mu\nu}\delta g^{\mu\nu}+g^{\mu\nu}\delta R_{\mu\nu}$. collecting
+                    coefficients of $\delta g^{\mu\nu}$ yields
+                    $$
+                    \delta S_{\mathrm{EH}}
+                    =\frac{1}{16\pi G}\int\bigl(R_{\mu\nu}-\tfrac12 R g_{\mu\nu}\bigr)\delta g^{\mu\nu}\,d\mathrm{vol}
+                    +\delta S_{\mathrm{matter}}.
+                    $$
+                    stationarity for all compactly supported $\delta g^{\mu\nu}$ is Einstein's equation with the stated
+                    $T_{\mu\nu}$. $\square$</p>
+
+                <p><strong>theorem (contracted bianchi implies conservation).</strong> for the Levi-Civita connection,
+                    $\nabla^\mu G_{\mu\nu}=0$ identically. consequently any metric satisfying $G_{\mu\nu}=8\pi G\,
+                    T_{\mu\nu}$ obeys $\nabla^\mu T_{\mu\nu}=0$.</p>
+
+                <p><strong>proof.</strong> the second Bianchi identity of chapter 2, after one contraction and use of the
+                    algebraic symmetries of the Riemann tensor, is
+                    $\nabla^\mu R_{\mu\nu}=\frac12\nabla_\nu R$, which rearranges to $\nabla^\mu G_{\mu\nu}=0$. Einstein's
+                    equation then transfers the vanishing divergence to $T_{\mu\nu}$. $\square$</p>
+
+                <p><strong>remark (diffeomorphism Noether identity).</strong> the same conservation law is the Noether
+                    identity associated with diffeomorphism invariance of $S_{\mathrm{EH}}+S_{\mathrm{matter}}$: an
+                    infinitesimal diffeomorphism generated by a compactly supported vector field $X$ produces a
+                    variation $\delta_X g=\mathcal{L}_X g$ that must leave the action stationary whenever the matter
+                    Euler-Lagrange equations hold, forcing $\nabla^\mu T_{\mu\nu}=0$.</p>
+            </section>
+
+            <section class="doc-section" id="solutions">
+                <h2>exact solutions, waves, and cosmology</h2>
+                <p>The simplest nontrivial vacuum solutions are the centrally symmetric Schwarzschild and Kerr metrics,
+                    which describe the exterior fields of spherical and rotating bodies and govern planetary motion,
+                    light deflection, and gravitational collapse. Linearized theory about Minkowski space yields
+                    gravitational waves: transverse, traceless metric perturbations that propagate at the speed of light
+                    and carry energy quantified by the Landau-Lifshitz pseudotensor (or any of its equivalent
+                    superpotential constructions).</p>
+
+                <p><strong>definition (schwarzschild metric).</strong> in standard coordinates, for mass parameter
+                    $M>0$,
+                    $$
+                    ds^2
+                    =-\Bigl(1-\frac{2GM}{r}\Bigr)dt^2
+                    +\Bigl(1-\frac{2GM}{r}\Bigr)^{-1}dr^2
+                    +r^2 d\Omega^2,
+                    $$
+                    on $r>2GM$ (the exterior region). it is the unique spherically symmetric vacuum solution (Birkhoff).
+                </p>
+
+                <p><strong>theorem (birkhoff).</strong> every $C^2$ spherically symmetric solution of the vacuum Einstein
+                    equation $R_{\mu\nu}=0$ is locally isometric to a region of the Schwarzschild (or Minkowski)
+                    spacetime.</p>
+
+                <p><strong>proof (outline).</strong> spherical symmetry implies a two-dimensional orbit space with
+                    metric of the form $A(t,r)dt^2+2B\,dt\,dr+C\,dr^2$ times the area radius function $r$. the vacuum
+                    Einstein equations force $B=0$ after a coordinate choice that diagonalizes the orbit-space metric,
+                    reduce $A$ and $C$ to functions of a single variable, and yield the Schwarzschild mass function
+                    constant. uniqueness is local in the region where the area radius is a regular coordinate.
+                    $\square$</p>
+
+                <p><strong>definition (linearized gravitational wave).</strong> write $g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}$
+                    with $|h|\ll 1$. in the Lorenz gauge $\partial^\mu\bar h_{\mu\nu}=0$ with
+                    $\bar h_{\mu\nu}=h_{\mu\nu}-\frac12\eta_{\mu\nu}h$, the linearized vacuum Einstein equation reduces
+                    to $\square\bar h_{\mu\nu}=0$. transverse-traceless (TT) solutions satisfy $\bar h_{0\mu}=0$,
+                    $\partial^i\bar h_{ij}=0$, and $\bar h^i{}_i=0$.</p>
+
+                <p><strong>theorem (propagation of TT waves).</strong> plane-wave solutions
+                    $\bar h_{\mu\nu}=\mathrm{Re}\bigl(H_{\mu\nu}e^{ik_\alpha x^\alpha}\bigr)$ of the linearized vacuum
+                    equation in Lorenz gauge obey $k^\mu k_\mu=0$ and $k^\mu H_{\mu\nu}=0$. residual gauge freedom may be
+                    used to place $H_{\mu\nu}$ in TT form with two independent polarization amplitudes
+                    (plus and cross).</p>
+
+                <p><strong>proof.</strong> $\square\bar h=0$ implies $k^2=0$. the Lorenz condition is $k^\mu H_{\mu\nu}=0$.
+                    residual gauges $\delta\bar h_{\mu\nu}=\partial_\mu\xi_\nu+\partial_\nu\xi_\mu-\eta_{\mu\nu}
+                    \partial\cdot\xi$ with $\square\xi_\mu=0$ remove the non-TT components without spoiling the gauge,
+                    leaving a two-dimensional space of spatial TT tensors orthogonal to $\vec k$. $\square$</p>
+
+                <p>Relativistic cosmology models the large-scale universe as a homogeneous and isotropic
+                    Robertson-Walker spacetime. The Friedmann equations derived from the Einstein equation govern the
+                    expansion; the spatial sections may be closed, flat, or open according to the sign of the curvature
+                    parameter. Observational redshift, nucleosynthesis, and the cosmic microwave background emerge as
+                    direct consequences. Homogeneous but anisotropic Bianchi models exhibit richer dynamics, including
+                    oscillatory regimes near the initial singularity. The Hawking-Penrose singularity theorems
+                    demonstrate that, under generic energy conditions and the existence of trapped surfaces, geodesic
+                    incompleteness is inevitable; the classical description of spacetime therefore breaks down at finite
+                    proper time in the past (or future) of realistic cosmologies.</p>
+
+                <p><strong>definition (robertson-walker metric).</strong>
+                    $$
+                    ds^2=-dt^2+a(t)^2\Bigl(
+                    \frac{dr^2}{1-kr^2}+r^2 d\Omega^2
+                    \Bigr),
+                    $$
+                    with scale factor $a(t)$ and curvature parameter $k\in\{-1,0,1\}$.</p>
+
+                <p><strong>theorem (friedmann equations).</strong> for a perfect fluid $T_{\mu\nu}=(\rho+p)u_\mu u_\nu
+                    +pg_{\mu\nu}$ comoving with the RW coordinates, Einstein's equation reduces to
+                    $$
+                    \Bigl(\frac{\dot a}{a}\Bigr)^2=\frac{8\pi G}{3}\rho-\frac{k}{a^2},\qquad
+                    \frac{\ddot a}{a}=-\frac{4\pi G}{3}(\rho+3p).
+                    $$</p>
+
+                <p><strong>proof.</strong> compute the Einstein tensor of the RW metric in the coordinate orthonormal
+                    frame; the only independent components are $G_{00}$ and the spatial diagonal. equate them to
+                    $8\pi G\,T_{\mu\nu}$ for the perfect fluid with $u=\partial_t$. the first equation is the Hamiltonian
+                    constraint; differentiating it and using $\nabla^\mu T_{\mu\nu}=0$, which becomes
+                    $\dot\rho+3(\dot a/a)(\rho+p)=0$, yields the acceleration equation (or derive it directly from
+                    $G_{rr}$). $\square$</p>
+
+                <p><strong>theorem (hawking-penrose, schematic statement).</strong> let $(M,g)$ be a globally hyperbolic
+                    spacetime satisfying the null (or strong) energy condition, with a noncompact Cauchy surface, and
+                    suppose there exists a trapped surface. then $(M,g)$ is null-geodesically incomplete.</p>
+
+                <p><strong>proof (strategy).</strong> the Raychaudhuri equation for a null congruence,
+                    $$
+                    \frac{d\theta}{d\lambda}=-\frac12\theta^2-\sigma_{\mu\nu}\sigma^{\mu\nu}-R_{\mu\nu}k^\mu k^\nu,
+                    $$
+                    together with the null energy condition $R_{\mu\nu}k^\mu k^\nu\ge 0$, forces the expansion $\theta$
+                    of the outgoing null congruence from a trapped surface to reach $-\infty$ in finite affine time.
+                    conjugate points then form; standard causality arguments in globally hyperbolic spacetimes convert
+                    the existence of conjugate points on every generator into the incompleteness of the congruence.
+                    $\square$</p>
+
+                <p>Thus the variational principle, applied first to matter fields on a fixed background and then to
+                    the metric itself, generates the complete dynamical content of classical electromagnetism and
+                    gravitation. The geometric identities of the preceding chapters reappear as conservation laws, while
+                    the field equations determine the evolution of both the fields and the spacetime geometry in which
+                    they propagate.</p>
+
+                <p><strong>remark (to later chapters).</strong> global topological constraints on field configurations
+                    (chapters 5 and 6), analytic index theory (chapter 8), and nonabelian gauge dynamics with instantons
+                    (chapter 9) refine the local variational picture constructed here.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (klein-gordon).</strong> for
+                    $\mathcal{L}=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12 m^2\phi^2$ on Minkowski space, derive
+                    the Euler-Lagrange equation and obtain $(\square+m^2)\phi=0$.</p>
+
+                <p><strong>exercise 2 (maxwell energy).</strong> from $T_{\mu\nu}$ as above in free space, compute
+                    $T_{00}$ and $T_{0i}$ in terms of $\mathbf{E}$ and $\mathbf{B}$ and identify the energy density and
+                    Poynting vector.</p>
+
+                <p><strong>exercise 3 (dust conservation).</strong> for pressureless dust $T_{\mu\nu}=\rho u_\mu u_\nu$
+                    with $u^\mu u_\mu=-1$, show that $\nabla^\mu T_{\mu\nu}=0$ implies both $u^\mu\nabla_\mu u^\nu=0$
+                    (geodesic flow) and $\nabla_\mu(\rho u^\mu)=0$ (continuity).</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-3/">← spinors and spacetime geometry</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-5/">next: algebraic topology and global obstructions →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

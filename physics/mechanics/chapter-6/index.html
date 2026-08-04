@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>symplectic techniques · mechanics · JETBUNDLE</title>
+    <title>symplectic methods · mechanics · JETBUNDLE</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles.css">
@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch6.js"></script>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
         <nav class="subnav" aria-label="section">
             <a href="../">mechanics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
-            <span class="dim">symplectic techniques</span>
+            <span class="dim">symplectic methods</span>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="../../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
@@ -27,7 +30,7 @@
         </nav>
 
         <header class="doc-header">
-            <h1>6 · symplectic techniques</h1>
+            <h1>6 · symplectic methods</h1>
             <p class="doc-lead"><em>hamiltonian geometry, conservation, integrability, and optics</em></p>
             <p class="doc-intro">Symplectic geometry furnishes the intrinsic language of Hamiltonian mechanics. Once the
                 phase space is recognised as a manifold equipped with a closed, non-degenerate two-form, the entire
@@ -97,7 +100,24 @@
                     the classical Stokes formula on a half-ball in $\mathbb{R}^n$, proved by integrating the definition of
                     $d$ coordinatewise and using the fundamental theorem of calculus in each variable (boundary terms
                     survive only on $\partial M$). $\square$</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-stokes">
+                    <p class="doc-widget-title">figure · Stokes theorem on an elliptical domain</p>
+                    <p class="doc-widget-caption">For $\alpha=-y\,dx$ one has $d\alpha=dx\wedge dy$. Area $\pi ab$ vs boundary integral $\oint_{\partial D}\alpha$; residual is machine-small.</p>
+                    <div class="doc-widget-plot tall" id="fig6-stokes-plot" role="img" aria-label="figure · Stokes theorem on an elliptical domain"></div>
+                    <div class="doc-widget-controls">
+                        <label>semi-axis $a$
+                            <input id="fig6-stokes-a" type="range" min="0.5" max="2.0" value="1.4" step="0.05">
+                        </label>
+                        <label>semi-axis $b$
+                            <input id="fig6-stokes-b" type="range" min="0.4" max="1.6" value="0.9" step="0.05">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig6-stokes-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="hamilton">
                 <h2>symplectic manifolds and hamiltonian vector fields</h2>
@@ -140,7 +160,22 @@
                 <p><strong>remark (hamilton equations in Darboux coordinates).</strong> when
                     $\omega=\sum_i dp_i\wedge dq^i$ the defining relation $\iota_{X_H}\omega=-dH$ becomes
                     $\dot q=\partial H/\partial p$, $\dot p=-\partial H/\partial q$.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-liouville">
+                    <p class="doc-widget-title">figure · Liouville: Hamiltonian flow preserves area</p>
+                    <p class="doc-widget-caption">Harmonic oscillator $H=\frac12(q^2+p^2)$. A material parallelogram is transported by the exact flow; shoelace areas agree (Liouville).</p>
+                    <div class="doc-widget-plot tall" id="fig6-liouville-plot" role="img" aria-label="figure · Liouville: Hamiltonian flow preserves area"></div>
+                    <div class="doc-widget-controls">
+                        <label>energy $E$
+                            <input id="fig6-liouville-e" type="range" min="0.25" max="1.6" value="0.85" step="0.05">
+                        </label>
+                        <button type="button" id="fig6-liouville-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig6-liouville-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="poisson">
                 <h2>liouville, poisson brackets and the lie algebra of hamiltonian fields</h2>
@@ -281,7 +316,25 @@
                     invariant Lagrangian tori for small $\varepsilon$. the proof is a rapidly convergent Newton scheme
                     for conjugacy to a linear flow and will not be reproduced here; the theorem is the precise
                     persistence statement of classical perturbation theory.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-aa">
+                    <p class="doc-widget-title">figure · Kronecker flow on $T^2$</p>
+                    <p class="doc-widget-caption">Linear action–angle motion with frequency ratio $\alpha$. Irrational $\alpha$ densifies; near-resonant $\alpha$ closes. Optional soft perturbation $\varepsilon$.</p>
+                    <div class="doc-widget-plot tall" id="fig6-aa-plot" role="img" aria-label="figure · Kronecker flow on $T^2$"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\alpha=\omega_2/\omega_1$
+                            <input id="fig6-aa-alpha" type="range" min="0.1" max="1.5" value="0.618" step="0.001">
+                        </label>
+                        <label>$\varepsilon$
+                            <input id="fig6-aa-eps" type="range" min="0" max="0.35" value="0" step="0.01">
+                        </label>
+                        <button type="button" id="fig6-aa-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig6-aa-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="darboux">
                 <h2>darboux-weinstein, moment maps and slices</h2>
@@ -450,7 +503,27 @@
                 <p>In this way symplectic geometry unifies the classical mechanics of particles with the Hamiltonian
                     theory of light, while the moment-map and integrability techniques of the abstract theory find concrete
                     realisation in both domains.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-optics">
+                    <p class="doc-widget-title">figure · paraxial optics and $\mathrm{Sp}(2,\mathbb{R})$</p>
+                    <p class="doc-widget-caption">Free–lens–free ABCD map. Ray fan and linear symplectic action on $(q,p)$; $\det M=1$ audited.</p>
+                    <div class="doc-widget-plot tall" id="fig6-optics-plot" role="img" aria-label="figure · paraxial optics and $\mathrm{Sp}(2,\mathbb{R})$"></div>
+                    <div class="doc-widget-controls">
+                        <label>focal length $f$
+                            <input id="fig6-optics-f" type="range" min="0.5" max="2.5" value="1.2" step="0.05">
+                        </label>
+                        <label>flight $L$
+                            <input id="fig6-optics-L" type="range" min="0.3" max="2.0" value="1.0" step="0.05">
+                        </label>
+                        <label>input $q_0$
+                            <input id="fig6-optics-q0" type="range" min="-1.0" max="1.0" value="0.55" step="0.05">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig6-optics-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="exercises">
                 <h2>exercises</h2>
@@ -472,6 +545,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-5/">← chapter 5: dynamical systems</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-7/">next: control theory →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

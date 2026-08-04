@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch3.js"></script>
 </head>
 
 <body>
@@ -136,7 +139,36 @@
                     $\mathfrak{g}\supset U\ni 0\to V\subset G$ about $e$. thus every element of $G$ near the identity
                     is $\exp(\xi)$ for a unique small $\xi$, which is why infinitesimal generators control local
                     continuous group actions.</p>
-            </section>
+            
+                
+
+                
+
+                <div class="doc-widget" id="fig-action">
+                    <p class="doc-widget-title">figure · $SO(2)$ action and its infinitesimal generator</p>
+                    <p class="doc-widget-caption">Group orbits of $R_\theta$ are circles. The fundamental field $\xi_M=-q_2\partial_1+q_1\partial_2$ is validated by $(R_\varepsilon q-q)/\varepsilon\to\xi_M$.</p>
+                    <div class="doc-widget-plot tall" id="fig3-action-plot" role="img" aria-label="figure · $SO(2)$ action and its infinitesimal generator"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\theta$ (deg)
+                            <input id="fig3-action-angle" type="range" min="0" max="360" value="40" step="1">
+                        </label>
+                        <button type="button" id="fig3-action-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig3-action-readout"></p>
+                </div>
+
+                <div class="doc-widget" id="fig-bracket">
+                    <p class="doc-widget-title">figure · Lie bracket from the flow commutator</p>
+                    <p class="doc-widget-caption">For $X=\partial_x$ and $Y=x\partial_y$ one has $[X,Y]=\partial_y$. The $\varepsilon$-commutator of flows displaces by $-\varepsilon^2[X,Y]$; the right panel tests $\Delta y/\varepsilon^2\to-1$.</p>
+                    <div class="doc-widget-plot tall" id="fig3-bracket-plot" role="img" aria-label="figure · Lie bracket from the flow commutator"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\varepsilon$
+                            <input id="fig3-bracket-eps" type="range" min="0.15" max="1.0" value="0.55" step="0.01">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig3-bracket-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="symmetries">
                 <h2>symmetry groups of differential equations</h2>
@@ -155,7 +187,9 @@
                 <p><strong>remark.</strong> for evolutionary systems and ODEs this means the transformed function
                     satisfies the same equation. the infinitesimal form of the condition is that the prolonged generator
                     be tangent to the solution manifold in jet space (next section).</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="prolongation">
                 <h2>prolongation to jet spaces</h2>
@@ -311,7 +345,9 @@
                     $\mathrm{PSL}(2)$ on the projective line of values of $y$. they map the family of solutions of a
                     fixed Riccati equation to itself, which is the finite form of the $\mathfrak{sl}(2,\mathbb{R})$
                     symmetry algebra.</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="pfaffian">
                 <h2>pfaffian systems and derived flags</h2>
@@ -373,7 +409,21 @@
                     $\mathrm{rank}\,\mathcal{I}^{(j)}$ are local invariants of the distribution under diffeomorphisms;
                     they are the first numerical data of the Cartan-Kahler / equivalence analysis of exterior
                     systems.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-contact">
+                    <p class="doc-widget-title">figure · contact planes and a Legendrian curve</p>
+                    <p class="doc-widget-caption">Contact form $\alpha=dz-p\,dx$ in $(x,z,p)$. Planes $\ker\alpha$, the true jet $j^1 f$ (Legendrian), and a wrong-$p$ lift (large residual). Contact planes fail Frobenius.</p>
+                    <div class="doc-widget-plot tall" id="fig3-contact-plot" role="img" aria-label="figure · contact planes and a Legendrian curve"></div>
+                    <div class="doc-widget-controls">
+                        <label>slice $z$
+                            <input id="fig3-contact-z" type="range" min="-1.0" max="1.0" value="0.0" step="0.05">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig3-contact-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="monge">
                 <h2>monge systems and singular characteristics</h2>
@@ -460,6 +510,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-2/">← chapter 2: ordinary differential equations</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-4/">next: algebraic, analytic, and geometric techniques →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>systems-control theory · mechanics · JETBUNDLE</title>
+    <title>control theory · mechanics · JETBUNDLE</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles.css">
@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch7.js"></script>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
         <nav class="subnav" aria-label="section">
             <a href="../">mechanics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
-            <span class="dim">systems-control theory</span>
+            <span class="dim">control theory</span>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="../../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
@@ -27,7 +30,7 @@
         </nav>
 
         <header class="doc-header">
-            <h1>7 · systems-control theory</h1>
+            <h1>7 · control theory</h1>
             <p class="doc-lead"><em>inputs, nonholonomic constraints, optimality, and reduction</em></p>
             <p class="doc-intro">Control theory enlarges the geometric framework of classical mechanics by admitting external
                 inputs and non-integrable constraints. The same Lie-theoretic and symplectic tools developed earlier now
@@ -101,7 +104,39 @@
                     controllability when a drift is present (e.g. $\dot x=1$ on $\mathbb{R}$ with no control). symmetry
                     (invariance under $u\mapsto -u$ after feedback) or the ability to cancel $f_0$ upgrades local
                     accessibility to global controllability on connected manifolds.</p>
-            </section>
+            
+                
+
+                
+
+                <div class="doc-widget" id="fig-chow">
+                    <p class="doc-widget-title">figure · Chow / Heisenberg bracket generation</p>
+                    <p class="doc-widget-caption">Driftless $f_1=\partial_x+y\partial_z$, $f_2=\partial_y-x\partial_z$ with $[f_1,f_2]=-2\partial_z$. Commutator loops produce $z\sim-2\varepsilon^2$; LARC holds.</p>
+                    <div class="doc-widget-plot tall" id="fig7-chow-plot" role="img" aria-label="figure · Chow / Heisenberg bracket generation"></div>
+                    <div class="doc-widget-controls">
+                        <label>loop scale $\varepsilon$
+                            <input id="fig7-chow-eps" type="range" min="0.2" max="1.0" value="0.55" step="0.01">
+                        </label>
+                        <button type="button" id="fig7-chow-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig7-chow-readout"></p>
+                </div>
+
+                <div class="doc-widget" id="fig-kalman">
+                    <p class="doc-widget-title">figure · Kalman controllability for LTI systems</p>
+                    <p class="doc-widget-caption">$\dot x=Ax+Bu$ with $B=(0,1)$. Rank of $[B\ AB]$ is LTI-LARC; bang pulse drives the trajectory.</p>
+                    <div class="doc-widget-plot tall" id="fig7-kalman-plot" role="img" aria-label="figure · Kalman controllability for LTI systems"></div>
+                    <div class="doc-widget-controls">
+                        <label>parameter $a$
+                            <input id="fig7-kalman-a" type="range" min="-1.0" max="1.0" value="0.25" step="0.05">
+                        </label>
+                        <label>horizon $T$
+                            <input id="fig7-kalman-t" type="range" min="0.6" max="3.0" value="1.5" step="0.05">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig7-kalman-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="singular">
                 <h2>singular trajectories, regularisation and boundary conditions</h2>
@@ -238,7 +273,42 @@
                     an interior point where $\partial_u H=0$ and $\partial_{uu}H&lt;0$, the maximality condition reduces to
                     a feedback $u=u(x,\lambda)$ and, eliminating $u$, one recovers Euler-Lagrange dynamics for the
                     reduced Lagrangian when $f$ is a pure control (chapter 1).</p>
-            </section>
+            
+                
+
+                
+
+                <div class="doc-widget" id="fig-pmp">
+                    <p class="doc-widget-title">figure · Pontryagin maximality $u_*=\arg\max H$</p>
+                    <p class="doc-widget-caption">Pointwise maximisation of $H(u)$ on $U=[-1,1]$. Bang extrema vs quadratic regularisation with an interior critical point.</p>
+                    <div class="doc-widget-plot tall" id="fig7-pmp-plot" role="img" aria-label="figure · Pontryagin maximality $u_*=\arg\max H$"></div>
+                    <div class="doc-widget-controls">
+                        <label>costate $\lambda$
+                            <input id="fig7-pmp-lam" type="range" min="-2.0" max="2.0" value="1.1" step="0.05">
+                        </label>
+                        <label>regime
+                            <select id="fig7-pmp-mode">
+                                <option value="bang" selected>bang-bang</option>
+                                <option value="singular">regularised</option>
+                            </select>
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig7-pmp-readout"></p>
+                </div>
+
+                <div class="doc-widget" id="fig-bang">
+                    <p class="doc-widget-title">figure · bang-bang on the double integrator</p>
+                    <p class="doc-widget-caption">State $(x,v)$ for $\ddot x=u\in\{\pm1\}$ with a single switch. Switching function $\sigma$ changes sign at $t_s$.</p>
+                    <div class="doc-widget-plot tall" id="fig7-bang-plot" role="img" aria-label="figure · bang-bang on the double integrator"></div>
+                    <div class="doc-widget-controls">
+                        <label>switch $t_s$
+                            <input id="fig7-bang-tsw" type="range" min="0.3" max="2.0" value="1.0" step="0.05">
+                        </label>
+                        <button type="button" id="fig7-bang-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig7-bang-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="nonholonomic">
                 <h2>nonholonomic constraints and dirac structures</h2>
@@ -296,7 +366,25 @@
                     implicit dynamics reproduce Lagrange-d’Alembert. reduction by a symmetry group free on the
                     constraint distribution produces the reduced Dirac structure $\mathfrak{d}$ and the displayed
                     Euler-Poincare-Dirac equation, which collapses to ordinary Euler-Poincare when $D=TM$.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-unicycle">
+                    <p class="doc-widget-title">figure · unicycle nonholonomic kinematics</p>
+                    <p class="doc-widget-caption">$\dot x=v\cos\theta$, $\dot y=v\sin\theta$, $\dot\theta=\omega$. Residual $|\sin\theta\,\dot x-\cos\theta\,\dot y|$ stays zero for admissible velocities.</p>
+                    <div class="doc-widget-plot tall" id="fig7-unicycle-plot" role="img" aria-label="figure · unicycle nonholonomic kinematics"></div>
+                    <div class="doc-widget-controls">
+                        <label>speed $v$
+                            <input id="fig7-unicycle-v" type="range" min="0.15" max="1.2" value="0.7" step="0.05">
+                        </label>
+                        <label>yaw $\omega$
+                            <input id="fig7-unicycle-om" type="range" min="-1.2" max="1.2" value="0.55" step="0.05">
+                        </label>
+                        <button type="button" id="fig7-unicycle-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig7-unicycle-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="multisymplectic">
                 <h2>infinite-dimensional multisymplectic reduction</h2>
@@ -353,6 +441,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-6/">← chapter 6: symplectic methods</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-8/">next: bifurcation →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

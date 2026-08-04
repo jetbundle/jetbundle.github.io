@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>yang-mills theory, instantons, and twistors · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">yang-mills theory, instantons, and twistors</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>9 · yang-mills theory, instantons, and twistors</h1>
+            <p class="doc-lead"><em>connections as gauge fields and the absolute minima of four-dimensional geometry</em>
+            </p>
+            <p class="doc-intro">The geometric structures assembled in the preceding chapters (principal bundles,
+                connections, curvature, characteristic classes, and index theory) find their most complete physical
+                realization in nonabelian gauge theory. Yang-Mills theory elevates the connection itself to a dynamical
+                field; its absolute minima in four dimensions are the instantons, whose complete classification is achieved
+                by a remarkable interplay of twistor geometry and linear algebra.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="gauge">
+                <h2>gauge fields as connections on principal bundles</h2>
+                <p>Let $G$ be a compact Lie group with Lie algebra $\mathfrak{g}$. A classical gauge field is a connection
+                    $A$ on a principal $G$-bundle $P\to M$. In a local trivialization the connection is represented by a
+                    $\mathfrak{g}$-valued one-form, and its curvature
+                    $$
+                    F_A=dA+A\wedge A
+                    $$
+                    is a $\mathfrak{g}$-valued two-form, the nonabelian field strength. Under a gauge transformation
+                    $g:M\to G$ one has
+                    $$
+                    A\mapsto g^{-1}Ag+g^{-1}dg,\qquad
+                    F_A\mapsto g^{-1}F_Ag.
+                    $$
+                    The Bianchi identity $D_A F_A=0$ is the nonabelian analogue of the homogeneous Maxwell equation and
+                    is an automatic consequence of the structure equation.</p>
+
+                <p><strong>definition (principal connection and curvature).</strong> a connection one-form
+                    $\omega\in\Omega^1(P,\mathfrak{g})$ is equivariant and reproduces fundamental vector fields (chapter
+                    2). a local gauge potential is $A=s^*\omega$ for a local section $s$. the curvature is
+                    $\Omega=d\omega+\frac12[\omega,\omega]$, written locally $F_A=dA+A\wedge A$.</p>
+
+                <p><strong>theorem (gauge transformation law).</strong> if $s'=s\cdot g$ for a smooth map
+                    $g:U\to G$, then
+                    $$
+                    A'=g^{-1}Ag+g^{-1}dg,\qquad
+                    F_{A'}=g^{-1}F_A g.
+                    $$</p>
+
+                <p><strong>proof.</strong> equivariance of $\omega$ under the right $G$-action yields
+                    $(s\cdot g)^*\omega=\operatorname{Ad}_{g^{-1}}(s^*\omega)+g^{-1}dg$ on matrix groups. exterior
+                    differentiation and the Maurer-Cartan structure equation convert this into the adjoint action on
+                    $F_A$. $\square$</p>
+
+                <p><strong>theorem (bianchi identity).</strong> for any connection,
+                    $$
+                    D_A F_A:=dF_A+[A,F_A]=0.
+                    $$</p>
+
+                <p><strong>proof.</strong> differentiate $F=dA+A\wedge A$ to obtain
+                    $dF=dA\wedge A-A\wedge dA$ (graded signs). substitute $dA=F-A\wedge A$ and use the Jacobi identity for
+                    the Lie bracket; all cubic terms cancel, leaving $dF+[A,F]=0$. $\square$</p>
+
+                <p><strong>remark (abelian reduction).</strong> if $G=\mathrm{U}(1)$ then $A\wedge A=0$, so $F=dA$ and
+                    $D_A F=dF=0$, recovering Maxwell's homogeneous equation as pure geometry (chapter 4).</p>
+            </section>
+
+            <section class="doc-section" id="ym-instantons">
+                <h2>the yang-mills lagrangian and instantons</h2>
+                <p>The Yang-Mills action on a Riemannian four-manifold is the $L^2$-norm of the curvature:
+                    $$
+                    S_{\mathrm{YM}}[A]=\frac12\int_M\|F_A\|^2\,d\mathrm{vol}.
+                    $$
+                    By the Chern-Weil theorem the second Chern number (instanton number)
+                    $$
+                    k=-\frac{1}{8\pi^2}\int_M\operatorname{Tr}(F_A\wedge F_A)\in\mathbb{Z}
+                    $$
+                    is a topological invariant (sign fixed so that ASD connections have $k\ge 0$ or $k\le 0$
+                    consistently with the conventions of chapter 5). The pointwise identity relating $\|F\|^2$ to the
+                    Chern-Weil density implies the topological lower bound
+                    $$
+                    \int_M\|F_A\|^2\,d\mathrm{vol}\ge 8\pi^2|k|,
+                    $$
+                    with equality if and only if $F_A=\pm{*F_A}$. Solutions of the anti-self-dual (ASD) equation
+                    $F_A=-{*F_A}$ (or the self-dual equation) are called instantons. They are absolute minima of the
+                    Yang-Mills energy within each topological sector and represent finite-action tunneling configurations
+                    between distinct vacua of the classical theory.</p>
+
+                <p><strong>definition (yang-mills action and equation).</strong>
+                    $$
+                    S_{\mathrm{YM}}[A]
+                    =\frac12\int_M\|F_A\|^2\,d\mathrm{vol}
+                    =-\frac12\int_M\operatorname{Tr}(F_A\wedge{*F_A}).
+                    $$
+                    critical points satisfy $D_A^* F_A=0$, the Yang-Mills equation, together with Bianchi $D_A F_A=0$.</p>
+
+                <p><strong>definition (instanton number).</strong> for a principal $G$-bundle on a closed oriented
+                    four-manifold with $G\subset\mathrm{U}(N)$ (or $\mathrm{SU}(N)$),
+                    $$
+                    k
+                    =-\frac{1}{8\pi^2}\int_M\operatorname{Tr}(F_A\wedge F_A)
+                    $$
+                    equals the second Chern number $c_2$ of the associated complex vector bundle (sign convention fixed
+                    once and for all so that $k\in\mathbb{Z}$ matches chapter 5).</p>
+
+                <p><strong>theorem (self-duality implies yang-mills).</strong> if $\dim M=4$ and $*F_A=\pm F_A$, then
+                    $D_A^* F_A=0$ automatically.</p>
+
+                <p><strong>proof.</strong> on an oriented Riemannian four-manifold, $*:\Lambda^2\to\Lambda^2$ satisfies
+                    $*^2=\mathrm{id}$ on two-forms. for $\mathfrak{g}$-valued two-forms one has
+                    $D_A^*\alpha=-*D_A{*\alpha}$ up to the standard overall sign fixed by Hodge dual conventions. if
+                    $*F=\pm F$ and $D_A F=0$ (Bianchi), then $D_A^* F=\mp *D_A F=0$. $\square$</p>
+
+                <p><strong>theorem (topological energy bound).</strong> for every connection $A$ on a closed oriented
+                    Riemannian four-manifold,
+                    $$
+                    \int_M\|F_A\|^2\,d\mathrm{vol}
+                    \ge 8\pi^2|k|,
+                    $$
+                    with equality if and only if $F_A=*F_A$ or $F_A=-*F_A$ according to the sign of $k$.</p>
+
+                <p><strong>proof.</strong> decompose $F=F^++F^-$ into self-dual and anti-self-dual parts, the $\pm 1$
+                    eigenspaces of $*$ on $\Lambda^2$. then
+                    $$
+                    \|F\|^2=\|F^+\|^2+\|F^-\|^2,
+                    $$
+                    while
+                    $$
+                    \operatorname{Tr}(F\wedge F)
+                    =\bigl(\|F^+\|^2-\|F^-\|^2\bigr)\,d\mathrm{vol}
+                    $$
+                    up to the identification of the pointwise inner product with the exterior product against the volume
+                    form. hence
+                    $$
+                    0\le\|F\mp *F\|^2
+                    =2\|F\|^2\mp 2\operatorname{Tr}(F\wedge F)/\mathrm{vol},
+                    $$
+                    and integrating with the Chern-Weil formula for $k$ produces the bound, with equality precisely when
+                    $F^\mp=0$. $\square$</p>
+
+                <p><strong>remark (vacua and tunneling).</strong> flat connections on $S^3$ (or $\mathbb{R}^3$ with decay)
+                    are classified by $\pi_3(G)$; an instanton interpolates between such vacua as a finite-action path
+                    in temporal gauge, the classical precursor of theta vacua and tunneling amplitudes.</p>
+            </section>
+
+            <section class="doc-section" id="twistors">
+                <h2>penrose twistor space and ward's theorem</h2>
+                <p>On the conformal compactification $S^4$ of Euclidean four-space the ASD equation becomes conformally
+                    invariant. Penrose's twistor correspondence identifies the space of oriented lines (complex
+                    structures on tangent spaces) in $S^4$ with the complex projective space $\mathbb{CP}^3$. Under this
+                    identification an ASD connection on a bundle $E\to S^4$ corresponds to a holomorphic vector bundle
+                    $\mathcal{E}\to\mathbb{CP}^3$ that is holomorphically trivial on every real projective line (the
+                    twistor lines corresponding to points of $S^4$). This is Ward's theorem: the nonlinear PDE of
+                    anti-self-duality is transformed into the linear problem of classifying holomorphic bundles with
+                    prescribed trivializations on a family of rational curves.</p>
+
+                <p><strong>definition (twistor space of $S^4$).</strong> the twistor space of Euclidean $S^4$ is
+                    $\mathbb{CP}^3$, fibring over $S^4$ with fiber $\mathbb{CP}^1$ parametrizing orthogonal complex
+                    structures $J$ with $J^2=-\mathrm{id}$ on each $T_x S^4$ compatible with the conformal metric. real
+                    structures on $\mathbb{CP}^3$ encode Euclidean reality.</p>
+
+                <p><strong>definition (twistor line).</strong> each $x\in S^4$ determines a projective line
+                    $L_x\simeq\mathbb{CP}^1\subset\mathbb{CP}^3$ consisting of all complex structures at $x$. these are
+                    the real twistor lines.</p>
+
+                <p><strong>theorem (ward correspondence).</strong> there is a natural bijection between:
+                    (i) gauge-equivalence classes of ASD $\mathrm{GL}(N,\mathbb{C})$-connections on open sets of $S^4$
+                    (or $\mathbb{R}^4$); and
+                    (ii) holomorphic rank-$N$ vector bundles on the corresponding open sets of twistor space that are
+                    holomorphically trivial on every twistor line $L_x$ in that set, up to holomorphic isomorphism.
+                    real structures compatible with $\mathrm{SU}(N)$ or $\mathrm{U}(N)$ select the corresponding real
+                    gauge groups.</p>
+
+                <p><strong>proof.</strong> given an ASD connection $\nabla$ on $E\to U\subset S^4$, form the pullback
+                    bundle $\pi^*E$ on the twistor space $Z_U=\pi^{-1}(U)\subset\mathbb{CP}^3$. at each twistor point
+                    $z\in L_x$ the almost-complex structure $J_z$ determines a splitting
+                    $T_\mathbb{C}^*U=\Lambda^{1,0}\oplus\Lambda^{0,1}$. anti-self-duality of $F$ is equivalent to
+                    $F^{0,2}=0$ for every such complex structure (the self-dual two-forms are of type $(1,1)$ for every
+                    compatible $J$). thus the $(0,1)$ part of $\nabla$ defines a holomorphic structure
+                    $\bar\partial_{\mathcal{E}}$ on $\pi^*E$. restriction to $L_x$ is the restriction of a connection on a
+                    point (no directions tangent to $U$), so $\mathcal{E}|_{L_x}$ is holomorphically trivial.</p>
+
+                <p>conversely, given $\mathcal{E}\to Z_U$ holomorphic and trivial on each $L_x$, the fiber
+                    $E_x:=H^0(L_x,\mathcal{E}|_{L_x})$ defines a smooth bundle $E\to U$. differentiating the trivializations
+                    along directions in $U$ produces a connection whose $(0,2)$ curvature vanishes for every compatible
+                    complex structure, hence $F$ is anti-self-dual. functoriality under isomorphism and gauge account for
+                    equivalence. $\square$</p>
+
+                <p><strong>remark (conformal invariance).</strong> $*:\Lambda^2\to\Lambda^2$ is conformally invariant in
+                    four dimensions, so the ASD equation and Ward's correspondence depend only on the conformal class
+                    of the metric.</p>
+            </section>
+
+            <section class="doc-section" id="horrocks">
+                <h2>the horrocks construction and linear fields</h2>
+                <p>Explicit holomorphic bundles on $\mathbb{CP}^3$ may be constructed by the monad method of Horrocks: one
+                    exhibits a complex of vector bundles
+                    $$
+                    0\to\mathcal{O}(-1)^{\oplus k}
+                    \to\mathcal{O}^{\oplus(2k+N)}
+                    \to\mathcal{O}(1)^{\oplus k}
+                    \to 0
+                    $$
+                    whose middle cohomology sheaf is the desired bundle of rank $N$ and second Chern class $k$. Linear
+                    field equations in an instanton background (the massless Dirac equation and the self-dual Maxwell
+                    equation) are solved by evaluating sheaf cohomology groups of appropriate twists of $\mathcal{E}$ over
+                    twistor space. Barth's theorems guarantee that every bundle arising from an $\mathrm{SU}(N)$
+                    instanton of charge $k$ arises in this way (in the appropriate stable range / cohomological vanishing
+                    regime).</p>
+
+                <p><strong>definition (monad / horrocks display).</strong> a monad on $\mathbb{CP}^3$ is a complex
+                    $$
+                    0\to A\xrightarrow{\alpha} B\xrightarrow{\beta} C\to 0
+                    $$
+                    of holomorphic vector bundles with $\alpha$ injective, $\beta$ surjective, and
+                    $\beta\circ\alpha=0$, such that the cohomology $E=\ker\beta/\operatorname{im}\alpha$ is a holomorphic
+                    vector bundle. the Horrocks form above takes $A=\mathcal{O}(-1)^{\oplus k}$,
+                    $C=\mathcal{O}(1)^{\oplus k}$, and $B$ trivial of rank $2k+N$.</p>
+
+                <p><strong>theorem (cher classes from monads).</strong> for a Horrocks monad of the displayed type, the
+                    middle cohomology bundle $\mathcal{E}$ has $\operatorname{rank}\mathcal{E}=N$ and
+                    $c_2(\mathcal{E})=k$ (with $c_1=0$ for the $\mathrm{SU}(N)$ case after the usual determinant
+                    reduction).</p>
+
+                <p><strong>proof.</strong> in $K$-theory of $\mathbb{CP}^3$,
+                    $[\mathcal{E}]=[B]-[A]-[C]$. taking Chern characters,
+                    $$
+                    \operatorname{ch}(\mathcal{E})
+                    =(2k+N)-\,k\,\operatorname{ch}(\mathcal{O}(-1))
+                    -k\,\operatorname{ch}(\mathcal{O}(1)).
+                    $$
+                    with $\operatorname{ch}(\mathcal{O}(m))=e^{mh}$ and $h=c_1(\mathcal{O}(1))$, the expansion yields
+                    rank $N$, vanishing first Chern class after matching, and second Chern character component
+                    producing $c_2=k$. $\square$</p>
+
+                <p><strong>theorem (linear fields via cohomology).</strong> massless solutions of spin $s$ in an ASD
+                    background $A$ on $\mathbb{R}^4$ or $S^4$ are in natural bijection with cohomology groups
+                    $H^1(\mathbb{CP}^3,\mathcal{E}(m))$ (or duals $H^2$) for twists $m$ determined by $s$ and the
+                    Penrose-Ward transform of the field equation.</p>
+
+                <p><strong>proof (idea).</strong> the Penrose transform identifies sheaf cohomology on twistor space with
+                    kernels of massless field operators on spacetime. Ward's holomorphic bundle $\mathcal{E}$ encodes the
+                    ASD background; twisting by $\mathcal{O}(m)$ adjusts spin weight and conformal weight. a
+                    representative cocycle, restricted to twistor lines and differentiated, produces a spacetime spinor
+                    field annihilated by the twistor-transformed Dirac or Maxwell operator in the background $A$.
+                    $\square$</p>
+            </section>
+
+            <section class="doc-section" id="adhm">
+                <h2>the adhm construction</h2>
+                <p>The Atiyah-Drinfeld-Hitchin-Manin construction reduces the entire problem to finite-dimensional linear
+                    algebra. One starts with complex vector spaces $V$ and $W$ of dimensions $k$ and $N$ respectively,
+                    together with linear maps
+                    $$
+                    B_1,B_2\in\operatorname{End}(V),\qquad
+                    I\in\operatorname{Hom}(W,V),\qquad
+                    J\in\operatorname{Hom}(V,W).
+                    $$
+                    These data are required to satisfy the real and complex moment-map (or ADHM) equations
+                    $$
+                    \begin{aligned}
+                    \mu_r&=[B_1,B_1^\dagger]+[B_2,B_2^\dagger]+II^\dagger-J^\dagger J=0,\\
+                    \mu_c&=[B_1,B_2]+IJ=0.
+                    \end{aligned}
+                    $$
+                    From any solution one builds a Dirac-type operator
+                    $$
+                    D_x^\dagger
+                    =\begin{pmatrix}
+                    B_1-x_1 &amp; B_2-x_2 &amp; I \\
+                    -(B_2-x_2)^\dagger &amp; (B_1-x_1)^\dagger &amp; J^\dagger
+                    \end{pmatrix}
+                    $$
+                    parametrized by $x\in\mathbb{H}\simeq\mathbb{R}^4$. The kernel of $D_x^\dagger$ is an $N$-dimensional
+                    subspace of $V\oplus V\oplus W$; orthogonal projection onto this kernel yields a connection $A$ on the
+                    trivial bundle of rank $N$ whose curvature is anti-self-dual and whose instanton number is $k$. Every
+                    instanton arises uniquely in this manner (up to the natural action of $U(k)$).</p>
+
+                <p><strong>definition (adhm data).</strong> an ADHM datum of charge $k$ and rank $N$ is a quadruple
+                    $(B_1,B_2,I,J)$ as above satisfying $\mu_r=\mu_c=0$ and a nondegeneracy condition ensuring that
+                    $D_x^\dagger$ has full rank $2k$ for every $x\in\mathbb{R}^4$ (so $\dim\ker D_x^\dagger=N$).</p>
+
+                <p><strong>definition (adhm connection).</strong> let $U(x):\mathbb{C}^N\xrightarrow{\sim}\ker D_x^\dagger
+                    \subset\mathbb{C}^{2k+N}$ be a smooth unitary frame of the kernel. the ADHM connection is the
+                    compression of the trivial connection:
+                    $$
+                    A=U^\dagger dU,
+                    $$
+                    a $\mathfrak{u}(N)$-valued one-form on $\mathbb{R}^4$.</p>
+
+                <p><strong>theorem (adhm produces instantons).</strong> for nondegenerate ADHM data of charge $k$, the
+                    connection $A=U^\dagger dU$ is an ASD connection of instanton number $k$ on the trivial bundle of rank
+                    $N$ over $\mathbb{R}^4$ (completing smoothly over $S^4$ after compactification for $\mathrm{SU}(N)$
+                    data). gauge-equivalent connections arise from the residual $U(k)$ action
+                    $$
+                    (B_i,I,J)\mapsto (gB_ig^{-1},gI,Jg^{-1}),\qquad g\in U(k).
+                    $$</p>
+
+                <p><strong>proof.</strong> write the trivial connection on the ambient bundle $\mathbb{C}^{2k+N}$ and
+                    project orthogonally onto $\ker D_x^\dagger$. the curvature of a projected connection is
+                    $F=P\,dP\wedge dP\,P$ (Grassmannian formula). the ADHM moment-map equations are precisely the
+                    condition that the $(0,2)$ part of this curvature vanishes for every complex structure in the
+                    hyperkahler family on $\mathbb{R}^4$ (equivalently, that $F$ is anti-self-dual). the topological charge
+                    equals $\dim V=k$ by the asymptotic behavior of $U(x)$ as $|x|\to\infty$, matching Chern-Weil. the
+                    $U(k)$ action conjugates $D_x^\dagger$ without changing $\ker D_x^\dagger$ up to unitary rotation of
+                    the ambient space that fixes the projection $P$, hence yields the same $A$ up to gauge.
+                    $\square$</p>
+
+                <p><strong>theorem (completeness of adhm).</strong> every ASD $\mathrm{SU}(N)$ connection of charge $k$
+                    on $S^4$ (or finite-action ASD connection on $\mathbb{R}^4$ with suitable framing at infinity) arises
+                    from ADHM data unique up to $U(k)$.</p>
+
+                <p><strong>proof (outline).</strong> by Ward, the connection determines a holomorphic bundle
+                    $\mathcal{E}$ on $\mathbb{CP}^3$ trivial on lines. Barth and others compute
+                    $H^1(\mathcal{E}(-1))=\mathbb{C}^k$ and vanishing of $H^0(\mathcal{E}(-1))$, producing a monad
+                    presentation of type $\mathcal{O}(-1)^k\to\mathcal{O}^{2k+N}\to\mathcal{O}(1)^k$. choosing bases and
+                    imposing the real structure from Euclidean conjugation yields matrices $(B_1,B_2,I,J)$ satisfying the
+                    ADHM equations. reconstruction of $A$ from the monad recovers the original connection. $\square$</p>
+
+                <p>The moduli space of irreducible $\mathrm{SU}(2)$ instantons of charge $k$ is a smooth manifold of
+                    dimension $8k-3$. This dimension coincides exactly with the prediction of the Atiyah-Singer index
+                    theorem applied to the deformation complex of the ASD equation, confirming the global consistency of
+                    the analytic, topological, and algebraic descriptions.</p>
+
+                <p><strong>theorem (dimension of instanton moduli).</strong> the moduli space of irreducible framed
+                    $\mathrm{SU}(2)$ instantons of charge $k\ge 1$ on $S^4$ is a smooth manifold of dimension $8k-3$ (or
+                    $8k$ before quotienting by the residual $\mathrm{SU}(2)$ gauge action at infinity, depending on framing
+                    conventions).</p>
+
+                <p><strong>proof.</strong> the deformation complex of the ASD equation is
+                    $$
+                    0\to\Omega^0(\operatorname{ad} P)
+                    \xrightarrow{D_A}
+                    \Omega^1(\operatorname{ad} P)
+                    \xrightarrow{D_A^+}
+                    \Omega^{2,+}(\operatorname{ad} P)
+                    \to 0,
+                    $$
+                    where $D_A^+$ projects $D_A$ onto self-dual two-forms. ellipticity at irreducible connections implies
+                    that the tangent space to moduli is $H^1$ of this complex, and
+                    $\mathrm{index}=\dim H^1-\dim H^0-\dim H^2$. vanishing theorems ($H^0=0$ for irreducibility, $H^2=0$
+                    by ASD Weitzenbock) reduce this to the analytical index. Atiyah-Singer yields
+                    $\mathrm{index}=8k$ for $\mathrm{SU}(2)$ charge $k$ (equivalently $4\cdot 2k$ from the real
+                    representation dimension count). quotienting by free $\mathrm{SU}(2)$ residual gauge (dimension $3$)
+                    for unframed moduli gives $8k-3$. ADHM parameters are $4k^2+4kN$ real entries for general $N$,
+                    with $3k^2$ real ADHM equations ($k^2$ for $\mu_c$ complex and $k^2$ for $\mu_r$) and $k^2$ gauge
+                    parameters in $U(k)$; for $N=2$ the count collapses to $8k$ framed degrees of freedom, matching.
+                    $\square$</p>
+
+                <p>Yang-Mills theory, viewed through the lens of twistor geometry and the ADHM construction, therefore
+                    realizes the full program of the treatise: local differential geometry of connections, global
+                    topological invariants supplied by characteristic classes and $K$-theory, spinorial and index-theoretic
+                    control of deformations, and an explicit algebraic solution of the resulting nonlinear field equations.
+                    The instanton moduli spaces that emerge are themselves rich geometric objects, linking classical field
+                    theory to the deepest structures of modern geometry and topology.</p>
+
+                <p><strong>remark (closure).</strong> the program that began with fields as sections of bundles on a
+                    manifold ends with gauge fields as connections, topological charges as Chern numbers, fermionic and
+                    deformation indices as topology, and nonlinear ASD dynamics solved by matrices. what remains is the
+                    rich geometry of the moduli spaces themselves.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (self-dual split).</strong> for a real two-form $F$ on an oriented Euclidean
+                    four-manifold, prove $\|F\|^2=\|F^+\|^2+\|F^-\|^2$ and
+                    $F\wedge F=\bigl(\|F^+\|^2-\|F^-\|^2\bigr)\,d\mathrm{vol}$. deduce the energy bound of the text.</p>
+
+                <p><strong>exercise 2 (bpst charge).</strong> the basic BPST instanton on $\mathbb{R}^4$ has
+                    $A_i=\frac{\sigma_i\bar x-x\sigma_i}{|x|^2+\rho^2}$ (up to identification of $\mathfrak{su}(2)$ with
+                    imaginary quaternions). verify that $k=1$ by evaluating $\int\operatorname{Tr}(F\wedge F)$ at
+                    infinity, or accept the asymptotic pure-gauge winding and conclude $k=1$ from $\pi_3(\mathrm{SU}(2))$.</p>
+
+                <p><strong>exercise 3 (adhm dim count for $\mathrm{SU}(2)$).</strong> count real parameters in
+                    $(B_1,B_2,I,J)$ for $N=2$, subtract the real and complex ADHM equations and the $U(k)$ action, and
+                    recover the framed dimension $8k$.</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-8/">← spin geometry and atiyah-singer index theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

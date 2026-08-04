@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch2.js"></script>
 </head>
 
 <body>
@@ -84,7 +87,9 @@
                     $t\mapsto\varphi_t(y_0)$ solves the same ODE with the same initial condition. by uniqueness of
                     solutions (proved below via Picard), the two curves coincide on their common interval of
                     definition. renaming the free variable yields the group property. $\square$</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="conjugacy">
                 <h2>action of diffeomorphisms and coordinate-free character</h2>
@@ -206,7 +211,21 @@
                 <p><strong>remark.</strong> existence of a periodic orbit is a global topological question that cannot be
                     decided by local rectification alone: near a non-singular point the rectified field has only straight
                     open orbits.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-picard">
+                    <p class="doc-widget-title">figure · Picard iteration and contraction</p>
+                    <p class="doc-widget-caption">For $\dot x=-x$, $x(0)=1$, the Picard map $x^{(n+1)}(t)=1+\int_0^t -x^{(n)}$ converges to $e^{-t}$. Left: iterates; right: $L^\infty$ error vs iteration (log scale).</p>
+                    <div class="doc-widget-plot tall" id="fig2-picard-plot" role="img" aria-label="figure · Picard iteration and contraction"></div>
+                    <div class="doc-widget-controls">
+                        <label>iterate $n$
+                            <input id="fig2-picard-n" type="range" min="0" max="8" value="5" step="1">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig2-picard-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="linearization">
                 <h2>linearization at singular points</h2>
@@ -308,7 +327,27 @@
                     if there exists a homeomorphism mapping oriented orbits of one onto oriented orbits of the other.
                     hyperbolic equilibria of the same index (dimension of the unstable subspace) are topologically
                     equivalent by Hartman-Grobman; centres and weak foci require finer invariants.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-linear">
+                    <p class="doc-widget-title">figure · linear planar systems and the $(\mathrm{tr},\det)$ plane</p>
+                    <p class="doc-widget-caption">Phase portraits of $\dot x=Ax$ from adaptive RK45, paired with the classical $(\mathrm{tr}A,\det A)$ classification chart. The gold marker locates the active matrix; $\Delta=\mathrm{tr}^2-4\det$ separates nodes and foci.</p>
+                    <div class="doc-widget-plot tall" id="fig2-linear-plot" role="img" aria-label="figure · linear planar systems and the $(\mathrm{tr},\det)$ plane"></div>
+                    <div class="doc-widget-controls">
+                        <label>type
+                            <select id="fig2-linear-type">
+                                <option value="saddle" selected>saddle</option>
+                                <option value="sink">stable node</option>
+                                <option value="source">unstable node</option>
+                                <option value="spiral">spiral sink</option>
+                                <option value="center">center</option>
+                            </select>
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig2-linear-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="manifolds">
                 <h2>extension to differentiable manifolds</h2>
@@ -390,7 +429,21 @@
                 <p><strong>remark.</strong> this elementary picture already exhibits the fundamental dichotomy between
                     bounded and unbounded motions that persists, in far more subtle form, in higher-dimensional
                     Hamiltonian systems (to be met again under symplectic methods).</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-energy">
+                    <p class="doc-widget-title">figure · one-degree-of-freedom energy portrait</p>
+                    <p class="doc-widget-caption">Double well $V=\frac14 q^4-\frac12 q^2$. Level sets of $H=\frac12 p^2+V$ are integrated adaptively; the readout tracks wells, separatrix ($E=0$), and connected motion.</p>
+                    <div class="doc-widget-plot tall" id="fig2-energy-plot" role="img" aria-label="figure · one-degree-of-freedom energy portrait"></div>
+                    <div class="doc-widget-controls">
+                        <label>energy $E$
+                            <input id="fig2-energy-e" type="range" min="-0.24" max="0.55" value="-0.08" step="0.01">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig2-energy-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="summary">
                 <h2>summary</h2>
@@ -431,6 +484,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-1/">← chapter 1: basic mechanics</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-3/">next: lie theory →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

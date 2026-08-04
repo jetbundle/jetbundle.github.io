@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch5.js"></script>
 </head>
 
 <body>
@@ -139,7 +142,19 @@
 
                 <p><strong>remark.</strong> if some multiplier satisfies $|\mu|&gt;1$, $\Gamma$ is unstable. multipliers on
                     the unit circle require centre-manifold or Lyapunov analysis (bifurcation chapter).</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-saddle">
+                    <p class="doc-widget-title">figure · hyperbolic saddle and invariant manifolds</p>
+                    <p class="doc-widget-caption">Nonlinear saddle $\dot x=x$, $\dot y=-y+0.35x^2$. Linear eigenspaces $E^{s,u}$ (dotted) vs invariant manifolds $W^{s,u}$ (solid); sample orbits animated under the flow.</p>
+                    <div class="doc-widget-plot tall" id="fig5-saddle-plot" role="img" aria-label="figure · hyperbolic saddle and invariant manifolds"></div>
+                    <div class="doc-widget-controls">
+                        <button type="button" id="fig5-saddle-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig5-saddle-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="suspension">
                 <h2>suspension of discrete dynamical systems</h2>
@@ -186,7 +201,22 @@
                 <p><strong>remark.</strong> forced time-periodic ODEs $\dot x=v(x,t)$ with $v(\cdot,t+T)=v(\cdot,t)$
                     suspend as autonomous systems on the extended space $M\times S^1$ with angular speed $2\pi/T$; the
                     Poincare map is the stroboscopic (period) map.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-poincare">
+                    <p class="doc-widget-title">figure · van der Pol, Poincaré section, and return map</p>
+                    <p class="doc-widget-caption">Oscillator with section $\Sigma=\{x=0,y>0\}$. Hits define the return map $P$; successive pairs estimate the Floquet multiplier $|P^\prime|$.</p>
+                    <div class="doc-widget-plot tall" id="fig5-poincare-plot" role="img" aria-label="figure · van der Pol, Poincaré section, and return map"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\mu$
+                            <input id="fig5-poincare-mu" type="range" min="0.2" max="1.5" value="0.85" step="0.02">
+                        </label>
+                        <button type="button" id="fig5-poincare-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig5-poincare-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="stability">
                 <h2>topological stability and global geometry of phase space</h2>
@@ -277,7 +307,19 @@
                     persistence of transverse intersections of invariant manifolds, and a filtration argument controlling
                     the global connection graph. full details are classical (Palis-Smale) and lengthy; the geometric
                     moral is that hyperbolicity plus transversality rigidifies the entire orbit skeleton.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-morse">
+                    <p class="doc-widget-title">figure · Morse height function on $S^2$</p>
+                    <p class="doc-widget-caption">Height $h=z$ is Morse. Gradient flow lines of $-\nabla h$ are meridians; Morse data recover $\chi(S^2)=2$.</p>
+                    <div class="doc-widget-plot tall" id="fig5-morse-plot" role="img" aria-label="figure · Morse height function on $S^2$"></div>
+                    <div class="doc-widget-controls">
+                        <button type="button" id="fig5-morse-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig5-morse-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="summary">
                 <h2>summary</h2>
@@ -311,6 +353,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../chapter-4/">← chapter 4: algebraic, analytic, and geometric techniques</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-6/">next: symplectic methods →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

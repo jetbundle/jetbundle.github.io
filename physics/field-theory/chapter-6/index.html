@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>characteristic classes · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">characteristic classes</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>6 · characteristic classes</h1>
+            <p class="doc-lead"><em>curvature detecting nontriviality of bundles</em></p>
+            <p class="doc-intro">Characteristic classes are the primary topological invariants of vector bundles. They
+                take values in the cohomology ring of the base manifold and measure the extent to which a bundle fails
+                to be trivial. In classical field theory they classify the possible topological sectors of gauge fields,
+                determine the existence of spin structures, quantize magnetic charge and instanton number, and supply
+                the integrands of the index theorems that relate analysis to topology.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="classification">
+                <h2>classification of vector bundles by characteristic classes</h2>
+                <p>Two vector bundles over a common base $M$ are isomorphic if and only if their classifying maps into a
+                    suitable classifying space are homotopic. Characteristic classes are the cohomology classes pulled
+                    back from the universal classes that generate the cohomology of those classifying spaces.
+                    Consequently they are functorial under bundle morphisms and stable under addition of trivial
+                    bundles. Once a complete set of characteristic classes is known, the isomorphism type of a bundle is
+                    largely determined (exactly determined for many structure groups after stabilization).</p>
+
+                <p><strong>definition (classifying map).</strong> a complex rank-$k$ vector bundle $E\to M$ determines,
+                    up to homotopy, a continuous map $f_E:M\to\mathrm{Gr}_k(\mathbb{C}^\infty)=BU(k)$ such that
+                    $E\simeq f_E^*\gamma^k$ for the tautological bundle $\gamma^k$ on the Grassmannian. real and oriented
+                    real bundles are classified likewise by maps into $BO(k)$ and $BSO(k)$.</p>
+
+                <p><strong>definition (characteristic class).</strong> a characteristic class for a family of bundles
+                    (real, complex, oriented, \ldots) is a natural assignment $E\mapsto c(E)\in H^\bullet(M;R)$ such
+                    that for every continuous map $f:N\to M$ one has $c(f^*E)=f^*c(E)$ in $H^\bullet(N;R)$. equivalently,
+                    it is the pullback of a fixed universal class on the classifying space.</p>
+
+                <p><strong>theorem (naturality and stability).</strong> every characteristic class $c$ satisfies
+                    $c(f^*E)=f^*c(E)$. if $c$ is stable for complex $K$-theory in the sense that $c(E\oplus\underline{
+                    \mathbb{C}})=c(E)$, then $c$ descends to a well-defined invariant of classes in $K^0(M)$.</p>
+
+                <p><strong>proof.</strong> naturality is built into the definition via classifying maps: the classifying
+                    map of $f^*E$ is homotopic to $f_E\circ f$, so
+                    $$
+                    c(f^*E)=(f_E\circ f)^*c(\gamma)=f^*(f_E^*c(\gamma))=f^*c(E).
+                    $$
+                    stability under adding a trivial line means that $c$ factors through the stabilization maps
+                    $BU(k)\to BU(k+1)$, hence through $BU$, and therefore through the representing space of complex
+                    $K$-theory. $\square$</p>
+
+                <p><strong>remark (how much is determined).</strong> for complex line bundles, $c_1$ is a complete
+                    invariant: $\operatorname{Vect}_1^\mathbb{C}(M)\simeq H^2(M;\mathbb{Z})$. for higher rank, Chern
+                    classes are complete after rationalization and stabilization in a range of dimensions (Atiyah-Hirzebruch),
+                    but integral isomorphism types may require additional data.</p>
+            </section>
+
+            <section class="doc-section" id="principal">
+                <h2>the principal characteristic classes</h2>
+                <p>Four families dominate applications to field theory and geometry.</p>
+
+                <p>Stiefel-Whitney classes $w_i(E)\in H^i(M;\mathbb{Z}/2)$ are defined for any real vector bundle. The
+                    first class $w_1(E)$ vanishes if and only if $E$ is orientable; the second class $w_2(E)$ is the
+                    obstruction to the existence of a spin structure. Higher classes refine the $\mathbb{Z}/2$
+                    cohomological information.</p>
+
+                <p>Chern classes $c_i(E)\in H^{2i}(M;\mathbb{Z})$ are defined for complex vector bundles. The first Chern
+                    class $c_1(L)$ of a complex line bundle is the curvature class of any Hermitian connection
+                    (normalized by $2\pi i$); its integral over a closed surface yields the magnetic monopole charge. The
+                    second Chern class $c_2(E)$ evaluated on a four-manifold gives the instanton number of an
+                    $\mathrm{SU}(N)$ gauge field.</p>
+
+                <p>Pontryagin classes $p_i(E)\in H^{4i}(M;\mathbb{Z})$ are the real analogues of Chern classes, obtained
+                    by complexification: $p_i(E)=(-1)^i c_{2i}(E\otimes\mathbb{C})$. They are fundamental invariants of
+                    the oriented cobordism ring and appear in the Hirzebruch $L$-polynomial that computes the signature.</p>
+
+                <p>The Euler class $e(E)\in H^n(M;\mathbb{Z})$ is defined for an oriented real bundle of rank $n$; it
+                    coincides with the top Chern class when the bundle admits a complex structure. Its integral over a
+                    closed oriented manifold recovers the Euler characteristic (Gauss-Bonnet theorem). Vanishing of
+                    $e(E)$ is necessary for the existence of a nowhere-zero section.</p>
+
+                <p>These classes are related by Whitney sum formulas, naturality under pullback, and the splitting
+                    principle described below.</p>
+
+                <p><strong>definition (total stiefel-whitney, chern, pontryagin, and euler classes).</strong> write
+                    $$
+                    w(E)=1+w_1(E)+w_2(E)+\cdots,\qquad
+                    c(E)=1+c_1(E)+c_2(E)+\cdots,
+                    $$
+                    $$
+                    p(E)=1+p_1(E)+p_2(E)+\cdots,\qquad
+                    e(E)\in H^{\operatorname{rank}E}(M;\mathbb{Z})\ \text{(oriented real case)}.
+                    $$
+                    conventions: $p_i(E)=(-1)^i c_{2i}(E\otimes\mathbb{C})$ for real $E$.</p>
+
+                <p><strong>theorem (whitney sum formulas).</strong> for real (resp. complex) vector bundles $E,F$ over
+                    $M$,
+                    $$
+                    w(E\oplus F)=w(E)w(F),\qquad
+                    c(E\oplus F)=c(E)c(F).
+                    $$
+                    for oriented real bundles of even rank one has $e(E\oplus F)=e(E)e(F)$ when both factors are evenly
+                    ranked in the sense that the Euler classes multiply in complementary degrees.</p>
+
+                <p><strong>proof.</strong> on classifying spaces the Whitney sum corresponds to the $H$-space product
+                    $BO\times BO\to BO$ (resp. $BU\times BU\to BU$). the total Stiefel-Whitney (Chern) class is by
+                    definition the pullback of the universal generator $w(\gamma)$ (resp. $c(\gamma)$), and the
+                    cohomology rings $H^*(BO;\mathbb{Z}/2)=\mathbb{Z}/2[w_i]$ and
+                    $H^*(BU;\mathbb{Z})=\mathbb{Z}[c_i]$ are free polynomial, with the product classifying map inducing
+                    the cup product of total classes. pulling back by $(f_E,f_F)$ yields $w(E\oplus F)=w(E)w(F)$ and
+                    likewise for $c$. for Euler classes use the Thom/Euler construction of chapter 5, or the identity
+                    $e(E)=c_n(E)$ for complex bundles of rank $n$ together with Whitney for Chern classes. $\square$</p>
+
+                <p><strong>theorem (chern-weil for $c_1$ and $c_2$).</strong> let $E\to M$ be a complex vector bundle
+                    with Hermitian connection $\nabla$ and curvature $\Omega\in\Omega^2(M,\operatorname{End}(E))$. then
+                    the closed forms
+                    $$
+                    c_1(\nabla)=\frac{i}{2\pi}\operatorname{tr}\Omega,\qquad
+                    c_2(\nabla)=\frac{1}{8\pi^2}\bigl(\operatorname{tr}(\Omega\wedge\Omega)-(\operatorname{tr}\Omega)^2\bigr)
+                    $$
+                    (up to the standard polynomial normalization of $\det(I+i\Omega/2\pi)$) represent $c_1(E)$ and
+                    $c_2(E)$ in de Rham cohomology and are independent of $\nabla$.</p>
+
+                <p><strong>proof.</strong> the Chern-Weil invariant polynomials are $\operatorname{Ad}$-invariant, so
+                    $P(\Omega)$ is basic and closed by the Bianchi identity $d_\nabla\Omega=0$. if
+                    $\nabla_t=(1-t)\nabla_0+t\nabla_1$ is the affine path of connections, the secondary (transgression)
+                    form $\mathrm{TP}(\nabla_t)$ satisfies
+                    $d\,\mathrm{TP}=P(\Omega_1)-P(\Omega_0)$, so de Rham classes are independent of connection.
+                    agreement with integral Chern classes follows by naturality from the universal bundle on $BU(k)$
+                    equipped with its tautological connection, or by the axiomatic characterization (Whitney, normalization
+                    on line bundles, and naturality). for a line bundle one has $\Omega=F\cdot\mathrm{id}$ and
+                    $c_1=[iF/2\pi]$. $\square$</p>
+
+                <p><strong>theorem (orientability and spin).</strong> a real vector bundle $E$ is orientable if and only
+                    if $w_1(E)=0$. an oriented real vector bundle admits a spin structure if and only if $w_2(E)=0$.</p>
+
+                <p><strong>proof.</strong> orientation characters are continuous maps $M\to\mathbb{RP}^\infty=BO(1)$,
+                    corresponding to $w_1\in H^1(M;\mathbb{Z}/2)$. the structure group reduces to $\mathrm{SO}$
+                    precisely when this character is trivial. lifting further along
+                    $1\to\mathbb{Z}/2\to\operatorname{Spin}\to\mathrm{SO}\to 1$ is obstructed by a class in
+                    $H^2(M;\mathbb{Z}/2)$, the universal $w_2$ of the tautological bundle on $BSO$; naturality yields
+                    the claim for arbitrary oriented $E$. $\square$</p>
+
+                <p><strong>theorem (gauss-bonnet-chern).</strong> if $M$ is a closed oriented smooth $n$-manifold then
+                    $$
+                    \langle e(TM),[M]\rangle=\chi(M).
+                    $$
+                    in particular, for $n=2$ and a Riemannian metric $g$,
+                    $$
+                    \frac{1}{2\pi}\int_M K\,dA=\chi(M)
+                    $$
+                    for Gaussian curvature $K$.</p>
+
+                <p><strong>proof.</strong> the Euler class of $TM$ is $s_0^*\Phi(TM)$ for the Thom class of the tangent
+                    bundle (chapter 5). the Hopf index theorem computes the same integer as the sum of indices of a
+                    vector field with isolated zeros, which equals $\chi(M)$ by Poincare-Hopf. the two-dimensional
+                    Riemannian expression is Chern-Weil for the Euler class of an oriented rank-$2$ bundle: the
+                    curvature form of the Levi-Civita connection is $K\,dA$ times the generator of
+                    $\mathfrak{so}(2)$, and $e=[K\,dA/2\pi]$. $\square$</p>
+
+                <p><strong>remark (instanton number).</strong> for a principal $\mathrm{SU}(N)$-bundle on a closed
+                    oriented four-manifold the second Chern number is
+                    $c_2[E]=\frac{1}{8\pi^2}\int\operatorname{tr}(F\wedge F)$ (sign conventions as in chapter 5),
+                    matching the instanton charge of a connection $A$ with curvature $F$.</p>
+            </section>
+
+            <section class="doc-section" id="grassmannians">
+                <h2>grassmannians, universal bundles, and the splitting principle</h2>
+                <p>The Grassmann manifold $\mathrm{Gr}_k(\mathbb{C}^\infty)$ (respectively $\mathrm{Gr}_k(\mathbb{R}^\infty)$)
+                    classifies complex (real) $k$-plane bundles. It carries a tautological universal bundle $\gamma^k$
+                    whose characteristic classes generate the entire cohomology ring of the Grassmannian. Every rank-$k$
+                    bundle $E\to M$ is the pullback of $\gamma^k$ by a classifying map $f:M\to\mathrm{Gr}_k$, and the
+                    characteristic classes of $E$ are simply $f^*$ of the universal classes.</p>
+
+                <p><strong>definition (tautological bundle).</strong> on $\mathrm{Gr}_k(\mathbb{C}^N)$ the tautological
+                    bundle $\gamma^k$ has fiber over a $k$-plane $V$ the plane $V$ itself. the stable Grassmannian is
+                    $\mathrm{Gr}_k(\mathbb{C}^\infty)=\varinjlim_N\mathrm{Gr}_k(\mathbb{C}^N)$, with tautological bundle
+                    still written $\gamma^k$.</p>
+
+                <p><strong>theorem (cohomology of $BU(k)$).</strong>
+                    $$
+                    H^*\bigl(BU(k);\mathbb{Z}\bigr)=\mathbb{Z}[c_1,\dots,c_k],
+                    $$
+                    where $c_i=c_i(\gamma^k)$ is the universal Chern class of degree $2i$. similarly
+                    $H^*(BO(k);\mathbb{Z}/2)=\mathbb{Z}/2[w_1,\dots,w_k]$.</p>
+
+                <p><strong>proof (outline).</strong> the fibration $U(k-1)\to U(k)\to S^{2k-1}$ and the associated
+                    Serre spectral sequence for $BU(k-1)\to BU(k)\to\mathbb{CP}^\infty$ (or induction on the
+                    Schubert-cell cellulation of Grassmannians) show that $H^*(BU(k))$ is free polynomial on the Chern
+                    classes of the tautological bundle, with no relations below the stable range and the standard
+                    truncated polynomial presentation for finite $k$. the real mod $2$ calculation is analogous with
+                    Stiefel-Whitney classes and $\mathbb{RP}^\infty$. $\square$</p>
+
+                <p>The splitting principle asserts that, for the purpose of computing characteristic classes, any complex
+                    vector bundle may be treated as a direct sum of line bundles. More precisely, there exists a flag
+                    manifold $F(E)\to M$ such that the pullback of $E$ splits into a sum of complex line bundles; the
+                    Chern classes of $E$ become the elementary symmetric polynomials in the first Chern classes of those
+                    line bundles. An analogous statement holds for real bundles after complexification. The principle
+                    reduces all formal manipulations of characteristic classes to calculations with Chern roots.</p>
+
+                <p><strong>definition (flag bundle and chern roots).</strong> the full flag bundle $\pi:F(E)\to M$ of a
+                    complex rank-$k$ bundle $E$ is the bundle of complete flags in the fibers of $E$. the pullback
+                    $\pi^*E$ admits a filtration by subbundles with successive line-bundle quotients $L_1,\dots,L_k$.
+                    the Chern roots are $x_i:=c_1(L_i)\in H^2(F(E);\mathbb{Z})$.</p>
+
+                <p><strong>theorem (splitting principle).</strong> the pullback $\pi^*:H^*(M;\mathbb{Z})\to H^*(F(E);\mathbb{Z})$
+                    is injective. moreover
+                    $$
+                    c(\pi^*E)=\prod_{i=1}^k(1+x_i),
+                    $$
+                    so $c_j(E)$ pulls back to the $j$-th elementary symmetric polynomial $e_j(x_1,\dots,x_k)$. any
+                    polynomial identity among Chern classes that holds for split bundles therefore holds for all
+                    bundles.</p>
+
+                <p><strong>proof.</strong> $F(E)$ is obtained by iterated projectivizations $\mathbb{P}(E)\to M$, then
+                    $\mathbb{P}$ of the quotient bundles, etc. the projective-bundle theorem gives
+                    $$
+                    H^*\bigl(\mathbb{P}(E)\bigr)
+                    =H^*(M)[\zeta]\big/\bigl(\zeta^k+c_1(E)\zeta^{k-1}+\cdots+c_k(E)\bigr),
+                    $$
+                    so restriction $H^*(M)\to H^*(\mathbb{P}(E))$ is split injective (basis $1,\zeta,\dots,\zeta^{k-1}$).
+                    induction on rank yields injectivity for the full flag bundle. over $F(E)$ the bundle splits by
+                    construction of the tautological line filtration, so Whitney sum yields
+                    $c(\pi^*E)=\prod(1+x_i)$. injectivity of $\pi^*$ transfers any universal polynomial relation from the
+                    split case back to $M$. $\square$</p>
+
+                <p><strong>remark (chern character).</strong> writing $c(E)=\prod(1+x_i)$ formally, the Chern character is
+                    $\operatorname{ch}(E)=\sum e^{x_i}=\operatorname{rank}E+c_1+\frac12(c_1^2-2c_2)+\cdots$, a ring
+                    homomorphism $K^0(M)\to H^{\mathrm{even}}(M;\mathbb{Q})$ used in index theory (chapters 7 and 8).</p>
+            </section>
+
+            <section class="doc-section" id="cobordism">
+                <h2>cobordism and the hirzebruch signature theorem</h2>
+                <p>Two closed manifolds are cobordant if their disjoint union bounds a compact manifold of one higher
+                    dimension. The resulting cobordism rings $\Omega_*^{\mathrm{SO}}$ and $\Omega_*^{\mathrm{O}}$ are
+                    determined by Pontryagin numbers and Stiefel-Whitney numbers respectively. Thom's construction
+                    realizes these rings as the homotopy groups of the Thom spectra $\mathrm{MSO}$ and $\mathrm{MO}$;
+                    transversality identifies cobordism classes with homotopy classes of maps into those spectra.</p>
+
+                <p><strong>definition (cobordism).</strong> closed $n$-manifolds $M_0,M_1$ are oriented cobordant if there
+                    exists a compact oriented $(n+1)$-manifold $W$ with $\partial W\simeq M_0\sqcup(-M_1)$. isomorphism
+                    classes under this relation form the abelian group $\Omega_n^{\mathrm{SO}}$; the disjoint union and
+                    Cartesian product make $\Omega_*^{\mathrm{SO}}$ a graded ring.</p>
+
+                <p><strong>definition (characteristic numbers).</strong> for $M$ closed oriented of dimension $4k$, and
+                    a monomial $p_{i_1}\cdots p_{i_r}$ of total degree $4k$ in Pontryagin classes, the Pontryagin number
+                    is $\langle p_{i_1}(TM)\cdots p_{i_r}(TM),[M]\rangle$. Stiefel-Whitney numbers are the analogous
+                    pairings with $w_I(TM)$ for unoriented manifolds.</p>
+
+                <p><strong>theorem (thom: characteristic numbers determine cobordism).</strong> two closed oriented
+                    manifolds are oriented-cobordant if and only if all corresponding Pontryagin numbers (and Stiefel-Whitney
+                    numbers for the unoriented theory) agree. equivalently,
+                    $\Omega_*^{\mathrm{SO}}\otimes\mathbb{Q}$ is a polynomial ring on generators detected by Pontryagin
+                    numbers.</p>
+
+                <p><strong>proof (outline).</strong> Thom's transversal representing maps $M\to MSO$ convert cobordism
+                    classes into stable homotopy classes $\pi_*(MSO)$. the rational homotopy of $MSO$ is computed by the
+                    spectral sequence of the Thom spectrum and matches the polynomial generators dual to Pontryagin
+                    numbers. if all characteristic numbers vanish, the corresponding map is rationally nullhomotopic and
+                    bounds after killing torsion by a standard surgery/transversality argument in the Thom spectrum.
+                    $\square$</p>
+
+                <p>The Hirzebruch signature theorem expresses the topological signature of a closed oriented $4k$-manifold
+                    as the evaluation of a universal polynomial $L_k(p_1,\dots,p_k)$ in the Pontryagin classes:
+                    $$
+                    \mathrm{Sign}(M)=\langle L_k\bigl(p(TM)\bigr),[M]\rangle.
+                    $$
+                    The same $L$-polynomial appears in the Atiyah-Singer index theorem for the signature operator,
+                    linking the global topology of the tangent bundle to the analytic index of an elliptic differential
+                    operator.</p>
+
+                <p><strong>definition (signature and $L$-class).</strong> for $M$ closed oriented of dimension $4k$, the
+                    signature $\mathrm{Sign}(M)$ is the signature of the intersection form
+                    $H^{2k}(M;\mathbb{R})\times H^{2k}(M;\mathbb{R})\to\mathbb{R}$. the Hirzebruch $L$-class is the
+                    multiplicative sequence associated to the power series $x/\tanh x$, expanded as a polynomial in
+                    Pontryagin roots; its degree-$4k$ component is $L_k$.</p>
+
+                <p><strong>theorem (hirzebruch signature theorem).</strong> for every closed oriented smooth manifold of
+                    dimension $4k$,
+                    $$
+                    \mathrm{Sign}(M)=\langle L_k(p(TM)),[M]\rangle.
+                    $$
+                    in dimension $4$, $L_1=p_1/3$, so $\mathrm{Sign}(M)=\frac13\langle p_1(TM),[M]\rangle$.</p>
+
+                <p><strong>proof.</strong> both $\mathrm{Sign}$ and $\langle L(p),[\,]\rangle$ are oriented cobordism
+                    invariants: signature is a cobordism invariant by Novikov's algebraic argument (or by the
+                    Atiyah-Singer index of the signature operator, whose analytic index is $\mathrm{Sign}$ and vanishes
+                    on boundaries), while $L$-numbers are Pontryagin numbers. they therefore define rational ring
+                    homomorphisms $\Omega_*^{\mathrm{SO}}\otimes\mathbb{Q}\to\mathbb{Q}$. the multiplicative sequence
+                    $x/\tanh x$ is uniquely characterized as the one that matches the signatures of the complex projective
+                    spaces $\mathbb{CP}^{2k}$ (which generate the rational oriented cobordism ring together with known
+                    relations): $\mathrm{Sign}(\mathbb{CP}^{2k})=1$, and a direct Chern/Pontryagin computation gives
+                    $\langle L(\mathbb{CP}^{2k}),[\mathbb{CP}^{2k}]\rangle=1$. agreement on generators yields the theorem
+                    for all rational cobordism classes, hence for all closed oriented smooth manifolds. $\square$</p>
+
+                <p>Characteristic classes therefore convert the geometric question of bundle triviality into concrete
+                    cohomology classes that can be evaluated by integration or pairing. They label the topological
+                    sectors of classical gauge fields, control the existence of spinors, quantize charges, and furnish
+                    the characteristic numbers that enter every index theorem relating the spectrum of field operators
+                    to the topology of spacetime.</p>
+
+                <p><strong>remark (to $K$-theory and index theory).</strong> chapter 7 reorganizes bundles into a ring
+                    $K^0(M)$ with Chern character landing in ordinary cohomology; chapter 8 identifies analytical
+                    indices with pairings of characteristic classes such as $\widehat{A}$ and $\operatorname{ch}$.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (whitney for lines).</strong> if $L,L'\to M$ are complex line bundles, prove
+                    $c_1(L\otimes L')=c_1(L)+c_1(L')$ using either Whitney for $L\oplus L'$ and the identity
+                    $c_1(\operatorname{det})=c_1$, or Chern-Weil for product connections.</p>
+
+                <p><strong>exercise 2 (hopf bundle).</strong> for the Hopf line bundle $H\to\mathbb{CP}^1\simeq S^2$,
+                    show $\int_{S^2}c_1(H)=\pm 1$. deduce $H$ is nontrivial and that $w_2(TS^2)\neq 0$ after identifying
+                    real reductions as appropriate, or alternatively recompute $\chi(S^2)=2$ via Gauss-Bonnet.</p>
+
+                <p><strong>exercise 3 (signature of $\mathbb{CP}^2$).</strong> compute $p_1(T\mathbb{CP}^2)$ using
+                    $c(T\mathbb{CP}^2)=(1+x)^3$ with $x=c_1(\gamma^*)$, and verify
+                    $\mathrm{Sign}(\mathbb{CP}^2)=\langle p_1/3,[\mathbb{CP}^2]\rangle=1$.</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-5/">← algebraic topology and global obstructions</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-7/">next: k-theory →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

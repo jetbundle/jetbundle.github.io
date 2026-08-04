@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>classical mechanics · mechanics · JETBUNDLE</title>
+    <title>basic mechanics · mechanics · JETBUNDLE</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles.css">
@@ -12,6 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
+    <script defer src="/physics/mechanics/figs/ch1.js"></script>
 </head>
 
 <body>
@@ -19,7 +22,7 @@
         <nav class="subnav" aria-label="section">
             <a href="../">mechanics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
-            <span class="dim">classical mechanics</span>
+            <span class="dim">basic mechanics</span>
             <span class="subnav-sep" aria-hidden="true">·</span>
             <a href="../../">physics</a>
             <span class="subnav-sep" aria-hidden="true">·</span>
@@ -27,7 +30,7 @@
         </nav>
 
         <header class="doc-header">
-            <h1>1 · classical mechanics</h1>
+            <h1>1 · basic mechanics</h1>
             <p class="doc-lead"><em>from newton to action, symmetry, and geometric structure</em></p>
             <p class="doc-intro">Classical mechanics begins from a small set of experimentally verified principles and is
                 progressively abstracted into a coordinate-free geometric theory on manifolds. The transition from
@@ -133,7 +136,42 @@
                 <p><strong>remark (bertrand).</strong> the full classification theorem of Bertrand is classical but
                     lengthy; its role here is conceptual: rotational symmetry alone severely restricts which central
                     potentials give permanently closed bounded orbits, and only two local force laws survive.</p>
-            </section>
+            
+                
+
+                
+
+                <div class="doc-widget" id="fig-central">
+                    <p class="doc-widget-title">figure · central force, planarity, and conservation</p>
+                    <p class="doc-widget-caption">Unit mass in $V=-1/r$. Force is radial, so $\mathbf{q}\times\mathbf{F}=\mathbf{0}$ and $L_z=q_1\dot q_2-q_2\dot q_1$ is an exact first integral. Velocity-Verlet preserves $L_z$ and $E$ to high accuracy; live residuals are reported.</p>
+                    <div class="doc-widget-plot tall" id="fig1-central-plot" role="img" aria-label="figure · central force, planarity, and conservation"></div>
+                    <div class="doc-widget-controls">
+                        <label>launch angle (deg)
+                            <input id="fig1-central-angle" type="range" min="0" max="360" value="90" step="1">
+                        </label>
+                        <label>speed
+                            <input id="fig1-central-speed" type="range" min="0.45" max="1.35" value="0.9" step="0.01">
+                        </label>
+                        <button type="button" id="fig1-central-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig1-central-readout"></p>
+                </div>
+
+                <div class="doc-widget" id="fig-veff">
+                    <p class="doc-widget-title">figure · effective potential and radial phase portrait</p>
+                    <p class="doc-widget-caption">Central reduction: $V_{\mathrm{eff}}=-1/r+\ell^2/(2r^2)$ and $E=\frac12\dot r^2+V_{\mathrm{eff}}$. Turning points and Kepler eccentricity $e=\sqrt{1+2E\ell^2}$ ($m=k=1$) with the radial phase curves of $H$.</p>
+                    <div class="doc-widget-plot tall" id="fig1-veff-plot" role="img" aria-label="figure · effective potential and radial phase portrait"></div>
+                    <div class="doc-widget-controls">
+                        <label>$\ell$
+                            <input id="fig1-veff-ell" type="range" min="0.25" max="1.7" value="0.95" step="0.02">
+                        </label>
+                        <label>$E$
+                            <input id="fig1-veff-e" type="range" min="-1.1" max="0.7" value="-0.25" step="0.02">
+                        </label>
+                    </div>
+                    <p class="doc-widget-readout" id="fig1-veff-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="lagrangian">
                 <h2>lagrangian formalism</h2>
@@ -208,7 +246,9 @@
                     the second and fourth terms cancel. Euler-Lagrange replaces
                     $\frac{d}{dt}(\partial L/\partial\dot{q}^i)$ by $\partial L/\partial q^i$, so the first and third
                     terms cancel. if $\partial L/\partial t=0$ one obtains $dE/dt=0$. $\square$</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="noether">
                 <h2>noether’s theorem</h2>
@@ -257,7 +297,22 @@
                     linear momentum; rotational symmetry yields conservation of angular momentum. time-independence of
                     $L$ is the energy theorem already proved, and can be viewed as Noether for a suitably enlarged time
                     reparametrization story once one formulates mechanics on space-time path spaces.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-noether">
+                    <p class="doc-widget-title">figure · Noether: rotations and angular momentum</p>
+                    <p class="doc-widget-caption">Isotropic oscillator $L=\frac12(\dot q_1^2+\dot q_2^2)-\frac12(q_1^2+q_2^2)$. The $SO(2)$ action on $Q$ is a symmetry; the Noether charge $I=q_1 p_2-q_2 p_1$ is rigorously constant along solutions (right panel).</p>
+                    <div class="doc-widget-plot tall" id="fig1-noether-plot" role="img" aria-label="figure · Noether: rotations and angular momentum"></div>
+                    <div class="doc-widget-controls">
+                        <label>frame angle $\theta$ (deg)
+                            <input id="fig1-noether-ang" type="range" min="0" max="360" value="0" step="1">
+                        </label>
+                        <button type="button" id="fig1-noether-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig1-noether-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="oscillations">
                 <h2>small oscillations and parametric resonance</h2>
@@ -279,7 +334,9 @@
                     instantaneous frequencies remain real. the phenomenon is linear and geometric: Floquet theory reads
                     the monodromy of a periodic linear system on the phase plane, not a nonlinear resonance of
                     amplitude alone.</p>
-            </section>
+            
+                
+</section>
 
             <section class="doc-section" id="rigid">
                 <h2>rigid-body dynamics</h2>
@@ -299,7 +356,28 @@
                     invariant Lagrangian on a Lie group. reduction from $T SO(3)$ to the body angular velocities
                     $\boldsymbol{\Omega}$ is the reason the equations live on a three-dimensional space of $\Omega$
                     rather than on the six-dimensional tangent bundle of $SO(3)$.</p>
-            </section>
+            
+                
+
+                <div class="doc-widget" id="fig-rigid">
+                    <p class="doc-widget-title">figure · free rigid body: polhode and invariants</p>
+                    <p class="doc-widget-caption">Euler equations $\mathbf{I}\dot{\boldsymbol{\Omega}}+\boldsymbol{\Omega}\times\mathbf{I}\boldsymbol{\Omega}=\mathbf{0}$. Body angular velocity rides the intersection of the energy ellipsoid and the constant-$|\mathbf{L}|$ ellipsoid (Poinsot). Live max-drifts of $E$ and $|\mathbf{L}|^2$ are displayed.</p>
+                    <div class="doc-widget-plot tall" id="fig1-rigid-plot" role="img" aria-label="figure · free rigid body: polhode and invariants"></div>
+                    <div class="doc-widget-controls">
+                        <label>$I_1$
+                            <input id="fig1-rigid-i1" type="range" min="0.7" max="2.4" value="1.0" step="0.05">
+                        </label>
+                        <label>$I_2$
+                            <input id="fig1-rigid-i2" type="range" min="0.7" max="2.4" value="1.5" step="0.05">
+                        </label>
+                        <label>$I_3$
+                            <input id="fig1-rigid-i3" type="range" min="0.7" max="2.4" value="2.0" step="0.05">
+                        </label>
+                        <button type="button" id="fig1-rigid-play" class="doc-widget-button">pause</button>
+                    </div>
+                    <p class="doc-widget-readout" id="fig1-rigid-readout"></p>
+                </div>
+</section>
 
             <section class="doc-section" id="dissipative">
                 <h2>dissipative extensions</h2>
@@ -407,6 +485,13 @@
             </section>
 
         </div>
+            <footer class="doc-footer">
+            <p>
+                <a href="../">← mechanics</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-2/">next: ordinary differential equations →</a>
+            </p>
+        </footer>
     </main>
 </body>
 

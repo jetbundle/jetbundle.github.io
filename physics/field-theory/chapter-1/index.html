@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fields on differentiable manifolds · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">fields on differentiable manifolds</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>1 · fields on differentiable manifolds</h1>
+            <p class="doc-lead"><em>the kinematic arena, tensor algebras, and de rham language of classical fields</em>
+            </p>
+            <p class="doc-intro">The formulation of any classical field theory begins with a precise geometric
+                description of the arena in which the fields live. Modern classical field theory abandons the
+                historically convenient but overly restrictive picture of a fixed, flat Minkowski space as a universal
+                background. In its place stands a general differentiable manifold equipped with a hierarchy of geometric
+                structures that encode both the local kinematics of fields and the global topological constraints that
+                shape their possible configurations.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="manifold">
+                <h2>spacetime as a differentiable manifold</h2>
+                <p>A differentiable manifold $M$ of dimension $n$ is a second-countable, Hausdorff topological space that
+                    is locally Euclidean: every point $p\in M$ possesses an open neighborhood $U$ together with a
+                    homeomorphism $\varphi:U\to\varphi(U)\subset\mathbb{R}^n$ called a chart. The collection of all such
+                    charts constitutes an atlas. Whenever two charts $(U,\varphi)$ and $(V,\psi)$ have nonempty
+                    intersection, the transition map
+                    $$
+                    \psi\circ\varphi^{-1}:\varphi(U\cap V)\to\psi(U\cap V)
+                    $$
+                    is required to be smooth (of class $C^\infty$). This smoothness condition guarantees that notions
+                    such as differentiability of functions, vector fields, and differential forms are intrinsically
+                    defined, independent of any particular choice of coordinates.</p>
+
+                <p><strong>definition (smooth manifold).</strong> a second-countable Hausdorff space $M$ equipped with
+                    an atlas of charts $\varphi:U\to\mathbb{R}^n$ whose transition maps are $C^\infty$. two atlases
+                    define the same smooth structure if their union is again an atlas (they are equivalent under
+                    refinement).</p>
+
+                <p><strong>definition (smooth map).</strong> a continuous map $f:M\to N$ between smooth manifolds is
+                    smooth if, for every pair of charts in which the composition is defined, the resulting map of open
+                    subsets of Euclidean spaces is $C^\infty$.</p>
+
+                <p>In the context of spacetime, $M$ is typically taken to be four-dimensional and orientable, though the
+                    geometric framework developed here applies equally to manifolds of arbitrary dimension. The rigid
+                    linear structure of Minkowski space is recovered only locally: each tangent space $T_p M$ is a
+                    vector space isomorphic to $\mathbb{R}^{1,3}$ (or $\mathbb{R}^n$ in the Riemannian setting), but the
+                    global topology and curvature of $M$ remain free. This liberation from a fixed background is
+                    essential for general relativity and for any field theory whose dynamics can deform the geometry
+                    itself.</p>
+
+                <p><strong>definition (tangent space).</strong> the tangent space $T_p M$ is the vector space of
+                    derivations of the algebra of germs of smooth real functions at $p$ (equivalently, velocity vectors
+                    of smooth curves through $p$). the tangent bundle is $TM=\bigcup_{p\in M}T_p M$ with its natural
+                    smooth structure; its dual is the cotangent bundle $T^*M$.</p>
+
+                <p><strong>remark (local minkowski structure).</strong> a Lorentzian metric (chapter 2) identifies each
+                    $T_p M$ with Minkowski space up to isometric isomorphism, but no preferred global isomorphism
+                    $M\simeq\mathbb{R}^{1,3}$ is assumed. field theory is written so that coordinate charts are tools,
+                    not ontology.</p>
+            </section>
+
+            <section class="doc-section" id="tensors">
+                <h2>tensor algebras and the kinematics of classical fields</h2>
+                <p>Once the manifold is given, the kinematic objects of classical field theory are constructed from the
+                    tangent and cotangent spaces. At each point $p$ one has $T_p M$ and its dual $T_p^* M$. The full
+                    tensor algebra is obtained by forming all finite tensor products of these spaces and then taking
+                    the direct sum over all ranks. Within this algebra three subalgebras are of special importance:</p>
+
+                <p>the contravariant tensor algebra generated by repeated tensor products of $T_p M$; the symmetric
+                    algebra, consisting of totally symmetric tensors (relevant for metrics and higher-rank gravitational
+                    potentials); and the exterior algebra $\bigwedge^\bullet T_p^*M$, consisting of totally antisymmetric
+                    tensors, the differential forms.</p>
+
+                <p><strong>definition (tensor bundle).</strong> the bundle of tensors of type $(r,s)$ is
+                    $$
+                    T^{r,s}M
+                    :=(TM)^{\otimes r}\otimes(T^*M)^{\otimes s}.
+                    $$
+                    a classical tensor field of type $(r,s)$ is a smooth section of $T^{r,s}M$.</p>
+
+                <p><strong>definition (section of a vector bundle).</strong> if $\pi:E\to M$ is a smooth vector bundle, a
+                    (smooth) section is a smooth map $s:M\to E$ with $\pi\circ s=\mathrm{id}_M$. the space of sections is
+                    written $\Gamma(E)$.</p>
+
+                <p>A classical field is, in the first instance, a smooth section of an associated vector bundle built
+                    from these constructions. Scalar fields are sections of the trivial line bundle; vector fields are
+                    sections of $TM$; differential forms of degree $k$ are sections of $\bigwedge^k T^*M$; and more
+                    elaborate fields (spinors, gauge potentials, and so on) arise as sections of bundles associated to
+                    principal bundles once the appropriate structure group is introduced. The tensorial character of
+                    these objects ensures that their transformation laws under changes of coordinates are completely
+                    determined by the transition functions of the manifold, rendering the description coordinate-free.</p>
+
+                <p><strong>theorem (transformation law of a covector).</strong> let $(U,x^i)$ and $(V,y^a)$ be charts,
+                    and let $\alpha$ be a smooth one-form. writing $\alpha=\alpha_i\,dx^i=\tilde\alpha_a\,dy^a$ on
+                    $U\cap V$,
+                    $$
+                    \tilde\alpha_a
+                    =\alpha_i\frac{\partial x^i}{\partial y^a}.
+                    $$
+                    more generally, a type-$(r,s)$ tensor transforms with $r$ factors of $\partial y/\partial x$ and
+                    $s$ factors of $\partial x/\partial y$.</p>
+
+                <p><strong>proof.</strong> by definition $dy^a=(\partial y^a/\partial x^i)\,dx^i$, so
+                    $$
+                    \alpha
+                    =\alpha_i\,dx^i
+                    =\alpha_i\frac{\partial x^i}{\partial y^a}\,dy^a,
+                    $$
+                    whence $\tilde\alpha_a=\alpha_i\,\partial x^i/\partial y^a$. the higher-rank case is the unique
+                    multilinear extension of this identity on pure tensors $X_1\otimes\cdots\otimes X_r\otimes
+                    \beta_1\otimes\cdots\otimes\beta_s$, extended by linearity and continuity. $\square$</p>
+
+                <p><strong>remark (coordinate-free kinematics).</strong> once fields are sections of intrinsically
+                    defined bundles, equations written with abstract indices, exterior calculus, or principal-bundle
+                    connections automatically inherit the correct transformation laws. no separate covariance postulate
+                    is required beyond the geometry of $M$ and of the bundles over $M$.</p>
+            </section>
+
+            <section class="doc-section" id="exterior">
+                <h2>exterior calculus of differential forms</h2>
+                <p>Among all tensorial objects, differential forms occupy a privileged position because they admit a
+                    natural differential operator, the exterior derivative, that is independent of any metric or
+                    connection. If $\alpha$ is a $k$-form, its exterior derivative $d\alpha$ is the $(k+1)$-form defined
+                    locally by
+                    $$
+                    d\alpha
+                    =\sum_I d\alpha_I\wedge dx^{i_1}\wedge\cdots\wedge dx^{i_k},
+                    $$
+                    where $\alpha_I$ are the component functions in a chart. The operator $d$ is nilpotent: $d^2=0$. This
+                    single algebraic property generates the entire de Rham complex
+                    $$
+                    0\to\Omega^0(M)\xrightarrow{d}\Omega^1(M)\xrightarrow{d}\cdots\xrightarrow{d}\Omega^n(M)\to 0.
+                    $$</p>
+
+                <p><strong>definition (exterior derivative).</strong> $d:\Omega^k(M)\to\Omega^{k+1}(M)$ is the unique
+                    $\mathbb{R}$-linear antiderivation of degree one such that $d^2=0$ and $df$ agrees with the ordinary
+                    differential of a smooth function $f$.</p>
+
+                <p><strong>theorem (nilpotence of $d$).</strong> for every differential form $\alpha$, $d(d\alpha)=0$.</p>
+
+                <p><strong>proof.</strong> it is enough to check the claim in a chart, where any $k$-form is a sum of
+                    terms $f\,dx^{i_1}\wedge\cdots\wedge dx^{i_k}$. by the antiderivation rule and $d(dx^i)=0$,
+                    $$
+                    d(f\,dx^{i_1}\wedge\cdots\wedge dx^{i_k})
+                    =df\wedge dx^{i_1}\wedge\cdots\wedge dx^{i_k},
+                    $$
+                    and a second exterior derivative yields
+                    $$
+                    d^2(f\,dx^I)
+                    =d(df)\wedge dx^I
+                    =\sum_{a,b}\partial_a\partial_b f\,dx^a\wedge dx^b\wedge dx^I.
+                    $$
+                    the coefficient matrix $\partial_a\partial_b f$ is symmetric while $dx^a\wedge dx^b$ is skew, so the
+                    double sum vanishes. $\square$</p>
+
+                <p>The Poincare lemma asserts that every closed form ($d\alpha=0$) is locally exact: on any contractible
+                    open set there exists a form $\beta$ such that $\alpha=d\beta$. Globally, however, exactness may
+                    fail. The failure is measured by the de Rham cohomology groups
+                    $$
+                    H^k_{\mathrm{dR}}(M)
+                    =\frac{\ker\bigl(d:\Omega^k\to\Omega^{k+1}\bigr)}
+                    {\operatorname{im}\bigl(d:\Omega^{k-1}\to\Omega^k\bigr)}.
+                    $$
+                    These groups are topological invariants of $M$. They classify the obstructions to the existence of
+                    global potentials for given field strengths.</p>
+
+                <p><strong>definition (closed and exact forms).</strong> a form $\alpha\in\Omega^k(M)$ is closed if
+                    $d\alpha=0$ and exact if $\alpha=d\beta$ for some $\beta\in\Omega^{k-1}(M)$. exact forms are closed
+                    by nilpotence of $d$; the converse is the content of local exactness and of vanishing of
+                    $H^k_{\mathrm{dR}}$.</p>
+
+                <p><strong>theorem (poincare lemma).</strong> let $U\subset\mathbb{R}^n$ be open and star-shaped with
+                    respect to the origin (if $x\in U$ then $tx\in U$ for all $t\in[0,1]$). then
+                    $H^k_{\mathrm{dR}}(U)=0$ for every $k\ge 1$, and $H^0_{\mathrm{dR}}(U)=\mathbb{R}$. equivalently,
+                    every closed $k$-form on $U$ with $k\ge 1$ is exact.</p>
+
+                <p><strong>proof.</strong> define a homotopy operator $K:\Omega^k(U)\to\Omega^{k-1}(U)$ for $k\ge 1$ by
+                    $$
+                    (K\alpha)_x
+                    =\int_0^1 t^{k-1}\,\iota_X(\alpha_{tx})\,dt,
+                    $$
+                    where $X=\sum_{i=1}^n x^i\partial_i$ is the radial vector field and $\iota_X$ denotes interior
+                    product. a direct computation with Cartan's formula along the straight-line homotopy $H(t,x)=tx$
+                    yields the homotopy identity
+                    $$
+                    dK+Kd=\mathrm{id}\qquad\text{on }\Omega^k(U),\ k\ge 1.
+                    $$
+                    (write $\alpha$ in components, differentiate under the integral, and integrate by parts in $t$.)
+                    thus if $d\alpha=0$ then $\alpha=d(K\alpha)$. for $k=0$, closed zero-forms are locally constant
+                    functions; on a connected star-shaped set they are constant, so $H^0_{\mathrm{dR}}(U)=\mathbb{R}$.
+                    $\square$</p>
+
+                <p>In electromagnetism, for example, a closed two-form $F$ (the field strength) admits a global vector
+                    potential $A$ with $F=dA$ if and only if the de Rham class $[F]$ vanishes in
+                    $H^2_{\mathrm{dR}}(M)$. When the class is nontrivial one obtains magnetic monopoles or nontrivial
+                    flux sectors.</p>
+
+                <p><strong>remark (local potentials versus global sectors).</strong> chart by chart the Poincare lemma
+                    always supplies a potential for a closed $F$. the obstruction is to glue those local potentials
+                    into a single global $A$, or equivalently into a connection on a $\mathrm{U}(1)$-bundle whose
+                    curvature is $F$. cohomology packages precisely that gluing obstruction.</p>
+            </section>
+
+            <section class="doc-section" id="tools">
+                <h2>computational tools: mayer-vietoris, stokes, and frobenius</h2>
+                <p>The Mayer-Vietoris sequence provides a practical means of computing de Rham cohomology by decomposing
+                    $M$ into overlapping open sets whose individual cohomologies are known. If $M=U\cup V$, the sequence
+                    $$
+                    \cdots\to H^k_{\mathrm{dR}}(M)
+                    \to H^k_{\mathrm{dR}}(U)\oplus H^k_{\mathrm{dR}}(V)
+                    \to H^k_{\mathrm{dR}}(U\cap V)
+                    \to H^{k+1}_{\mathrm{dR}}(M)\to\cdots
+                    $$
+                    is exact and relates the global topology to local data.</p>
+
+                <p><strong>theorem (mayer-vietoris for de rham cohomology).</strong> let $U,V\subset M$ be open with
+                    $M=U\cup V$. the sequence of de Rham groups displayed above is exact, where the maps are
+                    restriction $[\alpha]\mapsto([\alpha|_U],[\alpha|_V])$, difference
+                    $([\beta],[\gamma])\mapsto[\beta|_{U\cap V}-\gamma|_{U\cap V}]$, and the connecting homomorphism
+                    sending a closed form $\eta$ on $U\cap V$ to the class of a form obtained by gluing cutoffs of local
+                    primitives as follows.</p>
+
+                <p><strong>proof.</strong> exactness at $H^k(U)\oplus H^k(V)$ is immediate: a pair of closed forms on
+                    $U$ and $V$ that agree on $U\cap V$ glue to a global closed form. for the connecting map, take a
+                    closed $\eta$ on $U\cap V$. let $\{\varphi_U,\varphi_V\}$ be a smooth partition of unity
+                    subordinate to $\{U,V\}$. set $\alpha_U:=-\varphi_V\eta$ on $U\cap V$ (extended by zero where
+                    $\varphi_V=0$ in $U$) and $\alpha_V:=\varphi_U\eta$ on $U\cap V$ (extended analogously in $V$). then
+                    on $U\cap V$,
+                    $$
+                    \alpha_V-\alpha_U=(\varphi_U+\varphi_V)\eta=\eta,
+                    $$
+                    so $d\alpha_U=d\alpha_V$ on the intersection (because $d\eta=0$). the common value defines a closed
+                    $(k+1)$-form $\omega$ on $M$, and $[\omega]\in H^{k+1}_{\mathrm{dR}}(M)$ is independent of the
+                    cutoffs. the remaining exactness statements are standard diagram chases with these explicit maps.
+                    $\square$</p>
+
+                <p>Integration of differential forms is governed by the generalized Stokes theorem: for an oriented
+                    $k$-dimensional manifold with boundary $\Sigma$, and $\alpha\in\Omega^{k-1}(\Sigma)$,
+                    $$
+                    \int_\Sigma d\alpha=\int_{\partial\Sigma}\alpha
+                    $$
+                    (with compact support, or suitable decay, understood). This identity is the geometric origin of all
+                    macroscopic conservation laws in classical field theory. The continuity equation, the integral form
+                    of Maxwell's equations, and the conservation of energy-momentum all appear as special cases once the
+                    appropriate forms are identified.</p>
+
+                <p><strong>theorem (stokes).</strong> let $N$ be a compact oriented smooth $n$-manifold with boundary
+                    $\partial N$, and let $\alpha\in\Omega^{n-1}(N)$. then
+                    $$
+                    \int_N d\alpha=\int_{\partial N}\alpha,
+                    $$
+                    where $\partial N$ carries the induced orientation.</p>
+
+                <p><strong>proof.</strong> cover $N$ by finitely many charts either diffeomorphic to open sets of
+                    $\mathbb{R}^n$ or to open sets of the half-space $\mathbb{H}^n=\{x^n\ge 0\}$. let $\{\psi_i\}$ be a
+                    partition of unity subordinate to the cover; then
+                    $$
+                    \int_N d\alpha=\sum_i\int_N d(\psi_i\alpha),\qquad
+                    \int_{\partial N}\alpha=\sum_i\int_{\partial N}\psi_i\alpha,
+                    $$
+                    so it is enough to prove the identity when $\alpha$ is supported in a single chart. in an interior
+                    chart the integral of $d\alpha$ is a sum of one-dimensional fundamental theorem of calculus
+                    contributions that cancel in pairs at opposite faces of a large cube containing the support. in a
+                    boundary chart the only unpaired face lies on $\{x^n=0\}$, and the corresponding FTCs produce exactly
+                    $\int_{\partial N}\alpha$ with the induced orientation. $\square$</p>
+
+                <p>Finally, the Frobenius theorem addresses the integrability of distributions. A subbundle
+                    $E\subset TM$ is integrable (that is, tangent to a foliation of $M$) if and only if it is closed under
+                    Lie bracket, or equivalently if the ideal of forms annihilating $E$ is differentially closed. In
+                    spacetime physics this criterion determines when a congruence of curves can be assembled into a
+                    family of hypersurfaces, a question that arises for trapped surfaces, event horizons, and the
+                    initial-value formulation of the field equations.</p>
+
+                <p><strong>definition (distribution).</strong> a rank-$r$ distribution on $M$ is a smooth rank-$r$
+                    subbundle $E\subset TM$. it is involutive if $[X,Y]\in\Gamma(E)$ whenever $X,Y\in\Gamma(E)$.</p>
+
+                <p><strong>theorem (frobenius).</strong> a distribution $E\subset TM$ of constant rank is integrable, in
+                    the sense that every point has a neighborhood foliated by immersed submanifolds tangent to $E$, if
+                    and only if $E$ is involutive.</p>
+
+                <p><strong>proof.</strong> necessity is elementary: if $E=T\mathcal{F}$ for a foliation $\mathcal{F}$,
+                    then Lie brackets of vector fields tangent to the leaves remain tangent to the leaves. for
+                    sufficiency, work locally and choose coordinates so that at $p$ one has $E_p=\operatorname{span}
+                    \{\partial_1,\dots,\partial_r\}$. involutivity and the straightening theorem for commuting frames
+                    (after correcting the frame by a lower-triangular change of generators that kills brackets, which is
+                    possible precisely because $[\partial_i,\partial_j]$ lies in $E$) produce a frame
+                    $Y_1,\dots,Y_r$ of $E$ with $[Y_i,Y_j]=0$. the joint flow of the commuting fields $Y_i$ defines a
+                    local immersion whose differential spans $E$, hence a local foliation. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="local-global">
+                <h2>local differential equations versus global topological constraints</h2>
+                <p>The classical field equations themselves (Maxwell's equations, the Einstein equation, the Yang-Mills
+                    equation) are local differential equations on the manifold. Their solutions can be constructed chart
+                    by chart, subject only to the usual Cauchy or boundary-value problems. Yet the global topology of $M$
+                    and of the bundles in which the fields take values imposes additional, nonlocal constraints.
+                    Cohomological obstructions may forbid the existence of global potentials; characteristic classes (to
+                    be introduced later) may quantize the total charge or the instanton number; and the fundamental group
+                    may force nontrivial holonomy around non-contractible loops.</p>
+
+                <p>Thus the complete description of a classical field configuration consists of two complementary
+                    layers: a local analytic layer governed by differential equations on open sets, and a global
+                    topological layer classified by cohomology classes, characteristic classes, and homotopy invariants.
+                    The subsequent chapters develop the geometric structures (connections, curvature, spinors, principal
+                    bundles) that make these two layers interact, culminating in the rich interplay between local
+                    dynamics and global topology that characterizes modern classical field theory.</p>
+
+                <p><strong>remark (program of the chapter).</strong> this foundational chapter supplies the kinematic
+                    arena and the basic differential-topological language in which all later constructions are
+                    expressed. metrics and connections (chapter 2) will compare field values across paths; spinors
+                    (chapter 3) will lift the Lorentz structure; and characteristic classes with gauge dynamics will make
+                    the topological layer quantitative.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (transition maps).</strong> on the circle $S^1=\mathbb{R}/2\pi\mathbb{Z}$, write two
+                    angular charts that cover $S^1$ and compute the transition map on the overlap. verify that it is
+                    smooth as a map of open subsets of $\mathbb{R}$, and interpret the integer winding of that
+                    transition for the tangent bundle $TS^1$.</p>
+
+                <p><strong>exercise 2 (poincare on a star domain).</strong> take $\alpha=x\,dy-y\,dx$ on
+                    $\mathbb{R}^2\setminus\{0\}$. show that $d\alpha=2\,dx\wedge dy$, so $\alpha$ is not closed. then
+                    for $\beta=(x\,dy-y\,dx)/(x^2+y^2)$ show $d\beta=0$ on the punctured plane, and argue that $\beta$ is
+                    not exact by integrating along the unit circle and applying Stokes on a disk.</p>
+
+                <p><strong>exercise 3 (frobenius in coordinates).</strong> for the distribution on $\mathbb{R}^3$ spanned
+                    by $X=\partial_x+y\partial_z$ and $Y=\partial_y$, compute $[X,Y]$ and decide whether the distribution
+                    is integrable. if it is, exhibit local leaves; if not, exhibit the bracket obstruction
+                    explicitly.</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-2/">next: metrics, connections, and curvature →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

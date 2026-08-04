@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>spinors and spacetime geometry · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">spinors and spacetime geometry</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>3 · spinors and spacetime geometry</h1>
+            <p class="doc-lead"><em>the lorentz double cover and the geometry of fermionic fields</em></p>
+            <p class="doc-intro">Tensor fields furnish a complete kinematic description of bosonic classical fields, yet
+                they are insufficient for fermions. The half-integer spin representations of the Lorentz group cannot be
+                realized on the tangent bundle; they require a more refined geometric structure, the spinor bundle,
+                obtained by lifting the structure group of the orthonormal frame bundle to its double cover.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="necessity">
+                <h2>necessity of spinors and the spin group</h2>
+                <p>The proper orthochronous Lorentz group $\mathrm{SO}^+(1,3)$ is not simply connected; its fundamental
+                    group is $\mathbb{Z}/2$. The unique simply connected double cover is the Spin group
+                    $\operatorname{Spin}(1,3)\simeq\operatorname{SL}(2,\mathbb{C})$. A spin structure on an oriented
+                    Lorentzian manifold $(M,g)$ is a principal $\operatorname{Spin}(1,3)$-bundle $P_{\operatorname{Spin}}$
+                    together with a twofold covering map onto the orthonormal frame bundle that intertwines the group
+                    actions. Such a structure exists if and only if the second Stiefel-Whitney class $w_2(M)$ vanishes.
+                    Once a spin structure is chosen, the associated spinor bundles
+                    $$
+                    S\simeq\mathbb{C}^2,\qquad \bar S\simeq\overline{\mathbb{C}}^2
+                    $$
+                    (as typical fibers) carry the fundamental representations of $\operatorname{SL}(2,\mathbb{C})$.
+                    Dirac spinors are sections of $S\oplus\bar S$; Weyl spinors are sections of $S$ or $\bar S$ alone.</p>
+
+                <p><strong>definition (lorentz group).</strong>
+                    $$
+                    O(1,3)=\bigl\{\Lambda\in\operatorname{GL}(4,\mathbb{R}):\Lambda^T\eta\Lambda=\eta\bigr\},\qquad
+                    \eta=\operatorname{diag}(-1,1,1,1).
+                    $$
+                    $\mathrm{SO}^+(1,3)$ denotes the identity component consisting of matrices with $\det\Lambda=1$ and
+                    $\Lambda^0{}_0\ge 1$.</p>
+
+                <p><strong>definition (spin group and double cover).</strong> $\operatorname{Spin}(1,3)$ is the unique
+                    simply connected Lie group admitting a surjective Lie-group homomorphism
+                    $$
+                    \lambda:\operatorname{Spin}(1,3)\to\mathrm{SO}^+(1,3)
+                    $$
+                    with $\ker\lambda=\{\pm 1\}$. under the standard identification one has
+                    $\operatorname{Spin}(1,3)\simeq\operatorname{SL}(2,\mathbb{C})$.</p>
+
+                <p><strong>theorem (double cover by $\operatorname{SL}(2,\mathbb{C})$).</strong> identify Minkowski
+                    vectors with Hermitian $2\times 2$ matrices by
+                    $$
+                    X=x^\mu\sigma_\mu
+                    =\begin{pmatrix}
+                    x^0+x^3 & x^1-ix^2 \\
+                    x^1+ix^2 & x^0-x^3
+                    \end{pmatrix},
+                    $$
+                    where $\sigma_0=I$ and $\sigma_i$ are the Pauli matrices. then $A\in\operatorname{SL}(2,\mathbb{C})$
+                    acts by $X\mapsto AXA^\dagger$ and induces $\lambda(A)\in\mathrm{SO}^+(1,3)$ with
+                    $\ker\lambda=\{\pm I\}$.</p>
+
+                <p><strong>proof.</strong> a direct computation gives $\det X=-(x^0)^2+(x^1)^2+(x^2)^2+(x^3)^2$ (up to
+                    the overall sign fixed by the metric convention), so $\det X$ reproduces the Minkowski quadratic
+                    form. conjugation $X\mapsto AXA^\dagger$ with $\det A=1$ preserves the Hermitian character of $X$ and
+                    preserves $\det X$, hence induces a linear isometry of Minkowski space. the map $A\mapsto\lambda(A)$
+                    is a continuous homomorphism, and $\lambda(\pm I)=\mathrm{id}$. surjectivity onto
+                    $\mathrm{SO}^+(1,3)$ follows because boosts and spatial rotations are generated by the standard
+                    one-parameter subgroups of $\operatorname{SL}(2,\mathbb{C})$ under this action. if $\lambda(A)=I$
+                    then $AXA^\dagger=X$ for all Hermitian $X$, so $A$ commutes with all such $X$ and Schur's lemma in
+                    this representation forces $A=\pm I$. thus $\lambda$ is a twofold covering. $\square$</p>
+
+                <p><strong>definition (spin structure).</strong> let $P_{\mathrm{SO}}\to M$ be the principal
+                    $\mathrm{SO}^+(1,3)$-bundle of oriented orthonormal frames of an oriented Lorentzian manifold
+                    $(M,g)$. a spin structure is a principal $\operatorname{Spin}(1,3)$-bundle
+                    $P_{\operatorname{Spin}}\to M$ together with a twofold covering
+                    $P_{\operatorname{Spin}}\to P_{\mathrm{SO}}$ that intertwines the free right actions via
+                    $\lambda:\operatorname{Spin}(1,3)\to\mathrm{SO}^+(1,3)$.</p>
+
+                <p><strong>theorem (obstruction to a spin structure).</strong> an oriented Lorentzian (or Riemannian)
+                    manifold admits a spin structure if and only if the second Stiefel-Whitney class $w_2(TM)\in
+                    H^2(M;\mathbb{Z}/2)$ vanishes. when a spin structure exists, the set of isomorphism classes of spin
+                    structures is a torsor over $H^1(M;\mathbb{Z}/2)$.</p>
+
+                <p><strong>proof.</strong> the short exact sequence of Lie groups
+                    $$
+                    1\to\mathbb{Z}/2\to\operatorname{Spin}(1,3)\xrightarrow{\lambda}\mathrm{SO}^+(1,3)\to 1
+                    $$
+                    induces a long exact sequence in nonabelian cohomology for the sheaves of smooth group-valued maps.
+                    the primary obstruction to lifting the classifying cocycle of $P_{\mathrm{SO}}$ is a class in
+                    $H^2(M;\mathbb{Z}/2)$, identified with $w_2(TM)$ by the definition of Stiefel-Whitney classes via the
+                    orthogonal frame bundle. when the obstruction vanishes, different lifts differ by cohomology classes
+                    in $H^1(M;\mathbb{Z}/2)$, which act simply transitively on the set of spin structures. $\square$</p>
+
+                <p><strong>definition (spinor and dirac bundles).</strong> given a spin structure, the associated
+                    bundles for the fundamental representation of $\operatorname{SL}(2,\mathbb{C})$ on $\mathbb{C}^2$
+                    and its conjugate yield the Weyl spinor bundles $S$ and $\bar S$. the Dirac spinor bundle is
+                    $S\oplus\bar S$. a Weyl (resp. Dirac) spinor field is a smooth section of $S$ or $\bar S$ (resp. of
+                    $S\oplus\bar S$).</p>
+
+                <p><strong>remark (why tensors fail for fermions).</strong> a continuous family of rotations by angle
+                    $t\in[0,2\pi]$ is a loop in $\mathrm{SO}(3)$ that is nontrivial in $\pi_1$, and lifts to a path in
+                    $\operatorname{Spin}(3)\simeq\operatorname{SU}(2)$ from $I$ to $-I$. spin-$1/2$ fields change sign
+                    under this lift; no tensor field on $TM$ can reproduce that projective representation of the Lorentz
+                    algebra while remaining single-valued on the frame bundle alone.</p>
+            </section>
+
+            <section class="doc-section" id="abstract-index">
+                <h2>abstract-index formalism, infeld-van der waerden symbols, and null flags</h2>
+                <p>Penrose's abstract-index notation provides a coordinate-free yet index-explicit calculus for spinors.
+                    Lower-case Greek indices $\mu,\nu,\dots$ label world-tensors, while unprimed and primed capital
+                    indices $A,B,\dots$ and $A',B',\dots$ label spinor and conjugate-spinor indices respectively. The
+                    Infeld-van der Waerden symbols $\sigma^\mu{}_{AA'}$ realize the isomorphism
+                    $$
+                    T_p M\otimes\mathbb{C}\simeq S_p\otimes\bar S_p
+                    $$
+                    and convert between world-vectors and Hermitian spinors:
+                    $$
+                    v^\mu\leftrightarrow v^{AA'}=\sigma^\mu{}_{BB'}v^{BB'}.
+                    $$</p>
+
+                <p><strong>definition (infeld-van der waerden symbols).</strong> a soldering form (soldering map)
+                    $\sigma^\mu{}_{AA'}$ is a bundle isomorphism
+                    $$
+                    \sigma:S\otimes\bar S\xrightarrow{\sim} TM\otimes\mathbb{C}
+                    $$
+                    intertwining the $\operatorname{Spin}(1,3)$ and $\mathrm{SO}^+(1,3)$ actions via $\lambda$,
+                    Hermitian in the sense that real vectors correspond to Hermitian spinors
+                    $v^{AA'}=\overline{v^{A'A}}$.</p>
+
+                <p><strong>theorem (vector-spinor dictionary).</strong> the map $v^\mu\mapsto v^{AA'}=\sigma^\mu{}_{BB'}
+                    v^{BB'}$ (with inverse $v^{AA'}\mapsto v^\mu=\sigma_\mu{}^{AA'}v^{AA'}$ after lowering with $g$ and
+                    the spinor metric as appropriate) is a linear isomorphism $T_p M\otimes\mathbb{C}\simeq
+                    S_p\otimes\bar S_p$ intertwining the Lorentz and spin actions. moreover
+                    $$
+                    g_{\mu\nu}v^\mu w^\nu
+                    =\varepsilon_{AB}\varepsilon_{A'B'}v^{AA'}w^{BB'}
+                    $$
+                    for a suitably normalized spin metric $\varepsilon_{AB}$.</p>
+
+                <p><strong>proof.</strong> on Minkowski space the identity is the explicit Pauli correspondence of the
+                    double-cover theorem: $X=v^\mu\sigma_\mu$ is Hermitian precisely when $v$ is real, and
+                    $\operatorname{tr}(XY^\dagger)$ recovers $2\eta(v,w)$ up to fixed convention. parallel transport and
+                    the soldering condition $\nabla\sigma=0$ for the spin connection (below) extend the pointwise
+                    algebra isomorphism from each tangent space to a global bundle isomorphism on a spin manifold.
+                    $\square$</p>
+
+                <p>A nonvanishing spinor $\xi^A$ determines a real null vector $\xi^A\bar\xi^{A'}$ and a flag plane
+                    orthogonal to it; the pair $(\xi^A,\text{flag plane})$ is called a null flag. The totality of null
+                    flags at a point reproduces the celestial sphere. The spinor space is totally reflexive: the dual of
+                    the dual recovers the original space, ensuring that all tensorial operations constructed from
+                    spinors remain globally consistent once a continuous choice of spin structure is fixed.</p>
+
+                <p><strong>definition (null flag).</strong> for $\xi^A\neq 0$, the flagpole is the null vector
+                    $\ell^\mu\leftrightarrow\xi^A\bar\xi^{A'}$, and the flag plane is the two-plane of real bivectors
+                    generated by $\ell$ and directions obtained by varying the phase of $\xi$ (equivalently, the
+                    real part of $\xi^A\eta^{A'}$ for $\eta$ not proportional to $\xi$). the pair
+                    $(\xi^A,\text{flag plane})$ is a null flag.</p>
+
+                <p><strong>theorem (null flags and the celestial sphere).</strong> the projectivization $\mathbb{P}(S_p)
+                    \simeq\mathbb{CP}^1$ is in natural bijection with the celestial sphere of future null directions at
+                    $p$. each projective class $[\xi^A]$ determines the ray of the flagpole
+                    $\xi^A\bar\xi^{A'}$, and every future null direction arises uniquely this way up to scale.</p>
+
+                <p><strong>proof.</strong> a future null vector $k$ has vanishing Minkowski norm and positive energy
+                    component in a time orientation. under the Hermitian correspondence it is (up to scale) a pure
+                    tensor $\xi\otimes\bar\xi$ with $\xi\neq 0$. different scales and overall complex phases of $\xi$
+                    that leave $k$ unchanged act by $\xi\mapsto\lambda\xi$ for $\lambda\in\mathbb{C}^\times$, which is
+                    precisely passage to $\mathbb{P}(S_p)$. the map is bijective by construction of the soldering
+                    isomorphism. $\square$</p>
+
+                <p><strong>remark (reflexivity).</strong> the spinor metric $\varepsilon_{AB}=-\varepsilon_{BA}$ (unique
+                    up to scale once the complex volume form is fixed) identifies $S\simeq S^*$ by
+                    $\xi_A=\varepsilon_{AB}\xi^B$, so dualization is intrinsic. abstract indices keep this isomorphism
+                    notationally invisible while preserving tensorial type.</p>
+            </section>
+
+            <section class="doc-section" id="spin-connection">
+                <h2>spinor covariant derivatives and einstein-cartan theory</h2>
+                <p>A spin connection is obtained by lifting the Levi-Civita connection of $g$ to the spin bundle. When
+                    torsion is admitted, the connection acquires an independent contorsion tensor and the geometry
+                    becomes that of Einstein-Cartan-Sciama-Kibble theory. The spinor covariant derivative
+                    $\nabla_{AA'}$ then satisfies
+                    $$
+                    \nabla_{AA'}\varepsilon_{BC}=0,\qquad
+                    \nabla_{AA'}\sigma^\mu{}_{BB'}=0
+                    $$
+                    (with torsion terms appearing in the commutators). The curvature of the spin connection decomposes
+                    into the Weyl spinor $\Psi_{ABCD}$, the Ricci spinor $\Phi_{ABA'B'}$, and the scalar curvature. The
+                    Bel-Robinson tensor, a completely symmetric, trace-free, positive-energy quadratic in the Weyl
+                    curvature, admits the elegant spinor expression
+                    $$
+                    T_{AA'BB'CC'DD'}=\Psi_{ABCD}\bar\Psi_{A'B'C'D'}.
+                    $$
+                    Its divergence vanishes whenever the Bianchi identities hold, furnishing a quasilocal measure of
+                    gravitational energy flux.</p>
+
+                <p><strong>definition (spin connection).</strong> the unique lift of a metric-compatible affine
+                    connection on $TM$ to a connection on $P_{\operatorname{Spin}}$ (equivalently on $S$) is the spin
+                    connection. for Levi-Civita one obtains the torsion-free spin connection $\nabla^S$. components of
+                    the spinor covariant derivative are written $\nabla_{AA'}$ in the Infeld-van der Waerden soldering.</p>
+
+                <p><strong>theorem (uniqueness of the metric spin connection).</strong> given a spin structure and a
+                    pseudo-Riemannian metric $g$, there is a unique connection $\nabla$ on $S$ such that
+                    $\nabla\varepsilon=0$, the induced connection on $TM$ via $\sigma$ is the Levi-Civita connection of
+                    $g$, and $\nabla\sigma=0$.</p>
+
+                <p><strong>proof.</strong> the orthonormal frame bundle carries the unique Levi-Civita connection form
+                    $\omega_{\mathrm{LC}}$. because $\lambda_*:\mathfrak{spin}(1,3)\to\mathfrak{so}(1,3)$ is a Lie
+                    algebra isomorphism, there is a unique pullback connection form $\omega_{\operatorname{Spin}}$ on
+                    $P_{\operatorname{Spin}}$ with $\lambda_*\omega_{\operatorname{Spin}}=\omega_{\mathrm{LC}}$ under the
+                    double cover $P_{\operatorname{Spin}}\to P_{\mathrm{SO}}$. the associated connection on $S$
+                    automatically preserves $\varepsilon$ (structure group in $\operatorname{SL}(2,\mathbb{C})$) and
+                    solders to Levi-Civita. any other connection with the same properties would differ by a tensorial
+                    one-form annihilated by these constraints, hence vanishing. $\square$</p>
+
+                <p><strong>definition (contorsion and einstein-cartan connection).</strong> if the affine connection
+                    $\nabla$ on $TM$ is metric-compatible but has torsion $T$, one writes
+                    $\nabla=\nabla^{\mathrm{LC}}+K$ with contorsion tensor $K$ determined by $T$. the same $K$ lifts to
+                    the spin bundle. Einstein-Cartan-Sciama-Kibble theory couples $K$ algebraically to fermionic spin
+                    density.</p>
+
+                <p><strong>theorem (spinor decomposition of curvature).</strong> the curvature of the spin connection
+                    decomposes uniquely into irreducible spinor parts: a totally symmetric Weyl spinor
+                    $\Psi_{ABCD}=\Psi_{(ABCD)}$, a Hermitian Ricci spinor $\Phi_{ABA'B'}$, and a real scalar
+                    curvature piece. the algebraic Weyl tensor of $g$ is recovered from $\Psi_{ABCD}$ via the soldering
+                    map.</p>
+
+                <p><strong>proof.</strong> the complexified bivector space $\Lambda^2 T_p M\otimes\mathbb{C}$ is
+                    identified with $\operatorname{Sym}^2 S^*\oplus\operatorname{Sym}^2\bar S^*$ under the soldering
+                    isomorphism. the Riemann tensor, after imposition of the algebraic symmetries of chapter 2, is an
+                    element of $\operatorname{Sym}^2(\Lambda^2)^*$ and therefore decomposes into the indicated
+                    irreducible $\operatorname{SL}(2,\mathbb{C})$ representations. the totally trace-free self-dual
+                    part is $\Psi_{ABCD}$; contractions produce $\Phi_{ABA'B'}$ and the scalar. $\square$</p>
+
+                <p><strong>theorem (bel-robinson and bianchi).</strong> define
+                    $T_{AA'BB'CC'DD'}=\Psi_{ABCD}\bar\Psi_{A'B'C'D'}$. then $T$ is totally symmetric, trace-free on any
+                    pair of unprimed (resp. primed) indices, and satisfies the dominant energy condition in vacuum
+                    whenever $\Psi$ is the Weyl spinor of $g$. moreover, if the Bianchi identities for the spin
+                    connection hold, then $\nabla^{AA'}T_{AA'BB'CC'DD'}=0$ after the vacuum Bianchi constraints on
+                    $\Psi$ are used.</p>
+
+                <p><strong>proof.</strong> total symmetry and vanishing traces are purely algebraic consequences of
+                    $\Psi_{ABCD}=\Psi_{(ABCD)}$ and of the spinor contractions with $\varepsilon^{AB}$. positivity of the
+                    associated energy-momentum functional on observers is the standard Bel-Robinson estimate (the
+                    Hermitian form induced by $\Psi\otimes\bar\Psi$ on self-dual bivectors is positive semidefinite). for
+                    the divergence, the second Bianchi identity in spinor form reduces, in vacuum, to
+                    $\nabla^{A'A}\Psi_{ABCD}=0$; contracting against $\bar\Psi$ and using symmetry produces vanishing of
+                    $\nabla^{AA'}T_{AA'\cdots}$. $\square$</p>
+
+                <p><strong>remark (quasilocal energy flux).</strong> the Bel-Robinson tensor is not itself a
+                    gravitational stress-energy tensor in the sense of a variational Noether current, but its
+                    conservation and positivity make it a standard quasilocal surrogate for gravitational energy flux
+                    in the analysis of the Einstein equation.</p>
+            </section>
+
+            <section class="doc-section" id="np">
+                <h2>compacted spin-coefficient formalism and spin-weighted harmonics</h2>
+                <p>The Newman-Penrose null-tetrad formalism and its compacted spin-coefficient version reduce the
+                    spinor covariant derivative to a set of twelve complex scalar operators
+                    $(\mathrm{thorn},\mathrm{eth},\dots)$ and twelve spin coefficients. Cartan's method of moving frames
+                    yields the same structure equations in the language of exterior forms. On the celestial two-sphere
+                    the operators $\mathrm{eth}$ and $\bar{\mathrm{eth}}$ become the spin-weighted raising and lowering
+                    operators; their eigenfunctions are the spin-weighted spherical harmonics ${}_s Y_{\ell m}$. These
+                    harmonics provide a complete basis for the expansion of zero-rest-mass fields of arbitrary spin and
+                    are indispensable for the asymptotic analysis of radiation.</p>
+
+                <p><strong>definition (null tetrad).</strong> a Newman-Penrose null tetrad is a local frame
+                    $(\ell,n,m,\bar m)$ of null vectors with
+                    $$
+                    g(\ell,n)=-1,\qquad g(m,\bar m)=1,
+                    $$
+                    and all other inner products zero (up to standard signature conventions). equivalently one chooses
+                    spinor dyads $(o^A,\iota^A)$ with $\varepsilon_{AB}o^A\iota^B=1$ and sets
+                    $$
+                    \ell\leftrightarrow o^A\bar o^{A'},\quad
+                    n\leftrightarrow\iota^A\bar\iota^{A'},\quad
+                    m\leftrightarrow o^A\bar\iota^{A'}.
+                    $$</p>
+
+                <p><strong>definition (spin coefficients).</strong> the twelve complex spin coefficients are the
+                    directional covariant derivatives of the dyad spinors (or equivalently of the null tetrad) along
+                    the tetrad legs: $\kappa,\sigma,\rho,\tau,\varepsilon,\beta,\pi,\mu,\gamma,\lambda,\alpha,\nu$ in
+                    Newman-Penrose notation. the compacted operators $\mathrm{thorn}$, $\mathrm{eth}$, and their primed
+                    analogues are the components of $\nabla_{AA'}$ projected onto the dyad.</p>
+
+                <p><strong>theorem (structure equations as cartan equations).</strong> the first and second Cartan
+                    structure equations for the orthonormal (or null) coframe,
+                    $$
+                    d\theta^a+\omega^a{}_b\wedge\theta^b=T^a,\qquad
+                    d\omega^a{}_b+\omega^a{}_c\wedge\omega^c{}_b=\Omega^a{}_b,
+                    $$
+                    are equivalent, under the soldering map, to the Newman-Penrose commutation relations and curvature
+                    equations for the spin coefficients and the Weyl/Ricci spinors.</p>
+
+                <p><strong>proof.</strong> the connection one-forms $\omega^a{}_b$ encode exactly the same information as
+                    the spin coefficients once a null tetrad is dualized to a coframe. exterior differentiation of the
+                    coframe produces torsion (vanishing for Levi-Civita) and identifies
+                    $d\theta+\omega\wedge\theta=0$ with the Newman-Penrose metric identities among spin coefficients.
+                    exterior differentiation of $\omega$ produces the curvature two-forms, whose self-dual parts are
+                    linear in $\Psi_{ABCD}$ and $\Phi_{ABA'B'}$. matching components with the tetrad decomposition yields
+                    the Newman-Penrose curvature equations. $\square$</p>
+
+                <p><strong>definition (spin-weighted spherical harmonics).</strong> on the unit two-sphere, a function
+                    $\eta$ has spin weight $s$ if it transforms as $\eta\mapsto e^{is\psi}\eta$ under a rotation of the
+                    dyad by phase $\psi$. the operators $\mathrm{eth}$ and $\bar{\mathrm{eth}}$ raise and lower spin
+                    weight by one. the spin-weighted spherical harmonics ${}_s Y_{\ell m}$ are a complete orthonormal
+                    basis of weight-$s$ functions with
+                    $$
+                    \bar{\mathrm{eth}}\,\mathrm{eth}\,{}_s Y_{\ell m}=-(\ell-s)(\ell+s+1)\,{}_s Y_{\ell m}.
+                    $$</p>
+
+                <p><strong>theorem (completeness for fixed spin weight).</strong> for each integer or half-integer $s$
+                    and each $\ell\ge|s|$, the set $\{{}_s Y_{\ell m}:|m|\le\ell\}$ is an orthonormal basis of
+                    $L^2(S^2)$ sections of the spin-weight-$s$ line bundle. in particular every smooth weight-$s$ field
+                    expands uniquely as $\sum_{\ell,m}a_{\ell m}\,{}_s Y_{\ell m}$.</p>
+
+                <p><strong>proof.</strong> the round sphere carries the Hopf spin structure; weight-$s$ functions are
+                    sections of $L^{\otimes 2s}$ for the Hopf line bundle $L\to S^2$. the operators
+                    $\mathrm{eth},\bar{\mathrm{eth}}$ are (up to scale) the $\bar\partial$ and $\partial$ operators of that
+                    bundle, and the spherical Laplacian restricted to weight $s$ is
+                    $\bar{\mathrm{eth}}\,\mathrm{eth}$ shifted by constants. its eigenfunctions are obtained by applying
+                    $\mathrm{eth}^{s}$ (or $\bar{\mathrm{eth}}^{|s|}$) to ordinary spherical harmonics $Y_{\ell m}$ with
+                    $\ell\ge|s|$, which produces ${}_s Y_{\ell m}$. spectral theorem for the compact self-adjoint
+                    Laplacian gives completeness and orthogonality. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="massless">
+                <h2>massless fields, conformal rescalings, and exact integrals</h2>
+                <p>Zero-rest-mass free fields of spin $s$ are described by totally symmetric spinors
+                    $\phi_{A_1\dots A_{2s}}$ satisfying the massless field equation
+                    $$
+                    \nabla^{A_1 A'}\phi_{A_1\dots A_{2s}}=0.
+                    $$
+                    Under a conformal rescaling $g_{\mu\nu}\mapsto\Omega^2 g_{\mu\nu}$ the spinor field transforms with a
+                    definite conformal weight, allowing the equations to be transferred to any conformally related
+                    metric. The characteristic initial-value problem on a light cone admits an explicit integral
+                    solution: the value of the field at a point is recovered by integrating suitable derivatives of the
+                    initial data over the intersection of the past light cone with an initial null hypersurface.
+                    Specializing to spin $1$ yields the Kirchhoff-d'Adhemar formula for the electromagnetic field; the
+                    coupled Einstein-Maxwell system likewise possesses exact integral representations once the conformal
+                    factor and the Maxwell spinor are prescribed on the initial null surface.</p>
+
+                <p><strong>definition (zero-rest-mass field of spin $s$).</strong> a smooth totally symmetric spinor
+                    field $\phi_{A_1\dots A_{2s}}=\phi_{(A_1\dots A_{2s})}$ satisfying
+                    $\nabla^{A_1 A'}\phi_{A_1\dots A_{2s}}=0$. for $s=1$ one recovers the anti-self-dual Maxwell spinor;
+                    for $s=2$ the linearized vacuum Weyl spinor equation.</p>
+
+                <p><strong>theorem (conformal covariance).</strong> let $\tilde g=\Omega^2 g$ with $\Omega>0$ smooth, and
+                    let the corresponding spin structures be compatible. if $\phi_{A_1\dots A_{2s}}$ solves the massless
+                    equation for $g$, then
+                    $$
+                    \tilde\phi_{A_1\dots A_{2s}}
+                    =\Omega^{-1}\phi_{A_1\dots A_{2s}}
+                    $$
+                    solves the massless equation for $\tilde g$ (with the spinor covariant derivative of $\tilde g$),
+                    for the conformal weight appropriate to spin $s$ in four dimensions (equivalently
+                    $\tilde\phi=\Omega^{-1}\phi$ in the standard Penrose convention for the unprimed field).</p>
+
+                <p><strong>proof.</strong> under $\tilde g=\Omega^2 g$ the Levi-Civita connection changes by terms
+                    linear in $d\log\Omega$. the induced spin connection differs from $\nabla$ by a one-form built from
+                    $\Upsilon_\mu=\partial_\mu\log\Omega$. contracting $\tilde\nabla^{A_1 A'}$ against a weight-adjusted
+                    spinor produces extra $\Upsilon$ terms that cancel precisely against the derivative of the
+                    conformal factor in $\tilde\phi=\Omega^{-1}\phi$, leaving
+                    $\tilde\nabla^{A_1 A'}\tilde\phi_{A_1\dots A_{2s}}=\Omega^{-2}\nabla^{A_1 A'}\phi_{A_1\dots A_{2s}}$
+                    up to the fixed normalization of $\sigma^\mu{}_{AA'}$ under conformal rescaling. vacuum of the
+                    original equation implies vacuum of the rescaled equation. $\square$</p>
+
+                <p><strong>theorem (characteristic integral representation, spin $1$).</strong> let $F$ be a smooth
+                    source-free Maxwell field on a globally hyperbolic region, written as a Maxwell spinor
+                    $\phi_{AB}$ with $F\leftrightarrow\phi_{AB}\varepsilon_{A'B'}+\mathrm{c.c.}$. for a point $p$ in the
+                    domain of dependence of an initial null hypersurface $\mathcal{N}$, the value $\phi_{AB}(p)$ is
+                    given by a Kirchhoff-d'Adhemar integral of $\phi$ and its derivatives over the cut
+                    $C_p=\mathcal{N}\cap\dot J^-(p)$, with kernel determined by the null geodesic generators of the
+                    past light cone of $p$.</p>
+
+                <p><strong>proof.</strong> in flat space the retarded fundamental solution of the wave equation reduces
+                    Maxwell's equation for $\phi_{AB}$ (which implies $\square\phi_{AB}=0$ after using
+                    $\nabla^{A'A}\phi_{AB}=0$) to an integral over the past light cone. Stokes' theorem on the region
+                    bounded by that cone and $\mathcal{N}$ converts the volume integral of a total divergence into a
+                    surface integral over $C_p$, with the singular cone contribution isolated as the free-data Kirchhoff
+                    term. in curved vacuum (or Einstein-Maxwell) the same argument applies after conformal rescaling to
+                    a metric for which the light cone is shear-free in adapted coordinates (Penrose's conformal method);
+                    the weights of theorem (conformal covariance) track the measure factors on $C_p$. $\square$</p>
+
+                <p>Taken together, the spinor calculus supplies both the kinematic language required for fermionic
+                    classical fields and a powerful computational toolkit for the bosonic curvature quantities of general
+                    relativity. It converts the geometric structures of the preceding chapter into a form optimally
+                    adapted to the null geometry of spacetime and prepares the ground for the subsequent incorporation
+                    of global topological invariants and nonabelian gauge fields.</p>
+
+                <p><strong>remark (to dynamics and topology).</strong> chapter 4 elevates spinors and tensors to fields
+                    with action principles; chapters 5 and 6 quantify the topological sectors that label spin and gauge
+                    structures globally.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (2pi lift).</strong> exhibit an explicit path $A(t)\in\operatorname{SU}(2)$,
+                    $t\in[0,2\pi]$, with $A(0)=I$ and $A(2\pi)=-I$, whose projection under
+                    $\lambda:\operatorname{SU}(2)\to\mathrm{SO}(3)$ is a family of rotations by angle $t$ about a fixed
+                    axis. conclude that a spinor changes sign under a full rotation of the frame.</p>
+
+                <p><strong>exercise 2 (null flag).</strong> for $\xi^A=(1,0)$ in a standard dyad on Minkowski space,
+                    compute the flagpole $\ell^\mu$ and verify $g(\ell,\ell)=0$. describe the flag plane in an
+                    orthonormal frame.</p>
+
+                <p><strong>exercise 3 (weyl spinor of maxwell).</strong> for a source-free Maxwell field with spinor
+                    $\phi_{AB}=\phi_{(AB)}$, define the analogous Bel-Robinson-like density
+                    $T_{AA'BB'}=\phi_{AB}\bar\phi_{A'B'}$. show that $\nabla^{AA'}T_{AA'BB'}=0$ whenever
+                    $\nabla^{A'A}\phi_{AB}=0$, by a short index computation.</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-2/">← metrics, connections, and curvature</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-4/">next: classical field dynamics →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>

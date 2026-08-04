@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>k-theory · field theory · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">field theory</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">k-theory</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>7 · k-theory</h1>
+            <p class="doc-lead"><em>vector bundles as a ring and the analytical index</em></p>
+            <p class="doc-intro">Characteristic classes provide a rich but incomplete set of invariants for vector
+                bundles. $K$-theory refines this information by assembling the isomorphism classes of all vector bundles
+                into a single generalized cohomology theory. The resulting groups capture stable equivalence of bundles,
+                encode deeper periodicity phenomena, and stand in direct relation to the analytical index of elliptic
+                operators that appear throughout classical and quantum field theory.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="grothendieck">
+                <h2>the grothendieck group of vector bundles</h2>
+                <p>Let $X$ be a compact Hausdorff space (in field-theoretic applications, typically a closed manifold).
+                    Consider the set of isomorphism classes of complex vector bundles over $X$. Under the operation of
+                    Whitney sum this set forms an abelian monoid. The associated Grothendieck group $K(X)$ is obtained by
+                    formally adjoining inverses: elements of $K(X)$ are virtual bundles $[E]-[F]$, with the relation that
+                    $[E]-[F]=[E']-[F']$ whenever $E\oplus F'\simeq E'\oplus F$. The class of the zero bundle is the
+                    identity, and every bundle $E$ possesses an inverse in the sense that $[E]+[F]=[n]$ (the class of a
+                    trivial bundle of rank $n$) for a suitable complementary bundle $F$.</p>
+
+                <p>The same construction with real vector bundles yields the real $K$-group $KO(X)$. Both theories are
+                    functorial under continuous maps and satisfy the homotopy-invariance and exactness properties of a
+                    generalized cohomology theory (after the usual introduction of reduced groups $\widetilde{K}(X)$ for
+                    pointed spaces).</p>
+
+                <p><strong>definition (monoid of vector bundles).</strong> write $\operatorname{Vect}(X)$ for the set of
+                    isomorphism classes of complex vector bundles on a compact Hausdorff space $X$, with addition
+                    $[E]+[F]:=[E\oplus F]$. this is a commutative monoid with identity the class of the zero-rank bundle
+                    (or, stably, any choice of trivial unit in the reduced theories).</p>
+
+                <p><strong>definition ($K(X)$ as grothendieck group).</strong> $K(X)$ (also written $K^0(X)$) is the
+                    Grothendieck group of $\operatorname{Vect}(X)$: the abelian group of pairs $([E],[F])$ modulo
+                    $([E]\oplus[H],[F]\oplus[H])\sim([E],[F])$, conventionally written $[E]-[F]$. the natural map
+                    $\operatorname{Vect}(X)\to K(X)$ sends $E$ to $[E]$.</p>
+
+                <p><strong>definition (reduced $K$-theory).</strong> for a pointed space $(X,x_0)$,
+                    $$
+                    \widetilde{K}(X)
+                    :=\ker\bigl(K(X)\to K(\{x_0\})\bigr).
+                    $$
+                    equivalently, classes of virtual bundles of virtual rank zero. one has
+                    $K(X)\simeq\widetilde{K}(X)\oplus\mathbb{Z}$ when $X$ is nonempty and connected, the $\mathbb{Z}$
+                    factor recording rank.</p>
+
+                <p><strong>definition (real $K$-theory).</strong> $KO(X)$ is the Grothendieck group of real vector
+                    bundles on $X$. the reduced groups $\widetilde{KO}(X)$ are defined analogously.</p>
+
+                <p><strong>theorem (existence of complements).</strong> if $X$ is compact Hausdorff and $E\to X$ is a
+                    complex vector bundle, then there exists a bundle $F$ and an integer $n$ such that
+                    $E\oplus F\simeq\underline{\mathbb{C}}^n$. consequently every class in $K(X)$ may be written
+                    $[E]-[n]$ for some $E$ and $n\ge 0$.</p>
+
+                <p><strong>proof.</strong> choose a finite open cover that trivializes $E$ and a subordinate partition of
+                    unity. the standard clutching constructions produce an embedding of $E$ into a trivial bundle of
+                    sufficiently large rank (each local trivialization contributes frame fields that glue after
+                    cutoffs). the orthogonal complement with respect to a Hermitian metric is then a smooth complementary
+                    bundle $F$. $\square$</p>
+
+                <p><strong>theorem (stable equivalence).</strong> for compact $X$, one has $[E]=[F]$ in $K(X)$ if and only
+                    if $E$ and $F$ are stably isomorphic: $E\oplus\underline{\mathbb{C}}^N\simeq F\oplus
+                    \underline{\mathbb{C}}^N$ for some $N$.</p>
+
+                <p><strong>proof.</strong> if $E\oplus\varepsilon^N\simeq F\oplus\varepsilon^N$ then
+                    $[E]+[N]=[F]+[N]$ in $K(X)$, so $[E]=[F]$. conversely, write $[E]-[F]=0$, so
+                    $[E]+[H]=[F]+[H]$ for some $H$ after clearing the definition of the Grothendieck relation. adding a
+                    complement of $H$ to both sides produces a trivial summand and yields a stable isomorphism of $E$
+                    and $F$. $\square$</p>
+
+                <p><strong>theorem ($K$ as a cohomology theory, outline).</strong> the functors $X\mapsto\widetilde{K}(X)$
+                    and $X\mapsto\widetilde{KO}(X)$ extend to generalized cohomology theories on compact spaces (or CW
+                    complexes): they are homotopy-invariant, and a closed pair $(X,A)$ yields a long exact sequence
+                    involving relative groups $K(X,A)\simeq\widetilde{K}(X/A)$.</p>
+
+                <p><strong>proof (idea).</strong> homotopy invariance follows because pullback along a homotopy is
+                    isomorphic for vector bundles on compact spaces (classifying maps $X\to BU$ are homotopic iff the
+                    bundles are isomorphic). for a closed inclusion $A\subset X$, the quotient map and mapping-cone
+                    sequences produce the usual exactness pattern of a reduced cohomology theory once reduced groups are
+                    used. full details use representing spaces $BU\times\mathbb{Z}$ and $BO\times\mathbb{Z}$. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="ring">
+                <h2>ring structure, exterior powers, and tensor products</h2>
+                <p>The tensor product of vector bundles descends to a commutative ring structure on $K(X)$. Exterior
+                    powers further enrich the algebra: the total exterior-power operation
+                    $$
+                    \lambda_t(E)=\sum_{k\ge 0}t^k[\Lambda^k E]
+                    $$
+                    defines a $\lambda$-ring structure on $K(X)$. These operations are essential for the formulation of
+                    the Adams operations and for the expression of characteristic classes via the Chern character, a ring
+                    homomorphism
+                    $$
+                    \operatorname{ch}:K(X)\to H^{\mathrm{even}}(X;\mathbb{Q})
+                    $$
+                    that converts $K$-theoretic data into ordinary cohomology.</p>
+
+                <p><strong>definition (ring structure).</strong> the product on $K(X)$ is induced by tensor product:
+                    $$
+                    [E]\cdot[F]:=[E\otimes F],
+                    $$
+                    extended bilinearly to virtual bundles. the unit is the class of the trivial line bundle
+                    $[\underline{\mathbb{C}}]$.</p>
+
+                <p><strong>theorem (ring axioms).</strong> tensor product makes $K(X)$ into a commutative unital ring.
+                    the rank map $\operatorname{rk}:K(X)\to\mathbb{Z}$ is a unital ring homomorphism, with kernel
+                    $\widetilde{K}(X)$ when $X$ is connected.</p>
+
+                <p><strong>proof.</strong> for actual bundles, $E\otimes F\simeq F\otimes E$,
+                    $(E\otimes F)\otimes G\simeq E\otimes(F\otimes G)$, and $E\otimes\underline{\mathbb{C}}\simeq E$.
+                    these identities pass to the monoid and therefore to the Grothendieck group by the universal property
+                    of adjoining inverses. rank is additive under $\oplus$ and multiplicative under $\otimes$, hence
+                    induces a ring map on $K(X)$. $\square$</p>
+
+                <p><strong>definition ($\lambda$-operations).</strong> the exterior-power maps $\Lambda^k$ induce
+                    operations $\lambda^k:K(X)\to K(X)$ uniquely characterized by $\lambda^k([E])=[\Lambda^k E]$ for
+                    bundles $E$ and the generating-function relation
+                    $\lambda_t(x+y)=\lambda_t(x)\lambda_t(y)$ in the formal power series ring $K(X)[[t]]$.</p>
+
+                <p><strong>definition (chern character).</strong> writing Chern roots of a bundle formally so that
+                    $c(E)=\prod_i(1+x_i)$, set
+                    $$
+                    \operatorname{ch}(E)=\sum_i e^{x_i}
+                    =\operatorname{rk}E+c_1(E)+\frac12\bigl(c_1(E)^2-2c_2(E)\bigr)+\cdots\in H^{\mathrm{even}}(X;\mathbb{Q}).
+                    $$
+                    extend by $\operatorname{ch}([E]-[F])=\operatorname{ch}(E)-\operatorname{ch}(F)$.</p>
+
+                <p><strong>theorem (chern character is a ring map).</strong>
+                    $\operatorname{ch}:K(X)\to H^{\mathrm{even}}(X;\mathbb{Q})$ is a natural unital ring homomorphism.
+                    rationally, after suitable completion in the Atiyah-Hirzebruch spectral sequence, it induces
+                    isomorphisms of rational cohomology theories on finite CW complexes.</p>
+
+                <p><strong>proof.</strong> for line bundles $\operatorname{ch}(L)=e^{c_1(L)}$, and
+                    $\operatorname{ch}(L\otimes L')=e^{c_1(L)+c_1(L')}=\operatorname{ch}(L)\operatorname{ch}(L')$. by the
+                    splitting principle (chapter 6) every bundle pulls back to a sum of lines on a flag bundle where
+                    injectivity of pullback in rational cohomology (or naturality of $\operatorname{ch}$) reduces the
+                    Whitney and product formulas to the line-bundle case. additivity on virtual bundles is by definition.
+                    the rational isomorphism statement is the collapse of the Atiyah-Hirzebruch spectral sequence after
+                    tensoring with $\mathbb{Q}$. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="bott-adams">
+                <h2>bott periodicity, adams operations, and the $J$-group</h2>
+                <p>The fundamental computational tool of complex $K$-theory is Bott periodicity: there is a natural
+                    isomorphism
+                    $$
+                    \widetilde{K}(X)\simeq\widetilde{K}(X\wedge S^2)
+                    $$
+                    induced by external product with the generator of $\widetilde{K}(S^2)\cong\mathbb{Z}$. Consequently
+                    the $K$-groups of spheres (and of all suspensions) are completely determined, and the theory is
+                    periodic of period $2$. Real $K$-theory $KO$ is periodic of period $8$, mirroring the periodicity of
+                    real Clifford algebras (chapter 8).</p>
+
+                <p>Adams operations $\psi^k:K(X)\to K(X)$ are ring endomorphisms characterized by their action on line
+                    bundles, $\psi^k(L)=L^{\otimes k}$, and by naturality. They refine the Chern character and detect
+                    torsion phenomena invisible to ordinary characteristic classes. Closely related is the $J$-group
+                    $J(X)$, which classifies stable spherical fibrations; the $J$-homomorphism maps $KO(X)$ into $J(X)$
+                    and measures the difference between stable vector-bundle equivalence and stable fiber-homotopy
+                    equivalence.</p>
+
+                <p><strong>definition (external product and bott generator).</strong> the external product
+                    $K(X)\otimes K(Y)\to K(X\times Y)$ is induced by external tensor product of bundles. the Bott
+                    generator $\beta\in\widetilde{K}(S^2)$ is the class $[H]-[\underline{\mathbb{C}}]$, where $H\to S^2
+                    \simeq\mathbb{CP}^1$ is the Hopf line bundle (equivalently $c_1(H)$ generates $H^2(S^2)$).</p>
+
+                <p><strong>theorem (bott periodicity, complex).</strong> external product with $\beta$ induces natural
+                    isomorphisms
+                    $$
+                    \widetilde{K}(X)\xrightarrow{\simeq}\widetilde{K}(\Sigma^2 X)
+                    \simeq\widetilde{K}(X\wedge S^2)
+                    $$
+                    for compact $X$. in particular $\widetilde{K}(S^{2n})\simeq\mathbb{Z}$,
+                    $\widetilde{K}(S^{2n+1})=0$, and $K^{-n}(X):=\widetilde{K}(\Sigma^n X_+)$ is periodic of period $2$.</p>
+
+                <p><strong>proof (outline).</strong> one geometric model identifies $\widetilde{K}(S^2)$ with
+                    $\widetilde{K}(\mathbb{CP}^1)$ generated by $[H]-1$. the clutching construction over equatorial
+                    $S^1$ and the elementary analysis of bundles on $S^2$ show this group is $\mathbb{Z}$. the product
+                    map $\widetilde{K}(X)\otimes\widetilde{K}(S^2)\to\widetilde{K}(X\wedge S^2)$ is then inverted by the
+                    dual Bott map arising from the quasi-inverse of the Hopf bundle in the representation ring of
+                    $U(1)$, or by Morse-theoretic / holomorphic clutching proofs of Bott. iterating gives the even/odd
+                    sphere calculation by induction. $\square$</p>
+
+                <p><strong>theorem (bott periodicity, real).</strong> there are natural isomorphisms
+                    $\widetilde{KO}(X)\simeq\widetilde{KO}(\Sigma^8 X)$. the values
+                    $\widetilde{KO}(S^n)$ are periodic of period $8$ and coincide with the Atiyah-Bott-Shapiro groups of
+                    Clifford modules (chapter 8).</p>
+
+                <p><strong>proof (pointer).</strong> real Bott periodicity is proved by the same clutching methods with
+                    $\mathrm{Sp}(1)$ and $\mathrm{O}$, or by identifying $KO^{-n}(\mathrm{pt})$ with virtual Clifford
+                    modules $\mathrm{Cl}_n$ as in Atiyah-Bott-Shapiro. the period-$8$ table is then the classical
+                    Clifford period table. $\square$</p>
+
+                <p><strong>definition (adams operations).</strong> the operations $\psi^k:K(X)\to K(X)$, $k\in\mathbb{Z}$,
+                    are the unique natural ring endomorphisms such that $\psi^k(L)=L^{\otimes k}$ for every complex line
+                    bundle $L$. they satisfy $\psi^k\circ\psi^\ell=\psi^{k\ell}$ and, on Chern characters,
+                    $\operatorname{ch}(\psi^k x)$ multiplies the degree-$2m$ component by $k^m$.</p>
+
+                <p><strong>theorem (existence of adams operations).</strong> Adams operations exist and are uniquely
+                    determined by the line-bundle formula and naturality (or by the $\lambda$-ring Newton identities
+                    relating $\psi^k$ to $\lambda^j$).</p>
+
+                <p><strong>proof.</strong> on a split bundle $E\simeq L_1\oplus\cdots\oplus L_r$ one must have
+                    $\psi^k(E)=\sum_i L_i^{\otimes k}$. the splitting principle supplies a flag pullback injective on
+                    $K$-theory after adding free summands or working with $\lambda$-rings. Newton polynomials express
+                    each $\psi^k$ in terms of elementary symmetric functions (the $\lambda^j$), which are already defined
+                    on all of $K(X)$. uniqueness follows because natural operations are determined by their values on the
+                    universal bundle over $BU$. $\square$</p>
+
+                <p><strong>definition ($J$-group and $J$-homomorphism).</strong> two vector bundles are fiber-homotopy
+                    equivalent if their sphere bundles are fiberwise homotopy equivalent. the group $J(X)$ is the
+                    quotient of $\widetilde{KO}(X)$ (or a suitable subgroup of reduced classes) by the relation of stable
+                    fiber-homotopy equivalence. the $J$-homomorphism $J:\widetilde{KO}(X)\to J(X)$ is the quotient map.</p>
+
+                <p><strong>remark (torsion detection).</strong> Adams operations detect torsion elements in $K(X)$ and
+                    $KO(X)$ that map to zero under the Chern character, and they control the image of $J$ (the famous
+                    image-of-$J$ computation in stable homotopy).</p>
+            </section>
+
+            <section class="doc-section" id="fredholm">
+                <h2>the space of fredholm operators as a model for $K$-theory</h2>
+                <p>An independent analytic realization of $K$-theory is obtained from the space $\mathcal{F}(H)$ of
+                    Fredholm operators on a separable complex Hilbert space $H$. The space $\mathcal{F}(H)$ is a
+                    classifying space for $K$-theory: for compact $X$,
+                    $$
+                    K(X)\simeq[X,\mathcal{F}(H)],
+                    $$
+                    the set of homotopy classes of continuous maps from $X$ into $\mathcal{F}(H)$. Under this
+                    identification the virtual bundle corresponding to a continuous family of Fredholm operators $T_x$ is
+                    the formal difference $[\ker T]-[\operatorname{coker} T]$ (made rigorous by the existence of a
+                    continuous choice of finite-dimensional complements). This model makes the relation between $K$-theory
+                    and index theory transparent.</p>
+
+                <p><strong>definition (fredholm operator).</strong> a bounded linear operator $T:H\to H$ on a separable
+                    complex Hilbert space is Fredholm if $\ker T$ and $\operatorname{coker} T$ are finite-dimensional
+                    (equivalently, $T$ is invertible modulo compact operators). its analytical index is
+                    $$
+                    \operatorname{index} T=\dim\ker T-\dim\operatorname{coker} T.
+                    $$</p>
+
+                <p><strong>definition (atiyah-janich map).</strong> a continuous family $T:X\to\mathcal{F}(H)$ determines
+                    a class in $K(X)$ by choosing, after possibly stabilizing by a finite-rank projection, a continuous
+                    finite-dimensional subspace $V\subset H$ that surjects onto every $\operatorname{coker} T_x$ under
+                    the quotient map; then
+                    $$
+                    [T]:=\bigl[\ker(T_x\text{ on }V^\perp)\bigr]-\bigl[V/ T_x(V^\perp)\bigr]\in K(X)
+                    $$
+                    is independent of choices up to isomorphism.</p>
+
+                <p><strong>theorem (atiyah-janich).</strong> for compact $X$ the assignment $T\mapsto[T]$ induces a natural
+                    bijection
+                    $$
+                    [X,\mathcal{F}(H)]\xrightarrow{\simeq}K(X).
+                    $$
+                    under this identification, the index map $\mathcal{F}(H)\to\mathbb{Z}$ realizes
+                    $K(\mathrm{pt})\simeq\mathbb{Z}$.</p>
+
+                <p><strong>proof (outline).</strong> connectedness components of $\mathcal{F}(H)$ are labeled by index,
+                    matching $K(\mathrm{pt})$. for general $X$, Kuiper's theorem (contractibility of $U(H)$) implies that
+                    bundles of Hilbert spaces are trivial, so families of Fredholm operators are well-defined without
+                    twisting of the ambient $H$. the symbol construction that sends a virtual bundle $[E]-[F]$ to a family
+                    of projections (or to the Toeplitz / compression operators realizing that virtual bundle) is inverse,
+                    up to homotopy, to $[T]$. full proofs appear in Atiyah-Janich's original notes and modern textbook
+                    treatments of $K$-homology duality. $\square$</p>
+
+                <p><strong>theorem (index is locally constant).</strong> the analytical index is constant on connected
+                    components of $\mathcal{F}(H)$. if $K$ is compact then $T+K$ is Fredholm and
+                    $\operatorname{index}(T+K)=\operatorname{index} T$.</p>
+
+                <p><strong>proof.</strong> small norm perturbations of an invertible operator between ker and coker
+                    complementary subspaces remain invertible, so $\dim\ker$ and $\dim\operatorname{coker}$ are upper
+                    semicontinuous and their difference is constant. compact perturbations do not change the class in the
+                    Calkin algebra $B(H)/K(H)$, hence do not change Fredholmness or index (Atkinson's theorem).
+                    $\square$</p>
+            </section>
+
+            <section class="doc-section" id="index">
+                <h2>$K$-theory and the analytical index of elliptic operators</h2>
+                <p>Let $D$ be an elliptic pseudodifferential operator acting between sections of complex vector bundles
+                    $E$ and $F$ over a closed manifold $M$. Ellipticity implies that $D$ is Fredholm, so its analytical
+                    index
+                    $$
+                    \operatorname{index} D=\dim\ker D-\dim\operatorname{coker} D
+                    $$
+                    is well-defined and integer-valued. The family of all such operators, parametrized by the base of a
+                    fiber bundle or by a compact parameter space $X$, defines a class in $K(X)$. The Atiyah-Singer index
+                    theorem asserts that this analytical index coincides with a topological index constructed from the
+                    $K$-theory class of the principal symbol of $D$ via the Chern character and the Todd class of the
+                    tangent bundle. In the special case of a single operator the topological index reduces to the pairing
+                    of a characteristic class (built from Chern characters and Todd classes) with the fundamental class of
+                    $M$.</p>
+
+                <p><strong>definition (symbol class).</strong> the principal symbol of an elliptic operator $D$ of order
+                    $m$ is an isomorphism $\sigma(D): \pi^*E\to\pi^*F$ of pullback bundles over $T^*M\setminus 0$. it
+                    defines a class
+                    $$
+                    [\sigma(D)]\in K^0(T^*M)
+                    $$
+                    by the standard difference-bundle construction on the ball/sphere bundle of $T^*M$ (trivializations
+                    on the equator via $\sigma$).</p>
+
+                <p><strong>theorem (elliptic operators are fredholm).</strong> on a closed manifold, an elliptic
+                    pseudodifferential operator $D:C^\infty(E)\to C^\infty(F)$ extends to a Fredholm operator between
+                    Sobolev spaces, with smooth kernel and cokernel, so that $\operatorname{index} D\in\mathbb{Z}$ is
+                    well-defined.</p>
+
+                <p><strong>proof.</strong> ellipticity produces a pseudodifferential parametrix $Q$ with $QD-I$ and
+                    $DQ-I$ of order $-\infty$ (smoothing). smoothing operators are compact on Sobolev spaces, so $D$ is
+                    Fredholm. elliptic regularity upgrades weak solutions of $Du=0$ to smooth sections. $\square$</p>
+
+                <p><strong>theorem (atiyah-singer in $K$-theoretic form).</strong> for an elliptic operator $D$ on a
+                    closed oriented manifold $M$,
+                    $$
+                    \operatorname{index} D
+                    =\operatorname{index}_t\bigl([\sigma(D)]\bigr),
+                    $$
+                    where the topological index $\operatorname{index}_t:K^0(T^*M)\to\mathbb{Z}$ is the composition of the
+                    Thom isomorphism in complex $K$-theory for the tangent bundle with the pushforward
+                    $K^0(TM)\to K^0(\mathrm{pt})\simeq\mathbb{Z}$. under the Chern character this becomes
+                    $$
+                    \operatorname{index} D
+                    =\bigl\langle\operatorname{ch}([\sigma(D)])\,\mathrm{Td}(TM\otimes\mathbb{C}),[T^*M]\bigr\rangle.
+                    $$</p>
+
+                <p><strong>proof (structure).</strong> both analytical and topological indices are ring maps / cobordism
+                    invariants of symbol classes and agree on generators (Dirac operators, multiplicative sequences,
+                    products, and Bott elements) by heat-kernel or embedding proofs. chapter 8 records the Dirac case
+                    $\operatorname{index} D_E^+=\int\operatorname{ch}(E)\widehat{A}(TM)$ in detail; the general
+                    cohomological formula is the Chern character image of the $K$-theory equality. $\square$</p>
+
+                <p><strong>theorem (family index).</strong> a continuous family of elliptic operators parametrized by a
+                    compact space $X$ defines a class in $K(X)$ via the Atiyah-Janich model. the Chern character of that
+                    class is the family index form in $H^{\mathrm{even}}(X;\mathbb{Q})$, computed by the families index
+                    theorem.</p>
+
+                <p><strong>proof (idea).</strong> elliptic families yield continuous maps $X\to\mathcal{F}$ after Sobolev
+                    completion, hence classes in $[X,\mathcal{F}]\simeq K(X)$. the cohomological families index theorem
+                    identifies $\operatorname{ch}$ of that class with integrals of characteristic forms along the fibers.
+                    $\square$</p>
+
+                <p>Thus $K$-theory supplies both a stable classification of the vector bundles that carry classical fields
+                    and the precise cohomological receptacle for the index of the elliptic operators (Dirac, signature,
+                    $\overline{\partial}$, and so on) that govern the linear dynamics and the anomalies of those fields.
+                    It forms the natural bridge between the characteristic-class invariants of the preceding chapter and
+                    the spin-geometric index theorems that follow.</p>
+
+                <p><strong>remark (to chapter 8).</strong> spin geometry specializes the symbol calculus to the Dirac
+                    operator and identifies $\operatorname{index}_t$ with $\widehat{A}$-genera and related
+                    characteristic numbers.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (stable triviality of $TS^2$).</strong> show that $TS^2\oplus\varepsilon^1$ is
+                    trivial as a real bundle of rank $3$, yet $TS^2$ is not trivial. interpret as a nontrivial class in
+                    $\widetilde{KO}(S^2)$ that becomes zero after adding a trivial line.</p>
+
+                <p><strong>exercise 2 (hopf generator).</strong> for the Hopf line bundle $H\to S^2$, show that
+                    $[H]-1$ generates $\widetilde{K}(S^2)\simeq\mathbb{Z}$ by computing $c_1$ and using that
+                    $\operatorname{ch}$ is injective on this group.</p>
+
+                <p><strong>exercise 3 (compact perturbation).</strong> if $T$ is Fredholm and $K$ is compact, prove that
+                    $T+K$ is Fredholm with the same index, using Atkinson's characterization (invertible in the Calkin
+                    algebra).</p>
+            </section>
+
+        </div>
+        <footer class="doc-footer">
+            <p>
+                <a href="../chapter-6/">← characteristic classes</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../">field theory</a>
+                <span class="subnav-sep" aria-hidden="true">·</span>
+                <a href="../chapter-8/">next: spin geometry and atiyah-singer index theory →</a>
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>
