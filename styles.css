@@ -127,9 +127,13 @@ a:hover {
 }
 
 .doc-intro {
-  margin: 0;
+  margin: 0 0 1rem;
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+.doc-intro:last-of-type {
+  margin-bottom: 0;
 }
 
 .toc {
@@ -189,10 +193,14 @@ main.doc .doc-body strong {
 }
 
 .doc-section p {
-  margin: 0;
+  margin: 0 0 0.95rem;
   font-size: 0.95rem;
   line-height: 1.75;
   color: var(--fg);
+}
+
+.doc-section p:last-child {
+  margin-bottom: 0;
 }
 
 .doc-section ol {

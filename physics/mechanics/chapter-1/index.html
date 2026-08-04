@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>chapter 1 · basic mechanics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">mechanics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">chapter 1</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>chapter 1 — basic mechanics</h1>
+            <p class="doc-lead"><em>from galilean inertia to cartan fields of extremals</em></p>
+        </header>
+
+        <p class="doc-intro">Classical mechanics begins with a small set of experimentally verified principles and is
+            progressively abstracted into a coordinate-free geometric theory on manifolds. The passage from Newton’s
+            second law to Lagrangian and variational formalisms is not a fashion: it is the discovery that equations of
+            motion ought to remain valid under arbitrary changes of coordinates, and that symmetries and conservation
+            laws are two sides of the same geometric coin.</p>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="newtonian">
+                <h2>newtonian foundations</h2>
+                <p>Empirical observation is blunt but durable. In an inertial frame a free particle moves uniformly and
+                    rectilinearly. When a force is applied, the acceleration scales with that force. Space-time is
+                    modelled as an affine four-dimensional manifold equipped with a Galilean structure: a preferred
+                    absolute time function $t$ whose level sets are Euclidean three-spaces, together with a Euclidean
+                    metric on each spatial slice. The Galilean group — spatial rotations, translations, and uniform
+                    boosts — is the group of symmetries of that structure.</p>
+                <p><strong>Definition.</strong> Newton’s principle of determinacy asserts that the state of a mechanical
+                    system at any instant is completely fixed by the positions and velocities of all particles at that
+                    instant. Consequently the equations of motion are second-order ordinary differential equations on
+                    configuration space.</p>
+                <p>For a system of $N$ particles the configuration space is $\mathbb{R}^{3N}$ (or a submanifold thereof
+                    when constraints are present), and the Newtonian equations read</p>
+                $$
+                m_i\ddot{\mathbf{q}}_i=\mathbf{F}_i(\mathbf{q},\dot{\mathbf{q}},t),\qquad i=1,\dots,N.
+                $$
+                <p><strong>Remark.</strong> The mathematical motivation for the affine-Galilean model is that it is the
+                    unique structure (up to isomorphism) compatible with the observed invariance under the Galilean
+                    group and with the absolute character of time intervals. Absolute time is already a geometric
+                    statement: “duration” is not redefined by how you move through the slices.</p>
+                <p><strong>Exercise 1.1.</strong> In inertial coordinates a free particle satisfies
+                    $\ddot{\mathbf{q}}=0$. Show that under a Galilean boost
+                    $\mathbf{q}'=\mathbf{q}-\mathbf{v}t$ with constant $\mathbf{v}$ the motion remains free, and compute
+                    the boosted velocity and acceleration.</p>
+            </section>
+
+            <section class="doc-section" id="central">
+                <h2>systems of low dimension and central forces</h2>
+                <p>For a single particle in a conservative force field $\mathbf{F}=-\nabla V$ the Newtonian equation
+                    reduces to</p>
+                $$
+                m\ddot{\mathbf{q}}=-\nabla V(\mathbf{q}).
+                $$
+                <p>When the force is central, $V=V(r)$ with $r=|\mathbf{q}|$, angular momentum
+                    $\mathbf{L}=\mathbf{q}\times m\dot{\mathbf{q}}$ is conserved. Conservation of $\mathbf{L}$ implies
+                    that the motion is planar and that the radial motion is governed by an effective one-dimensional
+                    potential</p>
+                $$
+                V_{\mathrm{eff}}(r)=V(r)+\frac{\ell^2}{2mr^2},
+                $$
+                <p>where $\ell=|\mathbf{L}|$. The phase portrait of the radial equation is therefore completely
+                    determined by the critical points and level sets of $V_{\mathrm{eff}}$ — geometry of a single
+                    function on the half-line $r&gt;0$.</p>
+                <p>The Kepler problem $V(r)=-k/r$ admits the explicit solution</p>
+                $$
+                r=\frac{p}{1+e\cos\theta},
+                $$
+                <p>where $p=\ell^2/(mk)$ is the semi-latus rectum and $e$ is the eccentricity. The orbit is a conic
+                    section with one focus at the origin.</p>
+                <p><strong>Theorem</strong> (Bertrand). <em>Up to scaling, the only central force laws that produce
+                        closed bounded orbits for all initial data that are energetically allowed are the harmonic
+                        oscillator and the inverse-square law.</em></p>
+                <p><strong>Remark.</strong> The geometric origin of Kepler’s conics is the isotropy of Euclidean space:
+                    rotational invariance plus the inverse-square law yield the famous focal property of the ellipse.
+                    Geometry is not decoration on top of the force law; it selects which force laws look “special” among
+                    many conceivable radial potentials.</p>
+                <p><strong>Exercise 1.2.</strong> For the isotropic harmonic oscillator $V(r)=\tfrac12 kr^2$, construct
+                    $V_{\mathrm{eff}}$, find circular orbits of angular momentum $\ell$, and show that small radial
+                    oscillations have frequency equal to the angular frequency of the circular orbit (closed Lissajous
+                    curves).</p>
+                <p><strong>Exercise 1.3</strong> (Kepler). Starting from energy $E$ and angular momentum $\ell$,
+                    reduce the radial motion to a quadrature
+                    $t=\int dr/\sqrt{(2/m)(E-V_{\mathrm{eff}}(r))}$ for $V=-k/r$, and recover the bound/unbound dichotomy
+                    for $E&lt;0$ and $E\geq 0$.</p>
+            </section>
+
+            <section class="doc-section" id="lagrangian">
+                <h2>lagrangian formalism</h2>
+                <p>Very quickly the coordinate expression $m\ddot q=F$ becomes inefficient: change coordinates and the
+                    second derivatives rearrange themselves messily. The better object is an action.</p>
+                <p><strong>Definition</strong> (Hamilton’s principle). The actual trajectory $q(t)$ between fixed
+                    end-points realises a critical point of the action functional</p>
+                $$
+                S[q]=\int_{t_0}^{t_1}L(q,\dot{q},t)\,dt.
+                $$
+                <p>The first variation $\delta S=0$ yields the Euler–Lagrange equations</p>
+                $$
+                \frac{d}{dt}\Bigl(\frac{\partial L}{\partial\dot{q}^i}\Bigr)-\frac{\partial L}{\partial q^i}=0.
+                $$
+                <p>These equations are covariant under arbitrary (sufficiently smooth) changes of coordinates on
+                    configuration space. The variational principle itself is intrinsically geometric: it depends only on
+                    the values of the Lagrangian along curves and not on any particular coordinate chart.</p>
+                <p>Configuration space $Q$ is taken to be a smooth manifold. The Lagrangian becomes a smooth function
+                    $L:TQ\to\mathbb{R}$ on the tangent bundle. The Euler–Lagrange equations are then intrinsically
+                    defined as the critical-point equations of the action on the space of paths in $Q$. Motion is no
+                    longer a curve in Euclidean space by default; it is an integral curve of a second-order dynamics on
+                    $TQ$.</p>
+                <p><strong>Exercise 1.4.</strong> Take $L=\tfrac12 m(\dot x^2+\dot y^2)-V(\sqrt{x^2+y^2})$ in Cartesian
+                    coordinates, pass to polar coordinates $(r,\theta)$, and write the Euler–Lagrange equations for $r$
+                    and $\theta$. Recover conservation of $\ell=mr^2\dot\theta$ without referring to $\mathbf{q}\times
+                    m\dot{\mathbf{q}}$ by name.</p>
+            </section>
+
+            <section class="doc-section" id="noether">
+                <h2>noether’s theorem</h2>
+                <p>If a one-parameter group of diffeomorphisms $\Phi_s:Q\to Q$ leaves the Lagrangian invariant,</p>
+                $$
+                L(T\Phi_s(v))=L(v)\qquad\text{for all }v\in TQ,
+                $$
+                <p>then the quantity</p>
+                $$
+                I(v)=\Bigl\langle\frac{\partial L}{\partial\dot{q}},\xi_Q(q)\Bigr\rangle
+                $$
+                <p>is constant along solutions, where $\xi_Q$ is the infinitesimal generator of $\Phi_s$.</p>
+                <p><strong>Theorem</strong> (Noether). <em>Continuous symmetries of the Lagrangian produce first
+                        integrals.</em> This is the geometric origin of the classical conservation laws of energy,
+                    momentum, and angular momentum — energy arising when the formalism is completed carefully with
+                    explicit time dependence, momentum with translational invariance, angular momentum with rotations.
+                </p>
+                <p><strong>Proof</strong> (sketch). Differentiate the invariance identity in $s$ at $s=0$, rewrite the
+                    resulting directional derivative of $L$ along solutions using the Euler–Lagrange equation, and
+                    observe that $dI/dt=0$ along the dynamical vector field on $TQ$. The pairing with $\xi_Q$ is coordinate-free once $\partial L/\partial\dot q$ is recognized as a fiber derivative (momentum map
+                    in embryonic form).</p>
+                <p><strong>Exercise 1.5.</strong> For free particle $L=\tfrac12 m|\dot q|^2$ on $\mathbb{R}^3$, take the
+                    one-parameter group of translations along a fixed unit vector $e$. Compute $\xi_Q$, the Noether
+                    integral $I$, and identify it with linear momentum along $e$.</p>
+            </section>
+
+            <section class="doc-section" id="oscillations">
+                <h2>small oscillations and parametric resonance</h2>
+                <p>Near a stable equilibrium $q_0$ one expands the Lagrangian to quadratic order. The resulting linear
+                    system is</p>
+                $$
+                M\ddot{\xi}+K\xi=0,
+                $$
+                <p>where $M$ and $K$ are the mass and stiffness matrices. The characteristic frequencies are the square
+                    roots of the eigenvalues of the generalised eigenproblem $K\mathbf{v}=\omega^2 M\mathbf{v}$.</p>
+                <p><strong>Remark.</strong> When the stiffness matrix depends periodically on time (parametric
+                    excitation), Mathieu or Hill equations appear and instability bands arise even while instantaneous
+                    frequencies remain real — this is parametric resonance. Geometry of the linearised problem no longer
+                    reduces to “eigenvalues of a fixed matrix”: Floquet multipliers enter, and the modern reading of
+                    instability is about monodromy of a linear system over a period circle.</p>
+                <p><strong>Exercise 1.6.</strong> For a linear system $M\ddot\xi+K\xi=0$ with $M$ and $K$
+                    symmetric, $M$ positive definite, prove that the eigenvalues of $M^{-1}K$ are real and that the
+                    modes can be chosen $M$-orthogonal. What happens if $K$ is indefinite?</p>
+            </section>
+
+            <section class="doc-section" id="rigid">
+                <h2>rigid-body dynamics</h2>
+                <p>The configuration space of a free rigid body is the rotation group $SO(3)$. In a body-fixed frame the
+                    kinetic energy is a quadratic form on the Lie algebra $\mathfrak{so}(3)\simeq\mathbb{R}^3$, and the
+                    Euler–Poincaré equations reduce to Euler’s rigid-body equations</p>
+                $$
+                \mathbf{I}\dot{\boldsymbol{\Omega}}+\boldsymbol{\Omega}\times\mathbf{I}\boldsymbol{\Omega}=0.
+                $$
+                <p>Poinsot’s geometric construction realises the motion as the rolling without slipping of the inertia
+                    ellipsoid on a fixed plane; the polhode and herpolhode curves encode the body and space trajectories
+                    of the angular-velocity vector. Coriolis forces appear naturally when equations are written in a
+                    rotating frame — geometry of relative motion, not an extra “fictitious” ontology glued onto Newton.
+                </p>
+                <p><strong>Exercise 1.7.</strong> For an axisymmetric rigid body
+                    $I_1=I_2\neq I_3$, show that $\Omega_3$ is constant and that $(\Omega_1,\Omega_2)$ precesses
+                    uniformly in body frame. Identify the conserved kinetic energy and squared angular momentum on the
+                    $(\Omega_1,\Omega_2,\Omega_3)$ sphere.</p>
+            </section>
+
+            <section class="doc-section" id="dissipation">
+                <h2>dissipative extensions</h2>
+                <p>Friction linear in velocity is incorporated by Rayleigh’s dissipation function $R(\dot q)$. The
+                    modified Euler–Lagrange equations become</p>
+                $$
+                \frac{d}{dt}\Bigl(\frac{\partial L}{\partial\dot{q}}\Bigr)-\frac{\partial L}{\partial q}=-\frac{\partial R}{\partial\dot{q}}.
+                $$
+                <p><strong>Remark.</strong> On a Riemannian manifold the resulting dynamics is a gradient flow of the
+                    energy with respect to the metric defined by the kinetic energy and the Rayleigh form. The same
+                    structure underlies the abstract theory of electric circuits, in which voltages and currents are
+                    conjugate variables and resistive elements generate a dissipation metric. Mechanics is not “only
+                    frictionless orbits”; dissipation has geometry too.</p>
+                <p><strong>Exercise 1.8.</strong> Take $L=\tfrac12 m\dot x^2-\tfrac12 kx^2$ and $R=\tfrac12 c\dot x^2$
+                    with $c&gt;0$. Derive the equation of motion and show that total mechanical energy
+                    $E=\tfrac12 m\dot x^2+\tfrac12 kx^2$ satisfies $\dot E=-c\dot x^2\leq 0$.</p>
+            </section>
+
+            <section class="doc-section" id="control">
+                <h2>variational calculus and optimal control</h2>
+                <p>Carathéodory’s approach constructs a field of extremals whose associated Cartan form</p>
+                $$
+                \theta_L=\frac{\partial L}{\partial\dot{q}^i}\,dq^i+\Bigl(L-\frac{\partial L}{\partial\dot{q}^i}\dot{q}^i\Bigr)dt
+                $$
+                <p>is closed. The Hamilton–Jacobi equation is the condition that the Lagrangian coincides with the total
+                    differential of a generating function. The same geometric construction, when the admissible
+                    velocities are restricted to a control set, yields Pontryagin’s maximum principle: an optimal
+                    trajectory maximises the Pontryagin Hamiltonian over the control variables.</p>
+                <p><strong>Remark.</strong> This is the first clear preview of control theory as a chapter of the
+                    mechanical program rather than a foreign engineering dialect. Optimality inherits the extremal
+                    field; controls simply restrict the admissible “velocities” of the geometric picture.</p>
+                <p><strong>Exercise 1.9.</strong> For the free particle $L=\tfrac12 m\dot q^2$ on $\mathbb{R}$, write
+                    the Cartan form $\theta_L$ in coordinates $(q,v,t)$ with $v=\dot q$, and verify $d\theta_L=0$ along
+                    solutions of the Euler–Lagrange equation (or along the full jet if you prefer the full exterior
+                    calculus statement).</p>
+            </section>
+
+            <section class="doc-section" id="comparison">
+                <h2>comparison of formalisms</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>feature</th>
+                            <th>lagrangian</th>
+                            <th>hamiltonian</th>
+                            <th>optimal control</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>base space</td>
+                            <td>tangent bundle $TQ$</td>
+                            <td>cotangent bundle $T^*Q$</td>
+                            <td>state–input space $X\times U$</td>
+                        </tr>
+                        <tr>
+                            <td>primary function</td>
+                            <td>Lagrangian $L(q,\dot q,t)$</td>
+                            <td>Hamiltonian $H(q,p,t)$</td>
+                            <td>cost / Pontryagin Hamiltonian</td>
+                        </tr>
+                        <tr>
+                            <td>governing principle</td>
+                            <td>critical action</td>
+                            <td>symplectic volume, Ham. flow</td>
+                            <td>Pontryagin maximum principle</td>
+                        </tr>
+                        <tr>
+                            <td>symmetry consequence</td>
+                            <td>Noether first integrals</td>
+                            <td>momentum map $\mu$</td>
+                            <td>controllability / Chow–Rashevsky</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>The Lagrangian picture is natural for unconstrained variational problems and for systems with
+                    configuration-space symmetries. The Hamiltonian picture isolates the symplectic geometry of phase
+                    space and is indispensable for perturbation theory and integrability — that move will return in the
+                    symplectic chapter. Optimal-control theory enlarges the variational setting to include non-holonomic
+                    velocity constraints and bounded controls, while retaining the same skeleton of Cartan forms and
+                    extremal fields.</p>
+                <p>Taken together, these constructions convert the empirical Newtonian theory into a coherent
+                    differential-geometric framework in which the equations of motion, the conservation laws, and the
+                    variational principles are manifestations of the same underlying manifold structure. That is the
+                    basic mechanics we need before ordinary differential equations, Lie theory, and dynamical systems
+                    become fully legible as mechanical geometry rather than as catalogs of techniques.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises · synthesis</h2>
+                <p><strong>Exercise 1.10.</strong> Argue, without computing components, why the Euler–Lagrange equations
+                    of a reparametrization-invariant Lagrangian (homogeneous of first degree in velocity) cannot
+                    determine a preferred temporal parameter. What does this already suggest about relativistic free
+                    motion later?</p>
+                <p><strong>Exercise 1.11.</strong> A double pendulum has configuration space $Q=S^1\times S^1$. Sketch
+                    why the tangent bundle description $TQ$ is natural for writing kinetic energy, and why a single
+                    ambient $\mathbb{R}^4$ chart for $(q,\dot q)$ is locally fine yet globally misleading near the full
+                    circle of angles.</p>
+                <p><strong>Exercise 1.12.</strong> Write a short proof journal: choose one of Noether, Bertrand, or the
+                    Rayleigh energy dissipation statement above, expand the sketch to a full argument under explicit
+                    hypotheses (smoothness, regularity of $L$, etc.), and mark where geometry entered relative to pure
+                    coordinate calculation.</p>
+            </section>
+
+        </div>
+    </main>
+</body>
+
+</html>
