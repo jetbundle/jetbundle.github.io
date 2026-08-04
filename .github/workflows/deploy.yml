@@ -37,6 +37,7 @@ jobs:
           test -f _site/index.html && test -s _site/index.html
           test -f _site/styles.css
           test -f _site/physics/index.html
+          test -f _site/physics/mechanics/index.html
           test -f _site/physics/architecture-linearity/index.html
           test -f _site/physics/architecture-linearity/chapter-1/index.html
           test -f _site/physics/architecture-linearity/chapter-1/widgets.js
