@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ordinary differential equations · mechanics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">mechanics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">ordinary differential equations</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>2 · ordinary differential equations</h1>
+            <p class="doc-lead"><em>vector fields, flows, and the geometry of phase space</em></p>
+            <p class="doc-intro">The qualitative theory of ordinary differential equations shifts attention from the search
+                for explicit solutions to the geometric structure of the phase space and the global behaviour of the
+                associated flow. Once the equations are recognised as defining a vector field, the entire apparatus of
+                differential geometry becomes available, and local analytic techniques are subordinated to topological
+                and dynamical invariants.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="phase">
+                <h2>phase space, vector fields and flows</h2>
+                <p>An autonomous system of ordinary differential equations on an open set $U\subset\mathbb{R}^n$,
+                    $$
+                    \dot{x}=v(x),\qquad x\in U,
+                    $$
+                    is equivalently described by the phase-velocity vector field $v$. The solution curves are the integral
+                    curves of $v$.</p>
+
+                <p><strong>definition (autonomous vector field).</strong> a map $v:U\to\mathbb{R}^n$ of class
+                    $C^1$ (or at least locally Lipschitz) is a vector field on $U$. a curve $x:I\to U$ is an
+                    <em>integral curve</em> of $v$ if $\dot{x}(t)=v(x(t))$ for all $t\in I$.</p>
+
+                <p><strong>definition (local flow).</strong> a <em>local flow</em> of $v$ is a map
+                    $(t,x)\mapsto\varphi_t(x)$, defined on an open set of $\mathbb{R}\times U$ containing
+                    $\{0\}\times U$, such that $t\mapsto\varphi_t(x_0)$ is the unique integral curve of $v$ with
+                    $\varphi_0(x_0)=x_0$. write
+                    $$
+                    \varphi_t(x_0)=x(t;x_0)
+                    $$
+                    whenever the solution is defined.</p>
+
+                <p>Under standard regularity assumptions the local flow exists for small $|t|$ and satisfies the group
+                    property
+                    $$
+                    \varphi_{t+s}=\varphi_t\circ\varphi_s
+                    $$
+                    whenever both sides are defined. Thus $\{\varphi_t\}$ is a local one-parameter group of
+                    diffeomorphisms of the phase space. The mathematical motivation for this language is that every
+                    intrinsic geometric notion (orbits, invariant sets, conjugacies) can be expressed solely in terms of
+                    the action of the flow, independently of any particular coordinate representation of $v$.</p>
+
+                <p><strong>theorem (group property of the local flow).</strong> let $v$ be locally Lipschitz on open
+                    $U\subset\mathbb{R}^n$. if $\varphi_s(x_0)$ is defined and both sides of the following formula make
+                    sense, then
+                    $$
+                    \varphi_{t+s}(x_0)=\varphi_t\bigl(\varphi_s(x_0)\bigr).
+                    $$</p>
+
+                <p><strong>proof.</strong> fix $s$ and set $y_0=\varphi_s(x_0)$. the curve
+                    $t\mapsto\varphi_{t+s}(x_0)$ solves $\dot x=v(x)$ with value $y_0$ at $t=0$. the curve
+                    $t\mapsto\varphi_t(y_0)$ solves the same ODE with the same initial condition. by uniqueness of
+                    solutions (proved below via Picard), the two curves coincide on their common interval of
+                    definition. renaming the free variable yields the group property. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="conjugacy">
+                <h2>action of diffeomorphisms and coordinate-free character</h2>
+                <p>If $\Phi$ is a diffeomorphism of the ambient space, it acts on vector fields by push-forward,
+                    $$
+                    (\Phi_*v)(y)=T\Phi\cdot v(\Phi^{-1}(y)).
+                    $$
+                    Direction fields (unoriented line fields) transform in the same way. Two vector fields that are
+                    related by such a push-forward generate flows that are conjugate.</p>
+
+                <p><strong>definition (push-forward of a vector field).</strong> for a $C^1$ diffeomorphism
+                    $\Phi:U\to\Phi(U)$ and a vector field $v$ on $U$,
+                    $$
+                    (\Phi_*v)(y)
+                    =D\Phi(\Phi^{-1}(y))\cdot v(\Phi^{-1}(y)).
+                    $$</p>
+
+                <p><strong>theorem (conjugacy of flows).</strong> if $\psi_t$ is the local flow of $\Phi_*v$ and
+                    $\varphi_t$ is the local flow of $v$, then on a common domain of definition
+                    $$
+                    \Phi\circ\varphi_t=\psi_t\circ\Phi.
+                    $$</p>
+
+                <p><strong>proof.</strong> fix $x_0\in U$ and set $\gamma(t)=\Phi\bigl(\varphi_t(x_0)\bigr)$. then
+                    $\gamma(0)=\Phi(x_0)$ and
+                    $$
+                    \dot\gamma(t)
+                    =D\Phi(\varphi_t(x_0))\cdot v(\varphi_t(x_0))
+                    =(\Phi_*v)\bigl(\gamma(t)\bigr).
+                    $$
+                    thus $\gamma$ is the integral curve of $\Phi_*v$ starting at $\Phi(x_0)$, which is by definition
+                    $t\mapsto\psi_t(\Phi(x_0))$. uniqueness gives
+                    $\Phi\circ\varphi_t=\psi_t\circ\Phi$. $\square$</p>
+
+                <p><strong>remark.</strong> consequently the qualitative dynamics is an invariant of the equivalence class
+                    of the vector field under diffeomorphisms. this coordinate-free viewpoint is the natural setting in
+                    which to formulate structural stability, topological classification, and bifurcation theory.</p>
+            </section>
+
+            <section class="doc-section" id="local">
+                <h2>local rectification, existence and uniqueness, periodic orbits</h2>
+                <p>The rectification theorem asserts that near any non-singular point the field can be straightened to a
+                    constant field. Global (or at least local) existence and uniqueness of solutions follow from the
+                    contraction-mapping principle applied to the integral equation of Picard.</p>
+
+                <p><strong>theorem (local existence and uniqueness, Picard).</strong> let $v$ be Lipschitz with
+                    constant $K$ on a closed ball $\overline{B_r(x_0)}\subset U$, with $\|v\|\le M$ on that ball.
+                    then there exists $T&gt;0$ such that the initial-value problem
+                    $$
+                    \dot x=v(x),\qquad x(0)=x_0
+                    $$
+                    admits a unique $C^1$ solution on $[-T,T]$ with image remaining in $B_r(x_0)$.</p>
+
+                <p><strong>proof.</strong> a continuous curve $x:[-T,T]\to\mathbb{R}^n$ solves the ODE with initial value
+                    $x_0$ if and only if it solves the integral equation
+                    $$
+                    x(t)=x_0+\int_0^t v\bigl(x(s)\bigr)\,ds.
+                    $$
+                    let $X$ be the Banach space of continuous maps $[-T,T]\to\mathbb{R}^n$ with the supremum norm, and
+                    let
+                    $$
+                    \mathcal{C}
+                    =\bigl\{x\in X:\ \|x(t)-x_0\|\le r\ \forall\,t\in[-T,T]\bigr\},
+                    $$
+                    a closed subset of $X$. define the Picard operator
+                    $$
+                    (Px)(t)=x_0+\int_0^t v\bigl(x(s)\bigr)\,ds.
+                    $$
+                    if $T\le r/M$ and $x\in\mathcal{C}$, then $\|(Px)(t)-x_0\|\le MT\le r$, so
+                    $P:\mathcal{C}\to\mathcal{C}$. for $x,y\in\mathcal{C}$,
+                    $$
+                    \|(Px)(t)-(Py)(t)\|
+                    \le\int_0^{|t|}K\|x(s)-y(s)\|\,ds
+                    \le KT\|x-y\|_\infty,
+                    $$
+                    so if $KT&lt;1$ the operator $P$ is a contraction of the complete metric space $\mathcal{C}$. the
+                    Banach fixed-point theorem yields a unique fixed point, which is the unique continuous solution of the
+                    integral equation, hence the unique $C^1$ solution of the ODE on $[-T,T]$. $\square$</p>
+
+                <p><strong>remark (maximal interval).</strong> iterating the local existence theorem along a solution
+                    produces a maximal open interval of existence. if that interval is finite in one direction, the
+                    solution must leave every compact subset of $U$ (escape time theorem).</p>
+
+                <p><strong>theorem (rectification / flow box).</strong> let $v$ be $C^1$ near $x_0$ with
+                    $v(x_0)\neq 0$. then there exist open neighbourhoods $W\ni x_0$ and $V\subset\mathbb{R}^n$, and a
+                    $C^1$ diffeomorphism $\Psi:V\to W$, such that
+                    $$
+                    \Psi_*\Bigl(\frac{\partial}{\partial u^1}\Bigr)=v\Big|_W.
+                    $$
+                    in coordinates $(u^1,\dots,u^n)$ the field is the constant field $\partial/\partial u^1$.</p>
+
+                <p><strong>proof.</strong> without loss of generality take $x_0=0$ and $v(0)=e_1=(1,0,\dots,0)$ after an
+                    invertible linear change of coordinates (possible because $v(0)\neq 0$). for $y=(0,y')\in\{0\}\times\mathbb{R}^{n-1}$
+                    near $0$ and for small $t$, set
+                    $$
+                    \Psi(t,y'):=\varphi_t(0,y'),
+                    $$
+                    where $\varphi$ is the local flow of $v$. then $\Psi(0,0)=0$ and
+                    $$
+                    D\Psi(0,0)\,e_1
+                    =\frac{\partial}{\partial t}\Big|_{t=0}\varphi_t(0)
+                    =v(0)=e_1,
+                    $$
+                    while the partial derivatives of $\Psi$ with respect to the $y'$ directions at $(0,0)$ span a
+                    complement of $\mathrm{span}\{e_1\}$ because at $t=0$ one has $\Psi(0,y')=(0,y')$. thus
+                    $D\Psi(0,0)$ is invertible. the inverse function theorem yields a local $C^1$ diffeomorphism
+                    $\Psi$. by construction,
+                    $$
+                    \frac{\partial}{\partial t}\Psi(t,y')
+                    =v\bigl(\Psi(t,y')\bigr),
+                    $$
+                    which is exactly $\Psi_*(\partial/\partial t)=v$ in flow-box coordinates
+                    $(u^1,u')=(t,y')$. $\square$</p>
+
+                <p><strong>definition (periodic orbit).</strong> a non-constant integral curve $\gamma$ is
+                    <em>periodic</em> if there exists $T&gt;0$ with $\gamma(t+T)=\gamma(t)$ for all $t$ on the maximal
+                    interval. the image is a closed orbit in phase space.</p>
+
+                <p><strong>remark.</strong> existence of a periodic orbit is a global topological question that cannot be
+                    decided by local rectification alone: near a non-singular point the rectified field has only straight
+                    open orbits.</p>
+            </section>
+
+            <section class="doc-section" id="linearization">
+                <h2>linearization at singular points</h2>
+                <p>At an equilibrium $x_*$ one has $v(x_*)=0$. The linearization is the linear vector field
+                    $$
+                    \dot{\xi}=A\xi,\qquad A=Dv(x_*).
+                    $$</p>
+
+                <p><strong>definition (equilibrium / singular point).</strong> a point $x_*\in U$ with $v(x_*)=0$ is an
+                    equilibrium of $v$. the matrix $A=Dv(x_*)$ is the linearization (Jacobian) of $v$ at $x_*$.</p>
+
+                <p><strong>definition (matrix exponential).</strong> for $A\in\mathrm{M}_n(\mathbb{R})$ or
+                    $\mathrm{M}_n(\mathbb{C})$,
+                    $$
+                    e^{tA}=\sum_{k=0}^\infty\frac{(tA)^k}{k!}.
+                    $$
+                    the series converges absolutely in the operator norm for every $t$ and every $A$.</p>
+
+                <p><strong>theorem (fundamental solution of linear systems).</strong> the unique solution of
+                    $\dot\xi=A\xi$, $\xi(0)=\xi_0$ is $\xi(t)=e^{tA}\xi_0$. moreover
+                    $$
+                    \frac{d}{dt}e^{tA}=A\,e^{tA}=e^{tA}A.
+                    $$</p>
+
+                <p><strong>proof.</strong> termwise differentiation of the power series (justified by absolute
+                    convergence on compact time intervals) yields
+                    $$
+                    \frac{d}{dt}e^{tA}
+                    =\sum_{k=1}^\infty\frac{k t^{k-1}A^k}{k!}
+                    =\sum_{k=0}^\infty\frac{t^k A^{k+1}}{k!}
+                    =A\,e^{tA}.
+                    $$
+                    thus $t\mapsto e^{tA}\xi_0$ solves the linear ODE with value $\xi_0$ at $t=0$. uniqueness for linear
+                    systems with continuous coefficients is a special case of Picard uniqueness. $\square$</p>
+
+                <p>Complexification of the real space $\mathbb{R}^n$ allows the use of the Jordan canonical form over
+                    $\mathbb{C}$. The real invariant subspaces corresponding to eigenvalues with negative, zero, and
+                    positive real parts yield the stable, centre, and unstable subspaces.</p>
+
+                <p><strong>definition (hyperbolic equilibrium).</strong> an equilibrium $x_*$ is <em>hyperbolic</em>
+                    if no eigenvalue of $A=Dv(x_*)$ has zero real part.</p>
+
+                <p><strong>theorem (hartman-grobman, statement).</strong> if $x_*$ is a hyperbolic equilibrium of a
+                    $C^1$ vector field $v$, then there exist neighbourhoods of $x_*$ and of $0$ and a homeomorphism
+                    $h$ between them conjugating the nonlinear flow of $v$ to the linear flow of $A=Dv(x_*)$.</p>
+
+                <p><strong>remark.</strong> the homeomorphism $h$ need not be differentiable. a complete proof uses a
+                    discrete Hartman map for a time-$t_0$ diffeomorphism near $x_*$ and a fixed-point argument in a
+                    suitable function space; the statement is recorded here for the classification programme, while the
+                    hyperbolicity hypothesis is the one that geometric users must check in examples.</p>
+            </section>
+
+            <section class="doc-section" id="classification">
+                <h2>classification, lyapunov functions and topological equivalence</h2>
+                <p>In the plane the linear classification produces nodes, saddles, foci, and centres according to the
+                    eigenvalues of $A$. The same local phase portraits persist for the nonlinear system when the
+                    equilibrium is hyperbolic (Hartman-Grobman). Lyapunov’s direct method supplies a coordinate-free
+                    criterion for stability without solving the ODE.</p>
+
+                <p><strong>definition (lyapunov function).</strong> a $C^1$ function $V$ defined near an equilibrium
+                    $x_*$ is a Lyapunov function if $V(x_*)=0$, $V(x)&gt;0$ for $x\neq x_*$ in a punctured neighbourhood,
+                    and the orbital derivative
+                    $$
+                    \dot V(x):=DV(x)\cdot v(x)
+                    $$
+                    satisfies $\dot V(x)\le 0$ on that neighbourhood.</p>
+
+                <p><strong>theorem (lyapunov stability).</strong> if a Lyapunov function $V$ exists near $x_*$, then
+                    $x_*$ is (Lyapunov) stable. if moreover $\dot V(x)&lt;0$ for all $x\neq x_*$ in a neighbourhood, then
+                    $x_*$ is asymptotically stable.</p>
+
+                <p><strong>proof.</strong> stability: fix $\varepsilon&gt;0$ small enough that the closed ball
+                    $\overline{B_\varepsilon(x_*)}$ lies in the domain of $V$. let
+                    $$
+                    m:=\min\bigl\{V(x):\ \|x-x_*\|=\varepsilon\bigr\}&gt;0
+                    $$
+                    (continuous function on a compact set, positive because $V$ vanishes only at $x_*$). by continuity of
+                    $V$ there is $\delta&gt;0$ such that $\|x-x_*\|&lt;\delta$ implies $V(x)&lt;m$. now let $x(t)$ be a
+                    solution with $\|x(0)-x_*\|&lt;\delta$. if it first hits the sphere of radius $\varepsilon$ at time
+                    $t_1$, then $V(x(t_1))\ge m$, but $V(x(t))$ is nonincreasing along solutions because
+                    $\dot V\le 0$, so $V(x(t_1))\le V(x(0))&lt;m$, a contradiction. hence the solution remains in
+                    $B_\varepsilon$ for all forward time of existence, and for short times of backward existence in the
+                    standard formulation of stability one argues on a maximal interval on which the orbit stays in a
+                    compact set. thus $x_*$ is stable.</p>
+                <p>asymptotic stability under $\dot V&lt;0$: stability is already secured. let $x(t)$ start near
+                    $x_*$. the function $t\mapsto V(x(t))$ is strictly decreasing and bounded below by $0$, so it
+                    converges to some $\ell\ge 0$. if the $\omega$-limit set contains a point $y\neq x_*$ then
+                    continuous dependence and the strict decrease of $V$ produce a contradiction (along the orbit
+                    through $y$, $V$ drops below $\ell$). for planar and finite-dimensional settings it follows that
+                    $x(t)\to x_*$ (standard $\omega$-limit argument for continuous flows on compact neighbourhoods
+                    trapped by the Lyapunov sublevel sets). $\square$</p>
+
+                <p><strong>remark (on the asymptotic half).</strong> the strict inequality $\dot V&lt;0$ is the classical
+                    sufficient criterion. refinements (LaSalle) allow $\dot V\le 0$ when the largest invariant set in
+                    $\{\dot V=0\}$ is reduced to $\{x_*\}$; those refinements are deferred to the dynamical systems
+                    chapter.</p>
+
+                <p><strong>definition (topological equivalence).</strong> two vector fields are topologically equivalent
+                    if there exists a homeomorphism mapping oriented orbits of one onto oriented orbits of the other.
+                    hyperbolic equilibria of the same index (dimension of the unstable subspace) are topologically
+                    equivalent by Hartman-Grobman; centres and weak foci require finer invariants.</p>
+            </section>
+
+            <section class="doc-section" id="manifolds">
+                <h2>extension to differentiable manifolds</h2>
+                <p>On a smooth manifold $M$ a vector field is a section of the tangent bundle $TM$. The notions of flow,
+                    linearization, and Lyapunov function carry over verbatim: charts reduce local questions to
+                    $\mathbb{R}^n$, while global invariants do not.</p>
+
+                <p><strong>definition (index of an isolated singular point, in $\mathbb{R}^n$).</strong> if $x_*$ is an
+                    isolated zero of a continuous vector field $v$ and $S_\varepsilon$ is a small sphere about $x_*$
+                    on which $v\neq 0$, the <em>index</em> of $x_*$ is the degree of the normalised map
+                    $$
+                    \frac{v}{|v|}:S_\varepsilon\to S^{n-1}.
+                    $$</p>
+
+                <p><strong>theorem (poincare-hopf, statement).</strong> if $M$ is a compact smooth manifold and $v$ is a
+                    continuous vector field with finitely many isolated zeros, then the sum of the indices of the zeros
+                    equals the Euler characteristic $\chi(M)$.</p>
+
+                <p><strong>remark.</strong> thus the global topology of $M$ constrains the possible singular sets of any
+                    continuous vector field. the full proof uses either obstruction theory or triangulation and
+                    local-to-global additivity of degree; the theorem is the precise sense in which “every continuous
+                    vector field on $S^2$ has a singular point” (hairy ball) is a special case $\chi(S^2)=2$.</p>
+
+                <p><strong>theorem (no nowhere-vanishing continuous vector field on even spheres, sketch from
+                        poincare-hopf).</strong> if $n$ is even then $\chi(S^n)=2\neq 0$, so any continuous vector field
+                    on $S^n$ has at least one zero.</p>
+
+                <p><strong>proof.</strong> the Euler characteristic of $S^n$ is $2$ for even $n$ and $0$ for odd $n$.
+                    if a continuous field were nowhere zero, the zero set would be empty and the index sum would be $0$,
+                    contradicting Poincare-Hopf when $\chi(S^n)\neq 0$. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="conservative">
+                <h2>conservative systems with one degree of freedom</h2>
+                <p>A second-order equation $\ddot q=f(q)$ is equivalent to the planar system
+                    $$
+                    \dot q=p,\qquad\dot p=f(q).
+                    $$
+                    When $f=-V'$ the total energy
+                    $$
+                    E=\frac12 p^2+V(q)
+                    $$
+                    is a first integral. The phase portrait is completely determined by the level sets of $E$: closed
+                    level curves correspond to periodic (librational) motions, while unbounded level curves correspond to
+                    unbounded trajectories. Critical points of $V$ produce equilibria whose stability is decided by the
+                    second-derivative test; the global arrangement of separatrices is read off from the critical values
+                    of the potential.</p>
+
+                <p><strong>theorem (energy integral for $\ddot q=-V'(q)$).</strong> along every $C^2$ solution of
+                    $\ddot q=-V'(q)$ the function $E(q,\dot q)=\frac12\dot q^2+V(q)$ is constant.</p>
+
+                <p><strong>proof.</strong>
+                    $$
+                    \frac{dE}{dt}
+                    =\dot q\,\ddot q+V'(q)\dot q
+                    =\dot q\bigl(\ddot q+V'(q)\bigr)
+                    =0
+                    $$
+                    by the equation of motion. $\square$</p>
+
+                <p><strong>theorem (phase portrait from the potential).</strong> assume $V$ is $C^2$ and
+                    $q_*$ is a nondegenerate critical point. if $V''(q_*)&gt;0$ then the equilibrium $(q_*,0)$ of the
+                    planar system is a centre for the linearized system and is a Lyapunov-stable equilibrium of the
+                    nonlinear system (with Lyapunov function $E-E(q_*,0)$). if $V''(q_*)&lt;0$ then $(q_*,0)$ is a saddle
+                    of both the linearization and the nonlinear flow in a neighbourhood.</p>
+
+                <p><strong>proof.</strong> linearization of $(\dot q,\dot p)=(p,-V'(q))$ at $(q_*,0)$ is
+                    $$
+                    A=\begin{pmatrix}0&1\\-V''(q_*)&0\end{pmatrix}.
+                    $$
+                    eigenvalues satisfy $\lambda^2+V''(q_*)=0$. if $V''(q_*)&gt;0$ then $\lambda=\pm i\omega$
+                    (purely imaginary), which is the linear centre. the function $L(q,p)=E(q,p)-V(q_*)$ is positive
+                    definite near $(q_*,0)$ because $V(q)-V(q_*)$ has a local minimum of quadratic order and
+                    $\frac12 p^2$ is positive definite in $p$; moreover $\dot L=0$ by energy conservation, so Lyapunov’s
+                    theorem gives stability. if $V''(q_*)&lt;0$ then $\lambda=\pm\sqrt{|V''(q_*)|}$ are real of opposite
+                    sign, so the linearization is a saddle. hyperbolicity plus Hartman-Grobman (or an elementary
+                    topological argument for planar saddles) yields a nonlinear saddle. $\square$</p>
+
+                <p><strong>remark.</strong> this elementary picture already exhibits the fundamental dichotomy between
+                    bounded and unbounded motions that persists, in far more subtle form, in higher-dimensional
+                    Hamiltonian systems (to be met again under symplectic methods).</p>
+            </section>
+
+            <section class="doc-section" id="summary">
+                <h2>summary</h2>
+                <p>The geometric theory of ordinary differential equations replaces the classical search for closed-form
+                    solutions by the study of the phase flow as a dynamical system on a manifold. Local analytic normal
+                    forms, topological indices, and Lyapunov functions together provide a coherent set of tools for
+                    classifying equilibria, detecting periodic orbits, and relating the differential equation to the
+                    topology of the underlying space.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (picard contraction).</strong> for $\dot x=-x$ on $\mathbb{R}$, write the Picard
+                    iteration starting from $x^{(0)}(t)\equiv 1$ with $x(0)=1$, and show that it converges to
+                    $e^{-t}$ on any fixed interval $[-T,T]$. compute the Lipschitz constant of $v(x)=-x$ and verify that
+                    the proof above applies on every ball.</p>
+
+                <p><strong>exercise 2 (linear classification in the plane).</strong> draw the phase portrait of
+                    $\dot\xi=A\xi$ for
+                    $$
+                    A=\begin{pmatrix}-1&0\\0&-2\end{pmatrix},\qquad
+                    A=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+                    A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+                    $$
+                    identify node, saddle, and centre. which of these equilibria are hyperbolic?</p>
+
+                <p><strong>exercise 3 (energy portrait).</strong> take $V(q)=\frac14 q^4-\frac12 q^2$. locate the
+                    critical points, classify the equilibria of the planar system $(\dot q,\dot p)=(p,-V'(q))$, and
+                    sketch the level sets of $E$ that produce a figure-eight separatrix (homoclinic pair).</p>
+
+                <p><strong>exercise 4 (lyapunov for a focus).</strong> for
+                    $$
+                    \dot x=-x-y,\qquad \dot y=x-y
+                    $$
+                    show that $V=x^2+y^2$ is a strict Lyapunov function at the origin, and conclude asymptotic
+                    stability. compute the eigenvalues of the linearization and compare with the classification table
+                    of planar linear systems.</p>
+            </section>
+
+        </div>
+    </main>
+</body>
+
+</html>
