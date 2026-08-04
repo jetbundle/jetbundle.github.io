@@ -4,783 +4,779 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  font-size: 15px;
-  -webkit-text-size-adjust: 100%;
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
-  line-height: 1.65;
-  color: var(--fg);
-  background: var(--bg);
+    margin: 0;
+    min-height: 100vh;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
 }
 
 a {
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 a:hover {
-  color: var(--link-hover);
+    color: var(--link-hover);
 }
 
 .wrap {
-  max-width: 52ch;
-  margin: 0 auto;
-  padding: 3rem 1.25rem 4rem;
+    max-width: 52ch;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
 }
 
 .stub {
-  max-width: 52ch;
-  margin: 0 auto;
-  padding: 3rem 1.25rem;
+    max-width: 52ch;
+    margin: 0 auto;
+    padding: 3rem 1.25rem;
 }
 
 .brand {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: #e6e6e6;
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: #e6e6e6;
 }
 
 .tagline {
-  margin: 0 0 2rem;
-  color: var(--dim);
-  font-size: 0.95rem;
+    margin: 0 0 2rem;
+    color: var(--dim);
+    font-size: 0.95rem;
 }
 
 .block {
-  margin: 0 0 1.25rem;
-  font-size: 0.95rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.95rem;
 }
 
 .stub h1 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 1rem;
-  color: #e6e6e6;
-  letter-spacing: 0.06em;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: #e6e6e6;
+    letter-spacing: 0.06em;
 }
 
 .stub p {
-  margin: 0 0 1rem;
-  color: var(--dim);
-  font-size: 0.95rem;
+    margin: 0 0 1rem;
+    color: var(--dim);
+    font-size: 0.95rem;
 }
 
 .back {
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
 }
 
 .dim {
-  color: var(--dim);
+    color: var(--dim);
 }
 
 .fg {
-  color: var(--fg);
-  font-size: 0.95rem;
-  line-height: 1.7;
+    color: var(--fg);
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 .subnav {
-  margin: 0 0 1.5rem;
-  font-size: 0.9rem;
-  color: var(--dim);
+    margin: 0 0 1.5rem;
+    font-size: 0.9rem;
+    color: var(--dim);
 }
 
 .subnav-sep {
-  margin: 0 0.5rem;
-  color: var(--dim);
+    margin: 0 0.5rem;
+    color: var(--dim);
 }
 
 .doc {
-  max-width: 68ch;
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
 }
 
 .doc-header {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .doc-header h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #e6e6e6;
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #e6e6e6;
 }
 
 .doc-lead {
-  margin: 0 0 1rem;
-  color: var(--dim);
-  font-size: 0.95rem;
+    margin: 0 0 1rem;
+    color: var(--dim);
+    font-size: 0.95rem;
 }
 
 .doc-intro {
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-.doc-intro:last-of-type {
-  margin-bottom: 0;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 .toc {
-  margin: 0 0 2rem;
-  padding: 1rem 0 0;
+    margin: 0 0 2rem;
+    padding: 1rem 0 0;
 }
 
 .toc-title {
-  margin: 0 0 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dim);
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
 }
 
 .toc-list {
-  margin: 0;
-  padding-left: 1.35rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
+    margin: 0;
+    padding-left: 1.35rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fg);
 }
 
 .toc-list a {
-  color: var(--link);
+    color: var(--link);
 }
 
 .doc-rule {
-  border: none;
-  border-top: 1px solid #222;
-  margin: 0 0 2rem;
+    border: none;
+    border-top: 1px solid #222;
+    margin: 0 0 2rem;
 }
 
 .doc-body {
-  margin: 0;
+    margin: 0;
 }
 
 /* definitions and labeled items: bold + underline for scanability */
 main.doc .doc-body strong {
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.12em;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
 }
 
 .doc-section {
-  margin: 0 0 2.25rem;
-  scroll-margin-top: 1.25rem;
+    margin: 0 0 2.25rem;
+    scroll-margin-top: 1.25rem;
 }
 
 .doc-section h2 {
-  margin: 0 0 0.65rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--link);
-  letter-spacing: 0.04em;
+    margin: 0 0 0.65rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--link);
+    letter-spacing: 0.04em;
 }
 
 .doc-section p {
-  margin: 0 0 0.95rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
+    margin: 0 0 0.95rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fg);
 }
 
 .doc-section p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .doc-section ol {
-  margin: 0.5rem 0 0.85rem 1.35rem;
-  padding: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
+    margin: 0.5rem 0 0.85rem 1.35rem;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fg);
 }
 
 .doc-section ol li {
-  margin: 0.35rem 0;
+    margin: 0.35rem 0;
 }
 
 .doc .katex {
-  font-size: 1em;
-  color: var(--fg);
+    font-size: 1em;
+    color: var(--fg);
 }
 
 .doc-section h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--link-hover);
-  letter-spacing: 0.03em;
+    margin: 1rem 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--link-hover);
+    letter-spacing: 0.03em;
 }
 
 .doc-section table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0.9rem 0 0;
-  font-size: 0.9rem;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.9rem 0 0;
+    font-size: 0.9rem;
 }
 
 .doc-section th,
 .doc-section td {
-  border: 1px solid #222;
-  padding: 0.55rem 0.6rem;
-  vertical-align: top;
+    border: 1px solid #222;
+    padding: 0.55rem 0.6rem;
+    vertical-align: top;
 }
 
 .doc-section th {
-  color: #e6e6e6;
-  font-weight: 600;
+    color: #e6e6e6;
+    font-weight: 600;
 }
 
 .doc-footer {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #222;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #222;
 }
 
 .doc-footer p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--dim);
-  line-height: 1.65;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--dim);
+    line-height: 1.65;
 }
 
 /* optional easter-egg / bonus outline entry */
 .toc-bonus {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed #333;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #333;
 }
 
 .toc-bonus a {
-  color: var(--dim);
-  font-size: 0.88rem;
+    color: var(--dim);
+    font-size: 0.88rem;
 }
 
 .toc-bonus a:hover {
-  color: var(--link);
+    color: var(--link);
 }
 
 /* architecture-linearity book: spine rails + ledger tables */
 .spine-rail {
-  margin: 0 0 1.25rem;
-  padding: 0.65rem 0 0.65rem 0.85rem;
-  border-left: 3px solid color-mix(in srgb, var(--link) 55%, transparent);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--fg);
+    margin: 0 0 1.25rem;
+    padding: 0.65rem 0 0.65rem 0.85rem;
+    border-left: 3px solid color-mix(in srgb, var(--link) 55%, transparent);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--fg);
 }
 
 .spine-rail strong {
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.12em;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
 }
 
 .spine-map {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 0 1.5rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.5rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
 }
 
 .spine-map th,
 .spine-map td {
-  border: 1px solid #222;
-  padding: 0.5rem 0.55rem;
-  vertical-align: top;
-  text-align: left;
+    border: 1px solid #222;
+    padding: 0.5rem 0.55rem;
+    vertical-align: top;
+    text-align: left;
 }
 
 .spine-map th {
-  color: #e6e6e6;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+    color: #e6e6e6;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 .spine-map td {
-  color: var(--fg);
+    color: var(--fg);
 }
 
 .spine-map td.dim {
-  color: var(--dim);
-  font-size: 0.85rem;
+    color: var(--dim);
+    font-size: 0.85rem;
 }
 
 /* chapters: headings directly under .doc-body (no .doc-section wrapper) */
 main.doc .doc-body>h2 {
-  margin: 1.6rem 0 0.55rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--link);
-  letter-spacing: 0.04em;
+    margin: 1.6rem 0 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--link);
+    letter-spacing: 0.04em;
 }
 
 main.doc .doc-body>h2:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 main.doc .doc-body>.spine-rail+h2 {
-  margin-top: 0.75rem;
+    margin-top: 0.75rem;
 }
 
 main.doc .doc-body>h3 {
-  margin: 1.1rem 0 0.45rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--link-hover);
-  letter-spacing: 0.03em;
+    margin: 1.1rem 0 0.45rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--link-hover);
+    letter-spacing: 0.03em;
 }
 
 main.doc .doc-body>p,
 main.doc .doc-body>ul,
 main.doc .doc-body>ol {
-  margin: 0 0 0.85rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
+    margin: 0 0 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fg);
 }
 
 main.doc .doc-body>ul,
 main.doc .doc-body>ol {
-  padding-left: 1.35rem;
+    padding-left: 1.35rem;
 }
 
 main.doc .doc-body li {
-  margin: 0.3rem 0;
+    margin: 0.3rem 0;
 }
 
 /* architecture-linearity book landing */
 .architecture-landing {
-  position: relative;
-  z-index: 1;
-  max-width: 72ch;
-  margin: 0 auto;
-  padding: 3rem 1.25rem 4rem;
+    position: relative;
+    z-index: 1;
+    max-width: 72ch;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
 }
 
 .architecture-landing__bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.11;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.11;
 }
 
 .architecture-landing__bg canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .architecture-landing h1 {
-  margin: 0 0 0.75rem;
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #e6e6e6;
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #e6e6e6;
 }
 
 .architecture-landing .doc-lead {
-  margin: 0 0 1.25rem;
-  color: var(--dim);
-  font-size: 0.95rem;
+    margin: 0 0 1.25rem;
+    color: var(--dim);
+    font-size: 0.95rem;
 }
 
 .architecture-landing .doc-intro {
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
 }
 
 .architecture-landing .toc-list {
-  margin: 1rem 0 0;
-  padding-left: 1.35rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
+    margin: 1rem 0 0;
+    padding-left: 1.35rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
 }
 
 /* computation treatise */
 .invariant {
-  color: var(--fg);
-  font-style: italic;
-  border-left: 3px solid color-mix(in srgb, var(--link) 55%, transparent);
-  padding-left: 0.85rem;
+    color: var(--fg);
+    font-style: italic;
+    border-left: 3px solid color-mix(in srgb, var(--link) 55%, transparent);
+    padding-left: 0.85rem;
 }
 
 .invariant-block {
-  margin: 0.85rem 0 0;
-  padding: 0.65rem 0.85rem;
-  background: var(--panel);
-  border-left: 3px solid var(--link);
-  color: var(--fg);
-  font-size: 0.95rem;
-  line-height: 1.7;
+    margin: 0.85rem 0 0;
+    padding: 0.65rem 0.85rem;
+    background: var(--panel);
+    border-left: 3px solid var(--link);
+    color: var(--fg);
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 .toc-lab {
-  margin-top: 0.75rem;
-  padding-top: 0.65rem;
-  border-top: 1px dashed #333;
+    margin-top: 0.75rem;
+    padding-top: 0.65rem;
+    border-top: 1px dashed #333;
 }
 
 .toc-lab a {
-  color: var(--link-hover);
+    color: var(--link-hover);
 }
 
 .code-panel {
-  margin: 0.85rem 0;
-  padding: 0.75rem 0.9rem;
-  background: var(--panel);
-  border: 1px solid #222;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--fg);
-  overflow-x: auto;
+    margin: 0.85rem 0;
+    padding: 0.75rem 0.9rem;
+    background: var(--panel);
+    border: 1px solid #222;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--fg);
+    overflow-x: auto;
 }
 
 .code-panel code {
-  font-family: inherit;
+    font-family: inherit;
 }
 
 .code-panel--compact {
-  margin-bottom: 0.65rem;
+    margin-bottom: 0.65rem;
 }
 
 .hierarchy-panel {
-  margin: 0.85rem 0;
-  padding: 0.85rem 1rem;
-  background: var(--panel);
-  border: 1px solid #222;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--dim);
+    margin: 0.85rem 0;
+    padding: 0.85rem 1rem;
+    background: var(--panel);
+    border: 1px solid #222;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--dim);
 }
 
 .warn-text {
-  color: var(--warn);
-  font-size: 0.95rem;
-  margin: 0.75rem 0 0;
+    color: var(--warn);
+    font-size: 0.95rem;
+    margin: 0.75rem 0 0;
 }
 
 .widget-panel {
-  margin: 1.25rem 0 0;
-  padding: 1rem;
-  background: var(--panel);
-  border: 1px solid #222;
+    margin: 1.25rem 0 0;
+    padding: 1rem;
+    background: var(--panel);
+    border: 1px solid #222;
 }
 
 .widget-label {
-  margin: 0 0 0.65rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--link);
+    margin: 0 0 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--link);
 }
 
 .widget-controls {
-  margin: 0.75rem 0 0;
+    margin: 0.75rem 0 0;
 }
 
 .widget-btn {
-  font-family: inherit;
-  font-size: 0.88rem;
-  padding: 0.35rem 0.75rem;
-  margin-right: 0.5rem;
-  color: var(--fg);
-  background: #111;
-  border: 1px solid #333;
-  cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 0.35rem 0.75rem;
+    margin-right: 0.5rem;
+    color: var(--fg);
+    background: #111;
+    border: 1px solid #333;
+    cursor: pointer;
 }
 
 .widget-btn:hover:not(:disabled) {
-  color: var(--link-hover);
-  border-color: var(--link);
+    color: var(--link-hover);
+    border-color: var(--link);
 }
 
 .widget-btn:disabled {
-  opacity: 0.45;
-  cursor: default;
+    opacity: 0.45;
+    cursor: default;
 }
 
 .widget-btn--dim {
-  color: var(--dim);
+    color: var(--dim);
 }
 
 .memory-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.88rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
 }
 
 .memory-table th,
 .memory-table td {
-  border: 1px solid #222;
-  padding: 0.45rem 0.55rem;
-  text-align: left;
+    border: 1px solid #222;
+    padding: 0.45rem 0.55rem;
+    text-align: left;
 }
 
 .memory-table th {
-  color: #e6e6e6;
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+    color: #e6e6e6;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
 }
 
 .memory-row--flash td {
-  color: var(--link-hover);
+    color: var(--link-hover);
 }
 
 /* computational laboratory */
 .lab-shell {
-  max-width: 96ch;
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+    max-width: 96ch;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
 }
 
 .lab-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "theory terminal"
-    "viz viz";
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "theory terminal"
+        "viz viz";
 }
 
 .lab-pane {
-  padding: 1rem;
-  background: var(--panel);
-  border: 1px solid #222;
+    padding: 1rem;
+    background: var(--panel);
+    border: 1px solid #222;
 }
 
 .lab-pane--theory {
-  grid-area: theory;
+    grid-area: theory;
 }
 
 .lab-pane--terminal {
-  grid-area: terminal;
+    grid-area: terminal;
 }
 
 .lab-pane--viz {
-  grid-area: viz;
+    grid-area: viz;
 }
 
 .lab-pane-title {
-  margin: 0 0 0.65rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--link);
+    margin: 0 0 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--link);
 }
 
 .lab-module-list {
-  margin: 0;
-  padding-left: 1.25rem;
-  font-size: 0.9rem;
-  line-height: 1.75;
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.75;
 }
 
 .lab-module-list a {
-  color: var(--link);
+    color: var(--link);
 }
 
 .lab-active {
-  color: var(--link-hover) !important;
-  font-weight: 600;
+    color: var(--link-hover) !important;
+    font-weight: 600;
 }
 
 .lab-terminal {
-  margin: 0;
-  min-height: 8rem;
+    margin: 0;
+    min-height: 8rem;
 }
 
 #lab-terminal-mount {
-  height: 220px;
-  padding: 0.35rem;
-  background: #000;
-  border: 1px solid #222;
+    height: 220px;
+    padding: 0.35rem;
+    background: #000;
+    border: 1px solid #222;
 }
 
 .terminal-status {
-  margin: 0.5rem 0 0;
-  font-size: 0.8rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
 }
 
 .lab-treatise-link {
-  font-size: 0.8rem;
-  text-decoration: none;
+    font-size: 0.8rem;
+    text-decoration: none;
 }
 
 .lab-viz-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
 .widget-btn--active {
-  color: var(--link-hover);
-  border-color: var(--link-hover);
+    color: var(--link-hover);
+    border-color: var(--link-hover);
 }
 
 .ca-canvas,
 .euler-canvas {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  background: #000;
-  border: 1px solid #222;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background: #000;
+    border: 1px solid #222;
 }
 
 .entropy-bar {
-  height: 8px;
-  background: #111;
-  border: 1px solid #222;
-  margin: 0.5rem 0;
+    height: 8px;
+    background: #111;
+    border: 1px solid #222;
+    margin: 0.5rem 0;
 }
 
 .entropy-bar-fill {
-  height: 100%;
-  width: 0;
-  background: var(--link);
-  transition: width 0.2s ease;
+    height: 100%;
+    width: 0;
+    background: var(--link);
+    transition: width 0.2s ease;
 }
 
 .entropy-input {
-  width: 100%;
-  font-family: inherit;
-  font-size: 0.88rem;
-  padding: 0.5rem;
-  color: var(--fg);
-  background: #000;
-  border: 1px solid #222;
-  resize: vertical;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 0.5rem;
+    color: var(--fg);
+    background: #000;
+    border: 1px solid #222;
+    resize: vertical;
 }
 
 .entropy-stats {
-  font-size: 0.88rem;
-  margin: 0.35rem 0;
+    font-size: 0.88rem;
+    margin: 0.35rem 0;
 }
 
 .euler-status {
-  font-size: 0.88rem;
-  margin: 0.5rem 0 0;
+    font-size: 0.88rem;
+    margin: 0.5rem 0 0;
 }
 
 .euler-status--ok {
-  color: var(--link);
+    color: var(--link);
 }
 
 .euler-status--bad {
-  color: var(--warn);
+    color: var(--warn);
 }
 
 .euler-dt-row {
-  margin: 0.5rem 0;
-  font-size: 0.88rem;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
 }
 
 .euler-dt-row input[type="range"] {
-  width: 100%;
-  accent-color: var(--link);
+    width: 100%;
+    accent-color: var(--link);
 }
 
 .rep-tabs {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .rep-lang-name {
-  font-size: 0.85rem;
-  color: var(--link-hover);
-  margin: 0 0 0.35rem;
+    font-size: 0.85rem;
+    color: var(--link-hover);
+    margin: 0 0 0.35rem;
 }
 
 .critique-list {
-  margin: 0.5rem 0 0.85rem 1.35rem;
-  padding: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
+    margin: 0.5rem 0 0.85rem 1.35rem;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fg);
 }
 
 .critique-list li {
-  margin: 0.4rem 0;
+    margin: 0.4rem 0;
 }
 
 .widget-panel--compact {
-  padding: 0.75rem;
-  margin-top: 0.85rem;
+    padding: 0.75rem;
+    margin-top: 0.85rem;
 }
 
 .arch-row--active td {
-  color: var(--link-hover);
-  background: #111;
+    color: var(--link-hover);
+    background: #111;
 }
 
 .hierarchy-list {
-  list-style: none;
-  margin: 0 0 0.75rem;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+    list-style: none;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
 }
 
 .hierarchy-btn {
-  font-family: inherit;
-  font-size: 0.82rem;
-  padding: 0.3rem 0.55rem;
-  color: var(--dim);
-  background: #111;
-  border: 1px solid #333;
-  cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82rem;
+    padding: 0.3rem 0.55rem;
+    color: var(--dim);
+    background: #111;
+    border: 1px solid #333;
+    cursor: pointer;
 }
 
 .hierarchy-btn:hover,
 .hierarchy-btn--active {
-  color: var(--link-hover);
-  border-color: var(--link-hover);
+    color: var(--link-hover);
+    border-color: var(--link-hover);
 }
 
 .hierarchy-eq {
-  min-height: 2.5rem;
-  padding: 0.5rem 0;
+    min-height: 2.5rem;
+    padding: 0.5rem 0;
 }
 
 .doc-footer--egg {
-  font-size: 0.88rem;
-  line-height: 1.7;
+    font-size: 0.88rem;
+    line-height: 1.7;
 }
 
 .doc-footer--egg p {
-  color: var(--dim);
+    color: var(--dim);
 }
 
 @media (max-width: 720px) {
-  .lab-grid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "theory"
-      "terminal"
-      "viz";
-  }
+    .lab-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "theory"
+            "terminal"
+            "viz";
+    }
 }
