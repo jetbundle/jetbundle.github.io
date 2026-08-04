@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mathematical methods · mechanics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">mechanics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">mathematical methods</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>4 · mathematical methods</h1>
+            <p class="doc-lead"><em>algebraic, analytic, and geometric tools for exact reduction and reliable computation</em></p>
+            <p class="doc-intro">The geometric and dynamical theories of the preceding chapters rest on a compact set of
+                algebraic, analytic, and differential-geometric tools that make both exact reductions and reliable
+                numerical computations possible. These methods convert abstract existence statements into constructive
+                algorithms and supply the linear-algebraic backbone for continuation, decomposition, and constraint
+                analysis.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="linear">
+                <h2>matrix algebra, jordan forms and the fredholm alternative</h2>
+                <p>Any linear operator on a finite-dimensional complex vector space admits a Jordan canonical form: a
+                    block-diagonal matrix whose diagonal blocks are elementary Jordan blocks associated with the
+                    eigenvalues. The sizes of the blocks are uniquely determined by the dimensions of the kernels of the
+                    successive powers $(A-\lambda I)^k$. Over the reals the corresponding real canonical form replaces
+                    complex conjugate pairs by $2\times 2$ rotation-scaling blocks.</p>
+                <p>When the linear equation $Ax=b$ is considered, the Fredholm alternative asserts that a solution
+                    exists if and only if $b$ is orthogonal to the kernel of the adjoint operator $A^*$. In the language
+                    of differential equations this criterion decides the solvability of the variational equation along a
+                    periodic orbit or of the linearised bifurcation equations at a multiple eigenvalue. The same
+                    alternative guarantees that the bordered matrices arising in numerical continuation remain invertible
+                    when phase or unfolding conditions are correctly imposed.</p>
+
+                <p><strong>definition (jordan block).</strong> for $\lambda\in\mathbb{C}$ and $m\ge 1$, the Jordan block
+                    $J_m(\lambda)$ is the $m\times m$ matrix with $\lambda$ on the diagonal, $1$ on the superdiagonal,
+                    and $0$ elsewhere.</p>
+
+                <p><strong>definition (generalized eigenspace).</strong> for $A\in\mathrm{M}_n(\mathbb{C})$ and
+                    eigenvalue $\lambda$,
+                    $$
+                    E_\lambda
+                    =\bigcup_{k\ge 1}\ker(A-\lambda I)^k
+                    =\ker(A-\lambda I)^{m_\lambda}
+                    $$
+                    for $m_\lambda$ large enough (in fact $m_\lambda\le n$). write
+                    $d_k=\dim\ker(A-\lambda I)^k$.</p>
+
+                <p><strong>theorem (jordan form over $\mathbb{C}$).</strong> there exists an invertible $P$ such that
+                    $P^{-1}AP$ is block diagonal, the diagonal blocks being Jordan blocks $J_{m_j}(\lambda_j)$ for the
+                    eigenvalues of $A$. for each eigenvalue $\lambda$, the number of blocks of size at least $k$ equals
+                    $$
+                    d_k-d_{k-1},
+                    $$
+                    and the number of blocks of exact size $k$ equals
+                    $$
+                    (d_k-d_{k-1})-(d_{k+1}-d_k),
+                    $$
+                    with $d_0=0$. in particular the block partition for each $\lambda$ is uniquely determined by the
+                    sequence $(d_k)$.</p>
+
+                <p><strong>proof (uniqueness of block sizes; existence sketched).</strong> on the generalized eigenspace
+                    $E_\lambda$ the operator $N=A-\lambda I$ is nilpotent. for a nilpotent operator the number of Jordan
+                    blocks of size $\ge k$ for eigenvalue $0$ equals $\dim\ker N^k-\dim\ker N^{k-1}$. indeed, each
+                    block of size $m$ contributes $1$ to $d_k-d_{k-1}$ precisely when $m\ge k$ (one new linearly
+                    independent vector appears in $\ker N^k$ beyond $\ker N^{k-1}$ per such block). therefore
+                    $d_k-d_{k-1}$ counts blocks of size at least $k$, and telescoping gives the number of exact size
+                    $k$. applying this to each $N=A-\lambda I|_{E_\lambda}$ yields uniqueness of the partition for every
+                    eigenvalue.</p>
+                <p>existence follows from the primary decomposition theorem: $V=\bigoplus_\lambda E_\lambda$, on which
+                    $A-\lambda I$ is nilpotent, together with the classical existence of a Jordan basis for a nilpotent
+                    operator (choose a basis of $\ker N$ compatible with a flag of images, lift chains of length equal
+                    to the Weyr or Segre characteristics; standard linear algebra). conjugating by the change-of-basis
+                    matrix $P$ produces $P^{-1}AP$ in Jordan form. $\square$</p>
+
+                <p><strong>remark (real canonical form).</strong> if $A$ is real, complex conjugate eigenvalues appear in
+                    pairs. replacing each pair of conjugate Jordan chains by real and imaginary parts yields real blocks
+                    that are $2\times 2$ rotation-scaling matrices inflated to larger real Jordan-type blocks. the same
+                    counts $d_k$ still determine the structure after pairing.</p>
+
+                <p><strong>definition (adjoint).</strong> with respect to the standard Hermitian product
+                    $\langle u,v\rangle=v^*u$ on $\mathbb{C}^n$, the adjoint of $A$ is $A^*=\overline{A}^T$,
+                    characterised by $\langle Au,v\rangle=\langle u,A^*v\rangle$.</p>
+
+                <p><strong>theorem (fredholm alternative, finite dimensions).</strong> let $A\in\mathrm{M}_n(\mathbb{C})$
+                    and $b\in\mathbb{C}^n$. the equation $Ax=b$ admits a solution if and only if
+                    $$
+                    \langle b,w\rangle=0
+                    \quad\text{for every }w\in\ker A^*.
+                    $$
+                    when a solution exists, the solution set is an affine space modelled on $\ker A$.</p>
+
+                <p><strong>proof.</strong> if $Ax=b$ and $A^*w=0$, then
+                    $$
+                    \langle b,w\rangle=\langle Ax,w\rangle=\langle x,A^*w\rangle=0.
+                    $$
+                    conversely, assume $\langle b,w\rangle=0$ for all $w\in\ker A^*$. the fundamental theorem of linear
+                    algebra gives
+                    $$
+                    \mathrm{im}\,A=(\ker A^*)^\perp.
+                    $$
+                    thus $b\in(\ker A^*)^\perp$ if and only if $b\in\mathrm{im}\,A$, i.e. $Ax=b$ is solvable. the
+                    solution set is then $x_0+\ker A$ for any particular solution $x_0$. $\square$</p>
+
+                <p><strong>remark (dynamical use).</strong> along a $T$-periodic orbit of a flow, the variational equation
+                    always admits the nontrivial free solution $\dot x_*$. solvability of inhomogeneous variational
+                    equations (Melnikov, Floquet corrections, bordering for continuation) is decided exactly by
+                    orthogonality of the forcing term to the adjoint kernel (Fredholm on the circle).</p>
+            </section>
+
+            <section class="doc-section" id="manifolds-compute">
+                <h2>manifold geometry as computational foundation</h2>
+                <p>A smooth manifold $M$ is locally Euclidean, yet its global topology and the presence of singularities
+                    force all computational procedures to be formulated in a coordinate-free manner. Charts, transition
+                    maps, and the tangent bundle supply the data structures in which Newton-type correctors and
+                    predictor-corrector continuation can be implemented without leaving the manifold. The Riemannian
+                    metric (or any convenient fibre metric on the tangent bundle) converts the abstract Newton equation
+                    into a practical linear solve, while parallel transport along the continuation path yields consistent
+                    initial guesses for the iterative corrector. Thus the differential geometry of $M$ is not merely an
+                    existence framework; it is the natural computational domain in which numerical algorithms operate.</p>
+
+                <p><strong>definition (chart and transition).</strong> a chart is a diffeomorphism $\phi:U\subset M\to\phi(U)\subset\mathbb{R}^n$.
+                    if $(U,\phi)$ and $(V,\psi)$ overlap, the transition map
+                    $\psi\circ\phi^{-1}$ is a $C^\infty$ diffeomorphism of open sets in $\mathbb{R}^n$. all computations
+                    (Jacobians, Newton steps) are performed in chart coordinates and pushed forward by the transitions.</p>
+
+                <p><strong>definition (newton map in a chart).</strong> for a smooth equation $F(x)=0$ with
+                    $F:M\to E$ taking values in a vector bundle (or, after trivialisation, in $\mathbb{R}^m$), the Newton
+                    correction $\delta$ in a chart solves the linear equation
+                    $$
+                    DF(x)\cdot\delta=-F(x)
+                    $$
+                    in the corresponding coordinates, after which $x$ is updated by the exponential of a Riemannian
+                    metric or by ordinary addition in the chart.</p>
+
+                <p><strong>remark.</strong> the abstract Newton equation is chart-independent when $F$ is a section of a
+                    vector bundle: $DF(x)$ is a linear map between fibres. choosing a metric identifies duals so that
+                    least-squares and Gauss-Newton variants become available on under- or over-determined systems.</p>
+            </section>
+
+            <section class="doc-section" id="newton">
+                <h2>numerical location of fixed points and periodic orbits</h2>
+                <p>Isolated zeros of a smooth map $f:X\to X$ (or $F:X\to\mathbb{R}^n$) are located by Newton’s method
+                    $$
+                    x_{k+1}=x_k-Df(x_k)^{-1}f(x_k)
+                    $$
+                    or by its quasi-Newton variants (Broyden’s update) that avoid repeated factorisations of the
+                    Jacobian. Quadratic convergence is assured once the initial guess lies inside a ball of uniform
+                    invertibility of $Df$.</p>
+                <p>Periodic orbits of a flow $\varphi_t$ are zeros of the map
+                    $$
+                    x\mapsto\varphi_T(x)-x
+                    $$
+                    on the extended space $X\times\mathbb{R}_+$. Because every point on the orbit is a zero, the Jacobian
+                    is singular. An integral phase condition
+                    $$
+                    \int_0^T\langle\dot x_*(t),x(t)-x_*(t)\rangle\,dt=0
+                    $$
+                    (or its discrete analogue) restores uniqueness and makes the bordered Jacobian invertible.
+                    Continuation of the resulting system with respect to a parameter traces branches of periodic orbits,
+                    detects period-doubling points, and follows the boundaries of Arnold tongues.</p>
+
+                <p><strong>theorem (local quadratic convergence of newton).</strong> let $F:\mathbb{R}^n\to\mathbb{R}^n$
+                    be $C^2$ near a root $x_*$ with $DF(x_*)$ invertible. then there exist a neighbourhood $U$ of
+                    $x_*$ and a constant $C$ such that the Newton iteration
+                    $$
+                    x_{k+1}=x_k-DF(x_k)^{-1}F(x_k)
+                    $$
+                    is well-defined on $U$ and satisfies
+                    $$
+                    \|x_{k+1}-x_*\|\le C\|x_k-x_*\|^2
+                    $$
+                    for all $x_0\in U$.</p>
+
+                <p><strong>proof.</strong> by continuity of $DF$ and invertibility of $DF(x_*)$, there is a ball about
+                    $x_*$ on which $\|DF(x)^{-1}\|$ is bounded by some $M$ (Neumann series about $DF(x_*)$). Taylor’s
+                    theorem with integral remainder gives
+                    $$
+                    F(x_k)
+                    =F(x_*)+DF(x_*)(x_k-x_*)+R_k
+                    =DF(x_*)(x_k-x_*)+R_k,
+                    $$
+                    where $\|R_k\|\le K\|x_k-x_*\|^2$ for a constant $K$ depending on $\|D^2F\|$ near $x_*$. the Newton
+                    step rearranges as
+                    $$
+                    x_{k+1}-x_*
+                    =x_k-x_*-DF(x_k)^{-1}F(x_k)
+                    =DF(x_k)^{-1}\Bigl(
+                    DF(x_k)(x_k-x_*)-F(x_k)
+                    \Bigr).
+                    $$
+                    writing $DF(x_k)=DF(x_*)+E_k$ with $\|E_k\|\le L\|x_k-x_*\|$ and substituting the Taylor expansion of
+                    $F$ produces a residual of order $\|x_k-x_*\|^2$ only. absorbing the uniform bound on
+                    $\|DF(x_k)^{-1}\|$ yields $\|x_{k+1}-x_*\|\le C\|x_k-x_*\|^2$. shrinking $U$ so that
+                    $C\|x_0-x_*\|&lt;1$ keeps the sequence inside $U$ by induction. $\square$</p>
+
+                <p><strong>definition (periodic orbit as zero of the shooting map).</strong> a $T$-periodic orbit through
+                    $x$ satisfies $\Phi_T(x)=x$ where $\Phi_T=\varphi_T$ is the time-$T$ map of the flow. the map
+                    $$
+                    G(x,T)=\varphi_T(x)-x
+                    $$
+                    has zeros precisely at periodic points with period $T$.</p>
+
+                <p><strong>theorem (kernel of the monodromy).</strong> if $x(t)$ is a nonconstant $T$-periodic solution of
+                    an autonomous ODE $\dot x=v(x)$, then $D_x\varphi_T\bigl(x(0)\bigr)\cdot\dot x(0)=\dot x(0)$. hence
+                    $DG$ is singular at every periodic orbit of an autonomous vector field.</p>
+
+                <p><strong>proof.</strong> the curve $t\mapsto x(t+\varepsilon)$ is again a $T$-periodic solution with
+                    initial condition $x(\varepsilon)$. differentiating the identity
+                    $$
+                    \varphi_T\bigl(x(\varepsilon)\bigr)=x(\varepsilon)
+                    $$
+                    at $\varepsilon=0$ gives $D\varphi_T(x(0))\dot x(0)=\dot x(0)$. $\square$</p>
+
+                <p><strong>remark (phase condition).</strong> an integral phase constraint of the form
+                    $\langle\dot x_*,x-x_*\rangle_{L^2([0,T])}=0$ cuts transversely through the orbit circle and makes
+                    the bordered linearisation invertible under generic nondegeneracy (simple Floquet multiplier $1$).
+                    this is the finite-dimensional Fredholm alternative applied to the bordered Jacobian of
+                    $(G,\mathrm{phase})$.</p>
+            </section>
+
+            <section class="doc-section" id="dae">
+                <h2>algebraic decomposition of linear time-invariant systems</h2>
+                <p>A linear differential-algebraic equation
+                    $$
+                    E\dot x=Ax+Bu
+                    $$
+                    is transformed by the Weierstrass-Kronecker algorithm into a direct sum of a purely differential
+                    subsystem (ordinary differential equation of finite order) and a purely algebraic nilpotent
+                    subsystem. The algorithm produces invertible matrices $P$ and $Q$ such that
+                    $$
+                    PEQ=\operatorname{diag}(I,N),\qquad
+                    PAQ=\operatorname{diag}(J,I),
+                    $$
+                    where $N$ is nilpotent. Each cyclic block of the Jordan or Kronecker form corresponds to an
+                    independent chain of integrators or differentiators. This decomposition isolates the dynamic modes
+                    from the constraints, supplies the correct regularity index, and yields a minimal realisation of the
+                    input-output behaviour. In network theory the same block structure organises the port variables of
+                    interconnected mechanical or electrical systems into independent cyclic subsystems.</p>
+
+                <p><strong>definition (matrix pencil).</strong> a pencil is a pair $(E,A)$ of $n\times n$ matrices,
+                    written $\lambda E-A$. the pencil is <em>regular</em> if $\det(\lambda E-A)$ is not identically
+                    zero as a polynomial in $\lambda$.</p>
+
+                <p><strong>definition (weierstrass form).</strong> a regular pencil is in Weierstrass form if
+                    $$
+                    E=\operatorname{diag}(I_r,N),\qquad
+                    A=\operatorname{diag}(J,I_{n-r}),
+                    $$
+                    with $N$ nilpotent and $J$ in Jordan form (or any convenient matrix of size $r$).</p>
+
+                <p><strong>theorem (weierstrass decomposition of a regular pencil).</strong> if $(E,A)$ is regular, there
+                    exist invertible $P,Q$ such that $(PEQ,PAQ)$ is in Weierstrass form. the size of the nilpotent block
+                    and the Segre characteristics of $N$ are uniquely determined; the finite eigenvalues are the roots of
+                    $\det(\lambda E-A)=0$, and the nilpotency index of $N$ is the Kronecker index of the DAE
+                    $E\dot x=Ax$.</p>
+
+                <p><strong>proof (structure theory; construction in outline).</strong> regularity means that the rational
+                    matrix $(\lambda E-A)^{-1}$ exists as a meromorphic function of $\lambda$. the finite poles correspond
+                    to ordinary eigenvalues of the slow subsystem; the polar part at infinity is encoded by a nilpotent.
+                    more elementary: over an algebraically closed field one can find bases that split the generalised
+                    null chains of the pencil. work with matrices over the principal ideal domain
+                    $\mathbb{C}[\lambda]$ and apply the Smith normal form algorithm to $\lambda E-A$; the invariant
+                    factors determine elementary divisors for the finite spectrum, while the infinite elementary
+                    divisors determine the sizes of the nilpotent blocks of $N$. transforming by the unimodular factors
+                    yields invertible constant (in $\lambda$) matrices $P,Q$ realizing the Weierstrass normal form when
+                    the pencil is square and regular. uniqueness of the invariant factors of a matrix over a PID gives
+                    uniqueness of the block data. $\square$</p>
+
+                <p><strong>remark (systems with input).</strong> for $E\dot x=Ax+Bu$ the same $P,Q$ act on the state; the
+                    input matrix becomes $PB$, partitioned conformally into slow and fast channels. algebraic constraints
+                    appear exactly in the nilpotent block, where formal differentiations of the input of order less than
+                    the index may be required for classical solutions.</p>
+            </section>
+
+            <section class="doc-section" id="eds">
+                <h2>exterior differential systems and interaction geometry</h2>
+                <p>An exterior differential system (EDS) on a manifold $M$ is a differentially closed ideal
+                    $\mathcal{I}\subset\Omega^*(M)$. An integral manifold is a submanifold on which every form of
+                    $\mathcal{I}$ pulls back to zero. Cartan’s existence theorem (in the real-analytic category)
+                    guarantees local integral manifolds once the polar spaces satisfy a dimensional regularity condition;
+                    the Cartan-Kahler theory supplies the precise count of free data.</p>
+                <p>In constrained mechanical networks the EDS is generated by the kinematic constraints and the balance
+                    laws. The maximal integral manifolds are precisely the admissible configurations and velocities of
+                    the network. Kron-Hoffman interaction geometry realises the interconnection of subsystems as a fibre
+                    product of the individual EDS; the resulting ideal encodes both the topological incidence relations
+                    and the constitutive laws. The same formalism recovers the Dirac structure of a non-holonomic system
+                    as the annihilator of a suitably chosen Pfaffian system, thereby linking the algebraic decomposition
+                    of the linear theory to the nonlinear geometry of constraints.</p>
+
+                <p><strong>definition (exterior differential system).</strong> a graded ideal
+                    $\mathcal{I}\subset\Omega^*(M)$ is an EDS if it is closed under exterior differentiation:
+                    $d\mathcal{I}\subset\mathcal{I}$. an immersed submanifold $i:N\hookrightarrow M$ is an integral
+                    manifold if $i^*\theta=0$ for every $\theta\in\mathcal{I}$.</p>
+
+                <p><strong>definition (algebraic ideal vs differential ideal).</strong> the algebraic ideal generated by
+                    a set of forms need not be differentially closed; one closes it by adjoining exteriors and algebraic
+                    consequences. Pfaffian systems of chapter 3 are the rank-one generator case of this construction.</p>
+
+                <p><strong>theorem (integral elements for a pfaffian system).</strong> if $\mathcal{I}$ is generated as a
+                    differential ideal by a regular Pfaffian system $\mathcal{I}^1$ of constant rank, then $p$-dimensional
+                    integral elements at $x$ are precisely the $p$-planes contained in
+                    $\mathcal{D}_x=(\mathcal{I}^1_x)^\perp$ that are annihilated by the exterior derivatives of the
+                    generators restricted to that plane. complete integrability ($\mathcal{I}'=\mathcal{I}$ in the sense
+                    of chapter 3) means that every plane in $\mathcal{D}_x$ is an integral element, and Frobenius supplies
+                    integral manifolds of dimension $\mathrm{rank}\,\mathcal{D}$.</p>
+
+                <p><strong>proof.</strong> for $\theta\in\mathcal{I}^1$ and a $p$-plane $E\subset T_x M$ spanned by
+                    $X_1,\dots,X_p$, one has $i^*\theta=0$ for immersions with $T_x N=E$ only if $\theta|_E=0$, i.e.
+                    $E\subset\mathcal{D}_x$. the condition $i^*d\theta=0$ becomes
+                    $d\theta(X_j,X_\ell)=0$ for all $j,\ell$, which is the restriction of $d\theta$ to $E$. if
+                    $d\theta\equiv 0\pmod{\mathcal{I}^1}$ then this holds automatically for every $E\subset\mathcal{D}_x$.
+                    freeness of the annihilator and the Frobenius theorem of chapter 3 then produce integral manifolds of
+                    full dimension $\mathrm{rank}\,\mathcal{D}$. $\square$</p>
+
+                <p><strong>remark (cartan-kahler).</strong> for general real-analytic EDS that are not completely
+                    integrable Pfaffian systems, free data for integral manifolds are counted by Cartan characters; the
+                    theorem guarantees existence of integral manifolds through admissible integral elements of ordinary
+                    status. the full proof is analytic and uses the Cauchy-Kowalevski theorem in adapted flags of
+                    polar spaces.</p>
+
+                <p><strong>remark (networks).</strong> a fibre product of EDS for subsystems realises Kirchhoff-type
+                    incidence by pullback constraints on shared port variables; the combined ideal is again
+                    differentially closed. this is the geometric content of interconnection before one chooses
+                    coordinates or a state-space realisation.</p>
+            </section>
+
+            <section class="doc-section" id="summary">
+                <h2>summary</h2>
+                <p>Taken together, these methods provide the concrete computational and algebraic infrastructure on which
+                    the geometric theories of dynamical systems, symplectic reduction, and control are built: Jordan
+                    structure and the Fredholm alternative govern linearised analysis, manifold-adapted Newton methods
+                    enable numerical continuation, Kronecker-Weierstrass decomposition isolates dynamic modes, and
+                    exterior differential systems encode nonlinear constraints in a form ready for both theoretical
+                    reduction and practical simulation.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (jordan data).</strong> for
+                    $$
+                    A=\begin{pmatrix}2&1&0\\0&2&0\\0&0&2\end{pmatrix}
+                    $$
+                    compute $d_k=\dim\ker(A-2I)^k$ for $k=1,2,3$ and read off the Jordan block sizes for
+                    $\lambda=2$.</p>
+
+                <p><strong>exercise 2 (fredholm solvability).</strong> let
+                    $$
+                    A=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+                    b=\begin{pmatrix}b_1\\b_2\end{pmatrix}.
+                    $$
+                    determine $\ker A^*$ and state precisely when $Ax=b$ is solvable. describe the solution set when it
+                    is.</p>
+
+                <p><strong>exercise 3 (newton on a quadratic).</strong> apply Newton’s method to $F(x)=x^2-2$ starting
+                    from $x_0=2$. compute $x_1,x_2$ exactly (as rationals) and verify that the errors
+                    $|x_k-\sqrt{2}|$ decrease roughly quadratically.</p>
+
+                <p><strong>exercise 4 (singular monodromy).</strong> for the planar harmonic oscillator
+                    $\dot q=p$, $\dot p=-q$, verify explicitly that the time-$2\pi$ map is the identity, so every point is
+                    periodic, and that $D\varphi_{2\pi}=I$. explain why a phase condition is still needed if one
+                    searches for a single orbit representative numerically.</p>
+            </section>
+
+        </div>
+    </main>
+</body>
+
+</html>
