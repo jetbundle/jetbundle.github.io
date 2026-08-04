@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bifurcation · mechanics · JETBUNDLE</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+</head>
+
+<body>
+    <main class="doc">
+        <nav class="subnav" aria-label="section">
+            <a href="../">mechanics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <span class="dim">bifurcation</span>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="../../">physics</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a href="/">../</a>
+        </nav>
+
+        <header class="doc-header">
+            <h1>8 · bifurcation</h1>
+            <p class="doc-lead"><em>loss of structural stability, normal forms, and rearrangements of phase portraits</em>
+            </p>
+            <p class="doc-intro">Bifurcation theory studies the qualitative changes that occur in the phase portrait of a
+                dynamical system when parameters are varied. The central geometric idea is that a structurally stable
+                system persists under small perturbations, while the loss of structural stability at critical parameter
+                values forces the appearance of new invariant sets (equilibria, periodic orbits, homoclinic cycles) whose
+                local normal forms and global rearrangements organise the dynamics in an entire neighbourhood of
+                parameter space.</p>
+        </header>
+
+        <hr class="doc-rule">
+
+        <div class="doc-body">
+
+            <section class="doc-section" id="structural">
+                <h2>structural instability, invariant sets and poincare maps for families</h2>
+                <p>A family of vector fields $v_\mu$ (or maps $f_\mu$) depending smoothly on a parameter
+                    $\mu\in\mathbb{R}^p$ is structurally unstable at $\mu_0$ when every neighbourhood of $v_{\mu_0}$
+                    contains vector fields that are not topologically equivalent to it. The organising centres of such
+                    instability are the non-hyperbolic invariant sets: equilibria whose linearisation possesses
+                    eigenvalues on the imaginary axis, or periodic orbits whose Floquet multipliers lie on the unit
+                    circle.</p>
+                <p>For a periodic orbit the Poincare map reduces the problem to the bifurcation of fixed points of a
+                    family of diffeomorphisms. The multipliers of the orbit become the eigenvalues of the derivative of
+                    the Poincare map, and the classic codimension-one bifurcations (saddle-node, period-doubling,
+                    Neimark-Sacker) appear as the corresponding bifurcations of fixed points. The same reduction converts
+                    the study of bifurcations of limit cycles into the far simpler study of bifurcations of maps.</p>
+
+                <p><strong>definition (parametrised family).</strong> a $C^r$ family of vector fields is a $C^r$ map
+                    $(\mu,x)\mapsto v_\mu(x)$ with $\mu\in\mathbb{R}^p$ and $x\in M$. likewise for families of maps
+                    $f_\mu:M\to M$.</p>
+
+                <p><strong>definition (bifurcation value).</strong> a parameter value $\mu_0$ is a bifurcation value if
+                    $v_{\mu_0}$ is not structurally stable in the $C^1$ topology of vector fields (or, more weakly, if
+                    the topological equivalence class of the phase portrait changes for $\mu$ near $\mu_0$ in every
+                    neighbourhood of $\mu_0$).</p>
+
+                <p><strong>theorem (hyperbolicity implies local structural stability of equilibria).</strong> if
+                    $v_{\mu_0}(x_0)=0$ and $Dv_{\mu_0}(x_0)$ is hyperbolic, then there exist neighbourhoods of $x_0$ and
+                    of $\mu_0$ and a unique $C^r$ equilibrium branch $x(\mu)$ with $x(\mu_0)=x_0$ such that $x(\mu)$
+                    remains hyperbolic and the local phase portrait near $x(\mu)$ is topologically equivalent to that of
+                    the linearisation, for all $\mu$ near $\mu_0$.</p>
+
+                <p><strong>proof.</strong> consider $F(\mu,x)=v_\mu(x)$. then $F(\mu_0,x_0)=0$ and
+                    $D_x F(\mu_0,x_0)$ is invertible by hyperbolicity. the implicit function theorem yields a unique
+                    $C^r$ branch $x(\mu)$ of zeros. eigenvalues depend continuously on the matrix, so hyperbolicity
+                    persists for $\mu$ near $\mu_0$. the Hartman-Grobman theorem (chapter 2) supplies local topological
+                    conjugacy to the linearisation at each such hyperbolic equilibrium, and continuous dependence of the
+                    stable/unstable dimensions gives topological equivalence of nearby phase portraits. $\square$</p>
+
+                <p><strong>remark (reduction to maps).</strong> by chapter 5, a hyperbolic periodic orbit produces a
+                    hyperbolic fixed point of a Poincare map. bifurcations of the orbit are therefore equivalent to
+                    bifurcations of that fixed point in a family of maps of one lower dimension.</p>
+            </section>
+
+            <section class="doc-section" id="symmetry">
+                <h2>discrete symmetries and constrained bifurcations</h2>
+                <p>When the system commutes with a discrete group action, most commonly a $\mathbb{Z}_2$-action given by
+                    a linear involution, the determining equations for bifurcations are forced to be odd (or even).
+                    Consequently the generic eigenvalue-crossing conditions of the unrestricted case become non-generic.
+                    In the presence of $\mathbb{Z}_2$-equivariance a simple eigenvalue may be constrained to remain zero,
+                    or a complex conjugate pair may be forced to cross the imaginary axis simultaneously with a real
+                    eigenvalue. The resulting bifurcations of equilibria and of cycles are still of codimension one, but
+                    their normal forms contain only even or only odd terms, and the associated branching diagrams exhibit
+                    the characteristic pitchfork or symmetry-breaking structure.</p>
+
+                <p><strong>definition ($\mathbb{Z}_2$-equivariant family).</strong> let $R$ be a linear involution
+                    $R^2=I$. a family $v_\mu$ is $R$-equivariant if $v_\mu(Rx)=R v_\mu(x)$ for all $x,\mu$.</p>
+
+                <p><strong>theorem (odd normal form for a simple zero under $\mathbb{Z}_2$).</strong> let
+                    $v_\mu:\mathbb{R}\to\mathbb{R}$ be a $C^3$ family of scalar fields with $v_\mu(-x)=-v_\mu(x)$ for all
+                    $\mu$, and suppose $v_0(0)=0$, $v_0'(0)=0$, and $\partial_\mu v_0'(0)\neq 0$. then after a smooth
+                    parameter and coordinate change the family is equivalent, near $(\mu,x)=(0,0)$, to
+                    $$
+                    \dot x=\mu x\pm x^3
+                    $$
+                    (supercritical or subcritical pitchfork according to the sign).</p>
+
+                <p><strong>proof.</strong> equivariance forces $v_\mu(x)=x\,a(\mu,x^2)$ for a smooth $a$. write
+                    $a(\mu,u)=\alpha(\mu)+\beta(\mu)u+r(\mu,u)$ with $r=O(u^2)$. conditions $v_0'(0)=0$ and
+                    $\partial_\mu v_0'(0)\neq 0$ become $\alpha(0)=0$ and $\alpha'(0)\neq 0$. reparametrise $\mu$ so that
+                    $\alpha(\mu)=\mu$. if $\beta(0)\neq 0$ set $\eta=\mathrm{sign}(\beta(0))$ and rescale $x$ by
+                    $|\beta(0)|^{1/2}$ to normalise $|\beta(0)|=1$, obtaining $\dot x=\mu x+\eta x^3+O(x^5)$. a further
+                    near-identity equivariant change of coordinates (standard, from invertibility of the homological
+                    operator on odd quintic remainders once the cubic coefficient is nonzero) removes terms of order
+                    $\ge 5$ at the level of $C^3$ topological normal forms, leaving $\dot x=\mu x\pm x^3$. $\square$</p>
+
+                <p><strong>remark.</strong> without the $\mathbb{Z}_2$ constraint the generic bifurcation of a simple zero
+                    eigenvalue is the saddle-node $\dot x=\mu\pm x^2$, which is forbidden for odd fields.</p>
+            </section>
+
+            <section class="doc-section" id="normal">
+                <h2>two-parameter bifurcations and normal forms</h2>
+                <p>When two parameters are free to vary, new resonances and degeneracies become generic. The
+                    classification of these codimension-two bifurcations proceeds by computing a normal form: a polynomial
+                    vector field, unique up to higher-order terms and smooth coordinate changes, that captures the
+                    qualitative dynamics in a neighbourhood of the critical point. The computation relies on the Fredholm
+                    alternative in the space of homogeneous polynomials and on the action of the group of invertible
+                    linear changes of coordinates that preserve the linear part. Once the normal form is known, a
+                    standard unfolding, containing the minimal number of parameters, is derived by adding the lowest-order
+                    terms that restore transversality with respect to the original family.</p>
+
+                <p><strong>definition (normal form relative to a linear part $A$).</strong> write a vector field
+                    $v(x)=Ax+v_2(x)+v_3(x)+\cdots$ in homogeneous components. a polynomial change of coordinates
+                    $x=y+h_k(y)$ with $h_k$ homogeneous of degree $k$ transforms the degree-$k$ term by the homological
+                    operator
+                    $$
+                    L_A h=[A,h]:=Dh\cdot A\,y-A\,h(y).
+                    $$
+                    a complement to $\mathrm{im}\,L_A$ in the space of homogeneous fields of degree $k$ is a space of
+                    normal-form terms of that degree.</p>
+
+                <p><strong>theorem (homological solvability by fredholm).</strong> on the finite-dimensional space
+                    $H_k$ of homogeneous polynomial vector fields of degree $k$ on $\mathbb{R}^n$, the operator
+                    $L_A:H_k\to H_k$ satisfies
+                    $$
+                    H_k=\mathrm{im}\,L_A\oplus C_k
+                    $$
+                    for any algebraic complement $C_k$ of the image. a term $v_k\in H_k$ can be removed by a degree-$k$
+                    change of coordinates if and only if its projection onto $C_k$ vanishes (equivalently, if $v_k$ is
+                    orthogonal to $\ker L_A^*$ with respect to a chosen inner product on $H_k$).</p>
+
+                <p><strong>proof.</strong> $H_k$ is finite-dimensional, so $L_A$ is a linear endomorphism and
+                    $\mathrm{im}\,L_A$ admits a complementary subspace $C_k$. by the finite-dimensional Fredholm
+                    alternative (chapter 4), $v_k\in\mathrm{im}\,L_A$ if and only if $\langle v_k,w\rangle=0$ for all
+                    $w\in\ker L_A^*$. choosing $C_k=(\ker L_A^*)^\perp$ makes the condition equivalent to vanishing of the
+                    $C_k$-component of $v_k$. solving $L_A h_k=v_k^{\mathrm{im}}$ removes that image part and leaves only
+                    the normal-form component in $C_k$. $\square$</p>
+
+                <p><strong>definition (versal unfolding).</strong> a family $v_\mu$ through $v_0$ is a versal unfolding of
+                    a singularity if every other perturbation of $v_0$ is fibrewise equivalent, after smooth
+                    reparametrisation of parameters, to a family induced from $v_\mu$. the minimal number of parameters
+                    is the codimension of the singularity.</p>
+            </section>
+
+            <section class="doc-section" id="five">
+                <h2>the five critical codimension-two bifurcations</h2>
+                <p>Five bifurcations organise the overwhelming majority of two-parameter phenomena observed in
+                    applications.</p>
+
+                <p><strong>definition (cusp).</strong> a saddle-node bifurcation in which the quadratic coefficient also
+                    vanishes. the normal form is $\dot x=r+sx\pm x^3$. its unfolding produces a hysteresis curve and a
+                    pair of saddle-node lines meeting tangentially at the cusp point.</p>
+
+                <p><strong>definition (bautin / generalised hopf).</strong> a Hopf bifurcation in which the first
+                    Lyapunov coefficient vanishes. the normal form contains a fifth-order term; the unfolding produces a
+                    curve of neutral saddles and a locus of limit-point-of-cycles bifurcations that bound a region of
+                    bistability between a stable equilibrium and a stable periodic orbit.</p>
+
+                <p><strong>definition (bogdanov-takens / double-zero).</strong> a double-zero eigenvalue with a single
+                    Jordan block. the normal form is
+                    $$
+                    \dot x=y,\qquad
+                    \dot y=\beta_1+\beta_2 x+ax^2+bxy.
+                    $$
+                    its unfolding contains a saddle-node curve, a Hopf curve, and a homoclinic curve that meet at the
+                    origin; it is the principal organising centre for the transition between equilibria and large-amplitude
+                    periodic orbits in planar systems.</p>
+
+                <p><strong>definition (fold-hopf / zero-hopf).</strong> a zero eigenvalue and a purely imaginary pair. the
+                    normal form lives on a three-dimensional centre manifold and produces, among other phenomena,
+                    invariant tori and Shilnikov-type homoclinic orbits.</p>
+
+                <p><strong>definition (hopf-hopf).</strong> two distinct pairs of purely imaginary eigenvalues. the
+                    normal form on a four-dimensional centre manifold yields a rich web of Neimark-Sacker bifurcations,
+                    resonant tori, and heteroclinic cycles.</p>
+
+                <p><strong>theorem (saddle-node normal form, codimension one).</strong> let $v_\mu$ be a $C^2$ family of
+                    scalar fields with $v_0(0)=0$, $v_0'(0)=0$, $v_0''(0)\neq 0$, and $\partial_\mu v_0(0)\neq 0$. then
+                    there is a $C^1$ change of coordinates and parameter reducing the family to
+                    $$
+                    \dot x=\mu\pm x^2
+                    $$
+                    near the origin.</p>
+
+                <p><strong>proof.</strong> write $v_\mu(x)=a(\mu)+b(\mu)x+c(\mu)x^2+o(x^2)$ with $a(0)=b(0)=0$,
+                    $c(0)\neq 0$, and $a'(0)\neq 0$. reparametrise $\mu$ so that $a(\mu)=\mu$. a near-identity shift
+                    $x=y+\alpha(\mu)$ with $\alpha(0)=0$ chosen to kill the linear term (possible by invertibility of
+                    $c(0)$ against $b(\mu)$ for small $\mu$) leaves $\dot y=\mu+\tilde c(\mu)y^2+o(y^2)$ with
+                    $\tilde c(0)=c(0)\neq 0$. rescale $y$ and the time (or absorb constants into $\mu$) to normalise
+                    $|\tilde c|=1$, obtaining $\dot y=\mu\pm y^2$ at leading order, which is $C^1$-equivalent to the
+                    quadratic normal form near the bifurcation. $\square$</p>
+            </section>
+
+            <section class="doc-section" id="bt">
+                <h2>bogdanov-takens as organising centre</h2>
+                <p>In planar systems the Bogdanov-Takens point is the most important codimension-two singularity. By
+                    varying the two unfolding parameters one successively encounters a saddle-node bifurcation that
+                    creates a pair of equilibria, a Hopf bifurcation that creates a small limit cycle, and a homoclinic
+                    bifurcation in which the cycle collides with a saddle and disappears. All of the local and global
+                    transitions that connect equilibria to large-amplitude oscillations are therefore already present in
+                    the two-parameter unfolding of this single normal form.</p>
+
+                <p><strong>theorem (equilibria of the BT unfolding).</strong> for the truncated normal form
+                    $$
+                    \dot x=y,\qquad
+                    \dot y=\beta_1+\beta_2 x+x^2+xy
+                    $$
+                    (a fixed choice of nonzero coefficients $a,b$ after scaling), the equilibria occur where $y=0$ and
+                    $\beta_1+\beta_2 x+x^2=0$. the discriminant $\Delta=\beta_2^2-4\beta_1$ bounds a region of two
+                    equilibria (when $\Delta&gt;0$) from a region of none (when $\Delta&lt;0$), separated by a
+                    saddle-node curve $\Delta=0$ with $\beta_2$ free (except at the origin).</p>
+
+                <p><strong>proof.</strong> equilibria satisfy $y=0$ and $\beta_1+\beta_2 x+x^2=0$. the quadratic
+                    $x^2+\beta_2 x+\beta_1=0$ has discriminant $\Delta=\beta_2^2-4\beta_1$ and opens upwards. two real
+                    roots exist precisely when $\Delta&gt;0$; a double root when $\Delta=0$; none when $\Delta&lt;0$. the
+                    set $\Delta=0$ is the parabola $\beta_1=\beta_2^2/4$ in the $(\beta_1,\beta_2)$-plane, which is the
+                    saddle-node locus in the unfolding. $\square$</p>
+
+                <p><strong>remark (hopf and homoclinic loci).</strong> linearisation about the nontrivial equilibria yields
+                    a Hopf curve for a range of $(\beta_1,\beta_2)$ where a pure imaginary pair occurs with nonzero
+                    first Lyapunov coefficient. matching of a homoclinic orbit of the saddle can be proved by a Melnikov
+                    or blow-up analysis in a rescaled neighbourhood of the BT point; the three curves meet at the origin
+                    with standard asymptotic tangencies. the geometric programme of the chapter is complete once this
+                    skeleton is in place: codimension-two BT organises the entire planar equilibrium-cycle-homoclinic
+                    scenario.</p>
+            </section>
+
+            <section class="doc-section" id="numerical">
+                <h2>numerical continuation</h2>
+                <p>Theoretical normal forms are complemented by rigorous numerical continuation. Isolated equilibria are
+                    located by Newton or Broyden iteration applied to the vector field. Periodic orbits are continued by
+                    solving a boundary-value problem on a fixed interval with an integral phase condition that eliminates
+                    the translational invariance in time (chapters 4 and 5). Period-doubling cascades are tracked by
+                    appending the period-doubling condition (a multiplier equal to $-1$) and continuing in two parameters.
+                    Arnold tongues, regions of phase-locking in periodically forced systems, are delimited by continuing
+                    the saddle-node bifurcations of periodic orbits that bound each resonance zone. Modern continuation
+                    packages implement these algorithms with adaptive step-size control, automatic detection of
+                    bifurcations via test functions, and branch-switching at detected critical points.</p>
+
+                <p><strong>definition (test function for a bifurcation).</strong> a smooth function $\psi(\mu,x)$ on the
+                    solution manifold of the extended equilibrium or periodic problem that vanishes precisely when a
+                    prescribed degeneracy occurs (e.g. $\det Dv_\mu(x)=0$ for a fold, or
+                    $\det(DP+I)=0$ for period-doubling of a Poincare map).</p>
+
+                <p><strong>remark.</strong> Newton convergence, bordering for phase constraints, and Fredholm
+                    solvability of variational equations (chapter 4) are exactly the linear-algebraic ingredients of these
+                    continuum algorithms; bifurcation theory supplies the test functions and branch-switching logic.</p>
+            </section>
+
+            <section class="doc-section" id="reduction">
+                <h2>singular symplectic reduction as geometric counterpart of symmetry-breaking</h2>
+                <p>When a continuous symmetry group acts on a symplectic manifold, the ordinary Marsden-Weinstein reduced
+                    space is smooth only at regular values of the moment map. At singular values the reduced space becomes
+                    a stratified Poisson space whose strata are the symplectic manifolds corresponding to the different
+                    orbit types. The passage from a smooth reduced space to a stratified space as a parameter (for example
+                    a momentum value) crosses a critical level is the precise geometric analogue of a symmetry-breaking
+                    bifurcation.</p>
+                <p>Cylinder-valued momentum maps and optimal reduction techniques extend the construction to actions that
+                    do not admit an ordinary $\mathfrak{g}^*$-valued moment map; the resulting reduced spaces are again
+                    stratified, and their symplectic leaves change dimension precisely when the isotropy type jumps. Thus
+                    the algebraic geometry of singular reduction supplies the global, coordinate-free counterpart of the
+                    local normal-form analysis of bifurcations that break continuous symmetries.</p>
+
+                <p><strong>definition (marsden-weinstein reduced space, regular case).</strong> if $G$ acts freely and
+                    properly by symplectomorphisms on $(M,\omega)$ with equivariant moment map $\mu:M\to\mathfrak{g}^*$,
+                    and $\nu$ is a regular value, then
+                    $$
+                    M_\nu=\mu^{-1}(\nu)/G_\nu
+                    $$
+                    is a smooth symplectic manifold (with form uniquely characterised by pullback of $\omega$ to
+                    $\mu^{-1}(\nu)$).</p>
+
+                <p><strong>theorem (singular values force orbit-type strata).</strong> if $\nu$ is a critical value of
+                    $\mu$, then $\mu^{-1}(\nu)$ is not a smooth manifold in general, and the quotient
+                    $\mu^{-1}(\nu)/G_\nu$ decomposes into a union of smooth symplectic strata labelled by conjugacy classes
+                    of stabilisers (orbit types). the dimension of a stratum drops precisely when the stabiliser
+                    enlarges.</p>
+
+                <p><strong>proof (dimension count).</strong> at $x\in\mu^{-1}(\nu)$ the tangent to the level set (where
+                    smooth) is $\ker D\mu(x)$, while $T_x(G\cdot x)$ is spanned by fundamental fields $\xi_M(x)$. the
+                    identity $\ker D\mu(x)=(T_x(G\cdot x))^\omega$ (chapter 6 Noether geometry) implies
+                    $$
+                    \dim\mu^{-1}(\nu)
+                    =\dim M-\dim\mathfrak{g}+\dim G_x
+                    $$
+                    when $\nu$ is regular enough for the level to be a manifold near $x$. quotienting by the residual
+                    $G_\nu$-action of dimension $\dim G-\dim G_x$ (for free action of the residual group on the orbit type)
+                    yields stratum dimension $\dim M-2\dim G+2\dim G_x$. thus as the conjugacy class of $G_x$ jumps to a
+                    larger stabiliser, the stratum dimension decreases. different conjugacy classes give smooth manifolds
+                    of constant stabiliser type (tube theorem / slice theorem for proper actions), and symplectic forms
+                    descend on each such piece by the same Marsden-Weinstein formula restricted to the orbit type. this
+                    is the stratified Poisson structure of singular reduction. $\square$</p>
+
+                <p><strong>remark.</strong> crossing a critical value of $\mu$ as a control parameter therefore changes
+                    the stratified topology of the reduced phase space, mirroring a bifurcation of relative equilibria
+                    and relative periodic orbits that break continuous symmetry.</p>
+            </section>
+
+            <section class="doc-section" id="summary">
+                <h2>summary</h2>
+                <p>Bifurcation theory combines the local analytic technique of normal forms with the global geometric
+                    notions of structural stability, equivariance, and symplectic reduction. The five codimension-two
+                    singularities, together with their numerical continuation, organise the transition scenarios observed
+                    in generic two-parameter families, while singular reduction realises the same transitions as changes
+                    in the stratified structure of the reduced phase space.</p>
+            </section>
+
+            <section class="doc-section" id="exercises">
+                <h2>exercises</h2>
+                <p><strong>exercise 1 (saddle-node sketch).</strong> for $\dot x=\mu-x^2$ locate the equilibria as
+                    functions of $\mu$, determine their stability, and sketch the bifurcation diagram in the
+                    $(\mu,x)$-plane.</p>
+
+                <p><strong>exercise 2 (pitchfork).</strong> for $\dot x=\mu x-x^3$ show that $x=0$ changes stability at
+                    $\mu=0$ and that two new stable branches exist for $\mu&gt;0$. which $\mathbb{Z}_2$ symmetry forces the
+                    normal form to be odd?</p>
+
+                <p><strong>exercise 3 (hopf linear data).</strong> let
+                    $$
+                    A(\mu)=\begin{pmatrix}\mu&-1\\1&\mu\end{pmatrix}.
+                    $$
+                    compute the eigenvalues and verify that a complex conjugate pair crosses the imaginary axis
+                    transversally at $\mu=0$ (a Hopf condition for a planar linearisation).</p>
+
+                <p><strong>exercise 4 (BT equilibria).</strong> for $\dot x=y$,
+                    $\dot y=\beta_1+\beta_2 x+x^2$, find the saddle-node curve in the $(\beta_1,\beta_2)$-plane and
+                    determine for which parameters there are two equilibria.</p>
+            </section>
+
+        </div>
+    </main>
+</body>
+
+</html>

@@ -45,6 +45,7 @@ jobs:
           test -f _site/physics/mechanics/chapter-5/index.html
           test -f _site/physics/mechanics/chapter-6/index.html
           test -f _site/physics/mechanics/chapter-7/index.html
+          test -f _site/physics/mechanics/chapter-8/index.html
           test -f _site/physics/architecture-linearity/index.html
           test -f _site/physics/architecture-linearity/chapter-1/index.html
           test -f _site/physics/architecture-linearity/chapter-1/widgets.js
