@@ -12,9 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
-    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
-    <script defer src="/physics/mechanics/figs/ch1.js"></script>
+
 </head>
 
 <body>
@@ -34,7 +32,7 @@
             <p class="doc-lead"><em>from newton to action, symmetry, and geometric structure</em></p>
             <p class="doc-intro">Classical mechanics begins from a small set of experimentally verified principles and is
                 progressively abstracted into a coordinate-free geometric theory on manifolds. The transition from
-                Newton’s second law to the Lagrangian and variational formalisms is motivated by the need for equations
+                Newton's second law to the Lagrangian and variational formalisms is motivated by the need for equations
                 that remain valid under arbitrary changes of coordinates and that make the link between symmetries and
                 conservation laws transparent.</p>
         </header>
@@ -47,7 +45,7 @@
                 <h2>newtonian foundations</h2>
                 <p>Empirical observation shows that the motion of a free particle is uniform and rectilinear in an
                     inertial frame, and that the acceleration of a particle is proportional to the applied force.
-                    Space-time is modelled as an affine four-dimensional manifold equipped with a Galilean structure: a
+                    Space-time is modeled as an affine four-dimensional manifold equipped with a Galilean structure: a
                     preferred absolute time function $t$ whose level sets are Euclidean three-spaces, together with a
                     Euclidean metric on each spatial slice. The Galilean group of transformations that preserve this
                     structure consists of spatial rotations, translations, and uniform boosts.</p>
@@ -56,7 +54,7 @@
                     have vanishing acceleration, so that uniform rectilinear motion is the default law of free motion.
                 </p>
 
-                <p><strong>definition (newton’s principle of determinacy).</strong> the state of a mechanical system at
+                <p><strong>definition (newton's principle of determinacy).</strong> the state of a mechanical system at
                     any instant is completely fixed by the positions and velocities of all particles at that instant.
                     Consequently the equations of motion are second-order ordinary differential equations on
                     configuration space.</p>
@@ -71,9 +69,9 @@
                     absolute character of time intervals.</p>
 
                 <p><strong>remark (coordinate dependence).</strong> as written, the components $\mathbf{F}_i$ and
-                    $\mathbf{q}_i$ depend on the choice of inertial coordinates. The modern programme replaces this
+                    $\mathbf{q}_i$ depend on the choice of inertial coordinates. The modern program replaces this
                     chart-based statement with tensor and manifold language so that the law of motion itself becomes
-                    independent of coordinates while recovering Newton’s form in any local inertial frame.</p>
+                    independent of coordinates while recovering Newton's form in any local inertial frame.</p>
             </section>
 
             <section class="doc-section" id="central">
@@ -130,7 +128,7 @@
                     where $p=\ell^2/(mk)$ is the semi-latus rectum and $e$ is the eccentricity. The orbit is a conic
                     section with one focus at the origin. The geometric origin of this fact is the isotropy of Euclidean
                     space: the only rotationally invariant force laws that produce closed bounded orbits for all nearby
-                    initial data of a given type (Bertrand’s theorem) are the harmonic oscillator and the inverse-square
+                    initial data of a given type (Bertrand's theorem) are the harmonic oscillator and the inverse-square
                     law; the latter yields the focal property of the ellipse.</p>
 
                 <p><strong>remark (bertrand).</strong> the full classification theorem of Bertrand is classical but
@@ -141,41 +139,14 @@
 
                 
 
-                <div class="doc-widget" id="fig-central">
-                    <p class="doc-widget-title">figure · central force, planarity, and conservation</p>
-                    <p class="doc-widget-caption">Unit mass in $V=-1/r$. Force is radial, so $\mathbf{q}\times\mathbf{F}=\mathbf{0}$ and $L_z=q_1\dot q_2-q_2\dot q_1$ is an exact first integral. Velocity-Verlet preserves $L_z$ and $E$ to high accuracy; live residuals are reported.</p>
-                    <div class="doc-widget-plot tall" id="fig1-central-plot" role="img" aria-label="figure · central force, planarity, and conservation"></div>
-                    <div class="doc-widget-controls">
-                        <label>launch angle (deg)
-                            <input id="fig1-central-angle" type="range" min="0" max="360" value="90" step="1">
-                        </label>
-                        <label>speed
-                            <input id="fig1-central-speed" type="range" min="0.45" max="1.35" value="0.9" step="0.01">
-                        </label>
-                        <button type="button" id="fig1-central-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig1-central-readout"></p>
-                </div>
+                
 
-                <div class="doc-widget" id="fig-veff">
-                    <p class="doc-widget-title">figure · effective potential and radial phase portrait</p>
-                    <p class="doc-widget-caption">Central reduction: $V_{\mathrm{eff}}=-1/r+\ell^2/(2r^2)$ and $E=\frac12\dot r^2+V_{\mathrm{eff}}$. Turning points and Kepler eccentricity $e=\sqrt{1+2E\ell^2}$ ($m=k=1$) with the radial phase curves of $H$.</p>
-                    <div class="doc-widget-plot tall" id="fig1-veff-plot" role="img" aria-label="figure · effective potential and radial phase portrait"></div>
-                    <div class="doc-widget-controls">
-                        <label>$\ell$
-                            <input id="fig1-veff-ell" type="range" min="0.25" max="1.7" value="0.95" step="0.02">
-                        </label>
-                        <label>$E$
-                            <input id="fig1-veff-e" type="range" min="-1.1" max="0.7" value="-0.25" step="0.02">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig1-veff-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="lagrangian">
                 <h2>lagrangian formalism</h2>
-                <p>Hamilton’s principle states that the actual trajectory $q(t)$ between fixed end-points realises a
+                <p>Hamilton's principle states that the actual trajectory $q(t)$ between fixed end-points realizes a
                     critical point of the action functional
                     $$
                     S[q]=\int_{t_0}^{t_1}L(q,\dot{q},t)\,dt.
@@ -251,7 +222,7 @@
 </section>
 
             <section class="doc-section" id="noether">
-                <h2>noether’s theorem</h2>
+                <h2>noether's theorem</h2>
                 <p>If a continuous family of transformations of configuration space leaves the Lagrangian invariant,
                     then the generating vector field produces a first integral. This is the geometric origin of the
                     classical conservation laws of energy, momentum, and angular momentum when the corresponding
@@ -300,18 +271,7 @@
             
                 
 
-                <div class="doc-widget" id="fig-noether">
-                    <p class="doc-widget-title">figure · Noether: rotations and angular momentum</p>
-                    <p class="doc-widget-caption">Isotropic oscillator $L=\frac12(\dot q_1^2+\dot q_2^2)-\frac12(q_1^2+q_2^2)$. The $SO(2)$ action on $Q$ is a symmetry; the Noether charge $I=q_1 p_2-q_2 p_1$ is rigorously constant along solutions (right panel).</p>
-                    <div class="doc-widget-plot tall" id="fig1-noether-plot" role="img" aria-label="figure · Noether: rotations and angular momentum"></div>
-                    <div class="doc-widget-controls">
-                        <label>frame angle $\theta$ (deg)
-                            <input id="fig1-noether-ang" type="range" min="0" max="360" value="0" step="1">
-                        </label>
-                        <button type="button" id="fig1-noether-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig1-noether-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="oscillations">
@@ -327,7 +287,7 @@
 
                 <p><strong>definition (normal frequencies).</strong> the numbers $\omega\geq 0$ for which there exists
                     $v\neq 0$ with $Kv=\omega^2 Mv$ are the (circular) frequencies of free small oscillation. they are
-                    the square roots of the generalised eigenvalues of the pencil $(K,M)$.</p>
+                    the square roots of the generalized eigenvalues of the pencil $(K,M)$.</p>
 
                 <p><strong>remark (parametric resonance).</strong> when the stiffness matrix depends periodically on
                     time, the equation becomes a Mathieu or Hill equation. instability bands can appear even while
@@ -343,11 +303,11 @@
                 <p>The configuration space of a free rigid body with a fixed point (or free body reduced by
                     translations) may be identified with the rotation group $SO(3)$. In a body-fixed frame the kinetic
                     energy is a quadratic form on the Lie algebra $\mathfrak{so}(3)\simeq\mathbb{R}^3$, and the
-                    Euler-Poincaré equations reduce to Euler’s rigid-body equations
+                    Euler-Poincaré equations reduce to Euler's rigid-body equations
                     $$
                     \mathbf{I}\dot{\boldsymbol{\Omega}}+\boldsymbol{\Omega}\times\mathbf{I}\boldsymbol{\Omega}=0.
                     $$
-                    Poinsot’s geometric construction realises the free motion as the rolling without slipping of the
+                    Poinsot's geometric construction realizes the free motion as the rolling without slipping of the
                     inertia ellipsoid on a fixed plane; the polhode and herpolhode curves encode the body and space
                     trajectories of the angular-velocity vector. Coriolis forces appear naturally when equations are
                     written in a rotating frame.</p>
@@ -359,29 +319,12 @@
             
                 
 
-                <div class="doc-widget" id="fig-rigid">
-                    <p class="doc-widget-title">figure · free rigid body: polhode and invariants</p>
-                    <p class="doc-widget-caption">Euler equations $\mathbf{I}\dot{\boldsymbol{\Omega}}+\boldsymbol{\Omega}\times\mathbf{I}\boldsymbol{\Omega}=\mathbf{0}$. Body angular velocity rides the intersection of the energy ellipsoid and the constant-$|\mathbf{L}|$ ellipsoid (Poinsot). Live max-drifts of $E$ and $|\mathbf{L}|^2$ are displayed.</p>
-                    <div class="doc-widget-plot tall" id="fig1-rigid-plot" role="img" aria-label="figure · free rigid body: polhode and invariants"></div>
-                    <div class="doc-widget-controls">
-                        <label>$I_1$
-                            <input id="fig1-rigid-i1" type="range" min="0.7" max="2.4" value="1.0" step="0.05">
-                        </label>
-                        <label>$I_2$
-                            <input id="fig1-rigid-i2" type="range" min="0.7" max="2.4" value="1.5" step="0.05">
-                        </label>
-                        <label>$I_3$
-                            <input id="fig1-rigid-i3" type="range" min="0.7" max="2.4" value="2.0" step="0.05">
-                        </label>
-                        <button type="button" id="fig1-rigid-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig1-rigid-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="dissipative">
                 <h2>dissipative extensions</h2>
-                <p>Friction linear in velocity is incorporated by Rayleigh’s dissipation function $R(\dot{q})$. The
+                <p>Friction linear in velocity is incorporated by Rayleigh's dissipation function $R(\dot{q})$. The
                     modified Euler-Lagrange equations become
                     $$
                     \frac{d}{dt}\Bigl(\frac{\partial L}{\partial\dot{q}}\Bigr)
@@ -396,7 +339,7 @@
 
             <section class="doc-section" id="variational-control">
                 <h2>variational calculus and optimal control</h2>
-                <p>Carathéodory’s approach constructs a field of extremals whose associated Cartan form
+                <p>Carathéodory's approach constructs a field of extremals whose associated Cartan form
                     $$
                     \theta_L
                     =\frac{\partial L}{\partial\dot{q}^i}\,dq^i
@@ -404,8 +347,8 @@
                     $$
                     is closed on the graph of the field. The Hamilton-Jacobi equation is the condition that the
                     Lagrangian coincides with the total differential of a generating function. The same geometric
-                    construction, when the admissible velocities are restricted to a control set, yields Pontryagin’s
-                    maximum principle: an optimal trajectory maximises the Pontryagin Hamiltonian over the control
+                    construction, when the admissible velocities are restricted to a control set, yields Pontryagin's
+                    maximum principle: an optimal trajectory maximizes the Pontryagin Hamiltonian over the control
                     variables.</p>
 
                 <p><strong>remark.</strong> optimal control enlarges the pure variational setting to include
@@ -441,7 +384,7 @@
                         <tr>
                             <td>governing principle</td>
                             <td>critical action</td>
-                            <td>symplectic volume / Hamilton’s eqs.</td>
+                            <td>symplectic volume / Hamilton's eqs.</td>
                             <td>Pontryagin maximum principle</td>
                         </tr>
                         <tr>
@@ -482,6 +425,12 @@
 
                 <p><strong>exercise 4 (energy from autonomy).</strong> derive $dE/dt=0$ for
                     $E=\partial L/\partial\dot{q}\,\dot{q}-L$ when $L$ is time-independent, using only the Euler-Lagrange equations, without referring to the abstract Noether proof above.</p>
+
+                <p><strong>exercise 5 (galilean boost, kinetic structure).</strong> a free particle has $L=\frac12 m|\dot{\mathbf{q}}|^2$. under a Galilean boost
+                    $\mathbf{q}\mapsto\mathbf{q}+\mathbf{v}t$, show that $L$ changes by a total time derivative
+                    and thus leaves the equations of motion invariant. compute the corresponding Noether
+                    charge and identify it with the center-of-mass constant of motion.</p>
+
             </section>
 
         </div>

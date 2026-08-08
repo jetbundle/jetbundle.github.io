@@ -12,9 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
-    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
-    <script defer src="/physics/mechanics/figs/ch4.js"></script>
+
 </head>
 
 <body>
@@ -53,7 +51,7 @@
                 <p>When the linear equation $Ax=b$ is considered, the Fredholm alternative asserts that a solution
                     exists if and only if $b$ is orthogonal to the kernel of the adjoint operator $A^*$. In the language
                     of differential equations this criterion decides the solvability of the variational equation along a
-                    periodic orbit or of the linearised bifurcation equations at a multiple eigenvalue. The same
+                    periodic orbit or of the linearized bifurcation equations at a multiple eigenvalue. The same
                     alternative guarantees that the bordered matrices arising in numerical continuation remain invertible
                     when phase or unfolding conditions are correctly imposed.</p>
 
@@ -105,7 +103,7 @@
 
                 <p><strong>definition (adjoint).</strong> with respect to the standard Hermitian product
                     $\langle u,v\rangle=v^*u$ on $\mathbb{C}^n$, the adjoint of $A$ is $A^*=\overline{A}^T$,
-                    characterised by $\langle Au,v\rangle=\langle u,A^*v\rangle$.</p>
+                    characterized by $\langle Au,v\rangle=\langle u,A^*v\rangle$.</p>
 
                 <p><strong>theorem (fredholm alternative, finite dimensions).</strong> let $A\in\mathrm{M}_n(\mathbb{C})$
                     and $b\in\mathbb{C}^n$. the equation $Ax=b$ admits a solution if and only if
@@ -113,7 +111,7 @@
                     \langle b,w\rangle=0
                     \quad\text{for every }w\in\ker A^*.
                     $$
-                    when a solution exists, the solution set is an affine space modelled on $\ker A$.</p>
+                    when a solution exists, the solution set is an affine space modeled on $\ker A$.</p>
 
                 <p><strong>proof.</strong> if $Ax=b$ and $A^*w=0$, then
                     $$
@@ -136,40 +134,9 @@
 
                 
 
-                <div class="doc-widget" id="fig-jordan">
-                    <p class="doc-widget-title">figure · matrix exponential and Jordan geometry</p>
-                    <p class="doc-widget-caption">Orbits of $\dot x=Ax$ for diagonal, nilpotent, and shear blocks, with $e^{tA}$ from a power series and volume check $\det e^{tA}=e^{t\,\mathrm{tr}A}$.</p>
-                    <div class="doc-widget-plot tall" id="fig4-jordan-plot" role="img" aria-label="figure · matrix exponential and Jordan geometry"></div>
-                    <div class="doc-widget-controls">
-                        <label>form
-                            <select id="fig4-jordan-type">
-                                <option value="diag">diagonal</option>
-                                <option value="nilp">nilpotent</option>
-                                <option value="shear" selected>shear</option>
-                            </select>
-                        </label>
-                        <label>time $t$
-                            <input id="fig4-jordan-t" type="range" min="0" max="4" value="1.0" step="0.05">
-                        </label>
-                        <button type="button" id="fig4-jordan-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig4-jordan-readout"></p>
-                </div>
+                
 
-                <div class="doc-widget" id="fig-fred">
-                    <p class="doc-widget-title">figure · Fredholm alternative in $\mathbb{R}^2$</p>
-                    <p class="doc-widget-caption">For $A=\mathrm{diag}(1,0)$, $\mathrm{im}\,A=\mathrm{span}\{e_1\}$ and $\ker A^*=\mathrm{span}\{e_2\}$. Solvability of $Ax=b$ is equivalent to $b\perp\ker A^*$.</p>
-                    <div class="doc-widget-plot tall" id="fig4-fred-plot" role="img" aria-label="figure · Fredholm alternative in $\mathbb{R}^2$"></div>
-                    <div class="doc-widget-controls">
-                        <label>$b_1$
-                            <input id="fig4-fred-b1" type="range" min="-2" max="2" value="1.0" step="0.05">
-                        </label>
-                        <label>$b_2$
-                            <input id="fig4-fred-b2" type="range" min="-2" max="2" value="0.8" step="0.05">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig4-fred-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="manifolds-compute">
@@ -178,7 +145,7 @@
                     force all computational procedures to be formulated in a coordinate-free manner. Charts, transition
                     maps, and the tangent bundle supply the data structures in which Newton-type correctors and
                     predictor-corrector continuation can be implemented without leaving the manifold. The Riemannian
-                    metric (or any convenient fibre metric on the tangent bundle) converts the abstract Newton equation
+                    metric (or any convenient fiber metric on the tangent bundle) converts the abstract Newton equation
                     into a practical linear solve, while parallel transport along the continuation path yields consistent
                     initial guesses for the iterative corrector. Thus the differential geometry of $M$ is not merely an
                     existence framework; it is the natural computational domain in which numerical algorithms operate.</p>
@@ -189,7 +156,7 @@
                     (Jacobians, Newton steps) are performed in chart coordinates and pushed forward by the transitions.</p>
 
                 <p><strong>definition (newton map in a chart).</strong> for a smooth equation $F(x)=0$ with
-                    $F:M\to E$ taking values in a vector bundle (or, after trivialisation, in $\mathbb{R}^m$), the Newton
+                    $F:M\to E$ taking values in a vector bundle (or, after trivialization, in $\mathbb{R}^m$), the Newton
                     correction $\delta$ in a chart solves the linear equation
                     $$
                     DF(x)\cdot\delta=-F(x)
@@ -198,7 +165,7 @@
                     metric or by ordinary addition in the chart.</p>
 
                 <p><strong>remark.</strong> the abstract Newton equation is chart-independent when $F$ is a section of a
-                    vector bundle: $DF(x)$ is a linear map between fibres. choosing a metric identifies duals so that
+                    vector bundle: $DF(x)$ is a linear map between fibers. choosing a metric identifies duals so that
                     least-squares and Gauss-Newton variants become available on under- or over-determined systems.</p>
             
                 
@@ -206,11 +173,11 @@
 
             <section class="doc-section" id="newton">
                 <h2>numerical location of fixed points and periodic orbits</h2>
-                <p>Isolated zeros of a smooth map $f:X\to X$ (or $F:X\to\mathbb{R}^n$) are located by Newton’s method
+                <p>Isolated zeros of a smooth map $f:X\to X$ (or $F:X\to\mathbb{R}^n$) are located by Newton's method
                     $$
                     x_{k+1}=x_k-Df(x_k)^{-1}f(x_k)
                     $$
-                    or by its quasi-Newton variants (Broyden’s update) that avoid repeated factorisations of the
+                    or by its quasi-Newton variants (Broyden's update) that avoid repeated factorizations of the
                     Jacobian. Quadratic convergence is assured once the initial guess lies inside a ball of uniform
                     invertibility of $Df$.</p>
                 <p>Periodic orbits of a flow $\varphi_t$ are zeros of the map
@@ -222,12 +189,12 @@
                     $$
                     \int_0^T\langle\dot x_*(t),x(t)-x_*(t)\rangle\,dt=0
                     $$
-                    (or its discrete analogue) restores uniqueness and makes the bordered Jacobian invertible.
+                    (or its discrete analog) restores uniqueness and makes the bordered Jacobian invertible.
                     Continuation of the resulting system with respect to a parameter traces branches of periodic orbits,
                     detects period-doubling points, and follows the boundaries of Arnold tongues.</p>
 
                 <p><strong>theorem (local quadratic convergence of newton).</strong> let $F:\mathbb{R}^n\to\mathbb{R}^n$
-                    be $C^2$ near a root $x_*$ with $DF(x_*)$ invertible. then there exist a neighbourhood $U$ of
+                    be $C^2$ near a root $x_*$ with $DF(x_*)$ invertible. then there exist a neighborhood $U$ of
                     $x_*$ and a constant $C$ such that the Newton iteration
                     $$
                     x_{k+1}=x_k-DF(x_k)^{-1}F(x_k)
@@ -239,7 +206,7 @@
                     for all $x_0\in U$.</p>
 
                 <p><strong>proof.</strong> by continuity of $DF$ and invertibility of $DF(x_*)$, there is a ball about
-                    $x_*$ on which $\|DF(x)^{-1}\|$ is bounded by some $M$ (Neumann series about $DF(x_*)$). Taylor’s
+                    $x_*$ on which $\|DF(x)^{-1}\|$ is bounded by some $M$ (Neumann series about $DF(x_*)$). Taylor's
                     theorem with integral remainder gives
                     $$
                     F(x_k)
@@ -280,26 +247,13 @@
 
                 <p><strong>remark (phase condition).</strong> an integral phase constraint of the form
                     $\langle\dot x_*,x-x_*\rangle_{L^2([0,T])}=0$ cuts transversely through the orbit circle and makes
-                    the bordered linearisation invertible under generic nondegeneracy (simple Floquet multiplier $1$).
+                    the bordered linearization invertible under generic nondegeneracy (simple Floquet multiplier $1$).
                     this is the finite-dimensional Fredholm alternative applied to the bordered Jacobian of
                     $(G,\mathrm{phase})$.</p>
             
                 
 
-                <div class="doc-widget" id="fig-newton">
-                    <p class="doc-widget-title">figure · Newton iteration with quadratic error decay</p>
-                    <p class="doc-widget-caption">Root-finding for $F(x)=x^2-2$. Tangents show Newton steps; log-error plot exhibits the quadratic phase while $F^\prime(\sqrt{2})\neq 0$.</p>
-                    <div class="doc-widget-plot tall" id="fig4-newton-plot" role="img" aria-label="figure · Newton iteration with quadratic error decay"></div>
-                    <div class="doc-widget-controls">
-                        <label>$x_0$
-                            <input id="fig4-newton-x0" type="range" min="0.5" max="3.0" value="2.0" step="0.05">
-                        </label>
-                        <label>steps
-                            <input id="fig4-newton-steps" type="range" min="1" max="8" value="5" step="1">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig4-newton-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="dae">
@@ -317,8 +271,8 @@
                     $$
                     where $N$ is nilpotent. Each cyclic block of the Jordan or Kronecker form corresponds to an
                     independent chain of integrators or differentiators. This decomposition isolates the dynamic modes
-                    from the constraints, supplies the correct regularity index, and yields a minimal realisation of the
-                    input-output behaviour. In network theory the same block structure organises the port variables of
+                    from the constraints, supplies the correct regularity index, and yields a minimal realization of the
+                    input-output behavior. In network theory the same block structure organizes the port variables of
                     interconnected mechanical or electrical systems into independent cyclic subsystems.</p>
 
                 <p><strong>definition (matrix pencil).</strong> a pencil is a pair $(E,A)$ of $n\times n$ matrices,
@@ -341,7 +295,7 @@
                 <p><strong>proof (structure theory; construction in outline).</strong> regularity means that the rational
                     matrix $(\lambda E-A)^{-1}$ exists as a meromorphic function of $\lambda$. the finite poles correspond
                     to ordinary eigenvalues of the slow subsystem; the polar part at infinity is encoded by a nilpotent.
-                    more elementary: over an algebraically closed field one can find bases that split the generalised
+                    more elementary: over an algebraically closed field one can find bases that split the generalized
                     null chains of the pencil. work with matrices over the principal ideal domain
                     $\mathbb{C}[\lambda]$ and apply the Smith normal form algorithm to $\lambda E-A$; the invariant
                     factors determine elementary divisors for the finite spectrum, while the infinite elementary
@@ -360,12 +314,12 @@
                 <h2>exterior differential systems and interaction geometry</h2>
                 <p>An exterior differential system (EDS) on a manifold $M$ is a differentially closed ideal
                     $\mathcal{I}\subset\Omega^*(M)$. An integral manifold is a submanifold on which every form of
-                    $\mathcal{I}$ pulls back to zero. Cartan’s existence theorem (in the real-analytic category)
+                    $\mathcal{I}$ pulls back to zero. Cartan's existence theorem (in the real-analytic category)
                     guarantees local integral manifolds once the polar spaces satisfy a dimensional regularity condition;
                     the Cartan-Kahler theory supplies the precise count of free data.</p>
                 <p>In constrained mechanical networks the EDS is generated by the kinematic constraints and the balance
                     laws. The maximal integral manifolds are precisely the admissible configurations and velocities of
-                    the network. Kron-Hoffman interaction geometry realises the interconnection of subsystems as a fibre
+                    the network. Kron-Hoffman interaction geometry realizes the interconnection of subsystems as a fiber
                     product of the individual EDS; the resulting ideal encodes both the topological incidence relations
                     and the constitutive laws. The same formalism recovers the Dirac structure of a non-holonomic system
                     as the annihilator of a suitably chosen Pfaffian system, thereby linking the algebraic decomposition
@@ -402,17 +356,17 @@
                     status. the full proof is analytic and uses the Cauchy-Kowalevski theorem in adapted flags of
                     polar spaces.</p>
 
-                <p><strong>remark (networks).</strong> a fibre product of EDS for subsystems realises Kirchhoff-type
+                <p><strong>remark (networks).</strong> a fiber product of EDS for subsystems realizes Kirchhoff-type
                     incidence by pullback constraints on shared port variables; the combined ideal is again
                     differentially closed. this is the geometric content of interconnection before one chooses
-                    coordinates or a state-space realisation.</p>
+                    coordinates or a state-space realization.</p>
             </section>
 
             <section class="doc-section" id="summary">
                 <h2>summary</h2>
                 <p>Taken together, these methods provide the concrete computational and algebraic infrastructure on which
                     the geometric theories of dynamical systems, symplectic reduction, and control are built: Jordan
-                    structure and the Fredholm alternative govern linearised analysis, manifold-adapted Newton methods
+                    structure and the Fredholm alternative govern linearized analysis, manifold-adapted Newton methods
                     enable numerical continuation, Kronecker-Weierstrass decomposition isolates dynamic modes, and
                     exterior differential systems encode nonlinear constraints in a form ready for both theoretical
                     reduction and practical simulation.</p>
@@ -435,7 +389,7 @@
                     determine $\ker A^*$ and state precisely when $Ax=b$ is solvable. describe the solution set when it
                     is.</p>
 
-                <p><strong>exercise 3 (newton on a quadratic).</strong> apply Newton’s method to $F(x)=x^2-2$ starting
+                <p><strong>exercise 3 (newton on a quadratic).</strong> apply Newton's method to $F(x)=x^2-2$ starting
                     from $x_0=2$. compute $x_1,x_2$ exactly (as rationals) and verify that the errors
                     $|x_k-\sqrt{2}|$ decrease roughly quadratically.</p>
 
@@ -443,6 +397,12 @@
                     $\dot q=p$, $\dot p=-q$, verify explicitly that the time-$2\pi$ map is the identity, so every point is
                     periodic, and that $D\varphi_{2\pi}=I$. explain why a phase condition is still needed if one
                     searches for a single orbit representative numerically.</p>
+
+                <p><strong>exercise 5 (rank-nullity and cokernel dimension).</strong> for a linear map $A:\mathbb{R}^n\to\mathbb{R}^m$, prove
+                    $\dim\ker A-\dim\operatorname{coker} A=n-m$ (equivalently
+                    $\operatorname{index}A=n-m$). check the formula on the Jordan matrix of exercise 1 restricted
+                    to its generalized eigenspace for $\lambda=2$.</p>
+
             </section>
 
         </div>

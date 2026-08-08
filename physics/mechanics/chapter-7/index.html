@@ -12,9 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
-    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
-    <script defer src="/physics/mechanics/figs/ch7.js"></script>
+
 </head>
 
 <body>
@@ -34,7 +32,7 @@
             <p class="doc-lead"><em>inputs, nonholonomic constraints, optimality, and reduction</em></p>
             <p class="doc-intro">Control theory enlarges the geometric framework of classical mechanics by admitting external
                 inputs and non-integrable constraints. The same Lie-theoretic and symplectic tools developed earlier now
-                decide controllability, characterise optimal trajectories, and reduce the dynamics of constrained
+                decide controllability, characterize optimal trajectories, and reduce the dynamics of constrained
                 multibody and continuum systems to intrinsic equations on reduced spaces.</p>
         </header>
 
@@ -55,7 +53,7 @@
                     fields evaluates to a distribution $\Delta_{\mathrm{Lie}}(x)\subset T_x M$. The Caratheodory-Chow
                     theorem asserts that if $\Delta_{\mathrm{Lie}}(x)=T_x M$ at every $x$ (the Lie-algebra rank
                     condition), then the system is locally accessible; when the manifold is connected and the system is
-                    symmetric (or the drift can be neutralised), local accessibility upgrades to global controllability.
+                    symmetric (or the drift can be neutralized), local accessibility upgrades to global controllability.
                     The theorem converts an analytic question about reachable sets into a purely algebraic computation
                     with Lie brackets.</p>
 
@@ -67,7 +65,7 @@
                     $T$ if there exists an admissible control such that the corresponding trajectory satisfies
                     $x(0)=x_0$ and $x(T)=y$. the accessible set $\mathcal{A}(x_0)$ is the union over $T\ge 0$ of all
                     such points. the system is <em>locally accessible</em> at $x_0$ if $\mathcal{A}(x_0)$ contains a
-                    nonempty open set of every neighbourhood of $x_0$ (in the relative topology of the orbit); it is
+                    nonempty open set of every neighborhood of $x_0$ (in the relative topology of the orbit); it is
                     <em>controllable</em> on a connected $M$ if $\mathcal{A}(x)=M$ for every $x$.</p>
 
                 <p><strong>definition (lie algebra rank condition, LARC).</strong> let
@@ -76,7 +74,7 @@
                     $\{X(x):X\in\mathcal{L}\}=T_x M$.</p>
 
                 <p><strong>theorem (orbit theorem / rashevsky-chow for driftless systems).</strong> consider the
-                    driftless system $\dot x=\sum_{i=1}^m u_i f_i(x)$ with $U=\mathbb{R}^m$ (or any open neighbourhood of
+                    driftless system $\dot x=\sum_{i=1}^m u_i f_i(x)$ with $U=\mathbb{R}^m$ (or any open neighborhood of
                     $0$). if LARC holds at every point of a connected manifold $M$, then the system is controllable: any
                     two points can be joined by a piecewise smooth trajectory of the control system.</p>
 
@@ -85,7 +83,7 @@
                     formula of chapter 3) is an immersed submanifold whose tangent space at each point is exactly
                     $\Delta_{\mathrm{Lie}}(x)$ (Stefan-Sussmann / orbit theorem). LARC forces
                     $\dim\mathcal{O}(x_0)=\dim M$. the orbit is therefore open. it is also closed: if $y_k\in\mathcal{O}(x_0)$
-                    converges to $y$, then near $y$ the same full-rank distribution implies that a neighbourhood of $y$
+                    converges to $y$, then near $y$ the same full-rank distribution implies that a neighborhood of $y$
                     lies in a single orbit, so $y\in\mathcal{O}(x_0)$. a nonempty open-and-closed subset of a connected
                     manifold is all of $M$, so $\mathcal{O}(x_0)=M$. every point of the orbit is reachable by a finite
                     composition of integral curves of $\pm f_i$, which are admissible control arcs with bang controls
@@ -109,55 +107,31 @@
 
                 
 
-                <div class="doc-widget" id="fig-chow">
-                    <p class="doc-widget-title">figure · Chow / Heisenberg bracket generation</p>
-                    <p class="doc-widget-caption">Driftless $f_1=\partial_x+y\partial_z$, $f_2=\partial_y-x\partial_z$ with $[f_1,f_2]=-2\partial_z$. Commutator loops produce $z\sim-2\varepsilon^2$; LARC holds.</p>
-                    <div class="doc-widget-plot tall" id="fig7-chow-plot" role="img" aria-label="figure · Chow / Heisenberg bracket generation"></div>
-                    <div class="doc-widget-controls">
-                        <label>loop scale $\varepsilon$
-                            <input id="fig7-chow-eps" type="range" min="0.2" max="1.0" value="0.55" step="0.01">
-                        </label>
-                        <button type="button" id="fig7-chow-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig7-chow-readout"></p>
-                </div>
+                
 
-                <div class="doc-widget" id="fig-kalman">
-                    <p class="doc-widget-title">figure · Kalman controllability for LTI systems</p>
-                    <p class="doc-widget-caption">$\dot x=Ax+Bu$ with $B=(0,1)$. Rank of $[B\ AB]$ is LTI-LARC; bang pulse drives the trajectory.</p>
-                    <div class="doc-widget-plot tall" id="fig7-kalman-plot" role="img" aria-label="figure · Kalman controllability for LTI systems"></div>
-                    <div class="doc-widget-controls">
-                        <label>parameter $a$
-                            <input id="fig7-kalman-a" type="range" min="-1.0" max="1.0" value="0.25" step="0.05">
-                        </label>
-                        <label>horizon $T$
-                            <input id="fig7-kalman-t" type="range" min="0.6" max="3.0" value="1.5" step="0.05">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig7-kalman-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="singular">
-                <h2>singular trajectories, regularisation and boundary conditions</h2>
+                <h2>singular trajectories, regularization and boundary conditions</h2>
                 <p>Extremals that fail to satisfy the strict Legendre-Clebsch condition are called singular. Their control
                     is determined by the vanishing of the switching function and all its time derivatives along the
-                    trajectory. Regularisation embeds the singular locus into a higher-dimensional smooth manifold on
-                    which the extremal becomes an ordinary integral curve of a desingularised vector field.</p>
+                    trajectory. Regularization embeds the singular locus into a higher-dimensional smooth manifold on
+                    which the extremal becomes an ordinary integral curve of a desingularized vector field.</p>
                 <p>For linear boundary-value problems the self-adjointness of a differential operator is equivalent to
                     the Lagrangian character of the boundary conditions inside a symplectic vector space of dimension
                     twice the order of the equation. The set of all Lagrangian subspaces is the Lagrangian Grassmannian;
                     a continuous path of self-adjoint boundary conditions corresponds to a curve in this Grassmannian,
                     and the Maslov index of the path counts the conjugate points. Thus symplectic linear algebra
-                    furnishes a complete topological classification of self-adjoint realisations.</p>
+                    furnishes a complete topological classification of self-adjoint realizations.</p>
 
                 <p><strong>definition (switching function, single input).</strong> along an extremal $(x,\lambda)$ of a
                     control-affine problem with Pontryagin Hamiltonian $H=\langle\lambda,f_0\rangle+u\langle\lambda,f_1\rangle-L$,
-                    the switching function is $\sigma(t)=\langle\lambda(t),f_1(x(t))\rangle$ (or its analogue if $L$ depends
+                    the switching function is $\sigma(t)=\langle\lambda(t),f_1(x(t))\rangle$ (or its analog if $L$ depends
                     on $u$). on intervals where $\sigma$ changes sign one has bang-bang control; if $\sigma\equiv 0$ on a
                     time interval the control is <em>singular</em> there.</p>
 
-                <p><strong>definition (legendre-clebsch condition).</strong> for a smooth Hamiltonian maximised in the
+                <p><strong>definition (legendre-clebsch condition).</strong> for a smooth Hamiltonian maximized in the
                     control, the strict Legendre-Clebsch condition is $\partial^2 H/\partial u^2&lt;0$ along the extremal
                     (maximality of a regular interior control). failure of the inequality forces the singular case and a
                     higher-order test.</p>
@@ -166,15 +140,15 @@
                     vector space of dimension $2n$ is Lagrangian if $L=L^\omega$ (equivalently $\dim L=n$ and
                     $\omega|_{L}=0$).</p>
 
-                <p><strong>theorem (self-adjoint realisations are lagrangian).</strong> let $A$ be a formally
+                <p><strong>theorem (self-adjoint realizations are lagrangian).</strong> let $A$ be a formally
                     self-adjoint ordinary differential operator of order $n$ on an interval, with domain determined by
                     linear boundary conditions $\gamma(y)=0$ at the endpoints, where $\gamma$ takes values in
                     $\mathbb{C}^{2n}$ after the standard trace map of jets of order $n-1$ at the two ends. identify the
                     trace space with a symplectic vector space $(V,\omega)$ of dimension $2n$ whose form is the boundary
-                    pairing coming from Green’s formula. then the boundary conditions define a self-adjoint realisation
+                    pairing coming from Green's formula. then the boundary conditions define a self-adjoint realization
                     if and only if the graph of admissible traces is a Lagrangian subspace of $V$.</p>
 
-                <p><strong>proof.</strong> Green’s formula for a formally self-adjoint operator reads
+                <p><strong>proof.</strong> Green's formula for a formally self-adjoint operator reads
                     $$
                     \langle Ay,z\rangle_{L^2}-\langle y,Az\rangle_{L^2}
                     =\omega\bigl(\gamma(y),\gamma(z)\bigr)
@@ -195,7 +169,7 @@
 
             <section class="doc-section" id="pmp">
                 <h2>optimal control and the pontryagin maximum principle</h2>
-                <p>An optimal-control problem seeks to minimise a cost
+                <p>An optimal-control problem seeks to minimize a cost
                     $$
                     \int_0^T L(x,u)\,dt+K(x(T))
                     $$
@@ -207,12 +181,12 @@
                     $$
                     H(x,\lambda,u)=\langle\lambda,f(x,u)\rangle-L(x,u)
                     $$
-                    is maximised pointwise with respect to $u$, and the pair $(x,\lambda)$ satisfies Hamilton’s equations
+                    is maximized pointwise with respect to $u$, and the pair $(x,\lambda)$ satisfies Hamilton's equations
                     on $T^*M$. When the maximum is attained in the interior of the control set one recovers the
-                    classical Euler-Lagrange equations; when it is attained on the boundary the maximisation condition
+                    classical Euler-Lagrange equations; when it is attained on the boundary the maximization condition
                     supplies the optimal feedback.</p>
 
-                <p><strong>definition (bolza problem, free final time or fixed).</strong> minimise
+                <p><strong>definition (bolza problem, free final time or fixed).</strong> minimize
                     $J[u]=\int_0^T L(x(t),u(t))\,dt+K(x(T))$ subject to $\dot x=f(x,u)$, $x(0)=x_0$, and possibly
                     $x(T)\in\mathcal{T}$ for a target manifold $\mathcal{T}$.</p>
 
@@ -233,8 +207,8 @@
                     terminal cost is free of further constraints.</p>
 
                 <p><strong>proof (multiplier form of first variation).</strong> work in a single chart for notational
-                    simplicity (globalise by partition of unity on time intervals). admissible variations of the control
-                    $u_*+\varepsilon v$ produce state variations $\delta x$ solving the linearised dynamics
+                    simplicity (globalize by partition of unity on time intervals). admissible variations of the control
+                    $u_*+\varepsilon v$ produce state variations $\delta x$ solving the linearized dynamics
                     $$
                     \delta\dot x
                     =D_x f(x_*,u_*)\delta x+D_u f(x_*,u_*)v,\qquad
@@ -263,11 +237,11 @@
                     $$
                     for $u_*$ to be a local minimum against all needle or compactly supported variations $v$ with values
                     keeping the control in $U$, the integrand must not allow decrease, which forces the pointwise
-                    maximisation of $H=\lambda\cdot f-L$ over $U$ almost everywhere (standard needle variation argument:
+                    maximization of $H=\lambda\cdot f-L$ over $U$ almost everywhere (standard needle variation argument:
                     if some $v_0\in U$ gave a strictly larger $H$ on a set of positive measure, a needle variation toward
-                    $v_0$ would decrease $J$). rearranging the adjoint ODE with the same $H$ gives Hamilton’s equations.
+                    $v_0$ would decrease $J$). rearranging the adjoint ODE with the same $H$ gives Hamilton's equations.
                     if $\lambda\equiv 0$ then maximality and the ODE force a degenerate abnormal problem; for free
-                    endpoints with $K$ present and normal multipliers one normalises nonzero $\lambda$. $\square$</p>
+                    endpoints with $K$ present and normal multipliers one normalizes nonzero $\lambda$. $\square$</p>
 
                 <p><strong>remark (interior maximum).</strong> if for each $t$ the maximum of $H$ over $U$ is attained at
                     an interior point where $\partial_u H=0$ and $\partial_{uu}H&lt;0$, the maximality condition reduces to
@@ -278,36 +252,9 @@
 
                 
 
-                <div class="doc-widget" id="fig-pmp">
-                    <p class="doc-widget-title">figure · Pontryagin maximality $u_*=\arg\max H$</p>
-                    <p class="doc-widget-caption">Pointwise maximisation of $H(u)$ on $U=[-1,1]$. Bang extrema vs quadratic regularisation with an interior critical point.</p>
-                    <div class="doc-widget-plot tall" id="fig7-pmp-plot" role="img" aria-label="figure · Pontryagin maximality $u_*=\arg\max H$"></div>
-                    <div class="doc-widget-controls">
-                        <label>costate $\lambda$
-                            <input id="fig7-pmp-lam" type="range" min="-2.0" max="2.0" value="1.1" step="0.05">
-                        </label>
-                        <label>regime
-                            <select id="fig7-pmp-mode">
-                                <option value="bang" selected>bang-bang</option>
-                                <option value="singular">regularised</option>
-                            </select>
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig7-pmp-readout"></p>
-                </div>
+                
 
-                <div class="doc-widget" id="fig-bang">
-                    <p class="doc-widget-title">figure · bang-bang on the double integrator</p>
-                    <p class="doc-widget-caption">State $(x,v)$ for $\ddot x=u\in\{\pm1\}$ with a single switch. Switching function $\sigma$ changes sign at $t_s$.</p>
-                    <div class="doc-widget-plot tall" id="fig7-bang-plot" role="img" aria-label="figure · bang-bang on the double integrator"></div>
-                    <div class="doc-widget-controls">
-                        <label>switch $t_s$
-                            <input id="fig7-bang-tsw" type="range" min="0.3" max="2.0" value="1.0" step="0.05">
-                        </label>
-                        <button type="button" id="fig7-bang-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig7-bang-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="nonholonomic">
@@ -319,7 +266,7 @@
                     $$
                     \langle(X,\alpha),(Y,\beta)\rangle=\alpha(Y)+\beta(X).
                     $$
-                    A Dirac structure simultaneously generalises graphs of symplectic forms, graphs of Poisson tensors,
+                    A Dirac structure simultaneously generalizes graphs of symplectic forms, graphs of Poisson tensors,
                     and graphs of closed two-forms.</p>
                 <p>The Lagrange-Poincare-Dirac reduction procedure quotients the Dirac structure by a symmetry group that
                     preserves both the Lagrangian and the constraint distribution. The reduced object is again a Dirac
@@ -338,7 +285,7 @@
                 <p><strong>definition (dirac structure).</strong> a subbundle $L\subset TM\oplus T^*M$ is a Dirac
                     structure if it is maximally isotropic for the pairing
                     $\langle(X,\alpha),(Y,\beta)\rangle=\alpha(Y)+\beta(X)$, i.e. $L=L^\perp$ with respect to that
-                    pairing (fibrewise). smoothness and integrability conditions (Courant involutivity) are often
+                    pairing (fiberwise). smoothness and integrability conditions (Courant involutivity) are often
                     imposed for integrable Dirac structures.</p>
 
                 <p><strong>theorem (graph of a symplectic form is dirac).</strong> if $(M,\omega)$ is symplectic, then
@@ -358,32 +305,18 @@
 
                 <p><strong>definition (nonholonomic affine constraint).</strong> a distribution $D\subset TM$ of constant
                     rank, not necessarily integrable, restricts admissible velocities by $\dot q\in D_q$. for a
-                    mechanical Lagrangian $L$ on $TQ$, the nonholonomic equations are the Lagrange-d’Alembert principle:
+                    mechanical Lagrangian $L$ on $TQ$, the nonholonomic equations are the Lagrange-d'Alembert principle:
                     $\delta\int L=\mathbf{0}$ for variations with $\delta q\in D$ and $\dot q\in D$.</p>
 
                 <p><strong>remark (dirac encoding).</strong> the pair consisting of the constraint force annihilator and
                     the Legendre-transformed symplectic relation can be assembled as a single Dirac structure whose
-                    implicit dynamics reproduce Lagrange-d’Alembert. reduction by a symmetry group free on the
+                    implicit dynamics reproduce Lagrange-d'Alembert. reduction by a symmetry group free on the
                     constraint distribution produces the reduced Dirac structure $\mathfrak{d}$ and the displayed
                     Euler-Poincare-Dirac equation, which collapses to ordinary Euler-Poincare when $D=TM$.</p>
             
                 
 
-                <div class="doc-widget" id="fig-unicycle">
-                    <p class="doc-widget-title">figure · unicycle nonholonomic kinematics</p>
-                    <p class="doc-widget-caption">$\dot x=v\cos\theta$, $\dot y=v\sin\theta$, $\dot\theta=\omega$. Residual $|\sin\theta\,\dot x-\cos\theta\,\dot y|$ stays zero for admissible velocities.</p>
-                    <div class="doc-widget-plot tall" id="fig7-unicycle-plot" role="img" aria-label="figure · unicycle nonholonomic kinematics"></div>
-                    <div class="doc-widget-controls">
-                        <label>speed $v$
-                            <input id="fig7-unicycle-v" type="range" min="0.15" max="1.2" value="0.7" step="0.05">
-                        </label>
-                        <label>yaw $\omega$
-                            <input id="fig7-unicycle-om" type="range" min="-1.2" max="1.2" value="0.55" step="0.05">
-                        </label>
-                        <button type="button" id="fig7-unicycle-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig7-unicycle-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="multisymplectic">
@@ -414,7 +347,7 @@
                 <h2>summary</h2>
                 <p>Collectively, these constructions extend the symplectic and Lie-theoretic framework of classical
                     mechanics to systems with inputs, non-integrable constraints, and infinite-dimensional configuration
-                    spaces. Controllability is decided by Lie brackets, optimality by maximisation of a Hamiltonian, and
+                    spaces. Controllability is decided by Lie brackets, optimality by maximization of a Hamiltonian, and
                     reduction by Dirac or multisymplectic quotient, furnishing a unified geometric language for the
                     analysis and design of controlled mechanical systems.</p>
             </section>
@@ -438,6 +371,12 @@
                 <p><strong>exercise 4 (dirac graph).</strong> verify directly that $L_\omega$ for
                     $\omega=dp\wedge dq$ on $\mathbb{R}^2$ is maximal isotropic for the neutral pairing on
                     $T\mathbb{R}^2\oplus T^*\mathbb{R}^2$.</p>
+
+                <p><strong>exercise 5 (bang-bang intuition for the double integrator).</strong> on $\ddot q=u$ with $|u|\le 1$, write the PMP Hamiltonian and show that an optimal control
+                    (minimizing time to the origin) must satisfy $u=-\operatorname{sign}(\lambda_p)$ whenever
+                    the switching function $\sigma=\lambda_p$ is nonzero. explain what a singular arc would require
+                    of $\sigma$ and why generic time-optimal arcs for this system are bang-bang.</p>
+
             </section>
 
         </div>

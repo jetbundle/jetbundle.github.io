@@ -31,6 +31,15 @@ a:hover {
     color: var(--link-hover);
 }
 
+/* warm lineage links: use the palette gold (link-hover) */
+a.link-orange {
+    color: var(--link-hover);
+}
+
+a.link-orange:hover {
+    color: var(--white);
+}
+
 .wrap {
     max-width: 52ch;
     margin: 0 auto;
@@ -112,12 +121,15 @@ a:hover {
 
 /* Keep reading measure for prose; plots fill the shell width.
    Prose is horizontally centered in the wide shell (do NOT use margin shorthand
-   later — it would zero margin-left/right and break centering). */
+   later — it would zero margin-left/right and break centering).
+   Includes hub-page intros that sit as direct children of main.doc. */
 main.doc > .subnav,
 main.doc > .doc-header,
+main.doc > .doc-intro,
 main.doc > .doc-rule,
 main.doc > .doc-footer,
 main.doc > .toc,
+main.doc > p,
 main.doc .doc-body > h2,
 main.doc .doc-body > h3,
 main.doc .doc-body > p,
@@ -132,10 +144,20 @@ main.doc .doc-section > ul,
 main.doc .doc-section > ol,
 main.doc .doc-section > table,
 main.doc .doc-section > blockquote,
-main.doc .doc-section > .spine-rail {
+main.doc .doc-section > .spine-rail,
+main.doc .doc-section > .toc-list {
     max-width: 68ch;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Hub/index intros share the same column as body copy */
+main.doc > .doc-intro {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--fg);
 }
 
 .doc-header {

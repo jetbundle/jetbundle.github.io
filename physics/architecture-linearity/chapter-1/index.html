@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
-  <script defer src="widgets.js"></script>
 </head>
 <body>
   <main class="doc">
@@ -52,18 +51,7 @@
         $a_1 e_1+\cdots+a_n e_n=0$ implies all $a_i=0$; (2) they span $V$: every $v\in V$ can be written
         $v=x_1 e_1+\cdots+x_n e_n$. The numbers $(x_1,\ldots,x_n)$ are the <strong>components</strong> of $v$ in this
         basis. Different bases give different components, but the space itself is independent of choice.</p>
-
-        <p class="dim" style="margin-top:1rem">Two directions in $\mathbb{R}^2$ from the origin span a parallelogram;
-        its area is $|\det[u\;v]|$ (vanishes exactly when they are collinear):</p>
-        <div class="doc-widget" style="margin:0.75rem 0 0;border:1px solid #222;padding:0.75rem;">
-          <canvas id="basis-canvas" width="520" height="220" style="display:block;width:100%;max-width:36rem;height:auto;"></canvas>
-          <div style="margin-top:0.6rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.5rem 1rem;font-size:0.85rem;color:var(--dim);max-width:36rem;">
-            <label>$u_1$ <input type="range" id="basis-u1" min="-2" max="2" step="0.02" value="1.2" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$u_2$ <input type="range" id="basis-u2" min="-2" max="2" step="0.02" value="0.25" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$v_1$ <input type="range" id="basis-v1" min="-2" max="2" step="0.02" value="0.35" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$v_2$ <input type="range" id="basis-v2" min="-2" max="2" step="0.02" value="1.1" style="width:100%;accent-color:var(--link-hover);"></label>
-          </div>
-        </div>
+</div>
 
         <h3>problem 1 (core computational skill)</h3>
         <p>Solve the system $Ax=b$ and determine the dimension of the solution space. Let</p>
@@ -78,17 +66,7 @@
         <strong>Rank + nullity = dimension of the ambient space</strong> (fundamental theorem). This holds in any basis.</p>
         <p><strong>Cramer's rule (when applicable).</strong> If $\det A\neq 0$ and $n$ equations, $x_i=\det(A_i)/\det(A)$
         where $A_i$ replaces column $i$ by $b$. Useful for small $n$ or theoretical insight.</p>
-
-        <p class="dim" style="margin-top:1rem">Affine slice in the $(x_1,x_2)$-projection of the rank-one family in $\mathbb{R}^3$
-        (violet = vary $s$ at fixed $t$; gold = your $(s,t)$ pair):</p>
-        <div class="doc-widget" style="margin:0.75rem 0 0;border:1px solid #222;padding:0.75rem;">
-          <canvas id="affine-canvas" width="520" height="220" style="display:block;width:100%;max-width:36rem;height:auto;"></canvas>
-          <div style="margin-top:0.6rem;display:flex;flex-wrap:wrap;gap:1rem;font-size:0.9rem;color:var(--dim);">
-            <label>$s$ <input type="range" id="affine-s" min="-2" max="3" step="0.02" value="0" style="width:12rem;accent-color:var(--link-hover);"></label>
-            <label>$t$ <input type="range" id="affine-t" min="-2" max="3" step="0.02" value="0" style="width:12rem;accent-color:var(--link-hover);"></label>
-          </div>
-        </div>
-      </section>
+</section>
 
       <section class="doc-section" id="s13">
         <h2>1.3 · linear operators and matrices</h2>
@@ -101,20 +79,7 @@
         $$A' = C^{-1} A C.$$
         <p>This is the <strong>conjugation law</strong>. Eigenvalues, trace, determinant, and the characteristic polynomial
         are unchanged — true invariants of the operator.</p>
-
-        <p class="dim" style="margin-top:1rem">Same plane $\mathbb{R}^2$: faint grid is the domain; violet image is the
-        deformed coordinate grid under $M=\begin{pmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{pmatrix}$; gold is the image of
-        the unit circle (an ellipse). Read $\det$ and $\mathrm{tr}$ live:</p>
-        <div class="doc-widget" style="margin:0.75rem 0 0;border:1px solid #222;padding:0.75rem;">
-          <canvas id="map2d-canvas" width="520" height="260" style="display:block;width:100%;max-width:36rem;height:auto;"></canvas>
-          <div style="margin-top:0.6rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.5rem 1rem;font-size:0.85rem;color:var(--dim);max-width:36rem;">
-            <label>$a_{11}$ <input type="range" id="map-a11" min="-2" max="2" step="0.02" value="1" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$a_{12}$ <input type="range" id="map-a12" min="-2" max="2" step="0.02" value="0.35" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$a_{21}$ <input type="range" id="map-a21" min="-2" max="2" step="0.02" value="-0.2" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$a_{22}$ <input type="range" id="map-a22" min="-2" max="2" step="0.02" value="1" style="width:100%;accent-color:var(--link-hover);"></label>
-          </div>
-        </div>
-      </section>
+</section>
 
       <section class="doc-section" id="s14">
         <h2>1.4 · dual space and evaluation pairing (structural view)</h2>
@@ -125,20 +90,7 @@
         mechanics as $\langle\psi|\phi\rangle$ (probability amplitudes).</p>
         <p><strong>Structural abstraction.</strong> $T:V\to V$ induces $T^\ast:V^\ast\to V^\ast$ by
         $\langle T^\ast f,v\rangle=\langle f,Tv\rangle$. In dual bases, matrices of $T$ and $T^\ast$ are transposes.</p>
-
-        <p class="dim" style="margin-top:1rem">Linear functional $\ell(x)=a x_1 + b x_2$: dashed line is $\ell=0$; paler line is
-        $\ell(x)$ through your point; violet arrow is $(a,b)$; gold is $x$:</p>
-        <div class="doc-widget" style="margin:0.75rem 0 0;border:1px solid #222;padding:0.75rem;">
-          <canvas id="fun-canvas" width="520" height="240" style="display:block;width:100%;max-width:36rem;height:auto;"></canvas>
-          <p id="fun-value" class="dim" style="margin:0.4rem 0 0;font-size:0.9rem;"></p>
-          <div style="margin-top:0.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.5rem 1rem;font-size:0.85rem;color:var(--dim);max-width:36rem;">
-            <label>$a$ <input type="range" id="fun-a" min="-2" max="2" step="0.02" value="1" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$b$ <input type="range" id="fun-b" min="-2" max="2" step="0.02" value="0.5" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$x_1$ <input type="range" id="fun-x" min="-3" max="3" step="0.02" value="1.5" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$x_2$ <input type="range" id="fun-y" min="-3" max="3" step="0.02" value="0.8" style="width:100%;accent-color:var(--link-hover);"></label>
-          </div>
-        </div>
-      </section>
+</section>
 
       <section class="doc-section" id="s15">
         <h2>1.5 · geometric projection: tangent spaces and differentials</h2>
@@ -154,20 +106,7 @@
         <p>Thus the Jacobian $J=(\partial y^j/\partial x^i)$ is the transition matrix. The differential $dF$ is
         represented by this Jacobian; under further coordinate changes it transforms compatibly with conjugation,
         preserving the linear character of the infinitesimal picture.</p>
-
-        <p class="dim" style="margin-top:1rem">Polar $(r,\theta)$ to Cartesian: a small coordinate rectangle maps to a curved
-        quadrilateral in the plane. Compare its area to the model $r\,\Delta r\,\Delta\theta$ from the Jacobian determinant:</p>
-        <div class="doc-widget" style="margin:0.75rem 0 0;border:1px solid #222;padding:0.75rem;">
-          <canvas id="polar-canvas" width="520" height="260" style="display:block;width:100%;max-width:36rem;height:auto;"></canvas>
-          <p id="polar-area" class="dim" style="margin:0.4rem 0 0;font-size:0.85rem;"></p>
-          <div style="margin-top:0.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.5rem 1rem;font-size:0.85rem;color:var(--dim);max-width:36rem;">
-            <label>$r$ <input type="range" id="polar-r" min="0.4" max="3" step="0.02" value="1.8" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$\theta$ (deg) <input type="range" id="polar-theta" min="0" max="360" step="1" value="35" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$\Delta r$ <input type="range" id="polar-dr" min="0.1" max="0.9" step="0.01" value="0.45" style="width:100%;accent-color:var(--link-hover);"></label>
-            <label>$\Delta\theta$ (deg) <input type="range" id="polar-dth" min="4" max="40" step="0.5" value="14" style="width:100%;accent-color:var(--link-hover);"></label>
-          </div>
-        </div>
-      </section>
+</section>
 
       <section class="doc-section" id="s16">
         <h2>1.6 · the full cycle — one object, three projections</h2>
@@ -206,7 +145,7 @@
     </div>
 
     <footer class="doc-footer">
-      <p>figures: <code>widgets.js</code> (canvas 2D, site palette). See <a href="VISUALIZATIONS.md">VISUALIZATIONS.md</a> for how they are built.</p>
+      <p><a href="../index.html">← architecture of linearity</a></p>
     </footer>
   </main>
 </body>

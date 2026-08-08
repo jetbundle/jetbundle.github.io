@@ -12,9 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
-    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
-    <script defer src="/physics/mechanics/figs/ch2.js"></script>
+
 </head>
 
 <body>
@@ -33,8 +31,8 @@
             <h1>2 · ordinary differential equations</h1>
             <p class="doc-lead"><em>vector fields, flows, and the geometry of phase space</em></p>
             <p class="doc-intro">The qualitative theory of ordinary differential equations shifts attention from the search
-                for explicit solutions to the geometric structure of the phase space and the global behaviour of the
-                associated flow. Once the equations are recognised as defining a vector field, the entire apparatus of
+                for explicit solutions to the geometric structure of the phase space and the global behavior of the
+                associated flow. Once the equations are recognized as defining a vector field, the entire apparatus of
                 differential geometry becomes available, and local analytic techniques are subordinated to topological
                 and dynamical invariants.</p>
         </header>
@@ -174,7 +172,7 @@
                     solution must leave every compact subset of $U$ (escape time theorem).</p>
 
                 <p><strong>theorem (rectification / flow box).</strong> let $v$ be $C^1$ near $x_0$ with
-                    $v(x_0)\neq 0$. then there exist open neighbourhoods $W\ni x_0$ and $V\subset\mathbb{R}^n$, and a
+                    $v(x_0)\neq 0$. then there exist open neighborhoods $W\ni x_0$ and $V\subset\mathbb{R}^n$, and a
                     $C^1$ diffeomorphism $\Psi:V\to W$, such that
                     $$
                     \Psi_*\Bigl(\frac{\partial}{\partial u^1}\Bigr)=v\Big|_W.
@@ -214,17 +212,7 @@
             
                 
 
-                <div class="doc-widget" id="fig-picard">
-                    <p class="doc-widget-title">figure · Picard iteration and contraction</p>
-                    <p class="doc-widget-caption">For $\dot x=-x$, $x(0)=1$, the Picard map $x^{(n+1)}(t)=1+\int_0^t -x^{(n)}$ converges to $e^{-t}$. Left: iterates; right: $L^\infty$ error vs iteration (log scale).</p>
-                    <div class="doc-widget-plot tall" id="fig2-picard-plot" role="img" aria-label="figure · Picard iteration and contraction"></div>
-                    <div class="doc-widget-controls">
-                        <label>iterate $n$
-                            <input id="fig2-picard-n" type="range" min="0" max="8" value="5" step="1">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig2-picard-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="linearization">
@@ -263,38 +251,38 @@
 
                 <p>Complexification of the real space $\mathbb{R}^n$ allows the use of the Jordan canonical form over
                     $\mathbb{C}$. The real invariant subspaces corresponding to eigenvalues with negative, zero, and
-                    positive real parts yield the stable, centre, and unstable subspaces.</p>
+                    positive real parts yield the stable, center, and unstable subspaces.</p>
 
                 <p><strong>definition (hyperbolic equilibrium).</strong> an equilibrium $x_*$ is <em>hyperbolic</em>
                     if no eigenvalue of $A=Dv(x_*)$ has zero real part.</p>
 
                 <p><strong>theorem (hartman-grobman, statement).</strong> if $x_*$ is a hyperbolic equilibrium of a
-                    $C^1$ vector field $v$, then there exist neighbourhoods of $x_*$ and of $0$ and a homeomorphism
+                    $C^1$ vector field $v$, then there exist neighborhoods of $x_*$ and of $0$ and a homeomorphism
                     $h$ between them conjugating the nonlinear flow of $v$ to the linear flow of $A=Dv(x_*)$.</p>
 
                 <p><strong>remark.</strong> the homeomorphism $h$ need not be differentiable. a complete proof uses a
                     discrete Hartman map for a time-$t_0$ diffeomorphism near $x_*$ and a fixed-point argument in a
-                    suitable function space; the statement is recorded here for the classification programme, while the
+                    suitable function space; the statement is recorded here for the classification program, while the
                     hyperbolicity hypothesis is the one that geometric users must check in examples.</p>
             </section>
 
             <section class="doc-section" id="classification">
                 <h2>classification, lyapunov functions and topological equivalence</h2>
-                <p>In the plane the linear classification produces nodes, saddles, foci, and centres according to the
+                <p>In the plane the linear classification produces nodes, saddles, foci, and centers according to the
                     eigenvalues of $A$. The same local phase portraits persist for the nonlinear system when the
-                    equilibrium is hyperbolic (Hartman-Grobman). Lyapunov’s direct method supplies a coordinate-free
+                    equilibrium is hyperbolic (Hartman-Grobman). Lyapunov's direct method supplies a coordinate-free
                     criterion for stability without solving the ODE.</p>
 
                 <p><strong>definition (lyapunov function).</strong> a $C^1$ function $V$ defined near an equilibrium
-                    $x_*$ is a Lyapunov function if $V(x_*)=0$, $V(x)&gt;0$ for $x\neq x_*$ in a punctured neighbourhood,
+                    $x_*$ is a Lyapunov function if $V(x_*)=0$, $V(x)&gt;0$ for $x\neq x_*$ in a punctured neighborhood,
                     and the orbital derivative
                     $$
                     \dot V(x):=DV(x)\cdot v(x)
                     $$
-                    satisfies $\dot V(x)\le 0$ on that neighbourhood.</p>
+                    satisfies $\dot V(x)\le 0$ on that neighborhood.</p>
 
                 <p><strong>theorem (lyapunov stability).</strong> if a Lyapunov function $V$ exists near $x_*$, then
-                    $x_*$ is (Lyapunov) stable. if moreover $\dot V(x)&lt;0$ for all $x\neq x_*$ in a neighbourhood, then
+                    $x_*$ is (Lyapunov) stable. if moreover $\dot V(x)&lt;0$ for all $x\neq x_*$ in a neighborhood, then
                     $x_*$ is asymptotically stable.</p>
 
                 <p><strong>proof.</strong> stability: fix $\varepsilon&gt;0$ small enough that the closed ball
@@ -315,7 +303,7 @@
                     converges to some $\ell\ge 0$. if the $\omega$-limit set contains a point $y\neq x_*$ then
                     continuous dependence and the strict decrease of $V$ produce a contradiction (along the orbit
                     through $y$, $V$ drops below $\ell$). for planar and finite-dimensional settings it follows that
-                    $x(t)\to x_*$ (standard $\omega$-limit argument for continuous flows on compact neighbourhoods
+                    $x(t)\to x_*$ (standard $\omega$-limit argument for continuous flows on compact neighborhoods
                     trapped by the Lyapunov sublevel sets). $\square$</p>
 
                 <p><strong>remark (on the asymptotic half).</strong> the strict inequality $\dot V&lt;0$ is the classical
@@ -326,27 +314,11 @@
                 <p><strong>definition (topological equivalence).</strong> two vector fields are topologically equivalent
                     if there exists a homeomorphism mapping oriented orbits of one onto oriented orbits of the other.
                     hyperbolic equilibria of the same index (dimension of the unstable subspace) are topologically
-                    equivalent by Hartman-Grobman; centres and weak foci require finer invariants.</p>
+                    equivalent by Hartman-Grobman; centers and weak foci require finer invariants.</p>
             
                 
 
-                <div class="doc-widget" id="fig-linear">
-                    <p class="doc-widget-title">figure · linear planar systems and the $(\mathrm{tr},\det)$ plane</p>
-                    <p class="doc-widget-caption">Phase portraits of $\dot x=Ax$ from adaptive RK45, paired with the classical $(\mathrm{tr}A,\det A)$ classification chart. The gold marker locates the active matrix; $\Delta=\mathrm{tr}^2-4\det$ separates nodes and foci.</p>
-                    <div class="doc-widget-plot tall" id="fig2-linear-plot" role="img" aria-label="figure · linear planar systems and the $(\mathrm{tr},\det)$ plane"></div>
-                    <div class="doc-widget-controls">
-                        <label>type
-                            <select id="fig2-linear-type">
-                                <option value="saddle" selected>saddle</option>
-                                <option value="sink">stable node</option>
-                                <option value="source">unstable node</option>
-                                <option value="spiral">spiral sink</option>
-                                <option value="center">center</option>
-                            </select>
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig2-linear-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="manifolds">
@@ -357,7 +329,7 @@
 
                 <p><strong>definition (index of an isolated singular point, in $\mathbb{R}^n$).</strong> if $x_*$ is an
                     isolated zero of a continuous vector field $v$ and $S_\varepsilon$ is a small sphere about $x_*$
-                    on which $v\neq 0$, the <em>index</em> of $x_*$ is the degree of the normalised map
+                    on which $v\neq 0$, the <em>index</em> of $x_*$ is the degree of the normalized map
                     $$
                     \frac{v}{|v|}:S_\varepsilon\to S^{n-1}.
                     $$</p>
@@ -368,8 +340,8 @@
 
                 <p><strong>remark.</strong> thus the global topology of $M$ constrains the possible singular sets of any
                     continuous vector field. the full proof uses either obstruction theory or triangulation and
-                    local-to-global additivity of degree; the theorem is the precise sense in which “every continuous
-                    vector field on $S^2$ has a singular point” (hairy ball) is a special case $\chi(S^2)=2$.</p>
+                    local-to-global additivity of degree; the theorem is the precise sense in which "every continuous
+                    vector field on $S^2$ has a singular point" (hairy ball) is a special case $\chi(S^2)=2$.</p>
 
                 <p><strong>theorem (no nowhere-vanishing continuous vector field on even spheres, sketch from
                         poincare-hopf).</strong> if $n$ is even then $\chi(S^n)=2\neq 0$, so any continuous vector field
@@ -410,18 +382,18 @@
 
                 <p><strong>theorem (phase portrait from the potential).</strong> assume $V$ is $C^2$ and
                     $q_*$ is a nondegenerate critical point. if $V''(q_*)&gt;0$ then the equilibrium $(q_*,0)$ of the
-                    planar system is a centre for the linearized system and is a Lyapunov-stable equilibrium of the
+                    planar system is a center for the linearized system and is a Lyapunov-stable equilibrium of the
                     nonlinear system (with Lyapunov function $E-E(q_*,0)$). if $V''(q_*)&lt;0$ then $(q_*,0)$ is a saddle
-                    of both the linearization and the nonlinear flow in a neighbourhood.</p>
+                    of both the linearization and the nonlinear flow in a neighborhood.</p>
 
                 <p><strong>proof.</strong> linearization of $(\dot q,\dot p)=(p,-V'(q))$ at $(q_*,0)$ is
                     $$
                     A=\begin{pmatrix}0&1\\-V''(q_*)&0\end{pmatrix}.
                     $$
                     eigenvalues satisfy $\lambda^2+V''(q_*)=0$. if $V''(q_*)&gt;0$ then $\lambda=\pm i\omega$
-                    (purely imaginary), which is the linear centre. the function $L(q,p)=E(q,p)-V(q_*)$ is positive
+                    (purely imaginary), which is the linear center. the function $L(q,p)=E(q,p)-V(q_*)$ is positive
                     definite near $(q_*,0)$ because $V(q)-V(q_*)$ has a local minimum of quadratic order and
-                    $\frac12 p^2$ is positive definite in $p$; moreover $\dot L=0$ by energy conservation, so Lyapunov’s
+                    $\frac12 p^2$ is positive definite in $p$; moreover $\dot L=0$ by energy conservation, so Lyapunov's
                     theorem gives stability. if $V''(q_*)&lt;0$ then $\lambda=\pm\sqrt{|V''(q_*)|}$ are real of opposite
                     sign, so the linearization is a saddle. hyperbolicity plus Hartman-Grobman (or an elementary
                     topological argument for planar saddles) yields a nonlinear saddle. $\square$</p>
@@ -432,17 +404,7 @@
             
                 
 
-                <div class="doc-widget" id="fig-energy">
-                    <p class="doc-widget-title">figure · one-degree-of-freedom energy portrait</p>
-                    <p class="doc-widget-caption">Double well $V=\frac14 q^4-\frac12 q^2$. Level sets of $H=\frac12 p^2+V$ are integrated adaptively; the readout tracks wells, separatrix ($E=0$), and connected motion.</p>
-                    <div class="doc-widget-plot tall" id="fig2-energy-plot" role="img" aria-label="figure · one-degree-of-freedom energy portrait"></div>
-                    <div class="doc-widget-controls">
-                        <label>energy $E$
-                            <input id="fig2-energy-e" type="range" min="-0.24" max="0.55" value="-0.08" step="0.01">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig2-energy-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="summary">
@@ -468,7 +430,7 @@
                     A=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
                     A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
                     $$
-                    identify node, saddle, and centre. which of these equilibria are hyperbolic?</p>
+                    identify node, saddle, and center. which of these equilibria are hyperbolic?</p>
 
                 <p><strong>exercise 3 (energy portrait).</strong> take $V(q)=\frac14 q^4-\frac12 q^2$. locate the
                     critical points, classify the equilibria of the planar system $(\dot q,\dot p)=(p,-V'(q))$, and
@@ -481,6 +443,12 @@
                     show that $V=x^2+y^2$ is a strict Lyapunov function at the origin, and conclude asymptotic
                     stability. compute the eigenvalues of the linearization and compare with the classification table
                     of planar linear systems.</p>
+
+                <p><strong>exercise 5 (hartman-grobman necessity of hyperbolicity).</strong> give a planar example of a $C^\infty$ vector field with a nonhyperbolic equilibrium that is
+                    topologically inequivalent to its linearization. (a standard choice is a weak focus or a
+                    nilpotent node; sketch phase portraits and eigenvalues.) explain why hyperbolicity is required
+                    in the Hartman-Grobman theorem.</p>
+
             </section>
 
         </div>

@@ -12,9 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         crossorigin="anonymous"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
-    <script defer src="/physics/mechanics/figs/jb-fig.js"></script>
-    <script defer src="/physics/mechanics/figs/ch8.js"></script>
+
 </head>
 
 <body>
@@ -37,7 +35,7 @@
                 dynamical system when parameters are varied. The central geometric idea is that a structurally stable
                 system persists under small perturbations, while the loss of structural stability at critical parameter
                 values forces the appearance of new invariant sets (equilibria, periodic orbits, homoclinic cycles) whose
-                local normal forms and global rearrangements organise the dynamics in an entire neighbourhood of
+                local normal forms and global rearrangements organize the dynamics in an entire neighborhood of
                 parameter space.</p>
         </header>
 
@@ -48,9 +46,9 @@
             <section class="doc-section" id="structural">
                 <h2>structural instability, invariant sets and poincare maps for families</h2>
                 <p>A family of vector fields $v_\mu$ (or maps $f_\mu$) depending smoothly on a parameter
-                    $\mu\in\mathbb{R}^p$ is structurally unstable at $\mu_0$ when every neighbourhood of $v_{\mu_0}$
-                    contains vector fields that are not topologically equivalent to it. The organising centres of such
-                    instability are the non-hyperbolic invariant sets: equilibria whose linearisation possesses
+                    $\mu\in\mathbb{R}^p$ is structurally unstable at $\mu_0$ when every neighborhood of $v_{\mu_0}$
+                    contains vector fields that are not topologically equivalent to it. The organizing centers of such
+                    instability are the non-hyperbolic invariant sets: equilibria whose linearization possesses
                     eigenvalues on the imaginary axis, or periodic orbits whose Floquet multipliers lie on the unit
                     circle.</p>
                 <p>For a periodic orbit the Poincare map reduces the problem to the bifurcation of fixed points of a
@@ -59,26 +57,26 @@
                     Neimark-Sacker) appear as the corresponding bifurcations of fixed points. The same reduction converts
                     the study of bifurcations of limit cycles into the far simpler study of bifurcations of maps.</p>
 
-                <p><strong>definition (parametrised family).</strong> a $C^r$ family of vector fields is a $C^r$ map
+                <p><strong>definition (parametrized family).</strong> a $C^r$ family of vector fields is a $C^r$ map
                     $(\mu,x)\mapsto v_\mu(x)$ with $\mu\in\mathbb{R}^p$ and $x\in M$. likewise for families of maps
                     $f_\mu:M\to M$.</p>
 
                 <p><strong>definition (bifurcation value).</strong> a parameter value $\mu_0$ is a bifurcation value if
                     $v_{\mu_0}$ is not structurally stable in the $C^1$ topology of vector fields (or, more weakly, if
                     the topological equivalence class of the phase portrait changes for $\mu$ near $\mu_0$ in every
-                    neighbourhood of $\mu_0$).</p>
+                    neighborhood of $\mu_0$).</p>
 
                 <p><strong>theorem (hyperbolicity implies local structural stability of equilibria).</strong> if
-                    $v_{\mu_0}(x_0)=0$ and $Dv_{\mu_0}(x_0)$ is hyperbolic, then there exist neighbourhoods of $x_0$ and
+                    $v_{\mu_0}(x_0)=0$ and $Dv_{\mu_0}(x_0)$ is hyperbolic, then there exist neighborhoods of $x_0$ and
                     of $\mu_0$ and a unique $C^r$ equilibrium branch $x(\mu)$ with $x(\mu_0)=x_0$ such that $x(\mu)$
                     remains hyperbolic and the local phase portrait near $x(\mu)$ is topologically equivalent to that of
-                    the linearisation, for all $\mu$ near $\mu_0$.</p>
+                    the linearization, for all $\mu$ near $\mu_0$.</p>
 
                 <p><strong>proof.</strong> consider $F(\mu,x)=v_\mu(x)$. then $F(\mu_0,x_0)=0$ and
                     $D_x F(\mu_0,x_0)$ is invertible by hyperbolicity. the implicit function theorem yields a unique
                     $C^r$ branch $x(\mu)$ of zeros. eigenvalues depend continuously on the matrix, so hyperbolicity
                     persists for $\mu$ near $\mu_0$. the Hartman-Grobman theorem (chapter 2) supplies local topological
-                    conjugacy to the linearisation at each such hyperbolic equilibrium, and continuous dependence of the
+                    conjugacy to the linearization at each such hyperbolic equilibrium, and continuous dependence of the
                     stable/unstable dimensions gives topological equivalence of nearby phase portraits. $\square$</p>
 
                 <p><strong>remark (reduction to maps).</strong> by chapter 5, a hyperbolic periodic orbit produces a
@@ -87,17 +85,7 @@
             
                 
 
-                <div class="doc-widget" id="fig-sn">
-                    <p class="doc-widget-title">figure · saddle–node bifurcation</p>
-                    <p class="doc-widget-caption">Normal form $\dot x=\mu-x^2$. Vector field and bifurcation diagram: branches $\pm\sqrt\mu$ with stability from $f^\prime=-2x$.</p>
-                    <div class="doc-widget-plot tall" id="fig8-sn-plot" role="img" aria-label="figure · saddle–node bifurcation"></div>
-                    <div class="doc-widget-controls">
-                        <label>$\mu$
-                            <input id="fig8-sn-mu" type="range" min="-0.6" max="1.0" value="0.35" step="0.02">
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig8-sn-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="symmetry">
@@ -125,9 +113,9 @@
 
                 <p><strong>proof.</strong> equivariance forces $v_\mu(x)=x\,a(\mu,x^2)$ for a smooth $a$. write
                     $a(\mu,u)=\alpha(\mu)+\beta(\mu)u+r(\mu,u)$ with $r=O(u^2)$. conditions $v_0'(0)=0$ and
-                    $\partial_\mu v_0'(0)\neq 0$ become $\alpha(0)=0$ and $\alpha'(0)\neq 0$. reparametrise $\mu$ so that
+                    $\partial_\mu v_0'(0)\neq 0$ become $\alpha(0)=0$ and $\alpha'(0)\neq 0$. reparametrize $\mu$ so that
                     $\alpha(\mu)=\mu$. if $\beta(0)\neq 0$ set $\eta=\mathrm{sign}(\beta(0))$ and rescale $x$ by
-                    $|\beta(0)|^{1/2}$ to normalise $|\beta(0)|=1$, obtaining $\dot x=\mu x+\eta x^3+O(x^5)$. a further
+                    $|\beta(0)|^{1/2}$ to normalize $|\beta(0)|=1$, obtaining $\dot x=\mu x+\eta x^3+O(x^5)$. a further
                     near-identity equivariant change of coordinates (standard, from invertibility of the homological
                     operator on odd quintic remainders once the cubic coefficient is nonzero) removes terms of order
                     $\ge 5$ at the level of $C^3$ topological normal forms, leaving $\dot x=\mu x\pm x^3$. $\square$</p>
@@ -137,23 +125,7 @@
             
                 
 
-                <div class="doc-widget" id="fig-pitch">
-                    <p class="doc-widget-title">figure · pitchfork under $\mathbb{Z}_2$ equivariance</p>
-                    <p class="doc-widget-caption">Odd normal form $\dot x=\mu x\mp x^3$. Super/subcritical branches; symmetry forbids a pure saddle-node at the origin.</p>
-                    <div class="doc-widget-plot tall" id="fig8-pitch-plot" role="img" aria-label="figure · pitchfork under $\mathbb{Z}_2$ equivariance"></div>
-                    <div class="doc-widget-controls">
-                        <label>$\mu$
-                            <input id="fig8-pitch-mu" type="range" min="-1.0" max="1.0" value="0.45" step="0.02">
-                        </label>
-                        <label>type
-                            <select id="fig8-pitch-sign">
-                                <option value="super" selected>supercritical</option>
-                                <option value="sub">subcritical</option>
-                            </select>
-                        </label>
-                    </div>
-                    <p class="doc-widget-readout" id="fig8-pitch-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="normal">
@@ -161,7 +133,7 @@
                 <p>When two parameters are free to vary, new resonances and degeneracies become generic. The
                     classification of these codimension-two bifurcations proceeds by computing a normal form: a polynomial
                     vector field, unique up to higher-order terms and smooth coordinate changes, that captures the
-                    qualitative dynamics in a neighbourhood of the critical point. The computation relies on the Fredholm
+                    qualitative dynamics in a neighborhood of the critical point. The computation relies on the Fredholm
                     alternative in the space of homogeneous polynomials and on the action of the group of invertible
                     linear changes of coordinates that preserve the linear part. Once the normal form is known, a
                     standard unfolding, containing the minimal number of parameters, is derived by adding the lowest-order
@@ -195,8 +167,8 @@
                     the normal-form component in $C_k$. $\square$</p>
 
                 <p><strong>definition (versal unfolding).</strong> a family $v_\mu$ through $v_0$ is a versal unfolding of
-                    a singularity if every other perturbation of $v_0$ is fibrewise equivalent, after smooth
-                    reparametrisation of parameters, to a family induced from $v_\mu$. the minimal number of parameters
+                    a singularity if every other perturbation of $v_0$ is fiberwise equivalent, after smooth
+                    reparametrization of parameters, to a family induced from $v_\mu$. the minimal number of parameters
                     is the codimension of the singularity.</p>
             
                 
@@ -204,14 +176,14 @@
 
             <section class="doc-section" id="five">
                 <h2>the five critical codimension-two bifurcations</h2>
-                <p>Five bifurcations organise the overwhelming majority of two-parameter phenomena observed in
+                <p>Five bifurcations organize the overwhelming majority of two-parameter phenomena observed in
                     applications.</p>
 
                 <p><strong>definition (cusp).</strong> a saddle-node bifurcation in which the quadratic coefficient also
                     vanishes. the normal form is $\dot x=r+sx\pm x^3$. its unfolding produces a hysteresis curve and a
                     pair of saddle-node lines meeting tangentially at the cusp point.</p>
 
-                <p><strong>definition (bautin / generalised hopf).</strong> a Hopf bifurcation in which the first
+                <p><strong>definition (bautin / generalized hopf).</strong> a Hopf bifurcation in which the first
                     Lyapunov coefficient vanishes. the normal form contains a fifth-order term; the unfolding produces a
                     curve of neutral saddles and a locus of limit-point-of-cycles bifurcations that bound a region of
                     bistability between a stable equilibrium and a stable periodic orbit.</p>
@@ -223,15 +195,15 @@
                     \dot y=\beta_1+\beta_2 x+ax^2+bxy.
                     $$
                     its unfolding contains a saddle-node curve, a Hopf curve, and a homoclinic curve that meet at the
-                    origin; it is the principal organising centre for the transition between equilibria and large-amplitude
+                    origin; it is the principal organizing center for the transition between equilibria and large-amplitude
                     periodic orbits in planar systems.</p>
 
                 <p><strong>definition (fold-hopf / zero-hopf).</strong> a zero eigenvalue and a purely imaginary pair. the
-                    normal form lives on a three-dimensional centre manifold and produces, among other phenomena,
+                    normal form lives on a three-dimensional center manifold and produces, among other phenomena,
                     invariant tori and Shilnikov-type homoclinic orbits.</p>
 
                 <p><strong>definition (hopf-hopf).</strong> two distinct pairs of purely imaginary eigenvalues. the
-                    normal form on a four-dimensional centre manifold yields a rich web of Neimark-Sacker bifurcations,
+                    normal form on a four-dimensional center manifold yields a rich web of Neimark-Sacker bifurcations,
                     resonant tori, and heteroclinic cycles.</p>
 
                 <p><strong>theorem (saddle-node normal form, codimension one).</strong> let $v_\mu$ be a $C^2$ family of
@@ -243,31 +215,20 @@
                     near the origin.</p>
 
                 <p><strong>proof.</strong> write $v_\mu(x)=a(\mu)+b(\mu)x+c(\mu)x^2+o(x^2)$ with $a(0)=b(0)=0$,
-                    $c(0)\neq 0$, and $a'(0)\neq 0$. reparametrise $\mu$ so that $a(\mu)=\mu$. a near-identity shift
+                    $c(0)\neq 0$, and $a'(0)\neq 0$. reparametrize $\mu$ so that $a(\mu)=\mu$. a near-identity shift
                     $x=y+\alpha(\mu)$ with $\alpha(0)=0$ chosen to kill the linear term (possible by invertibility of
                     $c(0)$ against $b(\mu)$ for small $\mu$) leaves $\dot y=\mu+\tilde c(\mu)y^2+o(y^2)$ with
-                    $\tilde c(0)=c(0)\neq 0$. rescale $y$ and the time (or absorb constants into $\mu$) to normalise
+                    $\tilde c(0)=c(0)\neq 0$. rescale $y$ and the time (or absorb constants into $\mu$) to normalize
                     $|\tilde c|=1$, obtaining $\dot y=\mu\pm y^2$ at leading order, which is $C^1$-equivalent to the
                     quadratic normal form near the bifurcation. $\square$</p>
             
                 
 
-                <div class="doc-widget" id="fig-hopf">
-                    <p class="doc-widget-title">figure · supercritical Hopf bifurcation</p>
-                    <p class="doc-widget-caption">Planar normal form with $\mathrm{Re}\,\lambda=\mu$ and cubic saturation. Phase portrait plus polar amplitude law $\dot r=\mu r-r^3$ with cycle at $r=\sqrt\mu$.</p>
-                    <div class="doc-widget-plot tall" id="fig8-hopf-plot" role="img" aria-label="figure · supercritical Hopf bifurcation"></div>
-                    <div class="doc-widget-controls">
-                        <label>$\mu$
-                            <input id="fig8-hopf-mu" type="range" min="-0.5" max="1.0" value="0.35" step="0.02">
-                        </label>
-                        <button type="button" id="fig8-hopf-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig8-hopf-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="bt">
-                <h2>bogdanov-takens as organising centre</h2>
+                <h2>bogdanov-takens as organizing center</h2>
                 <p>In planar systems the Bogdanov-Takens point is the most important codimension-two singularity. By
                     varying the two unfolding parameters one successively encounters a saddle-node bifurcation that
                     creates a pair of equilibria, a Hopf bifurcation that creates a small limit cycle, and a homoclinic
@@ -291,31 +252,17 @@
                     set $\Delta=0$ is the parabola $\beta_1=\beta_2^2/4$ in the $(\beta_1,\beta_2)$-plane, which is the
                     saddle-node locus in the unfolding. $\square$</p>
 
-                <p><strong>remark (hopf and homoclinic loci).</strong> linearisation about the nontrivial equilibria yields
+                <p><strong>remark (hopf and homoclinic loci).</strong> linearization about the nontrivial equilibria yields
                     a Hopf curve for a range of $(\beta_1,\beta_2)$ where a pure imaginary pair occurs with nonzero
                     first Lyapunov coefficient. matching of a homoclinic orbit of the saddle can be proved by a Melnikov
-                    or blow-up analysis in a rescaled neighbourhood of the BT point; the three curves meet at the origin
-                    with standard asymptotic tangencies. the geometric programme of the chapter is complete once this
-                    skeleton is in place: codimension-two BT organises the entire planar equilibrium-cycle-homoclinic
+                    or blow-up analysis in a rescaled neighborhood of the BT point; the three curves meet at the origin
+                    with standard asymptotic tangencies. the geometric program of the chapter is complete once this
+                    skeleton is in place: codimension-two BT organizes the entire planar equilibrium-cycle-homoclinic
                     scenario.</p>
             
                 
 
-                <div class="doc-widget" id="fig-bt">
-                    <p class="doc-widget-title">figure · Bogdanov–Takens unfolding</p>
-                    <p class="doc-widget-caption">Truncated BT field $\dot x=y$, $\dot y=\beta_1+\beta_2 x+x^2+xy$. Equilibria from the quadratic discriminant; parameter plane shows SN curve $\Delta=\beta_2^2-4\beta_1=0$.</p>
-                    <div class="doc-widget-plot tall" id="fig8-bt-plot" role="img" aria-label="figure · Bogdanov–Takens unfolding"></div>
-                    <div class="doc-widget-controls">
-                        <label>$\beta_1$
-                            <input id="fig8-bt-b1" type="range" min="-0.6" max="0.5" value="-0.12" step="0.02">
-                        </label>
-                        <label>$\beta_2$
-                            <input id="fig8-bt-b2" type="range" min="-1.0" max="1.2" value="0.45" step="0.02">
-                        </label>
-                        <button type="button" id="fig8-bt-play" class="doc-widget-button">pause</button>
-                    </div>
-                    <p class="doc-widget-readout" id="fig8-bt-readout"></p>
-                </div>
+                
 </section>
 
             <section class="doc-section" id="numerical">
@@ -346,7 +293,7 @@
                     space is smooth only at regular values of the moment map. At singular values the reduced space becomes
                     a stratified Poisson space whose strata are the symplectic manifolds corresponding to the different
                     orbit types. The passage from a smooth reduced space to a stratified space as a parameter (for example
-                    a momentum value) crosses a critical level is the precise geometric analogue of a symmetry-breaking
+                    a momentum value) crosses a critical level is the precise geometric analog of a symmetry-breaking
                     bifurcation.</p>
                 <p>Cylinder-valued momentum maps and optimal reduction techniques extend the construction to actions that
                     do not admit an ordinary $\mathfrak{g}^*$-valued moment map; the resulting reduced spaces are again
@@ -360,12 +307,12 @@
                     $$
                     M_\nu=\mu^{-1}(\nu)/G_\nu
                     $$
-                    is a smooth symplectic manifold (with form uniquely characterised by pullback of $\omega$ to
+                    is a smooth symplectic manifold (with form uniquely characterized by pullback of $\omega$ to
                     $\mu^{-1}(\nu)$).</p>
 
                 <p><strong>theorem (singular values force orbit-type strata).</strong> if $\nu$ is a critical value of
                     $\mu$, then $\mu^{-1}(\nu)$ is not a smooth manifold in general, and the quotient
-                    $\mu^{-1}(\nu)/G_\nu$ decomposes into a union of smooth symplectic strata labelled by conjugacy classes
+                    $\mu^{-1}(\nu)/G_\nu$ decomposes into a union of smooth symplectic strata labeled by conjugacy classes
                     of stabilisers (orbit types). the dimension of a stratum drops precisely when the stabiliser
                     enlarges.</p>
 
@@ -393,8 +340,8 @@
                 <h2>summary</h2>
                 <p>Bifurcation theory combines the local analytic technique of normal forms with the global geometric
                     notions of structural stability, equivariance, and symplectic reduction. The five codimension-two
-                    singularities, together with their numerical continuation, organise the transition scenarios observed
-                    in generic two-parameter families, while singular reduction realises the same transitions as changes
+                    singularities, together with their numerical continuation, organize the transition scenarios observed
+                    in generic two-parameter families, while singular reduction realizes the same transitions as changes
                     in the stratified structure of the reduced phase space.</p>
             </section>
 
@@ -413,11 +360,16 @@
                     A(\mu)=\begin{pmatrix}\mu&-1\\1&\mu\end{pmatrix}.
                     $$
                     compute the eigenvalues and verify that a complex conjugate pair crosses the imaginary axis
-                    transversally at $\mu=0$ (a Hopf condition for a planar linearisation).</p>
+                    transversally at $\mu=0$ (a Hopf condition for a planar linearization).</p>
 
                 <p><strong>exercise 4 (BT equilibria).</strong> for $\dot x=y$,
                     $\dot y=\beta_1+\beta_2 x+x^2$, find the saddle-node curve in the $(\beta_1,\beta_2)$-plane and
                     determine for which parameters there are two equilibria.</p>
+
+                <p><strong>exercise 5 (saddle-node normal form).</strong> for $\dot x=\mu+x^2$ on the line, compute the equilibria as functions of $\mu$, determine
+                    their stability, and draw the bifurcation diagram in the $(\mu,x)$ plane. show that $\mu=0$ is
+                    the only value where structural stability fails in this one-parameter family.</p>
+
             </section>
 
         </div>
